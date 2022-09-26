@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "FW Epilogue: Ijs and Katya"
 	landing
@@ -191,7 +194,7 @@ mission "FW Epilogue: Danforth"
 				goto end
 			
 			label checkmate2
-			`	Then he leans forward and says, more quietly, "Just a heads up that the Navy has their eye on the Free Worlds still. Just because a peace treaty was made doesn't mean you can keep your nukes forever."`
+			`	Then he leans forward and says, more quietly, "Just a heads-up that the Navy has their eye on the Free Worlds still. Just because a peace treaty was made doesn't mean you can keep your nukes forever."`
 			
 			label end
 			`	After you talk for a while longer, Danforth wishes you luck and sends you on your way. "I'll be in touch if we ever need your assistance in the future," he says.`

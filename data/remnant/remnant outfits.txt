@@ -1,4 +1,5 @@
 # Copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2021 by Zitchas
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -6,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Weapons:
 
@@ -276,6 +280,133 @@ outfit "EMP Torpedo Bay"
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 
+
+
+outfit "Teciimach Canister"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 35500
+	thumbnail "outfit/emp torpedo"
+	"mass" 1
+	"teciimach canister capacity" -1
+	description "This canister contains everything required to assemble a Teciimach torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
+	description `	Unlike the previous generation of "EMP torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
+
+outfit "Teciimach Canister Rack"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 295000
+	thumbnail "outfit/emp rack"
+	"mass" 5
+	"outfit space" -9
+	"energy capacity" 500
+	"teciimach canister capacity" 9
+	ammo "Teciimach Canister"
+	description "The Teciimach Canister rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach torpedoes."
+
+outfit "Teciimach Bay"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 1525000
+	thumbnail "outfit/teciimach bay"
+	"mass" 9
+	"outfit space" -13
+	"weapon capacity" -13
+	"gun ports" -1
+	"teciimach canister capacity" 9
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "Teciimach Canister"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		cluster
+		safe
+		"reload" 310
+		"firing energy" 400
+		"firing heat" 18
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 8
+		"acceleration" .7
+		"drag" .1
+		"turn" 2.5
+		"homing" 3
+		"infrared tracking" .8
+		"radar tracking" .9
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 900
+		"hull damage" 125
+		"disabled damage" 60
+		"ion damage" 65
+		"energy damage" 2000
+		"hit force" 90
+		"missile strength" 95
+	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
+
+outfit "Teciimach Pod"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 762500
+	thumbnail "outfit/teciimach pod"
+	"mass" 3
+	"outfit space" -6
+	"weapon capacity" -6
+	"gun ports" -1
+	"teciimach canister capacity" 3
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "Teciimach Canister"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		cluster
+		safe
+		"burst count" 3
+		"burst reload" 110
+		"reload" 620
+		"firing energy" 350
+		"firing heat" 16
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 8
+		"acceleration" .7
+		"drag" .1
+		"turn" 2.5
+		"homing" 3
+		"infrared tracking" .8
+		"radar tracking" .9
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 900
+		"hull damage" 125
+		"disabled damage" 60
+		"ion damage" 60
+		"energy damage" 2000
+		"hit force" 90
+		"missile strength" 95
+	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
+	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
+
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
 		"no repeat"
@@ -473,6 +604,16 @@ outfit "Emergency Ramscoop"
 	"outfit space" -4
 	"ramscoop" 0.5
 	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+
+outfit "NDR-114 Android"
+	category "Unique"
+	cost 120000
+	thumbnail "outfit/android"
+	"required crew" -1
+	"energy consumption" 0.01
+	unplunderable 1
+	description "While these were once considered cutting-edge outfits, their lack of autonomous capabilities and economic benefit ensured they were never licensed by a manufacturer."
+	description "	Despite this, some captains commissioned these directly from their inventor, effectively replacing one of their crew members with a robotic counterpart. These captains found that androids possessed sufficient capabilities to perform most work, but lacked the capability to captain a ship or take part in boarding actions."
 
 outfit "Research Laboratory"
 	category "Systems"
@@ -716,10 +857,10 @@ outfit "Tuning Rifle"
 
 
 
-# Special
+# Unique
 
 outfit "Void Rifle"
-	category "Special"
+	category "Unique"
 	licenses
 		Remnant
 	cost 1000000
@@ -731,12 +872,16 @@ outfit "Void Rifle"
 	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old void rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
 	description "	When fired, the void rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 
+
+
+# Special
+
 outfit "Remnant License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
 
 outfit "Remnant Capital License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
