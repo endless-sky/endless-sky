@@ -414,6 +414,7 @@ outfit "MCS Extractor"
 	"mass" 18
 	"outfit space" -18
 	"weapon capacity" -18
+	"asteroid scan power" 18
 	"gun ports" -1
 	weapon
 		sound "drill"
