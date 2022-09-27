@@ -15938,15 +15938,15 @@ system Karhio
 		sprite star/k5-old
 		distance 9.4
 		period 46.4
-	object 6
+	object
 		sprite planet/rock14-b
 		distance 288
 		period 124
-	object 5
+	object
 		sprite planet/europa-b
 		distance 551
 		period 322.2
-	object 7
+	object
 		sprite planet/desert0
 		distance 983
 		period 767.9
@@ -23378,19 +23378,19 @@ system Pukako
 	object
 		sprite star/k0
 		period 10
-	object 8
+	object
 		sprite planet/desert0-b
 		distance 813
 		period 1090.87
 	object
 		sprite planet/gas10-hot
 		distance 2492
-		period 5854.14
-		object 9
+		period 5854.1
+		object
 			sprite planet/rock3
 			distance 400
 			period 302.4
-		object 10
+		object
 			sprite planet/rock20
 			distance 532
 			period 463.83
@@ -29217,7 +29217,7 @@ system Vilacira
 	habitable 28.8
 	belt 1157
 	haze _menu/haze-33
-	link 21b
+	link Cotpoxi
 	asteroids "small rock" 2 2.73
 	asteroids "medium rock" 8 3.6
 	asteroids "large rock" 2 4.2
