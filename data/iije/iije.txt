@@ -241,7 +241,7 @@ fleet "Iije III"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid unconstrained swarm
+		timid unconstrained swarming
 	variant 27
 		"Jje"
 	variant 9
