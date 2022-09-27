@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PlayerInfo.h"
@@ -61,6 +64,8 @@ void PlayerInfo::Clear()
 	Random::Seed(time(nullptr));
 	GameData::Revert();
 	Messages::Reset();
+
+	conditions.Clear();
 }
 
 
@@ -103,7 +108,7 @@ void PlayerInfo::New(const StartConditions &start)
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
 	start.GetConditions().Apply(conditions);
-	UpdateAutoConditions();
+	RegisterDerivedConditions();
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -133,6 +138,9 @@ void PlayerInfo::Load(const string &path)
 	// The player may have bribed their current planet in the last session. Ensure
 	// we provide the same access to services in this session, too.
 	bool hasFullClearance = false;
+
+	// Register derived conditions now, so old primary versions can load into them
+	RegisterDerivedConditions();
 
 	DataFile file(path);
 	for(const DataNode &child : file)
@@ -230,10 +238,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
-		{
-			for(const DataNode &grand : child)
-				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
-		}
+			conditions.Load(child);
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
@@ -529,9 +534,6 @@ const Date &PlayerInfo::GetDate() const
 void PlayerInfo::IncrementDate()
 {
 	++date;
-	conditions["day"] = date.Day();
-	conditions["month"] = date.Month();
-	conditions["year"] = date.Year();
 
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
@@ -558,10 +560,11 @@ void PlayerInfo::IncrementDate()
 	}
 
 	// Check what salaries and tribute the player receives.
-	auto GetIncome = [&](string prefix) {
+	auto GetIncome = [&](string prefix)
+	{
 		int64_t total = 0;
-		auto it = conditions.lower_bound(prefix);
-		for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
+		auto it = conditions.PrimariesLowerBound(prefix);
+		for( ; it != conditions.PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
 			total += it->second;
 		return total;
 	};
@@ -608,9 +611,6 @@ void PlayerInfo::IncrementDate()
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
-
-	// Re-calculate all automatic conditions
-	UpdateAutoConditions();
 }
 
 
@@ -1183,9 +1183,6 @@ void PlayerInfo::Land(UI *ui)
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
 
-	// Bring auto conditions up-to-date for missions to check your current status.
-	UpdateAutoConditions();
-
 	// Evaluate changes to NPC spawning criteria.
 	if(!freshlyLoaded)
 		UpdateMissionNPCs();
@@ -1207,7 +1204,8 @@ void PlayerInfo::Land(UI *ui)
 	// do not name them all (since this would overflow the screen).
 	else if(ui && !inactiveMissions.empty())
 	{
-		string message = "These active missions or jobs were deactivated due to a missing definition - perhaps you recently removed a plugin?\n";
+		string message = "These active missions or jobs were deactivated due to a missing definition"
+			" - perhaps you recently removed a plugin?\n";
 		auto mit = inactiveMissions.rbegin();
 		int named = 0;
 		while(mit != inactiveMissions.rend() && (++named < 10))
@@ -1631,8 +1629,6 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	// Ensure that boarding this NPC again does not create a mission.
 	ship->SetIsSpecial();
 
-	// Update auto conditions to reflect the player's flagship's free capacity.
-	UpdateAutoConditions(true);
 	// "boardingMissions" is emptied by MissionCallback, but to be sure:
 	boardingMissions.clear();
 
@@ -1808,17 +1804,8 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 
 
 
-// Get the value of the given condition (default 0).
-int64_t PlayerInfo::GetCondition(const string &name) const
-{
-	auto it = conditions.find(name);
-	return (it == conditions.end()) ? 0 : it->second;
-}
-
-
-
 // Get mutable access to the player's list of conditions.
-map<string, int64_t> &PlayerInfo::Conditions()
+ConditionsStore &PlayerInfo::Conditions()
 {
 	return conditions;
 }
@@ -1826,35 +1813,9 @@ map<string, int64_t> &PlayerInfo::Conditions()
 
 
 // Access the player's list of conditions.
-const map<string, int64_t> &PlayerInfo::Conditions() const
+const ConditionsStore &PlayerInfo::Conditions() const
 {
 	return conditions;
-}
-
-
-
-// Set and check the reputation conditions, which missions and events can use to
-// modify the player's reputation with other governments.
-void PlayerInfo::SetReputationConditions()
-{
-	for(const auto &it : GameData::Governments())
-	{
-		int64_t rep = it.second.Reputation();
-		conditions["reputation: " + it.first] = rep;
-	}
-}
-
-
-
-void PlayerInfo::CheckReputationConditions()
-{
-	for(const auto &it : GameData::Governments())
-	{
-		int64_t rep = it.second.Reputation();
-		int64_t newRep = conditions["reputation: " + it.first];
-		if(newRep != rep)
-			it.second.AddReputation(newRep - rep);
-	}
 }
 
 
@@ -2441,7 +2402,7 @@ void PlayerInfo::ApplyChanges()
 
 	// Check which planets you have dominated.
 	static const string prefix = "tribute: ";
-	for(auto it = conditions.lower_bound(prefix); it != conditions.end(); ++it)
+	for(auto it = Conditions().PrimariesLowerBound(prefix); it != Conditions().PrimariesEnd(); ++it)
 	{
 		if(it->first.compare(0, prefix.length(), prefix))
 			break;
@@ -2570,79 +2531,177 @@ void PlayerInfo::ValidateLoad()
 
 
 
-// Update the conditions that reflect the current status of the player.
-void PlayerInfo::UpdateAutoConditions(bool isBoarding)
+// Helper to register derived conditions.
+void PlayerInfo::RegisterDerivedConditions()
 {
+	// Read-only date functions.
+	auto &&dayProvider = conditions.GetProviderNamed("day");
+	dayProvider.SetGetFunction([this](const string &name) { return date.Day(); });
+
+	auto &&monthProvider = conditions.GetProviderNamed("month");
+	monthProvider.SetGetFunction([this](const string &name) { return date.Month(); });
+
+	auto &&yearProvider = conditions.GetProviderNamed("year");
+	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
+
+	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
-	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
-	conditions["credits"] = min(limit, accounts.Credits());
-	conditions["unpaid mortgages"] = min(limit, accounts.TotalDebt("Mortgage"));
-	conditions["unpaid fines"] = min(limit, accounts.TotalDebt("Fine"));
-	conditions["unpaid salaries"] = min(limit, accounts.SalariesOwed());
-	conditions["unpaid maintenance"] = min(limit, accounts.MaintenanceDue());
-	conditions["credit score"] = accounts.CreditScore();
-	// Serialize the current reputation with other governments.
-	SetReputationConditions();
-	// Helper lambda function to clear a range
-	auto clearRange = [](map<string, int64_t> &conditionsMap, string firstStr, string lastStr)
+
+	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
+	netWorthProvider.SetGetFunction([this](const string &name)
+		{ return min(limit, max(-limit, accounts.NetWorth())); });
+
+	auto &&creditsProvider = conditions.GetProviderNamed("credits");
+	creditsProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.Credits()); });
+
+	auto &&unpaidMortgagesProvider = conditions.GetProviderNamed("unpaid mortgages");
+	unpaidMortgagesProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Mortgage")); });
+
+	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
+	unpaidFinesProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Fine")); });
+
+	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
+	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.SalariesOwed()); });
+
+	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
+	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.MaintenanceDue()); });
+
+	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
+	creditScoreProvider.SetGetFunction([this](const string &name) {
+		return accounts.CreditScore(); });
+
+	// Read-only flagship conditions.
+	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
+	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->Crew() : 0; });
+
+	auto &&flagshipRequiredCrewProvider = conditions.GetProviderNamed("flagship required crew");
+	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->RequiredCrew() : 0; });
+
+	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
+	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->Attributes().Get("bunks") : 0; });
+
+	auto &&flagshipModelProvider = conditions.GetProviderPrefixed("flagship model: ");
+	auto flagshipModelFun = [this](const string &name) -> bool
 	{
-		auto first = conditionsMap.lower_bound(firstStr);
-		auto last = conditionsMap.lower_bound(lastStr);
-		if(first != last)
-			conditionsMap.erase(first, last);
+		if(!flagship)
+			return false;
+		return name == "flagship model: " + flagship->ModelName();
 	};
-	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
-	clearRange(conditions, "ships: ", "ships:!");
-	clearRange(conditions, "flagship model: ", "flagship model:!");
-	// Store special conditions for cargo and passenger space.
-	conditions["cargo space"] = 0;
-	conditions["passenger space"] = 0;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
-		{
-			conditions["cargo space"] += ship->Attributes().Get("cargo space");
-			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
-			++conditions["ships: " + ship->Attributes().Category()];
-		}
-	if(flagship)
-		++conditions["flagship model: " + flagship->ModelName()];
+	flagshipModelProvider.SetHasFunction(flagshipModelFun);
+	flagshipModelProvider.SetGetFunction(flagshipModelFun);
+
+	// Conditions for your fleet's attractiveness to pirates.
+	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
+	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return RaidFleetFactors().first; });
+
+	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");
+	armamentDeterrence.SetGetFunction([this](const string &name) -> int64_t {
+		return RaidFleetFactors().second; });
+
+	auto &&pirateAttractionProvider = conditions.GetProviderNamed("pirate attraction");
+	pirateAttractionProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		auto rff = RaidFleetFactors();
+		return rff.first - rff.second;
+	});
+
+	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
-	if(isBoarding && flagship)
+	auto &&cargoSpaceProvider = conditions.GetProviderNamed("cargo space");
+	cargoSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		conditions["cargo space"] = flagship->Cargo().Free();
-		conditions["passenger space"] = flagship->Cargo().BunksFree();
-	}
+		if(flagship && !boardingMissions.empty())
+			return flagship->Cargo().Free();
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+				retVal += ship->Attributes().Get("cargo space");
+		return retVal;
+	});
 
-	// Clear any existing flagship system: and planet: conditions. (Note: '!' = ' ' + 1.)
-	clearRange(conditions, "flagship system: ", "flagship system:!");
-	clearRange(conditions, "flagship planet: ", "flagship planet:!");
-
-	// Store conditions for flagship current crew, required crew, and bunks.
-	if(flagship)
+	auto &&passengerSpaceProvider = conditions.GetProviderNamed("passenger space");
+	passengerSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		conditions["flagship crew"] = flagship->Crew();
-		conditions["flagship required crew"] = flagship->RequiredCrew();
-		conditions["flagship bunks"] = flagship->Attributes().Get("bunks");
-		if(flagship->GetSystem())
-			conditions["flagship system: " + flagship->GetSystem()->Name()] = 1;
-		if(flagship->GetPlanet())
-			conditions["flagship planet: " + flagship->GetPlanet()->TrueName()] = 1;
-	}
-	else
-	{
-		conditions["flagship crew"] = 0;
-		conditions["flagship required crew"] = 0;
-		conditions["flagship bunks"] = 0;
-	}
+		if(flagship && !boardingMissions.empty())
+			return flagship->Cargo().BunksFree();
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+				retVal += ship->Attributes().Get("bunks") - ship->RequiredCrew();
+		return retVal;
+	});
 
-	// Conditions for your fleet's attractiveness to pirates:
-	pair<double, double> factors = RaidFleetFactors();
-	conditions["cargo attractiveness"] = factors.first;
-	conditions["armament deterrence"] = factors.second;
-	conditions["pirate attraction"] = factors.first - factors.second;
+	// The number of active ships the player has of the given category
+	// (e.g. Heavy Warships).
+	auto &&shipTypesProvider = conditions.GetProviderPrefixed("ships: ");
+	shipTypesProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system
+					&& name == "ships: " + ship->Attributes().Category())
+				++retVal;
+		return retVal;
+	});
+
+	// Conditions to determine if flagship is in a system and on a planet.
+	auto &&flagshipSystemProvider = conditions.GetProviderPrefixed("flagship system: ");
+	auto flagshipSystemFun = [this](const string &name) -> bool
+	{
+		if(!flagship || !flagship->GetSystem())
+			return false;
+		return name == "flagship system: " + flagship->GetSystem()->Name();
+	};
+	flagshipSystemProvider.SetHasFunction(flagshipSystemFun);
+	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
+
+	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
+	auto flagshipPlanetFun = [this](const string &name) -> bool
+	{
+		if(!flagship || !flagship->GetPlanet())
+			return false;
+		return name == "flagship planet: " + flagship->GetPlanet()->TrueName();
+	};
+	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
+	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
+
+	// Read/write government reputation conditions.
+	// The erase function is still default (since we cannot erase government conditions).
+	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
+	reputationProvider.SetHasFunction([](const string &name) -> bool
+	{
+		string govName = name.substr(strlen("reputation: "));
+		return GameData::Governments().Has(govName);
+	});
+	reputationProvider.SetGetFunction([](const string &name) -> int64_t
+	{
+		string govName = name.substr(strlen("reputation: "));
+		auto gov = GameData::Governments().Get(govName);
+		if(!gov)
+			return 0;
+		return gov->Reputation();
+	});
+	reputationProvider.SetSetFunction([](const string &name, int64_t value) -> bool
+	{
+		string govName = name.substr(strlen("reputation: "));
+		auto gov = GameData::Governments().Get(govName);
+		if(!gov)
+			return false;
+		gov->SetReputation(value);
+		return true;
+	});
 }
 
 
@@ -2969,23 +3028,8 @@ void PlayerInfo::Save(const string &path) const
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
 
-	// Save any "condition" flags that are set.
-	if(!conditions.empty())
-	{
-		out.Write("conditions");
-		out.BeginChild();
-		{
-			for(const auto &it : conditions)
-			{
-				// If the condition's value is 1, don't bother writing the 1.
-				if(it.second == 1)
-					out.Write(it.first);
-				else if(it.second)
-					out.Write(it.first, it.second);
-			}
-		}
-		out.EndChild();
-	}
+	// Save any "primary condition" flags that are set.
+	conditions.Save(out);
 
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Remnant: Cognizance 1"
 	name "Follow-up Observations"
@@ -1173,7 +1176,7 @@ mission "Remnant: Cognizance 25"
 	on complete
 		payment 250000
 		conversation
-			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three 'olofezs that you located. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
+			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three 'olofezes that you located. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
 
 
 mission "Remnant: Cognizance 26"
@@ -1616,7 +1619,7 @@ mission "Remnant: Cognizance 38"
 			label cognizanceexplanation
 			`	The Remnant watch you attentively as you explain everything that went on at Postverta and the surrounding area. Once you hand over the data crystals, one Remnant slots one of them into a console on the spot while another pair take the case with the rest and hustle off toward the information desk.`
 			`	As you reach the end of your report, one of the Remnant nods in approval. "We are starting to disseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
-			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage, including access to captured 'olofezs. It is not much, but it may give you a little more ease of outfitting the <ship>.`
+			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage, including access to captured 'olofezes. It is not much, but it may give you a little more ease of outfitting the <ship>.`
 
 
 

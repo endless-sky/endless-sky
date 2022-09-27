@@ -99,6 +99,8 @@
 		<Unit filename="source/Command.h" />
 		<Unit filename="source/ConditionSet.cpp" />
 		<Unit filename="source/ConditionSet.h" />
+		<Unit filename="source/ConditionsStore.cpp" />
+		<Unit filename="source/ConditionsStore.h" />
 		<Unit filename="source/Conversation.cpp" />
 		<Unit filename="source/Conversation.h" />
 		<Unit filename="source/ConversationPanel.cpp" />
