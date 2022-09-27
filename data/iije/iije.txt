@@ -12,6 +12,20 @@
 
 # Creatures:
 
+outfit "Jump Organ"
+	category Systems
+	cost 0
+	mass 0
+	thumbnail "outfit/unknown"
+	"jump fuel" 100
+	"jump speed" .2
+	"hyperdrive" 1
+	"hyperdrive sound" "organ drive"
+	"hyperdrive out sound" "organ drive out"
+	"hyperdrive in sound" "organ drive in"
+	description "Iije jump organ."
+
+	
 ship "Jje"
 	noun "creature"
 	swizzle 0
@@ -19,20 +33,19 @@ ship "Jje"
 		"frame rate" 4
 	"never disabled"
 	attributes
-		category "Light Freighter"
+		category "Fighter"
 		"cost" 0
 		"hull" 4000
 		"required crew" 2
 		"bunks" 2
 		"mass" 100
 		"drag" 10
-		"thrust" 4
+		"thrust" 8
 		"turn" 60
 		"heat dissipation" 20
 		"energy capacity" 400
 		"energy generation" 4
 		"engine capacity" 200
-		"fuel capacity" 1
 		"cargo space" 10
 		"outfit space" 10
 		"weapon capacity" 10
@@ -76,19 +89,20 @@ ship "Ayym"
 		"bunks" 4
 		"mass" 200
 		"drag" 20
-		"thrust" 4
-		"turn" 60
+		"thrust" 14
+		"turn" 80
 		"heat dissipation" 20
 		"energy capacity" 400
 		"energy generation" 4
 		"engine capacity" 200
-		"fuel capacity" 1
+		"fuel capacity" 100
 		"cargo space" 10
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
 		"inscrutable" 1
 		"gaslining" 1
+		"ramscoop" 10
 		"hull repair rate" 2
 		"hull protection" 3
 		"ion protection" 3
@@ -103,22 +117,164 @@ ship "Ayym"
 			"hull damage" 10
 			"hit force" 30
 	outfits
+		"Jump Organ"
 
 	engine 0 0
 	"steering engine" 0 0
+	bay "Fighter" -36 40
+		over
+		angle 60
+	bay "Fighter" 36 20
+		over
+		angle -70
+	bay "Fighter" -16 104
+		over
+		angle 162
+	bay "Fighter" -28 66
+		over
+		angle 68
+	bay "Fighter" -18 14
+		over
+		angle 127
+	bay "Fighter" 35 25
+		over
+		angle 25
+	bay "Fighter" 25 70
+		over
+		angle -120
+	bay "Fighter" 11 110
+		over
+		angle 38
+	bay "Fighter" -36 40
+		over
+		angle -53
 	leak blood 10 5
 	explode blood
 	"final explode" blood
 	description "Iije Adult."
 
+# Fleets:
 
 fleet "Iije"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid mute swarming unconstrained uninterested
-	variant 27
+		timid unconstrained uninterested
+	varaint 27
 		"Jje"
-	variant 
+	variant 9
+		"Jje" 3
+	variant 5
+		"Jje" 2
+	variant 2
 		"Ayym"
-
+	variant 1
+		"Ayym"
+		"Iije" 1
+	variant 1
+		"Ayym"
+		"Iije" 2
+	variant 1
+		"Ayym"
+		"Iije" 3
+	variant 1
+		"Ayym"
+		"Iije" 4
+	variant 1
+		"Ayym"
+		"Iije" 5
+	variant 1
+		"Ayym"
+		"Iije" 6
+	variant 1
+		"Ayym"
+		"Iije" 7
+	variant 1
+		"Ayym"
+		"Iije" 8
+	variant 1
+		"Ayym"
+		"Iije" 9
+		
+fleet "Iije II"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid unconstrained surveillance
+	varaint 27
+		"Jje"
+	variant 9
+		"Jje" 3
+	variant 5
+		"Jje" 2
+	variant 2
+		"Ayym"
+	variant 1
+		"Ayym"
+		"Iije" 1
+	variant 1
+		"Ayym"
+		"Iije" 2
+	variant 1
+		"Ayym"
+		"Iije" 3
+	variant 1
+		"Ayym"
+		"Iije" 4
+	variant 1
+		"Ayym"
+		"Iije" 5
+	variant 1
+		"Ayym"
+		"Iije" 6
+	variant 1
+		"Ayym"
+		"Iije" 7
+	variant 1
+		"Ayym"
+		"Iije" 8
+	variant 1
+		"Ayym"
+		"Iije" 9
+		
+fleet "Iije III"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid unconstrained swarm
+	varaint 27
+		"Jje"
+	variant 9
+		"Jje" 3
+	variant 5
+		"Jje" 2
+	variant 2
+		"Ayym"
+	variant 1
+		"Ayym"
+		"Iije" 1
+	variant 1
+		"Ayym"
+		"Iije" 2
+	variant 1
+		"Ayym"
+		"Iije" 3
+	variant 1
+		"Ayym"
+		"Iije" 4
+	variant 1
+		"Ayym"
+		"Iije" 5
+	variant 1
+		"Ayym"
+		"Iije" 6
+	variant 1
+		"Ayym"
+		"Iije" 7
+	variant 1
+		"Ayym"
+		"Iije" 8
+	variant 1
+		"Ayym"
+		"Iije" 9
+		
