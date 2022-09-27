@@ -35278,10 +35278,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
-system Pug
-	pos 904.78667 -426.42467
-
-system Z2
-	pos 1189.2589 -531.06356
-	link H-8188
