@@ -160,7 +160,7 @@ fleet "Iije"
 	cargo 0
 	personality
 		timid unconstrained uninterested
-	varaint 27
+	variant 27
 		"Jje"
 	variant 9
 		"Jje" 3
@@ -201,7 +201,7 @@ fleet "Iije II"
 	cargo 0
 	personality
 		timid unconstrained surveillance
-	varaint 27
+	variant 27
 		"Jje"
 	variant 9
 		"Jje" 3
@@ -242,7 +242,7 @@ fleet "Iije III"
 	cargo 0
 	personality
 		timid unconstrained swarm
-	varaint 27
+	variant 27
 		"Jje"
 	variant 9
 		"Jje" 3
