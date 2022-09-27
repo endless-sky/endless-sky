@@ -145,3 +145,8 @@ mission "coalition peace prove"
 	name "Prove of Peace"
 	source
 		government "Heliarch"
+	to offer
+		has "reputation: Heliarch" >= 5
+	on offer
+		conversation
+			`As the Heliarch have a relationship to you feel not really like friendship but something in that direction, you decide to ask them for a prove of this relationship, to give to the Hai.`
