@@ -182,7 +182,7 @@ fleet "Iije"
 		"Jje" 4
 	variant 1
 		"Ayym"
-		"Jje"" 5
+		"Jje" 5
 	variant 1
 		"Ayym"
 		"Jje" 6
@@ -223,7 +223,7 @@ fleet "Iije II"
 		"Jje" 4
 	variant 1
 		"Ayym"
-		"Jje"" 5
+		"Jje" 5
 	variant 1
 		"Ayym"
 		"Jje" 6
@@ -264,7 +264,7 @@ fleet "Iije III"
 		"Jje" 4
 	variant 1
 		"Ayym"
-		"Jje"" 5
+		"Jje" 5
 	variant 1
 		"Ayym"
 		"Jje" 6
