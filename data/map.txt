@@ -13655,7 +13655,6 @@ system H-8188
 	link H-9187
 	link M-1188
 	link MS-219
-	link Z2
 	asteroids "small rock" 1 1.32
 	asteroids "medium rock" 3 1.36
 	asteroids "large rock" 1 1.44
