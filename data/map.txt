@@ -762,16 +762,15 @@ system "16 Autumn Rising"
 			distance 587
 			period 36.3264
 
-system 19c
-	pos 565.29 -454.22
+system Cotpoxi
+	pos 850.68 -386.85
 	government Uninhabited
 	habitable 2560
 	belt 1607
 	"jump range" 50
 	haze _menu/haze
-	link 21b
-	link 22b
-	link 24b
+	link Mnashyu
+	link Yerser
 	asteroids "small rock" 9 3.4
 	asteroids "medium rock" 8 3.4
 	asteroids "large rock" 3 2.07
@@ -790,16 +789,8 @@ system 19c
 		period 367.4
 		offset 180
 	object
-		sprite planet/cloud7
-		distance 971
-		period 534.8
-	object
-		sprite planet/lava5-b
-		distance 1263
-		period 793.4
-	object
 		sprite planet/gas9-b
-		distance 1807
+		distance 2277.7
 		period 1357.8
 	object
 		sprite planet/dust1
@@ -812,16 +803,17 @@ system 19c
 	object
 		sprite planet/gas9
 		distance 6577
-		period 9429.0247
+		period 9429
 
-system 21b
-	pos 517 -491.38
-	government Uninhabited
+system Mnashyu
+	pos 775.16 -358.57
+	government Gegno
 	habitable 1616.2
 	belt 1163
 	haze _menu/haze
-	link 19c
-	link 24b
+	link Cotpoxi
+	link Huud
+	link Vilacira
 	asteroids "small rock" 6 5.08
 	asteroids "medium rock" 8 6.6
 	asteroids "large rock" 13 4.2
@@ -842,16 +834,16 @@ system 21b
 		offset 180
 	object
 		sprite planet/rock1
-		distance 401
+		distance 1530.8
 		period 178.65
 	object
 		sprite planet/forest3
-		distance 888
+		distance 1087.9
 		period 588.73
 		object
 			sprite planet/dust3-b
-			distance 169
-			period 83.04
+			distance 197.75
+			period 16
 	object
 		sprite planet/rock7
 		distance 1619
@@ -874,13 +866,13 @@ system 21b
 		period 12918.4
 
 system 22b
-	pos 592.23 -482.36
+	pos 518.89 -479.9
 	government Uninhabited
 	habitable 1539.2
 	belt 1478
 	"jump range" 50
 	haze _menu/haze-67
-	link 19c
+	link 31b
 	asteroids "small rock" 4 2.6
 	asteroids "large rock" 7 3
 	asteroids "small metal" 9 3
@@ -902,14 +894,14 @@ system 22b
 	object
 		sprite planet/gas14-b
 		distance 2105
-		period 1509.03
+		period 1509
 	object
 		sprite planet/browndwarf-l
 		distance 3413
 		period 3115.4
 
 system 23b
-	pos 487.97 -369.7
+	pos 487.63 -365.36
 	government Uninhabited
 	habitable 2725
 	belt 1920
@@ -938,7 +930,7 @@ system 23b
 		period 252.6
 	object
 		sprite planet/gas16
-		distance 3308.2
+		distance 5780.5
 		period 1852.1304
 		object
 			sprite planet/ice7-b
@@ -956,13 +948,11 @@ system 23b
 		sprite star/k5
 
 system 24b
-	pos 521.71 -449.05
+	pos 454.82 -506.38
 	government Uninhabited
 	habitable 26.45
 	belt 1734
 	haze _menu/haze
-	link 19c
-	link 21b
 	link 31b
 	asteroids "small rock" 1 1.9
 	asteroids "medium rock" 8 1.78
@@ -1200,12 +1190,13 @@ system "3 Spring Rising"
 			period 48.1229
 
 system 31b
-	pos 502.35 -424.85
+	pos 464.5 -425
 	government Uninhabited
 	habitable 28275.2
 	belt 1795
 	"jump range" 50
 	haze _menu/haze
+	link 22b
 	link 23b
 	link 24b
 	link 44b
@@ -1493,7 +1484,7 @@ system "4 Winter Rising"
 			period 62.7773
 
 system 44b
-	pos 446.28 -427.86
+	pos 420 -432
 	government Uninhabited
 	habitable 1907.2
 	belt 1222
@@ -2303,13 +2294,12 @@ system Achernar
 			period 23.907
 
 system Acnanjo
-	pos 760.18 -620.68
+	pos 519 -556.29
 	government Uninhabited
 	habitable 6195.2
 	belt 1944
 	haze _menu/haze-67
-	link Asio
-	link Ookmya
+	link Ptobeh
 	asteroids "medium rock" 6 1.48
 	asteroids "large rock" 4 1.18
 	asteroids "large metal" 3 0.96
@@ -2419,7 +2409,7 @@ system Acrux
 			period 44.703
 
 system Actannka
-	pos 1018.38 -681.3
+	pos 1010.15 -689.9
 	government Quarg
 	habitable 204.8
 	belt 1228
@@ -2444,7 +2434,7 @@ system Actannka
 	object
 		sprite planet/rock13-b
 		distance 350
-		period 409.24378
+		period 409.24
 	object
 		sprite planet/cloud2-b
 		distance 869
@@ -2460,7 +2450,7 @@ system Actannka
 	object
 		sprite planet/gas2
 		distance 3085.85
-		period 8396.09
+		period 8396
 	object
 		sprite planet/gas15
 		distance 2549.94
@@ -2472,7 +2462,7 @@ system Actannka
 	object
 		sprite planet/gas14-b
 		distance 6755
-		period 34699.087
+		period 34699
 		object
 			sprite planet/dust3
 			distance 230
@@ -2480,7 +2470,7 @@ system Actannka
 		object
 			sprite planet/rock17
 			distance 347
-			period 398.09
+			period 398
 
 system Adhara
 	pos -669 -200
@@ -2593,16 +2583,16 @@ system Aescolanus
 		period 2870.08
 
 system Aierena
-	pos 1062.44 -381
+	pos 1045.1 -353.4
 	government Uninhabited
 	habitable 500
 	belt 1856
 	"jump range" 60
 	haze _menu/haze-none
-	link Gaungu
+	link Yranjiu
 	asteroids "small metal" 2 1.92
-	asteroids "medium metal" 5 1.776
-	asteroids "large metal" 2 1.968
+	asteroids "medium metal" 5 1.7
+	asteroids "large metal" 2 1.9
 	minables titanium 1 1.88
 	minables lead 2 3.27
 	object
@@ -2615,7 +2605,7 @@ system Aierena
 	object
 		sprite planet/gas0-hot
 		distance 1191
-		period 1644.09
+		period 1644
 		object
 			sprite planet/io-b
 			distance 232
@@ -3129,7 +3119,7 @@ system Aldhibain
 			period 13.622
 
 system Aleit
-	pos 966.57 -707.12
+	pos 954.57 -709.34
 	government Quarg
 	habitable 7405
 	belt 1864
@@ -4724,12 +4714,12 @@ system Aludra
 			period 32.2749
 
 system Anbrim
-	pos 957.16 -387.7
+	pos 725.7 -376.2
 	government Uninhabited
 	habitable 450180
 	belt 1101
 	haze _menu/haze-33
-	link Iinjma
+	link Huud
 	asteroids "small rock" 2 3.5
 	asteroids "medium rock" 67 2.6
 	asteroids "large rock" 27 3.9
@@ -5465,15 +5455,13 @@ system Asikafarnut
 			period 40.7311
 
 system Asio
-	pos 821.84 -625.19
-	government Uninhabited
+	pos 818 -627.6
+	government Gegno
 	habitable 3276.8
 	belt 1478
 	haze _menu/haze-133
-	link Acnanjo
-	link Oihaug
+	link Heutesl
 	link Oosuoro
-	link Tscera
 	asteroids "small rock" 4 2.6
 	asteroids "large rock" 7 3
 	asteroids "small metal" 9 3
@@ -5690,14 +5678,13 @@ system Atria
 		period 3306.89
 
 system Auhru
-	pos 983.86 -521.59
+	pos 1005.19 -524.9
 	government "Gegno Scin"
 	habitable 1411.2
 	belt 1336
 	haze _menu/haze-67
-	link Kilema
+	link "Erba Yle"
 	link Mohuwo
-	link Zeinar
 	asteroids "large rock" 1 3.2
 	asteroids "small metal" 32 2.9
 	asteroids "large metal" 17 2.4
@@ -8127,17 +8114,16 @@ system "Cor Caroli"
 		period 1104.91
 
 system Cshudlye
-	pos 643.14444 -492.18888
+	pos 587.14 -474.8
 	government Uninhabited
 	habitable 819.2
 	belt 1675
 	haze _menu/haze-67
-	link Empeles
-	link Wreoul
+	link Uhebe
 	asteroids "medium rock" 124 5
 	asteroids "large rock" 2 4.4
 	asteroids "small metal" 149 4.2
-	asteroids "medium metal" 50 7.06
+	asteroids "medium metal" 50 7
 	asteroids "large metal" 33 6.13
 	minables titanium 10 9.7
 	minables lead 20 6.64
@@ -9612,12 +9598,11 @@ system E-4183
 			period 247.515
 
 system E-9182
-	pos 1109.66 -625.16
+	pos 1167.2 -632
 	government Uninhabited
 	habitable 3276.8
 	belt 1387
 	haze _menu/haze-coal
-	link M-1188
 	link O-3184
 	asteroids "large rock" 1 4.29
 	asteroids "small metal" 14 3.09
@@ -9626,7 +9611,7 @@ system E-9182
 	minables copper 1 7.53
 	minables iron 8 7.36
 	minables aluminum 8 7.61
-	fleet "Iije" 2000
+	fleet Iije 2000
 	object
 		sprite star/o0
 		period 10
@@ -9641,11 +9626,11 @@ system E-9182
 		object
 			sprite planet/dust1
 			distance 383
-			period 233.11
+			period 233
 	object
 		sprite planet/lava0-b
 		distance 1420
-		period 836.089
+		period 836
 	object
 		sprite planet/gas10
 		distance 2516
@@ -9657,7 +9642,7 @@ system E-9182
 		object
 			sprite planet/ice0
 			distance 225
-			period 127.577
+			period 127.5
 
 system Eber
 	pos -532 406
@@ -9846,14 +9831,14 @@ system Edusa
 		period 1365.41
 
 system Eebu
-	pos 793.7 -476.37
+	pos 825.7 -487.48
 	government Uninhabited
 	habitable 2405
 	belt 1384
 	haze _menu/haze-67
+	link Evrae
 	link Jyelio
 	link Kneirc
-	link Yli
 	asteroids "small rock" 4 1.42
 	asteroids "medium rock" 1 1.45
 	asteroids "large rock" 2 1.13
@@ -10266,7 +10251,7 @@ system Ekuarik
 		offset 312
 
 system Elifennka
-	pos 1012.83 -711.52
+	pos 986.6 -725.29
 	government Uninhabited
 	habitable 583.2
 	belt 1533
@@ -10281,7 +10266,7 @@ system Elifennka
 	asteroids "medium metal" 105 8.54
 	asteroids "large metal" 27 4.49
 	minables aluminum 28 8.68
-	minables titanium 31 9.591
+	minables titanium 31 9.59
 	fleet Quarg 4000
 	object
 		sprite star/a3
@@ -10297,11 +10282,11 @@ system Elifennka
 	object
 		sprite planet/gas10
 		distance 3484
-		period 7616.465
+		period 7616.46
 	object
 		sprite planet/gas10-hot
 		distance 9679
-		period 35268.092
+		period 35268
 
 system Elnath
 	pos -288 -77
@@ -10432,14 +10417,14 @@ system Eltanin
 		period 1900.78
 
 system Empeles
-	pos 661.73 -435.26
-	government Uninhabited
+	pos 666.84 -409.9
+	government "Gegno Vi"
 	habitable 405
 	belt 1416
 	haze _menu/haze-133
-	link Cshudlye
-	link Karhio
+	link Fscher
 	link Pukako
+	link Wreoul
 	asteroids "small rock" 5 5.6
 	asteroids "medium rock" 9 4.29
 	asteroids "large rock" 3 4.42
@@ -10460,7 +10445,7 @@ system Empeles
 	object
 		sprite planet/ocean2
 		distance 639.3
-		period 1840.597
+		period 1840.59
 	object
 		sprite planet/uranus-b
 		distance 3515
@@ -10472,7 +10457,7 @@ system Empeles
 	object
 		sprite planet/gas12-b
 		distance 8877
-		period 37172.076
+		period 37172
 
 system Eneremprukt
 	pos 311.431 -448.812
@@ -10632,13 +10617,15 @@ system Enif
 		offset 100
 
 system Eogho
-	pos 825.69 -383.77
+	pos 811.69 -538.88
 	government Uninhabited
 	habitable 1280
 	belt 1960
 	haze _menu/haze-67
-	link Vesvii
-	link Vilacira
+	link Gualetri
+	link Kneirc
+	link Oihaug
+	link Oosuoro
 	asteroids "medium rock" 5 7.12
 	asteroids "large rock" 24 4.1
 	asteroids "small metal" 17 6.26
@@ -10650,11 +10637,7 @@ system Eogho
 	object
 		sprite planet/gas8-hot
 		distance 555
-		period 326.873
-		object
-			sprite "planet/asteroid base"
-			distance 212
-			period 80.783
+		period 326.87
 	object
 		sprite planet/gas1
 		distance 1676
@@ -10666,7 +10649,7 @@ system Eogho
 	object
 		sprite planet/dust7-b
 		distance 3255
-		period 4642.65
+		period 4642.6
 
 system "Epsilon Leonis"
 	pos -619 -229
@@ -10745,11 +10728,13 @@ system "Epsilon Leonis"
 			period 37.9234
 
 system "Erba Yle"
-	pos 1002.53 -469.94
+	pos 1009.19 -497.05
 	government "Gegno Scin"
 	habitable 296.45
 	belt 1204
 	haze _menu/haze-33
+	link Auhru
+	link Kilema
 	link Zeinar
 	asteroids "small rock" 7 2.5
 	asteroids "medium rock" 29 2.07
@@ -11064,14 +11049,16 @@ system Eteron
 		period 3624.98
 
 system Evrae
-	pos 896.05 -475.8
-	government Uninhabited
+	pos 884.49 -475.35
+	government Gegno
 	habitable 4420
 	belt 1985
 	haze _menu/haze-67
-	link Gualetri
+	link Eebu
+	link Iliniza
 	link Ilirco
 	link Pbelnep
+	link Yerser
 	asteroids "small rock" 1 5.7
 	asteroids "large rock" 3 5.67
 	asteroids "small metal" 1 7.4
@@ -11114,8 +11101,8 @@ system Evrae
 		period 4040
 		object
 			sprite planet/dust3
-			distance 285
-			period 181
+			distance 283.72
+			period 321
 		object
 			sprite planet/ice0
 			distance 417
@@ -12421,17 +12408,19 @@ system "Four Pillars"
 			period 13.5106
 
 system Fscher
-	pos 731.47222 -446.88
-	government Uninhabited
+	pos 725.47 -418.2
+	government Gegno
 	habitable 924.8
 	belt 1048
 	haze _menu/haze-67
+	link Empeles
+	link Huud
 	link Jyelio
-	link Yli
-	asteroids "small rock" 7 4.687
+	link Wreoul
+	asteroids "small rock" 7 4.68
 	asteroids "medium rock" 35 3.52
-	asteroids "large rock" 22 2.62
-	asteroids "small metal" 30 4.384
+	asteroids "large rock" 22 2.6
+	asteroids "small metal" 30 4.3
 	asteroids "medium metal" 197 3.78
 	asteroids "large metal" 46 4.18
 	minables uranium 22 7.1
@@ -12448,16 +12437,16 @@ system Fscher
 		period 181.14
 	object
 		sprite planet/gas0-b
-		distance 2184
+		distance 2109.5
 		period 834.152
 		object
 			sprite planet/miranda-b
-			distance 277
-			period 218
+			distance 445
+			period 33
 	object
 		sprite planet/gas0-hot
 		distance 15894
-		period 58934.675
+		period 58934.67
 
 system Furmeliki
 	pos -35.5695 -281.812
@@ -12524,7 +12513,7 @@ system Furmeliki
 			period 75.4354
 
 system G-3191
-	pos 1062.8 -436.61
+	pos 1041.9 -403
 	government Uninhabited
 	habitable 28275.2
 	belt 1341
@@ -12537,6 +12526,7 @@ system G-3191
 	asteroids "large metal" 1 1.8
 	object
 		sprite star/f-supergiant
+		distance 9
 		period 10
 	object
 		sprite planet/gas16-b
@@ -12548,18 +12538,16 @@ system G-3191
 		period 7376.71
 
 system G-6183
-	pos 1098.97 -452.25
+	pos 1014.97 -592.41
 	government Uninhabited
 	habitable 33.8
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
-	link G-719
-	link MC-42
-	link W-3197
+	link M-1188
 	asteroids "large metal" 1 3.4
-	minables neodymium 6 3.871
-	minables titanium 44 4.156
+	minables neodymium 6 3.87
+	minables titanium 44 4.15
 	minables tungsten 16 2.37
 	object
 		sprite star/o-dwarf
@@ -12586,13 +12574,13 @@ system G-6183
 		period 66991.8
 
 system G-719
-	pos 1168.86 -434.36
+	pos 1155.97 -442.52
 	government Uninhabited
 	habitable 828.2
 	belt 1870
 	"jump range" 50
 	haze _menu/haze-coal
-	link G-6183
+	link W-3197
 	asteroids "large metal" 1 2.22
 	object
 		sprite star/g3
@@ -12637,18 +12625,19 @@ system G-719
 			period 147.7
 
 system G-819
-	pos 1163.21 -483.16
+	pos 1163.2 -507.54
 	government Uninhabited
 	habitable 9650
 	belt 1333
 	haze _menu/haze-none
-	link MC-42
+	link H-9187
+	link W-3197
 	asteroids "small rock" 5 1.53
 	asteroids "medium rock" 5 2.4
 	asteroids "large rock" 1 2.04
 	asteroids "large metal" 2 3
-	minables iron 2 2.47719
-	fleet "Iije" 8000
+	minables iron 2 2.4
+	fleet Iije 8000
 	object
 		sprite star/g3
 		period 10
@@ -12870,14 +12859,13 @@ system "Gamma Corvi"
 		period 2076.63
 
 system Gaungu
-	pos 1038.6 -339.44
+	pos 1095.8 -299.38
 	government Uninhabited
 	habitable 374.05
 	belt 1072
 	"jump range" 60
 	haze _menu/haze-33
-	link Aierena
-	link Kanguwa
+	link Yranjiu
 	asteroids "small rock" 13 4.35
 	asteroids "medium rock" 19 3.9
 	asteroids "large rock" 32 3.6
@@ -12910,11 +12898,11 @@ system Gaungu
 	object
 		sprite planet/gas15-b
 		distance 1996
-		period 4124.022
+		period 4124
 	object
 		sprite planet/gas6-hot
 		distance 3490
-		period 9534.94
+		period 9534.9
 
 system Gerenus
 	pos 197 514
@@ -12978,7 +12966,7 @@ system Gerenus
 			period 15.5606
 
 system Ghhil
-	pos 932.38 -691.75
+	pos 924.82 -704.4
 	government Quarg
 	habitable 500
 	belt 1760
@@ -13567,12 +13555,12 @@ system Graffias
 			period 57.7746
 
 system Gualetri
-	pos 895.25 -529.18
+	pos 909.9 -529.18
 	government Uninhabited
 	habitable 26.45
 	belt 1734
 	haze _menu/haze-blackbody
-	link Evrae
+	link Eogho
 	link Kneirc
 	link Pbelnep
 	link Uelawan
@@ -13589,11 +13577,11 @@ system Gualetri
 	object
 		sprite planet/miranda
 		distance 1865
-		period 14007.17
+		period 14007
 	object
 		sprite planet/gas10
 		distance 5840
-		period 77616.03
+		period 77616
 
 system Gupta
 	pos -808.587 625.051
@@ -13658,7 +13646,7 @@ system Gupta
 		period 1077.08
 
 system H-8188
-	pos 1139.69 -595.38
+	pos 1187 -574.71
 	government Uninhabited
 	habitable 627.2
 	belt 1254
@@ -13667,13 +13655,14 @@ system H-8188
 	link H-9187
 	link M-1188
 	link MS-219
+	link Z2
 	asteroids "small rock" 1 1.32
 	asteroids "medium rock" 3 1.36
 	asteroids "large rock" 1 1.44
 	asteroids "small metal" 1 1.48
 	asteroids "medium metal" 3 1.3
 	asteroids "large metal" 2 0.81
-	fleet "Iije" 2000
+	fleet Iije 2000
 	object
 		sprite star/a0
 		period 10
@@ -13695,17 +13684,18 @@ system H-8188
 		period 30315.6
 
 system H-9187
-	pos 1118.55 -537.38
+	pos 1127 -486.7
 	government Uninhabited
 	habitable 583.2
 	belt 1102
 	haze _menu/haze-coal
+	link G-819
 	link H-8188
 	link L-118
 	link MC-42
 	link MS-219
 	asteroids "large metal" 1 4.9
-	fleet "Iije" 2000
+	fleet Iije 2000
 	object
 		sprite star/a3
 		period 10
@@ -13724,7 +13714,7 @@ system H-9187
 	object
 		sprite planet/gas4
 		distance 6297
-		period 18507.03
+		period 18507
 
 system Hadar
 	pos -788 283
@@ -14186,22 +14176,23 @@ system Hesselpost
 			period 68.5584
 
 system Heutesl
-	pos 893.6 -629.31
+	pos 871.8 -631.53
 	government Gegno
 	habitable 351.25
 	belt 1000
 	haze _menu/haze
-	link Iigen
-	link Oosuoro
-	link Tscera
-	asteroids "small rock" 1 3.22
-	asteroids "medium rock" 1 2.89
-	asteroids "large rock" 4 2.4
-	asteroids "small metal" 6 1.71
-	asteroids "medium metal" 44 2.1
-	minables copper 8 1.1
-	minables lead 12 1.4
-	minables silicon 12 1.3
+	add link Asio
+	add link Iigen
+	add link Oosuoro
+	add link Tscera
+	add asteroids "small rock" 1 3.22
+	add asteroids "medium rock" 1 2.89
+	add asteroids "large rock" 4 2.4
+	add asteroids "small metal" 6 1.71
+	add asteroids "medium metal" 44 2.1
+	add minables copper 8 1.1
+	add minables lead 12 1.4
+	add minables silicon 12 1.3
 	trade Clothing 262
 	trade Electronics 814
 	trade Equipment 693
@@ -14212,9 +14203,9 @@ system Heutesl
 	trade Medical 441
 	trade Metal 571
 	trade Plastic 196
-	fleet "Gegno Basic" 200
-	fleet Quarg 2800
-	fleet "Gegno Miners" 2000
+	add fleet "Gegno Basic" 200
+	add fleet Quarg 2800
+	add fleet "Gegno Miners" 2000
 	object
 		sprite star/k5
 		period 10
@@ -14724,18 +14715,19 @@ system Hunter
 			period 22.2053
 
 system Huud
-	pos 844.8 -459.3
+	pos 772.57 -398.3
 	government Uninhabited
 	habitable 1280
 	belt 1319
 	haze _menu/haze
-	link Ilirco
-	link Kneirc
+	link Cotpoxi
+	link Anbrim
+	link Fscher
 	link Vesvii
 	asteroids "medium rock" 24 2.2
 	asteroids "large rock" 3 4
-	asteroids "medium metal" 1 3.784
-	asteroids "large metal" 1 2.552
+	asteroids "medium metal" 1 3.78
+	asteroids "large metal" 1 2.55
 	minables aluminum 1 3.6
 	fleet "Large Vi" 2800
 	fleet "Large Scin" 1700
@@ -14744,8 +14736,8 @@ system Huud
 		period 10
 	object
 		sprite planet/desert5-b
-		distance 343
-		period 158.81
+		distance 580.9
+		period 158.8
 	object
 		sprite planet/neptune-b
 		distance 1022
@@ -14757,10 +14749,10 @@ system Huud
 	object
 		sprite planet/gas9-b
 		distance 4967
-		period 8751.474
+		period 8751.4
 
 system Iigen
-	pos 939.61 -611.49
+	pos 925.8 -612.37
 	government Uninhabited
 	habitable 259.2
 	belt 1699
@@ -14805,19 +14797,17 @@ system Iigen
 			period 197.4
 
 system Iinjma
-	pos 945.85 -417.83
+	pos 986.29 -410.7
 	government Uninhabited
 	habitable 614.45
 	belt 1861
 	haze _menu/haze-33
-	link Anbrim
-	link Vanguwo
 	link Zeinar
-	asteroids "medium rock" 11 5.13
+	asteroids "medium rock" 11 5.1
 	asteroids "large rock" 1 3.27
-	asteroids "small metal" 51 4.96
-	asteroids "medium metal" 4 5.46
-	asteroids "large metal" 55 4.85
+	asteroids "small metal" 51 4.9
+	asteroids "medium metal" 4 5.4
+	asteroids "large metal" 55 4.8
 	minables iron 1 8.91
 	minables neodymium 4 9.39
 	fleet "Small Scin" 3500
@@ -14834,7 +14824,7 @@ system Iinjma
 	object
 		sprite planet/desert1
 		distance 301
-		period 188.43
+		period 188.4
 	object
 		sprite planet/desert10-b
 		distance 669
@@ -14970,11 +14960,12 @@ system Ildaria
 		period 799.338
 
 system Iliniza
-	pos 924.99 -437.02
+	pos 930.7 -444.1
 	government "Gegno Scin"
 	habitable 538.45
 	belt 1624
 	haze _menu/haze-133
+	link Evrae
 	link Zeinar
 	asteroids "large metal" 1 5.1
 	minables iron 46 1.16
@@ -15003,7 +14994,7 @@ system Iliniza
 		period 42.96
 	object
 		sprite planet/rock11
-		distance 276
+		distance 237.35047
 		period 176.74
 	object "Enn Bue"
 		sprite planet/oberon-b
@@ -15031,13 +15022,13 @@ system Iliniza
 			period 521.19
 
 system Ilirco
-	pos 880.13 -442.61
+	pos 886.79 -414.6
 	government Uninhabited
 	habitable 3380
 	belt 1655
 	haze _menu/haze
 	link Evrae
-	link Huud
+	link Yerser
 	asteroids "medium metal" 7 2.42
 	asteroids "large metal" 5 2.2
 	minables titanium 1 3.4
@@ -15542,21 +15533,22 @@ system Izar
 			period 12.6652
 
 system Jied
-	pos 796.24 -523.47
+	pos 720.68 -541.24
 	government Uninhabited
 	habitable 1486.25
 	belt 1377
 	haze _menu/haze-blackbody
+	link Kiluit
 	link Nisyros
-	link Nnaug
+	link Oihaug
 	link Yli
 	asteroids "small rock" 24 1.2
 	asteroids "medium rock" 23 2.2
 	asteroids "large rock" 20 1.7
-	asteroids "small metal" 1 2.09
+	asteroids "small metal" 1 2
 	asteroids "medium metal" 4 1.5
 	asteroids "large metal" 1 1.25
-	minables tungsten 18 2.09
+	minables tungsten 18 2
 	minables copper 2 2.16
 	fleet "Small Vi" 800
 	fleet "Large Vi" 1600
@@ -15568,14 +15560,14 @@ system Jied
 	object
 		sprite planet/mars
 		distance 437
-		period 103.81
+		period 103.8
 	object
 		sprite planet/gas7
 		distance 2836
-		period 1716.23
+		period 1716.2
 
 system Jyelio
-	pos 784.8 -443.7
+	pos 772.8 -465.9
 	government Uninhabited
 	habitable 369.8
 	belt 1779
@@ -15583,6 +15575,7 @@ system Jyelio
 	link Eebu
 	link Fscher
 	link Vesvii
+	link Wreoul
 	minables tungsten 2 4.15
 	minables copper 2 6.62
 	fleet "Large Vi" 1800
@@ -15596,7 +15589,7 @@ system Jyelio
 		period 250.18
 	object
 		sprite planet/gas0-b
-		distance 4453.22
+		distance 4453.2
 		period 4181.98
 		object
 			sprite planet/rhea-b
@@ -15609,7 +15602,7 @@ system Jyelio
 		object
 			sprite planet/callisto
 			distance 226
-			period 88.91
+			period 88.9
 
 system Ka'ch'chrai
 	pos -240.163 -822.448
@@ -15817,22 +15810,21 @@ system Kaliptari
 			period 29.5684
 
 system Kanguwa
-	pos 991.694 -320.16
+	pos 983.47 -319.9
 	government Uninhabited
 	habitable 336.2
 	belt 1866
 	"jump range" 50
 	haze _menu/haze-blackbody
-	link Gaungu
 	link Lloloi
 	link Msalbit
 	link Yranjiu
 	asteroids "small metal" 12 2.6
-	asteroids "small rock" 2 2.795
+	asteroids "small rock" 2 2.7
 	asteroids "medium rock" 21 2.76
-	asteroids "large rock" 17 1.82
+	asteroids "large rock" 17 1.8
 	asteroids "medium metal" 52 2.6
-	asteroids "large metal" 40 2.76
+	asteroids "large metal" 40 2.7
 	object
 		sprite star/k3
 		period 10
@@ -15851,15 +15843,15 @@ system Kanguwa
 	object
 		sprite planet/gas0-b
 		distance 2346
-		period 5542.91
+		period 5542.9
 	object
 		sprite planet/gas13-b
 		distance 3533
-		period 10243.81
+		period 10243.8
 		object
 			sprite planet/desert4
 			distance 299
-			period 244.57
+			period 244.5
 
 system "Kappa Centauri"
 	pos -867 480
@@ -15924,13 +15916,12 @@ system "Kappa Centauri"
 			period 28.1328
 
 system Karhio
-	pos 616.2 -450.7
+	pos 523.3 -422.7
 	government Uninhabited
 	habitable 2560
 	belt 1163
 	"jump range" 50
 	haze _menu/haze-67
-	link Empeles
 	link Pukako
 	asteroids "small rock" 6 5.2
 	asteroids "medium rock" 8 6.6
@@ -15947,15 +15938,15 @@ system Karhio
 		sprite star/k5-old
 		distance 9.4
 		period 46.4
-	object
+	object 6
 		sprite planet/rock14-b
-		distance 292
+		distance 288
 		period 124
-	object
+	object 5
 		sprite planet/europa-b
 		distance 551
 		period 322.2
-	object
+	object 7
 		sprite planet/desert0
 		distance 983
 		period 767.9
@@ -16449,16 +16440,16 @@ system "Ki War Ek"
 		offset 250
 
 system Kilema
-	pos 1013.85 -546.86
+	pos 1052.5 -476.58
 	government Uninhabited
 	habitable 28.8
 	belt 1612
 	haze _menu/haze-33
-	link Auhru
-	asteroids "small rock" 4 1.99
-	asteroids "medium rock" 4 2.22
+	link "Erba Yle"
+	asteroids "small rock" 4 1.9
+	asteroids "medium rock" 4 2.2
 	asteroids "large rock" 1 1.45
-	asteroids "small metal" 8 1.82
+	asteroids "small metal" 8 1.8
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
 	fleet "Small Scin" 4600
@@ -16484,16 +16475,17 @@ system Kilema
 		period 337088.2
 
 system Kiluit
-	pos 730.34 -578.46
+	pos 699.45 -562.23
 	government "Gegno Vi"
 	habitable 668.2
 	belt 1258
 	haze _menu/haze-blackbody
+	link Jied
 	link Nnaug
 	link Scija
 	asteroids "medium rock" 8 2.63
-	asteroids "large rock" 8 2.07
-	asteroids "small metal" 53 3.29
+	asteroids "large rock" 8 2
+	asteroids "small metal" 53 3.2
 	asteroids "medium metal" 1 2.73
 	asteroids "large metal" 9 2.45
 	minables tungsten 1 5.46
@@ -16675,20 +16667,19 @@ system Kiru'kichi
 		period 1095.06
 
 system Kneirc
-	pos 835.74 -489.59
-	government Uninhabited
+	pos 856.6 -511.36
+	government "Gegno Scin"
 	habitable 1616.2
 	belt 1163
 	haze _menu/haze-67
 	link Eebu
+	link Eogho
 	link Gualetri
-	link Huud
-	link Nisyros
-	asteroids "small rock" 6 5.08
+	asteroids "small rock" 6 5
 	asteroids "medium rock" 8 6.6
 	asteroids "large rock" 13 4.2
 	asteroids "small metal" 9 5.2
-	asteroids "medium metal" 10 6.27
+	asteroids "medium metal" 10 6.2
 	asteroids "large metal" 15 3.8
 	minables aluminum 1 7.04
 	minables tungsten 12 6.8
@@ -16715,7 +16706,7 @@ system Kneirc
 		object
 			sprite planet/dust3-b
 			distance 169
-			period 83.04
+			period 83
 	object
 		sprite planet/rock7
 		distance 1619
@@ -16731,7 +16722,7 @@ system Kneirc
 	object
 		sprite planet/jupiter-b
 		distance 3645
-		period 4896.02
+		period 4896
 	object
 		sprite planet/callisto-b
 		distance 7230
@@ -17587,13 +17578,12 @@ system Kursa
 		period 1517.13
 
 system L-118
-	pos 1072.7 -512.4
+	pos 1092.45 -422.53
 	government Uninhabited
 	habitable 500
 	belt 1724
 	haze _menu/haze-coal
 	link H-9187
-	link MC-42
 	asteroids "small rock" 12 3.3
 	asteroids "medium rock" 6 2.4
 	asteroids "large rock" 4 2.3
@@ -17601,8 +17591,8 @@ system L-118
 	asteroids "medium metal" 2 2.2
 	asteroids "large metal" 1 2.8
 	minables aluminum 2 4.17
-	minables iron 3 5.36
-	fleet "Iije" 1900
+	minables iron 3 5.3
+	fleet Iije 1900
 	object
 		sprite star/a8
 		period 10
@@ -17621,27 +17611,28 @@ system L-118
 		object
 			sprite planet/io
 			distance 509
-			period 434.08
+			period 434
 
 system L-6181
-	pos 1063.08 -556.8
+	pos 1072.19 -588.8
 	government Uninhabited
 	habitable 182.5
 	belt 1758
 	haze _menu/haze-coal
+	link M-1188
 	link MS-219
 	asteroids "small rock" 11 1.8
-	asteroids "medium rock" 33 2.79
+	asteroids "medium rock" 33 2.7
 	asteroids "large rock" 16 2.13
 	asteroids "small metal" 3 2.8
 	asteroids "medium metal" 153 1.6
 	asteroids "large metal" 1 1.5
 	minables titanium 8 2.32
 	minables copper 11 3.569
-	fleet "Iije" 800
+	fleet Iije 800
 	object
 		sprite star/a-dwarf
-		distance 81.21
+		distance 81.2
 		period 64.23
 		offset 180
 	object
@@ -17982,19 +17973,20 @@ system Lire
 			period 36
 
 system Lloloi
-	pos 984.13 -351.58
+	pos 894.8 -354.7
 	government Uninhabited
 	habitable 1843.2
 	belt 1338
 	"jump range" 50
 	haze _menu/haze-full
 	link Kanguwa
+	link Vanguwo
 	link Zolpulti
-	asteroids "small rock" 6 2.620
-	asteroids "medium rock" 4 2.587
-	asteroids "large rock" 6 2.923
-	asteroids "medium metal" 2 3.326
-	asteroids "large metal" 18 2.587
+	asteroids "small rock" 6 2.62
+	asteroids "medium rock" 4 2.5
+	asteroids "large rock" 6 2.9
+	asteroids "medium metal" 2 3.3
+	asteroids "large metal" 18 2.5
 	minables copper 9 3.87
 	object
 		sprite star/o5
@@ -18002,23 +17994,23 @@ system Lloloi
 	object
 		sprite planet/rock5
 		distance 332
-		period 126.02766
+		period 126
 	object
 		sprite planet/ocean6
 		distance 927
-		period 588.00141
+		period 588
 	object
 		sprite planet/gas16-b
 		distance 2373
-		period 2408.2711
+		period 2408
 		object
 			sprite planet/rock14-b
 			distance 575
-			period 360.84392
+			period 360
 	object
 		sprite planet/gas4-b
 		distance 10572
-		period 22646.156
+		period 22646
 
 system Lolami
 	pos -628 -10
@@ -18345,18 +18337,19 @@ system Lurata
 		period 1774.16
 
 system M-1188
-	pos 1089.81 -604.25
+	pos 1108 -617.3
 	government Uninhabited
 	habitable 31.25
 	belt 1676
 	"jump range" 50
 	haze _menu/haze-coal
 	link E-4183
-	link E-9182
+	link G-6183
 	link H-8188
+	link L-6181
 	link MS-219
 	asteroids "large metal" 1 2.54
-	fleet "Iije" 600
+	fleet Iije 600
 	object
 		sprite star/a-dwarf
 		period 10
@@ -18459,12 +18452,14 @@ system Makferuti
 			period 54.4696
 
 system Maoni
-	pos 579.02 -397.6
+	pos 603.46 -390.48
 	government Uninhabited
 	habitable 26.45
 	belt 1734
 	haze _menu/haze-33
+	link Pukako
 	link Rouseu
+	link Vaiov
 	asteroids "small rock" 1 1.91
 	asteroids "medium rock" 8 1.78
 	asteroids "large rock" 1 2.57
@@ -18482,7 +18477,7 @@ system Maoni
 	object
 		sprite planet/miranda
 		distance 406.48
-		period 14007.17
+		period 14007
 
 system Markab
 	pos -241 168
@@ -18695,19 +18690,16 @@ system Matar
 			period 23.3043
 
 system MC-42
-	pos 1125.86 -506.69
+	pos 1096 -520.24
 	government Uninhabited
 	habitable 387.2
 	belt 1290
 	"jump range" 50
 	haze _menu/haze-coal
-	link G-6183
-	link G-819
 	link H-9187
-	link L-118
 	minables platinum 7 4.2
 	minables copper 32 7.91
-	fleet "Iije" 4000
+	fleet Iije 4000
 	object
 		sprite star/g5
 		period 10
@@ -18718,7 +18710,7 @@ system MC-42
 	object
 		sprite planet/rock16
 		distance 1293
-		period 2113.3679
+		period 2113.36
 	object
 		sprite planet/gas0-hot
 		distance 2139
@@ -20277,14 +20269,13 @@ system Moktar
 		period 1540.20
 
 system Mohuwo
-	pos 970.84 -550.26
+	pos 957.95 -538.26
 	government Uninhabited
 	habitable 1907.2
 	belt 1213
 	haze _menu/haze-67
 	link Auhru
 	link Pbelnep
-	link Uelawan
 	asteroids "small metal" 1 6.78
 	asteroids "medium metal" 1 5.53
 	asteroids "large metal" 2 5.53
@@ -20389,9 +20380,9 @@ system Mora
 			period 24.168
 
 system MS-219
-	pos 1085.11 -580.44
+	pos 1134.6 -573.1
 	government Uninhabited
-	habitable 65.05
+	habitable 65
 	belt 1404
 	"jump range" 30
 	haze _menu/haze-coal
@@ -20400,10 +20391,10 @@ system MS-219
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
-	fleet "Iije" 50
+	fleet Iije 50
 	object
 		sprite star/a-dwarf
-		distance 36.112
+		distance 36.1
 		period 64.2
 	object
 		sprite star/o-dwarf
@@ -20432,7 +20423,7 @@ system MS-219
 		period 92203.4
 
 system Msalbit
-	pos 978.8 -278.1
+	pos 958.57 -283.43
 	government Uninhabited
 	habitable 3276.8
 	belt 1333
@@ -20440,8 +20431,8 @@ system Msalbit
 	haze _menu/haze-blackbody
 	link Kanguwa
 	link Yranjiu
-	minables aluminum 29 4.624
-	minables iron 30 3.47
+	minables aluminum 29 4.6
+	minables iron 30 3.4
 	object
 		sprite star/o0
 		period 10
@@ -20456,7 +20447,7 @@ system Msalbit
 	object
 		sprite planet/gas0-b
 		distance 1713
-		period 1107.7865
+		period 1107.7
 
 system Muhlifain
 	pos -702 242
@@ -20858,20 +20849,18 @@ system Nihal
 			period 23.3833
 
 system Nisyros
-	pos 839.28 -529.13
+	pos 762.61 -525.18
 	government Uninhabited
 	habitable 3699.2
 	belt 1175
 	haze _menu/haze-blackbody
 	link Jied
-	link Kneirc
-	link Oihaug
 	asteroids "small rock" 26 3.9
 	asteroids "medium rock" 39 2.6
 	asteroids "large rock" 4 3.42
 	asteroids "small metal" 4 4.5
-	asteroids "medium metal" 16 2.88
-	asteroids "large metal" 12 4.095
+	asteroids "medium metal" 16 2.8
+	asteroids "large metal" 12 4
 	minables titanium 4 4.27
 	minables silver 6 5.13
 	fleet "Small Vi" 1400
@@ -20911,16 +20900,14 @@ system Nisyros
 		period 12873.4
 
 system Nnaug
-	pos 758.45 -552.4
+	pos 712.89 -599.51
 	government "Gegno Vi"
 	habitable 1232.2
 	belt 1901
 	haze _menu/haze-133
-	link Jied
 	link Kiluit
-	link Ookmya
+	link Oihaug
 	link Scija
-	link Yli
 	asteroids "small rock" 1 1.1
 	asteroids "medium rock" 1 1.4
 	asteroids "large rock" 6 1.2
@@ -20960,7 +20947,7 @@ system Nnaug
 	object
 		sprite planet/gas8-b
 		distance 3346.7
-		period 33171.026
+		period 33171
 		object
 			sprite planet/ice7
 			distance 361
@@ -21167,11 +21154,12 @@ system Nunki
 			period 66.2404
 
 system O-3184
-	pos 1071.31 -655.83
+	pos 1092.19 -661.16
 	government Uninhabited
 	habitable 259.2
 	belt 1119
 	haze _menu/haze-coal
+	link E-4183
 	link E-9182
 	link U-5188
 	asteroids "small rock" 28 5.85
@@ -21179,16 +21167,16 @@ system O-3184
 	asteroids "large rock" 3 6.12
 	asteroids "medium metal" 10 6.93
 	asteroids "large metal" 1 6.84
-	minables iron 5 2.2300999
-	minables lead 42 3.4319917
-	fleet "Iije" 6000
+	minables iron 5 2.23
+	minables lead 42 3.43
+	fleet Iije 6000
 	object
 		sprite star/m3
 		period 10
 	object
 		sprite planet/lava3-b
 		distance 248
-		period 216.97266
+		period 216.9
 	object
 		sprite planet/ocean9
 		distance 2143.07
@@ -21267,14 +21255,15 @@ system Oblate
 		period 2449.85
 
 system Oihaug
-	pos 829.69 -575.7
+	pos 781 -582.14
 	government Uninhabited
 	habitable 204.8
 	belt 1756
 	haze _menu/haze-133
-	link Asio
-	link Nisyros
-	link Ookmya
+	link Eogho
+	link Jied
+	link Nnaug
+	link Oosuoro
 	asteroids "small rock" 1 1.55
 	asteroids "medium rock" 6 1.49
 	asteroids "large rock" 10 1.99
@@ -21312,17 +21301,15 @@ system Oihaug
 		period 47328.71
 
 system Ookmya
-	pos 779.2 -588.51
+	pos 639.6 -607.17
 	government "Gegno Vi"
 	habitable 3699.2
 	belt 1144
 	haze _menu/haze-133
-	link Acnanjo
-	link Nnaug
-	link Oihaug
+	link Scija
 	asteroids "large rock" 17 5.7
-	asteroids "small metal" 136 6.07
-	asteroids "medium metal" 55 4.05
+	asteroids "small metal" 136 6
+	asteroids "medium metal" 55 4
 	asteroids "large metal" 4 7.69
 	minables lead 11 1.2
 	trade Clothing 294
@@ -21374,17 +21361,19 @@ system Ookmya
 			period 440.1
 
 system Oosuoro
-	pos 891.47 -598.45
+	pos 839 -592.67
 	government Gegno
 	habitable 10525
 	belt 828
 	haze _menu/haze-33
 	link Asio
+	link Eogho
 	link Heutesl
 	link Iigen
+	link Oihaug
 	link Uelawan
 	asteroids "small metal" 1 4.15
-	asteroids "medium metal" 13 3.44
+	asteroids "medium metal" 13 3.4
 	asteroids "large metal" 2 2.77
 	minables neodymium 7 1.9
 	minables aluminum 6 2.3
@@ -21906,7 +21895,7 @@ system Patir
 			period 17.525
 
 system Pbelnep
-	pos 942.05 -501.1
+	pos 945.6 -504.2
 	government "Gegno Scin"
 	habitable 413.65
 	belt 1803
@@ -23229,20 +23218,20 @@ system Prosa
 			period 28
 			
 system Ptetubo
-	pos 683.60223 -533.31111
+	pos 594 -569.3
 	government "Gegno Vi"
 	habitable 2000
 	belt 1478
 	haze _menu/haze-67
 	link Ptobeh
 	link Scija
-	link Wreoul
-	asteroids "small rock" 1 1.136
-	asteroids "medium rock" 5 1.36
-	asteroids "large rock" 10 1.248
-	asteroids "small metal" 4 1.408
-	asteroids "medium metal" 11 1.264
-	asteroids "large metal" 3 1.168
+	link Uhebe
+	asteroids "small rock" 1 1.13
+	asteroids "medium rock" 5 1.3
+	asteroids "large rock" 10 1.2
+	asteroids "small metal" 4 1.4
+	asteroids "medium metal" 11 1.26
+	asteroids "large metal" 3 1.1
 	minables copper 4 1.9
 	minables uranium 2 0.9
 	minables titanium 3 2.3
@@ -23286,17 +23275,17 @@ system Ptetubo
 		period 3420.3263
 		object
 			sprite planet/dust3-b
-			distance 180.69
+			distance 180.6
 			period 188.61
 
 system Ptobeh
-	pos 638.21 -545.9
+	pos 556.4 -533.78
 	government Uninhabited
 	habitable 3276.8
 	belt 1440
 	haze _menu/haze-133
+	link Acnanjo
 	link Ptetubo
-	link Uhebe
 	asteroids "large metal" 1 1.7
 	fleet "Small Vi" 2400
 	fleet "Large Vi" 3400
@@ -23371,7 +23360,7 @@ system "Pug Iyik"
 			period 36.706
 
 system Pukako
-	pos 600.42 -427.84
+	pos 618.64 -440.28
 	government Uninhabited
 	habitable 361.25
 	belt 1154
@@ -23379,7 +23368,7 @@ system Pukako
 	haze _menu/haze-133
 	link Empeles
 	link Karhio
-	link Yerser
+	link Maoni
 	asteroids "small rock" 21 0.53
 	asteroids "medium rock" 154 0.61
 	asteroids "large rock" 5 0.58
@@ -23389,7 +23378,7 @@ system Pukako
 	object
 		sprite star/k0
 		period 10
-	object
+	object 8
 		sprite planet/desert0-b
 		distance 813
 		period 1090.87
@@ -23397,11 +23386,11 @@ system Pukako
 		sprite planet/gas10-hot
 		distance 2492
 		period 5854.14
-		object
+		object 9
 			sprite planet/rock3
 			distance 400
 			period 302.4
-		object
+		object 10
 			sprite planet/rock20
 			distance 532
 			period 463.83
@@ -24463,14 +24452,12 @@ system Ritilas
 			period 26.1475
 
 system Rouseu
-	pos 616.68 -383.42
+	pos 558.45 -407.86
 	government Uninhabited
 	habitable 1780
 	belt 1648
 	haze _menu/haze-133
 	link Maoni
-	link Vaiov
-	link Yerser
 	asteroids "small rock" 132 1.34
 	asteroids "medium rock" 42 2.32
 	asteroids "large rock" 106 1.75
@@ -25400,14 +25387,16 @@ system Schedar
 			period 25.3563
 
 system Scija
-	pos 711.53 -554.57
+	pos 657.5 -571
 	government "Gegno Vi"
 	habitable 2439.2
 	belt 1431
 	haze _menu/haze-blackbody
 	link Kiluit
 	link Nnaug
+	link Ookmya
 	link Ptetubo
+	link Uhebe
 	asteroids "small rock" 38 2.6
 	asteroids "medium rock" 7 2.28
 	asteroids "large rock" 1 2.4
@@ -25468,8 +25457,8 @@ system Scija
 		period 4368.4
 		object
 			sprite planet/europa
-			distance 271
-			period 211.1
+			distance 485.1678
+			period 46
 
 system Segesta
 	pos 111.87 294.242
@@ -28233,11 +28222,10 @@ system Tortor
 			period 37.3803
 	
 system Tscera
-	pos 881.13333 -659.64111
+	pos 866.9 -669.41
 	government Uninhabited
 	habitable 1220
 	haze _menu/haze-33
-	link Asio
 	link Heutesl
 	link Yllke
 	asteroids "small rock" 4 2.6
@@ -28328,7 +28316,7 @@ system Turais
 		period 4109.01
 
 system U-5188
-	pos 1118.55 -682.63
+	pos 1071 -677.29
 	government Uninhabited
 	habitable 361.25
 	belt 1330
@@ -28363,13 +28351,12 @@ system U-5188
 			period 529.37
 
 system Uelawan
-	pos 934.31 -560.87
+	pos 895.2 -565.75
 	government Uninhabited
 	habitable 500
 	belt 1976
 	haze _menu/haze-33
 	link Gualetri
-	link Mohuwo
 	link Oosuoro
 	asteroids "small rock" 3 2.36
 	asteroids "medium rock" 18 1.78
@@ -28425,12 +28412,15 @@ system Uelawan
 			period 698.72
 
 system Uhebe
-	pos 663.472 -582.16
-	government Uninhabited
+	pos 647.4 -496.3
+	government "Gegno Vi"
 	habitable 1843.2
 	belt 1771
 	haze _menu/haze
-	link Ptobeh
+	link Cshudlye
+	link Ptetubo
+	link Scija
+	link Wreoul
 	asteroids "small rock" 3 1.2
 	asteroids "medium rock" 12 1.91
 	asteroids "large rock" 3 1.489
@@ -28445,11 +28435,11 @@ system Uhebe
 		period 10
 	object
 		sprite planet/cloud5-b
-		distance 462
+		distance 677.98836
 		period 206.88
 	object
 		sprite planet/desert3
-		distance 870
+		distance 963.48724
 		period 534.61
 	object
 		sprite planet/gas5
@@ -28807,8 +28797,8 @@ system Unukalhai
 		period 2955.85
 
 system Uttna
-	pos 971.28 -603.02
-	government Uninhabited
+	pos 941 -576.35
+	government Gegno
 	habitable 500
 	belt 1748
 	haze _menu/haze-33
@@ -28928,7 +28918,7 @@ system "Uwa Fahn"
 		period 5060.21
 
 system V-2189
-	pos 1129.68 -663.7
+	pos 1135.9 -709
 	government Uninhabited
 	habitable 1907.2
 	belt 1985
@@ -28982,16 +28972,16 @@ system V-2189
 			period 299.64
 
 system Vaiov
-	pos 631.51 -347.04
+	pos 631.5 -347
 	government Uninhabited
 	habitable 2560
 	belt 1529
 	haze _menu/haze-red
-	link Rouseu
+	link Maoni
 	asteroids "large rock" 1 3.87
 	asteroids "small metal" 7 2.95
 	asteroids "medium metal" 172 4.23
-	asteroids "large metal" 1 3.366
+	asteroids "large metal" 1 3.3
 	object
 		sprite star/k5-old
 		distance 190
@@ -29004,7 +28994,7 @@ system Vaiov
 	object
 		sprite planet/rhea-b
 		distance 587
-		period 251.4
+		period 216
 	object
 		sprite planet/lava6
 		distance 863
@@ -29012,20 +29002,19 @@ system Vaiov
 	object
 		sprite planet/gas10
 		distance 2375
-		period 2046.06
+		period 2046
 		object
 			sprite planet/luna
-			distance 597
-			period 551.39
-			
+			distance 332.3
+			period 6.5
+
 system Vanguwo
-	pos 1005.89 -428.52
+	pos 901.3 -318.13
 	government Uninhabited
 	habitable 11530
 	belt 1964
 	haze _menu/haze-67
-	link Iinjma
-	link Zeinar
+	link Lloloi
 	asteroids "small rock" 6 1.4
 	asteroids "medium rock" 8 1.2
 	asteroids "large rock" 236 1.8
@@ -29044,7 +29033,7 @@ system Vanguwo
 	object
 		sprite planet/gas0-b
 		distance 4211
-		period 9108.7044
+		period 9108.7
 		object
 			sprite planet/luna
 			distance 297
@@ -29172,14 +29161,14 @@ system Vega
 		period 1710.41
 
 system Vesvii
-	pos 820.58 -415.55
+	pos 792.58 -432.88
 	government Uninhabited
 	habitable 2560
 	belt 976
 	haze _menu/haze-33
-	link Eogho
 	link Huud
 	link Jyelio
+	link Yerser
 	asteroids "small rock" 15 2.8
 	asteroids "medium rock" 19 3.8
 	asteroids "large rock" 2 3.8
@@ -29188,7 +29177,6 @@ system Vesvii
 	asteroids "large metal" 4 2.9
 	minables aluminum 6 1.5
 	minables gold 7 3.2
-	minables yottrite 3 2.1
 	minables iron 9 1.7
 	fleet "Vi Warfleet" 800
 	fleet "Scin Warfleet" 800
@@ -29206,8 +29194,8 @@ system Vesvii
 		distance 432.6
 		period 448.1
 	object
-		sprite planet/ocean8-b
-		distance 2332.7
+		sprite planet/ice0
+		distance 3838.4
 		period 880.7
 	object
 		sprite planet/gas1-b
@@ -29224,16 +29212,16 @@ system Vesvii
 		offset 300
 
 system Vilacira
-	pos 872.694 -372.8
-	government Uninhabited
+	pos 812.69 -327.13
+	government Gegno
 	habitable 28.8
 	belt 1157
 	haze _menu/haze-33
-	link Eogho
+	link 21b
 	asteroids "small rock" 2 2.73
 	asteroids "medium rock" 8 3.6
-	asteroids "large rock" 2 4.258
-	asteroids "medium metal" 2 3.33
+	asteroids "large rock" 2 4.2
+	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 8 3
 	minables lead 5 3.34
 	object
@@ -29379,7 +29367,7 @@ system Volax
 		period 2872.94
 
 system Vorsuke
-	pos 732.99 -651.11
+	pos 691 -517.16
 	government Uninhabited
 	habitable 1316.45
 	belt 1177
@@ -29406,23 +29394,23 @@ system Vorsuke
 		period 1632.73
 
 system Vulcuja
-	pos 1045.05 -239
+	pos 1043.4 -248.1
 	government Uninhabited
 	habitable 208080
 	belt 1972
 	"jump range" 50
 	haze _menu/haze-full
 	link Yranjiu
-	asteroids "large rock" 1 1.012
-	asteroids "large metal" 1 1.023
-	minables lead 15 5.5315175
-	minables uranium 24 5.732
+	asteroids "large rock" 1 1
+	asteroids "large metal" 1 1
+	minables lead 15 5.53
+	minables uranium 24 5.73
 	object
 		sprite star/carbon
 		period 10
 	object
 		sprite planet/rock11-b
-		distance 2242.02
+		distance 2242
 		period 93.8
 	object
 		sprite planet/gas4-b
@@ -29430,21 +29418,22 @@ system Vulcuja
 		period 534
 
 system W-3197
-	pos 1132.89 -422.61
+	pos 1180.4 -413
 	government Uninhabited
 	habitable 924.8
 	belt 1887
 	"jump range" 50
 	haze _menu/haze-none
-	link G-6183
+	link G-719
+	link G-819
 	asteroids "small rock" 25 1
 	asteroids "medium rock" 5 0.91
 	asteroids "large rock" 27 1.71
 	asteroids "small metal" 3 1.27
-	asteroids "medium metal" 39 1.146
-	asteroids "large metal" 4 1.346
-	minables titanium 46 3.46
-	minables neodymium 101 4.764
+	asteroids "medium metal" 39 1.14
+	asteroids "large metal" 4 1.34
+	minables titanium 46 3.4
+	minables neodymium 101 4.76
 	object
 		sprite star/b3
 		period 10
@@ -29459,11 +29448,11 @@ system W-3197
 	object
 		sprite planet/gas0
 		distance 3781
-		period 6838.031
+		period 6838
 	object
 		sprite planet/dust0
 		distance 9113
-		period 25586.63
+		period 25586.6
 
 system "Wah Ki"
 	pos 14.9925 -612.792
@@ -30036,13 +30025,15 @@ system "World's End"
 		offset 290
 
 system Wreoul
-	pos 702.57 -483.21
+	pos 692.34 -464.1
 	government Uninhabited
 	habitable 28.8
 	belt 1409
 	haze _menu/haze-133
-	link Cshudlye
-	link Ptetubo
+	link Empeles
+	link Fscher
+	link Jyelio
+	link Uhebe
 	link Yli
 	asteroids "small rock" 3 3.36
 	asteroids "medium rock" 1 2.46
@@ -30217,16 +30208,18 @@ system "Yed Prior"
 			period 10.8785
 
 system Yerser
-	pos 645.09 -398.32
+	pos 833.25 -424.54
 	government Uninhabited
 	habitable 3276.8
 	belt 1478
 	haze _menu/haze-133
-	link Pukako
-	link Rouseu
+	link Cotpoxi
+	link Evrae
+	link Ilirco
+	link Vesvii
 	asteroids "small rock" 4 2.6
-	asteroids "large rock" 7 3.06
-	asteroids "small metal" 9 3.06
+	asteroids "large rock" 7 3
+	asteroids "small metal" 9 3
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
@@ -30248,52 +30241,53 @@ system Yerser
 		period 1530.5
 
 system Yli
-	pos 754.7 -508.84
-	government Uninhabited
-	habitable 423.2
-	belt 1404
+	pos 730.7 -504.8
+	government Gegno
+	habitable 369.7
+	belt 1529
 	haze _menu/haze-133
-	link Eebu
-	link Fscher
 	link Jied
-	link Nnaug
 	link Wreoul
-	asteroids "large metal" 1 4.3
+	asteroids "large rock" 1 3.87
+	asteroids "small metal" 7 2.95
+	asteroids "medium metal" 172 4.23
+	asteroids "large metal" 1 3.36
+	minables tungsten 5 5.58
+	minables aluminum 32 6.6
+	minables platinum 8 5.1
 	fleet "Small Vi" 900
 	fleet "Large Vi" 1600
 	fleet "Vi Transport" 2300
 	fleet "Vi Cargo" 1700
 	object
-		sprite star/f3
-		period 10
+		sprite star/m-dwarf
+		distance 117.2
+		period 61.14
+		offset 180
 	object
-		sprite planet/gas15-b
-		distance 982.16
-		period 532
-		object
-			sprite planet/luna-b
-			distance 247
-			period 101.5
+		sprite star/k8
+		distance 2.7427644
+		period 61.149391
 	object
-		sprite planet/rock5
-		distance 1752.5
-		period 1599.2
+		sprite planet/fg_terrestrial6
+		distance 296
+		period 236.8
 	object
-		sprite planet/gas1
-		distance 3637.5481
-		period 5153.5
-		object
-			sprite planet/dust4
-			distance 474
-			period 320.95
+		sprite planet/rock6-b
+		distance 628
+		period 732
 	object
-		sprite planet/gas2
-		distance 8314
-		period 32959
+		sprite planet/cloud0-b
+		distance 1292
+		period 2160.29
+	object
+		sprite planet/gas3
+		distance 2606
+		period 6188.4
 
 system Yllke
-	pos 937.76 -652.42
-	government Uninhabited
+	pos 954.2 -648.41
+	government Gegno
 	habitable 924.8
 	belt 1925
 	haze _menu/haze-67
@@ -30340,24 +30334,22 @@ system Yllke
 			sprite planet/rock7-b
 			distance 297
 			period 242.1
-		object
-			sprite planet/station2k
-			distance 435
-			period 237.4
 
 system Yranjiu
-	pos 1041.62 -280.5
+	pos 1056.5 -308.72
 	government Uninhabited
 	habitable 2000
 	belt 1478
 	"jump range" 50
 	haze _menu/haze-33
+	link Aierena
+	link Gaungu
 	link Kanguwa
 	link Msalbit
 	link Vulcuja
 	asteroids "small rock" 4 2.6
-	asteroids "large rock" 7 3.06
-	asteroids "small metal" 9 3.06
+	asteroids "large rock" 7 3
+	asteroids "small metal" 9 3
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.2
 	minables yottrite 6 5.9
@@ -30375,7 +30367,7 @@ system Yranjiu
 	object
 		sprite planet/gas14-b
 		distance 3592.2
-		period 1509.03
+		period 1509
 
 system Zaurak
 	pos -109 -34
@@ -30437,19 +30429,17 @@ system Zaurak
 		period 2461.86
 
 system Zeinar
-	pos 966.71 -461.94
+	pos 982.5 -451.5
 	government "Gegno Scin"
 	belt 1960
 	haze _menu/haze-33
-	link Auhru
 	link "Erba Yle"
 	link Iinjma
 	link Iliniza
 	link Pbelnep
-	link Vanguwo
 	asteroids "small rock" 2 5.6
 	asteroids "medium rock" 9 5.5
-	asteroids "large rock" 4 4.08
+	asteroids "large rock" 4 4
 	asteroids "small metal" 2 3.2
 	asteroids "medium metal" 7 4.4
 	asteroids "large metal" 9 4.1
@@ -30625,19 +30615,19 @@ system "Zeta Centauri"
 		period 12226.1
 
 system Zolpulti
-	pos 946.47 -331.83
+	pos 926 -378.5
 	government Uninhabited
 	habitable 810
 	belt 1159
 	haze _menu/haze-blackbody
 	link Lloloi
-	asteroids "small rock" 4 1.9456
-	asteroids "medium rock" 46 2.048
-	asteroids "large rock" 20 1.3312
-	asteroids "small metal" 3 1.8944
+	asteroids "small rock" 4 1.9
+	asteroids "medium rock" 46 2
+	asteroids "large rock" 20 1.3
+	asteroids "small metal" 3 1.89
 	asteroids "medium metal" 105 1.92
 	asteroids "large metal" 21 1.56
-	minables aluminum 13 3.596
+	minables aluminum 13 3.5
 	minables lead 49 2.9
 	object
 		sprite star/g0
@@ -30645,11 +30635,11 @@ system Zolpulti
 	object
 		sprite planet/dust1-b
 		distance 980
-		period 584.3591
+		period 584.3
 	object
 		sprite planet/gas6-hot
-		distance 2956.8982
-		period 1474.0576
+		distance 2956.8
+		period 1474
 		object
 			sprite planet/dust7
 			distance 256
@@ -35288,3 +35278,10 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
+
+system Pug
+	pos 904.78667 -426.42467
+
+system Z2
+	pos 1189.2589 -531.06356
+	link H-8188
