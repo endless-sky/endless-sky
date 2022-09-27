@@ -1445,6 +1445,8 @@ Files:
  images/projectile/missile-1*
  images/ship/corvette*
  images/ship/flivver*
+ images/ship/manta*
+ images/ship/mmanta*
  images/ship/mraven*
  images/ship/msplinter*
  images/ship/raven*
@@ -1452,6 +1454,8 @@ Files:
  images/star/neutron*
  images/thumbnail/corvette*
  images/thumbnail/flivver*
+ images/thumbnail/manta*
+ images/thumbnail/mmanta*
  images/thumbnail/mraven*
  images/thumbnail/msplinter*
  images/thumbnail/raven*

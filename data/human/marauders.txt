@@ -632,15 +632,15 @@ ship "Marauder Manta"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -33 38
-	engine 33 38
-	gun -66 -30 "Meteor Missile Launcher"
-	gun 66 -30 "Meteor Missile Launcher"
-	gun -27 -30 "Plasma Cannon"
-	gun 27 -30 "Plasma Cannon"
-	gun -20 -30 "Particle Cannon"
-	gun 20 -30 "Particle Cannon"
-	turret 0 -29 "Quad Blaster Turret"
+	engine -33 40
+	engine 33 40
+	gun -20 -31 "Particle Cannon"
+	gun 20 -31 "Particle Cannon"
+	gun -26.5 -30 "Plasma Cannon"
+	gun 26.5 -30 "Plasma Cannon"
+	gun -68.5 -33 "Meteor Missile Launcher"
+	gun 68.5 -33 "Meteor Missile Launcher"
+	turret 0 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -669,9 +669,9 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -33.5 38
-	engine 0 76
-	engine 33.5 38
+	engine -33 43
+	engine 0 82.5 0.7
+	engine 33 43
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 	gun "Plasma Cannon"
@@ -708,13 +708,13 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		
 	engine -33.5 38
 	engine 33.5 38
-	gun -66 -34 "Meteor Missile Launcher"
-	gun 66 -34 "Meteor Missile Launcher"
-	gun -27 -35 "Proton Gun"
-	gun 27 -35 "Proton Gun"
-	gun -20 -35 "Particle Cannon"
-	gun 20 -35 "Particle Cannon"
-	turret 0 -29 "Heavy Anti-Missile Turret"
+	gun -68.5 -43 "Meteor Missile Launcher"
+	gun 68.5 -43 "Meteor Missile Launcher"
+	gun -26.5 -33 "Proton Gun"
+	gun 26.5 -33 "Proton Gun"
+	gun -20 -33 "Particle Cannon"
+	gun 20 -33 "Particle Cannon"
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
 	description `This Manta has undergone extensive modification, featuring extra gun ports, hull plating, and shield emitters. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
 
 

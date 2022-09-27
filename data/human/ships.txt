@@ -2333,14 +2333,14 @@ ship "Manta"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -33 38
-	engine 33 38
-	gun -21 -35 "Particle Cannon"
-	gun 21 -35 "Particle Cannon"
-	gun -27 -35 "Particle Cannon"
-	gun 27 -35 "Particle Cannon"
-	gun -66 -32 "Meteor Missile Launcher"
-	gun 66 -32 "Meteor Missile Launcher"
+	engine -33 40
+	engine 33 40
+	gun -20 -31 "Particle Cannon"
+	gun 20 -31 "Particle Cannon"
+	gun -26.5 -30 "Particle Cannon"
+	gun 26.5 -30 "Particle Cannon"
+	gun -68.5 -33 "Meteor Missile Launcher"
+	gun 68.5 -33 "Meteor Missile Launcher"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
