@@ -20880,6 +20880,54 @@ system Queri
 	object
 		sprite star/g3
 		period 10
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 20
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 35
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 50
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 105
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 220
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 235
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 250
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 335
 
 system Rajak
 	pos -270 -236
