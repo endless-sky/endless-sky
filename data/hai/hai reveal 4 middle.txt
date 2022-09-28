@@ -956,7 +956,7 @@ mission "Hai Rescue [A10] Demanding Satisfaction"
 		has "Hai Rescue [A09] History of Appeasement: done"
 	on offer
 		log `Traveled to Unfettered Hai space with Teeneep and convinced them to throw their support behind her.`
-# Rework this to deal with Teeneep justifying her trueness (not just political opportunism), presenting the history of behaviour to the Unfettered and requesting they support her in forcing the Elders into taking action. 
+# Rework this to deal with Teeneep justifying her trueness (not just political opportunism), presenting the history of behavior to the Unfettered and requesting they support her in forcing the Elders into taking action. 
 # "I know it is distasteful to consider this sort of show." <insert player confusion> "Neither True Hai nor Fettered truly desire to shed the blood of the other. Our disagreement is a protest, a lesson to be learned that we are learning but slowly. Perhaps it is time though that we demonstrate the seriousness of our resolve, especially if the Elders have become so mired as for it to have come to this."
 # Unfettered offer to help, but can't just waltz through Hai and human space without being blasted.
 		conversation
@@ -1009,13 +1009,67 @@ mission "Hai Rescue [A11] Sound the Alarm"
 	to offer
 		has "Hai Rescue [A10] Demanding Satisfaction: done"
 	on offer
+		event "hai and human ships at wormhole"
 #		log ``
 		conversation
 			`Teeneep confronts the Elders again, tells them about the offer that the Unfettered provide. "If you don't do it, they will." Once again, the Elders remain passive and decline taking action. Insist that the Unfettered wouldn't dare move.`
 			`Teeneep goes public with the situation to Hai society, telling them of the failings of the Elders in keeping the Hai safe. Including the willingness of the Unfettered to make open bloody war to force this matter to a resolution. This is what causes the snap election that will lead to Teeneep becoming an elected Elder.`
-			`Sayari finds you and slips you a warning that all communication in or out of Hai space will be cut off the instant the election is announced formally. You tell Alondo, he directs you to fly to Mountaintop with *all* possible haste.`
-			`Hai security forces close the border and you have to run the gauntlet. However, the favour you have accrued at multiple levels of Hai society stays the hand of retribution.`
+			`Sayari finds you and slips you a warning that the winds of change have picked up and all communication in or out of Hai space will be cut off the instant the election is announced formally. You tell Alondo, he directs you to fly to Mountaintop with *all* possible haste.`
+			`Hai security forces close the border and you have to run the gauntlet. However, the favor you have accrued at multiple levels of Hai society stays the hand of retribution.`
 
+event "hai and human ships at wormhole"
+	system "Waypoint"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
+		add fleet "Hai Wormhole Guards" 400
+	system "Heia Due"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
+		add fleet "Hai Wormhole Guards" 1000
+	system "Ultima Thule"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
+		remove fleet "Smuggler (Hai Traffickers)"
+		# Things just got locked down.
+		add fleet "Human Wormhole Guards" 400
+	system "Rajak"
+		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
+		remove fleet "Smuggler (Hai Traffickers)"
+		# Things just got locked down.
+		add fleet "Human Wormhole Guards" 1000
+
+
+# Ensure there are some impressive fleets at each system.
+mission "Hai Rescue [A11-A] Permanent Fleets"
+	invisible
+	landing
+	source "Hai-home"
+	to offer
+		has "Hai Rescue [A10] Demanding Satisfaction: done"
+	to complete
+		never
+	npc
+		government "Republic"
+		system "Ultima Thule"
+		personality heroic opportunistic staying
+		fleet "Human Wormhole Guards" 20
+	npc
+		government "Hai"
+		system "Waypoint"
+		personality heroic staying
+		fleet "Hai Wormhole Guards" 40
+
+#These are separated because they leave at a different time.
+mission "Hai Rescue [A11-B] Permanent Fleets"
+	invisible
+	landing
+	source "Hai-home"
+	to offer
+		has "Hai Rescue [A10] Demanding Satisfaction: done"
+	to complete
+		never
+	npc
+		government "Republic"
+		system "Ultima Thule"
+		personality heroic opportunistic staying
+		fleet "Human Wormhole Guards" 20
 
 
 
@@ -1036,6 +1090,9 @@ mission "Hai Rescue [A12] Into the Lion's Den"
 #		log ``
 		conversation
 			`You communicate with Danforth from Mountaintop and brief him on what's going on, and the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He scrambles additional Navy forces and sends you back to Hai-home to stay on top of things and to ensure the safety of the diplomatic corps.`
+			`He mentions somewhat offhand that when this went on as long as it did he pulled strings to get some cruisers specially equipped for deep-range, long-duration missions. He is grim about the fact that his preparation now appears to be paying dividends.`
+			`It's all falling apart.`
+			`	b) In conjunction with things breaking down out there, they're also breaking down in here. Turner says the movie production is going terribly. "The script needs massive rewrites!" Meta commentary on Hai Reveal. Mention plot points from Philosopher's Liberation. Mention something about philosopher kings being a plot point. Turner mentions the line about the kiss with the finger-sized incisors and follows it up with, "Who even wrote this? Who writes this stuff?"`
 
 
 
@@ -1052,11 +1109,73 @@ mission "Hai Rescue [A13] A New Elder"
 	on offer
 #		log ``
 		conversation
-			`Teeneep successfully elected Elder, along with one other long-time advocate for change elsewhere. She displaces one of the most steadfastly stuff Elders and upsets all the long-term power dynamics in the council.`
-			`Steal from Election mission in HR5.`
+			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. You have arrived late in the day and there is a gloom developing as the sun disappears behind the buildings of the capital as you enter into what you have begun to think of as the 'diplomatic wing' of the government complex. Fortunately, though the place appears nearly deserted, you swiftly run into Alondo and Remington who are sitting in the empty cafeteria area with paired glasses of what appears to be scotch whiskey.`
+			`	When he sees you Alondo raises a hand and gestures for you to sit with them. "<last>! Bloody hell home join us."`
+			choice
+				`	"Are you all ok?"`
+					goto ok
+				`	"How long have you been here?"`
+			`	Remington shifts his weight and determinedly pushes his wrist across his chest until his jacket sleeve pushes up far enough for him to look at his watch. After a lengthy pause spent staring at it's screen he screws up his face, finishes his drink, and says, "At least two hours too long."`
+				goto ok
+			label ok
+			`	Alondo grimaces, raises his eyebrows, and gives a lopsided shrug which altogether does a remarkable job of conveying the sentiment: 'so far it looks like it, but I still need at least one more stiff drink to get over it'. Remington looks at him and chuckles halfheartedly before emptying his glass and putting it down with a sharp clink. "We weren't sure for a while there, but other than being cut off, we're okay."`
+			label continue
+			`	Alondo gestures at the large, wall-mounted, monitor they've been watching and you realize that it must be displaying some kind of post-election coverage. The writing is all in Hai, but it seems that the majority of the information that would matter to the diplomats has been displayed visually. On its own you'd have never guessed at trying to read Teeneep's name written in Hai, but when it's presented next to her face, and then shown on a pie chart next to percentages and other graphics it becomes easy enough to follow what's happening.`
+			`	"Every so often they have a segment in human standard, presumably because of the rest of us out there," says Remington, gesturing vaguely beyond the walls to the outside. "You wouldn't believe some of the rhetoric the last few days while you've been gone."`
+			`	Alondo visibly shudders and pushes the bottle across the table back to Remington. "Sometimes it was like watching the old documentaries and political dramas I studied back at school. The ones where there's some populist extremist with dangerous ideas that the establishment is just blindly assuming couldn't possibly be successful, while at the same time that same populist is whipping crowds into a violent frenzy on the streets outside."`
+			`	On the screen the face of a charming-looking male Hai comes up and Alondo points with sudden vigor. "Him! I swear there was going to be torches and pitchforks right below my window one night thanks to him. He's here on Hai-home, as are his followers."`
+			`	You are relieved to see that when it flicks over to the stats, the individual in question looks to be losing out on whatever his target was by a nice, comfortable, seven percentage points.`
+			`	Remington nods sagely and an unreadable expression flicks between them for a moment before he looks back at you. "The Hai's electoral system seems quite simple on the surface, but they seem to have a complex series of reserve steps and fail-safes for if any outcomes aren't clear enough for their thresholds. For almost all of yesterday I couldn't even find a Hai in this very building who could translate what was going on into human well enough to make sense of it.`
+			`	"They only started locking in the last few seats a couple of hours ago. Until then we could have been prisoners and at war by now for all we knew. Peace-oriented heads seem to have prevailed though, but there's no lack of passion even in them. Near as I can tell from what has been explained and what I'm seeing; a third of the Elders have been replaced, which is the fastest change they've had since they were invaded by Korath... which I also didn't know was a thing that had happened until yesterday."`
+			`	He manages to make that last line sound both bewildered and grumpy at the same time. "That Teeneep you've been running around with, and yes don't look at me in shock; Sayari told me when we were concerned you might not get out. You've developed some friends in high places and I admire that... where was I?"`
+			`	"Teeneep!" says Alondo, perhaps a little too loudly, nearly poking Remington in the face.`
+			`	"Of course, that Teeneep of yours had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that sir pitchforks and pulse rifles down there has definitively lost. She's a firebrand is that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
+			
+			`Teeneep successfully elected Elder, along with one other long-time advocate for sensible change elsewhere who reinforces her position. She displaces one of the most steadfastly stuff Elders and upsets all the long-term power dynamics in the council.`
 			`She then uses this position to not only get the Hai to agree to the deal with the Unfettered, but also to put pressure on the Republic to allow the Unfettered through.`
 			`The threat is broadcast that if they do not treat with them seriously, the united Hai will move in without Republic approval. Navy blockades the wormhole to the best of its ability until the issue is resolved between the Hai and Parliament. Something something politics go here.`
 			`Travel to rendezvous with the Unfettered fleet, Sayari travels with you, but demands you fly with a Keystone`
+				accept
+	npc save accompany
+		government "Hai (Wormhole Access)"
+		personality timid escort
+		ship "Centipede (Teeneep)" "Teeneep's Ship"
+
+
+mission "Hai Rescue [A13-A] Unfettered Pickup"
+	invisible
+	landing
+	source "Everhope"
+	destination "Mountaintop"
+	to offer
+		has "Hai Rescue [A13] A New Elder: active"
+	npc
+		government "Hai (Friendly Unfettered)"
+		system "Ultima Thule"
+		personality escort heroic opportunistic
+		fleet "Large Friendly Unfettered" 7
+
+
+# Ambassadorial Centipede designed to fly deep into hostile space if necessary:
+ship "Centipede" "Centipede (Teeneep)"
+	# Add some ambassadorial staff:
+	add attributes
+		"required crew" 50
+	outfits
+		"Catalytic Ramscoop"
+		"Scram Drive"
+		"Chameleon Anti-Missile" 3
+		"Quantum Keystone"
+		"Outfits Expansion"
+		`"Biroo" Atomic Steering`
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
+		"Hai Chasm Batteries" 2
+		"Boulder Reactor"
+		Brig
+		"Fuel Pod" 3
+		"A370 Atomic Thruster"
+		"Pulse Rifle" 131
 
 
 
@@ -1075,7 +1194,6 @@ mission "Hai Rescue [A14] A Time of Trouble"
 			`This is the mega conversation to end all mega conversations.`
 			`It's all falling apart.`
 			`	a) The Navy moving a large fleet into the uninhabited region around Ultima Thule doesn't go unnoticed. Rumors start to spread about an impending alien invasion. Get a spaceport news text in the arrival on on Sunracer that highlights this.`
-			`	b) In conjunction with things breaking down out there, they're also breaking down in here. Turner says the movie production is going terribly. "The script needs massive rewrites!" Meta commentary on Hai Reveal. Mention plot points from Philosopher's Liberation. Mention something about philosopher kings being a plot point. Turner mentions the line about the kiss with the finger-sized incisors and follows it up with, "Who even wrote this? Who writes this stuff?"`
 			`	c) Parliament says they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people? The Hai imply that the Navy could end up killing the Hai involved in the process.`
 			`	d) Turner pulls Remington aside and points out how the Hai population is a vast new region to market to, but that won't be an option if war breaks out. Use this to get the Syndicate to leverage the Parliament to agree to the Hai's demands.`
 			`	e)  Under threat of using the (temporary) unification with the Unfettered, the Republic agrees to a limited cooperation which needs some planning. Parliament and Hai agree to a joint action to sweep various pirate worlds and liberate any Hai slaves.`

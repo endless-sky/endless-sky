@@ -11,62 +11,196 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-
-
-
-
-
-
-#2 Navy Battlegroups, a full Syndicate Security Detachment, the Unfettered Expeditionary Fleet, and a full Hai Taskforce.
-
-
-
-
-
-
-
-
-
-
-
-mission "Hai Rescue [B01] Election"
+mission "Hai Rescue [B01] Information Blackout"
 	landing
-	name "Missing Researchers"
-	description "Meet Teeneep on <destination>."
-	source "Darkwaste"
-	destination "Hai-home"
+	invisible
+	name "Information Blackout"
+	description "Meet the Syndicate Security Captain at the spaceport on <source>."
+	source "Sunracer"
 	clearance
 	to offer
-		has "Hai Rescue [A09] Slaver Ships: done"
+		has "Hai Rescue [A14] A Time of Trouble: done"
 	on offer
 		event "hai and human ships at wormhole"
 		conversation
-			`You land outside the hidden base and you notice the strangely-outfitted Centipede is gone. It has been replaced with a pair of Lightning Bugs which appear to have standard outfits. You walk into the base and recognize some of the researchers you've seen before, but Teeneep is absent.`
-			`	You explain your discoveries and the Hai look increasingly concerned with each sentence you speak.`
-			`	After paying you, they explain, "Not long after you left, we went public with our story. We told everyone who would listen. Then the government received your findings through Earth authorities. There's been a big outpouring of support, and a lot of anger at the Elders for letting this go on for so long."`
-			`	"Two days ago, there was an election. A third of the Elders have been replaced, which is the fastest change we've had since the Korath invasion began. Teeneep is being inaugurated today, as the youngest 'elder' since the Elder Council was formed. I fear a time of chaos has begun."`
-			`	 "We'll contact her by hyperwave and tell her everything you told us. Please fly immediately to <destination>. The Elders will no doubt meet as soon as you arrive."`
+			`<Insert news item upon landing about The Navy moving a large fleet into the uninhabited region around Ultima Thule and blockades going up in Rigel, Nihal, Mirfak & Zaurak>`
+			`<you get contacted and told to visit the spaceport to meet with the captain of the Syndicate security detachment and get briefed.>`
 				accept
 
+
 # Ensure there are some impressive fleets at each system.
-mission "Hai Rescue [B01A] Permanent Fleets"
+mission "Hai Rescue [B01-A] The Blockade Goes Up"
 	invisible
 	landing
-	source "Darkwaste"
+	source "Mountaintop"
 	to offer
-		has "Hai Rescue [A09] Slaver Ships: done"
+		has "Hai Rescue [A14] A Time of Trouble: offered"
 	to complete
 		never
 	npc
-		government "Human Alliance"
-		system "Ultima Thule"
+		government "Republic"
+		system "Rigel"
 		personality heroic opportunistic staying
-		fleet "Human Wormhole Guards" 20
+		fleet
+			names "republic capital"
+			fighters "syndicate fighter"
+			variant
+				"Carrier (Mark II)" 2
+				"Cruiser (Mark II)" 6
+				"Combat Drone" 36
+				"Lance (Gatling)" 8
+				"Frigate (Mark II)" 12
+				"Rainmaker (Mark II)" 8
+				"Rainmaker (Mark II Old Weapons)" 8
 	npc
-		government "Hai"
-		system "Waypoint"
+		government "Republic"
+		system "Nihal"
+		personality heroic opportunistic staying
+		fleet
+			names "republic capital"
+			fighters "syndicate fighter"
+			variant
+				"Carrier (Mark II)" 2
+				"Cruiser (Mark II)" 6
+				"Combat Drone" 36
+				"Lance (Gatling)" 8
+				"Frigate (Mark II)" 12
+				"Rainmaker (Mark II)" 8
+				"Rainmaker (Mark II Old Weapons)" 8
+	npc
+		government "Syndicate"
+		system "Mirfak"
 		personality heroic staying
-		fleet "Hai Wormhole Guards" 40
+		fleet "Large Syndicate" 8
+	npc
+		government "Syndicate"
+		system "Zaurak"
+		personality heroic staying
+		fleet "Large Syndicate" 8
+
+
+
+# The fight in this mission is very large, but it's also a complete roflstomp. The pirates are outnumbered 2-1, and out-gunned significantly worse than that.
+# You as the player have one job: make sure everyone jumps in together, and don't die. During the first campaign it was really important the fights were all balanced for you to be able to tip the balance.
+# THIS mission is designed to give you a spectacle. A little visual demonstration of what a real battle could potentially look and feel like with low stakes for you. It's a visual feast, not a challenge.
+mission "Hai Rescue [B02] Join the Fleet"
+	name "Join the Fleet"
+	description "Join the fleet in <waypoint> and move on Stormhold."
+	source "Sunracer"
+	waypoint "Sumar"
+	destination "Stormhold"
+	clearance
+	to offer
+		has "Hai Rescue [B01] Information Blackout: offered"
+	on offer
+		fail "Hai Rescue [B01] Information Blackout"
+		fail "Hai Rescue [A11-B] Permanent Fleets"
+		conversation
+			`<The Syndicate security captain hands you a pad with a secure validation sequence to confirm his briefing comes from the Navy, co-signed by Xilin.>`
+			`<The Republic has agreed to accompany the Hai to precisely one world which combined intelligence indicates as the most likely place for any kidnapped Hai to be, assuming they exist. At least two pirate groups there have been positively identified being involved in kidnappings or smugglings in the past.>`
+			`<The blockades that have gone up are to secure this area of space against the secret of this exercise. The Navy, Unfettered, and Hai fleets are traveling from Mountaintop and you are to escort the Syndicate security force here directly to Sumar to meet them where you will act as the central coordination vessel.>`
+			`<There will be 2 Navy Carrier groups, a full Syndicate Special Security Detachment, the Unfettered Expeditionary Fleet, and a full Hai Taskforce. The fleet's intent is to overwhelm Stormhold and perform a thorough occupation and search for Hai. Parliament will reassess the scope of concern depending on what they find.>`
+				accept
+	npc
+		government "Syndicate"
+		personality escort coward opportunistic vindictive
+		fleet
+			names "syndicate capital"
+			variant
+				"Protector" 2
+				"Vanguard" 3
+				"Vanguard (Particle)" 3
+				"Splinter (Flamethrower Blaster)" 4
+		# This special security force has acquired outfits in the post-war condition that were surplus or black market to upgrade their Splinters.
+		# However, they haven't had the time to refit and test out new options for their Protectors or Vanguards.
+
+	npc accompany
+		government "Republic"
+		system "Ultima Thule"
+		personality escort heroic opportunistic waiting
+		fleet "Human Wormhole Guards" 20
+	npc accompany
+		government "Hai"
+		system "Ultima Thule"
+		personality escort heroic opportunistic waiting
+		fleet "Hai Wormhole Guards" 20
+	npc accompany
+		government "Hai (Friendly Unfettered)"
+		system "Ultima Thule"
+		personality escort heroic opportunistic vindictive waiting
+		fleet "Large Friendly Unfettered" 7
+	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
+
+	npc kill
+		government "Pirate"
+		personality staying waiting heroic opportunistic vindictive
+		system "Alcyone"
+		fleet "Marauder fleet IX" 3
+	npc kill
+		government "Pirate"
+		personality staying waiting heroic opportunistic vindictive
+		system "Alcyone"
+		fleet "Marauder fleet X" 4
+	# IX is 4 decent ships each, X is 6 ships but 2 are weak each. Total Fleet Size is roughly 28 + some chaff (~8).
+
+	on enter "Sumar"
+		dialog `You have reached the rendezvous and various fleets are arriving. You have never seen so many military vessels in one place. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone.`
+	on enter "Oblate"
+		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of Stormhold have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
+	on complete
+		event "stormhold suppressed"
+
+event "stormhold suppressed"
+	#Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
+	system "Alcyone"
+		remove fleet "Small Core Pirates" # 400
+		remove fleet "Large Core Pirates"# 600
+		remove fleet "Korath Large Raid" # 50000
+		add fleet "Human Wormhole Guards" 500
+
+
+mission "Hai Rescue [B02-A] The Blockade Goes Up"
+	invisible
+	landing
+	source "Stormhold"
+	to offer
+		has "Hai Rescue [B02] Join the Fleet: done"
+	to complete
+		never
+	npc
+		government "Syndicate"
+		system "Alcyone"
+		personality staying waiting opportunistic vindictive
+		fleet
+			names "syndicate capital"
+			variant
+				"Protector" 2
+				"Vanguard" 3
+				"Vanguard (Particle)" 3
+				"Splinter (Flamethrower Blaster)" 4
+		# This special security force remains local to represent Syndicate interests and security integrity.
+
+
+
+mission "Hai Rescue [B03] Contact Giti"
+	landing
+	name "Contact Giti"
+	description "Go to <destination> to get a line of communication out to Giti."
+	source "Stormhold"
+	destination "Canyon"
+	clearance
+	to offer
+		has "Hai Rescue [B02] Join the Fleet: done"
+	on offer
+		conversation
+			`You mostly wait around at the primary spaceport while certain targeted raids are made on high-priority warlords, until General Choot'k, Teeneep, Sayari, Danforth,
+
+
+
+
+
+
+
 
 # Flagship of the Unfettered Hai, filled with the
 # spoils of wars against Korath and Wanderers:
@@ -103,210 +237,19 @@ ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump Full)"
 		"Thruster (Planetary Class)"
 		"Fuel Processor" 2
 
-# Ambassadorial Centipede designed to fly deep into hostile space if necessary:
-ship "Centipede" "Centipede (Teeneep)"
-	# Add some ambassadorial staff:
-	add attributes
-		"required crew" 50
-	outfits
-		"Catalytic Ramscoop"
-		"Scram Drive"
-		"Chameleon Anti-Missile" 3
-		"Quantum Keystone"
-		"Outfits Expansion"
-		`"Biroo" Atomic Steering`
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
-		"Hai Chasm Batteries" 2
-		"Boulder Reactor"
-		Brig
-		"Fuel Pod" 3
-		"A370 Atomic Thruster"
-		"Pulse Rifle" 131
 
-# These ship designs are chosen to reduce CPU load while still keeping
-# them visibly usable as anti-pirate and anti-Hai vessels. They won't
-# be used in real fights; they're just scenery to make a point about
-# human cooperation The mix of faction outfits is because all human
-# factions (except remnant) are working together.
 
-ship "Corvette" "Corvette (Flamethrower Electron Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 2
-		"LP036a Battery Pack"
-		"S-970 Regenerator"
-		"Catalytic Ramscoop"
-		Hyperdrive
-		Supercapacitor
-		"Fuel Pod" 3
-		"Outfits Expansion" 2
-		"Liquid Nitrogen Cooler"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		Flamethrower 2
-		"Electron Beam" 2
-		"Laser Rifle" 3
-		"Water Coolant System"
-		"Fusion Reactor"
 
-ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"LP036a Battery Pack"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		Hyperdrive
-		"LP072a Battery Pack"
-		"Outfits Expansion" 5
-		"Liquid Nitrogen Cooler"
-		"Plasma Cannon" 4
-		"A520 Atomic Thruster"
-		"A255 Atomic Steering"
-		"A525 Atomic Steering"
-		"Fission Reactor"
-		"Quad Blaster Turret" 3
-		"Laser Rifle" 15
 
-ship "Splinter" "Splinter (Flamethrower Blaster)"
-	outfits
-		"Heavy Anti-Missile Turret"
-		"Catalytic Ramscoop"
-		Hyperdrive
-		"LP072a Battery Pack"
-		"Fuel Pod" 5
-		"Outfits Expansion" 3
-		"Liquid Nitrogen Cooler"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		Flamethrower 2
-		"Quad Blaster Turret" 2
-		"Cooling Ducts"
-		"Laser Rifle"
-		"Water Coolant System"
-		"S-270 Regenerator" 2
-		"Fusion Reactor"
 
-ship "Osprey" "Osprey (Particle Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret"
-		"LP036a Battery Pack"
-		"S-970 Regenerator"
-		Hyperdrive
-		"LP072a Battery Pack"
-		Afterburner
-		"Outfits Expansion" 2
-		"Liquid Nitrogen Cooler"
-		"Particle Cannon" 4
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Laser Rifle" 3
-		"Water Coolant System"
-		"Fusion Reactor"
 
-ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		"Catalytic Ramscoop"
-		Hyperdrive
-		Afterburner
-		"Outfits Expansion" 2
-		"Plasma Cannon" 6
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Fragmentation Grenades" 20
-		"Fission Reactor"
-		"Laser Rifle" 20
-		"LP144a Battery Pack"
 
-ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		Hyperdrive
-		Afterburner
-		Supercapacitor
-		"Outfits Expansion" 2
-		"Plasma Cannon" 4
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Breeder Reactor"
-		"Quad Blaster Turret" 2
-		"Laser Rifle" 25
-		"Water Coolant System"
-		"S-270 Regenerator" 2
-		"LP144a Battery Pack"
 
-fleet "Human Wormhole Guards"
-	government "Human Alliance that won't enter wormhole"
-	names civilian
-	cargo 0
-	personality
-		heroic opportunistic
-	variant 3
-		"Bactrian (Plasma Blaster Anti-Missile)"
-	variant 2
-		"Corvette (Flamethrower Electron Anti-Missile)" 2
-	variant 2
-		"Corvette (Speedy)" 2
-	variant 5
-		"Dreadnought (Plasma Blaster Anti-Missile)"
-	variant 5
-		"Cruiser (Plasma Anti-Missile)"
-	variant 2
-		"Osprey (Particle Anti-Missile)" 2
-	variant 2
-		"Osprey" 2
-	variant 4
-		"Splinter (Flamethrower Blaster)" 2
-	variant 3
-		"Falcon (Plasma)"
-	variant 3
-		"Vanguard (Particle)"
 
-fleet "Hai Wormhole Guards"
-	government "Hai"
-	names hai
-	cargo 0
-	personality heroic
-	variant 7
-		"Shield Beetle (Police)"
-	variant 7
-		"Shield Beetle (Tracker)"
-	variant 7
-		"Shield Beetle (Pulse)"
-	variant 7
-		"Shield Beetle"
-	variant 10
-		"Lightning Bug" 2
-	variant 10
-		"Lightning Bug (Pulse)" 2
 
-event "hai and human ships at wormhole"
-	system "Waypoint"
-		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
-		add fleet "Hai Wormhole Guards" 400
-	system "Heia Due"
-		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
-		add fleet "Hai Wormhole Guards" 1000
-	system "Ultima Thule"
-		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
-		add fleet "Human Wormhole Guards" 400
-		# Occasional pirates to show the fleet in action
-		add fleet "Small Northern Pirates" 5000
-		add fleet "Small Core Pirates" 5000
-		# Smugglers would be bright enough not to try this route
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Rajak"
-		remove fleet "Anti-Pirate Hai (Wormhole Travel)"
-		add fleet "Human Wormhole Guards" 1000
-		# Smugglers would be bright enough not to try this route
-		remove fleet "Smuggler (Hai Traffickers)"
+
+
+
 
 mission "Hai Rescue [B02] Diplomacy: Syndicate"
 	landing

@@ -115,6 +115,27 @@ fleet "Large Hai"
 		"Grasshopper"
 		"Grasshopper (Tracker)"
 
+fleet "Hai Surveillance"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		surveillance unconstrained
+	variant 10
+		"Shield Beetle (Police)"
+	variant 5
+		"Lightning Bug (Surveillance)"
+	variant 5
+		"Lightning Bug (Surveillance)" 2
+	variant 5
+		"Lightning Bug (Surveillance)" 3
+	variant 3
+		"Grasshopper (Surveillance)" 3
+	variant 3
+		"Grasshopper (Surveillance)" 4
+	variant 3
+		"Grasshopper (Surveillance)" 5
+
 # Hai that hunt pirates near the wormhole. They have custom builds suitable for smashing pirates but useless against other Hai. Two versions: travel through wormhole or not.
 
 fleet "Anti-Pirate Hai (Wormhole Travel)"
@@ -159,27 +180,23 @@ fleet "Anti-Pirate Hai (No Wormhole Travel)"
 	variant
 		"Shield Beetle (Durable Pulse)" 2
 
-fleet "Hai Surveillance"
+fleet "Hai Wormhole Guards"
 	government "Hai"
-	names "hai"
+	names hai
 	cargo 0
-	personality
-		surveillance unconstrained
-	variant 10
+	personality heroic
+	variant 7
 		"Shield Beetle (Police)"
-	variant 5
-		"Lightning Bug (Surveillance)"
-	variant 5
-		"Lightning Bug (Surveillance)" 2
-	variant 5
-		"Lightning Bug (Surveillance)" 3
-	variant 3
-		"Grasshopper (Surveillance)" 3
-	variant 3
-		"Grasshopper (Surveillance)" 4
-	variant 3
-		"Grasshopper (Surveillance)" 5
-
+	variant 7
+		"Shield Beetle (Tracker)"
+	variant 7
+		"Shield Beetle (Pulse)"
+	variant 7
+		"Shield Beetle"
+	variant 10
+		"Lightning Bug" 2
+	variant 10
+		"Lightning Bug (Pulse)" 2
 
 fleet "Small Hai Merchant"
 	government "Hai"

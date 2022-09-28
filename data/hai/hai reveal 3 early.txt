@@ -13,6 +13,8 @@
 
 ########################################################################
 
+# You facilitate the supervised construction of a station to act as a base for the cover (and also as a checkpoint to hide access to Hai space).
+
 event "secret mountaintop"
 	# Ensure Mountaintop exists so the next mission can trigger
 	system "Ultima Thule"
