@@ -13666,7 +13666,6 @@ system H-8188
 	haze _menu/haze-none
 	link H-9187
 	link M-1188
-	link MS-219
 	asteroids "small rock" 1 1.32
 	asteroids "medium rock" 3 1.36
 	asteroids "large rock" 1 1.44
@@ -21179,7 +21178,6 @@ system O-3184
 	belt 1119
 	"jump range" 40
 	haze _menu/haze-coal
-	link E-4183
 	link E-9182
 	link U-5188
 	asteroids "small rock" 28 5.85
