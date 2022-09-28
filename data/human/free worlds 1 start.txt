@@ -2095,7 +2095,7 @@ mission "FW Senate Hearing"
 			label sentence
 			`	"I suppose so," you admit.`
 			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
-			`	You are led back out to the lobby, where you wait for what feels like another hour. During that time, you speak with someone else and learn that Tomek has been removed from the Council and put under house arrest. Although interestingly, despite Tomek disobeying orders, the Senate has decided to continue the occupation of Greenrock, at least for now, becuase it would "dishonor those who lost their lives doing what they believed to be right" to leave the planet so quickly.`
+			`	You are led back out to the lobby, where you wait for what feels like another hour. During that time, you speak with someone else and learn that Tomek has been removed from the Council and put under house arrest. Although interestingly, despite Tomek disobeying orders, the Senate has decided to continue the occupation of Greenrock, at least for now, because it would "dishonor those who lost their lives doing what they believed to be right" to leave the planet so quickly.`
 			`	Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay and stripped of your rank. When we are in need of your services again, we will contact you, and your rank will be reinstated as the Senate or Council sees fit." It looks like for now, you are back to being a simple merchant captain.`
 
 
