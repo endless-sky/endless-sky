@@ -957,7 +957,7 @@ mission "Hai Rescue [C08] Freedom"
 				accept
 	on complete
 		payment 1000000
-		fail "Hai Rescue [B01-A] Permanent Fleets"
+		fail "Hai Rescue [B01-A] The Blockade Goes Up"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic
