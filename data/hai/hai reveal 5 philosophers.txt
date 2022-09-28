@@ -193,7 +193,7 @@ mission "Hai Rescue [B03] Contact Giti"
 		has "Hai Rescue [B02] Join the Fleet: done"
 	on offer
 		conversation
-			`You mostly wait around at the primary spaceport while certain targeted raids are made on high-priority warlords, until General Choot'k, Teeneep, Sayari, Danforth,
+			`You mostly wait around at the primary spaceport while certain targeted raids are made on high-priority warlords, until General Choot'k, Teeneep, Sayari, Danforth, et al rock up to discuss.`
 
 
 
@@ -957,7 +957,7 @@ mission "Hai Rescue [C08] Freedom"
 				accept
 	on complete
 		payment 1000000
-		fail "Hai Rescue [B01A] Permanent Fleets"
+		fail "Hai Rescue [B01-A] Permanent Fleets"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic

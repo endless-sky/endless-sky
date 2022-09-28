@@ -2331,8 +2331,9 @@ ship "Rainmaker" "Rainmaker (Mark II Old Weapons)"
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 180
 		"Meteor Missile Box" 4
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
+		"Dwarf Core"
+		"Supercapacitor"
+		"Water Coolant System"
 		"D67-TM Shield Generator"
 		"Fuel Pod"
 		"A120 Atomic Thruster"
