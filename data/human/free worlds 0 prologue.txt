@@ -1373,7 +1373,7 @@ mission "FW Katya 7C"
 			choice
 				`	"I had no idea."`
 				`	"Wow, she really is dedicated to this work, isn't she?"`
-			`	"She's a unique woman," says Eyes. "I pray we see her again soon. Goodbye for now, <first>."`
+			`	"She's a unique woman," says Eyes. "I hope we see her again soon. Goodbye for now, <first>."`
 
 
 

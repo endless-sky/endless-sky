@@ -196,7 +196,7 @@ mission "FW Conservatory 2B"
 		event "fw conservatory founded" 30
 		log "Helped to transport some items for building a public university and terraforming research center on Winter. Ijs Springborn will be one of the professors. Surprisingly, the Syndicate helped supply some of the equipment for the Conservatory."
 		conversation
-			`Ijs meets your convoy as it lands, and checks off each item on a clipboard as it is unloaded. Lynn is with him, looking over the various machines to make sure they are all in working order. "I pray you didn't have any trouble," says Ijs, as he hands you your payment of <payment>.`
+			`Ijs meets your convoy as it lands, and checks off each item on a clipboard as it is unloaded. Lynn is with him, looking over the various machines to make sure they are all in working order. "I hope you didn't have any trouble," says Ijs, as he hands you your payment of <payment>.`
 			choice
 				`	"No, none at all."`
 				`	"A few pirates, nothing I couldn't handle."`
