@@ -42,6 +42,7 @@ ship "Jje"
 		"drag" 10
 		"thrust" 8
 		"turn" 60
+		"atmosphere scan" 10
 		"heat dissipation" 20
 		"energy capacity" 400
 		"energy generation" 4
@@ -91,6 +92,7 @@ ship "Ayym"
 		"drag" 20
 		"thrust" 14
 		"turn" 80
+		"atmosphere scan" 10
 		"heat dissipation" 20
 		"energy capacity" 400
 		"energy generation" 4
@@ -160,13 +162,13 @@ fleet "Iije"
 	cargo 0
 	personality
 		timid unconstrained uninterested
-	variant 27
+	variant 5000
 		"Jje"
-	variant 9
-		"Jje" 3
-	variant 5
+	variant 100
 		"Jje" 2
-	variant 2
+	variant 20
+		"Jje" 3
+	variant 1
 		"Ayym"
 	variant 1
 		"Ayym"
@@ -200,14 +202,14 @@ fleet "Iije II"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid unconstrained surveillance
-	variant 27
+		timid unconstrained swarming
+	variant 5000
 		"Jje"
-	variant 9
-		"Jje" 3
-	variant 5
+	variant 100
 		"Jje" 2
-	variant 2
+	variant 20
+		"Jje" 3
+	variant 1
 		"Ayym"
 	variant 1
 		"Ayym"
@@ -241,14 +243,14 @@ fleet "Iije III"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid unconstrained swarming
-	variant 27
+		timid unconstrained surveillance
+	variant 5000
 		"Jje"
-	variant 9
-		"Jje" 3
-	variant 5
+	variant 100
 		"Jje" 2
-	variant 2
+	variant 20
+		"Jje" 3
+	variant 1
 		"Ayym"
 	variant 1
 		"Ayym"
@@ -277,3 +279,5 @@ fleet "Iije III"
 	variant 1
 		"Ayym"
 		"Jje" 9
+		
+

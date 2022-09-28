@@ -9568,7 +9568,9 @@ system E-4183
 	asteroids "large metal" 49 0.79
 	minables silver 1 8.3
 	minables aluminum 1 9.0285
-	fleet "Iije" 800
+	fleet Iije 1200
+	fleet "Iije II" 600
+	fleet "Iije III" 600
 	object
 		sprite star/a-giant
 		period 10
@@ -9598,7 +9600,7 @@ system E-4183
 			period 247.515
 
 system E-9182
-	pos 1167.2 -632
+	pos 1167.2 -629
 	government Uninhabited
 	habitable 3276.8
 	belt 1387
@@ -9611,7 +9613,9 @@ system E-9182
 	minables copper 1 7.53
 	minables iron 8 7.36
 	minables aluminum 8 7.61
-	fleet Iije 2000
+	fleet Iije 4000
+	fleet "Iije II" 2000
+	fleet "Iije III" 2000
 	object
 		sprite star/o0
 		period 10
@@ -12538,7 +12542,7 @@ system G-3191
 		period 7376.71
 
 system G-6183
-	pos 1014.97 -592.41
+	pos 1019.4 -590.18
 	government Uninhabited
 	habitable 33.8
 	belt 1187
@@ -12549,6 +12553,9 @@ system G-6183
 	minables neodymium 6 3.87
 	minables titanium 44 4.15
 	minables tungsten 16 2.37
+	fleet Iije 1400
+	fleet "Iije II" 700
+	fleet "Iije III" 700
 	object
 		sprite star/o-dwarf
 		period 10
@@ -12574,7 +12581,7 @@ system G-6183
 		period 66991.8
 
 system G-719
-	pos 1155.97 -442.52
+	pos 1162.19 -417.18
 	government Uninhabited
 	habitable 828.2
 	belt 1870
@@ -12582,6 +12589,9 @@ system G-719
 	haze _menu/haze-coal
 	link W-3197
 	asteroids "large metal" 1 2.22
+	fleet Iije 4000
+	fleet "Iije II" 2000
+	fleet "Iije III" 2000
 	object
 		sprite star/g3
 		distance 79.714
@@ -12625,7 +12635,7 @@ system G-719
 			period 147.7
 
 system G-819
-	pos 1163.2 -507.54
+	pos 1173.8667 -479.54
 	government Uninhabited
 	habitable 9650
 	belt 1333
@@ -12637,7 +12647,9 @@ system G-819
 	asteroids "large rock" 1 2.04
 	asteroids "large metal" 2 3
 	minables iron 2 2.4
-	fleet Iije 8000
+	fleet Iije 6000
+	fleet "Iije II" 3000
+	fleet "Iije III" 3000
 	object
 		sprite star/g3
 		period 10
@@ -13646,7 +13658,7 @@ system Gupta
 		period 1077.08
 
 system H-8188
-	pos 1187 -574.71
+	pos 1202.1 -508
 	government Uninhabited
 	habitable 627.2
 	belt 1254
@@ -13661,7 +13673,9 @@ system H-8188
 	asteroids "small metal" 1 1.48
 	asteroids "medium metal" 3 1.3
 	asteroids "large metal" 2 0.81
-	fleet Iije 2000
+	fleet Iije 6000
+	fleet "Iije II" 3000
+	fleet "Iije III" 3000
 	object
 		sprite star/a0
 		period 10
@@ -13683,7 +13697,7 @@ system H-8188
 		period 30315.6
 
 system H-9187
-	pos 1127 -486.7
+	pos 1127.88 -472.47
 	government Uninhabited
 	habitable 583.2
 	belt 1102
@@ -13692,9 +13706,10 @@ system H-9187
 	link H-8188
 	link L-118
 	link MC-42
-	link MS-219
+	fleet Iije 4000
+	fleet "Iije II" 2000
+	fleet "Iije III" 2000
 	asteroids "large metal" 1 4.9
-	fleet Iije 2000
 	object
 		sprite star/a3
 		period 10
@@ -17577,7 +17592,7 @@ system Kursa
 		period 1517.13
 
 system L-118
-	pos 1092.45 -422.53
+	pos 1085.78 -416.75
 	government Uninhabited
 	habitable 500
 	belt 1724
@@ -17591,7 +17606,6 @@ system L-118
 	asteroids "large metal" 1 2.8
 	minables aluminum 2 4.17
 	minables iron 3 5.3
-	fleet Iije 1900
 	object
 		sprite star/a8
 		period 10
@@ -17613,10 +17627,11 @@ system L-118
 			period 434
 
 system L-6181
-	pos 1072.19 -588.8
+	pos 1139.93 -522.87
 	government Uninhabited
 	habitable 182.5
 	belt 1758
+	"jump range" 30
 	haze _menu/haze-coal
 	link M-1188
 	link MS-219
@@ -17628,7 +17643,9 @@ system L-6181
 	asteroids "large metal" 1 1.5
 	minables titanium 8 2.32
 	minables copper 11 3.569
-	fleet Iije 800
+	fleet Iije 2000
+	fleet "Iije II" 1000
+	fleet "Iije III" 1000
 	object
 		sprite star/a-dwarf
 		distance 81.2
@@ -18336,7 +18353,7 @@ system Lurata
 		period 1774.16
 
 system M-1188
-	pos 1108 -617.3
+	pos 1116 -616.4
 	government Uninhabited
 	habitable 31.25
 	belt 1676
@@ -18344,11 +18361,12 @@ system M-1188
 	haze _menu/haze-coal
 	link E-4183
 	link G-6183
-	link H-8188
 	link L-6181
 	link MS-219
 	asteroids "large metal" 1 2.54
-	fleet Iije 600
+	fleet Iije 800
+	fleet "Iije II" 400
+	fleet "Iije III" 400
 	object
 		sprite star/a-dwarf
 		period 10
@@ -18689,16 +18707,18 @@ system Matar
 			period 23.3043
 
 system MC-42
-	pos 1096 -520.24
+	pos 1113.33 -500.68
 	government Uninhabited
 	habitable 387.2
 	belt 1290
-	"jump range" 50
+	"jump range" 40
 	haze _menu/haze-coal
 	link H-9187
 	minables platinum 7 4.2
 	minables copper 32 7.91
-	fleet Iije 4000
+	fleet Iije 3000
+	fleet "Iije II" 1500
+	fleet "Iije III" 1500
 	object
 		sprite star/g5
 		period 10
@@ -20379,18 +20399,18 @@ system Mora
 			period 24.168
 
 system MS-219
-	pos 1134.6 -573.1
+	pos 1075.3 -590.5
 	government Uninhabited
 	habitable 65
 	belt 1404
-	"jump range" 30
 	haze _menu/haze-coal
-	link H-8188
-	link H-9187
+	"jump range" 40
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
-	fleet Iije 50
+	fleet Iije 200
+	fleet "Iije II" 100
+	fleet "Iije III" 100
 	object
 		sprite star/a-dwarf
 		distance 36.1
@@ -21153,10 +21173,11 @@ system Nunki
 			period 66.2404
 
 system O-3184
-	pos 1092.19 -661.16
+	pos 1095.74 -647.38
 	government Uninhabited
 	habitable 259.2
 	belt 1119
+	"jump range" 40
 	haze _menu/haze-coal
 	link E-4183
 	link E-9182
@@ -21168,7 +21189,9 @@ system O-3184
 	asteroids "large metal" 1 6.84
 	minables iron 5 2.23
 	minables lead 42 3.43
-	fleet Iije 6000
+	fleet Iije 500
+	fleet "Iije II" 250
+	fleet "Iije III" 250
 	object
 		sprite star/m3
 		period 10
@@ -28319,6 +28342,7 @@ system U-5188
 	government Uninhabited
 	habitable 361.25
 	belt 1330
+	"jump range" 40
 	haze _menu/haze-33
 	link O-3184
 	link V-2189
@@ -28329,6 +28353,9 @@ system U-5188
 	asteroids "medium metal" 70 2.83
 	asteroids "large metal" 29 1.65
 	minables iron 22 2.93
+	fleet Iije 2000
+	fleet "Iije II" 1000
+	fleet "Iije III" 1000
 	object
 		sprite star/k5
 		period 10
@@ -29417,7 +29444,7 @@ system Vulcuja
 		period 534
 
 system W-3197
-	pos 1180.4 -413
+	pos 1200 -404.5
 	government Uninhabited
 	habitable 924.8
 	belt 1887
@@ -29433,6 +29460,9 @@ system W-3197
 	asteroids "large metal" 4 1.34
 	minables titanium 46 3.4
 	minables neodymium 101 4.76
+	fleet Iije 4000
+	fleet "Iije II" 2000
+	fleet "Iije III" 2000
 	object
 		sprite star/b3
 		period 10
