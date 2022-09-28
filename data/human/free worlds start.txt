@@ -279,7 +279,7 @@ mission "FW Syndicate Diplomacy 1"
 	
 	on offer
 		conversation
-			`You meet Tomek and Alondo in the spaceport. "We've decided that now would be a good time for diplomatic missions," says Alondo. "We've proven that we are a force to reckon with, but also that we are open to working for peace. We'll start with the Syndicate, as a relationship with the Syndicate would be a significant advantage for us."`
+			`You meet Tomek and Alondo in the spaceport. "We've decided that now would be a good time for diplomatic missions," says Alondo. "We've proven that we are a force to reckon with, but also that we are open to working for peace. We'll start with the Syndicate, as a relationship with them would be a significant advantage for us."`
 			choice
 				`	"Do you think they will fight on our side?"`
 				`	"Wait, isn't the Syndicate an evil megacorporation?"`

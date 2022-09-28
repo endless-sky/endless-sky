@@ -2023,7 +2023,7 @@ event "end battle of alioth"
 mission "FW Defend New Tibet"
 	landing
 	name "The Defector"
-	description "Travel to New Tibet to question the Syndicate about the defector supposedly carrying vital evidence and information that the Syndicate is behind the bombings."
+	description "Travel to New Tibet to question the Syndicate about the defector supposedly carrying vital evidence and information that they are behind the bombings."
 	source Wayfarer
 	destination "New Tibet"
 	passengers 2
