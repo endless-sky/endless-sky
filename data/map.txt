@@ -16,11 +16,11 @@ galaxy "Milky Way"
 	sprite "ui/milky way"
 	
 galaxy "Small Magellanic Cloud"
-	pos -3200 -1000
+	pos -2700 1800
 	sprite "ui/small magellanic cloud"
 
 galaxy "Large Magellanic Cloud"
-	pos -2700 1800
+	pos -3200 -1200
 	sprite "ui/large magellanic cloud"
 
 galaxy "label arachi"
