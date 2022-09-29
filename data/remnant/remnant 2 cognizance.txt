@@ -54,7 +54,7 @@ mission "Remnant: Cognizance 1"
 		fleet
 			names "korath"
 			cargo
-			outfitter "Void Sprite Parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
@@ -117,7 +117,7 @@ mission "Remnant: Cognizance 2"
 		fleet
 			names "korath"
 			cargo
-			outfitter "Void Sprite Parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
@@ -178,7 +178,7 @@ mission "Remnant: Cognizance 4"
 		fleet
 			names "korath"
 			cargo
-			outfitter "Void Sprite Parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
@@ -238,7 +238,7 @@ mission "Remnant: Cognizance 5"
 		fleet
 			names "korath"
 			cargo
-			outfitter "Void Sprite Parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
