@@ -393,41 +393,30 @@ mission "Remnant: Cognizance 9"
 
 
 
-mission "Remnant: Cognizance 10A"
+mission "Remnant: Cognizance 10"
 	landing
-	name "Technician and supplies from <planet>"
-	description "You need to pick up a technician and their equipment from <destination> for transport to <origin>."
+	name "Technician and supplies to <planet>"
+	description "You need to pick up a technician and their equipment from <stopovers> and take them to <planet>."
 	source "Esquiline"
-	destination "Caelian"
+	stopover "Caelian"
+	blocked "Plume's technician needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
+	cargo equipment 8
+	passengers 1
 	to offer
 		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
-			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and 8 tons of equipment from <destination> and bring them back to <origin>. `
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>. `
 				accept
-
-
-
-mission "Remnant: Cognizance 10B"
-	landing
-	name "Technician and supplies to <planet>"
-	description "Transport this technician and their equipment to <destination>."
-	source "Caelian"
-	destination "Esquiline"
-	blocked "Plume's technician needs a free bunk and <tons> of cargo space for her equipment. Come back when you have enough space."
-	cargo equipment 8
-	passengers 1
-	to offer
-		has "Remnant: Cognizance 10A: done"
-	on accept
+	on stopover
 		dialog
-			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. The Remnant can certainly make things happen quickly when projects start to move.`
+			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. You shake your head, impressed at how quickly the Remnant make things happen when projects start to move.`
 	on complete
 		payment 100000
 		conversation
 			`On the flight over, the technician joins you on the control deck to chat. She's a biotech specialist, adept at managing life-support systems in alien atmospheres, and a recent graduate from a Remnant educational program that seems to be similar to a university. Apparently she studied astrobiology and is part of a project aimed at supporting mutually exclusive environments in close proximity. She spends nearly an hour excitedly telling you the ins and outs of the station.`
 			`	As you approach <planet>, it occurs to you that the Remnant might appreciate you taking steps to maintain the secrecy of the station. Altering the <ship>'s path slightly, you swing down into <planet> in an oblique path then meander around the planet under the cloud layer until arriving at the station. Your passenger nods approvingly as she notices the flight path. "Secrecy is always good with projects like this. We appreciate the extra effort, and if anyone were to follow you, a path like that through the clouds would leave few signs to spot."`
-			`	The <ship> settles into the landing bay, and the technician quickly disembarks. Apparently, there must have been other shipments while you were gone, as there are now a handful of people visible and quite a bit more equipment stacked everywhere. The station itself feels more alive, the air fresher. As before, you promptly receive notification of another payment of <payment> to your account.`
+			`	The <ship> settles into the landing bay, and the technician quickly disembarks. Apparently there must have been other shipments while you were gone, as there are now a handful of people visible and quite a bit more equipment stacked everywhere. The station itself feels more alive, the air fresher. As before, you promptly receive notification of another payment of <payment> to your account.`
 
 
 
@@ -440,7 +429,6 @@ mission "Remnant: Cognizance 11"
 	to offer
 		or
 			has "Remnant: Cognizance 10: done"
-			has "Remnant: Cognizance 10B: done"
 	on offer
 		conversation
 			`As you finish unloading, you spot Gavriil approaching. They gesture in greeting as they approach. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." They pause and fish a data crystal out of a pouch. "Could you take this to Prefect Taely on <planet>? She is overseeing some retrofits and will need this data.`
