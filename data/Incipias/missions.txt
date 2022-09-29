@@ -100,7 +100,7 @@ mission "Incipias: First Contact III"
 	to complete
 		or
 			has "wanderer peace prove: done"
-			has "coalition peace prove: done"
+			has "coalition peace prove: offered"
 	on complete
 		conversation 
 			`    `
@@ -128,7 +128,7 @@ mission "wanderer peace prove"
 			label unique
 			`    "Why are you searching for something like this? That is an quite unusual request."`
 			choice
-				"I am passionate collector."
+				"I am a passionate collector."
 				"I want something to remember you."
 			`    "Let me think about this. What would present our species best..." The Wanderer gets silent while thinking. Than he suddenly stands up, "If I get the permission to give you this, you will get a perfect item that presents our species best. Let me go check it." The Wanderer leaves the room.`
 			label c1
@@ -150,3 +150,21 @@ mission "coalition peace prove"
 	on offer
 		conversation
 			`As the Heliarch have a relationship to you feel not really like friendship but something in that direction, you decide to ask them for a prove of this relationship, to give to the Hai.`
+			`    You approach a nearby Heliarch and tell him you want to ask the government about a personal matter. He gives you directions to an office that handles maters like yours. You thank the Heliarch and make your way to the office.`
+			`    When you arrive there, you end up in a pretty long waiting line. It seems that the Heliarch are never short of work. You patiently line yourself up in the line and get ready to spend some time in the line.`
+			`    After some time has passed it is finally your turn to tell your matter. You explain that you would like to have something that displays the good relationship between the Coalition and you. The Heliarch is quite surprised and says: "An interesting request of yours that is. Why you want this, may I ask?"`
+			choice
+				"I am gathering proves of friendship from all over the galaxy."
+					goto cages
+				"I want to show that species do not have to be in cages."
+			`    The Heliarch seems very happy when you say that, he says "A good reason that is, here you wait, while some people above me about this I ask." He turns around and goes away.`
+				goto c1
+			label cages
+			`    "An unusual project that is, what the reason for this is?"`
+			choice
+				"I am a passionate collector."
+				"I want something to remember you, to remember peace is possible."
+			`    "Yor  project understand I can. The people over me about your request let me ask." He turns around and goes away.`
+			label c1
+			`    When noises in the line behind you are growing louder he finally comes back. With him he carries a small box. "A decent gift for you I got." He opens the box and in there a small gem like no one you have seen before is laying, reflecting the light in green, red and blue shades. "This gem a fusion of three others it is, an emerald for the Saryds, a ruby for the Kimek and a sapphire for the Arachi. A fusion of our three species it is, you could say. This gem representing our species best it is. You appretiate this gift I hope." You are really thankful for this gift and thank the Heliarch a lot. But then you have to leave because there is still a line behind you.`
+				accept
