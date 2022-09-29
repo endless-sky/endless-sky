@@ -2892,7 +2892,7 @@ ship "Scout"
 		category "Transport"
 		"cost" 850000
 		"shields" 2400
-		"hull" 600
+		"hull" 400
 		"required crew" 1
 		"bunks" 12
 		"mass" 110
