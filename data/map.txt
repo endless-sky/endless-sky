@@ -18904,7 +18904,7 @@ system Ossipago
 			period 17.2936
 
 system "Over the Rainbow"
-	pos 9792 7154
+	pos 9904 7176
 	government Uninhabited
 	attributes "pleiades"
 	arrival 1895
@@ -25014,7 +25014,7 @@ system Terminus
 		period 1229.00
 
 system "Terra Incognita"
-	pos 9810 7064
+	pos 9922 7087
 	government Uninhabited
 	attributes "pleiades"
 	arrival 500
@@ -26399,7 +26399,7 @@ system Wezen
 			period 38.9601
 
 system "World's End"
-	pos 9854 6996
+	pos 9967 7018
 	government Uninhabited
 	attributes "pleiades"
 	arrival 700
