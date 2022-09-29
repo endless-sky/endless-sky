@@ -2891,7 +2891,7 @@ ship "Scout"
 	attributes
 		category "Transport"
 		"cost" 850000
-		"shields" 2400
+		"shields" 2000
 		"hull" 400
 		"required crew" 1
 		"bunks" 12
