@@ -2892,13 +2892,13 @@ ship "Scout"
 		category "Transport"
 		"cost" 850000
 		"shields" 2400
-		"hull" 400
+		"hull" 600
 		"required crew" 1
 		"bunks" 12
 		"mass" 110
 		"drag" 3.4
 		"heat dissipation" .7
-		"fuel capacity" 1100
+		"fuel capacity" 1000
 		"cargo space" 55
 		"outfit space" 220
 		"weapon capacity" 50
