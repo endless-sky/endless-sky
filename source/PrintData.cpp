@@ -77,7 +77,7 @@ void PrintData::Help()
 	cerr << "        --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants."
 			<< endl;
 	cerr << "        --list: prints a list of all ship names." << endl;
-	cerr << "    Use the modifier `-v` or `--variants` with the above two commands to include variants." << endl;
+	cerr << "    Use the modifier `--variants` with the above two commands to include variants." << endl;
 	cerr << "    -w, --weapons: prints a table of weapon stats." << endl;
 	cerr << "    -e, --engines: prints a table of engine stats." << endl;
 	cerr << "    --power: prints a table of power outfit stats." << endl;
@@ -107,7 +107,7 @@ void PrintData::Ships(const char *const *argv)
 	for(const char *const *it = argv + 2; *it; ++it)
 	{
 		string arg = *it;
-		if(arg == "-v" || arg == "--variants")
+		if(arg == "--variants")
 			variants = true;
 		else if(arg == "--sales")
 			sales = true;
