@@ -76,7 +76,7 @@ void PrintData::Help()
 	cerr << "        --sales: prints a table of ships with every 'shipyard' each appears in." << endl;
 	cerr << "        --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants."
 			<< endl;
-	cerr << "    -s --list: prints a list of all ship names." << endl;
+	cerr << "        --list: prints a list of all ship names." << endl;
 	cerr << "    Use the modifier `-v` or `--variants` with the above two commands to include variants." << endl;
 	cerr << "    -w, --weapons: prints a table of weapon stats." << endl;
 	cerr << "    -e, --engines: prints a table of engine stats." << endl;
