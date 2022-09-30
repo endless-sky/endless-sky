@@ -3359,7 +3359,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Board the nearest disabled ship, focusing on hostiles before allies. Holding
 		// `Shift` results in boarding only player-owned escorts in need of assistance.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || (target && activeCommands.Has(Command::WAIT)) || !CanBoard(ship, *target) || (shift && !target->IsYours()))
+		if(!target || (target && activeCommands.Has(Command::WAIT)) || !CanBoard(ship, *target)
+				|| (shift && !target->IsYours()))
 		{
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
