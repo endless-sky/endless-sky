@@ -428,7 +428,7 @@ void PrintData::PrintEngineStats()
 		<< "reverse heat/s" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
-		// Ship non-engines.
+		// Skip non-engines.
 		if(it.second.Category() != "Engines")
 			continue;
 
@@ -459,7 +459,7 @@ void PrintData::PrintPowerStats()
 		<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
-		// Ship non-power.
+		// Skip non-power.
 		if(it.second.Category() != "Power")
 			continue;
 
