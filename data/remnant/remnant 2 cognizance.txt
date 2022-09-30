@@ -975,7 +975,7 @@ mission "Remnant: Cognizance 23"
 		event "remnant: cognizance merganser"
 		conversation
 			`You disembark from the <ship> just in time to watch a trio of small ships taxi out of the hangar where Taely has been working. They are strange little ships, only somewhat larger than the Terns and Petrels. What stands out the most, however, is the fact that the three ships seem to be walking of their own accord, moving forward on flexible landing legs.`
-			`	Taely follows them out, and when they reach the landing pad she whistles, causing the three ships to turn and cluster around her. You can see her smile even from where you're standing, and as you watch, you see her reach up to pat each of them on the nose. The trio sparkle with iridescent ripples as they move around, the skin flexing and twisting like some sort of organic creature.`
+			`	Taely follows them out, and when they reach the landing pad she whistles, causing the three ships to turn and cluster around her. You can see her smile even from where you're standing, and as you watch she reaches up to pat each of them on the nose. The trio sparkle with iridescent ripples as they move around, the skin flexing and twisting like some sort of organic creature.`
 			choice
 				`	(Walk over to where she is standing.)`
 					goto walkover
