@@ -2007,6 +2007,20 @@ ship "Protector" "Protector (Proton)"
 	turret
 
 
+ship "Protector" "Protector (Quad Blaster)"
+	outfits
+		"Quad Blaster Turret" 8
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 6
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
 
 ship "Quicksilver" "Quicksilver (Mark II)"
 	outfits
