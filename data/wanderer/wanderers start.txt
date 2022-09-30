@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Wanderer (Before Hai)"
 	landing
@@ -14,6 +17,7 @@ mission "First Contact: Wanderer (Before Hai)"
 		attributes "wanderer"
 	to offer
 		not "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
 	on offer
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
@@ -1135,8 +1139,8 @@ ship "Carrier" "Carrier (Alpha)"
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Korath Disruptor" 2
-		"Korath Slicer Turret" 2
+		"Shield Disruptor Turret" 2
+		"Husk-Slice Turret" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -1158,10 +1162,10 @@ ship "Carrier" "Carrier (Alpha)"
 	gun "Hai Tracker Pod"
 	gun
 	gun
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
@@ -2161,7 +2165,7 @@ conversation "solifuge conversation"
 		accept
 	
 	label glad
-	`	"Wonderful," Osen's father responds. "Once you have finished looking, simply return to <origin> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
+	`	"Wonderful," Osen's father responds. "Once you have finished looking, simply return to <planet> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
 		accept
 
 

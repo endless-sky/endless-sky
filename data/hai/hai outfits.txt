@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Pulse Cannon"
 	category "Guns"
@@ -240,7 +243,7 @@ effect "tracker fire"
 	sprite "effect/tracker fire"
 		"no repeat"
 		"frame rate" 8
-	"lifetime" 30
+	"lifetime" 45
 	"random angle" 5
 	"random spin" 4
 	"random velocity" 10
@@ -259,11 +262,12 @@ effect "tracker impact"
 effect "tracker cloud"
 	sprite "effect/tracker cloud"
 		"no repeat"
-		"frame rate" 4
-	"lifetime" 60
+		"frame rate" 5
+	"lifetime" 72
 	"random angle" 360
-	"random spin" 4
+	"random spin" 8
 	"random velocity" 1
+	"random frame rate" 2 
 	"velocity scale" -.1
 
 
@@ -633,7 +637,7 @@ outfit "Pulse Rifle"
 
 
 outfit "Shield Beetle Pendant"
-	category "Special"
+	category "Unique"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
