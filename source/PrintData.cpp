@@ -84,11 +84,13 @@ void PrintData::Help()
 	cerr << "    -o, --outfits: prints a list of outfits." << endl;
 	cerr << "        --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
 	cerr << "        -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
-	cerr << "    --planets --descriptions: prints a table of all planets and their descriptions." << endl;
+	cerr << "    --planets: prints a list of all planets." << endl;
+	cerr << "              --descriptions: prints a table of all planets and their descriptions." << endl;
 	cerr << "              --attributes: prints a table of all planets and their attributes." << endl;
 	cerr << "                           --reverse: prints a table of all planet attributes and which planets have them."
 			<< endl;
-	cerr << "    --systems --attributes: prints a list of all systems and their attributes." << endl;
+	cerr << "    --systems: prints a list of all systems." << endl;
+	cerr << "              --attributes: prints a list of all systems and their attributes." << endl;
 	cerr << "                           --reverse: prints a list of all system attributes and which systems have them."
 			<< endl;
 }
@@ -574,16 +576,27 @@ void PrintData::Planets(const char *const *argv)
 			byAttribute = true;
 	}
 	if(descriptions)
-		PlanetDescriptions();
+		PrintPlanetDescriptions();
 	if(attributes && byAttribute)
-		PlanetsByAttribute();
+		PrintPlanetsByAttribute();
 	else if(attributes)
-		PlanetAttributes();
+		PrintPlanetAttributes();
+	if(!(descriptions || attributes))
+		PrintPlanetsList();
 }
 
 
 
-void PrintData::PlanetDescriptions()
+void PrintData::PrintPlanetsList()
+{
+	cout << "planet" << '\n';
+	for(auto &it : GameData::Planets())
+		cout << it.first << '\n';
+}
+
+
+
+void PrintData::PrintPlanetDescriptions()
 {
 	cout << "planet::description::spaceport\n";
 	for(auto &it : GameData::Planets())
@@ -597,7 +610,7 @@ void PrintData::PlanetDescriptions()
 
 
 
-void PrintData::PlanetAttributes()
+void PrintData::PrintPlanetAttributes()
 {
 	cout << "planet" << ',' << "attributes" << '\n';
 	for(auto &it : GameData::Planets())
@@ -612,7 +625,7 @@ void PrintData::PlanetAttributes()
 
 
 
-void PrintData::PlanetsByAttribute()
+void PrintData::PrintPlanetsByAttribute()
 {
 	cout << "attribute" << ',' << "planets" << '\n';
 	set<string> attributes;
@@ -651,14 +664,25 @@ void PrintData::Systems(const char *const *argv)
 			byAttribute = true;
 	}
 	if(attributes && byAttribute)
-		SystemsByAttribute();
+		PrintSystemsByAttribute();
 	else if(attributes)
-		SystemAttributes();
+		PrintSystemAttributes();
+	else
+		PrintSystemsList();
 }
 
 
 
-void PrintData::SystemAttributes()
+void PrintData::PrintSystemsList()
+{
+	cout << "system" << '\n';
+	for(auto &it : GameData::Systems())
+		cout << it.first << '\n';
+}
+
+
+
+void PrintData::PrintSystemAttributes()
 {
 	cout << "system" << ',' << "attributes" << '\n';
 	for(auto &it : GameData::Systems())
@@ -673,7 +697,7 @@ void PrintData::SystemAttributes()
 
 
 
-void PrintData::SystemsByAttribute()
+void PrintData::PrintSystemsByAttribute()
 {
 	cout << "attribute" << ',' << "systems" << '\n';
 	set<string> attributes;

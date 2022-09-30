@@ -43,13 +43,15 @@ private:
 	static void PrintOutfitsAllStats();
 
 	static void Planets(const char *const *argv);
-	static void PlanetDescriptions();
-	static void PlanetAttributes();
-	static void PlanetsByAttribute();
+	static void PrintPlanetsList();
+	static void PrintPlanetDescriptions();
+	static void PrintPlanetAttributes();
+	static void PrintPlanetsByAttribute();
 
 	static void Systems(const char *const *argv);
-	static void SystemAttributes();
-	static void SystemsByAttribute();
+	static void PrintSystemsList();
+	static void PrintSystemAttributes();
+	static void PrintSystemsByAttribute();
 };
 
 #endif
