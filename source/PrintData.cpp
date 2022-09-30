@@ -131,7 +131,7 @@ void PrintData::PrintBaseShipStats()
 {
 	cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
 		<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
-		<< "required crew" << ',' << "bunks" << ',' << "cargo" << ',' << "fuel" << ','
+		<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
 		<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
 		<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
 	for(auto &it : GameData::Ships())
