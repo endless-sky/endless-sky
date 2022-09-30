@@ -73,8 +73,8 @@ void PrintData::Help()
 {
 	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored outfits)."
 			<< endl;
-	cerr << "    -s --sales: prints a table of ships with every 'shipyard' each appears in." << endl;
-	cerr << "    -s --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants."
+	cerr << "        --sales: prints a table of ships with every 'shipyard' each appears in." << endl;
+	cerr << "        --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants."
 			<< endl;
 	cerr << "    -s --list: prints a list of all ship names." << endl;
 	cerr << "    Use the modifier `-v` or `--variants` with the above two commands to include variants." << endl;
@@ -82,14 +82,14 @@ void PrintData::Help()
 	cerr << "    -e, --engines: prints a table of engine stats." << endl;
 	cerr << "    --power: prints a table of power outfit stats." << endl;
 	cerr << "    -o, --outfits: prints a list of outfits." << endl;
-	cerr << "    -o --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
-	cerr << "    -o -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
+	cerr << "        --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
+	cerr << "        -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
 	cerr << "    --planets --descriptions: prints a table of all planets and their descriptions." << endl;
-	cerr << "    --planets --attributes: prints a table of all planets and their attributes." << endl;
-	cerr << "    --planets --attributes --reverse: prints a table of all planet attributes and which planets have them."
+	cerr << "              --attributes: prints a table of all planets and their attributes." << endl;
+	cerr << "                           --reverse: prints a table of all planet attributes and which planets have them."
 			<< endl;
 	cerr << "    --systems --attributes: prints a list of all systems and their attributes." << endl;
-	cerr << "    --systems --attributes --reverse: prints a list of all system attributes and which systems have them."
+	cerr << "                           --reverse: prints a list of all system attributes and which systems have them."
 			<< endl;
 }
 
