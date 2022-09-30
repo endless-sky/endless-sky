@@ -143,7 +143,8 @@ bool OutfitterPanel::HasItem(const string &name) const
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*outfit, player.Conditions());
 	// Do not show hidden items except if the player has them in stock.
-	if((showForSale && ((selling != CustomSale::SellType::NONE && selling != CustomSale::SellType::HIDDEN) || player.Stock(outfit) > 0)))
+	if((showForSale && ((selling != CustomSale::SellType::NONE && selling != CustomSale::SellType::HIDDEN)
+			|| player.Stock(outfit) > 0)))
 		return true;
 
 	if(showCargo && player.Cargo().Get(outfit))
@@ -519,7 +520,8 @@ void OutfitterPanel::FailBuy() const
 	}
 
 	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions());
-	if(!((selling != CustomSale::SellType::NONE || outfitter.count(selectedOutfit)) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
+	if(!((selling != CustomSale::SellType::NONE || outfitter.count(selectedOutfit))
+			|| player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "

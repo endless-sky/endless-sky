@@ -15,13 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 
+#include "CustomSale.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
+#include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "Outfit.h"
-#include "CustomSale.h"
 #include "Ship.h"
 
 #include <algorithm>
@@ -232,7 +232,7 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, cons
 	for(const auto &it : shipCount)
 		value += Value(it.first, day, it.second);
 	for(const auto &it : outfitCount)
-		// Only use the values of the local outfitter if the player is actually landed.
+		// Only use the values of the local outfitter if the player has actually landed.
 		value += Value(it.first, day, (player && player->GetPlanet()) ? player : nullptr, it.second);
 	return value;
 }
@@ -254,7 +254,7 @@ int64_t Depreciation::Value(const Ship &ship, int day, const PlayerInfo *player)
 int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 {
 	// Check whether a record exists for this ship. If not, its value is full
-	// if this is planet's stock, or fully depreciated if this is the player.
+	// if this is the planet's stock, or fully depreciated if this is the player.
 	ship = GameData::Ships().Get(ship->ModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
@@ -268,12 +268,13 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, const PlayerInfo *player, int count) const
 {
-	int64_t cost = outfit->Cost() * ((player && player->GetPlanet()) ? player->GetPlanet()->GetLocalRelativePrice(*outfit, player->Conditions()) : 1);
+	int64_t cost = outfit->Cost() * ((player && player->GetPlanet())
+			? player->GetPlanet()->GetLocalRelativePrice(*outfit, player->Conditions()) : 1);
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 
 	// Check whether a record exists for this outfit. If not, its value is full
-	// if this is planet's stock, or fully depreciated if this is the player's.
+	// if this is the planet's stock, or fully depreciated if this is the player's.
 	auto recordIt = outfits.find(outfit);
 	if(recordIt == outfits.end() || recordIt->second.empty())
 		return DefaultDepreciation() * count * cost;

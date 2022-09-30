@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef CustomSale_H_
@@ -16,8 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConditionSet.h"
 #include "LocationFilter.h"
 #include "Outfit.h"
-#include "Set.h"
 #include "Sale.h"
+#include "Set.h"
 
 #include <map>
 #include <set>
@@ -28,7 +31,8 @@ class Planet;
 
 
 
-// Class used to stock Outfits and their local changes, being prices and sell types, linked by outfit or by group of outfits.
+// Class used to stock Outfits and their local changes, being prices and sell types,
+// linked by outfit or by group of outfits.
 class CustomSale {
 public:
 	enum class SellType {
@@ -42,10 +46,10 @@ public:
 public:
 	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits, const std::string &mode);
 
-	// Adds another CustomSale of the same sellType to this one, or any type if this one is empty.
+	// Adds another CustomSale of the same sellType to this one, or to any type if this one is empty.
 	bool Add(const CustomSale &other);
 
-	// Get the price of the item, one should check the conditions matche first.
+	// Get the price of the item. One should check if the conditions match first.
 	double GetRelativeCost(const Outfit &item) const;
 
 	SellType GetSellType() const;

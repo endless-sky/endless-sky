@@ -397,14 +397,14 @@ double Planet::GetLocalRelativePrice(const Outfit &outfit, const map<string, int
 	{
 		lastConditions = conditions;
 		visibleCustomSale.Clear();
-		for(const auto& sale : GameData::CustomSales())
+		for(const auto &sale : GameData::CustomSales())
 			if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
 				visibleCustomSale.Add(sale.second);
 	}
 	else if(!canUseCache)
 	{
 		CustomSale customSale;
-		for(const auto& sale : GameData::CustomSales())
+		for(const auto &sale : GameData::CustomSales())
 			if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
 				customSale.Add(sale.second);
 		priceChange = customSale.GetRelativeCost(outfit);
@@ -421,7 +421,7 @@ double Planet::GetLocalRelativePrice(const Outfit &outfit, const map<string, int
 CustomSale::SellType Planet::GetAvailability(const Outfit &outfit, const map<string, int64_t> &conditions) const
 {
 	CustomSale::SellType sellType = Outfitter().Has(&outfit) ? CustomSale::SellType::VISIBLE : CustomSale::SellType::NONE;
-	for(const auto& sale : GameData::CustomSales())
+	for(const auto &sale : GameData::CustomSales())
 		if(sale.second.GetSellType() > sellType && sale.second.Matches(*this, conditions) && sale.second.Has(outfit))
 			sellType = sale.second.GetSellType();
 	return sellType;

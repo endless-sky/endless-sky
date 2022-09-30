@@ -7,10 +7,14 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "CustomSale.h"
+
 #include "DataNode.h"
 #include "GameData.h"
 #include "Planet.h"
@@ -33,7 +37,8 @@ namespace
 
 
 
-void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits, const string &mode)
+void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
+	const Set<Outfit> &outfits, const string &mode)
 {
 	for(const DataNode &child : node)
 	{
@@ -243,18 +248,18 @@ bool CustomSale::Add(const CustomSale &other)
 double CustomSale::GetRelativeCost(const Outfit &item) const
 {
 	// First look if it is in the outfits, then in the outfitters.
-	const auto& baseRelative = relativeOutfitPrices.find(&item);
+	const auto &baseRelative = relativeOutfitPrices.find(&item);
 	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : DEFAULT);
 	if(baseRelativePrice == DEFAULT)
-		for(const auto& it : relativePrices)
+		for(const auto &it : relativePrices)
 			if(it.first->Has(&item))
 			{
 				baseRelativePrice = it.second;
 				break;
 			}
-	const auto& baseOffset = relativeOutfitOffsets.find(&item);
+	const auto &baseOffset = relativeOutfitOffsets.find(&item);
 	double baseOffsetPrice = (baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : DEFAULT);
-	for(const auto& it : relativeOffsets)
+	for(const auto &it : relativeOffsets)
 		if(it.first->Has(&item))
 		{
 			if(baseOffsetPrice == DEFAULT)

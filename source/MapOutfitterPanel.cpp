@@ -288,7 +288,7 @@ void MapOutfitterPanel::Init()
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 		{
-			for(const auto& outfit : it.second.Outfitter())
+			for(const auto &outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
@@ -297,7 +297,7 @@ void MapOutfitterPanel::Init()
 			for(auto &&sales : GameData::CustomSales())
 				if(sales.second.GetSellType() != CustomSale::SellType::HIDDEN &&
 					it.second.HasOutfitter() && sales.second.Matches(it.second, player.Conditions()))
-					for(const auto& outfit : sales.second.GetOutfits())
+					for(const auto &outfit : sales.second.GetOutfits())
 						if(!seen.count(outfit))
 						{
 							catalog[outfit->Category()].push_back(outfit);

@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ITEM_INFO_DISPLAY_H_
 #define ITEM_INFO_DISPLAY_H_
 
-#include "Point.h"
 #include "PlayerInfo.h"
+#include "Point.h"
 #include "text/WrappedText.h"
 
 #include <string>

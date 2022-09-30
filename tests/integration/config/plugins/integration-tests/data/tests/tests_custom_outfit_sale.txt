@@ -74,7 +74,7 @@ test-data "Custom Sale Price"
 
 			planet Mars
 				add outfitter "Nuke"
-# we need to add an outfitter for the outfitter panel to be available
+# We need to add an outfitter for the outfitter panel to be available
 
 
 test "CustomSale 0 Sell overpriced outfit"

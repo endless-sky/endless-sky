@@ -201,7 +201,8 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell) : ItemInfoDisplay(player)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+	: ItemInfoDisplay(player)
 {
 	Update(outfit, canSell);
 }

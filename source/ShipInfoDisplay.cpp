@@ -37,7 +37,8 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo &player) : ItemInfoDisplay(player)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo &player)
+	: ItemInfoDisplay(player)
 {
 	Update(ship, depreciation, day);
 }
