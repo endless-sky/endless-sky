@@ -1850,7 +1850,8 @@ void Engine::HandleKeyboardInputs()
 
 	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
 	// starting (e.g. while escorts are aligning), or switches the landing or boarding target.
-	if(keyHeld.Has(Command::JUMP) || ((keyHeld.Has(Command::LAND) || keyHeld.Has(Command::BOARD)) && keyInterval < keyCooldown))
+	if(keyHeld.Has(Command::JUMP) || ((keyHeld.Has(Command::LAND) || keyHeld.Has(Command::BOARD))
+			&& keyInterval < keyCooldown))
 		activeCommands |= Command::WAIT;
 
 	// Transfer all newly pressed, unhandled keys to active commands.
