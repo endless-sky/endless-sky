@@ -85,13 +85,13 @@ void PrintData::Help()
 	cerr << "        --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
 	cerr << "        -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
 	cerr << "    --planets: prints a list of all planets." << endl;
-	cerr << "              --descriptions: prints a table of all planets and their descriptions." << endl;
-	cerr << "              --attributes: prints a table of all planets and their attributes." << endl;
-	cerr << "                           --reverse: prints a table of all planet attributes and which planets have them."
+	cerr << "        --descriptions: prints a table of all planets and their descriptions." << endl;
+	cerr << "        --attributes: prints a table of all planets and their attributes." << endl;
+	cerr << "            --reverse: prints a table of all planet attributes and which planets have them."
 			<< endl;
 	cerr << "    --systems: prints a list of all systems." << endl;
-	cerr << "              --attributes: prints a list of all systems and their attributes." << endl;
-	cerr << "                           --reverse: prints a list of all system attributes and which systems have them."
+	cerr << "        --attributes: prints a list of all systems and their attributes." << endl;
+	cerr << "            --reverse: prints a list of all system attributes and which systems have them."
 			<< endl;
 }
 
