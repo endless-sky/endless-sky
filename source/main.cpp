@@ -113,13 +113,9 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
-		else if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons" ||
-				arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines" ||
-				arg == "--power" || arg == "--planets" || arg == "--systems")
-		{
-			printData = true;
-		}
 	}
+	if(PrintData::IsPrintDataArgument(argv))
+		printData = true;
 	Files::Init(argv);
 
 	try {

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // A class containing methods used to print ship and outfit stats to the console.
 class PrintData {
 public:
+	static bool IsPrintDataArgument(const char *const *argv);
 	static void Print(const char *const *argv);
 	static void Help();
 

@@ -1,5 +1,5 @@
 /* PrintData.cpp
-Copyright (c) 2022 by warp-core
+Copyright (c) 2014 by Michael Zahniser, 2022 by warp-core
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -29,26 +29,41 @@ using namespace std;
 
 
 
+bool PrintData::IsPrintDataArgument(const char *const *argv)
+{
+	for(const char *const *it = argv + 1; *it; ++it)
+	{
+		string arg = *it;
+		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons" ||
+				arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines" ||
+				arg == "--power" || arg == "--planets" || arg == "--systems")
+			return true;
+	}
+	return false;
+}
+
+
+
 void PrintData::Print(const char *const *argv)
 {
-	const char *const *it = argv + 1;
-	if(!*it)
-		return;
-	string arg = *it;
-	if(arg == "-s" || arg == "--ships")
-		Ships(argv);
-	else if(arg == "-w" || arg == "--weapons")
-		PrintWeaponStats();
-	else if(arg == "-e" || arg == "--engines")
-		PrintEngineStats();
-	else if(arg == "--power")
-		PrintPowerStats();
-	else if(arg == "-o" || arg == "--outfits")
-		Outfits(argv);
-	else if(arg == "--planets")
-		Planets(argv);
-	else if(arg == "--systems")
-		Systems(argv);
+	for(const char *const *it = argv + 1; *it; ++it)
+	{
+		string arg = *it;
+		if(arg == "-s" || arg == "--ships")
+			Ships(argv);
+		else if(arg == "-w" || arg == "--weapons")
+			PrintWeaponStats();
+		else if(arg == "-e" || arg == "--engines")
+			PrintEngineStats();
+		else if(arg == "--power")
+			PrintPowerStats();
+		else if(arg == "-o" || arg == "--outfits")
+			Outfits(argv);
+		else if(arg == "--planets")
+			Planets(argv);
+		else if(arg == "--systems")
+			Systems(argv);
+	}
 	cout.flush();
 }
 
@@ -56,9 +71,11 @@ void PrintData::Print(const char *const *argv)
 
 void PrintData::Help()
 {
-	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored outfits)." << endl;
+	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored outfits)."
+			<< endl;
 	cerr << "    -s --sales: prints a table of ships with every 'shipyard' each appears in." << endl;
-	cerr << "    -s --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants." << endl;
+	cerr << "    -s --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants."
+			<< endl;
 	cerr << "    -s --list: prints a list of all ship names." << endl;
 	cerr << "    Use the modifier `-v` or `--variants` with the above two commands to include variants." << endl;
 	cerr << "    -w, --weapons: prints a table of weapon stats." << endl;
@@ -69,9 +86,11 @@ void PrintData::Help()
 	cerr << "    -o -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
 	cerr << "    --planets --descriptions: prints a table of all planets and their descriptions." << endl;
 	cerr << "    --planets --attributes: prints a table of all planets and their attributes." << endl;
-	cerr << "    --planets --attributes --reverse: prints a table of all planet attributes and which planets have them." << endl;
+	cerr << "    --planets --attributes --reverse: prints a table of all planet attributes and which planets have them."
+			<< endl;
 	cerr << "    --systems --attributes: prints a list of all systems and their attributes." << endl;
-	cerr << "    --systems --attributes --reverse: prints a list of all system attributes and which systems have them." << endl;
+	cerr << "    --systems --attributes --reverse: prints a list of all system attributes and which systems have them."
+			<< endl;
 }
 
 
@@ -192,8 +211,8 @@ void PrintData::PrintShipShipyards()
 void PrintData::PrintLoadedShipStats(bool variants)
 {
 	cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
-		<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "cargo" << ','
-		<< "bunks" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
+		<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "bunks" << ','
+		<< "cargo space" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
 		<< "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
 		<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
 		<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
@@ -217,8 +236,8 @@ void PrintData::PrintLoadedShipStats(bool variants)
 		cout << attributes.Get("hull") << ',';
 		cout << mass << ',';
 		cout << attributes.Get("required crew") << ',';
-		cout << attributes.Get("cargo space") << ',';
 		cout << attributes.Get("bunks") << ',';
+		cout << attributes.Get("cargo space") << ',';
 		cout << attributes.Get("fuel capacity") << ',';
 
 		cout << ship.BaseAttributes().Get("outfit space") << ',';
