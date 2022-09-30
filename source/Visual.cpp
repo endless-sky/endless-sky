@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Visual.h"
@@ -22,7 +25,8 @@ using namespace std;
 
 // Generate a visual based on the given Effect.
 Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity)
-	: Body(effect, pos, vel, facing), lifetime(effect.lifetime)
+	: Body(effect, pos, vel, effect.hasAbsoluteAngle ? effect.absoluteAngle : facing),
+	lifetime(effect.lifetime)
 {
 	if(effect.randomLifetime > 0)
 		lifetime += Random::Int(effect.randomLifetime + 1);
@@ -30,8 +34,14 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 	angle += Angle::Random(effect.randomAngle) - Angle::Random(effect.randomAngle);
 	spin = Angle::Random(effect.randomSpin) - Angle::Random(effect.randomSpin);
 
-	velocity *= effect.velocityScale;
-	velocity += hitVelocity * (1. - effect.velocityScale);
+	if(effect.hasAbsoluteVelocity)
+		velocity = angle.Unit() * effect.absoluteVelocity;
+	else
+	{
+		velocity *= effect.velocityScale;
+		velocity += hitVelocity * (1. - effect.velocityScale);
+	}
+
 	if(effect.randomVelocity)
 		velocity += angle.Unit() * Random::Real() * effect.randomVelocity;
 

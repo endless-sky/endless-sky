@@ -77,7 +77,7 @@ The zip can be extracted anywhere on your filesystem; to minimize additional con
 
 If you want to build the game from the command line via Scons, you will need [Python 3.8 or later](https://www.python.org/downloads/). When installing, be sure to select the "Add to PATH" checkbox.
 
-Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, to to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
+Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, go to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
 
 If you used the defaults for MinGW up to this point, add "New" and enter the following in separate entries:
 

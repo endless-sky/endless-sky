@@ -52,3 +52,6 @@ xcode_files:
 codeblocks_files:
   - '*.cbp'
   - 'utils/check_codeblocks.sh'
+
+copyright:
+  - 'copyright'

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Wanderers: Pre-Colony"
 	landing
@@ -726,7 +729,7 @@ mission "Wanderers: Kor Efret 3"
 		event "wanderers: kashikt battle begins"
 		conversation
 			`With Rek's help, you make contact with the team of Korath engineers, and Rek explains the Wanderer plan to hack into the Kor Mereti network. Her speech is slower than before, and she has to keep asking questions; clearly the conversation involves technical jargon that she is not yet familiar with. When she is done explaining, the Korath are silent for a minute, then one of them answers quite loudly, almost shouting, gesturing in your direction as if pushing you away.`
-			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ...unless it is proven to be beneficial."`
+			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ... unless it is proven to be beneficial."`
 			choice
 				`	"But perhaps the Wanderers could succeed where the Korath have failed."`
 				`	"What about the Kor Sestor? Do they have any hope of taking over those drones?"`
@@ -759,18 +762,18 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Kor Efret"
 		personality heroic
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Quarg"
 		personality heroic staying entering
@@ -1400,7 +1403,7 @@ mission "Wanderers: Tour 2"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1429,7 +1432,7 @@ mission "Wanderers: Tour 3"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1451,7 +1454,7 @@ mission "Wanderers: Tour 4"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1480,7 +1483,7 @@ mission "Wanderers: Tour 5"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 	npc
 		system "Ap'arak"
 		government "Hai (Unfettered)"
@@ -1509,7 +1512,7 @@ mission "Wanderers: Tour 6"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -3065,6 +3068,7 @@ mission "Wanderers: Sestor: Exiles 2"
 
 event "wanderers: exiles peaceful"
 	"reputation: Korath" >?= 1
+	"reputation: Korath (Civilian)" >?= 1
 
 mission "Wanderers: Sestor: Exiles 3"
 	landing
@@ -3098,9 +3102,9 @@ mission "Wanderers: Sestor: Exiles 3"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -3132,9 +3136,9 @@ mission "Wanderers: Sestor: Factory 1"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -3179,7 +3183,7 @@ mission "Wanderers: Sestor: Factory 2"
 	on offer
 		event "wanderers: asikafarnut battle"
 		conversation
-			`The drones stop firing on the Korath world-ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
+			`The drones stop firing on the Korath ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
 			`	You fire up your engines and blast off for one last battle against the Kor Sestor...`
 				launch
 	npc evade
