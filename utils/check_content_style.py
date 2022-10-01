@@ -36,6 +36,7 @@ def check_content_style():
 
         check_copyright(file, lines)
         check_ascii(file, lines)
+        check_indentation(file, lines)
 
         # Making sure errors are printed in order of their line numbers
         error_list.sort(key=lambda error: error[0])
@@ -104,6 +105,24 @@ def check_ascii(file, lines):
         for char in line:
             if ord(char) < 0 or ord(char) > 127:
                 print_error(file, index + 1, "files should be plain ASCII")
+
+# Checks the leading indentation of each line in the file.
+# Parameters:
+# file: the name of the file
+# lines: the lines of the file
+def check_indentation(file, lines):
+    check_tab_usage(file,lines)
+
+
+# Checks that the leading indentation of each line, and of the conversations texts are using tabulators only.
+# Parameters:
+# file: the name of the file
+# lines: the lines of the file
+def check_tab_usage(file, lines):
+    regex = re.compile("^[\\t`\"]*(?<![`\"]) ")
+    for index, line in enumerate(lines):
+        if re.search(regex,line):
+            print_error(file, index + 1, "Indentations should use tabs only")
 
 
 # Generates and stores an error message. The error is later displayed in check_content_style().
