@@ -22,27 +22,39 @@ import glob
 errors = 0
 # The list of errors in the current file; elements are tuples of the line numbers and the error messages
 error_list = []
+# Regex-based style checks for check_regexes()
+regexes = {
+	# Matches any space that is preceeded only by tabs or " or ` characters,
+	# except if it immediately follows a " or ` character.
+	# "^[\\t`\"]*(?<![`\"]) ": "indentations should use tabs only",
+	# Matches multiple space characters.
+	# "  ": "multiple consecutive space characters",
+	# ".*[\\w`\"].*\\s$": "trailing whitespace character"
+}
+# Precompile regexes
+regexes = {re.compile(regex): description for regex, description in regexes.items()}
 
 
 # Checks the format of all txt files.
 def check_content_style():
-    files = glob.glob('data/**/*.txt', recursive=True)
-    files.sort()
-    for file in files:
+	files = glob.glob('data/**/*.txt', recursive=True)
+	files.sort()
+	for file in files:
 
-        f = open(file, "r")
-        lines = f.readlines()
-        lines = [line.removesuffix('\n') for line in lines]
+		f = open(file, "r")
+		lines = f.readlines()
+		lines = [line.removesuffix('\n') for line in lines]
 
-        check_copyright(file, lines)
-        check_ascii(file, lines)
-        check_indentation(file, lines)
+		check_copyright(file, lines)
+		check_ascii(file, lines)
+		check_regexes(file, lines)
+		check_indents(file, lines)
 
-        # Making sure errors are printed in order of their line numbers
-        error_list.sort(key=lambda error: error[0])
-        for (line, error) in error_list:
-            print(error)
-        error_list.clear()
+		# Making sure errors are printed in order of their line numbers
+		error_list.sort(key=lambda error: error[0])
+		for (line, error) in error_list:
+			print(error)
+		error_list.clear()
 
 
 # Checks the copyright header of the files. Unlike C++ source files, these don't contain the file's name in the header.
@@ -51,49 +63,49 @@ def check_content_style():
 # file: the name of the file
 # lines: the lines of the file
 def check_copyright(file, lines):
-    if file == "data/tooltips.txt":
-        return
-    # The mandatory first line of a copyright header; might be repeated
-    first = "^# Copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .+$"
-    # Optional line following the first one; might be repeated
-    second = "^# Based on earlier text copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .+$"
-    # The final segment of the copyright header
-    third = """\
-    #
-    # Endless Sky is free software: you can redistribute it and/or modify it under the
-    # terms of the GNU General Public License as published by the Free Software
-    # Foundation, either version 3 of the License, or (at your option) any later version.
-    #
-    # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-    # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-    # PARTICULAR PURPOSE. See the GNU General Public License for more details.
-    #
-    # You should have received a copy of the GNU General Public License along with
-    # this program. If not, see <https://www.gnu.org/licenses/>.
-    \
-    """.splitlines()
-    text_index = 0
-    for line in lines:
-        if re.search(first, line):
-            text_index += 1
-        else:
-            break
-    if text_index == 0:
-        print_error(file, 1, "incorrect copyright header")
-        return
-    for line in lines[text_index:]:
-        if re.search(second, line):
-            text_index += 1
-        else:
-            break
-    if len(lines) - text_index < len(third):
-        print_error(file, len(third) - 1, "incomplete copyright header")
-    else:
-        for index, (line, standard) in enumerate(zip(lines[text_index:], third)):
-            standard = standard.strip()
-            if standard != line:
-                print_error(file, text_index + index + 1, "incorrect copyright header")
-                break
+	if file == "data/tooltips.txt":
+		return
+	# The mandatory first line of a copyright header; might be repeated
+	first = "^# Copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .+$"
+	# Optional line following the first one; might be repeated
+	second = "^# Based on earlier text copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .+$"
+	# The final segment of the copyright header
+	third = """\
+	#
+	# Endless Sky is free software: you can redistribute it and/or modify it under the
+	# terms of the GNU General Public License as published by the Free Software
+	# Foundation, either version 3 of the License, or (at your option) any later version.
+	#
+	# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+	# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+	# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+	#
+	# You should have received a copy of the GNU General Public License along with
+	# this program. If not, see <https://www.gnu.org/licenses/>.
+	\
+	""".splitlines()
+	text_index = 0
+	for line in lines:
+		if re.search(first, line):
+			text_index += 1
+		else:
+			break
+	if text_index == 0:
+		print_error(file, 1, "incorrect copyright header")
+		return
+	for line in lines[text_index:]:
+		if re.search(second, line):
+			text_index += 1
+		else:
+			break
+	if len(lines) - text_index < len(third):
+		print_error(file, len(third) - 1, "incomplete copyright header")
+	else:
+		for index, (line, standard) in enumerate(zip(lines[text_index:], third)):
+			standard = standard.strip()
+			if standard != line:
+				print_error(file, text_index + index + 1, "incorrect copyright header")
+				break
 
 
 # Checks whether the file contains any non-ASCII characters. Extended ASCII codes are not accepted.
@@ -101,43 +113,75 @@ def check_copyright(file, lines):
 # file: the name of the file
 # lines: the lines of the file
 def check_ascii(file, lines):
-    for index, line in enumerate(lines):
-        for char in line:
-            if ord(char) < 0 or ord(char) > 127:
-                print_error(file, index + 1, "files should be plain ASCII")
+	for index, line in enumerate(lines):
+		for char in line:
+			if ord(char) < 0 or ord(char) > 127:
+				print_error(file, index + 1, "files should be plain ASCII")
 
-# Checks the leading indentation of each line in the file.
+
+# Performs the regex-based formatting checks.
 # Parameters:
 # file: the name of the file
 # lines: the lines of the file
-def check_indentation(file, lines):
-    check_tab_usage(file,lines)
+def check_regexes(file, lines):
+	for index, line in enumerate(lines):
+		for regex, description in regexes.items():
+			if re.search(regex, line):
+				print_error(file, index + 1, description)
 
 
-# Checks that the leading indentation of each line, and of the conversations texts are using tabulators only.
+def check_indents(file, lines):
+	previous_indent = 0
+	for index, line in enumerate(lines):
+		indent = count_indent(line)
+		# Checking the indents of empty lines
+		if line.isspace():
+			print_error(file, index + 1, "empty lines should not be indented")
+		# Checking non-empty lines
+		elif line:
+			if indent - previous_indent > 1:
+				print_error(file, index + 1, "do not add more than a single level of indentation per line")
+			previous_indent = indent
+
+
+# Gets the number of tabulators the next non-empty line of text is indented with.
 # Parameters:
-# file: the name of the file
-# lines: the lines of the file
-def check_tab_usage(file, lines):
-    regex = re.compile("^[\\t`\"]*(?<![`\"]) ")
-    for index, line in enumerate(lines):
-        if re.search(regex,line):
-            print_error(file, index + 1, "Indentations should use tabs only")
+# lines: the lines of text to check
+# position: the line after which we start searching
+def get_next_indent(lines, position):
+	for index in range(position + 1, len(lines)):
+		line = lines[index]
+		if line and not line.isspace():
+			return count_indent(line)
+	return 0
+
+
+# Counts the number of tabs this line of text is indented with.
+# Parameters:
+# text: the text to count indents in
+def count_indent(text):
+	count = 0
+	for char in text:
+		if char == '\t':
+			count += 1
+		else:
+			break
+	return count
 
 
 # Generates and stores an error message. The error is later displayed in check_content_style().
 def print_error(file, line, reason):
-    error_list.append((line, "Formatting error in " + file + " line " + str(line) + ": " + reason))
-    global errors
-    errors += 1
+	error_list.append((line, "Formatting error in " + file + " line " + str(line) + ": " + reason))
+	global errors
+	errors += 1
 
 
 if __name__ == '__main__':
-    check_content_style()
-    if errors > 0:
-        text = "Found " + errors.__str__() + " formatting " + ("error" if errors == 1 else "errors")
-        print(text)
-        exit(1)
-    else:
-        print("No formatting errors found.")
-    exit(0)
+	check_content_style()
+	if errors > 0:
+		text = "Found " + errors.__str__() + " formatting " + ("error" if errors == 1 else "errors")
+		print(text)
+		exit(1)
+	else:
+		print("No formatting errors found.")
+	exit(0)
