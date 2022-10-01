@@ -138,7 +138,7 @@ outfit "True Unfettered License"
 	thumbnail "outfit/true unfettered license"
 	"capture attack" 10
 	"capture defense" 10
-	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too. Legends even say it allows the most skilled users to phase through matter for a short period of time."
+	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights, too. Legends even say it allows the most skilled users to phase through matter for a short period of time."
 
 outfit "Ionic Blaster Prototype"
 	category "Guns"
@@ -196,7 +196,7 @@ outfit "Ionic Turret Prototype"
 		"shield damage" 100
 		"hull damage" 50
 		"ion damage" 14
-	description "This weapon improves upon the ionization capabilities of the Ion Cannon, while also being turret-mounted, enabling it to fire at enemies in any direction, not just those directly ahead."
+	description "This weapon improves upon the ionization capabilities of the Ion Cannon while also being turret-mounted, enabling it to fire at enemies in any direction, not just those directly ahead."
 	description "This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 

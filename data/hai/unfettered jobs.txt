@@ -365,8 +365,8 @@ phrase "unfettered challenger defeated"
 		`The captain of the <npc> hails you: `
 		`Now that they are disabled, the <npc> sends you a hail: `
 	word
-		`"Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here is the <payment>, but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
-		`"Raaaah... Well, you have beaten me fairly, so I'll pay up... Here are the <payment>, captain. Next time I will not underestimate you anymore!"`
+		`"Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here are the <payment>, but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
+		`"Raaaah... Well, you have beaten me fairly, so I'll pay up... Here are the <payment>, captain. Next time I will not underestimate you!"`
 		`"Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you. For now, here are the agreed <payment>, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
 		`"The fight is over! Stop shooting me or you'll blow holes into my ships! Here are the <payment>, let me be now!"`
 		`"I surrender, <last>. You have indeed lived up to your reputation. I did not stand a chance in this battle. Still, a challenge is a challenge. Here are your <payment>."`
@@ -456,12 +456,12 @@ mission "Unfettered Challenge [2]"
 
 phrase "jump drive or stopover"
 	word
-		`You have a mission to bring jump drives here on <planet>, from <stopovers>. You may have left your escort allocated to carrying the devices behind, or you have not retrieved the precious cargo yet.`
+		`You have a mission to bring jump drives to <planet>, from <stopovers>. You may have left your escort allocated to carrying the devices behind, or you have not retrieved the precious cargo yet.`
 
 phrase "unfettered jump drive pickup dialog"
 	word
 		"You manage to land and retrieve the precious cargo without too much trouble. Do not rely on luck too long though - you should depart quickly!"
-		"You find a few pirates in the vault, but they are quickly disposed ofYou proceed to pick up the cargo; do not wait too long, or reinforcements could arrive."
+		"You find a few pirates in the vault, but they are quickly disposed of. You proceed to pick up the cargo; do not wait too long, or reinforcements could arrive."
 		"It was easy - almost too easy - to pick up the jump drives. Better depart before your luck runs out."
 		"You receive a warning from the vault about an intrusion, but cannot find anyone. The cargo is swiftly transferred into your ship, and you should probably get on your way now."
 		"The vault is secured, and you can easily and safely pick up the jump drives."
@@ -620,7 +620,7 @@ mission "Darkcloak Ship Materials"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 50000 7000
-		dialog `The Unfettered promise you many new, grandiose ships will be built with this new material. As long as you get your <payment>, that seems good to you.`
+		dialog `The Unfettered promise you that many new, grandiose ships will be built with this new material. As long as you get your <payment>, that seems good to you.`
 
 
 
@@ -666,7 +666,7 @@ phrase "unfettered cargo interception payment dialog"
 		`As you land, you are directed instead to bring the materials directly to their destination. It is a short trip, considering you are used to traveling in space. There, you receive <payment> for your troubles, before heading back to the spaceport.`
 		`An Unfettered comes to you during the unloading of your cargo, "My deepest thanks, this will help in the repairs. We do not nearly produce enough materials to do it on our own." He then gives you <payment>.`
 		"A spaceport worker gives you <payment> for the materials, without any further ceremony."
-		`The leader of the Unfettered team that collects your cargo comes to you, "This is good, but we need more. Recently, an entire area collapsed because of lack of maintaining." He then hands you the chip with <payment>.`
+		`The leader of the Unfettered team that collects your cargo comes to you, "This is good, but we need more. Recently, an entire area collapsed because of lack of maintenance." He then hands you the chip with <payment>.`
 
 mission "Cargo Interception West"
 	name `Find and bring the materials back`
@@ -692,7 +692,7 @@ mission "Cargo Interception West"
 				"Argosy (Materials)"
 		dialog "This pirate ship indeed contains the materials you are looking for. You should bring them to <destination> to receive your payment."
 	on visit
-		dialog `You do not have the materials yet. Go look for in western pirate space.`
+		dialog `You do not have the materials yet. Go look for them in western pirate space.`
 	on complete
 		outfit "Materials" -100
 		payment 1000000
