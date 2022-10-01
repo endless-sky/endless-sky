@@ -305,11 +305,12 @@ mission "Trader Directions to Hai Space"
 	description "Follow the coordinates given to you by Captain Casey and meet the Hai."
 	source "Sunracer"
 	waypoint "Ultima Thule"
-	destination "Allhome"
 	to offer
 		or
 			has "ZZ Event Hai Secret Leaks: RS: done"
 			has "ZZ Event Hai Secret Leaks: FW: done"
+	to complete
+		never
 	on offer
 		conversation
 			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that <origin>, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Megaparsec corporate machinery here, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
@@ -349,6 +350,8 @@ mission "Trader Directions to Hai Space"
 			`	Taking a sip from her mug she gives a slight nod in your direction. "Intentionally or not, you did me and a lot of other merchants a solid in that war, Captain. I respect that, but I'll thank you to leave me in peace if you see me again."`
 			`	Only now, as you move to depart, do you spot the wrist-triggered needlegun strapped to the arm of her drinking hand that would've been trained on you the entire conversation.`
 				accept
+	on waypoint
+		dialog `This system appears to contain some sort of astronomical anomaly. Perhaps this is the wormhole you were directed to.`
 			
 
 #This branch is if you have met the Hai but not the Unfettered
@@ -377,8 +380,11 @@ mission "ZZ Hai Tour [1] Stonebreak"
 	source "Allhome"
 	destination "Stonebreak"
 	to offer
-		has "Trader Directions to Hai Space: done"
+		or
+			has "ZZ Event Hai Secret Leaks: RS: offered"
+			has "ZZ Event Hai Secret Leaks: RS: offered"
 	on offer
+		fail "Trader Directions to Hai Space"
 		conversation
 			`As you are leaving the merchant and the Hai, the Hai calls out as an afterthought, "By the way Captain, if you really want to see what the Hai are like, you should go visit Stonebreak."`
 			choice
