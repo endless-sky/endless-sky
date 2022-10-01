@@ -1169,3 +1169,20 @@ event "remnant: shattered light"
 
 
 event "remnant: shattered light research" 
+
+event "remnant: tubfalet appearance"
+	fleet "Korath Raid"
+		add variant 1
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Ember Waste Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Large Raid"
+		add variant 3
+			"Tubfalet" 2
+			"'olofez"  6
+			
+
+
