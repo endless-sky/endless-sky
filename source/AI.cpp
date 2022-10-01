@@ -1130,10 +1130,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
-	// Prevent surveillance ships from rubber banding around player fleet by setting and unsetting target.
-	if(oldTarget && person.IsSurveillance() && gov != oldTarget->GetGovernment()
-			&& !gov->IsEnemy(oldTarget->GetGovernment()))
-		return oldTarget;
 	if(oldTarget && !oldTarget->IsTargetable())
 		oldTarget.reset();
 	if(oldTarget && person.IsTimid() && oldTarget->IsDisabled()
