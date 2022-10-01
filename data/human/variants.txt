@@ -418,18 +418,25 @@ ship "Blackbird" "Blackbird (Prisoner Transport)"
 
 
 ship "Blackbird" "Blackbird (Hai Trafficker)"
+	add attributes
+		"mass" 53
+		"outfit space" -51
+		"energy capacity" 5200
+		"shield generation" 3.1
+		"shield energy" 4.6
+		"hull repair rate" 0.4
+		"hull energy" 0.4
+		"hull heat" 0.6
 	outfits
 		`"Bondir" Atomic Thruster`
 		"Pulse Rifle" 12
 		Brig
-		Supercapacitor
 		"Fuel Pod" 2
 		`"Benga" Atomic Steering`
 		"Scram Drive"
 		"Chameleon Anti-Missile"
 		Ramscoop
 		"Pulse Turret"
-		"Hai Diamond Regenerator"
 		"Boulder Reactor"
 		"Outfits Expansion"
 		"Liquid Nitrogen Cooler"
@@ -692,18 +699,24 @@ ship "Clipper" "Clipper (Speedy)"
 
 
 ship "Clipper" "Clipper (Hai Trafficker)"
+	add attributes
+		"mass" 31
+		"outfit space" -25
+		"energy capacity" 2600
+		"shield generation" 1.6
+		"shield energy" 2.4
+		"hull repair rate" 0.2
+		"hull energy" 0.2
+		"hull heat" 0.3
 	outfits
 		"Pulse Rifle" 3
 		Brig
-		Supercapacitor 2
 		"Fuel Pod"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		Hyperdrive
 		"Hai Tracker Pod" 3
 		Ramscoop
-		"Hai Corundum Regenerator"
-		"Hai Chasm Batteries"
 		"Outfits Expansion" 3
 		"Liquid Nitrogen Cooler"
 		"Breeder Reactor"
@@ -888,22 +901,28 @@ ship "Corvette" "Corvette (Particle Chaser)"
 
 
 ship "Corvette" "Corvette (Hai Trafficker)"
+	add attributes
+		"mass" 53
+		"outfit space" -51
+		"energy capacity" 5200
+		"shield generation" 3.1
+		"shield energy" 4.6
+		"hull repair rate" 0.4
+		"hull energy" 0.4
+		"hull heat" 0.6
 	outfits
 		`"Bondir" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Pulse Rifle" 16
 		Brig
-		Supercapacitor
 		"Fuel Pod" 4
 		"Hai Tracker" 224
 		"Scram Drive"
 		"Bullfrog Anti-Missile" 2
 		"Hai Tracker Pod" 4
 		Ramscoop
-		"Hai Diamond Regenerator"
-		"Hai Fissure Batteries"
 		"Boulder Reactor"
-		"Outfits Expansion" 2
+		"Outfits Expansion" 
 		"Liquid Nitrogen Cooler"
 		"Security Station" 4
 
@@ -1377,10 +1396,18 @@ ship "Freighter" "Freighter (Secret Cargo)"
 
 
 ship "Freighter" "Freighter (Hai Trafficker)"
+	add attributes
+		"mass" 31
+		"outfit space" -25
+		"energy capacity" 2600
+		"shield generation" 1.6
+		"shield energy" 2.4
+		"hull repair rate" 0.2
+		"hull energy" 0.2
+		"hull heat" 0.3
 	outfits
 		"Pulse Rifle" 3
 		Brig
-		Supercapacitor 2
 		"Fuel Pod" 2
 		`"Biroo" Atomic Thruster`
 		"A255 Atomic Steering"
@@ -1388,8 +1415,6 @@ ship "Freighter" "Freighter (Hai Trafficker)"
 		"Bullfrog Anti-Missile"
 		"Pulse Turret" 2
 		Ramscoop
-		"Hai Corundum Regenerator"
-		"Hai Chasm Batteries"
 		"Outfits Expansion" 5
 		"Liquid Nitrogen Cooler"
 		"Breeder Reactor"

@@ -8882,7 +8882,7 @@ system "Devil-Hide"
 	object "Devil-Eye"
 		sprite "planet/rogue-radiating"
 		period 10
-		object "Philosopher's Paradise"
+		object "Elenchus"
 			sprite "planet/asteroid base"
 			distance 251
 			period 18.5791
@@ -30507,7 +30507,7 @@ planet "Periaxle Circuit"
 	spaceport `Having very little in the form of windows to look out into the system, and not much to gaze at the small, barren planet it encompasses, the station sees very few visitors--mostly cargo haulers bringing in supplies for the crew staffed here or the occasional university groups coming to visit the particle accelerator and deepen their knowledge.`
 	"required reputation" 15
 
-planet "Philosopher's Paradise"
+planet "Elenchus"
 	attributes "whispering void"
 	landscape land/space2
 	description `Beneath the surface of this small moon, there is a network of corridors and large rooms. The architecture looks mostly Human, but with a hint of Hai. Most are blocked off by sturdy doors with keycard access and plentiful security cameras. Frequently, you see a symbol similar to the Syndicate logo. Everywhere you walk, a security camera turns to track your movement. You get the feeling that you're not welcome here.`

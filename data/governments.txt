@@ -258,7 +258,7 @@ government "Hai"
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 		"Bounty Hunter that Attacks Hai" -.01
-		"Philosophers" .1
+		"Elenctic Commune" .1
 	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -280,7 +280,7 @@ government "Hai (Wormhole Access)"
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 		"Bounty Hunter that Attacks Hai" -.01
-		"Philosophers" .1
+		"Elenctic Commune" .1
 	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -359,7 +359,7 @@ government "Hai (Unfettered)"
 		"Merchant" -.01
 		"Kor Efret" -.01
 		"Bounty Hunter that Attacks Hai" -.01
-		"Philosophers" .1
+		"Elenctic Commune" .1
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -379,7 +379,7 @@ government "Hai (Friendly Unfettered)"
 		"Korath" -.01
 		"Hai" .01
 		"Bounty Hunter that Attacks Hai" -.01
-		"Philosophers" .1
+		"Elenctic Commune" .1
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -720,7 +720,7 @@ government "Parrot"
 	"player reputation" 1
 	"bribe" 0
 
-government "Philosophers"
+government "Elenctic Commune"
 	swizzle 0
 	color .84 .61 .37
 	

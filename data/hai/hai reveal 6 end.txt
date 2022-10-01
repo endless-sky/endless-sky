@@ -22,12 +22,11 @@ mission "Hai Reveal [D01] Cleanup"
 	passengers 4
 	blocked "You need <bunks> passenger spaces to transport Xilin, Alondo, Sayari and Teeneep."
 	to offer
-		has "Hai Rescue [C08] Freedom: done"
+		has "Hai Reveal [B13] Freedom: done"
 	on offer
 		event "mountaintop ascendant"
-		fail "Hai Rescue [C07A] Devil-Hide Fleet"
+		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 		log `Returned the Hai to their own space to bring an end to the missing Hai saga. All that remains is to work out what to do about the leak and the cover story, so thin as to provide no modesty to its wearers.`
-		
 		log `Teeneep and General Choot'k, prominent leaders of the Hai and Unfettered, kissed in a romantic goodbye. They spoke of a future peaceful unification of the Hai.`
 		conversation
 			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. Word has traveled ahead of you through the new message links, and you are greeted by a hastily planned celebration in the capitol. After a few hours involving a brief formal parade, a great deal of cheering, some minor speeches with Xilin and Alondo trotted out to reassure everyone that there would be no conflict, and finally some more discrete parties outside the public eye, General Choot'k comes to you and Teeneep to bid his farewell.`
@@ -38,7 +37,7 @@ mission "Hai Reveal [D01] Cleanup"
 			choice
 				`	(Give them some privacy.)`
 			`	You're nursing the warmth of a beverage after breakfast the next morning on far too little sleep when your communicator pings. When it turns out to be Sayari, you take a moment to thank your body clock for ensuring you were already dressed and decent today, despite the suffering over it.`
-			`	"So glad to see that you've pulled up alright this morning," she says. "As one final thing, we all need to go and meet the human leaders on Mountaintop and finally close the book on this chapter. We could take any ship at this point, but I thought you might like to see it through to the end."`
+			`	"So glad to see that you've pulled up alright this morning," she says. "As one final thing, we all need to go and meet the human leaders on Mountaintop and finally close the book on this chapter. We could take any ship at this point, but I cannot overstate how much you've helped us. I thought you might like to see it through to the end."`
 			`	"We'll be ready to go in a couple of hours. What do you say?"`
 			choice
 				`	"Seems silly not to come on the final trip. Of course I'll take you."`
@@ -46,6 +45,8 @@ mission "Hai Reveal [D01] Cleanup"
 		#Taking the diplomats (all) and Teeneep to Mountaintop; for the public resolution, spirit of this was already drafted in the days while you returned.
 		#This treaty is essentially a 'resolution' to commit to a broader and more detailed treaty to be negotiated in full.
 		#The actual treaty, post certain Hai missions, will be the one to result in a station in Cardax.
+	on accept
+		fail "Hai Reveal [B01-A] The Blockade Goes Up"
 	on complete
 		log `The Free Worlds, Republic, and Hai Elders have signed a resolution to ensure safe passage for Hai in human space, on the condition that they register with a customs authority on Mountaintop. Any Hai sent against their will into human space will be recovered alive if possible, regardless of the risk to human soldiers. However, human authorities will not change their approach towards regular human pirates and slavery, citing "unsustainable loss of life."`
 		log `Have learned that during the crisis a single ship loaded with kidnapped Hai was misplaced and abandoned. They require rescue and may indicate the presence of a loose end.`
