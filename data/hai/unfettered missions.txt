@@ -362,7 +362,7 @@ mission "Unfettered returning home"
 
 phrase "Essential Unfettered Mission Fail"
 	word
-		`You have failed an essential Unfettered mission. You may want to reload.`
+		`You have failed an essential Unfettered mission. You may want to reload your previous save.`
 
 
 
@@ -391,7 +391,7 @@ mission "Unfettered: Bring Hai"
 			not "language: Wanderer"
 		<secondgroup> `"Things are going [poorly, unacceptably]. In all my life never has it been more [rough, unsustainable]. Never has there been so many in need. Never so little [food, crops], [housing, sanitation]... Something needs to be done, and quickly. We, and our way of life, are dying."`
 			has "language: Wanderer"
-		<thirdgroup> "he seems heart broken by this little one's words. Raising his voice for all to hear, he explains something to the gathered Hai."
+		<thirdgroup> "he seems heartbroken by this little one's words. Raising his voice for all to hear, he explains something to the gathered Hai."
 			not "language: Wanderer"
 		<thirdgroup> `"He asks if he can go to Hai [space, territories]," the Chief explains, then continues. "Unfortunately, as you all know, we cannot send back a child alone, he needs to be [taken care of, protected]. Would anyone be willing to do that?"`
 			has "language: Wanderer"
@@ -405,20 +405,20 @@ mission "Unfettered: Bring Hai"
 			has "language: Wanderer"
 	on offer
 		conversation
-			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Exiting your ship, you cannot avoid being caught up it in, almost carried, as they head towards the building. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most of the surrounding structures appear to be housing or bars, all with more dilapidated appearances. Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination; many are instead breaking away to fill the nearby bars.`
+			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Exiting your ship, you cannot avoid being caught up in it, almost carried, as they head towards the building. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances. Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination; many are instead breaking away to fill the nearby bars.`
 			choice
 				`	(Go into the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	Moving with the crowd towards the nearest stadium entrance, a large wide open corridor directly into seating areas around the main pavilion, you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, while waiting to filter inside you can already see some of what is going on inside over most of the crowd. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official looking Unfettered Hai await. They are approached by the next in line, a couple towing four children with them, who begin to plead, <firstgroup> The officials perhaps the "Chiefs" you have heard lead the Unfettered, speak among themselves, then, together, performs a gesture as they turn back to the petitioners. By the relief on their faces, you assume their request has been granted.`
+			`	Moving with the crowd towards the nearest stadium entrance, a large wide open corridor leading directly into the seating areas around the main pavilion, you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, while waiting to filter inside you can already see some of what is going on inside over most of the crowd. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official looking Unfettered Hai await. They are approached by the next in line, a couple towing four children with them, who begin to plead, <firstgroup> The officials perhaps the "Chiefs" you have heard lead the Unfettered, speak among themselves, then, together, performs a gesture as they turn back to the petitioners. By the relief on their faces, you assume their request has been granted.`
 			`	The next in line seems quite old, but he is moving around proudly, as if not limited by his age at all. <secondgroup> For him to speak this way, this soldier clearly has some special status or a reputation which has earned great respect. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
-			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, and mutterings and debate seem to be spreading through the crowd. This subject appears something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring in the crowd. "Hi. I have noticed you easily among Hai. Do you want me to help translate what they say?"`
+			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring in the crowd. "Hi. I have noticed you easily among Hai. Do you want me to help translate what they say?"`
 			choice
 				`	"Yes, thank you."`
 					goto translate
 				`	"Thank you, but I already understand what I need to."`
 				`	"I have no need of help."`
-			`	She seems a bit offended you do not wish her help, but does not press the matter further and proceeds to move away. Most of the Hai here are with what seems to be families or groups of friends, but you do not see your would be helper join anyone else as she returns to her previous spot in the shifting audience.`
+			`	She seems a bit offended you do not wish her help, but does not press the matter further and proceeds to move away. Most of the Hai here are with what seems to be families or groups of friends, but you do not see your would-be helper join anyone else as she returns to her previous spot in the shifting audience.`
 			choice
 				`	(Ignore her.)`
 					goto continue
@@ -444,8 +444,8 @@ mission "Unfettered: Bring Hai"
 			`	Merora leaves then, joining with the rest of the departing crowd, but on stage, the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
 				goto next
 			label continue
-			`	A child, younger, or at least smaller, than any other you've seen on stage so far, approaches the Chiefs. All alone, the child seems scared and perhaps even lost as he speaks, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting him as they speak quietly to each other. The Chief rise;. <thirdgroup> Progressively, every single Hai stands up and speaks, the message from each to volunteer clear. The Chief seems very moved by this, as a parent would be to see his child succeed in life. He designates one of the first to stand, and gently sends the child walking over to them.`
-			`	The sun is almost set, and you can see that the Chiefs are beginning to grow impatient as the next Hai approaches and speaks to them. <fourthgroup> The Chiefs speak amongst themselves briefly then one moves forward to address the crowd. <closing> At this, the crowd, including the young girl who offered to translate for you, leave, but the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
+			`	A child, younger, or at least smaller, than any other you've seen on stage so far, approaches the Chiefs. All alone, the child seems scared and perhaps even lost as he speaks, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting him as they speak quietly to each other. The Chief rises; <thirdgroup> Progressively, every single Hai stands up and speaks, the message from each to volunteer clear. The Chief seems very moved by this, as a parent would be to see his child succeed in life. He designates one of the first to stand, and gently sends the child walking over to them.`
+			`	The sun is almost set, and you can see that the Chiefs are beginning to grow impatient as the next Hai approaches and speaks to them. <fourthgroup> The Chiefs speak amongst themselves briefly then one moves forward to address the crowd. <closing> At this, the crowd, including the young girl who offered to translate for you, leaves, but the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
 			label next
 			`	As he grows closer, you can tell he is mumbling, presumably to himself, but he speaks in your language, "We do not get alien visitors often here. There has to be a reason for your presence..." Once he has closed the rest of the distance, he speaks again, directly to you and with more focus. "Sorry, I was just organizing my thoughts into your language. Well, you are here anyway, so, maybe, you could help us.`
 			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help a friend, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he explains, apparently a bit desperate, considering he knows very little, if anything at all, about you.`
@@ -456,7 +456,7 @@ mission "Unfettered: Bring Hai"
 					goto brethren
 				`	"Why do you need me to do it?"`
 			label whyme
-			`	"Well, normally they would be able to pay to come here, but the price now is quite high; too high. The Fettered Hai make it difficult for us to go anywhere; as you have probably noticed, they have a fleet on the border between us. And not many Hai captains are willing to come here. If they do, they charge large fees because of the obvious risks involved - for instance, getting killed in the cross fire. Yet you somehow made your way here, probably also under fire from our own people, but, if you choose to assist us, I'll ensure you won't have any issues getting out of here. So, are you willing to help us?"`
+			`	"Well, normally they would be able to pay to come here, but the price now is quite high; too high. The Fettered Hai make it difficult for us to go anywhere; as you have probably noticed, they have a fleet on the border between us. And not many Hai captains are willing to come here. If they do, they charge large fees because of the obvious risks involved - for instance, getting killed in the crossfire. Yet you somehow made your way here, probably also under fire from our own people, but, if you choose to assist us, I'll ensure you won't have any issues getting out of here. So, are you willing to help us?"`
 			choice
 				`	"Of course. What do you need me to do?"`
 					goto action
@@ -687,7 +687,7 @@ mission "Unfettered: Prove Your Strength"
 		to despawn
 			"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 		conversation
-			`Now that you have disabled the <npc>, its captain hails you. "It seems you fight well. You have earned my respect today," he says with a voice so calm you are surprised it came from the same captain who so recently ago was provoking you for no apparent reason. In the background you can hear a fire roaring. It looks like the damage to his ship was serious.`
+			`Now that you have disabled the <npc>, its captain hails you. "It seems you fight well. You have earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you can hear fires roaring. It looks like the damage to his ship was serious.`
 			choice
 				`	"Be careful with provoking me. You may have gotten killed. Do not count on me to repair your ship."`
 					goto dangerous
@@ -773,7 +773,7 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"Why can't you just use a jump drive and go there yourself?"`
 				`	"What will my cut be?"`
 					goto cut
-			`	"Jump drives are a very prized possession among my people. I would not risk one by travelling trough hostile space. You had access to a jump drive, so you should know about the hostiles to the south. The aliens to the north would not be very happy to see me either... A jump drive would not be of any help to us." He seems disappointed by you having to ask such an obvious thing.`
+			`	"Jump drives are a very prized possession among my people. I would not risk one by travelling through hostile space. You had access to a jump drive, so you should know about the hostiles to the south. The aliens to the north would not be very happy to see me either... A jump drive would not be of any help to us." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -782,7 +782,7 @@ mission "Unfettered: Prove Your Strength 2"
 			label cut
 			`	"You humans always seem obsessed with money... It is a large sum. I will only take one quarter of it, and you know how much my people value jump drives."`
 			label leave
-			`	"One last thing: We should not go there by jump drive, especially considering where we are going. It would only attract unwanted attention to us. Besides, we should not travel through Wanderer space; I do not want to try their patience or tolerance considering you have some association with us." You accompany him to your ship, and he admits to quite liking the interior of it, as well as general look of it. Your ship "is adequate for a warrior," he says.`
+			`	"One last thing: We should not go there by jump drive, especially considering where we are going. It would only attract unwanted attention to us. Besides, we should not travel through Wanderer space; I do not want to try their patience or tolerance considering you have some association with us." You accompany him to your ship, and he admits to quite liking the interior, as well as the general look of it. Your ship "is adequate for a warrior," he says.`
 				accept
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort allocated to carrying the jump drives behind - better launch and wait for it."
@@ -794,7 +794,7 @@ mission "Unfettered: Prove Your Strength 2"
 		outfit "Jump Drive" -4
 		payment 3000000
 		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
-		log "People" "Si-Ra" `A young, impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leadership and combat skills, and seems to be a fan of acquiring bigger and bigger ships. He's always trying to improve his tactics..`
+		log "People" "Si-Ra" `A young, impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leadership and combat skills, and seems to be a fan of acquiring bigger and bigger ships. He's always trying to improve his tactics.`
 		conversation
 			`"Here is your share: <payment>. You have saved my life, Captain <first>, and I shall never forget it. You have earned the right to know my name: "Si-Ra". It is one I deserve and wear proudly. Come see me again soon if you are up for a challenge. I'm sure that I will have what you want. In the meantime, make sure to check the job boards for more missions like this one."`
 			branch "hydra question"
@@ -850,7 +850,7 @@ mission "Unfettered: Jump Drive Retrieval"
 		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		conversation
-			`You park your ship close to the hidden depot, as suggested by the Hai. You are still close enough to the spaceport to not draw unwanted attention by landing off grid. These lesser-used auxiliary spaceports are often used by captains seeking a degree of discretion. Your crew should be able to intervene should anything go wrong.`
+			`You park your ship close to the hidden depot, as suggested by the Hai. You are still close enough to the spaceport to not draw unwanted attention by landing off-grid. These lesser-used auxiliary spaceports are often used by captains seeking a degree of discretion. Your crew should be able to intervene should anything go wrong.`
 			`	You then follow the Unfettered captain to the hatch. He is well-prepared and quite deft, even given that he is wearing what seems to be a heavy combat suit.`
 			choice
 				`	"Who made this vault? What should I expect?"`
@@ -873,7 +873,7 @@ mission "Unfettered: Jump Drive Retrieval"
 					goto discreet
 			`	You are not sure what kind of sign he just did, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
-			`	You both seem to be heading to a distant mountain, where you assume the cache is. On the way, you spot a local that appears to have gotten lost from the village, though you get the distinctive impression that something is odd about him, without being able to pinpoint what. As you get closer, more and more you get the impression that this vault no simple, small depot. You pass several security turrets and assume that even more defenses are hidden.  You wonder why these turrets would be in plain sight around a "hidden" depot. You cross a ridge, and you notice some of your surroundings look... weird, like the mountain has only been affected by the elements at some places and not others. Suddenly, the Hai stops and raises a hand high up, palm open. Recognizing the sign, you stop.`
+			`	You both seem to be heading to a distant mountain, where you assume the cache is. On the way, you spot a local that appears to have gotten lost from the village, though you get the distinctive impression that something is odd about him, without being able to pinpoint what. As you get closer, more and more you get the impression that this vault is no simple, small depot. You pass several security turrets and assume that even more defenses are hidden.  You wonder why these turrets would be in plain sight around a "hidden" depot. You cross a ridge, and you notice some of your surroundings look... weird, like the mountain has only been affected by the elements at some places and not others. Suddenly, the Hai stops and raises a hand high up, palm open. Recognizing the sign, you stop.`
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon and he dons his helmet. "Stay here. I will take care of it."`
 			choice
 				`	"Do you not want one extra gun, then?"`
@@ -909,10 +909,10 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Is this holographic field the reason we had to go into the vault in person, instead of just connecting it to the ship?"`
 					goto vault
-			`	"We needed to act discreetly so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defenses against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be to be more to it than what he's admitting.`
+			`	"We needed to act discreetly so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defenses against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to it than what he's admitting.`
 				goto ship
 			label vault
-			`	"Yes and no. It is not only a holographic generator but also a set of jammers, meaning your ship cannot pinpoint the exact location, and would have to land blindly. We also needed to make sure the jump drives were not sabotaged, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses." You have a hunch that there could be to be more to it than what he's admitting.`
+			`	"Yes and no. It is not only a holographic generator but also a set of jammers, meaning your ship cannot pinpoint the exact location, and would have to land blindly. We also needed to make sure the jump drives were not sabotaged, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses." You have a hunch that there could be more to it than what he's admitting.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
@@ -920,8 +920,8 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"The Unfettered are not the ones who placed those jump drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
 			
 			label ship
-			`	As soon as your shpi arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly on your ship if possible, to be able to flee more swifly. When your ship takes off, you notice more activity near the vault, and in the sky, than on the way in...`
-			`	The Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirming his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain quickly joins you on the bridge, probably used to being where the action can be seen.`
+			`	As soon as your ship arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly onto your ship if possible, to be able to flee more swifly. When your ship takes off, you notice more activity both near the vault and in the sky, than on the way in...`
+			`	The Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain quickly joins you on the bridge, probably used to being where the action can be seen.`
 				launch
 	on accept
 		"outfit" "Jump Drive" 4
@@ -1013,7 +1013,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 	on offer
 		set "unfettered: stopped on Greenbloom"
 		conversation
-			`You go meet the fleet admiral assigned to this so you can coordinate, and after a while everyone signals they are ready to take off.`
+			`You go meet the fleet admiral so you can coordinate with them, and after a while everyone signals they are ready to take off.`
 				flee
 
 
