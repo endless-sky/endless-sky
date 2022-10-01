@@ -983,6 +983,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 	source Hai-home
 	destination Darkcloak
 	passengers 1
+	payment 100000
 	to offer
 		has "Hai Reveal [A08] Symbol Identification: done"
 	on visit
@@ -990,7 +991,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 	on offer
 		"reputation: Hai (Unfettered)" >?= 10
 		conversation
-			`Come to find Teeneep and find her and Sayari arguing. Learn of the history of appeasement ("They've been doing this for decades!") and Teeneep's desire to take it public. "She will be censured from public life if she does not at least attempt to go through with normal resolution channels. She must confront the Elders directly."`
+			`You return to find Teeneep and Sayari arguing. Learn of the history of appeasement ("They've been doing this for decades!") and Teeneep's desire to take it public. "She will be censured from public life if she does not at least attempt to go through with normal resolution channels. She must confront the Elders directly."`
 			`As an aside, learn that the Elders have known of some Hai who have been captives on pirate vessels which have been destroyed by the Navy due to the risk to Navy personnel being too high to engage. This is the icing on the cake, not only appeasement of bottom-feeding humans, but also the tolerance of human governments knowingly doing nothing about it.`
 			`Go to the Elders, have the showdown, "We don't want to risk larger problems with humanity." "You're already risking larger issues with your current actions." Reuse the secrecy over safety line. (Sayari interprets while you spectate.)`
 			`Elders don't bend, take it to Xilin, Parliament won't act, Batu provides poignant commentary - has received instructive lessons as to what will or will not be accepted during this crisis (in general terms).`
@@ -1010,23 +1011,19 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 		has "Hai Reveal [A09] History of Appeasement: done"
 	on offer
 		log `Traveled to Unfettered Hai space with Teeneep and convinced them to throw their support behind her.`
-# Rework this to deal with Teeneep justifying her trueness (not just political opportunism), presenting the history of behavior to the Unfettered and requesting they support her in forcing the Elders into taking action. 
-# "I know it is distasteful to consider this sort of show." <insert player confusion> "Neither True Hai nor Fettered truly desire to shed the blood of the other. Our disagreement is a protest, a lesson to be learned that we are learning but slowly. Perhaps it is time though that we demonstrate the seriousness of our resolve, especially if the Elders have become so mired as for it to have come to this."
-# Unfettered offer to help, but can't just waltz through Hai and human space without being blasted.
 		conversation
-			`Teeneep has prepared to meet the Unfettered in a somewhat surprising manner; she's wearing what looks like a fencing outfit. There are two swords on her back and several balanced knives on her belt. She's wearing a headband with a medallion on it that looks like an athletic medal.`
-			`	She pays you for the trip and explains, "These blades are not ceremonial. Leave your gun behind, or the Unfettered may think you're an assassin. Trust me, we'll be fine." You hand your gun to a nearby Unfettered and hope Teeneep understands the Unfettered Hai as much as she claims to.`
+			`Teeneep makes a request on your approach and then goes to prepare. You are subsequently directed to a restricted landing zone near their government complex. When she reappears Teeneep has prepared to meet the Unfettered in a somewhat surprising manner; she's wearing what looks like a fencing outfit. There are two swords on her back and several balanced knives on her belt. She's wearing a headband with a medallion on it that looks like an athletic medal.`
+			`	She pays you for the trip and explains, "These blades are not ceremonial. Bring your gun with you, but it behind when we reach the chambers, or the Unfettered may think you're an assassin. Trust me, we'll be fine.`
 			`	"Let's go," she says.`
 			choice
 				`	"What's your plan?"`
 				`	(Follow her.)`
 					goto follow
-			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the "Fettered" and likely lure more recruits to their side. But before they agree, I have to prove myself in front of their troops. If I don't, the public's perception will be that the Unfettered leaders helped a weak coward.`
-			`	"Why else do you think the Hai Elders would pick the one fencing champion among their number for this trip?"`
+			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the "Fettered" and likely lure more recruits to their side. But before they agree, I have to prove myself in front of their troops. If I don't, the public's perception will be that the Unfettered leaders helped a weak coward. Fortunately, dangerous sports have a tendency to open doors for you in Hai society. They're an essential hobby for anyone who hopes to have influence and I have kept up with mine reasonably well. It's been a couple decades since I won anything, but I was regional champion in fencing a number of times when I was really into it."`
 			label follow
-			`	Teeneep takes a step forward, pauses, then turns back to you. "Actually, there was something I wanted to make sure I explained before we meet the Unfettered leadership: I'm carrying real weapons for a reason. This meeting will probably seem violent, and that will probably make you think the Unfettered are a barbaric people. They're not; they 'play up' their violent nature. It's a hard concept to explain - we have Hai words for this that don't translate well into your language. That's the simplest way I can think to explain it without spending twenty minutes here, so it'll have to suffice."`
+			`	Teeneep goes to disembark, pauses, then turns back to you. "Actually, before we leave the ship there was something I wanted to make sure I explained before we meet the Unfettered leadership: I'm carrying real weapons for a reason. This meeting will probably seem violent, and that will probably make you think the Unfettered are a barbaric people. They're not; they 'play up' their violent nature. It's a hard concept to explain - we have Hai words for this that don't translate well into your language. That's the simplest way I can think to explain it without spending twenty minutes here, so it'll have to suffice."`
 			`	She glances around. "Besides, we're already close to running late. Let's get going."`
-			`	You pass through a hallway filled with battle trophies and enter a large room filled with uniformed Hai. You notice many of them have swords similar to Teeneep's, though they look more ceremonial than functional.`
+			`	You enter the complex and she speaks as you pass through a hallway filled with battle trophies. "I have requested this conversation happen in human standard. This will be to your benefit, it is only polite, but it is also to mine. To shy from a challenge is not befitting a True Hai, and for this matter I think your tongue may be more eloquent. I should have them at a disadvantage." A moment later you reach a guarded door; you hand your gun to an Unfettered guard and hope Teeneep understands the Unfettered Hai as much as she claims to. Beyond, you enter a large room filled with uniformed Hai. You notice many of them have swords similar to Teeneep's, though they look more ceremonial than functional.`
 			`	As Teeneep walks in, an Unfettered moves to block her path. From the extensive decorations on his uniform, it appears he's a high-ranking officer. "You're not welcome here, False Hai." He starts to push her away. In one motion, Teeneep spins around, unsheathes a sword, and swipes it across his arm, drawing blood. The Hai grunts, surprised, and steps aside to let Teeneep pass. She walks toward the gigantic leader of the Unfettered, whose face betrays his surprise and admiration.`
 			choice
 				`	(Walk in and join Teeneep.)`
@@ -1034,21 +1031,32 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 					goto watch
 			`	As you enter the room, a pair of Unfettered grab you. Teeneep draws a throwing knife, saying with intensity, "Let Captain <last> go. Now." The Unfettered let go immediately, and she nods for you to stay where you are, sheathing the knife.`
 			label watch
-			`	Teeneep explains to the leader, "Twenty thousand Hai have been enslaved by human pirates. They're concealed in a subterranean base that can only be reached with both a Jump Drive and a Quantum Keystone. Dozens of human capital ships and thousands of human pirates guard the Hai. We haven't enough Jump Drives to rescue them.`
-			# Note: Teeneep is using hyperbole; she knows most of the 20,000 Hai at Elenchus were probably born there.
-			`	"You were once the protectors of all Hai. I ask you be so again. Free our people from slavery and kill their human slavers."`
-			`	The Unfettered leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you, a race of slothful cowards? Your people are an insult to all Hai."`
+			`	The leader's voice booms from where he sits at the other end of the room. "Come False Hai. You have entered here to make a case, have at it."`
+			`	Teeneep explains to the leader, "Five thousand Hai have been enslaved by human pirates, or vaporised when the human authorities have shot down their captors with no regard for the innocents on board. The Elders do not act. Will not act. They know, and do nothing. I have learned that they have known of some pirates who they felt were too much of a headache for decades, and that rather than hunt them down, they have paid them with technology. Our weapons and outfits. Paid them off to simply leave us alone, and not even to return any Hai they may have captured.`
+			`	"You were once the protectors of all Hai. I would honor that not out of political opportunism, but because our people need heroes and protectors that the Elders are not . So I stand here to ask you to be so again. Free our people from slavery and kill their human slavers."`
+			`	The Unfettered leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you, a race of slothful cowards? Your people are willingly blind and lost, an insult to all Hai."`
 			`	Teeneep suddenly takes three strides forward, closing the distance between her and the Unfettered leader in less than a second. You had forgotten how quick Hai are; few humans could do what she just did. "I challenge you for rule of the Unfettered military!"`
 			`	"You haven't the authority to do that," he responds, laughing.`
-			`	Teeneep draws a throwing knife and launches it. It zips through the air, passing within a hand's width of the Unfettered leader before embedding itself in the wall behind. "Fight me! Are you afraid to fight a woman half your size? Fight me, coward!" From her expression, you're unsure if she genuinely has that much faith in her abilities, or if this is a bluff.`
-			`	The Unfettered leader pauses, then smiles. "There is no need. Even on our planets, I've rarely met a Hai half as brave as you. You are a True Hai, and we protect our own. You have vouched for the value of the lives of these Hai, so we will send a fleet to rescue them. I will lead the attack myself."`
+			`	"Besides..." you see one of the other Unfettered to the right of the leader begin to step out. "You would ha..." Teeneep cuts the leader off as she draws a throwing knife and launches it. It zips through the air, and spears the shoulder of the Unfettered who began to move, embedding itself in the wall behind and pinning them in place.`
+			`	"I would have to what, defeat your right hand first?" She takes a step back and smirks at him. "Now, will you face a woman half your size?" From her expression, you're unsure if she genuinely has that much faith in her abilities, or if this is a bluff.`
+			`	The Unfettered leader pauses, then smiles. "There is no need. Even on our planets, I've rarely met a Hai half as brave as you. You have the courage to turn an act into action. You are a True Hai, and we protect our own. You have vouched for the value of the lives of these Hai, so I say now we are willing to send our fleets to their aid. I would come myself."`
 			`	She re-sheaths her swords and calls you over. "I have brought with me one of the greatest war heroes of the humans."`
 			choice
 				`	(Walk to her.)`
 			`	"Captain <first> <last> led great fleets during a civil war of the humans. I have seen <first>'s valor in battle while escorting my ship through pirate space. We will have the honor of fighting alongside this warrior of the humans."`
-			`	The Unfettered leader turns to you and says, "I look forward to seeing you fight. We cannot spare a large fleet though, so I will need your people to upgrade ten Shield Beetles to our specifications. We'll return your outfits after the battle." He motions to another officer, who hands him a data card. "These are the instructions."`
-			`	Teeneep turns to you. "Return to Hai-home and inform the Elders that an Unfettered fleet will arrive. We'll go ahead to <planet> so the outfitting can begin as soon as possible. When all is ready, meet us there."`
-			`	You return to your ship and prepare to leave.`
+			`	He looks at you appraisingly. "That is will, but there is a matter yet to be addressed. We cannot just waltz through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
+			`	"They will not allow it," says Teeneep. "We must force them."`
+			`	A round of muttering breaks out around the room.`
+			`	"The threat of true war then..." In the ensuing silence you swear you could have heard a pin drop.`
+			`	Teeneep bows her head. "I know it is distasteful to consider this sort of show."`
+			`	The Unfettered leader considers her for a long moment before raising his head and slowly assessing the room, making eye contact with each of the others standing by.`
+			`	All bravado and bluster seems to be gone from him now as he finally speaks. "Five thousand Hai you say?"`
+			`	"At least," she says, lifting her head to lock eyes with him.`
+			`	With the weight of a proclamation he responds, "Then it shall be so."`
+			`	There is a moment where it seems as if something respectful is being observed and then, like a switch being flicked, the energy returns and the leader smiles at you as those around start jostling and making quiet remarks to each other.`
+			`	The Unfettered leader seems to sense your confusion. "Neither True Hai nor Fettered truly desire to shed the blood of the other. Our disagreement is a protest, a lesson to be learned that we are learning but slowly. Perhaps it is time though that we demonstrate the seriousness of our resolve, especially if the Elders have become so mired as for it to have come to this."`
+			`	He grins. "I look forward to seeing you fight, human. Now both of you, go. Do what you must."`
+			`	Teeneep turns and leads you out, making sure they return your weapon as you leave. "Now we must return to <destination> and address the Elders again. Hopefully they will now see reason."`
 				accept
 
 
@@ -1066,10 +1074,12 @@ mission "Hai Reveal [A11] Sound the Alarm"
 		event "hai and human ships at wormhole"
 #		log ``
 		conversation
-			`Teeneep confronts the Elders again, tells them about the offer that the Unfettered provide. "If you don't do it, they will." Once again, the Elders remain passive and decline taking action. Insist that the Unfettered wouldn't dare move.`
-			`Teeneep goes public with the situation to Hai society, telling them of the failings of the Elders in keeping the Hai safe. Including the willingness of the Unfettered to make open bloody war to force this matter to a resolution. This is what causes the snap election that will lead to Teeneep becoming an elected Elder.`
-			`Sayari finds you and slips you a warning that the winds of change have picked up and all communication in or out of Hai space will be cut off the instant the election is announced formally. You tell Alondo, he directs you to fly to Mountaintop with *all* possible haste.`
-			`Hai security forces close the border and you have to run the gauntlet. However, the favor you have accrued at multiple levels of Hai society stays the hand of retribution.`
+			`<Teeneep confronts the Elders again, tells them about the offer that the Unfettered provide. "If you don't do it, they will." Once again, the Elders remain passive and decline taking action. Insist that the Unfettered wouldn't dare move.`
+			`<Teeneep goes public with the situation to Hai society, telling them of the failings of the Elders in keeping the Hai safe. Including the willingness of the Unfettered to make open bloody war to force this matter to a resolution. This is what causes the snap election that will lead to Teeneep becoming an elected Elder.`
+			`<Sayari finds you and slips you a warning that the winds of change have picked up and all communication in or out of Hai space will be cut off the instant the election is announced formally. You tell Alondo, he directs you to fly to Mountaintop with *all* possible haste.`
+			`<Hai security forces close the border and you have to run the gauntlet. However, the favor you have accrued at multiple levels of Hai society stays the hand of retribution.`
+	on enter "Waypoint"
+		dialog `As you enter Waypoint one of the Hai captains hails you. "Captain, we've orders to close the border to everyone but... We know you've been doing official business and we haven't been told to specifically block you. We also owe you one. You can go through, but don't try and bring anyone with you. We'll have no choice but to fire upon you and them if you do."`
 
 event "hai and human ships at wormhole"
 	system "Waypoint"
