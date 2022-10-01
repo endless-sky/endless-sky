@@ -1078,6 +1078,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`<Teeneep goes public with the situation to Hai society, telling them of the failings of the Elders in keeping the Hai safe. Including the willingness of the Unfettered to make open bloody war to force this matter to a resolution. This is what causes the snap election that will lead to Teeneep becoming an elected Elder.`
 			`<Sayari finds you and slips you a warning that the winds of change have picked up and all communication in or out of Hai space will be cut off the instant the election is announced formally. You tell Alondo, he directs you to fly to Mountaintop with *all* possible haste.`
 			`<Hai security forces close the border and you have to run the gauntlet. However, the favor you have accrued at multiple levels of Hai society stays the hand of retribution.`
+				accept
 	on enter "Waypoint"
 		dialog `As you enter Waypoint one of the Hai captains hails you. "Captain, we've orders to close the border to everyone but... We know you've been doing official business and we haven't been told to specifically block you. We also owe you one. You can go through, but don't try and bring anyone with you. We'll have no choice but to fire upon you and them if you do."`
 
@@ -1157,6 +1158,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`He mentions somewhat offhand that when this went on as long as it did he pulled strings to get some cruisers specially equipped for deep-range, long-duration missions. He is grim about the fact that his preparation now appears to be paying dividends.`
 			`It's all falling apart.`
 			`	b) In conjunction with things breaking down out there, they're also breaking down in here. Turner says the movie production is going terribly. "The script needs massive rewrites!" Meta commentary on Hai Reveal. Mention plot points from Philosopher's Liberation. Mention something about philosopher kings being a plot point. Turner mentions the line about the kiss with the finger-sized incisors and follows it up with, "Who even wrote this? Who writes this stuff?"`
+				accept
 
 
 

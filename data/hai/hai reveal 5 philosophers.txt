@@ -324,6 +324,9 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 	source Earth
 	destination Wayfarer
 	clearance `Curious about your story, the authorities let you land.`
+	to offer
+		has "Hai Reveal [B04] The Road Not Taken: done"
+		not "event: knows about keystones and wormholes"
 	on offer
 		conversation
 			`<You return and tell Giti about the system with the unstable wormhole in it that you do not know how to safely access.>`
