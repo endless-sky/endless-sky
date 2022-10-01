@@ -451,6 +451,7 @@ outfit "Sand Cell"
 	"heat generation" 2.45
 	description "The Sand Cell is the smallest Hai generator. It was designed for ships which don't need or are unable to carry a nuclear reactor, and it clearly resembles human fuel cells."
 
+
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
 	category "Engines"
@@ -577,7 +578,7 @@ outfit `"Benga" Reverse Thruster`
 		"frame rate" 14
 	"flare sound" "atomic tiny"
 	description "Unlike human space where atomic engines are a rare sight to see and a luxury to have, many years of being confined to a relatively small pocket of the Galaxy has allowed all Hai ships to be outfitted with atomic engines."
-	
+
 outfit `"Biroo" Reverse Thruster`
 	category "Engines"
 	"cost" 610000
