@@ -23,8 +23,8 @@ mission "Hai Reveal [B01] Information Blackout"
 	on offer
 		event "hai and human ships at wormhole"
 		conversation
-			`<Insert news item upon landing about The Navy moving a large fleet into the uninhabited region around Ultima Thule and blockades going up in Rigel, Nihal, Mirfak & Zaurak>`
-			`<you get contacted and told to visit the spaceport to meet with the captain of the Syndicate security detachment and get briefed.>`
+			`Arriving on Sunracer, the entire port seems to be abuzz with the news. It has not gone unnoticed that the Navy moved a large fleet into the uninhabited systems in the northern corridor between Syndicate space and the Far North. Now, it seems that blockades are going up in Rigel, Nihal, Mirfak & Zaurak using Navy or Syndicate security vessels depending on jurisdiction. The theories are flying thick and fast, but everyone seems to agree on one thing; there is some sort of major crisis happening.`
+			`Your communicator beeps and you realize you have received a message from Remington. There's a Captain of one of their security detachments waiting to meet you in the spaceport. Apparently there've been developments while you were in flight. Now might be the last opportunity to sort anything else out for a little while.`
 				accept
 
 
