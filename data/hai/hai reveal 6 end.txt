@@ -13,7 +13,7 @@
 
 ########################################################################
 
-mission "Hai Reveal [D01] Cleanup"
+mission "Hai Reveal [C01] Cleanup"
 	landing
 	name "Hai Diplomacy"
 	description "With the crisis now averted, all that remains is to go to Mountaintop for the formalities."
@@ -108,7 +108,7 @@ event "mountaintop ascendant"
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad, carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive, and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 1
 	
-mission "Hai Reveal [D02] Cleanup"
+mission "Hai Reveal [C02] Cleanup"
 	landing
 	name "Hai Diplomacy"
 	description "Pick up a misplaced group of kidnapped Hai and find out what happened."
@@ -118,7 +118,7 @@ mission "Hai Reveal [D02] Cleanup"
 	passengers 23
 	blocked "You need <bunks> passenger spaces to pick up the misplaced Hai; make sure you have that, and then return here."
 	to offer
-		has "Hai Reveal [D01] Cleanup: done"
+		has "Hai Reveal [C01] Cleanup: done"
 	on stopover
 		conversation
 			`Arriving on Sunracer, you follow the coded coordinates you were given to avoid drawing unnecessary attention. With the Hai's first public appearance only just days past and still dominating the news cycle, you've been instructed to keep this as low-profile as possible. Fortunately, a glance at the feeds your ship picks up seems to indicate that the government response has taken the wind out of the more sensationalist talking heads - or at least the ones with notable followings.`
@@ -151,25 +151,25 @@ mission "Hai Reveal [D02] Cleanup"
 			`	The Hai sincerely thanks you, and they load their meager possessions and board your ship in less than twenty minutes. The Star Barge isn't in good shape after being lived in instead of flown, so you leave it behind.`
 
 
-mission "Hai Reveal [D02A] Cleanup"
+mission "Hai Reveal [C02A] Cleanup"
 	landing
 	invisible
 	source "Sunracer"
 	to offer
-		has "Hai Reveal [D02] Cleanup: active"
+		has "Hai Reveal [C02] Cleanup: active"
 	on enter Mirfak
 		dialog "A message from Alastair Korban pops up before you can depart Mirfak. 'Hey, Captain. It seems Terry has gone missing; if you see her, let her know she will lose her position if she doesn't return to her duties soon.'"
 		fail
 
 
-mission "Hai Reveal [D03] Cleanup"
+mission "Hai Reveal [C03] Cleanup"
 	landing
 	name "Loose Ends"
 	description "See if you can find Terry. She might have been involved in the kidnappings."
 	source "Mountaintop"
 	destination "Freedom"
 	to offer
-		has "Hai Reveal [D02] Cleanup: done"
+		has "Hai Reveal [C02] Cleanup: done"
 	on offer
 		event "lofty spawn"
 		log `Recovered Hai after mysterious circumstances left them on Sunracer. Heading to Freedom to follow up on a hunch about this loose end. Will hopefully find answers there.`
@@ -190,7 +190,7 @@ mission "Hai Reveal [D03] Cleanup"
 			`	You leave them with only guesses. You're not entirely sure yourself what's going on, but you do know one thing: you have to go to Freedom, where this all began.`
 				accept	
 	
-mission "Hai Reveal [D04] Cleanup"
+mission "Hai Reveal [C04] Cleanup"
 	landing
 	name "Loose Ends"
 	description "Find Aspiration in the Al Hurr system. It wasn't on the maps before, but it's supposed to be close by."
@@ -198,7 +198,7 @@ mission "Hai Reveal [D04] Cleanup"
 	destination "Aspiration"
 	clearance
 	to offer
-		has "Hai Reveal [D03] Cleanup: done"
+		has "Hai Reveal [C03] Cleanup: done"
 	on enter Almaaz
 		dialog `As you depart the planet, you notice a new system has appeared on your scanners to the southwest. You should adjust your destination accordingly.`
 	on offer
@@ -339,7 +339,7 @@ event "lofty goals"
 		"required reputation" 100
 
 
-mission "Hai Reveal [D05] Cleanup"
+mission "Hai Reveal [C05] Cleanup"
 	landing
 	name "Loose Ends"
 	description "Return to the summit and assure Sayari and Xilin that there will be no further problems."
@@ -347,7 +347,7 @@ mission "Hai Reveal [D05] Cleanup"
 	destination "Mountaintop"
 	clearance
 	to offer
-		has "Hai Reveal [D04] Cleanup: done"
+		has "Hai Reveal [C04] Cleanup: done"
 	on offer
 		conversation
 			`	Your arrival is unobstructed as you land on this mild, habitable world that appears to be in an advanced, but retreating, ice age. No one comes to greet you at the spaceport, either. As you wander into the single major town, built on a promontory overlooking a wide river mouth, you notice that the people here seem to be happy and the town appears to be remarkably modern. This place has been looked after by someone who knew how to source the necessary import goods to support it on this sparse world of grasses and something resembling pine trees - someone who was protege to the CEO of the Syndicate, for example...`
@@ -430,13 +430,13 @@ event "Vara K'chrai is accessible"
 
 event "wandering nightmare map"
 
-mission "Hai Reveal [D05A] Spare Terry"
+mission "Hai Reveal [C05A] Spare Terry"
 	landing
 	invisible
 	source "Aspiration"
 	destination "Mountaintop"
 	to offer
-		has "Hai Reveal [D04] Cleanup: done"
+		has "Hai Reveal [C04] Cleanup: done"
 	to fail
 		has "ended terry"
 	to complete
@@ -445,13 +445,13 @@ mission "Hai Reveal [D05A] Spare Terry"
 		log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Allowed her to live, but nevertheless this loose end is thoroughly tied up.`
 		log "People" "Terry Adrianopolous" `During the Hai-human crisis, Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and rebuilding the government to be less corrupt, but she condoned kidnapping and exploitation to achieve it. With her life in ruins, she continues to live on the world of Aspiration, far from civilization.`
 	
-mission "Hai Reveal [D05B] End Terry"
+mission "Hai Reveal [C05B] End Terry"
 	landing
 	invisible
 	source "Aspiration"
 	destination "Mountaintop"
 	to offer
-		has "Hai Reveal [D04] Cleanup: done"
+		has "Hai Reveal [C04] Cleanup: done"
 	to fail
 		has "spared terry"
 	to complete

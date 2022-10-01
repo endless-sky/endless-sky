@@ -843,13 +843,13 @@ mission "Hai Reveal [B12-A] Devil-Hide Fleet"
 		has "Hai Reveal [B11] Moving Together: done"
 # Safety Feature: Workaround for bug #1938 is to introduce another bug the user is unlikely to trigger. Visit Hai-home with this fleet and it vanishes.
 	to complete
-		has "Hai Reveal [D01] Cleanup: done"
+		has "Hai Reveal [C01] Cleanup: done"
 	to fail
 		or
 			has "Hai Reveal [B12] Devil-Hide Battle: failed"
 			has "Hai Reveal [B12] Devil-Hide Battle: declined"
-			has "Hai Reveal [D01] Cleanup: failed"
-			has "Hai Reveal [D01] Cleanup: declined"
+			has "Hai Reveal [C01] Cleanup: failed"
+			has "Hai Reveal [C01] Cleanup: declined"
 			has "Hai Reveal [B13] Freedom: failed"
 			has "Hai Reveal [B13] Freedom: declined"
 	npc accompany

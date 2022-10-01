@@ -13,7 +13,7 @@
 
 ########################################################################
 
-mission "HRF 00 Resolution Timer"
+mission "Hai Reveal [D00] Resolution Timer"
 	landing
 	invisible
 	to offer
@@ -25,7 +25,7 @@ mission "HRF 00 Resolution Timer"
 event "hai-human treaty prepared"
 
 
-mission "HRF 01A Summoned to Mountaintop"
+mission "Hai Reveal [D01A] Summoned to Mountaintop"
 	landing
 	name "Treaty at <planet>"
 	description "Go to <destination> to witness the signing of the Hai-human treaty."
@@ -34,7 +34,7 @@ mission "HRF 01A Summoned to Mountaintop"
 		not attributes "uninhabited"
 	destination "Mountaintop"
 	to offer
-		not "HRF 01B Summoned to Mountaintop: offered"
+		not "Hai Reveal [D01B] Summoned to Mountaintop: offered"
 		#This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
 		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
 		has "event: hai-human treaty prepared"
@@ -53,7 +53,7 @@ mission "HRF 01A Summoned to Mountaintop"
 			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on <destination> when you're ready.`
 				accept
 	
-mission "HRF 01B Summoned to Mountaintop"
+mission "Hai Reveal [D01B] Summoned to Mountaintop"
 	landing
 	name "Treaty at <planet>"
 	description "Go to <destination> to witness the signing of the Hai-human treaty."
@@ -62,7 +62,7 @@ mission "HRF 01B Summoned to Mountaintop"
 		not attributes "uninhabited"
 	destination "Mountaintop"
 	to offer
-		not "HRF 01A Summoned to Mountaintop: offered"
+		not "Hai Reveal [D01A] Summoned to Mountaintop: offered"
 		#This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
 		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
 		has "event: hai-human treaty prepared"
@@ -123,7 +123,7 @@ event "cardax site chosen"
 		"required reputation" 1000
 	
 	
-mission "HRF 02 Escort to Cardax"
+mission "Hai Reveal [D02] Escort to Cardax"
 	landing
 	name "<planet> Construction"
 	description "Escort a Geocoris to <destination> to begin the construction of a security station."
@@ -134,8 +134,8 @@ mission "HRF 02 Escort to Cardax"
 		dialog `You have arrived without the ship you are escorting. You must take off and wait for it to continue.`
 	to offer
 		or
-			has "HRF 01A Summoned to Mountaintop: done"
-			has "HRF 01B Summoned to Mountaintop: done"
+			has "Hai Reveal [D01A] Summoned to Mountaintop: done"
+			has "Hai Reveal [D01B] Summoned to Mountaintop: done"
 	on offer
 		event "cardax pirates waiting"
 		conversation
@@ -197,7 +197,7 @@ event "cardax pirates waiting"
 		"required reputation" -10
 	
 	
-mission "HRF 03 Defend Mooncreek Construction Site"
+mission "Hai Reveal [D03] Defend Mooncreek Construction Site"
 	landing
 	name "<planet> Construction"
 	description "Defend until construction can be completed."
@@ -206,7 +206,7 @@ mission "HRF 03 Defend Mooncreek Construction Site"
 	on visit
 		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
 	to offer
-		has "HRF 02 Escort to Cardax: done"
+		has "Hai Reveal [D02] Escort to Cardax: done"
 	on offer
 		event "mooncreek founded"
 		conversation
@@ -296,14 +296,14 @@ event "mooncreek founded"
 		security 0.2
 	
 	
-mission "HRF 04 Escort Republic Outfitters"
+mission "Hai Reveal [D04] Escort Republic Outfitters"
 	landing
 	name "<origin> Construction"
 	description "Escort outfitters to build up <origin> station."
 	source "Mooncreek"
 	destination "Maelstrom"
 	to offer
-		has "HRF 03 Defend Mooncreek Construction Site: done"
+		has "Hai Reveal [D03] Defend Mooncreek Construction Site: done"
 	on offer
 		event "mooncreek operational"
 		payment 10000000
@@ -377,7 +377,7 @@ event "mooncreek operational"
 		security 0.4
 
 
-mission "HRF 05 Escort Republic Outfitters"
+mission "Hai Reveal [D05] Escort Republic Outfitters"
 	landing
 	name "<planet> Construction"
 	description "Escort outfitters to build up <planet> station."
@@ -386,7 +386,7 @@ mission "HRF 05 Escort Republic Outfitters"
 	on visit
 		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
 	to offer
-		has "HRF 04 Escort Republic Outfitters: done"
+		has "Hai Reveal [D04] Escort Republic Outfitters: done"
 	on offer
 		conversation
 			`When you arrive on <origin>, you are greeted by a representative of Lovelace Labs. They and their Navy escort are ready to depart on their PR flight immediately.`
@@ -413,14 +413,14 @@ mission "HRF 05 Escort Republic Outfitters"
 				"Rainmaker" 3
 
 
-mission "HRF 06 Escort Syndicate Outfitters"
+mission "Hai Reveal [D06] Escort Syndicate Outfitters"
 	landing
 	name "<origin> Construction"
 	description "Escort outfitters to build up <origin> station."
 	source "Mooncreek"
 	destination "Sunracer"
 	to offer
-		has "HRF 05 Escort Republic Outfitters: done"
+		has "Hai Reveal [D05] Escort Republic Outfitters: done"
 	on offer
 		event "mooncreek republic garrison"
 		conversation
@@ -440,7 +440,7 @@ event "mooncreek republic garrison"
 		add fleet "Large Republic" 3000
 
 
-mission "HRF 07 Escort Syndicate Outfitters"
+mission "Hai Reveal [D07] Escort Syndicate Outfitters"
 	landing
 	name "<planet> Construction"
 	description "Escort outfitters to build up <planet> station."
@@ -449,7 +449,7 @@ mission "HRF 07 Escort Syndicate Outfitters"
 	on visit
 		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
 	to offer
-		has "HRF 06 Escort Syndicate Outfitters: done"
+		has "Hai Reveal [D06] Escort Syndicate Outfitters: done"
 	on offer
 		event "mooncreek spaceport"
 		conversation
@@ -483,7 +483,7 @@ event "mooncreek spaceport"
 		security 0.6
 
 
-mission "HRF 08 Escort Hai Outfitters"
+mission "Hai Reveal [D08] Escort Hai Outfitters"
 	landing
 	name "Mooncreek Construction"
 	description "Escort outfitters to build up Mooncreek station."
@@ -491,7 +491,7 @@ mission "HRF 08 Escort Hai Outfitters"
 	destination "Mountaintop"
 	passengers 1
 	to offer
-		has "HRF 07 Escort Syndicate Outfitters: done"
+		has "Hai Reveal [D07] Escort Syndicate Outfitters: done"
 	on offer
 		event "mooncreek syndicate garrison"
 		conversation
@@ -511,7 +511,7 @@ event "mooncreek syndicate garrison"
 		add fleet "Large Syndicate" 3000
 
 
-mission "HRF 09 Escort Hai Outfitters"
+mission "Hai Reveal [D09] Escort Hai Outfitters"
 	landing
 	name "<planet> Construction"
 	description "Escort outfitters to build up <planet> station."
@@ -521,7 +521,7 @@ mission "HRF 09 Escort Hai Outfitters"
 	on visit
 		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
 	to offer
-		has "HRF 08 Escort Hai Outfitters: done"
+		has "Hai Reveal [D08] Escort Hai Outfitters: done"
 	on offer
 		conversation
 			`The Hai on Mountaintop are fully prepared. Everyone is eager to get this part over and done with.`
@@ -535,7 +535,7 @@ mission "HRF 09 Escort Hai Outfitters"
 		
 #The Free Worlds demand a tour so they can be seen to be contributing to the wider benefit of humanity. (They're PR hogs.)
 #This will need branches in the event of future alternative campaigns.
-mission "HRF 10 Escort Free World Outfitters"
+mission "Hai Reveal [D10] Escort Free World Outfitters"
 	landing
 	name "<origin> Construction"
 	description "Escort outfitters to build up <origin> station."
@@ -543,7 +543,7 @@ mission "HRF 10 Escort Free World Outfitters"
 	destination "Solace"
 	passengers 1
 	to offer
-		has "HRF 09 Escort Hai Outfitters: done"
+		has "Hai Reveal [D09] Escort Hai Outfitters: done"
 	on offer
 		event "mooncreek main outfitters" 15
 		conversation
@@ -576,7 +576,7 @@ mission "HRF 10 Escort Free World Outfitters"
 			
 		
 
-mission "HRF 11 Escort Free World Outfitters"
+mission "Hai Reveal [D11] Escort Free World Outfitters"
 	landing
 	name "Mooncreek Construction"
 	description "Meet up with more outfitters for Mooncreek on <destination>."
@@ -586,7 +586,7 @@ mission "HRF 11 Escort Free World Outfitters"
 	on visit
 		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
 	to offer
-		has "HRF 10 Escort Free World Outfitters: done"
+		has "Hai Reveal [D10] Escort Free World Outfitters: done"
 	on offer
 		conversation
 			`When you arrive on Solace, the Delta V convoy is ready and waiting along with one of their head engineers. They also seem to have sent their most blustery and arrogant sales representative, much to the chagrin of their engineer. Fortunately for everyone, they will each be traveling on separate ships, and not on yours.`
@@ -599,7 +599,7 @@ mission "HRF 11 Escort Free World Outfitters"
 		ship "Hauler III" "F.S. Juniper"
 
 
-mission "HRF 12 Escort Free World Outfitters"
+mission "Hai Reveal [D12] Escort Free World Outfitters"
 	landing
 	autosave
 	name "<planet> Construction"
@@ -610,7 +610,7 @@ mission "HRF 12 Escort Free World Outfitters"
 	on visit
 		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
 	to offer
-		has "HRF 11 Escort Free World Outfitters: done"
+		has "Hai Reveal [D11] Escort Free World Outfitters: done"
 	on offer
 		conversation
 			`On <origin>, it is tempting to take the time to go and catch up with Barmy Edward, but the Kraz convoy were already prepared a day early and near enough to meeting you in orbit.`
@@ -668,43 +668,43 @@ event "mooncreek fw outfitters"
 
 
 #add syndicate hai and republic outfitters event - do not add FW outfitter event - proceed to trigger story conclusion.
-mission "HRF 0XA Skipped Mooncreek Escorts"
+mission "Hai Reveal [D0XA] Skipped Mooncreek Escorts"
 	landing
 	invisible
 	to offer
-		has "HRF 04 Escort Republic Outfitters: declined"
+		has "Hai Reveal [D04] Escort Republic Outfitters: declined"
 	on offer
 		event "mooncreek main outfitters" 30
 		fail
 	
-mission "HRF 0XB Skipped Mooncreek Escorts"
+mission "Hai Reveal [D0XB] Skipped Mooncreek Escorts"
 	landing
 	name "Hai-Human Treaty Signing"
 	description "Travel to Mountaintop for the final treaty signing."
 	destination "Mountaintop"
 	to offer
 		has "mooncreek main outfitters" 
-		not "HRF 04 Escort Republic Outfitters: done"
+		not "Hai Reveal [D04] Escort Republic Outfitters: done"
 	on offer
 		conversation
 			`In your absence the Mooncreek station has been fully completed. You are summoned to Mountaintop for the final treaty signing.`
 				accept
 
-mission "HRF 0XC Skipped Mooncreek Escorts"
+mission "Hai Reveal [D0XC] Skipped Mooncreek Escorts"
 	landing
 	name "Hai-Human Treaty Signing"
 	description "Travel to Mountaintop for the final treaty signing."
 	destination "Mountaintop"
 	to offer
 		has "mooncreek main outfitters" 
-		has "HRF 10 Escort Free World Outfitters: declined"
+		has "Hai Reveal [D10] Escort Free World Outfitters: declined"
 	on offer
 		conversation
 			`In your absence the Mooncreek station has been fully completed. You are summoned to Mountaintop for the final treaty signing.`
 				accept
 	
 
-mission "HRF 13 Travel to Mountaintop"
+mission "Hai Reveal [D13] Travel to Mountaintop"
 	landing
 	name "Hai Treaty"
 	description "Travel to <destination> for the official signing of the Human-Hai Treaty."
@@ -712,7 +712,7 @@ mission "HRF 13 Travel to Mountaintop"
 	destination "Mountaintop"
 	passengers 1
 	to offer
-		has "HRF 12 Escort Free World Outfitters: done"
+		has "Hai Reveal [D12] Escort Free World Outfitters: done"
 	on offer
 		event "mooncreek fw outfitters" 12
 		payment 6000000
@@ -721,16 +721,16 @@ mission "HRF 13 Travel to Mountaintop"
 				accept
 
 
-mission "HRF 14 Hai-Human Treaty"
+mission "Hai Reveal [D14] Hai-Human Treaty"
 	landing
 	name "Hai Treaty"
 	description "Participate in the official signing of the Human-Hai Treaty."
 	source "Mountaintop"
 	to offer
 		or
-			has "HRF 13 Travel to Mountaintop: done"
-			has "HRF 0XB Skipped Mooncreek Escorts: done"
-			has "HRF 0XC Skipped Mooncreek Escorts: done"
+			has "Hai Reveal [D13] Travel to Mountaintop: done"
+			has "Hai Reveal [D0XB] Skipped Mooncreek Escorts: done"
+			has "Hai Reveal [D0XC] Skipped Mooncreek Escorts: done"
 	on offer
 		event "hai-human treaty signed"
 		event "mooncreek realized" 15

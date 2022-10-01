@@ -13,7 +13,7 @@
 
 ########################################################################
 
-# Part 4: Search Korath and human space for the missing researchers
+# Part 4: The crisis expands in scope.
 
 #Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
 mission "Hai Reveal [A00] Darkwaste Timer"
