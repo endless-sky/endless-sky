@@ -37,9 +37,8 @@ ship "Aphid"
 	outfits
 		"Chameleon Anti-Missile"
 		"Sand Cell" 2
-		"Hai Chasm Batteries"
+		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
-		`"Basrem" Reverse Thruster`
 		`"Basrem" Atomic Thruster`
 		`"Basrem" Atomic Steering`
 		"Hyperdrive"
