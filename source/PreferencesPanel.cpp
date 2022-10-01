@@ -589,7 +589,7 @@ void PreferencesPanel::DrawPlugins()
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &error = *GameData::Colors().Get("bright error");
+	const Color &error = *GameData::Colors().Get("plugin reload required");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
