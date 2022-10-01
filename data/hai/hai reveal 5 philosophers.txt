@@ -721,7 +721,7 @@ mission "Hai Reveal [B11] Moving Together"
 			names "hai"
 			variant
 				"Shield Beetle (Particle Jump)"
-				"Shield Beetle" "Shield Beetle (Plasma Blaster Jump)"
+				"Shield Beetle (Plasma Blaster Jump)"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
@@ -858,8 +858,8 @@ mission "Hai Reveal [B12-A] Devil-Hide Fleet"
 		fleet
 			names "hai"
 			variant
-				"Shield Beetle (Particle Jump)" 1
-				"Shield Beetle" "Shield Beetle (Plasma Blaster Jump)" 1
+				"Shield Beetle (Particle Jump)"
+				"Shield Beetle (Plasma Blaster Jump)"
 
 
 
