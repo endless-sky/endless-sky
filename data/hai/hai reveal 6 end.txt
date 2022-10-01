@@ -584,8 +584,7 @@ fleet "Free Worlds Friendly Wormhole Guards"
 
 event "hai-human resolution announced"
 	
-	# Fleet build-up is gone, no more smugglers, and everyone is monitoring
-	# everyone else.
+	# Fleet build-up is gone, no more smugglers, and everyone is monitoring everyone else.
 
 	# Pirates at Ultima Thule are intentionally retained as the
 	# illegal activity the humans are preventing. Notice that the

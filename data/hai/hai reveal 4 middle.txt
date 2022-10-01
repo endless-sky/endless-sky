@@ -801,7 +801,7 @@ mission "Hai Reveal [A06a] The Calm"
 				`	"I thought even pirates wouldn't blow up relays?"`
 				`	"Why would they be doing that, don't they use them too?"`
 			label relays
-			`	Remingont nods. "Yes, well, this deep end of space has never had relays. No one out here has needed them; and for a long time the marauders have been using the communications darkness out this way to be able to get around and do their business with impunity. There are no worlds disconnected, so there's no benefit to them, only disadvantage because ships out this way can then call for help when they couldn't before. So the relays the Syndicate have been putting up have been getting destroyed, along with several of our security ships.`
+			`	Remington nods. "Yes, well, this deep end of space has never had relays. No one out here has needed them; and for a long time the marauders have been using the communications darkness out this way to be able to get around and do their business with impunity. There are no worlds disconnected, so there's no benefit to them, only disadvantage because ships out this way can then call for help when they couldn't before. So the relays the Syndicate have been putting up have been getting destroyed, along with several of our security ships.`
 			`	"This one that you see in front of you is different though." He makes eye contact with Alondo and very deliberately emphases the word as he continues, "WE have been working with the Hai to make some relays that look like they're human-made, but utilize some more advanced Hai technology to baffle any scanners attempting to identify their location within a system. These should allow us to make the communication links without having marauders come through and destroy them."`
 			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered by someone human, trustworthy, and who's not likely to get blown up by a marauder. Which would be you."`
 			choice
@@ -832,7 +832,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 	autosave
 	landing
 	name "Preparation & Investigation"
-	description `Stop by <destination> on your way to following up the lead from Alondo.`
+	description `Stop by <destination> to pick up Batu Cegeen on your way to following up the lead from Alondo.`
 	source Mountaintop
 	waypoint Sumar
 	waypoint Cardax
@@ -843,12 +843,65 @@ mission "Hai Reveal [A07] Deliver the Relays"
 	to offer
 		has "Hai Reveal [A06a] The Calm: done"
 	on offer
+		log "People" "Terry Adrianopoulos" `Terry Adrianopoulos is the secretary of Samuel Remington, or at least that's how he puts it. Remington mentioned an internal political situation within the Syndicate while glancing at Terry, so there may be something larger at play with her presence. Hopefully it doesn't conflict with resolving the situation with the Hai.`
+		log "People" "David Turner" `An entrepreneur with a sharp mind, he was drawn into the cover story in the instrumental role of providing the funding, at least officially, for the movie production. It was not clear if he expected to profit from it, or simply saw it as an incomparable experience.`
 		conversation
-			`<Check up on mountaintop, have Terry tell you all about how well it's going with David Cohen's directing. Learn about her background as COO - explains her competency>`
-			`<Meet Turner properly, hear about how well the movie is going with brief synopsis - also hear about the latency/black spot and tourist security reasons for needing relays in the target systems.>`
-			`	The station is working, and the cover is gaining traction. From what I hear they're even actually making the movie now, but this poses a `
-			`<call out the syndicate advertising over the wormhole (make sure it's happened by this point)>`
-			`<Describe the hypercomms relays with Hai features - borrow code from free world plot where you have to deposit it in a system while there are no pirates around>`
+			`Stopping in to <origin> it takes practically no time to find Terry. She seems to be in motion at almost all times, trailed by a plethora of people constantly bringing things to her attention and then scurrying away once they've received whatever answer they were seeking. Between seeing her and crossing the eighty or so meters to come face to face you see her put her thumbprint to at least three separate datapads; presumably approvals of some sort.`
+			`	"Ah, <last>, excellent," she says as you arrive. "Come with me."`
+			`	It turns out that the main concourse of this station, set up as it is for a movie production, is littered with small meeting rooms squeezed in between more significant operations. They'd probably be storage cupboards on a normal station, but at present pretty much everything and everyone on the station seems to be occupied and in use. One diligent attendant blocks the door as she closes it behind you both and you see the queue of people scatter through the door's glass window. No doubt they'd return as soon as she was available again.`
+			`	"This David Cohen character is an eccentric one, but things are progressing rapidly and smoothly so far. The station is working, and the cover is gaining traction. From what I hear they're even actually making the movie now. They've almost made enough progress that people could believe the movie has been a work in progress for long enough to justify all this."`
+			choice
+				`	"You certainly seem busy."`
+					goto busy
+				`	"Looks like it's thanks to you."`
+			`	She momentarily adopts a self-satisfied smile.`
+			label busy
+			`	"Yes well, this poses a few issues of its own with the increased demand on the relay bandwidth from here, but I wouldn't have my regular job if something like this was too much to stay on top of."`
+			choice 
+				`	"Your regular job?"`
+					goto regular
+				`	"Your job as a secretary?"`
+			`	She rolls her eyes shakes her head with a little huff. "Ridiculous that that's what they tried to have me doing. No, I mean the job I had right before the end of the war, and the job I still seem to be doing seventy percent of even while I'm here."`
+				goto card
+			label regular
+			`	"Yes, my regular job. Specifically the one I had before the end of the war, and before this farce they have me doing now while my successor tries and fails to be half as competent."`
+			label card
+			`	She pushes a button on the case of her datapad and it ejects a business card which she hands to you. Printed on the card, among other things, is the text, "Chief Operations Officer".`
+			`	"Of course," she says, taking the card back and neatly pushing it back into a slot in the case. "I'm not allowed to go around disseminating those cards right at the moment. At least not until this is over, the fool in my place has made a mess of things, and I can take back my position."`
+			`	She seems absolutely sure that that's exactly how things are going to turn out.`
+			`	"Now speaking of my second job, I believe you have some relays on your ship that will make that a great deal easier yes?" You confirm you have those relays on board.`
+			`	"Wonderful, the latency has been killing me lately. Right then, these are the updated coordinates for deployment." She flicks the relevant data files from her pad across to you. "Make sure those are loaded into the relays themselves, and then as long as you get them in roughly the right place they'll move to and maintain their own positions."`
+			`	She checks something on her pad and then stands up. "Now, come with me. I need to introduce you to someone in case you need each other and I'm busy."`
+			`	With astonishing speed she strides down the concourse, clearing a path between all manner of employees and visitors. This clear path perhaps being the only reason you are able to keep up. She calls out to a human dressed in a business suit who turns with evident surprise, sees you both, and approaches.`
+			`	"Captain <last>, one of the many heroes of humanity! I noticed you right away when I laid my eyes upon you. I'd like to personally thank you for what you've done."`
+			choice
+				`	"Glad to get some recognition for all the hard work I've done."`
+					goto boast
+				`	"Don't mention it. I just did what I could to help."`
+					goto downplay
+				`	"Can I help you, sir?"`
+			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir.`
+				goto introduction
+			label boast
+			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days.`
+				goto introduction
+			label downplay
+			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge.`
+			label introduction
+			`	Terry looks between you, "Glad you know who this is David. The Captain here is doing a lot to help us out, so please, make yourself acquainted. Don't keep them too long though, they've a job to do when they leave here." With that, she gives the both of you a parting nod and strides back into the chaos. Almost immediately a swarm of people with datapads seem to materialize from nowhere and pursue her.`
+			`	The man grins and shakes his head as she departs. "Remarkable woman. Anyway, the name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from his pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
+			`	"You may not have heard of me, but I've sure as hell heard of you." Turner turns around and waves his arm across the crowd of people working away on the station concourse. "To be involved in funding and producing this movie though, what an adventure. You know I've paid for movies to be made, or at least partially invested in them, but I've never had to actually be there while it was happening. Quite remarkable."`
+			`<Turner takes a moment to enthuse about the movie and relay a brief synopsis to demonstrate how well the production is in fact going.>`
+			`	"Of course, there are the communication latency issues, and the dreadful matter of the black spot that is the route through Cardax. We really do need to get coverage of that properly if we're going to provide proper security to the tourists who seem intent on coming here now. Though, I hear that you might be working on that as we speak am I right?"`
+			choice
+				`	"Yes."`
+					goto yes
+				`	"It's on my way."`
+			`	Turner smiles with a little twinkle in his eye.`
+			label yes
+			`	"Of course, the famous Captain <last> always has their finger on the pulse. Being right where they need to be. Good thing we got the advertising out there up in time hey?" He taps his nose and gives a shockingly conspicuous wink.`
+			`"Anyway, give me your details too just in case I need them, and I'll let you get to your business. Good luck out there." He checks your details into his pad and gives you a firm handshake before hurrying off towards people moving a very large prop. 'No, no, they said they wanted that on stage five! Stage five!'.`
+			`	Time to drop off those relays and head to <destination>.`
 				accept
 	on enter Sumar
 		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
