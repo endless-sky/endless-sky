@@ -562,7 +562,7 @@ outfit `"Basrem" Reverse Thruster`
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"reverse flare sound" "atomic tiny"
-	description "This tiny reverse thruster allows even the smallest of Hai ships to mount them for additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own."
+	description "This tiny reverse thruster allows even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own."
 
 outfit `"Benga" Reverse Thruster`
 	category "Engines"
@@ -577,7 +577,7 @@ outfit `"Benga" Reverse Thruster`
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
-	description "Many Hai freighter pilots install reverse thrusters such as these to supplement the often poor steering on many larger Hai vessels. Considering them to be well worth the steep cost."
+	description "Considering them to be well worth the steep cost, many Hai freighter pilots install reverse thrusters such as these to supplement the often poor steering on larger Hai vessels."
 
 outfit `"Biroo" Reverse Thruster`
 	category "Engines"
@@ -592,7 +592,7 @@ outfit `"Biroo" Reverse Thruster`
 	"reverse flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"reverse flare sound" "atomic small"
-	description "This is the largest reverse thruster the Hai offer, preferring to focus on additional steering when more maneuverability is needed. Despite that, these reverse thrusters boast an impressive amount of power for their size, allowing even large ships to quickly come to a stop when needed."
+	description "With pilots generally preferring to focus on steering when actual agility is needed, these are the largest reverse thrusters the Hai offer. They still boast an impressive amount of power for their size, which allows even the largest Hai ships to quickly come to a stop when needed."
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
