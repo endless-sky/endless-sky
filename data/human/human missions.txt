@@ -3813,18 +3813,21 @@ mission "Spaceport Reminder"
 			choice
 				`	"Why should I do that?"`
 				`	"I'm a spaceship captain; I don't have time to waste."`
+				`	"Yes, I know already. I'll take my time later."`
+					decline
 			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
 			choice
 				`	"I'll be sure to check more spaceports in the future."`
 					goto thanks
 				`	"Nothing interesting happened the last time I checked a spaceport."`
-				`	"I can handle myself, thank you very much."`
-					decline
+				`	"Why should I listen to you? I can handle myself, thank you very much."`
+					goto rebuff
 			`	The captain sighs. "Yeah, it can feel a little pointless running up against the same loud-mouthed people all the time. But just because a spaceport doesn't have anything to offer one day doesn't mean that it'll never have anything worthwhile. Wait a while, and there might be something new."`
 			choice
 				`	"Alright, I'll try to check more spaceports."`
 					goto thanks
 				`	"And why should I believe you over my own experiences?"`
+			label rebuff
 			`	He raises his hand and holds it open on his chest. "I know that it's only my word against yours, but I promise that you won't regret checking the spaceport every time you're in town."`
 			choice
 				`	"Fine, I'll follow your advice."`
