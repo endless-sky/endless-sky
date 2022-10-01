@@ -42,7 +42,7 @@ ship "Arach Courier"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
-		"Small Reverse Module" 2		
+		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -89,9 +89,9 @@ ship "Arach Freighter"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
-		"Large Reverse Module"		
+		"Large Reverse Module"
 		"Small Thrust Module" 2
-		"Small Reverse Module" 2		
+		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 2
 		"Hyperdrive"

@@ -4052,7 +4052,7 @@ mission "Laborer"
 					goto decline
 				`	"Fine, I can take you to <planet>."`
 			label accept
-			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.`
 				accept
 			label decline
 			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
@@ -4294,27 +4294,27 @@ mission "Saving Artifacts 3"
 		has "Saving Artifacts 2: done"
 		not "Bought Off Artifacts"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Deth"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Warr"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Famin"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"

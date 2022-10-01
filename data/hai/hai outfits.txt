@@ -267,7 +267,7 @@ effect "tracker cloud"
 	"random angle" 360
 	"random spin" 8
 	"random velocity" 1
-	"random frame rate" 2 
+	"random frame rate" 2
 	"velocity scale" -.1
 
 

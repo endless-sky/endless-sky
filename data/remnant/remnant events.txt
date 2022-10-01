@@ -1168,7 +1168,7 @@ event "remnant: shattered light"
 
 
 
-event "remnant: shattered light research" 
+event "remnant: shattered light research"
 
 event "remnant: tubfalet appearance"
 	fleet "Korath Raid"
