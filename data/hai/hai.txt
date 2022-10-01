@@ -47,7 +47,7 @@ outfitter "Hai Basics"
 	"Small Bunk Room"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
-	`"Basrem" Atomic Reverse Thruster`
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
 	"Local Map"
@@ -76,13 +76,13 @@ outfitter "Hai Intermediate"
 	"Bunk Room"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
-	`"Basrem" Atomic Reverse Thruster`
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
-	`"Benga" Atomic Reverse Thruster`
+	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
 	`"Benga" Atomic Steering`
-	`"Biroo" Atomic Reverse Thruster`
+	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	"Local Map"

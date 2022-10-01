@@ -548,7 +548,7 @@ outfit `"Bufaer" Atomic Thruster`
 	"flare sound" "atomic large"
 	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
 
-outfit `"Basrem" Atomic Reverse Thruster`
+outfit `"Basrem" Reverse Thruster`
 	category "Engines"
 	"cost" 150000
 	thumbnail "outfit/tiny atomic reverse hai"
@@ -563,7 +563,7 @@ outfit `"Basrem" Atomic Reverse Thruster`
 	"reverse flare sound" "atomic tiny"
 	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engine technology for many millennia. Hai atomic engines are still much more energy hungry than other engines, but exhibit greater efficiency than their human counterparts."
 
-outfit `"Benga" Atomic Reverse Thruster`
+outfit `"Benga" Reverse Thruster`
 	category "Engines"
 	"cost" 300000
 	thumbnail "outfit/small atomic reverse hai"
@@ -578,7 +578,7 @@ outfit `"Benga" Atomic Reverse Thruster`
 	"flare sound" "atomic tiny"
 	description "Unlike human space where atomic engines are a rare sight to see and a luxury to have, many years of being confined to a relatively small pocket of the Galaxy has allowed all Hai ships to be outfitted with atomic engines."
 	
-outfit `"Biroo" Atomic Reverse Thruster`
+outfit `"Biroo" Reverse Thruster`
 	category "Engines"
 	"cost" 610000
 	thumbnail "outfit/medium atomic reverse hai"
