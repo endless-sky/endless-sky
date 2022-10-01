@@ -3638,7 +3638,7 @@ mission "Street Swindle"
 			`	The cups stop. After a brief pause, the man points to the cup on the right.`
 			choice
 				`	(Watch what happens.)`
-						goto continue
+					goto continue
 				`	"You know these things are scams, right?"`
 			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
 				goto continue
@@ -4900,7 +4900,7 @@ mission "Riley"
 					goto bounty
 				`	(Go back to your ship.)`
 			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
-					decline
+				decline
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye

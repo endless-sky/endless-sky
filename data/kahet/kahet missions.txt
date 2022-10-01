@@ -493,7 +493,7 @@ mission "Ka'het: Patir Mystery 2"
 					goto greet
 				`	"Has Taely told you about what we found?"`
 			`	"Yes, a new system has appeared in the Graveyard. How exciting! Taely sent me the data as soon as she could.`
-					goto greet
+				goto greet
 			
 			label greet
 			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something consistent about almost every path: once in a while, every ship spends a few minutes on a single asteroid - one of the biggest in the entire asteroid belt.`
