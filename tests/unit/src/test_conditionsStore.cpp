@@ -1,3 +1,18 @@
+/* test_conditionsStore.cpp
+Copyright (c) 2022 by petervdmeer
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
 #include "es-test.hpp"
 
 // Include only the tested class's header.
@@ -236,7 +251,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 			}
 			THEN( "doing lower_bound finds should return values above the bound" )
 			{
-				auto it = store.PrimariesLowerBound("ha" );
+				auto it = store.PrimariesLowerBound("ha");
 				REQUIRE( it != store.PrimariesEnd() );
 				REQUIRE( it->first == "hello world" );
 				REQUIRE( it->second == 100 );
@@ -247,7 +262,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 		WHEN( "initialized using an initializer map" )
 		{
 			const std::map<std::string, int64_t> initmap{ { "hello world", 100 }, { "goodbye world", 404 } };
-			const auto store = ConditionsStore(initmap );
+			const auto store = ConditionsStore(initmap);
 			THEN( "given primary conditions are in the Store" )
 			{
 				REQUIRE( store.Get("hello world") == 100 );
@@ -458,9 +473,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			}
 			THEN( "primary-lowerBound should only search in primary conditions" )
 			{
-				it = store.PrimariesLowerBound("n" );
+				it = store.PrimariesLowerBound("n");
 				REQUIRE( it == store.PrimariesEnd() );
-				it = store.PrimariesLowerBound("l" );
+				it = store.PrimariesLowerBound("l");
 				REQUIRE( it != store.PrimariesEnd() );
 				REQUIRE( it->first == "myFirstVar" );
 				REQUIRE( it->second == 10 );
@@ -493,7 +508,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			}
 			THEN( "readonly providers should reject the add and don't change values" )
 			{
-				mockProvNamed.SetRONamedProvider(store, "named1" );
+				mockProvNamed.SetRONamedProvider(store, "named1");
 				REQUIRE( store.Add("named1", -20) == false );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
@@ -511,7 +526,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			}
 			THEN( "readonly providers should not perform erase actions" )
 			{
-				mockProvNamed.SetRONamedProvider(store, "named1" );
+				mockProvNamed.SetRONamedProvider(store, "named1");
 				REQUIRE( store.Erase("named1") == false );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
@@ -551,7 +566,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			}
 			THEN( "read-only prefixed provider should reject further updates" )
 			{
-				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: " );
+				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: ");
 				REQUIRE( store.Add("prefixA: test", -20) == false );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
@@ -564,7 +579,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			}
 			THEN( "read-only prefixed provider should reject erase" )
 			{
-				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: " );
+				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: ");
 				REQUIRE( store.Erase("prefixA: test") == false );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
@@ -593,9 +608,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 			AND_GIVEN( "more derived condition providers are added" )
 			{
 				auto mockProvPrefix = MockConditionsProvider();
-				mockProvPrefix.SetRWPrefixProvider(store, "prefix: " );
+				mockProvPrefix.SetRWPrefixProvider(store, "prefix: ");
 				auto mockProvPrefixB = MockConditionsProvider();
-				mockProvPrefixB.SetRWPrefixProvider(store, "prefixB: " );
+				mockProvPrefixB.SetRWPrefixProvider(store, "prefixB: ");
 				THEN( "derived prefixed conditions should be set properly" )
 				{
 					REQUIRE( primarySize(store) == 1 );
@@ -604,7 +619,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 					REQUIRE( store.Get("prefixA: test") == -30 );
 					REQUIRE( store.Get("myFirstVar") == 10 );
-					mockProvPrefixA.SetROPrefixProvider(store, "prefixA: " );
+					mockProvPrefixA.SetROPrefixProvider(store, "prefixA: ");
 					REQUIRE( store.Add("prefixA: test", -20) == false );
 					REQUIRE( mockProvPrefixA.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
@@ -628,7 +643,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 					REQUIRE( mockProvPrefix.values.size() == 0 );
 					REQUIRE( mockProvPrefixA.values.size() == 3 );
 					REQUIRE( mockProvPrefixB.values.size() == 0 );
-					mockProvPrefixA.SetRWPrefixProvider(store, "prefixA: " );
+					mockProvPrefixA.SetRWPrefixProvider(store, "prefixA: ");
 					REQUIRE( store.Set("prefix: beginning", 42) == true );
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 3 );
