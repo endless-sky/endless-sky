@@ -270,21 +270,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			{
 				StellarObject toRemoveTemplate;
 
-				for(const DataNode &grand : child)
-				{
-					if(grand.Token(0) == "sprite" && grand.Size() >= 2)
-						toRemoveTemplate.LoadSprite(grand);
-					else if(grand.Token(0) == "distance" && grand.Size() >= 2)
-						toRemoveTemplate.distance = grand.Value(1);
-					else if(grand.Token(0) == "period" && grand.Size() >= 2)
-						toRemoveTemplate.speed = 360. / grand.Value(1);
-					else if(grand.Token(0) == "offset" && grand.Size() >= 2)
-						toRemoveTemplate.offset = grand.Value(1);
-					else if(grand.Token(0) == "hazard" || grand.Token(0) == "object")
-						grand.PrintTrace("Invalid child node when removing object:");
-					else
-						grand.PrintTrace("Skipping unrecognized attribute:");
-				}
+				LoadObjectHelper(child, toRemoveTemplate, true);
 
 				auto removeIt = find_if(objects.begin(), objects.end(),
 					[&toRemoveTemplate](const StellarObject &object)
@@ -862,16 +848,30 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		planet->SetSystem(this);
 	}
 
+	if(LoadObjectHelper(node, object, false))
+		for(const DataNode &child : node)
+			if(child.Token(0) == "object")
+				LoadObject(node, planets, index);
+
+	if(!object.isStar && !object.isStation)
+		object.isMoon = (parent >= 0 && !objects[parent].IsStar());
+}
+
+
+
+bool System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
+{
+	bool hasChildren = false;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
 		{
 			object.LoadSprite(child);
-			object.isStar = !child.Token(1).compare(0, 5, "star/");
-			if(!object.isStar)
+			if(!removing)
 			{
-				object.isStation = !child.Token(1).compare(0, 14, "planet/station");
-				object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());
+				object.isStar = !child.Token(1).compare(0, 5, "star/");
+				if(!object.isStar)
+					object.isStation = !child.Token(1).compare(0, 14, "planet/station");
 			}
 		}
 		else if(child.Token(0) == "distance" && child.Size() >= 2)
@@ -880,14 +880,16 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			object.speed = 360. / child.Value(1);
 		else if(child.Token(0) == "offset" && child.Size() >= 2)
 			object.offset = child.Value(1);
-		else if(child.Token(0) == "hazard" && child.Size() >= 3)
+		else if(child.Token(0) == "hazard" && child.Size() >= 3 && !removing)
 			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "object")
-			LoadObject(child, planets, index);
+			hasChildren = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	return hasChildren;
 }
+
 
 
 
