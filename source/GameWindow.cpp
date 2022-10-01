@@ -119,6 +119,7 @@ bool GameWindow::Init()
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 	else if(Preferences::Has("maximized"))
 		flags |= SDL_WINDOW_MAXIMIZED;
+	Preferences::SetScreenModeIndex(Preferences::Has("fullscreen"));
 
 	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,

@@ -197,6 +197,13 @@ void Preferences::ToggleScreenMode()
 
 
 
+void Preferences::SetScreenModeIndex(int index)
+{
+	screenModeIndex = index;
+}
+
+
+
 const string &Preferences::ScreenModeSetting()
 {
 	return SCREEN_MODE_SETTINGS[screenModeIndex];
