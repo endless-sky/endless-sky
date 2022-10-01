@@ -259,7 +259,7 @@ mission "FW Recon 0"
 	passengers 1
 	to offer
 		has "event: initial deployment 4"
-		random < 55 + 10 * "assisted free worlds" * "assisted free worlds"
+		random < 35 + 5 * "assisted free worlds" * "assisted free worlds"
 	to fail
 		has "chosen sides"
 	
@@ -540,7 +540,7 @@ mission "FW Escort 0"
 		near "Sabik" 1 100
 	destination "Longjump"
 	to offer
-		random < 20 * "assisted free worlds" * "assisted free worlds"
+		random < 20 * "assisted free worlds"
 	to fail
 		has "chosen sides"
 	
@@ -1006,7 +1006,7 @@ mission "FW Bounty 1"
 	to offer
 		"combat rating" > 200
 		not "chosen sides"
-		random < 30 + 10 * "assisted free worlds"
+		random < 20 + 5 * "assisted free worlds" * "assisted free worlds"
 	
 	on offer
 		conversation
@@ -1069,7 +1069,7 @@ mission "FW Bounty 2"
 	to offer
 		has "FW Bounty 1: done"
 		not "chosen sides"
-		random < 35 + 10 * "assisted free worlds"
+		random < 25 + 5 * "assisted free worlds" * "assisted free worlds"
 	
 	on offer
 		conversation
@@ -1118,7 +1118,7 @@ mission "FW Bounty 3"
 	to offer
 		has "FW Bounty 2: done"
 		not "chosen sides"
-		random < 40 + 10 * "assisted free worlds"
+		random < 30 + 5 * "assisted free worlds" * "assisted free worlds"
 	
 	on offer
 		conversation
@@ -1165,7 +1165,7 @@ mission "FW Katya 1"
 		government "Free Worlds"
 	destination "Glory"
 	to offer
-		random < 10 + 30 * "assisted free worlds"
+		random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
 	to fail
 		has "chosen sides"
 	
