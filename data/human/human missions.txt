@@ -3805,7 +3805,7 @@ mission "Spaceport Reminder"
 	to offer
 		not "chosen sides"
 		"spaceport reminder year" + "spaceport reminder month" != 0
-		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 3
+		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 7
 	on offer
 		conversation
 			`As soon as you touch down on <origin>, you step off your ship and head directly for the job board and trade hub, brushing past several locals on the way. The constant routine of interstellar commerce has been firmly drilled into your brain; you near unconsciously peruse the boards, trying to suss out the most profitable route.`
@@ -3813,6 +3813,8 @@ mission "Spaceport Reminder"
 			choice
 				`	"Why should I do that?"`
 				`	"I'm a spaceship captain; I don't have time to waste."`
+				`	"Yes, I know already. I'll take my time later."`
+					decline
 			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
 			choice
 				`	"I'll be sure to check more spaceports in the future."`

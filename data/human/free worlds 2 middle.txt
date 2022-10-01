@@ -24,6 +24,9 @@ mission "FW Diplomacy 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "joined the free worlds"
+		event "fw abandoned Greenrock" 60
+		event "Greenrock recovered" 420
 		conversation
 			`As you are landing, you receive a message from JJ, on behalf of the Council. The message reads:`
 			branch suspended
@@ -1147,7 +1150,7 @@ mission "FW Alphas 1.1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Republic world of Poisonwood in the south has apparently been taken over by Alpha warlords. It is such a dire threat that despite the war, the Navy Oathkeepers have agreed to fight alongside the Free Worlds to liberate the planet."
+		log "The Republic world of Poisonwood in the South has apparently been taken over by Alpha warlords. It is such a dire threat that despite the war, the Navy Oathkeepers have agreed to fight alongside the Free Worlds to liberate the planet."
 		event "alphas capture Poisonwood"
 		conversation
 			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo alluded to; no one approaches you to help unload the ships. Eventually you track down Alondo and ask what is going on, and why there is a neutral Navy ship in orbit. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy guarding the front," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
@@ -1248,7 +1251,7 @@ mission "FW Alphas 1.2"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Republic world of Poisonwood in the south has apparently been taken over by Alpha warlords. Hopefully the Free Worlds will be able to liberate the planet and capture or kill the Alpha leaders."
+		log "The Republic world of Poisonwood in the South has apparently been taken over by Alpha warlords. Hopefully the Free Worlds will be able to liberate the planet and capture or kill the Alpha leaders."
 		event "alphas capture Poisonwood"
 		conversation
 			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo alluded to; no one approaches you to help unload the ships. Eventually you track down Alondo and ask what is going on. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy elsewhere," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
@@ -1701,7 +1704,7 @@ mission "FW Albatross 1"
 					accept
 				`	"Actually, I'm gay too."`
 					goto metoo
-				`	"Ah. That certainly explains a lot."`
+				`	"Ah. That certainly explains some things."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
@@ -2019,8 +2022,8 @@ event "end battle of alioth"
 
 mission "FW Defend New Tibet"
 	landing
-	name "Defend New Tibet"
-	description "Defend New Tibet from a Syndicate fleet that is attacking them, then land to rescue a Syndicate defector carrying vital evidence and information."
+	name "The Defector"
+	description "Travel to New Tibet to question the Syndicate about the defector supposedly carrying vital evidence and information that they are behind the bombings."
 	source Wayfarer
 	destination "New Tibet"
 	passengers 2
@@ -2032,31 +2035,32 @@ mission "FW Defend New Tibet"
 	on offer
 		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Geminus. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
 		conversation
-			`The fleet in orbit around Wayfarer is pitifully small, surely not enough to take on more than a couple of Navy capital ships. JJ orders one of their communication officers to try to establish a secure link to Bourne or to any Free Worlds post on the other side of the Navy blockade. After about ten minutes, the officer returns and says, "Sir, we're receiving communications from New Tibet. You need to talk to them."`
+			`The fleet in orbit around Wayfarer is pitifully small, surely not enough to take on more than a couple of Navy capital ships. JJ orders one of their communication officers to try to establish a secure link to Bourne or to any Free Worlds post on the other side of the Navy blockade. After about ten minutes, the officer returns and says, "Sir, we've received communications from New Tibet sent earlier today. You need to talk to them."`
 			`	"Our fleet is there?" asks JJ.`
-			`	"No sir, the Syndicate. They're under attack by the Syndicate."`
-			`	"What?" says JJ. He rushes into the communication room, and you and Freya follow. On the video screen is a Buddhist monk in a maroon robe; behind him, you see other monks rushing about with none of the serenity you would usually expect of them. "What's going on there?" asks JJ.`
-			`	The monk explains, "Yesterday a Syndicate ship landed near our monastery, and the pilot sought refuge with us. He brings evidence that the Syndicate, or some faction within the Syndicate, was behind the attacks on Geminus and Martini."`
-			choice
-				`	"Why would the Syndicate do that?"`
-				`	"What sort of evidence?"`
-					goto evidence
-			`	"He claims that a certain faction within the Syndicate values economic growth above all else," says the monk, "and incited this war for that reason."`
+			`	"No sir, it's the Syndicate. The Syndicate has a war fleet in Alioth."`
+			`	"What?" says JJ. He rushes into the communication room, and you and Freya follow. "Play the communication," JJ says. On the video screen is a Buddhist monk in a maroon robe; behind him, you see other monks rushing about with none of the serenity you would usually expect of them.`
+			`	The monk explains, "I pray that this communication reaches the Council. Yesterday a Syndicate ship landed near our monastery, and the pilot sought refuge with us. He claims to have evidence that the Syndicate, or some faction within the Syndicate, was behind the attacks on Geminus and Martini. Evidence that a certain faction within the Syndicate values economic growth above all else," says the monk, "and incited this war for that reason."`
 			`	"That's insane," says Freya.`
 			`	"But not completely implausible," says JJ.`
-			label evidence
-			`	The monk says, "He brought a great deal of evidence. Plans for a nuclear device. Data from underground testing. A manufactured bomb casing. Samples of fissile material. And he named the planet where the development was done: Mutiny, in the Gienah system. We hid his ship in a cave. A day later, a Syndicate fleet appeared in orbit. They do not know where the defector landed, but they say they will destroy whatever settlement is harboring him unless he is returned to them immediately."`
+			choice
+				`	(Continue watching the communication.)`
+			`	The video of the monk continues, "He was unable to show us this evidence, but he made claims of having plans for a nuclear device. After arriving he hid his ship in a cave, just before a Syndicate fleet appeared in orbit. They do not know where the defector landed, so they have begun searching settlement to settlement under the assumption that one is harboring him. They are currently here, wrecking the monastery in their hunt."`
 			`	After a moment, JJ says, "If these allegations are true, if we can prove that the Free Worlds was innocent of any involvement in those attacks, the Republic might make peace with us, or at least agree to a ceasefire. I vote that we try to shelter this defector and hear his story."`
-			`	"And if it's a lie," says Freya, "and we refuse the Syndicate's demands, we lose our only ally. And many civilians will be killed, as well. I care about justice, but trading a definite ally for a slim possibility of peace: that is an unwise investment. I vote that we hand this man over to the Syndicate."`
-			`	The monk says, "We want to see justice done, and peace prevail. If you ask us to, we will flee to the mountains and take refuge until help arrives."`
+			`	"And if it's a lie," says Freya, "and we refuse the Syndicate's request, we lose our only ally. Many more civilians will be killed if we continue to fight without their backing, and we don't even know what this supposed evidence actually is. I care about justice, but trading a definite ally for a slim possibility of peace: that is an unwise investment. I vote that we hand this man over to the Syndicate."`
+			choice
+				`	(Continue watching the communication.)`
+			`	You look back at the video screen to see that the monk is gone, replaced by a man in a Syndicated Security uniform. "Greetings, Councilmembers. I'm sorry for the confusion, but please understand. We're hunting a terrorist. This man claiming that we are the ones that caused the bombings is, in fact, the leader of the extremist group that caused them. He developed the nukes with the help of a faction of pirates looking to profit from the instability, and now, when we're finally close to capturing him, he's attempting to frame us for his own crimes against humanity. Allow us to find him, and we'll-"`
+			`	The feed cuts off. "The message ended there," the communications officer says. The room falls silent.`
+			`	JJ breaks the silence. "I still say we rescue this defector. The Syndicate could be lying to us. They don't exactly have a reputation for upstanding morality, after all."`
+			`	"Or this 'defector' could easily be the one lying," Freya says. "I say we let them have him while we focus on defending against the Navy. If the Syndicate gets their hands on the true terrorist, their support will surely clear our name. Parliament won't be able to ignore the Syndicate vindicating us."`
 			`	As the third Council member present, you have the deciding vote, and the entire course of this war may rest on your decision.`
 			choice
 				`	"I say we rescue the defector, even if it means war with the Syndicate."`
 					goto rescue
-				`	"I say we hand the defector over to the Syndicate, and focus on winning the battle against the Republic."`
+				`	"I say we let the Syndicate have the terrorist, and focus on winning the battle against the Republic."`
 					goto surrender
 			label rescue
-			`	"Are you sure?" asks Freya. "A lot of lives hang in the balance."`
+			`	"Are you sure?" asks Freya. "The Syndicate has done a lot for us in the past."`
 			choice
 				`	"Yes, I'm sure. We rescue the defector."`
 					goto "definitely rescue"
@@ -2077,13 +2081,16 @@ mission "FW Defend New Tibet"
 				decline
 			
 			label "definitely rescue"
-			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to drive the Syndicate ships away. Let's just hope these monks can stay hidden until then."`
+			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to question the Syndicate in person."`
 				accept
 	
 	on accept
+		event "battle of alioth"
+	
+	on enter "Alioth"
 		"reputation: Syndicate" = -1000
 		event "fw at war with Syndicate"
-		event "battle of alioth"
+		dialog "You spot the Syndicate fleet orbiting above New Tibet when you enter the system, but to your surprise they begin targeting your ship. They don't seem very interested in answering any questions about the defector."
 	
 	npc evade
 		government Syndicate
@@ -2125,7 +2132,7 @@ mission "FW Defend New Tibet"
 		event "end battle of alioth"
 		log "People" "Sawyer" `A defector of the Syndicate who decided to risk his life to stop the war between the Republic and the Free Worlds.`
 		conversation
-			`It doesn't take long to find the monastery that contacted you earlier, but nothing is left of it but burnt-out shells of buildings. You land and look around for survivors. You find several corpses dressed in maroon robes, some of them badly burnt, but no sign of the defector or the monk you spoke with earlier.`
+			`It doesn't take long to find the monastery that contacted you earlier; nothing is left of it but the burnt-out shells of buildings. You hurry to land and look around for survivors. You find several corpses dressed in maroon robes, some of them badly burnt, but no sign of the defector or the monk who sent the message.`
 			choice
 				`	(Wait to see if anyone approaches now that the Syndicate fleet is gone.)`
 				`	(Give up and contact the rest of the Free Worlds fleet to figure out what to do next.)`
