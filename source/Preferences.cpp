@@ -88,6 +88,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "fullscreen")
+			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -193,13 +195,6 @@ void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
 	screenModeIndex = GameWindow::IsFullscreen();
-}
-
-
-
-void Preferences::SetScreenModeIndex(int index)
-{
-	screenModeIndex = index;
 }
 
 

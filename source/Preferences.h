@@ -51,7 +51,6 @@ public:
 	static bool ZoomViewOut();
 
 	static void ToggleScreenMode();
-	static void SetScreenModeIndex(int index);
 	static const std::string &ScreenModeSetting();
 
 	// VSync setting, either "on", "off", or "adaptive".
