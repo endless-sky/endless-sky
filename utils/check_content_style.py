@@ -26,10 +26,10 @@ error_list = []
 regexes = {
 	# Matches any space that is preceeded only by tabs or " or ` characters,
 	# except if it immediately follows a " or ` character.
-	# "^[\\t`\"]*(?<![`\"]) ": "indentations should use tabs only",
+	"^[\\t`\"]*(?<![`\"]) ": "indentations should use tabs only",
 	# Matches multiple space characters.
-	# "  ": "multiple consecutive space characters",
-	# ".*[\\w`\"].*\\s$": "trailing whitespace character"
+	"  ": "multiple consecutive space characters",
+	"\\s$": "trailing whitespace character"
 }
 # Precompile regexes
 regexes = {re.compile(regex): description for regex, description in regexes.items()}
@@ -127,6 +127,7 @@ def check_regexes(file, lines):
 	for index, line in enumerate(lines):
 		for regex, description in regexes.items():
 			if re.search(regex, line):
+				print(line)
 				print_error(file, index + 1, description)
 
 
@@ -134,26 +135,11 @@ def check_indents(file, lines):
 	previous_indent = 0
 	for index, line in enumerate(lines):
 		indent = count_indent(line)
-		# Checking the indents of empty lines
-		if line.isspace():
-			print_error(file, index + 1, "empty lines should not be indented")
 		# Checking non-empty lines
-		elif line:
+		if line and not line.isspace():
 			if indent - previous_indent > 1:
 				print_error(file, index + 1, "do not add more than a single level of indentation per line")
 			previous_indent = indent
-
-
-# Gets the number of tabulators the next non-empty line of text is indented with.
-# Parameters:
-# lines: the lines of text to check
-# position: the line after which we start searching
-def get_next_indent(lines, position):
-	for index in range(position + 1, len(lines)):
-		line = lines[index]
-		if line and not line.isspace():
-			return count_indent(line)
-	return 0
 
 
 # Counts the number of tabs this line of text is indented with.
