@@ -1002,7 +1002,7 @@ ship "Water Bug"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		`"Benga" Reverse Thruster`
+		`"Basrem" Reverse Thruster`
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
