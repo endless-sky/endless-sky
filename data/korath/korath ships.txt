@@ -540,7 +540,7 @@ ship "Ra'gru Ik 618"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels."  
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels."
 
 
 ship "Kas'lor Ik 582"

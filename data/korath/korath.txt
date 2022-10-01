@@ -340,7 +340,7 @@ fleet "Korath Large Raid"
 		disables plunders opportunistic harvests
 	variant 5
 		"Palavret" 2
-		"'olofez"  4
+		"'olofez" 4
 	variant 5
 		"Palavret (Blaze)" 2
 		"'olofez" 4
