@@ -2629,7 +2629,7 @@ mission "Stone of our Fathers 4"
 			`	With that, he turns and heads back to the main dwelling, with you and Helm in tired tow.`
 			choice
 				`	(Wash up and warm up in the main room around the fire.)`
-			`	 You spend the evening warming yourself by a roaring fire, telling Helm and Thorleif tales of your exploits in space and many of the wonders you've seen.`
+			`	You spend the evening warming yourself by a roaring fire, telling Helm and Thorleif tales of your exploits in space and many of the wonders you've seen.`
 			`	In turn, they tell you about the sea beasts, leviathans, and krakens that they have met on the ocean currents of Norn. Of lost isles filled with forgotten treasure or strange people, or stories even, about the ancient elves who once aided their ancestors and are said to be around still.`
 			choice
 				`	(Ask about the elves.)`

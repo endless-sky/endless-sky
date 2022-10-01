@@ -1951,7 +1951,7 @@ mission "Terraforming 12"
 		conversation
 			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for ridding the system of the pirates, a pleasantly unexpected reward.`
 			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid," Amy says, and after only a short time of searching, she finds the perfect candidate. "Just like last time, Captain."`
-			`	 Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
+			`	Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
 	
 	npc assist
