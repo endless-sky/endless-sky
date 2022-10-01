@@ -600,8 +600,8 @@ mission "Hai Reveal [D11] Escort Free World Outfitters"
 
 
 mission "Hai Reveal [D12] Escort Free World Outfitters"
-	landing
 	autosave
+	landing
 	name "<planet> Construction"
 	description "Escort outfitters to build up <planet> station."
 	source "Rust"

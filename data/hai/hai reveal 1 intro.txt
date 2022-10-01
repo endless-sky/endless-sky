@@ -712,10 +712,10 @@ mission "Hai Leaks Response 3"
 
 #Go kill pirates mission with chat on Allhome.
 mission "Hai Leaks Response 4"
-	name "Defeat the Black Lich"
-	description "Defeat Black Lich's Marauder Leviathan at <waypoints>, then return to <origin>."
 	autosave
 	landing
+	name "Defeat the Black Lich"
+	description "Defeat Black Lich's Marauder Leviathan at <waypoints>, then return to <origin>."
 	source "Allhome"
 	waypoint "Waypoint"
 	destination "Allhome"

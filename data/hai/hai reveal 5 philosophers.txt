@@ -30,8 +30,8 @@ mission "Hai Reveal [B01] Information Blackout"
 
 # Ensure there are some impressive fleets at each system.
 mission "Hai Reveal [B01-A] The Blockade Goes Up"
-	invisible
 	landing
+	invisible
 	source "Mountaintop"
 	to offer
 		has "Hai Reveal [A14] A Time of Trouble: offered"
@@ -160,8 +160,8 @@ event "stormhold suppressed"
 
 
 mission "Hai Reveal [B02-A] The Blockade Goes Up"
-	invisible
 	landing
+	invisible
 	source "Stormhold"
 	to offer
 		has "Hai Reveal [B02] Join the Fleet: done"
@@ -223,10 +223,15 @@ mission "Hai Reveal [B04] The Road Not Taken"
 		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now just beyond the edge of the known galactic disc. Your computer is identifying the system name as "Deep Space 7C" from old astronomical surveys done in the early 22nd century. This is definitely a good place to hide. It is past time to return to Giti now and discuss what to do next.`
 	on offer
 		conversation legacy
-			`<Calling from Canyon you make contact with Giti who is relieved to hear from you. She had been concerned you'd been caught up in "all that border blockade stuff">`
-			`<She informs you that in amongst some other meaningless prose about something called Elenchus. the notation included a set of coordinates, which indicate a system in the vicinity of Syndicate space that is not on the regular star maps. It must require a jump drive to access.>`
-			`<she also mentions offhand that in searching up more loose threads on the symbol, she found a community of people who have lost family or friends to with suspicious missing person reports that either closely match or could be associated with the data points in the files you left for her - so if necessary there are other avenues of investigation that can be checked out>`
-			`<In short though, you should check out the coordinates, and then come see her on Earth.`
+			`Once safely parked and hooked into the relay network from Canyon you check timezones and place a call to Giti. Astonishingly, you manage to get a remarkably clean connection and don't have to leave a message. Perhaps by fluke it's night in all the most populous places between here and there. She's at her desk when she answers, and it occurs to you for the first time that a research console on a Navy grade connection probably has pretty good bandwidth. "Oh it's a relief to see you Captain. There's been so much going on, I feared you'd been caught up and detained with all that blockade stuff that all over the news right now. You're lucky though, it's quite late here and I was just about to pack up."`
+			choice
+				`	"I was a little caught up, actually."`
+				`	"What do you know about the blockades?"`
+			`	As you draw breath to speak she cuts you off. "I actually don't have a lot of time or I'll miss my ride, so we'll skip the pleasantries. Obviously if you're calling me back you want to know what I found about the notation. That too is something you have good timing on, I was delayed on that until just a couple days ago. Now where was that file... ah here it is.`
+			` "So, the notation is actually quite dense, and is mostly some probably meaningless prose about something called 'Elenchus'. It sound aspirational. However, it also refers to a secret gateway. I'm sending you some coordinates." You receive a simple text message a moment later with some system coordinates in it.`
+			`	"What I've just send you is the modern standard presentation for a set of coordinates that were listed in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are indeed just direct from the notation, then they indicate a system in the vicinity of Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
+			`She shrugs. "Of course I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not come back and see me. If that turns up bust I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. Not sure if it'll reveal anything but we can look into it if you don't find anything. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
+			`She picks up a bag and starts putting some items from her desk into it. "In any event, I really must go. Check out those coordinates, and then come see me. Fly safe Captain!"`
 				accept
 
 

@@ -1102,8 +1102,8 @@ event "hai and human ships at wormhole"
 
 # Ensure there are some impressive fleets at each system.
 mission "Hai Reveal [A11-A] Permanent Fleets"
-	invisible
 	landing
+	invisible
 	source "Hai-home"
 	to offer
 		has "Hai Reveal [A10] Demanding Satisfaction: done"
@@ -1122,8 +1122,8 @@ mission "Hai Reveal [A11-A] Permanent Fleets"
 
 #These are separated because they leave at a different time.
 mission "Hai Reveal [A11-B] Permanent Fleets"
-	invisible
 	landing
+	invisible
 	source "Hai-home"
 	to offer
 		has "Hai Reveal [A10] Demanding Satisfaction: done"
@@ -1207,8 +1207,8 @@ mission "Hai Reveal [A13] A New Elder"
 
 
 mission "Hai Reveal [A13-A] Unfettered Pickup"
-	invisible
 	landing
+	invisible
 	source "Everhope"
 	destination "Mountaintop"
 	to offer
