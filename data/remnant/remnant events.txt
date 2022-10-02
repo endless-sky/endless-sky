@@ -646,6 +646,7 @@ event "remnant: ssil vida deactivation"
 			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta
+				scale 0.5
 			distance 1408
 			period 554
 	system Prosa
