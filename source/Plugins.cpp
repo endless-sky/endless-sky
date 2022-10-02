@@ -26,8 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Plugin enabled state can be used to compare initial settings from startup with changes made by user in plugins UI.
-	struct EnabledState {
+	// Plugin enabled state is used to compare initial settings from startup
+	// with changes made by user in plugins UI.
+	struct EnabledState
+	{
 		bool initial = true;
 		bool current = true;
 		EnabledState(bool startValue = true)
