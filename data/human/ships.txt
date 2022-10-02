@@ -673,7 +673,7 @@ ship "Bounder"
 		"mass" 130
 		"drag" 3.7
 		"heat dissipation" .8
-		"fuel capacity" 900
+		"fuel capacity" 800
 		"cargo space" 40
 		"outfit space" 220
 		"weapon capacity" 50
@@ -2891,9 +2891,9 @@ ship "Scout"
 	attributes
 		category "Transport"
 		"cost" 850000
-		"shields" 1200
+		"shields" 2000
 		"hull" 400
-		"required crew" 2
+		"required crew" 1
 		"bunks" 12
 		"mass" 110
 		"drag" 3.4
