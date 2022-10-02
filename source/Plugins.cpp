@@ -26,8 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	map<string, bool> settings;
-	map<string, bool> frozenSettings;
+	// The first item in pair is plugin state on load, second item is user changing preference.
+	map<string, pair<bool, bool>> settings;
 
 	void LoadSettings(const string &path)
 	{
@@ -38,7 +38,7 @@ namespace {
 			if(key == "plugins")
 				for(const DataNode &child : node)
 					if(child.Size() == 2)
-						settings[child.Token(0)] = child.Value(1);
+						settings[child.Token(0)].first = child.Value(1);
 		}
 	}
 }
@@ -65,7 +65,7 @@ void Plugins::Save()
 	out.BeginChild();
 	{
 		for(const auto &it : settings)
-			out.Write(it.first, it.second);
+			out.Write(it.first, it.second.second);
 	}
 	out.EndChild();
 }
@@ -75,7 +75,8 @@ void Plugins::Save()
 // Freeze the plugin set to determine if a setting has changed.
 void Plugins::Freeze()
 {
-	copy(settings.begin(), settings.end(), inserter(frozenSettings, frozenSettings.end()));
+	for(auto &it : settings)
+		it.second.second = it.second.first;
 }
 
 
@@ -92,7 +93,8 @@ bool Plugins::Has(const string &name)
 // Determine if a plugin setting has changed since launching.
 bool Plugins::HasChanged(const string &name)
 {
-	return frozenSettings[name] != settings[name];
+	const auto it = settings.find(name);
+	return (it == settings.end()) || it->second.first != it->second.second;
 }
 
 
@@ -101,8 +103,8 @@ bool Plugins::HasChanged(const string &name)
 // launched via user preferences.
 bool Plugins::HasChanged()
 {
-	for(const auto &plugin : frozenSettings)
-		if(plugin.second != settings[plugin.first])
+	for(const auto &it : settings)
+		if(it.second.first != it.second.second)
 			return true;
 	return false;
 }
@@ -114,14 +116,14 @@ bool Plugins::HasChanged()
 bool Plugins::IsEnabled(const string &name)
 {
 	auto it = settings.find(name);
-	return (it == settings.end()) || it->second;
+	return (it == settings.end()) || it->second.second;
 }
 
 
 
 void Plugins::Set(const string &name, bool on)
 {
-	settings[name] = on;
+	settings[name].second = on;
 }
 
 
@@ -129,5 +131,5 @@ void Plugins::Set(const string &name, bool on)
 // Toggles enabling or disabling a plugin for the next game restart.
 void Plugins::TogglePlugin(const string &name)
 {
-	settings[name] = !IsEnabled(name);
+	settings[name].second = !IsEnabled(name);
 }
