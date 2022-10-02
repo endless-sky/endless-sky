@@ -84,11 +84,11 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
+	if(Plugins::HasChanged())
+		info.SetCondition("show plugins changed");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
-	if(Plugins::HasChanged())
-		info.SetCondition("show plugins changed");
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
 	zones.clear();
@@ -602,8 +602,7 @@ void PreferencesPanel::DrawPlugins()
 	// Table is at -110 while checkbox is at -130
 	table.DrawAt(Point(-110, firstY));
 	table.DrawUnderline(medium);
-	table.Draw("Installed plugins:", bright);
-	table.DrawGap(5);
+	table.DrawGap(25);
 
 	const Font &font = FontSet::Get(14);
 

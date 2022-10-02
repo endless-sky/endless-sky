@@ -422,6 +422,16 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+	visible if "show plugins changed"
+	label "Restart to apply changes"
+		from -225 -236
+		align top left
+		color "plugin reload required"
+	visible if "!show plugins changed"
+	label "Installed Plugins:"
+		from -225 -236
+		align top left
+		color bright
 
 
 
@@ -434,17 +444,6 @@ interface "preferences"
 		dimensions 0 -200
 		color "energy"
 		size 3
-	visible if "show plugins changed"
-	sprite "ui/planet dialog button"
-		center 0 210
-	label "Restart game"
-		center 0 201
-		dimensions 140 40
-		color "plugin reload required"
-	label "to reload plugins."
-		center 0 219
-		dimensions 140 40
-		color "plugin reload required"
 
 
 
