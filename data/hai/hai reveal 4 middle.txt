@@ -1016,7 +1016,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			`	Teeneep looks grumpy but doesn't contradict the older diplomat.`
 			`	"Besides, we know our next steps. Deputy Minster Yang will be here in a moment and we can see what the Republic might do."`
 			`	Only moments later, Xilin arrives with Batu in tow. As the actual diplomat, Sayari, with Teeneep occasionally providing information, lays out the concerns to do with the Navy knowing of and knowingly not intervening with Hai on pirate or smuggler vessels. He sympathizes, but when it comes to deciding what to do, the Hai request that the Navy be deployed to rescue those captured, and before Xilin can commit to raising it Batu cuts in. "I'm sorry deputy minister, but I must interject. It is unfortunate I have not had time to fully brief you on everything I've been told before coming but I have been advised that the Navy will not be deployed to clean up any of the Hai's messes."`
-			`	He clears his throat awkwardly, "Technically they said 'not under any circumstances', though it's possible the matter of five thousand missing civilians was not one of the things they considered when they said that."
+			`	He clears his throat awkwardly, "Technically they said 'not under any circumstances', though it's possible the matter of five thousand missing civilians was not one of the things they considered when they said that."`
 			`	Xilin frowns. "We should definitely present that case. It does sound somewhat outside of the realm of expectations. It'll be slow though. They'll have to do another whole round of private representative briefings, and then no doubt it will still be a large debate. Even if we started the process today, Parliament won't act any time this month, and probably not next month either. I'll kick things off, but you'll have to be patient."`
 			`	When Teeneep makes a noise as if to speak, Sayari silences her with a gentle touch and thanks Xilin in the formal capacity. He briefly thanks you for delivering Batu safely and then the two excuse themselves to see if they can get a hold of someone before their day ended.`
 			choice
@@ -1289,7 +1289,7 @@ mission "Hai Reveal [A13] A New Elder"
 		ship "Centipede (Teeneep)" "Teeneep's Ship"
 	on stopover
 		dialog `It seems Teeneep has got the Elders to agree to the deal with the Unfettered. A large Unfettered fleet joins you here.`
-	to complete
+	on complete
 		or
 			require "Quantum Keystone"
 			require "Quantum Key Stone"
