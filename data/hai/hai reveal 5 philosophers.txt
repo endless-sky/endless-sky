@@ -15,7 +15,7 @@ mission "Hai Reveal [B01] Information Blackout"
 	landing
 	invisible
 	name "Information Blackout"
-	description "Meet the Syndicate Security Captain at the spaceport on <source> when you're ready."
+	description "Meet the Syndicate Security Captain at the spaceport on <origin> when you're ready."
 	source "Sunracer"
 	clearance
 	to offer
@@ -185,7 +185,7 @@ mission "Hai Reveal [B02-A] The Blockade Goes Up"
 mission "Hai Reveal [B03] Contact Giti"
 	landing
 	name "Contact Giti"
-	description "Go to <destination> to get a line of communication out to Giti."
+	description "Go to <planet> to get a line of communication out to Giti."
 	source "Stormhold"
 	destination "Canyon"
 	clearance
@@ -268,7 +268,7 @@ mission "Hai Reveal [B05-short] The Road Not Taken"
 	autosave
 	landing
 	name "Syndicate Internal Affairs"
-	description "Go directly to <destination>. Do not pass Go. Do not collect $200."
+	description "Go directly to <planet>. Do not pass Go. Do not collect $200."
 	deadline
 	source "Earth"
 	destination "Hephaestus"
@@ -341,7 +341,7 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 mission "Hai Reveal [B06-long] Tarazed Analysis"
 	landing
 	name "Seeking Aid"
-	description `Find and board a ship that has microtransceivers. Your display will identify such ships as belonging to the "Smuggler" government. Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
+	description `Find and board a smugglers ship. Your display will identify such ships as belonging to the "Smuggler" government. Try Syndicate space or the Far North. Head to <planet> afterwards.`
 	source Wayfarer
 	destination Earth
 	clearance
@@ -480,7 +480,7 @@ fleet "Smuggler (Hai Traffickers)"
 
 mission "Hai Reveal [B06-long] Boarded Smuggler"
 	name "Learn about Keystones"
-	description "You need to know what the message means by asking Sayari or Teeneep on <destination> before going back to Giti."
+	description "You need to know what the message means by asking Sayari or Teeneep on <planet> before going back to Giti."
 	boarding
 	destination Stormhold
 	clearance
@@ -547,7 +547,7 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 mission "Hai Reveal [B07-long] Learn of Keystones"
 	landing
 	name "Missing Researchers"
-	description "You have the information Giti Gilani will need. It is time to visit her on <destination>."
+	description "You have the information Giti Gilani will need. It is time to visit her on <planet>."
 	source Stormhold
 	destination Earth
 	clearance
@@ -572,7 +572,7 @@ mission "Hai Reveal [B08-long] The Other Just As Fair"
 	autosave
 	landing
 	name "Syndicate Internal Affairs"
-	description "Go directly to <destination>. Do not pass Go. Do not collect $200."
+	description "Go directly to <planet>. Do not pass Go. Do not collect $200."
 	deadline
 	source "Earth"
 	destination "Hephaestus"
@@ -594,7 +594,7 @@ mission "Hai Reveal [B08-long] The Other Just As Fair"
 mission "Hai Reveal [B09] Scanning Devil-Hide"
 	landing
 	name "Searching Beyond the Wormhole"
-	description "Return to <destination> after finding and scanning the key system beyond the unstable wormhole. The syndicate will pay <payment>."
+	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The syndicate will pay <payment>."
 	source "Hephaestus"
 	waypoint "Devil-Hide"
 	passengers 1
@@ -655,7 +655,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 mission "Hai Reveal [B10] Report to Teeneep"
 	landing
 	name "Report the Discovery to Teeneep"
-	description "Return to <destination> and explain what you have found about Elenchus to Teeneep."
+	description "Return to <planet> and explain what you have found about Elenchus to Teeneep."
 	source "Hephaestus"
 	destination "Stormhold"
 	clearance
@@ -665,7 +665,7 @@ mission "Hai Reveal [B10] Report to Teeneep"
 		log `While Syndicate Internal Affairs looks over the scan data, it is time to report to Teeneep again.`
 		conversation
 			`When you return to <origin>, Moray reclaims his scanning equipment and requests Giti's assistance with providing testimony to those interpreting it. She still may not know everything that's going on, but by this point she knows more than enough that she's happy to be able to assist in some way.`
-			`	Now there's nothing for it but to head straight on to <destination>.`
+			`	Now there's nothing for it but to head straight on to <planet>.`
 				accept
 
 
@@ -673,7 +673,7 @@ mission "Hai Reveal [B10] Report to Teeneep"
 mission "Hai Reveal [B11] Moving Together"
 	landing
 	name "Rendezvous with the Assault Team"
-	description "Return to <destination> and explain what you have found."
+	description "Return to <planet> and explain what you have found."
 	source "Stormhold"
 	destination "Foundry"
 	clearance
@@ -771,7 +771,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`	At the present moment he seems very stressed though. "It's becoming increasingly difficult to cover up the existence of the Hai," he explains. "The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles you've just flown here have been explained away as experimental ship designs from the movie production being tested out. Still though, our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore.`
 			`	"I've organized the Syndicate's 'hostile urban insertion security operatives' to be loaded onto the Auxiliary. They look like intelligence operatives, if you ask me, so that'll be a conversation for me to follow up on later, but for now they're specially trained for attacking pirate strongholds and equipped with state of the art equipment that... is on a need-to-know basis. As long as we can protect the Auxiliary we'll be fine. The intel you brought back doesn't suggest particularly strong resistance.`
 			
-			`	Before you all leave for the invasion operation, General Choot'k meets you as you're making final preparations. "You have handled yourself well throughout this. I want to see you prove yourself in battle before I open the entrance to <destination>. When we arrive at Devil-Hide, we'll first fight the defense fleet waiting for us. I suspect we can handle it, but you are of course welcome to assist. The main priority for you should be to make sure nobody pursues Elder Teeneep or Captain Wallace. However, they will likely keep a couple of ships in reserve. The scans you took suggest some are not totally fighting fit, or perhaps will be kept to use their weapons inside the spaceport as a backup defense. To counter this, you'll need to draw them out by demanding tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. We won't help you fight the tribute defense fleets, but we'll fight the pirates waiting for our arrival and any other pirates that show up."`
+			`	Before you all leave for the invasion operation, General Choot'k meets you as you're making final preparations. "You have handled yourself well throughout this. I want to see you prove yourself in battle before I open the entrance to <planet>. When we arrive at Devil-Hide, we'll first fight the defense fleet waiting for us. I suspect we can handle it, but you are of course welcome to assist. The main priority for you should be to make sure nobody pursues Elder Teeneep or Captain Wallace. However, they will likely keep a couple of ships in reserve. The scans you took suggest some are not totally fighting fit, or perhaps will be kept to use their weapons inside the spaceport as a backup defense. To counter this, you'll need to draw them out by demanding tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. We won't help you fight the tribute defense fleets, but we'll fight the pirates waiting for our arrival and any other pirates that show up."`
 			`	He seems to admire your ship for a moment. "Tell the other humans not to help you either. If you succeed today you shall be Hai-friend, wherever you go."`
 				accept
 	on accept
@@ -874,7 +874,7 @@ mission "Hai Reveal [B12-A] Devil-Hide Fleet"
 mission "Hai Reveal [B13] Freedom"
 	landing
 	name "Take them Home"
-	description "Escort the Hai back to <destination>. Payment to cover your ongoing expenses is <payment>."
+	description "Escort the Hai back to <planet>. Payment to cover your ongoing expenses is <payment>."
 	source "Elenchus"
 	destination "Stormhold"
 	to offer
@@ -994,8 +994,8 @@ mission "Hai Reveal [B13] Freedom"
 			label surprised
 			`	Your face must have revealed your response, for they smile at you with subtle mirth. "I see you know of this person, and did not suspect. I think it is to you and you alone I shall impart this knowledge. Do with it as you will." They leave you to ponder your course.`
 			label done
-			`	As you return to your ship, Teeneep interrupts you. "I need you to escort me one last time, Captain <last>. I must return to <destination> to resolve things now that the threat is ended. You will be well-paid, of course."`
-			`	Anticipating your next question, she says, "The ships of the Unfettered Hai will be escorted back with us since the Elenctics are convinced they are at no risk and still have a ship at their disposal. Some of those who come as crew on the Unfettered vessels have chosen to remain here and join the Elenctics. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. Danforth will come with us, but the other human vessels will make their way home themselves. Now we must rejoin our people on <destination> and set about resolving this matter for good, finally."`
+			`	As you return to your ship, Teeneep interrupts you. "I need you to escort me one last time, Captain <last>. I must return to <planet> to resolve things now that the threat is ended. You will be well-paid, of course."`
+			`	Anticipating your next question, she says, "The ships of the Unfettered Hai will be escorted back with us since the Elenctics are convinced they are at no risk and still have a ship at their disposal. Some of those who come as crew on the Unfettered vessels have chosen to remain here and join the Elenctics. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. Danforth will come with us, but the other human vessels will make their way home themselves. Now we must rejoin our people on <planet> and set about resolving this matter for good, finally."`
 				accept
 	on complete
 		payment 1000000
@@ -1073,7 +1073,7 @@ mission "Hai Reveal [B14] Journey to Peace"
 		conversation
 			`Your arrival on <origin> is met with much fanfare. In your absence the remaining staging ground here was eventually found and purged, and an agreement of sorts has been made between the Republic authorities and the remaining major players here - or at least those whose lists of possible crimes aren't so long and well-evidenced as to be arrested for appearing. The hope is that after such a thorough purge, <origin> will manage to be less of a source of problems for a while, but the expectation is merely that people smuggling will no longer be an industry that is widely tolerated by the local powers that be.`
 			`	The Unfettered are treated as heroes by both their comrades and the other Hai crews as they return to the fold. This causes some, like the diplomats who were on Hai-home, to share some concerned looks among each other and have a number of surreptitious chats with Danforth and Marshal Khaine, but the distinction between the two groups remains pronounced throughout.`
-			`	Once people have had a chance to get sorted Teeneep approaches you again. "There will be much work in the future, but for now it is time to return to <destination>. I have been too long away, and there are obligations to be discharged.`
+			`	Once people have had a chance to get sorted Teeneep approaches you again. "There will be much work in the future, but for now it is time to return to <planet>. I have been too long away, and there are obligations to be discharged.`
 				accept
 	npc save accompany
 		government "Hai (Wormhole Access)"

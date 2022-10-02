@@ -204,7 +204,7 @@ mission "Hai Building Mountaintop [1a] Construction Escorts"
 	to offer
 		has "Hai Building Mountaintop [1] Construction Fleet: active"
 	on visit
-		dialog `You have arrived without all eight of the Geocoris you are escorting from <origin> to <destination>. You must take off and wait for them to finish this mission.`
+		dialog `You have arrived without all eight of the Geocoris you are escorting from <origin> to <planet>. You must take off and wait for them to finish this mission.`
 	npc accompany save
 		personality escort timid
 		government "Hai (Wormhole Access)"
@@ -231,7 +231,7 @@ mission "Hai Building Mountaintop [1b] Return"
 		conversation
 			`On arrival, you see one of the Geocoris deploy a steel ring around itself. Space-based cranes unfold and set about removing the three outer sections of the Geocoris and moving them to the ring. After they finish with the first, they progressively dismantle the other seven Geocoris you escorted. Within a few hours, there is a makeshift station with eight Geocoris' power generators and a sizable amount of storage and habitat space. The construction workers begin unpacking the contents of the Geocoris' storage pods, checking construction seals, engaging principle life support systems, and erecting a massive holoprojector.`
 			`	The Geocoris' captains explain that the Hai had conceived this space station option when the Geocoris was first designed, with some station construction principles used to support its massive cargo capacity. With minor modifications, it was made a trivial effort to dismantle eight Geocoris and rapidly assemble a station. They thank you for your service and inform you that the Hai government needs your help again.`
-			`	Content that the station is built satisfactorily, you prepare to return to <destination>.`
+			`	Content that the station is built satisfactorily, you prepare to return to <planet>.`
 				accept
 
 
@@ -464,7 +464,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 			`	You let her know you'll handle it and prepare to leave.`
 				accept
 	on stopover
-		dialog `You have the furnishings the Hai ordered. It's time to return them to <destination>.`
+		dialog `You have the furnishings the Hai ordered. It's time to return them to <planet>.`
 	on complete
 		event "role-play station active" 12
 		event "news: hai video clip debunked"

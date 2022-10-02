@@ -168,8 +168,8 @@ mission "Hai Rescue: Yeertle Family"
 	on defer
 		"Hai Rescue: Yeertle Family (defer count)" ++
 	on complete
-		log `Found a Hai family that had been locked up by some crooked merchants meant to be providing transport. A lively bunch, returned them to <destination>.`
-		log "Minor People" "Duniip Yeertle" `A holographer from <destination>, he was able to cobble together five holoprojectors from scrap parts while hiding in little more than a cave in order to protect his family.`
+		log `Found a Hai family that had been locked up by some crooked merchants meant to be providing transport. A lively bunch, returned them to <planet>.`
+		log "Minor People" "Duniip Yeertle" `A holographer from <planet>, he was able to cobble together five holoprojectors from scrap parts while hiding in little more than a cave in order to protect his family.`
 		payment 350000
 		"hai slave prereq" ++
 		dialog `The Yeertle family is ecstatic to be home after their long ordeal and gladly give you <payment>. They promise to run background checks of human pilots before hiring next time.`
@@ -306,7 +306,7 @@ mission "Hai Rescue: Ooonem"
 		dialog `Those pursuing Oonem have caught on quickly and followed you into orbit. You'll probably have to fight them, but they're core pirates and don't look equipped to make the journey back to Hai space successfully; so if you're fast enough you could probably attempt to simply dodge them instead.`
 	on complete
 		log `Rescued a kidnapped Hai researcher, Ooonem, from Stormhold and returned her to Makerplace. She was tricked into leaving Hai space for a fake business deal, and the merchant who agreed to take her there kidnapped her instead. Men have been hunting her since she escaped. She doesn't know the real identities of the kidnappers.`
-		log "Minor People" "Oonem" `A Hai researcher with a remarkable talent for stealth and laser rifles. Also a predilection for shooting first and not taking prisoners. She escaped kidnapping and survived independently on <source> for a remarkable length of time where she acquired the moniker 'angel of death'. She's also quite the capitalist.`
+		log "Minor People" "Oonem" `A Hai researcher with a remarkable talent for stealth and laser rifles. Also a predilection for shooting first and not taking prisoners. She escaped kidnapping and survived independently on <origin> for a remarkable length of time where she acquired the moniker 'angel of death'. She's also quite the capitalist.`
 		payment 225000
 		"hai slave prereq" ++
 		dialog `Ooonem is relieved to return to <planet>. She leads you to her family's home where you're treated to a bountiful dinner. The cuisine is entirely human-Hai fusion dishes. The dessert is accompanied by what Oonem describes as the most delicious spice of all: <payment>.`
@@ -389,13 +389,13 @@ mission "Hai Rescue: Prison Role-Players"
 			`	"Unfortunately, it was a trick! They were pirates and took us into human space instead. They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. I don't know if they got sloppy or if they were just new at this, but it seems they had forgotten how fast we can be. The other pirate set the ship to crash land and used an escape pod. Now we're stuck here."`
 				goto questions
 			label pay
-			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <destination> though, so you'll have to fly us there first."`
+			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <planet> though, so you'll have to fly us there first."`
 				goto questions
 			label go
-			`	"Excellent! Everyone pile aboard. Let's go back to <destination>!"`
+			`	"Excellent! Everyone pile aboard. Let's go back to <planet>!"`
 				accept
 	on complete
-		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. Returned the Hai to <destination>.`
+		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. Returned the Hai to <planet>.`
 		payment 565000
 		"hai slave prereq" ++
 		dialog `The Hai researchers thank you for rescuing them from their ill-fated "prison role-play cruise" and promise to stick to safer pastimes in the future. They happily give you <payment>.`
@@ -494,7 +494,7 @@ mission "Hai Rescue: Meroot and Lucy"
 			`	The two women put on clothing that thoroughly covers their person. They lead you through a series of ducts and alleys back to the pad where your ship is parked. Just as your airlock opens there's a sharp zapping sound as someone shoots Meroot with a stun gun. You and Lucy duck and a couple other shots dissipate harmlessly on the bulkhead of your ship. You fire off a couple shots back and between the two of you you manage to drag Meroot through the airlock, seal it behind you and lift off. It appears you're being followed into orbit.`
 				launch
 	on complete
-		log `Rescued a pair of researchers: a Hai woman named Meroot and a human woman named Lucy. They were kidnapped by men who brought them to Canyon. Returned them to <destination> where they now live together. They don't know the identities of the kidnappers.`
+		log `Rescued a pair of researchers: a Hai woman named Meroot and a human woman named Lucy. They were kidnapped by men who brought them to Canyon. Returned them to <planet> where they now live together. They don't know the identities of the kidnappers.`
 		payment 315000
 		"hai slave prereq" ++
 		dialog `Meroot and Lucy thank you for your help and give you <payment>. Lucy decides to live in Hai space with Meroot. "It's safer here," she explains, though you have your doubts. You ask, but the two have no idea who the men that kidnapped them were.`
@@ -565,7 +565,7 @@ mission "Hai Rescue: Gipeep"
 					decline
 			`	You put the key in the lock, turn, and the next thump you hear pushes the crate open so hard it falls over. An angry-looking Hai jumps out and starts yelling at you in its own language.`
 			`	After a few seconds, the Hai calms down and speaks in your tongue. "They locked me in a box! I was walking home from a store on <planet>, and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?`
-			`	"Please take me home. I'm a ship architect from <destination>. We should hurry before they come back."`
+			`	"Please take me home. I'm a ship architect from <planet>. We should hurry before they come back."`
 			choice
 				`	"Of course. Just hop in my ship."`
 					goto accept
@@ -581,7 +581,7 @@ mission "Hai Rescue: Gipeep"
 			`	It appears ships are following you into orbit.`
 				launch
 	on complete
-		log `Rescued a Hai ship architect named Gipeep who was kidnapped near his home on <destination> and transported in a locked cargo crate. The crate's key had a marking on it like an angry cat in a circle.`
+		log `Rescued a Hai ship architect named Gipeep who was kidnapped near his home on <planet> and transported in a locked cargo crate. The crate's key had a marking on it like an angry cat in a circle.`
 		log "Minor People" "Gipeep Anl'ooh" `A Hai of no stated profession who was actively rescued from his captors. His tenacity of spirit may have `
 		payment 285000
 		"hai slave prereq" ++
