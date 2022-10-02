@@ -2401,8 +2401,9 @@ mission "FW Syndicate Extremists 1A"
 			`	"Was that knowledge accurate?" asks Freya.`
 			label information
 			`	"Very accurate," he says. "Our business flourished like never before. But then a month came when instead, the Oracle's predictions were bleak. A massive recession was coming, an end to the golden days of the Republic. We tried altering the model in every way we could: changing our production, our wages. We even asked the Oracle if dissolving the Syndicate would avert the recession. But its predictions remained the same. Then we learned from our contacts in Parliament about the Southern Defense Pact, and the fear that they were about to declare independence. So we asked the Oracle what would happen if war broke out."`
-			`	"You started a war... to save the economy?" says Danforth. He sounds disgusted.`
-			`	Alastair nods. "The Alphas were only too glad to help. Especially with the nuclear research. Which, incidentally, is why I'm telling you all this, because if your fleet tries to take out the Alphas, they'll strike back with nukes."`
+			`	"You started a war... to save the economy?" says Danforth. He sounds disgusted. "Do you know how many lives have been lost because of your sick greed?"`
+			`	Alastair snaps at Danforth. "Do you think we made this decision lightly? Do you know how many lives would have been lost had such a recession actually occurred? The last time the economy fell as hard as the Oracle predicted, humanity entered a dark age where millions died of starvation and billions more suffered from the resulting chaos!`
+			`	"But... the Alphas were only too glad to help. Especially with the nuclear research. Which, incidentally, is why I'm telling you all this, because if your fleet tries to take out the Alphas, they'll strike back with nukes."`
 			choice
 				`	"Do you have an alternative to attacking them?"`
 				`	"Is there any way we could disable the nukes?"`
@@ -2418,7 +2419,8 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"I don't see why not," says Danforth, fixing Alastair with a piercing gaze. "It's certainly better than leaving it in Syndicate hands."`
 			label end
-			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "The Alphas are holed up on Buccaneer Bay," says Alastair, "an old pirate world. Good luck in defeating them."`
+			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "And when we're through with this, I'll be seeing to it that this Oracle is destroyed so that this can never happen again," says Danforth. Alastair gives a meek nod in agreement. "Now, where are the Alphas."`
+			`	"The Alphas are holed up on Buccaneer Bay," says Alastair, "an old pirate world. Good luck in defeating them."`
 				accept
 	
 	npc accompany save
@@ -2445,7 +2447,7 @@ mission "FW Syndicate Extremists 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		"reputation: Syndicate (Extremist)" = -1000
+		"reputation: Syndicate (Extremist)" <?= -1000
 		event "battle of algenib"
 		outfit "Cloaking Device" 1
 		conversation
