@@ -18,12 +18,8 @@ import glob
 
 # Script that checks for common text content formatting pitfalls not covered by spellcheck or other tests.
 
-# The number of errors found in all files
-errors = 0
-# The list of errors in the current file; elements are tuples of the line numbers and the error messages
-error_list = []
 # Regex-based style checks for check_regexes()
-regexes = {
+regexes = {re.compile(regex): description for regex, description in {
 	# Matches any space that is preceded only by tabs or '"' or '`' characters,
 	# except if it immediately follows a '"' or '`' character, as used in 'word'.
 	"^[\\t`\"]*(?<![`\"]) ": "indentations should use tabs only",
@@ -35,13 +31,12 @@ regexes = {
 	# preceded by the ending of a sentence ('?', '!', '.', ';', ':', ')', '"', ''', '>') and a whitespace.
 	# The same check fails if used on quotation marks, due to the irregular nature of 'word'.
 	"[?!.;:\\)\"'>] `$": "unnecessary space before closing backtick"
-}
-# Precompile regexes
-regexes = {re.compile(regex): description for regex, description in regexes.items()}
+}.items()}
 
 
 # Checks the format of all txt files.
 def check_content_style():
+	error_count = 0
 	files = glob.glob('data/**/*.txt', recursive=True)
 	files.sort()
 	for file in files:
@@ -50,26 +45,29 @@ def check_content_style():
 		lines = f.readlines()
 		lines = [line.removesuffix('\n') for line in lines]
 
-		check_copyright(file, lines)
-		check_ascii(file, lines)
-		check_regexes(file, lines)
-		check_indents(file, lines)
+		error_list = []
+		if file != "data/tooltips.txt":
+			error_list += check_copyright(lines)
+		error_list += check_ascii(lines)
+		error_list += check_regexes(lines)
+		error_list += check_indents(lines)
 
 		# Making sure errors are printed in order of their line numbers
 		error_list.sort(key=lambda error: error[0])
-		for (line, error) in error_list:
-			print(error)
+		for (line, reason) in error_list:
+			print("Formatting error in " + file + " line " + str(line) + ": " + reason)
+		error_count += len(error_list)
 		error_list.clear()
+	return error_count
 
 
 # Checks the copyright header of the files. Unlike C++ source files, these don't contain the file's name in the header.
-# The tooltips.txt file is excluded from this check, as it has no copyright header.
+# The tooltips.txt file should be excluded from this check, as it has no copyright header.
 # Parameters:
-# file: the name of the file
 # lines: the lines of the file
-def check_copyright(file, lines):
-	if file == "data/tooltips.txt":
-		return
+# Returns: a list of tuples representing the location and the description of the formatting issues
+def check_copyright(lines):
+	error_list = []
 	# The mandatory first line of a copyright header; might be repeated
 	first = "^# Copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .+$"
 	# Optional line following the first one; might be repeated
@@ -96,59 +94,71 @@ def check_copyright(file, lines):
 		else:
 			break
 	if text_index == 0:
-		print_error(file, 1, "incorrect copyright header")
-		return
+		error_list.append((1, "incorrect copyright header"))
+		return error_list
 	for line in lines[text_index:]:
 		if re.search(second, line):
 			text_index += 1
 		else:
 			break
 	if len(lines) - text_index < len(third):
-		print_error(file, len(third) - 1, "incomplete copyright header")
+		error_list.append((len(third) - 1, "incomplete copyright header"))
 	else:
 		for index, (line, standard) in enumerate(zip(lines[text_index:], third)):
 			standard = standard.strip()
 			if standard != line:
-				print_error(file, text_index + index + 1, "incorrect copyright header")
+				error_list.append((text_index + index + 1, "incorrect copyright header"))
 				break
+	return error_list
 
 
 # Checks whether the file contains any non-ASCII characters. Extended ASCII codes are not accepted.
 # Parameters:
-# file: the name of the file
 # lines: the lines of the file
-def check_ascii(file, lines):
+# Returns: a list of tuples representing the location and the description of the formatting issues
+def check_ascii(lines):
+	error_list = []
 	for index, line in enumerate(lines):
 		for char in line:
 			if ord(char) < 0 or ord(char) > 127:
-				print_error(file, index + 1, "files should be plain ASCII")
+				error_list.append((index + 1, "files should be plain ASCII"))
+	return error_list
 
 
 # Performs the regex-based formatting checks.
 # Parameters:
-# file: the name of the file
 # lines: the lines of the file
-def check_regexes(file, lines):
+# Returns: a list of tuples representing the location and the description of the formatting issues
+def check_regexes(lines):
+	error_list = []
 	for index, line in enumerate(lines):
 		for regex, description in regexes.items():
 			if re.search(regex, line):
-				print_error(file, index + 1, description)
+				error_list.append((index + 1, description))
+	return error_list
 
 
-def check_indents(file, lines):
+# Checks that each line is properly indented based on the indentation of surrounding lines.
+# Parameters:
+# lines: the lines of the file
+# Returns: a list of tuples representing the location and the description of the formatting issues
+def check_indents(lines):
+	error_list = []
 	previous_indent = 0
 	for index, line in enumerate(lines):
 		indent = count_indent(line)
 		# Checking non-empty lines
 		if line and not line.isspace():
 			if indent - previous_indent > 1:
-				print_error(file, index + 1, "do not add more than a single level of indentation per line")
+				error_list.append((index + 1, "do not add more than a single level of indentation per line"))
 			previous_indent = indent
+	return error_list
 
 
 # Counts the number of tabs this line of text is indented with.
 # Parameters:
 # text: the text to count indents in
+# Returns: the number of leading tabulators
 def count_indent(text):
 	count = 0
 	for char in text:
@@ -162,14 +172,12 @@ def count_indent(text):
 # Generates and stores an error message. The error is later displayed in check_content_style().
 def print_error(file, line, reason):
 	error_list.append((line, "Formatting error in " + file + " line " + str(line) + ": " + reason))
-	global errors
-	errors += 1
 
 
 if __name__ == '__main__':
-	check_content_style()
-	if errors > 0:
-		text = "Found " + str(errors) + " formatting " + ("issue" if errors == 1 else "issues") + "."
+	error_count = check_content_style()
+	if error_count > 0:
+		text = "Found " + str(error_count) + " formatting " + ("issue" if error_count == 1 else "issues") + "."
 		print(text)
 		exit(1)
 	else:
