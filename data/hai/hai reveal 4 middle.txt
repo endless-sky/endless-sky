@@ -1168,12 +1168,12 @@ mission "Hai Reveal [A11-A] Permanent Fleets"
 		government "Republic"
 		system "Ultima Thule"
 		personality heroic opportunistic staying
-		fleet "Human Wormhole Guards" 20
+		fleet "Human Wormhole Guards" 15
 	npc
 		government "Hai"
 		system "Waypoint"
 		personality heroic staying
-		fleet "Hai Wormhole Guards" 40
+		fleet "Hai Wormhole Guards" 30
 
 #These are separated because they leave at a different time.
 mission "Hai Reveal [A11-B] Permanent Fleets"
@@ -1188,7 +1188,7 @@ mission "Hai Reveal [A11-B] Permanent Fleets"
 		government "Republic"
 		system "Ultima Thule"
 		personality heroic opportunistic staying
-		fleet "Human Wormhole Guards" 20
+		fleet "Human Wormhole Guards" 15
 
 
 
@@ -1250,16 +1250,66 @@ mission "Hai Reveal [A13] A New Elder"
 			`	He manages to make that last line sound both bewildered and grumpy at the same time. "That Teeneep you've been running around with, and yes don't look at me in shock; Sayari told me when we were concerned you might not get out. You've developed some friends in high places and I admire that... where was I?"`
 			`	"Teeneep!" says Alondo, perhaps a little too loudly, nearly poking Remington in the face.`
 			`	"Of course, that Teeneep of yours had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that sir pitchforks and pulse rifles down there has definitively lost. She's a firebrand is that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
-			
-			`Teeneep successfully elected Elder, along with one other long-time advocate for sensible change elsewhere who reinforces her position. She displaces one of the most steadfastly stuff Elders and upsets all the long-term power dynamics in the council.`
-			`She then uses this position to not only get the Hai to agree to the deal with the Unfettered, but also to put pressure on the Republic to allow the Unfettered through.`
-			`The threat is broadcast that if they do not treat with them seriously, the united Hai will move in without Republic approval. Navy blockades the wormhole to the best of its ability until the issue is resolved between the Hai and Parliament. Something something politics go here.`
-			`Travel to rendezvous with the Unfettered fleet, Sayari travels with you, but demands you fly with a Keystone`
+			choice
+				`	(Wait with them.)`
+				`	(Drink with them.)`
+			`	As it turns out, Teeneep's speech is in Hai with no translation available. It's short, punchy, and restrained though; or at least her delivery of it has that vibe. With nothing else to do and it being well into the evening, there's nothing for it but to call it a night.`
+			`	The following morning Sayari finds you with Alondo, Remington, Xilin and Batu all having vending machine breakfasts in the cafeteria. It turns out Hai vending machines aren't half bad.`
+			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to as which do you want first?"`
+			`	Alondo and Remington both groan, neither having pulled up particularly well this morning. Xilin has a great deal more composure but looks like he's not had a break from stress in well over a month... which is probably accurate. "Why don't you pick <last>?" he says.`
+			choice
+				`	"Good news."`
+					goto goodnews
+				`	"Bad news."`
+			`	"Well, the bad news is that I'm afraid you're all going somewhere. You have an hour to collect your things and be ready to go. We are going to rendezvous with a fleet."`
+			`	That seems to make people sit up a bit straighter and Alondo seems to unconsciously stabilize himself against Remington's shoulder. "The good news is that we're probably not going to be getting into a fight. The new Elder council has somewhat more, uh, flexibility than the previous one."`
+				goto summary
+			label goodnews
+			`	"Well, the good news is that we're probably not going to be getting into a fight with the Republic. Peaceful voices for change triumphed over more radical instigators. The new Elder council has somewhat more, uh, flexibility than the previous one."`
+			`	Xilin actively seems to draw strength from this news, and Remington claps Alondo on the shoulder with a quiet, "told ya." Sayari continues. "The bad news is that I'm afraid you're all going somewhere. You have an hour to collect your things and be ready to go. We have a fleet to meet and there's more work ahead of us."`
+			label summary
+			`	The freshest of the group, Batu, seems to twig to something first. "There's going to be an ultimatum isn't there? The fleet is a threat."`
+			`	"Yes," says Sayari. "It's going to be a very broad ultimatum though, lots of room for the Republic to decide how it's addressed; and no one is shooting at anyone without talking first. Now, all of you except <last> are traveling with Elder Teeneep. I suggest you go and prepare immediately."`
+			`	She approaches you as they leave. "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change elsewhere who was also elected and who is remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now. You're to come with us too, and I'm told I'm required to travel with you, as insurance."`
+			`She hesitates seeming oddly nervous for the one who theoretically has all the power in the room. "<last> this will sound silly, but I'm a bit of a traditionalist sometimes and there's a superstition about space travel and under the circumstances... I'm too old for this stress. Could you please do me a favor and make sure you have a Quantum Keystone on your ship? It's meant to be good luck and well. I think we need it."`
+			choice
+				`	"Of course."`
+					goto course
+				`	"No."`
+			`	Her expression is deeply wounded, but she sets her resolve. "Then this is no longer a request. It's a requirement.`
+				goto end
+			label course
+			`	She looks relieved. "Thankyou, I really appreciate it.`
+			label end
+			`	"I'll be along in a bit, I need to go and collect my things for traveling now too."`
 				accept
 	npc save accompany
 		government "Hai (Wormhole Access)"
 		personality timid escort
 		ship "Centipede (Teeneep)" "Teeneep's Ship"
+	on stopover
+		dialog `It seems Teeneep has got the Elders to agree to the deal with the Unfettered. A large Unfettered fleet joins you here.`
+	to complete
+		or
+			require "Quantum Keystone"
+			require "Quantum Key Stone"
+	on visit
+		dialog `Under the circumstances Sayari's superstition has got the better of her. She must travel with you, and you must have a Quantum Keystone installed for her to do so.`
+	on decline
+		dialog `You have declined an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		"reputation: Hai" -= 10000
+		"reputation: Hai (Wormhole Access)" -= 10000
+		"reputation: Hai Merchant" -= 10000
+		"reputation: Hai Merchant (Human)" -= 10000
+		"reputation: Hai Merchant (Sympathizers)" -= 10000
+	on fail
+		dialog `You have declined an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		"reputation: Hai" -= 10000
+		"reputation: Hai (Wormhole Access)" -= 10000
+		"reputation: Hai Merchant" -= 10000
+		"reputation: Hai Merchant (Human)" -= 10000
+		"reputation: Hai Merchant (Sympathizers)" -= 10000
+		# Maybe we'll put in an alternative pathway later.
 
 
 mission "Hai Reveal [A13-A] Unfettered Pickup"
@@ -1313,6 +1363,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 		conversation
 			`This is the mega conversation to end all mega conversations.`
 			`It's all falling apart.`
+			`The threat is broadcast that if they do not treat with them seriously, the united Hai will move in without Republic approval. Navy blockades the wormhole to the best of its ability until the issue is resolved between the Hai and Parliament. Something something politics go here.`
 			`	a) The Navy moving a large fleet into the uninhabited region around Ultima Thule doesn't go unnoticed. Rumors start to spread about an impending alien invasion. Get a spaceport news text in the arrival on on Sunracer that highlights this.`
 			`	c) Parliament says they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people? The Hai imply that the Navy could end up killing the Hai involved in the process.`
 			`	d) Turner pulls Remington aside and points out how the Hai population is a vast new region to market to, but that won't be an option if war breaks out. Use this to get the Syndicate to leverage the Parliament to agree to the Hai's demands.`
