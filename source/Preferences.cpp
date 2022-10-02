@@ -49,23 +49,22 @@ void Preferences::Load()
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
 	settings["Automatic aiming"] = true;
-	settings["Damaged fighters retreat"] = true;
-	settings["Draw background haze"] = true;
-	settings["Draw starfield"] = true;
-	settings["Hide unexplored map regions"] = true;
-	settings["Parallax background"] = true;
 	settings["Render motion blur"] = true;
-	settings["Ship outlines in shops"] = true;
+	settings[FRUGAL_ESCORTS] = true;
+	settings[EXPEND_AMMO] = true;
+	settings["Damaged fighters retreat"] = true;
+	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
-	settings["Show hyperspace flash"] = true;
+	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
-	settings["Show stored outfits on map"] = true;
+	settings["Show hyperspace flash"] = true;
+	settings["Draw background haze"] = true;
+	settings["Draw starfield"] = true;
+	settings["Parallax background"] = true;
+	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
-	settings["Warning siren"] = true;
-	settings["fullscreen"] = true;
-	settings[EXPEND_AMMO] = true;
-	settings[FRUGAL_ESCORTS] = true;
+	settings["Ship outlines in shops"] = true;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
