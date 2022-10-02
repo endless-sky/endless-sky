@@ -53,8 +53,7 @@ mission "Remnant: Cognizance 1"
 		personality entering forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo 1
-			commodities "void sprite parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
@@ -116,8 +115,7 @@ mission "Remnant: Cognizance 2"
 		personality forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo 1
-			commodities "void sprite parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
@@ -177,8 +175,7 @@ mission "Remnant: Cognizance 4"
 		system "Aescolanus"
 		fleet
 			names "korath"
-			cargo 2
-			commodities "void sprite parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
@@ -237,8 +234,7 @@ mission "Remnant: Cognizance 5"
 		system "Nenia"
 		fleet
 			names "korath"
-			cargo 2
-			commodities "void sprite parts"
+			outfitters "Void Sprite Parts"
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
