@@ -123,8 +123,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		// Check for conditions that require clearing this key's current value.
 		// "remove <key>" means to clear the key's previous contents.
 		// "remove <key> <value>" means to remove just that value from the key.
-		// Even when removing a single object, this node will have no value.
-		// But, it will have children, so, do not remove all if the key is 'object' and the node has children.
+		// "remove object" should only remove all if the node lacks children, as the children
+		// of an object node are its values.
 		bool removeAll = (remove && !hasValue && !(key == "object" && child.HasChildren()));
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
@@ -176,7 +176,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
-			hidden = !remove;
+			hidden = true;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
@@ -273,7 +273,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			if(remove)
 			{
 				StellarObject toRemoveTemplate;
-				LoadObjectHelper(child, toRemoveTemplate, true);
+				for(const DataNode &grand : node)
+					LoadObjectHelper(grand, toRemoveTemplate, true);
 
 				auto removeIt = find_if(objects.begin(), objects.end(),
 					[&toRemoveTemplate](const StellarObject &object)
@@ -838,8 +839,8 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	int index = objects.size();
 	objects.push_back(StellarObject());
 	StellarObject &object = objects.back();
+	object.parent = parent;
 
-	// Not passing 'planets' to LoadObjectHelper(), so do this here.
 	bool isAdded = (node.Token(0) == "add");
 	if(node.Size() >= 2 + isAdded)
 	{
@@ -848,52 +849,45 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		planet->SetSystem(this);
 	}
 
-	object.parent = parent;
-
-	LoadObjectHelper(node, object, false, index, parent);
-
-	// Again, not passing 'planets', so need to do this here.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "object")
-		LoadObject(child, planets, index);
+		if(child.Token(0) == "hazard" && child.Size() >= 3)
+			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
+		else if(child.Token(0) == "object")
+			LoadObject(child, planets, index);
+		else
+			LoadObjectHelper(child, object);
 	}
 }
 
 
 
-void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing, int index, int parent)
+void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
 {
-	for(const DataNode &child : node)
+	const string &key = node.Token(0);
+	bool hasValue = (node.Size() >= 2);
+	if(key == "sprite" && hasValue)
 	{
-		if(child.Token(0) == "sprite" && child.Size() >= 2)
+		object.LoadSprite(node);
+		if(removing)
+			return;
+		object.isStar = !node.Token(1).compare(0, 5, "star/");
+		if(!object.isStar)
 		{
-			object.LoadSprite(child);
-			if(!removing)
-			{
-				object.isStar = !child.Token(1).compare(0, 5, "star/");
-				if(!object.isStar)
-				{
-					object.isStation = !child.Token(1).compare(0, 14, "planet/station");
-					object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());
-				}
-			}
+			object.isStation = !node.Token(1).compare(0, 14, "planet/station");
+			object.isMoon = (!object.isStation && object.parent >= 0 && !objects[object.parent].IsStar());
 		}
-		else if(child.Token(0) == "distance" && child.Size() >= 2)
-			object.distance = child.Value(1);
-		else if(child.Token(0) == "period" && child.Size() >= 2)
-			object.speed = 360. / child.Value(1);
-		else if(child.Token(0) == "offset" && child.Size() >= 2)
-			object.offset = child.Value(1);
-		else if(child.Token(0) == "hazard" && child.Size() >= 3 && !removing)
-			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
-		else if(child.Token(0) == "object" && !removing)
-			{
-				// This is an acceptable use of the token, but we don't have access to `planets` here, so do nothing.
-			}
-		else
-			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	else if(key == "distance" && hasValue)
+		object.distance = node.Value(1);
+	else if(key == "period" && hasValue)
+		object.speed = 360. / node.Value(1);
+	else if(key == "offset" && hasValue)
+		object.offset = node.Value(1);
+	else if(removing && (key == "hazard" || key == "object"))
+		node.PrintTrace("Key \"" + key + "\" cannot be removed from an object:");
+	else
+		node.PrintTrace("Skipping unrecognized attribute:");
 }
 
 
