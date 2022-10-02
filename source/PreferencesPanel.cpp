@@ -599,7 +599,6 @@ void PreferencesPanel::DrawPlugins()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &pluginReloadRequired = *GameData::Colors().Get("plugin reload required");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
@@ -618,33 +617,31 @@ void PreferencesPanel::DrawPlugins()
 
 	for(const auto &plugin : GameData::PluginAboutText())
 	{
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
+		const string &plugin_name = plugin.first;
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin_name);
 
-		bool isSelected = (plugin.first == selectedPlugin);
-		if(isSelected || plugin.first == hoverPlugin)
+		bool isSelected = (plugin_name == selectedPlugin);
+		if(isSelected || plugin_name == hoverPlugin)
 			table.DrawHighlight(back);
-		bool pluginEnabled = Plugins::IsEnabled(plugin.first);
 		double rowHeight = table.GetRowBounds().Height();
 		double thirdHeight = rowHeight / 3;
 		Point checkboxPos = table.GetRowBounds().TopLeft();
 		checkboxPos.X() -= font.Height() / 2;
 		checkboxPos.Y() += rowHeight / 2;
 
-		SpriteShader::Draw(box[pluginEnabled], checkboxPos);
+		SpriteShader::Draw(box[Plugins::IsEnabled(plugin_name)], checkboxPos);
 		Point zoneDimension = Point(20., thirdHeight * 2.);
 		Point zoneOffset = checkboxPos + Point(0., thirdHeight - 3);
 		Rectangle zoneBounds = Rectangle(zoneOffset, zoneDimension);
-		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.first); });
-		if(Plugins::HasChanged(plugin.first))
-			table.Draw(plugin.first, pluginReloadRequired);
-		else if(isSelected)
-			table.Draw(plugin.first, bright);
+		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin_name); });
+		if(isSelected)
+			table.Draw(plugin_name, bright);
 		else
-			table.Draw(plugin.first, pluginEnabled ? medium : dim);
+			table.Draw(plugin_name, Plugins::InitialPluginState(plugin_name) ? medium : dim);
 
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(plugin.first);
+			const Sprite *sprite = SpriteSet::Get(plugin_name);
 			Point top(15., firstY);
 			if(sprite)
 			{

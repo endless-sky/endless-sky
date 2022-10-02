@@ -29,11 +29,11 @@ public:
 
 	static bool Has(const std::string &name);
 	static bool HasChanged();
-	static bool HasChanged(const std::string &name);
 	static bool IsEnabled(const std::string &name);
 	static void SetPlugin(const std::string &name, bool on);
 	static void SetPlugin(const std::string &name);
 	static void TogglePlugin(const std::string &name);
+	static bool InitialPluginState(const std::string &name);
 };
 
 

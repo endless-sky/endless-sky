@@ -94,15 +94,6 @@ bool Plugins::Has(const string &name)
 
 
 
-// Determine if a plugin setting has changed since launching.
-bool Plugins::HasChanged(const string &name)
-{
-	const auto it = settings.find(name);
-	return (it == settings.end()) || it->second.initial != it->second.current;
-}
-
-
-
 // Returns true if any plugin enabled or disabled setting has changed since
 // launched via user preferences.
 bool Plugins::HasChanged()
@@ -145,4 +136,13 @@ void Plugins::SetPlugin(const string &name)
 void Plugins::TogglePlugin(const string &name)
 {
 	settings[name].current = !IsEnabled(name);
+}
+
+
+
+// Get the state of the plugin from when the game was first loaded.
+bool Plugins::InitialPluginState(const string &name)
+{
+	const auto it = settings.find(name);
+	return (it == settings.end()) || it->second.initial;
 }
