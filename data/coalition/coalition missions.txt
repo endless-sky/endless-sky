@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Coalition: First Contact"
 	landing
@@ -2838,7 +2841,7 @@ mission "Coalition: Expeditions Past 10"
 			label forgive
 			`	She breathes in relief. "Thank you, Captain. To trick you, my intention wasn't. Thanks to your help, maybe put an end to this fear of leaving, or even convince the council to get the expedition efforts going again, I can."`
 			label end
-			`	Suddenly, a Saryd Sojourner nearly rams your ship, just barely avoiding it as lands less twenty meters from your ship. "My little brother," Sedlitaris says as she looks at the ship. "Forgive me Captain, but get to seeing my family, I must. From the discussion earlier, very worried about me, they must have been. Thanks again for everything." Her brother rushes into hugging her as he leaves his ship, then proceeds to shake her while screaming something. An elderly Saryd couple slowly comes out of the Sojourner as well, and Sedlitaris and her brother go and meet them, hugging and going inside. The Sojourner takes off before the spaceport workers can even begin tending to the ship, and you look at it as it leaves the ringworld.`
+			`	Suddenly, a Saryd Sojourner nearly rams your ship, just barely avoiding it as it lands less than twenty meters from your ship. "My little brother," Sedlitaris says as she looks at the ship. "Forgive me Captain, but get to seeing my family, I must. From the discussion earlier, very worried about me, they must have been. Thanks again for everything." Her brother rushes into hugging her as he leaves his ship, then proceeds to shake her while screaming something. An elderly Saryd couple slowly comes out of the Sojourner as well, and Sedlitaris and her brother go and meet them, hugging and going inside. The Sojourner takes off before the spaceport workers can even begin tending to the ship, and you look at it as it leaves the ringworld.`
 			branch sheragi
 				has "told coalition about sheragi"
 			action

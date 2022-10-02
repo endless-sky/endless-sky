@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "InfoPanelState.h"
@@ -19,7 +22,7 @@ using namespace std;
 
 
 InfoPanelState::InfoPanelState(PlayerInfo &player)
-	:ships(player.Ships()), canEdit(player.GetPlanet())
+	: player(player), ships(player.Ships()), canEdit(player.GetPlanet())
 {
 }
 
@@ -40,11 +43,11 @@ void InfoPanelState::SetSelectedIndex(int newSelectedIndex)
 
 
 
-void InfoPanelState::SetSelected(const std::set<int> &selected)
+void InfoPanelState::SetSelected(set<int> selected)
 {
-	allSelected = selected;
-	if(!selected.empty())
-		selectedIndex = *selected.begin();
+	allSelected = std::move(selected);
+	if(!allSelected.empty())
+		selectedIndex = *allSelected.begin();
 }
 
 
@@ -99,7 +102,14 @@ void InfoPanelState::DeselectAll()
 
 
 
-const std::set<int> &InfoPanelState::AllSelected() const
+void InfoPanelState::Disown(vector<shared_ptr<Ship>>::const_iterator it)
+{
+	ships.erase(it);
+}
+
+
+
+const set<int> &InfoPanelState::AllSelected() const
 {
 	return allSelected;
 }
@@ -137,6 +147,16 @@ vector<shared_ptr<Ship>> &InfoPanelState::Ships()
 const vector<shared_ptr<Ship>> &InfoPanelState::Ships() const
 {
 	return ships;
+}
+
+
+
+bool InfoPanelState::ReorderShipsTo(int toIndex)
+{
+	bool success = ReorderShips(allSelected, toIndex);
+	if(success)
+		player.SetShipOrder(ships);
+	return success;
 }
 
 
