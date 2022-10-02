@@ -293,7 +293,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
-				GameWindow::ToggleFullscreen();
+				Preferences::ToggleScreenMode();
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
