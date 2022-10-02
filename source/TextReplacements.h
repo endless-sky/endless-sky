@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef TEXT_REPLACEMENTS_H_
@@ -18,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class ConditionSet;
+class ConditionsStore;
 class DataNode;
 class PlayerInfo;
 
@@ -39,7 +43,7 @@ public:
 	// Add new text replacements to the given map after evaltuating all possible replacements.
 	// This TextReplacements will overwrite the value of any existing keys in the given map
 	// if the map and this TextReplacements share a key.
-	void Substitutions(std::map<std::string, std::string> &subs, const std::map<std::string, int64_t> &conditions) const;
+	void Substitutions(std::map<std::string, std::string> &subs, const ConditionsStore &conditions) const;
 
 
 private:
