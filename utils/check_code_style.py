@@ -143,7 +143,7 @@ class Error(object):
 
 	# Displays the message for this error
 	def print(self):
-		print("Formatting error in file", self.file, "line", self.line.__str__() + ":", self.text.replace('\n', ""))
+		print("Formatting error in file", self.file, "line", str(self.line) + ":", self.text.replace('\n', ""))
 		print("\tReason:", self.reason)
 
 
@@ -164,7 +164,7 @@ class Warning(Error):
 		warnings += 1
 
 	def print(self):
-		print("Warning:", self.reason, "in", self.file, "line", self.line.__str__() + ":", self.text.replace('\n', ""))
+		print("Warning:", self.reason, "in", self.file, "line", str(self.line) + ":", self.text.replace('\n', ""))
 
 
 # Checks the format of all source files.
@@ -529,9 +529,9 @@ def write_warning(text, file, line, reason):
 if __name__ == '__main__':
 	check_code_style()
 	if errors > 0:
-		text = "Found " + errors.__str__() + " formatting " + ("error" if errors == 1 else "errors")
+		text = "Found " + str(errors) + " formatting " + ("error" if errors == 1 else "errors")
 		if warnings > 0:
-			text += " and " + warnings.__str__() + " " + ("warning" if warnings == 1 else "warnings")
+			text += " and " + str(warnings) + " " + ("warning" if warnings == 1 else "warnings")
 		text += "."
 		print(text)
 		exit(1)
