@@ -273,7 +273,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			if(remove)
 			{
 				StellarObject toRemoveTemplate;
-				for(const DataNode &grand : node)
+				for(const DataNode &grand : child)
 					LoadObjectHelper(grand, toRemoveTemplate, true);
 
 				auto removeIt = find_if(objects.begin(), objects.end(),
