@@ -27,7 +27,7 @@ outfit "Drak Distancer"
 		"reload" 1
 		"firing energy" 15
 		"firing heat" 10
-		"firing force" 60
+		"firing force" 75
 	description "This is a thruster that can produce force in any direction, allowing a Drak ship to keep a safe distance away from its target."
 
 effect "distancer flare"
@@ -49,10 +49,10 @@ outfit "Drak Draining Field"
 		"turret turn" 180
 		"velocity" 1
 		"lifetime" 1
-		"range override" 1100
-		"velocity override" 1100
-		"blast radius" 1100
-		"trigger radius" 1100
+		"range override" 1200
+		"velocity override" 1200
+		"blast radius" 1200
+		"trigger radius" 1200
 		"reload" 1
 		"firing energy" 20
 		"firing heat" 5
