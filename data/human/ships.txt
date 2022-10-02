@@ -1296,10 +1296,10 @@ ship "Dagger"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -15 30
-	engine 15 30
-	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Javelin Mini Pod"
+	engine -8 34
+	engine 8 34
+	gun -11 -21 "Beam Laser"
+	gun 11 -21 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
