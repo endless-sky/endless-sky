@@ -299,7 +299,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				auto last = removeIt + 1;
 				size_t removed = 1;
 				// Remove any child objects too.
-				for( ; last != objects.end() && last->parent != -1; ++last, ++removed)
+				for( ; last != objects.end() && last->parent >= index; ++last, ++removed)
 					if(last->planet)
 						planets.Get(last->planet->TrueName())->RemoveSystem(this);
 				last = objects.erase(removeIt, last);
