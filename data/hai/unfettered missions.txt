@@ -1075,7 +1075,7 @@ mission "Unfettered: Materials Intercepted"
 					defer
 			`	You go to see him in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He leaves a conversation he had with another elder when he sees you.`
 			`	"<last>! I was hoping to find you here. I just happen to have needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates. Granted, the shipment you escorted was exceptional due to the disaster, and it came from the Hai.`
-			`	"This one, however, happens somewhat more regularly, although it often has inpredictible delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
+			`	"This one, however, happens somewhat more regularly, although it often has unpredictible delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
 			choice
 				`	"Do you have any idea where the stolen cargo could be?"`
 				`	"Why is the trip so dangerous if the cargo is worthless?"`
@@ -1090,7 +1090,7 @@ mission "Unfettered: Materials Intercepted"
 					goto whyhire
 				`	"Why is the trip so dangerous if the cargo is worthless?"`
 			label worthless
-			`	"Our contact mentioned having to sometimes fight Korath invaders, as well as having to pass trough the big no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
+			`	"Our contact mentioned having to sometimes fight Korath invaders, as well as having to pass trough the big no man's land that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
@@ -1114,12 +1114,12 @@ mission "Unfettered: Materials Intercepted"
 				accept
 	on enter "Misam"
 		conversation
-			`As you enter the system, you notice pirates from Hydra in orbit of the planet. They could have the cargo you are looking for.`
+			`As you enter the system, you notice pirates from Hydra in orbit around the planet. They could have the cargo you are looking for.`
 			choice
 				`	Demand that the materials be returned to you.`
 				`	(Say nothing, I have no need to talk with these scums. I shall take.)`
 					goto over
-			`	The first mate of the <npc> responds to your hail, "That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that got these stolen before we could bring them to port! Well, after we stole them from a merchant, but that's irrelevant."`
+			`	The first mate of the <npc> responds to your hail, "That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that these were stolen from before we could bring them to port! Well, after we stole them from a merchant, but that's irrelevant."`
 			choice
 				`	"What do you intend to do with this cargo?"`
 					goto intention
@@ -1146,7 +1146,7 @@ mission "Unfettered: Materials Intercepted"
 				set "normal failed"
 			branch "allies died"
 				has "unfettered: thorn talon death"
-			`	Seeing the fight is almost over if not completely, your surprise allies hail you, "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
+			`	Seeing how the fight is almost over, if not completely, your surprise allies hail you. "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
 				`	"Where you sent by Nimo's contact?"`
 				`	"What are these weapons you are using?"`
@@ -1241,10 +1241,10 @@ mission "Unfettered: Cavalry Arrives"
 		has "Unfettered: Materials Intercepted: active"
 	on offer
 		conversation
-			`Realizing you have landed after them, the pirates fire up their launching procedures as fast as they can. It looks like they did not expect you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you...`
+			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. It looks like they did not expect you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you...`
 				launch
 	on enter "Arneb"
-		dialog "They have called backup! Multiple pirate ships are arriving in the system. But you see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
+		dialog "They have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
 	npc save
 		system "Misam"
 		government "Shadow"
@@ -1268,7 +1268,7 @@ mission "Unfettered: Cavalry Arrives"
 			``
 				decline
 			label murdered
-			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. The Shadow of Mintaka may want to have their vengeance on you for letting them die, or worse, maybe even participating in it, rumors could tell."
+			"One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. The Shadow of Mintaka may want to have their vengeance on you for letting them die, or worse, maybe even participating in it, rumors could tell."
 			action
 				set "unfettered: thorn talon death"
 	to complete
@@ -1288,7 +1288,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 	on offer
 		conversation
 			`As you wander through the spaceport, you find a market. You notice that the amount and diversity of goods are very limited. Some of it seems to be completely alien, even by Hai standards. Most Unfettered here are just busy buying food, that is if they can even afford it. You see two Unfettered disputing, probably over the cost of some item, but decide not to intervene given how they generally respond to your mere presence...`
-			`	An Unfettered approaches you. At first you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out here. There are not many non-Hai on the Unfettered worlds.`
+			`	An Unfettered approaches you. At first, you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out in the crowd. There are not many non-Hai on the Unfettered worlds.`
 			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says.`
 			choice
 				`	"Sure, what can I do for you?"`
@@ -1372,7 +1372,7 @@ mission "Unfettered: Geocoris Arriving"
 	on offer
 		clear "unfettered: entered Ya Hai"
 		conversation
-			`Shortly after you land, you see the Geocoris signature coming into the system on your radar. You take off immediately.`
+			`Shortly after you land, you see the Geocoris signature on your radar. You take off immediately.`
 				flee
 
 
@@ -1432,7 +1432,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		has "Unfettered: Prove Your Strength 2: done"
 	on offer
 		conversation
-			`You go get a drink in the spaceport. You take a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consumming many special drinks - at least not on a regular basis.`
+			`You go get a drink in the spaceport. You take a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
 			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
 			`	"Sorry I could not see you earlier; I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days. I need you to scan it for me with the same scanner we gave you, and then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
@@ -1555,7 +1555,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			label hate
 			`	"Perfect! We want you to prove your worth. Beat that unfettered human Auxiliary and return here for the greatest reward you can imagine."`
 			label next
-			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask proof that you have taken on the Alphas by bringing their ship."`
+			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on the Alphas by bringing their ship back."`
 			choice
 				`	"How can I find them?"`
 			`	He seems amused. "That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Mera and ask her if she found anything useful in the logs."`
@@ -1578,15 +1578,15 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		has "Unfettered: Alphas: Find The Auxiliary: done"
 	on offer
 		conversation
-			`Mera is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But don't worry: that Auxiliary can't be going very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something.`
+			`Mera is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But don't worry: that Auxiliary can't go very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something.`
 			choice
 				`	"Get to the point. Where can I find it?"`
 				`	"What kind of damage?"`
 					goto damage
-			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it had also fighters accompanying it.`
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
 				goto agree
 			label damage
-			`	"Some kind of beam weapon, and a very strong one at that. It looks like it only got partially deflected by the shields, if at all. I wonder what kind of weapon can do that." She looks intrigued, and pauses to think about it, then continues, "That would explain why it's forbidden for us to venture east with a jump drives. We lack any hull repair capabilities, and to be honnest with you, our hull is not much more resilient than the one of some human ships, like that Auxiliary."`
+			`	"Some kind of beam weapon, and a very strong one at that. It looks like it only got partially deflected by the shields, if at all. I wonder what kind of weapon can do that." She looks intrigued, and pauses to think about it, then continues, "That would explain why it's forbidden for us to venture east with jump drives. We lack any hull repair capabilities, and to be honest with you, our hull is not much more resilient than the one of some human ships, like that Auxiliary."`
 			choice
 				`	"They seemed to be using the same weapon against me."`
 					goto logs
@@ -1598,26 +1598,26 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"What about the damage on their ship? How is that relevant to my mission?"`
 					goto information
 				`	"You should have asked me to do an outfit scan, earlier."`
-			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'll agree that knowing more about those weapons would be useful. Now, back to the damage on their ship.`
+			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'd agree that knowing more about those weapons would be useful. Now, back to the damage on their ship.`
 			label information
-			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and anti-matter came from the other side. Perhaps it left these peculiar particles when being annihilated by contact with matter. Or maybe the particles just came through the opening in space?`
-			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode, without any in between. Maybe it's because the jump drive is not actually being used, and only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only Quargs have a similar level of technology, and they invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
+			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and anti-matter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?`
+			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode, without any in between. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only Quargs have a similar level of technology, and they invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
 			label agree
 			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary means you will probably not have much time to wait to fuel up from the local stars either. Also, be prepared for a fight in space, as well as within the ship itself, to claim it."`
 				accept
 	waypoint "Hi Yahr"
 	on waypoint
-		dialog `You indeed notice the traces as you come back in the system where you found the Auxiliary. You figure they probably went to the East next with their jump drive, avoiding Hai territory.`
+		dialog `You indeed notice the traces as you come back to the system where you found the Auxiliary. You figure they probably went east next with their jump drive, avoiding Hai territory.`
 	on enter "Celeborim"
 		dialog `You are on the right track. There are small traces here as well.`
 	on enter "Asikafarnut"
-		dialog `You are still on the right path, and you even find small debris of ships. They probably had to stay here a bit longer to fight them off.`
+		dialog `You are still on the right path, and you even find some small debris of ships. They probably had to stay here a bit longer to fight them off.`
 	on enter "Makferuti" "Sobarati"
 		dialog `There are no traces here. They probably went to another system, looking for refuge from the hostile drones.`
 	on enter "Silikatakfar" "Eneremprukt"
 		dialog `You cannot find any traces here. This is not the right direction.`
 	on enter "Mesuket"
-		dialog `This system looks dangerous. There are too many interferences from the debris to pick up the traces, but you figure they would try to avoid this system.`
+		dialog `This system looks dangerous. There is too much interference from the debris to pick up the traces, but you figure they would try to avoid this system.`
 	on enter "Persitar"
 		dialog `This doesn't look like a good hiding spot...`
 	on enter "Ferukistek"
@@ -1657,7 +1657,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You have landed, but without the jump drives. Go and find traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Doon't forget to land on the Alpha base to recover any information or jump drives it may have!`
+		dialog `You have landed, but without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have!`
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
 	on complete
@@ -1682,7 +1682,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>!"`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
-			`	This seems to trouble them deeply. They are split between those who want to use the Korath for technological opportunities, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. When he stands, you see many scars on his arms, and can only guess what he went through. He speak calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raids happened long ago. They could not have been responsible for those. They are victims of that war as much as we are. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers." This mention set off much murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be, but feel like now is not the time to ask.`
+			`	This seems to trouble them deeply. They are split between those who want to use the Korath for technological opportunities, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. When he stands, you see many scars on his arms, and can only guess what he went through. He speaks calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raids happened long ago. They could not have been responsible for those. They are victims of that war as much as we are. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers." This mention set off much murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be, but feel like now is not the time to ask.`
 			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Koraths out of your ship, after stabilizing them as much as could be done.`
 			branch logs
 				has "Unfettered: Alphas 3: Bring The Spoils: done"
