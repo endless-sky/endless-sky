@@ -849,6 +849,8 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		planet->SetSystem(this);
 	}
 
+	object.parent = parent;
+
 	LoadObjectHelper(node, object, false, index, parent);
 
 	// Again, not passing 'planets', so need to do this here.
@@ -863,9 +865,6 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing, int index, int parent)
 {
-	if(!removing)
-		object.parent = parent;
-
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
