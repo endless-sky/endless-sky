@@ -587,6 +587,7 @@ void PreferencesPanel::DrawSettings()
 void PreferencesPanel::DrawPlugins()
 {
 	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &error = *GameData::Colors().Get("plugin reload required");
@@ -630,7 +631,7 @@ void PreferencesPanel::DrawPlugins()
 		else if(isSelected)
 			table.Draw(plugin.first, bright);
 		else
-			table.Draw(plugin.first, pluginEnabled ? medium : back);
+			table.Draw(plugin.first, pluginEnabled ? medium : dim);
 
 		if(isSelected)
 		{
