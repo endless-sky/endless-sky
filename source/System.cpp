@@ -269,7 +269,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			if(remove)
 			{
 				StellarObject toRemoveTemplate;
-
 				LoadObjectHelper(child, toRemoveTemplate, true);
 
 				auto removeIt = find_if(objects.begin(), objects.end(),
@@ -838,7 +837,6 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	int index = objects.size();
 	objects.push_back(StellarObject());
 	StellarObject &object = objects.back();
-	object.parent = parent;
 
 	bool isAdded = (node.Token(0) == "add");
 	if(node.Size() >= 2 + isAdded)
@@ -848,20 +846,22 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		planet->SetSystem(this);
 	}
 
-	if(LoadObjectHelper(node, object, false))
-		for(const DataNode &child : node)
-			if(child.Token(0) == "object")
-				LoadObject(node, planets, index);
+	LoadObjectHelper(node, object, false, index, parent);
 
-	if(!object.isStar && !object.isStation)
-		object.isMoon = (parent >= 0 && !objects[parent].IsStar());
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "object")
+		LoadObject(child, planets, index);
+	}
 }
 
 
 
-bool System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
+void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing, int index, int parent)
 {
-	bool hasChildren = false;
+	if(!removing)
+		object.parent = parent;
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
@@ -871,7 +871,10 @@ bool System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 			{
 				object.isStar = !child.Token(1).compare(0, 5, "star/");
 				if(!object.isStar)
+				{
 					object.isStation = !child.Token(1).compare(0, 14, "planet/station");
+					object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());
+				}
 			}
 		}
 		else if(child.Token(0) == "distance" && child.Size() >= 2)
@@ -882,14 +885,14 @@ bool System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 			object.offset = child.Value(1);
 		else if(child.Token(0) == "hazard" && child.Size() >= 3 && !removing)
 			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
-		else if(child.Token(0) == "object")
-			hasChildren = true;
+		else if(child.Token(0) == "object" && !removing)
+			{
+				// This is an acceptable use of the token, but we don't have access to `planets` here, so do nothing.
+			}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	return hasChildren;
 }
-
 
 
 
