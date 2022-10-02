@@ -121,7 +121,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		// Check for conditions that require clearing this key's current value.
 		// "remove <key>" means to clear the key's previous contents.
 		// "remove <key> <value>" means to remove just that value from the key.
-		bool removeAll = (remove && !hasValue && (key != "object" || !child.HasChildren()));
+		// Even when removing a single object, this node will have no value.
+		// But, it will have children, so, do not remove all if the key is 'object' and the node has children.
+		bool removeAll = (remove && !hasValue && !(key == "object" && child.HasChildren()));
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
 		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
@@ -838,6 +840,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	objects.push_back(StellarObject());
 	StellarObject &object = objects.back();
 
+	// Not passing 'planets' to LoadObjectHelper(), so do this here.
 	bool isAdded = (node.Token(0) == "add");
 	if(node.Size() >= 2 + isAdded)
 	{
@@ -848,6 +851,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 	LoadObjectHelper(node, object, false, index, parent);
 
+	// Again, not passing 'planets', so need to do this here.
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "object")
