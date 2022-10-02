@@ -1022,7 +1022,7 @@ mission "FW Bounty 1"
 			
 			`	"Well they aren't exactly a powerful fleet. They're just a collection of interceptors, but they're numerous and swift enough that we've had trouble taking them down before they can run or swarm our larger ships."`
 			choice
-				`	"Just a group of interceptors? That should be no problem for me to destroy."`
+				`	"That should be no problem for me to destroy. How much is the job?"`
 				`	"If you can't take them out then I don't know how I will. You're on your own."`
 					decline
 			
