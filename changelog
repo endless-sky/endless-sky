@@ -159,6 +159,9 @@ Version 0.9.15:
       * The Coalition now has a set of reverse thrusters. (@Hecter64)
       * The player will now be confronted by Republic personnel upon returning to Republic space from their first time in Hai space. (@Amazinite)
       * Created various new individual and short chains of mission around human space. (@roadrunner56)
+      * Added a new planet in a system near Nenia to save on and cut down on travel times when dodging the Archon in Nenia. (@Zitchas)
+      * Created a Coalition mining drill, used by Coalition mining fleets. (@Arachi-Lover)
+      * Added tiny, small, and medium sized reverse thrusters for the Hai. (@Hecter94)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -192,6 +195,7 @@ Version 0.9.15:
       * Rewrote part of "FW Hope Recon 1C" to have the Gunboat join the Oathkeepers should you ask them to surrender. (@jostephd)
       * The senator in "FW Senate 1B" now commends you if you reach the destination in an impossibly short time. (@Hecter64)
       * The corporate espionasge job now has a short deadline, as it is very easy to miss the objective then never find the npc that you're suppose to scan. (@Terin)
+      * Slight wording change in FW Bounty 1 to reduce repeated information. (@Anarchist2)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aforementioned ships. (@Zitchas)
@@ -256,6 +260,10 @@ Version 0.9.15:
         * Cut the cost of dedicated battery outfits in half.
       * Added an arrival distance to all systems in the game. The arrival distance is equal to the system's habitable distance, capped to the range of [500, 5000]. This causes ships to generally enter the system farther apart from one another and farther from any inhabited planets in the system, improving the ability for a player to pick and choose their fights. (@Zitchas)
       * Traded some batteries for better engines, weapons, or repairs on Heliarch ships. (@Arachi-Lover)
+      * Slightly adjusted the stats on Scout and Bounder to better fit their size and role. (@Anarchist2)
+        * -100 fuel capacity on the Bounder.
+        * +800 shields on the Scout.
+        * -1 required crew on the Scout.
     * Graphics:
       * Completely redid and improved the graphics for all existing stars. (Matteo "Lead" M., @ravenshining)
       * Created various new star graphics, including giant and supergiant variants for all star spectral types. (Matteo "Lead" M., @ravenshining)
@@ -263,7 +271,7 @@ Version 0.9.15:
       * Remodeled all Navy ships. (@GefullteTaubenbrust2)
       * Created a new effect for the nuke explosion. (@Karirawri)
       * Remodeled the nuclear missile, afterburner, asteroid scanner, photovoltaic outfits, and Wanderer reactors, shield generators, cooling, and weapons. (@GefullteTaubenbrust2)
-      * Remodeled the Raven, Splinter, Corvette, and Flivver. (@GefullteTaubenbrust2)
+      * Remodeled the Raven, Splinter, Corvette, Flivver, and Dagger. (@GefullteTaubenbrust2)
       * Remodeled the Aerie, Bactrian, Mule, and Osprey. (@Saugia)
       * Remodeled the jump drive. (@Scrinarii1337)
       * Added extra detail to differentiate the Kestrel variants. (@Saugia)
@@ -348,6 +356,7 @@ Version 0.9.15:
       * Add/remove syntax is now capable of being used on various attributes of a Government during an Event. (@Hurleveur)
       * Missions can now be given an "on daily" action to cause this to occur every time the date advances (when jumping and when departing a planet). (@thvk-net)
       * Carried ships will now restock their ammo by taking from the carrier's installed ammunition. (@tehhowch)
+      * Events can not remove specific objects from a system instead of only being able to remove all objects. (@warp-core)
     * Mechanic changes:
       * "hit effect" behavior for hazards has been replaced with "target effect". (@petervdmeer)
       * Committing an atrocity now only affects the reputation of governments friendly to the government that the atrocity was committed against. (@Amazinite)
@@ -484,6 +493,7 @@ Version 0.9.15:
     * Added a manifest file to have the game tell Windows that it is high DPI aware. (@quyykk, @Terin)
     * Improved the in-built game data printing when using various command line options. (@warp-core)
     * Created a "deprecated ships" file for ships that have been removed from use by the game but could still be necessary for some save files or plugins. (@quyykk)
+    * Updated some events to use the new ability to remove specific objects from a system. (@warp-core)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
