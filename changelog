@@ -5,6 +5,7 @@ Version 0.9.15:
     * Made a variety of sweeping balance changes to various ships and outfits in order to improve lesser used items or strategies and turn certain choices into a question of what fits best for the role you're looking for instead of there being single no-brainer choices as to which ship or outfit is the best. See the balance section of the changelog for more details.
     * Added over 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. Includes the addition of new ships and outfits. (@Zitchas, @Azure3141, @beccabunny, @Dschiltt, @GefullteTaubenbrust2, jeverett#3344, @Saugia, scrinarii1337)
     * Added a massive amount of new content to the Korath Exiles, including two new systems near the core, multiple new ships, over two dozen new weapons and outfits, improved models for some older ships and outfits, and a new set of names for the outfits and ships that avoid having "Korath" as a prefix for every name. (@ravenshining, @Dragenhart, @EjoThims, @GefullteTaubenbrust2, @MasterOfGrey, @Saugia, @warp-core)
+    * Redid large parts of the Free Worlds campaign intro and start chapters. The goals of this rework were to enhance various themes and parts of the plot that were on the weaker side, while also laying the groundwork for future content, such as the other main human campaigns as well as post-main campaign content. This rework is the first of many, with this stage largely focusing on Tomek's storyline and the Syndicate's role in the main campaign. (@Amazinite)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @fakepass, @Galaucus, @Hurleveur, @infinitewarp, @MasterOfGrey, @McloughlinGuy, @nathan-b, @NRK4, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @samrocketman, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @tibetiroka, @W1zrad, @warp-core, @Wedge009, @williaji, @Zitchas)
@@ -36,6 +37,8 @@ Version 0.9.15:
       * The Coalition Finisher now plays a sound effect when it impacts a target. (@Arachi-Lover)
       * The Pre-Hai first contact mission for the Wanderers no longer offers if you've met the Unfettered, but not the Hai. (@Arachi-Lover)
       * Fixed errors in various ship images. (@leklachu)
+      * Fixed the lighting on a new Korath ship sprite. (@Anarchist2)
+      * Fixed the engine hardpoints on the new Pug ship sprites being improperly mirrored. (@pilover100)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -94,6 +97,7 @@ Version 0.9.15:
       * The game will now be able to initialize GLEW on Wayland. (@eternal-sorrow, @quyykk)
       * Changed derived conditions to register before reading from the save file as to have auto-generated conditions properly function. (@leklachu)
       * Fixed the formatting of some values in the bank panel as to not overflow into neighboring text. (@warp-core)
+      * Fixed the maximum scroll in shop panels to allow a bit more buffer space at the bottom. (@Anarchist2)
   * Game content:
     * New content:
       * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @dorbarker, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
@@ -258,7 +262,7 @@ Version 0.9.15:
       * Created a new planet sprite for Saturn. (@ravenshining)
       * Remodeled all Navy ships. (@GefullteTaubenbrust2)
       * Created a new effect for the nuke explosion. (@Karirawri)
-      * Remodeled the nuclear missile, afterburner, asteroid scanner, and Wanderer reactors, shield generators, cooling, and weapons. (@GefullteTaubenbrust2)
+      * Remodeled the nuclear missile, afterburner, asteroid scanner, photovoltaic outfits, and Wanderer reactors, shield generators, cooling, and weapons. (@GefullteTaubenbrust2)
       * Remodeled the Raven, Splinter, Corvette, and Flivver. (@GefullteTaubenbrust2)
       * Remodeled the Aerie, Bactrian, Mule, and Osprey. (@Saugia)
       * Remodeled the jump drive. (@Scrinarii1337)
@@ -274,6 +278,7 @@ Version 0.9.15:
       * Created a whole new scene for the plasma repeater. (@1010todd)
       * Doubled the resolution of all station graphics. (@Anarchist2)
       * Remodeled Quarg ringworlds. (@GefullteTaubenbrust2)
+      * Remodeled the Pug ships. (@beccabunny)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -409,6 +414,7 @@ Version 0.9.15:
     * Laser weapons which fire in a burst no longer display their per-shot values, instead displaying their rate of fire as "continuous" with some percentage value next to them for the amount of time they maintain continuous fire. (@warp-core)
     * Moved the title on the main menu up 30 pixels so that it doesn't get overlapped by other UI elements that can appear in the middle of the screen. (@Amazinite)
     * Tweaked the government colors of the Hai governments to better differentiate them on the map. (@mOctave)
+    * Added a screen mode preference in the settings. (@Terin)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -475,6 +481,9 @@ Version 0.9.15:
     * Implemented on-demand auto-generated conditions, massively overhauling how auto-generated conditions are handled. (@petervdmeer)
     * Updated copyright headers across all files in the game to provide a link to the full GPL license. (@tibetiroka)
     * Made various code style fixes across the game. (@tibetiroka)
+    * Added a manifest file to have the game tell Windows that it is high DPI aware. (@quyykk, @Terin)
+    * Improved the in-built game data printing when using various command line options. (@warp-core)
+    * Created a "deprecated ships" file for ships that have been removed from use by the game but could still be necessary for some save files or plugins. (@quyykk)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
