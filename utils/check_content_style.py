@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-import re
+import regex as re
 import glob
 
 # Script that checks for common text content formatting pitfalls not covered by spellcheck or other tests.
@@ -24,12 +24,17 @@ errors = 0
 error_list = []
 # Regex-based style checks for check_regexes()
 regexes = {
-	# Matches any space that is preceeded only by tabs or " or ` characters,
-	# except if it immediately follows a " or ` character.
+	# Matches any space that is preceded only by tabs or '"' or '`' characters,
+	# except if it immediately follows a '"' or '`' character, as used in 'word'.
 	"^[\\t`\"]*(?<![`\"]) ": "indentations should use tabs only",
-	# Matches multiple space characters.
-	"  ": "multiple consecutive space characters",
-	"\\s$": "trailing whitespace character"
+	# Matches multiple space characters, unless they are followed by a '#', or if the text is a tooltip.
+	"(?<!^tip .*)(  $|  [^ #])": "multiple consecutive space characters",
+	# Matches any whitespace character at the end of the string.
+	"[^\\s]\\s+$": "trailing whitespace character",
+	# Matches any backticks at the end of the line that is
+	# preceded by the ending of a sentence ('?', '!', '.', ';', ':', ')', '"', ''', '>') and a whitespace.
+	# The same check fails if used on quotation marks, due to the irregular nature of 'word'.
+	"[?!.;:\\)\"'>] `$": "unnecessary space before closing backtick"
 }
 # Precompile regexes
 regexes = {re.compile(regex): description for regex, description in regexes.items()}
@@ -127,7 +132,6 @@ def check_regexes(file, lines):
 	for index, line in enumerate(lines):
 		for regex, description in regexes.items():
 			if re.search(regex, line):
-				print(line)
 				print_error(file, index + 1, description)
 
 
@@ -165,9 +169,9 @@ def print_error(file, line, reason):
 if __name__ == '__main__':
 	check_content_style()
 	if errors > 0:
-		text = "Found " + errors.__str__() + " formatting " + ("error" if errors == 1 else "errors")
+		text = "Found " + str(errors) + " formatting " + ("issue" if errors == 1 else "issues") + "."
 		print(text)
 		exit(1)
 	else:
-		print("No formatting errors found.")
+		print("No formatting issues found.")
 	exit(0)
