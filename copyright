@@ -108,12 +108,6 @@ Copyright: Amazinite
 License: CC-BY-SA-4.0
 Comment: Derived from works by Matthew Smestad (under the same license).
 
-Files: images/outfit/*photovoltaic*
-Copyright: Nick Barry (github.com/itsnickbarry)
-License: CC-BY-SA-3.0
-Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
- David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
-
 Files:
  images/outfit/pug*
  images/planet/*-b*
@@ -466,6 +460,10 @@ Files:
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
+ images/ship/pug?zibruka*
+ images/ship/pug?enfolta*
+ images/ship/pug?maboro*
+ images/ship/pug?arfecta*
  images/thumbnail/ibis*
  images/thumbnails/merganser*
  images/thumbnail/penguin*
@@ -1459,13 +1457,20 @@ Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/small?photovoltaic*
+ images/outfit/tiny?photovoltaic*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com>, David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux) and Nick Barry (github.com/itsnickbarry)
+
+Files:
  images/ship/manta*
  images/ship/mmanta*
  images/thumbnail/manta*
  images/thumbnail/mmanta*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser and Maximilian Korber(under the same license).
+Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
 
 Files: sounds/ionball*
 Copyright: pluralz
@@ -1521,11 +1526,13 @@ Files:
  images/outfit/firestorm?battery*
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
+ images/outfit/mcs?exctractor*
  images/projectile/firestorm?torpedo*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
+ sound/drill*
  sound/korath?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
@@ -1732,6 +1739,12 @@ Files:
 Copyright: Saugia (https://github.com/Saugia)
 License: CC-BY-SA-4.0
 Comment: Transparent materials by scrinarii1337.
+
+Files:
+ images/land/nasa30*
+Copyright: Brian Swift
+License: CC-BY-SA-4.0
+Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
