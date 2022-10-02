@@ -29,6 +29,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <exception>
 
 using namespace std;
 
@@ -295,19 +297,16 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				}
 
 				auto index = removeIt - objects.begin();
-				auto next = objects.erase(removeIt);
+				auto last = removeIt + 1;
 				size_t removed = 1;
 				// Remove any child objects too.
-				while(next != objects.end() && next->parent != -1)
-				{
-					if(next->planet)
-						planets.Get(next->planet->TrueName())->RemoveSystem(this);
-					next = objects.erase(next);
-					++removed;
-				}
+				for( ; last != objects.end() && last->parent != -1; ++last, ++removed)
+					if(last->planet)
+						planets.Get(last->planet->TrueName())->RemoveSystem(this);
+				last = objects.erase(removeIt, last);
 
 				// Recalculate every parent index.
-				for(auto it = next; it != objects.end(); ++it)
+				for(auto it = last; it != objects.end(); ++it)
 					if(it->parent >= index)
 						it->parent -= removed;
 			}
