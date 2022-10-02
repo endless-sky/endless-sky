@@ -623,8 +623,7 @@ fleet "Large Friendly Unfettered"
 	names "hai"
 	cargo 1
 	personality
-		disables
-		plunders
+		disables plunders
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2

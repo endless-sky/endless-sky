@@ -493,8 +493,8 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files
  sounds/pincer*
 Copyright: Nomadic Volcano (nomadicvolcano@gmail.com)
-License: GPL 2.0
-Comment: Nomadic Volcano modified these from Battle for Wesnoth (https://www.wesnoth.org) sounds, which are copyright David White <dave@whitevine.net> under GPL 2.0
+License: GPL-2
+Comment: Nomadic Volcano modified these from Battle for Wesnoth (https://www.wesnoth.org) sounds, which are copyright David White <dave@whitevine.net> under GPL 2 or later.
 
 Files:
  images/*/pincer*
