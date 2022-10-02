@@ -128,7 +128,7 @@ namespace {
 		if(Plugins::IsEnabled(name))
 		{
 			if(!Plugins::Has(name))
-				Plugins::Set(name, true);
+				Plugins::SetPlugin(name);
 			return true;
 		}
 		// Do not add to sources for user-disabled plugins while preserving about.txt in preferences.
@@ -835,22 +835,18 @@ void GameData::LoadSources()
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
 	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			if(LoadAboutPlugin(path))
-				sources.push_back(path);
+		if((Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+				&& LoadAboutPlugin(path))
+			sources.push_back(path);
 	}
 
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
 	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			if(LoadAboutPlugin(path))
-				sources.push_back(path);
+		if((Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+				&& LoadAboutPlugin(path))
+			sources.push_back(path);
 	}
-
-	// Freeze the current plugin state to check if plugin state has changed when
-	// toggling user settings.  This should only be called once per instance.
-	Plugins::Freeze();
 }
 
 

@@ -19,19 +19,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 
+
 // Tracks enabled and disabled plugins for loading plugin data or skipping it.
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
 	static void Load();
 	static void Save();
-	static void Freeze();
 
 	static bool Has(const std::string &name);
 	static bool HasChanged();
 	static bool HasChanged(const std::string &name);
 	static bool IsEnabled(const std::string &name);
-	static void Set(const std::string &name, bool on);
+	static void SetPlugin(const std::string &name, bool on);
+	static void SetPlugin(const std::string &name);
 	static void TogglePlugin(const std::string &name);
 };
 

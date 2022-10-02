@@ -3141,7 +3141,7 @@ void PlayerInfo::Save(const string &path) const
 		for(const auto &plugin : GameData::PluginAboutText())
 		{
 			if(Plugins::IsEnabled(plugin.first))
-				out.Write(plugin.first);
+				out.Write(plugin.first, "(enabled)");
 			else
 				out.Write(plugin.first, "(disabled)");
 		}
