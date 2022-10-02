@@ -2922,11 +2922,11 @@ ship "Scout"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -8 46.5
-	engine 8 46.5
-	gun -21.5 -7 "Energy Blaster"
-	gun 21.5 -7 "Energy Blaster"
-	turret 0 -3 "Anti-Missile Turret"
+	engine -7 40
+	engine 7 40
+	gun -18.5 -6 "Energy Blaster"
+	gun 18.5 -6 "Energy Blaster"
+	turret 0 -2.5 "Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
