@@ -3252,7 +3252,7 @@ double Ship::JumpDriveFuel(bool connected, double jumpDistance) const
 	// Don't bother searching through the outfits if there is no jump drive.
 	if(!attributes.Get("jump drive"))
 		return 0.;
-	
+
 	if(connected && baseAttributes.Get("jump fuel laned"))
 		return BestFuel("jump drive", "", 200., jumpDistance, "jump fuel laned");
 
