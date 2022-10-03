@@ -289,7 +289,7 @@ Version 0.9.15:
       * Remodeled Quarg ringworlds. (@GefullteTaubenbrust2)
       * Remodeled the Pug ships. (@beccabunny)
     * Other:
-      * The Pug worlds at the end of the main campaign now appear uninhabited after the Pug flees before becoming inhabited by humanity. (@Anarchist2)
+      * The Pug worlds at the end of the main campaign now appear uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
       * Tweaked the atomic engine sounds to be less harsh on the ear. (@ravenshining)
       * The Emerald Sword and Black Diamond now have set swizzles that don't change with the player's swizzle. (@kestrel1110)
@@ -316,7 +316,7 @@ Version 0.9.15:
       * Black holes now add fuel to ships within their accretion disk, allowing ships that might have entered the system without any remaining fuel to risk getting torn to shreds to escape instead of being stuck forever. (@Amazinite)
       * Spaceport news on Wanderer planets no longer refers to them as Wanderers before you learn their name. (@Anarchist2)
       * Coalition worlds now have varying security levels instead of all having the default. (@Arachi-Lover)
-      * Reworded the description of the Pug Biodefense outfit to not suggest that the Pug doesn't get affected by it because they do. (@Hecter94)
+      * Reworded the description of the Pug Biodefense outfit to not suggest that the Pug don't get affected by it because they do. (@Hecter94)
       * Changed the Korati Efreti station to always be located between the planet and the sun in the system, as the description suggests. (@warp-core)
       * Added two new ship categories. Space Liner, for very large transport ships, and Utility, for ships that didn't fit their previous category because they were a hybrid of multiple categories. (@MasterOfGrey)
       * Changed the stars for some systems in human space to match what is known about the real star system of the same name. (@ravenshining)
