@@ -2490,7 +2490,7 @@ Version 0.8.9:
     * Firing normal thrusters after using the afterburner no longer slows you down.
     * All pathfinding now includes wormhole travel.
     * You can now dump cargo in the info panel to make room for plunder.
-    * The player’s flagship is now always displayed on top of all other ships.
+    * The player's flagship is now always displayed on top of all other ships.
     * Missions can now specify a custom payment multiplier as well as a custom base payment.
     * Other ships no longer interfere when you are fighting a bounty - you must fight alone.
   * User interface:
