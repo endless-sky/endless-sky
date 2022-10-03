@@ -547,7 +547,7 @@ Version 0.9.14:
       * The fighters that spawn alongside the Michael Zahniser person ship can no longer be disabled. (@Anarchist2)
     * Engine bugs:
       * Invalid planets are now filtered when iterating over a system's objects, preventing pathfinding from trying to use wormholes that no longer exist. (@tehhowch)
-      * Firing ionization/disruption/slowing on weapons no longer allows status effects to drop below zero, which could potentially cause a crash. (@Ferociousfeind)
+      * Firing ionization/disruption/slowing on weapons no longer allows status effects to drop below zero, which could potentially cause a crash. (@Ferociousfiend)
       * Ships can no longer have a drag of 0, which could have caused divide-by-zero errors. (@tehhowch)
       * Active cooling now requires the ship to have positive energy. (@10010101001)
       * The acceleration and turn values displayed in the ship info panel while in flight are now accurate to their actual values, no longer counting cargo as twice as heavy as it is. (@Amazinite)
