@@ -39,6 +39,7 @@ Version 0.9.15:
       * Fixed errors in various ship images. (@leklachu)
       * Fixed the lighting on a new Korath ship sprite. (@Anarchist2)
       * Fixed the engine hardpoints on the new Pug ship sprites being improperly mirrored. (@pilover100)
+      * Fixed the events for the Battle in Wei to properly change the system fleet spawns. (@warp-core)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
