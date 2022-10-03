@@ -1020,9 +1020,10 @@ mission "FW Bounty 1"
 				`	"Sorry, I don't want to have anything to do with the Free Worlds."`
 					decline
 			
-			`	"Well they aren't exactly a powerful fleet. They're just a collection of interceptors, but they're numerous and swift enough that we've had trouble taking them down before they can run or swarm our larger ships."`
+			`	"Well they aren't exactly a powerful fleet. They're just a collection of interceptors, but they're numerous and swift enough that we've had trouble taking them down before they can run or swarm our larger ships. We can pay you <payment> if you can take them out."`
 			choice
 				`	"Just a group of interceptors? That should be no problem for me to destroy."`
+					goto accept
 				`	"If you can't take them out then I don't know how I will. You're on your own."`
 					decline
 			

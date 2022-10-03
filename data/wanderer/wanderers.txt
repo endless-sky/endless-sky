@@ -927,34 +927,11 @@ event "wanderers: the eye opens"
 	system Sko'karak
 		add fleet "Wanderer Drones" 400
 		add fleet "Wanderer Freight" 2000
-		object
-			sprite star/m0
-			period 10
-		object
-			sprite planet/rock8
-			distance 154.36
-			period 42.8831
-		object
-			sprite planet/rock18
-			distance 384.05
-			period 168.293
-		object
-			sprite planet/desert1
-			distance 617.3
-			period 342.948
-		object
-			sprite planet/gas4
-			distance 1227.46
-			period 961.603
-			object
-				sprite planet/callisto-b
-				distance 272
-				period 15.8216
-			object
-				sprite planet/rock3-b
-				distance 406
-				period 28.8527
-		object "The Eye"
+		remove object
+			sprite planet/wisp
+			distance 2331.95
+			period 2518.05
+		add object "The Eye"
 			sprite planet/wormhole
 			distance 2331.95
 			period 2518.05
