@@ -504,7 +504,7 @@ Version 0.9.15:
     * Added unit tests for Format. (@tehhowch)
     * Removed the 60hz speed lock on the game during integration testing. (@petervdmeer)
     * Allow test framework to send SDL events to the game loop. (@petervdmeer)
-    * Removed Runtime Type Information from code and compilation and forbid its use. (@petervdmeer)
+    * Removed Runtime Type Information from code and compilation and forbade its use. (@petervdmeer)
     * Updated SCons version to 4.2.0 and cache scons locally. (@tehhowch)
     * Support reading additional commands from text nodes for automated testing. (@petervdmeer)
     * Tests now print flagship and escort info upon failure. (@petervdmeer)
@@ -677,7 +677,7 @@ Version 0.9.13:
         * Created an epilogue mission for Barmy Edward. (@beccabunny, @Darcman99)
         * Created a mission where you can inform the Remnant about the research that the Deep are doing on the Ember Waste. (@Amazinite, @Zitchas)
         * The player will now be warned the first time their pirate attraction is greater than 50%. (@Amazinite)
-        * Added a boarding mission about a secret slave ship (@Pointedstick, @oo13)
+        * Added a boarding mission about a secret slave ship. (@Pointedstick, @oo13)
       * New outfits and ships:
         * Created an ammo storage outfit for Finisher torpedoes. (@Arachi-Lover)
         * Ka'het ships now have power generation and storage outfits. (@beccabunny)
@@ -1029,8 +1029,8 @@ Version 0.9.11:
     * Allow passing CXX flags from the build environment. (@pkubaj)
     * Extracted SDL window setup and interaction into a new class to promote single-responsibility. (@AdamKauffman)
     * The error log file is always closed when the game exits. (@tehhowch)
-    * Added sanity checks to the GitHub contribution pipeline (@tehhowch, @MCOfficer)
-    * Created an AppImage build pipeline for releases (@MCOfficer)
+    * Added sanity checks to the GitHub contribution pipeline. (@tehhowch, @MCOfficer)
+    * Created an AppImage build pipeline for releases. (@MCOfficer)
 
 Version 0.9.10:
   * Bug fixes:
@@ -1264,8 +1264,8 @@ Version 0.9.9:
       * Added small numbers of hand to hand weapons to various human ships. (@Fzzr)
       * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
       * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
-      * Added more content definition warnings & checks, to help modders develop functional content (@tehhowch)
-      * Content definition checks do not warn for certain objects defined solely by game events (@comnom)
+      * Added more content definition warnings & checks, to help modders develop functional content. (@tehhowch)
+      * Content definition checks do not warn for certain objects defined solely by game events. (@comnom)
       * Changed the human anti-missile turret models to increase their hardpoint image visibility. (@comnom)
       * Lowered the pitch of the scan sound effect by one octave. (@comnom)
       * Some regional pirate jobs now increase your reputation with pirates if completed, but decrease your reputation with the regional government (i.e. Republic, Syndicate, or Free Worlds) if failed. (@Amazinite)
@@ -1751,7 +1751,7 @@ Version 0.9.6:
 Version 0.9.5:
   * Bug fixes:
     * Typo fixes. (@Amazinite, @Bladewood, @doches, @Elyssaen, @jafdy, @gecko-locator)
-    * More typo fixes (@KiLEdEnNis, @MillerNerd, @Pointedstick, @retrue, @warp-core, @Wrzlprnft)
+    * More typo fixes. (@KiLEdEnNis, @MillerNerd, @Pointedstick, @retrue, @warp-core, @Wrzlprnft)
     * Fixed the hardpoint locations on the Vanguard. (@jafdy)
     * Republic and Syndicate ships no longer attack each other in the "reconciliation" plot. (@jafdy)
     * Fixed a mistake in the scanner warning message for the new scanner mechanics. (@Elyssaen)
@@ -1947,7 +1947,7 @@ Version 0.9.3:
     * Game no longer crashes if unable to create the config directory. (@lheckemann)
     * Stranded fighters in other systems no longer get sold when you take off. (@MarcelineVQ)
     * Typo fixes. (@lheckemann, @KiLEdEnNis, @davidwhitman, @kitsunemochi, @toilethinges)
-    * More typo fixes (@jafdy, @MessyMix, @Pointedstick)
+    * More typo fixes. (@jafdy, @MessyMix, @Pointedstick)
     * Fixed an integer overflow in fleet costs calculated in the boarding panel. (@MarcelineVQ)
     * Invisible ships (i.e. ships with no sprite) are no longer "targetable." (@MarcelineVQ)
     * Various fixes to the UI, handling of fighters, and hails sent to dead ships. (@MarcelineVQ)
@@ -2157,7 +2157,7 @@ Version 0.9.1:
     * New civilian hail messages, referencing fictitious futuristic bands. (@Wrzlprnft)
     * Fixed an armistice that lasts too long if the player has a jump drive. (@LocalGod79)
     * In the Free Worlds plot, Ijs can no longer be in two places at once. (@LocalGod79)
-    * New Hai outfits to replace human placeholders (@Wrzlprnft, @LocalGod79, @Amazinite)
+    * New Hai outfits to replace human placeholders. (@Wrzlprnft, @LocalGod79, @Amazinite)
     * Fixed some awkward Navy hails. (@Amazinite)
     * New Wanderer missions, giving you access to new ships and technology.
     * New human side missions that give hints about different alien species near human space.
@@ -2523,7 +2523,7 @@ Version 0.8.8:
     * Fixed various bugs with how the game determines which ship is your "flagship."
     * The "Uninhabited" government on Ruin will no longer fine the player for illegal outfits.
     * Fixed a crash that could happen while taking off if missions failed due to lack of space.
-    * Typo fixes (@naehc, @kkuchta, @luiges90, @fcfort, @maxrd2)
+    * Typo fixes. (@naehc, @kkuchta, @luiges90, @fcfort, @maxrd2)
   * New content:
     * Added two new ships, the Headhunter and the Modified Argosy.
   * Game mechanics:
