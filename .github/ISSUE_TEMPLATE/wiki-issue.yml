@@ -1,0 +1,15 @@
+name: Wiki Issue
+description: Something is wrong with the wiki.
+labels: [documentation]
+
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for filing a wiki report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the issue
+      description: Provide a clear and concise description of what the issue is.
+    validations:
+      required: true
