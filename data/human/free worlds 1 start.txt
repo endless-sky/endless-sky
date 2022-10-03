@@ -2005,13 +2005,13 @@ mission "FW Early Warning 4"
 
 
 event "battle in Wei"
-	system Wei
+	system "Wei"
 		fleet "Small Free Worlds" 5000
 
 
 
 event "battle in Wei over"
-	system Wei
+	system "Wei"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Southern Pirates" 4000
