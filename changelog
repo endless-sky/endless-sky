@@ -75,7 +75,7 @@ Version 0.9.15:
       * The projectile velocity is no longer applied to firing effects and sounds, which was causing them to appear out of place when moving at high speeds. (@Ferociousfiend)
       * The damage dropoff of a projectile, should it have it, is no longer influenced by the velocity of the firing ship. (@Amazinite)
       * Fixed an instance where the player could be fined for outfits that had been put into their cargo hold but were removed. (@quyykk)
-      * Improved synchronization of the calculation and rendering threads. It turns out the game has always been rendering one frame slow before. (@quyykk)
+      * Improved synchronization of the calculation and rendering threads. It turns out the game has always been rendering one frame slower before. (@quyykk)
       * Auto-aiming no longer requires either auto-fire to be active or the primary fire button to be held, meaning that auto-aiming will always work when targeting something. (@Mr-L-oof)
       * NPCs no longer offer to refuel you if you don't have the ability to jump out of the system. (@quyykk)
       * The names of ships are now drawn on top of the ship thumbnails in the shipyard, avoiding large thumbnails obscuring the ship name. (@Amazinite)
@@ -223,7 +223,7 @@ Version 0.9.15:
       * Archons now ramp up significantly in strength when they feel threatened. (@Zitchas)
         * 11x normal DPS when threatened
       * Buffed the Protector. (@Amazinite)
-        * The Protector has long been considered the worst human-heavy warship in the game. While some heavy warships should be better than others, the Protector had almost no redeeming factors. These changes seek to make the Protector more of a heavy weapon's platform, slow but able to pack a considerable punch when within range.
+        * The Protector has long been considered the worst human heavy warship in the game. While some heavy warships should be better than others, the Protector had almost no redeeming factors. These changes seek to make the Protector more of a heavy weapons platform, slow but able to pack a considerable punch when within range.
         * 6 -> 8 turrets, going from "a lot" to "tied with the most among all heavy warships in the game."
         * +500 shields
         * +1300 hull
@@ -301,7 +301,7 @@ Version 0.9.15:
       * Updated smaller human ships to use the new small secondary weapons. (@Zitchas)
       * Tweaked the descriptions on over 100 planets for better readability. (@skilaa)
       * Added reverse and steering flares to the Lampyrid. (@Zitchas)
-      * The Remnant now becomes hostile when scanned and loses reputation on a completed scan or when a drone is destroyed. This behavior becomes removed after the Remnant trust the player enough. (@Zitchas)
+      * The Remnant now become hostile when scanned and the player loses reputation on a completed scan or when a drone is destroyed. This behavior stops after the Remnant trust the player enough. (@Zitchas)
       * Standardized the habitable range of all systems given the star of each system. Some systems have had their planets moved around to compensate for this. (@Amazinite)
       * Readded the disables personality to Remnant fleets. (@Zitchas)
       * The Mereti will no longer remain neutral if the player attacks them after they've been made friendly. (@Hurleveur)
