@@ -378,7 +378,7 @@ Version 0.9.15:
       * The inaccuracy of a projectile is now also applied to the firing effect. (@DeBlister)
       * Expanded the attribute whitelist to allow more outfit attributes to become negative, such as allowing engines to produce energy while in use. (@Ferociousfiend)
       * Escorts ordered to leave the system will now ignore hostiles to leave instead of continuing to fight. (@alextd)
-      * Music no longer restarts from the beginning of the track trying to be played is the same as the one already playing. (@samrocketman)
+      * Music no longer restarts from the beginning if the track trying to be played is the same as the one already playing. (@samrocketman)
       * Overheating has been nerfed from completely disabling an overheated ship to only disabling an overheated ship's power generation. (@Amazinite)
       * Reverted how hit force is applied to ships to how it was before v0.9.9: only take the ship's mass into account instead of adding a fixed mass that reduced the hit force to small ships while increasing the hit force to large ships. (@1010todd)
   * User interface:
