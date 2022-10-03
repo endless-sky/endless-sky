@@ -3181,7 +3181,7 @@ double Ship::JumpFuel(const System *destination) const
 
 	// If no destination is given, return the maximum fuel per jump.
 	if(!destination)
-		return max(JumpDriveFuel(), HyperdriveFuel());
+		return max(JumpDriveFuel(false), HyperdriveFuel());
 
 	bool linked = currentSystem->Links().count(destination);
 	// Figure out what sort of jump we're making.
@@ -3190,7 +3190,7 @@ double Ship::JumpFuel(const System *destination) const
 
 	if(attributes.Get("jump drive")
 			&& currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel((linked
+		return JumpDriveFuel(currentSystem->Links().count(destination), (linked
 			|| currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 
 	// If the given system is not a possible destination, return 0.
@@ -3237,7 +3237,7 @@ double Ship::HyperdriveFuel() const
 {
 	// Don't bother searching through the outfits if there is no hyperdrive.
 	if(!attributes.Get("hyperdrive"))
-		return JumpDriveFuel();
+		return JumpDriveFuel(true);
 
 	if(attributes.Get("scram drive"))
 		return BestFuel("hyperdrive", "scram drive", 150.);
@@ -3247,11 +3247,14 @@ double Ship::HyperdriveFuel() const
 
 
 
-double Ship::JumpDriveFuel(double jumpDistance) const
+double Ship::JumpDriveFuel(bool connected, double jumpDistance) const
 {
 	// Don't bother searching through the outfits if there is no jump drive.
 	if(!attributes.Get("jump drive"))
 		return 0.;
+	
+	if(connected)
+		return BestFuel("jump drive", "", 200., jumpDistance, "jump fuel laned");
 
 	return BestFuel("jump drive", "", 200., jumpDistance);
 }
@@ -4044,7 +4047,7 @@ double Ship::MinimumHull() const
 
 
 // Find out how much fuel is consumed by the hyperdrive of the given type.
-double Ship::BestFuel(const string &type, const string &subtype, double defaultFuel, double jumpDistance) const
+double Ship::BestFuel(const string &type, const string &subtype, double defaultFuel, double jumpDistance, const string fueltype) const
 {
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
@@ -4064,7 +4067,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// always pass.
 		if(jumpRange >= jumpDistance)
 		{
-			best = baseAttributes.Get("jump fuel");
+			best = baseAttributes.Get(fueltype);
 			if(!best)
 				best = defaultFuel;
 		}
@@ -4078,7 +4081,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 			if(jumpRange >= jumpDistance)
 			{
-				double fuel = it.first->Get("jump fuel");
+				double fuel = it.first->Get(fueltype);
 				if(!fuel)
 					fuel = defaultFuel;
 				if(!best || fuel < best)

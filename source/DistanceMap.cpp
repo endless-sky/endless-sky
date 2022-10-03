@@ -172,7 +172,7 @@ void DistanceMap::Init(const Ship *ship)
 	if(ship)
 	{
 		hyperspaceFuel = ship->HyperdriveFuel();
-		jumpFuel = ship->JumpDriveFuel();
+		jumpFuel = ship->JumpDriveFuel(false);
 		jumpRange = ship->JumpRange();
 		// If hyperjumps and non-hyper jumps cost the same amount, there is no
 		// need to check hyperjump paths at all.
