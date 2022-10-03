@@ -1,7 +1,7 @@
 Version 0.9.15:
   * Big changes:
     * Over a year's worth of new content and bug fixes! We hope it was worth the wait!
-    * Made many graphical improvements, such as adding parallax for planets, stars, and haze and remodeling and improving various assets. See the graphics section for more details.
+    * Many graphical improvements, such as adding parallax for planets, stars, and haze and remodelling and improving various assets. See the graphics section for more details.
     * Made various sweeping balance changes to multiple ships and outfits to improve lesser used items or strategies and turn certain choices into a question of what fits best for the role you're looking for instead of there being single no-brainer choices as to which ship or outfit is the best. See the balance section of the changelog for more details.
     * Added over 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles it throws at them. Includes the addition of new ships and outfits. (@Zitchas, @Azure3141, @beccabunny, @Dschiltt, @GefullteTaubenbrust2, jeverett#3344, @Saugia, scrinarii1337)
     * Added a massive amount of new content to the Korath Exiles, including two new systems near the core, multiple new ships, over two dozen new weapons and outfits, improved models for some older ships and outfits, and a new set of names for the outfits and ships that avoid having "Korath" as a prefix for every name. (@ravenshining, @Dragenhart, @EjoThims, @GefullteTaubenbrust2, @MasterOfGrey, @Saugia, @warp-core)
@@ -199,7 +199,7 @@ Version 0.9.15:
       * Slight wording change in FW Bounty 1 to reduce repeated information. (@Anarchist2)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
-      * Buffed the Heavy Shuttle while increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the ships mentioned above. (@Zitchas)
+      * Buffed the Heavy Shuttle while increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the ships mentioned previously. (@Zitchas)
         * +2 bunks
         * -20 mass
         * -0.2 drag
@@ -235,7 +235,7 @@ Version 0.9.15:
           * Lasers are a pirate's friend and always will be. Easy to use and great for disabling ships without destroying them, but not necessarily the best at everything.
           * +33% firing energy and heat
         * Blasters:
-          * Blasters are the smallest weapons in human space. They are weak and cheap but are strong in numbers. Put eight quad blaster turrets on a new Protector and have some fun.
+          * Blasters are the smallest weapons in human space. They are weak but cheap and strong in numbers. Put eight quad blaster turrets on a new Protector and have some fun.
           * -40% firing energy and heat
           * +10% shield and hull damage
         * Cannons:
@@ -361,7 +361,7 @@ Version 0.9.15:
     * Mechanic changes:
       * "hit effect" behavior for hazards has been replaced with "target effect". (@petervdmeer)
       * Committing an atrocity now only affects the reputation of governments friendly to the government that the atrocity was committed against. (@Amazinite)
-      * Flotsams dumped by a certain government will no longer be picked up by ships of the same government. This prevents merchants from picking up cargo dumped by other merchants that were intended to distract pirates. The player's government is exempt from this change. (@petervdmeer)
+      * Flotsams dumped by a certain government will no longer be picked up by ships of the same government. This prevents merchants from picking up cargo dumped by other merchants that was intended to distract pirates. The player's government is exempt from this change. (@petervdmeer)
       * The data syntax for requiring a license on a ship or outfit now accepts one-line specifications. (@tehhowch)
       * Some heat is now removed when firing ammunition with mass. (@tehhowch)
       * Updated collision mask generation to allow ships to contain holes or disjointed regions. (@flaviojs, @tehhowch)
@@ -473,13 +473,13 @@ Version 0.9.15:
     * Refactored Ship::TakeDamage to reduce its responsibilities of calculating how much damage was taken and instead calculate that in a new DamageProfile class. (@Amazinite)
     * Standardized various data used by Remnant missions. (@Zitchas)
     * Removed an unnecessary PushOrPop call in the UI class. (@quyykk)
-    * Moved the animation and sound effects handling when the game starts to a new panel. (@quyykk)
+    * Moved the animation and sound effect handling when the game starts to a new panel. (@quyykk)
     * Added VSCode files to the gitignore. (@samrocketman)
     * Fixed broken --talk launch flag behavior. (@samrocketman)
     * Added an Average method to WeightedLists to compute the average of its contents. (@tehhowch)
     * The correct folder for the AppStream file is now used. (@quyykk)
     * All unit and integration test files are now in dedicated directories. (@petervdmeer)
-    * Variant is now its own class instead of being contained within fleet. (@Amazinite)
+    * Variant is now its own class instead of being contained within Fleet. (@Amazinite)
     * Added a wrapper class for the stock and regular item pattern observed across multiple classes. (@Amazinite)
     * Removed the GenericName key from the .desktop file. (@Pointedstick)
     * Improved support for system-installed scons. (@CAPTAIN1947)
