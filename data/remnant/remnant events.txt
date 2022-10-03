@@ -295,6 +295,21 @@ event "remnant: ssil vida area unvisted"
 
 
 
+# Permanent changes made when Ssil Vida is first activated and not undone by subsequent activations and deactivations.
+event "remnant: ssil vida initial activation"
+	system Egeria
+		"jump range" 50
+		remove hazard "Ember Waste Base Heat" 100
+		add hazard "Ember Waste Base Heat" 50
+		add hazard "Ember Waste Base Storm" 15000
+	system Diespiter
+		"jump range" 50
+		remove "Ember Waste Base Heat" 100
+		add hazard "Ember Waste Base Heat" 50
+		add hazard "Ember Waste Base Storm" 15000
+
+
+
 event "remnant: ssil vida activation"
 	set "remnant: ssil vida active"
 	planet Fertriery
@@ -306,7 +321,6 @@ event "remnant: ssil vida activation"
 		bribe 0
 		security 0
 	system Caeculus
-		remove fleet Embershades 12000
 		object
 			sprite star/wr
 			period 10
@@ -347,22 +361,19 @@ event "remnant: ssil vida activation"
 				distance 380
 				period 23.2775
 	system Egeria
-		remove attributes "inaccessible"
-		"jump range" 50
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "live crystal" 60 3
-		add fleet "Void Sprites (Ember Waste)" 400
-		add fleet "Subsidurial (Ember Waste)" 2000
-		remove hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Heat" 50
-		add hazard "Ember Waste Base Storm" 15000
+		minables iron 20 4
+		minables lead 28 5
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
 		object
 			sprite star/k5-old
 			distance 40
@@ -385,23 +396,18 @@ event "remnant: ssil vida activation"
 				distance 270
 				period 16
 	system Diespiter
-		remove attributes "inaccessible"
 		"jump range" 50
-		remove asteroids
-		add minables "plant" 80 5
-		add minables "plant2" 80 5
-		add minables "plant cluster" 80 5
-		add minables "large plant" 40 3
-		add minables "large plant2" 40 3
-		add minables "large plant cluster" 40 3
-		add minables "space flora" 80 5
-		add minables "large space flora" 40 3
-		add minables "live crystal" 60 3
-		add fleet "Void Sprites (Ember Waste)" 400
-		add fleet "Subsidurial (Ember Waste)" 2000
-		remove "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Heat" 50
-		add hazard "Ember Waste Base Storm" 15000
+		minables "plant" 80 5
+		minables "plant2" 80 5
+		minables "plant cluster" 80 5
+		minables "large plant" 40 3
+		minables "large plant2" 40 3
+		minables "large plant cluster" 40 3
+		minables "space flora" 80 5
+		minables "large space flora" 40 3
+		minables "live crystal" 60 3
+		fleet "Void Sprites (Ember Waste)" 400
+		fleet "Subsidurial (Ember Waste)" 2000
 	system Levana
 		object
 			sprite star/a-giant
