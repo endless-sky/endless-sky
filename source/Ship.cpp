@@ -3253,7 +3253,7 @@ double Ship::JumpDriveFuel(bool connected, double jumpDistance) const
 	if(!attributes.Get("jump drive"))
 		return 0.;
 	
-	if(connected)
+	if(connected && baseAttributes.Get("jump fuel laned"))
 		return BestFuel("jump drive", "", 200., jumpDistance, "jump fuel laned");
 
 	return BestFuel("jump drive", "", 200., jumpDistance);
