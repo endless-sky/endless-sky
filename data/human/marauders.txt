@@ -123,7 +123,7 @@ ship "Marauder Bounder"
 		"mass" 145
 		"drag" 3.7
 		"heat dissipation" .8
-		"fuel capacity" 900
+		"fuel capacity" 800
 		"cargo space" 20
 		"outfit space" 240
 		"weapon capacity" 80

@@ -673,7 +673,7 @@ ship "Bounder"
 		"mass" 130
 		"drag" 3.7
 		"heat dissipation" .8
-		"fuel capacity" 900
+		"fuel capacity" 800
 		"cargo space" 40
 		"outfit space" 220
 		"weapon capacity" 50
@@ -1296,10 +1296,10 @@ ship "Dagger"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -15 30
-	engine 15 30
-	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Javelin Mini Pod"
+	engine -8 34
+	engine 8 34
+	gun -11 -21 "Beam Laser"
+	gun 11 -21 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -2891,9 +2891,9 @@ ship "Scout"
 	attributes
 		category "Transport"
 		"cost" 850000
-		"shields" 1200
+		"shields" 2000
 		"hull" 400
-		"required crew" 2
+		"required crew" 1
 		"bunks" 12
 		"mass" 110
 		"drag" 3.4
