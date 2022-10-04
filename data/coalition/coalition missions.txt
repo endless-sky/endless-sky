@@ -138,7 +138,7 @@ mission "Coalition: Contributor"
 			label end
 			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters.`
 
-#For pre-0.9.7 compatibility
+# For pre-0.9.7 compatibility
 mission "Coalition License Patch"
 	invisible
 	landing
