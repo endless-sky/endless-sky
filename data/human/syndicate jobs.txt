@@ -202,7 +202,7 @@ mission "Syndicate target practice [0]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -160000
+		fine 160000
 	on complete
 		payment 80000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
@@ -238,7 +238,7 @@ mission "Syndicate target practice [1]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -300000
+		fine 300000
 	on complete
 		payment 150000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
@@ -274,7 +274,7 @@ mission "Syndicate target practice [2]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -520000
+		fine 520000
 	on complete
 		payment 260000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
@@ -309,7 +309,7 @@ mission "Syndicate target practice [3]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -800000
+		fine 800000
 	on complete
 		payment 400000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
