@@ -37,13 +37,12 @@ public:
 	Flotsam(const std::string &commodity, int count, const Government *sourceGovernment = nullptr);
 	Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment = nullptr);
 
-	/* Functions provided by the Body base class:
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	*/
+	// Functions provided by the Body base class:
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
 
 	// Place this flotsam, and set the given ship as its source. This is a
 	// separate function because a ship may queue up flotsam to dump but take

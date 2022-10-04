@@ -281,7 +281,8 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
+	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation->IsEmpty() && ui)
@@ -326,7 +327,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin,
+	int jumps, int64_t payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;

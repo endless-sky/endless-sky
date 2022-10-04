@@ -184,7 +184,7 @@ EsUuid::EsUuid(const std::string &input)
 	try {
 		value = ParseUuid(input);
 	}
-	catch (const std::invalid_argument &err)
+	catch(const std::invalid_argument &err)
 	{
 		Logger::LogError(err.what());
 	}

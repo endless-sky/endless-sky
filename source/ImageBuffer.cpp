@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "File.h"
 #include "Logger.h"
 
-#include <png.h>
 #include <jpeglib.h>
+#include <png.h>
 
 #include <cstdio>
 #include <stdexcept>
@@ -227,7 +227,7 @@ namespace {
 		try {
 			buffer.Allocate(width, height);
 		}
-		catch (const bad_alloc &)
+		catch(const bad_alloc &)
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
@@ -306,7 +306,7 @@ namespace {
 		try {
 			buffer.Allocate(width, height);
 		}
-		catch (const bad_alloc &)
+		catch(const bad_alloc &)
 		{
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";

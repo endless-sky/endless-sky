@@ -121,9 +121,9 @@ int OutfitterPanel::TileSize() const
 
 
 
-int OutfitterPanel::VisiblityCheckboxesSize() const
+int OutfitterPanel::VisibilityCheckboxesSize() const
 {
-	return 60;
+	return 30;
 }
 
 
@@ -301,7 +301,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter,
+			descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
@@ -807,7 +808,7 @@ void OutfitterPanel::DrawKey()
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
-	Point pos = Screen::BottomLeft() + Point(10., -VisiblityCheckboxesSize() + 10.);
+	Point pos = Screen::BottomLeft() + Point(10., -VisibilityCheckboxesSize() - 20.);
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);

@@ -106,7 +106,8 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(!player.Flagship())
 		return false;
 
-	if(key == 'h' || key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS || key == SDLK_RETURN || key == SDLK_SPACE)
+	if(key == 'h' || key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS
+		|| key == SDLK_RETURN || key == SDLK_SPACE)
 	{
 		player.Flagship()->AddCrew(min(maxHire, Modifier()));
 		player.UpdateCargoCapacities();

@@ -329,7 +329,8 @@ void Test::Load(const DataNode &node)
 		return;
 	}
 	// Validate if the testname contains valid characters.
-	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
+	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
+		!= std::string::npos)
 	{
 		node.PrintTrace("Error: Unsupported character(s) in test name:");
 		return;
@@ -527,7 +528,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	if(context.callstack.empty())
 		stackMessage += "  No callstack info at moment of failure.";
 
-	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i )
+	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i)
 	{
 		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
 		if(i->step < i->test->steps.size())

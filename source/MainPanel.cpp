@@ -455,7 +455,7 @@ bool MainPanel::ShowHailPanel()
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
-				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); } ));
+				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); }));
 			return true;
 		}
 	}

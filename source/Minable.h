@@ -39,13 +39,13 @@ class Visual;
 // ellipse around the system center.
 class Minable : public Body {
 public:
-	/* Inherited from Body:
-	Frame GetFrame(int step = -1) const;
-	const Mask &GetMask(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const; */
+	// Inherited from Body:
+	// Frame GetFrame(int step = -1) const;
+	// const Mask &GetMask(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
 
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);

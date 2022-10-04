@@ -26,8 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #else
-#include <sys/stat.h>
 #include <dirent.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <utime.h>
 #endif
@@ -555,7 +555,8 @@ void Files::LogErrorToFile(const string &message)
 		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
-			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			cerr << "Unable to create \"errors.txt\" " << (config.empty()
+				? "in current directory" : "in \"" + config + "\"") << endl;
 			return;
 		}
 	}
