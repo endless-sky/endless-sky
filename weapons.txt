@@ -1,0 +1,195 @@
+outfit "Tethys Cannon"
+	category "Turrets"
+	cost 1067000
+	mass 128
+	thumbnail "outfit/unknown"
+	"outfit space" -110
+	"weapon capacity" -97
+	drag 7
+	"required crew" 4
+	"turret mounts" -1
+	"shell capacity" 100
+	weapon
+		safe
+		"hardpoint sprite" "hardpoint/monoturretbig"
+		"hardpoint offset" 30
+		sprite "projectile/ion bolt"
+			rewind
+		sound "heavy fire wind up"
+		"fire effect" "barrage fire"
+		"ammo" "HC Shell"
+		submunition "Heavy Barrage Bullet" 3
+		reload 200
+		velocity 33
+		"turret turn" .375
+		"relative firing energy" .005
+		"energy consumption" 1.37
+		"relative firing heat" .003
+		cluster
+		parallel
+	description "The Heavy Barrage cannon is an extremely long-range weapon capable of barraging Capital ships with devastating volleys. Its range excels against most other weapons, and with enough of these in your fleet, they can quickly take out fleets of Capital warships. Its big weaknesses is its turning rate, firing velocity, and firing rate, allowing quicker ships to evade it easily. Instead of a weapon that could lay down consistent fire, the engineers turned this weapon into a support weapon."
+	description "This weapon works using a long-range shell with two fuses. The first fuse explodes out of the shell, crippling the enemy ship. The second fuse hits the ship's hull directly. These fuse explosions have a small blast radius which has been known to hit friendly ships caught in the blast zone, so this weapon is only meant to be used as an initiator."
+	
+outfit "Shell Hold"
+	category "Ammunition"
+	"outfit space" 20
+	"cost" 3000
+	"shell capacity" 500
+	"ammo" "HC Shell"
+	"mass" 0.85
+	
+outfit "HC Shell"
+	category "Ammunition"
+	cost 500
+	thumbnail "outfit/meteor"
+	"mass" .2
+	"shell capacity" -1
+	
+outfit "Heavy Barrage Bullet"
+	weapon
+		safe
+		phasing
+		sprite "projectile/ion bolt"
+			rewind
+		sound "explosion small"
+		"hit effect" "barrage hit"
+		lifetime 100
+		"random lifetime" 20
+		"hull damage" 179
+		"shield damage" 454
+		piercing .05
+		"blast radius" 15
+		"hit force" 10
+		
+effect "barrage hit"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 10
+		"random start frame"
+	"lifetime" 28
+	sound "explosion small"
+	"random angle" 360
+	"random spin" 3
+	"velocity" .1
+	drag 50
+	"acceleration" .001
+	
+effect "barrage fire"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"velocity" 12
+	"random angle" 360
+	"lifetime" 60
+	"random spin" 60
+	"random frame rate" 60
+
+effect "small barrage fire"
+	sprite "effect/explosion/tiny"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"velocity" 5
+	"random angle" 360
+	"lifetime" 60
+	"random spin" 60
+	"random frame rate" 60
+	
+outfit "Enceladus Cannon"
+	category "Turrets"
+	cost 770000
+	thumbnail "outfit/blaster turret"
+	"mass" 70
+	"outfit space" -60
+	drag 3
+	"weapon capacity" -56
+	"turret mounts" -1
+	"required crew" 3
+	"shell capacity" 200
+	weapon
+		sprite "projectile/ion bult" 3
+		"hardpoint sprite" "hardpoint/blaster turret"
+		"hardpoint offset" 9.
+		sound "detainer"
+		"ammo" "HC Shell"
+		"fire effect" "small barrage fire"
+		"hit effect" "explosion/small"
+		"inaccuracy" 1
+		velocity 22
+		"lifetime" 60
+		"reload" 60
+		"burst count" 8
+		"burst reload" 30
+		"relative firing energy" .004
+		"firing heat" 90
+		"shield damage" 187
+		"turret turn" .44
+		"hull damage" 569
+		"blast radius" 1
+		"piercing" .2
+		parallel
+		cluster
+		
+	description "This large turret fires explosive shells at a moderate rate, and can punch through light and medium armour. Against the heaviest ships, this turret doesn't do too much damage, but combined with its successor, the Tethys Cannon, the amount of firepower this turret throws at the target is terrifying." 
+	
+outfit "Light Flak Turret"
+	category "Turrets"
+	cost 360000
+	thumbnail "outfit/proton turret"
+	drag .5
+	mass 66
+	"outfit space" -6
+	"weapon capacity" -5
+	"turret mounts" -1
+	"required crew" 4
+	weapon
+		sprite "projectile/ion bult"
+		"hardpoint sprite" "hardpoint/proton turret"
+		"hardpoint offset" 14.
+		"hit effect" "proton impact" 3
+		"turret turn" 2
+		"submunition" "Heavy Proton Split" 7
+		"inaccuracy" 20
+		"velocity" 35
+		"lifetime" 8
+		"reload" 40
+		"relative firing energy" .001
+		"firing heat" 60
+		"blast radius" 1
+		"split range" 100
+		"shield damage" -4200
+		"hull damage" -2400
+		parallel
+		
+	description "This light anti-fighter turret is a baseplate mount that can either be manned or automated by the computer. It fires explosive shells that split into dozens of shrapnel shards that pepper the area around the target, often hitting other targets as well. Against larger ships, the smaller pieces of shrapnel don't do quite so much damage, and direct hits from the explosive shells don't do much damage either."
+		
+outfit "Heavy Proton Split"
+	weapon
+		"hit effect" "drak bolt impact"
+		"submunition" "Heavy Proton Blast" 3
+		"inaccuracy" 360
+		"random lifetime" 2
+		drag 1000
+		"blast radius" 20
+		"split range" 70
+		
+outfit "Heavy Proton Blast"
+	weapon
+		sprite "projectile/ion bult"
+			"no repeat"
+			"frame rate" 2
+		sound "pulse"
+		"hit effect" "drak bolt impact" 10
+		"die effect" "drak bolt impact" 10
+		inaccuracy 360
+		"random velocity" 10
+		drag .1
+		"shield damage" 136
+		"hull damage" 98
+		"slowing damage" 10
+		"lifetime" 1
+		"random lifetime" 3
+		"blast radius" 20
+		penetrating 1
+		safe
