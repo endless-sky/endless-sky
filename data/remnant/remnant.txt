@@ -1057,3 +1057,6 @@ outfitter "Remnant Salvage"
 	"Steering (Asteroid Class)"
 	"Steering (Planetary Class)"
 	"Fire-Lance"
+
+outfitter "Void Sprite Parts"
+	"Void Sprite Parts"

@@ -1033,6 +1033,7 @@ outfit "Firestorm Torpedo Rack"
 	description "This large cage-like rack is designed to be able to house several deadly Firestorm Torpedoes."
 
 outfit "Firestorm Battery"
+	plural "Firestorm Batteries"
 	category "Secondary Weapons"
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
