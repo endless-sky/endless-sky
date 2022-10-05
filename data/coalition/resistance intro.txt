@@ -17,7 +17,7 @@ mission "Lunarium Initial Log"
 	to offer
 		has "Lunarium introduced"
 	on offer
-		log "Factions" "Lunarium Redoubt" "The Lunarium Redoubt is a resistance movement within the Coalition that is opposed to the Heliarchs, aiming to free it from their rule.
+		log "Factions" "Lunarium Redoubt" "The Lunarium Redoubt is a resistance movement within the Coalition that is opposed to the Heliarchs, aiming to free it from their rule."
 		fail
 
 mission "Resistance: Smuggling: Charity 1"
