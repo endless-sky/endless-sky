@@ -1872,7 +1872,7 @@ const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 
 
 // Set and check the reputation conditions, which missions and events can use to
-// map<string, string> PlayerInfo::GetSubstitutions() const
+map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, Conditions());
