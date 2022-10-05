@@ -158,8 +158,10 @@ void Government::Load(const DataNode &node)
 				else if(grand.Size() >= 3)
 				{
 					if(grand.Token(0) == "remove")
+					{
 						if(!illegals.erase(GameData::Outfits().Get(grand.Token(1))))
 							grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
+					}
 					else if(grand.Token(0) == "ignore")
 						illegals[GameData::Outfits().Get(grand.Token(1))] = 0;
 					else
