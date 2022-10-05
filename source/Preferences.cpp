@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Preferences.h"
@@ -37,6 +40,9 @@ namespace {
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
+
+	int screenModeIndex = 0;
+	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
 
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
@@ -82,6 +88,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "fullscreen")
+			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -179,6 +187,21 @@ bool Preferences::ZoomViewOut()
 
 	--zoomIndex;
 	return true;
+}
+
+
+
+void Preferences::ToggleScreenMode()
+{
+	GameWindow::ToggleFullscreen();
+	screenModeIndex = GameWindow::IsFullscreen();
+}
+
+
+
+const string &Preferences::ScreenModeSetting()
+{
+	return SCREEN_MODE_SETTINGS[screenModeIndex];
 }
 
 

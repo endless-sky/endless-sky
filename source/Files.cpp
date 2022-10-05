@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Files.h"
@@ -23,8 +26,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #else
-#include <sys/stat.h>
 #include <dirent.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <utime.h>
 #endif
@@ -552,7 +555,8 @@ void Files::LogErrorToFile(const string &message)
 		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
-			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			cerr << "Unable to create \"errors.txt\" " << (config.empty()
+				? "in current directory" : "in \"" + config + "\"") << endl;
 			return;
 		}
 	}
