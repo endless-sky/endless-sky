@@ -1863,7 +1863,6 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
-
 // Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
 const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 {
@@ -1873,33 +1872,7 @@ const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 
 
 // Set and check the reputation conditions, which missions and events can use to
-// modify the player's reputation with other governments.
-void PlayerInfo::SetReputationConditions()
-{
-	for(const auto &it : GameData::Governments())
-	{
-		int64_t rep = it.second.Reputation();
-		conditions["reputation: " + it.first] = rep;
-	}
-}
-
-
-
-void PlayerInfo::CheckReputationConditions()
-{
-	for(const auto &it : GameData::Governments())
-	{
-		int64_t rep = it.second.Reputation();
-		int64_t newRep = conditions["reputation: " + it.first];
-		if(newRep != rep)
-			it.second.AddReputation(newRep - rep);
-	}
-}
-
-
-
-
-map<string, string> PlayerInfo::GetSubstitutions() const
+// map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, Conditions());
