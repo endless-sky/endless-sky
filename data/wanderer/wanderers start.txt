@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Wanderer (Before Hai)"
 	landing
@@ -2162,7 +2165,7 @@ conversation "solifuge conversation"
 		accept
 	
 	label glad
-	`	"Wonderful," Osen's father responds. "Once you have finished looking, simply return to <origin> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
+	`	"Wonderful," Osen's father responds. "Once you have finished looking, simply return to <planet> and inform the port authorities that you have what we seek, and we will meet with you again." The elders all thank you for giving them more information on the Unfettered Solifuge and bid you safe travels.`
 		accept
 
 

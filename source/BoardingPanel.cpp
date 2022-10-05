@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "BoardingPanel.h"
@@ -284,7 +287,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI()->Pop(this);
-			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship. They appear to have set off their self-destruct sequence..."));
+			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
+				" They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
 		isCapturing = true;

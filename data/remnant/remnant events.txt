@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 event "ember waste label"
 	galaxy "label waste"
@@ -1166,3 +1169,20 @@ event "remnant: shattered light"
 
 
 event "remnant: shattered light research" 
+
+event "remnant: tubfalet appearance"
+	fleet "Korath Raid"
+		add variant 1
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Ember Waste Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Large Raid"
+		add variant 3
+			"Tubfalet" 2
+			"'olofez"  6
+			
+
+

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "FWC Scouting 1"
 	landing
@@ -2381,7 +2384,7 @@ mission "FWC End"
 			choice
 				`	"That's very generous of them."`
 				`	"I wonder if that's their way of buying our support and keeping us quiet about the supposed defector."`
-			`	"Maybe so," says Alondo. "In other news, now that the war has ended, and the Pug have been defeated, the Senate has voted to dissolve the Council, leaving us free to return to civilian life. However, they've also agreed to pay you, <first>, a reduced salary in honor of your service. So, what do you think you will do next?"`
+			`	"Maybe so," says Alondo. "The CEO of the Syndicate, Alastair Korban, is also resigning. Perhaps the events are related. In other news, now that the war has ended, and the Pug have been defeated, the Senate has voted to dissolve the Council, leaving us free to return to civilian life. However, they've also agreed to pay you, <first>, a reduced salary in honor of your service. So, what do you think you will do next?"`
 			choice
 				`	"Build a merchant fleet and live a safe, quiet life."`
 				`	"See if folks in the fringe worlds need any help against the pirates."`

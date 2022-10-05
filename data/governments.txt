@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 government "Alpha"
 	swizzle 1
@@ -665,6 +668,24 @@ government "Republic"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
+
+government "Republic (Friendly)"
+	"display name" "Republic"
+	swizzle 0
+	"crew attack" 1.2
+	"crew defense" 2.2
+	"player reputation" 2
+	
+	"attitude toward"
+		"Alpha" -.01
+		"Merchant" .01
+		"Militia" .01
+		"Pirate" -.01
+		"Navy Intelligence" .01
+		"Navy (Oathkeeper)" .01
+		"Neutral" .01
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 
 government "Scar's Legion"
 	swizzle 6

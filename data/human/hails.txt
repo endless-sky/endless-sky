@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 phrase "band"
 	word
@@ -1098,6 +1101,55 @@ phrase "friendly civilian"
 		"needs to be torched!"
 		"deserves to be put down!"
 		"has to be replaced!"
+
+phrase "friendly civilian"
+	word
+		"Some of my"
+	word
+		" "
+	word
+		"passengers"
+		"guests"
+		"VIP passengers"
+	word
+		" "
+	word
+		"ate asparagus"
+		"ate garlic"
+		"ate beans"
+	word
+		" "
+	word
+		"from my cargohold."
+		"on the spaceport."
+		"in my ship."
+	word
+		" "
+	word
+		"I will leave them at the closest inhabited planet. Let them reek in someone else's ship."
+		"The toilets are stinking, badly."
+		"I'm happy they are leaving on the next stop."
+
+phrase "friendly civilian"
+	word
+		"Do you know anybody from "
+	word
+		"Alfheim"
+		"Bourne"
+		"Hadar"
+		"Sinter"
+	word
+		"? "
+	word
+		"Do you know anybody who has ever been there?"
+	word
+		" "
+	word
+		"No? I believe that place just doesn't exist."
+		"Even the Republic government couldn't confirm that it exists."
+		"That place is not real; it is just an illusion."
+		"It's a conspiracy by aliens, who use the university there as a disguise for their spaceship."
+		"'They' want to make us believe the place actually exists."
 
 phrase "friendly civilian"
 	word
@@ -4204,6 +4256,7 @@ phrase "disabled test dummy"
 		"When you're dying I'll be still alive."
 		"Some big robotic ships due East are my friends. Remember me when they blow you to pieces."
 		"Hey, can we be friends? Some of my best friends are slimy organics like you."
+		"You may kill me, but you will never kill my dreams of electric sheep."
 
 
 # Wormhole Hails
