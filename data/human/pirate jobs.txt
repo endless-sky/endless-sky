@@ -3083,7 +3083,7 @@ mission "FW Assassination [2]"
 			variant 1
 				"Blackbird"
 				"Fury" 5
-				"Hawk 4
+				"Hawk" 4
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
 		payment 800000
