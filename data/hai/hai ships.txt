@@ -215,6 +215,7 @@ ship "Geocoris"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 5
+		`"Biroo" Reverse Thruster`
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
@@ -1134,10 +1135,10 @@ ship "Water Bug"
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		`"Basrem" Reverse Thruster`
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
