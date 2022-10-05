@@ -1772,7 +1772,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = JumpDriveCheaper(hyperspaceSystem).first == JUMPDRIVE;
+		std::pair<Ship::JumpType, double> jumpUsed = JumpDriveCheaper(hyperspaceSystem);
+		isUsingJumpDrive = jumpUsed.first == JUMPDRIVE;
+		hyperspaceFuelCost = jumpUsed.second;
 	}
 
 	if(pilotError)
@@ -2803,7 +2805,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
+	bool isJump = JumpDriveCheaper(targetSystem).first == JUMPDRIVE;
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
