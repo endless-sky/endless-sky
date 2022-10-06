@@ -1939,6 +1939,7 @@ ship "Saryd Traveler"
 		"weapon capacity" 177
 		"engine capacity" 79
 		"asteroid scan power" 36
+		"atmosphere scan" 100
 		weapon
 			"blast radius" 72
 			"shield damage" 720
