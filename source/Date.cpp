@@ -319,7 +319,7 @@ Date ParseIso8601Date(string date_string)
 	int mm   = stoi(date_string.substr(6, 7));
 	int dd   = stoi(date_string.substr(9,10));
 
-	Date outputDate = Date(yyyy, mm, dd)
+	Date outputDate = Date(yyyy, mm, dd);
 	return outputDate;
 }
 
