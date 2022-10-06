@@ -537,11 +537,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			string datefmtShortName = Preferences::DateFormat();
 			if(datefmtShortName == "ymd")
-				text = "ISO (2022-10-06)";
+				text = "YYYY-MM-DD";
 			else if(datefmtShortName == "dmy")
-				text = "DMY (Thu, 6 Oct 2022)";
+				text = "DD/MM/YYYY";
 			else if(datefmtShortName == "mdy")
-				text = "MDY (Thu Oct 6, 2022)";
+				text = "MM/DD/YYYY";
 		}
 		else if(setting == TURRET_TRACKING)
 		{
