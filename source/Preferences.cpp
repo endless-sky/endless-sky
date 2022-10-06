@@ -158,7 +158,7 @@ void Preferences::ToggleDateFormat()
 	bool iso = Has(DATEFMT_ISO);
 	bool dmy = Has(DATEFMT_USE_DMY);
 
-	Preferences::Set(DATEFMT_ISO, !(iso && !dmy));
+	Preferences::Set(DATEFMT_ISO, !iso && dmy);
 	Preferences::Set(DATEFMT_USE_DMY, !iso);
 }
 
