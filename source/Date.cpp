@@ -62,6 +62,9 @@ const string &Date::ToString() const
 		int month = Month();
 		int year = Year();
 
+		static const string MONTH[] = {
+				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
 		if(date_format == "ymd")
 		{
 			str = Weekday(day,month,year);
@@ -76,14 +79,22 @@ const string &Date::ToString() const
 				str.append("0");
 			str.append(to_string(day));
 		}
+		else if(date_format == "mdy")
+		{
+			str = Weekday(day, month, year);
+			str.append(" ");
+			str.append(MONTH[month - 1]);
+			str.append(" ");
+			str.append(to_string(day));
+			str.append(", ");
+			str.append(to_string(year));
+		}
 		else if(date_format == "dmy")
 		{
 			str = Weekday(day, month, year);
 			str.append(", ");
 			str.append(to_string(day));
 			str.append(" ");
-			static const string MONTH[] = {
-				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 			str.append(MONTH[month - 1]);
 			str.append(" ");
 			str.append(to_string(year));
