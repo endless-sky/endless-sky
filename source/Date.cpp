@@ -13,6 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <iomanip>
+
 #include "Date.h"
 
 using namespace std;
@@ -49,6 +51,9 @@ Date::Date(int day, int month, int year)
 // Convert a date to a string.
 const string &Date::ToString() const
 {
+	// TODO: implement date format choice
+	string date_format = "dmy"
+
 	// Because this is a somewhat "costly" operation, cache the result. The
 	// cached value is discarded if the date is changed.
 	if(date && str.empty())
@@ -57,15 +62,32 @@ const string &Date::ToString() const
 		int month = Month();
 		int year = Year();
 
-		str = Weekday(day, month, year);
-		str.append(", ");
-		str.append(to_string(day));
-		str.append(" ");
-		static const string MONTH[] = {
-			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		str.append(MONTH[month - 1]);
-		str.append(" ");
-		str.append(to_string(year));
+		if(date_format == "ymd")
+		{
+			str = Weekday(day,month,year);
+			str.append(", ");
+			str.append(to_string(year));
+			str.append("-");
+			if (to_string(month).length() == 1)
+				str.append("0");
+			str.append(to_string(month));
+			str.append("-");
+			if (to_string(day).length() == 1)
+				str.append("0");
+			str.append(to_string(day));
+		}
+		else if(date_format == "dmy")
+		{
+			str = Weekday(day, month, year);
+			str.append(", ");
+			str.append(to_string(day));
+			str.append(" ");
+			static const string MONTH[] = {
+				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+			str.append(MONTH[month - 1]);
+			str.append(" ");
+			str.append(to_string(year));
+		}
 	}
 
 	return str;
