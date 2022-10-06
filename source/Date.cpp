@@ -52,7 +52,7 @@ Date::Date(int day, int month, int year)
 const string &Date::ToString() const
 {
 	// TODO: implement date format choice
-	string date_format = "dmy"
+	string date_format = "dmy";
 
 	// Because this is a somewhat "costly" operation, cache the result. The
 	// cached value is discarded if the date is changed.
