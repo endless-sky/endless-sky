@@ -152,7 +152,7 @@ string Preferences::AmmoUsage()
 }
 
 
-// FIXME: date format change refuses to function properly
+
 void Preferences::ToggleDateFormat()
 {
 	bool iso = Has(DATEFMT_ISO);
