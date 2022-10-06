@@ -73,4 +73,7 @@ private:
 
 
 
+// Parse an ISO-8601 formatted date (e.g 3022-10-06 for 6 Oct 3022)
+Date ParseIso8601Date(std::string date);
+
 #endif

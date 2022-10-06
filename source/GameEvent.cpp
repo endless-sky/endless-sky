@@ -108,6 +108,10 @@ void GameEvent::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		// For yyyy-mm-dd dates (including dashes), the international standard.
+		// Example: 3022-10-06
+		else if(key == "date" && child.Size() == 2)
+			date = ParseIso8601Date(child.Value(1))
 		else if(key == "unvisit" && child.Size() >= 2)
 			systemsToUnvisit.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(key == "visit" && child.Size() >= 2)

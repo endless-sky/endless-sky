@@ -308,3 +308,18 @@ int Date::Year() const
 {
 	return (date >> 9);
 }
+
+
+// TODO: fix year 10000 problem
+
+// Parse an ISO 8601-formatted date (YYYY-MM-DD).
+Date ParseIso8601Date(string date_string)
+{
+	int yyyy = stoi(date_string.substr(0, 4));
+	int mm   = stoi(date_string.substr(6, 7));
+	int dd   = stoi(date_string.substr(9,10));
+
+	Date outputDate = Date(yyyy, mm, dd)
+	return outputDate;
+}
+
