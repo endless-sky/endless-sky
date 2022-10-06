@@ -67,7 +67,7 @@ namespace {
 		if(it != ships.begin() && it != ships.end())
 		{
 			// Move all ships before the flagship one position backwards (which overwrites
-			// the flagship position).
+			// the flagship at its position).
 			move_backward(ships.begin(), it, next(it));
 			// Re-add the flagship at the beginning of the list.
 			ships[0] = flagship;
@@ -840,20 +840,17 @@ void PlayerInfo::SetFlagship(Ship &other)
 		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
 	}
 
+	// Move the flagship to the beginning to the list of ships.
+	MoveFlagshipBegin(ships, flagship);
+
 	// Make sure your flagship is not included in the escort selection.
-	// Or if we have no flagship, then make sure no escorts are selected.
-	if(!flagship)
-		selectedShips.clear();
-	else
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
 	{
-		for(auto it = selectedShips.begin(); it != selectedShips.end(); )
-		{
-			shared_ptr<Ship> ship = it->lock();
-			if(!ship || ship == flagship)
-				it = selectedShips.erase(it);
-			else
-				++it;
-		}
+		shared_ptr<Ship> ship = it->lock();
+		if(!ship || ship == flagship)
+			it = selectedShips.erase(it);
+		else
+			++it;
 	}
 }
 
@@ -889,7 +886,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			// Ensure bayCount has an entry for this category for the special case
 			// where we have no bays at all available for this type of ship.
 			if(ship->CanBeCarried())
-				bayCount[ship->Attributes().Category()];
+				bayCount.emplace(ship->Attributes().Category(), 0);
 
 			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
@@ -1220,10 +1217,6 @@ void PlayerInfo::Land(UI *ui)
 			++it;
 	}
 
-	// If we switched flagships during flight, then we want to move the new
-	// flagship to the start of the list of ships.
-	MoveFlagshipBegin(ships, flagship);
-
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
@@ -1335,7 +1328,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 	// Move the flagship to the start of the list of ships and ensure that all
 	// escorts know which ship is acting as flagship.
-	MoveFlagshipBegin(ships, flagship);
 	SetFlagship(*flagship);
 
 	// Recharge any ships that can be recharged, and load available cargo.

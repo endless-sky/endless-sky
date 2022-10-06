@@ -135,8 +135,6 @@ public:
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
-	// Set the flagship (on departure or during flight).
-	void SetFlagship(Ship &other);
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Inspect the flightworthiness of the player's active fleet as a whole to
@@ -299,6 +297,9 @@ private:
 
 	// Check for and apply any punitive actions from planetary security.
 	void Fine(UI *ui);
+
+	// Set the flagship (on departure or during flight).
+	void SetFlagship(Ship &other);
 
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
