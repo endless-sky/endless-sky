@@ -312,10 +312,10 @@ mission "Unfettered: Betrayal For The Bars"
 			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				accept
 			label shoot
-			`You hit the crew member in the shoulder and they fall. You go remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking eye in the eye, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
+			`You hit the crew member in the shoulder and they fall. You go remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
 				decline
 			label hello
-			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter you see a few gold bars have fallen off the pile. That was probably the sound you heard.`
+			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter, you see that a few gold bars have fallen off the pile. That was probably the sound you heard.`
 			choice
 				`(Head in that direction.)`
 				`(Call for help.)`
@@ -330,10 +330,10 @@ mission "Unfettered: Betrayal For The Bars"
 					goto light
 			`You throw a bucket of water on the crew member, waking them up.`
 			label bliss
-			`You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was it should probably be safely stashed away, or gotten rid off.`
+			`You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid off.`
 				accept
 			label light
-			`You throw a bucket of water on the crew member. They then wake up, and at first refuses to tell you anything, but once you reveal you're aware of their marking, they agrees to reveal something to you. They seem to recognize the hopelessness of their situation, and maybe willing to bargain. "This sign means that I holds my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
+			`You throw a bucket of water on the crew member. They wake up, but at first refuse to tell you anything. Once you reveal you're aware of their marking, they agree to reveal something to you. They seem to recognize the hopelessness of their situation, and may be willing to bargain. "This sign means that I hold my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
 			`You nod, and they then proceed, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
 			choice
 				`(This is it. I want to know all.)`
@@ -344,23 +344,23 @@ mission "Unfettered: Betrayal For The Bars"
 				`(Sell the bars.)`
 				`(Keep the bars, and drop that traitor on the planet.)`
 					goto bliss2
-				`(Keep the crew member for further interrogating.)`
+				`(Keep the crew member for further interrogation.)`
 					goto escape
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
 				set "unfettered: sold bars"
-			`The soon to be gone traitor nods. "This is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be payed the price of brute gold for it."`
+			`The soon-to-be gone traitor nods. "It is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be paid the price of brute gold for it."`
 				decline
 			label bliss2
-			`You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
+			`You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed away safely, or maybe you should get rid of them.`
 				decline
 			label escape
-			`You tighten the traitor's hold, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of  your crew. "<first>. I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
+			`You tighten your hold on the traitor, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of  your crew. "<first>, I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
 			label lostbars
 			action
 				outfit "Gold Bars" -5
-	# accept is used when you spot the crew member but do not know the link to the bars, if they are revealed, they will not try again.
+	# accept is used when you spot the crew member but do not know the link to the bars. If they are revealed, they will not try again.
 	on accept
 		fail "Unfettered: Betrayal For The Bars"
 
@@ -434,12 +434,12 @@ mission "Unfettered: Pirate Help"
 			label next
 			choice
 				`	"All of this seems a bit vague to me. What exactly are you proposing?"`
-			`	"Once you are strong enough, we want you to go to Allhome, which is on the border with the unfettered humans coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with unfettered humans. Then you will find those 'pirates', as you call them, and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however, it will take even more defenders if the unfettered humans are well-equipped with Hai technology."`
+			`	"Once you are strong enough, we want you to go to Allhome, which is on the border with the unfettered humans coming from the wormhole. Once there, speak to the local governor, ask him if he has any... issues with unfettered humans. Then you will find those 'pirates', as you call them, and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however, it will take even more defenders if the unfettered humans are well-equipped with Hai technology."`
 			choice
 				`	"How will I convince the Hai I'm there to help them?"`
-			`	"I hear those unfettered humans attack are very frequent these days... And that planet is on the border of Hai space. It is a very likely target for any pirates. I also have information indicating an attack will come, soon. It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet."`
+			`	"I hear those unfettered human attacks are very frequent these days... And that planet is on the border of Hai space. It is a very likely target for any pirates. I also have information indicating an attack will come, soon. It should be easy to arrange. Help them repel the attack and they will most likely trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet."`
 			choice
-				`	"I will go to Allhome and help them repel this attack then, once I am strong enough to repel a pirate fleet."`
+				`	"I will go to Allhome and help them repel this attack, once I am strong enough to repel a pirate fleet."`
 					accept
 				`	"I'm not interested in doing this."`
 					decline
@@ -453,7 +453,7 @@ mission "Unfettered: Pirate Help"
 		has "accepted scar's legion tribute"
 		has "Pirate Troubles [4]: done"
 	on complete
-		log `Convinced the Hai government to supply Scar's Legion with their technology. They believe it is in exchange for an end to the pirate attacks but, in reality, their attacks will only intensify, as requested by the Unfettered.`
+		log `Convinced the Hai government to supply Scar's Legion with their technology. They believe it would bring an end to the pirate attacks, while, in reality, their attacks will only intensify, as requested by the Unfettered.`
 		"reputation: Scar's Legion" >?= 1
 		payment 500000
 		dialog `The Unfettered authorities thank you for deceiving the Hai and give you a payment of <payment>.`
@@ -480,7 +480,7 @@ mission "Unfettered: Duel Squared"
 		ship "Sea Dragon (Tripulse, JD)" "Thorn"
 		ship "Sea Dragon (Tripulse, JD)" "Talon"
 		conversation
-			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments to you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
+			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
 			action
 				"reputation: Hai (Unfettered)" += 150
 	on fail
@@ -559,7 +559,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons, Bars)"
 	turret 16 -29 "Ionic Turret Prototype"
 	turret -50 39.5 "Ionic Turret Prototype"
 	turret 50 39.5 "Ionic Turret Prototype"
-	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine. It also seems to have an enhanced shield matrix integrated to it, seemingly inspired by the Hai, and is protected by a special alloy added to its hull."
+	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine. It also seems to have an enhanced shield matrix integrated into it, seemingly inspired by the Hai, and is protected by a special alloy added to its hull."
 
 mission "Unfettered: Daemons Unleashed"
 	landing
@@ -568,11 +568,11 @@ mission "Unfettered: Daemons Unleashed"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"
-		# placeholder until we get the ant lion probably
+		# placeholder until we get the antlion probably
 		ship "Marauder Falcon (Weapons, Bars)" "Alpha Lion"
 		personality heroic nemesis staying vindictive target
 		conversation
-			`As soon as you destroy the flagship of this fleet other cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop the mistakes of my predecessor right now, before this becomes an incontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you." They then end the hail.`
+			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop making the same mistake my predecessor always did, right now, before this becomes an uncontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you." They then end the connection.`
 			action
 				"reputation: Mercenaries" >?= 100
 				"salary: Mercenaries" = 1000
@@ -585,7 +585,7 @@ mission "Unfettered: Daemons Unleashed"
 		fleet "Marauders" 12
 		personality heroic nemesis staying vindictive
 	on enter "Wah Yoot"
-		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgivness."`
+		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness."`
 
 
 
@@ -669,10 +669,10 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	"Okay, whatever."`
 					accept
 			label alternative
-			`	"There is another way, but it's no fun. I could just pay that cargo, instead of paying you to get it... But the captain asked for a stupid amount of money for it. So in that case, I want a compensation of 500000 from you."`
+			`	"There is another way, but it's no fun. I could just pay that cargo, instead of paying you to get it... But the captain asked for a stupid amount of money for it. So in that case, I want a compensation of 500 000 credits from you."`
 			choice
 				`	"A small amount to pay to avoid needless bloodshed."`
-				`	"I prefer to hunt it down, in that case."`
+				`	"I'd prefer to hunt it down, in that case."`
 					goto tellmore
 			action
 				fine 500000
@@ -715,7 +715,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		dialog phrase "Essential Unfettered Mission Fail"
 		# you may decline this mission but if you accept it, you need to finish it
 	on visit
-		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
+		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escorts.`
 	on complete
 		clear "unfettered: offered loot"
 		log `Found some "defenseless" cargo in space, and brought it back to the Unfettered.`
@@ -736,7 +736,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 					goto celebrate
 			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
 			label loot
-			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like its outcome."`
+			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like the outcome."`
 			choice
 				`	"Outcome?"`
 				`	(Leave.)`
@@ -793,7 +793,7 @@ mission "Unfettered: The Word Has Spread North: Snowfeather"
 		conversation
 			branch "too late"
 				"unfettered: days" - "unfettered: startdays north" > 60 + random
-			`Five Hai are waiting for you on the spaceport. They tell you that they're artists, looking for inspiration and purpose.`
+			`Five Hai are waiting for you in the spaceport. They tell you that they're artists, looking for inspiration and purpose.`
 				decline
 			label "too late"
 			`You cannot find any traces of the Hai you were sent to find here. Looking at the details it seems they were artists... You go to the local authorities to ask of the whereabouts of these individuals, and learn they left in another transport. You most have been too slow, and now will probably lose some money on the final payment if you don't rush things.`
@@ -842,9 +842,9 @@ mission "Unfettered: The Word Has Spread North: Makerplace"
 			`The Hai you were sent to collect here are late. You wait a few hours before they finally arrive, in no rush whatsoever.`
 				decline
 			label "too late"
-			`After leaving your ship, you quickly see which Hai are the ones you are supposed to pick up here, the spaceport seems mostly empty at this time. They complain to you about the time it took for you to arrive, but still agree to come on your ship, provided you agree to give them a small compensation.`
+			`After leaving your ship, you quickly see which Hai are the ones you are supposed to pick up here, the spaceport seems mostly empty at this time. They complain to you about the time it took for you to arrive, but still agree to come onto your ship, provided you agree to give them a small compensation.`
 			choice
-				`	(Give them 10000 and be done with it.)`
+				`	(Give them 10000 credits and be done with it.)`
 					goto payup
 				`	(Refuse to pay. They can find themselves another ship.)`
 			action
@@ -899,7 +899,7 @@ ship "Corvette" "Corvette (Harpy)"
 
 mission "Unfettered: Family Hunt From Newhome"
 	name "Family Hunt"
-	description "A Hai family has been on a pirate ship labeled as a Merchant, thinking it was their due transport. Find it and board it to save them."
+	description "A Hai family boarded a pirate ship flying merchant colors, thinking it was their transport. Find and board it to save them."
 	landing
 	source "Newhome"
 	destination "Firelode"
@@ -907,7 +907,7 @@ mission "Unfettered: Family Hunt From Newhome"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is 'The Harpy', and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that ship is as fast as light itself.`
+			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is 'The Harpy', and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that the ship is as fast as light itself.`
 				launch
 	npc board
 		government "Bounty (Disguised)"
@@ -919,7 +919,7 @@ mission "Unfettered: Family Hunt From Newhome"
 			action
 				payment 250000
 			`You manage to find the Hai family, thankfully no harm has come to them. They do not seem to be in shock but still insist to give you all that they have, <payment>, to thank you. They say that after this event, they're even more looking forward to meeting their cousins, and learning more about them (you assume they refer to the Unfettered.)`
-			`	The mother adds, "Some Hai ships tried to help us, or at least that is what I assumed when feeling the small shocks to the ship, but they were the exception. We will probably be safer in unfettered space, where they don't let pirates roam freely, whether they are disguised as merchants or not."`
+			`	The mother adds, "Some Hai ships tried to help us, or at least that is what I assumed when feeling the small shocks to the ship from time to time, but they were the exception. We will probably be safer in unfettered space, where they don't let pirates roam freely, whether they are disguised as merchants or not."`
 				decline
 	on fail
 		conversation
@@ -968,7 +968,7 @@ mission "Unfettered: Changed Their Mind"
 		has "Unfettered: Snowfeather: done"
 	on offer
 		conversation
-			`Some Hai seem completely lost in the spaceport. You notice these are the same Hai you promised to bring back if they changed their mind earlier. Do you want to keep your word and go see if you can help them?`
+			`Some Hai seem completely lost in the spaceport. You notice these are the same Hai you promised to bring back if they changed their mind earlier. Do you want to keep your word and help them?`
 			choice
 				`	(Yes.)`
 				`	(Later, maybe they will change their mind again.)`
@@ -1048,11 +1048,11 @@ mission "Unfettered: Special Cargo"
 	destination "Warfeed"
 	on offer
 		conversation
-			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
+			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
 			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - 'by any means,' he says."`
 			choice
 				`	"How will I know which warlord it is?"`
-			`	"It is no common warlord. To say the truth it is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
+			`	"It is no common warlord. To tell you the truth, she is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
 			`	"This warlord, Mhairi, has beaten the previous warlord in power there, right after he sent the orders to acquire the item. She may not know about it yet, but the officers of the previous warlord probably will - and those officers are now hers. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
 			choice
 				`	"I will depart as soon as I can."`
@@ -1065,7 +1065,7 @@ mission "Unfettered: Special Cargo"
 				`	"I will depart as soon as I can."`
 					accept
 				`	"You could have just sent a message on a secure channel."`
-			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those north to learn from this. They would surely be able to decrypt it.`
+			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those north to learn from this. They would surely be able to decrypt it.`
 			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
 			choice
 				`	"I will depart as soon as I can."`
@@ -1104,7 +1104,7 @@ mission "Unfettered: Special Cargo 1B"
 	on offer
 		require "Mystery Cube" 0
 		conversation
-			`You land on the planet next to another empty spot, hoping the Degenerate will land there. He does not seem to want to take any chances, and lands near a few of his own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive.`
+			`You land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive.`
 			choice
 				`	(Try to steal the item.)`
 					goto steal
@@ -1114,10 +1114,10 @@ mission "Unfettered: Special Cargo 1B"
 			`	In front of the ship there's a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others where addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
 			branch luckyish
 				random < 20
-			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with backstabs before.`
+			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with backstabbings before.`
 				die
 			label luckyish
-			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laserfire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
+			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laserfire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
 				die
 			label steal
 			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the warlord into a fight to get the item.`
@@ -1132,7 +1132,7 @@ mission "Unfettered: Special Cargo 1B"
 				`	(Check among the cargo.)`
 					goto cargo
 				`	(Search the upper decks.)`
-				`	(Leave the ship before you get caught, and provoke the warlord.)`
+				`	(Leave the ship before you get caught and provoke the warlord.)`
 					goto challenge
 			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security.`
 				goto caught
@@ -1143,7 +1143,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
 				goto caught
 			label cargo
-			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, partially hidden under it.`
+			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
 			branch knowsbars
 				has "Unfettered: Betrayal For The Bars: declined"
 			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
@@ -1205,7 +1205,7 @@ mission "Unfettered: Special Cargo 1B"
 				`	(Take an alien skull.)`
 					goto wrongitem
 				`	(Take a weird-looking small cube.)`
-			`	Surprisingly, you appear to have found what you were looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering she placed it here, without much protection or even trying to hide it. This has to be the item that He-Yi wants, so you take it with you. Its small size makes it easy to conceal as you make your way off the ship and back to your own. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way as you depart the atmosphere.`
+			`	Surprisingly, you appear to have found what you were looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering she placed it here, without much protection or even trying to hide it. This has to be the item that He-Yi wants, so you take it with you. Its small size makes it easy to conceal as you make your way off the ship and back to your own. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way as you are leaving the atmosphere.`
 				launch
 			label stupid
 			`	You try to disassemble the torpedo, but you do not have enough time to do so.`
@@ -1227,7 +1227,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	"I can cut it down by... 2 million. Last chance, boy. 8 million credits, what do ya say?"`
 			choice
 				`	"Deal!"`
-				`	""There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight.""`
+				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
 					goto challenge
 			`	He seems disappointed to have only 8 million credits, but you feel like he still had the upper hand in that trade. He shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
 			action
@@ -1273,7 +1273,7 @@ mission "Unfettered: Special Cargo 2"
 				goto afterlog
 			label bought
 			action
-				log `Bought a mystery cube off pirates for the Unfettered. Price tag was large.`
+				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
 			label afterlog
 			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
 			branch nodeal
@@ -1366,7 +1366,7 @@ mission "Unfettered: Wanderer Homeworld"
 		has "Unfettered: Speak Hai: failed"
 	waypoint "Ka'ch'chrai"
 	on waypoint
-		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as an diplomat between them and the Hai.`
+		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
 
 mission "Unfettered: Speak Hai"
 	name `Meet the Wanderers and acquire a translator`
@@ -1379,12 +1379,12 @@ mission "Unfettered: Speak Hai"
 	on offer
 		conversation
 			`Moving through the spaceport, you notice some buildings are not as dilapidated as before. You wonder if the Unfettered are the ones who invested into repairs, or if the new Hai arrivals brought this about. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
-			`	An Unfettered herald - recognizable with his peculiar bird mask - approaches and notices you looking around. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it's time you learn how to communicate with us - with the True language of the Hai. Not only with us. You also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
+			`	An Unfettered herald - recognizable with his peculiar bird mask - approaches and notices you looking around. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it's time you learn how to communicate with us - with the True language of the Hai. You also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
 			choice
 				`	"How can I learn Hai?"`
 				`	"Is there some kind of translator?"`
 					goto translator
-			`	"Well to be frank, we don't have to ability to teach all of its nuances to you in time. However, we believe that our brethren do have some way of doing that, given how apt they are with languages and how keen they are to meet new races."`
+			`	"Well, to be frank, we don't have the ability to teach all of its nuances to you in time. However, we believe that our brethren do have some way of doing that, given how apt they are with languages and how keen they are to meet new races."`
 			label translator
 			`	"We think our Hai brethren may indeed have what we need, but we need to find a way to obtain it. In the meantime, You should go and meet the aliens up North and speak with them. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He-Yi about that translator."`
 			branch neutral
@@ -1462,7 +1462,7 @@ mission "Unfettered: Found Detainer"
 		outfits "Korath Detainer"
 	on offer
 		conversation
-			`"The 'Detainer' on this ship matches He-Yi's description perfectly! Quickly, grab it and get out of here."`
+			`The 'Detainer' on this ship matches He-Yi's description perfectly! Quickly, grab it and get out of here.`
 
 
 mission "Unfettered: Weird Aliens Spotted"
@@ -1506,8 +1506,8 @@ mission "Unfettered: Know Your Enemy"
 			branch neutral
 				has "reputation: Wanderer" >= 0
 			choice
-				`	"But I am at war with them It would be at a risk to me."`
-			`	He seems a bit angry, "Again? In the last mission we had arranged for them to not shoot at you, what did you do?? Well there is nothing we can do for you this time, I just hope you have some mean of hiding, or a very agile ship. Theirs are not that impressive but they do have long range missiles, meaning you should probably install some Chameleon defenses on your ship."`
+				`	"But I am at war with them. It would be at a risk for me."`
+			`	He seems a bit angry, "Again? In the last mission we had arranged for them to not shoot at you, what did you do?? Well there is nothing we can do for you this time, I just hope you have some means of hiding, or a very agile ship. Theirs are not that impressive but they do have long range missiles, meaning you should probably install some Chameleon defenses on your ship."`
 			label neutral
 			choice
 				`	"I'm in."`
@@ -1539,7 +1539,7 @@ mission "Unfettered: Know Your Enemy"
 	on complete
 		payment 1000000
 		conversation
-			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us. As you probably already know, we are planning to invade them shortly. But to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo"`
+			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us. As you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo"`
 			branch "know about the Pug"
 				has "main plot completed"
 			choice
@@ -1558,7 +1558,7 @@ mission "Unfettered: Know Your Enemy"
 					goto warn
 				`	"Do not mention that to him."`
 					decline
-			`	You explain to the herald that you have seen weird aliens north, the Pug, which have had dealing with humanity before. He does not trust you when you speak of technology capable of breaking down hyperlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble."`
+			`	You explain to the herald that you have seen weird aliens north, the Pug, which have had dealing with humanity before. He does not trust you when you speak of technology capable of breaking down hyperlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly, but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble."`
 			action
 				log `I warned the Unfettered about the Pug near the Wanderer, they did not seem to care.`
 
@@ -1583,7 +1583,7 @@ mission "Unfettered: Cloaking Interest"
 			choice
 				`	"What do you mean?"`
 				`	(Let him continue speaking.)`
-			`	"I have discovered that you have somehow acquired an item I myself thought only a thing of legends. Something so [precious, rare] and yet so evasive. I want it. I am of course referring to the 'cloaking device.' I consider this item of the highest [importance, priority], and I am willing to give you 50 million for it. I will not lie to you: this item nearly [guarantees, ensures] the survival of the one who has it if he knows how to use it properly. It would also allow new strategies in our war against the bird people."`
+			`	"I have discovered that you have somehow acquired an item I myself thought only a thing of legends. Something so [precious, rare] and yet so evasive. I want it. I am of course referring to the 'cloaking device.' I consider this item of the highest [importance, priority], and I am willing to give you 50 million credits for it. I will not lie to you: this item nearly [guarantees, ensures] the survival of the one who has it if he knows how to use it properly. It would also allow new strategies in our war against the bird people."`
 			choice
 				`	"I accept."`
 					accept
@@ -1605,7 +1605,7 @@ conversation "more staves"
 		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
 		`	"It's going fine, thank you for asking."`
 			goto fine
-	`	You bring him to your ship and he sees a weapon that appears of interest. "This... <staff> staff seems to be adequate for what my master wants. We would only require more of these."`
+	`	You bring him to your ship and he sees a weapon that appears to be interesting. "This... <staff> staff seems to be adequate for my master. We would only require more of these."`
 	label fine
 	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - fifty, to be precise.`
 
@@ -1650,7 +1650,7 @@ mission "Bring Void Rifle"
 				`	"Sorry, this is one of a kind."`
 			`	"I can cancel the exchange then, if it is precious to your eyes."`
 			choice
-				`	"10000000 is much more precious, thank you."`
+				`	"10 million credits is much more precious, thank you."`
 				`	"Yes, I have changed my mind. Cancel the exchange."`
 					decline
 			`	"This will be my personal weapon. Worry not, I will take good care of it!"`
