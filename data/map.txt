@@ -111,6 +111,9 @@ system "1 Axis"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 2000
+	fleet "Saryd Miners" 3000
 	fleet Heliarch 450
 	object
 		sprite star/k5
@@ -186,6 +189,9 @@ system "10 Pole"
 	fleet "Large Kimek" 1600
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 5000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 7000
 	fleet Heliarch 700
 	object
 		sprite star/k0
@@ -263,6 +269,9 @@ system "11 Autumn Above"
 	fleet "Large Kimek" 500
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 2000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 400
 	object
 		sprite star/g0
@@ -344,6 +353,9 @@ system "11 Spring Below"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 500
 	object
 		sprite star/k0
@@ -425,6 +437,9 @@ system "12 Autumn Above"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 7000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 800
 	object
 		sprite star/g5
@@ -518,6 +533,9 @@ system "14 Pole"
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 9000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 12000
 	fleet Heliarch 1200
 	object
 		sprite star/g5
@@ -648,6 +666,9 @@ system "14 Winter Below"
 	fleet "Large Kimek" 500
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 4500
 	fleet Heliarch 200
 	object
 		sprite star/g5
@@ -725,6 +746,9 @@ system "16 Autumn Rising"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 500
 	object
 		sprite star/f5
@@ -798,6 +822,9 @@ system "3 Axis"
 	fleet "Large Kimek" 300
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1600
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 4500
 	fleet Heliarch 350
 	object
 		sprite star/f0
@@ -867,6 +894,9 @@ system "3 Pole"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 4500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 4500
 	fleet Heliarch 600
 	object
 		sprite star/g5
@@ -925,6 +955,9 @@ system "3 Spring Rising"
 	fleet "Large Kimek" 1400
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 6000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 800
 	object
 		sprite star/g0
@@ -1001,6 +1034,9 @@ system "4 Axis"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 1600
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 300
 	object
 		sprite star/k5
@@ -1063,6 +1099,9 @@ system "4 Spring Rising"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 500
 	object
 		sprite star/m0
@@ -1128,6 +1167,9 @@ system "4 Summer Rising"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 900
 	object
 		sprite star/m0
@@ -1192,6 +1234,9 @@ system "4 Winter Rising"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 400
 	object
 		sprite star/m8
@@ -1266,6 +1311,9 @@ system "5 Axis"
 	fleet "Large Kimek" 600
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 300
 	object
 		sprite star/m3
@@ -1341,6 +1389,9 @@ system "5 Spring Below"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2500
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 500
 	object
 		sprite star/g0-old
@@ -1415,6 +1466,9 @@ system "5 Summer Above"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 3500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 800
 	object
 		sprite star/k5
@@ -1480,6 +1534,9 @@ system "5 Winter Above"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 3500
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 300
 	object
 		sprite star/m0
@@ -1543,6 +1600,9 @@ system "7 Autumn Rising"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 400
 	fleet "Large Saryd" 800
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 350
 	object
 		sprite star/k5
@@ -1613,6 +1673,9 @@ system "8 Winter Below"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 250
 	object
 		sprite star/k0
@@ -1679,6 +1742,9 @@ system "9 Spring Above"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 2400
+	fleet "Arach Miners" 4500
+	fleet "Kimek Miners" 3500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 700
 	object
 		sprite star/g5
@@ -1848,6 +1914,9 @@ system Ablub
 	fleet "Large Kimek" 8000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 8000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 12000
 	fleet Heliarch 200
 	object
 		sprite star/m3
@@ -4202,6 +4271,9 @@ system "Ancient Hope"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1400
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 1500
 	object
 		sprite star/m0
@@ -5227,6 +5299,9 @@ system Beginning
 	fleet "Large Kimek" 6000
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 1500
 	object
 		sprite star/k5
@@ -5412,6 +5487,9 @@ system Belug
 	fleet "Large Kimek" 1500
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 6500
 	fleet Heliarch 200
 	object
 		sprite star/k0
@@ -5480,6 +5558,9 @@ system Belugt
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 7000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 1400
 	object
 		sprite star/k0
@@ -5698,6 +5779,9 @@ system Bloptab
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 7000
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 1500
 	object
 		sprite star/g0
@@ -5760,6 +5844,9 @@ system Blubipad
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 7000
 	fleet Heliarch 300
 	object
 		sprite star/g0
@@ -5822,6 +5909,9 @@ system Blugtad
 	fleet "Large Kimek" 2500
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3500
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 7000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 900
 	object
 		sprite star/g5
@@ -6207,6 +6297,9 @@ system "Broken Bowl"
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 700
 	object
 		sprite star/g0
@@ -6609,7 +6702,7 @@ system Cardea
 		sprite planet/miranda-b
 		distance 1019.79
 		period 351.297
-	object
+	object Crataegusa
 		sprite planet/neptune-b
 		distance 1540.63
 		period 652.313
@@ -7300,6 +7393,9 @@ system Companion
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 400
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 3000
 	fleet Heliarch 1200
 	object
 		sprite star/k5
@@ -7759,6 +7855,9 @@ system "Dark Hills"
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1400
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 1000
 	object
 		sprite star/g0
@@ -8929,6 +9028,9 @@ system Eblumab
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 5000
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 8000
 	fleet Heliarch 1000
 	object
 		sprite star/k5
@@ -10708,6 +10810,9 @@ system "Fell Omen"
 	fleet "Large Kimek" 2500
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 400
 	object
 		sprite star/k5
@@ -11091,6 +11196,9 @@ system Flugbu
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 4500
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 500
 	object
 		sprite star/k5
@@ -11288,6 +11396,9 @@ system "Four Pillars"
 	fleet "Large Kimek" 7000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 2400
 	object
 		sprite star/k0
@@ -11878,6 +11989,9 @@ system Glubatub
 	fleet "Large Kimek" 4500
 	fleet "Small Saryd" 1400
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 9000
+	fleet "Saryd Miners" 7000
 	fleet Heliarch 500
 	object
 		sprite star/m3
@@ -13041,6 +13155,9 @@ system Homeward
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 200
 	object
 		sprite star/k5
@@ -13157,6 +13274,9 @@ system Hunter
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 900
 	object
 		sprite star/k5
@@ -16016,6 +16136,9 @@ system "Lone Cloud"
 	fleet "Large Kimek" 9000
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 2500
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 3000
 	object
 		sprite star/m3
@@ -16477,6 +16600,9 @@ system Mebla
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 350
 	object
 		sprite star/k0
@@ -17374,6 +17500,9 @@ system Miblulub
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 5000
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 8000
 	fleet Heliarch 300
 	object
 		sprite star/g0
@@ -19299,6 +19428,9 @@ system Pelubta
 	fleet "Large Kimek" 2000
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 2500
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 7500
 	fleet Heliarch 400
 	object
 		sprite star/b3
@@ -19947,6 +20079,9 @@ system Plort
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 7500
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 800
 	object
 		sprite star/m0
@@ -20880,6 +21015,54 @@ system Queri
 	object
 		sprite star/g3
 		period 10
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 20
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 35
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 50
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 105
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 220
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 235
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 250
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 335
 
 system Rajak
 	pos -270 -236
@@ -21387,6 +21570,9 @@ system Remembrance
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 9000
+	fleet "Kimek Miners" 9000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 1200
 	object
 		sprite star/k0
@@ -23177,6 +23363,9 @@ system "Silver Bell"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1000
+	fleet "Arach Miners" 10000
+	fleet "Kimek Miners" 10000
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 300
 	object
 		sprite star/g0
@@ -23253,6 +23442,9 @@ system "Silver String"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1500
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 9000
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 500
 	object
 		sprite star/g0
@@ -23744,6 +23936,9 @@ system "Sol Arach"
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 5500
+	fleet "Saryd Miners" 5500
 	fleet Heliarch 500
 	object
 		sprite star/k0
@@ -23814,6 +24009,9 @@ system "Sol Kimek"
 	fleet "Large Kimek" 300
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1600
+	fleet "Arach Miners" 5500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 5500
 	fleet Heliarch 500
 	object
 		sprite star/k5
@@ -23885,6 +24083,9 @@ system "Sol Saryd"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 300
 	fleet "Large Saryd" 800
+	fleet "Arach Miners" 5500
+	fleet "Kimek Miners" 5500
+	fleet "Saryd Miners" 2500
 	fleet Heliarch 900
 	object
 		sprite star/g0
@@ -24091,6 +24292,9 @@ system Speloog
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 10000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 200
 	object
 		sprite star/g5
@@ -24270,6 +24474,9 @@ system "Steep Roof"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1400
+	fleet "Arach Miners" 9000
+	fleet "Kimek Miners" 4500
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 1200
 	object
 		sprite star/g0
@@ -24867,6 +25074,9 @@ system Tebuteb
 	fleet "Large Kimek" 7000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 6000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 12000
 	fleet Heliarch 250
 	object
 		sprite star/m0
@@ -25114,6 +25324,9 @@ system Torbab
 	fleet "Large Kimek" 1400
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 6500
 	fleet Heliarch 250
 	object
 		sprite star/k5-old
@@ -26429,64 +26642,124 @@ system "World's End"
 		sprite star/g3
 		period 10
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 20
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 35
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 50
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 70
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 90
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 105
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 120
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 140
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 160
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 220
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 235
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 250
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 270
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 290
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 310
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 325
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 340
 
 system "Ya Hai"
 	pos -24.9453 -505.571
@@ -27834,6 +28107,14 @@ planet Covert
 	tribute 1300
 		threshold 3000
 		fleet "Large Core Pirates" 16
+		
+planet Crataegusa
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa30
+	description "At a distance, Crataegusa has a plain appearance, with linear shear cloud lines circling the planet. Beneath the surface, however, the atmosphere is a turbulent maelstrom of cyclonic winds at odds with the surface appearance."
+	description "	As you skim through the clouds your sensors report intense energy fluctuations from all directions, some of which echo the readings from the wormholes."
+	government Uninhabited
+	security 0
 
 planet Crossroads
 	attributes core mining
