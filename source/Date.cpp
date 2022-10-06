@@ -67,8 +67,6 @@ const string &Date::ToString() const
 
 		if(date_format == "ymd")
 		{
-			str = Weekday(day,month,year);
-			str.append(", ");
 			str.append(to_string(year));
 			str.append("-");
 			if (to_string(month).length() == 1)
