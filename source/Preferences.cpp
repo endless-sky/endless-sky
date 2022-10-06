@@ -37,6 +37,10 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
+	const string DATEFMT = "Date format";
+	const string DATEFMT_ISO = "Use ISO 8601 date format";
+	const string DATEFMT_USE_DMY = "Use DDMMYYYY date format";
+
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
@@ -60,6 +64,9 @@ void Preferences::Load()
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
+	settings[DATEFMT_ISO] = true;
+	// True for "dmy", false for "mdy"
+	settings[DATEFMT_USE_DMY] = true;
 	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
 	settings["Show stored outfits on map"] = true;
@@ -142,6 +149,27 @@ void Preferences::ToggleAmmoUsage()
 string Preferences::AmmoUsage()
 {
 	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+}
+
+
+// FIXME: date format change refuses to function properly
+void Preferences::ToggleDateFormat()
+{
+	bool iso = Has(DATEFMT_ISO);
+	bool dmy = Has(DATEFMT_USE_DMY);
+
+	Preferences::Set(DATEFMT_ISO, !(iso && !dmy));
+	Preferences::Set(DATEFMT_USE_DMY, !iso);
+}
+
+
+
+string Preferences::DateFormat()
+{
+	if(Has(DATEFMT_ISO))
+		return "ymd";
+	else
+		return Has(DATEFMT_USE_DMY) ? "dmy" : "mdy";
 }
 
 

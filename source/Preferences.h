@@ -41,6 +41,10 @@ public:
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
 
+	// Date format preferences
+	static void ToggleDateFormat();
+	static std::string DateFormat();
+
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);

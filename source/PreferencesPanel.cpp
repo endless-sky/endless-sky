@@ -61,6 +61,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string DATE_FORMAT = "Date format";
 }
 
 
@@ -445,6 +446,7 @@ void PreferencesPanel::DrawSettings()
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
+		DATE_FORMAT,
 		"",
 		"AI",
 		"Automatic aiming",
@@ -527,6 +529,16 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == DATE_FORMAT)
+		{
+			string datefmtShortName = Preferences::DateFormat();
+			if(datefmtShortName == "ymd")
+				text = "ISO (2022-10-06)";
+			else if(datefmtShortName == "dmy")
+				text = "DMY (Thu, 6 Oct 2022)";
+			else if(datefmtShortName == "mdy")
+				text = "MDY (Thu Oct 6, 2022)";
+		}
 		else if(setting == TURRET_TRACKING)
 		{
 			isOn = true;
