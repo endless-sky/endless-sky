@@ -2426,7 +2426,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 
 // Check if this ship is boarding another ship.
-shared_ptr<Ship> Ship::Board(bool autoPlunder)
+shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 {
 	if(!hasBoarded)
 		return shared_ptr<Ship>();
@@ -2436,8 +2436,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
-	// For a fighter or drone, "board" means "return to ship."
-	if(CanBeCarried())
+	// For a fighter or drone, "board" means "return to ship." Except when the ship is
+	// explicitly of the nonDocking type.
+	if(CanBeCarried() && !nonDocking)
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)

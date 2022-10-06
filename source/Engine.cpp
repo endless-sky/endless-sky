@@ -1641,14 +1641,12 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
 	// The player should not become a docked passenger on some other ship, but AI ships may.
-	if(!(ship.get() == flagship && ship->CanBeCarried()))
-	{
-		shared_ptr<Ship> victim = ship->Board(autoPlunder);
-		if(victim)
-			eventQueue.emplace_back(ship, victim,
-				ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
-					ShipEvent::BOARD : ShipEvent::ASSIST);
-	}
+	bool nonDocker = ship.get() == flagship;
+	shared_ptr<Ship> victim = ship->Board(autoPlunder, nonDocker);
+	if(victim)
+		eventQueue.emplace_back(ship, victim,
+			ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
+				ShipEvent::BOARD : ShipEvent::ASSIST);
 
 	// The remaining actions can only be performed by ships in the current system.
 	if(ship->GetSystem() != player.GetSystem())
