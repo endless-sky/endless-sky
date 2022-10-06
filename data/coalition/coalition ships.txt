@@ -1922,7 +1922,7 @@ ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	thumbnail "thumbnail/saryd traveler"
 	attributes
-		category "Transport"
+		category "Utility"
 		licenses
 			Coalition
 		"cost" 3385000
