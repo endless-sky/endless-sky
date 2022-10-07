@@ -1432,7 +1432,7 @@ ship "Falcon"
 		"hull" 3700
 		"required crew" 52
 		"bunks" 91
-		"mass" 490
+		"mass" 510
 		"drag" 6.7
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -2245,7 +2245,7 @@ ship "Leviathan"
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 580
+		"mass" 600
 		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500

@@ -230,7 +230,7 @@ ship "Marauder Falcon"
 		"hull" 4100
 		"required crew" 57
 		"bunks" 96
-		"mass" 540
+		"mass" 560
 		"drag" 6.7
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -477,7 +477,7 @@ ship "Marauder Leviathan"
 		"hull" 5500
 		"required crew" 48
 		"bunks" 69
-		"mass" 660
+		"mass" 680
 		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500
