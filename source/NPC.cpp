@@ -271,6 +271,9 @@ void NPC::Save(DataWriter &out) const
 			out.EndChild();
 		}
 
+		for(auto &it : npcActions)
+			it.second.Save(out);
+
 		if(government)
 			out.Write("government", government->GetTrueName());
 		personality.Save(out);
