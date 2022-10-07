@@ -2539,7 +2539,7 @@ event "bombed zenith"
 		bribe .04
 		"required reputation" 0
 	system "Alnilam"
-		remove object
+		remove object "Zenith"
 			sprite planet/ocean7
 			distance 1776.59
 			period 723.283
@@ -2554,7 +2554,7 @@ event "bombed zenith"
 
 event "zenith cooling"
 	system "Alnilam"
-		remove object
+		remove object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
 			period 723.283
