@@ -504,7 +504,8 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
-		else if(key == "remove" && child.Size() >= 2) {
+		else if(key == "remove" && child.Size() >= 2)
+		{
 			if(child.Token(1) == "bays")
 				removeBays = true;
 			else
