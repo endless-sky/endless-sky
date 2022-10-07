@@ -103,7 +103,19 @@ mission "Incipias: First Contact III"
 			has "coalition peace prove: offered"
 	on complete
 		conversation 
-			`    `
+			branch species
+				has "wanderer peace prove: done"
+			`    You take the box with the gem inside and decide to show the Hai this very unique prove of a good relationship. When you get to the embassy the Hai there already know you and guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again. If you got back here this means you got a prove?" "Yes, I got something very unique.", you answer. The Hai looks very interested and you pull out the box and put it on the table. "Well", he says, "I hope it is not only this box. It does not seem made by humans, but I fear this wont be enough for a prove. "Of course not", you say and open the box towards the Hai. Suddenly he freezes and just stares at the small gem inside of it. "Indeed, that is nothing made by humans and no Hai could create this either. This must be the work of a really advanced species. Do not worry, I wont ask you from which species you got this. This is more than enough for a prove."`
+				goto haihelp
+			label species
+			`    Now that you got this very special gift from the wanderers you decide to show it to the Hai, to prove you are trustworthy. Luckily the plant is small enough to be carried with you to the embassy.`
+			`    When you arrive at the embassy you are a little bit exhausted from carrying it all the way and you are really grateful that the Hai remember you and directly guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again and I see you are carrying something special with you, may I ask what this plant is?". "Of course," You say, "This is the prove you asked me to bring you." Now the Hai looks closer at the plant. "I see that this is an unusual plant but why is this a prove of friendship with another species?" You answer him, "This plant was genmanipulated to a degree that it can survive in nearly any climate, this is nothing humans could have done." The Hai looks at you, "You mind if we test this? We will make sure to not use to extreme methods, we do not want to kill it." You agree. The Hai gets two helpers to carry the plant and tells you to wait for his return.`
+			`    About an hour later the Hai returns with the plant and a excited looking face. "This plant is wonder, we exposed it to various environmental factors and some of them were really extreme, but all that happened was that the air got more breathable. This really is a worthy prove of a friendship with another species."`
+			label haihelp
+			`    Now the Hai turn to you with a very serious expression, "We have promised you to help you and now we will do so. Please come back in no earlier than four days to take a delegation of us to the Quarg ringworld. We need some time to prepare some stuff. You will meet us on Mirrorlake." You agree and say goodbye.`
+		event "Hai preperation time" 4
+
+event "Hai preperation time"
 
 mission "wanderer peace prove"
 	landing
@@ -114,7 +126,9 @@ mission "wanderer peace prove"
 		has "reputation: Wanderer" >= 5
 	destination "Vara K'chrai"
 	to offer
-		has "searching for a prove"
+		and
+			has "searching for a prove"
+			not "coalition peace prove: offered"
 	on offer
 		conversation
 			`Now that you are on a wanderer world you decide this would be a good time for asking them about the prove the Hai requested from you. You head for a near embassy.`
@@ -147,6 +161,7 @@ mission "coalition peace prove"
 		government "Heliarch"
 	to offer
 		has "reputation: Heliarch" >= 5
+		not "wanderer peace prove: offered"
 	on offer
 		conversation
 			`As the Heliarch have a relationship to you feel not really like friendship but something in that direction, you decide to ask them for a prove of this relationship, to give to the Hai.`
@@ -168,3 +183,16 @@ mission "coalition peace prove"
 			label c1
 			`    When noises in the line behind you are growing louder he finally comes back. With him he carries a small box. "A decent gift for you I got." He opens the box and in there a small gem like no one you have seen before is laying, reflecting the light in green, red and blue shades. "This gem a fusion of three others it is, an emerald for the Saryds, a ruby for the Kimek and a sapphire for the Arachi. A fusion of our three species it is, you could say. This gem representing our species best it is. You appretiate this gift I hope." You are really thankful for this gift and thank the Heliarch a lot. But then you have to leave because there is still a line behind you.`
 				accept
+
+mission "Incipias: First Contact IV"
+	landing
+	name "A Hai delegation"
+	to offer
+		has "event: Hai preperation time"
+	source Mirrorlake
+	stopover "Spec Inci"
+	on offer
+		conversation
+			``
+
+	
