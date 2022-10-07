@@ -43,7 +43,7 @@ class MissionAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
-	MissionAction(const DataNode &node, const std::string &missionName);
+	MissionAction(const DataNode &node, const std::string &missionName, bool isNPC = false);
 
 	void Load(const DataNode &node, const std::string &missionName);
 	// Note: the Save() function can assume this is an instantiated mission, not
@@ -70,6 +70,8 @@ public:
 
 
 private:
+	bool isNPC = false;
+
 	std::string trigger;
 	std::string system;
 	LocationFilter systemFilter;

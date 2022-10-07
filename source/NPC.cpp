@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Messages.h"
+#include "MissionAction.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
@@ -38,7 +39,8 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node)
+NPC::NPC(const DataNode &node, string missionName)
+	: missionName(missionName)
 {
 	Load(node);
 }
@@ -152,6 +154,8 @@ void NPC::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else if(child.Token(0) == "on" && child.Size() >= 2)
+			npcActions.insert(make_pair(child.Token(1), MissionAction(child, missionName, true)));
 		else if(child.Token(0) == "ship")
 		{
 			if(child.HasChildren() && child.Size() == 2)
@@ -161,7 +165,7 @@ void NPC::Load(const DataNode &node)
 				ships.emplace_back(make_shared<Ship>(child));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
-						actions[ships.back().get()] = grand.Value(1);
+						shipActions[ships.back().get()] = grand.Value(1);
 			}
 			else if(child.Size() >= 2)
 			{
@@ -288,8 +292,8 @@ void NPC::Save(DataWriter &out) const
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			ship->Save(out);
-			auto it = actions.find(ship.get());
-			if(it != actions.end() && it->second)
+			auto it = shipActions.find(ship.get());
+			if(it != shipActions.end() && it->second)
 			{
 				// Append an "actions" tag to the end of the ship data.
 				out.BeginChild();
@@ -417,7 +421,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 				Ship *copy = new Ship(*ptr);
 				copy->SetUUID(ptr->UUID());
 				copy->Destroy();
-				actions[copy] = actions[ptr.get()];
+				shipActions[copy] = shipActions[ptr.get()];
 				// Count this ship as destroyed, as well as captured.
 				type |= ShipEvent::DESTROY;
 				ptr.reset(copy);
@@ -435,7 +439,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 
 	// If this event was "ASSIST", the ship is now known as not disabled.
 	if(type == ShipEvent::ASSIST)
-		actions[ship.get()] &= ~(ShipEvent::DISABLE);
+		shipActions[ship.get()] &= ~(ShipEvent::DISABLE);
 
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, assisting, capturing, or provoking.
@@ -444,10 +448,15 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 
 	// Apply this event to the ship and any ships it is carrying.
-	actions[ship.get()] |= type;
+	shipActions[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
 		if(bay.ship)
-			actions[bay.ship.get()] |= type;
+			shipActions[bay.ship.get()] |= type;
+
+	string typeString = ShipEvent::TypeToString(type);
+	auto it = npcActions.find(typeString);
+	if(it != npcActions.end())
+		it->second.Do(player, ui);
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
@@ -484,12 +493,12 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			auto it = actions.find(ship.get());
+			auto it = shipActions.find(ship.get());
 			// If a derelict ship has not received any ShipEvents, it is immobile.
 			bool isImmobile = ship->GetPersonality().IsDerelict();
 			// The success status calculation can only be based on recorded
 			// events (and the current system).
-			if(it != actions.end())
+			if(it != shipActions.end())
 			{
 				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
 				isImmobile = (it->second
@@ -513,8 +522,8 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		auto it = actions.find(ship.get());
-		if(it == actions.end() || (it->second & succeedIf) != succeedIf)
+		auto it = shipActions.find(ship.get());
+		if(it == shipActions.end() || (it->second & succeedIf) != succeedIf)
 			return false;
 	}
 
@@ -547,7 +556,7 @@ bool NPC::HasFailed() const
 	if(!passedSpawnConditions || passedDespawnConditions)
 		return false;
 
-	for(const auto &it : actions)
+	for(const auto &it : shipActions)
 	{
 		if(it.second & failIf)
 			return true;

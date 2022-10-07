@@ -263,7 +263,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
+			npcs.emplace_back(child, name);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter

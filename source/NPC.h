@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class Government;
+class MissionAction;
 class Planet;
 class PlayerInfo;
 class Ship;
@@ -56,7 +57,7 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	NPC(const DataNode &node);
+	NPC(const DataNode &node, std::string missionName = "");
 
 	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not
@@ -136,7 +137,10 @@ private:
 	int failIf = 0;
 	bool mustEvade = false;
 	bool mustAccompany = false;
-	std::map<const Ship *, int> actions;
+	std::map<const Ship *, int> shipActions;
+
+	std::string missionName;
+	std::map<const std::string, MissionAction> npcActions;
 };
 
 

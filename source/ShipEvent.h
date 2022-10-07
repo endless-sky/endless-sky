@@ -80,6 +80,8 @@ public:
 	const Government *TargetGovernment() const;
 	int Type() const;
 
+	static std::string TypeToString(int type);
+
 
 private:
 	std::shared_ptr<Ship> actor;

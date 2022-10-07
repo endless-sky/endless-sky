@@ -74,3 +74,25 @@ int ShipEvent::Type() const
 {
 	return type;
 }
+
+
+
+string ShipEvent::TypeToString(int type)
+{
+	static const map<int, string> types = {
+		{(1 << 0), "assist"},
+		{(1 << 1), "scan cargo"},
+		{(1 << 2), "scan outfits"},
+		{(1 << 3), "provoke"},
+		{(1 << 4), "disable"},
+		{(1 << 5), "board"},
+		{(1 << 6), "capture"},
+		{(1 << 7), "destroy"},
+		{(1 << 8), "atrocity"},
+		{(1 << 9), "jump"},
+	};
+	auto it = types.find(type);
+	if(it == types.end())
+		return "none";
+	return it->second;
+}
