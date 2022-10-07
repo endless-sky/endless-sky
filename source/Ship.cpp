@@ -505,11 +505,6 @@ void Ship::Load(const DataNode &node)
 			description += '\n';
 		}
 		else if(key == "remove" && child.Size() >= 2) {
-			if(variantName.empty())
-			{
-				child.PrintTrace("Skipping invalid 'remove' on a non variant:");
-				continue;
-			}
 			if(child.Token(1) == "bays")
 				removeBays = true;
 			else
