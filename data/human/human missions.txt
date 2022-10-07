@@ -4950,7 +4950,7 @@ mission "Wool Smuggling 1"
 				`	"How much do I have to carry?"`
 				`	"Sorry, but I'll also have to pass."`
 					decline
-			`	"The cargo's stored on <planet>, so you'll have to go there first to pick up the <tons> of wool garments." The man hesitates. "Then, take the cargo to Bloodsea. I have a contact there that can pick up the goods and distrubute them fairly." You recall that Bloodsea is a lawless world, home to countless bloodthirsty pirates.`
+			`	"The cargo's stored on <planet>, so you'll have to go there first to pick up the <tons> of wool garments." The man hesitates. "Then, take the cargo to Bloodsea. I have a contact there that can pick up the goods and distribute them fairly." You recall that Bloodsea is a lawless world, home to countless bloodthirsty pirates.`
 			choice
 				`	"I'll do it."`
 					goto accept
