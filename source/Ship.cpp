@@ -432,12 +432,16 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "hull hit effect" && child.Size() >= 2)
 		{
+			if(!hasHitEffect)
+				hullHitEffects.clear();
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hullHitEffects[GameData::Effects().Get(child.Token(1))] += count;
 			hasHitEffect = true;
 		}
 		else if(key == "shield hit effect" && child.Size() >= 2)
 		{
+			if(!hasShieldHitEffect)
+				shieldHitEffects.clear();
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			shieldHitEffects[GameData::Effects().Get(child.Token(1))] += count;
 			hasShieldHitEffect = true;
@@ -3440,7 +3444,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	// Create hull/shield hit effect visuals at the point of impact for weapons
 	// fire, if there are any to create.
 	if(damage.Shield() && hasShieldHitEffect)
-	{
 		for(const auto &it : shieldHitEffects)
 		{
 			if(!splash)
@@ -3449,9 +3452,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				CreateSparks(visuals, it.first, it.second * damage.Scaling());
 
 		}
-	}
 	if(damage.Hull() && hasHitEffect)
-	{
 		for(const auto &it : hullHitEffects)
 		{
 			if(!splash)
@@ -3459,7 +3460,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 			else
 				CreateSparks(visuals, it.first, it.second * damage.Scaling());
 		}
-	}
 
 	return type;
 }
