@@ -457,7 +457,7 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = flagship->Position();
+		center = flagship->Position() + offset;
 		centerVelocity = flagship->Velocity();
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
@@ -1488,7 +1488,12 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
-		newCenter = flagship->Position();
+		if(flagship->IsThrusting())
+			offsetMultiplier = offsetMultiplier >= 1 ? 1.0 : offsetMultiplier + 0.0025;
+		else
+			offsetMultiplier = offsetMultiplier <= 0 ? 0.0 : offsetMultiplier - 0.0025;
+		offset = flagship->Velocity() * 20 * offsetMultiplier;
+		newCenter = flagship->Position() + offset;
 		newCenterVelocity = flagship->Velocity();
 	}
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);

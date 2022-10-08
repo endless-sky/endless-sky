@@ -188,6 +188,8 @@ private:
 	// Viewport position and velocity.
 	Point center;
 	Point centerVelocity;
+	Point offset;
+	double offsetMultiplier = 0.0;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
