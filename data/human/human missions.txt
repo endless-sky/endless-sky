@@ -1951,7 +1951,7 @@ mission "Terraforming 12"
 		conversation
 			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for ridding the system of the pirates, a pleasantly unexpected reward.`
 			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid," Amy says, and after only a short time of searching, she finds the perfect candidate. "Just like last time, Captain."`
-			`	 Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
+			`	Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
 	
 	npc assist
@@ -2302,7 +2302,7 @@ mission "Paradise Fortune 1"
 	on offer
 		conversation
 			`As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport. While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the <origin> shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
-			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack. `
+			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack.`
 			choice
 				`	(Let her onto my ship.)`
 					goto continue
@@ -2922,7 +2922,7 @@ mission "Hauler VI cargo prototype 1"
 	destination "Skymoot"
 	to offer
 		"armament deterrence" > 0
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -2992,7 +2992,7 @@ mission "Hauler VI cargo prototype 2"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 1: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3013,7 +3013,7 @@ mission "Hauler VI cargo prototype 3"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 2: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3638,7 +3638,7 @@ mission "Street Swindle"
 			`	The cups stop. After a brief pause, the man points to the cup on the right.`
 			choice
 				`	(Watch what happens.)`
-						goto continue
+					goto continue
 				`	"You know these things are scams, right?"`
 			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
 				goto continue
@@ -3805,7 +3805,7 @@ mission "Spaceport Reminder"
 	to offer
 		not "chosen sides"
 		"spaceport reminder year" + "spaceport reminder month" != 0
-		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 3
+		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 7
 	on offer
 		conversation
 			`As soon as you touch down on <origin>, you step off your ship and head directly for the job board and trade hub, brushing past several locals on the way. The constant routine of interstellar commerce has been firmly drilled into your brain; you near unconsciously peruse the boards, trying to suss out the most profitable route.`
@@ -3813,6 +3813,8 @@ mission "Spaceport Reminder"
 			choice
 				`	"Why should I do that?"`
 				`	"I'm a spaceship captain; I don't have time to waste."`
+				`	"Yes, I know already. I'll take my time later."`
+					decline
 			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
 			choice
 				`	"I'll be sure to check more spaceports in the future."`
@@ -4050,7 +4052,7 @@ mission "Laborer"
 					goto decline
 				`	"Fine, I can take you to <planet>."`
 			label accept
-			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.`
 				accept
 			label decline
 			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
@@ -4264,7 +4266,7 @@ mission "Saving Artifacts 2"
 			choice
 				`	"Never mind, I'll pay."`
 					goto pay
-				`	"All right, I'll fight him. `
+				`	"All right, I'll fight him.`
 			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
 			choice
 				`	"Fight me."`
@@ -4292,27 +4294,27 @@ mission "Saving Artifacts 3"
 		has "Saving Artifacts 2: done"
 		not "Bought Off Artifacts"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Deth"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Warr"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Famin"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
@@ -4371,7 +4373,7 @@ mission "Dangerous Games 1"
 				`	(Leave.)`
 					decline
 			`	"... so then he asks me, 'Have you ever ridden one?' And I look back at this crazy joithead and I say, 'You're a crazy joithead.' But he's got me thinking, y'know? Nobody has ever ridden one. Least, not nobody that could talk after." He lets out a sharp laugh, then raises his voice. "So I ask you all: who wants to join Karengo to make history? Who wants to ride a dragon? I'll supply the jetpacks, you supply the courage."`
-			`	You've heard the stories of the dragons flying through <planet>'s skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. <planet> is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
+			`	You've heard the stories of the dragons flying through Skymoot's skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. Skymoot is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
 			`	A cheer goes up from the men, especially the drunk ones. Karengo starts to hand out death and accident waivers and collect money for the expedition. Suddenly, his expression darkens as he cocks his head, listening to an earpiece. "Listen up!" he yells. "Seems my regular pilot got in the way of some less reputable folk, and my replacement pilot lost his balls this evening and can't find 'em! We need ourselves a ship and a captain to bring this lot to <stopovers>! Who's brave enough? Who else wants to make history?"`
 			choice
 				`	"Captain <last>, at your service. We leave at dawn!"`
@@ -4380,7 +4382,7 @@ mission "Dangerous Games 1"
 					goto money
 				`	(Stay silent.)`
 			`	You remain silent as Karengo surveys the crowd. "What, nobody with a ship has the cojones to make history? I didn't know this bar was full of a bunch of sissies."`
-			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to <planet>." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
+			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to Skymoot." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
 				decline
 			label accept
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
@@ -4898,7 +4900,7 @@ mission "Riley"
 					goto bounty
 				`	(Go back to your ship.)`
 			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
-					decline
+				decline
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye

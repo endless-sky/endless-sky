@@ -70,7 +70,7 @@ ship "Centipede"
 	sprite "ship/hai centipede"
 	thumbnail "thumbnail/hai centipede"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		"cost" 6300000
 		"shields" 6600
 		"hull" 2400
@@ -215,6 +215,7 @@ ship "Geocoris"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 5
+		`"Biroo" Reverse Thruster`
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
@@ -290,6 +291,7 @@ ship "Grasshopper"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
@@ -329,6 +331,7 @@ ship "Grasshopper" "Grasshopper (Surveillance)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
@@ -366,9 +369,11 @@ ship "Lightning Bug"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle" 2
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
 	engine -40 22
 	engine 40 22
 	gun 0 -40 "Ion Cannon"
@@ -589,6 +594,7 @@ ship "Shield Beetle"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -776,6 +782,7 @@ ship "Solifuge"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
 		"Quantum Keystone"
+		"Pulse Rifle" 62
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -997,10 +1004,10 @@ ship "Water Bug"
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		`"Basrem" Reverse Thruster`
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
