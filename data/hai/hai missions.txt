@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Hai"
 	landing
@@ -1593,7 +1596,7 @@ mission "Pirate Troubles [4]"
 		"reputation: Hai Merchant (Human)" += 40
 		"reputation: Hai Merchant (Sympathizers)" += 40
 	
-	npc save accompany
+	npc accompany save
 		government "Hai (Wormhole Access)"
 		personality escort
 		fleet
