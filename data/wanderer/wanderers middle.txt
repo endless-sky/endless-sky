@@ -762,18 +762,18 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Kor Efret"
 		personality heroic
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Quarg"
 		personality heroic staying entering
@@ -1403,7 +1403,7 @@ mission "Wanderers: Tour 2"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1432,7 +1432,7 @@ mission "Wanderers: Tour 3"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1454,7 +1454,7 @@ mission "Wanderers: Tour 4"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1483,7 +1483,7 @@ mission "Wanderers: Tour 5"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 	npc
 		system "Ap'arak"
 		government "Hai (Unfettered)"
@@ -1512,7 +1512,7 @@ mission "Wanderers: Tour 6"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -2539,26 +2539,11 @@ event "bombed zenith"
 		bribe .04
 		"required reputation" 0
 	system "Alnilam"
-		object
-			sprite star/f5
-			period 10
-		object
-			sprite planet/desert1
-			distance 224.69
-			period 32.5314
-		object
-			sprite planet/gas7-b
-			distance 966.7
-			period 290.312
-			object
-				sprite planet/miranda-b
-				distance 220
-				period 10.5884
-			object
-				sprite planet/luna
-				distance 305
-				period 17.2841
-		object "Zenith"
+		remove object "Zenith"
+			sprite planet/ocean7
+			distance 1776.59
+			period 723.283
+		add object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
 			period 723.283
@@ -2566,49 +2551,14 @@ event "bombed zenith"
 				sprite planet/ice8
 				distance 136
 				period 16.5247
-		object
-			sprite planet/gas2
-			distance 2758.68
-			period 1399.52
-			object
-				sprite planet/dust1-b
-				distance 200
-				period 12.5708
-			object
-				sprite planet/lava0-b
-				distance 330
-				period 26.6433
-			object
-				sprite planet/dust7
-				distance 440
-				period 41.0201
-			object
-				sprite planet/desert4
-				distance 575
-				period 61.2801
 
 event "zenith cooling"
 	system "Alnilam"
-		object
-			sprite star/f5
-			period 10
-		object
-			sprite planet/desert1
-			distance 224.69
-			period 32.5314
-		object
-			sprite planet/gas7-b
-			distance 966.7
-			period 290.312
-			object
-				sprite planet/miranda-b
-				distance 220
-				period 10.5884
-			object
-				sprite planet/luna
-				distance 305
-				period 17.2841
-		object "Zenith"
+		remove object "Zenith"
+			sprite "planet/zenith hot"
+			distance 1776.59
+			period 723.283
+		add object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
 			period 723.283
@@ -2616,26 +2566,6 @@ event "zenith cooling"
 				sprite planet/ice8
 				distance 136
 				period 16.5247
-		object
-			sprite planet/gas2
-			distance 2758.68
-			period 1399.52
-			object
-				sprite planet/dust1-b
-				distance 200
-				period 12.5708
-			object
-				sprite planet/lava0-b
-				distance 330
-				period 26.6433
-			object
-				sprite planet/dust7
-				distance 440
-				period 41.0201
-			object
-				sprite planet/desert4
-				distance 575
-				period 61.2801
 
 mission "Wanderers: Sestor: Bomb Zenith 2"
 	landing
@@ -3102,9 +3032,9 @@ mission "Wanderers: Sestor: Exiles 3"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -3136,9 +3066,9 @@ mission "Wanderers: Sestor: Factory 1"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -3183,7 +3113,7 @@ mission "Wanderers: Sestor: Factory 2"
 	on offer
 		event "wanderers: asikafarnut battle"
 		conversation
-			`The drones stop firing on the Korath world-ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
+			`The drones stop firing on the Korath ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
 			`	You fire up your engines and blast off for one last battle against the Kor Sestor...`
 				launch
 	npc evade
