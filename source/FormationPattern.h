@@ -59,8 +59,8 @@ public:
 		// The pattern for which we are calculating positions.
 		const FormationPattern &pattern;
 		// The location in the pattern.
-		unsigned int slot = 0;
-		// Currently calculated Point.
+		unsigned int positionNr = 0;
+		// Currently calculated position.
 		Point currentPoint;
 	};
 
@@ -79,14 +79,14 @@ public:
 
 private:
 	// Calculate a position based on the formation definition.
-	Point Position(unsigned int slotNr) const;
+	Point Position(unsigned int positionNr) const;
 
 
 private:
 	// Name of the formation pattern.
 	std::string name;
 	// The positions that define the formation.
-	std::vector<Point> slots;
+	std::vector<Point> positions;
 };
 
 #endif

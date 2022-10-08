@@ -48,7 +48,7 @@ const Point &FormationPattern::PositionIterator::operator*()
 
 FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator++()
 {
-	slot++;
+	positionNr++;
 	MoveToValidPosition();
 	return *this;
 }
@@ -57,7 +57,7 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 
 void FormationPattern::PositionIterator::MoveToValidPosition()
 {
-	currentPoint = pattern.Position(slot);
+	currentPoint = pattern.Position(positionNr);
 }
 
 
@@ -80,7 +80,7 @@ void FormationPattern::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 		if(child.Token(0) == "position" && child.Size() >= 3)
-			slots.emplace_back(child.Value(1), child.Value(2));
+			positions.emplace_back(child.Value(1), child.Value(2));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 }
@@ -110,9 +110,9 @@ FormationPattern::PositionIterator FormationPattern::begin() const
 
 
 // Get a Point describing the formation position based on the position sequence number in the formation.
-Point FormationPattern::Position(unsigned int slotNr) const
+Point FormationPattern::Position(unsigned int positionNr) const
 {
-	if(slotNr >= slots.size())
+	if(positionNr >= positions.size())
 		return Point();
-	return slots[slotNr];
+	return positions[positionNr];
 }
