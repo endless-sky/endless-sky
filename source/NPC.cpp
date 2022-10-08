@@ -474,7 +474,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 	if(HasFailed())
 		return false;
 
-	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
+	// Evaluate the status of each ship in this NPC block. If it has `accompany`
 	// and is alive then it cannot be disabled and must be in the player's system.
 	// If the NPC block has `evade`, the ship can be disabled, destroyed, captured,
 	// or not present.
