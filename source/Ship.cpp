@@ -2804,7 +2804,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	double fuelCost = jumpUsed.second;
 	if(!fuelCost || fuel < fuelCost)
 		return false;
-	
+
 	Point direction = targetSystem->Position() - currentSystem->Position();
 	bool isJump = (jumpUsed.first == JumpType::JumpDrive);
 	double scramThreshold = attributes.Get("scram drive");
