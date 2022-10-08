@@ -1608,7 +1608,7 @@ ship "Flivver"
 		"fuel capacity" 500
 		"cargo space" 15
 		"outfit space" 130
-		"weapon capacity" 15
+		"weapon capacity" 16
 		"engine capacity" 45
 		weapon
 			"blast radius" 16
@@ -1616,8 +1616,6 @@ ship "Flivver"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Meteor Missile Pod" 2
-		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
 		"KP-6 Photovoltaic Panel" 3
