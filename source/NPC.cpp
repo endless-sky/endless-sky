@@ -475,15 +475,14 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 		return false;
 
 	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
-	// it cannot be disabled and must be in the player's system. If the ship
-	// is destroyed it will not count into the list.
-	// Destroyed `accompany` are handled in HasFailed(). If the NPC block has
-	// `evade`, the ship can be disabled, destroyed, captured, or not present.
+	// and is alive then it cannot be disabled and must be in the player's system.
+	// If the NPC block has evade`, the ship can be disabled, destroyed, captured,
+	// or not present.
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			auto it = actions.find(ship.get());
-			// Captured or destroyed ships do not count into the list.
+			// Captured or destroyed ships have either succeeded or no longer count.
 			if(it->second & (ShipEvent::DESTROY | ShipEvent::CAPTURE))
 				continue;
 			// If a derelict ship has not received any ShipEvents, it is immobile.
@@ -492,7 +491,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 			// events (and the current system).
 			if(it != actions.end())
 			{
-				// A ship that was disabled, captured, or destroyed is considered 'immobile'.
+				// A ship that was disabled is considered 'immobile'.
 				isImmobile = (it->second & ShipEvent::DISABLE);
 				// If this NPC is 'derelict' and has no ASSIST on record, it is immobile.
 				isImmobile |= ship->GetPersonality().IsDerelict()
