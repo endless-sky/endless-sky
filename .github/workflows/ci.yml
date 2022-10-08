@@ -16,10 +16,10 @@ name: CI
 
 on:
   push:
-    # Run for pushes to master or a version branch, e.g. a PR was merged ...
+    # Run for pushes to master or a release branch, e.g. a PR was merged ...
     branches:
       - master
-      - v[0-9]+.[0-9]+.[0-9]+
+      - releases/v[0-9]+.[0-9]+.[0-9]+
     # ... and only when we've possibly changed how the game will function.
     paths:
     - 'source/**'
@@ -162,7 +162,7 @@ jobs:
         os: [windows-latest]
     env:
         SCCACHE_DIR: ./sccache/
-        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
         DIR_ESLIB: dev64
         CXX: sccache g++
         ARTIFACT: EndlessSky.exe
@@ -222,7 +222,7 @@ jobs:
         os: [windows-latest]
     env:
         SCCACHE_DIR: ./sccache/
-        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
         DIR_ESLIB: .\dev64
         CXX: sccache g++
         AR: gcc-ar
@@ -251,9 +251,9 @@ jobs:
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
         COPY ".\dev64\bin\*.dll" .
-        COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
-        COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
-        COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
+        COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
     - name: Cache sccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -296,7 +296,7 @@ jobs:
       run: brew update
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: brew install libmad libpng jpeg-turbo
+      run: brew install libpng jpeg-turbo
     - name: Restore cached SDL2 framework
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -395,7 +395,7 @@ jobs:
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' }}
     runs-on: ${{ matrix.os }}
     env:
-      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
     strategy:
       matrix:
         os: [windows-latest]
@@ -407,9 +407,9 @@ jobs:
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
         COPY ".\dev64\bin\*.dll" .
-        COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
-        COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
-        COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
+        COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
@@ -506,3 +506,12 @@ jobs:
         builtin: clear,en-GB_to_en-US
         path: data/
         exclude_file: .codespell.exclude
+
+
+
+  style-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: editorconfig-checker/action-editorconfig-checker@main
+    - run: editorconfig-checker

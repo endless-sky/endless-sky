@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 government "Alpha"
 	swizzle 1
@@ -95,7 +98,7 @@ government "Derelict"
 	"fine" 0
 
 government "Drak"
-	swizzle 5
+	swizzle 0
 	color 1 1 1
 	"player reputation" 1
 	"fine" 0
@@ -106,7 +109,7 @@ government "Drak"
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
 	"display name" "Drak"
-	swizzle 5
+	swizzle 0
 	"player reputation" -1000
 	"attitude toward"
 		"Indigenous Lifeform" 1
@@ -133,7 +136,7 @@ government "Free Worlds"
 
 government "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -153,7 +156,7 @@ government "Hai"
 government "Hai (Wormhole Access)"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -172,7 +175,7 @@ government "Hai (Wormhole Access)"
 government "Hai Merchant"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -191,7 +194,7 @@ government "Hai Merchant"
 government "Hai Merchant (Sympathizers)"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -210,7 +213,7 @@ government "Hai Merchant (Sympathizers)"
 government "Hai Merchant (Human)"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -226,7 +229,9 @@ government "Hai Merchant (Human)"
 
 government "Hai (Unfettered)"
 	swizzle 4
-	color .69 .33 .82
+	color .55 .27 .76
+	"crew attack" 1.4
+	"crew defense" 2.2
 	
 	"player reputation" -1000
 	"attitude toward"
@@ -375,8 +380,24 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
+		"Korath (Civilian)" 1
 	
 	"player reputation" -10
+
+government "Korath (Civilian)"
+	"display name" "Korath"
+	swizzle 2
+	color .8 .5 .1
+	"crew attack" 1.1
+	"crew defense" 2.1
+	language "Korath"
+
+	"attitude toward"
+		"Kor Mereti" -.01
+		"Kor Sestor" -.01
+		"Korath" .01
+
+	"player reputation" 1
 
 government "Korath Nanobots"
 	"player reputation" -1000
@@ -649,6 +670,24 @@ government "Republic"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
+
+government "Republic (Friendly)"
+	"display name" "Republic"
+	swizzle 0
+	"crew attack" 1.2
+	"crew defense" 2.2
+	"player reputation" 2
+	
+	"attitude toward"
+		"Alpha" -.01
+		"Merchant" .01
+		"Militia" .01
+		"Pirate" -.01
+		"Navy Intelligence" .01
+		"Navy (Oathkeeper)" .01
+		"Neutral" .01
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 
 government "Scar's Legion"
 	swizzle 6
