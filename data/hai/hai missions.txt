@@ -1596,7 +1596,7 @@ mission "Pirate Troubles [4]"
 		"reputation: Hai Merchant (Human)" += 40
 		"reputation: Hai Merchant (Sympathizers)" += 40
 	
-	npc save accompany
+	npc accompany save
 		government "Hai (Wormhole Access)"
 		personality escort
 		fleet

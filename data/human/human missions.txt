@@ -2922,7 +2922,7 @@ mission "Hauler VI cargo prototype 1"
 	destination "Skymoot"
 	to offer
 		"armament deterrence" > 0
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -2992,7 +2992,7 @@ mission "Hauler VI cargo prototype 2"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 1: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3013,7 +3013,7 @@ mission "Hauler VI cargo prototype 3"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 2: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
