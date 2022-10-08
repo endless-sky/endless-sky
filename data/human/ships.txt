@@ -3064,7 +3064,7 @@ ship "Sparrow"
 		"drag" .9
 		"heat dissipation" .8
 		"fuel capacity" 300
-		"cargo space" 5
+		"cargo space" 15
 		"outfit space" 130
 		"weapon capacity" 25
 		"engine capacity" 40
