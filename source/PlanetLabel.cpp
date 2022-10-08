@@ -46,8 +46,8 @@ namespace {
 	{
 		bool overlaps = false;
 
-		Point start = object.Position() * zoom +
-			(object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH) * zoom * Angle(LINE_ANGLE[direction]).Unit();
+		Point start = zoom * (object.Position() +
+			(object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH) * Angle(LINE_ANGLE[direction]).Unit());
 		Point unit(LINE_ANGLE[direction] > 180. ? -1. : 1., 0.);
 		Point end = start + unit * width;
 
