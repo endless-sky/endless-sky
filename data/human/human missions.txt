@@ -4942,7 +4942,7 @@ mission "Deal Change 1"
 		random < 35
 	on offer
 		conversation
-			`The spaceport on <origin> is as spirited as ever: to your left, a family wearing floral shirts pull along their luggage, with the man of the family flaunting a souvenir from some far away planet. To your right, a cleaner whistles a tuneless song while they wipe down a bench.`
+			`The spaceport on <origin> is as spirited as ever: to your left, a family wearing floral shirts pull along their luggage, with the man of the family flaunting a souvenir from some far-away planet. To your right, a cleaner whistles a tuneless song while they wipe down a bench.`
 			`	A young man in a prim suit approaches you. "Good day, Captain! Would you mind if I spoke to you for a moment?"`
 			choice
 				`	"I'd be glad to listen."`
@@ -4958,7 +4958,7 @@ mission "Deal Change 1"
 			label late
 			`	He smirks as he walks back towards you. "I'm glad that you've changed your mind."`
 			label listen
-			`	The man pulls you aside to talk. "You see, one of our clients recently passed away, and in his will, he divided his property between each of his relatives. Only problem is that one of his family members, his niece, lives all the way down in the Rim. We would like you to deliver her portion of the inheritance, weighing <tons>, to her residence on <destination>. We can pay you <payment> upon completion of the job."`
+			`	The man pulls you aside to talk. "You see, one of our clients recently passed away, and in his will, he divided his property between each of his relatives. The only problem is that one of his family members, his niece, lives all the way down in the Rim. We would like you to deliver her portion of the inheritance, weighing <tons>, to her residence on <destination>. We can pay you <payment> upon completion of the job."`
 			choice
 				`	"I'll do it."`
 					goto agree
@@ -4974,7 +4974,7 @@ mission "Deal Change 1"
 			`	The man smiles. "I'm glad to hear that. We'll have the cargo loaded on your ship by sundown." He walks away into the spaceport, leaving you to prepare for the journey.`
 				accept
 			label nope
-			`	The man frowns. "I see. Well, I appreciate that you listened to our offer, and I hope that you may assist us at a later date. Farewell." He walks away into the spaceport, but he doesn't appear to seek out any other captains.`
+			`	The man frowns. "I see. Well, I appreciate that you listened to our offer, and I hope that you may assist us at a later date. Farewell." He walks away into the spaceport but doesn't appear to seek out any other captains.`
 				decline
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -4992,7 +4992,7 @@ mission "Deal Change 1"
 
 mission "Deal Change 2"
 	landing
-	clearance `You read out the code on the back of paper you received, and receive a green light from Greenrock's authorities, along with a set of coordinates.`
+	clearance `You read out the code on the back of the paper you received and receive a green light from Greenrock's authorities, along with a set of coordinates.`
 	name "Inheritance to <planet>"
 	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so."
 	source
@@ -5033,7 +5033,7 @@ mission "Deal Change 2"
 				`	(Stay silent.)`
 					goto skip
 				`	"Can I ask you some questions?"`
-			`	One of the pirates near to you bares his pointy teeth, but Ci steps forward and raises their hand. "Please forgive the naivity of this captain," they say to the pirate before turning towards you. "I apologize, but I am afraid that I cannot answer your questions. This is a very volatile matter, and any misplaced information could spell death. You are safer knowing as little as possible."`
+			`	One of the pirates near you bares his pointy teeth, but Ci steps forward and raises their hand. "Please forgive the naivety of this captain," they say to the pirate before turning towards you. "I apologize, but I am afraid that I cannot answer your questions. This is a very volatile matter, and any misplaced information could spell death. You are safer knowing as little as possible."`
 			choice
 				`	"I understand."`
 					goto skip
@@ -5046,4 +5046,4 @@ mission "Deal Change 2"
 			`	The moment your hand touches the handle of your gun, you are blinded by bright lights and searing pain. You die before your body falls to the ground.`
 				die
 			label skip
-			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
+			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
