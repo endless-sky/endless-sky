@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "LocationFilter.h"
+#include "Planet.h"
 
 #include <cstdint>
 #include <map>
@@ -32,6 +34,7 @@ class Outfit;
 class PlayerInfo;
 class Ship;
 class UI;
+class Planet;
 
 
 
@@ -80,6 +83,8 @@ private:
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
+	LocationFilter teleportPlanet;
+	
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;

@@ -1,0 +1,8 @@
+mission "test"
+    landing
+    repeat
+    on offer
+        conversation
+            "hi"
+                accept
+        teleport Earth
