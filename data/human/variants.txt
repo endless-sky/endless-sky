@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Argosy" "Argosy (Blaster)"
 	outfits
@@ -2002,6 +2005,20 @@ ship "Protector" "Protector (Proton)"
 	turret "Proton Turret"
 	turret "Proton Turret"
 	turret
+
+
+ship "Protector" "Protector (Quad Blaster)"
+	outfits
+		"Quad Blaster Turret" 8
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 6
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
 
 
 
