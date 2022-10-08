@@ -504,16 +504,16 @@ const Set<GameEvent> &GameData::Events()
 
 
 
-const Set<FormationPattern> &GameData::Formations()
+const Set<Fleet> &GameData::Fleets()
 {
-	return objects.formations;
+	return objects.fleets;
 }
 
 
 
-const Set<Fleet> &GameData::Fleets()
+const Set<FormationPattern> &GameData::Formations()
 {
-	return objects.fleets;
+	return objects.formations;
 }
 
 

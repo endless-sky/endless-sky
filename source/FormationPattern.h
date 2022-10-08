@@ -32,8 +32,7 @@ class DataNode;
 class FormationPattern {
 public:
 	// Iterator that provides sequential access to all formation positions.
-	class PositionIterator
-	{
+	class PositionIterator {
 	public:
 		PositionIterator(const FormationPattern &pattern);
 		PositionIterator() = delete;
@@ -67,21 +66,18 @@ public:
 
 
 public:
+	// Load formation from a datafile.
+	void Load(const DataNode &node);
+
 	// Returns the name of this pattern.
 	const std::string &Name() const;
 	void SetName(const std::string &name);
-
-	// Load formation from a datafile.
-	void Load(const DataNode &node);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
 	PositionIterator begin() const;
 
 
 private:
-	// Retrieve properties like the number of positions.
-	unsigned int Slots() const;
-
 	// Calculate a position based on the formation definition.
 	Point Position(unsigned int slotNr) const;
 

@@ -62,20 +62,6 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 
 
 
-const string &FormationPattern::Name() const
-{
-	return name;
-}
-
-
-
-void FormationPattern::SetName(const std::string &name)
-{
-	this->name = name;
-}
-
-
-
 void FormationPattern::Load(const DataNode &node)
 {
 	if(!name.empty())
@@ -94,14 +80,23 @@ void FormationPattern::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 		if(child.Token(0) == "position" && child.Size() >= 3)
-		{
-			slots.emplace_back();
-			Point &slot = slots.back();
-			slot.X() = child.Value(1);
-			slot.Y() = child.Value(2);
-		}
+			slots.emplace_back(child.Value(1), child.Value(2));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+}
+
+
+
+const string &FormationPattern::Name() const
+{
+	return name;
+}
+
+
+
+void FormationPattern::SetName(const std::string &name)
+{
+	this->name = name;
 }
 
 
@@ -114,15 +109,7 @@ FormationPattern::PositionIterator FormationPattern::begin() const
 
 
 
-// Get the number of positions on an arc or line.
-unsigned int FormationPattern::Slots() const
-{
-	return slots.size();
-}
-
-
-
-// Get a formation position based on ring, line(or arc)-number and position on the line.
+// Get a Point describing the formation position based on the position sequence number in the formation.
 Point FormationPattern::Position(unsigned int slotNr) const
 {
 	if(slotNr >= slots.size())
