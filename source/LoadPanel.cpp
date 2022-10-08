@@ -416,6 +416,10 @@ void LoadPanel::UpdateLists()
 	for(const string &path : fileList)
 	{
 		string fileName = Files::Name(path);
+		// Skip the Steam Auto Cloud file, which is created by Steam and not a real save file.
+		if(fileName == "steam_autocloud.vdf")
+			continue;
+
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');
 		if(pos == string::npos)
