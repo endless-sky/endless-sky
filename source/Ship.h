@@ -102,7 +102,7 @@ public:
 		double zoom;
 		Angle facing;
 	};
-	
+
 	enum class JumpType : uint8_t
 	{
 		HyperDrive,
