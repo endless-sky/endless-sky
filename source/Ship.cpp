@@ -2805,7 +2805,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = GetCheapestJumpType(targetSystem).first == JumpType::JumpDrive;
+	bool isJump = (GetCheapestJumpType(targetSystem).first == JumpType::JumpDrive);
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
