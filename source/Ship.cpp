@@ -2800,12 +2800,13 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
-	double fuelCost = JumpFuel(targetSystem);
+	pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(targetSystem);
+	double fuelCost = jumpUsed.second;
 	if(!fuelCost || fuel < fuelCost)
 		return false;
-
+	
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = (GetCheapestJumpType(targetSystem).first == JumpType::JumpDrive);
+	bool isJump = (jumpUsed.first == JumpType::JumpDrive);
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
