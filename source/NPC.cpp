@@ -72,10 +72,7 @@ void NPC::Load(const DataNode &node)
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
-		{
 			mustAccompany = true;
-			failIf |= ShipEvent::DESTROY;
-		}
 		else
 			node.PrintTrace("Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
 	}
