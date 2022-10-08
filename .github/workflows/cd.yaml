@@ -64,7 +64,7 @@ jobs:
   cd_windows_win64:
     runs-on: windows-latest
     env:
-      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
       DIR_ESLIB: .\dev64
       OUTPUT: EndlessSky-win64-continuous.zip
       AR: gcc-ar
@@ -89,9 +89,9 @@ jobs:
         run: |
           COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
           COPY ".\dev64\bin\*.dll" .
-          COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
-          COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
-          COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
+          COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
+          COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
+          COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
           7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -109,12 +109,12 @@ jobs:
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
-        run: brew install libmad libpng jpeg-turbo
+        run: brew install libpng jpeg-turbo
       - name: Restore cached SDL2 framework
         uses: actions/cache@v2
         with:
           path: ${{ env.SDL2_FRAMEWORK }}
-          key: macos-latest-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**') }}
+          key: macos-latest-sdl2-${{ hashFiles('EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash

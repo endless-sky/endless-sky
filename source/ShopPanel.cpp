@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShopPanel.h"
@@ -89,7 +92,8 @@ void ShopPanel::Step()
 		if(selectedBottomY > mainBottomY)
 			DoScroll(max(-30., mainBottomY - selectedBottomY));
 		// Scroll down until the bottoms or the tops match.
-		else if(selectedBottomY < mainBottomY && (mainBottomY - mainTopY < selectedBottomY - selectedTopY && selectedTopY < mainTopY))
+		else if(selectedBottomY < mainBottomY
+			&& (mainBottomY - mainTopY < selectedBottomY - selectedTopY && selectedTopY < mainTopY))
 			DoScroll(min(30., min(mainTopY - selectedTopY, mainBottomY - selectedBottomY)));
 		// Details are in view.
 		else
@@ -149,7 +153,8 @@ void ShopPanel::Draw()
 		}
 		else
 		{
-			int swizzle = dragShip->CustomSwizzle() >= 0 ? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			int swizzle = dragShip->CustomSwizzle() >= 0
+				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
 		}
 	}
@@ -328,7 +333,8 @@ void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, *GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
+		*GameData::Colors().Get("shop side panel background"));
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
@@ -483,7 +489,7 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + VisiblityCheckboxesSize());
+	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + VisibilityCheckboxesSize() + 40.);
 
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(mainScroll > 0 ? .8f : .2f, 0.f));
@@ -499,13 +505,6 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
 
-	// Draw the ship name.
-	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
-	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
-	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
-		center + offset, *GameData::Colors().Get("bright"));
-
 	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();
 	int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
@@ -518,6 +517,13 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
+
+	// Draw the ship name.
+	const Font &font = FontSet::Get(14);
+	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
+	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
+	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
+		center + offset, *GameData::Colors().Get("bright"));
 }
 
 
@@ -562,7 +568,7 @@ void ShopPanel::DrawKey()
 
 
 
-int ShopPanel::VisiblityCheckboxesSize() const
+int ShopPanel::VisibilityCheckboxesSize() const
 {
 	return 0;
 }
@@ -660,6 +666,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
+	else if(key == SDLK_HOME)
+		return SetScrollToTop();
+	else if(key == SDLK_END)
+		return SetScrollToBottom();
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -895,7 +905,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
-		if(!player.GetCondition("license: " + name))
+		if(!player.Conditions().Get("license: " + name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
 			if(!license || !license->Cost() || !available.Has(license))
@@ -958,6 +968,34 @@ bool ShopPanel::DoScroll(double dy)
 	}
 
 	*scroll = max(0., min(maximum, *scroll - dy));
+
+	return true;
+}
+
+
+
+bool ShopPanel::SetScrollToTop()
+{
+	if(activePane == ShopPane::Info)
+		infobarScroll = 0.;
+	else if(activePane == ShopPane::Sidebar)
+		sidebarScroll = 0.;
+	else
+		mainScroll = 0.;
+
+	return true;
+}
+
+
+
+bool ShopPanel::SetScrollToBottom()
+{
+	if(activePane == ShopPane::Info)
+		infobarScroll = maxInfobarScroll;
+	else if(activePane == ShopPane::Sidebar)
+		sidebarScroll = maxSidebarScroll;
+	else
+		mainScroll = maxMainScroll;
 
 	return true;
 }

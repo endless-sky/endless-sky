@@ -20,11 +20,15 @@ environment:
     - MINGW_ROOT: C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64
       MINGW_VERSION: v8.1.0
 
+matrix:
+  fast_finish: true
+
 install:
   # Update env variables to use the desired MinGW version
   - ps: |
       Set-AppveyorBuildVariable -Name PATH -Value "$Env:MINGW_ROOT\bin\;$Env:PATH";
       Set-AppveyorBuildVariable -Name DIR_MINGW64 -Value "$Env:MINGW_ROOT\x86_64-w64-mingw32";
+      Set-AppveyorBuildVariable -Name SCCACHE_C_CUSTOM_CACHE_BUSTER -Value "$Env:MINGW_VERSION"
   # Ensure we have the precompiled libraries to link with (SDL, etc.).
   - ps: |
       if (!(Test-Path 'C:\dev64')) { New-Item 'C:\dev64' -ItemType Directory; }
@@ -49,19 +53,22 @@ build_script:
   - ps: mingw32-make.exe -re -j2 -f .winmake $Env:es_run_mode;
 
 before_test:
-  - ps: mingw32-make.exe -re -j2 -f .winmake build-tests;
+  - ps: |
+      Set-AppveyorBuildVariable -Name BUILDDIR -Value "build/pkgd"
+      mingw32-make.exe -re -j2 -f .winmake build-tests;
   - ps: |
       $here = (Get-Location).Path;
       Copy-Item -Path "bin\pkgd\release\endless-sky.exe" -Destination $here;
       Copy-Item -Path "C:\dev64\bin\*.dll" -Exclude "libstdc*" -Destination $here;
 
 test_script:
-  - ps: .\tests\endless-sky-tests.exe -n es-ci -i --warn NoAssertions --order rand --rng-seed 'time' --filenames-as-tags -r junit -o $Env:TEST_REPORT_FILE;
-  - ps: .\tests\test_parse.ps1 'endless-sky.exe';
+  - ps: .\tests\unit\endless-sky-tests.exe -n es-ci -i --warn NoAssertions --order rand --rng-seed 'time' --filenames-as-tags -r junit -o $Env:TEST_REPORT_FILE;
+  - ps: .\utils\test_parse.ps1 'endless-sky.exe';
 
 # Upload the build if tests passed.
 after_test:
   - ps: |
+      sccache --show-stats
       $here = (Get-Location).Path;
       Copy-Item -Path "$Env:DIR_MINGW64\lib\libstdc++-6.dll" -Destination $here;
       Copy-Item -Path "$Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll" -Destination $here;

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 fleet "Small Southern Merchants"
 	government "Merchant"
@@ -155,6 +158,9 @@ fleet "Large Southern Merchants"
 	variant 6
 		"Hauler III"
 		"Berserker" 2
+	variant 1
+		"Bulk Freighter (Long Haul)"
+		"Berserker (Strike)" 4
 
 fleet "Small Core Merchants"
 	government "Merchant"
@@ -238,7 +244,7 @@ fleet "Large Core Merchants"
 		"Freighter (Proton)" 2
 		"Quicksilver" 2
 	variant 40
-		"Container Transport"
+		"Container Transport (Short Haul)"
 		"Wasp (Proton)" 2
 	variant 40
 		"Container Transport"
@@ -452,7 +458,8 @@ fleet "Paradise Merchants"
 		"Berserker" 2
 	variant 5
 		"Scout (Speedy)"
-
+	variant 1
+		"Container Transport (Short Haul)"
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -639,6 +646,9 @@ fleet "Large Northern Merchants"
 	variant 2
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
+	variant 1
+		"Bulk Freighter (Long Haul)"
+		"Scout" 4
 	variant 10
 		"Behemoth" 2
 		"Firebird" 1
@@ -863,8 +873,8 @@ fleet "Large Human Merchants (Hai)"
 		"Bulk Freighter (Hai)"
 		"Headhunter (Hai)" 2
 	variant 8
-		"Bulk Freighter"
-		"Sparrow" 2
+		"Bulk Freighter (Long Haul)"
+		"Scout" 4
 	variant 3
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
