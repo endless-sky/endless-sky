@@ -24,40 +24,34 @@ using namespace std;
 
 
 
-FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern)
-	: pattern(pattern)
-{
-	MoveToValidPosition();
+namespace {
+	const Point defaultFormationPoint = Point();
 }
 
 
 
-const Point *FormationPattern::PositionIterator::operator->()
+FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern)
+	: pattern(pattern)
 {
-	return &currentPoint;
+	positionIt = pattern.positions.begin();
 }
 
 
 
 const Point &FormationPattern::PositionIterator::operator*()
 {
-	return currentPoint;
+	if(positionIt == pattern.positions.end())
+		return defaultFormationPoint;
+	return *positionIt;
 }
 
 
 
 FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator++()
 {
-	positionNr++;
-	MoveToValidPosition();
+	if(positionIt != pattern.positions.end())
+		++positionIt;
 	return *this;
-}
-
-
-
-void FormationPattern::PositionIterator::MoveToValidPosition()
-{
-	currentPoint = pattern.Position(positionNr);
 }
 
 
@@ -105,14 +99,4 @@ void FormationPattern::SetName(const std::string &name)
 FormationPattern::PositionIterator FormationPattern::begin() const
 {
 	return FormationPattern::PositionIterator(*this);
-}
-
-
-
-// Get a Point describing the formation position based on the position sequence number in the formation.
-Point FormationPattern::Position(unsigned int positionNr) const
-{
-	if(positionNr >= positions.size())
-		return Point();
-	return positions[positionNr];
 }

@@ -46,22 +46,15 @@ public:
 
 		// A subset of the default input_iterator operations. Limiting to
 		// only a subset, since not all operations are used in-game.
-		const Point *operator->();
 		const Point &operator*();
 		PositionIterator &operator++();
 
 
 	private:
-		void MoveToValidPosition();
-
-
-	private:
 		// The pattern for which we are calculating positions.
 		const FormationPattern &pattern;
-		// The location in the pattern.
-		unsigned int positionNr = 0;
-		// Currently calculated position.
-		Point currentPoint;
+		// The iterator currently used below the position iterator.
+		std::vector<Point>::const_iterator positionIt;
 	};
 
 
@@ -75,11 +68,6 @@ public:
 
 	// Get an iterator to iterate over the formation positions in this pattern.
 	PositionIterator begin() const;
-
-
-private:
-	// Calculate a position based on the formation definition.
-	Point Position(unsigned int positionNr) const;
 
 
 private:
