@@ -197,6 +197,7 @@ outfit "Ka'het Annihilator Turret"
 	weapon
 		sprite "projectile/annihilator"
 			"frame rate" 7
+		sound "inhibitor"
 		"hardpoint sprite" "hardpoint/annihilator turret"
 		"hardpoint offset" 15.
 		"hit effect" "bullet impact"
