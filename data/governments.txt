@@ -230,6 +230,8 @@ government "Hai Merchant (Human)"
 government "Hai (Unfettered)"
 	swizzle 4
 	color .55 .27 .76
+	"crew attack" 1.4
+	"crew defense" 2.2
 	
 	"player reputation" -1000
 	"attitude toward"

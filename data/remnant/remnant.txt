@@ -516,7 +516,7 @@ phrase "remnant preparations"
 phrase "remnant no scan"
 	word
 		"Please"
-	word 
+	word
 		" "
 	word
 		"do not"

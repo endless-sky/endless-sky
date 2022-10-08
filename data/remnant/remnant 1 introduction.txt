@@ -2526,7 +2526,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 				`	(Offer to take her there.)`
 				`	(Don't offer.)`
 					decline
-			`	 You offer to take her and a couple of her colleagues to see the Quarg. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
+			`	You offer to take her and a couple of her colleagues to see the Quarg. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of your escorts that hasn't entered the system. Better depart and wait for it to arrive.`
