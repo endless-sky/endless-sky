@@ -190,9 +190,11 @@ mission "Incipias: First Contact IV"
 	to offer
 		has "event: Hai preperation time"
 	source Mirrorlake
-	stopover "Spec Inci"
+	destination "Spec Inci"
 	on offer
 		conversation
+			`At the spaceport you see a small group of Hai diplomats, one of them is familiar to you from the embassy. You walk towards them and greet them. One of them says, "I hope for a save journey on your ship Captain." You answer, "The system we are travlling to is not far from here." He says, "Than not more is to be discussed, bring us to the Quarg ringworld, so that we can talk to them." You agree and get your ship ready.`
+				accept
+	on stopover
+		conversation
 			``
-
-	
