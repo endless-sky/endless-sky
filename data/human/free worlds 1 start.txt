@@ -2131,7 +2131,7 @@ mission "FW Refinery 1"
 				`	"How are we going to do that?"`
 					goto repairs
 				`	"So what happens to Tomek now?"`
-			`	"Tomek is on his way to <planet> right now," Freya says. "He left as soon as the news of the victory arrived. I imagine we'll know the outcome of his Senate hearing once you've returned from your mission."`
+			`	"Tomek is on his way to Bourne right now," Freya says. "He left as soon as the news of the victory arrived. I imagine we'll know the outcome of his Senate hearing once you've returned from your mission."`
 			`	"What mission?" you ask.`
 			label repairs
 			`	"Well, thanks to you, the Men system is no longer engaged in piracy," says JJ. "And that means the folks on Smuggler's Den are in need of new work. That station used to be a deuterium refinery. With a little work, it can be one, again."`
