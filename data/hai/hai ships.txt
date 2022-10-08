@@ -70,7 +70,7 @@ ship "Centipede"
 	sprite "ship/hai centipede"
 	thumbnail "thumbnail/hai centipede"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		"cost" 6300000
 		"shields" 6600
 		"hull" 2400
