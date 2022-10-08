@@ -4944,7 +4944,7 @@ mission "Wool Smuggling 1"
 		not "bloodsea independent"
 	on offer
 		conversation
-			`As you walk around the spaceport, a stout man approaches you, wearing a fine wool coat. "Captain, could you help me out with a delivery? I've been asking around the spaceport to get a shipment of woollen goods to another planet, but every merchant I've talked to so far has refused."`
+			`As you walk around the spaceport, a stout man wearing a fine wool coat approaches you. "Captain, could you help me out with a delivery? I've been asking around the spaceport to get a shipment of woollen goods to another planet, but every merchant I've talked to so far has refused."`
 			choice
 				`	"Where are you taking the goods to?"`
 				`	"How much do I have to carry?"`
@@ -4975,7 +4975,7 @@ mission "Wool Smuggling 1"
 			`	"Great! I'll call up the spaceport workers on <planet> to tell them to load the cargo onto your ship." The man walks away, leaving you to your own devices.`
 				accept
 			label decline
-			`	"Suit yourself, then." He hautily walks off into the spaceport.`
+			`	"Suit yourself, then." He haughtily walks off into the spaceport.`
 				decline
 	on visit
 		dialog `You have reached <planet>, but your escort with the space reserved for the woollen goods has not arrived! Better depart and wait for your escorts to arrive in this star system.`
@@ -4997,5 +4997,5 @@ mission "Wool Smuggling 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 200000
-		dialog `Your cargo of woollen garments is unloaded by several bulky workers, led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us.`
+		dialog `Your cargo of woollen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us.`
 
