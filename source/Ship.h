@@ -105,7 +105,7 @@ public:
 
 	enum class JumpType : uint8_t
 	{
-		HyperDrive,
+		Hyperdrive,
 		JumpDrive,
 		None
 	};
