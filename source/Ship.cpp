@@ -1772,8 +1772,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		std::pair<Ship::JumpType, double> jumpUsed = JumpDriveCheaper(hyperspaceSystem);
-		isUsingJumpDrive = jumpUsed.first == JUMPDRIVE;
+		pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(hyperspaceSystem);
+		isUsingJumpDrive = jumpUsed.first == JumpType::JumpDrive;
 		hyperspaceFuelCost = jumpUsed.second;
 	}
 
@@ -2805,7 +2805,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = JumpDriveCheaper(targetSystem).first == JUMPDRIVE;
+	bool isJump = GetCheapestJumpType(targetSystem).first == JumpType::JumpDrive;
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
@@ -3184,7 +3184,7 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	std::pair<JumpType, double> jumpUsed = JumpDriveCheaper(destination);
+	pair<JumpType, double> jumpUsed = GetCheapestJumpType(destination);
 	return jumpUsed.second;
 }
 
@@ -3249,7 +3249,7 @@ double Ship::JumpDriveFuel(double jumpDistance) const
 
 
 
-std::pair<Ship::JumpType, double> Ship::JumpDriveCheaper(const System *destination) const
+pair<Ship::JumpType, double> Ship::GetCheapestJumpType(const System *destination) const
 {
 	bool linked = currentSystem->Links().count(destination);
 	double hyperFuelNeeded = HyperdriveFuel();
@@ -3258,16 +3258,16 @@ std::pair<Ship::JumpType, double> Ship::JumpDriveCheaper(const System *destinati
 	if(linked)
 	{
 		if(hyperFuelNeeded > jumpFuelNeeded && attributes.Get("jump drive"))
-			return std::make_pair(JUMPDRIVE, jumpFuelNeeded);
+			return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
 		else if(attributes.Get("hyperdrive"))
-			return std::make_pair(HYPERDRIVE, hyperFuelNeeded);
+			return make_pair(JumpType::HyperDrive, hyperFuelNeeded);
 		else
-			return std::make_pair(NONE, 0.0);
+			return make_pair(JumpType::None, 0.0);
 	}
 	else if(attributes.Get("jump drive"))
-		return std::make_pair(JUMPDRIVE, jumpFuelNeeded);
+		return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
 	else
-		return std::make_pair(NONE, 0.0);
+		return make_pair(JumpType::None, 0.0);
 }
 
 

@@ -102,6 +102,13 @@ public:
 		double zoom;
 		Angle facing;
 	};
+	
+	enum class JumpType : uint8_t
+	{
+		HyperDrive,
+		JumpDrive,
+		None
+	};
 
 
 public:
@@ -310,8 +317,7 @@ public:
 	// Get the cost of making a jump of the given type (if possible).
 	double HyperdriveFuel() const;
 	double JumpDriveFuel(double jumpDistance = 0.) const;
-	enum JumpType{ HYPERDRIVE, JUMPDRIVE, NONE };
-	std::pair<JumpType, double> JumpDriveCheaper(const System *destination) const;
+	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
