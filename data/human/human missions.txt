@@ -5022,8 +5022,6 @@ mission "Deal Change 2"
 			label accept
 			`	You stand up and stuff the note in your pocket before continuing towards the spaceport.`
 				accept
-	to fail
-		has "Deal Change 1: complete"
 	on complete
 		fail "Deal Change 1"
 		payment 500000
