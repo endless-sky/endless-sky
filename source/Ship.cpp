@@ -1773,7 +1773,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		hyperspaceSystem = GetTargetSystem();
 		pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(hyperspaceSystem);
-		isUsingJumpDrive = jumpUsed.first == JumpType::JumpDrive;
+		isUsingJumpDrive = (jumpUsed.first == JumpType::JumpDrive);
 		hyperspaceFuelCost = jumpUsed.second;
 	}
 
@@ -3184,8 +3184,7 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	pair<JumpType, double> jumpUsed = GetCheapestJumpType(destination);
-	return jumpUsed.second;
+	return GetCheapestJumpType(destination).second;
 }
 
 
@@ -3255,15 +3254,8 @@ pair<Ship::JumpType, double> Ship::GetCheapestJumpType(const System *destination
 	double hyperFuelNeeded = HyperdriveFuel();
 	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
 			? 0. : currentSystem->Position().Distance(destination->Position()));
-	if(linked)
-	{
-		if(hyperFuelNeeded > jumpFuelNeeded && attributes.Get("jump drive"))
-			return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
-		else if(attributes.Get("hyperdrive"))
-			return make_pair(JumpType::HyperDrive, hyperFuelNeeded);
-		else
-			return make_pair(JumpType::None, 0.0);
-	}
+	if(linked && attributes.Get("hyperdrive") && hyperFuelNeeded <= jumpFuelNeeded)
+		return make_pair(JumpType::Hyperdrive, hyperFuelNeeded);
 	else if(attributes.Get("jump drive"))
 		return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
 	else
