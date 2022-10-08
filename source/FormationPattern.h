@@ -16,13 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef FORMATION_PATTERN_H_
 #define FORMATION_PATTERN_H_
 
-#include "DataNode.h"
 #include "Point.h"
 
 #include <string>
 #include <vector>
 
-class Body;
+class DataNode;
 
 
 
@@ -52,8 +51,10 @@ public:
 		const Point &operator*();
 		PositionIterator &operator++();
 
+
 	private:
 		void MoveToValidPosition();
+
 
 	private:
 		// The pattern for which we are calculating positions.

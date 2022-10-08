@@ -13,13 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Angle.h"
 #include "FormationPattern.h"
 
+#include "Angle.h"
+#include "DataNode.h"
 
 #include <cmath>
 
 using namespace std;
+
 
 
 FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern)
