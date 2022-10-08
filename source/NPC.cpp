@@ -476,7 +476,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 
 	// Evaluate the status of each ship in this NPC block. If it has `accompany`,
 	// and is alive then it cannot be disabled and must be in the player's system.
-	// If the NPC block has evade`, the ship can be disabled, destroyed, captured,
+	// If the NPC block has `evade`, the ship can be disabled, destroyed, captured,
 	// or not present.
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
