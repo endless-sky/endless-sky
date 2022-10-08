@@ -3227,7 +3227,7 @@ double Ship::HyperdriveFuel() const
 {
 	// Don't bother searching through the outfits if there is no hyperdrive.
 	if(!attributes.Get("hyperdrive"))
-		return 0.0;
+		return 0.;
 
 	if(attributes.Get("scram drive"))
 		return BestFuel("hyperdrive", "scram drive", 150.);
