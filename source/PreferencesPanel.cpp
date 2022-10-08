@@ -61,7 +61,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
-	const string CAMERA_PANNING = "Camera Panning";
+	const string CAMERA_PANNING = "Camera Acceleration";
 }
 
 
@@ -441,7 +441,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		"Camera Panning",
+		"Camera Acceleration",
 		"Show status overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
