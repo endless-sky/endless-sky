@@ -516,7 +516,7 @@ phrase "remnant preparations"
 phrase "remnant no scan"
 	word
 		"Please"
-	word 
+	word
 		" "
 	word
 		"do not"
@@ -1057,3 +1057,6 @@ outfitter "Remnant Salvage"
 	"Steering (Asteroid Class)"
 	"Steering (Planetary Class)"
 	"Fire-Lance"
+
+outfitter "Void Sprite Parts"
+	"Void Sprite Parts"

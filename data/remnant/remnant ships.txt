@@ -1052,6 +1052,8 @@ ship "Penguin"
 		"outfit scan speed" 1
 		"tactical scan power" 50
 		"atmosphere scan" 100
+		"ion protection" 0.25
+		"ion resistance" 0.05
 		"thrust" 4.2
 		"turn" 80.0
 		"reverse thrust" 4.2
@@ -1327,6 +1329,8 @@ ship "Puffin"
 		"outfit scan speed" 1
 		"tactical scan power" 52
 		"atmosphere scan" 100
+		"ion protection" 0.25
+		"ion resistance" 0.05
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
@@ -1373,7 +1377,7 @@ ship "Smew"
 		"outfit scan power" 14
 		"outfit scan speed" 1
 		"tactical scan power" 28
-		"asteroid scan power" 50	
+		"asteroid scan power" 50
 		weapon
 			"blast radius" 24
 			"shield damage" 130
