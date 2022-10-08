@@ -485,7 +485,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 			auto it = actions.find(ship.get());
 			// Captured or destroyed ships do not count into the list.
 			if(it->second & (ShipEvent::DESTROY | ShipEvent::CAPTURE))
-			   continue;
+				continue;
 			// If a derelict ship has not received any ShipEvents, it is immobile.
 			bool isImmobile = ship->GetPersonality().IsDerelict();
 			// The success status calculation can only be based on recorded
