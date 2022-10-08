@@ -68,15 +68,15 @@ namespace {
 	{
 #if SDL_VERSION_ATLEAST(2, 0, 14)
 		if(SDL_OpenURL(("file://" + path).c_str()))
-			Files::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
+			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
 #elif defined(__linux__)
 		// Some supported distributions do not have an up-to-date SDL.
 		cout.flush();
 		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
-			Files::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
+			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
 #else
 #warning SDL 2.0.14 or higher is needed for opening folders!
-		Files::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
+		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
 #endif
 	}
 }
