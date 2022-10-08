@@ -29181,7 +29181,7 @@ planet Ingot
 
 planet "Inmost Blue"
 	attributes farming kimek urban
-	landscape land/water13
+	landscape land/water14
 	description `Inmost Blue is an ocean world, one of the first planets that the Kimek settled outside their own solar system. About two billion Kimek live on the low-lying islands and the one major continent, and the shallow ocean regions have been entirely converted into kelp farms. The Kimek take a utilitarian approach to food, and processed seaweed is a nutritious but highly unappetizing staple of their diet.`
 	spaceport `The spaceport city is built on the mountain slopes overlooking a fjord, whose water is deep enough for even the largest of cargo barges to enter. Many of the barges have landing pads on their decks so that the cargo can be transferred directly to freighter starships without needing to be stored on land first. The chief export is a gray-green meal made from dried and ground up seaweed.`
 	security 0.3
@@ -29454,7 +29454,7 @@ planet Mahoganybox
 
 planet Mainsail
 	attributes paradise rich
-	landscape land/beach7-sfiera
+	landscape land/water13
 	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
 	description `	Centuries ago Mainsail was home to pirates of the old-fashioned variety, fleets of motor boats or even old-fashioned sailing vessels that would launch raids against the city-ships.`
 	spaceport `The spaceport is on its own city-ship floating some distance away from the others, so that the locals need not deal with the noise and uncouth manners of spacefarers. Surrounding the port is a ring of docks where barges are moored; on platforms farther "inland," starships land.`

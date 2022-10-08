@@ -77,12 +77,12 @@ public:
 			verifyAndStripPrefix(prefix, name);
 			return isInMap(values, name);
 		});
-		conditionsProvider.SetSetFunction([this, prefix](const std::string &name, int64_t value)
+		conditionsProvider.SetSetFunction([prefix](const std::string &name, int64_t value)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return false;
 		});
-		conditionsProvider.SetEraseFunction([this, prefix](const std::string &name)
+		conditionsProvider.SetEraseFunction([prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return false;
@@ -127,12 +127,12 @@ public:
 			verifyName(named, name);
 			return isInMap(values, name);
 		});
-		conditionsProvider.SetSetFunction([this, named](const std::string &name, int64_t value)
+		conditionsProvider.SetSetFunction([named](const std::string &name, int64_t value)
 		{
 			verifyName(named, name);
 			return false;
 		});
-		conditionsProvider.SetEraseFunction([this, named](const std::string &name)
+		conditionsProvider.SetEraseFunction([named](const std::string &name)
 		{
 			verifyName(named, name);
 			return false;
@@ -206,7 +206,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 				auto it = store.PrimariesBegin();
 				REQUIRE( it == store.PrimariesEnd() );
 				REQUIRE( store.PrimariesEnd() == it );
-				it == store.PrimariesEnd();
+				it = store.PrimariesEnd();
 				REQUIRE( it == store.PrimariesBegin() );
 				REQUIRE( store.PrimariesBegin() == it );
 			}
