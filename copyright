@@ -22,7 +22,6 @@ Files:
  images/outfit/heavy?anti-missile?hai*
  images/ship/mbounder*
  images/ship/mfury*
- images/ship/mmanta*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -108,12 +107,6 @@ Files:
 Copyright: Amazinite
 License: CC-BY-SA-4.0
 Comment: Derived from works by Matthew Smestad (under the same license).
-
-Files: images/outfit/*photovoltaic*
-Copyright: Nick Barry (github.com/itsnickbarry)
-License: CC-BY-SA-3.0
-Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
- David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
 
 Files:
  images/outfit/pug*
@@ -467,6 +460,10 @@ Files:
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
+ images/ship/pug?zibruka*
+ images/ship/pug?enfolta*
+ images/ship/pug?maboro*
+ images/ship/pug?arfecta*
  images/thumbnail/ibis*
  images/thumbnails/merganser*
  images/thumbnail/penguin*
@@ -709,15 +706,15 @@ Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and c
 
 Files:
  images/land/station28*
-Copyright: mwewering
-License: Pixabay License
-Comment: Taken from https://pixabay.com/photos/corridor-tunnel-architecture-escape-2616414/ and cropped.
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/1071635 and cropped.
 
 Files:
  images/land/station15*
-Copyright: mikecook
-License: Pixabay License
-Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/119196 and cropped.
 
 Files:
  images/land/station5.jpg
@@ -1093,9 +1090,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
 
 Files:
- images/ship/chaser*
- images/thumbnail/chaser*
  images/effect/korath?afterburner*
+ images/ship/chaser*
+ images/ship/world-ship*
+ images/thumbnail/chaser*
+ images/thumbnail/world-ship*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence)
@@ -1384,20 +1383,24 @@ Files:
  images/star/o3*
  images/star/o5*
  images/star/o8*
- images/star/wr1*
+ images/star/wr*
 Copyright: Matteo "Lead" M.
 License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/effect/burning?spark/*
+ images/effect/burning?spark*
  images/effect/coalition?flare/*
- images/effect/corrosion?spark/*
+ images/effect/corrosion?spark*
+ images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
+ images/effect/pug?flare/*
+ images/effect/tracker?cloud*
  images/effect/wanderer?flare/*
+ images/effect/zapper?impact*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
@@ -1412,6 +1415,8 @@ Files:
  images/outfit/dark?storm*
  images/outfit/double?plasma?core*
  images/outfit/dual?sunbeam?turret*
+ images/outfit/*efreti?steering*
+ images/outfit/*efreti?thruster*
  images/outfit/finisher?maegrolain*
  images/outfit/moonbeam*
  images/outfit/moonbeam?turret*
@@ -1427,12 +1432,20 @@ Files:
  images/outfit/wanderer?heat?sink*
  images/outfit/white?sun*
  images/outfit/yellow?sun*
+ images/planet/ringworld*
+ images/planet/ringworld?broken?debris*
+ images/planet/ringworld?broken?debris?small*
+ images/planet/ringworld?broken?left*
+ images/planet/ringworld?broken?right*
+ images/planet/ringworld?left*
+ images/planet/ringworld?right*
  images/projectile/fire-lance*
  images/projectile/blaze-pike*
  images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/corvette*
+ images/ship/dagger*
  images/ship/flivver*
  images/ship/mraven*
  images/ship/msplinter*
@@ -1440,6 +1453,7 @@ Files:
  images/ship/splinter*
  images/star/neutron*
  images/thumbnail/corvette*
+ images/thumbnail/dagger*
  images/thumbnail/flivver*
  images/thumbnail/mraven*
  images/thumbnail/msplinter*
@@ -1447,6 +1461,22 @@ Files:
  images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/small?photovoltaic*
+ images/outfit/tiny?photovoltaic*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com>, David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux) and Nick Barry (github.com/itsnickbarry)
+
+Files:
+ images/ship/manta*
+ images/ship/mmanta*
+ images/thumbnail/manta*
+ images/thumbnail/mmanta*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
 
 Files: sounds/ionball*
 Copyright: pluralz
@@ -1498,15 +1528,31 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/hardpoint/firestorm battery*
+ images/outfit/firestorm?battery*
+ images/outfit/firestorm?rack*
+ images/outfit/firestorm?torpedo*
+ images/outfit/mcs?exctractor*
+ images/projectile/firestorm?torpedo*
+ images/ship/modified?dromedary*
+ images/ship/modified?dromedary?wreck*
+ images/thumbnail/modified?dromedary*
+ images/thumbnail/modified?dromedary?wreck*
+ sound/drill*
  sound/korath?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/teciimach?bay*
+ images/outfit/teciimach?pod*
  images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
+ images/ship/arch-carrack*
+ images/ship/charm-shallop*
+ images/ship/echo-galleon*
  images/ship/heavy?gust*
  images/ship/mining?drone*
  images/ship/mule*
@@ -1515,6 +1561,9 @@ Files:
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
  images/thumbnail/hailstone*
+ images/thumbnail/arch-carrack*
+ images/thumbnail/charm-shallop*
+ images/thumbnail/echo-galleon*
  images/thumbnail/heavy?gust*
  images/thumbnail/mining?drone*
  images/thumbnail/mule*
@@ -1553,11 +1602,20 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
 
 Files:
- images/ship/raider?xlii*
- images/thumbnail/raider?xlii*
+ images/ship/tubfalet*
+ images/thumbnail/tubfalet*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
+
+Files:
+ images/ship/-nra-ret*
+ images/ship/korsmanath?a-awoj*
+ images/thumbnail/-nra-ret*
+ images/thumbnail/korsmanath?a-awoj*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by NomadicVolcano (public domain).
 
 Files:
  images/outfit/microbot?defense?station*
@@ -1673,6 +1731,26 @@ Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 Files: images/outfits/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
+
+Files:
+ images/thumbnail/smew*
+ images/ship/smew*
+Copyright: Dschiltt
+License: CC0 (Creative Commons Zero)/Public-Domain
+Comment: Derived from works by MZ (under the same license), and contributions by Zoura, Kitteh, Ejo Thims, and Saugia.
+
+Files:
+ images/ship/modified?dromedary?ghost*
+ images/ship/modified?dromedary?spectre*
+Copyright: Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0
+Comment: Transparent materials by scrinarii1337.
+
+Files:
+ images/land/nasa30*
+Copyright: Brian Swift
+License: CC-BY-SA-4.0
+Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

@@ -6,6 +6,7 @@
 		"Alph"
 		"Gord"
 		"gard"
+		"Mata"
 		"Diamond Grey"
 		"Grey Wolf"
 				`	"The Grey Goose."`
@@ -42,3 +43,4 @@
 			`A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize Hjlod instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember. "<first>, I saw your ship landing, and thought I vould say hello."`
 			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
 			`	"A data archive with the latest briefings and analyses. Heavily shielded and encrypted, of course, so no need to worry about it showing up on a scan. It has to get there by <date>. So, could you do it?" They hold out a small case with a data crystal visible through the window.`
+			`As the scan results arrive the data is relayed down to the team in the cargo hold. Your video feed shows a large hologram of the system floating in midair above one of the pallets. Nearby, terminals flash rolling readouts and analyses. As the data on the spectral ship solidifies, cones of projected courses appear on the display. Line by line the cone tightens in as additional data flows from your telemetry, closing in on a path intersecting with the nearby world.`
