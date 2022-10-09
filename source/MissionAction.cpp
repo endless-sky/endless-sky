@@ -364,7 +364,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
-	
+
 	result.teleportPlanet = teleportPlanet;
 	
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for

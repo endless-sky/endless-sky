@@ -94,9 +94,9 @@ void MainPanel::Step()
 		isActive = false;
 		player.SetTeleportStatus(PlayerInfo::NONE);
 	}
-	
-	
-	
+
+
+
 	// Display any relevant help/tutorial messages.
 	const Ship *flagship = player.Flagship();
 	if(flagship)
