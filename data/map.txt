@@ -13145,8 +13145,8 @@ system Ghhil
 		sprite planet/gas10-hot
 		distance 6099
 		period 19052.32
-	object
-		sprite planet/station0 "Ruelogakk"
+	object "Ruelogakk"
+		sprite planet/station0
 		distance 591.4
 		period 214
 
@@ -14358,7 +14358,7 @@ system Heutesl
 		distance 309.1
 		period 209.9
 	object "Dueyu Eitch"
-		sprite planet/desert7b
+		sprite planet/desert7-b
 		distance 1169.69
 		period 851.07
 	object
@@ -31542,6 +31542,14 @@ planet "Aresepru Nat"
 	landscape land/sea0
 	description `Now that the Korath are gone, the oceans on this planet have begun to teem with fish and other living creatures once again, and the levels of dissolved oxygen and carbon dioxide are slowly swinging back into balance. Species of algae and bacteria that are able to metabolize the plastics and chemicals that the Korath left behind have spread throughout the oceans.`
 	security 0
+	
+planet Arroharg
+	landscape land/canyon12
+	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Large organic-looking machines seem to be dispalcing particular mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-accustomed and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become, and there's no telling how deep into the moon they go, as they become restricted after a certain depth.`
+	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although sometimes hard to decifer, as it seems they aren't used to outside visitors here and don't speak your language.` 
+	government Quarg
+	bribe 0
+	security 0.9
 
 planet Asgard
 	attributes deep factory rich urban
@@ -32207,6 +32215,12 @@ planet "Diligent Hand"
 	description `On this factory world, robotic workers operate the factories, repair themselves, and keep the solar power stations free of sand with very little direction or assistance from their Saryd creators. Each factory complex has its own landing pads for the freighters that drop off raw materials and receive the processed goods.`
 	"required reputation" 15
 
+planet "Dlia Jzaur"
+	landscape land/mountain2
+	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center where beautiful eclipses can be captured weekly. The much smaller secondary star is believed to be a rogue star captured by the larger star, but is slowly fading out. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandoned due to increasing warfare in nearby systems.`
+	description `Oddly enough, Dlia Jzaur has many unnatural formations on the surface that seem to reach up to the sky in areas eclipses often occur. The formations are mysteriously hollow underneath, but show no signs of Gegno involvement.`
+	government Uninhabited
+
 planet "Double Haze"
 	attributes factory farming kimek urban
 	landscape land/fields2
@@ -32327,6 +32341,14 @@ planet Eldergrasp
 	bribe 0.1
 	security 0.8
 
+planet "Ef Aourtdye"
+	landscape land/lava10
+	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a large portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
+	description `A majority of mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials, quickly prepared to be put into service and continue the harvest.`
+	government Gegno
+	"required reputation" 1
+	security 0
+
 planet "Ef Osch"
 	landscape land/beach11-harro
 	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being appropriated by the Gegno Scin, there is a relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
@@ -32343,6 +32365,10 @@ planet "Elek Kartanu"
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
 
+planet "Ember Gegno"
+	attributes "requires: quantum keystone"
+	description ``
+	
 planet "Ember Graveyard"
 	attributes "requires: quantum keystone"
 	description ""
@@ -32434,6 +32460,11 @@ planet Essime
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet Esstch
+	landscape land/badlands2
+	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno, however, due to the proximity of the system's central star, is too hot to be colonized.`
+	government Uninhabited
 
 planet Everhope
 	attributes hai station
@@ -33192,6 +33223,13 @@ planet Icelake
 	shipyard "Hai Intermediate"
 	outfitter "Hai Advanced"
 	security 0.3
+
+planet "Iemn Eitch"
+	landscape land/desert2
+	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architectures are scattered about the surface that look significantly different to those found on Dueyu Eitch, perhaps due to the nature of construction in a much different environment. A few decently large shipyard-esq platforms continue to service a few still active Gegno colony vessels from times past, presumably at a much slower pace than during their space age.` 
+	government Gegno
+	"required reputation" 1
+	security 0
 
 planet Ingot
 	attributes "dirt belt" mining moon volcanic
@@ -34415,6 +34453,14 @@ planet "Ring of Wisdom"
 	bribe 0
 	security 0.8
 
+planet Ruelogakk
+	landscape land/station5
+	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for toursists, though very few docking bays are in use. A hauntingly low amount of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
+	spaceport `Only a few small Gegno transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the Gegno's presence here seems to be kept at an extreme minimum, at most one or two seen passing by occasionally.`
+	government Quarg
+	bribe 0
+	security 0.9
+
 planet Ruin
 	attributes uninhabited
 	landscape land/hills3
@@ -35188,6 +35234,14 @@ planet Trove
 		threshold 2500
 		fleet "Small Syndicate" 5
 
+planet Truklar
+	landscape land/mars2
+	description `This Quarg world has noticeably lower gravity, as with other quarg worlds, that they more more accustomed to living on. Several decently sized extravagant villages are found nested deep within an oddly shaped glass structure, and is a beautiful sight to behold. Many different smaller biomes also contain wonderous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the Gegno, who find it hard navigating through the narrow hallways.`
+	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.` 
+	government Quarg
+	bribe 0
+	security 0.9
+
 planet Tschyss
 	landscape land/sivael6
 	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
@@ -35584,11 +35638,13 @@ planet "Wormhole Barren Beta"
 planet "Wormhole Link"
 	attributes "requires: quantum keystone"
 	description ``
-
-planet "Ember Gegno"
-	attributes "requires: quantum keystone"
-	description ``
-
+	
+planet "Wye Tzeou"
+	landscape land/snow14
+	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions in which no two look alike. These constructs are all extremely tall, and it seems the actual surface of the planet is far beneath a layer of them. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
+	description `Deep scans reveal even more odd pellucid compositions below, showing pockets in the depths of the glass forest that look like giant empty gem-like gaps between each pillar.`
+	government Uninhabited
+	
 planet "Wyvern Station"
 	attributes rim station
 	landscape land/sivael7
@@ -35615,6 +35671,17 @@ planet Yedikule
 	description `	While virtually every craft that tries to land here is a fuel scooping drone, a large number of satellites orbit Yedikule at various heights, meaning that it must have been exhaustively studied in the past.`
 	government Uninhabited
 	security 0
+
+planet "Yniu Eiu"
+	landscape land/canyon0
+	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more important visual are patches of purple-red cellular lakes flowing to and through other cells, canyons, and valleys. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
+	description `The red-purple lakes and rivers have an odd shimmer to them to suggest they are alive to some capacity. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
+	government Uninhabited
+
+planet "Yniu Ena"
+	landscape land/canyon03
+	description `Like its parent planet below, Yniu Eiu has an thick purple-reddish web of unnatural material spread across its surface. Some patches are much larger than others, with a very few being hundreds of times larger, as if they're scars on the planet.`
+	government Uninhabited
 
 planet Zenith
 	attributes frontier north "north pirate" pirate
@@ -35648,67 +35715,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
-#To-do Gegno planets. Edit System Habitat Range/Stars too.
-
-planet "Dlia Jzaur"
-	landscape land/mountain2
-	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center where beautiful eclipses can be captured weekly. The much smaller secondary star is believed to be a rogue star captured by the larger star, but is slowly fading out. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandoned due to increasing warfare in nearby systems.`
-	description `Oddly enough, Dlia Jzaur has many unnatural formations on the surface that seem to reach up to the sky in areas eclipses often occur. The formations are mysteriously hollow underneath, but show no signs of Gegno involvement.`
-	
-planet "Wye Tzeou"
-	landscape land/snow14
-	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions in which no two look alike. These constructs are all extremely tall, and it seems the actual surface of the planet is far beneath a layer of them. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
-	description `Deep scans reveal even more odd pellucid compositions below, showing pockets in the depths of the glass forest that look like giant empty gem-like gaps between each pillar.`
-
-planet "Yniu Eiu"
-	landscape land/canyon0
-	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more important visual are patches of purple-red cellular lakes flowing to and through other cells, canyons, and valleys. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
-	description `The red-purple lakes and rivers have an odd shimmer to them to suggest they are alive to some capacity. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
-
-planet "Yniu Ena"
-	landscape land/canyon03
-	description `Like its parent planet below, Yniu Eiu has an thick purple-reddish web of unnatural material spread across its surface. Some patches are much larger than others, with a very few being hundreds of times larger, as if they're scars on the planet.`
-	
-planet Esstch
-	landscape land/badlands2
-	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno, however, due to the proximity of the system's central star, is too hot to be colonized.`
-
-planet "Ef Aourtdye"
-	landscape land/lava10
-	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a large portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
-	description `A majority of mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials, quickly prepared to be put into service and continue the harvest.`
-	government Gegno
-	"required reputation" 1
-	security 0
-
-planet Truklar
-	landscape land/
-	description `This Quarg world has noticeably lower gravity, as with other quarg worlds, that they more more accustomed to living on. Several decently sized extravagant villages are found nested deep within an oddly shaped glass structure, and is a beautiful sight to behold. Many different smaller biomes also contain wonderous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the Gegno, who find it hard navigating through the narrow hallways.`
-	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.` 
-	government Quarg
-	bribe 0
-	security 0.9
-	
-planet Arroharg
-	landscape land/
-	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Large organic-looking machines seem to be dispalcing particular mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-accustomed and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become, and there's no telling how deep into the moon they go, as they become restricted after a certain depth.`
-	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although sometimes hard to decifer, as it seems they aren't used to outside visitors here and don't speak your language.` 
-	government Quarg
-	bribe 0
-	security 0.9
-
-planet Ruelogakk
-	landscape land/station5
-	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for toursists, though very few docking bays are in use. A hauntingly low amount of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
-	spaceport `Only a few small Gegno transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the Gegno's presence here seems to be kept at an extreme minimum, at most one or two seen passing by occasionally.`
-	government Quarg
-	bribe 0
-	security 0.9
-
-planet "Iemn Eitch"
-	landscape land/desert2
-	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architectures are scattered about the surface that look significantly different to those found on Dueyu Eitch, perhaps due to the nature of construction in a much different environment. A few decently large shipyard-esq platforms continue to service a few still active Gegno colony vessels from times past, presumably at a much slower pace than during their space age.` 
-	government Gegno
-	"required reputation" 1
-	security 0
