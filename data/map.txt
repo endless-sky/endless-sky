@@ -763,7 +763,7 @@ system "16 Autumn Rising"
 			period 36.3264
 
 system Cotpoxi
-	pos 850.68 -386.85
+	pos 843.1 -372.6
 	government Uninhabited
 	habitable 2560
 	belt 1607
@@ -771,6 +771,7 @@ system Cotpoxi
 	haze _menu/haze
 	link Mnashyu
 	link Yerser
+	link Vilacira
 	asteroids "small rock" 9 3.4
 	asteroids "medium rock" 8 3.4
 	asteroids "large rock" 3 2.07
@@ -806,7 +807,7 @@ system Cotpoxi
 		period 9429
 
 system Mnashyu
-	pos 775.16 -358.57
+	pos 823.6 -307.1
 	government Gegno
 	habitable 1616.2
 	"jump range" 70
@@ -2414,7 +2415,7 @@ system Acrux
 system Actannka
 	pos 1016.4 -683.2
 	government Quarg
-	habitable 1703.2
+	habitable 1480
 	belt 1228
 	"jump range" 50
 	haze _menu/haze-133
@@ -2432,7 +2433,7 @@ system Actannka
 	fleet "Large Quarg" 1400
 	fleet Quarg 1400
 	object
-		sprite star/f8
+		sprite star/a5
 		period 10
 	object
 		sprite planet/rock13-b
@@ -2442,7 +2443,7 @@ system Actannka
 		sprite planet/cloud2-b
 		distance 1108.15
 		period 320
-		object quarg1
+		object "Truklar"
 			sprite planet/rhea
 			distance 196
 			period 20
@@ -2459,7 +2460,7 @@ system Actannka
 		distance 3089.4
 		period 1521
 		object quarg2
-			sprite planet/ice7
+			sprite planet/ice7 "Arroharg"
 			distance 227.49
 			period 60
 	object
@@ -3122,7 +3123,7 @@ system Aldhibain
 			period 13.622
 
 system Aleit
-	pos 958 -691.6
+	pos 960.4 -704.5
 	government Quarg
 	habitable 7405
 	belt 1864
@@ -5461,7 +5462,7 @@ system Asikafarnut
 system Asio
 	pos 807 -629.8
 	government Gegno
-	habitable 3276.8
+	habitable 1276.5
 	"jump range" 80
 	belt 1478
 	haze _menu/haze-133
@@ -5477,11 +5478,11 @@ system Asio
 	fleet "Small Vi" 2300
 	fleet "Gegno Miners" 1600
 	object
-		sprite star/o0
+		sprite star/m0
 		period 10
-	object
+	object "Ef Aourtdye"
 		sprite planet/rock11
-		distance 362
+		distance 935.9
 		period 107.6
 	object
 		sprite planet/rock8-b
@@ -13034,8 +13035,8 @@ system Ghhil
 		distance 6099
 		period 19052.32
 	object
-		sprite planet/station0
-		distance 764.648
+		sprite planet/station0 "Ruelogakk"
+		distance 591.4
 		period 214
 
 system Gienah
@@ -14207,7 +14208,7 @@ system Hesselpost
 system Heutesl
 	pos 871.8 -631.53
 	government Gegno
-	habitable 351.25
+	habitable 1403
 	belt 1000
 	haze _menu/haze
 	link Asio
@@ -14236,15 +14237,15 @@ system Heutesl
 	fleet Quarg 2800
 	fleet "Gegno Miners" 2000
 	object
-		sprite star/k5
+		sprite star/f8
 		period 10
 	object Esstch
 		sprite planet/dust0
 		distance 309.1
 		period 209.9
 	object "Dueyu Eitch"
-		sprite planet/rock5-b
-		distance 689
+		sprite planet/desert7b
+		distance 1169.69
 		period 851.07
 	object
 		sprite planet/gas16
@@ -14744,7 +14745,7 @@ system Hunter
 			period 22.2053
 
 system Huud
-	pos 772.57 -398.3
+	pos 767.7 -394.3
 	government Uninhabited
 	habitable 1280
 	belt 1319
@@ -23429,7 +23430,7 @@ system Pukako
 		sprite star/k0
 		period 10
 	object
-		sprite planet/desert0-b
+		sprite planet/ice1 "Wye Tzeou"
 		distance 813
 		period 1090.87
 	object
@@ -28272,7 +28273,7 @@ system Tortor
 			period 37.3803
 	
 system Tscera
-	pos 870 -680.9
+	pos 867 -684.1
 	government Uninhabited
 	habitable 1220
 	haze _menu/haze-33
@@ -29272,13 +29273,14 @@ system Vesvii
 		offset 300
 
 system Vilacira
-	pos 812.69 -327.13
+	pos 805.1 -350.2
 	government Gegno
 	habitable 28.8
 	"jump range" 70
 	belt 1157
 	haze _menu/haze-33
 	link Cotpoxi
+	link Mnashyu
 	asteroids "small rock" 2 2.73
 	asteroids "medium rock" 8 3.6
 	asteroids "large rock" 2 4.2
@@ -30325,7 +30327,7 @@ system Yerser
 
 system Yli
 	pos 730.7 -504.8
-	government Gegno
+	government Uninhabited
 	habitable 369.7
 	"jump range" 70
 	belt 1529
@@ -30357,9 +30359,9 @@ system Yli
 		distance 296
 		period 236.8
 	object
-		sprite planet/rock6-b
-		distance 628
-		period 732
+		sprite planet/rock6-b "Dlia Jzaur"
+		distance 345
+		period 423
 	object
 		sprite planet/cloud0-b
 		distance 1292
@@ -30370,7 +30372,7 @@ system Yli
 		period 6188.4
 
 system Yllke
-	pos 949.3 -636.9
+	pos 950.2 -638.2
 	government Gegno
 	habitable 924.8
 	"jump range" 60
@@ -35366,31 +35368,65 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
-# To-do Gegno planets:
+#To-do Gegno planets. Edit System Habitat Range/Stars too.
 
 planet "Dlia Jzaur"
-	government Uninhabited
-
+	landscape land/mountain2
+	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center where beautiful eclipses can be captured weekly. The much smaller secondary star is believed to be a rogue star captured by the larger star, but is slowly fading out. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandonded due to increasing warfare in nearby systems.`
+	description `Oddly enough, Dlia Jzaur has many unnatural formations on the surface that seem to reach up to the sky in areas eclipses often occur. The formations are mysteriously hollow underneath, but show no signs of Gegno involvement.`
+	
 planet "Wye Tzeou"
-	government Uninhabited
+	landscape land/snow14
+	`For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions in which no two look alike. These constructs are all extremely tall, and it seems the actual surface of the planet is far beneath a layer of them. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
+	`Deep scans reveal even more odd pellucid compositions below, showing pockets in the depths of the glass forest that look like giant empty gem-like gaps between each pillar.`
 
 planet "Yniu Eiu"
-	government Uninhabited
+	landscape land/canyon0
+	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of grey and white, but the more important visual are patches of purple-red cellular lakes flowing to and through other cells, canyons, and valleys. It is unclear if this is a natural occurence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
+	description `The red-purple lakes and rivers have an odd shimmer to them to suggest they are alive to some capacity. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
 
 planet "Yniu Ena"
-	government Uninhabited
+	landscape land/canyon03
+	description `Like its parent planet below, Yniu Eiu has an thick purple-reddish web of unnatural material spread across its surface. Some patches are much larger than others, with a very few being hundreds of times larger, as if they're scars on the planet.`
 	
 planet Esstch
-	government Uninhabited
+	landscape land/badlands2
+	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno, however, due to the proximity of the system's central star, is too hot to be colonized.`
 
-planet quarg1
-	government Quarg
+plnaet Ef Aourtdye
+	landscape land/lava10
+	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a large portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno. A majority of mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials, quickly prepared to be put into service and continue the harvest.`
+	government Gegno
+	"required reputation" 1
+	security 0
 
-planet quarg2
+planet Truklar
+	landscape land/
+	description `This Quarg world has noticably lower gravity, as with other quarg worlds, that they more more accustomed to living on. Several decently sized extravagant villages are found nested deep within an oddly shaped glass structure, and is a beautiful sight to behold. Many different smaller biomes also contain wonderous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the Gegno, who find it hard navigating through the narrow hallways.
+	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.` 
 	government Quarg
+	bribe 0
+	security 0.9
+	
+planet Arroharg
+	landscape land/
+	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Large organic-looking machines seem to be dispalcing particular mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-accustomed and is not desgined in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become, and there's no telling how deep into the moon they go, as they become restricted after a certain depth.
+	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although sometimes hard to decifer, as it seems they aren't used to outside visitors here and don't speak your language.` 
+	government Quarg
+	bribe 0
+	security 0.9
 
-planet quarg3s
+planet Ruelogakk
+	landscape land/station5
+	description `This Quarg station, athough pristine and kept in high order, has been constructed rather recenty compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for toursists, though very few docking bays are in use. A hauntingly low amount of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
+	spaceport `Only a few small Gegno transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the Gegno's presence here seems to be kept at an extreme miniumum, at most one or two seen passing by occasionally.`
 	government Quarg
+	bribe 0
+	security 0.9
 
 planet "Iemn Eitch"
+	landscape land/desert2
+	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architectures are scattered about the surface that look significantly different to those found on Dueyu Eitch, perhaps due to the nature of construction in a much different environment. A few decently large shipyard-esq platforms continue to service a few still active Gegno colony vessels from times past, presumably at a much slower pace than during their space age.` 
 	government Gegno
+	"required reputation" 1
+	security 0
