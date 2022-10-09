@@ -238,7 +238,7 @@ public:
 	// Get or set the planet to land on at the end of the travel path.
 	const Planet *TravelDestination() const;
 	void SetTravelDestination(const Planet *planet);
-	
+
 	enum TeleportStatus {NONE, TELEPORTING, MOVED};
 	void QueueTeleport(const Planet *teleportPlanet);
 	void DoQueuedTeleport();
@@ -362,7 +362,7 @@ private:
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
-	
+
 	TeleportStatus teleportationStatus = NONE;
 	const Planet *teleportDestination;
 

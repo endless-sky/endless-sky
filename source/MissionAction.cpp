@@ -198,7 +198,7 @@ string MissionAction::Validate() const
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
 			return "required outfit \"" + outfit.first->Name() + "\"";
-	
+
 	if(teleportPlanet)
 		if(!teleportPlanet->IsValid())
 			return "teleport planet not valid";
