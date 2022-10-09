@@ -461,7 +461,7 @@ mission "Unfettered Jump Drive 3"
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
 				accept
 			label jobboard
-			`	"If you want to sell more Jump Drive to us you can do so by going to the job board."`
+			`	"If you want to sell more Jump Drives to us, you can do so by going to the job board."`
 				accept
 	
 	on accept
