@@ -788,7 +788,7 @@ outfit "Digger Mining Beam"
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
-		"firing energy"  2.1
+		"firing energy" 2.1
 		"firing heat" 4.3
 		"shield damage" 0.5
 		"hull damage" 0.9
@@ -1033,6 +1033,7 @@ outfit "Firestorm Torpedo Rack"
 	description "This large cage-like rack is designed to be able to house several deadly Firestorm Torpedoes."
 
 outfit "Firestorm Battery"
+	plural "Firestorm Batteries"
 	category "Secondary Weapons"
 	cost 2383000
 	thumbnail "outfit/firestorm battery"

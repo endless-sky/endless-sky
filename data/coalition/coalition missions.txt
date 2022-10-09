@@ -138,7 +138,7 @@ mission "Coalition: Contributor"
 			label end
 			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters.`
 
-#For pre-0.9.7 compatibility
+# For pre-0.9.7 compatibility
 mission "Coalition License Patch"
 	invisible
 	landing
@@ -1502,7 +1502,7 @@ mission "Saryd University Lecture"
 					decline
 			label accept
 			`	"Thank you! Aelbris, my name is. To be late I do not wish, as not recorded, the event is." He soon gathers his things and boards your ship.`
-					accept
+				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Aelbris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -1561,7 +1561,7 @@ mission "Saryd University Lecture"
 					goto scared
 			label scared
 			`	"To answer their questions, if you really don't want, I can't stop you, I suppose." Aelbris says with a sigh.`
-					decline
+				decline
 			label questions
 			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. The Arach Heliarch comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
 			branch hai
@@ -2983,8 +2983,8 @@ mission "Coalition: Long Lost Property 3"
 			label fail
 			`	"Now I can't just trust you to get every last one of their ships, can I?" he replies. "If you want to make it worth for me, it's a million. If you're not interested, there's nothing I can do about it."`
 			
-# For the mission NPCs to work properly, this needs to force an accept at this point.
-# Add a choice to defer once some sort of "on board" child of "npc" exists and allows for all NPCs to be defined in just this mission.
+			# For the mission NPCs to work properly, this needs to force an accept at this point.
+			# Add a choice to defer once some sort of "on board" child of "npc" exists and allows for all NPCs to be defined in just this mission.
 			
 			choice
 				`	"Fine, just tell me already."`
