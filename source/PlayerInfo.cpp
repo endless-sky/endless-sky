@@ -2030,7 +2030,7 @@ void PlayerInfo::DoQueuedTeleport()
 {
 	if(teleportDestination && planet)
 	{
-		flagship->SetSystem( teleportDestination->GetSystem());
+		flagship->SetSystem(teleportDestination->GetSystem());
 		flagship->SetPlanet(teleportDestination);
 		if(!flagshiponly)
 		{
