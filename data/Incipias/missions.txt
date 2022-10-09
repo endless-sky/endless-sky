@@ -195,6 +195,17 @@ mission "Incipias: First Contact IV"
 		conversation
 			`At the spaceport you see a small group of Hai diplomats, one of them is familiar to you from the embassy. You walk towards them and greet them. One of them says, "I hope for a save journey on your ship Captain." You answer, "The system we are travlling to is not far from here." He says, "Than not more is to be discussed, bring us to the Quarg ringworld, so that we can talk to them." You agree and get your ship ready.`
 				accept
-	on stopover
+	on complete
 		conversation
-			``
+			`When you arrive at the ringworld the Hai take the lead. The few Quarg around seem surprised by the presence of the Hai. The Hai talk to one of the Quarg and he shows you the way.`
+			`    Once again you are overwhelmed by the size of a Quarg ringworld. It takes you some time tto get to your destination. When you get to the location the Quarg told you to go, one of the Hai turns towards you. "It will be the best if we talk to them without you being present. I hope you understand that." He tells you. Surprised by this you just nod in agreement. The Hai walk into the room and leave you alone.`
+			`    After spending hours of time on waiting the door opens and not the Hai but a Quarg comes out. "Could you please follow me?" He asks and without waiting for a response he leads the way. Left no real choice you just follow him.`
+			`    You arrive at another room. "This is... an unusual situation." The Quarg begins talk. "It is seldom that our friends, the Hai, are asking for something like this. Actually this never happened before. They brought up some good arguments and we know that they have no bad intentions." He pauses for a moment. "But this leaves us in a dilemma situation. We do not want to dismiss their request, but we also have concerns. Not concerns about you anymore, but concerns about what happens after you made contact. This will change this species for sure. But we do not know in which direction. But here comes the one reason, why we will allow you to make contact and giive you a translation device. If this species continues the path it currently is moving on. It will lead to their distinction. We see this for some time now, but we can not step in, because that is not our role in this galaxy. But you, you can change something and now that the Hai have proved you, we do not have concerns about you anymore." He takes something that looks like a tablet and hands it you. "This is the translation device. Their communication is based on light, so you have to face them while you are talking to them. This also works over video communication, you just have to hold it, so that the back of the device shows to the screen. Also their language is a lot different than yours, human, you will see what that means." You take the device and thank him. "Oh, and two other things, if you sell hyperdrives or other advanced spacetravelling technology to them we will remotely destroy them, and second, if you ever try to harm them, we will harm you. I hope this is alright for you." A little bit shocked you agree. "Go now and make contact to them. We will give the Hai a ride home." Without any further words, he leaves you alone.`
+
+mission "Incipias: First Contact V"
+	landing
+	to offer
+		has "Incipias: First Contact IV: done"
+	on enter Dom'us
+		conversation
+			`This time as you enter this system, you are prepared.`
