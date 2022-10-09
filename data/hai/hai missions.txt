@@ -462,6 +462,7 @@ mission "Unfettered Jump Drive 3"
 				accept
 			label jobboard
 			`	"If you want to sell more Jump Drive to us you can do so by going to the job board."`
+				accept
 	
 	on accept
 		outfit "Jump Drive" -1
