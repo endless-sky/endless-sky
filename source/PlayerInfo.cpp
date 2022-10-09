@@ -2027,7 +2027,7 @@ void PlayerInfo::QueueTeleport(const Planet *teleportPlanet)
 
 void PlayerInfo::DoQueuedTeleport()
 {
-	if(teleportDestination)
+	if(teleportDestination && planet)
 	{
 		system = teleportDestination->GetSystem();
 		planet = teleportDestination;
