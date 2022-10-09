@@ -2018,9 +2018,9 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 
-void PlayerInfo::QueueTeleport(const Planet *teleportPlanet, bool isFlagshipOnly)
+void PlayerInfo::QueueTeleport(const Planet *newTeleportPlanet, bool isFlagshipOnly)
 {
-	teleportDestination = teleportPlanet;
+	teleportPlanet = newTeleportPlanet;
 	flagshipOnly = isFlagshipOnly;
 }
 
@@ -2028,25 +2028,25 @@ void PlayerInfo::QueueTeleport(const Planet *teleportPlanet, bool isFlagshipOnly
 
 void PlayerInfo::DoQueuedTeleport()
 {
-	if(teleportDestination && planet)
+	if(teleportPlanet && planet)
 	{
-		flagship->SetSystem(teleportDestination->GetSystem());
-		flagship->SetPlanet(teleportDestination);
+		flagship->SetSystem(teleportPlanet->GetSystem());
+		flagship->SetPlanet(teleportPlanet);
 		if(!flagshipOnly)
 			for(const shared_ptr<Ship> &ship : ships)
 				if(!ship->IsParked() && !ship->IsDestroyed() && ship->GetPlanet() == planet)
 				{
-					ship->SetSystem( teleportDestination->GetSystem());
-					ship->SetPlanet(teleportDestination);
+					ship->SetSystem( teleportPlanet->GetSystem());
+					ship->SetPlanet(teleportPlanet);
 				}
-		system = teleportDestination->GetSystem();
-		planet = teleportDestination;
+		system = teleportPlanet->GetSystem();
+		planet = teleportPlanet;
 		teleportationStatus = TELEPORTING;
-		teleportDestination = nullptr;
+		teleportPlanet = nullptr;
 	}
-	if(!planet && teleportDestination)
+	if(!planet && teleportPlanet)
 	{
-		teleportDestination = nullptr;
+		teleportPlanet = nullptr;
 	}
 }
 
