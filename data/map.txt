@@ -23564,8 +23564,8 @@ system Pukako
 	object
 		sprite star/k0
 		period 10
-	object
-		sprite planet/ice1 "Wye Tzeou"
+	object "Wye Tzeou"
+		sprite planet/ice1
 		distance 813
 		period 1090.87
 	object
@@ -30631,8 +30631,8 @@ system Yli
 		sprite planet/fg_terrestrial6
 		distance 296
 		period 236.8
-	object
-		sprite planet/rock6-b "Dlia Jzaur"
+	object "Dlia Jzaur"
+		sprite planet/rock6-b
 		distance 345
 		period 423
 	object
