@@ -70,6 +70,8 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	// If the player is teleporting, simulate a TakeOff followed
+	// by a forced landing. No transition will be noticeable.
 	if(player.TeleportationStatus() == PlayerInfo::TELEPORTING)
 	{
 		player.SetTeleportStatus(PlayerInfo::MOVED);

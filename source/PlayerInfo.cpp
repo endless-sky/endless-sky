@@ -2035,10 +2035,17 @@ void PlayerInfo::DoQueuedTeleport()
 		flagship->SetPlanet(planet);
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			ship->SetSystem(system);
-			ship->SetPlanet(planet);
+			if(!ship->IsParked())
+			{
+				ship->SetSystem(system);
+				ship->SetPlanet(planet);
+			}
 		}
 		teleportationStatus = TELEPORTING;
+		teleportDestination = nullptr;
+	}
+	if(!planet && teleportDestination)
+	{
 		teleportDestination = nullptr;
 	}
 }
