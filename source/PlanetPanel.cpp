@@ -74,7 +74,7 @@ void PlanetPanel::Step()
 	// by a forced landing. No transition will be noticeable.
 	if(player.TeleportationStatus() == PlayerInfo::TELEPORTING)
 	{
-		player.SetTeleportStatus(PlayerInfo::MOVED);
+		player.SetTeleportStatus(PlayerInfo::TELEPORTED);
 		TakeOff();
 	}
 	// If the previous mission callback resulted in a "launch", take off now.
