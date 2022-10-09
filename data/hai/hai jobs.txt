@@ -502,7 +502,6 @@ mission "Unfettered Jump Drive 4"
 		fail "Unfettered Jump Drive 4"
 
 
-
 mission "Delivery to Human Space [0]"
 	name "Special Delivery to <planet>"
 	job
