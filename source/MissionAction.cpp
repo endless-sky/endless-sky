@@ -128,7 +128,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			teleportPlanet = GameData::Planets().Get(child.Token(1));
 			if(child.Size() > 2)
 				if(child.Token(2) == "flagshiponly")
-					flagshiponly = true;
+					flagshipOnly = true;
 		}
 		else
 			action.LoadSingle(child, missionName);
@@ -169,9 +169,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		if(teleportPlanet)
-		{
-			out.Write("teleport", teleportPlanet->Name(), flagshiponly ? "flagship" : "fleet");
-		}
+			out.Write("teleport", teleportPlanet->Name(), flagshipOnly ? "flagship" : "fleet");
 
 		action.Save(out);
 	}
@@ -338,7 +336,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 		player.MissionCallback(Conversation::ACCEPT);
 	if(teleportPlanet)
 	{
-		player.QueueTeleport(teleportPlanet, flagshiponly);
+		player.QueueTeleport(teleportPlanet, flagshipOnly);
 		if(conversation->IsEmpty())
 			player.DoQueuedTeleport();
 	}

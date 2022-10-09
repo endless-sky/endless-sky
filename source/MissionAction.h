@@ -79,7 +79,7 @@ private:
 	ExclusiveItem<Conversation> conversation;
 
 	const Planet *teleportPlanet = nullptr;
-	bool flagshiponly = false;
+	bool flagshipOnly = false;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
 	std::map<const Outfit *, int> requiredOutfits;
