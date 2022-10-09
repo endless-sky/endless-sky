@@ -70,6 +70,11 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	if(player.TeleportationStatus() == PlayerInfo::TELEPORTING)
+	{
+		player.SetTeleportStatus(PlayerInfo::MOVED);
+		TakeOff();
+	}
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))

@@ -214,10 +214,6 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			GameData::Missions().Get(toFail);
 		}
 	}
-	else if(key == "teleport" && hasValue)
-	{
-		teleportPlanet.Load(child);
-	}
 	else
 		conditions.Add(child);
 }
@@ -370,9 +366,6 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 			if(fail.count(mission.Identifier()))
 				player.FailMission(mission);
 	}
-	
-	if(!teleportPlanet.IsEmpty() && teleportPlanet.IsValid())
-		player.TeleportToPlanet(teleportPlanet.PickPlanet(player.GetSystem()));
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
 }

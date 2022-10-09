@@ -32,7 +32,7 @@ using namespace std;
 // Move the state of this panel forward one game step.
 void Panel::Step()
 {
-	// It is ok for panels to be stateless.
+	
 }
 
 

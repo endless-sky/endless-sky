@@ -1732,6 +1732,7 @@ void PlayerInfo::MissionCallback(int response)
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
+	DoQueuedTeleport();
 }
 
 
@@ -1741,6 +1742,7 @@ void PlayerInfo::MissionCallback(int response)
 void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
+	DoQueuedTeleport();
 	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
 
@@ -2016,17 +2018,43 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 
-void PlayerInfo::TeleportToPlanet(const Planet *teleportPlanet)
+void PlayerInfo::QueueTeleport(const Planet *teleportPlanet)
 {
-	system = teleportPlanet->GetSystem();
-	planet = teleportPlanet;
-	flagship->SetSystem(system);
-	flagship->SetPlanet(planet);
-	for(const shared_ptr<Ship> &ship : ships)
+	teleportDestination = teleportPlanet;
+}
+
+
+
+void PlayerInfo::DoQueuedTeleport()
+{
+	if(teleportDestination)
 	{
-		ship->SetSystem(system);
-		ship->SetPlanet(planet);
+		system = teleportDestination->GetSystem();
+		planet = teleportDestination;
+		flagship->SetSystem(system);
+		flagship->SetPlanet(planet);
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			ship->SetSystem(system);
+			ship->SetPlanet(planet);
+		}
+		teleportationStatus = TELEPORTING;
+		teleportDestination = nullptr;
 	}
+}
+
+
+
+PlayerInfo::TeleportStatus PlayerInfo::TeleportationStatus() const
+{
+	return teleportationStatus;
+}
+
+
+
+void PlayerInfo::SetTeleportStatus(PlayerInfo::TeleportStatus status)
+{
+	teleportationStatus = status;
 }
 
 

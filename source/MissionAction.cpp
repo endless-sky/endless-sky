@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "TextReplacements.h"
@@ -122,6 +123,8 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			else
 				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 		}
+		else if(key == "teleport")
+			teleportPlanet = GameData::Planets().Get(child.Token(1));
 		else
 			action.LoadSingle(child, missionName);
 	}
@@ -160,6 +163,8 @@ void MissionAction::Save(DataWriter &out) const
 			conversation->Save(out);
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
+		if(teleportPlanet)
+			out.Write("teleport", teleportPlanet->Name());
 
 		action.Save(out);
 	}
@@ -193,6 +198,10 @@ string MissionAction::Validate() const
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
 			return "required outfit \"" + outfit.first->Name() + "\"";
+	
+	if(teleportPlanet)
+		if(!teleportPlanet->IsValid())
+			return "teleport planet not valid";
 
 	return action.Validate();
 }
@@ -320,6 +329,12 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
+	if(teleportPlanet)
+	{
+		player.QueueTeleport(teleportPlanet);
+		if(conversation->IsEmpty())
+			player.DoQueuedTeleport();
+	}
 
 	action.Do(player, ui);
 }
@@ -349,7 +364,9 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
-
+	
+	result.teleportPlanet = teleportPlanet;
+	
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for
 	// use in other parts of this mission.
 	if(result.action.Payment() && trigger != "complete")

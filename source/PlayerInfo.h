@@ -239,7 +239,11 @@ public:
 	const Planet *TravelDestination() const;
 	void SetTravelDestination(const Planet *planet);
 	
-	void TeleportToPlanet(const Planet *teleportPlanet);
+	enum TeleportStatus {NONE, TELEPORTING, MOVED};
+	void QueueTeleport(const Planet *teleportPlanet);
+	void DoQueuedTeleport();
+	TeleportStatus TeleportationStatus() const;
+	void SetTeleportStatus(TeleportStatus status);
 
 	// Toggle which secondary weapon the player has selected.
 	const std::set<const Outfit *> &SelectedWeapons() const;
@@ -358,6 +362,9 @@ private:
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
+	
+	TeleportStatus teleportationStatus = NONE;
+	const Planet *teleportDestination;
 
 	std::set<const Outfit *> selectedWeapons;
 
