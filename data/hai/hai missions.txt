@@ -402,6 +402,8 @@ mission "Unfettered Jump Drive 2"
 		"reputation: Hai (Unfettered)" >?= 20
 		fail "Unfettered Jump Drive 1"
 
+
+
 mission "Unfettered Jump Drive 3"
 	minor
 	landing
@@ -455,9 +457,9 @@ mission "Unfettered Jump Drive 3"
 				`	"What do you plan to do to the species that inhabits those worlds now?"`
 			
 			label wanderers
-			`	"Those worlds are now held by a species of scavengers, who feast on the ruins of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
-			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory, and that any further jump drive transactions should be done from the job board.`
-				decline
+			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
+			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
+				accept
 			label jobboard
 			`	"If you want to sell more Jump Drive to us you can do so by going to the job board."`
 	
