@@ -123,7 +123,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			else
 				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 		}
-		else if(key == "teleport")
+		else if(key == "teleport" && hasValue)
 			teleportPlanet = GameData::Planets().Get(child.Token(1));
 		else
 			action.LoadSingle(child, missionName);
