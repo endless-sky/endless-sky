@@ -434,8 +434,8 @@ outfit "Type 1 Radiant Thruster"
 	"engine capacity" -12
 	"thrust" 6.9
 	"thrusting energy" 0.55
-	"thrusting heat" 0.85
-	"cooling" 1.5
+	"thrusting heat" -1.5
+	"cooling" .75
 	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 12
 	"flare sound" "plasma tiny"
@@ -452,8 +452,8 @@ outfit "Type 2 Radiant Thruster"
 	"engine capacity" -27
 	"thrust" 18.5
 	"thrusting energy" 1.3
-	"thrusting heat" 2.4
-	"cooling" 3.6
+	"thrusting heat" -3.6
+	"cooling" 1.8
 	"flare sprite" "effect/wanderer flare/small"
 		"frame rate" 14
 	"flare sound" "plasma small"
@@ -470,8 +470,8 @@ outfit "Type 3 Radiant Thruster"
 	"engine capacity" -42
 	"thrust" 33.1
 	"thrusting energy" 2.2
-	"thrusting heat" 4.3
-	"cooling" 6.5
+	"thrusting heat" -6.5
+	"cooling" 3.25
 	"flare sprite" "effect/wanderer flare/medium"
 		"frame rate" 16
 	"flare sound" "plasma medium"
@@ -488,8 +488,8 @@ outfit "Type 4 Radiant Thruster"
 	"engine capacity" -65
 	"thrust" 58
 	"thrusting energy" 3.7
-	"thrusting heat" 7.6
-	"cooling" 11.7
+	"thrusting heat" -11.7
+	"cooling" 5.85
 	"flare sprite" "effect/wanderer flare/large"
 		"frame rate" 18
 	"flare sound" "plasma large"
@@ -506,8 +506,8 @@ outfit "Type 1 Radiant Steering"
 	"engine capacity" -9
 	"turn" 181
 	"turning energy" .3
-	"turning heat" 0.6
-	"cooling" 1.0
+	"turning heat" -1
+	"cooling" .5
 	"steering flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 12
 	"steering flare sound" "plasma tiny"
@@ -524,8 +524,8 @@ outfit "Type 2 Radiant Steering"
 	"engine capacity" -20
 	"turn" 476
 	"turning energy" .7
-	"turning heat" 1.5
-	"cooling" 2.1
+	"turning heat" -2.1
+	"cooling" 1.05
 	"steering flare sprite" "effect/wanderer flare/small"
 		"frame rate" 14
 	"steering flare sound" "plasma small"
@@ -542,8 +542,8 @@ outfit "Type 3 Radiant Steering"
 	"engine capacity" -30
 	"turn" 825
 	"turning energy" 1.2
-	"turning heat" 2.6
-	"cooling" 3.9
+	"turning heat" -3.9
+	"cooling" 1.95
 	"steering flare sprite" "effect/wanderer flare/medium"
 		"frame rate" 16
 	"steering flare sound" "plasma medium"
@@ -560,8 +560,8 @@ outfit "Type 4 Radiant Steering"
 	"engine capacity" -47
 	"turn" 1466
 	"turning energy" 2.0
-	"turning heat" 4.5
-	"cooling" 6.7
+	"turning heat" -6.7
+	"cooling" 3.35
 	"steering flare sprite" "effect/wanderer flare/large"
 		"frame rate" 18
 	"steering flare sound" "plasma large"
