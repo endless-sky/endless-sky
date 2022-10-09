@@ -291,8 +291,10 @@ mission "Unfettered Jump Drive 3"
 			label wanderers
 			`	"Those worlds are now held by a species of scavengers, who feast on the ruins of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
+				accept
 			label jobboard
 			`	"If you want to sell more Jump Drive to us you can do so by going to the job board."`
+				accept
 	
 	on accept
 		outfit "Jump Drive" -1
