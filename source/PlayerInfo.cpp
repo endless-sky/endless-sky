@@ -2038,7 +2038,7 @@ void PlayerInfo::DoQueuedTeleport()
 				for(const shared_ptr<Ship> &ship : ships)
 					if(!ship->IsParked() && !ship->IsDestroyed() && ship->GetPlanet() == planet)
 					{
-						ship->SetSystem( teleportPlanet->GetSystem());
+						ship->SetSystem(teleportPlanet->GetSystem());
 						ship->SetPlanet(teleportPlanet);
 					}
 			system = teleportPlanet->GetSystem();
