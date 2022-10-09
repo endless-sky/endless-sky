@@ -41,10 +41,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/truncate.hpp"
 #include "UI.h"
 
+#ifdef __ANDROID__
+#include "AndroidFile.h"
+#endif
+
 #include "opengl.h"
 
 #include <algorithm>
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
@@ -259,6 +264,63 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				"Any progress will be lost, unless you have saved other snapshots. "
 				"Are you sure you want to do that?"));
 	}
+#ifdef __ANDROID__
+	else if ((key == 'x') && !selectedPilot.empty())
+	{
+		// export the pilot
+		SDL_Log("Export");
+		std::string path = Files::Saves() + selectedFile;
+		std::string data = Files::Read(path);
+
+		AndroidFile f;
+		f.SaveFile(selectedPilot + "_exported.txt", data);
+	}
+	else if (key == 'i')
+	{
+		// import a pilot
+		SDL_Log("Import");
+		AndroidFile f;
+		std::string data = f.GetFile("Import save file");
+
+		if (!data.empty())
+		{
+			// Validate the file, and load the pilot name
+			std::stringstream data_in(data);
+			DataFile imported(data_in);
+			// DataFile won't fail, even if being fed arbitrary garbage. Validate
+			// this file by checking for some specific keys
+			std::set<std::string> expected_keys{"pilot","date","system","planet","playtime"};
+			std::string pilot_name;
+			for (auto& node: imported)
+			{
+				expected_keys.erase(node.Token(0));
+				if (node.Token(0) == "pilot")
+				{
+					pilot_name = node.Token(1) + " " + node.Token(2);
+				}
+			}
+			if (expected_keys.empty())
+			{
+				// looks good. lets write it.
+				std::string path = Files::Saves() + pilot_name + "~imported.txt";
+				int idx = 1;
+				while (Files::Exists(path))
+				{
+					path = Files::Saves() + pilot_name + "~imported-"
+												+ std::to_string(idx) + ".txt";
+				}
+				Files::Write(path, data);
+				UpdateLists();
+			}
+			else
+			{
+				GetUI()->Push(new Dialog(
+					"The selected file does not appear to be a valid "
+					"endless-sky save game."));
+			}
+		}
+	}
+#endif
 	else if(key == 'b' || command.Has(Command::MENU) || key == SDLK_AC_BACK || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())

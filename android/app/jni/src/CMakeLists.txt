@@ -157,6 +157,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Politics.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Preferences.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/PreferencesPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/PrintData.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Projectile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Radar.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Random.cpp
