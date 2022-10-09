@@ -2029,18 +2029,18 @@ void PlayerInfo::DoQueuedTeleport()
 {
 	if(teleportDestination && planet)
 	{
-		system = teleportDestination->GetSystem();
-		planet = teleportDestination;
-		flagship->SetSystem(system);
-		flagship->SetPlanet(planet);
+		flagship->SetSystem( teleportDestination->GetSystem());
+		flagship->SetPlanet(teleportDestination);
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			if(!ship->IsParked())
+			if(!ship->IsParked() && !ship->IsDestroyed() && !ship->IsDisabled() && ship->GetSystem() == system)
 			{
-				ship->SetSystem(system);
-				ship->SetPlanet(planet);
+				ship->SetSystem( teleportDestination->GetSystem());
+				ship->SetPlanet(teleportDestination);
 			}
 		}
+		system = teleportDestination->GetSystem();
+		planet = teleportDestination;
 		teleportationStatus = TELEPORTING;
 		teleportDestination = nullptr;
 	}
