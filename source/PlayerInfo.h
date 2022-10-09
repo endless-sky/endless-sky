@@ -365,7 +365,7 @@ private:
 
 	TeleportStatus teleportationStatus = NONE;
 	bool flagshiponly;
-	const Planet *teleportDestination;
+	const Planet *teleportDestination = nullptr;
 
 	std::set<const Outfit *> selectedWeapons;
 
