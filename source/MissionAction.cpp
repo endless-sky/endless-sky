@@ -126,8 +126,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(key == "teleport" && hasValue)
 		{
 			teleportPlanet = GameData::Planets().Get(child.Token(1));
-			if(child.Size() > 2)
-				if(child.Token(2) == "flagshiponly")
+			if(child.Size() > 2 && child.Token(2) == "flagshiponly")
 					flagshipOnly = true;
 		}
 		else
