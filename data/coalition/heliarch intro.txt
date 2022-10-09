@@ -964,7 +964,7 @@ mission "Heliarch Expedition 1"
 			`	He squints his eyes, then speaks, "Repeat that, could you?" You say it again, and he once more looks puzzled. He gestures to a Heliarch beside him, then takes off the translation box from around his neck, swapping it for theirs.`
 			`	He asks again, and you repeat it again. "An... incomplete ringworld, is it?"`
 			choice
-				`	"No, it is definetly broken. There's tons of debris littering the system, and no sign of life in it."`
+				`	"No, it is definitely broken. There's tons of debris littering the system, and no sign of life in it."`
 					goto how
 				`	"I didn't say incomplete, I said broken. I know the difference."`
 			`	The other Heliarchs freeze at your tone, and all keep staring at you, as if afraid to look towards Aulori for his reaction.`
