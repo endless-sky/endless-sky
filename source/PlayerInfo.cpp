@@ -2033,16 +2033,12 @@ void PlayerInfo::DoQueuedTeleport()
 		flagship->SetSystem(teleportDestination->GetSystem());
 		flagship->SetPlanet(teleportDestination);
 		if(!flagshipOnly)
-		{
 			for(const shared_ptr<Ship> &ship : ships)
-			{
 				if(!ship->IsParked() && !ship->IsDestroyed() && ship->GetPlanet() == planet)
 				{
 					ship->SetSystem( teleportDestination->GetSystem());
 					ship->SetPlanet(teleportDestination);
 				}
-			}
-		}
 		system = teleportDestination->GetSystem();
 		planet = teleportDestination;
 		teleportationStatus = TELEPORTING;
