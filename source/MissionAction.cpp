@@ -124,7 +124,12 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 		}
 		else if(key == "teleport" && hasValue)
+		{
 			teleportPlanet = GameData::Planets().Get(child.Token(1));
+			if(child.Size() > 2)
+				if(child.Token(2) == "flagshiponly")
+					flagshiponly = true;
+		}
 		else
 			action.LoadSingle(child, missionName);
 	}
@@ -164,7 +169,9 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		if(teleportPlanet)
-			out.Write("teleport", teleportPlanet->Name());
+		{
+			out.Write("teleport", teleportPlanet->Name(), flagshiponly ? "flagship" : "fleet");
+		}
 
 		action.Save(out);
 	}
@@ -331,7 +338,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 		player.MissionCallback(Conversation::ACCEPT);
 	if(teleportPlanet)
 	{
-		player.QueueTeleport(teleportPlanet);
+		player.QueueTeleport(teleportPlanet, flagshiponly);
 		if(conversation->IsEmpty())
 			player.DoQueuedTeleport();
 	}

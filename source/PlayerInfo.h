@@ -240,7 +240,7 @@ public:
 	void SetTravelDestination(const Planet *planet);
 
 	enum TeleportStatus {NONE, TELEPORTING, MOVED};
-	void QueueTeleport(const Planet *teleportPlanet);
+	void QueueTeleport(const Planet *teleportPlanet, bool _flagshiponly = false);
 	void DoQueuedTeleport();
 	TeleportStatus TeleportationStatus() const;
 	void SetTeleportStatus(TeleportStatus status);
@@ -364,6 +364,7 @@ private:
 	const Planet *travelDestination = nullptr;
 
 	TeleportStatus teleportationStatus = NONE;
+	bool flagshiponly;
 	const Planet *teleportDestination;
 
 	std::set<const Outfit *> selectedWeapons;
