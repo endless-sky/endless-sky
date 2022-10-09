@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "LocationFilter.h"
 
 #include <cstdint>
 #include <map>
@@ -32,6 +33,7 @@ class Outfit;
 class PlayerInfo;
 class Ship;
 class UI;
+class Planet;
 
 
 
@@ -83,6 +85,8 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
+
+	LocationFilter teleportationFilter;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

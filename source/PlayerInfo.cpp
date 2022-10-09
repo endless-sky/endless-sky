@@ -2016,6 +2016,21 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 
+void PlayerInfo::TeleportToPlanet(const Planet *teleportPlanet)
+{
+	planet = teleportPlanet;
+	system = planet->GetSystem();
+	flagship->SetSystem(system);
+	flagship->SetPlanet(planet);
+	for(std::shared_ptr<Ship> ship : ships)
+	{
+		ship->SetSystem(system);
+		ship->SetPlanet(planet);
+	}
+}
+
+
+
 // Check which secondary weapons the player has selected.
 const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
 {
