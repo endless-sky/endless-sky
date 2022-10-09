@@ -366,6 +366,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 			if(fail.count(mission.Identifier()))
 				player.FailMission(mission);
 	}
+
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
 }

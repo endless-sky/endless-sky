@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
-#include "LocationFilter.h"
-#include "Planet.h"
 
 #include <cstdint>
 #include <map>
@@ -34,7 +32,6 @@ class Outfit;
 class PlayerInfo;
 class Ship;
 class UI;
-class Planet;
 
 
 
