@@ -214,8 +214,6 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			GameData::Missions().Get(toFail);
 		}
 	}
-	else if(key == "teleport")
-		teleportationFilter.Load(child);
 	else
 		conditions.Add(child);
 }
@@ -259,11 +257,6 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
 		out.Write("fail", name);
-	if(!teleportationFilter.IsEmpty())
-	{
-		out.Write("teleport");
-		teleportationFilter.Save(out);
-	}
 
 	conditions.Save(out);
 }
@@ -374,9 +367,6 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 				player.FailMission(mission);
 	}
 
-	if(!teleportationFilter.IsEmpty() && teleportationFilter.IsValid())
-		player.TeleportToPlanet(teleportationFilter.PickPlanet(player.GetSystem()));
-	
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
 }

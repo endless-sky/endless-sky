@@ -238,7 +238,6 @@ public:
 	// Get or set the planet to land on at the end of the travel path.
 	const Planet *TravelDestination() const;
 	void SetTravelDestination(const Planet *planet);
-	void TeleportToPlanet(const Planet *planet);
 
 	// Toggle which secondary weapon the player has selected.
 	const std::set<const Outfit *> &SelectedWeapons() const;
