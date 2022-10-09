@@ -1,7 +1,0 @@
-mission "test"
-    landing
-    on offer
-        conversation
-            "hi"
-                accept
-        teleport "Earth"
