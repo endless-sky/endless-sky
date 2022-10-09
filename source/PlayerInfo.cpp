@@ -2028,25 +2028,26 @@ void PlayerInfo::QueueTeleport(const Planet *newTeleportPlanet, bool isFlagshipO
 
 void PlayerInfo::DoQueuedTeleport()
 {
-	if(teleportPlanet && planet)
+	if(teleportPlanet)
 	{
-		flagship->SetSystem(teleportPlanet->GetSystem());
-		flagship->SetPlanet(teleportPlanet);
-		if(!flagshipOnly)
-			for(const shared_ptr<Ship> &ship : ships)
-				if(!ship->IsParked() && !ship->IsDestroyed() && ship->GetPlanet() == planet)
-				{
-					ship->SetSystem( teleportPlanet->GetSystem());
-					ship->SetPlanet(teleportPlanet);
-				}
-		system = teleportPlanet->GetSystem();
-		planet = teleportPlanet;
-		teleportationStatus = TELEPORTING;
-		teleportPlanet = nullptr;
-	}
-	if(!planet && teleportPlanet)
-	{
-		teleportPlanet = nullptr;
+		if(planet)
+		{
+			flagship->SetSystem(teleportPlanet->GetSystem());
+			flagship->SetPlanet(teleportPlanet);
+			if(!flagshipOnly)
+				for(const shared_ptr<Ship> &ship : ships)
+					if(!ship->IsParked() && !ship->IsDestroyed() && ship->GetPlanet() == planet)
+					{
+						ship->SetSystem( teleportPlanet->GetSystem());
+						ship->SetPlanet(teleportPlanet);
+					}
+			system = teleportPlanet->GetSystem();
+			planet = teleportPlanet;
+			teleportationStatus = TELEPORTING;
+			teleportPlanet = nullptr;
+		}
+		else
+			teleportPlanet = nullptr;
 	}
 }
 
