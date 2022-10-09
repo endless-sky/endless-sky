@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <string>
 
-
 namespace { // test namespace
 
 // #region mock data

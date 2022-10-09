@@ -22,8 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-
-
 namespace {
 	const Point defaultFormationPoint = Point();
 }
