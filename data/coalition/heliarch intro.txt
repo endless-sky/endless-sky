@@ -550,6 +550,7 @@ mission "Heliarch Recon 1"
 		"reputation: Quarg" >= 0
 		"coalition jobs" >= 55
 		has "visited alta hai: offered"
+		has "First Contact: Hai: offered"
 		has "First Contact: Kuwaru Efreti: offered"
 		has "Coalition: Contributor: done"
 		not "Resistance: Questions: done"
@@ -954,7 +955,7 @@ mission "Heliarch Expedition 1"
 			choice
 				`	"Can you bring me to a higher-up? I have some information on ringworlds."`
 				`	"Is there anyone I can talk to about a broken ringworld?"`
-			`	The group discusses among themselves for a bit, then they bring you to a restricted section of the ringworld, reserved for Heliarchs. "Wait here, please," they tell you, offering you a seat on one end of a long table.`
+			`	The group discusses among themselves for a bit, then they bring you into a restricted section of the ringworld, reserved for Heliarchs. The inner halls of the <origin> are unlike any other Heliarch facility you've been to, with a messy array of large cannisters, equipment boxes, and some form of isolating texture plastered all over the walls, floor and ceiling. Most notable of all, though, is the sheer number of guards stationed here. "Wait here, please," the Heliarchs escorting you tell you, opening a door to something akin to a conference room, offering you a seat on one end of a long table.`
 			`	Some ten minutes pass before anyone comes in, but after that many Heliarch members start filling up the room, taking their own seats at the table. When the door opens for the last of them to come in, the guard announces "Consul Aulori," to which all the Helliarchs stand up and salute, the noise of conversation giving room to hooves hitting the ground. He is an old Saryd of gray eyes, pale hairs, with a short, well-kept beard, wearing a peculiar necklace with four large gemstones hanging from it. He sits opposite to you, the other Heliarchs sitting back down when he does.`
 			`	"Forgive me for the delay you must, colleagues," he says to the other Heliarchs. "Caught up in my evening prayers, I was." He examines the room for a while, briefly glancing at each of the Heliarchs, until his eyes settle on yours. "Told, I was, that some valuable information for us, you have, Captain <last>."`
 			choice
@@ -963,14 +964,23 @@ mission "Heliarch Expedition 1"
 			`	He squints his eyes, then speaks, "Repeat that, could you?" You say it again, and he once more looks puzzled. He gestures to a Heliarch beside him, then takes off the translation box from around his neck, swapping it for theirs.`
 			`	He asks again, and you repeat it again. "An... incomplete ringworld, is it?"`
 			choice
+				`	"No, it is definetly broken. There's tons of debris littering the system, and no sign of life in it."`
+					goto how
 				`	"I didn't say incomplete, I said broken. I know the difference."`
-				`	"Is this some joke? If you don't care about the broken ringworld, just tell me. Don't waste my time."`
+			`	The other Heliarchs freeze at your tone, and all keep staring at you, as if afraid to look towards Aulori for his reaction.`
+			branch license
+				has "Heliarch License: done"
+			`	He stares intently at you for a few seconds, then at the agents guarding the entry door. They open it, and call for some more Heliarchs. They come in and position themselves to your sides, and behind you. "Afraid I am that once again, failed to understand it I have, <first> <last>. Now, one final time, repeat it, would you?" Reading the room, you carefully repeat the information, taking care to not come off as impolite again.`
+				goto how
+			label license
+			`	"Do you now?" He begins. "And hope might I that get to explaining the difference, today still you shall? Require my attention, important work does, so if done being insubordinate, you are, suggest I do that enlighten us all on the difference, you do. Then, decide on whether or not to drop the symbol you seem so eager to disrespect into this system's sun, I will." He finishes gesturing to your head, and the Heliarch circlet you bear. You carefully repeat the information, taking care to not come off as impolite again.`
+			label how
 			`	He leans forward lightly, staring at you. Looking around the table, the other Heliarchs are engaged in a what appears to be a quiet, heated discussion, gesticulating and occasionally tilting the table with their body weight amidst whispers.`
 			`	"How?" Aulori asks, eyes still locked on you. You explain as best as you can about where Deneb is, and what you saw on the other side of the wormhole. When you get to explaining how the system was discovered, the Heliarchs seem to collectively gasp when you first utter the word "Pug." You pause, and many go back to the quiet, whispering discussions, some laughing it off, and others staying silent.`
 			`	One Saryd moves as if getting up, but sits back down once Aulori stands up, firmly pushing one hand against the table. Conversation around the table dies out, as he stares you down for a long minute. "Leave us for a moment, would you?" he finally says, having some guards bring you outside the room.`
 			`	The whispering discussion from earlier now becomes a much louder debate, though the door muffles it all enough that no translator outside the room manages to pick up what is being said. After half an hour, most voices are cut as someone rapidly hits the table, roughly, yelling something in what you think is the Saryd language.`
 			`	It all grows quiet for a while, and then the door opens again. Some of the other Heliarchs leave in a haste, and you're asked to head inside again. Consul Aulori is standing up still, giving you a nod as you come in.`
-			`	"Adjusted, your ship's sensors will be. Better suited, they will become, for detailed tridimensional projections," he says. He has a guard bring you back to your ship, where some engineers go inside your ship and spend some time tinkering with it. After they're done, one of the Heliarchs that was in the room approaches you, telling you they need you to land on the planet you described, <stopovers>, and to travel to <waypoints> to scan the ringworld. He wishes you luck, then hurries back to the restricted areas.`
+			`	"Adjusted, your ship's sensors will be. Better suited, they will become, for detailed tridimensional projections," he says. He has a pair of Heliarch guards bring you back to your ship, where some engineers go inside your ship and spend some time tinkering with it. After they're done, one of the Heliarchs that was in the room approaches you, telling you they need you to land on the planet you described, <stopovers>, and to travel to <waypoints> to scan the ringworld. He wishes you luck, then hurries back to the restricted areas.`
 				accept
 	on stopover
 		dialog `You fly around the mysterious world for a while, until your sensors beep in an odd way, in what you guess is the signal that the Heliarch's modifications are done doing their read on the planet.`
@@ -980,12 +990,18 @@ mission "Heliarch Expedition 1"
 		event "heliarch expedition break" 22 34
 		payment 3000000
 		conversation
-			`You're met by Aulori when you land, as well as several other Heliarchs. You transmit your scan logs, and they bring you to a separate room once again, where a model of the broken ringworld is being projected for all to see.`
-			`	"Skeptical of what you told us, we all were, Captain," Aulori says, gesturing for you to accompany him as he walks around the projection. "Claimed that insane, you were, some of those here did." He reaches down to tap a Kimek on her head. "Or that wasting our time with jokes, you were." He bumps another Saryd's arm. "Assured me, some of them had, that wholly impossible, it was, to break a ring." He pushes an Arach's leg with his hoof. He stops where the projection shows signs of greater damage, where a large chunk of the ring was cut off, littered with floating debris. "But not insane, neither a joker, you are. And impossible, this clearly is not. Invaluable information, what you've brought us is, Captain <last>. Investigate the site thoroughly, we must, so ask for your assistance again, we will, when a suitable crew for it, we have found."`
+			`You're met by a dozen Heliarch guards when you land, and they quickly escort you to the ring's restricted sections after you transmit the scan logs. Aulori, as well as several other Heliarchs from the meeting you had last time, are waiting for you in a large room, where a holographic model of the broken ringworld starts being projected for all to see.`
+			`	"Skeptical of what you told us, we all were, Captain," Aulori says, gesturing for you to accompany him as he walks around the projection. "Claimed that insane, you were, some of those here did." He looks down at a Kimek briefly. "Or that wasting our time with jokes, you were." A Saryd steps back as you two continue, making way for the consul. "Assured me, some of them had, that wholly impossible, it was, to break a ring." He stomps down his hooves close to an Arach, stopping where the projection shows signs of greater damage, with a large, cut off chunk of the ring in full display, surrounded by clouds of floating debris. "But not insane, neither a joker, you are. And impossible, this clearly is not. Invaluable information, what you've brought us is, Captain <last>. Investigate the site thoroughly, we must, so ask for your assistance again, we will, when a suitable crew for it, we have found."`
 			`	A Saryd rushes closer once Aulori says that, "Sir, against sending off anyone, the council is-".`
 			`	"Agree, the council will," Aulori cuts him off, still looking at the projection.`
 			`	The Saryd thinks for a while, then continues, "Take years, it would, to find and train someone willing to become an inspector. A dangerous task it-"`
-			`	"And wait around for years, we will not," Aulori interrupts him again. "Either find someone willing, or find another line of work, you will," he looks at the Saryd, then at the door.`
+			branch "expeditions past"
+				has "Coalition: Expeditions Past 10: done"
+			`	"And wait around for years, we will not," Aulori interrupts him again. "On borrowed time, we already are. Either find someone willing, and find them fast, you should, or find another line of work, you will," he looks at the Saryd, then at the door.`
+				goto end
+			label "expeditions past"
+			`	"Dangerous?" Aulori scoffs, interrupting the Heliarch once again. "Plagued by the council's cowardice, your mind is. Make it back, Arbiter Sedlitaris did. Well alive she is, and helped by this very human in her expedition, she was," he says as he nods your way. "Living proof she is that unfounded, the council's archaic paranoia is. Now, find someone willing quickly, you must, before learn of this and meddle with our work again, they do."`
+			label end
 			`	The Heliarch leaves the room, and Aulori hands you a chip worth <payment>. He has you escorted out of the room and back to your ship, promising to have more work for you soon.`
 
 event "heliarch expedition break"
@@ -1015,29 +1031,41 @@ mission "Heliarch Expedition 3"
 		has "Heliarch Expedition 2: done"
 	on offer
 		conversation
-			`Consul Aulori meets you when you land. "Carefully analyzing your findings, we have been, Captain. Much insight, they have brought us," he says. "Only so much can be gained from second hand observation, unfortunately. For that reason, to escort one of our own ships there, we ask of you."`
-			`	He points to a Heliarch Punisher, parked in the distance with its crew loading some cargo into it. He says this ship will go with you.`
+			`You find the landing bays deserted when you arrive, save for one Heliarch Punisher close to your own ship, and what must be hundreds of armed Heliarchs patrolling the area. Consul Aulori meets you as you're coming down the ramp. "Carefully analyzing your findings, we have been, Captain. Much insight, they have brought us," he says. "Only so much can be gained from second hand observation, unfortunately. For that reason, escort one of our own ships there, you must."`
+			`	He points to the Punisher close to your ship, and you see its crew loading dozens of cargo containers into it. He tells you the ship will follow you to the broken ring, and set up a base on Ruin so that they may study the debris closely for a longer period.`
 			choice
 				`	"Of course. I'll show them the way."`
 					goto accept
 				`	"What do you expect to find there? Spare parts?"`
 					goto parts
 				`	"Well, I think they're probably good to get there on their own. Sorry, but I'm not interested."`
-					decline
+			label decline
+			branch license
+				has "Heliarch License: done"
+			`	He grimaces lightly. "Afraid I am, Captain, that an option, that is not. Very unfamiliar with navigating human space as is, we are, and in a truly exceptional location, this ring is. Remind you, I must, that bring us to our attention in the first place, you did, abandon this work now, you cannot. On behalf of our Coalition, insist I must that aid us in this effort, you do." Pausing for just a second, he continues in a lower tone. "Very... unwelcoming to you, the Coalition would become, if drop this now, you did. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you will bring them."`
+				goto end
+			label license
+			`	"Asking for your cooperation, I was not. Orders, these are." He looks at you sternly. "Escort the ship there, you will, or find our Coalition much less hospitable to you, yoy shall. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you will bring them."`
+				goto end
 			label parts
-			`	"Too advanced, the composites that make up this and all other ringworlds are. Replicate them, we cannot. Not yet. If how this one was destroyed, we learn, maybe how to construct parts of our own, we could."`
+			`	"Too advanced, the composites that make up this and all other ringworlds are. Replicate them, we cannot. Not yet. If how this one was destroyed, we learn, maybe how to construct parts of our own, we could. If not, then perhaps find ways to damage the rings, we could. Managed to do so before, we haven't."`
 			choice
 				`	"Alright, I'll show them the way."`
-				`	"I'm no megastructure engineer. It won't help to have me go there. They can go on their own, I'm not interested."`
-					decline
+					goto accept
+				`	"Well, I'm no megastructure engineer, so I don't see the need to go there myself. They can find their own way."`
+					goto decline
 			label accept
-			`	"Excellent. Equipped with a jump drive, the ship is, and to reach this "Ruin" planet, enough fuel, it has. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you may bring them."`
-			`	He introduces you to the Punisher's crew and the dozens of scientists and engineers, who will also be accompanying you, then he wishes you all good luck. Once the consul leaves, some among the Punisher's crew start fidgeting. Their Captain, an Arach, has them ready the ship to follow yours, and they prepare to depart.`
+			`	"Excellent. Equipped with a jump drive, the ship is, and to reach this 'Ruin' planet, enough fuel, it has. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you may bring them."`
+			label end
+			`	He introduces you to the Punisher's crew, and the dozens of scientists and engineers who are preparing to board the warship, ready to accompany you. He wishes you all good luck, and leaves, escorted by a few dozen guards. Once the consul is out of sight, some among the Punisher's crew start fidgeting. Their Captain, an Arach, has them ready the ship to follow yours, and they prepare to depart.`
 				accept
 	npc accompany save
 		personality escort heroic opportunistic
 		government "Heliarch"
 		ship "Heliarch Punisher (Fuel)" "Eldest Inspector"
+	on fail
+		"reputation: Heliarch" = -1000
+		"reputation: Coalition" = -1000
 
 mission "Heliarch Expedition 4"
 	name "Extraterritorial Venture"
@@ -1061,6 +1089,9 @@ mission "Heliarch Expedition 4"
 		conversation
 			`The Punisher's captain had you follow his ship all over the planet after they refueled in the planet's odd facilities. Apparently they want an isolated place to set up their camp here, somewhere they wouldn't be easily spotted.`
 			`	They settle for a cavern on the way up a mountain, overlooking a foggy valley. A river is faintly visible through the dense fog. As they unload the cargo and start setting up, the captain comes to you and says that they'll meet you in the spaceport in a few hours to discuss "the acquisition of supplies."`
+	on fail
+		"reputation: Heliarch" = -1000
+		"reputation: Coalition" = -1000
 
 mission "Heliarch Expedition 5"
 	name "Settlement Supplies"
