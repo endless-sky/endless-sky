@@ -254,8 +254,8 @@ const string &Preferences::VSyncSetting()
 
 void Preferences::ToggleCameraAcceleration()
 {
-	cameraAccelerationIndex = cameraAccelerationIndex < CAMERA_ACCELERATION_SETTINGS.size() - 1 ?
-		cameraAccelerationIndex + 1 : 0;
+	cameraAccelerationIndex = cameraAccelerationIndex <
+		static_cast<int>(CAMERA_ACCELERATION_SETTINGS.size()) - 1 ? cameraAccelerationIndex + 1 : 0;
 }
 
 
