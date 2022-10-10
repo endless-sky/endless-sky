@@ -47,6 +47,9 @@ namespace {
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	int cameraAccelerationIndex = 0;
+	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
 }
 
 
@@ -57,7 +60,6 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
-	settings["Camera Acceleration"] = false;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
@@ -91,6 +93,8 @@ void Preferences::Load()
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if (node.Token(0) == "camera acceleration")
+			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -108,6 +112,7 @@ void Preferences::Save()
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("camera acceleration", cameraAccelerationIndex);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -244,3 +249,19 @@ const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
 }
+
+
+
+void Preferences::ToggleCameraAcceleration()
+{
+	cameraAccelerationIndex = cameraAccelerationIndex < CAMERA_ACCELERATION_SETTINGS.size() - 1 ?
+		cameraAccelerationIndex + 1 : 0;
+}
+
+
+
+const std::string &Preferences::CameraAcceleration()
+{
+	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
+}
+
