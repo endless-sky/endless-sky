@@ -113,9 +113,9 @@ mission "Incipias: First Contact III"
 			`    About an hour later the Hai returns with the plant and a excited looking face. "This plant is wonder, we exposed it to various environmental factors and some of them were really extreme, but all that happened was that the air got more breathable. This really is a worthy prove of a friendship with another species."`
 			label haihelp
 			`    Now the Hai turn to you with a very serious expression, "We have promised you to help you and now we will do so. Please come back in no earlier than four days to take a delegation of us to the Quarg ringworld. We need some time to prepare some stuff. You will meet us on Mirrorlake." You agree and say goodbye.`
-		event "Hai preperation time" 4
+		event "Hai preparation time" 4
 
-event "Hai preperation time"
+event "Hai preparation time"
 
 mission "wanderer peace prove"
 	landing
@@ -182,14 +182,14 @@ mission "coalition peace prove"
 				"I want something to remember you, to remember peace is possible."
 			`    "Yor  project understand I can. The people over me about your request let me ask." He turns around and goes away.`
 			label c1
-			`    When noises in the line behind you are growing louder he finally comes back. With him he carries a small box. "A decent gift for you I got." He opens the box and in there a small gem like no one you have seen before is laying, reflecting the light in green, red and blue shades. "This gem a fusion of three others it is, an emerald for the Saryds, a ruby for the Kimek and a sapphire for the Arachi. A fusion of our three species it is, you could say. This gem representing our species best it is. You appretiate this gift I hope." You are really thankful for this gift and thank the Heliarch a lot. But then you have to leave because there is still a line behind you.`
+			`    When noises in the line behind you are growing louder he finally comes back. With him he carries a small box. "A decent gift for you I got." He opens the box and in there a small gem like no one you have seen before is laying, reflecting the light in green, red and blue shades. "This gem a fusion of three others it is, an emerald for the Saryds, a ruby for the Kimek and a sapphire for the Arachi. A fusion of our three species it is, you could say. This gem representing our species best it is. You appreciate this gift I hope." You are really thankful for this gift and thank the Heliarch a lot. But then you have to leave because there is still a line behind you.`
 				accept
 
 mission "Incipias: First Contact IV"
 	landing
 	name "A Hai delegation"
 	to offer
-		has "event: Hai preperation time"
+		has "event: Hai preparation time"
 	source Mirrorlake
 	destination "Spec Inci"
 	on offer
@@ -230,4 +230,4 @@ mission "Incipias: First Contact V"
 			label limits
 			`    The Incipias listens to you and then it looks like they are looking to someone on their right you do not see. After a short moment he turn towards you again. They start flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
 			label c1
-			`    Some basic informtion about the spacestation is send to your display and the communication channel gets closed.`
+			`    Some basic information about the spacestation is send to your display and the communication channel gets closed.`
