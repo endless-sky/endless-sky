@@ -52,17 +52,17 @@ Date::Date(int day, int month, int year)
 // Convert a date to a string.
 const string &Date::ToString() const
 {
-	string date_format = Preferences::DateFormat();
+	string dateFormat = Preferences::DateFormat();
 
-	if(date_format != dateFormatInUse)
+	if(dateFormat != dateFormatInUse)
 	{
-		dateFormatInUse = date_format;
+		dateFormatInUse = dateFormat;
 		str = "";
 	}
 
 	// Because this is a somewhat "costly" operation, cache the result. The
 	// cached value is discarded if the date is changed.
-	if((date && str.empty()) || date_format != dateFormatInUse)
+	if((date && str.empty()) || dateFormat != dateFormatInUse)
 	{
 		int day = Day();
 		int month = Month();
@@ -71,7 +71,7 @@ const string &Date::ToString() const
 		static const string MONTH[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-		if(date_format == "ymd")
+		if(dateFormat == "ymd")
 		{
 			str.append(to_string(year));
 			str.append("-");
@@ -83,7 +83,7 @@ const string &Date::ToString() const
 				str.append("0");
 			str.append(to_string(day));
 		}
-		else if(date_format == "mdy")
+		else if(dateFormat == "mdy")
 		{
 			str = Weekday(day, month, year);
 			str.append(" ");
@@ -93,7 +93,7 @@ const string &Date::ToString() const
 			str.append(", ");
 			str.append(to_string(year));
 		}
-		else if(date_format == "dmy")
+		else if(dateFormat == "dmy")
 		{
 			str = Weekday(day, month, year);
 			str.append(", ");
