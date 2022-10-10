@@ -457,7 +457,8 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = Preferences::Has("Camera Acceleration") ? flagship->Position() + offset : flagship->Position();
+		center = Preferences::Has("Camera Acceleration") ?
+			flagship->Position() + offset : flagship->Position();
 		centerVelocity = flagship->Velocity();
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
@@ -1489,10 +1490,12 @@ void Engine::CalculateStep()
 	if(flagship)
 	{
 		if(flagship->IsThrusting())
-			offsetMultiplier = offsetMultiplier >= 1 ? 1.0 : offsetMultiplier + 0.0025;
+			offsetMultiplier = offsetMultiplier >= 1. ? 1.
+				: offsetMultiplier + offsetChange;
 		else
-			offsetMultiplier = offsetMultiplier <= 0 ? 0.0 : offsetMultiplier - 0.0025;
-		offset = flagship->Velocity() * 20 * offsetMultiplier;
+			offsetMultiplier = offsetMultiplier <= 0. ? 0.
+				: offsetMultiplier - offsetChange;
+		offset = flagship->Velocity() * 20. * offsetMultiplier;
 		newCenter = Preferences::Has("Camera Acceleration") ? flagship->Position() + offset : flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 	}

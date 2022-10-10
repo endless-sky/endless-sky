@@ -57,7 +57,7 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
-	settings["Camera Acceleration"] = true;
+	settings["Camera Acceleration"] = false;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
