@@ -836,8 +836,8 @@ void PlayerInfo::SetFlagship(Ship &other)
 	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldHaveParent = (flagship && ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
-		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
+		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 
 	// Move the flagship to the beginning to the list of ships.
