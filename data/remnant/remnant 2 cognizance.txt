@@ -165,7 +165,7 @@ mission "Remnant: Cognizance 4"
 			label voidrifle
 			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting void sprites and must realize the importance of stopping this.`
 			label next
-			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
+			`	"It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
 				accept
 	npc kill
 		to despawn
@@ -403,7 +403,7 @@ mission "Remnant: Cognizance 10"
 		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
-			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>. `
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>.`
 				accept
 	on stopover
 		dialog
@@ -442,7 +442,7 @@ mission "Remnant: Cognizance 12"
 	source "Viminal"
 	destination "Esquiline"
 	stopover "Nasqueron"
-	npc accompany
+	npc accompany save
 		government "Remnant"
 		personality timid launching escort
 		fleet
@@ -526,7 +526,7 @@ mission "Remnant: Cognizance 15"
 	destination "Viminal"
 	to offer
 		has "Remnant: Cognizance 14: active"
-	npc accompany
+	npc accompany save
 		government "Ember Waste"
 		personality waiting mute
 		ship "Ember Waste Node" "Unknown Entity"
@@ -549,7 +549,7 @@ mission "Remnant: Cognizance 16"
 			`	After several hours of watching the creature, one captain pushes his way forward to where you, Chilia, and Plume are talking. "I think I have an idea about this thing, Prefect!" the man signs excitedly. "Look at the positions of the glowing tips when it freezes. That pattern there matches the star positions of the main Ember Waste systems when viewed from Peragenor, and that second matches Convector." He pulls out a datapad and pulls up a projection of the starmap. "It is hard to tell due to the imprecision, but it looks like the third freeze is probably Antevorta or Nenia."`
 			`	Plume chimes in, "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating that it wants you to travel there. Please give it a try."`
 				accept
-	npc accompany
+	npc accompany save
 		government "Ember Waste"
 		personality mute
 		ship "Ember Waste Node" "Unknown Entity"
@@ -613,7 +613,7 @@ mission "Remnant: Cognizance 18"
 			label letsgo
 			`	Chilia continues. "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, load up, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of Pelicans are warming up, each one synchronizing to your IFF and confirming their status.`
 				accept
-	npc save accompany
+	npc accompany save
 		government "Remnant"
 		personality pacifist coward launching escort
 		fleet
