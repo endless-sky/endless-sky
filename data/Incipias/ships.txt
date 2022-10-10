@@ -1,6 +1,7 @@
 ship "Nimbus"
 	"plural" "Nimbus'"
 	"sprite" ship/nimbus
+	"thumbnail" thumbnail/nimbus
 	"swizzle" 0
 	attributes
 		"category" "Transport"
