@@ -1576,7 +1576,7 @@ const PlayerInfo::SortType PlayerInfo::GetAvailableSortType() const
 
 void PlayerInfo::NextAvailableSortType()
 {
-	availableSortType = static_cast<SortType>((availableSortType + 1) % (CONVENIENT+1));
+	availableSortType = static_cast<SortType>((availableSortType + 1) % (CONVENIENT + 1));
 	SortAvailable();
 }
 
@@ -2526,7 +2526,7 @@ void PlayerInfo::ApplyChanges()
 	}
 
 	// Recalculate jumps that the available jobs will need
-	for(Mission& mission : availableJobs)
+	for(Mission &mission : availableJobs)
 		mission.CalculateJumps(system);
 }
 
@@ -2777,7 +2777,7 @@ void PlayerInfo::CreateMissions()
 void PlayerInfo::SortAvailable()
 {
 	// Destinations: planets OR system. Only counting them, so the type doesn't matter.
-	set<const void*> destinations;
+	set<const void *> destinations;
 	if(availableSortType == CONVENIENT)
 	{
 		for(const Mission &mission : Missions())
@@ -2787,19 +2787,18 @@ void PlayerInfo::SortAvailable()
 				destinations.insert(mission.Destination());
 				destinations.insert(mission.Destination()->GetSystem());
 
-				for(const Planet* stopover : mission.Stopovers())
+				for(const Planet *stopover : mission.Stopovers())
 				{
 					destinations.insert(stopover);
 					destinations.insert(stopover->GetSystem());
 				}
 
-				for(const System* waypoint : mission.Waypoints())
+				for(const System *waypoint : mission.Waypoints())
 					destinations.insert(waypoint);
 			}
 		}
 	}
-	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
-	{
+	availableJobs.sort([&](const Mission &lhs, const Mission &rhs) {
 		// First, separate rush orders with deadlines, if wanted
 		if(sortSeparateDeadline)
 		{
@@ -2822,8 +2821,8 @@ void PlayerInfo::SortAvailable()
 		{
 			case CONVENIENT:
 			{
-				// Sorting by "convenience" means you already have a mission to that planet.
-				// Still convenient but not as much is a different planet in the same system.
+				// Sorting by "convenience" means you already have a mission to a
+				// planet. Missions at the same planet are sorted higher.
 				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
 				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
 				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
@@ -2832,14 +2831,11 @@ void PlayerInfo::SortAvailable()
 				if(lConvenient > rConvenient)
 					return false;
 			}
-			// Tiebreaker for equal CONVENIENT is SPEED
+			// Tiebreaker for equal CONVENIENT is SPEED.
 			case SPEED:
-			// A higher "Speed" means the mission takes less time, ie. fewer jumps.
-			// This is sorted as "speed" instead of "# of jumps", so that the "greatest" mission
-			//  is a more preferable mission: with fewer jumps.
-			// When two missions tie for SPEED, the PAY tiebreaker comparison
-			//  will keep the same "preferable mission" sort order (which is simply, higher pay)
 			{
+				// A higher "Speed" means the mission takes less time, ie. fewer
+				// jumps.
 				const int lJumps = lhs.ExpectedJumps();
 				const int rJumps = rhs.ExpectedJumps();
 
@@ -2854,21 +2850,21 @@ void PlayerInfo::SortAvailable()
 				}
 				else
 				{
-					// If both are negative:
-					// Zero jumps means the mission's destination is the source system
-					//  which implies the actual path is complicated - consider that slow.
-					// Negative jumps means the mission path is undetermined, e.g. through a wormhole
-					//  which we'll consider worse than 0.
-					//  -2 means there's two unknown paths, so is worse than -1
+					// Negative values indicate indeterminable mission paths.
+					// eg. through a wormhole, meaning lower values are worse.
 
-					// If one is negative and one is positive:
-					// Consider the positive case 'greater' because at least the number of jumps is known.
+					// A value of 0 indicates the mission destination is the
+					// source, implying the actual path is complicated; consider
+					// that slow.
 
-					// TL;DR: simply compare the value when at least one value is not positive
+					// Positive values are 'greater' because at least the number
+					// of jumps is known.
+
+					// Compare the value when at least one value is not positive.
 					return lJumps < rJumps;
 				}
 			}
-			// Tiebreaker for equal SPEED is PAY
+			// Tiebreaker for equal SPEED is PAY.
 			case PAY:
 			{
 				const int64_t lPay = lhs.GetAction(Mission::Trigger::COMPLETE).Payment();
@@ -2878,7 +2874,7 @@ void PlayerInfo::SortAvailable()
 				else if(lPay > rPay)
 					return false;
 			}
-			// Tiebreaker for equal PAY is ABC:
+			// Tiebreaker for equal PAY is ABC.
 			case ABC:
 			{
 				if(lhs.Name() < rhs.Name())

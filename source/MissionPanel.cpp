@@ -365,13 +365,13 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				return false;
 			}
 			// Sorter buttons
-			else if( x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
+			else if(x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
 			{
-				if( x < Screen::Left() + SIDE_WIDTH - 80)
+				if(x < Screen::Left() + SIDE_WIDTH - 80)
 					player.ToggleSortSeparateDeadline();
-				else if( x < Screen::Left() + SIDE_WIDTH - 45)
+				else if(x < Screen::Left() + SIDE_WIDTH - 45)
 					player.ToggleSortSeparatePossible();
-				else if( x < Screen::Left() + SIDE_WIDTH - 25)
+				else if(x < Screen::Left() + SIDE_WIDTH - 25)
 					player.NextAvailableSortType();
 				else
 					player.ToggleSortAscending();
@@ -519,8 +519,8 @@ bool MissionPanel::Hover(int x, int y)
 		{
 			dragSide = -1;
 
-			hoverSort = y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10 &&
-				x < Screen::Left() + SIDE_WIDTH - 25 && x >= Screen::Left() + SIDE_WIDTH - 45;
+			hoverSort = y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
+					&& x < Screen::Left() + SIDE_WIDTH - 25 && x >= Screen::Left() + SIDE_WIDTH - 45;
 		}
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
@@ -692,11 +692,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 
 	// Panel sorting
-	const Color &text= *GameData::Colors().Get("medium");
-	const Sprite *arrow[2] = {SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending")};
-	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
-	const Sprite *sortIcon[4] = {SpriteSet::Get("ui/sort abc"),
-		SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient")};
+	const Color &text = *GameData::Colors().Get("medium");
+	const Sprite *arrow[2] = { SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
+	const Sprite *checkbox[2] = { SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked") };
+	const Sprite *sortIcon[4] = { SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
+		SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient") };
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 
 	// Draw Sorting Columns
@@ -708,7 +708,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		if(hoverSort)
 			FillShader::Fill(pos + Point(SIDE_WIDTH - 45., 8.), Point(22., 16.), highlight);
 
-		font.Draw({"? ", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
+		font.Draw({ "? ", { 0, Alignment::RIGHT } }, pos + Point(SIDE_WIDTH - 77., 0.), text);
 		SpriteShader::Draw(checkbox[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 70., 8.));
 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
@@ -730,8 +730,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
-	const std::list<Mission>::const_iterator &selectIt, bool separateDeadlineOrPossible) const
+Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+	bool separateDeadlineOrPossible) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
@@ -747,9 +747,9 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 			continue;
 
 		pos.Y() += 20.;
-		if(separateDeadlineOrPossible && !separated &&
-			((player.ShouldSortSeparateDeadline() && it->Deadline()) ||
-			(player.ShouldSortSeparatePossible() && !it->CanAccept(player))))
+		if(separateDeadlineOrPossible && !separated
+				&& ((player.ShouldSortSeparateDeadline() && it->Deadline())
+						|| (player.ShouldSortSeparatePossible() && !it->CanAccept(player))))
 		{
 			pos.Y() += 8.;
 			separated = true;
@@ -763,7 +763,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 				highlight);
 
 		if(it->Deadline())
-			SpriteShader::Draw(fast, pos + Point(-4.,8.));
+			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},

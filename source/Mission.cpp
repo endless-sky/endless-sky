@@ -1138,7 +1138,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.name = name;
 	result.waypoints = waypoints;
 	// Handle waypoint systems that are chosen randomly.
-	const System * const sourceSystem = player.GetSystem();
+	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
 		const System *system = filter.PickSystem(sourceSystem);
@@ -1382,7 +1382,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 
 
-int Mission::CalculateJumps(const System * sourceSystem)
+int Mission::CalculateJumps(const System *sourceSystem)
 {
 	expectedJumps = 0;
 
