@@ -33,6 +33,8 @@ namespace {
 		static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 		return DAY[day];
 	}
+
+	string dateFormatInUse = "dmy";
 }
 
 
@@ -52,9 +54,13 @@ const string &Date::ToString() const
 {
 	string date_format = Preferences::DateFormat();
 
+	if(date_format != dateFormatInUse)
+		dateFormatInUse = date_format;
+		str = "";
+
 	// Because this is a somewhat "costly" operation, cache the result. The
 	// cached value is discarded if the date is changed.
-	if(date && str.empty())
+	if((date && str.empty()) || date_format != dateFormatInUse)
 	{
 		int day = Day();
 		int month = Month();
