@@ -55,8 +55,10 @@ const string &Date::ToString() const
 	string date_format = Preferences::DateFormat();
 
 	if(date_format != dateFormatInUse)
+	{
 		dateFormatInUse = date_format;
 		str = "";
+	}
 
 	// Because this is a somewhat "costly" operation, cache the result. The
 	// cached value is discarded if the date is changed.
