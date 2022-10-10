@@ -179,6 +179,8 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
 		}
+		else if(child.Token(0) == "apparent payment" && child.Size() >= 2)
+			paymentApparent = child.Value(1);
 		else if(ParseContraband(child))
 		{
 			// This was an "illegal" or "stealth" entry. It has already been
@@ -321,6 +323,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
 			out.Write("passengers", passengers);
+		if(paymentApparent)
+			out.Write("apparent payment", paymentApparent);
 		if(illegalCargoFine)
 			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
 		if(failIfDiscovered)
@@ -601,6 +605,13 @@ bool Mission::FailIfDiscovered() const
 int Mission::Passengers() const
 {
 	return passengers;
+}
+
+
+
+int64_t Mission::DisplayedPayment() const
+{
+	return paymentApparent ? paymentApparent : GetAction(Mission::Trigger::COMPLETE).Payment();
 }
 
 
@@ -1237,6 +1248,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		else
 			result.passengers = passengers;
 	}
+	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
 	result.illegalCargoMessage = illegalCargoMessage;
 	result.failIfDiscovered = failIfDiscovered;

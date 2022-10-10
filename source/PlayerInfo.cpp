@@ -2868,8 +2868,8 @@ void PlayerInfo::SortAvailable()
 			// Tiebreaker for equal SPEED is PAY.
 			case PAY:
 			{
-				const int64_t lPay = lhs.GetAction(Mission::Trigger::COMPLETE).Payment();
-				const int64_t rPay = rhs.GetAction(Mission::Trigger::COMPLETE).Payment();
+				const int64_t lPay = lhs.DisplayedPayment();
+				const int64_t rPay = rhs.DisplayedPayment();
 				if(lPay < rPay)
 					return true;
 				else if(lPay > rPay)

@@ -98,6 +98,7 @@ public:
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
+	int64_t DisplayedPayment() const;
 	// The mission should take this many jumps.
 	// Only matters to available jobs (not saved to file)
 	const int ExpectedJumps() const;
@@ -217,6 +218,7 @@ private:
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
+	int64_t paymentApparent = 0;
 
 	ConditionSet toOffer;
 	ConditionSet toComplete;

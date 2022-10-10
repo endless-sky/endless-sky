@@ -2026,6 +2026,7 @@ event "terraforming follow-up"
 mission "A wolf, a goat, and a cabbage"
 	job
 	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be 100,000 credits."
+	"apparent payment" 100000
 	to offer
 		"day" == 1
 		"month" == 4
