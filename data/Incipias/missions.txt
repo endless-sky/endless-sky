@@ -231,11 +231,9 @@ mission "Incipias: First Contact V"
 			`    The Incipias listens to you and then it looks like they are looking to someone on their right you do not see. After a short moment he turn towards you again. They start flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
 			label c1
 			`    Some basic information about the spacestation is send to your display and the communication channel gets closed.`
-mission "Incipias: First Contact V"
+mission "Incipias: First Contact VI"
 	landing
 	invisible
-	to offer
-		has "Incipias: First Contact IV: done"
 	to complete
 		never
 	source "Pon'tes"
