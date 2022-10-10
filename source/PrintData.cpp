@@ -421,10 +421,10 @@ void PrintData::PrintWeaponStats()
 
 void PrintData::PrintEngineStats()
 {
-	cout << "name" << '\t' << "cost" << '\t' << "mass" << '\t' << "outfit space" << '\t'
-		<< "engine capacity" << '\t' << "thrust/s" << '\t' << "thrust energy/s" << '\t'
-		<< "thrust heat/s" << '\t' << "turn/s" << '\t' << "turn energy/s" << '\t'
-		<< "turn heat/s" << '\t' << "reverse thrust/s" << '\t' << "reverse energy/s" << '\t'
+	cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
+		<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
+		<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
+		<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
 		<< "reverse heat/s" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
