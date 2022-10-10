@@ -374,7 +374,7 @@ mission "Remnant: Rescue"
 
 # The Rescue Dummy is meant to commit suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
-	#sprite "ship/behemoth"
+	# sprite "ship/behemoth"
 	attributes
 		"heat dissipation" 1
 		"hull" 1
@@ -631,7 +631,7 @@ mission "Remnant: Rescue 4"
 		"remnant: rescue missions" ++
 		payment 500000
 		dialog
-			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you." `
+			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you."`
 			`	Soon after, your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog
