@@ -181,7 +181,7 @@ mission "Deep: Tarazed Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on  to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
+		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded onto the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
@@ -2101,7 +2101,7 @@ mission "Deep: Scientist Rescue 1"
 			`	The communications device on his belt rings, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Good luck, Captain, and may we all make it out of this alive. We'll meet you in orbit."`
 				accept
 	
-	npc save accompany
+	npc accompany save
 		government "Deep Security"
 		personality escort
 		ship "Mule (Heavy)" "D.S.S. Faraday"
@@ -2256,7 +2256,7 @@ mission "Deep: Scientist Rescue 2"
 		dialog "As your engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but how a pirate could ever attain one is a mystery."
 		dialog `	You receive a transmission from Lieutenant Paris. "I have a sneaking suspicion that Beelzebub may be behind this. I suggest we jump out of here immediately and make it back to the Deep alive before taking on that Bactrian."`
 	
-	npc save accompany
+	npc accompany save
 		government "Deep Security"
 		personality timid escort
 		ship "Star Queen (Unarmed)" "D.S.S. Alcubierre"
@@ -2580,7 +2580,7 @@ mission "Stone of our Fathers 4"
 					goto from
 			label why
 			`	Helm shrugs as he maneuvers the ship into dock. "It is the old way. To make certain the stone is not lost, mishandled, or acquired by enemies. If the family is not near when its owner passes, it is given to a trusted friend who becomes its bearer. That task is too important and too sacred to be given to a stranger or courier. For you to take it all the way to his son, so that he may return it to earth, is right."`
-					goto earth
+				goto earth
 			label from
 			`	Helm shrugs as he maneuvers the ship into dock. "Wherever makes the most sense at the time a stone is given. If I recall correctly Skaldgar's stone was given to him by his mother, my grandmother, from an old mine Skaldgar had been exploring on the mainland. Even at 16 he loved the earth."`
 			label earth
@@ -2593,7 +2593,7 @@ mission "Stone of our Fathers 4"
 				`	(Let Helm answer for me.)`
 					goto helm
 			`	You smile somberly at Thorleif. "I was a friend of Skaldgar. I gave him a ride a few times, and, most recently, was entrusted with his stone."`
-					goto stone
+				goto stone
 			label helm
 			`	Helm puts a hand on Thorleif's shoulder. "This here is <first>, they've come a long way to see you, and to bring you Skaldgar's stone."`
 			label stone
@@ -2629,7 +2629,7 @@ mission "Stone of our Fathers 4"
 			`	With that, he turns and heads back to the main dwelling, with you and Helm in tired tow.`
 			choice
 				`	(Wash up and warm up in the main room around the fire.)`
-			`	 You spend the evening warming yourself by a roaring fire, telling Helm and Thorleif tales of your exploits in space and many of the wonders you've seen.`
+			`	You spend the evening warming yourself by a roaring fire, telling Helm and Thorleif tales of your exploits in space and many of the wonders you've seen.`
 			`	In turn, they tell you about the sea beasts, leviathans, and krakens that they have met on the ocean currents of Norn. Of lost isles filled with forgotten treasure or strange people, or stories even, about the ancient elves who once aided their ancestors and are said to be around still.`
 			choice
 				`	(Ask about the elves.)`
@@ -2638,7 +2638,7 @@ mission "Stone of our Fathers 4"
 			`	The idea of Elves, or Alfar as they call them, intrigues you, and you ask what they know of them.`
 			`	"The Alfar," Thorleif begins, "are said to have been a great help to us in the early days. Some say they spared us from plagues and protected us from monsters. Many still offer sacrifices and prayers to them, so that they remember us and know that we are friends and allies still."`
 			`	Thorleif shrugs. "This may be true, and good at that, but others think the Alfar, for all their apparent good works, cannot be trusted. Their minds are unknowable and filled with mischief, and their aims are not ours. This is the belief that our family holds to. They should be respected, but also feared. We must look to each other for support and strength, and trust not in the deeds of strangers."`
-					goto family
+				goto family
 			label treasure
 			`	You could always use a little extra money, and this trip, while engaging, has certainly not made you any richer, so you ask about hidden treasures. Helm and Thorleif both grin at this and glance at each other knowingly. They launch into tales of the riches of lost civilizations, or forgotten pirate hoards, or even early human kingdoms. It's easy to lose things on a fog-covered ocean world with floating islands, all too easy.`
 			`	When they are done regaling you with tales, they mention to you that maybe some other time they'll take you out into the deep ocean and perhaps you'll find what you're looking for. They smile wolfishly at that, and you think they might be putting you on. "Have you ever found treasure out here?" you ask.`
@@ -2768,7 +2768,7 @@ mission "Home for Skadenga 1"
 	on offer
 		conversation
 			`There is a feeling of deep melancholy in the nearly deserted spaceport. A few plaques adorn the walls, proudly boasting of earlier times when Nifel was a place of relevance in the galactic community. Most are old images of researchers and doctors and their miracle cures.`
-			`	But now this place is a ghost-town, and you walk its empty halls unsure of why you even bothered to explore it in the first place. `
+			`	But now this place is a ghost-town, and you walk its empty halls unsure of why you even bothered to explore it in the first place.`
 			`	You turn a corner and find a woman standing near a booth with blown up images of ice-covered scenery. She waves at you excitedly.`
 			`	"Hello, ser! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
 			`	"Explore the breath-taking Glaesisvellir ice-plains, or the boiling Slidr river. We'll even take you to the Hrimbrimr valley where the famous Rigellian cure was discovered!`
@@ -2791,7 +2791,7 @@ mission "Home for Skadenga 1"
 				`	"How old is this thing?!"`
 					goto old
 			`	The woman hesitates. "Don't you worry! Why, that Ice-Crawler is the safest place in all of Nifel! Those other accidents were flukes, and what happened to her sister Ice-Crawler, Gudrun, was entirely unforeseeable."`
-					goto what
+				goto what
 			label old
 			`	"Well, you know the old saying, 'They don't build 'em like they used to?' It's your lucky day because that is when this was built! Part of the excitement of the tour is riding in an authentic four hundred year old colonial Ice-Crawler."`
 			label what
@@ -3109,7 +3109,7 @@ mission "Home for Skadenga 2"
 					goto who
 			`	"Why, the Ran-Stone, of course." The old man points toward the metal tower in the sea. "Few come here any more. Few remember, or care, about the old ways. But the goddess Ran, she is as patient and as terrible as the sea, and like the sea, she has claimed this world.`
 			`	"So why are you here bothering old Aldfrith, if not to look upon the great countenance of divinity?"`
-					goto why
+				goto why
 			label who
 			`	"I am called Aldfrith. I live in nearby Hrithfjall, though I spent most my life living on the sea and making every port my home." Aldfrith's eyes glaze over for a moment as he speaks.`
 			`	"But those days are behind me. Now, I mostly sit, think, and live. On the high seas I saw things... things that cannot be explained, that cannot be understood. So, now I sit here, before the great Ran-Stone, the very countenance of divinity, and reflect upon mystery."`
@@ -3121,7 +3121,7 @@ mission "Home for Skadenga 2"
 					goto relics
 			`	Aldfrith strokes his white beard for a moment. "The tide brings in all sorts of interesting driftwood. But driftwood from space? That's a tall tale or a deep mystery, that is."`
 			`	He looks up at you with a bemused smirk. "Nope. Nothing like that here. If you're interested in the driftwood though, that gets used for our boats and homes."`
-					goto ran
+				goto ran
 			label relics
 			`	"Relics, eh?" Aldfrith cackles. "Sailors will always be over-eager to tell a stranger about fantastic treasures in the deep waves."`
 			`	The old man pauses and scratches his head for a moment. "But, alas, I can think of nothing wood-made that would be considered a relic. The salty air and saltier sea don't allow untreated wood to linger long in these parts. Unless it's a boat or a home, your relic is not here."`
@@ -3144,10 +3144,10 @@ mission "Home for Skadenga 2"
 					goto someone
 				`	"Sure thing. Lead the way."`
 			`	The guards take you by the arms. "I am pleased you are being so agreeable. Consider this a precaution." The administrator promptly turns, and you all follow.`
-					goto fancypants
+				goto fancypants
 			label pass
 			`	As you try to get around the administrator, his goons grab you. "Respectfully, Captain, this is not an invitation you are at liberty to dismiss."`
-					goto fancypants
+				goto fancypants
 			label someone
 			`	"Ah yes, don't worry. We have the port authority keeping your hill-witch friend busy. You'll likely be done before she is." The administrator nods to his guards, who close in on you.`
 			`	"Regrettably, this is not an invitation you are at liberty to ignore. So let us be on our way, shall we?"`
@@ -3204,7 +3204,7 @@ mission "Home for Skadenga 3"
 			choice
 				`	(Follow the tracker.)`
 			`	For a moment you forget the God-Stone and focus on following the tracker. It leads you to a themed restaurant on the top floor called "The Adventurer's Due." The restaurant is filled with exotic artifacts allegedly taken from all corners of known and unknown space.`
-			`	Your tracker hones in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga. The panel above it reads: `
+			`	Your tracker hones in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga. The panel above it reads:`
 			``
 			`	'This box once contained the cure to the Rigellian Plague. It belonged to the renowned explorer, adventurer, and researcher Dr. Henry Forsyth. It was donated by the Forsyth Foundation for Academic Honesty.'`
 			``
@@ -3224,7 +3224,7 @@ mission "Home for Skadenga 3"
 					goto stars
 			`	A frown flickers across Carla's face for a brief second before her professional smile reasserts itself. "Trust me, why rent when you can own? Why move a large family to an empty world with poor restaurant selections when you could move them here?"`
 			`	She stands and smooths her suit jacket. "When you change your mind, I'll be here." With that, she's gone, and you are free to turn your attention back to the God-Stone.`
-					goto elfstone
+				goto elfstone
 			label stars
 			`	Carla rewards you with a condescending smile. "Ah, darling. You might work in space, but eventually, you'll need a world to call home."`
 			`	She stands and smooths her suit jacket. "When you are ready to make the real-estate leap, you know where to find me." Carla winks at you and then strolls off in the crowds of shoppers. Alone, you turn your attention back to the God-Stone.`
@@ -3287,7 +3287,7 @@ mission "Home for Skadenga 4"
 				set "Nifel"
 			`	You answer, "There is a nearly abandoned village called Hrithfjall next to a coastal God-Stone. Something about that place felt right. I believe that is where the Skadenga should migrate."`
 			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
-					goto end
+				goto end
 			label asgard
 			apply
 				set "Asgard"
@@ -3309,7 +3309,7 @@ mission "Home for Skadenga 4"
 			`	"At the Transport Union, we say that 'it's about the people in the transports,' which is why we're humbled and excited to offer you our support in this beautiful and inspiring humanitarian adventure of yours," Kaiden finishes. Braiden and Grayden both clap enthusiastically.`
 			`	Kaiden waits for the ovation to subside then continues with a knowing smile. "So, tell us humble servants of the people: where to transport these poor souls?"`
 			branch asgard
-					has "Asgard"
+				has "Asgard"
 			choice
 				`	"That's fantastic news! The Skakenga will need transport to Windblain."`
 				`	"They need to go to Windblain."`
@@ -3488,7 +3488,7 @@ mission "Skadenga Call 2"
 					goto who
 			`	Hjlod glares at you. "From you? Everything. For that is what you took from us.`
 			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," She growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
-					goto here
+				goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
 			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
@@ -3657,7 +3657,7 @@ mission "Home for Skadenga 9"
 			`	Hroar breaks into uproarious laughter. People sitting the booth over, who were obviously listening, also start laughing. "Don't make threats you can't back up. Or you're gonna be a messenger in a bodybag.`
 			label prenext
 			`	"If it wasn't the Allen boys who sent you, who do you work for? The Leshinskis? Mad Mikkel's Gang? Or maybe the Hanovarian?" Hroar pauses. "Nah, not his style. So who?"`
-					goto next
+				goto next
 			label buffboi
 			`	Hesitation flickers on Hroar's face, and he lifts his hand away from his gun. "No need to be making threats like that. We're all friends here."`
 			`	His expression shifts as he changes the subject. "I doubt the Allen boys could afford someone like you, so why exactly are you here?"`
