@@ -38,8 +38,8 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
 	const string DATEFMT = "Date format";
-	const string DATEFMT_ISO = "Use ISO 8601 date format";
-	const string DATEFMT_USE_DMY = "Use DDMMYYYY date format";
+	const vector<string> DATEFMT_OPTIONS = {"dmy", "mdy", "ymd"};
+	int dateFormatIndex = 1;
 
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
@@ -64,9 +64,6 @@ void Preferences::Load()
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
-	settings[DATEFMT_ISO] = true;
-	// True for "dmy", false for "mdy"
-	settings[DATEFMT_USE_DMY] = true;
 	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
 	settings["Show stored outfits on map"] = true;
@@ -97,6 +94,8 @@ void Preferences::Load()
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "date format")
+			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -155,21 +154,17 @@ string Preferences::AmmoUsage()
 
 void Preferences::ToggleDateFormat()
 {
-	bool iso = Has(DATEFMT_ISO);
-	bool dmy = Has(DATEFMT_USE_DMY);
-
-	Preferences::Set(DATEFMT_ISO, !iso && dmy);
-	Preferences::Set(DATEFMT_USE_DMY, !iso);
+	if(dateFormatIndex == static_cast<int>(DATEFMT_OPTIONS.size() - 1))
+		dateFormatIndex = 0;
+	else
+		++dateFormatIndex;
 }
 
 
 
 string Preferences::DateFormat()
 {
-	if(Has(DATEFMT_ISO))
-		return "ymd";
-	else
-		return Has(DATEFMT_USE_DMY) ? "dmy" : "mdy";
+	return DATEFMT_OPTIONS[dateFormatIndex];
 }
 
 
