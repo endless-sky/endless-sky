@@ -660,7 +660,8 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool sorter) const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
-	const Color separatorLine = GameData::Colors().Get("medium")->Opaque();
+	const Color &text = *GameData::Colors().Get("medium");
+	const Color separatorLine = text.Opaque();
 	const Color &title = *GameData::Colors().Get("bright");
 	const Color &highlight = *GameData::Colors().Get("dim");
 
@@ -687,12 +688,10 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		edgePos.Y() -= dy;
 	}
 
-
 	const Font &font = FontSet::Get(14);
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 
 	// Panel sorting
-	const Color &text = *GameData::Colors().Get("medium");
 	const Sprite *arrow[2] = { SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
 	const Sprite *checkbox[2] = { SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked") };
 	const Sprite *sortIcon[4] = { SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
@@ -714,7 +713,6 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
 		SpriteShader::Draw(checkbox[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
-
 
 	// Panel title
 	font.Draw(label, pos, title);

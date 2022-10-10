@@ -2845,7 +2845,7 @@ void PlayerInfo::SortAvailable()
 				}
 				else if(lJumps > 0 && rJumps > 0)
 				{
-					// reverse < than expected because fewer jumps means better speed, and a 'greater' result.
+					// Lower values are better, so this '>' is not '<' as expected
 					return lJumps > rJumps;
 				}
 				else
@@ -2855,10 +2855,11 @@ void PlayerInfo::SortAvailable()
 
 					// A value of 0 indicates the mission destination is the
 					// source, implying the actual path is complicated; consider
-					// that slow.
+					// that slow, but not as bad as an indeterminable path.
 
 					// Positive values are 'greater' because at least the number
-					// of jumps is known.
+					// of jumps is known. (Comparing two positive values is already
+					// handled above, so the actual positive value doesn't matter.)
 
 					// Compare the value when at least one value is not positive.
 					return lJumps < rJumps;
