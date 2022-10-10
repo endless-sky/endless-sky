@@ -123,12 +123,13 @@ mission "wanderer peace prove"
 	source
 		government "Wanderer"
 		not planet "Vara K'chrai"
-		"reputation: Wanderer" >= 5
 	destination "Vara K'chrai"
 	to offer
 		and
 			has "searching for a prove"
-			not "coalition peace prove: offered"
+			and
+				"reputation: Wanderer" >= 5
+				not "coalition peace prove: offered"
 	on offer
 		conversation
 			`Now that you are on a wanderer world you decide this would be a good time for asking them about the prove the Hai requested from you. You head for a near embassy.`
