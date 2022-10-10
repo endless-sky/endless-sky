@@ -198,12 +198,12 @@ mission "Incipias: First Contact IV"
 				accept
 	on complete
 		conversation
-			`When you arrive at the ringworld the Hai take the lead. The few Quarg around seem surprised by the presence of the Hai. The Hai talk to one of the Quarg and he shows you the way.`
+			`When you arrive at the ringworld the Hai take the lead. The few Quarg around seem surprised by the presence of the Hai. The Hai talk to one of the Quarg and it shows you the way.`
 			`    Once again you are overwhelmed by the size of a Quarg ringworld. It takes you some time tto get to your destination. When you get to the location the Quarg told you to go, one of the Hai turns towards you. "It will be the best if we talk to them without you being present. I hope you understand that." He tells you. Surprised by this you just nod in agreement. The Hai walk into the room and leave you alone.`
-			`    After spending hours of time on waiting the door opens and not the Hai but a Quarg comes out. "Could you please follow me?" He asks and without waiting for a response he leads the way. Left no real choice you just follow him.`
+			`    After spending hours of time on waiting the door opens and not the Hai but a Quarg comes out. "Could you please follow me?" It asks and without waiting for a response it leads the way. Left no real choice you just follow it.`
 			choice 
 				"[continue]"
-			`    You arrive at another room. "This is... an unusual situation." The Quarg begins talk. "It is seldom that our friends, the Hai, are asking for something like this. Actually this never happened before. They brought up some good arguments and we know that they have no bad intentions." He pauses for a moment. "But this leaves us in a dilemma situation. We do not want to dismiss their request, but we also have concerns. Not concerns about you anymore, but concerns about what happens after you made contact. This will change this species for sure. But we do not know in which direction. But here comes the one reason, why we will allow you to make contact and giive you a translation device. If this species continues the path it currently is moving on. It will lead to their distinction. We see this for some time now, but we can not step in, because that is not our role in this galaxy. But you, you can change something and now that the Hai have proved you, we do not have concerns about you anymore." He takes something that looks like a tablet and hands it you. "This is the translation device. Their communication is based on light, so you have to face them while you are talking to them. This also works over video communication, you just have to hold it, so that the back of the device shows to the screen. Also their language is a lot different than yours, human, you will see what that means." You take the device and thank him. "Oh, and two other things, if you sell hyperdrives or other advanced spacetravelling technology to them we will remotely destroy them, and second, if you ever try to harm them, we will harm you. I hope this is alright for you." A little bit shocked you agree. "Go now and make contact to them. We will give the Hai a ride home." Without any further words, he leaves you alone.`
+			`    You arrive at another room. "This is... an unusual situation." The Quarg begins talk. "It is seldom that our friends, the Hai, are asking for something like this. Actually this never happened before. They brought up some good arguments and we know that they have no bad intentions." It pauses for a moment. "But this leaves us in a dilemma situation. We do not want to dismiss their request, but we also have concerns. Not concerns about you anymore, but concerns about what happens after you made contact. This will change this species for sure. But we do not know in which direction. But here comes the one reason, why we will allow you to make contact and giive you a translation device. If this species continues the path it currently is moving on. It will lead to their distinction. We see this for some time now, but we can not step in, because that is not our role in this galaxy. But you, you can change something and now that the Hai have proved you, we do not have concerns about you anymore." It takes something that looks like a tablet and hands it you. "This is the translation device. Their communication is based on light, so you have to face them while you are talking to them. This also works over video communication, you just have to hold it, so that the back of the device shows to the screen. Also their language is a lot different than yours, human, you will see what that means." You take the device and thank it. "Oh, and two other things, if you sell hyperdrives or other advanced spacetravelling technology to them we will remotely destroy them, and second, if you ever try to harm them, we will harm you. I hope this is alright for you." A little bit shocked you agree. "Go now and make contact to them. We will give the Hai a ride home." Without any further words, he leaves you alone.`
 
 mission "Incipias: First Contact V"
 	landing
@@ -231,3 +231,26 @@ mission "Incipias: First Contact V"
 			`    The Incipias listens to you and then it looks like they are looking to someone on their right you do not see. After a short moment he turn towards you again. They start flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
 			label c1
 			`    Some basic information about the spacestation is send to your display and the communication channel gets closed.`
+mission "Incipias: First Contact V"
+	landing
+	invisible
+	to offer
+		has "Incipias: First Contact IV: done"
+	to complete
+		never
+	source "Pon'tes"
+	on offer
+		conversation
+			action
+				set "hicemus knowledge" 0
+			`You had some problems docking your ship to a spacestation that obviously is not build for the type of ship of yours.But somehow you managed to navigate your ship. Now you are standing in front of the shunt. As you want to open it, the sensors are warning you that the air outside is not breathable. Luckily you got some oxygen masks. You put one on your face and finally step out of the ship. The station has no gravity at all in the center and it is clearly not build for people who normally walk on the ground. But you do not even note these facts because you are surrounded by aliens. If some aliens are humanoid these aliens are the opposite. There is no animal on earth they could be compared too. The closest one would be a jelly fish. One of them is flickering. First you are confused but then you remember your translation device and pull it out. "I [see, recognize] you have your [helping, connecting] tablet now.We welcome you [guest, stranger, traveller] to our [home, capital] Pon'tes. This is the first time [our kind, we] meet [other, different, unknown] intelligent beings. We only [exist, spread] in this system until now. May [I, we] [ask, inform ourselves] where [you, your kind] comes from."`
+			choice
+				"[show them a map of human systems]"
+					goto map
+				"[show them the location of Sol in the Galaxy]"
+			`    You show them a picture of the galaxy and point out where`
+			label map
+			action
+				"hicemus knowledge" ++
+			``
+
