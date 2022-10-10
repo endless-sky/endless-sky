@@ -1951,7 +1951,7 @@ mission "Terraforming 12"
 		conversation
 			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for ridding the system of the pirates, a pleasantly unexpected reward.`
 			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid," Amy says, and after only a short time of searching, she finds the perfect candidate. "Just like last time, Captain."`
-			`	 Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
+			`	Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
 	
 	npc assist
@@ -2302,7 +2302,7 @@ mission "Paradise Fortune 1"
 	on offer
 		conversation
 			`As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport. While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the <origin> shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
-			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack. `
+			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack.`
 			choice
 				`	(Let her onto my ship.)`
 					goto continue
@@ -2922,7 +2922,7 @@ mission "Hauler VI cargo prototype 1"
 	destination "Skymoot"
 	to offer
 		"armament deterrence" > 0
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -2992,7 +2992,7 @@ mission "Hauler VI cargo prototype 2"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 1: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3013,7 +3013,7 @@ mission "Hauler VI cargo prototype 3"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 2: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3638,7 +3638,7 @@ mission "Street Swindle"
 			`	The cups stop. After a brief pause, the man points to the cup on the right.`
 			choice
 				`	(Watch what happens.)`
-						goto continue
+					goto continue
 				`	"You know these things are scams, right?"`
 			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
 				goto continue
@@ -4052,7 +4052,7 @@ mission "Laborer"
 					goto decline
 				`	"Fine, I can take you to <planet>."`
 			label accept
-			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.`
 				accept
 			label decline
 			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
@@ -4266,7 +4266,7 @@ mission "Saving Artifacts 2"
 			choice
 				`	"Never mind, I'll pay."`
 					goto pay
-				`	"All right, I'll fight him. `
+				`	"All right, I'll fight him.`
 			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
 			choice
 				`	"Fight me."`
@@ -4294,27 +4294,27 @@ mission "Saving Artifacts 3"
 		has "Saving Artifacts 2: done"
 		not "Bought Off Artifacts"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Deth"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Warr"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Famin"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
@@ -4900,7 +4900,7 @@ mission "Riley"
 					goto bounty
 				`	(Go back to your ship.)`
 			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
-					decline
+				decline
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye
