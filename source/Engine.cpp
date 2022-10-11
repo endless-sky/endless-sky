@@ -1595,8 +1595,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship->shared_from_this(), ShipEvent::DISABLE);
-	else if (ship->IsDestroyed() && !wasDestroyed)
-		eventQueue.emplace_back(nullptr, ship->shared_from_this(), ShipEvent::DESTROY);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
