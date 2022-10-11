@@ -114,7 +114,7 @@ mission "Drak guarding Void Sprites"
 		ship "Archon (Cloaked)" "Sleeping Dragon"
 
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
-mission "Drak Compatibility Patch"
+mission "Archon Personality Compatibility Patch"
 	invisible
 	landing
 	on offer
