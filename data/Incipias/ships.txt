@@ -19,15 +19,41 @@ ship "Nimbus"
 		"gaslining" 1
 		"solar collection" 400
 		"fuel capacity" 200
+
+		"steering flare sprite" "effect/incipias flare/huge"
+		"frame rate" 9
+		"steering flare sound" "plasma huge"
+		thumbnail "outfit/core class steering"
+		"mass" 50
+		"outfit space" -30
+		"engine capacity" -30
+		"turn" 1207
+		"turning energy" 2.5
+		"turning heat" 12
+
+		"flare sprite" "effect/incipias flare/huge"
+		"frame rate" 9
+		"flare sound" "plasma huge"
+		thumbnail "outfit/core class thruster"
+		"mass" 60
+		"outfit space" -10
+		"engine capacity" -10
+		"thrust" 24
+		"thrusting energy" 5
+		"thrusting heat" 10
+
 	outfits
 		"Liquid Class Shield"
-		"Core Class Thruster"
-		"Core Class Steering"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 2
-	engine 0 125
-	gun -31 -105
-	gun 31 -105
+	engine -24 82
+	engine 1 82
+	engine 1 82
+	engine 25 82.5
+	gun -18 -79.5
+	gun 0.5 -80.5
+	gun 0.5 -80.5
+	gun 20 -80
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10
@@ -54,10 +80,31 @@ ship "Cumulonimbus"
 		"gaslining" 1
 		"solar collection" 400
 		"fuel capacity" 200
+
+		"flare sprite" "effect/incipias flare/huge"
+		"frame rate" 9
+		"flare sound" "plasma huge"
+		thumbnail "outfit/core class thruster"
+		"mass" 60
+		"outfit space" -10
+		"engine capacity" -10
+		"thrust" 24
+		"thrusting energy" 5
+		"thrusting heat" 10
+
+		"steering flare sprite" "effect/incipias flare/huge"
+		"frame rate" 9
+		"steering flare sound" "plasma huge"
+		thumbnail "outfit/core class steering"
+		"mass" 50
+		"outfit space" -30
+		"engine capacity" -30
+		"turn" 1207
+		"turning energy" 2.5
+		"turning heat" 12
+
 	outfits
 		"Solid Class Shield"
-		"Core Class Thruster"
-		"Core Class Steering"
 		"Liquid Hydrogen Cell"
 		"Discharger Turret" 4
 	turret -30 16

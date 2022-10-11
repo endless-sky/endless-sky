@@ -88,30 +88,3 @@ outfit "Liquid Hydrogen Cell"
 	"outfit space" -20
 	"energy capacity" 2000
 	description "This form of energy storage was discovered early by the Incipias because of the great amount of Hydrogen on their homeworld."
-
-outfit "Core Class Thruster"
-	category "Engines"
-	"flare sprite" "effect/incipias flare/huge"
-		"frame rate" 9
-	"flare sound" "plasma huge"
-	thumbnail "outfit/core class thruster"
-	"mass" 60
-	"outfit space" -10
-	"engine capacity" -10
-	"thrust" 24
-	"thrusting energy" 5
-	"thrusting heat" 10
-
-
-outfit "Core Class Steering"
-	category "Engines"
-	"steering flare sprite" "effect/incipias flare/huge"
-		"frame rate" 9
-	"steering flare sound" "plasma huge"
-	thumbnail "outfit/core class steering"
-	"mass" 50
-	"outfit space" -30
-	"engine capacity" -30
-	"turn" 1207
-	"turning energy" 2.5
-	"turning heat" 12
