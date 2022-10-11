@@ -1772,8 +1772,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
-		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
+		pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(hyperspaceSystem);
+		isUsingJumpDrive = (jumpUsed.first == JumpType::JumpDrive);
+		hyperspaceFuelCost = jumpUsed.second;
 	}
 
 	if(pilotError)
@@ -2799,12 +2800,13 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
-	double fuelCost = JumpFuel(targetSystem);
+	pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(targetSystem);
+	double fuelCost = jumpUsed.second;
 	if(!fuelCost || fuel < fuelCost)
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
+	bool isJump = (jumpUsed.first == JumpType::JumpDrive);
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
@@ -3183,18 +3185,7 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	bool linked = currentSystem->Links().count(destination);
-	// Figure out what sort of jump we're making.
-	if(attributes.Get("hyperdrive") && linked)
-		return HyperdriveFuel();
-
-	if(attributes.Get("jump drive")
-			&& currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel((linked
-			|| currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
-
-	// If the given system is not a possible destination, return 0.
-	return 0.;
+	return GetCheapestJumpType(destination).second;
 }
 
 
@@ -3237,7 +3228,7 @@ double Ship::HyperdriveFuel() const
 {
 	// Don't bother searching through the outfits if there is no hyperdrive.
 	if(!attributes.Get("hyperdrive"))
-		return JumpDriveFuel();
+		return 0.;
 
 	if(attributes.Get("scram drive"))
 		return BestFuel("hyperdrive", "scram drive", 150.);
@@ -3254,6 +3245,22 @@ double Ship::JumpDriveFuel(double jumpDistance) const
 		return 0.;
 
 	return BestFuel("jump drive", "", 200., jumpDistance);
+}
+
+
+
+pair<Ship::JumpType, double> Ship::GetCheapestJumpType(const System *destination) const
+{
+	bool linked = currentSystem->Links().count(destination);
+	double hyperFuelNeeded = HyperdriveFuel();
+	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
+			? 0. : currentSystem->Position().Distance(destination->Position()));
+	if(linked && attributes.Get("hyperdrive") && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
+		return make_pair(JumpType::Hyperdrive, hyperFuelNeeded);
+	else if(attributes.Get("jump drive"))
+		return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
+	else
+		return make_pair(JumpType::None, 0.0);
 }
 
 

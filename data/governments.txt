@@ -230,6 +230,8 @@ government "Hai Merchant (Human)"
 government "Hai (Unfettered)"
 	swizzle 4
 	color .55 .27 .76
+	"crew attack" 1.4
+	"crew defense" 2.2
 	
 	"player reputation" -1000
 	"attitude toward"
@@ -668,6 +670,24 @@ government "Republic"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
+
+government "Republic (Friendly)"
+	"display name" "Republic"
+	swizzle 0
+	"crew attack" 1.2
+	"crew defense" 2.2
+	"player reputation" 2
+	
+	"attitude toward"
+		"Alpha" -.01
+		"Merchant" .01
+		"Militia" .01
+		"Pirate" -.01
+		"Navy Intelligence" .01
+		"Navy (Oathkeeper)" .01
+		"Neutral" .01
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 
 government "Scar's Legion"
 	swizzle 6
