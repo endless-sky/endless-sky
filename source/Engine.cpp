@@ -1589,7 +1589,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
 	bool wasDisabled = ship->IsDisabled();
-	bool wasDestroyed = ship->IsDestroyed();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
 	ship->Move(newVisuals, newFlotsam);
