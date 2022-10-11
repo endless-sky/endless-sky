@@ -163,7 +163,8 @@ public:
 	std::vector<std::pair<const System *, int>> FuelCosts() const;
 
 private:
-	void Init(const DistanceMap& distance);
+	void Init(const DistanceMap &distance);
+
 private:
 	// The final planned route. plan.front() is the destination.
 	std::vector<std::pair<const System *, DistanceMap::Edge>> plan;
