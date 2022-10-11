@@ -836,7 +836,7 @@ void MissionPanel::DrawTooltips()
 		if(hoverSort == 0)
 			tooltip = "Filter out missions with a deadline";
 		else if(hoverSort == 1)
-			tooltip = "Filter out missions you can't accept";
+			tooltip = "Filter out missions that you can't accept";
 		else if(hoverSort == 2)
 		{
 			switch(player.GetAvailableSortType())
@@ -844,7 +844,7 @@ void MissionPanel::DrawTooltips()
 				case 0: tooltip = "Sort alphabetically"; break;
 				case 1: tooltip = "Sort by payment"; break;
 				case 2: tooltip = "Sort by distance"; break;
-				case 3: tooltip = "Sort by convenience: Prioritize jobs going to a planet or system that is already a destination of one of your missions"; break;
+				case 3: tooltip = "Sort by convenience: Prioritize missions going to a planet or system that is already a destination of one of your missions"; break;
 			}
 		}
 		else if(hoverSort == 3)
