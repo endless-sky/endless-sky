@@ -533,7 +533,8 @@ bool MissionPanel::Hover(int x, int y)
 			dragSide = -1;
 
 			// Hovering over sort buttons
-			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10)
+			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
+				&& x >= Screen::Left() + SIDE_WIDTH - 110)
 			{
 				hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
 				if(hoverSort > 3)
