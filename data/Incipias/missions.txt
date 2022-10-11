@@ -239,9 +239,10 @@ mission "Incipias: First Contact VI"
 	source "Pon'tes"
 	on offer
 		conversation
-			action
-				set "hicemus knowledge" 0
 			`You had some problems docking your ship to a spacestation that obviously is not build for the type of ship of yours.But somehow you managed to navigate your ship. Now you are standing in front of the shunt. As you want to open it, the sensors are warning you that the air outside is not breathable. Luckily you got some oxygen masks. You put one on your face and finally step out of the ship. The station has no gravity at all in the center and it is clearly not build for people who normally walk on the ground. But you do not even note these facts because you are surrounded by aliens. If some aliens are humanoid these aliens are the opposite. There is no animal on earth they could be compared too. The closest one would be a jelly fish. One of them is flickering. First you are confused but then you remember your translation device and pull it out. "I [see, recognize] you have your [helping, connecting] tablet now.We welcome you [guest, stranger, traveller] to our [home, capital] Pon'tes. This is the first time [our kind, we] meet [other, different, unknown] intelligent beings. We only [exist, spread] in this system until now. May [I, we] [ask, inform ourselves] where [you, your kind] comes from."`
+			action
+				set "hicemus knowledge: hyperlanes"
+				"hicemus knowledge" = 0
 			choice
 				"[show them a map of human systems]"
 					goto map
@@ -249,6 +250,6 @@ mission "Incipias: First Contact VI"
 			`    You show them a picture of the galaxy and point out where`
 			label map
 			action
-				"hicemus knowledge" ++
+				"hicemus knowledge: hyperlanes" ++
 			``
 
