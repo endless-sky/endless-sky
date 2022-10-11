@@ -113,10 +113,12 @@ mission "Drak guarding Void Sprites"
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
 
-mission "Drak Post Compatibility Fix"
+# Mission for those who had a savefile prior to 0.9.1.5 with the old Archon missions
+mission "Drak Compatibility Patch"
 	invisible
 	landing
 	on offer
 		fail "Drak guarding Korath space"
 		fail "Drak guarding Sayaiban"
 		fail "Drak guarding Void Sprites"
+		fail
