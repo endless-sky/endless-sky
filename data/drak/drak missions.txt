@@ -112,3 +112,11 @@ mission "Drak guarding Void Sprites"
 		personality heroic vindictive staying frugal
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
+
+mission "Drak Post Compatibility Fix"
+	invisible
+	landing
+	on offer
+		fail "Drak guarding Korath space"
+		fail "Drak guarding Sayaiban"
+		fail "Drak guarding Void Sprites"
