@@ -51,6 +51,9 @@ using namespace std;
 namespace {
 	constexpr int SIDE_WIDTH = 280;
 
+	// Hovering over sort buttons for this many frames activates the tooltip.
+	const int HOVER_TIME = 60;
+
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
 	{
@@ -208,6 +211,9 @@ void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 
+	// Update the tooltip timer [0-60].
+	hoverSortCount += hoverSort >=0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
+
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;
 	while(distance.Days(system) > 0)
@@ -252,6 +258,7 @@ void MissionPanel::Draw()
 	DrawKey();
 	DrawSelectedSystem();
 	DrawMissionInfo();
+	DrawTooltips();
 	DrawButtons("is missions");
 }
 
@@ -373,7 +380,10 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				else if (hoverSort == 1)
 					player.ToggleSortSeparatePossible();
 				else if (hoverSort == 2)
+				{
 					player.NextAvailableSortType();
+					tooltip.clear();
+				}
 				else if (hoverSort == 3)
 					player.ToggleSortAscending();
 				return true;
@@ -513,6 +523,7 @@ bool MissionPanel::Drag(double dx, double dy)
 bool MissionPanel::Hover(int x, int y)
 {
 	dragSide = 0;
+	int oldSort = hoverSort;
 	hoverSort = -1;
 	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 	if(x < Screen::Left() + SIDE_WIDTH)
@@ -535,6 +546,10 @@ bool MissionPanel::Hover(int x, int y)
 		if(static_cast<int>(index) < AcceptedVisible())
 			dragSide = 1;
 	}
+
+	if(oldSort != hoverSort)
+		tooltip.clear();
+
 	return dragSide ? true : MapPanel::Hover(x, y);
 }
 
@@ -806,6 +821,47 @@ void MissionPanel::DrawMissionInfo()
 	else
 		return;
 	wrap.Draw(Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
+}
+
+
+
+void MissionPanel::DrawTooltips()
+{
+	if(hoverSort < 0 || hoverSortCount < HOVER_TIME)
+		return;
+
+	// Create the tooltip text.
+	if(tooltip.empty())
+	{
+		if(hoverSort == 0)
+			tooltip = "Filter out missions with a deadline";
+		else if(hoverSort == 1)
+			tooltip = "Filter out missions you can't accept";
+		else if(hoverSort == 2)
+		{
+			switch(player.GetAvailableSortType())
+			{
+				case 0: tooltip = "Sort alphabetically"; break;
+				case 1: tooltip = "Sort by payment"; break;
+				case 2: tooltip = "Sort by distance"; break;
+				case 3: tooltip = "Sort by convenience: Prioritize jobs going to a planet or system that is already a destination of one of your missions"; break;
+			}
+		}
+		else if(hoverSort == 3)
+			tooltip = "Sort direction";
+
+		hoverText.Wrap(tooltip);
+	}
+	if(!tooltip.empty())
+	{
+		// Add 10px margin to all sides of the text.
+		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+		size += Point(20., 20.);
+		Point topLeft = Point(Screen::Left() + SIDE_WIDTH - 120. + 30 * hoverSort, Screen::Top() + 30.);
+		// Draw the background fill and the tooltip text.
+		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+	}
 }
 
 

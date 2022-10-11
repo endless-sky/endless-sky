@@ -60,6 +60,7 @@ private:
 	Point DrawList(const std::list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
 		bool separateDeadlineOrPossible = false) const;
 	void DrawMissionInfo();
+	void DrawTooltips();
 
 	bool CanAccept() const;
 	void Accept();
@@ -84,6 +85,7 @@ private:
 	double acceptedScroll = 0.;
 
 	int dragSide = 0;
+	int hoverSortCount = 0;
 	int hoverSort = -1; //0 to 3 for each UI element
 	WrappedText wrap;
 };
