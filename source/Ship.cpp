@@ -3255,7 +3255,7 @@ pair<Ship::JumpType, double> Ship::GetCheapestJumpType(const System *destination
 	double hyperFuelNeeded = HyperdriveFuel();
 	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
 			? 0. : currentSystem->Position().Distance(destination->Position()));
-	if(linked && attributes.Get("hyperdrive") && (hyperFuelNeeded <= jumpFuelNeeded || !jumpFuelNeeded))
+	if(linked && attributes.Get("hyperdrive") && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
 		return make_pair(JumpType::Hyperdrive, hyperFuelNeeded);
 	else if(attributes.Get("jump drive"))
 		return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
