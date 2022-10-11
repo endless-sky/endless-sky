@@ -84,7 +84,7 @@ private:
 	double acceptedScroll = 0.;
 
 	int dragSide = 0;
-	bool hoverSort = false;
+	int hoverSort = -1; //0 to 3 for each UI element
 	WrappedText wrap;
 };
 

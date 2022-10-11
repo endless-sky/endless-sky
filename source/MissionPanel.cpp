@@ -365,16 +365,16 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				return false;
 			}
 			// Sorter buttons
-			else if(x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
+			else if(hoverSort >= 0)
 			{
 				dragSide = -1;
-				if(x < Screen::Left() + SIDE_WIDTH - 80)
+				if (hoverSort == 0)
 					player.ToggleSortSeparateDeadline();
-				else if(x < Screen::Left() + SIDE_WIDTH - 45)
+				else if (hoverSort == 1)
 					player.ToggleSortSeparatePossible();
-				else if(x < Screen::Left() + SIDE_WIDTH - 25)
+				else if (hoverSort == 2)
 					player.NextAvailableSortType();
-				else
+				else if (hoverSort == 3)
 					player.ToggleSortAscending();
 				return true;
 			}
@@ -513,6 +513,7 @@ bool MissionPanel::Drag(double dx, double dy)
 bool MissionPanel::Hover(int x, int y)
 {
 	dragSide = 0;
+	hoverSort = -1;
 	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
@@ -520,8 +521,13 @@ bool MissionPanel::Hover(int x, int y)
 		{
 			dragSide = -1;
 
-			hoverSort = y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
-					&& x < Screen::Left() + SIDE_WIDTH - 25 && x >= Screen::Left() + SIDE_WIDTH - 45;
+			// Hovering over sort buttons
+			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10)
+			{
+				hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
+				if(hoverSort > 3)
+					hoverSort = -1;
+			}
 		}
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
@@ -702,11 +708,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	// Draw Sorting Columns
 	if(sorter)
 	{
-		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 25., 8.));
+		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 8.));
 
 		SpriteShader::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 8.));
-		if(hoverSort)
-			FillShader::Fill(pos + Point(SIDE_WIDTH - 45., 8.), Point(22., 16.), highlight);
+		if(hoverSort >= 0)
+			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 8.), Point(22., 16.), highlight);
 
 		font.Draw({ "? ", { 0, Alignment::RIGHT } }, pos + Point(SIDE_WIDTH - 77., 0.), text);
 		SpriteShader::Draw(checkbox[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 70., 8.));
