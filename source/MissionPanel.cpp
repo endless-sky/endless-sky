@@ -715,11 +715,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 
 	// Panel sorting
-	const Sprite *arrow[2] = { SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
-	const Sprite *checkbox[2] = { SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked") };
+	const Sprite *rush[2] = { SpriteSet::Get("ui/sort rush include"), SpriteSet::Get("ui/sort rush separate")};
+	const Sprite *acceptable[2] = { SpriteSet::Get("ui/sort unacceptable include"), SpriteSet::Get("ui/sort unacceptable separate") };
 	const Sprite *sortIcon[4] = { SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
 		SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient") };
-	const Sprite *fast = SpriteSet::Get("ui/fast forward");
+	const Sprite *arrow[2] = { SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
 
 	// Draw Sorting Columns
 	if(sorter)
@@ -727,14 +727,13 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 8.));
 
 		SpriteShader::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 8.));
+
+		SpriteShader::Draw(acceptable[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 75., 8.));
+
+		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 8.));
+
 		if(hoverSort >= 0)
 			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 8.), Point(22., 16.), highlight);
-
-		font.Draw({ "? ", { 0, Alignment::RIGHT } }, pos + Point(SIDE_WIDTH - 77., 0.), text);
-		SpriteShader::Draw(checkbox[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 70., 8.));
-
-		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
-		SpriteShader::Draw(checkbox[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
 
 	// Panel title
