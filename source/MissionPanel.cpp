@@ -367,6 +367,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			// Sorter buttons
 			else if(x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
 			{
+				dragSide = -1;
 				if(x < Screen::Left() + SIDE_WIDTH - 80)
 					player.ToggleSortSeparateDeadline();
 				else if(x < Screen::Left() + SIDE_WIDTH - 45)
