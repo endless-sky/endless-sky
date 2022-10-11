@@ -247,7 +247,7 @@ mission "Incipias: First Contact VI"
 				"[show them a map of human systems]"
 					goto map
 				"[show them the location of Sol in the Galaxy]"
-			`    You show them a picture of the galaxy and point out where`
+			`    You show them a picture of the galaxy and point out where the Sol system is and where the Dom'us system is.`
 			label map
 			action
 				"hicemus knowledge: hyperlanes" ++
