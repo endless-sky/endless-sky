@@ -1588,9 +1588,15 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	bool isJump = ship->IsUsingJumpDrive();
 	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
+	bool wasDisabled = ship->IsDisabled();
+	bool wasDestroyed = ship->IsDestroyed();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
 	ship->Move(newVisuals, newFlotsam);
+	if(ship->IsDisabled() && !wasDisabled)
+		eventQueue.emplace_back(nullptr, ship->shared_from_this(), ShipEvent::DISABLE);
+	else if (ship->IsDestroyed() && !wasDestroyed)
+		eventQueue.emplace_back(nullptr, ship->shared_from_this(), ShipEvent::DESTROY);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
