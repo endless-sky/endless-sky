@@ -304,6 +304,9 @@ private:
 	// Check for and apply any punitive actions from planetary security.
 	void Fine(UI *ui);
 
+	// Set the flagship (on departure or during flight).
+	void SetFlagship(Ship &other);
+
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
