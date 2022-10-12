@@ -43,4 +43,3 @@ The labels I assign to issues are:
 
 * **art**: A request for anything related to the addition or modification of images, sprites, and graphics.
 * **sound**: Everything to do with sound
-* **text - short**: Content that contains short blocks of text such as jobs, small missions, descriptions, etc.
