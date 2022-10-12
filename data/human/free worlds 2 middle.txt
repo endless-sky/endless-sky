@@ -2024,8 +2024,9 @@ government "Syndicate (Hostile)"
 	"display name" "Syndicate"
 	"player reputation" -1000
 	"attitude toward"
-		"Free Worlds" -1000
-		"Merchant" .3
+		"Free Worlds" -.3
+		"Pirate" -.01
+		"Korath" -.01
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
 
