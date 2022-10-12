@@ -2018,7 +2018,16 @@ event "end battle of alioth"
 		fleet "Large Republic" 4000
 		fleet "Navy Surveillance" 1600
 
-
+government "Syndicate (Free World Haters)"
+	swizzle 4
+	color 0 .41 .71
+	"display name" "Syndicate"
+	"player reputation" -1000
+	"attitude toward"
+		"Free Worlds" -1000
+		"Merchant" .3
+	"friendly hail" "friendly syndicate"
+	"hostile hail" "hostile syndicate"
 
 mission "FW Defend New Tibet"
 	landing
