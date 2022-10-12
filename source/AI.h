@@ -51,44 +51,80 @@ public:
 	// Any object that can be a ship's target is in a list of this type:
 template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
+
 	// Constructor, giving the AI access to various object lists.
+	// Called on Engine Constructor.
 	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 
-	// Fleet commands from the player.
+	// Fleet commands from the player. //
+	// Fuction that sets a ship as the target of the players fleet.
+	// If the trageted ship is an enemy the fleet will be given the
+	// command to attack.
+	// Called on mouse click events handling.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
+	// Function that sets a position in the system as target. The fleet
+	// will be given the command to move to this location.
+	// Called on mouse click events handling.
 	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
-	// Commands issued via the keyboard (mostly, to the flagship).
+	// Function to update all commands the player gives to the flagship
+	// and the fleet via keyboard.
+	// Called in an Engine Step.
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 
-	// Allow the AI to track any events it is interested in.
+	// Allow the AI to track any events it is interested in. //
+	// Function used to keep track of provoking the AI and to update
+	// the notoriety of certain actors.
+	// Called in an Engine Step.
 	void UpdateEvents(const std::list<ShipEvent> &events);
-	// Reset the AI's memory of events.
+	// Function to reset the AI's memory of events.
+	// Called on entering a system.
 	void Clean();
-	// Clear ship orders. This should be done when the player lands on a planet,
-	// but not when they jump from one system to another.
+	// Function to clear ship orders. This should be done when the player
+	// lands on a planet, but not when they jump from one system to another.
+	// Called when ships are "placed" in a system for example on enter.
 	void ClearOrders();
-	// Issue AI commands to all ships for one game step.
+	// Function to issue AI commands to all ships for one game step.
+	// Called when the ENgine calculates a Step.
 	void Step(const PlayerInfo &player, Command &activeCommands);
 
-	// Get the in-system strength of each government's allies and enemies.
+	// Functions to get the in-system strength of each government's allies and enemies.
+	// Called on fleet spawn.
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
 
 
 private:
-	// Check if a ship can pursue its target (i.e. beyond the "fence").
+	// Reminder: Functions in the private section are only called inside the AI class.
+
+	// Function to check if a ship can pursue its target (i.e. beyond the "fence").
+	// Called during an AI step and when finding a target.
 	bool CanPursue(const Ship &ship, const Ship &target) const;
-	// Disabled or stranded ships coordinate with other ships to get assistance.
+
+	// Disabled or stranded ships coordinate with other ships to get assistance. //
+	// Function to check if the ship is being helped, and if not, ask for help.
+	// Called during an AI step if the ship is stranded or disabled.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
+	// Function to check if the given ship can be helped by the helper ship.
+	// Called when asking for help and when checking if the ship has a helper.
 	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
+	// Function to check if the given ship already has a helper ship.
+	// Called when asking for help.
 	bool HasHelper(const Ship &ship, const bool needsFuel);
-	// Pick a new target for the given ship.
+
+	// Function to pick a new target for the given ship.
+	// Called in an AI step.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
-	// Obtain a list of ships matching the desired hostility.
+	// Function to obtain a list of ships matching the desired hostility.
+	// Used in combat target finding and firing functions.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
+	// Function to execute orders calculated by the AI earlier.
+	// Called in an AI step.
 	bool FollowOrders(Ship &ship, Command &command) const;
+	// Function to move a ship independent from its fleet.
+	// Called mainly in an AI step but also when following orders or doing surveilance.
 	void MoveIndependent(Ship &ship, Command &command) const;
+	// Function to move an escort depending on what commands its parent has.
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
