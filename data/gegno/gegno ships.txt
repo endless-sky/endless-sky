@@ -50,7 +50,7 @@ ship Shale
 	leak leak 50 60
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "Due to the Gegno splitting up and colonizing new worlds, they needed a smaller ship to do a lot of the grunt work instead of always relying on their enormous (and expensive) City-Ships. The Shale is the Gegno's equivalent of a shuttle: small and compact with transportation being its single purpose. Whether it be cargo, trade goods, travellers, or recruits, Shales are the foundation of the Gegno interstellar civilization."
+	description "As the Gegno began splitting up and colonizing new worlds, they needed a smaller ship to transport smaller payloads, instead of using their enormous (and expensive) City-Ships. The Shale is the Gegno's equivalent of a shuttle: a small and compact transport. Whether it be cargo, trade goods, travellers, or recruits, Shales are the foundation of the Gegno interstellar civilization."
 
 ship Dolomite
 	sprite ship/dolomite
@@ -95,7 +95,7 @@ ship Dolomite
 	explode "small explosion" 26
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description "Almost as large as a human cruiser, Dolomites are the Gegno's most common jack-of-all-trades cargo vessel in service, having been used since the early days of space colonization. They are used as both passenger liners and cargo vessels, and carry decent amounts of both to note. Due to its popularity and continuous usage, both the Gegno Vi and Gegno Scin factions have developed further on the original design for their own purposes."
+	description "Almost as large as a human cruiser, Dolomites are the Gegno's most common cargo vessel in service, having been used since the early days of space colonization. They are used as both passenger liners and cargo vessels. Due to its popularity and continuous usage, both the Gegno Vi and Gegno Scin factions have developed upon on the original design for their own purposes."
 
 ship Conglomerate
 	sprite ship/conglomerate
@@ -141,7 +141,7 @@ ship Conglomerate
 	explode "medium explosion" 38
 	explode "small explosion" 26
 	"final explode" "final explosion large"
-	description "Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than older, outdated City-Ships. Conglomerates are built to haul, moving large amounts of cargo and personnel across Gegno space."
+	description "Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated City-Ships. Conglomerates are built to haul large amounts of cargo and personnel across Gegno space."
 
 ship Gypsum
 	sprite ship/gypsum
@@ -188,8 +188,8 @@ ship Gypsum
 	explode "small explosion" 26
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description "To fuel their exponentially increasing construction rates, and corresponding need for materials, the Gegno decided to design a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture."
-	description `	Because of the Gegno's limited technology, the Gypsum is much more sluggish than similarly sized ships elsewhere in the galaxy, making it too slow to effectively catch faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
+	description "To fuel their increasing need for materials, the Gegno designing a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture."
+	description `	Because of the Gegno's limited technology, the Gypsum is much more sluggish than similarly sized ships elsewhere in the galaxy, making it too slow to chase faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
 
 # Gegno Vi:
 
@@ -268,8 +268,8 @@ ship Augen
 	explode "small explosion" 20
 	explode "tiny explosion" 60
 	"final explode" "final explosion large"
-	description "The Augen-class is an ancient battleship design proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in the huge canyon shipyard present on the foggy world of Enbi, and for many periods of time its construction was put on hold. The recent civil war with the Gegno Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet."
-	description `	This project was meant to result in two sister-ship behemoths, not one, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
+	description "The Augen-class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Gegno Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet."
+	description `	This project was meant to result in two sister-ship behemoths, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
 ship Slate
 	sprite ship/slate
@@ -310,7 +310,7 @@ ship Slate
 	leak leak 60 50
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "The Slate is the Gegno Vi's variation of the Shale. It appears they took the original design and added bulkier systems with more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it's able to carry more than a few Gegno cadets along with a small cargo load."
+	description "Designed by the Gegno Vi, the Slate is a modified Shale with a stronger hull and more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it is able to carry several Gegno cadets along with a small cargo load."
 
 ship Schist
 	sprite ship/schist
@@ -358,8 +358,8 @@ ship Schist
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description "The Schist is the Gegno Vi's variation of the Gegno's old mid-range Dolomite. It has a decent cargo size, and enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories." 
-	description `	Although a relatively light armament is an exception for the Vi's very aggressive and combat-oriented ship design philosophy, Schists still carry a pair of cannon mounts to be able to bring something, rather than nothing, to a fight.`
+	description "Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Gegno Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories." 
+	description `	Although is it lightly armed compared to most Vi ships, Schists still carry a pair of cannon mounts to be able to bring something, rather than nothing, to a fight.`
 
 ship Schist "Schist Med"
 	sprite ship/schistlight
