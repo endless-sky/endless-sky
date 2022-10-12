@@ -2018,7 +2018,7 @@ event "end battle of alioth"
 		fleet "Large Republic" 4000
 		fleet "Navy Surveillance" 1600
 
-government "Syndicate (Free World Haters)"
+government "Syndicate (Hostile)"
 	swizzle 4
 	color 0 .41 .71
 	"display name" "Syndicate"
