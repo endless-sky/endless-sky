@@ -241,12 +241,16 @@ void MissionPanel::Draw()
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 
-	Point pos = DrawPanel(
-		Screen::TopLeft() + Point(0., -availableScroll),
-		"Missions available here:",
-		available.size(),
-		true);
-	DrawList(available, pos, availableIt, true);
+	Point pos;
+	if(player.GetPlanet())
+	{
+		pos = DrawPanel(
+			Screen::TopLeft() + Point(0., -availableScroll),
+			"Missions available here:",
+			available.size(),
+			true);
+		DrawList(available, pos, availableIt, true);
+	}
 
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
@@ -722,7 +726,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Sprite *arrow[2] = { SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
 
 	// Draw Sorting Columns
-	if(sorter)
+	if(entries && sorter)
 	{
 		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 7.5));
 
