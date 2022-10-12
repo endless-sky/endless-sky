@@ -56,7 +56,7 @@ private:
 	// Determine if the given object should be drawn at all.
 	bool Cull(const Body &body, const Point &position, const Point &blur) const;
 
-	void Push(const Body &body, Point pos, Point blur, double cloak, double clip, int swizzle);
+	void Push(const Body &body, Point pos, Point blur, double cloak, int swizzle);
 
 
 private:

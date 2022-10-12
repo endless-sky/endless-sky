@@ -1828,8 +1828,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
-		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
+		pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(hyperspaceSystem);
+		isUsingJumpDrive = (jumpUsed.first == JumpType::JumpDrive);
+		hyperspaceFuelCost = jumpUsed.second;
 	}
 
 	if(pilotError)
@@ -2514,7 +2515,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 
 // Check if this ship is boarding another ship.
-shared_ptr<Ship> Ship::Board(bool autoPlunder)
+shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 {
 	if(!hasBoarded)
 		return shared_ptr<Ship>();
@@ -2526,7 +2527,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 
 	// For a fighter or drone, "board" means "return to ship."
 	// Except when drone or fighter is boarding another drone or fighter.
-	if(GetParent() == victim && victim->BaysFree(attributes.Category()))
+	// Except when the ship is explicitly of the nonDocking type.
+	if(GetParent() == victim && victim->BaysFree(attributes.Category()) && !nonDocking)
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
@@ -3051,12 +3053,13 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
-	double fuelCost = JumpFuel(targetSystem);
+	pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(targetSystem);
+	double fuelCost = jumpUsed.second;
 	if(!fuelCost || fuel < fuelCost)
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
+	bool isJump = (jumpUsed.first == JumpType::JumpDrive);
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
@@ -3307,18 +3310,10 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		AddCrew(transfer);
 	}
 
-	commands.Clear();
+	// Clear this ship's previous targets.
+	ClearTargetsAndOrders();
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
-	// Clear this ship's previous targets.
-	SetTargetShip(shared_ptr<Ship>());
-	SetTargetStellar(nullptr);
-	SetTargetSystem(nullptr);
-	shipToAssist.reset();
-	targetAsteroid.reset();
-	targetFlotsam.reset();
-	hyperspaceSystem = nullptr;
-	landingPlanet = nullptr;
 
 	// This ship behaves like its new parent does.
 	isSpecial = capturer->isSpecial;
@@ -3339,6 +3334,23 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
+}
+
+
+
+// Clear all orders and targets this ship has (after capture or transfer of control).
+void Ship::ClearTargetsAndOrders()
+{
+	commands.Clear();
+	firingCommands.Clear();
+	SetTargetShip(shared_ptr<Ship>());
+	SetTargetStellar(nullptr);
+	SetTargetSystem(nullptr);
+	shipToAssist.reset();
+	targetAsteroid.reset();
+	targetFlotsam.reset();
+	hyperspaceSystem = nullptr;
+	landingPlanet = nullptr;
 }
 
 
@@ -3481,18 +3493,7 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	bool linked = currentSystem->Links().count(destination);
-	// Figure out what sort of jump we're making.
-	if(attributes.Get("hyperdrive") && linked)
-		return HyperdriveFuel();
-
-	if(attributes.Get("jump drive")
-			&& currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel((linked
-			|| currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
-
-	// If the given system is not a possible destination, return 0.
-	return 0.;
+	return GetCheapestJumpType(destination).second;
 }
 
 
@@ -3535,7 +3536,7 @@ double Ship::HyperdriveFuel() const
 {
 	// Don't bother searching through the outfits if there is no hyperdrive.
 	if(!attributes.Get("hyperdrive"))
-		return JumpDriveFuel();
+		return 0.;
 
 	if(attributes.Get("scram drive"))
 		return BestFuel("hyperdrive", "scram drive", 150.);
@@ -3552,6 +3553,22 @@ double Ship::JumpDriveFuel(double jumpDistance) const
 		return 0.;
 
 	return BestFuel("jump drive", "", 200., jumpDistance);
+}
+
+
+
+pair<Ship::JumpType, double> Ship::GetCheapestJumpType(const System *destination) const
+{
+	bool linked = currentSystem->Links().count(destination);
+	double hyperFuelNeeded = HyperdriveFuel();
+	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
+			? 0. : currentSystem->Position().Distance(destination->Position()));
+	if(linked && attributes.Get("hyperdrive") && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
+		return make_pair(JumpType::Hyperdrive, hyperFuelNeeded);
+	else if(attributes.Get("jump drive"))
+		return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
+	else
+		return make_pair(JumpType::None, 0.0);
 }
 
 
@@ -3871,15 +3888,6 @@ bool Ship::CanCarry(const Ship &ship) const
 
 
 
-void Ship::AllowCarried(bool allowCarried)
-{
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
-	canBeCarried = allowCarried
-		&& find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
-}
-
-
-
 bool Ship::CanBeCarried() const
 {
 	return canBeCarried;
@@ -3946,6 +3954,7 @@ void Ship::UnloadBays()
 			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
+			bay.ship->UnmarkForRemoval();
 			bay.ship.reset();
 		}
 }
