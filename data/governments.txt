@@ -736,6 +736,7 @@ government "Syndicate (Free World Haters)"
 	"display name" "Syndicate"
 	"player reputation" -1000
 	"attitude toward"
+		"Free Worlds" -1000
 		"Merchant" .3
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
