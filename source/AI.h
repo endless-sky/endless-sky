@@ -125,12 +125,20 @@ private:
 	// Called mainly in an AI step but also when following orders or doing surveilance.
 	void MoveIndependent(Ship &ship, Command &command) const;
 	// Function to move an escort depending on what commands its parent has.
+	// Called in an AI step.
 	void MoveEscort(Ship &ship, Command &command) const;
+	// Function to make a ship refuel.
+	// Called when moving escorts or during swarming.
 	static void Refuel(Ship &ship, Command &command);
+	// Function to check if the given ship can refuel on the given stellar object.
+	// Called when making a ship refueling.
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
+	// Function to determine if a carried ship meets any of the criteria for returning to its parent.
+	// Called in an AI step.
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
+	// Called whenever a ship has to move.
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
@@ -156,35 +164,46 @@ private:
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 
+	// Function to calculate a point so that instead of coming to a full stop,
+	// the ship adjusts to a target velocity vector.
+	// Called when a ship moves to a Point or when orders are issued.
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
-	// Get a vector giving the direction this ship should aim in in order to do
-	// maximum damage to a target at the given position with its non-turret,
-	// non-homing weapons. If the ship has no non-homing weapons, this just
-	// returns the direction to the target.
+	// Function to get a vector giving the direction this ship should aim in
+	// in order to do maximum damage to a target at the given position with
+	// its non-turret, non-homing weapons. If the ship has no non-homing weapons,
+	// this just returns the direction to the target.
+	// Called in an AI step, when following orders and when moving the player.
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
-	// Aim the given ship's turrets.
+	// Function to aim the given ship's turrets.
+	// Called in an AI step and when moving the player.
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
-	// Fire whichever of the given ship's weapons can hit a hostile target.
+	// Function to fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
+	// Called in an AI step and when moving the player.
 	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
-	// Calculate how long it will take a projectile to reach a target given the
+	// Function to calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
 	// projectile. If it cannot hit the target, this returns NaN.
+	// Called in all kind of movement functions.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
+	// Move the players ship on basis of the given commands.
+	// Called in an Ai step.
 	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 
-	// True if the ship performed the indicated event to the other ship.
+	// These functions are called in multiple places. //
+	// Function that returns true if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
-	// True if the government performed the indicated event to the other ship.
+	// Function that returns true if the government performed the indicated event to the other ship.
 	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
-	// True if the ship has performed the indicated event against any member of the government.
+	// Function that returns true if the ship has performed the indicated event against any member of the government.
 	bool Has(const Ship &ship, const Government *government, int type) const;
 
 	// Functions to classify ships based on government and system.
+	// Both called in an AI step.
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	void CacheShipLists();
 
