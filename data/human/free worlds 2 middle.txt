@@ -2102,7 +2102,7 @@ mission "FW Defend New Tibet"
 		dialog "You spot the Syndicate fleet orbiting above New Tibet when you enter the system, but to your surprise they begin targeting your ship. They don't seem very interested in answering any questions about the defector."
 	
 	npc evade
-		government "Syndicate (Free World Haters)"
+		government "Syndicate (Hostile)"
 		personality heroic staying
 		system Alioth
 		fleet
