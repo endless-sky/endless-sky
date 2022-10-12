@@ -730,6 +730,16 @@ government "Syndicate"
 	"hostile hail" "hostile syndicate"
 	raid "pirate raid"
 
+government "Syndicate (Free World Haters)"
+	swizzle 4
+	color 0 .41 .71
+	"display name" "Syndicate"
+	"player reputation" -1000
+	"attitude toward"
+		"Merchant" .3
+	"friendly hail" "friendly syndicate"
+	"hostile hail" "hostile syndicate"
+
 government "Syndicate (Extremist)"
 	swizzle 1
 	color 0 .41 .71
