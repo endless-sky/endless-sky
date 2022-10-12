@@ -42,4 +42,4 @@ The labels I assign to issues are:
 * **wontfix**: A change that I definitely do not think should be made.
 
 * **art**: A request for anything related to the addition or modification of images, sprites, and graphics.
-* **sound**: Everything to do with sound
+* **sound**: A request for the addition or modification of anything to do with sound effects, music or other audio.
