@@ -3137,24 +3137,6 @@ double Ship::DisabledHull() const
 
 
 
-bool Ship::NeedsFuel(bool followParent) const
-{
-	double jumpFuel = 0.;
-	if(!targetSystem && followParent)
-	{
-		// If this ship has no destination, the parent's substitutes for it,
-		// but only if the location is reachable.
-		const auto &p = GetParent();
-		if(p)
-			jumpFuel = JumpFuel(p->GetTargetSystem());
-	}
-	if(!jumpFuel)
-		jumpFuel = JumpFuel(targetSystem);
-	return (fuel < jumpFuel) && attributes.Get("fuel capacity") && Fuel() != 1.;
-}
-
-
-
 // Get the actual shield level of the ship.
 double Ship::ShieldLevel() const
 {
@@ -3204,6 +3186,24 @@ int Ship::JumpsRemaining(bool followParent) const
 
 
 
+bool Ship::NeedsFuel(bool followParent) const
+{
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		const auto &p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
+	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
+}
+
+
+
 double Ship::JumpFuel(const System *destination) const
 {
 	// A currently-carried ship requires no fuel to jump, because it cannot jump.
@@ -3213,15 +3213,15 @@ double Ship::JumpFuel(const System *destination) const
 	// If no destination is given, return the maximum fuel per jump.
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
-	
+
 	bool linked = currentSystem->Links().count(destination);
 	// Figure out what sort of jump we're making.
 	if(attributes.Get("hyperdrive") && linked)
 		return HyperdriveFuel();
-	
+
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
 		return JumpDriveFuel(linked ? 0. : currentSystem->Position().Distance(destination->Position()));
-	
+
 	// If the given system is not reachable via hyperspace in one hop, return 0.
 	return 0.;
 }
