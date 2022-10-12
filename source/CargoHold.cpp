@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "CargoHold.h"
@@ -244,8 +247,8 @@ bool CargoHold::HasMissionCargo() const
 bool CargoHold::IsEmpty() const
 {
 	// The outfits map's entries are not erased if they are equal to zero, so
-	// it's not enough to just test outfits.empty().
-	return commodities.empty() && !HasOutfits() && missionCargo.empty() && passengers.empty();
+	// it's not enough to just test outfits.empty(). Same goes for commodities.
+	return !CommoditiesSize() && !HasOutfits() && missionCargo.empty() && passengers.empty();
 }
 
 
@@ -354,6 +357,7 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 	// Remove up to the specified tons of cargo from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
+	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(commodity, amount);
 	int added = to.Add(commodity, removed);
 	commodities[commodity] += removed - added;
@@ -372,6 +376,7 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 	// Remove up to the specified number of items from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
+	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(outfit, amount);
 	int added = to.Add(outfit, removed);
 	outfits[outfit] += removed - added;
@@ -564,6 +569,12 @@ int CargoHold::IllegalCargoFine() const
 	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
+		// The code for adding and removing outfits does not clear the entry in the
+		// map if its value becomes zero, so we need to check if the outfit is
+		// actually inside the cargo hold.
+		if(!it.second)
+			continue;
+
 		int fine = it.first->Get("illegal");
 		if(it.first->Get("atrocity") > 0.)
 			return -1;

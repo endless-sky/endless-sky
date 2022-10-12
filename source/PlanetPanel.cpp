@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PlanetPanel.h"
@@ -292,7 +295,7 @@ void PlanetPanel::TakeOffIfReady()
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
 			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
-			out << "If you take off now you will fail a mission due to not having enough ";
+			out << "If you take off now you will abort a mission due to not having enough ";
 
 			if(overbooked > 0)
 			{

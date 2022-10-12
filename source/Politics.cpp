@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Politics.h"
@@ -99,7 +102,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 				provoked.insert(other);
 			}
 		}
-		else if(count && abs(weight) >= .05)
+		if(count && abs(weight) >= .05)
 		{
 			// Weights less than 5% should never cause permanent reputation
 			// changes. This is to allow two governments to be hostile or

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Phrase.h"
@@ -17,6 +20,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 using namespace std;
+
+
+
+Phrase::Phrase(const DataNode &node)
+{
+	Load(node);
+}
 
 
 
@@ -108,8 +118,6 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	if(node.HasChildren())
 		node.begin()->PrintTrace("Skipping unrecognized child node:");
 
-	weight = max<int>(1, node.Size() >= 2 ? node.Value(1) : 1);
-
 	if(isPhraseName)
 	{
 		emplace_back(string{}, GameData::Phrases().Get(node.Token(0)));
@@ -176,13 +184,13 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 
 		if(child.Token(0) == "word")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(grand);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand);
 		else if(child.Token(0) == "phrase")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(grand, true);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand, true);
 		else if(child.Token(0) == "replace")
 			for(const DataNode &grand : child)
-				part.replacements.emplace_back(grand.Token(0), grand.Size() >= 2 ? grand.Token(1) : string{});
+				part.replacements.emplace_back(grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 

@@ -68,7 +68,7 @@ MinGW provides the tools used to compile the source code into the game's executa
 - Threads: `posix`
 - Exception: `seh`
 
-Endless Sky requires precompiled libraries to compile and play: [Download link](http://endless-sky.github.io/win64-dev.zip)
+Endless Sky requires precompiled libraries to compile and play: [Download link](https://endless-sky.github.io/win64-dev.zip)
 
 The zip can be extracted anywhere on your filesystem; to minimize additional configuration, you can move the `dev64` folder to `C:\`.
 
@@ -77,7 +77,7 @@ The zip can be extracted anywhere on your filesystem; to minimize additional con
 
 If you want to build the game from the command line via Scons, you will need [Python 3.8 or later](https://www.python.org/downloads/). When installing, be sure to select the "Add to PATH" checkbox.
 
-Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, to to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
+Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, go to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
 
 If you used the defaults for MinGW up to this point, add "New" and enter the following in separate entries:
 
@@ -145,7 +145,7 @@ Once all the libraries in place, the game is ready to run! You have three option
 
 To build Endless Sky with native tools, you will first need to download Xcode from the App Store.
 
-Next, install [Homebrew](http://brew.sh). Once it is installed, use it to install the libraries you will need:
+Next, install [Homebrew](https://brew.sh). Once it is installed, use it to install the libraries you will need:
 
 ```
   $ brew install libmad libpng jpeg-turbo
