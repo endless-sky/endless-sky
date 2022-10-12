@@ -724,16 +724,16 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	// Draw Sorting Columns
 	if(sorter)
 	{
-		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 8.));
+		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 15., 7.5));
 
-		SpriteShader::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 8.));
+		SpriteShader::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 7.5));
 
-		SpriteShader::Draw(acceptable[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 75., 8.));
+		SpriteShader::Draw(acceptable[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 75., 7.5));
 
-		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 8.));
+		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
 
 		if(hoverSort >= 0)
-			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 8.), Point(22., 16.), highlight);
+			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.), highlight);
 	}
 
 	// Panel title
