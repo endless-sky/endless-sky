@@ -1496,7 +1496,8 @@ void Engine::CalculateStep()
 		else
 			offsetMultiplier = offsetMultiplier <= 0. ? 0.
 				: offsetMultiplier - offsetChange;
-		offset = flagship->Velocity() * 20. * offsetMultiplier;
+		double temp = offsetMultiplier < 0.5 ? 4 * pow(offsetMultiplier, 3) : 1 - pow((-2 * offsetMultiplier) + 2, 3) / 2;
+		offset = flagship->Velocity() * 30. * temp;
 		newCenter = Preferences::CameraAcceleration() == "on" ?
 			flagship->Position() + offset : Preferences::CameraAcceleration() == "reversed" ?
 			flagship->Position() - offset : flagship->Position();
