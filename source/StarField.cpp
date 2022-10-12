@@ -136,6 +136,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 			zoom = baseZoom * STAR_ZOOM;
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
+
 		float length = vel.Length();
 		Point unit = length ? vel.Unit() : Point(1., 0.);
 		// Don't zoom the stars at the same rate as the field; otherwise, at the
@@ -165,6 +166,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		// Round down to the start of the nearest tile.
 		minX &= ~(TILE_SIZE - 1l);
 		minY &= ~(TILE_SIZE - 1l);
+
 		for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 			{
@@ -180,6 +182,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 				int count = 6 * tileIndex[index + 1] - first;
 				glDrawArrays(GL_TRIANGLES, first, count);
 			}
+
 		glBindVertexArray(0);
 		glUseProgram(0);
 	}
@@ -240,6 +243,7 @@ void StarField::SetUpGraphics()
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
 		"}\n";
+
 	static const char *fragmentCode =
 		"// fragment starfield shader\n"
 		"precision mediump float;\n"
@@ -367,6 +371,7 @@ void StarField::MakeStars(int stars, int width)
 	}
 	// Adjust the tile indices so that tileIndex[i] is the start of tile i.
 	tileIndex.insert(tileIndex.begin(), 0);
+
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 
 	// Connect the xy to the "vert" attribute of the vertex shader.

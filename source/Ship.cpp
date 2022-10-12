@@ -3736,6 +3736,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 {
 	if(count < 0)
 		return;
+
 	cargo.Remove(outfit, count);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
