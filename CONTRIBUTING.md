@@ -41,7 +41,7 @@ The labels I assign to issues are:
 * **unlikely**: An enhancement or other change that I consider lowest priority, too large or difficult, or not appropriate.
 * **wontfix**: A change that I definitely do not think should be made.
 
-* **art**: Everything related to images, sprites, and graphics
+* **art**: A request for anything related to the addition or modification of images, sprites, and graphics.
 * **sound**: Everything to do with sound
 * **text - long**: Content that contains long blocks of text such as large missions and campaigns
 * **text - short**: Content that contains short blocks of text such as jobs, small missions, descriptions, etc.
