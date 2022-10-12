@@ -51,8 +51,6 @@ outfitter "Incipias"
 	"Liquid Hydrogen Cell"
 	"Gas Class Shield"
 	"Liquid Class Shield"
-	"Core Class Thruster"
-	"Core Class Steering"
 	"Plasma Discharger"
 
 shipyard "Incipias"
