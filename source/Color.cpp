@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Color.h"
@@ -66,7 +69,7 @@ Color Color::Transparent(float alpha) const
 	for(int i = 0; i < 3; ++i)
 		result.color[i] = color[i] * alpha;
 	result.color[3] = alpha;
-	
+
 	return result;
 }
 
@@ -77,6 +80,15 @@ Color Color::Additive(float alpha) const
 {
 	Color result = Transparent(alpha);
 	result.color[3] = 0.f;
-	
+
 	return result;
+}
+
+Color Color::Combine(float a1, Color c1, float a2, Color c2)
+{
+	return Color(
+			a1 * c1.color[0] + a2 * c2.color[0],
+			a1 * c1.color[1] + a2 * c2.color[1],
+			a1 * c1.color[2] + a2 * c2.color[2],
+			a1 * c1.color[3] + a2 * c2.color[3]);
 }

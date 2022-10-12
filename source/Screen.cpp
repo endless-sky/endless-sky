@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Screen.h"
@@ -54,7 +57,7 @@ int Screen::Zoom()
 void Screen::SetZoom(int percent)
 {
 	USER_ZOOM = max(100, min(200, percent));
-	
+
 	// Make sure the zoom factor is not set too high for the full UI to fit.
 	static const int MIN_WIDTH = 1000; // Width of main menu
 	static const int MIN_HEIGHT = 500; // Height of preferences panel
@@ -66,7 +69,7 @@ void Screen::SetZoom(int percent)
 	// Use increments of 10, like the user setting
 	minZoom -= minZoom % 10;
 	EFFECTIVE_ZOOM = min(minZoom, UserZoom());
-	
+
 	WIDTH = RAW_WIDTH * 100 / EFFECTIVE_ZOOM;
 	HEIGHT = RAW_HEIGHT * 100 / EFFECTIVE_ZOOM;
 }

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef GOVERNMENT_H_
@@ -41,19 +44,20 @@ class Government {
 public:
 	// Default constructor.
 	Government();
-	
+
 	// Load a government's definition from a file.
 	void Load(const DataNode &node);
-	
+
 	// Get the display name of this government.
 	const std::string &GetName() const;
-	// Get the name used for this government in the data files.
+	// Set / Get the name used for this government in the data files.
+	void SetName(const std::string &trueName);
 	const std::string &GetTrueName() const;
 	// Get the color swizzle to use for ships of this government.
 	int GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.
 	const Color &GetColor() const;
-	
+
 	// Get the government's initial disposition toward other governments or
 	// toward the player.
 	double AttitudeToward(const Government *other) const;
@@ -74,7 +78,7 @@ public:
 	// Get the conversation that will be shown if this government gives a death
 	// sentence to the player (for carrying highly illegal cargo).
 	const Conversation *DeathSentence() const;
-	
+
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
@@ -83,16 +87,16 @@ public:
 	// Pirate raids in this government's systems use this fleet definition. If
 	// it is null, there are no pirate raids.
 	const Fleet *RaidFleet() const;
-	
+
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
 	bool IsEnemy(const Government *other) const;
 	// Check if this government is an enemy of the player.
 	bool IsEnemy() const;
-	
+
 	// Below are shortcut functions which actually alter the game state in the
 	// Politics object, but are provided as member functions here for clearer syntax.
-	
+
 	// Check if this is the player government.
 	bool IsPlayer() const;
 	// Commit the given "offense" against this government (which may not
@@ -105,24 +109,26 @@ public:
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
 	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
-	
+
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
 	void AddReputation(double value) const;
 	void SetReputation(double value) const;
-	
+
 	// Get the government's crew attack/defense values
 	double CrewAttack() const;
 	double CrewDefense() const;
-	
-	
+
+	bool IsProvokedOnScan() const;
+
+
 private:
 	unsigned id;
 	std::string name;
 	std::string displayName;
 	int swizzle = 0;
 	Color color;
-	
+
 	std::vector<double> attitudeToward;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
@@ -138,6 +144,7 @@ private:
 	const Fleet *raidFleet = nullptr;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
+	bool provokedOnScan = false;
 };
 
 

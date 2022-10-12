@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Aphid"
 	sprite "ship/hai aphid"
@@ -46,7 +49,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
+	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai interplanetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
 
 ship "Aphid" "Aphid (Armed)"
 	outfits
@@ -67,7 +70,7 @@ ship "Centipede"
 	sprite "ship/hai centipede"
 	thumbnail "thumbnail/hai centipede"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		"cost" 6300000
 		"shields" 6600
 		"hull" 2400
@@ -171,6 +174,7 @@ ship "Flea"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
 	outfits
@@ -211,6 +215,7 @@ ship "Geocoris"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 5
+		`"Biroo" Reverse Thruster`
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
@@ -270,7 +275,7 @@ ship "Grasshopper"
 		"drag" 1.5
 		"heat dissipation" .85
 		"fuel capacity" 300
-		"cargo space"  29
+		"cargo space" 29
 		"outfit space" 169
 		"weapon capacity" 38
 		"engine capacity" 61
@@ -286,6 +291,7 @@ ship "Grasshopper"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
@@ -325,6 +331,7 @@ ship "Grasshopper" "Grasshopper (Surveillance)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		Hyperdrive
@@ -362,9 +369,11 @@ ship "Lightning Bug"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		"Pulse Rifle" 2
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
 	engine -40 22
 	engine 40 22
 	gun 0 -40 "Ion Cannon"
@@ -459,14 +468,14 @@ ship "Pond Strider"
 	turret -18 -53 "Bullfrog Anti-Missile"
 	turret 18 -53 "Bullfrog Anti-Missile"
 	turret 0 14 "Chameleon Anti-Missile"
-	drone -70 -45 left under
-	drone 70 -45 right under
-	drone -70 28 left under
-	drone 70 28 right under
-	drone -70 -45 over
-	drone 70 -45 over
-	drone -70 28 over
-	drone 70 28 over
+	bay "Drone" -70 -45 left under
+	bay "Drone" 70 -45 right under
+	bay "Drone" -70 28 left under
+	bay "Drone" 70 28 right under
+	bay "Drone" -70 -45 over
+	bay "Drone" 70 -45 over
+	bay "Drone" -70 28 over
+	bay "Drone" 70 28 over
 	leak "leak" 40 50
 	leak "flame" 40 70
 	leak "big leak" 70 30
@@ -585,6 +594,7 @@ ship "Shield Beetle"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
 		"Quantum Keystone"
+		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
@@ -772,6 +782,7 @@ ship "Solifuge"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
 		"Quantum Keystone"
+		"Pulse Rifle" 62
 		`"Benga" Atomic Steering`
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -791,12 +802,12 @@ ship "Solifuge"
 	turret -55 1 "Pulse Turret"
 	turret 54.5 50.5 "Bullfrog Anti-Missile"
 	turret -54.5 50.5 "Bullfrog Anti-Missile"
-	fighter -51.5 -71 under
-	fighter 51.5 -71 under
-	fighter -58.5 2 under
-	fighter 58.5 2 under
-	fighter -51.5 76 under
-	fighter 51.5 76 under
+	bay "Fighter" -51.5 -71 under
+	bay "Fighter" 51.5 -71 under
+	bay "Fighter" -58.5 2 under
+	bay "Fighter" 58.5 2 under
+	bay "Fighter" -51.5 76 under
+	bay "Fighter" 51.5 76 under
 	leak "leak" 40 50
 	leak "flame" 60 70
 	leak "big leak" 70 50
@@ -806,7 +817,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
@@ -947,6 +958,7 @@ ship "Violin Spider"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `The Hai fighter is equipped with what most humans would consider the greatest technology available, but all of that high tech comes at a cost.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Violin Spider" "Violin Spider (Pulse)"
 	outfits
@@ -965,7 +977,7 @@ ship "Water Bug"
 	sprite "ship/hai water bug"
 	thumbnail "thumbnail/hai water bug"
 	attributes
-		category "Heavy Freighter"
+		category "Light Freighter"
 		"cost" 6500000
 		"shields" 7900
 		"hull" 4500
@@ -992,10 +1004,10 @@ ship "Water Bug"
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
+		`"Basrem" Reverse Thruster`
 		`"Benga" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"

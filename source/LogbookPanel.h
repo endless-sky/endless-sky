@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef LOGBOOK_PANEL_H_
@@ -31,11 +34,11 @@ class PlayerInfo;
 class LogbookPanel : public Panel {
 public:
 	LogbookPanel(PlayerInfo &player);
-	
+
 	// Draw this panel.
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -43,16 +46,16 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
-	
-	
+
+
 private:
 	void Update(bool selectLast = true);
-	
-	
+
+
 private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
-	
+
 	// Current month being displayed:
 	Date selectedDate;
 	std::string selectedName;
@@ -63,9 +66,9 @@ private:
 	std::vector<Date> dates;
 
 	Point hoverPoint;
-	
+
 	// Current scroll:
-	double categoryScroll = 0.; 
+	double categoryScroll = 0.;
 	double scroll = 0.;
 	mutable double maxCategoryScroll = 0.;
 	mutable double maxScroll = 0.;

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Flotsam.h"
@@ -32,10 +35,10 @@ const int Flotsam::TONS_PER_BOX = 5;
 
 
 // Constructors for flotsam carrying either a commodity or an outfit.
-Flotsam::Flotsam(const string &commodity, int count)
-	: commodity(commodity), count(count)
+Flotsam::Flotsam(const string &commodity, int count, const Government *sourceGovernment)
+	: commodity(commodity), count(count), sourceGovernment(sourceGovernment)
 {
-	lifetime = Random::Int(300) + 360;
+	lifetime = Random::Int(3600) + 7200;
 	// Scale lifetime in proportion to the expected amount per box.
 	if(count != TONS_PER_BOX)
 		lifetime = sqrt(count * (1. / TONS_PER_BOX)) * lifetime;
@@ -43,12 +46,12 @@ Flotsam::Flotsam(const string &commodity, int count)
 
 
 
-Flotsam::Flotsam(const Outfit *outfit, int count)
-	: outfit(outfit), count(count)
+Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment)
+	: outfit(outfit), count(count), sourceGovernment(sourceGovernment)
 {
 	// The more the outfit costs, the faster this flotsam should disappear.
-	int lifetimeBase = 300000000 / (outfit->Cost() * count + 1000000);
-	lifetime = Random::Int(lifetimeBase) + lifetimeBase + 60;
+	int lifetimeBase = 3000000000 / (outfit->Cost() * count + 1000000);
+	lifetime = Random::Int(lifetimeBase) + lifetimeBase + 600;
 }
 
 
@@ -79,7 +82,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 	velocity = source.Velocity() + dv;
 	angle = Angle::Random();
 	spin = Angle::Random(10.);
-	
+
 	// Special case: allow a harvested outfit item to define its flotsam sprite
 	// using the field that usually defines a secondary weapon's icon.
 	if(outfit && outfit->FlotsamSprite())
@@ -95,18 +98,19 @@ void Flotsam::Place(const Body &source, const Point &dv)
 void Flotsam::Move(vector<Visual> &visuals)
 {
 	position += velocity;
+	velocity *= drag;
 	angle += spin;
 	--lifetime;
 	if(lifetime > 0)
 		return;
-	
-	// This flotsam has reached the end of its life. 
+
+	// This flotsam has reached the end of its life.
 	const Effect *effect = GameData::Effects().Get("flotsam death");
 	for(int i = 0; i < 3; ++i)
 	{
 		Angle smokeAngle = Angle::Random();
 		velocity += smokeAngle.Unit() * Random::Real();
-		
+
 		visuals.emplace_back(*effect, position, velocity, smokeAngle);
 	}
 	MarkForRemoval();
@@ -118,6 +122,15 @@ void Flotsam::Move(vector<Visual> &visuals)
 const Ship *Flotsam::Source() const
 {
 	return source;
+}
+
+
+
+// Ships from this Government should not pick up this flotsam because it
+// was explicitly dumped by a member of this government.
+const Government *Flotsam::SourceGovernment() const
+{
+	return sourceGovernment;
 }
 
 
@@ -160,15 +173,15 @@ int Flotsam::TransferTo(Ship *collector)
 	int amount = outfit ?
 		collector->Cargo().Add(outfit, count) :
 		collector->Cargo().Add(commodity, count);
-	
+
 	Point relative = collector->Velocity() - velocity;
 	double proportion = static_cast<double>(amount) / count;
 	velocity += relative * proportion;
-	
+
 	count -= amount;
 	// If this flotsam is now empty, remove it.
 	if(count <= 0)
 		MarkForRemoval();
-	
+
 	return amount;
 }
