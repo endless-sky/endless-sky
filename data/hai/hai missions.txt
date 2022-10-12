@@ -1444,7 +1444,7 @@ event "battle against scar's legion over"
 mission "Pirate Troubles [3]"
 	landing
 	name "Scar's Legion"
-	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>."
+	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the Keloid, then return to <destination>."
 	source "Scar's Hideout"
 	destination "Hai-home"
 	clearance
