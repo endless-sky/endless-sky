@@ -3369,37 +3369,37 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 			bool foundEnemy = false;
 			const auto targetPriority = Preferences::BoardingSetting();
-			const bool costPriority = (targetPriority == "value");
-			const bool distancePriority = (targetPriority == "proximity");
+			enum class BOARDING_PRIORITY{DISTANCE, COST, MIXED};
+			const BOARDING_PRIORITY boardingPriority = targetPriority == "proximity" ? BOARDING_PRIORITY::DISTANCE :
+				targetPriority == "value" ? BOARDING_PRIORITY::COST : BOARDING_PRIORITY::MIXED;
 
 			auto strategy = [&]() noexcept -> function<double(Ship &)>
 			{
 				Point current = ship.Position();
-				if(costPriority)
+				switch(boardingPriority)
 				{
-					return [this, &ship](Ship &other) noexcept -> double
-					{
-						// Use the exact cost if the ship was scanned, otherwise use an estimation.
-						return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
-							other.Cost() : (other.ChassisCost() * 2.);
-					};
-				}
-				else if(distancePriority)
-				{
-					return [current](Ship &other) noexcept -> double
-					{
-						return current.DistanceSquared(other.Position());
-					};
-				} // Default to mixed strategy.
-				else
-				{
-					return [this, &ship, current](Ship &other) noexcept -> double
-					{
-						// Use the exact cost if the ship was scanned, otherwise use an estimation.
-						double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
-							other.Cost() : (other.ChassisCost() * 2.);
-						return cost * cost / current.DistanceSquared(other.Position());
-					};
+					case BOARDING_PRIORITY::COST:
+						return [this, &ship](Ship &other) noexcept -> double
+						{
+							// Use the exact cost if the ship was scanned, otherwise use an estimation.
+							return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+								other.Cost() : (other.ChassisCost() * 2.);
+						};
+					case BOARDING_PRIORITY::DISTANCE:
+						return [current](Ship &other) noexcept -> double
+						{
+							return current.DistanceSquared(other.Position());
+						};
+					// Otherwise, use the mixed strategy.
+					case BOARDING_PRIORITY::MIXED:
+					default:
+						return [this, &ship, current](Ship &other) noexcept -> double
+						{
+							// Use the exact cost if the ship was scanned, otherwise use an estimation.
+							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+								other.Cost() : (other.ChassisCost() * 2.);
+							return cost * cost / current.DistanceSquared(other.Position());
+						};
 				}
 			}();
 
@@ -3437,17 +3437,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			else
 			{
 				sort(boardable.begin(), boardable.end(),
-					[&ship, costPriority, distancePriority](
+					[&ship, boardingPriority](
 						const shipValue &lhs, const shipValue &rhs
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
-						if(costPriority && lhs.second == rhs.second)
+						if(boardingPriority == BOARDING_PRIORITY::COST && lhs.second == rhs.second)
 							return lhs.first->Position().DistanceSquared(ship.Position()) >
 								rhs.first->Position().DistanceSquared(ship.Position());
 						else
-							return distancePriority ? lhs.second > rhs.second :
-								lhs.second < rhs.second;
+							return boardingPriority == BOARDING_PRIORITY::DISTANCE ?
+								lhs.second > rhs.second : lhs.second < rhs.second;
 					}
 				);
 
