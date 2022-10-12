@@ -377,6 +377,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		// Panel header
 		if(y + static_cast<int>(availableScroll) < Screen::Top() + 30)
 		{
+			dragSide = -1;
 			if(y + static_cast<int>(availableScroll) < Screen::Top() + 10)
 			{
 				// empty space
@@ -385,7 +386,6 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			// Sorter buttons
 			else if(hoverSort >= 0)
 			{
-				dragSide = -1;
 				if (hoverSort == 0)
 					player.ToggleSortSeparateDeadline();
 				else if (hoverSort == 1)
