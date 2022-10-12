@@ -2774,6 +2774,7 @@ bool AI::DoEvasive(Ship &ship, Command &command)
 		
 		// Otherwise, move to the average path away from all enemies.
 		MoveTo(ship, command, avg, Point(), 0, ship.MaxVelocity());
+		ship.SetTargetPosition(pos);
 		return true;
 	}
 	
