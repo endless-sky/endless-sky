@@ -13,7 +13,7 @@
 fleet "Small Vi"
 	government "Gegno Vi"
 	names "gegno vi"
-	cargo 2
+	cargo 1
 	personality
 		heroic vindictive
 	variant 10
@@ -90,7 +90,7 @@ fleet "Large Vi"
 fleet "Vi Transport"
 	government "Gegno Vi"
 	names "gegno vi"
-	cargo 2
+	cargo 3
 	personality
 		timid plunders opportunistic
 	variant 14
@@ -123,7 +123,7 @@ fleet "Vi Transport"
 fleet "Vi Cargo"
 	government "Gegno Vi"
 	names "gegno vi"
-	cargo 2
+	cargo 3
 	personality
 		plunders heroic opportunistic
 	variant 2
@@ -148,7 +148,7 @@ fleet "Vi Cargo"
 fleet "Small Scin"
 	government "Gegno Scin"
 	names "gegno scin"
-	cargo 2
+	cargo 1
 	personality
 		vindictive
 	variant 7
@@ -198,7 +198,7 @@ fleet "Large Scin"
 fleet "Scin Transport"
 	government "Gegno Scin"
 	names "gegno scin"
-	cargo 2
+	cargo 3
 	personality
 		timid
 	variant 7
@@ -223,7 +223,7 @@ fleet "Scin Transport"
 fleet "Scin Cargo"
 	government "Gegno Scin"
 	names "gegno scin"
-	cargo 2
+	cargo 4
 	personality
 		timid
 	variant 4
@@ -248,7 +248,7 @@ fleet "Scin Cargo"
 fleet "Vi Warfleet"
 	government "Gegno Vi"
 	names "gegno vi"
-	cargo 2
+	cargo 0
 	personality
 		heroic vindictive opportunistic
 	variant 8
@@ -269,7 +269,7 @@ fleet "Vi Warfleet"
 fleet "Scin Warfleet"
 	government "Gegno Scin"
 	names "gegno scin"
-	cargo 2
+	cargo 0
 	personality
 		vindictive opportunistic
 	variant 7

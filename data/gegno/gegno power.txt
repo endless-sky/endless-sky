@@ -20,7 +20,7 @@ outfit "R01 Skirmish Battery"
 	thumbnail outfit/gbatterytiny
 	"energy capacity" 1121
 	"outfit space" -12
-	description "Skirmish batteries are very common amongst ships across Gegno space. They can be either a perfectly convenient storage of battery power to offset the load of larger Gegno generators, or a nice addition to add on top of them where more energy would be needed."
+	description "Skirmish batteries are very common among ships across Gegno space. They can be either a cheaper and more convenient storage of battery power in place of upgrading to larger Gegno generators, or a nice addition alongside them where more energy may be needed."
 
 outfit "R02 Battlezone Battery"
 	category Power
@@ -59,7 +59,7 @@ outfit "R04 Crusade Battery"
 	thumbnail outfit/gbatterylarge
 	"energy capacity" 8885
 	"outfit space" -83
-	description "As the largest battery mounted on Gegno ships, the Crusade Battery supplies almost as much power as a small generator, enough to support the massive warships of both the Scin and the Vi. However, the Gegno are inefficient at increasing density with size, as done with human batteries, so these fall behind similarly sized options."
+	description "As the largest battery mounted on Gegno ships, the Crusade Battery holds a large amount of energy, more that it would take a small generator a decent amount of time to produce in order to support the energy hungry warships of both the Scin and the Vi. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options."
 
 outfit "C3 Scrap Cell"
 	category Power
@@ -71,7 +71,7 @@ outfit "C3 Scrap Cell"
 	"energy generation" 1.4
 	"heat generation" 2.2
 	"outfit space" -25
-	description "The Scrap Cell is a small radiothermal generator that produces energy generation in a pinch, but its heat production can affect the Gegno's slightly hotter running tech. Its output is very limited, and is only used in tandem with the Gegno's smaller-sized systems."
+	description "The Scrap Cell is a small radiothermal generator that produces a limited amount of energy. It is only used in tandem with the Gegno's smaller-sized vessels and internals."
 
 outfit "C7 Brawl Cell"
 	category Power
@@ -83,7 +83,7 @@ outfit "C7 Brawl Cell"
 	"energy generation" 2.5
 	"heat generation" 3.9
 	"outfit space" -39
-	description "C7 Brawl Cells are a slight deviation from the other C class cores as it is set upright-forward, a more rudimentary configuration. The tried and tested design, however, still serves the Gegno well, though it will likely be phased out when they are better able to scale up newer technologies."
+	description "Unlike other C-class cores, C7 Brawl Cells are mounted horizontally. This design, however, still serves the Gegno well, though it will likely be phased out in favor of larger generators becoming more compact and efficient in the future."
 
 outfit "C17 Warzone Core"
 	category Power

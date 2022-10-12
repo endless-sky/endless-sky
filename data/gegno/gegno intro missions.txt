@@ -89,7 +89,7 @@ mission "Gegno Vi: First Contact"
 					goto observe
 				`	(Assist the Vi in defeating the beast.)`
 			label assist
-			`	You aim your sidearm at the beast, preparing to fire. Instead of digging back under the surface, the beast continues to thrash about where it is while the Vi batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. The flailing creature begins to gets closer, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
+			`	You bring your sidearm up to a firing position and wait for the beast. Once again, it jumps out of the sand in an incredible displlay, but instead of digging back under the surface, the beast continues to thrash about where it is while the Vi batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. The flailing creature begins to gets closer, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
 			`	Much to your dismay, the shot almost immediately ricochets off of it, and you watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
 			`	A loud, cannon-like "bang" follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the Vi warrior marching out of the creature's mouth.` 
 			choice
@@ -120,7 +120,7 @@ mission "Gegno Vi: First Contact"
 			choice
 				`	(Attempt to contact the ship.)`
 				`	(Evade the ship.)`
-			`	The ship doesn't continues to fly off behind you until it disappears. It seems there is no concern to help the alien on the surface. Eventually, the familiar sunken vessel appears on the horizon and you begin to fly around the area in search for life signatures, hoping that the alien is still alive. Nothing comes up besides the faint signatures of the sand creatures at the edges of your radar. You decide to follow the signatures instead.`
+			`	The ship continues to fly off behind you until it disappears. It seems there is no concern to help the alien on the surface. Eventually, the familiar sunken vessel appears on the horizon and you begin to fly around the area in search for life signatures, hoping that the alien is still alive. Nothing comes up besides the faint signatures of the sand creatures at the edges of your radar. You decide to follow the signatures instead.`
 			`	The signatures keep randomly disappearing and reappearing elsewhere, and appear to lead to only empty space. After checking a few of the signatures, an erratic signature appears on the edge of your radar, just like during your first visit. Approaching the location, you recognize the beast that is swinging about on the surface, and catch glimpses of the alien from before continuing to fight it.`
 			choice
 				`	(Assist the alien in defeating the creature.)`
@@ -137,6 +137,7 @@ mission "Giaru Gegno: Quarg Contact"
 		has "First Contact: Quarg: offered"
 	on offer
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them is a complacent civilian population.`
+		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
 		conversation
 			"After jumping through several systems of many alien ships, a Quarg ring world is a sight of relief to you. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting to your eye is that some other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval-style human clothing."
 			`	The mood here is eerie as the Quarg here move in a more quiet manner than what you're used to. They are almost dismissive of the other species walking about, who are equally as dismissive of you. The unusual atmosphere around you is finally broken when a few Quarg start to advance towards you, moving much quicker than the rest. After a moment of unidentifiable discussion and gestures between themselves, one of them motions you to follow them.`
@@ -161,7 +162,6 @@ mission "Giaru Gegno: Quarg Contact"
 			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future."`
 			choice 
 				`	"What is this guidance they pursue?"`
-				`	"A noble future?"`
 					goto guidance
 			label ships
 			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration."`
@@ -193,12 +193,9 @@ mission "Giaru Gegno: Quarg Contact"
 			label end
 			choice
 				`	"It seems that you do not like the paths they've chosen."`
-			`	The Quarg stands up, darting its gaze off to the side. The verve it exhibited earlier is gone. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses, then gestures you to stand up as well. "Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
+			`	The Quarg stands up, darting its gaze off to the side. The energy it exhibited earlier is gone. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses, then gestures you to stand up as well. "Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
-	on decline
-		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
-
 		
 mission "Stationed Augen"
 	invisible
