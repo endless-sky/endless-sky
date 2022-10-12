@@ -1593,7 +1593,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// ion sparks, jump drive flashes, etc.
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
-		eventQueue.emplace_back(nullptr, ship->shared_from_this(), ShipEvent::DISABLE);
+		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
