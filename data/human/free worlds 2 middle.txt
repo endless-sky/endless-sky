@@ -2020,6 +2020,18 @@ event "end battle of alioth"
 
 
 
+government "Syndicate (Hostile)"
+	swizzle 4
+	color 0 .41 .71
+	"display name" "Syndicate"
+	"player reputation" -1000
+	"attitude toward"
+		"Free Worlds" -.3
+		"Pirate" -.01
+		"Korath" -.01
+	"friendly hail" "friendly syndicate"
+	"hostile hail" "hostile syndicate"
+
 mission "FW Defend New Tibet"
 	landing
 	name "The Defector"
@@ -2093,7 +2105,7 @@ mission "FW Defend New Tibet"
 		dialog "You spot the Syndicate fleet orbiting above New Tibet when you enter the system, but to your surprise they begin targeting your ship. They don't seem very interested in answering any questions about the defector."
 	
 	npc evade
-		government Syndicate
+		government "Syndicate (Hostile)"
 		personality heroic staying
 		system Alioth
 		fleet
