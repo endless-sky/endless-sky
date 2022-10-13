@@ -554,7 +554,7 @@ conversation "interrupted duel"
 		"reputation: Hai (Unfettered)" <?= -1000
 		"unfettered revange fleet"++
 
-mission "Death To Those Without Honour"
+mission "Death To Those Without Honor"
 	invisible
 	repeat
 	deadline 30

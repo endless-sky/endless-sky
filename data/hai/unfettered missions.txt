@@ -1249,7 +1249,7 @@ mission "Unfettered: Cavalry Arrives"
 		has "Unfettered: Materials Intercepted: active"
 	on offer
 		conversation
-			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. It looks like they did not expect you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you...`
+			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. It looks like they did not expect you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you... Whatever the case, you quickly order your crew to get back into space.`
 				launch
 	on enter "Arneb"
 		dialog "They have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
