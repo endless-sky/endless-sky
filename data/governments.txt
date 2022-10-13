@@ -260,7 +260,6 @@ government "Hai (Unfettered Challenge)"
 	
 	"player reputation" -1000
 	"attitude toward"
-		"Hai" -.01
 		"Hai (Unfettered)" 1
 	"bribe" .0001
 	"fine" 0
@@ -268,6 +267,71 @@ government "Hai (Unfettered Challenge)"
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+
+government "Hai (Unfettered Glory Seeker)" # ready to start a duel in space at any time
+	swizzle 4
+	color .69 .33 .82
+	
+	"player reputation" 1
+	"attitude toward"
+		"Hai (Unfettered)" 1
+	"bribe" .0001
+	"fine" 0
+
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
+government "Hai (Unfettered Blue Challenger)" # to make unfettered challengers fight each others
+	"display name" "Unfettered Challenge"
+	swizzle 4
+	color .69 .33 .82
+	
+	"player reputation" 1
+	"attitude toward"
+		"Hai (Unfettered Red Challenger)" -.01
+	"bribe" 0
+	"fine" 0
+
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
+government "Hai (Unfettered Red Challenger)" # to make unfettered challengers fight each others
+	"display name" "Unfettered Challenge"
+	swizzle 4
+	color .69 .33 .82
+	
+	"player reputation" 1
+	"attitude toward"
+		"Hai (Unfettered Blue Challenger)" -.01
+	"bribe" 0
+	"fine" 0
+
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
 
 government "Heliarch"
 	swizzle 0
