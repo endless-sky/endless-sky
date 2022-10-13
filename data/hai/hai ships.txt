@@ -497,6 +497,51 @@ ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
+ship "Sea Scorpion" "Sea Scorpion (Ion)"
+	outfits
+		"Ion Cannon" 3
+		"Hai Tracker Pod"
+		"Tracker Storage Pod"
+		"Hai Tracker" 84
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Diamond Regenerator" 2
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"Chameleon Anti-Missile"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Valley Batteries"
+		"Hyperdrive"
+		"Ion Cannon"
+		"Ionic Blaster Prototype" 2
+		"Ionic Turret Prototype"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Shredder)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile"
+		"Hai Diamond Regenerator" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 4
+		"Hyperdrive"
+		"Pulse Cannon" 2
+		"Pulse Rifle" 15
+		"Pulse Turret"
+		"Quantum Keystone"
+		"Tripulse Shredder" 2
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
@@ -820,6 +865,53 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+
+ship "Shield Beetle" "Shield Beetle (Ionic)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Diamond Regenerator" 2
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hyperdrive"
+		"Ion Cannon" 2
+		"Ionic Blaster Prototype" 4
+		"Ionic Turret Prototype" 2
+		"Pulse Cannon" 2
+		"Pulse Rifle" 55
+		"Quantum Keystone"
+		"Supercapacitor" 3
+
+ship "Shield Beetle" "Shield Beetle (Sunbeam)"
+	outfits
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Boulder Reactor" 2
+		"Bullfrog Anti-Missile" 4
+		"Hai Diamond Regenerator"
+		"Hai Valley Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hyperdrive"
+		"Pulse Rifle" 55
+		"Sunbeam" 8
+
+ship "Shield Beetle" "Shield Beetle (Thunderhead)"
+	outfits
+		`"Basrem" Reverse Thruster`
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Boulder Reactor"
+		"Fuel Pod" 2
+		"Hai Diamond Regenerator" 3
+		"Hai Ravine Batteries"
+		"Hyperdrive"
+		"Outfit Scanner" 2
+		"Pulse Rifle" 55
+		"Pulse Turret" 3
+		"Thunderhead Launcher" 8
+		"Thunderhead Missile" 160
 
 ship "Shield Beetle Prototype"
 	sprite "ship/hai shield beetle prototype"

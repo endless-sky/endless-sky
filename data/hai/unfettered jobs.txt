@@ -376,8 +376,36 @@ phrase "unfettered challenger defeated"
 		`"Is your fleet not too big for this battle? Or do you use superior weaponry? You must have had an edge! Whatever the case, here are your <payment>, but don't expect to see us again anytime soon."`
 		`"Well done, I guess it is only fair that you be allowed to plunder a few of my outfits... But do not expect it will be tolerated every time, given you already received <payment> from winning this little skirmish."`
 
+fleet "Sea Scorpion Challenger"
+	names "hai"
+	variant 5
+		"Sea Scorpion (Pulse)"
+	variant 5
+		"Sea Scorpion"
+	variant 5
+		"Sea Scorpion (Ion)"
+	variant
+		"Sea Scorpion (Ionic)"
+	variant
+		"Sea Scorpion (Shredder)"
+
+fleet "Shield Beetle Challenger"
+	names "hai"
+	variant 5
+		"Shield Beetle (Pulse)"
+	variant 5
+		"Shield Beetle"
+	variant 5
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Ionic)"
+	variant
+		"Shield Beetle (Sunbeam)"
+	variant
+		"Shield Beetle (Thunderhead)"
+
 mission "Unfettered Challenge [0]"
-	name `Defeat young Unfettered captain`
+	name `Defeat a young Unfettered captain`
 	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
@@ -390,19 +418,16 @@ mission "Unfettered Challenge [0]"
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
-		fleet
-			names "hai"
-			variant
-				"Sea Scorpion (Pulse)"
+		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
 			action
 				payment 200000
 				"reputation: Hai (Unfettered)" += 15
-				fail "Unfettered Challenge [0]"
+				fail
 
-mission "Unfettered Challenge [1]"
-	name `Defeat Unfettered captain`
+mission "Unfettered Challenge [1A]"
+	name `Defeat an Unfettered captain`
 	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
@@ -411,23 +436,42 @@ mission "Unfettered Challenge [1]"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
-		random < 40
+		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
-		fleet
-			names "hai"
-			variant
-				"Sea Scorpion (Pulse)" 2
+		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 		conversation
 			action
 				payment 400000
 				"reputation: Hai (Unfettered)" += 30
-				fail "Unfettered Challenge [1]"
+				fail
+
+mission "Unfettered Challenge [1B]"
+	name `Defeat an Unfettered captain`
+	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
+	job
+	repeat
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
+		random < 20
+	npc save disable
+		government "Hai (Unfettered Challenge)"
+		personality disables staying heroic target
+		fleet "Shield Beetle Challenger"
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			action
+				payment 400000
+				"reputation: Hai (Unfettered)" += 30
+				fail
 
 mission "Unfettered Challenge [2]"
-	name `Defeat experienced Unfettered captain`
+	name `Defeat an experienced Unfettered captain`
 	description `An experienced Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
@@ -436,21 +480,18 @@ mission "Unfettered Challenge [2]"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
-		random < 10
+		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
-		fleet
-			names "hai"
-			variant
-				"Shield Beetle (Pulse)"
-				"Sea Scorpion (Pulse)"
+		fleet "Shield Beetle Challenger"
+		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
 			action
 				payment 600000
 				"reputation: Hai (Unfettered)" += 60
-				fail "Unfettered Challenge [2]"
+				fail
 
 
 
