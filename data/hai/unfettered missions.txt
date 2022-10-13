@@ -527,24 +527,25 @@ mission "Unfettered: Bring Medical Supplies"
 		has "Unfettered: Bring Hai: done"
 		has "reputation: Hai" >= 0
 	substitutions
-		<prioritymessage> "Unfortunately, because it's in Hai, you can only guess meaning out of it. It has to be pretty important, and you can recognize the Hai words for "disease" and "uncontrolled", as well as numbers in the hundreds."
+		<prioritymessage> "Unfortunately, because it's in Hai, you can only guess at the meaning out of it, but clearly it is important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds."
 			not "language: Wanderer"
-		<prioritymessage> `"Assistance requested from all available pilots. Local outbreak of broiling sickness has spread catastrophically and has now been classified as an uncontrolled [epidemic, plague]. Hundreds are already critically ill and hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from <stopovers> for immediate return."`
+		<prioritymessage> `"Assistance requested from all available pilots. Local outbreak of broiling sickness has spread catastrophically, and is now classified as an uncontrolled [epidemic, plague]. Hundreds are already critically ill and hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from <stopovers> for immediate return."`
 			has "language: Wanderer"
 	on offer
 		conversation
-			`When you land, there is a message repeating on priority channels in Hai standard. It is tagged with the information for one of the hospitals nearby. <prioritymessage> Unsure whether they would accept your assistance as an outsider, and given the message is in Hai, you decide to go take a closer look and ask. After all, it is unlikely that a Hai disease would be of any risk to you.`
-			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, and various vehicles are coming and going frequently to bring the wounded to the hospital. The hospital itself looks different than the rest of the Unfettered structures: it seems more organized, proper. It is probably the best maintained structure here alongside the shipyards - or at least it has that appearance. One part of it looks to have been grafted onto the rest though, and seems to be a recent addition. Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
+			`When you land, there is a message repeating on priority channels in Hai standard and tagged with the information for one of the hospitals nearby. <prioritymessage> Unsure whether they would accept your assistance as an outsider, especially given the message is in Hai, you decide to first look for more information planet-side. After all, it is unlikely that a Hai disease would be of any risk to you.`
+			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered rush around, and various vehicles are frequently coming and going, bringing both supplies and the infected to the hospital. The hospital itself looks different than the rest of the Unfettered structures: it seems more organized, proper. It is probably the best maintained structure here alongside the shipyards - or at least it has that appearance. One part of it looks to have been grafted onto the rest though, and seems to be a recent addition. Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
 			`	Many pilots seem to have taken up the call, but it appears the organizers here are still interested in all the volunteers they can get. Now that you're here, you're not sure you'll be able to leave without at least being accosted for your assistance with this.`
 			choice
 				`	(Signal them that I'm going to get the supplies.)`
 					goto agree
 				`	(I don't have time for this.)`
 			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You probably also shouldn't stay landed here too long in case they decide to follow you.`
+			decline
 			label agree
-			`	You are quickly assigned the collection of supplies from <stopovers>, and asked to go collect them as quickly as possible.`
+			`	You are quickly assigned the collection of supplies from <stopovers> and urged to return them as quickly as possible.`
 	on stopover
-		dialog `You're surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo, and once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
+		dialog `You're surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and, once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -555,7 +556,7 @@ mission "Unfettered: Bring Medical Supplies"
 		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're heading to your ship, someone catches up to you. "Hello, captain <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you, and give you the <payment> in person. When you have the time, make sure to check the job board for more jobs like this, it would mean a great deal to me."`
-			`	On the way back, you notice the same Hai Chief from Firelode, speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. We did not before have the time to get properly introduced. I am Nimo." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Nimo. "Worry not, <first> <last>, I already know who you are."`
+			`	Once XXX leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanour and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Nimo." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Nimo. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					decline
