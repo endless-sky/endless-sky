@@ -164,7 +164,6 @@ outfitter "Unfettered Basics"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
-	"Value Detector"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
