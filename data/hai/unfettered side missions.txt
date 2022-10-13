@@ -333,7 +333,7 @@ mission "Unfettered: Betrayal For The Bars"
 			`You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid off.`
 				accept
 			label light
-			`You throw a bucket of water on the crew member. They wake up, but at first refuse to tell you anything. Once you reveal you're aware of their marking, they agree to reveal something to you. They seem to recognize the hopelessness of their situation, and may be willing to bargain. "This sign means that I hold my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
+			`You throw a bucket of water on the crew member. They wake up, but at first refuse to tell you anything. Once you reveal you're aware of their marking, they concede to reveal something to you. They seem to recognize the hopelessness of their situation, and may be willing to bargain. "This sign means that I hold my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
 			`You nod, and they then proceed, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
 			choice
 				`(This is it. I want to know all.)`
@@ -417,7 +417,7 @@ mission "Unfettered: Pirate Help"
 			`	"Close call, I see. Maybe the Hai should assign a slightly larger fleet next time... Or maybe you yourself need more ships."`
 				goto attacks
 			label run
-			`	"Oh, I may have overestimated your strength then. You should wait a while before doing what I am about to ask, because it will require some strength."`
+			`	"Oh, I may have overestimated your abilities then. You should wait a while before doing what I am about to ask, because it will require some strength."`
 				goto attacks
 			label strong
 			`	"Perfect! That means you should be ready for what I am about to ask you."`
@@ -439,7 +439,7 @@ mission "Unfettered: Pirate Help"
 				`	"How will I convince the Hai I'm there to help them?"`
 			`	"I hear those unfettered human attacks are very frequent these days... And that planet is on the border of Hai space. It is a very likely target for any pirates. I also have information indicating an attack will come, soon. It should be easy to arrange. Help them repel the attack and they will most likely trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet."`
 			choice
-				`	"I will go to Allhome and help them repel this attack, once I am strong enough to repel a pirate fleet."`
+				`	"I will go to Allhome and help them resist the attack, once I am strong enough to beat part of a pirate fleet."`
 					accept
 				`	"I'm not interested in doing this."`
 					decline
@@ -718,7 +718,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		dialog phrase "Essential Unfettered Mission Fail"
 		# you may decline this mission but if you accept it, you need to finish it
 	on visit
-		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escorts.`
+		dialog `You have landed on <origin> but you do not have the spoils yet, or the escorts carrying them haven't arrived in the system yet.`
 	on complete
 		clear "unfettered: offered loot"
 		log `Found some "defenseless" cargo in space, and brought it back to the Unfettered.`
@@ -825,7 +825,7 @@ mission "Unfettered: The Word Has Spread North: Mirrorlake"
 			`	They look surprised - maybe they didn't get the word. Whatever the case, they agree to leave their belongings here, negotiating a small change in the fee they were asked to prepare for you.`
 				decline
 			label "too late"
-			`	They are angry, and one of them, the smallest of the bunch, comes forward to shout at you, "First we have to accept being transported by a human, then he is late, and on top of that he will not even allow us to take luggage with us?? The Unfettered are not what they used to be, we will not dedicate ourselves to such a cause. Do not expect any form of compensation from us, either."`
+			`	They are angry, and one of them, the smallest of the bunch, comes forward to shout at you, "First we have to accept being transported by a human, then they are late, and on top of that they will not even allow us to take luggage with us?? The Unfettered are not what they used to be, we will not dedicate ourselves to such a cause. Do not expect any form of compensation from us, either."`
 			action
 				"unfettered: missing northern hai" += 2
 	on complete
@@ -910,7 +910,7 @@ mission "Unfettered: Family Hunt From Newhome"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is 'The Harpy', and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that the ship is as fast as light itself.`
+			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is 'The Harpy', and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that the ship is as fast as a Tari - a very fast small bird from the Hai's home world.`
 				launch
 	npc board
 		government "Bounty (Disguised)"
@@ -921,7 +921,7 @@ mission "Unfettered: Family Hunt From Newhome"
 		conversation
 			action
 				payment 250000
-			`You manage to find the Hai family, thankfully no harm has come to them. They do not seem to be in shock but still insist to give you all that they have, <payment>, to thank you. They say that after this event, they're even more looking forward to meeting their cousins, and learning more about them (you assume they refer to the Unfettered.)`
+			`You manage to find the Hai family, thankfully no harm has come to them. They do not seem to be in shock but still insist to give you all that they have, <payment>, to thank you. They say that after this event, they're even more looking forward to meeting their cousins up north, and learning more about them.`
 			`	The mother adds, "Some Hai ships tried to help us, or at least that is what I assumed when feeling the small shocks to the ship from time to time, but they were the exception. We will probably be safer in unfettered space, where they don't let pirates roam freely, whether they are disguised as merchants or not."`
 				decline
 	on fail
@@ -1052,7 +1052,7 @@ mission "Unfettered: Special Cargo"
 	on offer
 		conversation
 			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
-			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - 'by any means,' he says."`
+			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - by any means."`
 			choice
 				`	"How will I know which warlord it is?"`
 			`	"It is no common warlord. To tell you the truth, she is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
@@ -1140,7 +1140,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security.`
 				goto caught
 			label weapons
-			`	This part of the ship is mostly full of torpedoes - apparently the warlord loves them. But there are not many people here, since this part of the ship seems to have suffered no damage. The torpedoes will probably be restocked soon, so you leave before someone comes in and notices you.`
+			`	This part of the ship is mostly full of torpedoes - apparently the warlord loves them. But there are not many people here, since it does not seem to have suffered damage. The torpedoes will probably be restocked soon, so you leave before someone comes in and notices you.`
 				goto found
 			label bridge
 			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
@@ -1411,7 +1411,7 @@ mission "Unfettered: Speak Hai"
 	to complete
 		has "language: Wanderer"
 	on complete
-		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which I should make demands to the Unfettered later.`
+		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which I should make demands to the Wanderers later on.`
 		dialog `You land and find the herald you spoke to earlier. "We now know we can speak to you in the True language of the Hai, finally. And you can speak to us in Hai, through the translator. Most of us will be willing to continue communicating in your language, but expect to use the translator to speak and understand our Chiefs. They'll probably act like it's nothing, but trust me, they care."`
 
 
@@ -1419,7 +1419,7 @@ mission "Unfettered: Speak Hai"
 mission "Unfettered: Bring Detainer"
 	landing
 	name `Recover a detainer`
-	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look around Kor Sestor space.`
+	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look east of Unfettered space.`
 	source "Warfeed"
 	to offer
 		has "Unfettered: Speak Hai: active"
