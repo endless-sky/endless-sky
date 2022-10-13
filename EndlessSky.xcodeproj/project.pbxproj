@@ -16,6 +16,7 @@
 		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		301A4FE885A7A12348986C4F /* UniverseObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 389245138CF297EB417DF730 /* UniverseObjects.cpp */; };
 		46A34BE4A0599886221093BA /* PrintData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 341645FAA25F7901221B8965 /* PrintData.cpp */; };
+		483A40DBA497868FE299CBC2 /* AmmoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAF40DF982694B939AD5086 /* AmmoDisplay.cpp */; };
 		497849B2A4C5EA58A64D316C /* MapPlanetCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
 		5AB644C9B37C15C989A9DBE9 /* DisplayText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E1E458DB603BF979429117C /* DisplayText.cpp */; };
@@ -28,6 +29,7 @@
 		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		750C4374811B129C0D5C9343 /* SecondaryWeaponIconDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E79F4AA18DC068DFB129E5C6 /* SecondaryWeaponIconDisplay.cpp */; };
+		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
 		88A64339B56EBA1F7923E1C7 /* GameLoadingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */; };
 		90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950742538F8CECF5D4168FBC /* EsUuid.cpp */; };
@@ -217,7 +219,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConditionsStore.cpp; path = source/ConditionsStore.cpp; sourceTree = "<group>"; };
+		027941B49DDFA8A963493E3D /* AmmoDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmmoDisplay.h; path = source/AmmoDisplay.h; sourceTree = "<group>"; };
 		02D34A71AE3BC4C93FC6865B /* TestData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestData.cpp; path = source/TestData.cpp; sourceTree = "<group>"; };
 		070CD8152818CC6B00A853BB /* libmad.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmad.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		072599BE26A8C67D007EC229 /* SDL2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SDL2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +241,7 @@
 		32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapPlanetCard.cpp; path = source/MapPlanetCard.cpp; sourceTree = "<group>"; };
 		341645FAA25F7901221B8965 /* PrintData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PrintData.cpp; path = source/PrintData.cpp; sourceTree = "<group>"; };
 		389245138CF297EB417DF730 /* UniverseObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UniverseObjects.cpp; path = source/UniverseObjects.cpp; sourceTree = "<group>"; };
+		4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConditionsStore.cpp; path = source/ConditionsStore.cpp; sourceTree = "<group>"; };
 		46B444A6B2A67F93BB272686 /* ByGivenOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByGivenOrder.h; path = source/comparators/ByGivenOrder.h; sourceTree = "<group>"; };
 		499B4DA7A9C7351120660643 /* MaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MaskManager.cpp; path = source/MaskManager.cpp; sourceTree = "<group>"; };
 		5155CD711DBB9FF900EF090B /* Depreciation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Depreciation.cpp; path = source/Depreciation.cpp; sourceTree = "<group>"; };
@@ -251,7 +254,6 @@
 		6245F8241D301C7400A7A094 /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Body.h; path = source/Body.h; sourceTree = "<group>"; };
 		6245F8261D301C9000A7A094 /* Hardpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hardpoint.cpp; path = source/Hardpoint.cpp; sourceTree = "<group>"; };
 		6245F8271D301C9000A7A094 /* Hardpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hardpoint.h; path = source/Hardpoint.h; sourceTree = "<group>"; };
-		628143A8B7BD41CCA1243351 /* SecondaryWeaponIconDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecondaryWeaponIconDisplay.h; path = source/SecondaryWeaponIconDisplay.h; sourceTree = "<group>"; };
 		628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetLabel.cpp; path = source/PlanetLabel.cpp; sourceTree = "<group>"; };
 		628BDAEE1CC5DC950062BCD2 /* PlanetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetLabel.h; path = source/PlanetLabel.h; sourceTree = "<group>"; };
 		62A405B81D47DA4D0054F6A0 /* FogShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FogShader.cpp; path = source/FogShader.cpp; sourceTree = "<group>"; };
@@ -263,7 +265,6 @@
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
 		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
-		A3B9425983D66B182BD724B4 /* ConditionsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConditionsStore.h; path = source/ConditionsStore.h; sourceTree = "<group>"; };
 		74F543598EEFB3745287E663 /* Bitset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitset.cpp; path = source/Bitset.cpp; sourceTree = "<group>"; };
 		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		86D9414E818561143BD298BC /* TextReplacements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextReplacements.h; path = source/TextReplacements.h; sourceTree = "<group>"; };
@@ -279,6 +280,7 @@
 		A2A94C40A8DCA99809AD5DEE /* MapPlanetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapPlanetCard.h; path = source/MapPlanetCard.h; sourceTree = "<group>"; };
 		A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestContext.cpp; path = source/TestContext.cpp; sourceTree = "<group>"; };
 		A3754152958FBC924E9F76A9 /* opengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opengl.cpp; path = source/opengl.cpp; sourceTree = "<group>"; };
+		A3B9425983D66B182BD724B4 /* ConditionsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConditionsStore.h; path = source/ConditionsStore.h; sourceTree = "<group>"; };
 		A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLoadingPanel.cpp; path = source/GameLoadingPanel.cpp; sourceTree = "<group>"; };
 		A7F240B4AC219841424A387A /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = source/Logger.cpp; sourceTree = "<group>"; };
 		A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogbookPanel.cpp; path = source/LogbookPanel.cpp; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		AE57401AA43232EDEABFAE13 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = source/Logger.h; sourceTree = "<group>"; };
+		AEAF40DF982694B939AD5086 /* AmmoDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AmmoDisplay.cpp; path = source/AmmoDisplay.cpp; sourceTree = "<group>"; };
 		B55C239B2303CE8A005C1A14 /* GameWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameWindow.cpp; path = source/GameWindow.cpp; sourceTree = "<group>"; };
 		B55C239C2303CE8A005C1A14 /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameWindow.h; path = source/GameWindow.h; sourceTree = "<group>"; };
 		B590161121ED4A0E00799178 /* Utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8.cpp; path = source/text/Utf8.cpp; sourceTree = "<group>"; };
@@ -551,7 +554,6 @@
 		DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchShader.h; path = source/BatchShader.h; sourceTree = "<group>"; };
 		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
 		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
-		E79F4AA18DC068DFB129E5C6 /* SecondaryWeaponIconDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SecondaryWeaponIconDisplay.cpp; path = source/SecondaryWeaponIconDisplay.cpp; sourceTree = "<group>"; };
 		E8F645ACA30BA0E95F83803C /* FireCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FireCommand.cpp; path = source/FireCommand.cpp; sourceTree = "<group>"; };
 		EB4645F28765D37290EA6F78 /* FireCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FireCommand.h; path = source/FireCommand.h; sourceTree = "<group>"; };
 		EB634E95A88454ADDB8644B1 /* opengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opengl.h; path = source/opengl.h; sourceTree = "<group>"; };
@@ -891,13 +893,13 @@
 				A2A94C40A8DCA99809AD5DEE /* MapPlanetCard.h */,
 				61FA4C2BB89E08C5E2B8B4B9 /* Variant.cpp */,
 				5EBC44769E84CF0C953D08B3 /* Variant.h */,
-				E79F4AA18DC068DFB129E5C6 /* SecondaryWeaponIconDisplay.cpp */,
-				628143A8B7BD41CCA1243351 /* SecondaryWeaponIconDisplay.h */,
 				086E48E490C9BAD6660C7274 /* ExclusiveItem.h */,
 				341645FAA25F7901221B8965 /* PrintData.cpp */,
 				CCE547DBB6C74E18E1B84D29 /* PrintData.h */,
 				A7F240B4AC219841424A387A /* Logger.cpp */,
 				AE57401AA43232EDEABFAE13 /* Logger.h */,
+				AEAF40DF982694B939AD5086 /* AmmoDisplay.cpp */,
+				027941B49DDFA8A963493E3D /* AmmoDisplay.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1292,9 +1294,9 @@
 				F35E4D6EA465D71CDA282EBA /* MenuAnimationPanel.cpp in Sources */,
 				497849B2A4C5EA58A64D316C /* MapPlanetCard.cpp in Sources */,
 				920F40E0ADECA8926F423FDA /* Variant.cpp in Sources */,
-				750C4374811B129C0D5C9343 /* SecondaryWeaponIconDisplay.cpp in Sources */,
 				46A34BE4A0599886221093BA /* PrintData.cpp in Sources */,
 				DAC24E909BF453D18AEE3DA3 /* Logger.cpp in Sources */,
+				483A40DBA497868FE299CBC2 /* AmmoDisplay.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
