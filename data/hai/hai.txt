@@ -557,3 +557,72 @@ phrase "hostile disabled unfettered"
 	word
 		"!"
 		"."
+
+phrase "provocative unfettered challenger"
+	word
+		"Do you really think you can beat me?"
+		"Show your worth to me in battle now!"
+		"You pathethic monkey, you stand no chance against me! It is best for you if you run."
+		"The time has come to fight. The Gods are watching."
+		"I challenge you! Come and fight me now!"
+		"Surprise me! What shall be your first strike?"
+		"Because of your weakness, I will let you have the first strike."
+		"We will fight you together. Let's see if you can handle that!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Stop "
+		"Quit "
+	word
+		"shaming yourself"
+		"running away"
+		"thinking too much"
+		"recharging your shields"
+		"hiding in fear"
+	word
+		" and come "
+		" and come try and "
+	word
+		"defeat "
+		"fight "
+	word
+		"me."
+	word
+		" Now is the time to reveal ourselves in the glory of battle"
+		" Show me what you got"
+		" That's more like it"
+		" Time for a fair fight"
+	word
+		"."
+		"!"
+
+phrase "defeated unfettered challenger"
+	word
+		"You have "
+	word
+		"beaten "
+		"defeated "
+		"ashamed "
+	word
+		"me in a "
+	word
+		"glorious "
+		"pathethic "
+		"unique "
+		"grandiose "
+		"quick "
+		"strategic "
+	word
+		"battle "
+		"combat "
+		"duel "
+	word
+		"."
+		"!"
+	word
+		" What more do you want from me?"
+		" Do not presume you may board me."
+		" Do not even think about capturing my ship."
+		" Now it is over, time to lay down your weapons."
+		" I accept my fate, take what is rightfully yours."
+		" Great stories will be told of our battle!"

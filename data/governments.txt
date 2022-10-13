@@ -246,6 +246,7 @@ government "Hai (Unfettered)"
 		"Merchant" -.01
 		"Kor Efret" -.01
 		"Hai (Unfettered Challenge)" 1
+		"Hai (Unfettered Glory Seeker)" 1
 		"Shadow" 1
 	"bribe" .02
 	"fine" 0
@@ -264,11 +265,13 @@ government "Hai (Unfettered Challenge)"
 	"bribe" .0001
 	"fine" 0
 
-	"friendly hail" "friendly unfettered"
+	"friendly hail" "provocative unfettered challenger"
 	"friendly disabled hail" "friendly disabled unfettered"
-	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+	"hostile hail" "hostile unfettered challenger"
+	"hostile disabled hail" "defeated unfettered challenger"
 
-government "Hai (Unfettered Glory Seeker)" # ready to start a duel in space at any time
+ # Ships belonging to this government are ready to start a duel in space at any time.
+government "Hai (Unfettered Glory Seeker)"
 	swizzle 4
 	color .69 .33 .82
 	
@@ -278,9 +281,10 @@ government "Hai (Unfettered Glory Seeker)" # ready to start a duel in space at a
 	"bribe" .0001
 	"fine" 0
 
-	"friendly hail" "friendly unfettered"
+	"friendly hail" "provocative unfettered challenger"
 	"friendly disabled hail" "friendly disabled unfettered"
-	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+	"hostile hail" "hostile unfettered challenger"
+	"hostile disabled hail" "defeated unfettered challenger"
 	"penalty for"
 		assist 0
 		disable 0
@@ -289,7 +293,8 @@ government "Hai (Unfettered Glory Seeker)" # ready to start a duel in space at a
 		destroy 0
 		atrocity 0
 
-government "Hai (Unfettered Blue Challenger)" # to make unfettered challengers fight each others
+ # A government used to make unfettered challengers fight each others.
+government "Hai (Unfettered Blue Challenger)"
 	"display name" "Unfettered Challenge"
 	swizzle 4
 	color .69 .33 .82
@@ -302,7 +307,8 @@ government "Hai (Unfettered Blue Challenger)" # to make unfettered challengers f
 
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
-	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
 	"penalty for"
 		assist 0
 		disable 0
@@ -311,7 +317,8 @@ government "Hai (Unfettered Blue Challenger)" # to make unfettered challengers f
 		destroy 0
 		atrocity 0
 
-government "Hai (Unfettered Red Challenger)" # to make unfettered challengers fight each others
+ # A government used to make unfettered challengers fight each others.
+government "Hai (Unfettered Red Challenger)"
 	"display name" "Unfettered Challenge"
 	swizzle 4
 	color .69 .33 .82
@@ -324,7 +331,8 @@ government "Hai (Unfettered Red Challenger)" # to make unfettered challengers fi
 
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
-	"hostile hail" "hostile civilian"  # normally unfettered asks to finish them off
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
 	"penalty for"
 		assist 0
 		disable 0
