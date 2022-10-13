@@ -3385,20 +3385,19 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 							return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
 						};
+					case BOARDING_PRIORITY::MIXED:
+						return [this, &ship, current](Ship &other) noexcept -> double
+						{
+							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+								other.Cost() : (other.ChassisCost() * 2.);
+							return cost * cost / current.DistanceSquared(other.Position());
+						};
+					// Default to distance priorities (the default setting).
+					default:
 					case BOARDING_PRIORITY::DISTANCE:
 						return [current](Ship &other) noexcept -> double
 						{
 							return current.DistanceSquared(other.Position());
-						};
-					// Otherwise, use the mixed strategy.
-					case BOARDING_PRIORITY::MIXED:
-					default:
-						return [this, &ship, current](Ship &other) noexcept -> double
-						{
-							// Use the exact cost if the ship was scanned, otherwise use an estimation.
-							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
-								other.Cost() : (other.ChassisCost() * 2.);
-							return cost * cost / current.DistanceSquared(other.Position());
 						};
 				}
 			}();
