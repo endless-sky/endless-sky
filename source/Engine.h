@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
-#include "SecondaryWeaponIconDisplay.h"
+#include "AmmoDisplay.h"
 
 #include <condition_variable>
 #include <list>
@@ -196,7 +196,7 @@ private:
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
-	SecondaryWeaponIconDisplay secWeapons;
+	AmmoDisplay secWeapons;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	int jumpCount = 0;

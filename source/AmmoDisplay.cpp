@@ -1,4 +1,4 @@
-/* SecondaryWeaponIconDisplay.cpp
+/* AmmoDisplay.cpp
 Copyright (c) 2022 by warp-core, 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "SecondaryWeaponIconDisplay.h"
+#include "AmmoDisplay.h"
 
 #include "Color.h"
 #include "text/Font.h"
@@ -32,14 +32,14 @@ using namespace std;
 
 
 
-SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
+AmmoDisplay::AmmoDisplay(PlayerInfo &player)
 	: player(player)
 {
 }
 
 
 
-void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
+void AmmoDisplay::Update(const Ship &flagship)
 {
 	ammo.clear();
 	for(const auto &it : flagship.Weapons())
@@ -66,7 +66,7 @@ void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 
 
 
-void SecondaryWeaponIconDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
+void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 {
 	const Font &font = FontSet::Get(14);
 	ammoIconZones.clear();
@@ -115,7 +115,7 @@ void SecondaryWeaponIconDisplay::Draw(const Rectangle &ammoBox, const Point &ico
 
 
 
-bool SecondaryWeaponIconDisplay::Click(const Point &clickPoint, bool control)
+bool AmmoDisplay::Click(const Point &clickPoint, bool control)
 {
 	for(const auto &it : ammoIconZones)
 		if(it.Contains(clickPoint))
@@ -130,7 +130,7 @@ bool SecondaryWeaponIconDisplay::Click(const Point &clickPoint, bool control)
 
 
 
-bool SecondaryWeaponIconDisplay::Click(const Rectangle &clickBox)
+bool AmmoDisplay::Click(const Rectangle &clickBox)
 {
 	bool reselected = false;
 	for(const auto &it : ammoIconZones)

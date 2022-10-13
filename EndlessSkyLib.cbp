@@ -291,8 +291,8 @@
 		<Unit filename="source/SavedGame.h" />
 		<Unit filename="source/Screen.cpp" />
 		<Unit filename="source/Screen.h" />
-		<Unit filename="source/SecondaryWeaponIconDisplay.cpp" />
-		<Unit filename="source/SecondaryWeaponIconDisplay.h" />
+		<Unit filename="source/AmmoDisplay.cpp" />
+		<Unit filename="source/AmmoDisplay.h" />
 		<Unit filename="source/Set.h" />
 		<Unit filename="source/Shader.cpp" />
 		<Unit filename="source/Shader.h" />

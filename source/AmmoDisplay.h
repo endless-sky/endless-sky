@@ -1,4 +1,4 @@
-/* SecondaryWeaponIconDisplay.h
+/* AmmoDisplay.h
 Copyright (c) 2022 by warp-core
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -29,9 +29,9 @@ class Ship;
 
 
 
-class SecondaryWeaponIconDisplay {
+class AmmoDisplay {
 public:
-	SecondaryWeaponIconDisplay(PlayerInfo &player);
+	AmmoDisplay(PlayerInfo &player);
 	void Update(const Ship &flagship);
 	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
 	bool Click(const Point &clickPoint, bool control);
