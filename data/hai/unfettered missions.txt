@@ -629,31 +629,31 @@ mission "Unfettered: Prove Your Strength"
 		conversation
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, some of them are even armored. It seems they are ready for action at any time. One would not want to be their enemy.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
-			`	"This is the monkey you speak so highly of? The one who fears not to come into our space, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised he knows your own language this well.`
+			`	"Arrr, be this the bilge-sucking monkey ye all speak so highly of? The one who fears not to come into our ports, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
 			choice
 				`	"I fear nothing. Do you?"`
 					goto provoke
 				`	(Say nothing.)`
 				`	(Run away.)`
 					decline
-			`	"See? The monkey dares not even speak! He would not stand a chance in combat! Even our modest ship would bring him straight out of the sky! But we should not even try, or we could hurt the little monkey! But my friends, there is no shame for him to have... with a ship looking like that one I too would be hesitant to fight!" He seems very full of himself. Perhaps someone should teach him a lesson.`
+			`	"See? The lily-livered monkey dares not even speak! This scallywag be no more than shark bait! Even our 'umble clipper would be sending ye straight to Davy Jones' locker! We be ready to prove it, too, yet we dare not, lest we lose our dancing monkey to the briny deep! But mateys, there be no shame if it dance away, with a dinghy looking like that!" He seems very full of himself. Perhaps someone should teach him a lesson.`
 			choice
 				`	"You dare insult my <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
 					goto provoke
 				`	(Go. He's not worth it.)`
 					decline
-			`	"Oh so that was your ship indeed! I was not sure, given your reputation, that you would fly in something like that. Your prowess is not exaggerated indeed then, for you managed to not crash on landing with such a thing," he says, and then he turns to address the crowd once again. "I wonder if he could take off again. Maybe he needs our assistance for that."`
+			`	"Sink me! That flotsam really be your ship? Given the hornswaggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he says, and then he turns to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
 			`	"So the monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
 			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
-			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, alone, a battle of flagships. Meet me in the skies, above the tallest trees, when you are ready. Except, of course, if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
+			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes."`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					goto accept
-				`	(Crush his rodent face, with your fist.)`
+				`	(Crush his rodent face with your fist.)`
 					goto crush
 				`	"Can you tell me more about the rules of this fight?"`
 					goto rules
@@ -661,15 +661,15 @@ mission "Unfettered: Prove Your Strength"
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
 				decline
 			label rules
-			`	"I guess you ought to know... You are supposed to bring only your flagship, but if it is too weak then more ships can be accepted, so long as it is a fair battle. Do not expect anyone to accept fighting you if you bring a huge fleet. The challenge will last until either one of our ships is disabled, or one of us gives up. You can put it off for later at any given time for a symbolic bribe of 1000 credits, offered in space before the battle begins. You can even call for a time out that way during the battle if it gets too tough for you, and you want to delay it for when you are truly ready. Finally, it is sometimes tolerated that the victor plunders the ashamed, but absolutely not that he tries to capture his ship. So, are you ready to fight?"`
+			`	"I guess it only be fair that ye know... Ye're supposed to bring only yer flagship, but if ye admit it be too weak, then more ships can be brought, so long as it still be a fair battle. Do not expect anyone to be fighting ye for honor if ye bring an armada. The challenge lasts until one of our ships is scuttled or one of us agrees to walk the plank. Ye can always stall the call to battle, if ye were to offer a symbolic bribe of 1000 credits, offered in space before the battle begins. The challenge must eventually be answered though, no matter how long or often ye want to delay it. Finally, it is right of the victor to plunder the ashamed, but absolutely not that ye try to capture the ship. So, be ye ready to face yer doom?"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					goto accept
-				`	(Crush his rodent face, with your fist.)`
+				`	(Crush his rodent face with your fist.)`
 				`	(Run away.)`
 					decline
 			label crush
-			`	You rush his way, fist drawn, and probably give his friends the exact excuse they were looking for to open fire on you. You wake up later, left alone on the floor. Luckily their weapons only stunned you, but you can put a cross on doing any further business with the Unfettered.`
+			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you. You wake up later, left alone on the floor. Luckily their weapons only stunned you, but you can forget about doing any further business with the Unfettered.`
 				decline
 			label accept
 			branch "too many ships"
@@ -677,9 +677,9 @@ mission "Unfettered: Prove Your Strength"
 			`	"Let us prove our worth in battle then, the time for words is over."`
 				accept
 			label "too many ships"
-			`	"Nice try, monkey. First you most park some of your ships! I will not be facing of against a huge fleet. One heavy warship is already almost too much. When that is the case, you will see me in orbit."`
+			`	"Ye cannot run a rig on me, monkey. First ye must park some of those ships! I will not be facing your whole armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
 			``
-			`The Unfettered captain will only show up if you have a small enough amount of ships, that is not currently the case. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. You cannot have more than a heavy warship or a few lighter ships for this fight.)`
+			`The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship or a small group of lighter vessels.)`
 				accept
 	npc save disable
 		government "Hai (Unfettered Challenge)"
@@ -690,26 +690,26 @@ mission "Unfettered: Prove Your Strength"
 		to despawn
 			"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 		conversation
-			`Now that you have disabled the <npc>, its captain hails you. "It seems you fight well. You have earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you can hear fires roaring. It looks like the damage to his ship was serious.`
+			`Now that you have disabled the <npc>, its captain hails you. "It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
 			choice
 				`	"Be careful with provoking me. You may have gotten killed. Do not count on me to repair your ship."`
 					goto dangerous
 				`	"What was this really about?"`
-			`	"You have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. You come from far away, and we do not have many strangers around here. I wanted to find out about new approaches to the fight. It looks like I may have underestimated your ability to fight too... A mistake which I shall not make again."`
+			`	"Ye have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. Ye travel from far away, and we do not see many strangers around here. I wanted to see how ye approached me challenge; I hoped I could find knowledge in how you lost. I may have underestimated yer ability to fight though... A mistake which I shall not make again next time."`
 			choice
 				`	"You could have just asked."`
-			`	"One cannot learn much from words only, and I was not sure how you would react. That is why I provoked you." One of his crew tells him something you do not understand. "Well, that, and yes, maybe I was a bit too prideful, took on a challenge I should not have..." He shouts something in Hai, presumably to the crew member who just spoke.`
+			`	"We cannot learn from words alone, and ye have not proven yerself to us as one who can be trusted, anyway. That be why I provoked ye." One of his crew mutters something from behind him, but you cannot hear it clearly. "Well, that, and yes, maybe I be a bit too prideful meself, especially when I be three sheets to the wind. I took on a challenge I should not have..." He shouts something in Hai, presumably to the crew member who just spoke.`
 				goto end
 			label dangerous
-			`	"Worry not. Respect is only to be earned once. From me, at least. Do know there are other captains eager to challenge you, and most are stronger than me. Or, at least, they have more ships..."`
+			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
 			label end
 			action
 				log `Defeated a young Unfettered captain in a duel.`
 				set "unfettered: beaten the captain"
 				payment 100000
 				"reputation: Hai (Unfettered)" += 30
-			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I have transferred a small amount of <payment> to you to repair any damage I may have done to your ship. I will be landing on the surface soon to think about something other than this humiliating defeat I have just suffered. I do not need nor want your assistance in repairing damage, for that is a task best suited for the vanquished."`
-			`	"If you are feeling up to the challenge there are other captains that would be willing to duel you, if you do not have a fleet too big of course. None accept to fight more than 2 heavy warhips, some even prefer just 1, like me. Indeed we wish to fight and test your strength and exotic technologies or strategies, not to get humiliated."`
+			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished."`
+			`	"If ye be feeling up to the challenge, there be other captains that would be willing to duel ye, if ye keep fighting fair, of course. None accept to fight more than a pair o' heavy men-o-war, some others, like me, still prefer fighting with a single vessel. Like me, they will wish to fight to test the strength of yer exotic technologies or strategies, savvy?"`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -745,47 +745,47 @@ mission "Unfettered: Prove Your Strength 2"
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`As you pass what looks like a bar in the spaceport, you're greeted by the same Hai captain that challenged you earlier. "So we meet again! Next time we fight it will take a lot more if you want to take me down! Well... once I have my ship back, anyway. But that's not why I am here," he says, apparently happy to see you. "I have a job for you!"`
+			`As you pass what looks like a bar in the spaceport, you're greeted by the same Hai captain that challenged you earlier. "So we meet again! Arr, if ye be wanting to scuttle me clipper again, it'll take a lot more salt out of ye! Well... once I have her fixed and back, anyway. But that' not be why I be here, today," he says, apparently happy to see you. "I have a job for ye!"`
 			choice
 				`	"What's the job about?"`
 					goto job
 				`	"Sure, I would do anything for my favorite squirrel!"`
 					goto insult
 				`	"Just admit it. You're scared to fight me."`
-			`	"Nice try, but I've learned my lesson. Worry not, soon I shall have a bigger ship, and when I do I will be glad to accept that challenge! Most of the time, having the bigger guns at the right place is all the strategy and diplomacy that is needed. In this case, however, I'm lacking said guns, so the best choice is for me to fold. For now, at least."`
+			`	"Nice try, but I've learned me lesson. Worry not, soon I shall have a grander vessel, and when I do, 'twill be ye that walks the plank in our next battle! Most of the time, having the bigger chase guns on yer man-o-war is all the strategy and diplomacy ye need. In this case, however, I be lacking said guns, so the best choice is for me to fold. For now, at least."`
 			choice
 				`	"What can I do for my favorite squirrel?"`
 					goto insult
 				`	"How soon will you have that new ship?"`
 				`	"Well, just do it with that bigger ship then. I'm not interested."`
 					decline
-			`	"As soon as the this job is done, hopefully! It should pay well - the 'buying a brand new ship' kind of well." Judging from your last encounter, this will probably be a very dangerous mission, but it seems like it may be worth it.`
+			`	"Once this job be done, hopefully! It should pay handsomely - 'buying a brand new ship' kind of handsome." Judging from your last encounter, this will probably be a very dangerous mission, but it may well be worth it.`
 			choice
 				`	"What kind of job is it?"`
 					goto job
 			label insult
 			`	He does not seem to react to the insult. He did call you monkey a few times before, so it's only fair for you to return the courtesy.`
 			label job
-			`	"We're going to collect a few jump drives! Normally you would not be able to get such a job because it requires a lot of trust, but I have gotten it for you, meaning officially this is my mission, and a very lucrative one at that! On top of that, should we succeed, next time you may be entrusted with such missions on your own, albeit on a smaller scale."`
+			`	"We be going to collect a few jump drives! Normally ye would not be able to get such a job, since ye have not earned much among us still, but I have the connection to get it for ye. Ye see, officially this be me mission, and a very lucrative one, at that! On top of that, should we succeed, next time ye may be entrusted with such missions on your own, but don't ye be expecting near the same booty for yerself."`
 			choice
 				`	"Okay... That just seems too good to be true. What's the catch?"`
-			`	"Well... The name of the world is 'Freedom', and while it may sound nice, it is an unfettered human world and is thus dangerous. That is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives. You should be warned: this is not a mission for the light hearted."`
+			`	"Well... world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold for four jump drives. Ye be warned: this be no mission for the light hearted."`
 			choice
 				`	"Let's go then!"`
 					goto leave
 				`	"Why can't you just use a jump drive and go there yourself?"`
 				`	"What will my cut be?"`
 					goto cut
-			`	"Jump drives are a very prized possession among my people. I would not risk one by travelling through hostile space. You had access to a jump drive, so you should know about the hostiles to the south. The aliens to the north would not be very happy to see me either... A jump drive would not be of any help to us." He seems disappointed by you having to ask such an obvious thing.`
+			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The lily-livered scallywags to the north would like to see me walk the plank as well... A jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`
 					goto leave
 				`	"Sorry, but I won't risk my ship by going anywhere close to these pirates."`
 					decline
 			label cut
-			`	"You humans always seem obsessed with money... It is a large sum. I will only take one quarter of it, and you know how much my people value jump drives."`
+			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking a mere quarter of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
-			`	"One last thing: We should not go there by jump drive, especially considering where we are going. It would only attract unwanted attention to us. Besides, we should not travel through Wanderer space; I do not want to try their patience or tolerance considering you have some association with us." You accompany him to your ship, and he admits to quite liking the interior, as well as the general look of it. Your ship "is adequate for a warrior," he says.`
+			`	"One last warning for ye: Ye should sail the skies with a hyper drive, especially with the dangers of where we be headed. A  jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us." You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
 				accept
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort allocated to carrying the jump drives behind - better launch and wait for it."
@@ -797,9 +797,9 @@ mission "Unfettered: Prove Your Strength 2"
 		outfit "Jump Drive" -4
 		payment 3000000
 		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
-		log "People" "Si-Ra" `A young, impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leadership and combat skills, and seems to be a fan of acquiring bigger and bigger ships. He's always trying to improve his tactics.`
+		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
-			`"Here is your share: <payment>. You have saved my life, Captain <first>, and I shall never forget it. You have earned the right to know my name: "Si-Ra". It is one I deserve and wear proudly. Come see me again soon if you are up for a challenge. I'm sure that I will have what you want. In the meantime, make sure to check the job boards for more missions like this one."`
+			`"Here be yer share: <payment>. Ye have saved me life, Captain <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye  even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
 			branch "hydra question"
 				not "Unfettered: Attracted Attention: offered"
 			choice
@@ -808,18 +808,18 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"I heard you say a name, 'Hydra', I believe."`
 			action
 				event "hydra revealed"
-			`	"If you really must know, that is how the pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
+			`	"If ye really must know, that be how the spineless, biscuit eatin' pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
 				goto leave
 			label "hydra question"
 			choice
 				`	(Let him leave).`
 					goto leave
 				`	"Who were these pirates attacking us?"`
-			`	"If you really must know, they were called Hydra." He obviously does not wish to elaborate on it any further.`
+			`	"If ye really must know, they be called Hydra." He obviously does not wish to elaborate on it any further.`
 			action
 				event "hydra revealed"
 			label leave
-			`	Then he leaves, after doing what you assume to be a salute to you, his fist risen. You are taken by surprise by the act, and before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he told you about.`
+			`	Then he raises his fist towards you, presumably some form of salute. The act takes you by surprise, but before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he kept going on about.`
 
 
 
@@ -837,7 +837,7 @@ mission "Unfettered: Attracted Attention"
 	on offer
 		require "Jump Drive"
 	on enter "Almaaz"
-		dialog `The Unfettered curses a name, which you can barely hear, "Hydra." He then comes closer to address you directly, "There are even more unfettered humans than anticipated. I told you not to come here with a jump drive!"`
+		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses,  but one word, which you can barely hear him mutter, stands out: "Hydra." He then comes closer to address you directly, "There even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
 	npc evade
 		government "Hydra"
 		system "Almaaz"
@@ -853,7 +853,7 @@ mission "Unfettered: Jump Drive Retrieval"
 		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		conversation
-			`You park your ship close to the hidden depot, as suggested by the Hai. You are still close enough to the spaceport to not draw unwanted attention by landing off-grid. These lesser-used auxiliary spaceports are often used by captains seeking a degree of discretion. Your crew should be able to intervene should anything go wrong.`
+			`You park your ship close to the hidden depot, as suggested by the Hai, at a lesser-used auxiliary spaceport. Often used by captains seeking a degree of discretion, they tend to still be close enough to the main hubs to not draw the same types of unwanted attention as landing fully off-grid. Your crew should be plenty close enough to intervene should anything go wrong.`
 			`	You then follow the Unfettered captain to the hatch. He is well-prepared and quite deft, even given that he is wearing what seems to be a heavy combat suit.`
 			choice
 				`	"Who made this vault? What should I expect?"`
@@ -861,38 +861,38 @@ mission "Unfettered: Jump Drive Retrieval"
 					goto moremen
 				`	(No time for talking.)`
 					goto outsideship
-			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger while we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you.`
+			`	"Arrr, I cannot be telling anyone that, not even ye after bringing me, and especially not here anyway. I dare not risk bringing danger to their door or their ire to mine. At least while we still need their supply of jump drives. For now, just think of them as more pirates, like me and the rest of the scallywags on this bilge water planet here, and know that we be ready to face them in battle, should it come to that," he tells you.`
 				goto outsideship
 			label moremen
-			`	"We are trying to be discreet here, not to draw attention! The larger our group is, the more attention and suspicion we attract. We want them to think we have no value, not that we're treasure hunting." Judging from his tone, this was a stupid question.`
+			`	"We be needing discretion here, not to draw attention! The larger our group is, the more suspicion we attract. The more suspicion we attract, the more likely someone fits us for a hempen halter. We be wanting them to think we hold no loot, not that we be hunting treasure, savvy?" Judging from his tone, this was a stupid question.`
 			label outsideship
-			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times."`
-			`	Once outside, you head for the mountains with him. He moves at a quick pace, and you have difficulties following him, especially with the terrain. He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy all things considered, and you surmise the suit must have been crafted specifically for him in order to be so discreet. He presses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path in case of an ambush.`
-			`	You quickly arrive by a small local town that seems pretty recent. It's constructed with metal and other scraps the builders could gather, and is as deprecated as it gets.`
+			`	Before exiting, he warns you, "Whatever be happening, do not try anything stupid and stay behind me at all times."`
+			`	Once outside, he moves at a quick pace, and you have difficulties following him, especially with the terrain as you head into the mountains. He seems worried and keeps looking around furtively, making surprisingly little sound with his armored suit. All things considered, he is impressively stealthy; the suit must have been crafted specifically for him in order to be so discreet. He presses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path in case of an ambush.`
+			`	Before long, you arrive at a small shanty town constructed with metal and other scraps the builders could gather nearby. Even considering what it is, it appears recently constructed and especially ramshackle.`
 			choice
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache must be well hidden, right?"`
 				`	(Keep walking, ready to reach for my gun.)`
 					goto discreet
-			`	You are not sure what kind of sign he just did, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
+			`	He makes some kind of sign you do not understand, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the impoverished locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
-			`	You both seem to be heading to a distant mountain, where you assume the cache is. On the way, you spot a local that appears to have gotten lost from the village, though you get the distinctive impression that something is odd about him, without being able to pinpoint what. As you get closer, more and more you get the impression that this vault is no simple, small depot. You pass several security turrets and assume that even more defenses are hidden.  You wonder why these turrets would be in plain sight around a "hidden" depot. You cross a ridge, and you notice some of your surroundings look... weird, like the mountain has only been affected by the elements at some places and not others. Suddenly, the Hai stops and raises a hand high up, palm open. Recognizing the sign, you stop.`
-			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon and he dons his helmet. "Stay here. I will take care of it."`
+			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what. Continuing up the mountain, more and more you get the impression that this vault is no simple, small depot. This is confirmed when you pass several security turrets, and, while it safe to assume that even more defenses are hidden, you wonder why any would be left in plain sight around a "hidden" depot. Crossing a ridge, you begin to notice that some of your surroundings look strange, as the mountain has only been affected by the elements in some places and not others. Suddenly, the armored Hai stops and raises a hand high, palm open. Recognizing the sign, you stop as well.`
+			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Blimey, someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon, and he dons his helmet. "Stay here. I will take care of this."`
 			choice
 				`	"Do you not want one extra gun, then?"`
 					goto wannafight
 				`	"What about the locals? They don't seem friendly. I just saw one nearby."`
-			`	"Those lowlife scums? They would not attempt attacking a well-equipped warrior. Furthermore, there shouldn't be any around here, so far away from the village." He steps forward but then glances back at you, unprotected and armed only with a laser that seems like a toy in comparison to his. "Maybe you should come with me after all."`
+			`	"Those bilge-sucking scum? They would never dare attack a well-equipped swashbuckler like meself. Furthermore, there shouldn't be any around these parts, so far from those hovels." He steps forward, then glances back at you, unprotected and armed only with a laser that seems like a toy in comparison to his. "But maybe ye should come with me, after all."`
 				goto choose
 			label wannafight
-			`	"If the vault was compromised, it was not by amateurs. I fear those inside are more dangerous and well-armed than the locals. Still, I do not have to guarantee your security in any way, so you are free to do as you wish. The defense mechanisms are offline at the moment, so you would have to fend for yourself, but the locals are so young or frail that even you should manage it." You hear a tone of provocation in the last words.`
+			`	"If the vault indeed be compromised, 'twas not by landlubbers. Those inside will be more dangerous and well-armed than the lily-livered locals. Still, I do not be having to guarantee yer safety to secure me loot, so ye be free to do as ye wish. The defense mechanisms be offline for the moment, so ye would have to fend for yerself. These locals be so young and frail and malnourished that even ye can surely handle yerself against them." The disdain in the last words is palpable.`
 			label choose
 			choice
 				`	(Stay outside.)`
 					goto outside
 				`	(Come in.)`
-			`	He sighs. "As you wish, but I hope you can take care of yourself on the ground as well as in space. I have disabled the automated defenses just in case they have been hijacked. We just have to go in, make sure they recognize us as friends, and then reactivate them." You really wonder where the vault could be, until you notice that part of this mountain in front of you is a hologram to disguise the entry. You both enter.`
-			`	At first, you don't notice anything suspicious. The vault is clearly alien in origin, but you cannot pinpoint one race; instead it seems to be a mix of many. All of it is very, very old, and there is no illumination, probably because your friend deactivated the lights, but maybe even before that... At least there is space to move around - enough for an armored vehicle, in fact. As you acclimate to the darkness inside the vault, you notice a flash of light, far away on your left.`
+			`	He sighs. "As ye wish, but I do hope ye can hold yer own on the ground as well as in space. I have disabled the automated defenses, in case they have been hijacked. We just have to go in, make sure they recognize us as friendlies, and then reactivate them." You really wonder where the vault could be, until you see the Hai walk right through part of the mountain in front of you. It must be a hologram to disguise the entry! You hurry to follow behind him.`
+			`	At first, you don't notice anything particularly suspicious, but you do hear the low hum of running electronics and machinery in the distance. Though the vault is clearly alien in origin, you cannot pinpoint one race; instead, it seems to be a mix of many. All of it is very, very old, and there is no illumination, possibly because your friend deactivated the lights along with the turrets, though you don't see why why he would. Even without it, you can tell there is clearly is space to move around - enough for an armored vehicle, in fact. As you acclimate to the darkness inside the vault, you notice a flash of light, far away on your left.`
 			choice
 				`	(It's just a light flickering. No need to worry.)`
 				`	"GET DOWN!"`
@@ -905,28 +905,28 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered after such a failure.`
 				fail
 			label down
-			`	You get down yourself as you give the warning, then look his way to see if he followed it. The Unfettered was evidently trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of that weapon as the sniper was quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
-			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you while he takes care of the security systems. Once you are done, you look around, waiting for the captain to come back, and notice a symbol, that looks like a dragon with multiple heads. You then go back to double-check the jump drives. When the captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
-			`	He switches a level and you hear that the humming of machines suddenly stops. "I have disabled the holographic field generator, meaning your ship can come and pick up the drives. Best have it come here to win time, in the hopes of it reaching us before the intruders come back, in force," he suggests. You quickly send a message to the <ship>, asking them to dock with the vault.`
+			`	You get down yourself as you give the warning, then to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
+			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the jump drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. While waiting for him to return once you are done, you look around and notice a small symbol in the lower corner of a nearby wall: a dragon with multiple heads. You double-check the jump drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
+			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. Best have it come quickly, in the hopes it reaches us before the intruders return, in force," he suggests. You quickly send a message to the <ship>, asking them to dock with the vault.`
 			choice
 				`	(Wait for the ship to arrive.)`
 					goto ship
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Is this holographic field the reason we had to go into the vault in person, instead of just connecting it to the ship?"`
 					goto vault
-			`	"We needed to act discreetly so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defenses against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to it than what he's admitting.`
+			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
 				goto ship
 			label vault
-			`	"Yes and no. It is not only a holographic generator but also a set of jammers, meaning your ship cannot pinpoint the exact location, and would have to land blindly. We also needed to make sure the jump drives were not sabotaged, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses." You have a hunch that there could be more to it than what he's admitting.`
+			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would not be able to pinpoint the exact location and would have to land blindly. We also needed to make sure the jump drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the jump drives to blow when used. Checking that takes time. Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sit too long, it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
 				`	"If this world is so wild, why put the jump drives here in the first place?"`
-			`	"The Unfettered are not the ones who placed those jump drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
+			`	"The Unfettered be not the ones who placed these jump drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
 			
 			label ship
-			`	As soon as your ship arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly onto your ship if possible, to be able to flee more swifly. When your ship takes off, you notice more activity both near the vault and in the sky, than on the way in...`
-			`	The Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain quickly joins you on the bridge, probably used to being where the action can be seen.`
+			`	As soon as your ship arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly onto your ship if possible, so you may flee more swiftly. When your ship takes off, you notice more activity, both near the vault and in the sky, than on the way in...`
+			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the jump drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not.`
 				launch
 	on accept
 		"outfit" "Jump Drive" 4
