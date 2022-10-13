@@ -826,8 +826,8 @@ void Engine::Step(bool isActive)
 
 	if(doClick && !isRightClick)
 	{
-		if(clickBox.Dimensions())
-			doClick = !secWeapons.Click(clickBox, hasControl);
+		if(uiClickBox.Dimensions())
+			doClick = !secWeapons.Click(uiClickBox);
 		else
 			doClick = !secWeapons.Click(clickPoint, hasControl);
 		doClick = doClick && !player.SelectShips(clickBox, hasShift);
@@ -1082,6 +1082,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 		isRadarClick = false;
 
 	clickPoint = isRadarClick ? from - radarCenter : from;
+	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
 		clickBox = Rectangle::WithCorners(
 			(from - radarCenter) / RADAR_SCALE + center,

@@ -28,8 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
-#include <iostream>
-
 using namespace std;
 
 
@@ -132,9 +130,8 @@ bool SecondaryWeaponIconDisplay::Click(const Point &clickPoint, bool control)
 
 
 
-bool SecondaryWeaponIconDisplay::Click(const Rectangle &clickBox, bool control)
+bool SecondaryWeaponIconDisplay::Click(const Rectangle &clickBox)
 {
-	//set<const Outfit *> toActivate;
 	bool reselected = false;
 	for(const auto &it : ammoIconZones)
 		if(it.Overlaps(clickBox))
@@ -147,14 +144,5 @@ bool SecondaryWeaponIconDisplay::Click(const Rectangle &clickBox, bool control)
 			player.ToggleAnySecondary(it.Value());
 		}
 	return reselected;
-	//		toActivate.insert(it.Value());
-	/*if(!toActivate.empty())
-	{
-		player.DeselectAllSecondaries();
-		for(const auto &it : toActivate)
-			player.ToggleAnySecondary(it);
-		return true;
-	}
-	return false;*/
 }
 

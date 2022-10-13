@@ -237,6 +237,7 @@ private:
 	bool isRightClick = false;
 	bool isRadarClick = false;
 	Point clickPoint;
+	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
 
