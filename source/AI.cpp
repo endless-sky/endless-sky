@@ -3357,7 +3357,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	else if(activeCommands.Has(Command::BOARD))
 	{
 		// Depending on the preference, board the (nearest/most expensive/mix of both) disabled ship.
-		// Pressing the board key multiple times cycles netween eligible targets.
+		// Pressing the board key multiple times cycles between eligible targets.
 		// It will be focusing on hostiles before allies. Holding `Shift`
 		// results in boarding only player-owned escorts in need of assistance.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
