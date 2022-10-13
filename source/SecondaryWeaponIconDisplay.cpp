@@ -1,5 +1,5 @@
 /* SecondaryWeaponIconDisplay.cpp
-Copyright (c) 2022 by warp-core
+Copyright (c) 2022 by warp-core, 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
-#include <unordered_set>
+#include <iostream>
 
 using namespace std;
 
@@ -37,7 +37,6 @@ using namespace std;
 SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
 	: player(player)
 {
-
 }
 
 
@@ -45,14 +44,16 @@ SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
 void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 {
 	ammo.clear();
-	unordered_set<const Outfit *> added;
 	for(const auto &it : flagship.Weapons())
 	{
 		const Outfit *secWeapon = it.GetOutfit();
-		if(!secWeapon || !secWeapon->Icon() || added.count(secWeapon))
+		if(!secWeapon || !secWeapon->Icon() || ammo.find(secWeapon) != ammo.end())
 			continue;
 
 		double ammoCount = -1;
+		// TODO: if a weapon has both an ammo requirement and consumes fuel, the ammo display will only show the ammo,
+		// not the fuel, so the weapon may not fire because it is out of fuel even though it still has ammo,
+		// and will not show a '0' in the ammo display.
 		if(secWeapon->Ammo())
 			ammoCount = flagship.OutfitCount(secWeapon->Ammo());
 		else if(secWeapon->FiringFuel())
@@ -61,8 +62,7 @@ void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 				* flagship.Attributes().Get("fuel capacity");
 			ammoCount = remaining / secWeapon->FiringFuel();
 		}
-		added.insert(secWeapon);
-		ammo.emplace_back(secWeapon, ammoCount);
+		ammo[secWeapon] = ammoCount;
 	}
 }
 
@@ -128,5 +128,33 @@ bool SecondaryWeaponIconDisplay::Click(const Point &clickPoint, bool control)
 			return true;
 		}
 	return false;
+}
+
+
+
+bool SecondaryWeaponIconDisplay::Click(const Rectangle &clickBox, bool control)
+{
+	//set<const Outfit *> toActivate;
+	bool reselected = false;
+	for(const auto &it : ammoIconZones)
+		if(it.Overlaps(clickBox))
+		{
+			if(!reselected)
+			{
+				reselected = true;
+				player.DeselectAllSecondaries();
+			}
+			player.ToggleAnySecondary(it.Value());
+		}
+	return reselected;
+	//		toActivate.insert(it.Value());
+	/*if(!toActivate.empty())
+	{
+		player.DeselectAllSecondaries();
+		for(const auto &it : toActivate)
+			player.ToggleAnySecondary(it);
+		return true;
+	}
+	return false;*/
 }
 

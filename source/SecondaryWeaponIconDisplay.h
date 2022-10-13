@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 
+#include <map>
 #include <vector>
-#include <utility>
 
 class Outfit;
 class PlayerInfo;
@@ -35,9 +35,10 @@ public:
 	void Update(const Ship &flagship);
 	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
 	bool Click(const Point &clickPoint, bool control);
+	bool Click(const Rectangle &clickBox, bool control);
 
 private:
-	std::vector<std::pair<const Outfit *, int>> ammo;
+	std::map<const Outfit *, int> ammo;
 	mutable std::vector<ClickZone<const Outfit *>> ammoIconZones;
 	PlayerInfo &player;
 };

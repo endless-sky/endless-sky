@@ -826,7 +826,11 @@ void Engine::Step(bool isActive)
 
 	if(doClick && !isRightClick)
 	{
-		doClick = !player.SelectShips(clickBox, hasShift) && !secWeapons.Click(clickPoint, SDL_GetModState() && KMOD_CTRL);
+		if(clickBox.Dimensions())
+			doClick = !secWeapons.Click(clickBox, hasControl);
+		else
+			doClick = !secWeapons.Click(clickPoint, hasControl);
+		doClick = doClick && !player.SelectShips(clickBox, hasShift);
 		if(doClick)
 		{
 			const vector<const Ship *> &stack = escorts.Click(clickPoint);
@@ -1060,11 +1064,12 @@ void Engine::SetTestContext(TestContext &newTestContext)
 
 
 // Select the object the player clicked on.
-void Engine::Click(const Point &from, const Point &to, bool hasShift)
+void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl)
 {
 	// First, see if this is a click on an escort icon.
 	doClickNextStep = true;
 	this->hasShift = hasShift;
+	this->hasControl = hasControl;
 	isRightClick = false;
 
 	// Determine if the left-click was within the radar display.
