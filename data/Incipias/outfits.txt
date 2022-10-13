@@ -16,33 +16,9 @@ outfit "Plasma Discharger"
 		"reload" 20
 		"firing energy" 8
 		"firing heat" 4
-		"shield damage" 53
-		"hull damage" 42
-		"minable damage" 76
-
-outfit "Discharger Turret"
-	category "Turrets"
-	mass 25
-	"outfit space" -20
-	"turret mounts" -1
-	thumbnail "outfit/plasma discharger turret"
-	weapon
-		sprite "projectile/plasma discharge"
-		"hardpoint sprite" "hardpoint/plasma discharger turret"
-		sound "blaster"
-		"hit effect" "blaster impact"
-		"submunition" "plasma particles" 5
-		"inaccuracy" 8
-		"turret turn" 4
-		"velocity" 12
-		"lifetime" 64
-		"random lifetime" 12
-		"reload" 8
-		"firing energy" 8
-		"firing heat" 4
-		"shield damage" 53
-		"hull damage" 42
-		"minable damage" 76
+		"shield damage" 22.5
+		"hull damage" 21
+		"minable damage" 35
 
 outfit "plasma particles"
 	weapon
@@ -51,9 +27,9 @@ outfit "plasma particles"
 		"lifetime" 60
 		"random velocity" 2
 		"inaccuracy" 20
-		"shield damage" 8
-		"hull damage" 9
-		"minable damage" 12
+		"shield damage" 4
+		"hull damage" 5
+		"minable damage" 6
 
 outfit "Gas Class Shield"
 	category "Systems"

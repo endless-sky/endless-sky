@@ -1,32 +1,12 @@
-government "Incipias"
-	swizzle 0
-	color 0.5 0.0 0.9
-	"crew attack" .2
-	"crew defense" 1
-	language "Incups"
-	"player reputation" 1
-	"attitude toward"
-		"Quarg" 1
-		"Hicemus" 1
-
-government "Hicemus"
-	swizzle 0
-	color 0.6 0.0 0.4
-	"crew attack" .2
-	"crew defense" 1
-	language "Incups"
-	"player reputation" 0
-	"attitude toward"
-		"Quarg" 1
-		"Incipias" 1
-
 # Ship names:
-phrase "inci"
+phrase "hicemus"
 	word
 		"An"
 		"Ab"
 		"Do"
 		"Na"
+		"Ar"
+		"La"
 	word
 		"is"
 		"as"
@@ -36,22 +16,43 @@ phrase "inci"
 	word
 		"en"
 
+phrase "incipias"
+	word
+		"En"
+		"Nun"
+		"An"
+		"Sin"
+		"Ad"
+		"Res"
+	word
+		"'"
+	word
+		"dur"
+		"lil"
+		"dan"
+		"tum"
+		"ill"
+	word
+		"ius"
+		"ias"
+		"ium"
+		"iam"
+
+
 fleet "Nimbi"
 	government "Hicemus"
-	names "inci"
+	names "hicemus"
 	cargo 0
 	personality
 		timid mining harvests
 	variant
 		"Nimbus"
-	variant
-		"Cumulonimbus"
 
-outfitter "Incipias"
+outfitter "Hicemus"
 	"Liquid Hydrogen Cell"
 	"Gas Class Shield"
 	"Liquid Class Shield"
 	"Plasma Discharger"
 
-shipyard "Incipias"
+shipyard "Hicemus"
 	"Nimbus"

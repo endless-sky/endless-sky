@@ -266,6 +266,28 @@ government "Heliarch"
 		"Quarg" -.01
 		"Coalition" 1
 
+government "Hicemus"
+	swizzle 0
+	color 0.6 0.0 0.4
+	"crew attack" .2
+	"crew defense" 1
+	language "Incups"
+	"player reputation" 0
+	"attitude toward"
+		"Quarg" 1
+		"Incipias" 1
+
+government "Incipias"
+	swizzle 0
+	color 0.5 0.0 0.9
+	"crew attack" .2
+	"crew defense" 1
+	language "Incups"
+	"player reputation" 1
+	"attitude toward"
+		"Quarg" 1
+		"Hicemus" 1
+
 government "Independent"
 	swizzle 6
 	color .78 .36 .36

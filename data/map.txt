@@ -8791,12 +8791,12 @@ system Dom'us
 	trade Plastic 267
 	fleet "Nimbi" 600
 	object
-		sprite star/k5
-		distance 27.6777
+		sprite star/f0
+		distance 500.6777
 		period 20.8284
 	object
-		sprite star/m8
-		distance 87.3223
+		sprite star/b-giant
+		distance 103.3223
 		period 20.8284
 		offset 180
 	object
@@ -30469,10 +30469,12 @@ planet "Pon'tes"
 	government "Hicemus"
 	landscape land/station16
 	"required reputation" 1.0
-	outfitter "Incipias"
-	shipyard "Incipias"
-	description "This station is uncomfortable, even compared to human stations. As the Incipias are able to propel themselves through the air, there are no handles or surface for you to grip onto."
+	outfitter "Hicemus"
+	shipyard "Hicemus"
+	description "This station is uncomfortable, even compared to human stations. As the Incipias are able to propel themselves through the air, there are no handles or surface for you to grip onto. The simulated gravity through the rotation of the station is not helping you."
+	description "The station is a bit larger than the most human ones and a lot of Incipias are living here. They all seem very busy when they float through the tube like hallways."
 	spaceport "The station has no normal spaceport, only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains."
+	spaceport "You notice a lot of traffic, most of the ships are delivering minerals but some also deliver supplies from the homeworld. Only a few seem to transport people."
 
 planet Poseidos
 	attributes fishing rim
@@ -30558,10 +30560,11 @@ planet Rand
 planet Redias
 	landscape land/nasa15
 	attributes "requires: gaslining"
-	government "Incipias"
 	"required reputation" 1
-	description "You can not land on the home planet of the Incipas, because they have no spaceport fitting for ships like yours."
-	description  "While you are drifting through the planet's atmosphere, you see some small floating platforms and aircraft."
+	description "The home planet of the Incipias is reigned by powerful storms. Lightning and Thunder appear without pauses and a powerfull wind is moving the clouds in an insane speed."
+	description  "The Incipias adjusted perfectly to this harsh envoirement. Their cities are build like theyself. Large balloon like structures hold spheres of buildings in the air. The Incipias themselfs can move freely through the atmosphere so the cities have no roads. To travel larger distances the Incipias use gliders that can fly against the powerful winds."
+	spaceport "Because of the size of their homeworld the Incipias built not only one but four spaceports. These spaceports are the only platforms with fixed positions. They were built in heights where the storms are not so strong but still they need a lot of energy to be held in place."
+	spaceport "The spaceport themselves are a giant circular platform with a few of the Incipias' housing spheres at the bottom. The traffic is not really high because only one ship can land here at a time."
 	government "Incipias"
 
 planet Redwatch

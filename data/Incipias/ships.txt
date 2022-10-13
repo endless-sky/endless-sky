@@ -1,5 +1,5 @@
 ship "Nimbus"
-	"plural" "Nimbus'"
+	"plural" "Nimbi"
 	"sprite" ship/nimbus
 	"thumbnail" thumbnail/nimbus
 	"swizzle" 0
@@ -9,7 +9,7 @@ ship "Nimbus"
 		"hull" 2500
 		"required crew" 20
 		"bunks" 40
-		"mass" 600
+		"mass" 700
 		"drag" 13.3
 		"heat dissipation" .7
 		"cargo space" 100
@@ -23,29 +23,21 @@ ship "Nimbus"
 		"steering flare sprite" "effect/incipias flare/huge"
 		"frame rate" 9
 		"steering flare sound" "plasma huge"
-		thumbnail "outfit/core class steering"
-		"mass" 50
-		"outfit space" -30
-		"engine capacity" -30
-		"turn" 1207
+		"turn" 903
 		"turning energy" 2.5
 		"turning heat" 12
 
 		"flare sprite" "effect/incipias flare/huge"
 		"frame rate" 9
 		"flare sound" "plasma huge"
-		thumbnail "outfit/core class thruster"
-		"mass" 60
-		"outfit space" -10
-		"engine capacity" -10
-		"thrust" 24
+		"thrust" 12
 		"thrusting energy" 5
 		"thrusting heat" 10
 
 	outfits
 		"Liquid Class Shield"
 		"Liquid Hydrogen Cell"
-		"Plasma Discharger" 2
+		"Plasma Discharger" 4
 	engine -24 82
 	engine 1 82
 	engine 1 82
@@ -58,65 +50,4 @@ ship "Nimbus"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Nimbus is the largest ship of Incipias. Thanks to it large solar collectores it does not need any other power generation outfits. As all ships of the Incipias it can land on gas giants."
-
-ship "Cumulonimbus"
-	"plural" "Cumulonimbus'"
-	"sprite" ship/cumulonimbus
-	"swizzle" 0
-	attributes
-		"category" "Medium Warship"
-		"cost" 500000
-		"hull" 2500
-		"required crew" 20
-		"bunks" 40
-		"mass" 600
-		"drag" 13.3
-		"heat dissipation" .7
-		"cargo space" 100
-		"outfit space" 450
-		"engine capacity" 150
-		"weapon capacity" 50 
-		"gaslining" 1
-		"solar collection" 400
-		"fuel capacity" 200
-
-		"flare sprite" "effect/incipias flare/huge"
-		"frame rate" 9
-		"flare sound" "plasma huge"
-		thumbnail "outfit/core class thruster"
-		"mass" 60
-		"outfit space" -10
-		"engine capacity" -10
-		"thrust" 24
-		"thrusting energy" 5
-		"thrusting heat" 10
-
-		"steering flare sprite" "effect/incipias flare/huge"
-		"frame rate" 9
-		"steering flare sound" "plasma huge"
-		thumbnail "outfit/core class steering"
-		"mass" 50
-		"outfit space" -30
-		"engine capacity" -30
-		"turn" 1207
-		"turning energy" 2.5
-		"turning heat" 12
-
-	outfits
-		"Solid Class Shield"
-		"Liquid Hydrogen Cell"
-		"Discharger Turret" 4
-	turret -30 16
-	turret -30 -27
-	turret 30 -27
-	turret 30 16
-	engine -57 90.5
-	engine -35 95
-	engine 34 95.5
-	engine 57 91.5
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 10
-	"final explode" "final explosion large"
-	description "The Nimbus is the largest ship of Incipias. Thanks to it large solar collectores it does not need any other power generation outfits. As all ships of the Incipias it can land on gas giants."
+	description "The Nimbus is the largest ship of Incipias. It was one of their first designs."
