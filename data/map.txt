@@ -30561,8 +30561,8 @@ planet Redias
 	landscape land/nasa15
 	attributes "requires: gaslining"
 	"required reputation" 1
-	description "The home planet of the Incipias is reigned by powerful storms. Lightning and Thunder appear without pauses and a powerfull wind is moving the clouds in an insane speed."
-	description  "The Incipias adjusted perfectly to this harsh envoirement. Their cities are build like theyself. Large balloon like structures hold spheres of buildings in the air. The Incipias themselfs can move freely through the atmosphere so the cities have no roads. To travel larger distances the Incipias use gliders that can fly against the powerful winds."
+	description "The home planet of the Incipias is reigned by powerful storms. Lightning and Thunder appear without pauses and a powerful wind is moving the clouds in an insane speed."
+	description  "The Incipias adjusted perfectly to this harsh envoirement. Their cities are build like theyself. Large balloon like structures hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere so the cities have no roads. To travel larger distances the Incipias use gliders that can fly against the powerful winds."
 	spaceport "Because of the size of their homeworld the Incipias built not only one but four spaceports. These spaceports are the only platforms with fixed positions. They were built in heights where the storms are not so strong but still they need a lot of energy to be held in place."
 	spaceport "The spaceport themselves are a giant circular platform with a few of the Incipias' housing spheres at the bottom. The traffic is not really high because only one ship can land here at a time."
 	government "Incipias"
