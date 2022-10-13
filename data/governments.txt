@@ -270,7 +270,7 @@ government "Hai (Unfettered Challenge)"
 	"hostile hail" "hostile unfettered challenger"
 	"hostile disabled hail" "defeated unfettered challenger"
 
- # Ships belonging to this government are ready to start a duel in space at any time.
+# Ships belonging to this government are ready to start a duel in space at any time.
 government "Hai (Unfettered Glory Seeker)"
 	swizzle 4
 	color .69 .33 .82
@@ -293,7 +293,7 @@ government "Hai (Unfettered Glory Seeker)"
 		destroy 0
 		atrocity 0
 
- # A government used to make unfettered challengers fight each others.
+# A government used to make unfettered challengers fight each others.
 government "Hai (Unfettered Blue Challenger)"
 	"display name" "Unfettered Challenge"
 	swizzle 4
@@ -317,7 +317,7 @@ government "Hai (Unfettered Blue Challenger)"
 		destroy 0
 		atrocity 0
 
- # A government used to make unfettered challengers fight each others.
+# A government used to make unfettered challengers fight each others.
 government "Hai (Unfettered Red Challenger)"
 	"display name" "Unfettered Challenge"
 	swizzle 4
