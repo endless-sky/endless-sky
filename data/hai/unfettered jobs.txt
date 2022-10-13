@@ -376,34 +376,6 @@ phrase "unfettered challenger defeated"
 		`"Is your fleet not too big for this battle? Or do you use superior weaponry? You must have had an edge! Whatever the case, here are your <payment>, but don't expect to see us again anytime soon."`
 		`"Well done, I guess it is only fair that you be allowed to plunder a few of my outfits... But do not expect it will be tolerated every time, given you already received <payment> from winning this little skirmish."`
 
-fleet "Sea Scorpion Challenger"
-	names "hai"
-	variant 5
-		"Sea Scorpion (Pulse)"
-	variant 5
-		"Sea Scorpion"
-	variant 5
-		"Sea Scorpion (Ion)"
-	variant
-		"Sea Scorpion (Ionic)"
-	variant
-		"Sea Scorpion (Shredder)"
-
-fleet "Shield Beetle Challenger"
-	names "hai"
-	variant 5
-		"Shield Beetle (Pulse)"
-	variant 5
-		"Shield Beetle"
-	variant 5
-		"Shield Beetle (Tracker)"
-	variant
-		"Shield Beetle (Ionic)"
-	variant
-		"Shield Beetle (Sunbeam)"
-	variant
-		"Shield Beetle (Thunderhead)"
-
 mission "Unfettered Challenge [0]"
 	name `Defeat a young Unfettered captain`
 	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
@@ -417,7 +389,6 @@ mission "Unfettered Challenge [0]"
 		random < 60
 	npc save disable
 		government "Hai (Unfettered Challenge)"
-		personality disables staying heroic target
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
@@ -439,7 +410,6 @@ mission "Unfettered Challenge [1A]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenge)"
-		personality disables staying heroic target
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 		conversation
@@ -461,7 +431,6 @@ mission "Unfettered Challenge [1B]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenge)"
-		personality disables staying heroic target
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
@@ -483,7 +452,6 @@ mission "Unfettered Challenge [2]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenge)"
-		personality disables staying heroic target
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
@@ -504,7 +472,6 @@ mission "Unfettered Space Challenge [0]"
 		random < 60
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
-		personality disables staying heroic target
 		system
 			distance 0 5
 			government "Hai (Unfettered)"
@@ -526,7 +493,6 @@ mission "Unfettered Space Challenge [1A]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
-		personality disables staying heroic target
 		system
 			distance 0 5
 			government "Hai (Unfettered)"
@@ -548,7 +514,6 @@ mission "Unfettered Space Challenge [1B]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
-		personality disables staying heroic target
 		system
 			distance 0 5
 			government "Hai (Unfettered)"
@@ -570,7 +535,6 @@ mission "Unfettered Space Challenge [2]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
-		personality disables staying heroic target
 		system
 			distance 0 5
 			government "Hai (Unfettered)"
@@ -588,7 +552,7 @@ conversation "interrupted duel"
 	`	The Unfettered authorities of the nearby planet hail you, "How dare you interrupt a duel in such a manner? You will be hunted down for this!"`
 	action
 		"reputation: Hai (Unfettered)" <?= -1000
-		++"unfettered revange fleet"
+		"unfettered revange fleet"++
 
 mission "Death To Those Without Honour"
 	invisible
@@ -599,7 +563,7 @@ mission "Death To Those Without Honour"
 	to offer
 		has "unfettered revange fleet"
 	on offer
-		--"unfettered revange fleet"
+		"unfettered revange fleet"--
 	on enter
 		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships, "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, 'one with no honor'!"`
 	npc kill
