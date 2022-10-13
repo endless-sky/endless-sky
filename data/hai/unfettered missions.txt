@@ -374,7 +374,7 @@ mission "Unfettered: Bring Hai"
 	source "Firelode"
 	stopover "Snowfeather"
 	passengers 10
-	blocked "You will need room for 10 passengers in order to take the next Unfettered mission."
+	blocked "You will need room for <passengers> in order to take the next Unfettered mission."
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		has "reputation: Hai" >= 0
@@ -554,11 +554,11 @@ mission "Unfettered: Bring Medical Supplies"
 		log "People" "Nimo" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
-			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're heading to your ship, someone catches up to you. "Hello, captain <last>. I am Nio, manager of this hospital. I wanted to express my deepest thanks to you, and give you the <payment> in person. When you have the time, make sure to check the job board for more jobs like this, it would mean a great deal to me."`
+			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're heading to your ship, someone catches up to you. "Hello, captain <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you, and give you the <payment> in person. When you have the time, make sure to check the job board for more jobs like this, it would mean a great deal to me."`
 			`	On the way back, you notice the same Hai Chief from Firelode, speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. We did not before have the time to get properly introduced. I am Nimo." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Nimo. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
-					accept
+					decline
 				`	"What could have caused this crisis? Does it happen often?"`
 				`	"Are all Unfettered soldiers? I see a lot of you armed and seemingly ready for action."`
 					goto soldiers
@@ -626,7 +626,7 @@ mission "Unfettered: Prove Your Strength"
 		has "armament deterrence" >= 4
 	on offer
 		conversation
-			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, some of them are even armored. It seems they are ready for action at any time. You are happy to no longer be their enemy, at least for now.`
+			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, some of them are even armored. It seems they are ready for action at any time. One would not want to be their enemy.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
 			`	"This is the monkey you speak so highly of? The one who fears not to come into our space, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised he knows your own language this well.`
 			choice
@@ -900,7 +900,9 @@ mission "Unfettered: Jump Drive Retrieval"
 				die
 			label outside
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late, unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now-missing armored friend. You can see his bloody knife, with what seems to be a snake on it, before losing consciousness.`
-				die
+			`	When you wake up everything is blury, all you can see if a powerful, almost divine, light.`
+			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered after such a failure.`
+				fail
 			label down
 			`	You get down yourself as you give the warning, then look his way to see if he followed it. The Unfettered was evidently trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of that weapon as the sniper was quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
 			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you while he takes care of the security systems. Once you are done, you look around, waiting for the captain to come back, and notice a symbol, that looks like a dragon with multiple heads. You then go back to double-check the jump drives. When the captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
@@ -1083,7 +1085,8 @@ mission "Unfettered: Materials Intercepted"
 				`	"Why is the trip so dangerous if the cargo is worthless?"`
 					goto worthless
 			label cargo
-			`	"Well I assume it was not stolen by the navy, given their principles, or by the syndicate, given the low value of the cargo. That means that whoever stole it are likely to hide away in pirate space and wait for the rumours there could be about this stealing to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
+			`	"From what I was told, there are 2 human factions in the area, and pirates. The ship always maintains a low profile and tries to pose as a merchant. Now, the syndicate would not mind a bit of smuggling, and for the navy could only take it in the unlikely event that their cover was blown and they could not escape.`
+			`	Whoever stole this cargo would not be welcome in either of those spaces, meaning that they are likely to hide away in pirate space and wait for the trail to cool down, before selling the loot back. The pirates are by far not a united faction, so they could steal loot out of one another, but given the low value of this cargo it should not have attracted much attention... I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the north-west of human space, so you should probably start looking in that general area."`
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
 					accept
@@ -1110,7 +1113,7 @@ mission "Unfettered: Materials Intercepted"
 				`	"I will try to bring the loot back without attracting too much attention."`
 					accept
 				`	"I will find them and bring the loot back, whatever the cost.`
-				`	"This is mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
+				`	"This mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
 					decline
 			`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. Do what you must to bring back all 142 tons of materials. And remember to look for it near the Koraths."`
 				accept
@@ -1119,7 +1122,7 @@ mission "Unfettered: Materials Intercepted"
 			`As you enter the system, you notice pirates from Hydra in orbit around the planet. They could have the cargo you are looking for.`
 			choice
 				`	Demand that the materials be returned to you.`
-				`	(Say nothing, I have no need to talk with these scums. I shall take.)`
+				`	(Say nothing, I have no need to talk with these scums. I shall take back what they stole.)`
 					goto over
 			`	The first mate of the <npc> responds to your hail, "That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that these were stolen from before we could bring them to port! Well, after we stole them from a merchant, but that's irrelevant."`
 			choice
@@ -1129,7 +1132,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"If I laid down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
 				goto over
 			label intention
-			`	"My masters are coming soon to retrieve it, and if it ain't there no more, I'll be the one they 'retrieve' instead." He says, before abruptly closing the communication.`
+			`	"My masters are coming soon to retrieve the cargo, and if it ain't there no more, I'll be the one they 'retrieve' instead." He says, before abruptly closing the communication.`
 			label over
 				`They quickly land on the planet, it looks like you will have to pursue them.`
 	npc board
@@ -1178,7 +1181,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"We will let you land and repair before starting the fight. If you want to surrender, just land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
 				accept
 			label leaving
-			`	They end the hail, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the hail.`
+			`	They end the discussion, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the conversation.`
 				decline
 			label "allies died"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even hunt you down for this.`
@@ -1425,7 +1428,7 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 
 mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`
-	description `Scan the outfits of the human ship in Hi Yahr by <date>, and then come back to <origin> with the logs.`
+	description `Scan the outfits of the human ship in <waypoint> by <date>, and then come back to <origin> with the logs.`
 	source "Firelode"
 	destination "Warfeed"
 	deadline 4
@@ -1454,7 +1457,8 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				`	"That seems too dangerous to me. Sorry, but I will not be helping you anymore."`
 					decline
 
-	on enter "Hi Yahr"
+	waypoint "Hi Yahr"
+	on waypoint
 		dialog `As you enter the system, you see the ship and identify it as a Navy Auxiliary. Whatever happens, the Unfettered asked you not to destroy it and only scan it - at least for now.`
 	npc save "scan cargo"
 		government "Alpha"
