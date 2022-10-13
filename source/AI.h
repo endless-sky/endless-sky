@@ -58,7 +58,7 @@ template <class Type>
 
 	// Fleet commands from the player. //
 	// Fuction that sets a ship as the target of the players fleet.
-	// If the trageted ship is an enemy the fleet will be given the
+	// If the targeted ship is an enemy the fleet will be given the
 	// command to attack.
 	// Called on mouse click events handling.
 	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
@@ -84,7 +84,7 @@ template <class Type>
 	// Called when ships are "placed" in a system for example on enter.
 	void ClearOrders();
 	// Function to issue AI commands to all ships for one game step.
-	// Called when the ENgine calculates a Step.
+	// Called when the Engine calculates a Step.
 	void Step(const PlayerInfo &player, Command &activeCommands);
 
 	// Functions to get the in-system strength of each government's allies and enemies.
@@ -187,11 +187,11 @@ private:
 	// Function to calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
 	// projectile. If it cannot hit the target, this returns NaN.
-	// Called in all kind of movement functions.
+	// Called in all kinds of movement functions.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
 	// Move the players ship on basis of the given commands.
-	// Called in an Ai step.
+	// Called in an AI step.
 	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 
 	// These functions are called in multiple places. //
