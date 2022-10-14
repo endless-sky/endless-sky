@@ -29,21 +29,21 @@ phrase "unfettered aid pickup dialog"
 		`"Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 
 mission "Unfettered Aid [0]"
-	name "Aid shipment to Unfettered"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
+	name "Aid shipment to Unfettered"
 	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
 	cargo "food (aid)" 25 2 .05
-	to offer
-		random < 40
-		"cargo space" >= 50
-		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
 	destination
 		distance 3 4
 		attributes "unfettered"
+	to offer
+		random < 40
+		"cargo space" >= 50
+		has "Ask the Hai about the Unfettered: offered"
 	on accept
 		dialog phrase "unfettered aid pickup dialog"
 	on visit
@@ -58,21 +58,21 @@ mission "Unfettered Aid [0]"
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [1]"
-	name "Aid shipment to Unfettered"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
+	name "Aid shipment to Unfettered"
 	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
 	cargo "food (aid)" 30 2 .05
-	to offer
-		random < 30
-		"cargo space" > 60
-		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
 	destination
 		distance 4 5
 		attributes "unfettered"
+	to offer
+		random < 30
+		"cargo space" > 60
+		has "Ask the Hai about the Unfettered: offered"
 	on accept
 		dialog phrase "unfettered aid pickup dialog"
 	on visit
@@ -87,21 +87,21 @@ mission "Unfettered Aid [1]"
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [2]"
-	name "Aid shipment to Unfettered"
 	job
 	repeat
+	name "Aid shipment to Unfettered"
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
 	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
 	cargo "food (aid)" 35 2 .05
-	to offer
-		random < 20
-		"cargo space" > 65
-		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
 	destination
 		distance 5 6
 		attributes "unfettered"
+	to offer
+		random < 20
+		"cargo space" > 65
+		has "Ask the Hai about the Unfettered: offered"
 	on accept
 		dialog phrase "unfettered aid pickup dialog"
 	on visit
@@ -126,82 +126,84 @@ phrase "unfettered tribute pickup dialog"
 		`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 
 mission "Unfettered Tribute 1"
-	name "Hai Tribute to <planet>"
 	job
 	repeat
+	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 80
 	cargo "food (tribute)" 25 2 .05
-	on complete
-		payment 5000 1600
-		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
 	stopover
 		distance 3 4
 		attributes "hai"
 		attributes "spaceport"
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 80
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
+	on complete
+		payment 5000 1600
+		dialog phrase "unfettered tribute payment dialog"
 
 mission "Unfettered Tribute 2"
-	name "Hai Tribute to <planet>"
 	job
 	repeat
+	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 60
 	cargo "food (tribute)" 35 2 .05
-	on complete
-		payment 7000 2000
-		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
 	stopover
 		distance 4 5
 		attributes "hai"
 		attributes "spaceport"
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 60
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
+	on complete
+		payment 7000 2000
+		dialog phrase "unfettered tribute payment dialog"
 
 mission "Unfettered Tribute 3"
-	name "Hai Tribute to <planet>"
 	job
 	repeat
+	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 40
 	cargo "food (tribute)" 45 2 .05
-	on complete
-		payment 9000 2400
-		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
 	stopover
 		distance 5 6
 		attributes "hai"
 		attributes "spaceport"
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 40
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
+	on complete
+		payment 9000 2400
+		dialog phrase "unfettered tribute payment dialog"
 
 
 
 
 mission "Unfettered Jump Drive 4"
+	job
+	repeat
 	name "Sell Jump Drive"
 	description "The Unfettered are willing to give you a million credits for a Jump Drive."
-	repeat
-	job
+	source
+		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -209,8 +211,6 @@ mission "Unfettered Jump Drive 4"
 		has "event: wanderers: unfettered invasion starts"
 	to complete
 		never
-	source
-		attributes "unfettered"
 	on accept
 		dialog "As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them."
 		outfit "Jump Drive" -1
@@ -233,12 +233,13 @@ mission "Proud Unfettered Boarded"
 	boarding
 	repeat
 	minor
-	to offer
-		"flagship crew" > 120
-		random < "flagship crew" / 8
 	source
 		government "Hai (Unfettered)"
 		category "Heavy Warship"
+	destination "Darkcloak"
+	to offer
+		"flagship crew" > 120
+		random < "flagship crew" / 8
 	on offer
 		conversation
 			`As you board the <origin> you immediately notice something is wrong: the ship is getting ready to explode! The captain sends you a message.`
@@ -246,7 +247,6 @@ mission "Proud Unfettered Boarded"
 		conversation
 			`They weren't bluffing, and you already see escape pods leaving the ship, trying to to a safe distance. Better get out of here quickly!`
 				flee
-	destination "Darkcloak"
 
 
 
@@ -261,10 +261,10 @@ phrase "unfettered mining payment dialog"
 		`Once the unloading of materials is finished, an Unfettered comes to you, looking humble and sincere. "Thank you, captain. We need these materials - and any other kind of help - more than we would like to admit it. If you have time, please consider doing other jobs, such as bringing food for us," he says with a slight smile. He then gives you <payment>.`
 
 mission "Unfettered Silicon Asteroid Mining"
-	name `Gather silicon`
-	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot, and then bring them back to <destination> for <payment>.`
 	job
 	repeat
+	name `Gather silicon`
+	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot, and then bring them back to <destination> for <payment>.`
 	source "Darkcloak"
 	to offer
 		has "First Contact: Unfettered: declined"
@@ -275,10 +275,10 @@ mission "Unfettered Silicon Asteroid Mining"
 		outfit "Silicon" -50
 
 mission "Unfettered Silver Asteroid Mining"
-	name `Gather silver from asteroids`
-	description `Mine and then collect 15 tons of silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
 	job
 	repeat
+	name `Gather silver from asteroids`
+	description `Mine and then collect 15 tons of silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
@@ -306,22 +306,22 @@ phrase "unfettered medicals payment dialog"
 		`Once you arrive with the medical supplies, you are greeted by a local health specialist who seems to be desperate for them. "Not a moment too soon! If this was any later the consequences could have been dire," he says and then hands you <payment>.`
 
 mission "Unfettered Small Medicals Rush"
-	name `Express medical supplies to <planet>`
-	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	job
 	repeat
+	name `Express medical supplies to <planet>`
+	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	deadline 10 1
+	cargo "medicals" 15 2 .05
 	source
 		attributes "unfettered"
-	destination "Darkcloak"
-	to offer
-		has "Unfettered Jump Drive 1: offered"
-		random < 80
-	cargo "medicals" 15 2 .05
 	stopover
 		distance 5 7
 		government "Hai"
 		attributes "spaceport"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered Jump Drive 1: offered"
+		random < 80
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
@@ -332,23 +332,23 @@ mission "Unfettered Small Medicals Rush"
 
 
 mission "Unfettered Big Medicals Rush"
-	name `Medical supplies to <planet>`
-	description `The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	job
 	repeat
+	name `Medical supplies to <planet>`
+	description `The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	deadline 15
+	cargo "medicals" 35 2 .05
 	source
 		attributes "unfettered"
+	stopover
+		distance 5 7
+		government "Hai"
+		attributes "spaceport"
 	destination
 		attributes "unfettered"
 	to offer
 		has "Unfettered: Bring Medical Supplies: done"
 		random < 60
-	cargo "medicals" 35 2 .05
-	stopover
-		distance 5 7
-		government "Hai"
-		attributes "spaceport"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
@@ -377,10 +377,10 @@ phrase "unfettered challenger defeated"
 		`"Well done, I guess it is only fair that you be allowed to plunder a few of my outfits... But do not expect it will be tolerated every time, given you already received <payment> from winning this little skirmish."`
 
 mission "Unfettered Challenge [0]"
-	name `Defeat a young Unfettered captain`
-	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
+	name `Defeat a young Unfettered captain`
+	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -398,10 +398,10 @@ mission "Unfettered Challenge [0]"
 				fail "Unfettered Challenge [0]"
 
 mission "Unfettered Challenge [1A]"
-	name `Defeat an Unfettered captain`
-	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
+	name `Defeat an Unfettered captain`
+	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -419,10 +419,10 @@ mission "Unfettered Challenge [1A]"
 				fail "Unfettered Challenge [1A]"
 
 mission "Unfettered Challenge [1B]"
-	name `Defeat an Unfettered captain`
-	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
+	name `Defeat an Unfettered captain`
+	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -440,10 +440,10 @@ mission "Unfettered Challenge [1B]"
 				fail "Unfettered Challenge [1B]"
 
 mission "Unfettered Challenge [2]"
-	name `Defeat an experienced Unfettered captain`
-	description `An experienced Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
+	name `Defeat an experienced Unfettered captain`
+	description `An experienced Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -582,6 +582,8 @@ mission "Unfettered Red Blue Sea Scorpion Duel"
 		attributes "unfettered"
 	to offer
 		random < 5
+	to complete
+		never
 	npc kill
 		government "Hai (Unfettered Blue Challenger)"
 		personality disables staying heroic uninterested
@@ -601,6 +603,8 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 		attributes "unfettered"
 	to offer
 		random < 5
+	to complete
+		never
 	npc kill
 		government "Hai (Unfettered Blue Challenger)"
 		personality disables staying heroic uninterested
@@ -636,19 +640,19 @@ phrase "unfettered jump drive payment dialog"
 		"After unloading the cargo, you try your luck asking about who places these jump drives you're collecting, but, as usual, the Unfettered workers give you no information about it. Fortunately, they still give you <payment>."
 
 mission "Get Jump Drives(1)"
-	name "Collect a jump drive"
-	description "Go to the pirate world of <stopovers> to recover a jump drive from a vault, then bring it to <destination> for <payment>."
 	job
 	repeat
+	name "Collect a jump drive"
+	description "Go to the pirate world of <stopovers> to recover a jump drive from a vault, then bring it to <destination> for <payment>."
 	source
 		attributes "unfettered"
+	stopover
+		distance 12 18
+		government "Pirate"
 	destination "Darkcloak"
 	to offer
 		random < 30
 		has "Unfettered: Prove your strength 2: done"
-	stopover
-		distance 12 18
-		government "Pirate"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive"
@@ -669,19 +673,19 @@ mission "Get Jump Drives(1)"
 		dialog phrase "unfettered jump drive payment dialog"
 
 mission "Get Jump Drives (2)"
-	name "Collect 2 jump drives"
-	description "Go to the pirate world of <stopovers> and recover 2 jump drives from a vault, then bring those to <destination> for <payment>."
 	job
 	repeat
+	name "Collect 2 jump drives"
+	description "Go to the pirate world of <stopovers> and recover 2 jump drives from a vault, then bring those to <destination> for <payment>."
 	source
 		attributes "unfettered"
+	stopover
+		distance 12 18
+		government "Pirate"
 	destination "Darkcloak"
 	to offer
 		random < 15
 		has "Unfettered: Prove your strength 2: done"
-	stopover
-		distance 12 18
-		government "Pirate"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 2
@@ -700,17 +704,17 @@ mission "Get Jump Drives (2)"
 		dialog phrase "unfettered jump drive payment dialog"
 
 mission "Get Jump Drives (3)"
-	name "Collect 3 jump drives"
-	description "Go to the pirate world of <stopovers> and recover 3 jump drives from a vault, then bring those to <destination> for <payment>."
 	job
 	repeat
+	name "Collect 3 jump drives"
+	description "Go to the pirate world of <stopovers> and recover 3 jump drives from a vault, then bring those to <destination> for <payment>."
 	source
 		attributes "unfettered"
+	stopover "Deadman's Cove"
 	destination "Darkcloak"
 	to offer
 		random < 5
 		has "Unfettered: Prove your strength 2: done"
-	stopover "Deadman's Cove"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 3
@@ -732,22 +736,22 @@ mission "Get Jump Drives (3)"
 
 
 mission "Bring True Hai"
-	name `Bring True Hai`
-	description `Land on <stopovers> and bring back <bunks> True Hai to where they belong, on <destination>, for <payment>.`
 	job
 	repeat
+	name `Bring True Hai`
+	description `Land on <stopovers> and bring back <bunks> True Hai to where they belong, on <destination>, for <payment>.`
 	passengers 5 8 .2
 	source
 		attributes "unfettered"
+	stopover
+		distance 3 6
+		government "Hai"
+		attributes "spaceport"
 	destination
 		attributes "unfettered"
 	to offer
 		random < 75
 		has "Unfettered: The Word Has Spread: done"
-	stopover
-		distance 3 6
-		government "Hai"
-		attributes "spaceport"
 	on stopover
 		dialog `You have picked up all <bunks> Hai. Now all that is left is to bring them to <destination>.`
 	on visit
@@ -760,20 +764,20 @@ mission "Bring True Hai"
 
 
 mission "Darkcloak Ship Materials"
-	name `Ship materials from <stopovers>`
-	description `The shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <stopovers> to get <tons> of materials for building new ships, and bring them back to <destination> by <date> for <payment>.`
 	job
 	repeat
+	name `Ship materials from <stopovers>`
+	description `The shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <stopovers> to get <tons> of materials for building new ships, and bring them back to <destination> by <date> for <payment>.`
 	deadline 15 1
 	source `Darkcloak`
+	stopover
+		distance 12 18
+		government "Pirate"
 	cargo "ship materials" 50 15 .015
 	to offer
 		random < 50
 		has "Unfettered Jump Drive 3: done"
 		has "Unfettered: The War Has Started"
-	stopover
-		distance 12 18
-		government "Pirate"
 	on stopover
 		dialog `After some searching, you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. You prepare to head back to <origin> and deliver them.`
 	on visit
@@ -829,10 +833,10 @@ phrase "unfettered cargo interception payment dialog"
 		`The leader of the Unfettered team that collects your cargo comes to you, "This is good, but we need more. Recently, an entire area collapsed because of lack of maintenance." He then hands you the chip with <payment>.`
 
 mission "Cargo Interception West"
-	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	job
 	repeat
+	name `Find and bring the materials back`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
@@ -859,10 +863,10 @@ mission "Cargo Interception West"
 		dialog phrase "unfettered cargo interception payment dialog"
 
 mission "Cargo Interception East"
-	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	job
 	repeat
+	name `Find and bring the materials back`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
