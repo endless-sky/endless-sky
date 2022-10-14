@@ -486,7 +486,7 @@ mission "Unfettered Space Challenge [0]"
 		conversation
 			action
 				payment 200000
-				"reputation: Hai (Unfettered)" += 20
+				"reputation: Hai (Unfettered)" += 5
 	on fail
 		"reputation: Hai (Unfettered)" -= 40
 		
@@ -511,7 +511,7 @@ mission "Unfettered Space Challenge [1A]"
 		conversation
 			action
 				payment 500000
-				"reputation: Hai (Unfettered)" += 40
+				"reputation: Hai (Unfettered)" += 10
 	on fail
 		"reputation: Hai (Unfettered)" -= 80
 
@@ -535,7 +535,7 @@ mission "Unfettered Space Challenge [1B]"
 		conversation
 			action
 				payment 500000
-				"reputation: Hai (Unfettered)" += 40
+				"reputation: Hai (Unfettered)" += 10
 	on fail
 		"reputation: Hai (Unfettered)" -= 80
 
@@ -560,7 +560,7 @@ mission "Unfettered Space Challenge [2]"
 		conversation
 			action
 				payment 800000
-				"reputation: Hai (Unfettered)" += 70
+				"reputation: Hai (Unfettered)" += 20
 	on fail
 		"reputation: Hai (Unfettered)" -= 140
 
@@ -593,8 +593,9 @@ mission "Death To Those Without Honor"
 
 mission "Unfettered Red Blue Sea Scorpion Duel"
 	invisible
-	deadline
+	landing
 	repeat
+	deadline
 	source
 		attributes "unfettered"
 	to offer
@@ -614,8 +615,9 @@ mission "Unfettered Red Blue Sea Scorpion Duel"
 
 mission "Unfettered Red Blue Shield Beetle Duel"
 	invisible
-	deadline
+	landing
 	repeat
+	deadline
 	source
 		attributes "unfettered"
 	to offer
