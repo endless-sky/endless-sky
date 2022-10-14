@@ -585,7 +585,7 @@ mission "Death To Those Without Honor"
 		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships, "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, 'one with no honor'!"`
 	npc kill
 		government "Hai (Unfettered)"
-		personality disables staying heroic nemesis
+		personality staying heroic nemesis unconstrained
 		fleet "Sea Scorpion Challenger"
 		fleet "Shield Beetle Challenger"
 		fleet "Large Unfettered" 2

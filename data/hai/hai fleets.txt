@@ -621,7 +621,7 @@ fleet "Sea Scorpion Challenger"
 		target
 	variant 5
 		"Sea Scorpion (Pulse)"
-	variant 5
+	variant 3
 		"Sea Scorpion"
 	variant 5
 		"Sea Scorpion (Ion)"
