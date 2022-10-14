@@ -217,25 +217,6 @@ namespace {
 		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
 	}
 
-	// Wrapper for ship - target system uses.
-	bool ShouldRefuel(const Ship &ship, const System *to)
-	{
-		if(!to || ship.Fuel() == 1. || !ship.GetSystem()->HasFuelFor(ship))
-			return false;
-		double fuelCapacity = ship.Attributes().Get("fuel capacity");
-		if(!fuelCapacity)
-			return false;
-		double needed = ship.JumpFuel(to);
-		if(needed && to->HasFuelFor(ship))
-			return ship.Fuel() * fuelCapacity < needed;
-		else
-		{
-			// If no direct jump route, or the target system has no
-			// fuel, perform a more elaborate refueling check.
-			return ShouldRefuel(ship, DistanceMap(ship, to), fuelCapacity);
-		}
-	}
-
 	const StellarObject *GetRefuelLocation(const Ship &ship)
 	{
 		const StellarObject *target = nullptr;
