@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SHIP_JUMP_NAVIGATION_H_
 #define SHIP_JUMP_NAVIGATION_H_
 
+#include <cstdint>
 #include <map>
 
 class Ship;
