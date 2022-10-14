@@ -20,15 +20,15 @@ ship "Nimbus"
 		"solar collection" 400
 		"fuel capacity" 200
 
-		"steering flare sprite" "effect/incipias flare/huge"
-		"frame rate" 9
+		"steering flare sprite" "effect/incipias flare/flare"
+			"frame rate" 6
 		"steering flare sound" "plasma huge"
 		"turn" 903
 		"turning energy" 2.5
 		"turning heat" 12
 
-		"flare sprite" "effect/incipias flare/huge"
-		"frame rate" 9
+		"flare sprite" "effect/incipias flare/flare"
+			"frame rate" 6
 		"flare sound" "plasma huge"
 		"thrust" 12
 		"thrusting energy" 5
