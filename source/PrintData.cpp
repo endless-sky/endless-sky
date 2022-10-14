@@ -32,7 +32,7 @@ namespace {
 	string ObjectName(const Type &object);
 
 	template <>
-	string ObjectName<Ship>(const Ship &object) {return object.ModelName(); }
+	string ObjectName<Ship>(const Ship &object) { return object.ModelName(); }
 
 	template <>
 	string ObjectName<Outfit>(const Outfit &object) { return object.Name(); }
