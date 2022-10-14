@@ -618,7 +618,7 @@ void PrintData::PrintPlanetAttributes()
 		cout << it.first;
 		const Planet &planet = it.second;
 		for(const string &attribute : planet.Attributes())
-			cout << ',' << attribute;
+			cout << ';' << attribute;
 		cout << '\n';
 	}
 }
@@ -642,7 +642,7 @@ void PrintData::PrintPlanetsByAttribute()
 		{
 			const Planet &planet = it.second;
 			if(planet.Attributes().count(attribute))
-				cout << ',' << it.first;
+				cout << ';' << it.first;
 		}
 		cout << '\n';
 	}
@@ -690,7 +690,7 @@ void PrintData::PrintSystemAttributes()
 		cout << it.first;
 		const System &system = it.second;
 		for(const string &attribute : system.Attributes())
-			cout << ',' << attribute;
+			cout << ';' << attribute;
 		cout << '\n';
 	}
 }
@@ -714,11 +714,8 @@ void PrintData::PrintSystemsByAttribute()
 		{
 			const System &system = it.second;
 			if(system.Attributes().count(attribute))
-				cout << ',' << it.first;
+				cout << ';' << it.first;
 		}
 		cout << '\n';
 	}
 }
-
-
-
