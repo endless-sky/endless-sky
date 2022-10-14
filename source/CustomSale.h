@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <set>
 
+class ConditionsStore;
 class DataNode;
 class LocationFilter;
 class Planet;
@@ -62,7 +63,7 @@ public:
 	bool Has(const Outfit &item) const;
 
 	// Check if this planet with the given conditions of the player match the conditions of the CustomSale.
-	bool Matches(const Planet &planet, const std::map<std::string, int64_t> &playerConditions) const;
+	bool Matches(const Planet &planet, const ConditionsStore &playerConditions) const;
 
 	void Clear();
 

@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
@@ -156,7 +157,7 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
-	int64_t LocalCost(const Planet *planet, const std::map<std::string, int64_t> &conditions) const;
+	int64_t LocalCost(const Planet *planet, const ConditionsStore &conditions) const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.

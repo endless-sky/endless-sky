@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define PLANET_H_
 
 #include "CustomSale.h"
+#include "ConditionsStore.h"
 #include "Sale.h"
 
 #include <list>
@@ -92,9 +93,9 @@ public:
 	// Get the list of outfits available from the outfitter with their custom elements.
 	const Sale<Outfit> &Outfitter() const;
 	// Get the local price of this outfit.
-	double GetLocalRelativePrice(const Outfit &outfit, const std::map<std::string, int64_t> &conditions) const;
+	double GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const;
 	// Get the availability of this outfit.
-	CustomSale::SellType GetAvailability(const Outfit &outfit, const std::map<std::string, int64_t> &conditions) const;
+	CustomSale::SellType GetAvailability(const Outfit &outfit, const ConditionsStore &conditions) const;
 
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
@@ -164,7 +165,7 @@ private:
 	mutable Sale<Outfit> outfitter;
 
 	// Used to check if the player conditions changed, and keep the old visible customSale in cache if they didn't.
-	mutable std::map<std::string, int64_t> lastConditions;
+	mutable ConditionsStore lastConditions;
 
 	const Government *government = nullptr;
 	double requiredReputation = 0.;

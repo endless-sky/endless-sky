@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "CategoryTypes.h"
+#include "ConditionsStore.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -1110,7 +1111,7 @@ int64_t Ship::ChassisCost() const
 
 
 // Get the full cost of this ship on the planet, depending on the outfit prices.
-int64_t Ship::LocalCost(const Planet *planet, const map<string, int64_t> &conditions) const
+int64_t Ship::LocalCost(const Planet *planet, const ConditionsStore &conditions) const
 {
 	int64_t localCost = ChassisCost();
 	for(auto &&it : Outfits())
