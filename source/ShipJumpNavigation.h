@@ -1,0 +1,74 @@
+/* ShipJumpNavigation.h
+Copyright (c) 2022 by Amazinite
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#ifndef SHIP_JUMP_NAVIGATION_H_
+#define SHIP_JUMP_NAVIGATION_H_
+
+#include <map>
+
+class Ship;
+class System;
+
+
+
+// A class representing the jump capabilities of a ship. Calculates and caches a ship's
+// jump methods, costs, and distances.
+class ShipJumpNavigation {
+public:
+	enum class JumpType : uint8_t
+	{
+		Hyperdrive,
+		JumpDrive,
+		None
+	};
+
+
+public:
+	ShipJumpNavigation() = default;
+
+	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
+	void Calibrate(const Ship &ship);
+
+	// Get the amount of fuel that would be expended to jump between the two given systems.
+	double JumpFuel(const System *currentSystem, const System *destination = nullptr) const;
+	// Get the maximum distance that this ship can jump.
+	double JumpRange() const;
+	// Get the cost of making a jump of the given type (if possible). Returns 0 if the jump can't be made.
+	double HyperdriveFuel() const;
+	double JumpDriveFuel(double jumpDistance = 0.) const;
+	// Get the cheapest jump method and its cost for a jump between the two given systems.
+	// If no jump method is possible, returns JumpType::None with a jump cost of 0.
+	std::pair<JumpType, double> GetCheapestJumpType(const System *currentSystem, const System *destination) const;
+
+
+private:
+	// Add the given distance, cost pair to the jump drive costs and update the fuel cost
+	// of each jump distance if necessary. 
+	void UpdateJumpDriveCosts(double distance, double cost);
+
+
+private:
+	double hyperdriveCost = 0.;
+	std::map<double, double> jumpDriveCosts;
+	double maxJumpRange = 0.;
+
+	bool hasHyperdrive = false;
+	bool hasScramDrive = false;
+	bool hasJumpDrive = false;
+};
+
+
+
+#endif

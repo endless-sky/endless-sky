@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Weapon.h"
@@ -56,7 +57,7 @@ namespace {
 	bool IsStranded(const Ship &ship)
 	{
 		return ship.GetSystem() && !ship.IsEnteringHyperspace() && !ship.GetSystem()->HasFuelFor(ship)
-			&& ship.JumpFuel() && ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
+			&& ship.JumpNavigation().JumpFuel(ship.GetSystem()) && ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 
 	bool CanBoard(const Ship &ship, const Ship &target)
@@ -103,7 +104,7 @@ namespace {
 				continue;
 			if(!escort->IsDisabled() && !escort->CanBeCarried()
 					&& escort->GetSystem() == ship.GetSystem()
-					&& escort->JumpFuel() && !escort->IsReadyToJump(true))
+					&& escort->JumpNavigation().JumpFuel(escort->GetSystem()) && !escort->IsReadyToJump(true))
 				return false;
 		}
 		return true;
@@ -201,7 +202,7 @@ namespace {
 		// If there is no fuel capacity in this ship, no fuel in this
 		// system, if it is fully fueled, or its drive doesn't require
 		// fuel, then it should not refuel before traveling.
-		if(!systemHasFuel || ship.Fuel() == 1. || !ship.JumpFuel())
+		if(!systemHasFuel || ship.Fuel() == 1. || !ship.JumpNavigation().JumpFuel(from))
 			return false;
 
 		// Calculate the fuel needed to reach the next system with fuel.
@@ -225,7 +226,7 @@ namespace {
 		double fuelCapacity = ship.Attributes().Get("fuel capacity");
 		if(!fuelCapacity)
 			return false;
-		double needed = ship.JumpFuel(to);
+		double needed = ship.JumpNavigation().JumpFuel(ship.GetSystem(), to);
 		if(needed && to->HasFuelFor(ship))
 			return ship.Fuel() * fuelCapacity < needed;
 		else
@@ -779,7 +780,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
-			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
+			if(!hasParent || (!inParentSystem && !it->JumpNavigation().JumpFuel(it->GetSystem())) || (!parentHasSpace && !Random::Int(1800)))
 			{
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
@@ -1471,7 +1472,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<int> systemWeights;
 		int totalWeight = 0;
 		const set<const System *> &links = ship.Attributes().Get("jump drive")
-			? origin->JumpNeighbors(ship.JumpRange()) : origin->Links();
+			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
 			for(const System *link : links)
@@ -1573,7 +1574,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
+	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpNavigation().JumpFuel(ship.GetSystem());
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
 	// Check if the parent has a target planet that is in the parent's system.
@@ -1759,7 +1760,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
 	double maxFuel = ship.Attributes().Get("fuel capacity");
-	if(maxFuel && ship.Fuel() < .005 && parent.JumpFuel() < parent.Fuel() *
+	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel(parent.GetSystem()) < parent.Fuel() *
 			parent.Attributes().Get("fuel capacity") - maxFuel)
 		return true;
 
@@ -1929,7 +1930,8 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 
-	bool isJump = (ship.GetCheapestJumpType(ship.GetTargetSystem()).first == Ship::JumpType::JumpDrive);
+	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetSystem(), ship.GetTargetSystem()).first ==
+		ShipJumpNavigation::JumpType::JumpDrive);
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 	if(!isJump && scramThreshold)
@@ -2246,7 +2248,7 @@ bool AI::ShouldUseAfterburner(Ship &ship)
 				+ 0.2 * ship.Attributes().Get("solar collection")
 				- ship.Attributes().Get("energy consumption");
 	double outputHeat = ship.Attributes().Get("afterburner heat") / (100 * ship.Mass());
-	if((!neededFuel || fuel - neededFuel > ship.JumpFuel())
+	if((!neededFuel || fuel - neededFuel > ship.JumpNavigation().JumpFuel(ship.GetSystem()))
 			&& (!neededEnergy || neededEnergy / energy < 0.25)
 			&& (!outputHeat || ship.Heat() + outputHeat < .9))
 		return true;
@@ -2427,7 +2429,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		vector<const System *> targetSystems;
 		if(ship.JumpsRemaining(false))
 		{
-			const auto &links = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpRange()) : system->Links();
+			const auto &links = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
 			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
 		}
 
@@ -2584,7 +2586,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 			// Only cloak if you will be able to fully cloak and also maintain it
 			// for as long as it will take you to reach full cloak.
 			fuel -= fuelCost * (1 + 2 * steps);
-			if(fuel < ship.JumpFuel())
+			if(fuel < ship.JumpNavigation().JumpFuel(ship.GetSystem()))
 				return false;
 		}
 
@@ -3023,7 +3025,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
 			bool isStaying = person.IsStaying();
-			if(!secondary || fuel < (isStaying ? 0. : ship.JumpFuel()))
+			if(!secondary || fuel < (isStaying ? 0. : ship.JumpNavigation().JumpFuel(ship.GetSystem())))
 				continue;
 		}
 		// Figure out where this weapon will fire from, but add some randomness
@@ -3508,7 +3510,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.Attributes().Get("jump drive") ?
-				ship.GetSystem()->JumpNeighbors(ship.JumpRange()) : ship.GetSystem()->Links());
+				ship.GetSystem()->JumpNeighbors(ship.JumpNavigation().JumpRange()) : ship.GetSystem()->Links());
 			for(const System *link : links)
 			{
 				// Not all systems in range are necessarily visible. Don't allow
@@ -3660,7 +3662,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
-		else if(!ship.JumpFuel(ship.GetTargetSystem()))
+		else if(!ship.JumpNavigation().JumpFuel(ship.GetSystem(), ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.", Messages::Importance::Highest);
 			autoPilot.Clear();

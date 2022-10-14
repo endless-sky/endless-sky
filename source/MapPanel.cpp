@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -183,7 +184,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Find out how far the player is able to jump. The range of the system
 	// takes priority over the range of the player's flagship.
 	double systemRange = playerSystem.JumpRange();
-	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
+	double playerRange = player.Flagship() ? player.Flagship()->JumpNavigation().JumpRange() : 0.;
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
@@ -949,7 +950,7 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 
 	const System *previous = &playerSystem;
-	double jumpRange = flagship->JumpRange();
+	double jumpRange = flagship->JumpNavigation().JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
@@ -974,7 +975,7 @@ void MapPanel::DrawTravelPlan()
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel(systemJumpRange ? 0. : jumpDistance) : it.first->HyperdriveFuel();
+					double cost = isJump ? it.first->JumpNavigation().JumpDriveFuel(systemJumpRange ? 0. : jumpDistance) : it.first->JumpNavigation().HyperdriveFuel();
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
 
@@ -171,9 +172,9 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
-		hyperspaceFuel = ship->HyperdriveFuel();
-		jumpFuel = ship->JumpDriveFuel();
-		jumpRange = ship->JumpRange();
+		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
+		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
+		jumpRange = ship->JumpNavigation().JumpRange();
 		// If hyperjumps and non-hyper jumps cost the same amount, there is no
 		// need to check hyperjump paths at all.
 		if(hyperspaceFuel == jumpFuel)

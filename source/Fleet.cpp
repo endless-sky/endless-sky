@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
 
@@ -310,7 +311,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(ship->Attributes().Get("jump drive"))
 			{
 				hasJump = true;
-				jumpDistance = ship->JumpRange();
+				jumpDistance = ship->JumpNavigation().JumpRange();
 				break;
 			}
 			if(ship->Attributes().Get("hyperdrive"))

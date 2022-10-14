@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -240,7 +241,7 @@ Engine::Engine(PlayerInfo &player)
 	// Add all neighboring systems that the player has seen to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
 	const set<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
-		player.GetSystem()->JumpNeighbors(flagship->JumpRange()) : player.GetSystem()->Links();
+		player.GetSystem()->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
 		if(player.HasSeen(*system))
 			radar[calcTickTock].AddPointer(
@@ -1240,7 +1241,7 @@ void Engine::EnterSystem()
 			// unless it was planned. For valid travel plans, the
 			// next system will be this system, or accessible.
 			const System *to = player.TravelPlan().back();
-			if(system != to && !flagship->JumpFuel(to))
+			if(system != to && !flagship->JumpNavigation().JumpFuel(system, to))
 				player.TravelPlan().clear();
 		}
 	}
@@ -2248,7 +2249,7 @@ void Engine::FillRadar()
 	{
 		const System *targetSystem = flagship->GetTargetSystem();
 		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
-			playerSystem->JumpNeighbors(flagship->JumpRange()) : playerSystem->Links();
+			playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
 			if(player.HasSeen(*system))
 				radar[calcTickTock].AddPointer(
