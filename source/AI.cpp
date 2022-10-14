@@ -3647,7 +3647,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	// Clear autopilot actions if actions can't be performed.
 	if(autoPilot.Has(Command::LAND) && !ship.GetTargetStellar())
 		autoPilot.Clear(Command::LAND);
-	if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP) && !(ship.GetTargetSystem() || !isWormhole))
+	if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP) && !(ship.GetTargetSystem() || isWormhole))
 		autoPilot.Clear(Command::JUMP | Command::FLEET_JUMP);
 	if(autoPilot.Has(Command::BOARD) && !(ship.GetTargetShip() && CanBoard(ship, *ship.GetTargetShip())))
 		autoPilot.Clear(Command::BOARD);
