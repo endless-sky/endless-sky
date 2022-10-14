@@ -617,8 +617,9 @@ void PrintData::PrintPlanetAttributes()
 	{
 		cout << it.first;
 		const Planet &planet = it.second;
+		int index = 0;
 		for(const string &attribute : planet.Attributes())
-			cout << ';' << attribute;
+			cout << (index++ ? ';' : ',') << attribute;
 		cout << '\n';
 	}
 }
@@ -638,11 +639,12 @@ void PrintData::PrintPlanetsByAttribute()
 	for(const string &attribute : attributes)
 	{
 		cout << attribute;
+		int index = 0;
 		for(auto &it : GameData::Planets())
 		{
 			const Planet &planet = it.second;
 			if(planet.Attributes().count(attribute))
-				cout << ';' << it.first;
+				cout << (index++ ? ';' : ',') << it.first;
 		}
 		cout << '\n';
 	}
@@ -689,8 +691,9 @@ void PrintData::PrintSystemAttributes()
 	{
 		cout << it.first;
 		const System &system = it.second;
+		int index = 0;
 		for(const string &attribute : system.Attributes())
-			cout << ';' << attribute;
+			cout << (index++ ? ';' : ',') << attribute;
 		cout << '\n';
 	}
 }
@@ -710,11 +713,12 @@ void PrintData::PrintSystemsByAttribute()
 	for(const string &attribute : attributes)
 	{
 		cout << attribute;
+		int index = 0;
 		for(auto &it : GameData::Systems())
 		{
 			const System &system = it.second;
 			if(system.Attributes().count(attribute))
-				cout << ';' << it.first;
+				cout << (index++ ? ';' : ',') << it.first;
 		}
 		cout << '\n';
 	}
