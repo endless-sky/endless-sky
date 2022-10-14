@@ -27,6 +27,59 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	template <class Type>
+	void PrintObjectList(const Set<Type> &objects, bool withQuotes)
+	{
+		cout << "name" << '\n';
+		const string start = withQuotes ? "\"" : "";
+		const string end = withQuotes ? "\"\n" : "\n";
+		for(const auto &it : objects)
+			cout << start << it.first << end;
+	}
+
+	template <class Type>
+	void PrintObjectAttributes(const Set<Type> &objects)
+	{
+		cout << "name" << ',' << "attributes" << '\n';
+		for(auto &it : objects)
+		{
+			cout << it.first;
+			const Type &object = it.second;
+			int index = 0;
+			for(const string &attribute : object.Attributes())
+				cout << (index++ ? ';' : ',') << attribute;
+			cout << '\n';
+		}
+	}
+
+	template <class Type>
+	void PrintObjectsByAttribute(const Set<Type> &objects)
+	{
+		cout << "attribute" << ',' << "names" << '\n';
+		set<string> attributes;
+		for(auto &it : objects)
+		{
+			const Type &object = it.second;
+			for(const string &attribute : object.Attributes())
+				attributes.insert(attribute);
+		}
+		for(const string &attribute : attributes)
+		{
+			cout << attribute;
+			int index = 0;
+			for(auto &it : objects)
+			{
+				const Type &object = it.second;
+				if(object.Attributes().count(attribute))
+					cout << (index++ ? ';' : ',') << it.first;
+			}
+			cout << '\n';
+		}
+	}
+
+}
+
 
 
 bool PrintData::IsPrintDataArgument(const char *const *argv)
@@ -496,15 +549,7 @@ void PrintData::Outfits(const char *const *argv)
 	else if(all)
 		PrintOutfitsAllStats();
 	else
-		PrintOutfitsList();
-}
-
-
-
-void PrintData::PrintOutfitsList()
-{
-	for(auto &it : GameData::Outfits())
-		cout << "\"" << it.first << "\"\n";
+		PrintObjectList<Outfit>(GameData::Outfits(), true);
 }
 
 
@@ -578,20 +623,11 @@ void PrintData::Planets(const char *const *argv)
 	if(descriptions)
 		PrintPlanetDescriptions();
 	if(attributes && byAttribute)
-		PrintPlanetsByAttribute();
+		PrintObjectsByAttribute<Planet>(GameData::Planets());
 	else if(attributes)
-		PrintPlanetAttributes();
+		PrintObjectAttributes<Planet>(GameData::Planets());
 	if(!(descriptions || attributes))
-		PrintPlanetsList();
-}
-
-
-
-void PrintData::PrintPlanetsList()
-{
-	cout << "planet" << '\n';
-	for(auto &it : GameData::Planets())
-		cout << it.first << '\n';
+		PrintObjectList<Planet>(GameData::Planets(), false);
 }
 
 
@@ -605,48 +641,6 @@ void PrintData::PrintPlanetDescriptions()
 		const Planet &planet = it.second;
 		cout << planet.Description() << "::";
 		cout << planet.SpaceportDescription() << "\n";
-	}
-}
-
-
-
-void PrintData::PrintPlanetAttributes()
-{
-	cout << "planet" << ',' << "attributes" << '\n';
-	for(auto &it : GameData::Planets())
-	{
-		cout << it.first;
-		const Planet &planet = it.second;
-		int index = 0;
-		for(const string &attribute : planet.Attributes())
-			cout << (index++ ? ';' : ',') << attribute;
-		cout << '\n';
-	}
-}
-
-
-
-void PrintData::PrintPlanetsByAttribute()
-{
-	cout << "attribute" << ',' << "planets" << '\n';
-	set<string> attributes;
-	for(auto &it : GameData::Planets())
-	{
-		const Planet &planet = it.second;
-		for(const string &attribute : planet.Attributes())
-			attributes.insert(attribute);
-	}
-	for(const string &attribute : attributes)
-	{
-		cout << attribute;
-		int index = 0;
-		for(auto &it : GameData::Planets())
-		{
-			const Planet &planet = it.second;
-			if(planet.Attributes().count(attribute))
-				cout << (index++ ? ';' : ',') << it.first;
-		}
-		cout << '\n';
 	}
 }
 
@@ -666,60 +660,9 @@ void PrintData::Systems(const char *const *argv)
 			byAttribute = true;
 	}
 	if(attributes && byAttribute)
-		PrintSystemsByAttribute();
+		PrintObjectsByAttribute<System>(GameData::Systems());
 	else if(attributes)
-		PrintSystemAttributes();
+		PrintObjectAttributes<System>(GameData::Systems());
 	else
-		PrintSystemsList();
-}
-
-
-
-void PrintData::PrintSystemsList()
-{
-	cout << "system" << '\n';
-	for(auto &it : GameData::Systems())
-		cout << it.first << '\n';
-}
-
-
-
-void PrintData::PrintSystemAttributes()
-{
-	cout << "system" << ',' << "attributes" << '\n';
-	for(auto &it : GameData::Systems())
-	{
-		cout << it.first;
-		const System &system = it.second;
-		int index = 0;
-		for(const string &attribute : system.Attributes())
-			cout << (index++ ? ';' : ',') << attribute;
-		cout << '\n';
-	}
-}
-
-
-
-void PrintData::PrintSystemsByAttribute()
-{
-	cout << "attribute" << ',' << "systems" << '\n';
-	set<string> attributes;
-	for(auto &it : GameData::Systems())
-	{
-		const System &system = it.second;
-		for(const string &attribute : system.Attributes())
-			attributes.insert(attribute);
-	}
-	for(const string &attribute : attributes)
-	{
-		cout << attribute;
-		int index = 0;
-		for(auto &it : GameData::Systems())
-		{
-			const System &system = it.second;
-			if(system.Attributes().count(attribute))
-				cout << (index++ ? ';' : ',') << it.first;
-		}
-		cout << '\n';
-	}
+		PrintObjectList<System>(GameData::Systems(), false);
 }
