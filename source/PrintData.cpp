@@ -29,6 +29,34 @@ using namespace std;
 
 namespace {
 	template <class Type>
+	string ObjectName(const Type &object);
+
+	template <>
+	string ObjectName<Ship>(const Ship &object) {return object.ModelName(); }
+
+	template <>
+	string ObjectName<Outfit>(const Outfit &object) { return object.Name(); }
+
+	template <class Type>
+	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales, const string &name = "name", const string &saleName = "sales")
+	{
+		cout << name << ',' << saleName << '\n';
+		map<string, set<string>> itemSales;
+		for(auto &it : sales)
+			for(auto &it2 : it.second)
+				itemSales[ObjectName(*it2)].insert(it.first);
+		for(auto &it : objects)
+		{
+			if(it.first != ObjectName(it.second))
+				continue;
+			cout << it.first;
+			for(auto &it2 : itemSales[it.first])
+				cout << ',' << it2;
+			cout << '\n';
+		}
+	}
+
+	template <class Type>
 	void PrintObjectList(const Set<Type> &objects, bool withQuotes = false, const string &name = "name")
 	{
 		cout << name << '\n';
@@ -171,7 +199,7 @@ void PrintData::Ships(const char *const *argv)
 	}
 
 	if(sales)
-		PrintShipShipyards();
+		PrintObjectSales<Ship>(GameData::Ships(), GameData::Shipyards(), "ship", "shipyards");
 	else if(loaded)
 		PrintLoadedShipStats(variants);
 	else if(list)
@@ -232,32 +260,6 @@ void PrintData::PrintBaseShipStats()
 		int numFighters = ship.BaysTotal("Fighter");
 		int numDrones = ship.BaysTotal("Drone");
 		cout << numFighters << ',' << numDrones << '\n';
-	}
-}
-
-
-
-void PrintData::PrintShipShipyards()
-{
-	cout << "ship" << ',' << "shipyards" << '\n';
-	map<string, set<string>> ships;
-	for(auto &it : GameData::Shipyards())
-	{
-		for(auto &it2 : it.second)
-		{
-			ships[it2->ModelName()].insert(it.first);
-		}
-	}
-	for(auto &it : GameData::Ships())
-	{
-		if(it.first != it.second.ModelName())
-			continue;
-		cout << it.first;
-		for(auto &it2 : ships[it.first])
-		{
-			cout << ',' << it2;
-		}
-		cout << '\n';
 	}
 }
 
@@ -545,35 +547,11 @@ void PrintData::Outfits(const char *const *argv)
 	}
 
 	if(sales)
-		PrintOutfitOutfitters();
+		PrintObjectSales<Outfit>(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
 	else if(all)
 		PrintOutfitsAllStats();
 	else
 		PrintObjectList<Outfit>(GameData::Outfits(), true, "outfit");
-}
-
-
-
-void PrintData::PrintOutfitOutfitters()
-{
-	cout << "outfits" << ',' << "outfitters" << '\n';
-	map<string, set<string>> outfits;
-	for(auto &it : GameData::Outfitters())
-	{
-		for(auto &it2 : it.second)
-		{
-			outfits[it2->Name()].insert(it.first);
-		}
-	}
-	for(auto &it : GameData::Outfits())
-	{
-		cout << it.first;
-		for(auto &it2 : outfits[it.first])
-		{
-			cout << ',' << it2;
-		}
-		cout << '\n';
-	}
 }
 
 

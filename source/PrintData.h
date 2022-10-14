@@ -27,7 +27,6 @@ public:
 private:
 	static void Ships(const char *const *argv);
 	static void PrintBaseShipStats();
-	static void PrintShipShipyards();
 	static void PrintLoadedShipStats(bool variants = false);
 	static void PrintShipList(bool variants = false);
 
@@ -38,7 +37,6 @@ private:
 	static void PrintPowerStats();
 
 	static void Outfits(const char *const *argv);
-	static void PrintOutfitOutfitters();
 	static void PrintOutfitsAllStats();
 
 	static void Planets(const char *const *argv);
