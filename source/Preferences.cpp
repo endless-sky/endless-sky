@@ -260,7 +260,7 @@ void Preferences::ToggleCameraAcceleration()
 
 
 
-const std::string &Preferences::CameraAcceleration()
+const string &Preferences::CameraAcceleration()
 {
 	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
 }
