@@ -29,7 +29,7 @@ using namespace std;
 
 namespace {
 	template <class Type>
-	string ObjectName(const Type &object);
+	string ObjectName(const Type &object) = delete;
 
 	template <>
 	string ObjectName(const Ship &object) { return object.ModelName(); }
