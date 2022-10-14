@@ -38,7 +38,7 @@ namespace {
 	string ObjectName(const Outfit &object) { return object.Name(); }
 
 	template <class Type>
-	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales, const string &name = "name", const string &saleName = "sales")
+	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales, const string &name, const string &saleName)
 	{
 		cout << name << ',' << saleName << '\n';
 		map<string, set<string>> itemSales;
@@ -57,7 +57,7 @@ namespace {
 	}
 
 	template <class Type>
-	void PrintObjectList(const Set<Type> &objects, bool withQuotes = false, const string &name = "name")
+	void PrintObjectList(const Set<Type> &objects, bool withQuotes, const string &name)
 	{
 		cout << name << '\n';
 		const string start = withQuotes ? "\"" : "";
@@ -67,7 +67,7 @@ namespace {
 	}
 
 	template <class Type>
-	void PrintObjectAttributes(const Set<Type> &objects, const string &name = "name")
+	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
 		cout << name << ',' << "attributes" << '\n';
 		for(auto &it : objects)
@@ -82,7 +82,7 @@ namespace {
 	}
 
 	template <class Type>
-	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name = "names")
+	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
 		cout << "attribute" << ',' << name << '\n';
 		set<string> attributes;
