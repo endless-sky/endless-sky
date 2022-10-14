@@ -29,9 +29,9 @@ using namespace std;
 
 namespace {
 	template <class Type>
-	void PrintObjectList(const Set<Type> &objects, bool withQuotes)
+	void PrintObjectList(const Set<Type> &objects, bool withQuotes = false, const string &name = "name")
 	{
-		cout << "name" << '\n';
+		cout << name << '\n';
 		const string start = withQuotes ? "\"" : "";
 		const string end = withQuotes ? "\"\n" : "\n";
 		for(const auto &it : objects)
@@ -39,9 +39,9 @@ namespace {
 	}
 
 	template <class Type>
-	void PrintObjectAttributes(const Set<Type> &objects)
+	void PrintObjectAttributes(const Set<Type> &objects, const string &name = "name")
 	{
-		cout << "name" << ',' << "attributes" << '\n';
+		cout << name << ',' << "attributes" << '\n';
 		for(auto &it : objects)
 		{
 			cout << it.first;
@@ -54,9 +54,9 @@ namespace {
 	}
 
 	template <class Type>
-	void PrintObjectsByAttribute(const Set<Type> &objects)
+	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name = "names")
 	{
-		cout << "attribute" << ',' << "names" << '\n';
+		cout << "attribute" << ',' << name << '\n';
 		set<string> attributes;
 		for(auto &it : objects)
 		{
@@ -549,7 +549,7 @@ void PrintData::Outfits(const char *const *argv)
 	else if(all)
 		PrintOutfitsAllStats();
 	else
-		PrintObjectList<Outfit>(GameData::Outfits(), true);
+		PrintObjectList<Outfit>(GameData::Outfits(), true, "outfit");
 }
 
 
@@ -623,11 +623,11 @@ void PrintData::Planets(const char *const *argv)
 	if(descriptions)
 		PrintPlanetDescriptions();
 	if(attributes && byAttribute)
-		PrintObjectsByAttribute<Planet>(GameData::Planets());
+		PrintObjectsByAttribute<Planet>(GameData::Planets(), "planets");
 	else if(attributes)
-		PrintObjectAttributes<Planet>(GameData::Planets());
+		PrintObjectAttributes<Planet>(GameData::Planets(), "planet");
 	if(!(descriptions || attributes))
-		PrintObjectList<Planet>(GameData::Planets(), false);
+		PrintObjectList<Planet>(GameData::Planets(), false, "planet");
 }
 
 
@@ -660,9 +660,9 @@ void PrintData::Systems(const char *const *argv)
 			byAttribute = true;
 	}
 	if(attributes && byAttribute)
-		PrintObjectsByAttribute<System>(GameData::Systems());
+		PrintObjectsByAttribute<System>(GameData::Systems(), "systems");
 	else if(attributes)
-		PrintObjectAttributes<System>(GameData::Systems());
+		PrintObjectAttributes<System>(GameData::Systems(), "system");
 	else
-		PrintObjectList<System>(GameData::Systems(), false);
+		PrintObjectList<System>(GameData::Systems(), false, "system");
 }
