@@ -379,6 +379,8 @@ phrase "unfettered challenger defeated"
 mission "Unfettered Challenge [0]"
 	job
 	repeat
+	substitutions
+		<payment> "200000 credits"
 	name `Defeat a young Unfettered captain`
 	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
@@ -393,6 +395,7 @@ mission "Unfettered Challenge [0]"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
+			invisible
 			action
 				payment 200000
 				"reputation: Hai (Unfettered)" += 20
@@ -401,7 +404,9 @@ mission "Unfettered Challenge [0]"
 mission "Unfettered Challenge [1A]"
 	job
 	repeat
-	name `Defeat an Unfettered captains`
+	substitutions
+		<payment> "500000 credits"
+	name `Defeat an Unfettered captain`
 	description `An Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
 	source
 		attributes "unfettered"
@@ -415,6 +420,7 @@ mission "Unfettered Challenge [1A]"
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 		conversation
+			invisible
 			action
 				payment 500000
 				"reputation: Hai (Unfettered)" += 40
@@ -423,6 +429,8 @@ mission "Unfettered Challenge [1A]"
 mission "Unfettered Challenge [1B]"
 	job
 	repeat
+	substitutions
+		<payment> "500000 credits"
 	name `Defeat an Unfettered captain`
 	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
@@ -437,6 +445,7 @@ mission "Unfettered Challenge [1B]"
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
+			invisible
 			action
 				payment 500000
 				"reputation: Hai (Unfettered)" += 40
@@ -445,6 +454,8 @@ mission "Unfettered Challenge [1B]"
 mission "Unfettered Challenge [2]"
 	job
 	repeat
+	substitutions
+		<payment> "800000 credits"
 	name `Defeat an old Unfettered captain`
 	description `An experienced Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
 	source
@@ -459,7 +470,8 @@ mission "Unfettered Challenge [2]"
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
-		conversation "big challenge reward"
+		conversation
+			invisible
 			action
 				payment 800000
 				"reputation: Hai (Unfettered)" += 70
@@ -470,9 +482,11 @@ mission "Unfettered Space Challenge [0]"
 	invisible
 	landing
 	repeat
-	deadline
+	substitutions
+		<payment> "200000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
+		not "Unfettered Space Challenge [0]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		random < 60
 	npc save disable
@@ -484,6 +498,7 @@ mission "Unfettered Space Challenge [0]"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
+			invisible
 			action
 				payment 200000
 				"reputation: Hai (Unfettered)" += 5
@@ -495,9 +510,11 @@ mission "Unfettered Space Challenge [1A]"
 	invisible
 	landing
 	repeat
-	deadline
+	substitutions
+		<payment> "500000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
+		not "Unfettered Space Challenge [1A]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 20
 	npc save disable
@@ -509,6 +526,7 @@ mission "Unfettered Space Challenge [1A]"
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 		conversation
+			invisible
 			action
 				payment 500000
 				"reputation: Hai (Unfettered)" += 10
@@ -519,9 +537,11 @@ mission "Unfettered Space Challenge [1B]"
 	invisible
 	landing
 	repeat
-	deadline
+	substitutions
+		<payment> "500000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
+		not "Unfettered Space Challenge [1B]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 20
 	npc save disable
@@ -533,6 +553,7 @@ mission "Unfettered Space Challenge [1B]"
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
+			invisible
 			action
 				payment 500000
 				"reputation: Hai (Unfettered)" += 10
@@ -543,9 +564,11 @@ mission "Unfettered Space Challenge [2]"
 	invisible
 	landing
 	repeat
-	deadline
+	substitutions
+		<payment> "800000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
+		not "Unfettered Space Challenge [2]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
 		random < 20
 	npc save disable
@@ -558,6 +581,7 @@ mission "Unfettered Space Challenge [2]"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
+			invisible
 			action
 				payment 800000
 				"reputation: Hai (Unfettered)" += 20
