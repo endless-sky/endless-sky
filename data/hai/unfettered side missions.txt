@@ -446,7 +446,7 @@ mission "Unfettered: Pirate Help"
 	to fail
 		has "defeated scar's legion"
 	on fail
-		dialog `You have decided to side with the Hai on this. This was not really an official mission so the Unfettered will not be mad about it. Still, do not expect any payment from them.`
+		dialog `You have decided to side with the Hai on this. As this mission was not official, there will probably not be any consequences in your relations with the Unfettered. Still, do not expect any payment from them.`
 	on visit
 		dialog `Go to the spaceport to talk to the local authorities on <stopovers> about the pirate problem.`
 	to complete
@@ -1149,7 +1149,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
 			branch knowsbars
 				has "Unfettered: Betrayal For The Bars: declined"
-			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
+			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them, with some luck and an antigrav unit that a fellow crew member could bring, if you only threw these out the window. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
 				goto fake
 			label knowsbars
 			`	You recognize the same bars that earned you betrayal from a member of your crew. Something about them must make them special and hugely valuable to those who know of it.`
@@ -1278,7 +1278,7 @@ mission "Unfettered: Special Cargo 2"
 			action
 				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
 			label afterlog
-			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
+			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
 			branch nodeal
 				not "unfettered: brokered deal"
 			action
@@ -1381,7 +1381,7 @@ mission "Unfettered: Speak Hai"
 		not "language: Wanderer"
 	on offer
 		conversation
-			`Moving through the spaceport, you notice some buildings are not as dilapidated as before. You wonder if the Unfettered are the ones who invested into repairs, or if the new Hai arrivals brought this about. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
+			`Moving through the spaceport, you notice some buildings do not seem as crumbling as before. You wonder if the Unfettered are the ones who invested into repairs, or if the new Hai arrivals brought this about. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
 			`	An Unfettered herald - recognizable with his peculiar bird mask - approaches and notices you looking around. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it's time you learn how to communicate with us - with the True language of the Hai. You also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
 			choice
 				`	"How can I learn Hai?"`

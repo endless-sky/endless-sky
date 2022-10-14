@@ -483,7 +483,7 @@ mission "Unfettered: Bring Hai"
 			choice
 				`	"What is it exactly that you want me to do?"`
 			label action
-			`	"It's pretty simple: you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet. They will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a... dilapidated state, to say the least. You hope that at least the Hai you're getting are aware of this, or you may have to bring them back...`
+			`	"It's pretty simple: you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet. They will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a... ruined state, to say the least. You hope that at least the Hai you're getting are aware of this, or you may have to bring them back...`
 			choice
 				`	"I will get to it right away, then."`
 					accept
@@ -927,7 +927,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"The Unfettered be not the ones who placed these jump drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
 			
 			label ship
-			`	As soon as your ship arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly onto your ship if possible, so you may flee more swiftly. When your ship takes off, you notice more activity, both near the vault and in the sky, than on the way in...`
+			`	As soon as your ship arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly onto your ship if possible, so you may flee more swiftly. When your ship takes off, you notice more activity than on the way in...`
 			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the jump drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not.`
 				launch
 	on accept
@@ -954,28 +954,46 @@ mission "Unfettered: Escort Hai Fleet"
 		has "reputation: Hai Merchant (Sympathizers)" >= 0
 	on offer
 		conversation
-			`As you are preparing to leave this planet, an Unfettered Chief approaches you. After some time you finally recognize Nimo, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I, or more precisely a fleet of True Hai, need your immediate assistance escorting them through Hai space, from <stopovers>."`
+			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Nimo, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their heart beats true still, and I blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
 			choice
-				`	"What are you doing here?"`
+				`	"What are you even doing here?"`
 				`	"Why do you need my help?"`
 					goto help
 				`	"I'm busy right now, sorry."`
 					goto busy
-			`	"I'm talking with all the warlords to make sure nobody tries something stupid, else innocent Hai may get hurt. Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group."`
-				goto busy
+			`	"As an Elder I need to be seen by my people, else they would never respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt.`
+			`	Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
+				goto choose
 			label help
-			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision."`
+			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision. I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person."`
+			choice
+				`	"Yes nothing would scare me, not even an Unfettered captain."`
+				`	"Those stories may have been slightly exaggerated..."`
+					goto exaggerated
+			`	"I knew I could count on you! The stories must be speaking true."`
+				goto choose
+			label exaggerated
+			`	"What do you mean? Your ship is not as fast as a Mem'he and as enduring as a Toor? I will not accept excuses or cowardise, if that is the case, the time to prove yourself is now!"`
 				goto choose
 			label busy
-			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance to me that it does not without any trouble."`
+			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance that it does not without any trouble."`
 			label choose
-			`	"A situation arose: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to make new buildings, and quick!"`
+			`	"A situation arose: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to repair what can be of the buildings, and build emergency shelters for these people, and quick!"`
 			choice
 				`	"Sure, let's do it!"`
-			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens. If I understand correctly, a small Hai fleet will accompany you too."`
+				`	"I will go there but first I must get a proper ship for this."`
+					goto beback
+			label dewit
+			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens, as they lack the means to defend themselves properly. If I understand correctly, a small Hai fleet will accompany you too, but they may prove insuficient to ensure their safety. We never know what could happen, even in the safety of Hai space..."`
+			`	He takes you aside and murmurs, "Do not repeat this as to not alarm the general population, but there are reasons to believe this was no natural event. Some prominent Hais will be part of the medical teams, for reasons you need not know, and it would be a disaster if something was to happen to them."`
 				accept
+			label beback
+			`	"If you need another ship you should indeed get one, but I cannot allow you to have more time than until <date>, so you must simply get a ship on the way, or before landing on <stopovers>. Try your best, <last>, your relationship with the Unfettered depends on this!"`
+			choice
+				`	"I'll find a way to land there with a battle-ready ship."`
+					goto dewit
 	on enter "Due Yoot"
-		dialog "The fleet signals you they are waiting for one last ship. They ask you to land so you can launch with all of them at once."
+		dialog "When you arrive the fleet is waiting for you in the spaceport. The fleet admiral signals you they demand to search your ship on the planet before proceeding with the mission. They say it is standard protocol in these circumstances."
 	npc accompany save
 		government "Hai Merchant (Sympathizers)"
 		to spawn
@@ -992,8 +1010,15 @@ mission "Unfettered: Escort Hai Fleet"
 		government "Hai Merchant (Sympathizers)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
-		personality escort launching
+		personality escort launching heroic
 		system "Due Yoot"
+		fleet "Small Hai"
+	npc accompany
+		government "Hai Merchant (Sympathizers)"
+		to spawn
+			has "unfettered: stopped on Greenbloom"
+		personality escort heroic
+		system "Ula Mon"
 		fleet "Small Hai"
 	npc evade
 		government "Mercenaries"
@@ -1008,7 +1033,10 @@ mission "Unfettered: Escort Hai Fleet"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
 		event "unfettered: shipment lost" 20
 		payment 500000
-		dialog "The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Nimo."
+		conversation
+			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Nimo to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently Here are your <payment>, you deserved them.`
+			`	My name is Kira, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
+		log "Minor People" "Kira" `A Hai governor that is not scared to put himself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
 mission "Unfettered: Taking Off With Hai Fleet"
 	invisible
@@ -1020,7 +1048,27 @@ mission "Unfettered: Taking Off With Hai Fleet"
 	on offer
 		set "unfettered: stopped on Greenbloom"
 		conversation
-			`You go meet the fleet admiral so you can coordinate with them, and after a while everyone signals they are ready to take off.`
+			`A few Hai come to your flagship, armed with a less lethal version of the usual Pulse Rifle, and with uniforms you have not seen before. They seem to be led by yet another Hai, that enters only after they give the safe signal.`
+			`	They then proceed to search your ship quickly, using dedicated scanners, before reporting back to their leader. Only at that point does the leader say something to you, "We are personal bodygards of an important Hai governor, that wishes to come on the ground for political reasons. Sorry for the inconvenience, captain, but we needed to make sure your ship was free of trackers."`
+			choice
+				`	"Thank you for the explanation."`
+					goto leave
+				`	"Why would there be trackers on my ship?"`
+					goto trackers
+				`	"Why would a governor go there in person?"`
+			`	"The Unfettered only respect display of strength, and do not trust those they have not seen in person. The governor is probably"`
+				goto leave
+			label trackers
+			`	`
+			label leave
+			branch otherships
+				"ships: Space Liner" + "ships: Transport" + "ships: Light Freighter" + "ships: Heavy Freighter" + "ships: Utility" + "ships: Interceptor" + "ships: Light Warship" + "ships: Medium Warship" + "ships: Heavy Warship" == 1
+			`	The Hai bodygards now leave your ship, reassured that you are not of any threat for their fleet.`
+				goto admiral
+			label otherships
+			`	The Hai bodygards now leave your ship, and proceed to check the other ships of your fleet, before reporting a green light.`
+			label admiral
+			`	An hour later, the admiral hails the fleet, "All ships are now ready to leave. All that is left is for me to wish you all safe trip, and may the leaves flow our way." You proceed to launch with the fleet.`
 				flee
 
 
@@ -1080,45 +1128,56 @@ mission "Unfettered: Materials Intercepted"
 				`	(Go see him.)`
 				`	(Later.)`
 					defer
-			`	You go to see him in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He leaves a conversation he had with another elder when he sees you.`
-			`	"<last>! I was hoping to find you here. I just happen to have needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates. Granted, the shipment you escorted was exceptional due to the disaster, and it came from the Hai.`
-			`	"This one, however, happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
+			`	You go to see him in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
+			`	"<last>! I was hoping to find you here. I just happen to be in needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space, only wishing to scare us with the possibility of abducting the governor."`
+			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, without following it in an obvious way either, of course."`
+			choice
+				`	"What about this cargo, then?"`
+			`	"Well, this one happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
 			choice
 				`	"Do you have any idea where the stolen cargo could be?"`
+				`	"Why not just buy these materials again?"`
+					goto buyagain
 				`	"Why is the trip so dangerous if the cargo is worthless?"`
 					goto worthless
+			label buyagain
+			`	"Whilst the cargo itself has no real value, the trip bringing it here does, and we do not want to have to pay for it twice. Then there is also the concern that paying for it again will only result in it getting 'lost' a second time..."`
+				goto choose
 			label cargo
 			`	"From what I was told, there are 2 human factions in the area, and pirates. The ship always maintains a low profile and tries to pose as a merchant. Now, the syndicate would not mind a bit of smuggling, and for the navy could only take it in the unlikely event that their cover was blown and they could not escape.`
-			`	Whoever stole this cargo would not be welcome in either of those spaces, meaning that they are likely to hide away in pirate space and wait for the trail to cool down, before selling the loot back. The pirates are by far not a united faction, so they could steal loot out of one another, but given the low value of this cargo it should not have attracted much attention... I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the north-west of human space, so you should probably start looking in that general area."`
+			`	Whoever stole this cargo would not be welcome in either of those spaces, meaning that they are likely to hide away in pirate space and wait for the trail to cool down, before selling the loot back. The pirates are by far not a united faction, so they could steal loot out of one another, but given the low value of this cargo it should not have attracted much attention... I do not understand what happened. Maybe they got intercepted on the way.`
+			`	Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-west of human space, so you should probably start looking in that general area."`
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
 					accept
 				`	"I will find them and bring the loot back, whatever the cost.`
+					goto whatevercost
 				`	"Why do you not just hire another pirate?"`
 					goto whyhire
 				`	"Why is the trip so dangerous if the cargo is worthless?"`
 			label worthless
-			`	"Our contact mentioned having to sometimes fight Korath invaders, as well as having to pass trough the big no man's land that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
+			`	"Our contact mentioned having to sometimes fight Korath invaders, as well as having to pass trough the big no man's land that leads to the wormhole afterwards, which has some pirates here and there. However, maybe she exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
 					accept
 				`	"I will find them and bring the loot back, whatever the cost.`
+					goto whatevercost
 				`	"Why do you not just hire another pirate?"`
 					goto whyhire
 				`	"Do you have any idea where the stolen cargo could be?"`
 					goto cargo
-			`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
 				accept
 			label whyhire
-			`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say?"`
+			`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say? Can you find that cargo and bring it to us?"`
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
 					accept
 				`	"I will find them and bring the loot back, whatever the cost.`
 				`	"This mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
 					decline
-			`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. Do what you must to bring back all 142 tons of materials. And remember to look for it near the Koraths."`
+			label whatevercost
+			`	He seems a bit warry of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials. And remember to look for it north-west of human space."`
 				accept
 	on enter "Misam"
 		conversation
@@ -1127,7 +1186,7 @@ mission "Unfettered: Materials Intercepted"
 				`	Demand that the materials be returned to you.`
 				`	(Say nothing, I have no need to talk with these scums. I shall take back what they stole.)`
 					goto over
-			`	The first mate of the <npc> responds to your hail, "That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that these were stolen from before we could bring them to port! Well, after we stole them from a merchant, but that's irrelevant."`
+			`	The first mate of the <npc> responds to your hail, "You talking about the cargo we just got that scum posing as a merchant relieved of? That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that these were stolen from before we could bring it to port! Well, after we stole them from a merchant, but that's irrelevant."`
 			choice
 				`	"What do you intend to do with this cargo?"`
 					goto intention
@@ -1135,9 +1194,9 @@ mission "Unfettered: Materials Intercepted"
 			`	"If I laid down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
 				goto over
 			label intention
-			`	"My masters are coming soon to retrieve the cargo, and if it ain't there no more, I'll be the one they 'retrieve' instead." He says, before abruptly closing the communication.`
+			`	"That's none of your business, but if it can help you get away... My masters are coming soon to retrieve the cargo, and if it ain't there no more, I'll be the one they 'retrieve' instead. So you better forget about it!" He says, before abruptly closing the communication.`
 			label over
-				`They quickly land on the planet, it looks like you will have to pursue them.`
+			`	They quickly land on the planet, probably in order to avoid a fight, or maybe just to win some time... It looks like you will have to land too in order to retrieve the cargo.`
 	npc board
 		system "Misam"
 		government "Hydra"
@@ -1146,7 +1205,7 @@ mission "Unfettered: Materials Intercepted"
 		personality target launching plunders vindictive uninterested
 		ship "Bactrian (Hydra)" "Rested Snake"
 		conversation
-			`Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Nimo talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 142 tons of materials when you can and bring them back to Nimo.`
+			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Nimo talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Nimo.`
 			branch "allies died"
 				has "Unfettered: Cavalry Arrives: failed"
 			action
