@@ -156,7 +156,7 @@ pair<ShipJumpNavigation::JumpType, double> ShipJumpNavigation::GetCheapestJumpTy
 
 
 // Add the given distance, cost pair to the jump drive costs and update the fuel cost
-// of each jump distance if necessary. 
+// of each jump distance if necessary.
 void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 {
 	if(maxJumpRange < distance)
