@@ -838,7 +838,6 @@ system Mnashyu
 	belt 1163
 	haze _menu/haze
 	link Cotpoxi
-	link Huud
 	link Vilacira
 	asteroids "small rock" 6 5.08
 	asteroids "medium rock" 8 6.6
@@ -898,7 +897,7 @@ system Nnatai
 	belt 1478
 	"jump range" 70
 	haze _menu/haze-67
-	link Aksek Jmi
+	link "Aksek Jmi"
 	asteroids "small rock" 4 2.6
 	asteroids "large rock" 7 3
 	asteroids "small metal" 9 3
@@ -926,14 +925,14 @@ system Nnatai
 		distance 3413
 		period 3115.4
 
-system Aik Kamgatake
-	pos 487.63 -365.36
+system "Aik Kamgatake"
+	pos 487.63 -365.37
 	government Uninhabited
 	habitable 2725
 	belt 1920
 	"jump range" 80
 	haze _menu/haze-133
-	link Aksek Jmi
+	link "Aksek Jmi"
 	asteroids "small rock" 28 1.9
 	asteroids "medium rock" 23 2
 	asteroids "large rock" 27 1.72
@@ -1225,17 +1224,17 @@ system "3 Spring Rising"
 			distance 571
 			period 48.1229
 
-system Aksek Jmi
-	pos 468 -418.3
+system "Aksek Jmi"
+	pos 468 -418.4
 	government Uninhabited
 	habitable 28275.2
 	belt 1795
 	"jump range" 60
 	haze _menu/haze
 	link Nnatai
-	link Aik Kamgatake
+	link "Aik Kamgatake"
 	link Iise
-	link Uwo Seija
+	link "Uwo Seija"
 	asteroids "small rock" 25 0.67
 	asteroids "medium rock" 54 0.84
 	asteroids "large rock" 15 0.61
@@ -1531,14 +1530,14 @@ system "4 Winter Rising"
 			distance 522
 			period 62.7773
 
-system Uwo Seija
-	pos 420 -432
+system "Uwo Seija"
+	pos 420 -433
 	government Uninhabited
 	habitable 1907.2
 	belt 1222
 	"jump range" 80
 	haze _menu/haze
-	link Aksek Jmi
+	link "Aksek Jmi"
 	asteroids "small rock" 85 2.1
 	asteroids "medium rock" 8 2.3
 	asteroids "large rock" 14 1.65
