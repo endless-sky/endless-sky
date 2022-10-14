@@ -3709,7 +3709,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 		else if(ship.IsLanding())
 		{
-			Messages::Add("You cannot jump while landing.");
+			Messages::Add("You cannot jump while landing.", Messages::Importance::Highest);
 			autoPilot.Clear(Command::JUMP);
 			Audio::Play(Audio::Get("fail"));
 		}
