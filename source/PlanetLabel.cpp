@@ -44,10 +44,9 @@ namespace {
 	// Check if the given label for the given stellar object and direction overlaps with any other stellar object in the system.
 	bool Overlaps(const System &system, const StellarObject &object, double zoom, double width, int direction)
 	{
-		bool overlaps = false;
-
 		Point start = zoom * (object.Position() +
 			(object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH) * Angle(LINE_ANGLE[direction]).Unit());
+		// Offset the label correctly depending on its location relative to the stellar object.
 		Point unit(LINE_ANGLE[direction] > 180. ? -1. : 1., 0.);
 		Point end = start + unit * width;
 
@@ -61,19 +60,20 @@ namespace {
 			Point otherPos = other.Position() * zoom;
 			double startDistance = otherPos.Distance(start);
 			double endDistance = otherPos.Distance(end);
-			overlaps |= (startDistance < minDistance || endDistance < minDistance);
-			double projection = (otherPos - start).Dot(unit);
+			if(startDistance < minDistance || endDistance < minDistance)
+				return true;
 
+			// Check overlap with the middle of the label, when the end and/or start might not overlap.
+			double projection = (otherPos - start).Dot(unit);
 			if(projection > 0. && projection < width)
 			{
 				double distance = sqrt(startDistance * startDistance - projection * projection);
-				overlaps |= (distance < minDistance);
+				if(distance < minDistance)
+					return true;
 			}
-			if(overlaps)
-				break;
 		}
 
-		return overlaps;
+		return false;
 	}
 }
 
