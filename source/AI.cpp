@@ -1585,7 +1585,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
-	
+
 	// Non-staying escorts should route to their parent ship's system if not already in it.
 	if(!parentIsHere && !isStaying)
 	{
@@ -1634,7 +1634,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		SelectRoute(ship, parent.GetTargetSystem());
-		
+
 		if(ship.GetTargetSystem())
 		{
 			PrepareForHyperspace(ship, command);
@@ -1672,7 +1672,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		else if(parentPlanet->IsWormhole())
 		{
 			SelectRoute(ship, parentPlanet->WormholeDestination(currentSystem));
-			
+
 			if(ship.GetTargetSystem())
 			{
 				PrepareForHyperspace(ship, command);
