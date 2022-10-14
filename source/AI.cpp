@@ -1240,7 +1240,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
-		//TODO: This is not correct if the fleeing ship can use wormholes.
+		// TODO: This is not correct if the fleeing ship can use wormholes.
 		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
 			target.reset();
 		else
