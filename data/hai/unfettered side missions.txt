@@ -183,16 +183,16 @@ fleet "Marauders"
 		"Marauder Falcon"
 	variant 3
 		"Marauder Raven (Weapons)"
-	variant 1
+	variant
 		"Marauder Raven"
 		"Marauder Quicksilver (Weapons)" 2
 	variant 3
 		"Marauder Splinter (Weapons)"
 	variant 2
 		"Marauder Manta" 2
-	variant 1
+	variant
 		"Marauder Leviathan (Engines)"
-	variant 1
+	variant
 		"Marauder Raven" 2
 		
 mission "Unfettered: End of the Hunt"

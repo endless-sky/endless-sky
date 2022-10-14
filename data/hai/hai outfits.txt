@@ -134,7 +134,7 @@ effect "ion impact"
 
 
 outfit "True Unfettered License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/true unfettered license"
 	"capture attack" 10
 	"capture defense" 10
