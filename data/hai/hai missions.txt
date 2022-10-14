@@ -469,6 +469,7 @@ mission "Unfettered Jump Drive 3"
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
+		fail
 
 
 
