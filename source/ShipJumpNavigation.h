@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <map>
 
+class Outfit;
 class Ship;
 class System;
 
@@ -53,6 +54,9 @@ public:
 
 
 private:
+	// Parse the given outfit to determine if it has the capability to jump, and update any
+	// jump information accordingly.
+	void ParseOutfit(const Outfit &outfit, double shipHyperCost);
 	// Add the given distance, cost pair to the jump drive costs and update the fuel cost
 	// of each jump distance if necessary.
 	void UpdateJumpDriveCosts(double distance, double cost);

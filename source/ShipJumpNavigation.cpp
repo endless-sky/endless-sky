@@ -15,8 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipJumpNavigation.h"
 
+#include "Outfit.h"
 #include "Ship.h"
 #include "System.h"
+
+#include <algorithm>
+#include <iterator>
 
 using namespace std;
 
@@ -44,47 +48,10 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	maxJumpRange = 0.;
 
 	// Make it possible for a hyperdrive or jump drive to be integrated into a ship.
-	if(baseAttributes.Get("hyperdrive") && (!hasScramDrive || baseAttributes.Get("scram drive")))
-	{
-		double jumpFuel = baseAttributes.Get("jump fuel");
-		if(!jumpFuel)
-			jumpFuel = shipHyperCost;
-		hyperdriveCost = jumpFuel;
-	}
-	if(baseAttributes.Get("jump drive"))
-	{
-		double jumpRange = baseAttributes.Get("jump range");
-		if(!jumpRange)
-			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
-		double jumpFuel = baseAttributes.Get("jump fuel");
-		if(!jumpFuel)
-			jumpFuel = DEFAULT_JUMP_DRIVE_COST;
-
-		UpdateJumpDriveCosts(jumpRange, jumpFuel);
-	}
-
+	ParseOutfit(ship.BaseAttributes(), shipHyperCost);
+	// Check each outfit from this ship to determine if it has jump capabilities.
 	for(const auto &it : ship.Outfits())
-	{
-		const Outfit *outfit = it.first;
-		if(outfit->Get("hyperdrive") && (!hasScramDrive || outfit->Get("scram drive")))
-		{
-			double fuel = outfit->Get("jump fuel");
-			if(!fuel)
-				fuel = shipHyperCost;
-			if(!hyperdriveCost || fuel < hyperdriveCost)
-				hyperdriveCost = fuel;
-		}
-		if(outfit->Get("jump drive"))
-		{
-			double distance = outfit->Get("jump range");
-			if(!distance)
-				distance = System::DEFAULT_NEIGHBOR_DISTANCE;
-			double fuel = outfit->Get("jump fuel");
-			if(!fuel)
-				fuel = DEFAULT_JUMP_DRIVE_COST;
-			UpdateJumpDriveCosts(distance, fuel);
-		}
-	}
+		ParseOutfit(*it.first, shipHyperCost);
 }
 
 
@@ -154,6 +121,33 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *cur
 		return make_pair(JumpType::JUMPDRIVE, jumpFuelNeeded);
 	else
 		return make_pair(JumpType::NONE, 0.);
+}
+
+
+
+// Parse the given outfit to determine if it has the capability to jump, and update any
+// jump information accordingly.
+void ShipJumpNavigation::ParseOutfit(const Outfit &outfit, double shipHyperCost)
+{
+	if(outfit.Get("hyperdrive") && (!hasScramDrive || outfit.Get("scram drive")))
+	{
+		double cost = outfit.Get("jump fuel");
+		if(!cost)
+			cost = shipHyperCost;
+		if(!hyperdriveCost || cost < hyperdriveCost)
+			hyperdriveCost = cost;
+	}
+	if(outfit.Get("jump drive"))
+	{
+		double distance = outfit.Get("jump range");
+		if(!distance)
+			distance = System::DEFAULT_NEIGHBOR_DISTANCE;
+		double cost = outfit.Get("jump fuel");
+		if(!cost)
+			cost = DEFAULT_JUMP_DRIVE_COST;
+
+		UpdateJumpDriveCosts(distance, cost);
+	}
 }
 
 
