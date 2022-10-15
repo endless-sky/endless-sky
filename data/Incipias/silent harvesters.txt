@@ -1,0 +1,58 @@
+outfit "Strange Ray"
+	category "Guns"
+	mass 25
+	"outfit space" -20
+	"gun ports" -1
+	weapon
+		sprite "projectile/strange ray/ray"
+			"frame rate" 2
+		"inaccuracy" 0
+		"velocity" 1
+		"lifetime" 20
+		"random lifetime" 0
+		"reload" 3
+		"firing energy" 8
+		"firing heat" 4
+		"shield damage" 50
+		"hull damage" 43
+		"minable damage" 64
+
+ship "Silent Harvester"
+	sprite ship/silent harvester/ign
+		rewind
+	swizzle 0
+    "never disabled"
+	attributes
+		category Interceptor
+		cost 500000
+		"mass" 350
+		"outfit space" 20
+		"weapon capacity" 20
+		"cargo space" 100
+		"hull" 1500
+		"solar collection" 200
+		"fuel capacity" 200
+
+		"thrust" 24
+		"turn" 2000
+		"heat dissipation" 0.7
+
+		"energy capacity" 1000
+
+		"required crew" 1
+		"drag" 13.3
+		"bunks" 40
+	outfits
+		"Strange Ray"
+	gun 0 -64 "Strange Ray"
+	explode "huge explosion" 10
+	explode "large explosion" 40
+	explode "medium explosion" 50
+	"final explode" "final explosion large"
+
+fleet "Silent Harvesters"
+    government "Silent Ones"
+	personality
+		disables mining harvests
+	variant
+		"Silent Harvester" 2

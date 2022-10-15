@@ -738,6 +738,16 @@ government "Sheragi"
 	"crew attack" 0
 	"crew defense" 0
 
+government "Silent Ones"
+	swizzle 3
+	"player reputation" 1
+	"crew attack" 0
+	"crew defense" 0
+	"attitude toward"
+		"Hicemus" 0.0
+		"Incipias" 0.0
+		"Quarg" 0.0
+
 government "Syndicate"
 	swizzle 4
 	color 0 .41 .71

@@ -13692,7 +13692,7 @@ system Il'le
 			sprite planet/lava0
 			distance 188
 			period 20.7352
-	object
+	object Occupas
 		sprite planet/gas17
 		distance 1286.91
 		period 445.913
