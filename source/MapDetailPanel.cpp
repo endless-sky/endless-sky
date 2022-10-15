@@ -215,7 +215,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
-		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
+		bool hasJumpDrive = player.Flagship()->JumpNavigation().HasJumpDrive();
 		const set<const System *> &links = hasJumpDrive
 			? source->JumpNeighbors(player.Flagship()->JumpNavigation().JumpRange()) : source->Links();
 

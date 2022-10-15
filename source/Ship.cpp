@@ -1131,8 +1131,8 @@ vector<string> Ship::FlightCheck() const
 	double thrustEnergy = attributes.Get("thrusting energy");
 	double turn = attributes.Get("turn");
 	double turnEnergy = attributes.Get("turning energy");
-	double hyperDrive = attributes.Get("hyperdrive");
-	double jumpDrive = attributes.Get("jump drive");
+	double hyperDrive = navigation.HasHyperdrive();
+	double jumpDrive = navigation.HasJumpDrive();
 
 	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
@@ -1416,7 +1416,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		return;
 	}
 	isInSystem = false;
-	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
+	if(!fuel || !(navigation.HasHyperdrive() || navigation.HasJumpDrive()))
 		hyperspaceSystem = nullptr;
 
 	// Adjust the error in the pilot's targeting.

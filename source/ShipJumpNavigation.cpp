@@ -138,6 +138,28 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *des
 
 
 
+// Check what jump methods this ship has.
+bool ShipJumpNavigation::HasHyperdrive() const
+{
+	return hasHyperdrive;
+}
+
+
+
+bool ShipJumpNavigation::HasScramDrive() const
+{
+	return hasScramDrive;
+}
+
+
+
+bool ShipJumpNavigation::HasJumpDrive() const
+{
+	return hasJumpDrive;
+}
+
+
+
 // Parse the given outfit to determine if it has the capability to jump, and update any
 // jump information accordingly.
 void ShipJumpNavigation::ParseOutfit(const Outfit &outfit, double shipHyperCost)

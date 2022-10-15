@@ -54,6 +54,11 @@ public:
 	// If no jump method is possible, returns JumpType::None with a jump cost of 0.
 	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
 
+	// Check what jump methods this ship has.
+	bool HasHyperdrive() const;
+	bool HasScramDrive() const;
+	bool HasJumpDrive() const;
+
 
 private:
 	// Parse the given outfit to determine if it has the capability to jump, and update any

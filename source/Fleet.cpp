@@ -308,13 +308,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		double jumpDistance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const Ship *ship : variantShips)
 		{
-			if(ship->Attributes().Get("jump drive"))
+			if(ship->JumpNavigation().HasJumpDrive())
 			{
 				hasJump = true;
 				jumpDistance = ship->JumpNavigation().JumpRange();
 				break;
 			}
-			if(ship->Attributes().Get("hyperdrive"))
+			if(ship->JumpNavigation().HasHyperdrive())
 				hasHyper = true;
 		}
 		// Don't try to make a fleet "enter" from another system if none of the

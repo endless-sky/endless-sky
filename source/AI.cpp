@@ -1261,7 +1261,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
-		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
+		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.JumpNavigation().HasJumpDrive()))
 			target.reset();
 		else
 			for(const StellarObject &object : system->Objects())
@@ -1472,7 +1472,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 		vector<int> systemWeights;
 		int totalWeight = 0;
-		const set<const System *> &links = ship.Attributes().Get("jump drive")
+		const set<const System *> &links = ship.JumpNavigation().HasJumpDrive()
 			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
@@ -1925,9 +1925,9 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 
 void AI::PrepareForHyperspace(Ship &ship, Command &command)
 {
-	bool hasHyperdrive = ship.Attributes().Get("hyperdrive");
+	bool hasHyperdrive = ship.JumpNavigation().HasHyperdrive();
 	double scramThreshold = ship.Attributes().Get("scram drive");
-	bool hasJumpDrive = ship.Attributes().Get("jump drive");
+	bool hasJumpDrive = ship.JumpNavigation().HasJumpDrive();
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 
@@ -2429,7 +2429,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		vector<const System *> targetSystems;
 		if(ship.JumpsRemaining(false))
 		{
-			const auto &links = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
+			const auto &links = ship.JumpNavigation().HasJumpDrive() ? system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
 			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
 		}
 
@@ -3509,7 +3509,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(!ship.GetTargetSystem() && !isWormhole)
 		{
 			double bestMatch = -2.;
-			const auto &links = (ship.Attributes().Get("jump drive") ?
+			const auto &links = (ship.JumpNavigation().HasJumpDrive() ?
 				ship.GetSystem()->JumpNeighbors(ship.JumpNavigation().JumpRange()) : ship.GetSystem()->Links());
 			for(const System *link : links)
 			{
@@ -3656,7 +3656,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP))
 	{
-		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
+		if(!ship.JumpNavigation().HasHyperdrive() && !ship.JumpNavigation().HasJumpDrive())
 		{
 			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::Highest);
 			autoPilot.Clear();
