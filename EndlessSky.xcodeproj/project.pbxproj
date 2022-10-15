@@ -534,6 +534,7 @@
 		B590162021ED4A0F00799178 /* DisplayText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayText.h; path = source/text/DisplayText.h; sourceTree = "<group>"; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
+		C36345D8A06AE061537CEF85 /* JumpTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JumpTypes.h; path = source/JumpTypes.h; sourceTree = "<group>"; };
 		C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hazard.cpp; path = source/Hazard.cpp; sourceTree = "<group>"; };
 		C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DamageProfile.cpp; path = source/DamageProfile.cpp; sourceTree = "<group>"; };
 		CCE547DBB6C74E18E1B84D29 /* PrintData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrintData.h; path = source/PrintData.h; sourceTree = "<group>"; };
@@ -898,6 +899,7 @@
 				AE57401AA43232EDEABFAE13 /* Logger.h */,
 				13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */,
 				FBFA4270B7EE3F1C61EA9A44 /* ShipJumpNavigation.h */,
+				C36345D8A06AE061537CEF85 /* JumpTypes.h */,
 			);
 			name = source;
 			sourceTree = "<group>";

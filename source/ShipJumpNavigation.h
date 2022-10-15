@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "JumpTypes.h"
 
-#include <cstdint>
 #include <map>
 
 class Outfit;
