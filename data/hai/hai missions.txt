@@ -407,15 +407,9 @@ mission "Unfettered Jump Drive 2"
 mission "Unfettered Jump Drive 3"
 	minor
 	landing
-	name "More Jump Drives"
-	description "If you find more jump drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		has "Unfettered Jump Drive 4: offered"
 	source
 		attributes "unfettered"
 	on offer
