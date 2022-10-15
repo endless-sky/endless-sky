@@ -2384,7 +2384,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
-		give ship "Shield Beetle Prototype" "Basilisk"
+		give ship "Modified Shield Beetle" "Basilisk"
 		event "unfettered: shield beetle mass production" 30
 		dialog `After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message. There is also a side note, probably from He-Yi: "Make sure to check the job board for more jobs like this one. We appreciate the help."`
 
@@ -2423,7 +2423,7 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
-ship "Shield Beetle Prototype" "Stag Beetle"
+ship "Modified Shield Beetle" "Stag Beetle"
 	sprite "ship/hai stag beetle"
 	thumbnail "thumbnail/hai stag beetle"
 	add attributes

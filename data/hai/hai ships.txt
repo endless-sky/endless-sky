@@ -913,9 +913,9 @@ ship "Shield Beetle" "Shield Beetle (Thunderhead)"
 		"Thunderhead Launcher" 8
 		"Thunderhead Missile" 160
 
-ship "Shield Beetle Prototype"
-	sprite "ship/hai shield beetle prototype"
-	thumbnail "thumbnail/hai shield beetle prototype"
+ship "Modified Shield Beetle"
+	sprite "ship/hai modified shield beetle"
+	thumbnail "thumbnail/hai modified shield beetle"
 	attributes
 		category "Heavy Warship"
 		"cost" 25400000
