@@ -37,19 +37,22 @@ public:
 public:
 	ShipJumpNavigation() = default;
 
+	// Set the owner of this jump navigation.
+	void SetOwner(const Ship *ship);
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
-	void Calibrate(const Ship &ship);
+	void Calibrate();
 
-	// Get the amount of fuel that would be expended to jump between the two given systems.
-	double JumpFuel(const System *currentSystem, const System *destination = nullptr) const;
+	// Get the amount of fuel that would be expended to jump to the destination. If the destination is
+	// nullptr then return the maximum amount of fuel that this ship could expend in one jump.
+	double JumpFuel(const System *destination = nullptr) const;
 	// Get the maximum distance that this ship can jump.
 	double JumpRange() const;
 	// Get the cost of making a jump of the given type (if possible). Returns 0 if the jump can't be made.
 	double HyperdriveFuel() const;
-	double JumpDriveFuel(double jumpDistance = 0.) const;
-	// Get the cheapest jump method and its cost for a jump between the two given systems.
+	double JumpDriveFuel(double distance = 0.) const;
+	// Get the cheapest jump method and its cost for a jump to the destination system.
 	// If no jump method is possible, returns JumpType::None with a jump cost of 0.
-	std::pair<JumpType, double> GetCheapestJumpType(const System *currentSystem, const System *destination) const;
+	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
 
 
 private:
@@ -62,6 +65,8 @@ private:
 
 
 private:
+	const Ship *ship = nullptr;
+
 	double hyperdriveCost = 0.;
 	std::map<double, double> jumpDriveCosts;
 	double maxJumpRange = 0.;

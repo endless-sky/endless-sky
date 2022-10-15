@@ -769,7 +769,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = IsDisabled();
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
-	navigation.Calibrate(*this);
+	navigation.SetOwner(this);
+	navigation.Calibrate();
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
@@ -1166,7 +1167,7 @@ vector<string> Ship::FlightCheck() const
 		{
 			if(!hyperDrive && !jumpDrive)
 				checks.emplace_back("no hyperdrive?");
-			if(fuelCapacity < navigation.JumpFuel(currentSystem))
+			if(fuelCapacity < navigation.JumpFuel())
 				checks.emplace_back("no fuel?");
 		}
 		for(const auto &it : outfits)
@@ -1195,6 +1196,9 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = angle;
+
+	// Set the owner of this ship's navigation to itself.
+	navigation.SetOwner(this);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -1773,7 +1777,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(currentSystem, hyperspaceSystem);
+		pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(hyperspaceSystem);
 		isUsingJumpDrive = (jumpUsed.first == JumpType::JUMPDRIVE);
 		hyperspaceFuelCost = jumpUsed.second;
 	}
@@ -2389,7 +2393,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				double maxFuel = bay.ship->attributes.Get("fuel capacity");
 				if(maxFuel)
 				{
-					double spareFuel = fuel - navigation.JumpFuel(currentSystem);
+					double spareFuel = fuel - navigation.JumpFuel();
 					if(spareFuel > 0.)
 						TransferFuel(spareFuel, bay.ship.get());
 					// If still low or out-of-fuel, re-stock the carrier and don't
@@ -2802,7 +2806,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
-	pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(currentSystem, targetSystem);
+	pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
 	double fuelCost = jumpUsed.second;
 	if(!fuelCost || fuel < fuelCost)
 		return false;
@@ -2979,7 +2983,7 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return (fuel - navigation.JumpFuel(currentSystem, targetSystem) >= other.JumpFuelMissing());
+	return (fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
@@ -3184,10 +3188,10 @@ int Ship::JumpsRemaining(bool followParent) const
 		// but only if the location is reachable.
 		auto p = GetParent();
 		if(p)
-			jumpFuel = navigation.JumpFuel(currentSystem, p->GetTargetSystem());
+			jumpFuel = navigation.JumpFuel(p->GetTargetSystem());
 	}
 	if(!jumpFuel)
-		jumpFuel = navigation.JumpFuel(currentSystem, targetSystem);
+		jumpFuel = navigation.JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
@@ -3197,7 +3201,7 @@ double Ship::JumpFuelMissing() const
 {
 	// Used for smart refueling: transfer only as much as really needed
 	// includes checking if fuel cap is high enough at all
-	double jumpFuel = navigation.JumpFuel(currentSystem, targetSystem);
+	double jumpFuel = navigation.JumpFuel(targetSystem);
 	if(!jumpFuel || fuel > jumpFuel || jumpFuel > attributes.Get("fuel capacity"))
 		return 0.;
 
@@ -3707,7 +3711,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// drives of the same type don't stack, so only do this if the
 		// outfit is either compltely new or has been completely removed.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
-			navigation.Calibrate(*this);
+			navigation.Calibrate();
 	}
 }
 

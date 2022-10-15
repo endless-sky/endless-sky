@@ -1241,7 +1241,7 @@ void Engine::EnterSystem()
 			// unless it was planned. For valid travel plans, the
 			// next system will be this system, or accessible.
 			const System *to = player.TravelPlan().back();
-			if(system != to && !flagship->JumpNavigation().JumpFuel(system, to))
+			if(system != to && !flagship->JumpNavigation().JumpFuel(to))
 				player.TravelPlan().clear();
 		}
 	}
