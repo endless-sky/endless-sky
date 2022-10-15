@@ -173,7 +173,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit, double shipHyperCost)
 	if(outfit.Get("hyperdrive") && (!hasScramDrive || outfit.Get("scram drive")))
 	{
 		double cost = outfit.Get("jump fuel");
-		if(!cost)
+		if(cost <= 0.)
 			cost = shipHyperCost;
 		if(!hyperdriveCost || cost < hyperdriveCost)
 			hyperdriveCost = cost;
@@ -181,10 +181,10 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit, double shipHyperCost)
 	if(outfit.Get("jump drive"))
 	{
 		double distance = outfit.Get("jump range");
-		if(!distance)
+		if(distance <= 0.)
 			distance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		double cost = outfit.Get("jump fuel");
-		if(!cost)
+		if(cost <= 0.)
 			cost = DEFAULT_JUMP_DRIVE_COST;
 
 		UpdateJumpDriveCosts(distance, cost);
