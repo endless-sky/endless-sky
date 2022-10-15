@@ -34,8 +34,6 @@ const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
 void ShipJumpNavigation::Calibrate(const Ship &ship)
 {
 	Outfit attributes = ship.Attributes();
-	Outfit baseAttributes = ship.BaseAttributes();
-
 	hasHyperdrive = attributes.Get("hyperdrive");
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
@@ -98,11 +96,11 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 	// likely only occur if the given distance is 0.
 	if(jumpDriveCosts.count(distance))
 		return jumpDriveCosts.find(distance)->second;
-	// Otherwise, find the jump range that covers the distance. Iterate over the
-	// map until we reach the jump range just above the given distance.
-	auto it = jumpDriveCosts.begin();
-	for( ; it != jumpDriveCosts.end() && it->first < distance; ++it);
-	return it == jumpDriveCosts.end() ? 0. : it->second;
+	// Otherwise, find the first jump range that covers the distance. Iterate over
+	// the costs map until we reach the jump range just above the given distance.
+	auto it = std::find_if(jumpDriveCosts.begin(), jumpDriveCosts.end(),
+		[distance](const pair<double, double> &range) -> bool { return range.first > distance; });
+	return (it == jumpDriveCosts.end()) ? 0. : it->second;
 }
 
 
