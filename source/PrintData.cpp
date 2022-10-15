@@ -133,8 +133,8 @@ void PrintData::PrintBaseShipStats()
 {
 	cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
 		<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
-		<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
-		<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
+		<< "required crew" << ','<< "crew bunks" << ',' << "passenger bunks" << ',' << "bunks" << ',' << "cargo space" << ','
+		<< "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
 		<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
 	for(auto &it : GameData::Ships())
 	{
@@ -157,7 +157,9 @@ void PrintData::PrintBaseShipStats()
 		cout << attributes.Get("drag") << ',';
 		cout << ship.HeatDissipation() * 1000. << ',';
 		cout << attributes.Get("required crew") << ',';
-		cout << attributes.Get("bunks") << ',';
+		cout << attributes.CrewBunks() << ',';
+		cout << attributes.PassengerBunks() << ',';
+		cout << attributes.Bunks() << ',';
 		cout << attributes.Get("cargo space") << ',';
 		cout << attributes.Get("fuel capacity") << ',';
 
@@ -213,9 +215,9 @@ void PrintData::PrintShipShipyards()
 void PrintData::PrintLoadedShipStats(bool variants)
 {
 	cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
-		<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "bunks" << ','
-		<< "cargo space" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
-		<< "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
+		<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "crew bunks" << ',' << "passenger bunks"
+		<< ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity"
+		<< ',' << "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
 		<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
 		<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
 		<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
@@ -238,7 +240,9 @@ void PrintData::PrintLoadedShipStats(bool variants)
 		cout << attributes.Get("hull") << ',';
 		cout << mass << ',';
 		cout << attributes.Get("required crew") << ',';
-		cout << attributes.Get("bunks") << ',';
+		cout << attributes.CrewBunks() << ',';
+		cout << attributes.PassengerBunks() << ',';
+		cout << attributes.Bunks() << ',';
 		cout << attributes.Get("cargo space") << ',';
 		cout << attributes.Get("fuel capacity") << ',';
 

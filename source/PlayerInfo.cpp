@@ -1345,14 +1345,14 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 			if(ship != flagship)
 			{
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+				ship->Cargo().SetBunks(ship->Attributes().Bunks() - ship->RequiredCrew());
 				cargo.TransferAll(ship->Cargo());
 			}
 			else
 			{
 				// Your flagship takes first priority for passengers but last for cargo.
 				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
+				ship->Cargo().SetBunks(ship->Attributes().Bunks() - desiredCrew);
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
 			}
@@ -1369,18 +1369,18 @@ bool PlayerInfo::TakeOff(UI *ui)
 			flagship->AddCrew(-extra);
 			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers."
 				, Messages::Importance::High);
-			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
+			flagship->Cargo().SetBunks(flagship->Attributes().Bunks() - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
 	}
 
-	int extra = flagship->Crew() + flagship->Cargo().Passengers() - flagship->Attributes().Get("bunks");
+	int extra = flagship->Crew() + flagship->Cargo().Passengers() - flagship->Attributes().PassengerBunks();
 	if(extra > 0)
 	{
 		flagship->AddCrew(-extra);
 		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them."
 			, Messages::Importance::High);
-		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
+		flagship->Cargo().SetBunks(flagship->Attributes().Bunks() - flagship->Crew());
 	}
 
 	// For each active, carriable ship you own, try to find an active ship that has a bay for it.
@@ -1575,7 +1575,7 @@ void PlayerInfo::UpdateCargoCapacities()
 		{
 			size += ship->Attributes().Get("cargo space");
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
-			bunks += ship->Attributes().Get("bunks") - crew;
+			bunks += ship->Attributes().Bunks() - crew;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -2622,7 +2622,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
 	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return flagship ? flagship->Attributes().Get("bunks") : 0; });
+		return flagship ? flagship->Attributes().Bunks() : 0; });
 
 	auto &&flagshipModelProvider = conditions.GetProviderPrefixed("flagship model: ");
 	auto flagshipModelFun = [this](const string &name) -> bool
@@ -2674,7 +2674,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
-				retVal += ship->Attributes().Get("bunks") - ship->RequiredCrew();
+				retVal += ship->Attributes().Bunks() - ship->RequiredCrew();
 		return retVal;
 	});
 

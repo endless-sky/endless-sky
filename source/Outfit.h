@@ -57,6 +57,11 @@ public:
 	const std::string &Description() const;
 	int64_t Cost() const;
 	double Mass() const;
+	uint32_t Bunks() const;
+	std::map<std::string, uint32_t> BunkTypes() const;
+	uint32_t PassengerBunks() const;
+	uint32_t CrewBunks() const;
+	uint32_t BunkType(const std::string typeName);
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
@@ -107,6 +112,8 @@ private:
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;
+	uint32_t bunks;
+	std::map<std::string, uint32_t> bunkTypes;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 
@@ -136,6 +143,8 @@ private:
 // These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }
+inline uint32_t Outfit::Bunks() const { return bunks; }
+inline std::map<std::string, uint32_t> Outfit::BunkTypes() const { return bunkTypes; };
 
 
 

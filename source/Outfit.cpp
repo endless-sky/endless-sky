@@ -261,6 +261,23 @@ void Outfit::Load(const DataNode &node)
 			cost = child.Value(1);
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
 			mass = child.Value(1);
+		else if (child.Token(0) == "bunks" && child.Size() >= 2)
+		{
+			bunks = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() >= 2)
+				{
+					string loadBunkType = grand.Token(0);
+					pair<bool, pair<bool, bool>> bunkTypeData = GameData::BunkType(loadBunkType);
+					if(bunkTypeData.first)
+					{
+						bunks += grand.Value(1);
+						bunkTypes[loadBunkType] = grand.Value(1);
+					}
+				}
+			}
+		}
 		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
 		{
 			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
@@ -372,6 +389,39 @@ const string &Outfit::Description() const
 
 
 
+uint32_t Outfit::PassengerBunks() const
+{
+	uint32_t passengers = bunks;
+	for(auto bunkType : bunkTypes)
+	{
+		if(GameData::BunkType(bunkType.first).second.first)
+			passengers += bunkType.second;
+	}
+	return passengers;
+}
+
+
+
+uint32_t Outfit::CrewBunks() const
+{
+	uint32_t crew = bunks;
+	for(auto bunkType : bunkTypes)
+	{
+		if(GameData::BunkType(bunkType.first).second.second)
+			crew += bunkType.second;
+	}
+	return crew;
+}
+
+
+
+uint32_t Outfit::BunkType(string typeName)
+{
+	return bunkTypes[typeName];
+}
+
+
+
 // Get the licenses needed to purchase this outfit.
 const vector<string> &Outfit::Licenses() const
 {
@@ -450,6 +500,13 @@ void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
 	mass += other.mass * count;
+	bunks += other.bunks * count;
+	for(auto bunkType : other.bunkTypes)
+		if(bunkTypes[bunkType.first])
+			bunkTypes[bunkType.first] += bunkType.second;
+		else
+			bunkTypes[bunkType.first] = bunkType.second;
+	
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;

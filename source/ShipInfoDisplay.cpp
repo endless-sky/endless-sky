@@ -204,9 +204,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
 			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
 	attributesHeight += 20;
-	attributeLabels.push_back("required crew / bunks:");
+	attributeLabels.push_back("required crew / crew bunks / bunks:");
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())
-		+ " / " + Format::Number(attributes.Get("bunks")));
+		+ " / " + Format::Number(attributes.CrewBunks()) + " / " + Format::Number(attributes.Bunks()));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");

@@ -835,6 +835,9 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
+			out.Write("bunks", baseAttributes.Bunks());
+			for(const auto &bunkTypes : baseAttributes.BunkTypes())
+				out.Write(bunkTypes.first, bunkTypes.second);
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
@@ -2949,7 +2952,7 @@ void Ship::Recharge(bool atSpaceport)
 		return;
 
 	if(atSpaceport)
-		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
+		crew = min<int>(max(crew, RequiredCrew()), attributes.CrewBunks());
 	pilotError = 0;
 	pilotOkay = 0;
 
@@ -3363,7 +3366,7 @@ int Ship::CrewValue() const
 
 void Ship::AddCrew(int count)
 {
-	crew = min<int>(crew + count, attributes.Get("bunks"));
+	crew = min<int>(crew + count, attributes.CrewBunks());
 }
 
 

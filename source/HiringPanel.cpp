@@ -52,7 +52,7 @@ void HiringPanel::Draw()
 	const Interface *hiring = GameData::Interfaces().Get("hiring");
 	Information info;
 
-	int flagshipBunks = flagship.Attributes().Get("bunks");
+	int flagshipBunks = flagship.Attributes().Bunks();
 	int flagshipRequired = flagship.RequiredCrew();
 	int flagshipExtra = flagship.Crew() - flagshipRequired;
 	int flagshipUnused = flagshipBunks - flagship.Crew();
@@ -68,7 +68,7 @@ void HiringPanel::Draw()
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked())
 		{
-			fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
+			fleetBunks += static_cast<int>(ship->Attributes().Bunks());
 			fleetRequired += ship->RequiredCrew();
 		}
 	int passengers = player.Cargo().Passengers();

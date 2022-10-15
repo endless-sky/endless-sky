@@ -46,3 +46,6 @@ category "outfit"
 	"Minerals"
 	"Special"
 	"Licenses"
+
+bunks
+	"luxury" passenger
