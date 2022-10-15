@@ -111,7 +111,7 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 		return jumpDriveCosts.find(distance)->second;
 	// Otherwise, find the first jump range that covers the distance. Iterate over
 	// the costs map until we reach the jump range just above the given distance.
-	auto it = std::find_if(jumpDriveCosts.begin(), jumpDriveCosts.end(),
+	auto it = find_if(jumpDriveCosts.begin(), jumpDriveCosts.end(),
 		[distance](const pair<double, double> &range) -> bool { return range.first > distance; });
 	return (it == jumpDriveCosts.end()) ? 0. : it->second;
 }
