@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 
 #include <algorithm>
+#include <cassert>
 #include <iterator>
 
 using namespace std;
@@ -30,6 +31,7 @@ const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
 
 
 
+// Set the owner of this jump navigation, storing a pointer to it for later use.
 void ShipJumpNavigation::SetOwner(const Ship *ship)
 {
 	this->ship = ship;
@@ -40,8 +42,7 @@ void ShipJumpNavigation::SetOwner(const Ship *ship)
 // Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
 void ShipJumpNavigation::Calibrate()
 {
-	if(!ship)
-		return;
+	assert(ship && "A jump navigation's ship cannot be null.");
 	Outfit attributes = ship->Attributes();
 	hasHyperdrive = attributes.Get("hyperdrive");
 	hasScramDrive = attributes.Get("scram drive");
@@ -67,7 +68,8 @@ void ShipJumpNavigation::Calibrate()
 // nullptr then return the maximum amount of fuel that this ship could expend in one jump.
 double ShipJumpNavigation::JumpFuel(const System *destination) const
 {
-	const System *currentSystem = ship ? ship->GetSystem() : nullptr;
+	assert(ship && "A jump navigation's ship cannot be null.");
+	const System *currentSystem = ship->GetSystem();
 	// A currently-carried ship requires no fuel to jump, because it cannot jump.
 	if(!currentSystem)
 		return 0.;
@@ -120,14 +122,18 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 // If no jump method is possible, returns JumpType::None with a jump cost of 0.
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *destination) const
 {
-	if(!ship)
-		return make_pair(JumpType::NONE, 0.);
+	assert(ship && "A jump navigation's ship cannot be null.");
+	return GetCheapestJumpType(ship->GetSystem(), destination);
+}
 
-	const System *currentSystem = ship->GetSystem();
-	bool linked = currentSystem->Links().count(destination);
+
+
+pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *from, const System *to) const
+{
+	bool linked = from->Links().count(to);
 	double hyperFuelNeeded = HyperdriveFuel();
-	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
-			? 0. : currentSystem->Position().Distance(destination->Position()));
+	double jumpFuelNeeded = JumpDriveFuel((linked || from->JumpRange())
+			? 0. : from->Position().Distance(to->Position()));
 	if(linked && hasHyperdrive && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
 		return make_pair(JumpType::HYPERDRIVE, hyperFuelNeeded);
 	else if(hasJumpDrive)

@@ -3709,7 +3709,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// If the added or removed outfit is a hyperdrive or jump drive,
 		// recalculate this ship's jump navigation. Hyperdrives and jump
 		// drives of the same type don't stack, so only do this if the
-		// outfit is either compltely new or has been completely removed.
+		// outfit is either completely new or has been completely removed.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
 			navigation.Calibrate();
 	}

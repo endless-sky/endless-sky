@@ -37,7 +37,7 @@ public:
 public:
 	ShipJumpNavigation() = default;
 
-	// Set the owner of this jump navigation.
+	// Set the owner of this jump navigation, storing a pointer to it for later use.
 	void SetOwner(const Ship *ship);
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
 	void Calibrate();
@@ -53,6 +53,8 @@ public:
 	// Get the cheapest jump method and its cost for a jump to the destination system.
 	// If no jump method is possible, returns JumpType::None with a jump cost of 0.
 	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
+	// Get the cheapest jump method between the two given systems.
+	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
 
 	// Check what jump methods this ship has.
 	bool HasHyperdrive() const;
