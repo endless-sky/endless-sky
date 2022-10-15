@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "JumpTypes.h"
 #include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
@@ -1772,8 +1773,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		pair<ShipJumpNavigation::JumpType, double> jumpUsed = navigation.GetCheapestJumpType(currentSystem, hyperspaceSystem);
-		isUsingJumpDrive = (jumpUsed.first == ShipJumpNavigation::JumpType::JumpDrive);
+		pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(currentSystem, hyperspaceSystem);
+		isUsingJumpDrive = (jumpUsed.first == JumpType::JUMPDRIVE);
 		hyperspaceFuelCost = jumpUsed.second;
 	}
 
@@ -2801,13 +2802,13 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
-	pair<ShipJumpNavigation::JumpType, double> jumpUsed = navigation.GetCheapestJumpType(currentSystem, targetSystem);
+	pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(currentSystem, targetSystem);
 	double fuelCost = jumpUsed.second;
 	if(!fuelCost || fuel < fuelCost)
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = (jumpUsed.first == ShipJumpNavigation::JumpType::JumpDrive);
+	bool isJump = (jumpUsed.first == JumpType::JUMPDRIVE);
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough

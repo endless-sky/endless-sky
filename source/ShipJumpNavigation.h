@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SHIP_JUMP_NAVIGATION_H_
 #define SHIP_JUMP_NAVIGATION_H_
 
+#include "JumpTypes.h"
+
 #include <cstdint>
 #include <map>
 
@@ -27,15 +29,6 @@ class System;
 // A class representing the jump capabilities of a ship. Calculates and caches a ship's
 // jump methods, costs, and distances.
 class ShipJumpNavigation {
-public:
-	enum class JumpType : uint8_t
-	{
-		Hyperdrive,
-		JumpDrive,
-		None
-	};
-
-
 public:
 	ShipJumpNavigation() = default;
 

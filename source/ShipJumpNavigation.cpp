@@ -138,19 +138,19 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 
 
 // Get the cheapest jump method and its cost for a jump between the two given systems.
-// If no jump method is possible, returns JumpType::None with a jump cost of 0.
-pair<ShipJumpNavigation::JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *currentSystem, const System *destination) const
+// If no jump method is possible, returns JumpType::NONE with a jump cost of 0.
+pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *currentSystem, const System *destination) const
 {
 	bool linked = currentSystem->Links().count(destination);
 	double hyperFuelNeeded = HyperdriveFuel();
 	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
 			? 0. : currentSystem->Position().Distance(destination->Position()));
 	if(linked && hasHyperdrive && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
-		return make_pair(JumpType::Hyperdrive, hyperFuelNeeded);
+		return make_pair(JumpType::HYPERDRIVE, hyperFuelNeeded);
 	else if(hasJumpDrive)
-		return make_pair(JumpType::JumpDrive, jumpFuelNeeded);
+		return make_pair(JumpType::JUMPDRIVE, jumpFuelNeeded);
 	else
-		return make_pair(JumpType::None, 0.);
+		return make_pair(JumpType::NONE, 0.);
 }
 
 

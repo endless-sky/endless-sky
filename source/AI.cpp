@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "Government.h"
 #include "Hardpoint.h"
+#include "JumpTypes.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
@@ -1931,7 +1932,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		return;
 
 	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetSystem(), ship.GetTargetSystem()).first ==
-		ShipJumpNavigation::JumpType::JumpDrive);
+		JumpType::JUMPDRIVE);
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 	if(!isJump && scramThreshold)
