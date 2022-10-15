@@ -22,7 +22,6 @@ Files:
  images/outfit/heavy?anti-missile?hai*
  images/ship/mbounder*
  images/ship/mfury*
- images/ship/mmanta*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -1390,12 +1389,14 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
+ images/effect/atomic?flare/*
  images/effect/burning?spark*
  images/effect/coalition?flare/*
  images/effect/corrosion?spark*
  images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
+ images/effect/ion?flare/*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/pug?flare/*
@@ -1469,6 +1470,15 @@ Files:
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com>, David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux) and Nick Barry (github.com/itsnickbarry)
+
+Files:
+ images/ship/manta*
+ images/ship/mmanta*
+ images/thumbnail/manta*
+ images/thumbnail/mmanta*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
 
 Files: sounds/ionball*
 Copyright: pluralz
