@@ -18,10 +18,10 @@ outfit "Strange Ray"
 		"minable damage" 64
 
 ship "Silent Harvester"
-	sprite ship/silent harvester/ign
+	sprite "ship/silent harvester/ign"
 		rewind
 	swizzle 0
-    "never disabled"
+	"never disabled"
 	attributes
 		category Interceptor
 		cost 500000
@@ -42,6 +42,7 @@ ship "Silent Harvester"
 		"required crew" 1
 		"drag" 13.3
 		"bunks" 40
+		"gaslining" 1
 	outfits
 		"Strange Ray"
 	gun 0 -64 "Strange Ray"
@@ -51,8 +52,9 @@ ship "Silent Harvester"
 	"final explode" "final explosion large"
 
 fleet "Silent Harvesters"
-    government "Silent Ones"
+	government "Silent Ones"
+	cargo 0
 	personality
-		disables mining harvests
+		timid mining harvests mute
 	variant
-		"Silent Harvester" 2
+		"Silent Harvester" 1

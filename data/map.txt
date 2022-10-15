@@ -13656,17 +13656,23 @@ system Ildaria
 
 system Il'le
 	pos 280.933 -720.506
-	habitable 1715
+	government Uninhabited
+	arrival 1300
+	habitable 1200
 	belt 1165
 	link Dom'us
 	link Hui'uc
-	asteroids "small rock" 31 9.6432
-	asteroids "medium rock" 3 4.8608
-	asteroids "large rock" 16 10.0352
-	asteroids "small metal" 13 11.1328
-	asteroids "medium metal" 61 6.1936
-	asteroids "large metal" 21 8.8592
-	minables lead 1 11.688
+	asteroids "small rock" 4 1.4352
+	asteroids "medium rock" 10 2.3
+	asteroids "large rock" 3 2.0608
+	asteroids "small metal" 2 2.3
+	asteroids "large metal" 3 1.2328
+	minables aluminum 7 1.96731
+	minables platinum 2 1.43013
+	minables titanium 5 1.78627
+	minables silicon 27 0.740133
+	minables iron 18 1.55307
+	minables silver 4 1.274
 	trade Clothing 354
 	trade Electronics 673
 	trade Equipment 614
@@ -13677,6 +13683,7 @@ system Il'le
 	trade Medical 842
 	trade Metal 270
 	trade Plastic 267
+	fleet "Silent Harvesters" 400
 	object
 		sprite star/f5
 		period 10
@@ -30326,6 +30333,12 @@ planet Oblivion
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet Occupas
+	attributes "requires: gaslining"
+	government "Silent Ones"
+	landscape land/nasa10
+	description `There are no spaceports on this planet, so you are just gliding through the upper layers of clouds. From time to time some strange giant shadows appear in the deeper layers but they never stay long. This gas giant has a relative calm weather, the winds are not that strong and storms appear not very often.`
 
 planet Ochrescoop
 	attributes hai station
