@@ -837,7 +837,8 @@ void PlayerInfo::SetFlagship(Ship &other)
 	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() &&
+			(!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
 		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 

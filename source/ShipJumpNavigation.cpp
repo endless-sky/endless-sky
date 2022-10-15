@@ -43,7 +43,7 @@ void ShipJumpNavigation::SetOwner(const Ship *ship)
 void ShipJumpNavigation::Calibrate()
 {
 	assert(ship && "A jump navigation's ship cannot be null.");
-	Outfit attributes = ship->Attributes();
+	const Outfit &attributes = ship->Attributes();
 	hasHyperdrive = attributes.Get("hyperdrive");
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
@@ -201,7 +201,8 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 		maxJumpRange = distance;
 	// If a jump drive range isn't already accounted for or the existing cost
 	// for this range is more expensive, use the given cost.
-	if(!jumpDriveCosts.count(distance) || !jumpDriveCosts[distance] || jumpDriveCosts[distance] > cost) {
+	if(!jumpDriveCosts.count(distance) || !jumpDriveCosts[distance] || jumpDriveCosts[distance] > cost)
+	{
 		jumpDriveCosts[distance] = cost;
 
 		// If a cost was updated then we need to reassess other costs.
