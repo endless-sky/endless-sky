@@ -655,6 +655,18 @@ phrase "defeated unfettered challenger"
 		" It would seem you are as strong as some pretended, perhaps even more."
 		" Finish me! I would rather die than have to live with this insult."
 
+phrase "unfettered duelling"
+	word
+		"Do not presume to interrupt us"
+		"I am in the middle of a duel, there is no time for petty talk"
+		"This is an official challenge, do not intervene"
+		"Under no circumstances are you to interrupt us, or you will suffer the wratch of the Unfettered"
+		"Stop distracting me"
+		"If you try anything the whole fleet will be on you"
+	word
+		"!"
+		"."
+
 phrase "friendly mercenary"
 	word
 		"What is your command"
@@ -695,7 +707,7 @@ phrase "enemy mercenary"
 	word
 		"something "
 		"an item "
-		"a posession "
+		"a possession "
 	word
 		"precious to us"
 		"valuable to us"
@@ -753,3 +765,5 @@ phrase "hydra hails"
 		"I have let you live long enough."
 		"I may be a pawn, but at least I am on a greater path."
 		"You may never hope to achieve half of what I did."
+		"You hope to be able to bribe me? Ha! My price is far above what you could possibly afford."
+		"Do you hope to corrupt me? There is no price that is high enough."

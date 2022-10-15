@@ -626,12 +626,12 @@ mission "Unfettered Red Blue Sea Scorpion Duel"
 		random < 5
 	to complete
 		never
-	npc kill
+	npc provoke
 		government "Hai (Unfettered Blue Challenger)"
 		personality disables staying heroic uninterested
 		fleet "Sea Scorpion Challenger"
 		conversation "interrupted duel"
-	npc kill
+	npc provoke
 		government "Hai (Unfettered Red Challenger)"
 		personality disables staying heroic uninterested
 		fleet "Sea Scorpion Challenger"
@@ -648,12 +648,12 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 		random < 5
 	to complete
 		never
-	npc kill
+	npc provoke
 		government "Hai (Unfettered Blue Challenger)"
 		personality disables staying heroic uninterested
 		fleet "Shield Beetle Challenger"
 		conversation "interrupted duel"
-	npc kill
+	npc provoke
 		government "Hai (Unfettered Red Challenger)"
 		personality disables staying heroic uninterested
 		fleet "Shield Beetle Challenger"

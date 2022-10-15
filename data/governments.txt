@@ -304,7 +304,7 @@ government "Hai (Unfettered Blue Challenger)"
 	"bribe" 0
 	"fine" 0
 
-	"friendly hail" "friendly unfettered"
+	"friendly hail" "unfettered duelling"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
@@ -328,7 +328,7 @@ government "Hai (Unfettered Red Challenger)"
 	"bribe" 0
 	"fine" 0
 
-	"friendly hail" "friendly unfettered"
+	"friendly hail" "unfettered duelling"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
