@@ -1013,11 +1013,11 @@ mission "Unfettered: Escort Hai Fleet"
 		personality escort launching heroic
 		system "Due Yoot"
 		fleet "Small Hai"
-	npc accompany
+	npc
 		government "Hai Merchant (Sympathizers)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
-		personality escort heroic
+		personality escort entering heroic
 		system "Ula Mon"
 		fleet "Small Hai"
 	npc evade
@@ -1205,14 +1205,11 @@ mission "Unfettered: Materials Intercepted"
 		personality target launching plunders vindictive uninterested
 		ship "Bactrian (Hydra)" "Rested Snake"
 		conversation
+			action
+				set "unfettered: boarded bactrian"
 			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Nimo talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Nimo.`
 			branch "allies died"
 				has "Unfettered: Cavalry Arrives: failed"
-			action
-				fail "Unfettered: Cavalry Arrives"
-				set "normal failed"
-			branch "allies died"
-				has "unfettered: thorn talon death"
 			`	Seeing how the fight is almost over, if not completely, your surprise allies hail you. "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
 				`	"Where you sent by Nimo's contact?"`
@@ -1240,7 +1237,12 @@ mission "Unfettered: Materials Intercepted"
 					goto leaving
 			action
 				set "unfettered: accepted duel"
-			`	"We will let you land and repair before starting the fight. If you want to surrender, just land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
+			branch cleanupdone
+				has "unfettered: cleaned up hydra"
+			`	"First we need to finish off all Hydra pirates remaining, do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
+				accept
+			label cleanupdone
+			`	"We will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
 				accept
 			label leaving
 			`	They end the discussion, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the conversation.`
@@ -1318,28 +1320,45 @@ mission "Unfettered: Cavalry Arrives"
 		personality entering heroic uninterested staying disables
 		ship "Sea Dragon (Tripulse, JD)" "Thorn"
 		ship "Sea Dragon (Tripulse, JD)" "Talon"
-	npc
+	npc kill
 		system "Misam"
 		government "Hydra"
 		personality plunders vindictive entering
 		fleet "Small Northern Pirates" 3
 		fleet "Large Northern Pirates"
+		conversation
+			branch boardedship
+				has "unfettered: boarded bactrian"
+			action
+				set "unfettered: cleaned up hydra"
+			"Now that you have taken care of all pirate reinforcements, it is time to board the flagship and take their loot."
+				decline
+			label boardedship
+			branch noduel
+				not "unfettered: accepted duel"
+			"All pirate reinforcements have been taken care of, and the Sea Dragons signal you they are ready to start the duel whenever you will take off again."
+			label noduel
+			"All pirate reinforcements have been taken care of, all that is left to do is to bring back the cargo."
 	to fail
 		not "Unfettered: Materials Intercepted: active"
 	on fail
 		conversation
+			branch nevercompleted
+				not "Unfettered: Materials Intercepted: active"
 			branch murdered
-				not "normal failed"
-			action
-				clear "normal failed"
-			``
-				decline
-			label murdered
-			"One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. The Shadow of Mintaka may want to have their vengeance on you for letting them die, or worse, maybe even participating in it, rumors could tell."
+				has "reputation: Shadow" < 0
+			"One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka."
 			action
 				set "unfettered: thorn talon death"
-	to complete
-		never
+			``
+				goto nevercompleted
+			label murdered
+			`You receive an ominous message of defiance from the other Sea Dragon, "Nemo me impune lacessit."`
+			action
+				set "unfettered: thorn talon murdered"
+				set "unfettered: thorn talon death"
+				event "unfettered: thorn talon vengeance" 180
+			label nevercompleted
 
 
 
@@ -1354,7 +1373,8 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 		not "Wanderers: Defend Vara Ke'sok: done"
 	on offer
 		conversation
-			`As you wander through the spaceport, you find a market. You notice that the amount and diversity of goods are very limited. Some of it seems to be completely alien, even by Hai standards. Most Unfettered here are just busy buying food, that is if they can even afford it. You see two Unfettered disputing, probably over the cost of some item, but decide not to intervene given how they generally respond to your mere presence...`
+			`As you wander through the spaceport, you find a market with a limited diversity of goods, although some of it seems to be completely alien, even by Hai standards. You can even spot human food and technology, although those are the only recent items here. Most of it is very ancient, and you doubt everything is functional...`
+			`	Most Unfettered here are just busy buying what little food there is, that is if they can even afford it. You see two of them disputing, probably over the cost of some item, but decide not to intervene given how they generally respond to your mere presence...`
 			`	An Unfettered approaches you. At first, you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out in the crowd. There are not many non-Hai on the Unfettered worlds.`
 			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says.`
 			choice
@@ -1446,10 +1466,9 @@ mission "Unfettered: Geocoris Arriving"
 
 outfit "Alpha Pirate Crew"
 	"crew defense" -100
-	"crew attack" -100
+	"crew attack" -120
 	"unplunderable" 1
 	description `This ship is mostly manned by pirates and not actual Alphas, though they do lead them.`
-	description `You should not be seeing this.`
 
 ship "Auxiliary" "Auxiliary (Alpha)"
 	sprite "ship/auxiliaryc"
@@ -1669,7 +1688,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'd agree that knowing more about those weapons would be useful. Now, back to the damage on their ship.`
 			label information
 			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and anti-matter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?`
-			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode, without any in between. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only Quargs have a similar level of technology, and they invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
+			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only Quargs have a similar level of technology, and they invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
 			label agree
 			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary means you will probably not have much time to wait to fuel up from the local stars either. Also, be prepared for a fight in space, as well as within the ship itself, to claim it."`
 				accept
@@ -1734,7 +1753,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
-			`As you land with the Auxiliary, you notice dozens of Unfettered start coming your way, cheering, and it quickly turns into hundreds. They are probably expecting jump drives, and more keep coming from every direction. Maybe they have not seen this Auxiliary yet, but only heard tales of it, or maybe this is what always happens when it lands, loaded with jump drives. Whatever the case, they seem surprised when they realize it belongs to you. They murmur with each other and then they start saluting, by rising one fist up. First a few do it, then more, until finally all of them are there, saluting in front of you in respect. You notice they are doing different signs with their hand.`
+			`As you land with the Auxiliary, you notice dozens of Unfettered start coming your way, cheering, and their numbers quickly grow to hundreds. More keep coming from every direction, probably expecting Jump Drives, but this could also be the first time they see the fabled Auxiliary in person. Whatever the case, they seem surprised when they realize it belongs to you. They murmur with each other and then they start saluting, by rising one fist up. First a few do it, then more, until finally all of them are saluting in respect.`
 			choice
 				`	(Raise my fist like warriors do.)`
 				`	(Bow.)`

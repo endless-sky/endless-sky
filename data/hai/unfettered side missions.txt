@@ -465,6 +465,7 @@ mission "Unfettered: Duel Squared"
 	source "New Tortuga"
 	to offer
 		has "unfettered: accepted duel"
+		has "Unfettered: Cavalry Arrives: done"
 	on offer
 		conversation
 			action
@@ -483,27 +484,40 @@ mission "Unfettered: Duel Squared"
 			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
 			action
 				"reputation: Hai (Unfettered)" += 150
+	on abort
+		set "unfettered: just aborted"
 	on fail
 		conversation
-			"You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered will not offer you any missions anymore, for having killed legends, and disrespecting the rules of the duel."
+			branch justaborted
+				has "unfettered: just aborted"
+			"You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered will not offer you any missions anymore, for having killed legends, and mostly for disrespecting the rules of the duel."
 			action
+				set "unfettered: thorn talon death"
 				set "unfettered: thorn talon murdered"
 				event "unfettered: thorn talon vengeance" 180
-				set "unfettered: thorn talon death"
-				"reputation: Shadow" <?= -1000
+			label justaborted
+			"You concede the duel and lose the bet of 10 million credits."
+			action
+				log "Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. I had to pay up 10 million credits."
+				fine 10000000
 	on complete
 		conversation
 			branch "won"
 				not "unfettered: stop the duel"
 			action
-				log "Lost a duel against 2 mysterious ships that serve the Shadow of Mintaka, whatever that means. I had to pay up 10 million credits."
+				log "Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. I had to pay up 10 million credits."
+				fine 10000000
 			``
 				decline
 			label won
 			action
-				log "Won a duel against 2 mysterious ships that serve the Shadow of Mintaka, whatever that means. They allowed me to plunder their ships."
+				log "Won a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. They allowed me to plunder their ships."
 
 event "unfettered: thorn talon vengeance"
+	"reputation: Shadow" <?= -1000
+	government "Shadow"
+		"attitude toward"
+			"Hydra" -.01
 
 mission "Unfettered: Stop The Duel"
 	landing
@@ -561,6 +575,10 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons, Bars)"
 	turret 50 39.5 "Ionic Turret Prototype"
 	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine. It also seems to have an enhanced shield matrix integrated into it, seemingly inspired by the Hai, and is protected by a special alloy added to its hull."
 
+event "joined the mercenaries"
+	government "Escort"
+		swizzle 9
+
 mission "Unfettered: Daemons Unleashed"
 	landing
 	to offer
@@ -572,10 +590,18 @@ mission "Unfettered: Daemons Unleashed"
 		ship "Marauder Falcon (Weapons, Bars)" "Alpha Lion"
 		personality heroic nemesis staying vindictive target
 		conversation
-			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop making the same mistake my predecessor always did, right now, before this becomes an uncontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you." They then end the connection.`
+			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop making the same mistake my predecessor always did, right now, before this becomes an uncontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
+			choice
+				`	"May I wear your colors as well?"`
+				`	End the connection.`
+					goto endco
+			`	"You may paint your ship however you like." They then end the connection.`
+			action
+				event "joined the mercenaries"
+			label endco
 			action
 				"reputation: Mercenaries" >?= 100
-				"salary: Mercenaries" = 1000
+				"salary: Mercenaries" = 5000
 				set "unfettered: took out mercenary leader"
 	npc
 		system "Wah Yoot"

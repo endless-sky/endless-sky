@@ -582,6 +582,9 @@ government "Shadow"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
+	"penalty for"
+		capture 10
+		destroy 10
 
 government "Merchant"
 	swizzle 5
