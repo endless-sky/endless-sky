@@ -219,6 +219,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 				REQUIRE( store.Get("hello world") == 100 );
 				REQUIRE( store.Get("goodbye world") == 404 );
 				REQUIRE( primarySize(store) == 2 );
+				// Also check for possible ill-effects from primarySize() itself.
 				REQUIRE( primarySize(store) == 2 );
 			}
 			THEN( "not given conditions return the default value" )
@@ -227,6 +228,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( 0 == store.Get("hi world") );
 				REQUIRE( primarySize(store) == 2 );
+				// Check that requesting a non-given condition twice also doesn't result in bad results (for example due to caching).
 				REQUIRE( 0 == store.Get("hi world") );
 				REQUIRE( primarySize(store) == 2 );
 			}
@@ -756,7 +758,7 @@ SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMult
 			THEN( "Adding a sub-prefix-condition should not be possible")
 			{
 				auto mockProvPrefixShipsLarge = MockConditionsProvider();
-				mockProvPrefixShips.SetRWPrefixProvider(store, "ships: Large: ");
+				mockProvPrefixShipsLarge.SetRWPrefixProvider(store, "ships: Large: ");
 				store["ships: Large: very"] = 10;
 				REQUIRE( mockProvPrefixShipsLarge.values["ships: Large: very"] == 0 );
 				REQUIRE( mockProvPrefixShips.values["ships: Large: very"] == 10 );
