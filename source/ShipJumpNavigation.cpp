@@ -15,10 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipJumpNavigation.h"
 
-using namespace std;
-
 #include "Ship.h"
 #include "System.h"
+
+using namespace std;
+
+const double ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST = 100.;
+const double ShipJumpNavigation::DEFAULT_SCRAM_DRIVE_COST = 150.;
+const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
 
 
 
@@ -32,8 +36,7 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
 
-	double defaultHyperFuel = hasScramDrive ? 150. : 100.;
-	double defaultJumpFuel = 200.;
+	double shipHyperCost = hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST;
 
 	jumpDriveCosts.clear();
 	jumpDriveCosts[0.] = 0.;
@@ -45,7 +48,7 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	{
 		double jumpFuel = baseAttributes.Get("jump fuel");
 		if(!jumpFuel)
-			jumpFuel = defaultHyperFuel;
+			jumpFuel = shipHyperCost;
 		hyperdriveCost = jumpFuel;
 	}
 	if(baseAttributes.Get("jump drive"))
@@ -55,7 +58,7 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 		double jumpFuel = baseAttributes.Get("jump fuel");
 		if(!jumpFuel)
-			jumpFuel = defaultJumpFuel;
+			jumpFuel = DEFAULT_JUMP_DRIVE_COST;
 
 		UpdateJumpDriveCosts(jumpRange, jumpFuel);
 	}
@@ -67,7 +70,7 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 		{
 			double fuel = outfit->Get("jump fuel");
 			if(!fuel)
-				fuel = defaultHyperFuel;
+				fuel = shipHyperCost;
 			if(!hyperdriveCost || fuel < hyperdriveCost)
 				hyperdriveCost = fuel;
 		}
@@ -78,7 +81,7 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 				distance = System::DEFAULT_NEIGHBOR_DISTANCE;
 			double fuel = outfit->Get("jump fuel");
 			if(!fuel)
-				fuel = defaultJumpFuel;
+				fuel = DEFAULT_JUMP_DRIVE_COST;
 			UpdateJumpDriveCosts(distance, fuel);
 		}
 	}
