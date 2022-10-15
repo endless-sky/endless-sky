@@ -596,13 +596,36 @@ phrase "hostile unfettered challenger"
 		"."
 		"!"
 
+phrase "hostile unfettered challenger"
+	word
+		"Now is not the time for talk"
+		"Yes! Fight me"
+		"Our battle will be told in legends for years to come"
+		"Do not try to distract me with hails."
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Do you wish to end the fight?"
+		"I can see you are having difficulties. Feel free to call this off for another time..."
+		"Remember, you only need to give me a symbolic fee for this to stop."
+		"This is not a duel to the death, or else only one of us would be able learn."
+		"Do you wish to surrender?"
+
 phrase "defeated unfettered challenger"
 	word
 		"You have "
+		"You succeeded in "
+		"You managed to have "
+		"Somehow, you have "
+		"I must admit you have "
 	word
 		"beaten "
 		"defeated "
 		"ashamed "
+		"disabled "
+		"revealed my weakness "
 	word
 		"me in a "
 	word
@@ -616,6 +639,8 @@ phrase "defeated unfettered challenger"
 		"battle"
 		"combat"
 		"duel"
+		"fight"
+		"challenge"
 	word
 		"."
 		"!"
@@ -626,3 +651,105 @@ phrase "defeated unfettered challenger"
 		" Now it is over, time to lay down your weapons."
 		" I accept my fate, take what is rightfully yours."
 		" Great stories will be told of our battle!"
+		" You have the right to plunder."
+		" It would seem you are as strong as some pretended, perhaps even more."
+		" Finish me! I would rather die than have to live with this insult."
+
+phrase "friendly mercenary"
+	word
+		"What is your command"
+		"Orders"
+		"Anything I can do for you"
+		"Who should I shoot"
+		"Covering fire, where"
+		"Yes"
+		"Change of plan"
+		"I am ready"
+	word
+		", "
+	word
+		"Boss"
+		"Leader"
+		"Alpha"
+		"First Mercenary"
+		"Commander"
+		"Captain"
+	word
+		"?"
+
+phrase "disabled mercenary"
+	word
+		"I await judgment."
+		"Do not expect me to beg."
+		"It seems I was proven... weak."
+		"I can pay you... If you would only lean me a hand."
+		"Truly a shameful display on my part."
+		"I have executed the former captain for his incompetence."
+		"Leave me alone, I do not deserve any help."
+
+phrase "enemy mercenary"
+	word
+		"You have "
+		"You possess "
+		"On your ship is "
+	word
+		"something "
+		"an item "
+		"a posession "
+	word
+		"precious to us"
+		"valuable to us"
+		"of mine "
+		"that we want "
+	word
+		"."
+		"!"
+	word
+		" Surrender it"
+		" Drop it in the next spaceport"
+		" Give it to me and your death will be quick."
+		" Nemo Me Impune Lacessit"
+		" Sell it on a lawless world"
+		" Give it back, scum"
+	word
+		"."
+		"!"
+
+phrase "enemy mercenary"
+	word
+		"Nemo Me Impune Laccessit!"
+		"You should run if you still hope to see the sun rise."
+		"We will never stop hunting you!"
+		"You do not understand of value of what you have stolen."
+		"Mere children cannot be allowed to hold on to such power!"
+
+phrase "refuse to answer hail"
+	word
+		"This ship refuses to answer your hails."
+		"The ship is refusing any hails, and seems to be trying to run silent."
+		"It seems like they received our hails but do not wish to answer it."
+
+phrase "refuse to answer hail"
+	word
+		"Stop hailing us or else..."
+		"We will not answer you."
+		"You are undeserving of our attention."
+		"Stop these futile attempts to hail us at once."
+		"There is no time for talking."
+		"Now is the time for action, not talks!"
+		"Stop interrupting us in our plannings."
+		"Yes?"
+		"What do you want?"
+
+phrase "hydra hails"
+	word
+		"What could you possibly say that would save you?"
+		"You stand no chance!"
+		"Even if you take me down, my master will make quick work of you."
+		"This is a pathethic attempt to subdue me."
+		"I obey only the masters."
+		"They hold my soul! What more could you do?"
+		"Die!"
+		"I have let you live long enough."
+		"I may be a pawn, but at least I am on a greater path."
+		"You may never hope to achieve half of what I did."
