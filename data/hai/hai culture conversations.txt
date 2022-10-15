@@ -283,7 +283,7 @@ mission "Robotic Musical 1"
 			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though. One child wanders too close as their parents steer around it and a little red holographic warning sign briefly flashes at them. No one seems keen to explain what you just saw, and for the moment the crates remain resolutely closed.`
 			apply
 				set roboticconfusion
-			#This controls branching if there's a future follow-up where you get to see the performance.
+			# This controls branching if there's a future follow-up where you get to see the performance.
 			`	Now that you think about it, you're not sure they all climbed back into the same boxes they came out of.`
 				decline
 			label translator
