@@ -442,6 +442,32 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 				categoryList.push_back(child.Token(0));
 			}
 		}
+		else if(key == "bunks")
+		{
+			for(const DataNode &child : node)
+			{
+				if(!child.Token(0).empty())
+				{
+					bool passengers = false;
+					bool crew = false;
+					if(child.Size() >= 2)
+					{
+						if(child.Token(1) == "passenger")
+							passengers = true;
+						else if(child.Token(1) == "crew")
+							crew = true;
+					}
+					if(child.Size() >= 3)
+					{
+						if(child.Token(2) == "passenger")
+							passengers = true;
+						else if(child.Token(2) == "crew")
+							crew = true;
+					}
+					bunkTypes[child.Token(0)] = make_pair(passengers, crew);
+				}
+			}
+		}
 		else if((key == "tip" || key == "help") && node.Size() >= 2)
 		{
 			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];

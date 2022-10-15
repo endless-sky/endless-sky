@@ -722,6 +722,16 @@ const vector<string> &GameData::Category(const CategoryType type)
 
 
 
+const std::pair<bool, std::pair<bool, bool>> GameData::BunkType(const std::string type)
+{
+	auto it = objects.bunkTypes.find(type);
+	if(it == objects.bunkTypes.end())
+		return make_pair(false, make_pair(false, false));
+	return make_pair(true, make_pair(it->second.first, it->second.second));
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
