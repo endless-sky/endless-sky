@@ -38,12 +38,12 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
 
-	double shipHyperCost = hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST;
-
 	jumpDriveCosts.clear();
 	jumpDriveCosts[0.] = 0.;
 	hyperdriveCost = 0.;
 	maxJumpRange = 0.;
+
+	double shipHyperCost = hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST;
 
 	// Make it possible for a hyperdrive or jump drive to be integrated into a ship.
 	ParseOutfit(ship.BaseAttributes(), shipHyperCost);
@@ -161,17 +161,20 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 	if(!jumpDriveCosts.count(distance) || jumpDriveCosts[distance] > cost) {
 		jumpDriveCosts[distance] = cost;
 
-		// If a cost was updated then we need to reassess the costs.
+		// If a cost was updated then we need to reassess other costs.
 		auto it = jumpDriveCosts.find(distance);
-		auto nit = std::next(it);
 		// If the jump range a step above this distance is cheaper, then the
 		// cheaper jump cost already covers this range.
+		auto nit = std::next(it);
 		if(nit != jumpDriveCosts.end() && it->second > nit->second)
 			it->second = nit->second;
-		// If any jump range below this one is more expensive, then use
-		// this new, cheaper cost.
-		for(auto sit = jumpDriveCosts.begin() ; sit != it; ++sit)
-			if(sit->second > it->second)
-				sit->second = it->second;
+		else
+		{
+			// If any jump range below this one is more expensive, then use
+			// this new, cheaper cost.
+			for(auto sit = jumpDriveCosts.begin() ; sit != it; ++sit)
+				if(sit->second > it->second)
+					sit->second = it->second;
+		}
 	}
 }
