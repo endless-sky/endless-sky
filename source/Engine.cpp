@@ -197,6 +197,7 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
+	constexpr static double OFFSET_CHANGE = 0.0025;
 }
 
 
@@ -1490,14 +1491,18 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
+		// Code block to calculate the center of the viewport.
+		// If Camera Acceleration is enabled an offset calculated through the
+		// falgships velocity will be added to the center.
 		if(flagship->IsThrusting())
 			offsetMultiplier = offsetMultiplier >= 1. ? 1.
-				: offsetMultiplier + offsetChange;
+				: offsetMultiplier + OFFSET_CHANGE;
 		else
 			offsetMultiplier = offsetMultiplier <= 0. ? 0.
-				: offsetMultiplier - offsetChange;
-		double temp = offsetMultiplier < 0.5 ? 4 * pow(offsetMultiplier, 3) : 1 - pow((-2 * offsetMultiplier) + 2, 3) / 2;
-		offset = flagship->Velocity() * 30. * temp;
+				: offsetMultiplier - OFFSET_CHANGE;
+		double smoothStep = offsetMultiplier < 0.5 ? 4 * pow(offsetMultiplier, 3)
+			: 1 - pow((-2 * offsetMultiplier) + 2, 3) / 2;
+		offset = flagship->Velocity() * 30. * smoothStep;
 		newCenter = Preferences::CameraAcceleration() == "on" ?
 			flagship->Position() + offset : Preferences::CameraAcceleration() == "reversed" ?
 			flagship->Position() - offset : flagship->Position();
