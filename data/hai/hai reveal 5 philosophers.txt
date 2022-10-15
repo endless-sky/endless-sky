@@ -24,7 +24,7 @@ mission "Hai Reveal [B01] Information Blackout"
 		event "hai and human ships at wormhole"
 		conversation
 			`Arriving on Sunracer, the entire port seems to be abuzz with the news. It has not gone unnoticed that the Navy moved a large fleet into the uninhabited systems in the northern corridor between Syndicate space and the Far North. Now, it seems that blockades are going up in Rigel, Nihal, Mirfak & Zaurak using Navy or Syndicate security vessels depending on jurisdiction. The theories are flying thick and fast, but everyone seems to agree on one thing; there is some sort of major crisis happening.`
-			`Your communicator beeps and you realize you have received a message from Remington. There's a Captain of one of their security detachments waiting to meet you in the spaceport. Apparently there've been developments while you were in flight. Now might be the last opportunity to sort anything else out for a little while.`
+			`Your communicator beeps and you realize you have received a message from Remington. There's a Captain of one of their security detachments waiting to meet you in the spaceport. Apparently there have been developments while you were in flight. Now might be the last opportunity to sort anything else out for a little while.`
 				accept
 
 
@@ -86,6 +86,8 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 mission "Hai Reveal [B02] Join the Fleet"
 	name "Join the Fleet"
 	description "Join the fleet in <waypoint> and move on Stormhold."
+	deadline 9
+	# The minimum journey time is 7
 	source "Sunracer"
 	waypoint "Sumar"
 	destination "Stormhold"
@@ -93,14 +95,21 @@ mission "Hai Reveal [B02] Join the Fleet"
 	to offer
 		has "Hai Reveal [B01] Information Blackout: offered"
 	on offer
-		fail "Hai Reveal [B01] Information Blackout"
-		fail "Hai Reveal [A11-B] Permanent Fleets"
 		conversation
-			`<The Syndicate security captain hands you a pad with a secure validation sequence to confirm his briefing comes from the Navy, co-signed by Xilin.>`
-			`<The Republic has agreed to accompany the Hai to precisely one world which combined intelligence indicates as the most likely place for any kidnapped Hai to be, assuming they exist. At least two pirate groups there have been positively identified being involved in kidnappings or smugglings in the past.>`
-			`<The blockades that have gone up are to secure this area of space against the secret of this exercise. The Navy, Unfettered, and Hai fleets are traveling from Mountaintop and you are to escort the Syndicate security force here directly to Sumar to meet them where you will act as the central coordination vessel.>`
-			`<There will be 2 Navy Carrier groups, a full Syndicate Special Security Detachment, the Unfettered Expeditionary Fleet, and a full Hai Taskforce. The fleet's intent is to overwhelm Stormhold and perform a thorough occupation and search for Hai. Parliament will reassess the scope of concern depending on what they find.>`
+			`The Syndicate security captain in the spaceport is very easy to find. She hands you a pad with a secure validation sequence to confirm her briefing comes from the Navy, co-signed by Xilin.`
+			`	She appears to have a posse of other captains with her who conveniently enforce a bubble of privacy around you just by taking up space. "So," she says. "The Republic has agreed to accompany the Hai to precisely one world. Combined intelligence indicates that <planet> is the most likely place for any kidnapped Hai to be, assuming they exist. The blockades that have gone up are to secure this area of space against the secret of this exercise... or at least try to.`
+			`	"There's going to be a battle, and you have a critical role entrusted to you for coordinating the fleet. There can be no detours. Once we start moving it will be eight jumps to the rendezvous and then to our target. Are you ready for it?"`
+			choice
+				`	"I'm ready now."`
+				`	"I need time to prepare."`
+					goto prepare
+			`	"Very good." So far she hasn't actually introduced herself but as she puts the pad away again her flight jacket moves aside enough to see 'Captain Valeria Estrada' printed on the jumpsuit underneath. "Now, to bring you up to speed: At least two pirate groups there have been positively identified as being involved in kidnappings or smugglings in the past. <planet> is a fortress of anonymity and discretion, as well as being a literal fortress for many of those that live there. As such an agreed upon force of overwhelming numbers has been prepared at Mountaintop. The objective will be to overwhelm the defenders we're expecting to encounter, prevent any escapes, and occupy the planet while they ferret out all the groups intelligence has flagged.`
+			`	"The Navy, Unfettered, and Hai fleets will travel from Mountaintop to meet you. We must fly with all haste directly to Sumar to meet them where you will act as the central coordination vessel. My security force here will follow you there, but until we get to Sumar don't worry yourself about waiting for us. We'll handle ourselves. Once we're all together in Sumar, it'll be your job to make sure everyone moves as one for each jump from there to <system>."`
+			`	She lowers her voice even further, despite the privacy afforded the conversation already. "There will be two Navy Carrier groups, our full Syndicate Special Security Detachment, the Unfettered Expeditionary Fleet, and a full Hai Taskforce. I don't think I've ever heard of a fleet this large being in the one place, at least not since the Alpha Wars. This coordination role is not a joke. There's lots of scope for things to go wrong here. We will go in, clean up, and search for Hai. Parliament will reassess the scope of concern later depending on what we find down there. We follow your lead Captain <last>."`
 				accept
+			label prepare
+			`	She nods. "Very well, but don't take too long. We'll be waiting here for as long as we're able."`
+				defer
 	npc
 		government "Syndicate"
 		personality escort coward opportunistic vindictive
@@ -143,6 +152,9 @@ mission "Hai Reveal [B02] Join the Fleet"
 		fleet "Marauder fleet X" 4
 	# IX is 4 decent ships each, X is 6 ships but 2 are weak each. Total Fleet Size is roughly 28 + some chaff (~8).
 
+	on accept
+		fail "Hai Reveal [B01] Information Blackout"
+		fail "Hai Reveal [A11-B] Permanent Fleets"
 	on enter "Sumar"
 		dialog `You have reached the rendezvous and various fleets are arriving. You have never seen so many military vessels in one place. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone.`
 	on enter "Oblate"
