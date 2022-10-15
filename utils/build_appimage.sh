@@ -25,7 +25,8 @@ curl -sSL https://github.com$APPTOOL -o appimagetool && chmod +x appimagetool
 
 ./Endless_Sky-continuous-x86_64.AppImage --appimage-extract
 chmod -R 755 ./squashfs-root
-./appimagetool ./squashfs-root
+VERSION=000 ./appimagetool ./squashfs-root
+mv ./Endless_Sky-000-x86_64.AppImage $OUTPUT
 
 # Clean up
 rm -rf AppDir linuxdeploy appimagetool endless-sky.png Endless_Sky-continuous-x86_64.AppImage squashfs-root
