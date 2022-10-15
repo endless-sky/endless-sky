@@ -3175,7 +3175,7 @@ int Ship::JumpsRemaining(bool followParent) const
 	{
 		// If this ship has no destination, the parent's substitutes for it,
 		// but only if the location is reachable.
-		const auto &p = GetParent();
+		auto p = GetParent();
 		if(p)
 			jumpFuel = JumpFuel(p->GetTargetSystem());
 	}
@@ -3193,7 +3193,7 @@ bool Ship::NeedsFuel(bool followParent) const
 	{
 		// If this ship has no destination, the parent's substitutes for it,
 		// but only if the location is reachable.
-		const auto &p = GetParent();
+		auto p = GetParent();
 		if(p)
 			jumpFuel = JumpFuel(p->GetTargetSystem());
 	}
@@ -3214,16 +3214,7 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	bool linked = currentSystem->Links().count(destination);
-	// Figure out what sort of jump we're making.
-	if(attributes.Get("hyperdrive") && linked)
-		return HyperdriveFuel();
-
-	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel(linked ? 0. : currentSystem->Position().Distance(destination->Position()));
-
-	// If the given system is not reachable via hyperspace in one hop, return 0.
-	return 0.;
+	return GetCheapestJumpType(destination).second;
 }
 
 
