@@ -169,11 +169,11 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit, double shipHyperCost)
 // of each jump distance if necessary.
 void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 {
-	if(maxJumpRange < distance)
+	if(!maxJumpRange || maxJumpRange < distance)
 		maxJumpRange = distance;
 	// If a jump drive range isn't already accounted for or the existing cost
 	// for this range is more expensive, use the given cost.
-	if(!jumpDriveCosts.count(distance) || jumpDriveCosts[distance] > cost) {
+	if(!jumpDriveCosts.count(distance) || !jumpDriveCosts[distance] || jumpDriveCosts[distance] > cost) {
 		jumpDriveCosts[distance] = cost;
 
 		// If a cost was updated then we need to reassess other costs.
@@ -188,7 +188,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 			// If any jump range below this one is more expensive, then use
 			// this new, cheaper cost.
 			for(auto sit = jumpDriveCosts.begin() ; sit != it; ++sit)
-				if(sit->second > it->second)
+				if(!sit->second || sit->second > it->second)
 					sit->second = it->second;
 		}
 	}
