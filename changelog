@@ -27,7 +27,7 @@ Version 0.9.16:
       * Fixed an error where attempting to launch with a fighter as your flagship under certain circumstances could cause you to launch with no ship at all. (@petervdmeer)
       * Mission npcs that become disabled by corrosion damage will now properly have the disable objective set. (@RisingLeaf)
       * Disallowed planet labels from jumping around at different zoom levels for a better viewing experience. (@quyykk)
-      * Fixed a longstanding bug where npcs could get stuck thinking they need fuel after traveling through a wormhole. (@yjhn, @warp-core)
+      * Fixed a longstanding bug where npcs could get stuck thinking they need fuel after traveling through a wormhole. (@yjhn)
       * Fixed a bug where fighters would sometimes fail to reparent to a carrier that had space for them when recalled. (@samrocketman)
   * Game content:
     * Balance:
