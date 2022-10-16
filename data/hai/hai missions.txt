@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Hai"
 	landing
@@ -404,15 +407,10 @@ mission "Unfettered Jump Drive 2"
 mission "Unfettered Jump Drive 3"
 	minor
 	landing
-	name "More Jump Drives"
-	description "If you find more jump drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
+	invisible
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		has "Unfettered Jump Drive 4: offered"
 	source
 		attributes "unfettered"
 	on offer
@@ -426,7 +424,7 @@ mission "Unfettered Jump Drive 3"
 			choice
 				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
-					accept
+					goto job
 			apply
 				set "unfettered know of wanderers"
 			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
@@ -450,12 +448,14 @@ mission "Unfettered Jump Drive 3"
 			`	"Your help may indeed be beneficial to us," says the leader. "I will tell the others to contact you if they have any particular missions you can undertake."`
 			choice
 				`	"I look forward to hearing from them."`
-					accept
+					goto job
 				`	"What do you plan to do to the species that inhabits those worlds now?"`
 			
 			label wanderers
 			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
+			label job
+			`	"If you want to provide us with more jump drives, visit the job board from now on," says the leader. "We will have warriors ready to receive them from you for the usual pay."`
 				accept
 	
 	on accept
@@ -464,38 +464,7 @@ mission "Unfettered Jump Drive 3"
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
-
-
-
-mission "Unfettered Jump Drive 4"
-	repeat
-	minor
-	to offer
-		has "Unfettered Jump Drive 3: offered"
-		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		never
-	source
-		attributes "unfettered"
-	on offer
-		conversation
-			`Would you like to sell another jump drive to the Unfettered?`
-			choice
-				`	(No.)`
-					defer
-				`	(Yes.)`
-			`	As usual, they are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
-				accept
-	
-	on accept
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 40
-		fail "Unfettered Jump Drive 3"
-		fail "Unfettered Jump Drive 4"
+		fail
 
 
 
@@ -1441,7 +1410,7 @@ event "battle against scar's legion over"
 mission "Pirate Troubles [3]"
 	landing
 	name "Scar's Legion"
-	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>."
+	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the Keloid, then return to <destination>."
 	source "Scar's Hideout"
 	destination "Hai-home"
 	clearance
@@ -1593,7 +1562,7 @@ mission "Pirate Troubles [4]"
 		"reputation: Hai Merchant (Human)" += 40
 		"reputation: Hai Merchant (Sympathizers)" += 40
 	
-	npc save accompany
+	npc accompany save
 		government "Hai (Wormhole Access)"
 		personality escort
 		fleet
@@ -1735,10 +1704,10 @@ mission "Nanachi 3"
 					goto truth
 			label avoid
 			`	"Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance," says Nanachi.`
-					goto board
+				goto board
 			label fake
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
-					goto board
+				goto board
 			label truth
 			`	She looks at you in confusion, as if trying to understand what you mean, so you explain it to her. "Despite how much humanity has advanced in the past centuries, Earth has been largely neglected. Most of the land has been turned into cities, which have over the years decayed into slums. If you ever managed to visit you'd be better off going to museums or monuments, but even then there are many thieves roaming the streets and it is very dangerous to be out at night. Lots of folks born there just think about how to get out."`
 			`	You keep telling her about the issues facing humanity's birthplace, and her previous eagerness to learn about the planet fades. "How could your ancestors let their own home become like this?"`
@@ -1752,11 +1721,11 @@ mission "Nanachi 3"
 			choice
 				`	"I guess it isn't too unlike how the Unfettered have treated their worlds."`
 			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planning and preparing for adverse events."`
-					goto end
+				goto end
 			label end
 			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
 			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
-					goto board
+				goto board
 			label board
 			`	You two reach the job board and decide to start looking for jobs suited for Nanachi's ship.`
 			choice

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Bombardment Cannon"
 	category "Guns"
@@ -96,7 +99,7 @@ outfit "Finisher Pod"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "finisher fragment" 6
 		"inaccuracy" 5
@@ -133,7 +136,7 @@ outfit "Finisher Maegrolain"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "finisher fragment" 6
 		"inaccuracy" 6
@@ -158,7 +161,7 @@ outfit "Active Finisher"
 		sprite "projectile/finisher"
 			"frame rate" 2.4
 		"live effect" "finisher trail" 50
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "small explosion"
 		"lifetime" 500
@@ -215,7 +218,8 @@ effect "finisher impact"
 	sprite "effect/finisher impact"
 		"no repeat"
 		"frame rate" 20
-	"lifetime" 13
+	sound "torpedo hit"
+	"lifetime" 18
 	"random spin" 20
 	"random velocity" 2
 	"velocity scale" -.2
@@ -398,3 +402,42 @@ effect "ion rain impact"
 	"random spin" 2
 	"random velocity" 10
 	"velocity scale" -.1
+
+
+
+outfit "MCS Extractor"
+	category "Guns"
+	licenses
+		Coalition
+	cost 106000
+	thumbnail "outfit/mcs extractor"
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
+	"asteroid scan power" 18
+	"gun ports" -1
+	weapon
+		sound "drill"
+		"hit effect" "drilling"
+		"velocity" 10
+		"lifetime" 1
+		"reload" 1
+		"firing energy" .78
+		"firing heat" .68
+		"shield damage" .2
+		"hull damage" 1.4
+		"minable damage" 8.2
+	description `Not legally a weapon under Heliarch definitions, the "Mineral Collection and Sorting" extraction unit consists of a set of sharp, durable blades designed to quickly break down minable asteroids. It also comes with an integrated scanning system that looks for asteroids rich in minerals to facilitate the mining efforts.`
+	description `	Especially popular with novice pilots looking to pay off their ships, the extractor has been a reliable tool of mining businesses in the Coalition for millennia.`
+
+effect "drilling"
+	sprite effect/smoke
+		"no repeat"
+		scale 0.5
+	sound "explosion tiny"
+	lifetime 12
+	"velocity scale" -0.05
+	"random angle" 360
+	"random velocity" 2
+	"random spin" 2
+	"random frame rate" 2
