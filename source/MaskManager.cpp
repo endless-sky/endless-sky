@@ -36,7 +36,7 @@ void MaskManager::SetMasks(const Sprite *sprite, std::vector<Mask> &&masks)
 	if(it != scales.end())
 		it->second.swap(masks);
 	else
-		scales.emplace(DEFAULT, move(masks));
+		scales.emplace(DEFAULT, std::move(masks));
 }
 
 
