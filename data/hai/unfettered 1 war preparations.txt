@@ -1,0 +1,1334 @@
+# Copyright (c) 2022 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+mission "Unfettered: Alphas: Find The Auxiliary"
+	name `Find the Auxiliary`
+	description `Go to <destination> to learn where you can find the Alpha ship.`
+	source "Darkcloak"
+	destination "Firelode"
+	to offer
+		not "unfettered: destroyed auxiliary"
+		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
+		has "Unfettered: Materials Intercepted: done"
+	on offer
+		conversation
+			`As you enter the spaceport, you see the council gathered in a stadium looking similar to the one on Firelode, though larger. It seems like you will finally be able to get some answers, if you would like to see them now, that is.`
+			choice
+				`	(Enter the stadium and go see them.)`
+				`	(I don't have time right now.)`
+					defer
+			`	Seeing you approach, one of the leaders steps forward, and you recognize Nimo. "It seems you are an enemy to the unfettered humans, and we cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they. Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
+			choice
+				`	"What is it you want me to do? I don't like these Alphas."`
+					goto hate
+				`	"Who supplies your jump drives is none of my concern."`
+			`	"Good, and neither should it be, but if you want to join us, you will have to prove yourself. Beat that Auxiliary and bring back any loot you may find."`
+				goto next
+			label hate
+			`	"Perfect! We want you to prove your worth. Beat that unfettered human Auxiliary and return here for the greatest reward you can imagine."`
+			label next
+			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on the Alphas by bringing their ship back."`
+			choice
+				`	"How can I find them?"`
+			`	He seems amused. "That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Mera and ask her if she found anything useful in the logs."`
+			choice
+				`	"I better get on my way to kill Alphas then."`
+				`	"I won't risk engaging the Alphas."`
+					decline
+			`	Before you go, one of the warlords comes to speak to you personally. "Do not dare come back to us asking for more cooperation, should you fail this. That said, I'm not sure you would ever come back if you are not victorious. But never forget that jump drives matter more than anything else. You should steal as many as you can if you do indeed manage to beat the Alphas."`
+				accept
+
+
+
+mission "Unfettered: Alphas 2: Prove Yourself"
+	landing
+	name `Find and capture the Alpha Auxiliary`
+	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it.`
+	source "Firelode"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered: Alphas: Find The Auxiliary: done"
+	on offer
+		conversation
+			`Mera is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But don't worry: that Auxiliary can't go very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something.`
+			choice
+				`	"Get to the point. Where can I find it?"`
+				`	"What kind of damage?"`
+					goto damage
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
+				goto agree
+			label damage
+			`	"Some kind of beam weapon, and a very strong one at that. It looks like it only got partially deflected by the shields, if at all. I wonder what kind of weapon can do that." She looks intrigued, and pauses to think about it, then continues, "That would explain why it's forbidden for us to venture east with jump drives. We lack any hull repair capabilities, and to be honest with you, our hull is not much more resilient than the one of some human ships, like that Auxiliary."`
+			choice
+				`	"They seemed to be using the same weapon against me."`
+					goto logs
+				`	"What can we use that information for?"`
+					goto information
+			label logs
+			`	"Yes, I noticed on the scanner logs. I would advise not relying too heavily on your shields, but they don't seem to have that many of those weapons, so you should be fine. I do not believe they could have designed such weapons by themselves. They probably just stole them from nearby aliens."`
+			choice
+				`	"What about the damage on their ship? How is that relevant to my mission?"`
+					goto information
+				`	"You should have asked me to do an outfit scan, earlier."`
+			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'd agree that knowing more about those weapons would be useful. Now, back to the damage on their ship.`
+			label information
+			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and anti-matter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?`
+			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only Quargs have a similar level of technology, and they invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
+			label agree
+			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary means you will probably not have much time to wait to fuel up from the local stars either. Also, be prepared for a fight in space, as well as within the ship itself, to claim it."`
+				accept
+	waypoint "Hi Yahr"
+	on waypoint
+		dialog `You indeed notice the traces as you come back to the system where you found the Auxiliary. You figure they probably went east next with their jump drive, avoiding Hai territory.`
+	on enter "Celeborim"
+		dialog `You are on the right track. There are small traces here as well.`
+	on enter "Asikafarnut"
+		dialog `You are still on the right path, and you even find some small debris of ships. They probably had to stay here a bit longer to fight them off.`
+	on enter "Makferuti" "Sobarati"
+		dialog `There are no traces here. They probably went to another system, looking for refuge from the hostile drones.`
+	on enter "Silikatakfar" "Eneremprukt"
+		dialog `You cannot find any traces here. This is not the right direction.`
+	on enter "Mesuket"
+		dialog `This system looks dangerous. There is too much interference from the debris to pick up the traces, but you figure they would try to avoid this system.`
+	on enter "Persitar"
+		dialog `This doesn't look like a good hiding spot...`
+	on enter "Ferukistek"
+		dialog `There are traces here indeed. You spot one system with no hyperspace links north-east of here. It seems like a logical place for the Alphas to go, considering the drones do not appear to have jump drives.`
+	on enter "Host"
+		dialog `You arrive in the system expecting to find a vault and the ship repairing, but it's a trap! The Auxiliary from earlier is indeed here, but it's not damaged at all, and it looks like it's waiting for you with quite a few drones. Whatever the case, it probably has the jump drives on board or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. Strangely, you do not find a single trace of the particles in this system.`
+	
+	npc capture
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying vindictive target
+		ship "Auxiliary (Alpha)" "Settler"
+		dialog `While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of mercenaries. There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
+	npc
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying
+		ship "Far Osk 27" "Prancer"
+		ship "Far Osk 27" "Comet"
+		ship "Far Osk 27" "Dagger"
+		ship "Far Osk 27" "Oren"
+		ship "Far Osk 27" "Mert"
+		ship "Far Osk 27" "Dart"
+	npc
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying
+		to spawn
+			has "mercenaries: thorn talon death"
+		ship "Far Osk 27" "Vengeance"
+		ship "Far Osk 27" "Greed"
+		ship "Far Osk 27" "Darcy"
+		ship "Far Osk 27" "Karen"
+
+	to fail
+		has "Wanderers: Defend Vara Ke'sok: done"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog `You have landed, but without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have!`
+	to complete
+		has "Unfettered: Alphas 3: Bring The Spoils: offered"
+	on complete
+		log `Captured the Alpha Auxiliary. The Alphas had a trap set for me, but I got the upper hand.`
+		outfit "Jump Drive" -10
+		payment 10000000
+		"salary: Unfettered" = 1000
+		conversation
+			`As you land with the Auxiliary, you notice dozens of Unfettered start coming your way, cheering, and their numbers quickly grow to hundreds. More keep coming from every direction, probably expecting Jump Drives, but this could also be the first time they see the fabled Auxiliary in person. Whatever the case, they seem surprised when they realize it belongs to you. They murmur with each other and then they start saluting, by rising one fist up. First a few do it, then more, until finally all of them are saluting in respect.`
+			choice
+				`	(Raise my fist like warriors do.)`
+				`	(Bow.)`
+					goto bow
+				`	(Do nothing.)`
+					goto stadium
+			`	They approve of your risen fist, and seem happy you understand their culture.`
+				goto stadium
+			label bow
+			`	It does not seem to be the right reaction at all. They shout at you; all form of respect is gone. One very shocked Unfettered soldier even tries to shoot you for this insult! It looks like you have shown yourself to be weak to them. After some time, a warlord arrives and calms them down.`
+			label stadium
+			`	The crowd lead you to the stadium.`
+			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>!"`
+			choice
+				`	"I have found Korath prisoners on the Alpha ship."`
+			`	This seems to trouble them deeply. They are split between those who want to use the Korath for technological opportunities, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. When he stands, you see many scars on his arms, and can only guess what he went through. He speaks calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raids happened long ago. They could not have been responsible for those. They are victims of that war as much as we are. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers." This mention set off much murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be, but feel like now is not the time to ask.`
+			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Koraths out of your ship, after stabilizing them as much as could be done.`
+			branch logs
+				has "Unfettered: Alphas 3: Bring The Spoils: done"
+			``
+				decline
+			label logs
+			choice
+				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
+				`	"Did you know that the Alphas intended the leak, to lure me into a trap?"`
+					goto setup
+				`	(Do not speak to them about the logs.)`
+					decline
+			label showlogs
+			action
+				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decipher it.`
+				set "unfettered: jump drive source"
+				payment 200000
+			`	"Those are probably too well-encrypted to be of much use, but we will try to break them anyway, maybe with some outside help. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
+				decline
+			label setup
+			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the Chiefs are sometimes mysterious. They may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back, it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you. Maybe some planned this, but I can assure you that not all of us were accomplices."`
+			choice
+				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
+					goto showlogs
+				`	"I understand, but it will take a while to earn my trust back."`
+					decline
+				`	"I don't want to have anything to do with you Unfettered anymore."`
+			`	"It did not have to be this way, but if you want to go, we will not detain you. Do not expect any shares of the loot from us though."`
+			action
+				clear "salary: Unfettered"
+				fail "Unfettered: Alphas 2: Prove Yourself"
+				set "unfettered: betrayed"
+
+mission "Unfettered: Alphas 3: Bring The Spoils"
+	invisible
+	landing
+	source "Avalon"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered: Alphas 2: Prove Yourself: active"
+	on offer
+		outfit "Alpha Pirate Crew" -1
+		conversation
+			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
+			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems part of it has been replaced by a crude prosthetic. He may not survive the transport.`
+			`	You find the Jump Drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason.`
+			choice
+				`	(Explore the Auxiliary.)`
+				`	(Leave the planet.)`
+					decline
+			`	As you explore the Auxiliary, you find out more about their flight patterns. It seems the Alphas had big plans for these prisoners, as you see the lizard head symbol from earlier on many log entries, but the details are so well-encrypted that there is no hope learning more any time soon. You do find their captain's most recent log: apparently, they had indeed been waiting here to ambush you on arrival. You must have really scared them by scanning them in the Unfettered system to warrant such extreme response... Or maybe it's more than that.`
+			choice
+				`	(Look for reports of the leak.)`
+				`	(Better not dig too deep.)`
+					decline
+			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Indeed the instructions to lay those weird traces were explained to these mercenaries in detail. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Mera really think it was a jump drive malfunction?`
+			`	You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
+			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
+				accept
+		outfit "Jump Drive" 10
+
+	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
+		dialog `When you arrive in the Unfettered system, the local authorities relay a message to you, from Mera. "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
+
+
+
+mission "Unfettered: Solifuge 5: Materials For Ships"
+	name `Gather materials from asteroids`
+	description `Mine 100 tons of silicon from the asteroid field in Wah Yoot and 15 tons of silver from the asteroid field in <waypoints> and then bring them back to <destination> for <payment>.`
+	source "Darkcloak"
+	waypoint "Ehma Ti"
+	to offer
+		has "Unfettered: Alphas 2: Prove Yourself: done"
+	on offer
+		conversation
+			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Mera is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering materials here."`
+			choice
+				`	"What kind of materials do you need?"`
+			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead, friends. It is useless, for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
+			choice
+				`	(I know how and where to mine asteroids. Better get going.)`
+					accept
+				`	"How do I even collect minerals from asteroids?"`
+					goto asteroidtuto
+				`	"Where can I get those resources from?"`
+					goto where
+			label asteroidtuto
+			`	It looks like she is done speaking to the others, so now she comes to you and says, "Hello <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work! Now, back to your question: you've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back."`
+			choice
+				`	"I have no more questions. See you soon."`
+					accept
+				`	"Where can I get those resources from?"`
+					goto where2
+				`	"Sorry, but I'm no miner."`
+					decline
+			label where
+			`	It looks like she is done speaking to the others, now she comes to you and says, "Hi <first>, it has been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure, great work! Now back about your question: it's quite simple: silicon can be found right over our heads, and silver in Ehma Ti. The silicon asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural resistance."`
+			choice
+				`	"I have no more questions, see you soon."`
+					accept
+				`	"How do I even collect minerals from asteroids?"`
+					goto asteroidtuto2
+				`	"Sorry but I am no miner."`
+					decline
+			label where2
+			`	"Silicon can be found right over our heads, and silver in Ehma Ti. The silicon asteroid looks similar to copper, but they'e bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize, with its very small size and natural resistance. So, are you ready to go?"`
+				goto finalchoice
+			label asteroidtuto2
+			`	She seems a bit surprised. "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back. Now, are you ready to go?"`
+			label finalchoice
+			choice
+				`	"Indeed. See you soon."`
+					accept
+				`	"Sorry, but I'm no miner."`
+					decline
+	npc
+		government "Hai (Unfettered)"
+		personality harvests mining uninterested staying
+		system "Wah Yoot"
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle"
+	npc
+		government "Hai (Unfettered)"
+		personality mining uninterested launching
+		system "Wah Yoot"
+		fleet
+			names "hai"
+			variant
+				"Lightning Bug"
+	npc
+		government "Hai (Unfettered)"
+		personality harvests uninterested staying launching
+		system "Wah Yoot"
+		fleet
+			names "hai"
+			variant
+				"Water Bug"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on complete
+		log `Gathered materials for the Unfettered shipyards. They're building sizeable ships here.`
+		outfit "Silicon" -100
+		outfit "Silver" -15
+		payment 500000
+		conversation
+			`You bring your cargo to the local Unfettered shipyards, and see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
+			`	One of the Unfettered team leaders comes to speak to you, "My greatest thanks for these materials, they will be crucial in repairing our houses, probably more so than for our ships. Please, if you have the time, try to bring us more materials, we post missions on the job board when we need them the most. In the meantime, take these <payment> as a token of my gratitude."`
+
+
+
+mission "Unfettered: The Word Has Spread"
+	invisible
+	source "Firelode"
+	to offer
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+		has "passenger space" >= 66
+	on offer
+		conversation
+			`Even before exiting your ship, you notice that the recent activity has not diminished. People are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your Chief friend, Nimo, who seems happy to see you. "Ah, here you are when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. So many, in fact, that the sympathisers to our cause cannot keep up. Indeed those who join generally do so without a ship or many funds; what they are looking for is a chance at a new life, but they need help getting here. Could you provide that help?"`
+			choice
+				`	"Sure!"`
+					goto details
+				`	"Why do they want to join you?"`
+				`	"What battle are you talking about?"`
+					goto battle
+			label why
+			`	"It depends. Some want to utilize the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians, now that they're convinced the living conditions will not be as bad in our territory in the foreseeable future. Some also join us as health specialists to mitigate the loss of life. They want change, and we offer that change. They may have all they could possibly need at home, but that doesn't mean they feel like they have a purpose - or that they are fulfilling it."`
+			choice
+				`	"Let's gather the Hai then."`
+					goto details
+				`	"What battle are you talking about?"`
+				`	"No way. I'm not helping in your crusade."`
+					decline
+			label battle
+			`	"The only battle there is! The one you have helped us plan for so long: the reconquest of our lost glory and lost worlds, up north." The fire in his eyes proves he truly believes what he's telling you.`
+			choice
+				`	"Let's gather the Hai then."`
+					goto details
+				`	"Sure! I will join this battle."`
+				`	"Why would they want to join you?"`
+					goto why
+				`	"No way. I'm not helping your crusade."`
+					decline
+			`	"I like your enthusiasm, but all things most come in good time. First, you need to bring these people to their new home."`
+			label details
+			`	"Oh and before I forget," he adds, "we have divided the contract in two for practical reasons: you may choose to first get the Southern Hai, or the Northern section You could even do both at the same time, provided you have enough bunks for that. Be mindful that some could be impatient. Don't keep them waiting too long, else they may take the services of another captain, or worse, change their minds about joining us! They should at least wait a month or two, but if for some reason some of them do not return to us, you will only be paid part of the price."`
+				accept
+	to complete
+		has "Unfettered: The Word Has Spread North: done"
+		has "Unfettered: The Word Has Spread South: done"
+	on complete
+		log `Gathered all the Hai who wanted to join the Unfettered that I could find.`
+		clear "unfettered: days"
+		dialog `Nemo sends you a message, "congratulations, you managed to gather many true Hai. Should you want to bring more to their new homes be sure to check the job boards."`
+
+mission "Unfettered: Refresh The Clock"
+	invisible
+	repeat
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		"unfettered: days" = day + month * 30 + year * 365
+
+mission "Unfettered: The Word Has Spread North"
+	name `Gather the true Hai North`
+	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from <stopovers>, to <destination>.`
+	source "Firelode"
+	passengers 72
+	blocked `You need <bunks> passenger space for the next Unfettered mission.`
+	stopover "Cloudfire"
+	stopover "Snowfeather"
+	stopover "Mirrorlake"
+	stopover "Mahoganybox"
+	stopover "Makerplace"
+	stopover "Darkmetal"
+	stopover "Stonebreak"
+	on stopover
+		dialog `You have gathered all the Hai that had been assigned to you for the North part of Hai space, time to bring them to <destination>.`
+	to offer
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+	on offer
+		"unfettered: startdays north" = day + month * 30 + year * 365
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on complete
+		conversation
+			branch "reduced payment"
+				"unfettered: missing northern hai" > 1
+			action
+				payment 3000000
+			`The Hai from up North are all excited to join the Unfettered. You receive your payment of <payment>.`
+				decline
+			label "reduced payment"
+			branch "very reduced payment"
+				"unfettered: missing northern hai" > 2
+			action
+				payment 2000000
+			``
+				goto pay
+			label "very reduced payment"
+			branch "no payment"
+				"unfettered: missing northern hai" > 3
+			action
+				payment 1000000
+			label pay
+			`The Hai from up North are all excited to join the Unfettered. You only receive <payment> as a payment because not all Hai are accounted for.`
+			label "no payment"
+			`There are so many missing Hai that the Unfettered refuse to pay you anything for what little amount of Northern Hai come join them with you.`
+		clear "unfettered: startdays north"
+		clear "unfettered: missing northern hai"
+
+
+
+mission "Unfettered: The Word Has Spread South"
+	name `Gather the true Hai South`
+	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from <stopovers>, to <destination>. You will only get payed once the full transport is done, North and South.`
+	source "Firelode"
+	passengers 66
+	blocked `You need <bunks> passenger space for the next Unfettered mission.`
+	stopover "Icelake"
+	stopover "Newhome"
+	stopover "Greymoon"
+	stopover "Greenbloom"
+	stopover "Greenwater"
+	on stopover
+		dialog `You have gathered all the Hai that had been assigned to you for the South part of Hai space, time to bring them to <destination>.`
+	to offer
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+	on offer
+		"unfettered: startdays south" = day + month * 30 + year * 365
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	to complete
+		not "Unfettered: Family Hunt From Newhome: active"
+	on complete
+		conversation
+			branch "reduced payment"
+				"unfettered: missing southern hai" > 1
+			action
+				payment 3000000
+			`The Hai from down South are all excited to join the Unfettered. You receive your payment of <payment>.`
+				decline
+			label "reduced payment"
+			branch "very reduced payment"
+				"unfettered: missing southern hai" > 2
+			action
+				payment 2000000
+			``
+				goto pay
+			label "very reduced payment"
+			action
+				payment 1000000
+			label pay
+			`The Hai from down South are all excited to join the Unfettered. You only receive <payment> as a payment because not all Hai as accounted for.`
+		clear "unfettered: startdays south"
+		clear "unfettered: missing southern hai"
+
+
+
+mission "Unfettered: Solifuge 6: Shipyard Upgrade"
+	name `Gather intel on Hai shipyards`
+	description `Go to <stopovers> and try to discreetly learn how their ships are produced.`
+	source "Darkcloak"
+	stopover "Hai-home"
+	cargo "food" 34
+	clearance `After explaining you are here to take a tribute, you receive clearance to land.`
+	to offer
+		has "reputation: Hai" >= 0
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+	on offer
+		conversation
+			`As you land, you notice several large ships under construction at the shipyard. Would you like to check what's going on?`
+			choice
+				`	(Sure.)`
+				`	(Later.)`
+					defer
+			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of these ships," he says.`
+			choice
+				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
+				`	"Just curious: Why do you call me monkey? Have I not earned your respect yet?"`
+					goto curious
+			`	"Not at all. They're something much more powerful, something so strong it would [contend with, beat] even your Carriers. We were producing Shield Beetles here for quite some time already, long before your pitiful [existence, coming here]." He actually seems to be believing what he just said, but it's a bit difficult to imagine something that much stronger than a Carrier developed by the Unfettered.`
+			choice
+				`	"Why can't I buy Shield Beetles here then?"`
+				`	"Nothing's better than a Carrier."`
+					goto brag
+			`	"We haven't allowed you to purchase our [biggest, strongest] ships because we didn't have the [capacity, resources] to build enough of them at the same time. But you may help us with that, actually."`
+				goto mighty
+			label brag
+			`	"[Stupid, Young] monkey, thinks it knows everything... There are higher powers in this galaxy, and even then size isn't the only thing. Even if it is big and impressive, we have made something more advanced."`
+				goto mighty
+			label curious
+			`	He was about to say something, but instead ignores your question.`
+			label mighty
+			`	"If you want to [help, assist] us and get access to our mighty Shield Beetles and more, go to <destination>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass produce them."`
+			choice
+				`	"Will the Hai will let me land on their home world?"`
+			`	"Why would you need a [permission, authorization]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you have had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
+			choice
+				`	"I have a better idea: I'll tell them I come to collect your usual tribute."`
+				`	"This seems like it could easily go wrong. I'm not interested."`
+					decline
+			`	He seems genuinely impressed. "That is a [brilliant, mature] idea! Well what are you waiting for? Go on then."`
+				accept
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on complete
+		log `Gathered intel on a Hai shipyard for the Unfettered.`
+		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calling humans monkey. He is particularly skilled at management, and speaks trough a translator, although he has little to no problem understanding my language without it.`
+		payment 250000
+		conversation
+			`The warlord from earlier hands you <payment>, and introduces himself, "I would not give you my [true, original] name, but you may refer to me as He-Yi, the name that I [gained, deserved] when working for the Unfettered, and is attached to my current [status, position] as a warlord."`
+			branch noboughtship
+				not "unfettered: bought ship"
+			choice
+				`	(Ask him to pay for the ship you bought, and show him the detailed scanner logs.)`
+				`	(Just roll with it. You do not need extra money, and the more detailed scans were not asked for.)`
+					goto noboughtship
+			action
+				payment 1000000
+			`	"You had to pay a ship? Clever way to remove [suspicion, attention]. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more [detailed, refined] that what I even asked for."`
+			label noboughtship
+			choice
+				`	"Does this mean I can buy Shield Beetles now?"`
+				`	"What about my pay, for the tribute?"`
+					goto tribute
+			`	He seems amused. "For that, you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to Shield Beetles.`
+			choice
+				`	(Go.)`
+					decline
+				`	"What about my pay, for the tribute?"`
+			label tribute
+			action
+				payment 250000
+			`	He seems a bit surprised. "Oh, right. I had forgotten about that. Here: <payment>."`
+
+
+
+mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
+	invisible
+	landing
+	source "Hai-home"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered: Solifuge 6: Shipyard Upgrade: active"
+	on offer
+		conversation
+			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They don't seem to suspect anything. While they load up your ship, you to go to the shipyard to and act like you're considering buying a new ship, and a big one at that. "Unfortunately", you get lost and end up at the facility where they build the Geocoris and Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way. "Hi, how may I help you," he asks. You suspect he probably noticed you scanning the area, but he doesn't seem to have reported it to the local authorities, yet.`
+			choice
+				`	"Don't mind me, I'm just admiring the shipyard. It's so well... optimized, compared to human standards." (Pretend to move on and go scan another area.)`
+				`	"Actually, I'm here to buy a ship."`
+					goto buyship
+				`	"I've never seen such a big shipyard before. How can you manage it?"`
+					goto questions
+			`	"Oh, that it is! Well, I'll leave you to it then." He seems to be watching you, but eventually loses interest as you move far enough away.`
+				goto finishscan
+			label questions
+			`	"It's quite simple, actually. The key is optimizing the distribution of ship parts relative to installation location..." He continues explaining their process, and you try to remember everything so you can add it to your scans as extra information. When he's done, he asks, "Would you like me to give you a tour? My break is soon anyway, so I could take it early for you." The thought crosses your mind that he could be stalling for time if he's onto you.`
+			choice
+				`	"Please! I'd like a tour of all of it, especially the big ships."`
+				`	"No thanks. I came to retrieve a tribute, and I think I should get going now."`
+					goto suspect
+			`	He gives you a VIP tour of the whole shipyard facility, which is too good to be true. The tour ends at the local militia office, which has some questions about that scanner they find on you...`
+				decline
+			label buyship
+			`	"Oh, is that so? Well, normally I can't sell ships, but I could make an exception for you... But you do understand I cannot sell you a warship." He may mean you'll have to pay more for said ship. Better prepare your bank account! You think he would probably suspect something if you backed out now. Noticing your hesitation, he adds, "There's no issue if you don't have the money right now. I can offer you a loan of the exact price of the ship, with a small... bonus."`
+			label changedmind
+			choice
+				`	"I would like a Centipede."`
+					goto centipede
+				`	"This Water Bug seems efficient. I like that."`
+					goto waterbug
+				`	"Actually, I am only here to get a tribute for the Unfettered. These ships seem too costly for me, sorry."`
+			action
+				set "unfettered: too suspect"
+			``
+				goto suspect
+			label centipede
+			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere 12 million credits."`
+			choice
+				`	"I'll take it, then."`
+				`	"Actually, I changed my mind."`
+					goto changedmind
+			action
+				give ship "Centipede"
+				fine 12000000
+			``
+				goto bought
+			label waterbug
+			`	"A fine ship sir, the best of all the cargo haulers! I can assure you this ship takes a lot more punishment than any human hauler can! And it only costs you 13 million credits."`
+			choice
+				`	"I'll take it, then."`
+				`	"Actually, I changed my mind."`
+					goto changedmind
+			action
+				give ship "Water Bug"
+				fine 13000000
+			label bought
+			action
+				set "unfettered: bought ship"
+			`	He shows you to the ship you requested and tells you all about its different qualities, but you don't really listen - you only bought this ship so he would let you finish your scans. You did have to spend a fine sum for it though... You could always sell it back to someone else, at the shipyard. Maybe you could use this ship's scanners to get an even better scan of the ships here.`
+			label shipbought
+			`	Now that you're in the newly acquired ship, you pretend to look around until he leaves, seeing you are satisfied with your purchase. Then you get back to scanning the shipyard.`
+				goto finishscan
+			label suspect
+			`	"Oh well, that is indeed a most important thing! Please leave this shipyard, immediately." He says this with slightly more intensity, and you wonder if it's a threat.`
+			choice
+				`	(Pretend to leave, and then come back to finish the scans.)`
+				`	(Leave without the scans.)`
+					decline
+			label finishscan
+			branch toosuspect
+				has "unfettered: too suspect"
+			`	You manage to finish the scans without any more interruption, and are eager to get back to your ship to get all of this over with.`
+				accept
+			label toosuspect
+			action
+				fine 100000
+			`	It looks like you have aroused too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
+			action
+				clear "unfettered: too suspect"
+	on decline
+		fail "Unfettered: Solifuge 6: Shipyard Upgrade"
+
+
+
+mission "Unfettered: Solifuge 8: Useful Korath Scientists"
+	landing
+	name `Primitive Cooling Technology`
+	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 300 tons of nitrogen human cooling.`
+	source "Firelode"
+	to offer
+		has "Unfettered: Alphas 2: Prove Yourself: done"
+	on offer
+		conversation
+			`As soon as you land, an Unfettered notifies you that Mera wishes to speak with you, and you should come with him to see her in her labs.`
+			choice
+				`	(Follow him.)`
+				`	"I don't have time right now. I'll come back later."`
+					defer
+			`	The lab is like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Mera working around a Williwaw cooler, but she's not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They all look around, seeming excited, and like they can't focus on one thing at a time. Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet.`
+			choice
+				`	"Here I am. What do you need me for?"`
+				`	(Wait for them to notice me.)`
+					goto wait
+				`	(Ask the Korath about the one who's missing.)"`
+					goto other
+			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it's the crude translator you found with them. It probably just translated everything you said, but it often repeats words you said in your own language. This translator is definitely incomplete.`
+				goto objective
+			label other
+			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it's the crude translator you found with them. It probably just translated everything you said, but it often repeats words you said in your own language. This translator is definitely incomplete.`
+			`	They speak very quickly, and the translator can barely follow. They don't seem to pause when speaking. "'Ter' will 'Ak' speak about it to 'Mer' which 'Ter' do 'Ak' trust insist and 'Ter' will 'Mah' you into nutrigel 'Ter' 'Me' only the brood master could 'Mahem.'" It seems like you have saddened them by speaking of this, and you probably cannot get any more information out of them for now. They start speaking together even faster than before, and the translator cannot make any sense out of it.`
+				goto objective
+			label wait
+			`	The Korath eventually notice you and begin staring. Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the 'Mer' who saved 'Ter' why is it 'Terah' to see 'Ter' did it expect 'Ter' would all 'Fel'?" You realize they've probably noticed you're surprised to see them here.`
+			choice
+				`	"I didn't expect you to be back to working so soon."`
+					goto working
+				`	"I didn't think you would be trusted enough to have access to Hai technology already."`
+				`	"I wasn't sure you would help the Hai at all."`
+					goto help
+			`	They make a weird sound that's probably laughter. "You call this 'Mesuk,'" he says, showing you the cooler. "Even our 'Rem' 'Sorobeh' can do something so primitive but to speak 'Ter' tongue there are some interesting 'Estar' here 'Erma' not made by 'Unkor' races like you and the Hai like the 'E Shema' cooler they stole from 'Ter' 'Unkor' will never 'Tema'."`
+				goto objective
+			label help
+			`	You seem to have hit a nerve. "'Ter'... Have a 'Noc' toward the Unfettered but needs to be 'Terma' else 'Ter' cannot be free then they will have a 'Noc' with 'Ter.'"`
+				goto objective
+			label working
+			`	"Unlike it 'Ter' are 'Akeh' 'Ter' always stay 'Akeh' even when having to 'Keh' what you call foood it is 'Eta' nutrigel."`
+			choice
+				`	"I see why the Hai allowed you to access their technology .You think in a similar way."`
+				`	"Oh, is that why you got captured by the Alphas?"`
+			`	They seem to grumble a bit about what you just said, but the translator cannot decipher any meaning. Considering what they could be saying, it's probably for the best.`			
+			label objective
+			`	Mera stops whatever it is that she was doing on the cooler and comes to speak to you. "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains.`
+			choice
+				`	"That can't be hard. I'll go look for human coolers then."`
+					goto quantity
+				`	"Can you be more specific?"`
+			`	"Not really. I don't know all kinds of cooling your species could have, but it most be large, considering your technology is not as heat efficient as ours. You're probably even using things like water, ha! Don't bring us something quite that primitive. We want the good stuff, like your nitrogen cooling, for instance. Do bring a lot of it, say, 300 tons."`
+			choice
+				`	"I'll go look for those then."`
+					accept
+				`	"I'm not interested in helping you any more."`
+					decline
+			label quantity
+			`	"Be sure to bring back 300 tons worth of nitrogen coolers so we have a solid base to work on. Don't bring us things like simple, water-based systems."`
+				accept
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog "You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them."
+	on complete
+		outfit "Liquid Nitrogen Cooler" -15
+		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
+		payment 2500000
+		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials."`
+		event "unfettered: new cooling system" 40
+
+event "unfettered: new cooling system"
+	outfitter "Unfettered Basics"
+		add "Hai Zephyr Cooling"
+
+mission "Unfettered: New Cooling Available"
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "event: unfettered: new cooling system"
+	on offer
+		conversation
+			`You receive a message from Mera. "Hi <first>. Remember the coolers you helped to develop? They are finally available on Darkcloak. We don't yet have enough to equip all of our ships with them, but that's not required yet since our current weapons don't generate that much heat. However, you're welcome to buy as many as you want!"`
+				decline
+
+
+
+mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
+	name `Bring industrials materials`
+	description `Go to <stopovers> and load up <cargo>`
+	source "Darkcloak"
+	stopover "Covert"
+	cargo "industrial materials" 450
+	blocked `You need <tons> of cargo space for the next Unfettered mission.`
+	to offer
+		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
+		has "Unfettered: Solifuge 7: Hai Shipyard Intel: done"
+		or
+			has "Unfettered: Loot: Ion Cannon Materials: done"
+			has "Unfettered: Loot: Ion Cannon Materials: declined"
+	on offer
+		conversation
+			`You see the He-Yi near the shipyard. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
+			branch "has access to hai SB"
+				"reputation: Hai" >= 100
+			choice
+				`	(Sure, I want my Shield Beetles!)`
+					goto gosee
+				`	(Later.)`
+					defer
+			label "has access to hai SB"
+			choice
+				`	(I don't care much for Shield Beetles, but he promised some better ships too.)`
+				`	(I can already buy Shield Beetles from the Hai, why bother? I do not need any special ships, or outfits from here.)`
+					decline
+				`	(Later.)`
+					defer
+			label gosee
+			`	He does not seem very surprised to see you. "Coming for more [big, strong] ships?" You feel like him asking this is just a formality. He already knows your answer.`
+			choice
+				`	"Yeah. Just tell me what to do to help."`
+					goto help
+				`	"Why do you say that?"`
+			`	"I know that your species loves big things. I guess that makes two of us. Since you are here, you can help us anyway."`
+			label help
+			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial [materials, supplies] to build the new sections, and a lot of them. We already have some on the way, but more would help speed things up [significantly, reasonably], especially given that your jump drives can make it there faster than pirates. Hopefully that also results in less risk to [the cargo, your ship]."`
+			choice
+				`	"I will cover whatever distance necessary."`
+				`	"I don't want to do long distance cargo missions. Screw the Unfettered and your big ships."`
+					decline
+			`	"Good, then go to <stopovers> and take the [materials, supplies] there.. Don't stay too long, and try not to attract [suspicion, attention]. These [green humans, unfettered humans] are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major [extracting, processing] operations, so we can easily arrange for you to acquire [materials, supplies] from there."`
+			choice
+				`	"Time to go then."`
+					accept
+	on stopover
+		dialog "You find your cargo waiting for you and take it without asking questions or losing time."
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on complete
+		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
+		give ship "Modified Shield Beetle" "Basilisk"
+		event "unfettered: shield beetle mass production" 30
+		conversation
+			`After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message. There is also a side note, probably from He-Yi: "Make sure to check the job board for more jobs like this one. We appreciate the help."`
+
+event "unfettered: shield beetle mass production"
+	planet "Darkcloak"
+		add outfitter "Unfettered"
+
+mission "Unfettered: Improved Production"
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "event: unfettered: shield beetle mass production"
+	on offer
+		conversation
+			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
+				decline
+
+
+
+outfit "Mystery Cube"
+	category "Special"
+	mass 1
+	cost 1000000
+	thumbnail "outfit/unknown"
+
+ship "Marauder Leviathan" "Leviathan (Cube)"
+	outfits
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Anti-Missile Turret"
+		"D94-YV Shield Generator"
+		"Fusion Reactor"
+		Hyperdrive
+		"LP144a Battery Pack"
+		"Laser Rifle" 69
+		"Security Station" 5
+		"Small Bunk Room"
+		"Liquid Helium Cooler"
+		"Luxury Accommodations"
+		"Proton Turret" 3
+		Torpedo 102
+		"Torpedo Launcher" 4
+		"Torpedo Storage Rack" 6
+	cargo
+		outfits
+			"Gold Bars" 15
+			"Mystery Cube"
+
+mission "Unfettered: Special Cargo"
+	name `Mystery item`
+	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He-Yi on <planet>.`
+	to offer
+		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "reputation: Hai" >= 0
+	source "Darkcloak"
+	waypoint "Alcyone"
+	destination "Warfeed"
+	on offer
+		conversation
+			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
+			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - by any means."`
+			choice
+				`	"How will I know which warlord it is?"`
+			`	"It is no common warlord. To tell you the truth, she is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
+			`	"This warlord, Mhairi, has beaten the previous warlord in power there, right after he sent the orders to acquire the item. She may not know about it yet, but the officers of the previous warlord probably will - and those officers are now hers. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"Is it common for the Unfettered to use heralds to bring messages?"`
+				`	"This seems too risky for me."`
+					decline
+			`	"We don't believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, it is quite common to use heralds. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"You could have just sent a message on a secure channel."`
+			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those north to learn from this. They would surely be able to decrypt it.`
+			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"This seems too risky for me."`
+					decline
+	on waypoint
+		dialog `It seems that the Degenerate is in this system, but judging from the marks on its hull, it will likely land to make repairs soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
+	npc board
+		personality staying target
+		to despawn
+			has "Unfettered: Special Cargo 1B: active"
+		government "Mhairi's Legion"
+		system "Alcyone"
+		ship "Leviathan (Cube)" "Degenerate"
+		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
+	npc
+		personality coward plunders vindictive staying
+		government "Mhairi's Legion"
+		system "Alcyone"
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 5
+	on visit
+		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
+	on complete
+		require "Mystery Cube"
+
+
+
+mission "Unfettered: Cargo on Mirrorlake"
+	landing
+	invisible
+	source "Mirrorlake"
+	to offer
+		has "Unfettered: Special Cargo 2: active"
+	on offer
+		outfit "Mystery Cube" -1
+		conversation
+			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
+				decline
+
+mission "Unfettered: Special Cargo 2"
+	landing
+	name `Mystery Gathering`
+	description `Collect a tribute of food from <stopovers>, and place the mystery cube without anyone noticing.`
+	source "Warfeed"
+	stopover "Mirrorlake"
+	cargo "food (tribute)" 93
+	blocked `You need <tons> of cargo space for the next Unfettered mission.`
+	to offer
+		has "reputation: Hai" >= 0
+		has "Unfettered: Special Cargo: done"
+	on offer
+		conversation
+			branch bought
+				has "unfettered: brokered deal"
+			branch stole
+				has "Unfettered: Special Cargo 1B: done"
+			action
+				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
+			``
+				goto afterlog
+			label stole
+			action
+				log `Managed to steal a very precious mystery cube from a pirate ship.`
+			``
+				goto afterlog
+			label bought
+			action
+				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
+			label afterlog
+			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
+			branch nodeal
+				not "unfettered: brokered deal"
+			action
+				clear "unfettered: brokered deal"
+				payment 2000000
+			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
+			label nodeal
+			`	"I want you to go to <stopovers> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
+			choice
+				`	"Is this the real reason for my trip, like with the shipyard?"`
+			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
+			choice
+				`	"I'll do it."`
+					accept
+				`	"What will this cube do?"`
+				`	"I was almost caught last time. I'm not trying again."`
+					decline
+			`	"You have earned the right to know, considering it is you who brought it to us. It's a very [complex, advanced] surveillance device, which should record everything that happens on the world as well as in [the system, space]."`
+			choice
+				`	"Why this particular world?"`
+				`	"I'll do it."`
+					accept
+			`	"All important Hai ships are built on our homeworld. That would be a perfect place to put this cube, but we don't want to bring too much [heat, attention] onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet [movements, activities], in order to be able to react in time should the worst arrive. Of course, we need something [unpredicted, discreet] to do it, else our operatives could get caught."`
+			choice
+				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
+				`	"I'll do it."`
+					accept
+			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
+			choice
+				`	"I'll do it."`
+					accept
+				`	"I was almost caught last time. I'm not trying again."`
+					decline
+	to complete
+		has "Unfettered: Cargo on Mirrorlake: offered"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		log `Placed a mysterious cube in a clearing on Mirrorlake. It should give intel on Hai ship movements to the Unfettered.`
+		payment 5000000
+		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
+
+
+
+ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
+	add attributes
+		"outfit space" 2
+		"weapon capacity" 3
+	outfits
+		"Tripulse Shredder" 8
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 3
+		"Outfits Expansion"
+		"Pulse Rifle" 40
+		"Dual Pulse Pistols"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
+mission "Unfettered: Start Of The War"
+	name `Strength Of A Leader`
+	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
+	source "Darkcloak"
+	substitutions
+		<question> "How does your ship cloak?"
+			not "Unfettered: Cloaking Interest: done"
+		<question> "Why is your hull black?"
+			has "Unfettered: Cloaking Interest: done"
+	to offer
+		has "event: unfettered: shield beetle mass production"
+		has "event: unfettered: new cooling system"
+		has "Unfettered: Special Cargo 2: done"
+		has "main plot completed"
+		has "language: Wanderer"
+	on offer
+		conversation
+			branch "came alone"
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra starts speaking to you, "You have brought too many ships, come back with only your flagship, or a few lighter ships."`
+				defer
+			label "came alone"
+			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?" It seems to be a rhetorical question, and he does not wait for you to answer at all. He adds, "All Unfettered are expected to be ready for war, at any time."`
+			`	Si-Ra comes closer and takes you aside to speak to you, privately. "I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
+			choice
+				`	"I was born ready."`
+				`	"On second thought, I'll come back later."`
+					goto later
+				`	"Now that it's here I'm starting to realize I don't want to be a part of your war. I'm out.`
+					decline
+			`	"And may you die ready as well. Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
+				accept
+			label later
+			`	"Be sure to come back soon. War cannot wait forever."`
+				defer
+	npc save disable
+		to despawn
+			has "unfettered: defeated Si-Ra"
+		government "Hai (Unfettered Challenge)"
+		ship "Enhanced Shield Beetle (Pulse)" "Intrepid II"
+		personality disables staying heroic target launching
+		conversation
+			`"You have defeated me, But He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him."`
+			action
+				set "unfettered: defeated Si-Ra"
+	npc save disable
+		to spawn
+			has "unfettered: defeated Si-Ra"
+		government "Hai (Unfettered Challenge)"
+		ship "Stag Beetle" "Tejolis"
+		personality disables staying heroic target launching
+		conversation
+			action
+				"reputation: Hai (Unfettered)" += 100
+				event "shield beetles accessible"
+			`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
+			choice
+				`	"You were overconfident, and that's what let you down."`
+					goto mistake
+				`	"A good fight, but you just had no chance against my superior firepower."`
+				`	"I was easily able to outmanoeuver you."`
+					goto mistake
+				`	"Nothing specific. Well fought to both of you."`
+					goto train
+			`	He-Yi answer first. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
+			`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
+				goto train
+			label mistake
+			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
+			`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
+			label train
+			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on complete
+		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships.`
+		"salary: Unfettered" = 5000
+		set "license: True Unfettered"
+		event "joined the unfettered"
+		clear "unfettered: defeated Si-Ra"
+		#"reputation: Wanderer" <?= -1000 
+		#TO BE UNCOMMENTED FOR PR TO BE MERGED!!
+		conversation
+			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our [flag, colors]. We have informed the Hai of your new colors so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
+			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
+			choice
+				`	"I would like to ask a few questions, about your ship."`
+				`	"I am honoured, and hope we will fight again, later."`
+					accept
+			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few."`
+			action
+				"unfettered: questions" = -1
+			label questions
+			action
+				"unfettered: questions" ++
+			branch enough
+				"unfettered: questions" > 3
+			choice
+				`	"What does this sword do?"`
+				`	"Why is your ship named Tejolis?"`
+					goto tejolis
+				`	"Why is your ship hull so strong?"`
+					goto hull
+				`	"<question>"`
+					goto cloak
+				`	"What kind of weapons are you using?"`
+					goto weapon
+				`	"I am honoured, but I don't have any more questions."`
+					accept
+			`	"You are aware of what our keystones are, right? They aren't believed to give [luck, fame] for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a [gun, simple weapon] for boarding. It was given to me by the council many years ago, matching my [responsibility, task] as well as my character."`
+				goto questions
+			label tejolis
+			`	"Tejolis is the goddess of [strategy, apt thinking], which you could call intelligence. It is the aptitude to make good judgments based on context. For instance, if you have time to choose, a quick decision does not make sense, and a wrong decision is hard to [justify, forgive]. Likewise, when time is of the essence, one must learn to [act, react] quickly or be overwhelmed by the actions of others. I named this ship in her honor and I have a statue of her in my war room because I follow her [teachings, legacy]."`
+				goto questions
+			label hull
+			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath [raider, warship]. Those materials are more sturdy than normal Hai ones, which is why this ship is so [impervious, resilient] to hull damage. However, it comes at the cost of cooling efficiency."`
+				goto questions
+			label cloak
+			`	"Many years ago, when the Korath attacked us, they used a [ghost, fantom] ship. It would attack the [convoys, defenceless], and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depart it returned, always [harassing, plundering] us. The ghost managed to take on countless of convoys and escorts without issue, using its superior [technology, weaponry] and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was [not there anymore, gone]."`
+			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it [disappeared, cloaked], they stopped shooting like usual and acted in distress, making the ghost [arrogant, overconfident]. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its [escape, cloaking]. The ghost ship disappeared, but it was too late. One of the convoy ships nearby [rammed, crashed] into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of [shooting it down, damaging it]. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never [disappeared, cloaked] for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the [damaged, incomplete] cloaking device remained installed."`
+			branch "gave cloak"
+				has "Unfettered: Cloaking Interest: done"
+			``
+				goto questions
+			label "gave cloak"
+			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully [replace, overwrite] the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know [almost nothing, little] about."`
+				goto questions
+			label weapon
+			branch helped
+				has "Unfettered: Bring Detainer: done"
+			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the [automated, soulless] killing machines to the east, I went looking for such weapons under the [assurance, safety] of my cloak. I expected to battle for it, but the killing machines are fighting other killing machines. I just watched them battle from a distance and then swiftly looted a ship... Except it [self destructed, exploded] in my face. So I looked for another one, and that one did not explode. I took the weapon and came home, [proud, victorious]. I had barely enough space in my cargo hold for it."`
+				goto otherweapons
+			label helped
+			`	"Well, as you know, you brought the Detainer to me in exchange for the translation device."`
+			label otherweapons
+			`	"For the other weapons, it was loot [taken, collected] during the Korath raids that we have held onto. The Sunbeams are the most recent addition to the ship, which were looted from ships in the north. And then of course, our anti-missile systems are cheap and effective at countering large volumes. Last, I'm sure you know plenty about flamethrowers. They are crude, but [effective, powerful]."`
+				goto questions
+			label enough
+			`	"I have answered enough of your questions. Some things should remain a mystery. Knowledge is power, after all."`
+			action
+				clear "unfettered: questions"
+
+event "joined the unfettered"
+	government "Escort"
+		swizzle 4
+
+event "shield beetles accessible"
+	planet "Darkcloak"
+		add shipyard "Unfettered"
+
+
+
+mission "Unfettered: Close Quarter"
+	name `Close Quarter Fighting`
+	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
+	source "Warfeed"
+	to offer
+		or
+			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: declined"
+		or
+			not "unfettered: offered close quarter"
+			random < 30
+	on defer
+		set "unfettered: offered close quarter"
+	on offer
+		conversation
+			`You can see movement in the spaceport. People seem to be heading to one place in particular, and you can hear some shouting coming from that direction. Do you want to go take a look?`
+			choice
+				`	(Of course.)`
+				`	(Not now.)`
+					defer
+			`	You see where all the Unfettered were going, and come across a large field where they seem to be practicing close-quarters combat, grouped in circles of different sizes. You don't understand all that is going on, but it seems like the bigger the circle, the more opponents you have to fight. He-Yi is standing in the biggest of them all.`
+			choice
+				`	(Go closer to see what's going on.)`
+				`	(Leave. This doesn't seem interesting.)`
+					decline
+			`	As you move closer, you realize that the circles in the dirt are colored differently, but you're not sure what significance they hold. The Unfettered aren't all fighting with the same weapons - they move between circles, like in a huge dance. Some of them seem to have standard Hai weapons, but it doesn't look like they're deadly.`
+			choice
+				`	(Join the fight!)`
+					goto fight
+				`	(Keep looking.)`
+			`	You keep looking around and are eventually attracted toward the bigger fight, the one He-Yi is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
+			choice
+				`	(Challenge him.)`
+					goto challenge
+				`	(Try to speak to him.)`
+					goto speak
+				`	(Join another less risky fight.)`
+			label fight
+			`	You look at different fights and see one with less experienced, younger Unfettered who seem to be fighting in a less crowded area than the rest. As you come closer, they see your interest and propose you join them.`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					goto nope
+			`	One of them comes toward you. "I challenge you, <last>! Tales of your strength have been spread, I want to test it first-hand. If I win, I demand you tell me those stories yourself." You are surprised he knows your language so well. He is equipped with what looks to be a twin pistol version of the standard Hai rifles.`
+			choice
+				`	"I'm sure those tales don't do me justice. I accept!"`
+				`	"Very well. But if I win, I want your weapon."`
+					goto weapon
+			`	"I see the tales about your wisdom were exaggerated at least," he snarks, first in your language, then he translates for his friends.`
+			label weapon
+			`	He looks at his weapons, thinking. Then he nods and hands you one of the pistols. "I have set it on training. We wouldn't want any accidents to happen," he adds. He says something to his friends, apparently telling them to move away. Then he moves away to the edge of the blue circle. "Because this is your first time, I will let you choose your position and have the initiative. The rules are simple: once you shout, the fight begins." You understand why you heard so much of that earlier.`
+			choice
+				`	(Shout now to surprise him.)`
+					goto start
+				`	(Get into position and try to prepare.)`
+			`	You carefully observe your surroundings, and decide to head toward one of the smaller circles. Everything is simulated to resemble an urban environment, probably because the original Unfettered had to protect their cities from the Korath. You feel the adrenaline of the coming battle surging into your veins.`
+			label start
+			`	You shout and try to shoot him... Except you completely miss him; you weren't expecting so much recoil from such a small pistol. It also seems to be wildly inaccurate. Obviously, your opponent knew this, and he is already rushing your way.`
+			choice
+				`	(Stay here and get ready for your next shot.)`
+					goto ready
+				`	(Go for the cover on the right.)`
+			branch lucky
+				random < 20
+			`	You try to head for cover, but he's too fast, and you receive a shot on your leg, making you fall. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your leg at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
+				goto stories
+			label lucky
+			action
+				outfit "Dual Pulse Pistols"
+				set "unfettered: won the duel"
+			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them; you've earned it. This was a fair fight, Captain! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
+				goto heyi
+			label ready
+			`	You try to shoot him, but he's too fast and you too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
+			label stories
+			`	 As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
+			label heyi
+			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a [nice, skillful] fight, especially considering this must be your first!"`
+			branch "lost fight"
+				not "unfettered: won the duel"
+			choice
+				`	"Can I help you with something?"`
+					goto speak
+				`	"Winning felt good."`
+					goto won
+				`	"It was quite fun. Do you do this often?"`
+					goto fun
+			label "lost fight"
+			choice
+				`	"Can I help you with something?"`
+					goto speak
+				`	"Well, I lost."`
+					goto lost
+				`	"It was quite fun. Do you do this often?"`
+			label fun
+			`	"Fun, that it is! This [practice, ritual] is part of life for most Unfettered. We must always be ready to [repel, lead] a ground assault, as we always were. To that end we need to try most weapons, and [ways of fighting, tactics], which we do here."`
+				goto speak
+			label won
+			`	"Yes indeed, that was quite impressive! I most say, I never expected that out of you. I don't know if you got lucky or it was just superior skill or experience but you showed that [young, inexperienced] one a lesson! I have something to ask of you."`
+				goto speak
+			label lost
+			`	"Oh, well I got distracted near the end, so I wouldn't know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so. You may not have won the [fight, battle], but you have won something else."`
+			choice
+				`	"And what is that?"`
+				`	"Can I help you with anything?"`
+					goto speak
+			`	"Experience? Fun? There is always something to be [gained, deserved], even when there is not the risk of losing your life."`
+				goto speak
+			label challenge
+			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however, and he comes to speak to you.`
+				goto speak
+			label nope
+			`	You watch them battling for so long you don't notice time pass, but then you realize you are being watched. It is He-Yi. He looks satisfied of your interest in this fight. "You should try it someday," he says.`
+			label speak
+			`	"As you may have noticed, we do this [fighting, training] quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get [killed, seriously wounded]. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too [enthusiastic, trigger-happy]... They shoot one too many times to make sure to [win, hit]. We have experimented with some less powerful versions of our rifles, but those don't reflect war well enough for our liking. Do you happen to know any weapons that would not have such weaknesses - any that would be non-lethal but still not meant for child's play? I would expect said weapons to be even [stronger, more useful] than ours."`
+			choice
+				`	"Yes, I think I do."`
+					goto idea
+				`	"I have no idea, sorry."`
+			`	"I've heard stories of weapons that could not ever kill anyone, no matter how much you shoot him," He-Yi muses.`
+			label idea
+			`	"If you ever find any weapon that's [safer, less risky] than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird [territory, space]. I would not have expected them to use weapons at all, but maybe they too have [Unfettered, true] people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, twenty of them?"`
+			choice
+				`	"I'll see what I can do."`
+					accept
+				`	"I have no interest in bringing you weapons, even the least deadly."`
+					decline
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	to complete
+		or
+			has "Bring Pug Staves: failed"
+			has "Bring Coalition Weapons: failed"
+			has "Bring Void Rifle: failed"
+	on complete
+		clear "unfettered: offered close quarter"
+		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
+		conversation
+			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be [helpful, decisive] in the coming war."`
+			choice
+				`	"How can a few better-trained troops make a difference?"`
+				`	"Glad I could make a difference then."`
+					goto getrd
+			`	"Well... To be completely [true, honest] with you, these weapons are not only intended for training purposes, but I cannot tell you any more for now."`
+			label getrd
+			`	"We'll soon want your help with the upcoming invasion, so you best be [prepared, experienced]! Having a strong flagship is always an important asset, but it is not all." It is not clear whether he means more ships or better strategy, and knowing him, it could be either.`
+			choice
+				`	"The Basilisk will not be enough, I take it?"`
+				`	"In that case, I'll go prepare myself."`
+					goto train
+			`	"The Basilisk is very strong, but it is only [a prototype, an experience]. It has its weaknesses."`
+			label train
+			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
+
+mission "Bring Pug Staves"
+	invisible
+	landing
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		require "Pug Peacekeeping Staff" 20
+		dialog `Do you want to sell 20 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
+	on accept
+		payment 2500000
+		outfit "Pug Peacekeeping Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		fail
+
+mission "Bring Coalition Weapons"
+	invisible
+	landing
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		require "Enforcer Riot Staff" 20
+		dialog `Do you want to sell 20 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
+	on accept
+		payment 4000000
+		outfit "Enforcer Riot Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		fail

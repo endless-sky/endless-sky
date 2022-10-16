@@ -572,6 +572,8 @@ government "Mercenaries"
 	"player reputation" -1000
 	"attitude toward"
 		"Hai (Governer Escort)" -.01
+		"Shadow" .01
+		"Hydra" -.1
 	bribe .25
 	fine 0
 	"friendly hail" "friendly mercenary"
@@ -585,6 +587,7 @@ government "Hydra"
 	"attitude toward"
 		"Shadow" -.1
 		"Korath" -.01
+		"Mercenaries" -.1
 	"display name" "Pirate"
 	bribe 0
 	fine 0
@@ -593,6 +596,7 @@ government "Hydra"
 government "Shadow"
 	swizzle 4
 	"attitude toward"
+		"Mercenaries" .01
 		"Hydra" -.1
 		"Korath" -.01
 	bribe 0

@@ -52,6 +52,9 @@ ship Antlion
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
 		"Quantum Keystone"
+	cargo
+		outfits
+			"Gold Bars" 50
 	"steering engine" 62 10
 		zoom 0.6
 		right
