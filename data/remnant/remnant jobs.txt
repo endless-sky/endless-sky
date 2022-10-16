@@ -350,9 +350,7 @@ mission "Remnant: Rescue"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -419,9 +417,7 @@ mission "Remnant: Rescue 1B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -458,9 +454,7 @@ mission "Remnant: Rescue 2"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -499,9 +493,7 @@ mission "Remnant: Rescue 2B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -538,9 +530,7 @@ mission "Remnant: Rescue 3"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -577,9 +567,7 @@ mission "Remnant: Rescue 3B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -615,9 +603,7 @@ mission "Remnant: Rescue 4"
 			attributes "graveyard"
 			not attributes "inaccessible"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not system "Patir"
 			not system "Aki'il"
 		personality escort derelict heroic plunders
 		government "Remnant"
