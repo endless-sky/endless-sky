@@ -322,6 +322,7 @@ public:
 	double HyperdriveFuel() const;
 	double JumpDriveFuel(double jumpDistance = 0.) const;
 	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
+	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
