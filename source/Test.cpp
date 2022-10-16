@@ -7,15 +7,18 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Test.h"
 
 #include "DataNode.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -32,18 +35,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-
-
-namespace{
-	const map<Test::Status, const string> STATUS_TO_TEXT = {
+namespace {
+	const auto STATUS_TO_TEXT = map<Test::Status, const string> {
 		{Test::Status::ACTIVE, "active"},
 		{Test::Status::BROKEN, "broken"},
 		{Test::Status::KNOWN_FAILURE, "known failure"},
 		{Test::Status::MISSING_FEATURE, "missing feature"},
 		{Test::Status::PARTIAL, "partial"},
 	};
-	
-	const map<Test::TestStep::Type, const string> STEPTYPE_TO_TEXT = {
+
+	const auto STEPTYPE_TO_TEXT = map<Test::TestStep::Type, const string> {
 		{Test::TestStep::Type::APPLY, "apply"},
 		{Test::TestStep::Type::ASSERT, "assert"},
 		{Test::TestStep::Type::BRANCH, "branch"},
@@ -54,19 +55,19 @@ namespace{
 		{Test::TestStep::Type::NAVIGATE, "navigate"},
 		{Test::TestStep::Type::WATCHDOG, "watchdog"},
 	};
-	
+
 	template<class K, class... Args>
 	string ExpectedOptions(const map<K, const string, Args...> &m)
 	{
 		if(m.empty())
 			return "no options supported";
-		
+
 		string beginning = "expected \"" + m.begin()->second;
 		auto lastValidIt = prev(m.end());
 		// Handle maps with just 1 element.
 		if(lastValidIt == m.begin())
 			return beginning + "\"";
-		
+
 		return accumulate(next(m.begin()), lastValidIt, beginning,
 			[](string a, const pair<K, const string> &b) -> string
 			{
@@ -74,9 +75,9 @@ namespace{
 			})
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
-	
+
 	// Prepare an keyboard input to one of the UIs.
-	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
+	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
@@ -113,9 +114,10 @@ namespace{
 
 
 
-Test::TestStep::TestStep(Type stepType) : stepType(stepType)
+Test::TestStep::TestStep(Type stepType)
+	: stepType(stepType)
 {
-};
+}
 
 
 
@@ -127,8 +129,9 @@ void Test::TestStep::LoadInput(const DataNode &node)
 		{
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
-			
-			for(const DataNode &grand: child){
+
+			for(const DataNode &grand : child)
+			{
 				if(grand.Token(0) == "shift")
 					modKeys |= KMOD_SHIFT;
 				else if(grand.Token(0) == "alt")
@@ -136,24 +139,25 @@ void Test::TestStep::LoadInput(const DataNode &node)
 				else if(grand.Token(0) == "control")
 					modKeys |= KMOD_CTRL;
 				else
-					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"key\" section:");
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(child.Token(0) == "pointer")
 		{
-			for(const DataNode &grand: child)
+			for(const DataNode &grand : child)
 			{
+				static const string BAD_AXIS_INPUT = "Error: Pointer axis input without coordinate:";
 				if(grand.Token(0) == "X")
 				{
 					if(grand.Size() < 2)
-						grand.PrintTrace("Warning: Pointer X axis input without coordinate:");
+						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						XValue = grand.Value(1);
 				}
 				else if(grand.Token(0) == "Y")
 				{
 					if(grand.Size() < 2)
-						grand.PrintTrace("Warning: Pointer Y axis input without coordinate:");
+						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						YValue = grand.Value(1);
 				}
@@ -170,13 +174,13 @@ void Test::TestStep::LoadInput(const DataNode &node)
 							grand.PrintTrace("Warning: Unknown click/button \"" + grand.Token(i) + "\":");
 					}
 				else
-					grand.PrintTrace("Warning: Unknown keyword in \"input\" \"pointer\" section:");
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(child.Token(0) == "command")
 			command.Load(child);
 		else
-			child.PrintTrace("Warning: Unknown keyword in \"input\" section:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -190,8 +194,8 @@ void Test::LoadSequence(const DataNode &node)
 		node.PrintTrace("Error: duplicate sequence keyword");
 		return;
 	}
-	
-	for(const DataNode &child: node)
+
+	for(const DataNode &child : node)
 	{
 		const string &typeName = child.Token(0);
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
@@ -201,11 +205,11 @@ void Test::LoadSequence(const DataNode &node)
 		if(it == STEPTYPE_TO_TEXT.end())
 		{
 			status = Status::BROKEN;
-			child.PrintTrace("Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
+			child.PrintTrace("Error: Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
 			// Don't bother loading more steps once broken.
 			return;
 		}
-		
+
 		steps.emplace_back(it->first);
 		TestStep &step = steps.back();
 		switch(step.stepType)
@@ -266,7 +270,7 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				break;
 			case TestStep::Type::NAVIGATE:
-				for(const DataNode &grand: child)
+				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "travel" && grand.Size() >= 2)
 						step.travelPlan.push_back(GameData::Systems().Get(grand.Token(1)));
@@ -288,7 +292,7 @@ void Test::LoadSequence(const DataNode &node)
 				return;
 		}
 	}
-	
+
 	// Check if all jump-labels are present after loading the sequence.
 	for(const TestStep &step : steps)
 	{
@@ -313,7 +317,7 @@ void Test::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Skipping unnamed test:");
+		node.PrintTrace("Error: Unnamed test:");
 		return;
 	}
 	// If a test object is "loaded" twice, that is most likely an error (e.g.
@@ -321,17 +325,18 @@ void Test::Load(const DataNode &node)
 	// or another plugin). Tests should be globally unique.
 	if(!name.empty())
 	{
-		node.PrintTrace("Skipping duplicate test definition:");
+		node.PrintTrace("Error: Duplicate test definition:");
 		return;
 	}
 	// Validate if the testname contains valid characters.
-	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
+	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
+		!= std::string::npos)
 	{
-		node.PrintTrace("Skipping test whose name contains unsupported character(s):");
+		node.PrintTrace("Error: Unsupported character(s) in test name:");
 		return;
 	}
 	name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "status" && child.Size() >= 2)
@@ -352,7 +357,7 @@ void Test::Load(const DataNode &node)
 			else
 			{
 				status = Status::BROKEN;
-				child.PrintTrace("Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
+				child.PrintTrace("Error: Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
 			}
 		}
 		else if(child.Token(0) == "sequence")
@@ -372,25 +377,24 @@ const string &Test::Name() const
 // Check the game status and perform the next test action.
 void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {
-	// Tests always wait until the game is fully loaded.
+	// Only run tests once all data has been loaded.
 	if(!GameData::IsLoaded())
 		return;
-		
+
 	if(status == Status::BROKEN)
 		Fail(context, player, "Test has a broken status.");
 
 	// Track if we need to return to the main gameloop.
 	bool continueGameLoop = false;
-	
+
 	// If the step to run is beyond the end of the steps, then we finished
 	// the current test (and step to the step higher in the stack or we are
 	// done testing if we are at toplevel).
-	if(context.stepToRun.back() >= steps.size())
+	if(context.callstack.back().step >= steps.size())
 	{
-		context.testToRun.pop_back();
-		context.stepToRun.pop_back();
-		
-		if(context.stepToRun.empty())
+		context.callstack.pop_back();
+
+		if(context.callstack.empty())
 		{
 			// Done, no failures, exit the game with exitcode success.
 			SendQuitEvent();
@@ -398,51 +402,51 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		}
 		else
 			// Step beyond the call statement we just finished.
-			++(context.stepToRun.back());
-		
+			++(context.callstack.back().step);
+
 		// We changed the active test or are quitting, so don't run the current one.
 		continueGameLoop = true;
 	}
-	
+
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
-	
-	while(context.stepToRun.back() < steps.size() && !continueGameLoop)
+
+	while(context.callstack.back().step < steps.size() && !continueGameLoop)
 	{
 		// Fail if we encounter a watchdog timeout
 		if(context.watchdog == 1)
 			Fail(context, player, "watchdog timeout");
 		else if(context.watchdog > 1)
 			--(context.watchdog);
-		
-		const TestStep &stepToRun = steps[context.stepToRun.back()];
+
+		const TestStep &stepToRun = steps[context.callstack.back().step];
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
 				stepToRun.conditions.Apply(player.Conditions());
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
 				if(!stepToRun.conditions.Test(player.Conditions()))
 					Fail(context, player, "asserted false");
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::BRANCH:
 				// If we encounter a branch entry twice, then resume the gameloop before the second encounter.
 				// Encountering branch entries twice typically only happen in "wait loops" and we should give
 				// the game cycles to proceed if we are in a wait loop for something that happens over time.
-				if(context.branchesSinceGameStep.count(context.stepToRun))
+				if(context.branchesSinceGameStep.count(context.callstack.back()))
 				{
 					continueGameLoop = true;
 					break;
 				}
-				context.branchesSinceGameStep.emplace(context.stepToRun);
+				context.branchesSinceGameStep.emplace(context.callstack.back());
 				if(stepToRun.conditions.Test(player.Conditions()))
-					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
+					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
-					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
+					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
 				else
-					++(context.stepToRun.back());
+					++(context.callstack.back().step);
 				break;
 			case TestStep::Type::CALL:
 				{
@@ -450,8 +454,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					if(nullptr == calledTest)
 						Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
 					// Put the called test on the stack and start it from 0.
-					context.testToRun.push_back(calledTest);
-					context.stepToRun.push_back(0);
+					context.callstack.push_back({calledTest, 0});
 					// Break the loop to switch to the test just pushed.
 				}
 				continueGameLoop = true;
@@ -459,11 +462,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 			case TestStep::Type::INJECT:
 				{
 					// Lookup the data and inject it in the game or into the environment.
-					const TestData* testData = (GameData::TestDataSets()).Get(stepToRun.nameOrLabel);
+					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
 					if(!testData->Inject())
 						Fail(context, player, "injecting data failed");
 				}
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::INPUT:
 				if(stepToRun.command)
@@ -479,20 +482,20 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
 				continueGameLoop = true;
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::LABEL:
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::NAVIGATE:
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
 				player.SetTravelDestination(stepToRun.travelDestination);
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			default:
 				Fail(context, player, "Unknown step type");
@@ -514,17 +517,30 @@ const string &Test::StatusText() const
 void Test::Fail(const TestContext &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
-	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())
-		message += " at step " + to_string(1 + context.stepToRun.back()) + " (" +
-			STEPTYPE_TO_TEXT.at(steps[context.stepToRun.back()].stepType) + ")";
-	
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+	message += "\n";
+
+	Logger::LogError(message);
+
+	// Print the callstack if we have any.
+	string stackMessage = "Call-stack:\n";
+	if(context.callstack.empty())
+		stackMessage += "  No callstack info at moment of failure.";
+
+	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i)
+	{
+		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
+		if(i->step < i->test->steps.size())
+			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
+		stackMessage += "\n";
+	}
+	Logger::LogError(stackMessage);
 
 	// Print some debug information about the flagship and the first 5 escorts.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		Files::LogError("No flagship at the moment of failure.");
+		Logger::LogError("No flagship at the moment of failure.");
 	else
 	{
 		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
@@ -542,22 +558,24 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		}
 		if(escortsNotPrinted > 0)
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
-		Files::LogError(shipsOverview);
+		Logger::LogError(shipsOverview);
 	}
-	
+
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
 	// Future versions of the test-framework could also print all conditions that are used in the test.
 	string conditions = "";
 	const string TEST_PREFIX = "test: ";
-	auto it = player.Conditions().lower_bound(TEST_PREFIX);
-	for( ; it != player.Conditions().end() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
+	auto it = player.Conditions().PrimariesLowerBound(TEST_PREFIX);
+	for( ; it != player.Conditions().PrimariesEnd() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
 		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
-	
+
 	if(!conditions.empty())
-		Files::LogError(conditions);
+		Logger::LogError(conditions);
+	else if(player.Conditions().PrimariesBegin() == player.Conditions().PrimariesEnd())
+		Logger::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Files::LogError("No conditions were set at the moment of failure.");
-	
+		Logger::LogError("No test conditions were set at the moment of failure.");
+
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).

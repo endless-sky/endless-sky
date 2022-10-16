@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PERSONALITY_H_
@@ -28,17 +31,17 @@ class DataWriter;
 class Personality {
 public:
 	Personality() noexcept;
-	
+
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	
+
 	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
 	bool IsHeroic() const;
 	bool IsNemesis() const;
-	
+
 	// How they fight:
 	bool IsFrugal() const;
 	bool Disables() const;
@@ -48,7 +51,7 @@ public:
 	bool IsCoward() const;
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
-	
+
 	// Mission NPC states:
 	bool IsStaying() const;
 	bool IsEntering() const;
@@ -57,31 +60,32 @@ public:
 	bool IsFleeing() const;
 	bool IsDerelict() const;
 	bool IsUninterested() const;
-	
+
 	// Non-combat goals:
 	bool IsSurveillance() const;
 	bool IsMining() const;
 	bool Harvests() const;
 	bool IsSwarming() const;
-	
+
 	// Special flags:
 	bool IsEscort() const;
 	bool IsTarget() const;
 	bool IsMarked() const;
 	bool IsMute() const;
-	
+
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);
-	
+
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
-	
-	
+	static Personality DefenderFighter();
+
+
 private:
 	void Parse(const DataNode &node, int index, bool remove);
-	
-	
+
+
 private:
 	int flags;
 	double confusionMultiplier;

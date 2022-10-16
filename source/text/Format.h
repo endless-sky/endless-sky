@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ES_TEXT_FORMAT_H_
@@ -40,13 +43,13 @@ public:
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys);
-	// Replace all occurences of "target" with "replacement" in-place.
+	// Replace all occurrences of "target" with "replacement" in-place.
 	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
-	
+
 	// Convert a string to title caps or to lower case.
 	static std::string Capitalize(const std::string &str);
 	static std::string LowerCase(const std::string &str);
-	
+
 	// Split a single string into substrings with the given separator.
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
 };

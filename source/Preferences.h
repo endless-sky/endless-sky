@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PREFERENCES_H_
@@ -24,29 +27,34 @@ public:
 		on,
 		adaptive,
 	};
-	
-	
+
+
 public:
 	static void Load();
 	static void Save();
-	
+
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
-	
+
 	// Toggle the ammo usage preferences, cycling between "never," "frugally,"
 	// and "always."
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
-	
+
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
-	
+
 	// View zoom.
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
-	
+	static double MinViewZoom();
+	static double MaxViewZoom();
+
+	static void ToggleScreenMode();
+	static const std::string &ScreenModeSetting();
+
 	// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();

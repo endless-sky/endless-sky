@@ -1,4 +1,3 @@
-
 # Copyright (c) 2017 by Michael Zahniser
 # Copyright (c) 2018 by Nate Graham
 #
@@ -8,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Frontier delivery [0]"
 	name "Frontier delivery to <planet>"
@@ -291,12 +293,12 @@ mission "Small Pirate gambling"
 				random < 30
 
 			label "shoot and die"
-			`	Unfortunately they're faster than you. Your mutilated corpse hits the floor with a wet thump.`
+			`	Unfortunately, they're faster than you. Your mutilated corpse hits the floor with a wet thump.`
 				die
 
 			label "shoot and run"
 			`	Grateful that you never leave your ship unarmed, your hand flies toward the pistol at your thigh. You draw the weapon and fire at the pirate who just threatened you. The slug punches a hole in the center of his chest, and he collapses to the ground. His shocked comrades fumble in horror for their weapons, but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the credits on the table on the way out!`
-			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, the remaining two pirates hurl obscenities over the comms from their own ships, which are in hot pursuit.`
+			`	You dash toward the hangar bay and blast off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, the remaining two pirates hurl obscenities over the comms from their own ships, which are in hot pursuit.`
 				launch
 
 			label run
@@ -309,7 +311,7 @@ mission "Small Pirate gambling"
 
 			label "grab and run"
 			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion as bullets fly past you and tear chips out of the walls. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with an enormous shotgun. The remaining three chase after you.`
-			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended two of the pirates, the remaining two made it to their ships and are in hot pursuit.`
+			`	You dash toward the hangar bay and blast off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended two of the pirates, the remaining two made it to their ships and are in hot pursuit.`
 				launch
 
 	on decline

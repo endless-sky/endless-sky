@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MAP_OUTFITTER_PANEL_H_
@@ -32,8 +35,8 @@ class MapOutfitterPanel : public MapSalesPanel {
 public:
 	explicit MapOutfitterPanel(PlayerInfo &player);
 	explicit MapOutfitterPanel(const MapPanel &panel, bool onlyHere = false);
-	
-	
+
+
 protected:
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
@@ -45,24 +48,24 @@ protected:
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
-	
+
 	virtual void DrawItems() override;
-	
-	
+
+
 private:
 	void Init();
-	
-	
+
+
 private:
 	// Maps category names to list of outfits in that category, sorted
 	// alphabetically by name.
 	std::map<std::string, std::vector<const Outfit *>> catalog;
 	// Flat list of all outfits shown.
 	std::vector<const Outfit *> list;
-	
+
 	const Outfit *selected = nullptr;
 	const Outfit *compare = nullptr;
-	
+
 	OutfitInfoDisplay selectedInfo;
 	OutfitInfoDisplay compareInfo;
 };

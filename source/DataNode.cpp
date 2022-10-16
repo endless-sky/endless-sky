@@ -7,12 +7,15 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DataNode.h"
 
-#include "Files.h"
+#include "Logger.h"
 
 #include <algorithm>
 #include <cctype>
@@ -104,12 +107,12 @@ double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
 	else if(!IsNumber(tokens[index]))
-		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
+		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a number:");
 	else
 		return Value(tokens[index]);
-	
+
 	return 0.;
 }
 
@@ -121,20 +124,20 @@ double DataNode::Value(const string &token)
 	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
 	if(!IsNumber(token))
 	{
-		Files::LogError("Cannot convert value \"" + token + "\" to a number.");
+		Logger::LogError("Cannot convert value \"" + token + "\" to a number.");
 		return 0.;
 	}
 	const char *it = token.c_str();
-	
+
 	// Check for leading sign.
 	double sign = (*it == '-') ? -1. : 1.;
 	it += (*it == '-' || *it == '+');
-	
+
 	// Digits before the decimal point.
 	int64_t value = 0;
 	while(*it >= '0' && *it <= '9')
 		value = (value * 10) + (*it++ - '0');
-	
+
 	// Digits after the decimal point (if any).
 	int64_t power = 0;
 	if(*it == '.')
@@ -146,21 +149,21 @@ double DataNode::Value(const string &token)
 			--power;
 		}
 	}
-	
+
 	// Exponent.
 	if(*it == 'e' || *it == 'E')
 	{
 		++it;
 		int64_t sign = (*it == '-') ? -1 : 1;
 		it += (*it == '-' || *it == '+');
-		
+
 		int64_t exponent = 0;
 		while(*it >= '0' && *it <= '9')
 			exponent = (exponent * 10) + (*it++ - '0');
-		
+
 		power += sign * exponent;
 	}
-	
+
 	// Compose the return value.
 	return copysign(value * pow(10., power), sign);
 }
@@ -174,7 +177,7 @@ bool DataNode::IsNumber(int index) const
 	// Make sure this token exists and is not empty.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return false;
-	
+
 	return IsNumber(tokens[index]);
 }
 
@@ -246,12 +249,8 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
-	{
-		// Put an empty line in the log between each error message.
-		Files::LogError("");
-		Files::LogError(message);
-	}
-	
+		Logger::LogError(message);
+
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
 	size_t indent = 0;
@@ -259,7 +258,7 @@ int DataNode::PrintTrace(const string &message) const
 		indent = parent->PrintTrace() + 2;
 	if(tokens.empty())
 		return indent;
-	
+
 	// Convert this node back to tokenized text, with quotes used as necessary.
 	string line = !parent ? "" : "L" + to_string(lineNumber) + ": ";
 	line.append(string(indent, ' '));
@@ -275,8 +274,12 @@ int DataNode::PrintTrace(const string &message) const
 		if(hasSpace)
 			line += hasQuote ? '`' : '"';
 	}
-	Files::LogError(line);
-	
+	Logger::LogError(line);
+
+	// Put an empty line in the log between each error message.
+	if(!message.empty())
+		Logger::LogError("");
+
 	// Tell the caller what indentation level we're at now.
 	return indent;
 }

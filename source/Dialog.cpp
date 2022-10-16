@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Dialog.h"
@@ -36,7 +39,7 @@ using namespace std;
 
 namespace {
 	const int WIDTH = 250;
-	
+
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
 	const map<SDL_Keycode, char> KEY_MAP = {
@@ -85,7 +88,8 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, Truncate truncate)
+Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
+	: allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate, false);
 }
@@ -93,8 +97,9 @@ Dialog::Dialog(const string &text, Truncate truncate)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
+	allowsFastForward(allowsFastForward),
 	system(system), player(&player)
 {
 	Init(text, truncate, true, true);
@@ -106,22 +111,22 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 void Dialog::Draw()
 {
 	DrawBackdrop();
-	
+
 	const Sprite *top = SpriteSet::Get("ui/dialog top");
 	const Sprite *middle = SpriteSet::Get("ui/dialog middle");
 	const Sprite *bottom = SpriteSet::Get("ui/dialog bottom");
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
-	
+
 	// Get the position of the top of this dialog, and of the text and input.
 	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
 	Point textPos(WIDTH * -.5 + 10., pos.Y() + 20.);
 	Point inputPos = Point(0., -70.) - pos;
-	
+
 	// Draw the top section of the dialog box.
 	pos.Y() += top->Height() * .5;
 	SpriteShader::Draw(top, pos);
 	pos.Y() += top->Height() * .5;
-	
+
 	// The middle section is duplicated depending on how long the text is.
 	for(int i = 0; i < height; ++i)
 	{
@@ -129,17 +134,18 @@ void Dialog::Draw()
 		SpriteShader::Draw(middle, pos);
 		pos.Y() += middle->Height() * .5;
 	}
-	
+
 	// Draw the bottom section.
 	const Font &font = FontSet::Get(14);
 	pos.Y() += bottom->Height() * .5;
 	SpriteShader::Draw(bottom, pos);
 	pos.Y() += bottom->Height() * .5 - 25.;
-	
+
 	// Draw the buttons, including optionally the cancel button.
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("faint");
+	const Color &inactive = *GameData::Colors().Get("inactive");
 	if(canCancel)
 	{
 		string cancelText = isMission ? "Decline" : "Cancel";
@@ -155,22 +161,22 @@ void Dialog::Draw()
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
-	font.Draw(okText, labelPos, okIsActive ? bright : dim);
-	
+	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
+
 	// Draw the text.
 	text.Draw(textPos, dim);
-	
+
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
 		FillShader::Fill(inputPos, Point(WIDTH - 20., 20.), back);
-		
+
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
 		const auto inputText = DisplayText(input, {WIDTH - 30, Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
-		
+
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
 	}
@@ -198,6 +204,13 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 
 
 
+bool Dialog::AllowsFastForward() const noexcept
+{
+	return allowsFastForward;
+}
+
+
+
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);
@@ -209,7 +222,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		// Caps lock should shift letters, but not any other keys.
 		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 			c += 'A' - 'a';
-		
+
 		if(stringFun)
 			input += c;
 		// Integer input should not allow leading zeros.
@@ -217,9 +230,16 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			input += c;
 		else if(intFun && c >= '1' && c <= '9')
 			input += c;
+
+		if(validateFun)
+			isOkDisabled = !validateFun(input);
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
+	{
 		input.erase(input.length() - 1);
+		if(validateFun)
+			isOkDisabled = !validateFun(input);
+	}
 	else if(key == SDLK_TAB && canCancel)
 		okIsActive = !okIsActive;
 	else if(key == SDLK_LEFT)
@@ -235,15 +255,23 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
 		if(okIsActive || isMission)
-			DoCallback();
-		
-		GetUI()->Pop(this);
+		{
+			// If the OK button is disabled (because the input failed the validation),
+			// don't execute the callback.
+			if(!isOkDisabled)
+			{
+				DoCallback();
+				GetUI()->Pop(this);
+			}
+		}
+		else
+			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -252,14 +280,14 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 bool Dialog::Click(int x, int y, int clicks)
 {
 	Point clickPos(x, y);
-	
+
 	Point ok = clickPos - okPos;
 	if(fabs(ok.X()) < 40. && fabs(ok.Y()) < 20.)
 	{
 		okIsActive = true;
 		return DoKey(SDLK_RETURN);
 	}
-	
+
 	if(canCancel)
 	{
 		Point cancel = clickPos - cancelPos;
@@ -269,7 +297,7 @@ bool Dialog::Click(int x, int y, int clicks)
 			return DoKey(SDLK_RETURN);
 		}
 	}
-	
+
 	return true;
 }
 
@@ -278,17 +306,19 @@ bool Dialog::Click(int x, int y, int clicks)
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
+	SetInterruptible(isMission);
+
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
-	
+
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(WIDTH - 20);
 	text.SetFont(FontSet::Get(14));
 	text.SetTruncate(truncate);
-	
+
 	text.Wrap(message);
-	
+
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about
 	// 5 pixels because it includes its own padding at the bottom. If there is a
@@ -309,10 +339,10 @@ void Dialog::DoCallback() const
 	{
 		if(intFun)
 			intFun(okIsActive ? Conversation::ACCEPT : Conversation::DECLINE);
-		
+
 		return;
 	}
-	
+
 	if(intFun)
 	{
 		// Only call the callback if the input can be converted to an int.
@@ -324,10 +354,10 @@ void Dialog::DoCallback() const
 		{
 		}
 	}
-	
+
 	if(stringFun)
 		stringFun(input);
-	
+
 	if(voidFun)
 		voidFun();
 }

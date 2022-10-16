@@ -7,12 +7,15 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "EsUuid.h"
 
-#include "Files.h"
+#include "Logger.h"
 #if defined(_WIN32)
 #include "text/Utf8.h"
 #endif
@@ -30,8 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 namespace es_uuid {
 namespace detail {
-constexpr std::size_t UUID_BUFFER_LENGTH = 37;
-
 #if defined(_WIN32)
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
 EsUuid::UuidType MakeUuid()
@@ -39,10 +40,10 @@ EsUuid::UuidType MakeUuid()
 	EsUuid::UuidType value;
 	RPC_STATUS status = UuidCreate(&value.id);
 	if(status == RPC_S_UUID_LOCAL_ONLY)
-		Files::LogError("Created locally unique UUID only");
+		Logger::LogError("Created locally unique UUID only");
 	else if(status == RPC_S_UUID_NO_ADDRESS)
 		throw std::runtime_error("Failed to create UUID");
-	
+
 	return value;
 }
 
@@ -55,7 +56,7 @@ EsUuid::UuidType ParseUuid(const std::string &str)
 		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
 	else if(status != RPC_S_OK)
 		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
-	
+
 	return value;
 }
 
@@ -69,13 +70,13 @@ std::string Serialize(const UUID &id)
 {
 	wchar_t *buf = nullptr;
 	RPC_STATUS status = UuidToStringW(const_cast<UUID *>(&id), reinterpret_cast<RPC_WSTR *>(&buf));
-	
+
 	std::string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
 	if(result.empty())
-		Files::LogError("Failed to serialize UUID!");
+		Logger::LogError("Failed to serialize UUID!");
 	else
 		RpcStringFreeW(reinterpret_cast<RPC_WSTR *>(&buf));
-	
+
 	return result;
 }
 
@@ -88,6 +89,8 @@ signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b)
 	return result;
 }
 #else
+constexpr std::size_t UUID_BUFFER_LENGTH = 37;
+
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
 EsUuid::UuidType MakeUuid()
 {
@@ -104,7 +107,7 @@ EsUuid::UuidType ParseUuid(const std::string &str)
 		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
 	else if(result != 0)
 		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
-	
+
 	return value;
 }
 
@@ -116,7 +119,7 @@ bool IsNil(const uuid_t &id) noexcept
 std::string Serialize(const uuid_t &id)
 {
 	char buf[UUID_BUFFER_LENGTH];
-	uuid_unparse(id, buf);
+	uuid_unparse_lower(id, buf);
 	return std::string(buf);
 }
 
@@ -181,9 +184,9 @@ EsUuid::EsUuid(const std::string &input)
 	try {
 		value = ParseUuid(input);
 	}
-	catch (const std::invalid_argument &err)
+	catch(const std::invalid_argument &err)
 	{
-		Files::LogError(err.what());
+		Logger::LogError(err.what());
 	}
 }
 
@@ -193,6 +196,6 @@ const EsUuid::UuidType &EsUuid::Value() const
 {
 	if(IsNil(value.id))
 		value = MakeUuid();
-	
+
 	return value;
 }
