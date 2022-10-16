@@ -322,7 +322,7 @@ mission "Remnant: Defense 2"
 			names "korath"
 			# This ship has been here for a while and all its cargo outfits are gone, it just has commodities.
 			cargo 4
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
@@ -2278,7 +2278,7 @@ mission "Remnant: Salvage 2"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Rano'erek"

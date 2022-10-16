@@ -213,7 +213,7 @@ fleet "Korath Ember Waste Raid"
 	names "korath"
 	fighters "korath"
 	cargo 1
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfitters "Korath Exiles Remnant Donations"
 	personality
 		disables plunders opportunistic harvests
@@ -354,7 +354,7 @@ fleet "Korath Ember Waste Large Raid"
 	names "korath"
 	fighters "korath"
 	cargo 1
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfitters "Korath Exiles Remnant Donations"
 	personality
 		disables plunders opportunistic harvests

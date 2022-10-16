@@ -1039,7 +1039,7 @@ mission "Remnant: Cognizance 23"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Rano'erek (Crippled)"
@@ -1168,7 +1168,7 @@ mission "Remnant: Cognizance 25"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"'olofez" 3

@@ -392,7 +392,7 @@ mission "Remnant: Teciimach Deployment"
 		fleet
 			names "remnant"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Merganser (II)" 3
@@ -691,7 +691,7 @@ mission "Remnant: Scent of Rain 1"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"'olofez" 3

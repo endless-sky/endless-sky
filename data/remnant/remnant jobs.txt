@@ -34,7 +34,7 @@ mission "Remnant: Bounty"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Palavret (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -67,7 +67,7 @@ mission "Remnant: Bounty 2"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Palavret (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -154,7 +154,7 @@ mission "Remnant: Bounty 3"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -184,7 +184,7 @@ mission "Remnant: Bounty 4"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -219,7 +219,7 @@ mission "Remnant: Bounty 5"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Ground Assault)"
 				"'olofez" 4
