@@ -2041,11 +2041,8 @@ mission "FW Senate Hearing"
 	destination "Bourne"
 	deadline 14
 	to offer
-		or
-			and
-				has "FW Early Warning 5: done"
-				has "FW Pirates: Attack 3: done"
-			has "fw pirates: victory"
+		has "FW Early Warning 5: done"
+		has "FW Pirates: Attack 3: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
