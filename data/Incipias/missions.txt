@@ -220,15 +220,15 @@ mission "Incipias: First Contact V"
 			`    At first nothing happens. Then your scanners register a huge raise in communication between the alien ships, their planet and their spacestation. At first it seems to be very chaotic but then slowly the spacestation dominates the communication. Then there is nothing.`
 			choice
 				"[wait for some time]"
-			`    After some time the space station opens a communication channel to you. A craeture like you never seen one before appears on the screen. Formed like a balloon, with some weird shaped extremeties and four eyes? at the bottom.It is floating in front of a blank wall. You remember what the Quarg told you and hold the tablet in the direction of the screen. Something on the surface of the creature begins flickering and words start appearing on the tablet screen. "Welcome, [stranger, traveller, alien] [I, we] are [happy, surprised, scared] by your visit." It seems like this is the difference the Quarg talked about, the translation device is trying to combine words to give you the actual meaning. More words appear, "[I, we] see another [intelligence, feeling one] the first time, please [explain, show, tell us] the reason for your presence."`
+			`    After some time the space station opens a communication channel to you. A creature like you never seen one before appears on the screen. Formed like a balloon, with some weird shaped extremeties and four eyes? at the bottom.It is floating in front of a blank wall. You remember what the Quarg told you and hold the tablet in the direction of the screen. Something on the surface of the creature begins flickering and words start appearing on the tablet screen. "Welcome, [stranger, traveller, alien] [I, we] are [happy, surprised, scared] by your visit." It seems like this is the difference the Quarg talked about, the translation device is trying to combine words to give you the actual meaning. More words appear, "[I, we] see another [intelligence, feeling one] the first time, please [explain, show, tell us] the reason for your presence."`
 			choice
 				"I am exploring the limits of space."
 					goto limits
 				"I am searching for new species and technologies"
-			`    The Incipias listens to you and then it looks like they are looking to someone on their right you do not see. After a short moment he turn towards you again. They start flickering "We do not think we have [better, more advanced] technologies than [you, your kind]. But [I, we] look forward to a [benifical, peaceful] contact with [you, your kind]. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this adventure] further.`
+			`    The Incipias listens to you and then it looks like they are looking to someone on its right you do not see. After a short moment it turns towards you again. It starts flickering "We do not think we have [better, more advanced] technologies than [you, your kind]. But [I, we] look forward to a [benifical, peaceful] contact with [you, your kind]. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this adventure] further.`
 				goto c1
 			label limits
-			`    The Incipias listens to you and then it looks like they are looking to someone on their right you do not see. After a short moment he turn towards you again. They start flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
+			`    The Incipias listens to you and then it looks like it is looking to someone on their right you do not see. After a short moment it turns towards you again. It starts flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
 			label c1
 			`    Some basic information about the spacestation is send to your display and the communication channel gets closed.`
 mission "Incipias: First Contact VI"
@@ -247,9 +247,36 @@ mission "Incipias: First Contact VI"
 				"[show them a map of human systems]"
 					goto map
 				"[show them the location of Sol in the Galaxy]"
-			`    You show them a picture of the galaxy and point out where the Sol system is and where the Dom'us system is.`
+			`    You show them a picture of the galaxy and point out where the Sol system is and where the Dom'us system is. The Incipias move closer to see and you notice some excitement in their rows. Their speaker turns towards you "A [long, unexpected distance is between our [systems, homes], [you, your kind] has to be [very, far more] advanced." You type in the tablet, "No, it is only a few of us who can travell that far between stars. My kind has not yet the technology to travell that far, I got this technology from another species." Again some rumor starts between the Incipias. "So we and [your kind] are not [the only ones, alone in space]?" Their speaker asks you.`
+				goto c1
 			label map
 			action
 				"hicemus knowledge: hyperlanes" ++
-			``
+			`You show them a map of all human systems with the hyperlanes displayed and then you show them where their system is in relation to that map. Rumor comes up in the rows of the Incipias. After it got a good look the speaker turns towards you again. "That is certainly a long [distance, way to go]. Your kind [owns, spread over] a huge amount of [systems, homes]. But what is the meaning of these lines?" You think about it a moment and decide to tell them the following thing, "These are pathways between stars that make travelling easier, they exist between a lot of systems but not between all." The Incipias listens interested and then it asks, "Are there any other [intelligents, species] out there?"`
+			label c1
+			choice
+				"There are some, mostly more advanced then humans."
+				"Yes, there are a few."
+			`    "Thanks for these [valueable, interesting] informations, [I, we] think it would be fair to let you ask some questions." It tells.`
+			label choice
+			choice
+				"Why do you use a space station as your capital?"
+					goto capital
+				"Since when are you able to space travel?"
+					goto time
+				"How is your government organized?"
+					goto government
+				"Thanks but I have no further questions."
+					goto end
+			label capital
+			`    "We, the Hicemus believe in [progress, science] that is why we chose our first space station as our capital, as a symbol of [progress, strength]." You notice that he did not refere to themselves as the Incipias but as the Hicemus. There seem to be some disagreement with that. "Do you have any other questions?"`
+				goto choice
+			label time
+			`    "About two hundred years ago, our kind launched the first [missile, space ship]. Since then we have progressed [in a good pace, not fast enough] and one hundred years ago we started building [this space station, the pinacle of our technology]. Right now [I, we] are working towards interstellar travelling. Is there another question?"`
+				goto choice
+			label government
+			`    "Our kind is currently [lead, ruled] by us, the Hicemus. We decide in what direction and how we progress. Our homeworld is managed by the old government, who is referred to simply as the Incipias. All real progress of our kind is made in this [space station, homeworld]. You got anymore questions?"`
+				goto choice
+			label end
+			`    "If this is the case, [I, we] hereby welcome you to our capital. You may go around without any restrictions. We will sell our ships and outfits to you, but I doubt they will be much of a use to you." It makes some strange movement in the air, probably a gesture of welcome. "Thank you", you say and make a human gesture of gratitude.`
 
