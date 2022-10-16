@@ -574,7 +574,7 @@ fleet "Large Unfettered"
 		"Shield Beetle"
 	variant 2
 		"Sea Scorpion (Ion)"
-		"Sea Scorpion (Pulse"
+		"Sea Scorpion (Pulse)"
 		"Shield Beetle"
 	variant 2
 		"Sea Scorpion (Pulse)" 2
