@@ -37,10 +37,10 @@ public:
 public:
 	ShipJumpNavigation() = default;
 
-	// Set the owner of this jump navigation, storing a pointer to it for later use.
-	void SetOwner(const Ship *ship);
+	// Pass the current system that the ship is in to the navigation.
+	void SetSystem(const System *system);
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
-	void Calibrate();
+	void Calibrate(const Ship &ship);
 
 	// Get the amount of fuel that would be expended to jump to the destination. If the destination is
 	// nullptr then return the maximum amount of fuel that this ship could expend in one jump.
@@ -72,7 +72,7 @@ private:
 
 
 private:
-	const Ship *ship = nullptr;
+	const System *currentSystem = nullptr;
 
 	double hyperdriveCost = 0.;
 	std::map<double, double> jumpDriveCosts;

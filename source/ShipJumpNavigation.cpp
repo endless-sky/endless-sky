@@ -31,19 +31,18 @@ const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
 
 
 
-// Set the owner of this jump navigation, storing a pointer to it for later use.
-void ShipJumpNavigation::SetOwner(const Ship *ship)
+// Pass the current system that the ship is in to the navigation.
+void ShipJumpNavigation::SetSystem(const System *system)
 {
-	this->ship = ship;
+	currentSystem = system;
 }
 
 
 
 // Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
-void ShipJumpNavigation::Calibrate()
+void ShipJumpNavigation::Calibrate(const Ship &ship)
 {
-	assert(ship && "A jump navigation's ship cannot be null.");
-	const Outfit &attributes = ship->Attributes();
+	const Outfit &attributes = ship.Attributes();
 	hasHyperdrive = attributes.Get("hyperdrive");
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
@@ -56,9 +55,9 @@ void ShipJumpNavigation::Calibrate()
 	double shipHyperCost = hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST;
 
 	// Make it possible for a hyperdrive or jump drive to be integrated into a ship.
-	ParseOutfit(ship->BaseAttributes(), shipHyperCost);
+	ParseOutfit(ship.BaseAttributes(), shipHyperCost);
 	// Check each outfit from this ship to determine if it has jump capabilities.
-	for(const auto &it : ship->Outfits())
+	for(const auto &it : ship.Outfits())
 		ParseOutfit(*it.first, shipHyperCost);
 }
 
@@ -68,8 +67,6 @@ void ShipJumpNavigation::Calibrate()
 // nullptr then return the maximum amount of fuel that this ship could expend in one jump.
 double ShipJumpNavigation::JumpFuel(const System *destination) const
 {
-	assert(ship && "A jump navigation's ship cannot be null.");
-	const System *currentSystem = ship->GetSystem();
 	// A currently-carried ship requires no fuel to jump, because it cannot jump.
 	if(!currentSystem)
 		return 0.;
@@ -116,8 +113,7 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 // If no jump method is possible, returns JumpType::None with a jump cost of 0.
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *destination) const
 {
-	assert(ship && "A jump navigation's ship cannot be null.");
-	return GetCheapestJumpType(ship->GetSystem(), destination);
+	return GetCheapestJumpType(currentSystem, destination);
 }
 
 

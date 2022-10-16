@@ -769,8 +769,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = IsDisabled();
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
-	navigation.SetOwner(this);
-	navigation.Calibrate();
+	navigation.SetSystem(currentSystem);
+	navigation.Calibrate(*this);
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
@@ -1197,8 +1197,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	this->velocity = velocity;
 	this->angle = angle;
 
-	// Set the owner of this ship's navigation to itself.
-	navigation.SetOwner(this);
+	// Make sure the jump navigation has the correct system.
+	navigation.SetSystem(currentSystem);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -1257,6 +1257,7 @@ void Ship::SetName(const string &name)
 void Ship::SetSystem(const System *system)
 {
 	currentSystem = system;
+	navigation.SetSystem(currentSystem);
 }
 
 
@@ -1611,6 +1612,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(hyperspaceCount == HYPER_C)
 		{
 			currentSystem = hyperspaceSystem;
+			navigation.SetSystem(currentSystem);
 			hyperspaceSystem = nullptr;
 			targetSystem = nullptr;
 			// Check if the target planet is in the destination system or not.
@@ -1735,6 +1737,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				if(landingPlanet->IsWormhole())
 				{
 					currentSystem = landingPlanet->WormholeDestination(currentSystem);
+					navigation.SetSystem(currentSystem);
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
@@ -3711,7 +3714,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// drives of the same type don't stack, so only do this if the
 		// outfit is either completely new or has been completely removed.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
-			navigation.Calibrate();
+			navigation.Calibrate(*this);
 	}
 }
 
