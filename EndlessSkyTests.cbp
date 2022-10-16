@@ -73,6 +73,7 @@
 		<Unit filename="tests/unit/src/test_bitset.cpp" />
 		<Unit filename="tests/unit/src/test_categoryList.cpp" />
 		<Unit filename="tests/unit/src/test_conditionSet.cpp" />
+		<Unit filename="tests/unit/src/test_conditionsStore.cpp" />
 		<Unit filename="tests/unit/src/test_datafile.cpp" />
 		<Unit filename="tests/unit/src/test_datanode.cpp" />
 		<Unit filename="tests/unit/src/test_esuuid.cpp" />

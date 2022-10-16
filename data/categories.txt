@@ -6,22 +6,27 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Ships of these types can be purchased and also used as mission sources.
 category "ship"
 	"Transport" 10
-	"Light Freighter" 20
-	"Heavy Freighter" 30
-	"Interceptor" 40
-	"Light Warship" 50
-	"Medium Warship" 60
-	"Heavy Warship" 70
-	"Fighter" 80
-	"Drone" 90
+	"Space Liner" 20
+	"Light Freighter" 30
+	"Heavy Freighter" 40
+	"Utility" 50
+	"Interceptor" 60
+	"Light Warship" 70
+	"Medium Warship" 80
+	"Heavy Warship" 90
+	"Fighter" 100
+	"Drone" 110
 
 
-# Ships of these types are able to be carried by other ships.
+# Ships of these types can be carried by other ships.
 category "bay type"
 	"Drone" 10
 	"Fighter" 20
@@ -37,4 +42,7 @@ category "outfit"
 	"Power" 60
 	"Engines" 70
 	"Hand to Hand" 80
-	"Special" 90
+	"Unique" 90
+	"Minerals" 100
+	"Special" 110
+	"Licenses" 120
