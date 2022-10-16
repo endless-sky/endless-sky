@@ -840,7 +840,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					parent.reset();
 
 				// Player-owned carriables should defer to player carrier if
-				// selected parent can't carry it.  This is necessary to prevent
+				// selected parent can't carry it. This is necessary to prevent
 				// fighters from jumping around fleet when there's not enough
 				// bays.
 				if(it->IsYours() && parent && parent->GetParent() && !parent->CanCarry(*it))
