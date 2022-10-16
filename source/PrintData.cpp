@@ -551,7 +551,7 @@ void PrintData::Outfits(const char *const *argv)
 	else if(all)
 		PrintOutfitsAllStats();
 	else
-		PrintObjectList<Outfit>(GameData::Outfits(), true, "outfit");
+		PrintObjectList(GameData::Outfits(), true, "outfit");
 }
 
 
