@@ -1145,6 +1145,8 @@ mission "FW Pirates Patch"
 	landing
 	name "Return to <planet>"
 	description "Return to <destination> to continue your work with the Free Worlds."
+	source
+		not planet "Longjump"
 	destination Longjump
 	to offer
 		or
