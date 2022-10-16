@@ -7,7 +7,7 @@ Version 0.9.16:
       * The Firestorm Battery outfit now has a proper plural name. (@warp-core)
       * The Mule's description has been updated to reflect its new category. (@McloughlinGuy)
       * Corrected the name of the passenger in "FW Pug 4." (@a-random-lemurian, @williaji)
-      * Added a firing sound to the ka'het Annihilator Turret, as it was missing one. (@Hecter94)
+      * Added a firing sound to the Ka'het Annihilator Turret, as it was missing one. (@Hecter94)
       * Fixed an incorrect planet text replacement in "FW Refinery 1." (@roadrunner56)
       * Prevented a Wanderer job from offering with an impossible deadline. (@warp-core)
       * Replaced some small numbers that were written as digits with words. (@samrocketman)
@@ -36,7 +36,7 @@ Version 0.9.16:
       * Slightly reworked the atomic and ion flare effects. (@GefullteTaubenbrust2)
     * Other:
       * Recategorized the Hai Centipede as a space liner. (@1010todd)
-      * Changed the landscaope images of Mainsail and Inmost Blue to better fit their planet descriptions. (@Anarchist2)
+      * Changed the landscape images of Mainsail and Inmost Blue to better fit their planet descriptions. (@Anarchist2)
       * Recategorized the Saryd Traveler as a utility ship. (@Arachi-Lover)
   * User interface:
     * Clicking on a planet card on the left side of the map now selects that planet as a destination on your travel plan. (@Hurleveur)
