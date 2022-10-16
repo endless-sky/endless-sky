@@ -1147,7 +1147,7 @@ mission "FW Pirates Patch"
 	description "Return to <destination> to continue your work with the Free Worlds."
 	source
 		not planet "Longjump"
-	destination Longjump
+	destination "Longjump"
 	to offer
 		or
 			has "FW Pirates 3: offered"
@@ -1159,12 +1159,16 @@ mission "FW Pirates Patch"
 			has "FW Pirates 4: offered"
 			has "FW Pirates 4B: offered"
 			has "FW Pirates 4.1: offered"
-		not "FW Pirates: Attack !: offered"
+		not "FW Pirates: Attack 1: offered"
+		not "FW Senate Hearing: offered"
 		not "FW Refinery 1: offered"
 	on offer
 		conversation
 			`We've made some changes to the Free Worlds story. In order to continue, you should go to <destination>.`
 				accept
+
+
+
 mission "FW Pirates: Attack 1"
 	name "Attack Greenrock"
 	description "Disobeying the Senate's orders, head to <destination> and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
