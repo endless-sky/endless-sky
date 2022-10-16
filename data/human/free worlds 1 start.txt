@@ -1164,7 +1164,7 @@ mission "FW Pirates Patch"
 		not "FW Refinery 1: offered"
 	on offer
 		conversation
-			`We've made some changes to the Free Worlds story. In order to continue, you should go to <destination>.`
+			`When you updated your game, you were in the middle of a story arc in the Free Worlds campaign that has since been changed. In order to continue, you should go to <destination>.`
 				accept
 
 
