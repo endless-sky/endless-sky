@@ -186,7 +186,7 @@ mission "Remnant: Bounty 4"
 			cargo 3
 			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Rano'erek"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
