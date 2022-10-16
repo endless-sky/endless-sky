@@ -269,21 +269,6 @@ ship "Flea" "Flea (Pulse)"
 		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
 
-ship "Flea" "Tick"
-	add attributes
-		"hull" 300
-		"heat dissipation" -.13
-		"outfit space" 1
-		"weapon capacity" -3
-		"mass" 4
-	outfits
-		"Flamethrower"
-		"Fuel Processor"
-		"Small Biochemical Cell"
-		`"Baellie" Atomic Engines`
-	gun 0 -27
-	turret 0 -15
-
 
 
 ship "Geocoris"
@@ -1395,6 +1380,43 @@ ship "Solifuge" "Solifuge (Tracker)"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
+
+
+
+ship "Tick"
+	sprite "ship/hai flea"
+	thumbnail "thumbnail/hai flea"
+	attributes
+		category "Drone"
+		"cost" 186500
+		"shields" 200
+		"hull" 1000
+		"mass" 24
+		"drag" .55
+		"heat dissipation" .7
+		"outfit space" 64
+		"weapon capacity" 10
+		"engine capacity" 22
+		"automaton" 1
+		weapon
+			"blast radius" 8
+			"shield damage" 65
+			"hull damage" 37
+			"hit force" 85
+	outfits
+		"Flamethrower"
+		"Fuel Processor"
+		"Small Biochemical Cell"
+		`"Baellie" Atomic Engines`
+
+	engine 0 27 1.4
+	gun 0 -27
+	turret 0 -15
+	leak "leak" 60 50
+	explode "tiny explosion" 17
+	description "This drone was customized with the idea of using either a flamethrower, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit of mass and heat dissipation."
+	description "This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
