@@ -2032,6 +2032,49 @@ mission "FW Early Warning 5"
 
 
 
+# The following two missions are preserved for backwards compatibility.
+mission "FW Pirates 3.1B"
+	landing
+	name "Report to Tomek"
+	description "Return to Longjump to report to Tomek that <origin> has been pacified."
+	source Bloodsea
+	destination Longjump
+	to offer
+		has "FW Pirates 3.1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		log "Disobeyed the Free Worlds Senate by helping to launch an attack on the pirates in the Antares system, rather than pursuing diplomatic relations with the anarchist worlds. It is unclear how long the Free Worlds can afford to maintain control of the system, however."
+		set "fw pirates: victory"
+		conversation
+			`As you bring your ship in for a landing on <origin>, you are struck by the utter futility of the victory you have just won. The locals stand around your ship, sullen and defiant, as you announce that this world is now property of the Free Worlds. True, you have destroyed much of their military strength, but you have no idea what to do to win the hearts of these people.`
+			`	But if nothing else, the battle you have fought here will give merchants in the surrounding systems a respite from piracy for many months to come, while the pirates are busy finding new ships and recruiting new crews. Time to report back to Tomek and see what your next steps will be.`
+				accept
+
+
+
+mission "FW Pirates 3.2B"
+	landing
+	name "Report to Tomek"
+	description "Return to Longjump to report to Tomek that <origin> has been pacified."
+	source Greenrock
+	destination Longjump
+	to offer
+		has "FW Pirates 3.2A: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		log "Disobeyed the Free Worlds Senate by helping to launch an attack on the pirate home world of Greenrock. Captured the planet after a massive battle, but it is unclear how long the Free Worlds can afford to keep them subdued by force."
+		set "fw pirates: victory"
+		conversation
+			`As you bring your ship in for a landing on <planet>, you are struck by the utter futility of the victory you have just won. The locals stand around your ship, sullen and defiant, as you announce that this world is now property of the Free Worlds. True, you have destroyed much of their military strength, but you have no idea what to do to win the hearts of these people.`
+			`	But if nothing else, the battle you have fought here will give merchants in the surrounding systems a respite from piracy for many months to come, while the pirates are busy finding new ships and recruiting new crews. Time to report back to Tomek and see what your next steps will be.`
+				accept
+
+
+
 mission "FW Senate Hearing"
 	autosave
 	landing
@@ -2041,8 +2084,11 @@ mission "FW Senate Hearing"
 	destination "Bourne"
 	deadline 14
 	to offer
-		has "FW Early Warning 5: done"
-		has "FW Pirates: Attack 3: done"
+		or
+			and
+				has "FW Early Warning 5: done"
+				has "FW Pirates: Attack 3: done"
+			has "fw pirates: victory"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
