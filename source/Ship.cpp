@@ -1623,7 +1623,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			direction = -1;
 
 			// If you have a target planet in the destination system, exit
-			// hyperpace aimed at it. Otherwise, target the first planet that
+			// hyperspace aimed at it. Otherwise, target the first planet that
 			// has a spaceport.
 			Point target;
 			// Except when you arrive at an extra distance from the target,
@@ -1734,6 +1734,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
 					SetTargetStellar(nullptr);
+					SetTargetSystem(nullptr);
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
@@ -2456,7 +2457,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
-		if(!victim->JumpsRemaining() && CanRefuel(*victim))
+		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
@@ -2792,7 +2793,7 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
-// Check if this ship is currently able to enter hyperspace to it target.
+// Check if this ship is currently able to enter hyperspace to its target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
@@ -3181,6 +3182,24 @@ int Ship::JumpsRemaining(bool followParent) const
 	if(!jumpFuel)
 		jumpFuel = JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
+}
+
+
+
+bool Ship::NeedsFuel(bool followParent) const
+{
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		auto p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
+	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
 }
 
 
