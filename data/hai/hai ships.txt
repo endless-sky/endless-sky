@@ -268,18 +268,19 @@ ship "Flea" "Flea (Pulse)"
 
 ship "Flea" "Tick"
 	add attributes
-		"shields" 500
-		"hull" -400
-		"fuel capacity" 100
-		"heat dissipation" -.1
+		"hull" 300
+		"heat dissipation" -.13
 		"outfit space" 1
-		"weapon capacity" -4
-		"mass" 2
+		"weapon capacity" -3
+		"mass" 4
 	outfits
 		"Flamethrower"
 		"Fuel Processor"
 		"Small Biochemical Cell"
 		`"Baellie" Atomic Engines`
+	gun 0 -27
+	turret 0 -15
+
 
 
 ship "Geocoris"
@@ -518,6 +519,257 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 
+
+ship "Modified Shield Beetle"
+	sprite "ship/hai modified shield beetle"
+	thumbnail "thumbnail/hai modified shield beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 25400000
+		"shields" 40000
+		"hull" 10000
+		"required crew" 59
+		"bunks" 78
+		"mass" 720
+		"drag" 9.1
+		"heat dissipation" .35
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 855
+		"weapon capacity" 333
+		"engine capacity" 140
+		weapon
+			"blast radius" 500
+			"shield damage" 5500
+			"hull damage" 3000
+			"hit force" 3600
+	outfits
+		"Ionic Blaster Prototype" 8
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling" 3
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+	engine -45 123
+	engine 45 123
+	gun -22 -103
+	gun 22 -103
+	gun -34.5 -68
+	gun 34.5 -68
+	gun -48 -53.5
+	gun 48 -53.5
+	gun -61.5 -23
+	gun 61.5 -23
+	turret 0 5 "Chameleon Anti-Missile"
+	turret -55.5 74.5
+	turret 55.5 74.5
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 60
+	explode "small explosion" 51
+	explode "medium explosion" 54
+	explode "large explosion" 53
+	explode "huge explosion" 22
+	"final explode" "final explosion large"
+	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
+
+ship "Modified Shield Beetle" "Stag Beetle"
+	sprite "ship/hai stag beetle"
+	thumbnail "thumbnail/hai stag beetle"
+	add attributes
+		"hull" 1000
+		"spinal mount" 1
+		"cloak" .01
+		"heat dissipation" -.05
+		"cloaking energy" 5
+		"cloaking fuel" .5
+		"cloaking heat" 5
+		"engine capacity" 5
+		"outfit space" 2
+		"weapon capacity" 20
+		"required crew" 5
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Korath Grab-Strike"
+		"Korath Banisher"
+		"Bullfrog Anti-Missile" 3
+		"Large Heat Shunt"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Jump Drive"
+		"Fuel Processor"
+		"Wanderer Ramscoop"
+		`"Bufaer" Atomic Steering`
+		"Thruster (Planetary Class)"
+		"White Sun Reactor"
+		"Generator (Furnace Class)"
+		"Korath Repeater Rifle" 20
+		"Pulse Rifle" 60
+		"Dual Pulse Pistols" 10
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Korath Grab-Strike"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Korath Banisher"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
+
+
+
+ship "Pond Strider"
+	sprite "ship/hai pond strider"
+	thumbnail "thumbnail/hai pond strider"
+	attributes
+		category "Medium Warship"
+		"cost" 5250000
+		"shields" 10000
+		"hull" 3000
+		"required crew" 9
+		"bunks" 18
+		"mass" 168
+		"drag" 3.55
+		"hull repair rate" 1
+		"heat dissipation" .5
+		"fuel capacity" 300
+		"cargo space" 71
+		"outfit space" 354
+		"weapon capacity" 144
+		"engine capacity" 76
+		weapon
+			"blast radius" 200
+			"shield damage" 1500
+			"hull damage" 750
+			"hit force" 1750
+	outfits
+		"Railgun"
+		"Ion Cannon" 2
+		"Railgun Slug" 1000
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Hai Corundum Regenerator" 2
+		"Hai Gorge Batteries"
+		"Geode Reactor"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Basrem" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+		
+	engine -23 80
+	engine 23 80
+	gun 0 -76 "Railgun"
+	gun -15 -72 "Ion Cannon"
+	gun 15 -72 "Ion Cannon"
+	turret -18 -53 "Bullfrog Anti-Missile"
+	turret 18 -53 "Bullfrog Anti-Missile"
+	turret 0 14 "Chameleon Anti-Missile"
+	bay "Drone" -70 -45 left under
+	bay "Drone" 70 -45 right under
+	bay "Drone" -70 28 left under
+	bay "Drone" 70 28 right under
+	bay "Drone" -70 -45 over
+	bay "Drone" 70 -45 over
+	bay "Drone" -70 28 over
+	bay "Drone" 70 28 over
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
+
+ship "Pond Strider" "Pond Strider (Tracker)"
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 112
+		"Railgun" 2
+		"Railgun Slug" 2000
+		"Tracker Storage Pod" 2
+		"Chameleon Anti-Missile" 3
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries"
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Basrem" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+ship "Pond Strider" "Pond Strider (Ion)"
+	outfits
+		"Railgun"
+		"Ion Cannon" 2
+		"Railgun Slug" 1000
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile" 2
+		"Hai Corundum Regenerator"
+		"Supercapacitor"
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+ship "Pond Strider" "Pond Strider (Pulse)"
+	outfits
+		"Pulse Cannon" 2
+		"Railgun"
+		"Railgun Slug" 1000
+		"Pulse Turret"
+		"Chameleon Anti-Missile" 2
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries" 2
+		"Hai Gorge Batteries"
+		"Geode Reactor"
+		"Hai Williwaw Cooling" 2
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+ship "Pond Strider" "Pond Strider (Railgun)"
+	outfits
+		"Railgun" 3
+		"Railgun Slug" 3000
+		"Chameleon Anti-Missile" 3
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Chasm Batteries"
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 9
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
+
+
 ship "Sea Scorpion"
 	sprite "ship/hai sea scorpion"
 	thumbnail "thumbnail/hai sea scorpion"
@@ -669,142 +921,6 @@ ship "Sea Scorpion" "Sea Dragon (Tripulse, JD)"
 	cargo
 		outfits
 			"Gold Bars" 5
-
-ship "Pond Strider"
-	sprite "ship/hai pond strider"
-	thumbnail "thumbnail/hai pond strider"
-	attributes
-		category "Medium Warship"
-		"cost" 5250000
-		"shields" 10000
-		"hull" 3000
-		"required crew" 9
-		"bunks" 18
-		"mass" 168
-		"drag" 3.55
-		"hull repair rate" 1
-		"heat dissipation" .5
-		"fuel capacity" 300
-		"cargo space" 71
-		"outfit space" 354
-		"weapon capacity" 144
-		"engine capacity" 76
-		weapon
-			"blast radius" 200
-			"shield damage" 1500
-			"hull damage" 750
-			"hit force" 1750
-	outfits
-		"Railgun"
-		"Ion Cannon" 2
-		"Railgun Slug" 1000
-		"Chameleon Anti-Missile"
-		"Bullfrog Anti-Missile" 2
-		"Hai Corundum Regenerator" 2
-		"Hai Gorge Batteries"
-		"Geode Reactor"
-		"Hai Williwaw Cooling" 2
-		"Quantum Keystone"
-		"Pulse Rifle" 9
-		`"Basrem" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Hyperdrive"
-		
-	engine -23 80
-	engine 23 80
-	gun 0 -76 "Railgun"
-	gun -15 -72 "Ion Cannon"
-	gun 15 -72 "Ion Cannon"
-	turret -18 -53 "Bullfrog Anti-Missile"
-	turret 18 -53 "Bullfrog Anti-Missile"
-	turret 0 14 "Chameleon Anti-Missile"
-	bay "Drone" -70 -45 left under
-	bay "Drone" 70 -45 right under
-	bay "Drone" -70 28 left under
-	bay "Drone" 70 28 right under
-	bay "Drone" -70 -45 over
-	bay "Drone" 70 -45 over
-	bay "Drone" -70 28 over
-	bay "Drone" 70 28 over
-	leak "leak" 40 50
-	leak "flame" 40 70
-	leak "big leak" 70 30
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 10
-	"final explode" "final explosion large"
-	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
-
-ship "Pond Strider" "Pond Strider (Tracker)"
-	outfits
-		"Hai Tracker Pod"
-		"Hai Tracker" 112
-		"Railgun" 2
-		"Railgun Slug" 2000
-		"Tracker Storage Pod" 2
-		"Chameleon Anti-Missile" 3
-		"Hai Diamond Regenerator"
-		"Hai Chasm Batteries"
-		"Boulder Reactor"
-		"Hai Williwaw Cooling" 2
-		"Quantum Keystone"
-		"Pulse Rifle" 9
-		`"Basrem" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Hyperdrive"
-
-ship "Pond Strider" "Pond Strider (Ion)"
-	outfits
-		"Railgun"
-		"Ion Cannon" 2
-		"Railgun Slug" 1000
-		"Chameleon Anti-Missile"
-		"Bullfrog Anti-Missile" 2
-		"Hai Corundum Regenerator"
-		"Supercapacitor"
-		"Boulder Reactor"
-		"Hai Williwaw Cooling" 3
-		"Quantum Keystone"
-		"Pulse Rifle" 9
-		`"Benga" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Hyperdrive"
-
-ship "Pond Strider" "Pond Strider (Pulse)"
-	outfits
-		"Pulse Cannon" 2
-		"Railgun"
-		"Railgun Slug" 1000
-		"Pulse Turret"
-		"Chameleon Anti-Missile" 2
-		"Hai Diamond Regenerator"
-		"Hai Chasm Batteries" 2
-		"Hai Gorge Batteries"
-		"Geode Reactor"
-		"Hai Williwaw Cooling" 2
-		"Quantum Keystone"
-		"Pulse Rifle" 9
-		`"Benga" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Hyperdrive"
-
-ship "Pond Strider" "Pond Strider (Railgun)"
-	outfits
-		"Railgun" 3
-		"Railgun Slug" 3000
-		"Chameleon Anti-Missile" 3
-		"Hai Corundum Regenerator"
-		"Hai Diamond Regenerator"
-		"Hai Chasm Batteries"
-		"Boulder Reactor"
-		"Hai Williwaw Cooling" 3
-		"Quantum Keystone"
-		"Pulse Rifle" 9
-		`"Benga" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Hyperdrive"
 
 
 
@@ -1040,65 +1156,6 @@ ship "Shield Beetle" "Shield Beetle (Thunderhead)"
 		"Thunderhead Launcher" 8
 		"Thunderhead Missile" 160
 
-ship "Modified Shield Beetle"
-	sprite "ship/hai modified shield beetle"
-	thumbnail "thumbnail/hai modified shield beetle"
-	attributes
-		category "Heavy Warship"
-		"cost" 25400000
-		"shields" 40000
-		"hull" 10000
-		"required crew" 59
-		"bunks" 78
-		"mass" 720
-		"drag" 9.1
-		"heat dissipation" .35
-		"fuel capacity" 600
-		"cargo space" 80
-		"outfit space" 855
-		"weapon capacity" 333
-		"engine capacity" 140
-		weapon
-			"blast radius" 500
-			"shield damage" 5500
-			"hull damage" 3000
-			"hit force" 3600
-	outfits
-		"Ionic Blaster Prototype" 8
-		"Ionic Turret Prototype" 2
-		"Chameleon Anti-Missile"
-		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator" 3
-		"Hai Zephyr Cooling" 3
-		"Outfits Expansion"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-		"Quantum Keystone"
-	engine -45 123
-	engine 45 123
-	gun -22 -103
-	gun 22 -103
-	gun -34.5 -68
-	gun 34.5 -68
-	gun -48 -53.5
-	gun 48 -53.5
-	gun -61.5 -23
-	gun 61.5 -23
-	turret 0 5 "Chameleon Anti-Missile"
-	turret -55.5 74.5
-	turret 55.5 74.5
-	leak "leak" 35 45
-	leak "flame" 60 95
-	leak "big leak" 50 45
-	explode "tiny explosion" 60
-	explode "small explosion" 51
-	explode "medium explosion" 54
-	explode "large explosion" 53
-	explode "huge explosion" 22
-	"final explode" "final explosion large"
-	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
 
 
 ship "Solifuge"

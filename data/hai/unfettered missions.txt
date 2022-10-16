@@ -2395,55 +2395,7 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
-ship "Modified Shield Beetle" "Stag Beetle"
-	sprite "ship/hai stag beetle"
-	thumbnail "thumbnail/hai stag beetle"
-	add attributes
-		"hull" 1000
-		"spinal mount" 1
-		"cloak" .01
-		"heat dissipation" -.05
-		"cloaking energy" 5
-		"cloaking fuel" .5
-		"cloaking heat" 5
-		"engine capacity" 5
-		"outfit space" 2
-		"weapon capacity" 20
-		"required crew" 5
-	outfits
-		"Sunbeam" 4
-		"Flamethrower" 2
-		"Korath Detainer"
-		"Korath Grab-Strike"
-		"Korath Banisher"
-		"Bullfrog Anti-Missile" 3
-		"Large Heat Shunt"
-		"Systems Core (Large)" 2
-		"Outfits Expansion" 4
-		"Jump Drive"
-		"Fuel Processor"
-		"Wanderer Ramscoop"
-		`"Bufaer" Atomic Steering`
-		"Thruster (Planetary Class)"
-		"White Sun Reactor"
-		"Generator (Furnace Class)"
-		"Korath Repeater Rifle" 20
-		"Pulse Rifle" 60
-		"Dual Pulse Pistols" 10
-	gun 0 -7 "Korath Detainer"
-	gun -22 -102 "Sunbeam"
-	gun 22 -102 "Sunbeam"
-	gun -34 -68 "Sunbeam"
-	gun 34 -68 "Sunbeam"
-	gun -49 -38
-	gun 49 -38
-	gun -61 -14 "Flamethrower"
-	gun 61 -14 "Flamethrower"
-	turret -51 21.5 "Korath Grab-Strike"
-	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Korath Banisher"
-	turret 56.5 75 "Bullfrog Anti-Missile"
-	turret 0 85.5 "Bullfrog Anti-Missile"
+
 
 mission "Unfettered: Start Of The War"
 	name `Strength Of A Leader`
