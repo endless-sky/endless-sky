@@ -199,10 +199,6 @@ mission "Unfettered: End of the Hunt"
 	invisible
 	repeat
 	landing
-	to offer
-		or
-			has "Unfettered: Nemo Me Impune Lacessit: active"
-			has "Unfettered: Nemo Me Impune Lacessit 2: active"
 	on offer
 		require "Gold Bars" 0
 		fail "Unfettered: Nemo Me Impune Lacessit"
@@ -463,6 +459,8 @@ mission "Unfettered: Pirate Help"
 mission "Unfettered: Duel Squared"
 	landing
 	source "New Tortuga"
+	name "Duel with the twins."
+	description "Beat the two twins today, or lose 10 million credits!"
 	to offer
 		has "unfettered: accepted duel"
 		has "Unfettered: Cavalry Arrives: done"
@@ -521,7 +519,6 @@ event "unfettered: thorn talon vengeance"
 
 mission "Unfettered: Stop The Duel"
 	landing
-	source "New Tortuga"
 	to offer
 		has "Unfettered: Duel Squared: active"
 		# to not stop it the day it starts
@@ -532,7 +529,7 @@ mission "Unfettered: Stop The Duel"
 				decline
 	on decline
 		set "unfettered: stop the duel"
-		fine 4000000
+		fine 10000000
 
 ship "Antlion" "Antlion (Bars)"
 	cargo
@@ -545,6 +542,7 @@ event "joined the mercenaries"
 
 mission "Unfettered: Daemons Unleashed"
 	landing
+	invisble
 	to offer
 		has "event: unfettered: thorn talon vengeance"
 		has "main plot completed"
@@ -1607,7 +1605,7 @@ conversation "more staves"
 			goto fine
 	`	You bring him to your ship and he sees a weapon that appears to be interesting. "This... <staff> staff seems to be adequate for my master. We would only require more of these."`
 	label fine
-	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - fifty, to be precise.`
+	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - twenty, to be precise.`
 
 mission "Bring More Enforcer Staves"
 	minor # so both staff conversations don't pop up at the same time
@@ -1658,3 +1656,4 @@ mission "Bring Void Rifle"
 	on accept
 		payment 10000000
 		outfit "Void Rifle" -1
+		fail

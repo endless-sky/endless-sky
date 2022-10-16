@@ -412,7 +412,7 @@ mission "Unfettered: Bring Hai"
 				`	(Go into the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	Moving with the crowd towards the nearest stadium entrance, a large wide open corridor leading directly into the seating areas around the main pavilion, you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, while waiting to filter inside you can already see some of what is going on inside over most of the crowd. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official looking Unfettered Hai await. They are approached by the next in line, a couple towing four children with them, who begin to plead, <firstgroup> The officials perhaps the "Chiefs" you have heard lead the Unfettered, speak among themselves, then, together, performs a gesture as they turn back to the petitioners. By the relief on their faces, you assume their request has been granted.`
+			`	Moving with the crowd towards the nearest stadium entrance, a large wide open corridor leading directly into the seating areas around the main pavilion, you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, while waiting to filter inside you can already see some of what is going on inside over most of the crowd. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official looking Unfettered Hai await. They are approached by the next in line, a couple towing four children with them, who begin to plead, <firstgroup>. The officials, perhaps the "Chiefs" you have heard lead the Unfettered, speak among themselves, then, together, perform a gesture as they turn back to the petitioners. By the relief on their faces, you assume their request has been granted.`
 			`	The next in line seems quite old, but he is moving around proudly, as if not limited by his age at all. <secondgroup> For him to speak this way, this soldier clearly has some special status or a reputation which has earned great respect. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
 			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring in the crowd. "Hi. I have noticed you easily among Hai. Do you want me to help translate what they say?"`
 			choice
@@ -541,9 +541,10 @@ mission "Unfettered: Bring Medical Supplies"
 					goto agree
 				`	(I don't have time for this.)`
 			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You probably also shouldn't stay landed here too long in case they decide to follow you.`
-			decline
+				decline
 			label agree
 			`	You are quickly assigned the collection of supplies from <stopovers> and urged to return them as quickly as possible.`
+				accept
 	on stopover
 		dialog `You're surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and, once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
 	on fail
@@ -833,7 +834,7 @@ mission "Unfettered: Attracted Attention"
 	source "Freedom"
 	destination "Darkcloak"
 	to offer
-		has "Unfettered: Prove your strength 2: active"
+		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		require "Jump Drive"
 	on enter "Almaaz"
@@ -908,7 +909,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				fail
 			label down
 			`	You get down yourself as you give the warning, then to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
-			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the jump drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. While waiting for him to return once you are done, you look around and notice a small symbol in the lower corner of a nearby wall: a dragon with multiple heads. You double-check the jump drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
+			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the Jump Drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. While waiting for him to return once you are done, you look around and notice a small symbol in the lower corner of a nearby wall: a dragon with multiple heads. You double-check the Jump Drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
 			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. Best have it come quickly, in the hopes it reaches us before the intruders return, in force," he suggests. You quickly send a message to the <ship>, asking them to dock with the vault.`
 			choice
 				`	(Wait for the ship to arrive.)`
@@ -916,15 +917,15 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Is this holographic field the reason we had to go into the vault in person, instead of just connecting it to the ship?"`
 					goto vault
-			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
+			`	"We needed to act discreetly, so we would have the time to check the status of the Jump Drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the Jump Drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
 				goto ship
 			label vault
-			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would not be able to pinpoint the exact location and would have to land blindly. We also needed to make sure the jump drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the jump drives to blow when used. Checking that takes time. Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sit too long, it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
+			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would not be able to pinpoint the exact location and would have to land blindly. We also needed to make sure the Jump Drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the Jump Drives to blow when used. Checking that takes time. Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sit too long, it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
-				`	"If this world is so wild, why put the jump drives here in the first place?"`
-			`	"The Unfettered be not the ones who placed these jump drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
+				`	"If this world is so wild, why put the Jump Drives here in the first place?"`
+			`	"The Unfettered be not the ones who placed these Jump Drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
 			
 			label ship
 			`	As soon as your ship arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly onto your ship if possible, so you may flee more swiftly. When your ship takes off, you notice more activity than on the way in...`
@@ -1027,7 +1028,7 @@ mission "Unfettered: Escort Hai Fleet"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates" 3
-		fleet "Small Northern Pirates" 2
+		fleet "Small Northern Pirates" 4
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
@@ -1056,7 +1057,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 				`	"Why would there be trackers on my ship?"`
 					goto trackers
 				`	"Why would a governor go there in person?"`
-			`	"The Unfettered only respect display of strength, and do not trust those they have not seen in person. The governor is probably"`
+			`	"The Unfettered only respect display of strength, and do not trust those they have not seen in person. The governor is probably hoping to get some Unfettered Hai with him on the return trip."`
 				goto leave
 			label trackers
 			`	`
@@ -1076,7 +1077,10 @@ mission "Unfettered: Taking Off With Hai Fleet"
 event "unfettered: shipment lost"
 
 outfit "Materials"
+	category "Special"
+	thumbnail "outfits/unkown"
 	cost 1000
+	plural "Materials"
 	"mass" 1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
@@ -1167,7 +1171,6 @@ mission "Unfettered: Materials Intercepted"
 					goto whyhire
 				`	"Do you have any idea where the stolen cargo could be?"`
 					goto cargo
-				accept
 			label whyhire
 			`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say? Can you find that cargo and bring it to us?"`
 			choice
@@ -1325,7 +1328,7 @@ mission "Unfettered: Cavalry Arrives"
 			``
 				goto nevercompleted
 			label murdered
-			`You receive an ominous message of defiance from the other Sea Dragon, "Nemo me impune lacessit."`
+			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 			action
 				set "unfettered: thorn talon murdered"
 				set "unfettered: thorn talon death"
@@ -1355,8 +1358,6 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					goto know
 				`	"Sorry, but I'm quite busy at the moment."`
 					defer
-				`	"I don't want to help the Unfettered in any way."`
-					decline
 			`	"Straight to the point! I am starting to like you."`
 				goto job
 			label know
@@ -1642,7 +1643,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"Get to the point. Where can I find it?"`
 				`	"What kind of damage?"`
 					goto damage
-			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the Jump Drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
 				goto agree
 			label damage
 			`	"Some kind of beam weapon, and a very strong one at that. It looks like it only got partially deflected by the shields, if at all. I wonder what kind of weapon can do that." She looks intrigued, and pauses to think about it, then continues, "That would explain why it's forbidden for us to venture east with jump drives. We lack any hull repair capabilities, and to be honest with you, our hull is not much more resilient than the one of some human ships, like that Auxiliary."`
@@ -1785,9 +1786,9 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	on offer
 		outfit "Alpha Pirate Crew" -1
 		conversation
-			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
+			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
 			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems part of it has been replaced by a crude prosthetic. He may not survive the transport.`
-			`	You find the jump drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason.`
+			`	You find the Jump Drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason.`
 			choice
 				`	(Explore the Auxiliary.)`
 				`	(Leave the planet.)`
@@ -1888,7 +1889,8 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		outfit "Silicon" -100
 		outfit "Silver" -15
 		payment 500000
-		dialog `You bring your cargo to the local Unfettered shipyards, and they hand you <payment>. You see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas. You notice that the job boards include missions to gather asteroids as well.`
+		dialog `You bring your cargo to the local Unfettered shipyards, and they hand you <payment>. You see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
+		# smbd comes and says you shuold do more of it to help
 
 
 
@@ -2551,7 +2553,7 @@ event "shield beetles accessible"
 
 mission "Unfettered: Close Quarter"
 	name `Close Quarter Fighting`
-	description `He-Yi wants you to bring fifty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
+	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
 		or
@@ -2670,7 +2672,7 @@ mission "Unfettered: Close Quarter"
 				`	"I have no idea, sorry."`
 			`	"I've heard stories of weapons that could not ever kill anyone, no matter how much you shoot him," He-Yi muses.`
 			label idea
-			`	"If you ever find any weapon that's [safer, less risky] than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird [territory, space]. I would not have expected them to use weapons at all, but maybe they too have [Unfettered, true] people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, fifty of them?"`
+			`	"If you ever find any weapon that's [safer, less risky] than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird [territory, space]. I would not have expected them to use weapons at all, but maybe they too have [Unfettered, true] people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, twenty of them?"`
 			choice
 				`	"I'll see what I can do."`
 					accept
@@ -2680,9 +2682,9 @@ mission "Unfettered: Close Quarter"
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
 		or
-			has "Bring Pug Staves: done"
-			has "Bring Coalition Weapons: done"
-			has "Bring Void Rifle: done"
+			has "Bring Pug Staves: failed"
+			has "Bring Coalition Weapons: failed"
+			has "Bring Void Rifle: failed"
 	on complete
 		clear "unfettered: offered close quarter"
 		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
@@ -2710,12 +2712,13 @@ mission "Bring Pug Staves"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		require "Pug Peacekeeping Staff" 50
-		dialog `Do you want to sell 50 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
+		require "Pug Peacekeeping Staff" 20
+		dialog `Do you want to sell 20 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
 	on accept
 		payment 2500000
-		outfit "Pug Peacekeeping Staff" -50
-		dialog `The Unfettered thank you for bringing these 50 staves to them. They give you <payment>.`
+		outfit "Pug Peacekeeping Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		fail
 
 mission "Bring Coalition Weapons"
 	invisible
@@ -2724,9 +2727,10 @@ mission "Bring Coalition Weapons"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		require "Enforcer Riot Staff" 50
-		dialog `Do you want to sell 50 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
+		require "Enforcer Riot Staff" 20
+		dialog `Do you want to sell 20 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
 	on accept
 		payment 4000000
-		outfit "Enforcer Riot Staff" -50
-		dialog `The Unfettered thank you for bringing these 50 staves to them. They give you <payment>.`
+		outfit "Enforcer Riot Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		fail

@@ -580,6 +580,7 @@ government "Shadow"
 	swizzle 4
 	"attitude toward"
 		"Hydra" -.1
+		"Korath" -.01
 	bribe 0
 	fine 0
 	"friendly hail" "refuse to answer hail"

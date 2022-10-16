@@ -625,7 +625,7 @@ phrase "defeated unfettered challenger"
 		"defeated "
 		"ashamed "
 		"disabled "
-		"revealed my weakness "
+		"revealed my weakness% "
 	word
 		"me in a "
 	word
@@ -654,6 +654,8 @@ phrase "defeated unfettered challenger"
 		" You have the right to plunder."
 		" It would seem you are as strong as some pretended, perhaps even more."
 		" Finish me! I would rather die than have to live with this insult."
+	replace
+		"% me" ""
 
 phrase "unfettered duelling"
 	word

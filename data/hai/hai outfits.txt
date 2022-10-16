@@ -149,7 +149,7 @@ outfit "Ionic Blaster Prototype"
 	"weapon capacity" -19
 	"gun ports" -1
 	weapon
-		sprite "projectile/ion blast"
+		sprite "projectile/ionic blast"
 			"frame rate" 5
 		sound "ion blast"
 		"hit effect" "ion impact"

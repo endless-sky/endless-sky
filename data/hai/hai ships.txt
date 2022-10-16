@@ -17,17 +17,17 @@ ship Antlion
 	attributes
 		category "Medium Warship"
 		cost 35200000
-		mass 490
+		mass 520
 		bunks 67
 		"cargo space" 56
 		drag 6.9
 		"engine capacity" 180
 		"fuel capacity" 600
 		"heat dissipation" 0.66
-		hull 8000
+		hull 9000
 		"outfit space" 696
 		"required crew" 35
-		shields 32000
+		shields 24000
 		"weapon capacity" 280
 		weapon
 			"blast radius" 260
