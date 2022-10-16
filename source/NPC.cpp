@@ -632,8 +632,10 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 			Fleet::Place(*result.system, *ship);
 	}
 
-	for(auto ship : result.ships)
-		cargo.SetCargo(&*ship);
+	if(overrideFleetCargo)
+		for(auto ship : result.ships)
+			cargo.SetCargo(&*ship);
+
 
 	// String replacement:
 	if(!result.ships.empty())
