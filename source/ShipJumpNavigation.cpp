@@ -76,7 +76,7 @@ double ShipJumpNavigation::JumpFuel(const System *destination) const
 
 	// If no destination is given, return the maximum fuel per jump.
 	if(!destination)
-		return max(JumpDriveFuel(maxJumpRange), HyperdriveFuel());
+		return max(JumpDriveFuel(), HyperdriveFuel());
 
 	return GetCheapestJumpType(currentSystem, destination).second;
 }
