@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -189,6 +190,7 @@ void MainPanel::Draw()
 	{
 		Information info;
 		const Interface *mapInterface = GameData::Interfaces().Get("map");
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
 		if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
 			info.SetCondition("max zoom");
 		if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
@@ -212,9 +214,45 @@ void MainPanel::Draw()
 			{
 				info.SetCondition("can cloak");
 			}
+
+			bool hasSecondaryWeapon = false;
+			for (auto& outfit: player.Flagship()->Outfits())
+			{
+				if (outfit.first->Icon())
+				{
+					hasSecondaryWeapon = true;
+					break;
+				}
+			}
+			if (hasSecondaryWeapon)
+			{
+				// Set the conditions for the interface to draw the fire button, and
+				// custom draw the missile icon in the provided rect.
+				info.SetCondition("has secondary");
+				Rectangle icon_box = mapButtonUi->GetBox("ammo icon");
+				auto& selectedWeapons = player.SelectedWeapons();
+				// The weapons selection cycle goes through three states:
+				// 1. no weapons selected
+				// 2. one weapon selected. Each selection gets the next weapon in sequence
+				// 3. All weapons selected. It will fire all secondary weapons at once.
+				if (selectedWeapons.empty())
+				{
+					SpriteShader::Draw(SpriteSet::Get("icon/none"), icon_box.Center());
+				}
+				else if (selectedWeapons.size() == 1)
+				{
+					info.SetCondition("secondary selected");
+					SpriteShader::Draw((*selectedWeapons.begin())->Icon(), icon_box.Center());
+				}
+				else
+				{
+					info.SetCondition("secondary selected");
+					SpriteShader::Draw(SpriteSet::Get("icon/all"), icon_box.Center());
+				}
+
+			}
 		}
 
-		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
 		mapButtonUi->Draw(info, this);
 	}
 }
@@ -280,6 +318,10 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Command::Inject(Command::FIGHT);
 	else if(key == SDLK_c)
 		Command::Inject(Command::CLOAK);
+	else if(key == SDLK_w)
+		Command::Inject(Command::SELECT);
+	else if(key == SDLK_q)
+		Command::Inject(Command::SECONDARY);
 	else
 		return false;
 

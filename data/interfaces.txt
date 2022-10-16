@@ -1259,6 +1259,19 @@ interface "main buttons" bottom right
 	button j "_Jump"
 		from -160 -40 to -90 -10
 
+
+	visible if "has secondary"
+	active if "secondary selected"
+	sprite "ui/ammo unselected"
+		from -145 -50 to -85 -80
+	button q "Fire"
+		from -145 -50 to -85 -80
+	active
+	box "ammo icon"
+		from -164 -50 to -134 -80
+	button w
+		from -164 -50 to -134 -80
+
 	visible if "can attack"
 	sprite "ui/dialog cancel"
 		from -250 -40 to -160 -90
