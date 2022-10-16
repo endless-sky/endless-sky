@@ -105,17 +105,8 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 	// If this ship has no jump drive then return 0.
 	if(!hasJumpDrive)
 		return 0.;
-	// If this exact distance is in the list then return its cost. This will
-	// likely only occur if the given distance is 0 or maxJumpRange.
-	if(jumpDriveCosts.count(distance))
-		return jumpDriveCosts.find(distance)->second;
-	// Otherwise, find the first jump range that covers the distance. Iterate over
-	// the costs map until we reach the jump range just above the given distance.
-	// It is the default behavior of the map to sort the keys from least to greatest,
-	// so the first range that we reach that covers the distance is guaranteed to be the
-	// best cost for that distance.
-	auto it = find_if(jumpDriveCosts.begin(), jumpDriveCosts.end(),
-		[distance](const pair<double, double> &range) -> bool { return range.first > distance; });
+	// Otherwise, find the first jump range that covers the distance.
+	auto it = jumpDriveCosts.lower_bound(distance);
 	return (it == jumpDriveCosts.end()) ? 0. : it->second;
 }
 
@@ -207,7 +198,8 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 		maxJumpRange = distance;
 	// If a jump drive range isn't already accounted for or the existing cost
 	// for this range is more expensive, use the given cost.
-	if(!jumpDriveCosts.count(distance) || !jumpDriveCosts[distance] || jumpDriveCosts[distance] > cost)
+	auto oit = jumpDriveCosts.find(distance);
+	if(oit == jumpDRiveCosts.end() || !oit->second || oit->second > cost)
 	{
 		jumpDriveCosts[distance] = cost;
 
