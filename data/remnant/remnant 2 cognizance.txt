@@ -451,7 +451,7 @@ mission "Remnant: Cognizance 12"
 		fleet
 			names "remnant"
 			cargo 1
-			commodities Equipment
+			commodities "Equipment"
 			variant
 				Pelican
 				Puffin 4

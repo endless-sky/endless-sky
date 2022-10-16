@@ -159,7 +159,7 @@ fleet "Remnant Home Guard"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Metal Plastic "Heavy Metals"
+	commodities "Food" "Metal" "Plastic" "Heavy Metals"
 	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
 		disables plunders appeasing mining harvests surveillance
