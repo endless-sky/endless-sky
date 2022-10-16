@@ -227,7 +227,7 @@ government "Hai Merchant (Human)"
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 
-government "Hai (Govener Escort)"
+government "Hai (Governor Escort)"
 	"display name" "Hai"
 	swizzle 0
 
@@ -571,7 +571,7 @@ government "Mercenaries"
 	swizzle 9
 	"player reputation" -1000
 	"attitude toward"
-		"Hai (Governer Escort)" -.01
+		"Hai (Governor Escort)" -.01
 		"Shadow" .01
 		"Hydra" -.1
 	bribe .25

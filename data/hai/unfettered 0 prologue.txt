@@ -972,7 +972,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on enter "Due Yoot"
 		dialog "When you arrive the fleet is waiting for you in the spaceport. The fleet admiral signals you they demand to search your ship on the planet before proceeding with the mission. They say it is standard protocol in these circumstances."
 	npc accompany save
-		government "Hai (Governer Escort)"
+		government "Hai (Governor Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality escort timid launching
@@ -984,14 +984,14 @@ mission "Unfettered: Escort Hai Fleet"
 				"Geocoris"
 				"Water Bug"
 	npc accompany
-		government "Hai (Governer Escort)"
+		government "Hai (Governor Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality launching heroic
 		system "Due Yoot"
 		fleet "Small Hai"
 	npc
-		government "Hai (Governer Escort)"
+		government "Hai (Governor Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality entering heroic
