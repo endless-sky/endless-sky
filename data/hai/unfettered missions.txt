@@ -996,7 +996,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on enter "Due Yoot"
 		dialog "When you arrive the fleet is waiting for you in the spaceport. The fleet admiral signals you they demand to search your ship on the planet before proceeding with the mission. They say it is standard protocol in these circumstances."
 	npc accompany save
-		government "Hai Merchant (Sympathizers)"
+		government "Hai (Governer Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
 		personality escort timid launching
@@ -1008,17 +1008,17 @@ mission "Unfettered: Escort Hai Fleet"
 				"Geocoris"
 				"Water Bug"
 	npc accompany
-		government "Hai Merchant (Sympathizers)"
+		government "Hai (Governer Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
-		personality escort launching heroic
+		personality launching heroic
 		system "Due Yoot"
 		fleet "Small Hai"
 	npc
-		government "Hai Merchant (Sympathizers)"
+		government "Hai (Governer Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"
-		personality escort entering heroic
+		personality entering heroic
 		system "Ula Mon"
 		fleet "Small Hai"
 	npc evade
@@ -1078,7 +1078,7 @@ event "unfettered: shipment lost"
 
 outfit "Materials"
 	category "Special"
-	thumbnail "outfits/unkown"
+	thumbnail "outfits/unknown"
 	cost 1000
 	plural "Materials"
 	"mass" 1
@@ -1194,10 +1194,10 @@ mission "Unfettered: Materials Intercepted"
 				`	"What do you intend to do with this cargo?"`
 					goto intention
 				`	"If you do not give it to me, I will open fire."`
-			`	"If I laid down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
+			`	"If I laid down at every threat I received, the Masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
 				goto over
 			label intention
-			`	"That's none of your business, but if it can help you get away... My masters are coming soon to retrieve the cargo, and if it ain't there no more, I'll be the one they 'retrieve' instead. So you better forget about it!" He says, before abruptly closing the communication.`
+			`	"That's none of your business, but if it can help you get away... My Masters are coming soon to retrieve the cargo, and if it ain't there no more, I'll be the one they 'retrieve' instead. So you better forget about it!" He says, before abruptly closing the communication.`
 			label over
 			`	They quickly land on the planet, probably in order to avoid a fight, or maybe just to win some time... It looks like you will have to land too in order to retrieve the cargo.`
 	npc board
@@ -1293,8 +1293,8 @@ mission "Unfettered: Cavalry Arrives"
 		system "Misam"
 		government "Shadow"
 		personality entering heroic uninterested staying disables
-		ship "Sea Dragon (Tripulse, JD)" "Thorn"
-		ship "Sea Dragon (Tripulse, JD)" "Talon"
+		ship "Sea Dragon" "Thorn"
+		ship "Sea Dragon" "Talon"
 	npc kill
 		system "Misam"
 		government "Hydra"
@@ -1580,12 +1580,14 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 					`	"Well, I've never seen them in combat personally, so you will have to ask someone else. I've only heard stories."`
 						goto stories
 			`	"Yes, my thoughts exactly! The fighters are too agile to be shot down by fixed weapons, but obviously any guns mounted on a turret should easily take down the small ships. Very good! I was worried that having a ship with fighters would mean it would only have a limited weaponry, but it seems even you humans have found a way to remedy that." She barely finishes her phrase before disappearing back to wherever she came from, even more excited than before.`
-				decline
+				goto beforeugo
 			label price
 			`	"Yes, the price part needs to be addressed... But their strength is still something to be respected. The best advantage is that the fighters enjoy the ride and do not need independent hyperdrive systems." She seems a bit disappointed about your opinions on fighters, but what you said does not seem to change any big plans for her.`
-				decline
+				goto beforeugo
 			label stories
 			`	"Indeed, so have I, and for once the stories were not exaggerated compared to the facts! I've heard stories ever since the Carrier was first seen by our people. We compared it to a space station."`
+			label beforeugo
+			`	"Before you go, you should know that examining these specs will take me some time, so it could be a while until I would employ you again."`
 
 
 
@@ -1643,7 +1645,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"Get to the point. Where can I find it?"`
 				`	"What kind of damage?"`
 					goto damage
-			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the Jump Drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
 				goto agree
 			label damage
 			`	"Some kind of beam weapon, and a very strong one at that. It looks like it only got partially deflected by the shields, if at all. I wonder what kind of weapon can do that." She looks intrigued, and pauses to think about it, then continues, "That would explain why it's forbidden for us to venture east with jump drives. We lack any hull repair capabilities, and to be honest with you, our hull is not much more resilient than the one of some human ships, like that Auxiliary."`
@@ -1889,8 +1891,9 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		outfit "Silicon" -100
 		outfit "Silver" -15
 		payment 500000
-		dialog `You bring your cargo to the local Unfettered shipyards, and they hand you <payment>. You see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
-		# smbd comes and says you shuold do more of it to help
+		conversation
+			`You bring your cargo to the local Unfettered shipyards, and see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
+			`	One of the Unfettered team leaders comes to speak to you, "My greatest thanks for these materials, they will be crucial in repairing our houses, probably more so than for our ships. Please, if you have the time, try to bring us more materials, we post missions on the job board when we need them the most. In the meantime, take these <payment> as a token of my gratitude."`
 
 
 
@@ -2166,7 +2169,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			``
 				goto suspect
 			label centipede
-			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere <fine>."`
+			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere 12 million credits."`
 			choice
 				`	"I'll take it, then."`
 				`	"Actually, I changed my mind."`
@@ -2177,7 +2180,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			``
 				goto bought
 			label waterbug
-			`	"A fine ship sir, the best of all the cargo haulers! I can assure you this ship takes a lot more punishment than any human hauler can! And it only costs you <fine>."`
+			`	"A fine ship sir, the best of all the cargo haulers! I can assure you this ship takes a lot more punishment than any human hauler can! And it only costs you 13 million credits."`
 			choice
 				`	"I'll take it, then."`
 				`	"Actually, I changed my mind."`
@@ -2360,7 +2363,8 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
 		give ship "Modified Shield Beetle" "Basilisk"
 		event "unfettered: shield beetle mass production" 30
-		dialog `After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message. There is also a side note, probably from He-Yi: "Make sure to check the job board for more jobs like this one. We appreciate the help."`
+		conversation
+			`After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message. There is also a side note, probably from He-Yi: "Make sure to check the job board for more jobs like this one. We appreciate the help."`
 
 event "unfettered: shield beetle mass production"
 	planet "Darkcloak"
@@ -2376,6 +2380,180 @@ mission "Unfettered: Improved Production"
 		conversation
 			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
 				decline
+
+
+
+outfit "Mystery Cube"
+	category "Special"
+	mass 1
+	cost 1000000
+	thumbnail "outfit/unknown"
+
+ship "Marauder Leviathan" "Leviathan (Cube)"
+	outfits
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Anti-Missile Turret"
+		"D94-YV Shield Generator"
+		"Fusion Reactor"
+		Hyperdrive
+		"LP144a Battery Pack"
+		"Laser Rifle" 69
+		"Security Station" 5
+		"Small Bunk Room"
+		"Liquid Helium Cooler"
+		"Luxury Accommodations"
+		"Proton Turret" 3
+		Torpedo 102
+		"Torpedo Launcher" 4
+		"Torpedo Storage Rack" 6
+	cargo
+		outfits
+			"Gold Bars" 15
+			"Mystery Cube"
+
+mission "Unfettered: Special Cargo"
+	name `Mystery item`
+	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He-Yi on <planet>.`
+	to offer
+		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "reputation: Hai" >= 0
+	source "Darkcloak"
+	waypoint "Alcyone"
+	destination "Warfeed"
+	on offer
+		conversation
+			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
+			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - by any means."`
+			choice
+				`	"How will I know which warlord it is?"`
+			`	"It is no common warlord. To tell you the truth, she is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
+			`	"This warlord, Mhairi, has beaten the previous warlord in power there, right after he sent the orders to acquire the item. She may not know about it yet, but the officers of the previous warlord probably will - and those officers are now hers. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"Is it common for the Unfettered to use heralds to bring messages?"`
+				`	"This seems too risky for me."`
+					decline
+			`	"We don't believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, it is quite common to use heralds. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"You could have just sent a message on a secure channel."`
+			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those north to learn from this. They would surely be able to decrypt it.`
+			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
+			choice
+				`	"I will depart as soon as I can."`
+					accept
+				`	"This seems too risky for me."`
+					decline
+	on waypoint
+		dialog `It seems that the Degenerate is in this system, but judging from the marks on its hull, it will likely land to make repairs soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
+	npc board
+		personality staying target
+		to despawn
+			has "Unfettered: Special Cargo 1B: active"
+		government "Mhairi's Legion"
+		system "Alcyone"
+		ship "Leviathan (Cube)" "Degenerate"
+		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
+	npc
+		personality coward plunders vindictive staying
+		government "Mhairi's Legion"
+		system "Alcyone"
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 5
+	on visit
+		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
+	on complete
+		require "Mystery Cube"
+
+
+
+mission "Unfettered: Cargo on Mirrorlake"
+	landing
+	invisible
+	source "Mirrorlake"
+	to offer
+		has "Unfettered: Special Cargo 2: active"
+	on offer
+		outfit "Mystery Cube" -1
+		conversation
+			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
+				decline
+
+mission "Unfettered: Special Cargo 2"
+	landing
+	name `Mystery Gathering`
+	description `Collect a tribute of food from <stopovers>, and place the mystery cube without anyone noticing.`
+	source "Warfeed"
+	stopover "Mirrorlake"
+	cargo "food (tribute)" 93
+	blocked `You need <tons> of cargo space for the next Unfettered mission.`
+	to offer
+		has "reputation: Hai" >= 0
+		has "Unfettered: Special Cargo: done"
+	on offer
+		conversation
+			branch bought
+				has "unfettered: brokered deal"
+			branch stole
+				has "Unfettered: Special Cargo 1B: done"
+			action
+				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
+			``
+				goto afterlog
+			label stole
+			action
+				log `Managed to steal a very precious mystery cube from a pirate ship.`
+			``
+				goto afterlog
+			label bought
+			action
+				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
+			label afterlog
+			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
+			branch nodeal
+				not "unfettered: brokered deal"
+			action
+				clear "unfettered: brokered deal"
+				payment 2000000
+			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
+			label nodeal
+			`	"I want you to go to <stopovers> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
+			choice
+				`	"Is this the real reason for my trip, like with the shipyard?"`
+			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
+			choice
+				`	"I'll do it."`
+					accept
+				`	"What will this cube do?"`
+				`	"I was almost caught last time. I'm not trying again."`
+					decline
+			`	"You have earned the right to know, considering it is you who brought it to us. It's a very [complex, advanced] surveillance device, which should record everything that happens on the world as well as in [the system, space]."`
+			choice
+				`	"Why this particular world?"`
+				`	"I'll do it."`
+					accept
+			`	"All important Hai ships are built on our homeworld. That would be a perfect place to put this cube, but we don't want to bring too much [heat, attention] onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet [movements, activities], in order to be able to react in time should the worst arrive. Of course, we need something [unpredicted, discreet] to do it, else our operatives could get caught."`
+			choice
+				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
+				`	"I'll do it."`
+					accept
+			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
+			choice
+				`	"I'll do it."`
+					accept
+				`	"I was almost caught last time. I'm not trying again."`
+					decline
+	to complete
+		has "Unfettered: Cargo on Mirrorlake: offered"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		log `Placed a mysterious cube in a clearing on Mirrorlake. It should give intel on Hai ship movements to the Unfettered.`
+		payment 5000000
+		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
 
 
 
@@ -2396,8 +2574,6 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
-
-
 
 mission "Unfettered: Start Of The War"
 	name `Strength Of A Leader`

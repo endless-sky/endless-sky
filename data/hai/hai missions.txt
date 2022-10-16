@@ -830,12 +830,12 @@ mission "Pirate Troubles [0]"
 		near "Waypoint" 2
 		government "Hai"
 	to offer
+		"combat rating" > 1100
 		or
 			has "Unfettered: Pirate Help: active"
 			and
 				has "First Contact: Unfettered: offered"
 				random < 10
-				"combat rating" > 1100
 	on offer
 		conversation
 			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but the Unfettered Hai never reach this far south. A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
@@ -929,9 +929,7 @@ mission "Pirate Troubles [1]: Farpoint"
 	invisible
 	source "Farpoint"
 	to offer
-		or
-			has "Pirate Troubles [1]: active"
-			has "Unfettered: Pirate Help: active"
+		has "Pirate Troubles [1]: active"
 	on offer
 		conversation
 			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
@@ -946,9 +944,7 @@ mission "Pirate Troubles [1]: Freedom or Zenith"
 	source
 		planet "Freedom" "Zenith"
 	to offer
-		or
-			has "Pirate Troubles [1]: active"
-			has "Unfettered: Pirate Help: active"
+		has "Pirate Troubles [1]: active"
 	on offer
 		payment -5000
 		conversation
@@ -962,9 +958,7 @@ mission "Pirate Troubles [1]: Haven"
 	invisible
 	source "Haven"
 	to offer
-		or
-			has "Pirate Troubles [1]: active"
-			has "Unfettered: Pirate Help: active"
+		has "Pirate Troubles [1]: active"
 	on offer
 		payment -100
 		"scar's legion information" ++
@@ -981,9 +975,7 @@ mission "Pirate Troubles [1]: Stormhold"
 	invisible
 	source "Stormhold"
 	to offer
-		or
-			has "Pirate Troubles [1]: active"
-			has "Unfettered: Pirate Help: active"
+		has "Pirate Troubles [1]: active"
 	on offer
 		"scar's legion information" ++
 		conversation

@@ -465,19 +465,17 @@ mission "Unfettered: Duel Squared"
 		has "unfettered: accepted duel"
 		has "Unfettered: Cavalry Arrives: done"
 	on offer
-		conversation
-			action
-				"unfettered: duel startdays" = day + month * 30 + year * 365
-			`The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are."`
-				accept
+		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off..."`
+	on accept
+		"unfettered: duel startdays" = day + month * 30 + year * 365
 	npc disable save
 		system "Misam"
 		government "Hai (Unfettered Challenge)"
 		to despawn
 			has "unfettered: stop the duel"
 		personality waiting heroic uninterested staying disables
-		ship "Sea Dragon (Tripulse, JD)" "Thorn"
-		ship "Sea Dragon (Tripulse, JD)" "Talon"
+		ship "Sea Dragon" "Thorn"
+		ship "Sea Dragon" "Talon"
 		conversation
 			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
 			action
@@ -513,6 +511,8 @@ mission "Unfettered: Duel Squared"
 
 event "unfettered: thorn talon vengeance"
 	"reputation: Shadow" <?= -1000
+	government "Mercenaries"
+		bribe 2
 	government "Shadow"
 		"attitude toward"
 			"Hydra" -.01
@@ -542,7 +542,7 @@ event "joined the mercenaries"
 
 mission "Unfettered: Daemons Unleashed"
 	landing
-	invisble
+	invisible
 	to offer
 		has "event: unfettered: thorn talon vengeance"
 		has "main plot completed"
@@ -1007,90 +1007,6 @@ mission "Unfettered: Hai Intel"
 
 
 
-outfit "Mystery Cube"
-	category "Special"
-	cost 1000000
-	thumbnail "outfit/unknown"
-
-ship "Marauder Leviathan" "Leviathan (Cube)"
-	outfits
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Anti-Missile Turret"
-		"D94-YV Shield Generator"
-		"Fusion Reactor"
-		Hyperdrive
-		"LP144a Battery Pack"
-		"Laser Rifle" 69
-		"Security Station" 5
-		"Small Bunk Room"
-		"Liquid Helium Cooler"
-		"Luxury Accommodations"
-		"Proton Turret" 3
-		Torpedo 102
-		"Torpedo Launcher" 4
-		"Torpedo Storage Rack" 6
-	cargo
-		outfits
-			"Gold Bars" 15
-			"Mystery Cube"
-
-mission "Unfettered: Special Cargo"
-	name `Mystery item`
-	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He-Yi on <planet>.`
-	to offer
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
-		has "reputation: Hai" >= 0
-	source "Darkcloak"
-	waypoint "Alcyone"
-	destination "Warfeed"
-	on offer
-		conversation
-			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
-			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - by any means."`
-			choice
-				`	"How will I know which warlord it is?"`
-			`	"It is no common warlord. To tell you the truth, she is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
-			`	"This warlord, Mhairi, has beaten the previous warlord in power there, right after he sent the orders to acquire the item. She may not know about it yet, but the officers of the previous warlord probably will - and those officers are now hers. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
-			choice
-				`	"I will depart as soon as I can."`
-					accept
-				`	"Is it common for the Unfettered to use heralds to bring messages?"`
-				`	"This seems too risky for me."`
-					decline
-			`	"We don't believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, it is quite common to use heralds. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
-			choice
-				`	"I will depart as soon as I can."`
-					accept
-				`	"You could have just sent a message on a secure channel."`
-			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those north to learn from this. They would surely be able to decrypt it.`
-			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
-			choice
-				`	"I will depart as soon as I can."`
-					accept
-				`	"This seems too risky for me."`
-					decline
-	on waypoint
-		dialog `It seems that the Degenerate is in this system, but judging from the marks on its hull, it will likely land to make repairs soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
-	npc board
-		personality staying target
-		to despawn
-			has "Unfettered: Special Cargo 1B: active"
-		government "Mhairi's Legion"
-		system "Alcyone"
-		ship "Leviathan (Cube)" "Degenerate"
-		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
-	npc
-		personality coward plunders vindictive staying
-		government "Mhairi's Legion"
-		system "Alcyone"
-		fleet "Large Northern Pirates" 3
-		fleet "Small Northern Pirates" 5
-	on visit
-		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
-	on complete
-		require "Mystery Cube"
-
 mission "Unfettered: Special Cargo 1B"
 	invisible
 	landing
@@ -1241,81 +1157,6 @@ mission "Unfettered: Special Cargo 1B"
 				flee
 	on accept
 		outfit "Mystery Cube"
-
-
-mission "Unfettered: Special Cargo 2"
-	landing
-	name `Mystery Gathering`
-	description `Collect a tribute of food from <stopovers>, and place the mystery cube without anyone noticing.`
-	source "Warfeed"
-	stopover "Mirrorlake"
-	cargo "food (tribute)" 93
-	blocked `You need <tons> of cargo space for the next Unfettered mission.`
-	to offer
-		has "reputation: Hai" >= 0
-		has "Unfettered: Special Cargo: done"
-	on offer
-		conversation
-			branch bought
-				has "unfettered: brokered deal"
-			branch stole
-				has "Unfettered: Special Cargo 1B: done"
-			action
-				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
-			``
-				goto afterlog
-			label stole
-			action
-				log `Managed to steal a very precious mystery cube from a pirate ship.`
-			``
-				goto afterlog
-			label bought
-			action
-				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
-			label afterlog
-			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
-			branch nodeal
-				not "unfettered: brokered deal"
-			action
-				clear "unfettered: brokered deal"
-				payment 2000000
-			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
-			label nodeal
-			`	"I want you to go to <stopovers> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
-			choice
-				`	"Is this the real reason for my trip, like with the shipyard?"`
-			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
-			choice
-				`	"I'll do it."`
-					accept
-				`	"What will this cube do?"`
-				`	"I was almost caught last time. I'm not trying again."`
-					decline
-			`	"You have earned the right to know, considering it is you who brought it to us. It's a very [complex, advanced] surveillance device, which should record everything that happens on the world as well as in [the system, space]."`
-			choice
-				`	"Why this particular world?"`
-				`	"I'll do it."`
-					accept
-			`	"All important Hai ships are built on our homeworld. That would be a perfect place to put this cube, but we don't want to bring too much [heat, attention] onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet [movements, activities], in order to be able to react in time should the worst arrive. Of course, we need something [unpredicted, discreet] to do it, else our operatives could get caught."`
-			choice
-				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
-				`	"I'll do it."`
-					accept
-			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
-			choice
-				`	"I'll do it."`
-					accept
-				`	"I was almost caught last time. I'm not trying again."`
-					decline
-	on stopover
-		dialog "You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
-		outfit "Mystery Cube" -1
-	on visit
-		dialog phrase "generic missing stopover or cargo"
-	on complete
-		log `Placed a mysterious cube in a clearing on Mirrorlake. It should give intel on Hai ship movements to the Unfettered.`
-		payment 5000000
-		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
 
 
 

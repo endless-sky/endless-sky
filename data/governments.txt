@@ -227,6 +227,18 @@ government "Hai Merchant (Human)"
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 
+government "Hai (Govener Escort)"
+	"display name" "Hai"
+	swizzle 0
+
+	"attitude toward"
+		"Mercenaries" -.01
+	bribe .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
 government "Hai (Unfettered)"
 	swizzle 4
 	color .55 .27 .76
@@ -558,6 +570,8 @@ government "Mhairi's Legion"
 government "Mercenaries"
 	swizzle 9
 	"player reputation" -1000
+	"attitude toward"
+		"Hai (Governer Escort)" -.01
 	bribe .25
 	fine 0
 	"friendly hail" "friendly mercenary"

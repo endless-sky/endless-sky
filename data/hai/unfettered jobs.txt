@@ -367,9 +367,9 @@ phrase "unfettered challenger defeated"
 	word
 		`"Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here are the <payment>, but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
 		`"Raaaah... Well, you have beaten me fairly, so I'll pay up... Here are the <payment>, captain. Next time I will not underestimate you!"`
-		`"Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you. For now, here are the agreed <payment>, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
+		`"Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you. For now, here are the agreed <payment>, captain. Hopefully it allows you to improve your flagship before our next battle..."`
 		`"The fight is over! Stop shooting me or you'll blow holes into my ships! Here are the <payment>, let me be now!"`
-		`"I surrender, <last>. You have indeed lived up to your reputation. I did not stand a chance in this battle. Still, a challenge is a challenge. Here are your <payment>."`
+		`"I surrender. You have indeed lived up to your reputation. I did not stand a chance in this battle. Still, a challenge is a challenge. Here are your <payment>."`
 		`"Stop shooting me, you monkey, before my ship breaks apart! Here is your <payment>, now leave me alone."`
 		`"You seem to learn from our encounters well... next time it will be different. Of course we have delivered the agreed <payment> to you."`
 		`"Urgent message: we surrender. It is not our way to fight until death, because then there is nothing to be learned through it. Here, have your <payment>."`
@@ -380,7 +380,7 @@ mission "Unfettered Challenge [0]"
 	job
 	repeat
 	substitutions
-		<payment> "200000 credits"
+		<payment> "200,000 credits"
 	name `Defeat a young Unfettered captain`
 	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
@@ -398,14 +398,14 @@ mission "Unfettered Challenge [0]"
 			invisible
 			action
 				payment 200000
-				"reputation: Hai (Unfettered)" += 20
+				"reputation: Hai (Unfettered)" += 25
 				fail "Unfettered Challenge [0]"
 
 mission "Unfettered Challenge [1A]"
 	job
 	repeat
 	substitutions
-		<payment> "500000 credits"
+		<payment> "500,000 credits"
 	name `Defeat an Unfettered captain`
 	description `An Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
 	source
@@ -423,14 +423,14 @@ mission "Unfettered Challenge [1A]"
 			invisible
 			action
 				payment 500000
-				"reputation: Hai (Unfettered)" += 40
+				"reputation: Hai (Unfettered)" += 50
 				fail "Unfettered Challenge [1A]"
 
 mission "Unfettered Challenge [1B]"
 	job
 	repeat
 	substitutions
-		<payment> "500000 credits"
+		<payment> "500,000 credits"
 	name `Defeat an Unfettered captain`
 	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
 	source
@@ -448,14 +448,14 @@ mission "Unfettered Challenge [1B]"
 			invisible
 			action
 				payment 500000
-				"reputation: Hai (Unfettered)" += 40
+				"reputation: Hai (Unfettered)" += 50
 				fail "Unfettered Challenge [1B]"
 
 mission "Unfettered Challenge [2]"
 	job
 	repeat
 	substitutions
-		<payment> "800000 credits"
+		<payment> "800,000 credits"
 	name `Defeat an old Unfettered captain`
 	description `An experienced Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
 	source
@@ -474,7 +474,7 @@ mission "Unfettered Challenge [2]"
 			invisible
 			action
 				payment 800000
-				"reputation: Hai (Unfettered)" += 70
+				"reputation: Hai (Unfettered)" += 75
 				fail "Unfettered Challenge [2]"
 
 
@@ -483,17 +483,19 @@ mission "Unfettered Space Challenge [0]"
 	landing
 	repeat
 	substitutions
-		<payment> "200000 credits"
+		<payment> "200,000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		not "Unfettered Space Challenge [0]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
-		random < 60
+		random < 30
+	on offer
+		"reputation: Hai (Unfettered)" += 40
+		fail "Unfettered Space Challenge [0]"
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
-			distance 0 10
+			distance 10
 			attributes "unfettered challenge"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
@@ -504,24 +506,25 @@ mission "Unfettered Space Challenge [0]"
 				"reputation: Hai (Unfettered)" += 5
 	on fail
 		"reputation: Hai (Unfettered)" -= 40
-		
 
 mission "Unfettered Space Challenge [1A]"
 	invisible
 	landing
 	repeat
 	substitutions
-		<payment> "500000 credits"
+		<payment> "500,000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		not "Unfettered Space Challenge [1A]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
-		random < 20
+		random < 10
+	on offer
+		"reputation: Hai (Unfettered)" += 80
+		fail "Unfettered Space Challenge [1A]"
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
-			distance 0 10
+			distance 10
 			attributes "unfettered challenge"
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
@@ -538,17 +541,19 @@ mission "Unfettered Space Challenge [1B]"
 	landing
 	repeat
 	substitutions
-		<payment> "500000 credits"
+		<payment> "500,000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		not "Unfettered Space Challenge [1B]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
-		random < 20
+		random < 10
+	on offer
+		"reputation: Hai (Unfettered)" += 80
+		fail "Unfettered Space Challenge [1B]"
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
-			distance 0 10
+			distance 10
 			attributes "unfettered challenge"
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
@@ -565,17 +570,19 @@ mission "Unfettered Space Challenge [2]"
 	landing
 	repeat
 	substitutions
-		<payment> "800000 credits"
+		<payment> "800,000 credits"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		not "Unfettered Space Challenge [2]: active"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
-		random < 20
+		random < 10
+	on offer
+		"reputation: Hai (Unfettered)" += 140
+		fail "Unfettered Space Challenge [2]"
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
-			distance 0 10
+			distance 10
 			attributes "unfettered challenge"
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"

@@ -580,56 +580,6 @@ ship "Modified Shield Beetle"
 	"final explode" "final explosion large"
 	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
 
-ship "Modified Shield Beetle" "Stag Beetle"
-	sprite "ship/hai stag beetle"
-	thumbnail "thumbnail/hai stag beetle"
-	add attributes
-		"hull" 1000
-		"spinal mount" 1
-		"cloak" .01
-		"heat dissipation" -.05
-		"cloaking energy" 5
-		"cloaking fuel" .5
-		"cloaking heat" 5
-		"engine capacity" 5
-		"outfit space" 2
-		"weapon capacity" 20
-		"required crew" 5
-	outfits
-		"Sunbeam" 4
-		"Flamethrower" 2
-		"Korath Detainer"
-		"Korath Grab-Strike"
-		"Korath Banisher"
-		"Bullfrog Anti-Missile" 3
-		"Large Heat Shunt"
-		"Systems Core (Large)" 2
-		"Outfits Expansion" 4
-		"Jump Drive"
-		"Fuel Processor"
-		"Wanderer Ramscoop"
-		`"Bufaer" Atomic Steering`
-		"Thruster (Planetary Class)"
-		"White Sun Reactor"
-		"Generator (Furnace Class)"
-		"Korath Repeater Rifle" 20
-		"Pulse Rifle" 60
-		"Dual Pulse Pistols" 10
-	gun 0 -7 "Korath Detainer"
-	gun -22 -102 "Sunbeam"
-	gun 22 -102 "Sunbeam"
-	gun -34 -68 "Sunbeam"
-	gun 34 -68 "Sunbeam"
-	gun -49 -38
-	gun 49 -38
-	gun -61 -14 "Flamethrower"
-	gun 61 -14 "Flamethrower"
-	turret -51 21.5 "Korath Grab-Strike"
-	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Korath Banisher"
-	turret 56.5 75 "Bullfrog Anti-Missile"
-	turret 0 85.5 "Bullfrog Anti-Missile"
-
 
 
 ship "Pond Strider"
@@ -769,6 +719,72 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 		"Hyperdrive"
 
 
+ship "Sea Dragon"
+	sprite "ship/hai sea dragon"
+	thumbnail "thumbnail/hai sea dragon"
+	attributes
+		category "Medium Warship"
+		cost 5450000
+		shields 17000
+		hull 5600
+		"required crew" 18
+		bunks 36
+		mass 360
+		drag 5.2
+		"fuel capacity" 600
+		"heat dissipation" 0.6
+		"cargo space" 45
+		"outfit space" 519
+		"weapon capacity" 168
+		"engine capacity" 125
+		weapon
+			"blast radius" 100
+			"shield damage" 1050
+			"hull damage" 520
+			"hit force" 1500
+	outfits
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Boulder Reactor"
+		"Hai Diamond Regenerator" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 3
+		"Jump Drive"
+		"Outfits Expansion" 2
+		"Pulse Rifle" 25
+		"Dual Pulse Pistols"
+		"Tripulse Shredder" 4
+		"Wanderer Ramscoop"
+	cargo
+		outfits
+			"Gold Bars" 5
+	engine -28.5 68.5
+	engine 28.5 68.5
+	"steering engine" 64.5 23.5
+		zoom 0.6
+		angle -90
+		right
+	"steering engine" -64.5 23.5
+		zoom 0.6
+		angle 90
+		left
+	gun -13 -77.5
+	gun 13 -77.5
+	gun -27 -56
+	gun 27 -56
+	turret -35.5 24.5
+	turret 35.5 24.5
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 30
+	explode "small explosion" 50
+	explode "medium explosion" 35
+	explode "large explosion" 18
+	"final explode" "final explosion medium"
+	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
+	description "This version was built from stronger materials, allowing a stronger hull, at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile, and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
+
+
 
 ship "Sea Scorpion"
 	sprite "ship/hai sea scorpion"
@@ -811,11 +827,11 @@ ship "Sea Scorpion"
 	engine -28.5 68.5
 	engine 28.5 68.5
 	"steering engine" 64.5 23.5
-		zoom 0.8
+		zoom 0.6
 		angle -90
 		right
 	"steering engine" -64.5 23.5
-		zoom 0.8
+		zoom 0.6
 		angle 90
 		left
 	gun -13 -77.5
@@ -893,34 +909,6 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
-
-ship "Sea Scorpion" "Sea Dragon (Tripulse, JD)"
-	sprite "ship/hai sea dragon"
-	thumbnail "thumbnail/hai sea dragon"
-	outfits
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Boulder Reactor"
-		"Hai Diamond Regenerator" 2
-		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 3
-		"Jump Drive"
-		"Outfits Expansion" 2
-		"Pulse Rifle" 25
-		"Dual Pulse Pistols"
-		"Tripulse Shredder" 4
-		"Wanderer Ramscoop"
-	add attributes
-		"shields" 1500
-		"hull" 1000
-		"fuel capacity" 300
-		"outfit space" 9
-		"engine capacity" 8
-		"heat dissipation" -.1
-		"required crew" 4
-	cargo
-		outfits
-			"Gold Bars" 5
 
 
 
@@ -1155,6 +1143,81 @@ ship "Shield Beetle" "Shield Beetle (Thunderhead)"
 		"Pulse Turret" 3
 		"Thunderhead Launcher" 8
 		"Thunderhead Missile" 160
+
+
+
+ship "Stag Beetle"
+	sprite "ship/hai stag beetle"
+	thumbnail "thumbnail/hai stag beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 30400000
+		"shields" 40000
+		"hull" 11000
+		"required crew" 64
+		"bunks" 78
+		"mass" 720
+		"drag" 9.1
+		"cloak" .01
+		"cloaking energy" 5
+		"cloaking fuel" .5
+		"cloaking heat" 5
+		"heat dissipation" .3
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 850
+		"weapon capacity" 353
+		"engine capacity" 145
+		"spinal mount" 1
+		weapon
+			"blast radius" 515
+			"shield damage" 6000
+			"hull damage" 3500
+			"hit force" 4000
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Korath Grab-Strike"
+		"Korath Banisher"
+		"Bullfrog Anti-Missile" 3
+		"Large Heat Shunt"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Jump Drive"
+		"Fuel Processor"
+		`"Bufaer" Atomic Steering`
+		"Thruster (Planetary Class)"
+		"White Sun Reactor"
+		"Generator (Furnace Class)"
+		"Korath Repeater Rifle" 20
+		"Pulse Rifle" 60
+		"Dual Pulse Pistols" 10
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Korath Grab-Strike"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Korath Banisher"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 65
+	explode "small explosion" 53
+	explode "medium explosion" 56
+	explode "large explosion" 55
+	explode "huge explosion" 25
+	"final explode" "final explosion large"
+	description "This ship was built from the remains of a Korath Raider that harrassed the Unfettered one too many times, using its cloaking device to its advantage. Altough it does suffer from higher mass than a normal shield beetle, it also enjoys a more resilient hull and shield matrix."
+	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
 
 
 
