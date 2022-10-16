@@ -1754,6 +1754,15 @@ Copyright: Brian Swift
 License: CC-BY-SA-4.0
 Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
 
+Files:
+ images/outfit/twin blaster*
+ images/outfit/twin mod blaster*
+ images/projectile/twin blaster*
+ images/projectile/twin mod blaster*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

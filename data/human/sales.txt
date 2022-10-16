@@ -478,6 +478,8 @@ outfitter "Pirate Outfits"
 	"Gatling Gun"
 	"Bullet Boxes"
 	"Brig"
+	"Twin Blaster"
+	"Twin Modified Blaster"
 
 outfitter "Syndicate Assistance"
 	"Anti-Missile Turret"
