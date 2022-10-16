@@ -2060,13 +2060,6 @@ mission "FW Pirates 3.2B"
 	description "Return to Longjump to report to Tomek that <origin> has been pacified."
 	source Greenrock
 	destination Longjump
-	to offer
-		has "FW Pirates 3.2A: done"
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	on offer
-		log "Disobeyed the Free Worlds Senate by helping to launch an attack on the pirate home world of Greenrock. Captured the planet after a massive battle, but it is unclear how long the Free Worlds can afford to keep them subdued by force."
 		set "fw pirates: victory"
 		conversation
 			`As you bring your ship in for a landing on <planet>, you are struck by the utter futility of the victory you have just won. The locals stand around your ship, sullen and defiant, as you announce that this world is now property of the Free Worlds. True, you have destroyed much of their military strength, but you have no idea what to do to win the hearts of these people.`
