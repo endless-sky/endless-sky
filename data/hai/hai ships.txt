@@ -415,84 +415,6 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 
-ship "Sea Scorpion"
-	sprite "ship/hai sea scorpion"
-	thumbnail "thumbnail/hai sea scorpion"
-	attributes
-		category "Medium Warship"
-		"cost" 5450000
-		"shields" 15500
-		"hull" 4900
-		"required crew" 14
-		"bunks" 36
-		"mass" 360
-		"drag" 5.2
-		"heat dissipation" .7
-		"fuel capacity" 500
-		"cargo space" 45
-		"outfit space" 510
-		"weapon capacity" 168
-		"engine capacity" 117
-		weapon
-			"blast radius" 84
-			"shield damage" 840
-			"hull damage" 420
-			"hit force" 1260
-	outfits
-		"Hai Tracker Pod" 4
-		"Chameleon Anti-Missile" 2
-		"Tracker Storage Pod" 4
-		"Hai Tracker" 392
-		"Hai Williwaw Cooling" 2
-		"Boulder Reactor"
-		"Hai Ravine Batteries"
-		"Hai Diamond Regenerator"
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Value Detector"
-		"Hyperdrive"
-		"Pulse Rifle" 15
-
-	engine -28.5 68.5
-	engine 28.5 68.5
-	"steering engine" 64.5 23.5
-		zoom 0.8
-		angle -90
-		right
-	"steering engine" -64.5 23.5
-		zoom 0.8
-		angle 90
-		left
-	gun -13 -77.5
-	gun 13 -77.5
-	gun -27 -56
-	gun 27 -56
-	turret -35.5 24.5
-	turret 35.5 24.5
-	leak "leak" 40 50
-	leak "flame" 40 30
-	explode "tiny explosion" 24
-	explode "small explosion" 50
-	explode "medium explosion" 30
-	explode "large explosion" 14
-	"final explode" "final explosion medium"
-	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
-
-ship "Sea Scorpion" "Sea Scorpion (Pulse)"
-	outfits
-		"Pulse Cannon" 4
-		"Pulse Turret" 2
-		"Boulder Reactor"
-		"Hai Williwaw Cooling" 2
-		"Hai Ravine Batteries"
-		"Supercapacitor" 5
-		"Hai Diamond Regenerator" 2
-		`"Biroo" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Value Detector"
-		"Hyperdrive"
-		"Pulse Rifle" 15
-
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
@@ -629,6 +551,132 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
+
+
+ship "Sea Scorpion"
+	sprite "ship/hai sea scorpion"
+	thumbnail "thumbnail/hai sea scorpion"
+	attributes
+		category "Medium Warship"
+		"cost" 5450000
+		"shields" 15500
+		"hull" 4900
+		"required crew" 14
+		"bunks" 36
+		"mass" 360
+		"drag" 5.2
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 45
+		"outfit space" 510
+		"weapon capacity" 168
+		"engine capacity" 117
+		weapon
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
+	outfits
+		"Hai Tracker Pod" 4
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 392
+		"Hai Williwaw Cooling" 2
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+	engine -28.5 68.5
+	engine 28.5 68.5
+	"steering engine" 64.5 23.5
+		zoom 0.8
+		angle -90
+		right
+	"steering engine" -64.5 23.5
+		zoom 0.8
+		angle 90
+		left
+	gun -13 -77.5
+	gun 13 -77.5
+	gun -27 -56
+	gun 27 -56
+	turret -35.5 24.5
+	turret 35.5 24.5
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
+
+ship "Sea Scorpion" "Sea Scorpion (Pulse)"
+	outfits
+		"Pulse Cannon" 4
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Hai Ravine Batteries"
+		"Supercapacitor" 5
+		"Hai Diamond Regenerator" 2
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Ion)"
+	outfits
+		"Ion Cannon" 3
+		"Hai Tracker Pod"
+		"Tracker Storage Pod"
+		"Hai Tracker" 84
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Diamond Regenerator" 2
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"Chameleon Anti-Missile"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Valley Batteries"
+		"Hyperdrive"
+		"Ion Cannon"
+		"Ionic Blaster Prototype" 2
+		"Ionic Turret Prototype"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Shredder)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile"
+		"Hai Diamond Regenerator" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 4
+		"Hyperdrive"
+		"Pulse Cannon" 2
+		"Pulse Rifle" 15
+		"Pulse Turret"
+		"Quantum Keystone"
+		"Tripulse Shredder" 2
 
 
 
