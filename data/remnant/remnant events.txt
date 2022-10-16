@@ -761,7 +761,7 @@ event "remnant: ssil vida activation"
 
 
 
-# The default value of a system's "jump range" is 0, in this state, the global default will be used.
+# The default value of a system's "jump range" is 0. In this state, the global default will be used.
 # When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
 # the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
 # may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
