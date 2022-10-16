@@ -100,6 +100,7 @@ private:
 
 	// The cargo ships in this NPC will be able to carry.
 	FleetCargo cargo;
+	bool overrideFleetCargo = false;
 
 	EsUuid uuid;
 

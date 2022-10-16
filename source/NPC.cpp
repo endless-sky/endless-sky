@@ -114,7 +114,10 @@ void NPC::Load(const DataNode &node)
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
 		else if(child.Token(0) == "cargo" || child.Token(0) == "commodities" || child.Token(0) == "outfitters")
+		{
 			cargo.Load(child);
+			overrideFleetCargo = true;
+		}
 		else if(child.Token(0) == "dialog")
 		{
 			bool hasValue = (child.Size() > 1);
@@ -607,7 +610,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.ships.back()->SetName(*nameIt);
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
-		fleet->Place(*result.system, result.ships, false, false);
+		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{
