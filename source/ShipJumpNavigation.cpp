@@ -199,7 +199,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 	// If a jump drive range isn't already accounted for or the existing cost
 	// for this range is more expensive, use the given cost.
 	auto oit = jumpDriveCosts.find(distance);
-	if(oit == jumpDRiveCosts.end() || !oit->second || oit->second > cost)
+	if(oit == jumpDriveCosts.end() || !oit->second || oit->second > cost)
 	{
 		jumpDriveCosts[distance] = cost;
 
