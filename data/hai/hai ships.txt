@@ -268,11 +268,17 @@ ship "Flea" "Flea (Pulse)"
 
 ship "Flea" "Tick"
 	add attributes
+		"shields" 500
+		"hull" -400
 		"fuel capacity" 100
+		"heat dissipation" -.1
+		"outfit space" 1
+		"weapon capacity" -4
+		"mass" 2
 	outfits
 		"Flamethrower"
-		"Fuel Pod"
-		"Sand Cell"
+		"Fuel Processor"
+		"Small Biochemical Cell"
 		`"Baellie" Atomic Engines`
 
 
@@ -635,6 +641,34 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
+
+ship "Sea Scorpion" "Sea Dragon (Tripulse, JD)"
+	sprite "ship/hai sea dragon"
+	thumbnail "thumbnail/hai sea dragon"
+	outfits
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Boulder Reactor"
+		"Hai Diamond Regenerator" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 3
+		"Jump Drive"
+		"Outfits Expansion" 2
+		"Pulse Rifle" 25
+		"Dual Pulse Pistols"
+		"Tripulse Shredder" 4
+		"Wanderer Ramscoop"
+	add attributes
+		"shields" 1500
+		"hull" 1000
+		"fuel capacity" 300
+		"outfit space" 9
+		"engine capacity" 8
+		"heat dissipation" -.1
+		"required crew" 4
+	cargo
+		outfits
+			"Gold Bars" 5
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"

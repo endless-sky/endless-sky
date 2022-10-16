@@ -547,6 +547,7 @@ mission "Unfettered: Daemons Unleashed"
 	landing
 	to offer
 		has "event: unfettered: thorn talon vengeance"
+		has "main plot completed"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"

@@ -1274,34 +1274,6 @@ mission "Unfettered: Materials Intercepted"
 			label cargo
 			`	"You well deserve these <payment> for it! I will post jobs in the job board if this event happens again."`
 
-ship "Sea Scorpion" "Sea Dragon (Tripulse, JD)"
-	sprite "ship/hai sea dragon"
-	thumbnail "thumbnail/hai sea dragon"
-	outfits
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Boulder Reactor"
-		"Hai Diamond Regenerator" 2
-		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 3
-		"Jump Drive"
-		"Outfits Expansion" 2
-		"Pulse Rifle" 25
-		"Dual Pulse Pistols"
-		"Tripulse Shredder" 4
-		"Wanderer Ramscoop"
-	add attributes
-		"shields" 1500
-		"hull" 1000
-		"fuel capacity" 300
-		"outfit space" 9
-		"engine capacity" 8
-		"heat dissipation" -.1
-		"required crew" 4
-	cargo
-		outfits
-			"Gold Bars" 5
-
 mission "Unfettered: Cavalry Arrives"
 	landing
 	invisible
