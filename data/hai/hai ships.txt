@@ -11,6 +11,89 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship Antlion
+	sprite "ship/hai antlion"
+	thumbnail "thumbnail/hai antlion"
+	attributes
+		category "Medium Warship"
+		cost 35200000
+		mass 490
+		bunks 67
+		"cargo space" 56
+		drag 6.9
+		"engine capacity" 180
+		"fuel capacity" 600
+		"heat dissipation" 0.66
+		hull 8000
+		"outfit space" 696
+		"required crew" 35
+		shields 32000
+		"weapon capacity" 280
+		weapon
+			"blast radius" 260
+			"shield damage" 3600
+			"hull damage" 1820
+			"hit force" 2500
+	outfits
+		"Type 4 Radiant Thruster"
+		`"Bufaer" Atomic Steering`
+		`"Biroo" Reverse Thruster`
+		"Hai Diamond Regenerator"
+		"Chameleon Anti-Missile" 2
+		
+		"Wanderer Ramscoop"
+		"Fuel Processor"
+		"Systems Core (Medium)"
+		"Geode Reactor"
+		"Hai Valley Batteries"
+		"Value Detector"
+		
+		Hyperdrive
+		"Ionic Blaster Prototype" 4
+		"Ionic Turret Prototype" 2
+		"Quantum Keystone"
+	"steering engine" 62 10
+		zoom 0.6
+		right
+		angle -115
+	"steering engine" -62 10
+		zoom 0.6
+		left
+		angle 115
+	"reverse engine" 0 -96
+		zoom 0.8
+	engine 44.5 64
+		zoom 0.8
+	engine -44.5 64
+		zoom 0.8
+	engine 0 110
+	gun -24 -100 "Ionic Blaster Prototype"
+	gun 24 -100 "Ionic Blaster Prototype"
+	gun -15 -97 "Ionic Blaster Prototype"
+	gun 15 -97 "Ionic Blaster Prototype"
+	turret -22.5 -57.5 "Chameleon Anti-Missile"
+	turret 22.5 -57.5 "Chameleon Anti-Missile"
+	turret -15 41 "Ionic Turret Prototype"
+	turret 15 41 "Ionic Turret Prototype"
+	bay Drone -67 -76
+		under
+	bay Drone 67 -76
+		under
+	bay Drone 0 70.5
+		over
+	leak leak 40 50
+	leak flame 50 80
+	leak "big leak" 60 50
+	explode "huge explosion" 10
+	explode "large explosion" 30
+	explode "medium explosion" 50
+	explode "small explosion" 40
+	explode "tiny explosion" 40
+	"final explode" "final explosion large"
+	description "This ship was built near the end of the Korath raids, as a ship fast enough to catch the Koraths and delay them. Whilst it could not beat a Raider alone, using energy weapons and its drones it can hold its own until cavalry arrives, and sometimes even win the fight, if lucky. It is not able to substain prolonged combat, but it is now renowned for attacking vulnerable targets in human space and disappearing away before anyone can react, as if always one move ahead."
+	description "As the raids ended and the Unfettered conflict arrose, this ship turned out to be less useful than planned, and was stolen by Mercenaries, who choose to remain neutral in this conflict."
+
+
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
@@ -182,6 +265,16 @@ ship "Flea" "Flea (Pulse)"
 		"Sand Cell"
 		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
+
+ship "Flea" "Tick"
+	add attributes
+		"fuel capacity" 100
+	outfits
+		"Flamethrower"
+		"Fuel Pod"
+		"Sand Cell"
+		`"Baellie" Atomic Engines`
+
 
 ship "Geocoris"
 	plural "Geocorises"
@@ -933,8 +1026,8 @@ ship "Modified Shield Beetle"
 		"engine capacity" 140
 		weapon
 			"blast radius" 500
-			"shield damage" 4500
-			"hull damage" 2200
+			"shield damage" 5500
+			"hull damage" 3000
 			"hit force" 3600
 	outfits
 		"Ionic Blaster Prototype" 8

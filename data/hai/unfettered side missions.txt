@@ -534,46 +534,10 @@ mission "Unfettered: Stop The Duel"
 		set "unfettered: stop the duel"
 		fine 4000000
 
-ship "Marauder Falcon" "Marauder Falcon (Weapons, Bars)"
-	sprite "ship/mfalconw"
-	thumbnail "thumbnail/mfalconw"
-	add attributes
-		"weapon capacity" 45
-		"cargo space" -10
-		"outfit space" 80
-		"shields" 5000
-		"hull" 5000
-	outfits
-		"Pulse Cannon" 6
-		"Ionic Turret Prototype" 4
-		
-		"Boulder Reactor"
-		"Hai Gorge Batteries"
-		"Systems Core (Medium)"
-		"Hai Zephyr Cooling" 2
-		"Pulse Rifle" 100
-		"Dual Pulse Pistols" 5
-		
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Jump Drive"
+ship "Antlion" "Antlion (Bars)"
 	cargo
 		outfits
 			"Gold Bars" 50
-	
-	engine -16.5 143
-	engine 16.5 143
-	gun -16 -86.5 "Pulse Cannon"
-	gun 16 -86.5 "Pulse Cannon"
-	gun -19 -76.5 "Pulse Cannon"
-	gun 19 -76.5 "Pulse Cannon"
-	gun -24.5 -66.5 "Pulse Cannon"
-	gun 24.5 -66.5 "Pulse Cannon"
-	turret -16 -29 "Ionic Turret Prototype"
-	turret 16 -29 "Ionic Turret Prototype"
-	turret -50 39.5 "Ionic Turret Prototype"
-	turret 50 39.5 "Ionic Turret Prototype"
-	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine. It also seems to have an enhanced shield matrix integrated into it, seemingly inspired by the Hai, and is protected by a special alloy added to its hull."
 
 event "joined the mercenaries"
 	government "Escort"
@@ -586,9 +550,8 @@ mission "Unfettered: Daemons Unleashed"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"
-		# placeholder until we get the antlion probably
-		ship "Marauder Falcon (Weapons, Bars)" "Alpha Lion"
-		personality heroic nemesis staying vindictive target
+		personality heroic staying nemesis vindictive target
+		ship "Antlion (Bars)" "AntLion"
 		conversation
 			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop making the same mistake my predecessor always did, right now, before this becomes an uncontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
 			choice
@@ -605,13 +568,20 @@ mission "Unfettered: Daemons Unleashed"
 				set "unfettered: took out mercenary leader"
 	npc
 		system "Wah Yoot"
+		government "Shadow"
+		personality heroic nemesis
+		ship "Tick" "Hell Unleashed"
+		ship "Tick" "Fire Incarnate"
+		ship "Tick" "Infinite Rage"
+	npc
+		system "Wah Yoot"
 		to despawn
 			has "unfettered: took out mercenary leader"
 		government "Mercenaries"
 		fleet "Marauders" 12
-		personality heroic nemesis staying vindictive
+		personality heroic staying nemesis vindictive
 	on enter "Wah Yoot"
-		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness."`
+		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness. I am the Shadow of Mintaka, and the last person you will ever meet."`
 
 
 

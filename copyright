@@ -1572,8 +1572,11 @@ Files:
  images/outfit/firestorm?torpedo*
  images/outfit/mcs?exctractor*
  images/projectile/firestorm?torpedo*
+ images/projectile/ionic?blast*
+ images/ship/hai?antlion*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/thumbnail/hai?antlion*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
  sound/drill*
