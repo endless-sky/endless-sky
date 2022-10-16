@@ -391,6 +391,9 @@ mission "Remnant: Teciimach Deployment"
 		personality staying uninterested disables plunders
 		fleet
 			names "remnant"
+			cargo 3
+			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Merganser (II)" 3
 	npc
