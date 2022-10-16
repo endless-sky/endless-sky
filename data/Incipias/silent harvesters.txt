@@ -28,7 +28,7 @@ ship "Silent Harvester"
 		"mass" 350
 		"outfit space" 20
 		"weapon capacity" 20
-		"cargo space" 100
+		"cargo space" 500
 		"hull" 1500
 		"solar collection" 200
 		"fuel capacity" 200
@@ -51,10 +51,19 @@ ship "Silent Harvester"
 	explode "medium explosion" 50
 	"final explode" "final explosion large"
 
-fleet "Silent Harvesters"
-	government "Silent Ones"
-	cargo 0
-	personality
-		timid mining harvests mute
-	variant
-		"Silent Harvester" 1
+mission "The Silent Ones"
+	invisible
+	landing
+	repeat
+	to offer
+		not "The Silent Ones: active"
+	to complete
+		never
+	npc save
+		government "Silent Ones"
+		personality timid mute mining harvests
+		system Il'le
+		ship "Silent Harvester" "???"
+		ship "Silent Harvester" "???"
+		ship "Silent Harvester" "???"
+		ship "Silent Harvester" "???"

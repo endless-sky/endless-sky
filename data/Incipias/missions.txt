@@ -161,7 +161,7 @@ mission "coalition peace prove"
 	source
 		government "Heliarch"
 	to offer
-		"reputation: Heliarch" >= 5
+		has "Coalition: First Contact: done"
 		not "wanderer peace prove: offered"
 	on offer
 		conversation
@@ -257,7 +257,7 @@ mission "Incipias: First Contact VI"
 			choice
 				"There are some, mostly more advanced then humans."
 				"Yes, there are a few."
-			`    "Thanks for these [valueable, interesting] informations, [I, we] think it would be fair to let you ask some questions." It tells.`
+			`    "Thanks for these [valuable, interesting] information, [I, we] think it would be fair to let you ask some questions." It tells.`
 			label choice
 			choice
 				"Why do you use a space station as your capital?"
@@ -269,7 +269,7 @@ mission "Incipias: First Contact VI"
 				"Thanks but I have no further questions."
 					goto end
 			label capital
-			`    "We, the Hicemus believe in [progress, science] that is why we chose our first space station as our capital, as a symbol of [progress, strength]." You notice that he did not refere to themselves as the Incipias but as the Hicemus. There seem to be some disagreement with that. "Do you have any other questions?"`
+			`    "We, the Hicemus believe in [progress, science] that is why we chose our first space station as our capital, as a symbol of [progress, strength]." You notice that he did not refer to themselves as the Incipias but as the Hicemus. There seem to be some disagreement with that. "Do you have any other questions?"`
 				goto choice
 			label time
 			`    "About two hundred years ago, our kind launched the first [missile, space ship]. Since then we have progressed [in a good pace, not fast enough] and one hundred years ago we started building [this space station, the pinacle of our technology]. Right now [I, we] are working towards interstellar travelling. Is there another question?"`

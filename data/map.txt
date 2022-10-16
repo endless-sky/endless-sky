@@ -13683,7 +13683,6 @@ system Il'le
 	trade Medical 842
 	trade Metal 270
 	trade Plastic 267
-	fleet "Silent Harvesters" 400
 	object
 		sprite star/f5
 		period 10
