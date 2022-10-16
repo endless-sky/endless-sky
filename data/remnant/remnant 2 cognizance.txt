@@ -1410,7 +1410,7 @@ mission "Remnant: Cognizance 32"
 
 
 
-mission "Remnant: Cognizance 33"
+mission "Remnant: Cognizance 33 Patched"
 	name "Drop off refined fuel"
 	description "Deliver the refined fuel to <destination> by <date>."
 	landing
@@ -1443,7 +1443,8 @@ mission "Remnant: Cognizance 33"
 	on complete
 		payment 250000
 		event "remnant: ssil vida area unvisted"
-		event "remnant: ssil vida activation"
+		event "remnant: initial activation"
+		event "remnant: ssil vida activation patched"
 		conversation
 			`When you contact <planet> to confirm where to unload your cargo you are greeted by Dusk, who directs you to a docking bay closer to the main reactor. As you open the hatch, though, it is Gavriil and a group of Remnant with lifters waiting. They welcome you cheerfully, but they definitely seem in a rush to get the processed fuel unloaded and shuttled into the depths of the station. Once the last unit is off your ship, Gavriil slows down enough to thank you for the prompt delivery, but apologizes as they rush off as there is not much time left. Their parting gesture suggests you talk to Dusk up in the control room.`
 
@@ -1456,7 +1457,7 @@ mission "Remnant: Cognizance 34"
 	source "Ssil Vida"
 	waypoint "Postverta"
 	to offer
-		has "Remnant: Cognizance 33: done"
+		has "Remnant: Cognizance 33 Patched: done"
 	on offer
 		conversation
 			`Up in the control station Dusk and a small team of Remnant are busily working at a bunch of consoles. Alarms blink and are quickly dealt with, only to have new ones appear elsewhere. There is so much motion that it seems like there are twice as many of them. From a glance at the readings, it appears you brought the shipment of fuel just in time: the Aeon Cell is overloaded trying to take over for the fusion reactor, and most of their efforts have been directed toward carefully orchestrating rolling brown outs across the systems to keep everything minimally functional.`
@@ -1531,7 +1532,7 @@ mission "Remnant: Cognizance 35"
 
 
 
-mission "Remnant: Cognizance 36"
+mission "Remnant: Cognizance 36 Patched"
 	name "De-activate Ssil Vida Power"
 	description "Accept this to signal everyone to cut the power."
 	job
@@ -1540,8 +1541,11 @@ mission "Remnant: Cognizance 36"
 	to offer
 		has "Remnant: Cognizance 35: done"
 		has "remnant: ssil vida active"
+		or
+			not "Remnant: Cognizance 33: done"
+			has "remnant: ssil vida patched 1"
 	on accept
-		event "remnant: ssil vida deactivation"
+		event "remnant: ssil vida deactivation patched"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta has once again returned to its prior, barren, form.`
 	on enter Postverta
@@ -1549,7 +1553,7 @@ mission "Remnant: Cognizance 36"
 
 
 
-mission "Remnant: Cognizance 37"
+mission "Remnant: Cognizance 37 Patched"
 	name "Activate Ssil Vida Power"
 	description "Accept this to signal everyone to restore the power."
 	job
@@ -1559,7 +1563,7 @@ mission "Remnant: Cognizance 37"
 		has "Remnant: Cognizance 35: done"
 		not "remnant: ssil vida active"
 	on accept
-		event "remnant: ssil vida activation"
+		event "remnant: ssil vida activation patched"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta is once again overflowing with life.`
 	on enter Postverta
@@ -1628,3 +1632,11 @@ mission "Remnant: Cognizance 39"
 		has "Remnant: Cognizance 38: done"
 	on offer
 		event "remnant: cognizance calm" 5
+
+
+
+mission "Remnant: Cognizance: Ssil Vida Event Patch 1"
+	landing
+	invisible
+	to offer
+		has "Remnant: Cognizance 33"
