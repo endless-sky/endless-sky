@@ -213,7 +213,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 
 		// If a cost was updated then we need to reassess other costs. The goal is to have
 		// the cost for each distance be the cheapest possible fuel cost needed to jump to
-		// a system that is that distance away. The keys of the map are the distances and 
+		// a system that is that distance away. The keys of the map are the distances and
 		// will be strictly increasing, while the values of the map are the fuel costs and
 		// will be weakly increasing.
 		auto it = jumpDriveCosts.find(distance);
