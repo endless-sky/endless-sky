@@ -78,7 +78,7 @@ double ShipJumpNavigation::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(maxJumpRange), HyperdriveFuel());
 
-	return GetCheapestJumpType(destination).second;
+	return GetCheapestJumpType(currentSystem, destination).second;
 }
 
 
@@ -111,6 +111,9 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 		return jumpDriveCosts.find(distance)->second;
 	// Otherwise, find the first jump range that covers the distance. Iterate over
 	// the costs map until we reach the jump range just above the given distance.
+	// It is the default behavior of the map to sort the keys from least to greatest,
+	// so the first range that we reach that covers the distance is guaranteed to be the
+	// best cost for that distance.
 	auto it = find_if(jumpDriveCosts.begin(), jumpDriveCosts.end(),
 		[distance](const pair<double, double> &range) -> bool { return range.first > distance; });
 	return (it == jumpDriveCosts.end()) ? 0. : it->second;
@@ -128,6 +131,7 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *des
 
 
 
+// Get the cheapest jump method between the two given systems.
 pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *from, const System *to) const
 {
 	bool linked = from->Links().count(to);
@@ -207,10 +211,16 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 	{
 		jumpDriveCosts[distance] = cost;
 
-		// If a cost was updated then we need to reassess other costs.
+		// If a cost was updated then we need to reassess other costs. The goal is to have
+		// the cost for each distance be the cheapest possible fuel cost needed to jump to
+		// a system that is that distance away. The keys of the map are the distances and 
+		// will be strictly increasing, while the values of the map are the fuel costs and
+		// will be weakly increasing.
 		auto it = jumpDriveCosts.find(distance);
 		// If the jump range a step above this distance is cheaper, then the
-		// cheaper jump cost already covers this range.
+		// cheaper jump cost already covers this range. We don't need to check
+		// any other distances in this case because the rest of the map will
+		// already be properly sorted.
 		auto nit = std::next(it);
 		if(nit != jumpDriveCosts.end() && it->second > nit->second)
 			it->second = nit->second;
