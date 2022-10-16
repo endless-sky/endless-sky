@@ -407,6 +407,7 @@ mission "Unfettered Jump Drive 2"
 mission "Unfettered Jump Drive 3"
 	minor
 	landing
+	invisible
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
