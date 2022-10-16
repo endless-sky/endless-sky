@@ -1148,9 +1148,7 @@ mission "FW Pirates: Attack 1"
 	to offer
 		has "FW Pirates 2: done"
 		# Backwards compatibility conditions. This mission was renamed, and these conditions avoid it from offering again on older saves.
-		not "FW Pirates 3: offered"
-		not "FW Pirates 3.1: offered"
-		not "FW Pirates 3.2: offered"
+		not "fw first chapter done"
 	to fail
 		has "FW Pirates: Diplomacy 1: done"
 	
@@ -1478,9 +1476,7 @@ mission "FW Pirates: Diplomacy 1"
 	to offer
 		has "FW Pirates 2: done"
 		# Backwards compatibility conditions. This mission was renamed, and these conditions avoid it from offering again on older saves.
-		not "FW Pirates 3: offered"
-		not "FW Pirates 3.1: offered"
-		not "FW Pirates 3.2: offered"
+		not "fw first chapter done"
 	to fail
 		has "FW Pirates: Attack 1: done"
 	
