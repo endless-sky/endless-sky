@@ -198,7 +198,7 @@ ship Augen
 	thumbnail thumbnail/augen
 	swizzle 0
 	attributes
-		category "Heavy Warship"
+		category "Superheavy"
 		cost 58800000
 		mass 5000
 		bunks 360

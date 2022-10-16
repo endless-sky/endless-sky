@@ -979,7 +979,7 @@ system Iise
 	"jump range" 70
 	belt 1734
 	haze _menu/haze
-	link Aksek Jmi
+	link "Aksek Jmi"
 	asteroids "small rock" 1 1.9
 	asteroids "medium rock" 8 1.78
 	asteroids "large rock" 1 2.57
