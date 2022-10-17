@@ -37,7 +37,7 @@ ship "Sea Scorpion" "Sari'Sea Scorpion (Pulse)"
 		"Dual Pulse Pistols"
 	cargo
 		outfits
-			"Gold Bars" 15	
+			"Gold Bars" 15
 
 
 
@@ -78,11 +78,13 @@ mission "Mercenaries: End of the Hunt"
 		fail "Mercenaries: Nemo Me Impune Lacessit"
 		fail "Mercenaries: Nemo Me Impune Lacessit 2"
 
+phrase "mercenaries defeated" `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
+
 mission "Mercenaries: Nemo Me Impune Lacessit"
+	minor
+	landing
 	invisible
 	repeat
-	landing
-	minor
 	source
 		near "Ya Hai" 10
 	to offer
@@ -97,15 +99,15 @@ mission "Mercenaries: Nemo Me Impune Lacessit"
 		system
 			distance 2 5
 		fleet "Marauders" 3
-		dialog `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever it is they were interested in on a planet (using U) or get rid of it.`
+		dialog phrase "mercenaries defeated"
 	to fail
 		has "mercenaries: took out leader"
 
 mission "Mercenaries: Nemo Me Impune Lacessit 2"
+	minor
+	landing
 	invisible
 	repeat
-	landing
-	minor
 	source
 		near Sol 100
 	to offer
@@ -120,7 +122,7 @@ mission "Mercenaries: Nemo Me Impune Lacessit 2"
 		system
 			distance 2 5
 		fleet "Marauders" 5
-		dialog `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
+		dialog phrase "mercenaries defeated"
 	to fail
 		has "mercenaries: took out leader"
 
@@ -235,9 +237,9 @@ mission "Mercenaries: Betrayal For The Bars"
 		fail "Mercenaries: Betrayal For The Bars"
 
 mission "Mercenaries: Bar Selling"
-	invisible
-	landing
 	minor
+	landing
+	invisible
 	repeat
 	to offer
 		has "mercenaries: sold bars"
@@ -249,9 +251,9 @@ mission "Mercenaries: Bar Selling"
 				decline
 
 mission "Mercenaries: Bar Selling 2"
-	invisible
-	landing
 	minor
+	landing
+	invisible
 	repeat
 	to offer
 		has "mercenaries: sold bars"
@@ -286,7 +288,7 @@ mission "Mercenaries: Duel Squared"
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
 		conversation
-			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
+			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture. We will be leaving once you land."`
 			action
 				"reputation: Hai (Unfettered)" += 150
 	on abort
@@ -444,8 +446,8 @@ mission "Mercenaries: Family Hunt From Newhome"
 
 
 mission "Unfettered: Special Cargo 1B"
-	invisible
 	landing
+	invisible
 	source "Stormhold"
 	destination "Warfeed"
 	to offer

@@ -201,8 +201,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				set "unfettered: betrayed"
 
 mission "Unfettered: Alphas 3: Bring The Spoils"
-	invisible
 	landing
+	invisible
 	source "Avalon"
 	destination "Darkcloak"
 	to offer
@@ -552,8 +552,8 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 
 
 mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
-	invisible
 	landing
+	invisible
 	source "Hai-home"
 	destination "Darkcloak"
 	to offer
@@ -1304,8 +1304,8 @@ mission "Unfettered: Close Quarter"
 			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
 
 mission "Bring Pug Staves"
-	invisible
 	landing
+	invisible
 	source "Warfeed"
 	to offer
 		has "Unfettered: Close Quarter: offered"
@@ -1319,8 +1319,8 @@ mission "Bring Pug Staves"
 		fail
 
 mission "Bring Coalition Weapons"
-	invisible
 	landing
+	invisible
 	source "Warfeed"
 	to offer
 		has "Unfettered: Close Quarter: offered"

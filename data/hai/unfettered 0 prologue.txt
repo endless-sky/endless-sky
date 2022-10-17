@@ -301,8 +301,8 @@ mission "Unfettered Jump Drive 3"
 
 
 mission "Unfettered returning home"
-	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
 	minor
+	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
 	source
 		attributes "unfettered"
 	destination "Hai-home"
@@ -800,8 +800,8 @@ event "hydra revealed"
 		remove "display name"
 
 mission "Unfettered: Attracted Attention"
-	invisible
 	landing
+	invisible
 	source "Freedom"
 	destination "Darkcloak"
 	to offer
@@ -817,8 +817,8 @@ mission "Unfettered: Attracted Attention"
 		fleet "Large Northern Pirates"
 
 mission "Unfettered: Jump Drive Retrieval"
-	invisible
 	landing
+	invisible
 	source "Freedom"
 	destination "Darkcloak"
 	to offer
@@ -1011,8 +1011,8 @@ mission "Unfettered: Escort Hai Fleet"
 		log "Minor People" "Kira" `A Hai governor that is not scared to put himself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
 mission "Unfettered: Taking Off With Hai Fleet"
-	invisible
 	landing
+	invisible
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
@@ -1394,8 +1394,8 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 
 
 mission "Unfettered: Geocoris Arriving"
-	invisible
 	landing
+	invisible
 	source
 		system "Ya Hai"
 	to offer

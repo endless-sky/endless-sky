@@ -269,6 +269,8 @@ government "Hai (Unfettered)"
 government "Hai (Unfettered Challenge)"
 	swizzle 4
 	color .69 .33 .82
+	"crew attack" 1.4
+	"crew defense" 2.2
 	
 	"player reputation" -1000
 	"attitude toward"
@@ -285,6 +287,8 @@ government "Hai (Unfettered Challenge)"
 government "Hai (Unfettered Glory Seeker)"
 	swizzle 4
 	color .69 .33 .82
+	"crew attack" 1.4
+	"crew defense" 2.2
 	
 	"player reputation" 1
 	"attitude toward"
@@ -309,6 +313,8 @@ government "Hai (Unfettered Blue Challenger)"
 	"display name" "Unfettered Challenge"
 	swizzle 4
 	color .69 .33 .82
+	"crew attack" 1.4
+	"crew defense" 2.2
 	
 	"player reputation" 1
 	"attitude toward"
@@ -333,6 +339,8 @@ government "Hai (Unfettered Red Challenger)"
 	"display name" "Unfettered Challenge"
 	swizzle 4
 	color .69 .33 .82
+	"crew attack" 1.4
+	"crew defense" 2.2
 	
 	"player reputation" 1
 	"attitude toward"
@@ -569,6 +577,9 @@ government "Mhairi's Legion"
 
 government "Mercenaries"
 	swizzle 9
+	"crew attack" 1.2
+	"crew defense" 2.2
+
 	"player reputation" -1000
 	"attitude toward"
 		"Hai (Governor Escort)" -.01
@@ -583,6 +594,9 @@ government "Mercenaries"
 
 government "Hydra"
 	swizzle 1
+	"crew attack" 2.5
+	"crew defense" 1
+
 	"player reputation" -1000
 	"attitude toward"
 		"Shadow" -.1
@@ -595,6 +609,9 @@ government "Hydra"
 
 government "Shadow"
 	swizzle 4
+	"crew attack" 1.8
+	"crew defense" 2.2
+
 	"attitude toward"
 		"Mercenaries" .01
 		"Hydra" -.1
