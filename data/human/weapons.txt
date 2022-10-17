@@ -89,9 +89,9 @@ outfit "Twin Blaster"
 	category "Guns"
 	cost 40000
 	thumbnail "outfit/twin blaster"
-	"mass" 10
-	"outfit space" -10
-	"weapon capacity" -10
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
 	"gun ports" -1
 	weapon
 		sprite "projectile/2x blaster"
@@ -168,9 +168,9 @@ outfit "Twin Modified Blaster"
 	category "Guns"
 	cost 84000
 	thumbnail "outfit/twin mod blaster"
-	"mass" 12
-	"outfit space" -12
-	"weapon capacity" -12
+	"mass" 14
+	"outfit space" -14
+	"weapon capacity" -14
 	"gun ports" -1
 	weapon
 		sprite "projectile/2x mod blaster"
