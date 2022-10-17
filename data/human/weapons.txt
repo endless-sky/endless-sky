@@ -105,7 +105,7 @@ outfit "Twin Blaster"
 		"firing heat" 36
 		"shield damage" 21.2
 		"hull damage" 13.2
-	description "The Energy Blaster's ubiquity, low price, and stable performance have made it irresistible to tinkerers from the day it was first introduced. These blasters have been bolted together to fit within a single gun port, offering twice the damage of a single blaster, at the cost of twice the heat and power consumption."
+	description "The Energy Blaster's ubiquity, low price, and stable performance have made it irresistible to tinkerers from the day it was first introduced. These blasters have been bolted together to fit within a single gun port, offering twice the damage of a single blaster at the cost of twice the heat and power consumption."
 
 effect "blaster impact"
 	sprite "effect/blaster impact"
