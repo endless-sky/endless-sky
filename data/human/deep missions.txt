@@ -2101,7 +2101,7 @@ mission "Deep: Scientist Rescue 1"
 			`	The communications device on his belt rings, and he quickly responds, giving orders to the fleet that will be joining you on the mission. Before you can return to your ship, he says, "Good luck, Captain, and may we all make it out of this alive. We'll meet you in orbit."`
 				accept
 	
-	npc save accompany
+	npc accompany save
 		government "Deep Security"
 		personality escort
 		ship "Mule (Heavy)" "D.S.S. Faraday"
@@ -2256,7 +2256,7 @@ mission "Deep: Scientist Rescue 2"
 		dialog "As your engines roar, you notice a large pirate ship looming over the planet. Even from the underside, it is undeniably a Bactrian, but how a pirate could ever attain one is a mystery."
 		dialog `	You receive a transmission from Lieutenant Paris. "I have a sneaking suspicion that Beelzebub may be behind this. I suggest we jump out of here immediately and make it back to the Deep alive before taking on that Bactrian."`
 	
-	npc save accompany
+	npc accompany save
 		government "Deep Security"
 		personality timid escort
 		ship "Star Queen (Unarmed)" "D.S.S. Alcubierre"
