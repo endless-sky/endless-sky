@@ -113,24 +113,30 @@ const string &Date::ToString() const
 // Convert a date to the format in which it would be stated in conversation.
 string Date::LongString() const
 {
+
+	// yyyy-MM-DD, MM/DD/yyyy: Can you get this done by March 18th?
+	// DD/MM/yyyy: Can you get this done by the 18th of March?
+
 	if(!date)
 		return string();
 
+	string result = "";
+
 	int day = Day();
-	string result = "the " + to_string(day);
+
+	string dayString = to_string(day);
 	// All numbers in the teens add in "th", as do any numbers ending in 0 or in
 	// 4 through 9. Special endings are used for "1st", "2nd", and "3rd."
 	if(day / 10 == 1 || day % 10 == 0 || day % 10 > 3)
-		result += "th";
+		dayString += "th";
 	else if(day % 10 == 1)
-		result += "st";
+		dayString += "st";
 	else if(day % 10 == 2)
-		result += "nd";
+		dayString += "nd";
 	else
-		result += "rd";
+		dayString += "rd";
 
 	// Write out the month name instead of abbreviating it.
-	result += " of ";
 	static const string MONTH[] = {
 		"January",
 		"February",
@@ -145,7 +151,23 @@ string Date::LongString() const
 		"November",
 		"December"
 	};
-	result += MONTH[Month() - 1];
+	string month = MONTH[Month() - 1];
+
+	string dateFormat = Preferences::DateFormat();
+
+
+	if (dateFormat == "ymd" || dateFormat == "mdy")
+	{
+		result += month;
+		result += " ";
+		result += dayString;
+	}
+	else if (dateFormat == "dmy")
+	{
+		result += dayString;
+		result += " of ";
+		result += month;
+	}
 
 	return result;
 }
