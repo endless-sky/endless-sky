@@ -3204,7 +3204,7 @@ mission "Home for Skadenga 3"
 			choice
 				`	(Follow the tracker.)`
 			`	For a moment you forget the God-Stone and focus on following the tracker. It leads you to a themed restaurant on the top floor called "The Adventurer's Due." The restaurant is filled with exotic artifacts allegedly taken from all corners of known and unknown space.`
-			`	Your tracker hones in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga. The panel above it reads:`
+			`	Your tracker homes in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga. The panel above it reads:`
 			``
 			`	'This box once contained the cure to the Rigellian Plague. It belonged to the renowned explorer, adventurer, and researcher Dr. Henry Forsyth. It was donated by the Forsyth Foundation for Academic Honesty.'`
 			``
