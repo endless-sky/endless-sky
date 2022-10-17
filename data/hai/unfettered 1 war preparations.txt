@@ -810,6 +810,7 @@ outfit "Mystery Cube"
 	mass 1
 	cost 1000000
 	thumbnail "outfit/unknown"
+	description "You have no idea what this is."
 
 ship "Marauder Leviathan" "Leviathan (Cube)"
 	outfits
@@ -997,8 +998,8 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
-mission "Unfettered: Start Of The War"
-	name `Strength Of A Leader`
+mission "Unfettered: Ready For The War"
+	name `Strength of a Leader`
 	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
 	source "Darkcloak"
 	substitutions
@@ -1036,7 +1037,7 @@ mission "Unfettered: Start Of The War"
 		to despawn
 			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenge)"
-		ship "Enhanced Shield Beetle (Pulse)" "Intrepid II"
+		ship "Enhanced Shield Beetle (Pulse)" "Defiant"
 		personality disables staying heroic target launching
 		conversation
 			`"You have defeated me, But He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him."`
@@ -1086,7 +1087,7 @@ mission "Unfettered: Start Of The War"
 				`	"I would like to ask a few questions, about your ship."`
 				`	"I am honoured, and hope we will fight again, later."`
 					accept
-			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few."`
+			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few, but choose whisely what you want to ask."`
 			action
 				"unfettered: questions" = -1
 			label questions
@@ -1109,7 +1110,7 @@ mission "Unfettered: Start Of The War"
 			`	"You are aware of what our keystones are, right? They aren't believed to give [luck, fame] for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a [gun, simple weapon] for boarding. It was given to me by the council many years ago, matching my [responsibility, task] as well as my character."`
 				goto questions
 			label tejolis
-			`	"Tejolis is the goddess of [strategy, apt thinking], which you could call intelligence. It is the aptitude to make good judgments based on context. For instance, if you have time to choose, a quick decision does not make sense, and a wrong decision is hard to [justify, forgive]. Likewise, when time is of the essence, one must learn to [act, react] quickly or be overwhelmed by the actions of others. I named this ship in her honor and I have a statue of her in my war room because I follow her [teachings, legacy]."`
+			`	"Tejolis is the goddess of [strategy, apt thinking], which you could call intelligence. It is the aptitude to make good judgments based on context. For instance, if you have time to choose, a quick decision does not make sense, and a wrong decision is hard to [justify, forgive]. Likewise, when time is of the essence, one must learn to [act, react] quickly or be overwhelmed by the actions of others. I named this ship in her honor and I have a statue of her in my war room because I follow her [teachings, legacy]. All warlord ships are named in reference to specific Gods, and relate to their [intended, supposed] functions."`
 				goto questions
 			label hull
 			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath [raider, warship]. Those materials are more sturdy than normal Hai ones, which is why this ship is so [impervious, resilient] to hull damage. However, it comes at the cost of cooling efficiency."`
@@ -1302,33 +1303,3 @@ mission "Unfettered: Close Quarter"
 			`	"The Basilisk is very strong, but it is only [a prototype, an experience]. It has its weaknesses."`
 			label train
 			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
-
-mission "Bring Pug Staves"
-	landing
-	invisible
-	source "Warfeed"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-	on offer
-		require "Pug Peacekeeping Staff" 20
-		dialog `Do you want to sell 20 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
-	on accept
-		payment 2500000
-		outfit "Pug Peacekeeping Staff" -20
-		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
-		fail
-
-mission "Bring Coalition Weapons"
-	landing
-	invisible
-	source "Warfeed"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-	on offer
-		require "Enforcer Riot Staff" 20
-		dialog `Do you want to sell 20 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
-	on accept
-		payment 4000000
-		outfit "Enforcer Riot Staff" -20
-		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
-		fail

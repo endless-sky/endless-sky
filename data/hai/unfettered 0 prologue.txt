@@ -1,4 +1,4 @@
-# Copyright (c) 2015 by Michael Zahniser for the first 6 missions
+# Copyright (c) 2015 by Michael Zahniser for the first 5 missions
 # Copyright (c) 2022 by Hurleveur and Ejo Thims for the rest
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -297,63 +297,6 @@ mission "Unfettered Jump Drive 3"
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
 		fail
-
-
-
-mission "Unfettered returning home"
-	minor
-	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
-	source
-		attributes "unfettered"
-	destination "Hai-home"
-	clearance
-	passengers 1
-	to offer
-		has "Unfettered Tribute 3: done"
-		random < 40
-	on offer
-		conversation
-			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
-			choice
-				`	(Yes.)`
-				`	(No.)`
-					defer
-			`	You grab a flashlight and open the hatch, and find a juvenile Hai there, with a large satchel slung over his shoulder. "You are the <first> <last>, yes?" he says. You nod. He says, "Is it true what is written here?"`
-			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion, and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
-			choice
-				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
-					goto true
-				`	"I'm sorry, but I don't think they will ever let you live among them, if it is your nature to be prone to violence."`
-			`	You have little experience reading Hai emotions, but the youth seems crestfallen. "You are certain?" he asks.`
-			choice
-				`	"I am certain. I can do nothing for you."`
-					goto refuse
-				`	"Perhaps you can come with me and find out, but don't get your hopes up."`
-					goto end
-			label true
-			`	"Will you take me to Hai-home?" he asks. "You are able to be outside Unfettered places. Can I go with you?"`
-			choice
-				`	"Yes, I will take you there."`
-					goto end
-				`	"Sorry, I can't risk angering the Unfettered by carrying a defector."`
-			label refuse
-			`	Disappointed, the youth leaves. You hope you made the right choice.`
-				decline
-			label end
-			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
-				accept
-	
-	on visit
-		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
-	on complete
-		payment 100000
-		dialog
-			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
-		"reputation: Hai" += 10
-		"reputation: Hai (Wormhole Access)" += 10
-		"reputation: Hai Merchant" += 10
-		"reputation: Hai Merchant (Human)" += 10
-		"reputation: Hai Merchant (Sympathizers)" += 10
 
 
 
@@ -691,20 +634,11 @@ mission "Unfettered: Prove Your Strength"
 	on complete
 		clear "unfettered: beaten the captain"
 
-mission "Unfettered: Trust Broken"
-	landing
-	to offer
-		has "Unfettered: Prove Your Strength: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
-	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
-	on fail
-		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
-		fail "Unfettered: Prove Your Strength"
-	to complete
-		has "unfettered: beaten the captain"
 
 
+event "hydra revealed"
+	government "Hydra"
+		remove "display name"
 
 mission "Unfettered: Prove Your Strength 2"
 	name `Recover the jump drives`
@@ -794,27 +728,6 @@ mission "Unfettered: Prove Your Strength 2"
 			`	Then he raises his fist towards you, presumably some form of salute. The act takes you by surprise, but before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he kept going on about.`
 
 
-
-event "hydra revealed"
-	government "Hydra"
-		remove "display name"
-
-mission "Unfettered: Attracted Attention"
-	landing
-	invisible
-	source "Freedom"
-	destination "Darkcloak"
-	to offer
-		has "Unfettered: Prove Your Strength 2: active"
-	on offer
-		require "Jump Drive"
-	on enter "Almaaz"
-		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses,  but one word, which you can barely hear him mutter, stands out: "Hydra." He then comes closer to address you directly, "There even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
-	npc evade
-		government "Hydra"
-		system "Almaaz"
-		personality disables plunders vindictive
-		fleet "Large Northern Pirates"
 
 mission "Unfettered: Jump Drive Retrieval"
 	landing
@@ -1151,7 +1064,7 @@ mission "Unfettered: Materials Intercepted"
 				`	"This mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
 					decline
 			label whatevercost
-			`	He seems a bit warry of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials. And remember to look for it north-west of human space."`
+			`	He seems a bit warry of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials, you can either fit all of that on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-west of human space."`
 				accept
 	on enter "Misam"
 		conversation
@@ -1224,7 +1137,7 @@ mission "Unfettered: Materials Intercepted"
 			label "allies died"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even hunt you down for this.`
 	to fail
-		has "mercenaries: thorn talon murdered"
+		has "mercenaries: thorn talon murdered" # only fails if you kill them, not saving them only means you won't have any other missions with them.
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1391,8 +1304,6 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 		payment 150000
 		dialog `You send the scans to the Unfettered government and receive a payment of <payment>.`
 
-
-
 mission "Unfettered: Geocoris Arriving"
 	landing
 	invisible
@@ -1400,6 +1311,7 @@ mission "Unfettered: Geocoris Arriving"
 		system "Ya Hai"
 	to offer
 		has "unfettered: entered Ya Hai"
+		has "Unfettered: Solifuge 1: Geocoris Design: active"
 	on offer
 		clear "unfettered: entered Ya Hai"
 		conversation
@@ -1409,10 +1321,13 @@ mission "Unfettered: Geocoris Arriving"
 
 
 outfit "Alpha Pirate Crew"
+	category "Hand to Hand"
+	thumbnail "outfit/unkown"
 	"crew defense" -100
 	"crew attack" -120
 	"unplunderable" 1
-	description `This ship is mostly manned by pirates and not actual Alphas, though they do lead them.`
+	description "This ship is mostly manned by pirates and not actual Alphas, though they do lead them."
+	description "You need to land on the Alpha base in the Host system, with this outfit and the Auxiliary."
 
 ship "Auxiliary" "Auxiliary (Alpha)"
 	sprite "ship/auxiliaryc"
@@ -1487,7 +1402,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		dialog `As you enter the system, you see the ship and identify it as a Navy Auxiliary. Whatever happens, the Unfettered asked you not to destroy it and only scan it - at least for now.`
 	npc save "scan cargo"
 		government "Alpha"
-		personality target staying timid entering
+		personality entering timid staying target
 		system "Hi Yahr"
 		ship "Auxiliary (Alpha with supplies)" "Settler"
 
@@ -1501,7 +1416,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			`	"Consider this carefully before taking any actions you may regret in the future. Our offer still stands." The transmission cuts out.`
 	npc
 		government "Alpha"
-		personality heroic nemesis staying vindictive
+		personality timid staying vindictive
 		system "Hi Yahr"
 		ship "Far Osk 27" "Prancer"
 		ship "Far Osk 27" "Vixen"

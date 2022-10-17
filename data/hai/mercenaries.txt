@@ -366,7 +366,7 @@ mission "Mercenaries: Daemons Unleashed"
 		system "Wah Yoot"
 		government "Shadow"
 		personality heroic staying nemesis vindictive target
-		ship "Antlion" "AntLion"
+		ship "Antlion" "Parmen"
 		conversation
 			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop making the same mistake my predecessor always did, right now, before this becomes an uncontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
 			choice
@@ -478,7 +478,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laserfire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
 				die
 			label steal
-			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the warlord into a fight to get the item.`
+			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the pirate warlord into a fight to get the item.`
 			choice
 				`	(Search the lower decks.)`
 				`	(Search close to the weapons stations.)`

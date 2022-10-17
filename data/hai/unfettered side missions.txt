@@ -1,4 +1,5 @@
-# Copyright (c) 2022 by Hurleveur
+# Copyright (c) 2015 by Michael Zahniser for the first mission
+# Copyright (c) 2022 by Hurleveur for the rest
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -10,6 +11,63 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+mission "Unfettered returning home"
+	minor
+	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
+	source
+		attributes "unfettered"
+	destination "Hai-home"
+	clearance
+	passengers 1
+	to offer
+		has "Unfettered Tribute 3: done"
+		random < 40
+	on offer
+		conversation
+			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	You grab a flashlight and open the hatch, and find a juvenile Hai there, with a large satchel slung over his shoulder. "You are the <first> <last>, yes?" he says. You nod. He says, "Is it true what is written here?"`
+			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion, and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
+			choice
+				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
+					goto true
+				`	"I'm sorry, but I don't think they will ever let you live among them, if it is your nature to be prone to violence."`
+			`	You have little experience reading Hai emotions, but the youth seems crestfallen. "You are certain?" he asks.`
+			choice
+				`	"I am certain. I can do nothing for you."`
+					goto refuse
+				`	"Perhaps you can come with me and find out, but don't get your hopes up."`
+					goto end
+			label true
+			`	"Will you take me to Hai-home?" he asks. "You are able to be outside Unfettered places. Can I go with you?"`
+			choice
+				`	"Yes, I will take you there."`
+					goto end
+				`	"Sorry, I can't risk angering the Unfettered by carrying a defector."`
+			label refuse
+			`	Disappointed, the youth leaves. You hope you made the right choice.`
+				decline
+			label end
+			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
+				accept
+	
+	on visit
+		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 100000
+		dialog
+			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
+		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10
 
 
 
@@ -89,6 +147,39 @@ mission "Unfettered: Untrustable"
 		fine 100000000
 	on decline
 		"reputation: Hai (Unfettered)" <?= -1
+
+
+
+mission "Unfettered: Trust Broken"
+	invisible
+	landing
+	to offer
+		has "Unfettered: Prove Your Strength: active"
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+	to fail
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
+	on fail
+		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
+		fail "Unfettered: Prove Your Strength"
+	to complete
+		has "unfettered: beaten the captain"
+
+mission "Unfettered: Attracted Attention"
+	landing
+	invisible
+	source "Freedom"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered: Prove Your Strength 2: active"
+	on offer
+		require "Jump Drive"
+	on enter "Almaaz"
+		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses,  but one word, which you can barely hear him mutter, stands out: "Hydra." He then comes closer to address you directly, "There even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
+	npc evade
+		government "Hydra"
+		system "Almaaz"
+		personality disables plunders vindictive
+		fleet "Large Northern Pirates"
 
 
 
@@ -762,9 +853,35 @@ mission "Unfettered: Weird Aliens Spotted"
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
 		not "Unfettered: Speak Hai: active"
 	on enter "Pug Iyik"
-		dialog `These aliens do not look like the rest of them at all! You should probably warn the Unfettered about it.`
-	to fail
-		has "Unfettered: Know Your Enemy: failed"
+		dialog `These aliens do not look like the rest of the Wanderers at all! You should probably warn the Unfettered about it, go to Warfeed to warn the warlord.`
+	on complete
+		conversation
+			branch "know about the Pug"
+				has "main plot completed"
+			`Do you want to warn He-Yi's herald about the weird aliens north of Wanderer space?`
+			choice
+				`	(Speak to him about the weird aliens.)`
+					goto warn
+				`	(Do not warn the Unfettered about it.)`
+					decline
+			label warn
+			action
+				log `I warned the Unfettered about the weird aliens north of Wanderer space, they did not seem to care.`
+				set "unfettered: warned about the pugs"
+			`	You explain to the herald you have seen some weird aliens north, that could be allied to the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they most have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives..."`
+				accept
+			label "know about the Pug"
+			`Do you want to warn He-Yi's herald about the Pug's presence north of Wanderer space?`
+			choice
+				`	(Speak to him about the Pug.)`
+					goto warn
+				`	(Do not warn the Unfettered about it.)`
+					decline
+			action
+				log `I warned the Unfettered about the Pug's presence near the Wanderer, they did not seem to care.`
+				set "unfettered: warned about the pugs"
+			`	You explain to the herald that you have seen weird aliens north, the Pug, which have had dealing with humanity before. He does not trust you when you speak of technology capable of breaking down hyperlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly, but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble."`
+				accept
 
 mission "Unfettered: Know Your Enemy"
 	name `Know your enemy`
@@ -819,34 +936,12 @@ mission "Unfettered: Know Your Enemy"
 	waypoint "Iyech'yek"
 	waypoint "Kiru'kichi"
 	waypoint "Es'sprak'ai"
-	waypoint "Pug Iyik"
 	on waypoint
 		dialog `You have scouted all of the Wanderer's systems. It's time to come back to <destination> for your reward.`
 	on complete
 		payment 1000000
 		conversation
 			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us. As you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo"`
-			branch "know about the Pug"
-				has "main plot completed"
-			choice
-				`	"Speak to him about the weird aliens."`
-					goto warn
-				`	"Do not mention that to him."`
-					decline
-			label warn
-			action
-				log `I warned the Unfettered about the weird aliens north, they did not seem to care.`
-			`	You explain to the herald you have seen some weird aliens north, that could be allied to the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they most have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives..."`
-				decline
-			label "know about the Pug"
-			choice
-				`	"Speak to him about the Pug."`
-					goto warn
-				`	"Do not mention that to him."`
-					decline
-			`	You explain to the herald that you have seen weird aliens north, the Pug, which have had dealing with humanity before. He does not trust you when you speak of technology capable of breaking down hyperlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly, but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble."`
-			action
-				log `I warned the Unfettered about the Pug near the Wanderer, they did not seem to care.`
 
 
 
@@ -923,6 +1018,36 @@ mission "Bring More Pug Staves"
 	on offer
 		require "Pug Peacekeeping Staff"
 		conversation "more staves"
+
+mission "Bring Pug Staves"
+	landing
+	invisible
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		require "Pug Peacekeeping Staff" 20
+		dialog `Do you want to sell 20 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
+	on accept
+		payment 2500000
+		outfit "Pug Peacekeeping Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		fail
+
+mission "Bring Coalition Weapons"
+	landing
+	invisible
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		require "Enforcer Riot Staff" 20
+		dialog `Do you want to sell 20 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
+	on accept
+		payment 4000000
+		outfit "Enforcer Riot Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staves to them. They give you <payment>.`
+		fail
 
 mission "Bring Void Rifle"
 	minor
