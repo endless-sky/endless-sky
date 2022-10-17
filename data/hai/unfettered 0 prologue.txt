@@ -1322,7 +1322,7 @@ mission "Unfettered: Geocoris Arriving"
 
 outfit "Alpha Pirate Crew"
 	category "Hand to Hand"
-	thumbnail "outfit/unkown"
+	thumbnail "outfit/unknown"
 	"crew defense" -100
 	"crew attack" -120
 	"unplunderable" 1
