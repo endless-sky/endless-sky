@@ -1140,6 +1140,35 @@ mission "FW Pirates 2"
 
 
 
+# To tell players to go to Longjump to resume the story if they were in the middle of one of the deleted missions.
+mission "FW Pirates Patch"
+	landing
+	name "Return to <planet>"
+	description "Return to <destination> to continue your work with the Free Worlds."
+	source
+		not planet "Longjump"
+	destination "Longjump"
+	to offer
+		or
+			has "FW Pirates 3: offered"
+			has "FW Pirates 3.1: offered"
+			has "FW Pirates 3.2: offered"
+			has "FW Pirates 3.2A: offered"
+			has "FW Pirates 3.1B: offered"
+			has "FW Pirates 3.2B: offered"
+			has "FW Pirates 4: offered"
+			has "FW Pirates 4B: offered"
+			has "FW Pirates 4.1: offered"
+		not "FW Pirates: Attack 1: offered"
+		not "FW Senate Hearing: offered"
+		not "FW Refinery 1: offered"
+	on offer
+		conversation
+			`When you updated your game, you were in the middle of a story arc in the Free Worlds campaign that has since been changed. In order to continue, you should go to <destination>.`
+				accept
+
+
+
 mission "FW Pirates: Attack 1"
 	name "Attack Greenrock"
 	description "Disobeying the Senate's orders, head to <destination> and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
@@ -1148,9 +1177,8 @@ mission "FW Pirates: Attack 1"
 	to offer
 		has "FW Pirates 2: done"
 		# Backwards compatibility conditions. This mission was renamed, and these conditions avoid it from offering again on older saves.
-		not "FW Pirates 3: offered"
-		not "FW Pirates 3.1: offered"
-		not "FW Pirates 3.2: offered"
+		not "fw first chapter done"
+		not "FW Refinery 1: offered"
 	to fail
 		has "FW Pirates: Diplomacy 1: done"
 	
@@ -1478,9 +1506,8 @@ mission "FW Pirates: Diplomacy 1"
 	to offer
 		has "FW Pirates 2: done"
 		# Backwards compatibility conditions. This mission was renamed, and these conditions avoid it from offering again on older saves.
-		not "FW Pirates 3: offered"
-		not "FW Pirates 3.1: offered"
-		not "FW Pirates 3.2: offered"
+		not "fw first chapter done"
+		not "FW Refinery 1: offered"
 	to fail
 		has "FW Pirates: Attack 1: done"
 	
