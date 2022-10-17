@@ -4953,7 +4953,7 @@ mission "Deal Change 1"
 				`	"Alright, what do you want?"`
 					goto late
 				`	"Shut the hell up."`
-			`	Seemingly unfazed by your bluntness, the man cooly walks away into the rest of the spaceport while saying, "I'm sorry you feel that way captain. Perhaps you can assist us at a later date. Farewell."`
+			`	Seemingly unfazed by your bluntness, the man coolly walks away while saying, "I'm sorry you feel that way, captain. Perhaps you can assist us at a later date. Farewell."`
 				decline
 			label late
 			`	He smirks as he walks back towards you. "I'm glad that you've changed your mind."`
@@ -4965,13 +4965,13 @@ mission "Deal Change 1"
 				`	"What did she inherit?"`
 				`	"Sorry, but I don't want to do this job."`
 					goto nope
-			`	"My sincerest apologies, but I'm afraid that is confidential information. Our prioritization of privacy is but one of our selling points."`
+			`	"My sincerest apologies, but I'm afraid that is confidential information. Our prioritization of privacy is one of our main selling points."`
 			choice
 				`	"I'll take the job."`
 				`	"I don't like the idea of carrying an unknown cargo. Count me out."`
 					goto nope
 			label agree
-			`	The man smiles. "I'm glad to hear that. We'll have the cargo loaded on your ship by sundown." He walks away into the spaceport, leaving you to prepare for the journey.`
+			`	The man smiles. "I'm glad to hear that. We'll have the cargo loaded onto your ship by sundown." He walks away into the spaceport, leaving you to prepare for the journey.`
 				accept
 			label nope
 			`	The man frowns. "I see. Well, I appreciate that you listened to our offer, and I hope that you may assist us at a later date. Farewell." He walks away into the spaceport but doesn't appear to seek out any other captains.`
@@ -4986,13 +4986,13 @@ mission "Deal Change 1"
 			choice
 				`	"Thank you?"`
 				`	"Could you tell me what the inheritance is?"`
-			`	Before you can get a single word out, the woman exclaims, "I'll be sure to inform your employers of the wonderful work you've done. Ta ta!" She begins to swagger towards a cream-colored car as her inheritance is loaded into a truck beside it. When you return to your ship's cockpit, you find that <payment> has been deposited into your account.`
+			`	Before you can get a single word out, the woman exclaims, "I'll be sure to inform your employers of the wonderful work you've done. Ta ta!" She begins to swagger towards a cream-colored car as her inheritance is loaded into a truck beside it. When you return to your ship's cockpit, you find that <payment> have been deposited into your account.`
 
 
 
 mission "Deal Change 2"
 	landing
-	clearance `You read out the code on the back of the paper you received and receive a green light from Greenrock's authorities, along with a set of coordinates.`
+	clearance `You read out the code on the back of the paper you received and get a green light from Greenrock's authorities, along with a set of coordinates.`
 	name "Inheritance to <planet>"
 	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so."
 	source
