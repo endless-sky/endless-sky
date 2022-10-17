@@ -1,3 +1,58 @@
+Version 0.9.16:
+  * Breaking changes:
+    * The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live. (@RisingLeaf)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@a-random-lemurian, @Arachi-Lover, @LepRyot, @tibetiroka)
+      * The Firestorm Battery outfit now has a proper plural name. (@warp-core)
+      * The Mule's description has been updated to reflect its new category. (@McloughlinGuy)
+      * Corrected the name of the passenger in "FW Pug 4." (@a-random-lemurian, @williaji)
+      * Added a firing sound to the Ka'het Annihilator Turret, as it was missing one. (@Hecter94)
+      * Fixed an incorrect planet text replacement in "FW Refinery 1." (@roadrunner56)
+      * Prevented a Wanderer job from offering with an impossible deadline. (@warp-core)
+      * Replaced some small numbers that were written as digits with words. (@samrocketman)
+      * Shortened Greenview's planet description to fit the UI. (@mOctave)
+      * The Archon missions will now refresh once on old saves so that the new missions are used. (@Hurleveur)
+      * The Syndicate ships that attack New Tibet in the FW campaign will now be properly hostile to your mission escorts. (@RisingLeaf)
+      * Hard set the npc name in a Scar's Legion mission description to point to the correct npc to kill. (@roadrunner56)
+      * Fixed a Remnant rescue job that had an npc location that should not have been allowed. (@warp-core)
+      * Cleaned up the audio on some sound files that had audible clicking. (@Saugia)
+      * Remnant cargo that Korath ships in the Ember Waste carry is now more fitting to the lore of their situation. (@warp-core)
+      * Fixed the object sprites and scaling in the Ssil Vida event. (@warp-core)
+      * The jump range of systems affected by the Ssil Vida activation are now reset when Ssil Vida is deactivated in order to avoid a bug in pathfinding. This change will be reverted in the future once the pathfinding is improved. (@warp-core)
+      * Changed a Remnant bounty mission that had an unconstrained npc with a jump drive to spawn one without a jump drive as to stop the ship from escaping the Ember Waste. (@Hecter94)
+      * Added a fallback mission for people who were in the middle of a section of the FW campaign that was changed. (@warp-core)
+    * Engine bugs:
+      * The load panel now only lists .txt files from the save folder instead of listing every file there. (@quyykk)
+      * Traveling between systems no longer assumes that hyperdrives are always cheaper to use than jump drives. (@RisingLeaf, @Amazinite)
+      * Fixed an error where attempting to launch with a fighter as your flagship under certain circumstances could cause you to launch with no ship at all. (@petervdmeer)
+      * Mission npcs that become disabled by corrosion damage will now properly have the disable objective set. (@RisingLeaf)
+      * Disallowed planet labels from jumping around at different zoom levels for a better viewing experience. (@quyykk)
+      * Fixed a longstanding bug where npcs could get stuck thinking they need fuel after traveling through a wormhole. (@yjhn)
+      * Fixed a bug where fighters would sometimes fail to reparent to a carrier that had space for them when recalled. (@samrocketman)
+  * Game content:
+    * Mission changes:
+      * The last mission to give jump drives to the Unfettered is now a repeating job instead of a spaceport mission. (@Hurleveur)
+    * Balance:
+      * Added H2H weapons to some Hai ships and increased the base crew stats of the Unfettered. (@Hurleveur)
+    * Graphics:
+      * Slightly reworked the atomic and ion flare effects. (@GefullteTaubenbrust2)
+    * Other:
+      * Recategorized the Hai Centipede as a space liner. (@1010todd)
+      * Changed the landscape images of Mainsail and Inmost Blue to better fit their planet descriptions. (@Anarchist2)
+      * Recategorized the Saryd Traveler as a utility ship. (@Arachi-Lover)
+  * User interface:
+    * Clicking on a planet card on the left side of the map now selects that planet as a destination on your travel plan. (@Hurleveur)
+  * Under the hood:
+    * Fixed a link in the README to point to the proper location. (@quyykk)
+    * Made a few small code improvements that were found by various compilers and linters. (@quyykk)
+    * Added new PR labels to the contributing guidelines file. (@tibetiroka)
+    * Improved the printing of game data when using the command line options. (@warp-core)
+    * Added checks and warnings to overlapping derived condition provider ranges. (@petervdmeer)
+    * Added the std:: prefix to two calls to std::move. (@thomasballinger)
+  * CI/CD and development environment:
+    * Now using the new static runtime to build AppImages. (@quyykk)
+
 Version 0.9.15:
   * Big changes:
     * Over a year's worth of new content and bug fixes! We hope it was worth the wait!
