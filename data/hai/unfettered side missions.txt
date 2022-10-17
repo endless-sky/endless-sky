@@ -868,7 +868,7 @@ mission "Unfettered: Weird Aliens Spotted"
 				log `I warned the Unfettered about the weird aliens north of Wanderer space, they did not seem to care.`
 				set "unfettered: warned about the pugs"
 				payment 1000000
-			`	You explain to the herald you have seen some weird aliens north, that could be allied to the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they most have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathethic, altough strange looking, weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
+			`	You explain to the herald you have seen some weird aliens north, that could be allied to the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they most have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathethic, although strange looking, weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
 				accept
 			label "know about the Pug"
 			`Do you want to warn He-Yi's herald about the Pug's presence north of Wanderer space?`
