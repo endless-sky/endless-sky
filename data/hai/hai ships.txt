@@ -1394,8 +1394,8 @@ ship "Tick"
 		"mass" 24
 		"drag" .55
 		"heat dissipation" .7
-		"outfit space" 64
-		"weapon capacity" 10
+		"outfit space" 63
+		"weapon capacity" 13
 		"engine capacity" 22
 		"automaton" 1
 		weapon
@@ -1404,8 +1404,8 @@ ship "Tick"
 			"hull damage" 37
 			"hit force" 85
 	outfits
-		"Flamethrower"
-		"Fuel Processor"
+		"Korath Repeater"
+		"Hai Chasm Batteries" 2
 		"Small Biochemical Cell"
 		`"Baellie" Atomic Engines`
 
@@ -1414,7 +1414,7 @@ ship "Tick"
 	turret 0 -15
 	leak "leak" 60 50
 	explode "tiny explosion" 17
-	description "This drone was customized with the idea of using either a flamethrower, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit of mass and heat dissipation."
+	description "This drone was customized with the idea of using either a Repeater, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit of mass and heat dissipation."
 	description "This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
