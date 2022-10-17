@@ -117,7 +117,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
 				goto agree
 			label capture
-				`	She takes a while to answer, "We never focused too much on capturing ships at any cost, prefering to see the enemy eye to eye and only stun them, so they may live to fight another day but I am sure you humans may have... alternative approaches. Their base is probably isolated, so you could always disable them and come back later with a different ship, or just outfit the one you have differently."`
+				`	She takes a while to answer, "We never focused too much on capturing ships at any cost, preferring to see the enemy eye to eye and only stun them, so they may live to fight another day but I am sure you humans may have... alternative approaches. Their base is probably isolated, so you could always disable them and come back later with a different ship, or just outfit the one you have differently."`
 			choice
 				`	"What about the damage on their ship? How is that relevant to my mission?"`
 					goto information
@@ -259,6 +259,10 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 
 
 
+phrase "unfettered warning before leaving"
+	word
+		"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back if they are on escorts, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
+
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	landing
 	name "Time for questions"
@@ -290,8 +294,9 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		clear "unfettered: capped auxiliary"
 	
 	on decline
-		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back if they are on escorts, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
-
+		dialog phrase "unfettered warning before leaving"
+	on enter "Host"
+		dialog phrase "unfettered warning before leaving"
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
 		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 
@@ -364,7 +369,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 				"Lightning Bug"
 	npc
 		government "Hai (Unfettered)"
-		personality harvests uninterested staying launching
+		personality harvests uninterested staying entering
 		system "Wah Yoot"
 		fleet
 			names "hai"
@@ -376,7 +381,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		log `Gathered materials for the Unfettered shipyards. They're building sizeable ships here.`
 		outfit "Silicon" -100
 		outfit "Silver" -15
-		payment 500000
+		payment 1000000
 		conversation
 			`You bring your cargo to the local Unfettered shipyards, and see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
 			`	One of the Unfettered team leaders comes to speak to you, "My greatest thanks for these materials, they will be crucial in repairing our houses, probably more so than for our ships. Please, if you have the time, try to bring us more materials, we post missions on the job board when we need them the most. In the meantime, take these <payment> as a token of my gratitude."`
@@ -695,9 +700,9 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			label toosuspect
 			action
 				fine 100000
-			`	It looks like you have aroused too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
-			action
 				clear "unfettered: too suspect"
+			`	It looks like you have aroused too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
+				decline
 	on decline
 		fail "Unfettered: Solifuge 6: Shipyard Upgrade"
 
@@ -788,7 +793,6 @@ mission "Unfettered: New Cooling Available"
 	on offer
 		conversation
 			`You receive a message from Mera. "Hi <first>. Remember the coolers you helped to develop? They are finally available on Darkcloak. We don't yet have enough to equip all of our ships with them, but that's not required yet since our current weapons don't generate that much heat. However, you're welcome to buy as many as you want!"`
-				decline
 
 
 
@@ -850,7 +854,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		give ship "Modified Shield Beetle" "Basilisk"
 		event "unfettered: shield beetle mass production" 30
 		conversation
-			`After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message. There is also a side note, probably from He-Yi: "Make sure to check the job board for more jobs like this one. We appreciate the help."`
+			`After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message. There is also a side note, probably from He-Yi: "Make sure to check the job board for more jobs like this one. We appreciate the help. Also be mindful that it will take a while to improve the outfitter with these new materials and schematics."`
 
 event "unfettered: shield beetle mass production"
 	planet "Darkcloak"
@@ -865,7 +869,6 @@ mission "Unfettered: Improved Production"
 	on offer
 		conversation
 			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
-				decline
 
 
 
@@ -904,7 +907,7 @@ mission "Unfettered: Special Cargo"
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He-Yi on <planet>.`
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
-		has "reputation: Hai" >= 0
+		has "reputation: Hai" >= 0 # required for the mission after this one
 	source "Darkcloak"
 	waypoint "Alcyone"
 	destination "Warfeed"
@@ -967,7 +970,6 @@ mission "Unfettered: Cargo on Mirrorlake"
 		outfit "Mystery Cube" -1
 		conversation
 			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
-				decline
 
 mission "Unfettered: Special Cargo 2"
 	landing
@@ -1032,7 +1034,6 @@ mission "Unfettered: Special Cargo 2"
 				`	"I'll do it."`
 					accept
 				`	"I was almost caught last time. I'm not trying again."`
-					decline
 	to complete
 		has "Unfettered: Cargo on Mirrorlake: offered"
 	on visit
@@ -1143,7 +1144,7 @@ mission "Unfettered: Ready For The War"
 		event "joined the unfettered"
 		clear "unfettered: defeated Si-Ra"
 		#"reputation: Wanderer" <?= -1000 
-		#TO BE UNCOMMENTED FOR PR TO BE MERGED!!
+		# TO BE UNCOMMENTED FOR PR TO BE MERGED!!
 		conversation
 			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our [flag, colors]. We have informed the Hai of your new colors so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
 			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`

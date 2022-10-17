@@ -219,7 +219,7 @@ mission "Unfettered Jump Drive 4"
 
 phrase "unfettered boarded"
 	word
-		`As you board the <ship boarded> you immediately notice something is wrong: the ship is getting ready to explode! The captain sends you a message.`
+		`As you board the Unfettered heavy warship you immediately notice something is wrong: it is getting ready to explode! The captain sends you a message.`
 	word
 		`"This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
 		`"This ship is the property of the True Hai, maybe even the Fettered, but never shall it belong to monkeys! We'd rather die than let you have it."`
@@ -234,8 +234,6 @@ mission "Proud Unfettered Boarded"
 		government "Hai (Unfettered)"
 		category "Heavy Warship"
 	destination "Darkcloak"
-	substitutions
-		<ship boarded> "<origin>"
 	to offer
 		"flagship crew" > 120
 		random < "flagship crew" / 8
