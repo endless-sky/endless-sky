@@ -235,7 +235,7 @@ mission "Proud Unfettered Boarded"
 		category "Heavy Warship"
 	destination "Darkcloak"
 	substitutions
-		<ship boarded> <origin>
+		<ship boarded> "<origin>"
 	to offer
 		"flagship crew" > 120
 		random < "flagship crew" / 8
