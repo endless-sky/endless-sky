@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SHOP_PANEL_H_
@@ -51,7 +54,7 @@ protected:
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
-	virtual int VisiblityCheckboxesSize() const;
+	virtual int VisibilityCheckboxesSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
@@ -112,7 +115,7 @@ protected:
 	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
-	static const int OUTFIT_SIZE = 180;
+	static const int OUTFIT_SIZE = 183;
 
 
 protected:

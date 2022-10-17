@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ENGINE_H_
@@ -136,7 +139,8 @@ private:
 
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
+		Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, double angle = 0.);
 
 		Point position;
 		double outer;
@@ -239,6 +243,8 @@ private:
 	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
+	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
+	double nextZoom = 0.;
 
 	double load = 0.;
 	int loadCount = 0;

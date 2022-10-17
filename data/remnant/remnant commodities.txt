@@ -7,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 trade
 	commodity "remnant civil"
@@ -30,8 +33,6 @@ trade
 		"civil defense emergency supplies"
 		"portable machine shop modules"
 		"local network repeaters and uplinks"
-
-trade
 	commodity "remnant industrial"
 		"chemical process equipment"
 		"reactor vessels"
@@ -62,8 +63,6 @@ trade
 		"sintered metal filters"
 		"industrial gases"
 		"ultrasonic agitators"
-
-trade	
 	commodity "remnant outfitter repair"
 		"Inhibitor Cannon"
 		"Thrasher Cannon"
@@ -85,8 +84,6 @@ trade
 		"Crucible-Class Steering"
 		"Forge-Class Steering"
 		"Smelter-Class Steering"
-
-trade
 	commodity "remnant salvage"
 		"salvaged Builder"
 		"Ka'het Nullifier"

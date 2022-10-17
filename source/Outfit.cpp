@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Outfit.h"
@@ -33,7 +36,7 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
-		{"shield generation", 0,},
+		{"shield generation", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
@@ -58,7 +61,7 @@ namespace {
 		{"thrusting discharge", 0.},
 		{"thrusting corrosion", 0.},
 		{"thrusting ion", 0.},
-		{"thrusting leak", 0.},
+		{"thrusting leakage", 0.},
 		{"thrusting burn", 0.},
 		{"thrusting disruption", 0.},
 		{"thrusting slowing", 0.},
@@ -71,7 +74,7 @@ namespace {
 		{"turning discharge", 0.},
 		{"turning corrosion", 0.},
 		{"turning ion", 0.},
-		{"turning leak", 0.},
+		{"turning leakage", 0.},
 		{"turning burn", 0.},
 		{"turning disruption", 0.},
 		{"turning slowing", 0.},
@@ -84,7 +87,7 @@ namespace {
 		{"reverse thrusting discharge", 0.},
 		{"reverse thrusting corrosion", 0.},
 		{"reverse thrusting ion", 0.},
-		{"reverse thrusting leak", 0.},
+		{"reverse thrusting leakage", 0.},
 		{"reverse thrusting burn", 0.},
 		{"reverse thrusting disruption", 0.},
 		{"reverse thrusting slowing", 0.},
@@ -97,7 +100,7 @@ namespace {
 		{"afterburner discharge", 0.},
 		{"afterburner corrosion", 0.},
 		{"afterburner ion", 0.},
-		{"afterburner leak", 0.},
+		{"afterburner leakage", 0.},
 		{"afterburner burn", 0.},
 		{"afterburner disruption", 0.},
 		{"afterburner slowing", 0.},

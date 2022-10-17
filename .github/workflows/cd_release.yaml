@@ -12,6 +12,7 @@ jobs:
       ARCH: x86_64
       OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -46,7 +47,7 @@ jobs:
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
-        run: brew install libmad libpng jpeg-turbo
+        run: brew install libpng jpeg-turbo
       - name: Restore cached SDL2 framework
         uses: actions/cache@v2
         with:

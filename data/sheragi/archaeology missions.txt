@@ -7,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Deep Archaeology 1"
 	name "Deep Archaeology"
@@ -1139,6 +1142,10 @@ mission "Sheragi Archaeology: The Box 7b"
 
 	on complete
 		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10
 		conversation
 			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
 			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table. You describe the discovery of the Sheragi ruins to them and they begin inquiring more about it, curious about the state of preservation of the ruins and what artifacts were found. They seem very excited.`
@@ -1364,7 +1371,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto rakei
 				`	(Look for Desyo to see what she's doing.)`
 					goto desyo
-				`	(Return to your ship and wait until the Emerald Sword is operational.)`
+				`	(Return to my ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
 			apply
@@ -1519,7 +1526,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	Desyo looks at you like you're some kind of alien. "No, nothing like the sort. Don't you think I would have expected that if it had?"`
 			
 			label desyoend
-			`	 Everyone comes out from behind their cover to look at the aftermath. Luckily, no one seems to have been hurt. Desyo walks over to the large scorch mark on the floor left behind by the explosion. "I have no idea what could have caused such an explosion to occur," she exclaims.`
+			`	Everyone comes out from behind their cover to look at the aftermath. Luckily, no one seems to have been hurt. Desyo walks over to the large scorch mark on the floor left behind by the explosion. "I have no idea what could have caused such an explosion to occur," she exclaims.`
 			`	"How's your computer doing?" you ask.`
 			`	Desyo finds the computer on the other side of the room with a severely cracked screen, but somehow still functional. "Sturdy piece of hardware, isn't it?" she jokes. She begins tapping away at the keys as she squints at the screen. "I can still make out some of what I was able to pull from the cube. It looks like... that cube had some information on a weapon. Some sort of... chemical weapon? It seems to include... mention of coordinates. But that's all I was able to get. Whatever coordinates they were are lost to time."`
 			`	The crew are still standing around in shock as Desyo fiddles with her damaged computer. She looks up to see everyone staring at her. "Well, let's get back to work. We're not going to make any progress just standing around."`

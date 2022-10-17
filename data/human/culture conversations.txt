@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Sad Gamblers - Republic"
 	minor
@@ -435,7 +438,7 @@ mission "Tarazed Ship Christening"
 			`	"Uhh... that would be me," the woman says, glancing around awkwardly.`
 			choice
 				`	(Try to salvage the awkward situation.)`
-				`	(Get out while you can.)`
+				`	(Get out while I can.)`
 					goto getout
 			`	"I'm just messing with you, my psychiatrist doesn't think it's very funny when I do it to him either."`
 			`	"Oh," the woman says quietly, "that's... nice, I guess."`
@@ -465,7 +468,7 @@ mission "Masquerade Hanging"
 		random < 1
 	on offer
 		conversation
-			`The smell of burning gunpowder wafts about in the air as you enter a town square, watching as a body is rolled off of a raised platform. Cries and screams fill the air as a masked man drags a lady across the platform and onto the central dias, an old fashioned pistol to her head as he asks her something you can't make out. Thankfully, the man doesn't shoot, taking his gun off her temple before subsequently knocking her out with his weapon.`
+			`The smell of burning gunpowder wafts about in the air as you enter a town square, watching as a body is rolled off of a raised platform. Cries and screams fill the air as a masked man drags a lady across the platform and onto the central dias, an old-fashioned pistol to her head as he asks her something you can't make out. Thankfully, the man doesn't shoot, taking his gun off her temple before subsequently knocking her out with his weapon.`
 			`	Moments later the small crowd allows him to depart opposite your viewpoint, without incident and without explanation. You aren't quite sure what to make of this scene as the bodies are swiftly dragged away.`
 				decline
 
@@ -485,7 +488,7 @@ mission "News Reporter - Paradise"
 			choice
 				`	(Wait for her to approach.)`
 					goto walk
-				`	(Hope she doesn't notice you.)`
+				`	(Hope she doesn't notice me.)`
 					goto notice
 				`	(Try to avoid her.)`
 			`	You take a hallway off to the side to evade her. Just as you think you've gotten out of sight, you hear a voice. "Excuse me!" You turn to see the reporter following you.`
@@ -501,7 +504,7 @@ mission "News Reporter - Paradise"
 					decline
 			label questions
 			`	The camera drones circle around you as she prepares for the interview. After a few seconds, she smiles at one of the drones and begins.`
-			`	"Welcome back. I'm here on <origin> reporting on the situation with the Free Worlds coalition. I'm joined by a merchant captain currently between trips. Captain, what do you think of the ultimatum sent to Parliament?"`
+			`	"Welcome back. I'm here on <origin> reporting on the situation with the Free Worlds. I'm joined by a merchant captain currently between trips. Captain, what do you think of the ultimatum sent to Parliament?"`
 			choice
 				`	"I think Parliament should reconsider and give the situation some thought."`
 				`	"Parliament made the right decision by refusing the demands."`
@@ -509,7 +512,7 @@ mission "News Reporter - Paradise"
 			`	The reporter frowns. "Can you explain your answer for our viewers?"`
 			choice
 				`	"The interests of every world should be considered, whether we agree or not."`
-				`	"The coalition worlds aren't represented well enough to gain traction through normal channels."`
+				`	"The Free Worlds aren't represented well enough to gain traction through normal channels."`
 				`	"The Navy is hardly defending that territory, so taxes shouldn't be as much."`
 				`	"I would prefer to not answer."`
 			`	"I'm not sure that Parliament would agree with you, but I want to thank you for your answers, and for taking the time to do this interview!" she says.`
@@ -535,10 +538,10 @@ mission "Scientists at the Pub after a Conference"
 		random < 1
 	on offer
 		conversation
-			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading  "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics". The group takes their seats at a long table near to you.`
+			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics." The group takes their seats at a long table near to you.`
 			choice
 				`	(Order a meal and listen in to their conversation.)`
-					goto "overheard scientists 1" 
+					goto "overheard scientists 1"
 				`	(Find somewhere quieter to relax.)`
 					decline
 			label "overheard scientists 1"
@@ -556,7 +559,7 @@ mission "Scientists at the Pub after a Conference"
 			choice
 				`	(Order another beverage and continue listening.)`
 					goto "overheard scientists 2"
-				`	(Finish your meal and leave.)`
+				`	(Finish my meal and leave.)`
 					decline
 			label "overheard scientists 2"
 			`	The group's conversation grows louder by virtue of both passion for the subject as well as the influence of a few drinks.`
@@ -571,9 +574,9 @@ mission "Scientists at the Pub after a Conference"
 			`	"That's a conundrum, alright. Maybe you could find some funding from industry? The Syndicate might be interested in your work."`
 			`	"Yeah, but I'm not sure yet if I'm willing to give up my academic freedom."`
 			choice
-				`	(Finish up at your own pace.)`
+				`	(Finish up at my own pace.)`
 					goto "overheard scientists 3"
-				`	(Settle your bill as quickly as possible and leave.)`
+				`	(Settle my bill as quickly as possible and leave.)`
 					decline
 			label "overheard scientists 3"
 			`	Two attendees compare gripes about job demands. "Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
@@ -581,4 +584,32 @@ mission "Scientists at the Pub after a Conference"
 			` `
 			`	A sociable but exhausted-looking man is sitting back in his chair. "These conferences only last three or four days, but it always feels like it ages you a year."`
 			`	You leave after finishing your meal, reflecting on having overheard a slice of a life very different from your own.`
+				decline
+
+
+mission "Sol-Bound Shuttle"
+	minor
+	source
+		system "Sol"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`	Upon entering the sprawling spaceport, you notice that a group of factory workers are talking to a captain. As you get closer, you see that the captain's flagship, a Shuttle that has seen better days, lacks a hyperdrive.`
+			choice
+				`	"Where's your hyperdrive?"`
+				`	"How are you going to travel anywhere with that ship?"`
+				`	(Go back to your ship.)`
+					decline
+			`	The captain laughs. "Most pilots are the adventurous type. Not me. I make a pretty decent haul just flying people from Earth to Mars and back. Occasionally I do trips to the Moon for tourists." You notice that she uses the archaic term for Luna. Must be a local expression.`
+			choice
+				`	"Doesn't that get boring?"`
+					goto boring
+				`	"Is there really enough travel within Sol that you can make a living off of it?"`
+			`	"You'd be surprised. There's a lot of people in this system after all, and a lot of those people have enough money to leave Earth but not enough to leave Sol. It's a nice niche I've carved out for myself."`
+				goto end
+			label boring
+			`	"For you, maybe. I can tell by your accent that you've done a bit of travelling from your home planet. I like staying closer to home, though. With all the instability in the galaxy - pirates, aliens, and who knows what else - staying in Sol keeps me safe. Call me paranoid, but being in a place where I don't have to worry about that is something I value." She eyes a ship to the side that's having its hull repaired. The damage appears to have been inflicted by a beam weapon.`
+			label end
+			`	You say your goodbyes as you board your ships. Although you are both captains, the trajectory of your lives have taken very different courses.`
 				decline
