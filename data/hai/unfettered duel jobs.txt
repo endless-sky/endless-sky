@@ -298,13 +298,13 @@ conversation "interrupted duel"
 	action
 		"reputation: Hai (Unfettered)" -= 50
 		"unfettered revenge fleet"++
-	`	The Unfettered authorities of the nearby planet hail you, "Whatever you had in mind you better stop right there if you have hope of maintaining good relations with us. Duels may not be interrupted, under any circumstances. I suggest you leave at once, and we may forgive you for this transgression."`
+	`The Unfettered authorities of the nearby planet hail you, "Whatever you had in mind you better stop right there if you have hope of maintaining good relations with us. Duels may not be interrupted, under any circumstances. I suggest you leave at once, and we may forgive you for this transgression."`
 		decline
 	label toomuch
 	action
 		"reputation: Hai (Unfettered)" <?= -1000
 		"unfettered revenge fleet"++
-	`	The Unfettered authorities of the nearby planet hail you, "You have been warned. We have been patient enough with you, monkey! Now you shall pay."`
+	`The Unfettered authorities of the nearby planet hail you, "You have been warned. We have been patient enough with you, monkey! Now you shall pay."`
 
 mission "Death To Those Without Honor"
 	invisible
@@ -317,7 +317,7 @@ mission "Death To Those Without Honor"
 	on offer
 		"unfettered revenge fleet"--
 	on enter
-		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships, "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, 'one with no honor'!"`
+		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships, "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, Kavakai!"` # Kavakai = one with no honor
 	npc kill
 		government "Hai (Unfettered)"
 		personality staying heroic nemesis unconstrained

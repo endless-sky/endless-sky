@@ -68,6 +68,10 @@ fleet "Marauders"
 		"Marauder Leviathan (Engines)"
 	variant
 		"Marauder Raven" 2
+	variant
+		"Sea Scorpion"
+	variant
+		"Sea Scorpion (Pulse)"
 		
 mission "Mercenaries: End of the Hunt"
 	invisible
@@ -78,7 +82,9 @@ mission "Mercenaries: End of the Hunt"
 		fail "Mercenaries: Nemo Me Impune Lacessit"
 		fail "Mercenaries: Nemo Me Impune Lacessit 2"
 
-phrase "mercenaries defeated" `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
+phrase "mercenaries defeated" 
+	word
+		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
 
 mission "Mercenaries: Nemo Me Impune Lacessit"
 	minor
