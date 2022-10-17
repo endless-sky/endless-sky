@@ -69,14 +69,16 @@ fleet "Marauders"
 	variant
 		"Marauder Raven" 2
 	variant
-		"Sea Scorpion"
+		"Sea Scorpion (Ion)"
 	variant
 		"Sea Scorpion (Pulse)"
+	variant
+		"Lightning Bug" 2
 		
 mission "Mercenaries: End of the Hunt"
 	invisible
-	repeat
 	landing
+	repeat
 	on offer
 		require "Gold Bars" 0
 		fail "Mercenaries: Nemo Me Impune Lacessit"

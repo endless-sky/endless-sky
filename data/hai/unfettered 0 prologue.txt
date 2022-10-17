@@ -1320,52 +1320,6 @@ mission "Unfettered: Geocoris Arriving"
 
 
 
-outfit "Alpha Pirate Crew"
-	category "Hand to Hand"
-	thumbnail "outfit/unknown"
-	"crew defense" -100
-	"crew attack" -120
-	"unplunderable" 1
-	description "This ship is mostly manned by pirates and not actual Alphas, though they do lead them."
-	description "You need to land on the Alpha base in the Host system, with this outfit and the Auxiliary."
-
-ship "Auxiliary" "Auxiliary (Alpha)"
-	sprite "ship/auxiliaryc"
-	thumbnail "thumbnail/auxiliaryc"
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Korath Disruptor"
-		"Korath Slicer Turret"
-		"Bullfrog Anti-Missile" 2
-
-		"Double Plasma Core"
-		"Systems Core (Large)" 2
-		"Large Heat Shunt" 2
-		"Wanderer Ramscoop"
-		"Fuel Pod" 7
-		"Brig"
-
-		`"Bufaer" Atomic Thruster`
-		"Steering (Planetary Class)"
-		"Jump Drive"
-	add attributes
-		"bunks" -112
-		"cargo space" 200
-	cargo
-		outfits
-			"Alpha Pirate Crew"
-	gun -12 -180 "Hai Tracker Pod"
-	gun 12 -180 "Hai Tracker Pod"
-	turret 0 -72 "Bullfrog Anti-Missile"
-	turret 0 -21 "Korath Disruptor"
-	turret 0 31 "Korath Slicer Turret"
-	turret 0 83 "Bullfrog Anti-Missile"
-	bay "Fighter" 0 -72
-	bay "Fighter" 0 -20
-	bay "Fighter" 0 32
-	bay "Fighter" 0 83
-
 mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`
 	description `Scan the outfits of the human ship in <waypoint> by <date>, and then come back to <origin> with the logs.`

@@ -52,10 +52,54 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 
 
 
+outfit "Alpha Pirate Crew"
+	category "Hand to Hand"
+	thumbnail "outfit/unknown"
+	"crew attack" -40
+	"crew defense" -40
+	"unplunderable" 1
+	description "This ship is mostly manned by pirates and not actual Alphas, though they do lead them."
+	description "You need to land on the Alpha base in the Host system, with this outfit and the Auxiliary."
+
+ship "Auxiliary" "Auxiliary (Alpha)"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Korath Disruptor"
+		"Korath Slicer Turret"
+		"Bullfrog Anti-Missile" 2
+
+		"Double Plasma Core"
+		"Systems Core (Large)" 2
+		"Large Heat Shunt" 2
+		"Wanderer Ramscoop"
+		"Fuel Pod" 7
+		"Alpha Pirate Crew"
+		"Brig"
+
+		`"Bufaer" Atomic Thruster`
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
+	gun -12 -180 "Hai Tracker Pod"
+	gun 12 -180 "Hai Tracker Pod"
+	turret 0 -72 "Bullfrog Anti-Missile"
+	turret 0 -21 "Korath Disruptor"
+	turret 0 31 "Korath Slicer Turret"
+	turret 0 83 "Bullfrog Anti-Missile"
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -20
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
+
 mission "Unfettered: Alphas 2: Prove Yourself"
 	landing
 	name `Find and capture the Alpha Auxiliary`
-	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it.`
+	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it. You need to land with that Auxiliary as your flagship, and all jump drives you may find.`
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
@@ -114,7 +158,10 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Auxiliary (Alpha)" "Settler"
-		dialog `While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of mercenaries. There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
+		conversation
+			action
+				set "unfettered: capped auxiliary"
+			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of mercenaries. There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
 		government "Alpha"
 		system "Host"
@@ -145,8 +192,9 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
 	on complete
-		log `Captured the Alpha Auxiliary. The Alphas had a trap set for me, but I got the upper hand.`
+		outfit "Alpha Pirate Crew" -1
 		outfit "Jump Drive" -10
+		log `Captured the Alpha Auxiliary. The Alphas had a trap set for me, but I got the upper hand.`
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
@@ -200,15 +248,18 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				fail "Unfettered: Alphas 2: Prove Yourself"
 				set "unfettered: betrayed"
 
+
+
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	landing
-	invisible
+	name "Time for questions"
+	description "You have learned some surprising things about the Unfettered's possible role with the Alphas. You should ask Mera for clarifications since she directed you here."
 	source "Avalon"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
+		has "unfettered: capped auxiliary"
 	on offer
-		outfit "Alpha Pirate Crew" -1
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
 			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems part of it has been replaced by a crude prosthetic. He may not survive the transport.`
@@ -227,9 +278,10 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 				accept
 		outfit "Jump Drive" 10
+		clear "unfettered: capped auxiliary"
 
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
-		dialog `When you arrive in the Unfettered system, the local authorities relay a message to you, from Mera. "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
+		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 
 
 
