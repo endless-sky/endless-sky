@@ -389,7 +389,7 @@ mission "Mercenaries: Daemons Unleashed"
 		personality heroic nemesis
 		ship "Tick" "Hell Unleashed"
 		ship "Tick" "Fire Incarnate"
-		ship "Far Osk 27" "Phoenix"
+		ship "Far Lek 14" "Phoenix"
 	npc
 		system "Wah Yoot"
 		government "Mercenaries"
