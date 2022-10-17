@@ -15,7 +15,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Milestone.h"
 
+#include "DataNode.h"
+
 using namespace std;
+
+namespace {
+	static map<string, MilestoneState> stringToMilestoneState = {
+		{"hidden", MilestoneState::HIDDEN},
+		{"locked", MilestoneState::LOCKED},
+		{"unlocked", MilestoneState::UNLOCKED},
+		{"completed", MilestoneState::COMPLETE}
+	};
+
+}
+
+
 
 Milestone::Milestone(const DataNode &node)
 {
@@ -35,53 +49,44 @@ void Milestone::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		/*if(node.Size() == 1)
-		{
-			if(node.Token(0) == "hidden")
-				isHidden = true;
-			else if(node.Token(0) == "locked")
-				isLocked = true;
-		}*/
-		if(node.Token(0) == "hidden")
-		{
+		if(child.Token(0) == "hidden")
 			isHidden = true;
-			continue;
-		}
-		else if(node.Token(0) == "locked")
+		else if(child.Token(0) == "locked")
 			isLocked = true;
-		if(node.Token(0) == "to")
+		else if(child.Size() >= 2)
 		{
-
-		}
-		else if(node.Token(0) == "on")
-		{
-
-		}
-		else if(node.Size() >= 2)
-		{
-			displayNamesAndDescs.emplace(
-					pair<MilestoneState, pair<string, string>>(
-							MilestoneState::FromString(node.Token(0)),
-							pair<string, string>(
-									node.Token(1), node.Token(2))));
-			/*if(node.Token(0) == "locked")
+			if(child.Token(0) == "to")
 			{
-				locked.first = node.Token(1);
-				locked.second = node.Token(2);
+				if(child.Token(1) == "unhide")
+					toUnhide.Load(child);
+				else if(child.Token(1) == "unlock")
+					toUnlock.Load(child);
+				else if(child.Token(1) == "complete")
+					toComplete.Load(child);
+				else if(child.Token(1) == "block")
+					toBlock.Load(child);
 			}
-			else if(node.Token(0) == "unlocked")
+			else if(child.Token(0) == "on")
 			{
-				unlocked.first = node.Token(1);
-				unlocked.second = node.Token(2);
+
 			}
-			else if(node.Token(0) == "completed")
+			else
 			{
-				completed.first = node.Token(1);
-				completed.second = node.Token(2);
-			}*/
+				displayNamesAndDescs.emplace(
+						make_pair(GetStateFromString(child.Token(1)),
+								make_pair(node.Token(1), child.Token(2))));
+			}
 		}
 	}
-
 }
 
+
+
+const MilestoneState &Milestone::MilestoneStateFromString(const string &name)
+{
+	auto &it = stringToMilestoneState.find(name);
+	if(it == stringToMilestoneState.end())
+		return MilestoneState::DEFAULT;
+	return it->second;
+}
 

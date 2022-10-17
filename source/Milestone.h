@@ -17,11 +17,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define MILESTONE_H_
 
 #include "ConditionSet.h"
-#include "DataNode.h"
 #include "milestonestate.hpp"
 
 #include <map>
 #include <utility>
+
+class DataNode;
+
+
 
 class Milestone {
 public:
@@ -32,13 +35,15 @@ public:
 	bool IsHidden() const;
 	bool IsLocked() const;
 
-	MilestoneState CheckState(std::map<std::string, int64_t> conditions, MilestoneState currentState);
+	MilestoneState &CheckState(std::map<std::string, int64_t> conditions, MilestoneState &currentState);
+
+	static const MilestoneState &MilestoneStateFromString(const std::string &name);
 
 
 private:
 	std::string name;
 	// Quiet milestones don't have a pop-up message when completed.
-	bool isQuiet;
+	bool isQuiet = false;
 
 	// Hidden milestones are not shown in the list at all until
 	// either the 'toUnhide' or 'toComplete' conditions are met.
@@ -54,7 +59,6 @@ private:
 	ConditionSet toComplete;
 	std::pair<std::string, std::string> completed;
 
-	std::map<MilestoneState, std::pair<std::string, std::string>> displayNamesAndDescs;
 	// If the 'toBlock' conditions are met, this milestone will
 	// become permanently hidden.
 	ConditionSet toBlock;

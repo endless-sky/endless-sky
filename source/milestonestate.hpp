@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <map>
 
+
+
 enum class MilestoneState : int_fast8_t {
 	DEFAULT,
 	HIDDEN,
@@ -27,15 +29,6 @@ enum class MilestoneState : int_fast8_t {
 	COMPLETE,
 };
 
-MilestoneState MilestoneState::FromString(std::string input)
-{
-	static std::map<std::string, MilestoneState> stringToMilestoneState = {
-		{"hidden", HIDDEN},
-		{"locked", LOCKED},
-		{"unlocked", UNLOCKED},
-		{"completed", COMPLETE}
-	};
-	return stringToMilestoneState.find(input)->second;
-}
+
 
 #endif
