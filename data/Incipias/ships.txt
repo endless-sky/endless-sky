@@ -23,7 +23,7 @@ ship "Nimbus"
 		"steering flare sprite" "effect/incipias flare/flare"
 			"frame rate" 6
 		"steering flare sound" "plasma huge"
-		"turn" 903
+		"turn" 453
 		"turning energy" 2.5
 		"turning heat" 12
 
