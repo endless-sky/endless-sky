@@ -316,7 +316,6 @@ jobs:
         path: ${{ env.ARTIFACT }}
 
 
-  # This section is for tests on ubuntu 20 (and on ubuntu 22).
   test_ubuntu-integration:
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.integration_tests == 'true' }}
