@@ -550,7 +550,7 @@ void Outfit::Add(const Outfit &other, int count)
 			bunkTypes[bunkType.first] += bunkType.second;
 		else
 			bunkTypes[bunkType.first] = bunkType.second;
-	
+
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;
