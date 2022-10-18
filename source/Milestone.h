@@ -22,26 +22,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <utility>
 
+class ConditionsStore;
 class DataNode;
+class PlayerInfo;
 
 
 
 class Milestone {
 public:
-	Milestone(const DataNode &node);
+	Milestone();
 
 	void Load(const DataNode &node);
 
-	bool IsHidden() const;
-	bool IsLocked() const;
-
-	MilestoneState &CheckState(std::map<std::string, int64_t> conditions, MilestoneState &currentState);
+	static void UpdateMilestones(std::map<std::string, MilestoneState> &playerMilestones, const ConditionsStore &playerConditions);
 
 	static const MilestoneState &MilestoneStateFromString(const std::string &name);
 
 
 private:
+	const MilestoneState CheckState(const ConditionsStore &conditions, MilestoneState currentState) const;
+
+
+private:
 	std::string name;
+	MilestoneState initialState = MilestoneState::DEFAULT;
 	// Quiet milestones don't have a pop-up message when completed.
 	bool isQuiet = false;
 

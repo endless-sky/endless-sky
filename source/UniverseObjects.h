@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Interface.h"
 #include "Minable.h"
+#include "Milestone.h"
 #include "Mission.h"
 #include "News.h"
 #include "Outfit.h"
@@ -103,6 +104,7 @@ private:
 	Set<Hazard> hazards;
 	Set<Interface> interfaces;
 	Set<Minable> minables;
+	Set<Milestone> milestones;
 	Set<Mission> missions;
 	Set<News> news;
 	Set<Outfit> outfits;

@@ -355,7 +355,8 @@ private:
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
 
-	std::map<const Milestone *, MilestoneState> milestones;
+	std::map<std::string, MilestoneState> milestones;
+
 	ConditionsStore conditions;
 
 	std::set<const System *> seen;

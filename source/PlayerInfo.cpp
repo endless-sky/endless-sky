@@ -634,7 +634,8 @@ void PlayerInfo::IncrementDate()
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
 
-	UpdateMilestones();
+	Milestone::UpdateMilestones(milestones, conditions);
+	//UpdateMilestones();
 }
 
 
@@ -2570,8 +2571,9 @@ void PlayerInfo::ValidateLoad()
 
 void PlayerInfo::UpdateMilestones()
 {
-	for(const Milestone &milestone : GameData::Milestones())
+	/*for(const auto &it : GameData::Milestones())
 	{
+		const Milestone &milestone = it.second;
 		auto milestoneIt = milestones.find(milestone);
 
 		MilestoneState currentState = (milestoneIt != milestones.end() ? milestoneIt.second : MilestoneState::DEFAULT);
@@ -2580,7 +2582,7 @@ void PlayerInfo::UpdateMilestones()
 		{
 			milestones.insert_or_assign(&milestone, newState);
 		}
-	}
+	}*/
 }
 
 

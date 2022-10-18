@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LineShader.h"
 #include "MaskManager.h"
 #include "Minable.h"
+#include "Milestone.h"
 #include "Mission.h"
 #include "Music.h"
 #include "News.h"
@@ -543,6 +544,12 @@ const Set<Minable> &GameData::Minables()
 	return objects.minables;
 }
 
+
+
+const Set<Milestone> &GameData::Milestones()
+{
+	return objects.milestones;
+}
 
 
 

@@ -27,6 +27,7 @@ enum class MilestoneState : int_fast8_t {
 	LOCKED,
 	UNLOCKED,
 	COMPLETE,
+	BLOCKED,
 };
 
 

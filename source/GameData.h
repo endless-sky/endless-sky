@@ -42,6 +42,7 @@ class ImageSet;
 class Interface;
 class MaskManager;
 class Minable;
+class Milestone;
 class Mission;
 class News;
 class Outfit;
@@ -118,6 +119,7 @@ public:
 	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
 	static const Set<Minable> &Minables();
+	static const Set<Milestone> &Milestones();
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
