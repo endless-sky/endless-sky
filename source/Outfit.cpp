@@ -403,10 +403,8 @@ uint32_t Outfit::CrewBunks() const
 {
 	uint32_t crew = bunks;
 	for(auto bunkType : bunkTypes)
-	{
 		if(GameData::BunkType(bunkType.first).second.second)
 			crew += bunkType.second;
-	}
 	return crew;
 }
 
