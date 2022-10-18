@@ -187,7 +187,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		personality heroic nemesis staying
 		to spawn
 			has "mercenaries: thorn talon death"
-		ship "Far Lek 14" "Vengence"
+		ship "Far Lek 14" "Vengeance"
 		ship "Far Lek 14" "Greed"
 		ship "Far Lek 14" "Darcy"
 		ship "Far Lek 14" "Karen"
