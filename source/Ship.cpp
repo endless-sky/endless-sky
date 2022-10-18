@@ -1197,9 +1197,6 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	this->velocity = velocity;
 	this->angle = angle;
 
-	// Make sure the jump navigation has the correct system.
-	navigation.SetSystem(currentSystem);
-
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
 	if(landingPlanet)
@@ -1611,8 +1608,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		if(hyperspaceCount == HYPER_C)
 		{
-			currentSystem = hyperspaceSystem;
-			navigation.SetSystem(currentSystem);
+			SetSystem(hyperspaceSystem);
 			hyperspaceSystem = nullptr;
 			targetSystem = nullptr;
 			// Check if the target planet is in the destination system or not.
@@ -1736,8 +1732,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// instantly transported.
 				if(landingPlanet->IsWormhole())
 				{
-					currentSystem = landingPlanet->WormholeDestination(currentSystem);
-					navigation.SetSystem(currentSystem);
+					SetSystem(landingPlanet->WormholeDestination(currentSystem));
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();

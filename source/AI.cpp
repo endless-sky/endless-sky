@@ -1597,7 +1597,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		}
 
 		// If the ship has no destination or the destination is unreachable, route to the parent's system.
-		if(!ship.GetTargetStellar() && (!ship.GetTargetSystem() || !ship.JumpFuel(ship.GetTargetSystem())))
+		if(!ship.GetTargetStellar() && (!ship.GetTargetSystem() || !ship.JumpNavigation().JumpFuel(ship.GetTargetSystem())))
 		{
 			// Route to the parent ship's system and check whether
 			// the ship should land (refuel or wormhole) or jump.
