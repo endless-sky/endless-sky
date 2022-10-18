@@ -1630,7 +1630,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			direction = -1;
 
 			// If you have a target planet in the destination system, exit
-			// hyperpace aimed at it. Otherwise, target the first planet that
+			// hyperspace aimed at it. Otherwise, target the first planet that
 			// has a spaceport.
 			Point target;
 			// Except when you arrive at an extra distance from the target,
@@ -1742,6 +1742,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
 					SetTargetStellar(nullptr);
+					SetTargetSystem(nullptr);
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
@@ -2464,7 +2465,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
-		if(!victim->JumpsRemaining() && CanRefuel(*victim))
+		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
@@ -2800,7 +2801,7 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
-// Check if this ship is currently able to enter hyperspace to it target.
+// Check if this ship is currently able to enter hyperspace to its target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
@@ -3200,6 +3201,24 @@ int Ship::JumpsRemaining(bool followParent) const
 
 
 
+bool Ship::NeedsFuel(bool followParent) const
+{
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		auto p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
+	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
+}
+
+
+
 double Ship::JumpFuelMissing() const
 {
 	// Used for smart refueling: transfer only as much as really needed
@@ -3477,7 +3496,7 @@ int Ship::BaysTotal(const string &category) const
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	if(!ship.CanBeCarried())
+	if(!HasBays() || !ship.CanBeCarried() || (IsYours() && !ship.IsYours()))
 		return false;
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
@@ -3489,9 +3508,15 @@ bool Ship::CanCarry(const Ship &ship) const
 	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
-		if(escort && escort.get() != &ship && escort->attributes.Category() == category
-			&& !escort->IsDestroyed())
+		if(!escort)
+			continue;
+		if(escort == ship.shared_from_this())
+			break;
+		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
+				(!IsYours() || (IsYours() && escort->IsYours())))
 			--free;
+		if(!free)
+			break;
 	}
 	return (free > 0);
 }

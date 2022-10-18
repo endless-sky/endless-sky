@@ -130,8 +130,8 @@ void PlayerInfo::New(const StartConditions &start)
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
-	start.GetConditions().Apply(conditions);
 	RegisterDerivedConditions();
+	start.GetConditions().Apply(conditions);
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -162,7 +162,7 @@ void PlayerInfo::Load(const string &path)
 	// we provide the same access to services in this session, too.
 	bool hasFullClearance = false;
 
-	// Register derived conditions now, so old primary versions can load into them
+	// Register derived conditions now, so old primary versions can load into them.
 	RegisterDerivedConditions();
 
 	DataFile file(path);
