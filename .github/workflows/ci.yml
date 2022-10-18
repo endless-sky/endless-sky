@@ -330,7 +330,7 @@ jobs:
             glew: libglew2.1
           - os: ubuntu-22.04
             opengl: desktop
-            glew: libglew2.0
+            glew: libglew2.2
           - os: ubuntu-20.04
             opengl: gles
             glew: libgles2-mesa
@@ -369,8 +369,8 @@ jobs:
         include:
           - os: ubuntu-20.04
             glew: libglew2.1
-          - os: ubuntu-20.04
-            glew: libglew2.0
+          - os: ubuntu-22.04
+            glew: libglew2.2
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
