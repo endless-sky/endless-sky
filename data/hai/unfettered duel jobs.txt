@@ -13,6 +13,53 @@
 
 
 
+ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"Chameleon Anti-Missile"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Valley Batteries"
+		"Hyperdrive"
+		"Ion Cannon"
+		"Ionic Blaster Prototype" 2
+		"Ionic Turret Prototype"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Shredder)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile"
+		"Hai Diamond Regenerator" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 4
+		"Hyperdrive"
+		"Pulse Cannon" 2
+		"Pulse Rifle" 15
+		"Pulse Turret"
+		"Quantum Keystone"
+		"Tripulse Shredder" 2
+
+ship "Sea Scorpion" "Sea Scorpion (Shields)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile" 2
+		"Hai Diamond Regenerator" 4
+		"Hai Ravine Batteries"
+		"Hai Tracker" 224
+		"Hai Tracker Pod" 4
+		"Hai Williwaw Cooling"
+		Hyperdrive
+		"Outfits Expansion" 2
+		"Pulse Rifle" 15
+		"Value Detector"
+
 fleet "Sea Scorpion Challenger"
 	government "Hai (Unfettered)"
 	names "hai"
@@ -24,7 +71,7 @@ fleet "Sea Scorpion Challenger"
 	variant 5
 		"Sea Scorpion (Pulse)"
 	variant 3
-		"Sea Scorpion"
+		"Sea Scorpion (Shields)"
 	variant 5
 		"Sea Scorpion (Ion)"
 	variant
@@ -93,9 +140,15 @@ mission "Unfettered Challenge [0]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 200000
-				"reputation: Hai (Unfettered)" += 25
+				"reputation: Hai (Unfettered)" += 45
 				fail "Unfettered Challenge [0]"
+	on abort
+		"reputation: Hai (Unfettered)" += 40
+	on fail
+		"reputation: Hai (Unfettered)" -= 40
+		"unfettered challenge just won"--
 
 mission "Unfettered Challenge [1A]"
 	job
@@ -118,9 +171,15 @@ mission "Unfettered Challenge [1A]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 500000
-				"reputation: Hai (Unfettered)" += 50
+				"reputation: Hai (Unfettered)" += 90
 				fail "Unfettered Challenge [1A]"
+	on abort
+		"reputation: Hai (Unfettered)" += 80
+	on fail
+		"reputation: Hai (Unfettered)" -= 80
+		"unfettered challenge just won"--
 
 mission "Unfettered Challenge [1B]"
 	job
@@ -143,9 +202,15 @@ mission "Unfettered Challenge [1B]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 500000
-				"reputation: Hai (Unfettered)" += 50
+				"reputation: Hai (Unfettered)" += 90
 				fail "Unfettered Challenge [1B]"
+	on abort
+		"reputation: Hai (Unfettered)" += 80
+	on fail
+		"reputation: Hai (Unfettered)" -= 80
+		"unfettered challenge just won"--
 
 mission "Unfettered Challenge [2]"
 	job
@@ -169,9 +234,16 @@ mission "Unfettered Challenge [2]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 800000
-				"reputation: Hai (Unfettered)" += 75
+				"reputation: Hai (Unfettered)" += 160
 				fail "Unfettered Challenge [2]"
+	on abort
+		"reputation: Hai (Unfettered)" += 140
+	on fail
+		"reputation: Hai (Unfettered)" -= 140
+		"unfettered challenge just won"--
+
 
 
 mission "Unfettered Space Challenge [0]"
@@ -198,10 +270,12 @@ mission "Unfettered Space Challenge [0]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 200000
 				"reputation: Hai (Unfettered)" += 5
 	on fail
 		"reputation: Hai (Unfettered)" -= 40
+		"unfettered challenge just won"--
 
 mission "Unfettered Space Challenge [1A]"
 	landing
@@ -227,10 +301,12 @@ mission "Unfettered Space Challenge [1A]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 500000
 				"reputation: Hai (Unfettered)" += 10
 	on fail
 		"reputation: Hai (Unfettered)" -= 80
+		"unfettered challenge just won"--
 
 mission "Unfettered Space Challenge [1B]"
 	landing
@@ -256,10 +332,12 @@ mission "Unfettered Space Challenge [1B]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 500000
 				"reputation: Hai (Unfettered)" += 10
 	on fail
 		"reputation: Hai (Unfettered)" -= 80
+		"unfettered challenge just won"--
 
 mission "Unfettered Space Challenge [2]"
 	landing
@@ -286,10 +364,12 @@ mission "Unfettered Space Challenge [2]"
 		conversation
 			invisible
 			action
+				"unfettered challenge just won"++
 				payment 800000
 				"reputation: Hai (Unfettered)" += 20
 	on fail
 		"reputation: Hai (Unfettered)" -= 140
+		"unfettered challenge just won"--
 
 
 conversation "interrupted duel"
@@ -369,3 +449,123 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 		personality disables staying heroic uninterested
 		fleet "Shield Beetle Challenger"
 		conversation "interrupted duel"
+
+
+
+mission "Unfettered Clear Challenges"
+	minor
+	landing
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "unfettered challenge just won"
+	on offer
+		clear "unfettered challenge just won"
+
+
+
+mission "Unfettered Saw Flamethrower In Action"
+	invisible
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "unfettered challenge just won"
+	on offer
+		require "Flamethrower"
+		fail
+
+mission "Unfettered Bring Fire"
+	job
+	name "Bring 2 Flamethrowers"
+	description "The captain you just duelled has seen what fire can do, and they want to learn the secrets behind it. Bring 2 Flamethrowers to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Saw Flamethrower In Action: offered"
+		random < "unfettered challenge just won" * 5
+	on complete
+		outfit "Flamethrower" -2
+		payment 1000000
+		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and give you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
+
+
+mission "Unfettered Saw Ka'Het Ravager Beam In Action"
+	invisible
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "unfettered challenge just won"
+	on offer
+		require "Ka'Het Ravager Beam"
+		fail
+
+mission "Unfettered Bring Carnage"
+	job
+	name "Bring 2 Ka'Het Ravager Beams"
+	description "The captain you just duelled has seen what the Ka'Het Ravager Beam can do to hull, and they want to learn the secrets behind it. Bring 2 Ka'Het Ravager Beam to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Saw Ka'Het Ravager Beam In Action: offered"
+		random < "unfettered challenge just won" * 5
+	on complete
+		outfit "Ka'Het Ravager Beam" -2
+		payment 2000000
+		dialog `You bring the Ravagers to the captain, and she seems really happy, "Now this is a weapon that does damage to the hull of a ship! The Wanderers have a lot of that, I am sure it will help me pludering! Oh, of course, here are your <payment>."`
+
+
+mission "Unfettered Saw Plasma Repeater In Action"
+	invisible
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "unfettered challenge just won"
+	on offer
+		require "Plasma Repeater"
+		fail
+
+mission "Unfettered Bring Repeater"
+	job
+	name "Bring 2 Plasma Repeater"
+	description "The captain you just duelled is impressed by the raw amount of heat brought by the Plasma Repeater. Bring 2 Plasma Repeater to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Saw Plasma Repeater In Action: offered"
+		random < "unfettered challenge just won" * 5
+	on complete
+		outfit "Plasma Repeater" -2
+		payment 1500000
+		dialog `It does not take long to find the captain, you find him impatiently waiting for you and the Repeaters, "I love exotic weapons! Here are your <payment>, please bring me more variety if you can, I would reward it highly." He says, before heading hastily to his ship, probably to test these weapons.`
+
+
+mission "Unfettered Particle Cannon In Action"
+	invisible
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "unfettered challenge just won"
+	on offer
+		require "Plasma Repeater"
+		fail
+
+mission "Unfettered Bring Particles"
+	job
+	name "Bring 2 Particle Cannons"
+	description "The captain you just is interested by the range and damage of the Particle Cannon. Bring 2 to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Saw Particle Cannon In Action: offered"
+		random < "unfettered challenge just won" * 5
+	on complete
+		outfit "Particle Cannon" -2
+		payment 1250000
+		dialog `The Unfettered captain greets you with a big smile on his face, "With these particle cannons and my ship's speed, nobody will be able to beat me now! You well deserve the <payment>."`

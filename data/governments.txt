@@ -257,7 +257,6 @@ government "Hai (Unfettered)"
 		"Pug (Wanderer)" -.01
 		"Merchant" -.01
 		"Kor Efret" -.01
-		"Hai (Unfettered Challenge)" 1
 		"Shadow" 1
 	"bribe" .02
 	"fine" 0

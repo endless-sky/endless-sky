@@ -437,7 +437,7 @@ phrase "unfettered jump drive payment dialog"
 		"Your cargo is unloaded, and the Unfettered give you <payment> for it. Curious about the source, you pay attention to a conversation between two members of the same crew and hear something about unfettered humans."
 		"After unloading the cargo, you try your luck asking about who places these jump drives you're collecting, but, as usual, the Unfettered workers give you no information about it. Fortunately, they still give you <payment>."
 
-mission "Get Jump Drives(1)"
+mission "Unfettered Get Jump Drives(1)"
 	job
 	repeat
 	name "Collect a jump drive"
@@ -470,7 +470,7 @@ mission "Get Jump Drives(1)"
 		outfit "Jump Drive" -1
 		dialog phrase "unfettered jump drive payment dialog"
 
-mission "Get Jump Drives (2)"
+mission "Unfettered Get Jump Drives (2)"
 	job
 	repeat
 	name "Collect 2 jump drives"
@@ -501,7 +501,7 @@ mission "Get Jump Drives (2)"
 		outfit "Jump Drive" -2
 		dialog phrase "unfettered jump drive payment dialog"
 
-mission "Get Jump Drives (3)"
+mission "Unfettered Get Jump Drives (3)"
 	job
 	repeat
 	name "Collect 3 jump drives"
@@ -533,7 +533,7 @@ mission "Get Jump Drives (3)"
 
 
 
-mission "Bring True Hai"
+mission "Unfettered Bring True Hai"
 	job
 	repeat
 	name `Bring True Hai`
@@ -561,7 +561,7 @@ mission "Bring True Hai"
 
 
 
-mission "Darkcloak Ship Materials"
+mission "Unfettered Darkcloak Ship Materials"
 	job
 	repeat
 	name `Ship materials from <stopovers>`
@@ -630,11 +630,11 @@ phrase "unfettered cargo interception payment dialog"
 		"A spaceport worker gives you <payment> for the materials, without any further ceremony."
 		`The leader of the Unfettered team that collects your cargo comes to you, "This is good, but we need more. Recently, an entire area collapsed because of lack of maintenance." He then hands you the chip with <payment>.`
 
-mission "Cargo Interception West"
+mission "Unfettered Cargo Interception West"
 	job
 	repeat
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
@@ -660,11 +660,11 @@ mission "Cargo Interception West"
 		payment 1000000
 		dialog phrase "unfettered cargo interception payment dialog"
 
-mission "Cargo Interception East"
+mission "Unfettered Cargo Interception East"
 	job
 	repeat
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
@@ -684,8 +684,27 @@ mission "Cargo Interception East"
 				"Argosy (Materials)"
 		dialog "This pirate ship indeed contains the materials you are looking for. You should bring them to <destination> to receive your payment."
 	on visit
-		dialog `You do not have the materials yet. Go look for them in eastern pirate space.`
+		dialog "You do not have the materials yet. Go look for them in eastern pirate space."
 	on complete
 		outfit "Materials" -100
 		payment 1000000
 		dialog phrase "unfettered cargo interception payment dialog"
+
+
+
+mission "Unfettered Bring More Coolers"
+	job
+	repeat
+	name "Bring 10 Liquid Nitrogen Coolers"
+	description "The Unfettered want more nitrogen coolers in order to convert them into Zephyr Coolers. Bring 10 of them to <destination> for <payment>."
+	source
+		attributes "unfettered"
+	destination "Firelode"
+	to offer
+		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Liquid Nitrogen Cooler" -10
+		dialog `You deliver the coolers to the usual contact of Mera, and he thanks you personally "You must have made a long trip to bing these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being able to buy the new Zephyr Coolings."`
+		payment 1250000

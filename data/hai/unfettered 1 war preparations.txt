@@ -179,18 +179,18 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		ship "Far Osk 27" "Comet"
 		ship "Far Osk 27" "Dagger"
 		ship "Far Osk 27" "Oren"
-		ship "Far Osk 27" "Mert"
-		ship "Far Osk 27" "Dart"
+		ship "Far Lek 14" "Mert"
+		ship "Far Lek 14" "Dart"
 	npc
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying
 		to spawn
 			has "mercenaries: thorn talon death"
-		ship "Far Osk 27" "Vengeance"
-		ship "Far Osk 27" "Greed"
-		ship "Far Osk 27" "Darcy"
-		ship "Far Osk 27" "Karen"
+		ship "Far Lek 14" "Vengence"
+		ship "Far Lek 14" "Greed"
+		ship "Far Lek 14" "Darcy"
+		ship "Far Lek 14" "Karen"
 
 	to fail
 		has "Wanderers: Defend Vara Ke'sok: done"

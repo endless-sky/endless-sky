@@ -175,9 +175,12 @@ outfitter "Unfettered"
 	"Pulse Turret"
 	"Hai Tracker Pod"
 	"Tracker Storage Pod"
+	"Chameleon Anti-Missile"
+	"Bunk Room"
+	"Outfits Expansion"
+	"Hai Diamond Regenerator"
 	"Hai Ravine Batteries"
 	"Boulder Reactor"
-	"Hai Diamond Regenerator"
 	`"Bondir" Atomic Thruster`
 	`"Bondir" Atomic Steering`
 
