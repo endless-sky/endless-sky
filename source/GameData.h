@@ -151,7 +151,7 @@ public:
 	static const std::vector<std::string> &Category(const CategoryType type);
 
 	// Function to determine if a given bunk type exists and if it allows passengers
-	// or crew inside.
+	// and / or crew inside.
 	static const std::pair<bool, std::pair<bool, bool>> BunkType(const std::string type);
 
 	static const StarField &Background();
