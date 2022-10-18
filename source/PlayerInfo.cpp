@@ -2682,7 +2682,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		auto &&BunkTypeSpaceProvider = conditions.GetProviderNamed(it.first);
 		BunkTypeSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
-											 {
+		{
 			int64_t retVal = 0;
 			for(const shared_ptr<Ship> &ship : ships)
 				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
