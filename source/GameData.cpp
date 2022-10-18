@@ -732,6 +732,13 @@ const std::pair<bool, std::pair<bool, bool>> GameData::BunkType(const std::strin
 
 
 
+const std::map<std::string, std::pair<bool, bool>> &GameData::BunkTypes()
+{
+	return objects.bunkTypes;
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;

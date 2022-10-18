@@ -2624,10 +2624,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? flagship->Attributes().Bunks() : 0; });
 
-	auto &&flagshipBunkTypeProvider = conditions.GetProviderNamed("flagship bunktype: ");
-	flagshipBunkTypeProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return flagship ? flagship->Attributes().BunkType(name) : 0; });
-
 	auto &&flagshipModelProvider = conditions.GetProviderPrefixed("flagship model: ");
 	auto flagshipModelFun = [this](const string &name) -> bool
 	{
@@ -2682,15 +2678,18 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	auto &&BunkTypeSpaceProvider = conditions.GetProviderNamed("bunktype: ");
-	BunkTypeSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
+	for(const auto &it : GameData::BunkTypes())
 	{
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
-				retVal += ship->Attributes().BunkType(name);
-		return retVal;
-	});
+		auto &&BunkTypeSpaceProvider = conditions.GetProviderNamed(it.first);
+		BunkTypeSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
+											 {
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+					retVal += ship->Attributes().BunkType(name);
+			return retVal;
+		});
+	}
 
 	// The number of active ships the player has of the given category
 	// (e.g. Heavy Warships).

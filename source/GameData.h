@@ -153,6 +153,7 @@ public:
 	// Function to determine if a given bunk type exists and if it allows passengers
 	// and / or crew inside.
 	static const std::pair<bool, std::pair<bool, bool>> BunkType(const std::string type);
+	static const std::map<std::string, std::pair<bool, bool>> &BunkTypes();
 
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
