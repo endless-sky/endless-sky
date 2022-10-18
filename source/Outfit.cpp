@@ -271,10 +271,7 @@ void Outfit::Load(const DataNode &node)
 					string loadBunkType = grand.Token(0);
 					pair<bool, pair<bool, bool>> bunkTypeData = GameData::BunkType(loadBunkType);
 					if(bunkTypeData.first)
-					{
-						bunks += grand.Value(1);
 						bunkTypes[loadBunkType] = grand.Value(1);
-					}
 				}
 			}
 		}
