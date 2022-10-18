@@ -75,7 +75,8 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 		"Systems Core (Large)" 2
 		"Large Heat Shunt" 2
 		"Wanderer Ramscoop"
-		"Fuel Pod" 7
+		"Fuel Processor"
+		"Fuel Pod" 5
 		"Alpha Pirate Crew"
 		"Brig"
 		"Laser Rifle" 20
@@ -1064,27 +1065,26 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		"Hyperdrive"
 
 conversation "unfettered war ready"
-	conversation
-			action
-				"reputation: Hai (Unfettered)" += 100
-				event "shield beetles accessible"
-			`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
-			choice
-				`	"You were overconfident, and that's what let you down."`
-					goto mistake
-				`	"A good fight, but you just had no chance against my superior firepower."`
-				`	"I was easily able to outmanoeuver you."`
-					goto mistake
-				`	"Nothing specific. Well fought to both of you."`
-					goto train
-			`	He-Yi answer first. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
-			`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
-				goto train
-			label mistake
-			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
-			`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
-			label train
-			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
+	action
+		"reputation: Hai (Unfettered)" += 100
+		event "shield beetles accessible"
+	`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
+	choice
+		`	"You were overconfident, and that's what let you down."`
+			goto mistake
+		`	"A good fight, but you just had no chance against my superior firepower."`
+		`	"I was easily able to outmanoeuver you."`
+			goto mistake
+		`	"Nothing specific. Well fought to both of you."`
+			goto train
+	`	He-Yi answer first. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
+	`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
+		goto train
+	label mistake
+	`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
+	`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
+	label train
+	`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
 
 mission "Unfettered: Ready For The War"
 	name `Strength of a Leader`

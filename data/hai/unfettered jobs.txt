@@ -262,7 +262,6 @@ mission "Unfettered Silicon Asteroid Mining"
 	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot, and then bring them back to <destination> for <payment>.`
 	source "Darkcloak"
 	to offer
-		has "First Contact: Unfettered: declined"
 		random < 40
 	on complete
 		payment 100000
@@ -276,7 +275,6 @@ mission "Unfettered Silicon Asteroid Mining 2"
 	description `Mine and then collect 100 tons of silicon from the asteroid field in Wah Yoot, and then bring them back to <destination> for <payment>.`
 	source "Darkcloak"
 	to offer
-		has "First Contact: Unfettered: declined"
 		random < 10
 	on complete
 		payment 250000
@@ -293,7 +291,6 @@ mission "Unfettered Silver Asteroid Mining"
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		has "First Contact: Unfettered: declined"
 		random < 40
 	on complete
 		payment 450000
@@ -309,7 +306,6 @@ mission "Unfettered Silver Asteroid Mining 2"
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		has "First Contact: Unfettered: declined"
 		random < 10
 	on complete
 		payment 1000000
@@ -326,7 +322,6 @@ mission "Unfettered Lead Asteroid Mining"
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		has "First Contact: Unfettered: declined"
 		random < 40
 	on complete
 		payment 200000
@@ -342,7 +337,6 @@ mission "Unfettered Lead Asteroid Mining 2"
 		attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		has "First Contact: Unfettered: declined"
 		random < 10
 	on complete
 		payment 450000
@@ -413,6 +407,111 @@ mission "Unfettered Big Medicals Rush"
 	on complete
 		payment 8000 3000
 		dialog phrase "unfettered medicals payment dialog"
+
+
+# When we have custom prices in outfitters these will just "show" to the player they can sell those outfits for a good price (hence why no repeat).
+mission "Unfettered Bring Reverse Engine"
+	job
+	name "Bring Hai reverse engines"
+	description "An Unfettered captain wants to try out the reverse engines the Hai are selling, bring 1 of each size to <destination> for <payment>."
+	source
+		attributes "unfettered"
+	destination
+		attributes "unfettered"
+	to offer
+		random < 5
+		has "Unfettered Jump Drive 1: done"
+	on offer
+		conversation
+			`As it is the first time you accept this job, the captain who offered it sends the details to you: "Hello, captain <last>. I need you to bring me a reverse engine of each size, in order to test them on the different ships in my fleet. I expect the Basrem to be quite useful for the smaller ships such as the lightning bug, especially equipped with Ion Cannons, but I am unsure whether or not it is enough thrust to keep its distance from enemies, or if I need more of those. Of course, the same logic applies to bigger ships as well. Oh, and before I forget, you need to bring them to <destination>, that is where I am going to be moving in the next days."`
+			choice
+				`	"I'll go and bring those engines back, then."`
+					accept
+				`	"Where can I buy these from?"`
+			`	"To my knowledge, every Hai outfitters sells them, or almost, so you should not have any trouble finding them."`
+				accept
+	on complete
+		outfit `"Basrem" Reverse Thruster` -1
+		outfit `"Benga" Reverse Thruster` -1
+		outfit `"Biroo" Reverse Thruster` -1
+		payment 2000000
+		dialog `The captain is really happy when you deliver the reverse engines to him, "I must try these on my Sea Scorpion and Shield Beetle to see what I can come up with, these look promising with long range weapons..." It looks like he could have kept on talking forever but he must have noticed you looking at him insistingly, "Oh, right, here is your payment of <payment>, I almost forgot!"`
+
+
+mission "Unfettered Bring Batteries"
+	job
+	name "Bring Valley Batteries"
+	description "The Unfettered are running out of the biggest batteries, the manager of the outfitter wants you to bring a Valley Battery so they can still sell the right model to his client, before the <date>. They are willing to offer you <payment> for it."
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	deadline 14
+	to offer
+		random < 5
+		has "Unfettered Jump Drive 1: done"
+	on offer
+		conversation
+			`As you accept the job, one of the workers of the outfitter comes to speak to you, "Do you have any questions regarding this job," he asks. "You do understand it must be done as fast as possible; as our new ships are in great needs of these."`
+			label choose
+			choice
+				`	"Everything sounds clear."`
+					accept
+				`	"Why would you need such big batteries?"`
+					goto whatfor
+				`	"Where can I get these batteries?"`
+					goto where
+				`	"Can't you just make your own batteries?"`
+					goto why
+			`	"Well, as you have probably noticed, a lot of Hai use Ion Cannons in order to disable ships without doing too much damage to the crew. That in itself is a very good thing, but it also means that we need to actively work against it. Bigger batteries mean the guns will be less scrambled, and dimnishes the risk of being completely stranded in space."`
+				goto choose
+			label where
+			`	"These batteries are pretty big, so I would expect them to mostly be in big outfitters, such as Markerplace. They should not be too hard to find."`
+				goto choose
+			label why
+			`	"That is what we usually do, except that the need for those has increased recently, and we lack sufficient production to keep up with it. So we ask Hai Sympathizers and privateers like yourself to get them for us when we are in big need. Our navy must not seem weak or the Hai could use that opportunity to strike."`
+				goto choose
+	on complete
+		outfit "Valley Battery" -1
+		payment 500000
+		dialog `You bring the Valley Battery to the deck workers, who seem to be in a hurry to put it to use, "About time! Would it have been any later it would have probably been too late! Here are your <payment>."`
+
+
+mission "Unfettered Bring Ion Cannons"
+	job
+	name "Bring Ion Cannons"
+	description "Bring 2 Ion Cannons to the Unfettered on <destination>. They are willing to offer you <payment> for it."
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 5
+		has "Unfettered Jump Drive 1: done"
+	on offer
+		conversation
+			`Seeing this peculiar request about Ion Cannons, which the Unfettered do have a bunch of, you go and look for a captain who made this job request, to ask them why they use those weapons. It does not take long to find them, and it seems like they are willing to answer your questions, at least partly, "I understand why you're wondering this, <first>... May I call you <first>? There are not many non pirates that come and supply us with jump drives, if at all, and that is how I know your name."`
+			choice
+				`	"Sure."`
+					goto sure
+				`	"I prefer we stick to a professional relation, call me <last>."`
+			`	"Very well, not that it matters much anyway."`
+			label sure
+			`	"You see, if we use Ion it is not really for the same reason as the other Hai do, to hurt others of our kind as little as possible, althought that is a noble cause indeed, it is not being noble that brings you food," she laughes a bit, and then comes back to a serious attitude, "No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or defenceless because of weapon scrambling. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and, thus, to have less guns, shields..."`
+			choice
+				`	"Thank you for the explanation, I will bring you these Ion Cannons."`
+					goto money
+				`	"And where can I find these Ion Cannons? Are they not restricted?"`
+			`	"The Hai let anyone buy them, provided you have the money, of course."`
+			label money
+			action
+				payment 1000000
+			`	"I will give you <payment> already, to make sure you can invest it into these Ion Cannons without any financial trouble. Do not even think about trying to steal that money, captain..."`
+	on abort
+		dialog `You receive a message from the captain when aborting the job. "Did you really think you could scam me like this? Think again."`
+		fine 1000000
+	on complete
+		outfit "Ion Cannon" -2
+		payment 500000
+		dialog `You go bring the Ion Cannons personally to the captain, "Thanks, I will bring those to my warlord as soon as possible. Here is an extra <payment> for the journey. I wish you safe travels!" She seems in a bit of a rush, and leaves straight away.`
 
 
 
@@ -702,6 +801,7 @@ mission "Unfettered Bring More Coolers"
 	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 8: Useful Korath Scientists: done"
+		random < 25
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
