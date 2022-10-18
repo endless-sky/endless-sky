@@ -415,6 +415,47 @@ uint32_t Outfit::CrewBunks() const
 
 
 
+uint32_t Outfit::FreePassengerBunks(uint32_t shipCrew) const
+{
+	uint32_t passengerSpace = 0;
+	uint32_t dualUseSpace = bunks;
+	uint32_t crewSpace = 0;
+	for(auto bunkType : bunkTypes)
+	{
+		if(GameData::BunkType(bunkType.first).second.first && !GameData::BunkType(bunkType.first).second.second)
+			passengerSpace += bunkType.second;
+		else if(GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+			dualUseSpace += bunkType.second;
+		else if(!GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+			crewSpace += bunkType.second;
+	}
+	if(shipCrew <= crewSpace)
+		return passengerSpace + dualUseSpace;
+	else if(shipCrew <= crewSpace + dualUseSpace)
+		return passengerSpace + crewSpace + dualUseSpace - shipCrew;
+	return 0;
+}
+
+
+
+uint32_t Outfit::FreeCrewBunks(uint32_t shipCrew) const
+{
+	uint32_t dualUseSpace = bunks;
+	uint32_t crewSpace = 0;
+	for(auto bunkType : bunkTypes)
+	{
+		if(GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+			dualUseSpace += bunkType.second;
+		else if(!GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+			crewSpace += bunkType.second;
+	}
+	if(shipCrew <= crewSpace + dualUseSpace)
+		return crewSpace + dualUseSpace - shipCrew;
+	return 0;
+}
+
+
+
 uint32_t Outfit::BunkType(string typeName)
 {
 	return bunkTypes[typeName];

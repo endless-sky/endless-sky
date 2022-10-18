@@ -636,7 +636,7 @@ void Fleet::SetCargo(Ship *ship) const
 
 		free = ship->Cargo().Free();
 	}
-	int extraCrew = ship->Attributes().CrewBunks() - ship->RequiredCrew();
+	int extraCrew = ship->Attributes().FreeCrewBunks(ship->RequiredCrew());
 	if(extraCrew > 0)
 		ship->AddCrew(Random::Int(extraCrew + 1));
 }

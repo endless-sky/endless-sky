@@ -55,7 +55,7 @@ void HiringPanel::Draw()
 	int flagshipBunks = flagship.Attributes().Bunks();
 	int flagshipRequired = flagship.RequiredCrew();
 	int flagshipExtra = flagship.Crew() - flagshipRequired;
-	int flagshipUnused = flagshipBunks - flagship.Crew();
+	int flagshipUnused = flagship.Attributes().FreeCrewBunks(flagship.Crew());
 	info.SetString("flagship bunks", to_string(flagshipBunks));
 	info.SetString("flagship required", to_string(flagshipRequired));
 	info.SetString("flagship extra", to_string(flagshipExtra));
@@ -65,14 +65,15 @@ void HiringPanel::Draw()
 	// disabled or out-of-system ships, but any parked ships have no crew costs.
 	int fleetBunks = 0;
 	int fleetRequired = 0;
+	int fleetUnused = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked())
 		{
 			fleetBunks += static_cast<int>(ship->Attributes().Bunks());
 			fleetRequired += ship->RequiredCrew();
+			fleetUnused += ship->Attributes().FreeCrewBunks(ship->RequiredCrew());
 		}
 	int passengers = player.Cargo().Passengers();
-	int fleetUnused = fleetBunks - fleetRequired - flagshipExtra;
 	info.SetString("fleet bunks", to_string(fleetBunks));
 	info.SetString("fleet required", to_string(fleetRequired));
 	info.SetString("fleet unused", to_string(fleetUnused));

@@ -1345,14 +1345,14 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 			if(ship != flagship)
 			{
-				ship->Cargo().SetBunks(ship->Attributes().Bunks() - ship->RequiredCrew());
+				ship->Cargo().SetBunks(ship->Attributes().FreePassengerBunks(ship->RequiredCrew()));
 				cargo.TransferAll(ship->Cargo());
 			}
 			else
 			{
 				// Your flagship takes first priority for passengers but last for cargo.
 				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Bunks() - desiredCrew);
+				ship->Cargo().SetBunks(ship->Attributes().FreePassengerBunks(desiredCrew));
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
 			}
@@ -1369,18 +1369,18 @@ bool PlayerInfo::TakeOff(UI *ui)
 			flagship->AddCrew(-extra);
 			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers."
 				, Messages::Importance::High);
-			flagship->Cargo().SetBunks(flagship->Attributes().Bunks() - flagship->Crew());
+			flagship->Cargo().SetBunks(flagship->Attributes().FreePassengerBunks(flagship->Crew()));
 			cargo.TransferAll(flagship->Cargo());
 		}
 	}
 
-	int extra = flagship->Crew() + flagship->Cargo().Passengers() - flagship->Attributes().PassengerBunks();
+	int extra = flagship->Crew() - flagship->Attributes().CrewBunks();
 	if(extra > 0)
 	{
 		flagship->AddCrew(-extra);
 		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them."
 			, Messages::Importance::High);
-		flagship->Cargo().SetBunks(flagship->Attributes().Bunks() - flagship->Crew());
+		flagship->Cargo().SetBunks(flagship->Attributes().FreeCrewBunks(flagship->Crew()));
 	}
 
 	// For each active, carriable ship you own, try to find an active ship that has a bay for it.
@@ -1575,7 +1575,7 @@ void PlayerInfo::UpdateCargoCapacities()
 		{
 			size += ship->Attributes().Get("cargo space");
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
-			bunks += ship->Attributes().Bunks() - crew;
+			bunks += ship->Attributes().FreePassengerBunks(crew);
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -2674,7 +2674,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
-				retVal += ship->Attributes().Bunks() - ship->RequiredCrew();
+				retVal += ship->Attributes().FreePassengerBunks(ship->RequiredCrew());
 		return retVal;
 	});
 

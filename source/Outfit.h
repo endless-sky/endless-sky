@@ -61,6 +61,8 @@ public:
 	std::map<std::string, uint32_t> BunkTypes() const;
 	uint32_t PassengerBunks() const;
 	uint32_t CrewBunks() const;
+	uint32_t FreePassengerBunks(uint32_t shipCrew) const;
+	uint32_t FreeCrewBunks(uint32_t shipCrew) const;
 	uint32_t BunkType(const std::string typeName);
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
