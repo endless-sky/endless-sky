@@ -56,7 +56,7 @@ namespace {
 	bool IsStranded(const Ship &ship)
 	{
 		return ship.GetSystem() && !ship.IsEnteringHyperspace() && !ship.GetSystem()->HasFuelFor(ship)
-			&& ship.JumpFuel() && ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
+			&& ship.NeedsFuel();
 	}
 
 	bool CanBoard(const Ship &ship, const Ship &target)
@@ -204,25 +204,6 @@ namespace {
 		// stops between the current system (which has fuel) and the
 		// desired endpoint system - refuel only if needed.
 		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
-	}
-
-	// Wrapper for ship - target system uses.
-	bool ShouldRefuel(const Ship &ship, const System *to)
-	{
-		if(!to || ship.Fuel() == 1. || !ship.GetSystem()->HasFuelFor(ship))
-			return false;
-		double fuelCapacity = ship.Attributes().Get("fuel capacity");
-		if(!fuelCapacity)
-			return false;
-		double needed = ship.JumpFuel(to);
-		if(needed && to->HasFuelFor(ship))
-			return ship.Fuel() * fuelCapacity < needed;
-		else
-		{
-			// If no direct jump route, or the target system has no
-			// fuel, perform a more elaborate refueling check.
-			return ShouldRefuel(ship, DistanceMap(ship, to), fuelCapacity);
-		}
 	}
 
 	const StellarObject *GetRefuelLocation(const Ship &ship)
@@ -691,7 +672,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					|| it->IsEnergyLow())
 			{
 				shipToAssist.reset();
-				it->SetShipToAssist(shipToAssist);
+				it->SetShipToAssist(nullptr);
 			}
 			else if(!it->IsBoarding())
 			{
@@ -790,8 +771,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
+			// NPCs may take 30 seconds or longer to find a new parent. Player
+			// owned fighter shouldn't take more than a few seconds.
+			bool findNewParent = it->IsYours() ? !Random::Int(30) : !Random::Int(1800);
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
-			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
+			if(findNewParent && parentHasSpace && it->IsYours())
+				parentHasSpace = parent->CanCarry(*it);
+			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && findNewParent))
 			{
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
@@ -850,7 +836,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				else
 					parent.reset();
 
-				it->SetParent(parent);
+				// Player-owned carriables should defer to player carrier if
+				// selected parent can't carry it. This is necessary to prevent
+				// fighters from jumping around fleet when there's not enough
+				// bays.
+				if(it->IsYours() && parent && parent->GetParent() && !parent->CanCarry(*it))
+					parent = parent->GetParent();
+
+				if(it->GetParent() != parent)
+					it->SetParent(parent);
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
 			else if(parentHasSpace && ShouldDock(*it, *parent, playerSystem))
@@ -942,7 +936,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
-		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
+		else if(parent->Commands().Has(Command::JUMP) && !isStranded)
 			MoveEscort(*it, command);
 		// Timid ships always stay near their parent. Injured player
 		// escorts will stay nearby until they have repaired a bit.
@@ -1307,6 +1301,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
+		// TODO: This is not correct if the fleeing ship can use wormholes.
 		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
 			target.reset();
 		else
@@ -1511,6 +1506,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	const System *origin = ship.GetSystem();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
+		// TODO: This should problably be changed, because JumpsRemaining
+		// does not return an accurate number.
 		int jumps = ship.JumpsRemaining(false);
 		// Each destination system has an average priority of 10.
 		// If you only have one jump left, landing should be high priority.
@@ -1621,13 +1618,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity") && ship.JumpFuel();
-	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
-	bool parentIsHere = (ship.GetSystem() == parent.GetSystem());
+	const System *currentSystem = ship.GetSystem();
+	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
+	bool needsFuel = ship.NeedsFuel();
+	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity || needsFuel;
+	bool parentIsHere = (currentSystem == parent.GetSystem());
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
-	bool systemHasFuel = hasFuelCapacity && ship.GetSystem()->HasFuelFor(ship);
+	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
+
 	// Non-staying escorts should route to their parent ship's system if not already in it.
 	if(!parentIsHere && !isStaying)
 	{
@@ -1642,7 +1642,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				ship.SetTargetStellar(nullptr);
 		}
 
-		if(!ship.GetTargetStellar() && !ship.GetTargetSystem())
+		// If the ship has no destination or the destination is unreachable, route to the parent's system.
+		if(!ship.GetTargetStellar() && (!ship.GetTargetSystem() || !ship.JumpFuel(ship.GetTargetSystem())))
 		{
 			// Route to the parent ship's system and check whether
 			// the ship should land (refuel or wormhole) or jump.
@@ -1674,37 +1675,64 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		DistanceMap distance(ship, parent.GetTargetSystem());
-		const System *dest = distance.Route(ship.GetSystem());
-		ship.SetTargetSystem(dest);
-		if(!dest)
-			// This ship has no route to the parent's destination system, so protect it until it jumps away.
-			KeepStation(ship, command, parent);
-		else if(ShouldRefuel(ship, dest))
-			Refuel(ship, command);
-		else if(!ship.JumpsRemaining())
-			// Return to the system center to maximize solar collection rate.
-			MoveTo(ship, command, Point(), Point(), 40., 0.1);
-		else
+		SelectRoute(ship, parent.GetTargetSystem());
+
+		if(ship.GetTargetSystem())
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
 			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
+		else if(ship.GetTargetStellar())
+		{
+			MoveToPlanet(ship, command);
+			if(parent.IsEnteringHyperspace())
+				command |= Command::LAND;
+		}
+		else if(needsFuel)
+			// Return to the system center to maximize solar collection rate.
+			MoveTo(ship, command, Point(), Point(), 40., 0.1);
+		else
+			// This ship has no route to the parent's destination system, so protect it until it jumps away.
+			KeepStation(ship, command, parent);
 	}
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	else if(systemHasFuel && !ship.JumpsRemaining())
+	else if(systemHasFuel && needsFuel)
 		Refuel(ship, command);
-	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere && parentPlanet->CanLand(ship))
+	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere)
 	{
-		ship.SetTargetSystem(nullptr);
-		ship.SetTargetStellar(parent.GetTargetStellar());
-		if(parent.IsLanding() || parent.CanLand())
+		if(parentPlanet->CanLand(ship))
 		{
+			ship.SetTargetSystem(nullptr);
+			ship.SetTargetStellar(parent.GetTargetStellar());
 			MoveToPlanet(ship, command);
-			command |= Command::LAND;
+			if(parent.IsLanding())
+				command |= Command::LAND;
+		}
+		else if(parentPlanet->IsWormhole())
+		{
+			SelectRoute(ship, parentPlanet->WormholeDestination(currentSystem));
+
+			if(ship.GetTargetSystem())
+			{
+				PrepareForHyperspace(ship, command);
+				if(parent.IsLanding())
+					command |= Command::JUMP;
+			}
+			else if(ship.GetTargetStellar())
+			{
+				MoveToPlanet(ship, command);
+				if(parent.IsLanding())
+					command |= Command::LAND;
+			}
+			else if(needsFuel)
+				// Return to the system center to maximize solar collection rate.
+				MoveTo(ship, command, Point(), Point(), 40., 0.1);
+			else
+				// This ship has no route to the parent's destination system, so protect it until it jumps away.
+				KeepStation(ship, command, parent);
 		}
 		else
 			KeepStation(ship, command, parent);
@@ -2492,6 +2520,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 
 		// If this ship can jump away, consider traveling to a nearby system.
 		vector<const System *> targetSystems;
+		// TODO: These ships cannot travel through wormholes?
 		if(ship.JumpsRemaining(false))
 		{
 			const auto &links = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpRange()) : system->Links();
@@ -3737,6 +3766,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::Highest);
 			autoPilot.Clear();
+			Audio::Play(Audio::Get("fail"));
+		}
+		else if(ship.IsLanding())
+		{
+			Messages::Add("You cannot jump while landing.", Messages::Importance::Highest);
+			autoPilot.Clear(Command::JUMP);
 			Audio::Play(Audio::Get("fail"));
 		}
 		else
