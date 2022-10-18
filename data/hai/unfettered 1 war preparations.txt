@@ -1063,6 +1063,29 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
+conversation "unfettered war ready"
+	conversation
+			action
+				"reputation: Hai (Unfettered)" += 100
+				event "shield beetles accessible"
+			`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
+			choice
+				`	"You were overconfident, and that's what let you down."`
+					goto mistake
+				`	"A good fight, but you just had no chance against my superior firepower."`
+				`	"I was easily able to outmanoeuver you."`
+					goto mistake
+				`	"Nothing specific. Well fought to both of you."`
+					goto train
+			`	He-Yi answer first. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
+			`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
+				goto train
+			label mistake
+			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
+			`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
+			label train
+			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
+
 mission "Unfettered: Ready For The War"
 	name `Strength of a Leader`
 	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
@@ -1076,7 +1099,6 @@ mission "Unfettered: Ready For The War"
 		has "event: unfettered: shield beetle mass production"
 		has "event: unfettered: new cooling system"
 		has "Unfettered: Special Cargo 2: done"
-		has "main plot completed"
 		has "language: Wanderer"
 	on offer
 		conversation
@@ -1111,30 +1133,19 @@ mission "Unfettered: Ready For The War"
 	npc save disable
 		to spawn
 			has "unfettered: defeated Si-Ra"
+			not "Unfettered Bring Fire: done"
 		government "Hai (Unfettered Challenge)"
 		ship "Stag Beetle" "Tejolis"
 		personality disables staying heroic target launching
-		conversation
-			action
-				"reputation: Hai (Unfettered)" += 100
-				event "shield beetles accessible"
-			`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
-			choice
-				`	"You were overconfident, and that's what let you down."`
-					goto mistake
-				`	"A good fight, but you just had no chance against my superior firepower."`
-				`	"I was easily able to outmanoeuver you."`
-					goto mistake
-				`	"Nothing specific. Well fought to both of you."`
-					goto train
-			`	He-Yi answer first. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
-			`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
-				goto train
-			label mistake
-			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
-			`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
-			label train
-			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
+		conversation "unfettered war ready"
+	npc save disable
+		to spawn
+			has "unfettered: defeated Si-Ra"
+			has "Unfettered Bring Fire: done"
+		government "Hai (Unfettered Challenge)"
+		ship "Stag Beetle (Fire)" "Tejolis"
+		personality disables staying heroic target launching
+		conversation "unfettered war ready"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -1212,159 +1223,3 @@ event "joined the unfettered"
 event "shield beetles accessible"
 	planet "Darkcloak"
 		add shipyard "Unfettered"
-
-
-
-mission "Unfettered: Close Quarter"
-	name `Close Quarter Fighting`
-	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
-	source "Warfeed"
-	to offer
-		or
-			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
-			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: declined"
-		or
-			not "unfettered: offered close quarter"
-			random < 30
-	on defer
-		set "unfettered: offered close quarter"
-	on offer
-		conversation
-			`You can see movement in the spaceport. People seem to be heading to one place in particular, and you can hear some shouting coming from that direction. Do you want to go take a look?`
-			choice
-				`	(Of course.)`
-				`	(Not now.)`
-					defer
-			`	You see where all the Unfettered were going, and come across a large field where they seem to be practicing close-quarters combat, grouped in circles of different sizes. You don't understand all that is going on, but it seems like the bigger the circle, the more opponents you have to fight. He-Yi is standing in the biggest of them all.`
-			choice
-				`	(Go closer to see what's going on.)`
-				`	(Leave. This doesn't seem interesting.)`
-					decline
-			`	As you move closer, you realize that the circles in the dirt are colored differently, but you're not sure what significance they hold. The Unfettered aren't all fighting with the same weapons - they move between circles, like in a huge dance. Some of them seem to have standard Hai weapons, but it doesn't look like they're deadly.`
-			choice
-				`	(Join the fight!)`
-					goto fight
-				`	(Keep looking.)`
-			`	You keep looking around and are eventually attracted toward the bigger fight, the one He-Yi is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
-			choice
-				`	(Challenge him.)`
-					goto challenge
-				`	(Try to speak to him.)`
-					goto speak
-				`	(Join another less risky fight.)`
-			label fight
-			`	You look at different fights and see one with less experienced, younger Unfettered who seem to be fighting in a less crowded area than the rest. As you come closer, they see your interest and propose you join them.`
-			choice
-				`	(Accept.)`
-				`	(Decline.)`
-					goto nope
-			`	One of them comes toward you. "I challenge you, <last>! Tales of your strength have been spread, I want to test it first-hand. If I win, I demand you tell me those stories yourself." You are surprised he knows your language so well. He is equipped with what looks to be a twin pistol version of the standard Hai rifles.`
-			choice
-				`	"I'm sure those tales don't do me justice. I accept!"`
-				`	"Very well. But if I win, I want your weapon."`
-					goto weapon
-			`	"I see the tales about your wisdom were exaggerated at least," he snarks, first in your language, then he translates for his friends.`
-			label weapon
-			`	He looks at his weapons, thinking. Then he nods and hands you one of the pistols. "I have set it on training. We wouldn't want any accidents to happen," he adds. He says something to his friends, apparently telling them to move away. Then he moves away to the edge of the blue circle. "Because this is your first time, I will let you choose your position and have the initiative. The rules are simple: once you shout, the fight begins." You understand why you heard so much of that earlier.`
-			choice
-				`	(Shout now to surprise him.)`
-					goto start
-				`	(Get into position and try to prepare.)`
-			`	You carefully observe your surroundings, and decide to head toward one of the smaller circles. Everything is simulated to resemble an urban environment, probably because the original Unfettered had to protect their cities from the Korath. You feel the adrenaline of the coming battle surging into your veins.`
-			label start
-			`	You shout and try to shoot him... Except you completely miss him; you weren't expecting so much recoil from such a small pistol. It also seems to be wildly inaccurate. Obviously, your opponent knew this, and he is already rushing your way.`
-			choice
-				`	(Stay here and get ready for your next shot.)`
-					goto ready
-				`	(Go for the cover on the right.)`
-			branch lucky
-				random < 20
-			`	You try to head for cover, but he's too fast, and you receive a shot on your leg, making you fall. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your leg at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
-				goto stories
-			label lucky
-			action
-				outfit "Dual Pulse Pistols"
-				set "unfettered: won the duel"
-			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them; you've earned it. This was a fair fight, Captain! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
-				goto heyi
-			label ready
-			`	You try to shoot him, but he's too fast and you too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
-			label stories
-			`	 As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
-			label heyi
-			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a [nice, skillful] fight, especially considering this must be your first!"`
-			branch "lost fight"
-				not "unfettered: won the duel"
-			choice
-				`	"Can I help you with something?"`
-					goto speak
-				`	"Winning felt good."`
-					goto won
-				`	"It was quite fun. Do you do this often?"`
-					goto fun
-			label "lost fight"
-			choice
-				`	"Can I help you with something?"`
-					goto speak
-				`	"Well, I lost."`
-					goto lost
-				`	"It was quite fun. Do you do this often?"`
-			label fun
-			`	"Fun, that it is! This [practice, ritual] is part of life for most Unfettered. We must always be ready to [repel, lead] a ground assault, as we always were. To that end we need to try most weapons, and [ways of fighting, tactics], which we do here."`
-				goto speak
-			label won
-			`	"Yes indeed, that was quite impressive! I most say, I never expected that out of you. I don't know if you got lucky or it was just superior skill or experience but you showed that [young, inexperienced] one a lesson! I have something to ask of you."`
-				goto speak
-			label lost
-			`	"Oh, well I got distracted near the end, so I wouldn't know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so. You may not have won the [fight, battle], but you have won something else."`
-			choice
-				`	"And what is that?"`
-				`	"Can I help you with anything?"`
-					goto speak
-			`	"Experience? Fun? There is always something to be [gained, deserved], even when there is not the risk of losing your life."`
-				goto speak
-			label challenge
-			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however, and he comes to speak to you.`
-				goto speak
-			label nope
-			`	You watch them battling for so long you don't notice time pass, but then you realize you are being watched. It is He-Yi. He looks satisfied of your interest in this fight. "You should try it someday," he says.`
-			label speak
-			`	"As you may have noticed, we do this [fighting, training] quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get [killed, seriously wounded]. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too [enthusiastic, trigger-happy]... They shoot one too many times to make sure to [win, hit]. We have experimented with some less powerful versions of our rifles, but those don't reflect war well enough for our liking. Do you happen to know any weapons that would not have such weaknesses - any that would be non-lethal but still not meant for child's play? I would expect said weapons to be even [stronger, more useful] than ours."`
-			choice
-				`	"Yes, I think I do."`
-					goto idea
-				`	"I have no idea, sorry."`
-			`	"I've heard stories of weapons that could not ever kill anyone, no matter how much you shoot him," He-Yi muses.`
-			label idea
-			`	"If you ever find any weapon that's [safer, less risky] than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird [territory, space]. I would not have expected them to use weapons at all, but maybe they too have [Unfettered, true] people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, twenty of them?"`
-			choice
-				`	"I'll see what I can do."`
-					accept
-				`	"I have no interest in bringing you weapons, even the least deadly."`
-					decline
-	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
-	to complete
-		or
-			has "Bring Pug Staves: failed"
-			has "Bring Coalition Weapons: failed"
-			has "Bring Void Rifle: failed"
-	on complete
-		clear "unfettered: offered close quarter"
-		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
-		conversation
-			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be [helpful, decisive] in the coming war."`
-			choice
-				`	"How can a few better-trained troops make a difference?"`
-				`	"Glad I could make a difference then."`
-					goto getrd
-			`	"Well... To be completely [true, honest] with you, these weapons are not only intended for training purposes, but I cannot tell you any more for now."`
-			label getrd
-			`	"We'll soon want your help with the upcoming invasion, so you best be [prepared, experienced]! Having a strong flagship is always an important asset, but it is not all." It is not clear whether he means more ships or better strategy, and knowing him, it could be either.`
-			choice
-				`	"The Basilisk will not be enough, I take it?"`
-				`	"In that case, I'll go prepare myself."`
-					goto train
-			`	"The Basilisk is very strong, but it is only [a prototype, an experience]. It has its weaknesses."`
-			label train
-			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`

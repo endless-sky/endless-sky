@@ -1122,9 +1122,9 @@ ship "Stag Beetle"
 		"heat dissipation" .3
 		"fuel capacity" 600
 		"cargo space" 80
-		"outfit space" 850
+		"outfit space" 855
 		"weapon capacity" 353
-		"engine capacity" 145
+		"engine capacity" 144
 		"spinal mount" 1
 		weapon
 			"blast radius" 515
@@ -1132,8 +1132,9 @@ ship "Stag Beetle"
 			"hull damage" 3500
 			"hit force" 4000
 	outfits
-		"Sunbeam" 4
-		"Flamethrower" 2
+		"Sunbeam" 2
+		"Fire Lance" 2
+		"Ionic Blaster Prototype" 2
 		"Korath Detainer"
 		"Korath Grab-Strike"
 		"Korath Banisher"
@@ -1157,8 +1158,8 @@ ship "Stag Beetle"
 	gun 34 -68 "Sunbeam"
 	gun -49 -38
 	gun 49 -38
-	gun -61 -14 "Flamethrower"
-	gun 61 -14 "Flamethrower"
+	gun -61 -14 "Ionic Blaster Prototype"
+	gun 61 -14 "Ionic Blaster Prototype"
 	turret -51 21.5 "Korath Grab-Strike"
 	turret 51 21.5 "Bullfrog Anti-Missile"
 	turret -56.5 75 "Korath Banisher"

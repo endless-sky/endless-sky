@@ -363,7 +363,6 @@ mission "Mercenaries: Daemons Unleashed"
 	invisible
 	to offer
 		has "event: mercenaries: thorn talon vengeance"
-		has "main plot completed"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"

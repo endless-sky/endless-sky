@@ -489,6 +489,40 @@ mission "Unfettered Bring Fire"
 		payment 1000000
 		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and give you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
 
+ship "Stag Beetle" "Stag Beetle (Flamer)"
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Korath Grab-Strike"
+		"Korath Banisher"
+		"Bullfrog Anti-Missile" 3
+		"Large Heat Shunt"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Jump Drive"
+		"Fuel Processor"
+		`"Bufaer" Atomic Steering`
+		"Thruster (Planetary Class)"
+		"White Sun Reactor"
+		"Generator (Furnace Class)"
+		"Korath Repeater Rifle" 20
+		"Pulse Rifle" 60
+		"Dual Pulse Pistols" 10
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Korath Grab-Strike"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Korath Banisher"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
 
 mission "Unfettered Saw Ka'Het Ravager Beam In Action"
 	invisible
