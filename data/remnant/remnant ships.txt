@@ -1377,7 +1377,7 @@ ship "Smew"
 		"outfit scan power" 14
 		"outfit scan speed" 1
 		"tactical scan power" 28
-		"asteroid scan power" 50	
+		"asteroid scan power" 50
 		weapon
 			"blast radius" 24
 			"shield damage" 130
