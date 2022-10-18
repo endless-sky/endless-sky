@@ -1000,12 +1000,14 @@ ship "Bactrian" "Bactrian (Hydra)"
 
 mission "Unfettered: Materials Intercepted Job Board Notification"
 	minor
-	invisible
 	source
 		attributes "unfettered"
 	to offer
 		has "Unfettered: Escort Hai Fleet: done"
 		has "event: unfettered: shipment lost"
+		not "Unfettered: Materials Intercepted: active"
+		not "Unfettered: Materials Intercepted: done"
+		random < 20
 	on offer
 		conversation
 			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Nimo, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`
@@ -1020,11 +1022,9 @@ mission "Unfettered: Materials Intercepted"
 	to offer
 		has "Unfettered: Escort Hai Fleet: done"
 		has "event: unfettered: shipment lost"
-	on defer
-		set "unfettered: materials intercepted offered"
 	on offer
 		conversation
-			`	You go to see He-Yi in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
+			`	You go to see He-Yi in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
 			`	"<last>! I was hoping to find you here. I just happen to be in needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space, only wishing to scare us with the possibility of abducting the governor."`
 			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, without following it in an obvious way either, of course."`
 			choice

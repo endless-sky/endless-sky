@@ -494,7 +494,7 @@ mission "Unfettered Bring Ion Cannons"
 				`	"I prefer we stick to a professional relation, call me <last>."`
 			`	"Very well, not that it matters much anyway."`
 			label sure
-			`	"You see, if we use Ion it is not really for the same reason as the other Hai do, to hurt others of our kind as little as possible, althought that is a noble cause indeed, it is not being noble that brings you food," she laughes a bit, and then comes back to a serious attitude, "No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or defenceless because of weapon scrambling. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and, thus, to have less guns, shields..."`
+			`	"You see, if we use Ion it is not really for the same reason as the other Hai do, to hurt others of our kind as little as possible, although that is a noble cause indeed, it is not being noble that brings you food," she laughes a bit, and then comes back to a serious attitude, "No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or defenceless because of weapon scrambling. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and, thus, to have less guns, shields..."`
 			choice
 				`	"Thank you for the explanation, I will bring you these Ion Cannons."`
 					goto money
