@@ -977,7 +977,7 @@ mission "Unfettered: Cloaking Interest"
 	on accept
 		payment 50000000
 		outfit "Cloaking Device" -1
-		log `I gave my cloaking device to He-Yi for a very big sum. It should keep him safe.`
+		log `I gave a cloaking device to He-Yi for a very big sum. It should keep him safe.`
 
 
 

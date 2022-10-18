@@ -490,31 +490,31 @@ mission "Unfettered Bring Fire"
 		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and give you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
 
 
-#mission "Unfettered Saw Ka'Het Ravager Beam In Action"
-#	invisible
-#	landing
-#	source
-#		attributes "unfettered"
-#	to offer
-#		has "Unfettered: Prove Your Strength 2: done"
-#		has "unfettered challenger defeated"
-#	on offer
-#		require "Ka'Het Ravager Beam"
-#		fail
+mission "Unfettered Saw Ka'Het Ravager Beam In Action"
+	invisible
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "unfettered challenger defeated"
+	on offer
+		require "Ka'het Ravager Beam"
+		fail
 
-#mission "Unfettered Bring Carnage"
-#	job
-#	name "Bring 2 Ka'Het Ravager Beams"
-#	description "The captain you just duelled has seen what the Ka'Het Ravager Beam can do to hull, and they want to learn the secrets behind it. Bring 2 Ka'Het Ravager Beam to them for <payment>."
-#	source
-#		attributes "unfettered"
-#	to offer
-#		has "Unfettered Saw Ka'Het Ravager Beam In Action: offered"
-#		random < "unfettered challenger defeated" * 5
-#	on complete
-#		outfit "Ka'Het Ravager Beam" -2
-#		payment 2000000
-#		dialog `You bring the Ravagers to the captain, and she seems really happy, "Now this is a weapon that does damage to the hull of a ship! The Wanderers have a lot of that, I am sure it will help me pludering! Our legends speak of this weapon... Oh, of course, here are your <payment>."`
+mission "Unfettered Bring Carnage"
+	job
+	name "Bring 2 Ka'Het Ravager Beams"
+	description "The captain you just duelled has seen what the Ka'Het Ravager Beam can do to hull, and they want to learn the secrets behind it. Bring 2 Ka'Het Ravager Beam to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Saw Ka'Het Ravager Beam In Action: offered"
+		random < "unfettered challenger defeated" * 5
+	on complete
+		outfit "Ka'het Ravager Beam" -2
+		payment 2000000
+		dialog `You bring the Ravagers to the captain, and she seems really happy, "Now this is a weapon that does damage to the hull of a ship! The Wanderers have a lot of that, I am sure it will help me pludering! Our legends speak of this weapon... Oh, of course, here are your <payment>."`
 
 
 mission "Unfettered Saw Plasma Repeater In Action"
