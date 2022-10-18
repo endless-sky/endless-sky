@@ -836,8 +836,12 @@ void Ship::Save(DataWriter &out) const
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
 			out.Write("bunks", baseAttributes.Bunks());
-			for(const auto &bunkTypes : baseAttributes.BunkTypes())
-				out.Write(bunkTypes.first, bunkTypes.second);
+			out.BeginChild();
+			{
+				for(const auto &it : baseAttributes.BunkTypes())
+					out.Write(it.first, it.second);
+			}
+			out.EndChild();
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
