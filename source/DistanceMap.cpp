@@ -177,7 +177,7 @@ void DistanceMap::Init(const Ship *ship)
 		jumpRange = ship->JumpNavigation().JumpRange();
 		// If hyperjumps and non-hyper jumps cost the same amount, or non-hyper jumps are always cheaper,
 		// there is no need to check hyperjump paths at all.
-		if(hyperspaceFuel >= jumpFuel)
+		if(jumpFuel && hyperspaceFuel >= jumpFuel)
 			hyperspaceFuel = 0.;
 
 		// If this ship has no mode of hyperspace travel, and no local
