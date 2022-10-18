@@ -1143,7 +1143,7 @@ mission "Unfettered: Ready For The War"
 			has "unfettered: defeated Si-Ra"
 			has "Unfettered Bring Fire: done"
 		government "Hai (Unfettered Challenge)"
-		ship "Stag Beetle (Fire)" "Tejolis"
+		ship "Stag Beetle (Flamer)" "Tejolis"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
 	on fail

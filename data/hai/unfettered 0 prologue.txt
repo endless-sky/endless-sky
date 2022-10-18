@@ -969,7 +969,7 @@ outfit "Materials"
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
 ship "Bactrian" "Bactrian (Hydra)"
-	attributes
+	add attributes
 		"threshold percentage" .4
 	outfits
 		"Sidewinder Missile Launcher" 2

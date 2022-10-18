@@ -1133,7 +1133,7 @@ ship "Stag Beetle"
 			"hit force" 4000
 	outfits
 		"Sunbeam" 2
-		"Fire Lance" 2
+		"Fire-Lance" 2
 		"Ionic Blaster Prototype" 2
 		"Korath Detainer"
 		"Korath Grab-Strike"
@@ -1154,8 +1154,8 @@ ship "Stag Beetle"
 	gun 0 -7 "Korath Detainer"
 	gun -22 -102 "Sunbeam"
 	gun 22 -102 "Sunbeam"
-	gun -34 -68 "Sunbeam"
-	gun 34 -68 "Sunbeam"
+	gun -34 -68 "Fire-Lance"
+	gun 34 -68 "Fire-Lance"
 	gun -49 -38
 	gun 49 -38
 	gun -61 -14 "Ionic Blaster Prototype"

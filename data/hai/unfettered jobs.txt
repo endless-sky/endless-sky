@@ -440,8 +440,8 @@ mission "Unfettered Bring Reverse Engine"
 
 mission "Unfettered Bring Batteries"
 	job
-	name "Bring Valley Batteries"
-	description "The Unfettered are running out of the biggest batteries, the manager of the outfitter wants you to bring a Valley Battery so they can still sell the right model to his client, before the <date>. They are willing to offer you <payment> for it."
+	name "Bring Hai Valley Batteries"
+	description "The Unfettered are running out of the biggest batteries, the manager of the outfitter wants you to bring Valley Batteries so they can still sell the right model to his client, before the <date>. They are willing to offer you <payment> for it."
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
@@ -457,7 +457,6 @@ mission "Unfettered Bring Batteries"
 				`	"Everything sounds clear."`
 					accept
 				`	"Why would you need such big batteries?"`
-					goto whatfor
 				`	"Where can I get these batteries?"`
 					goto where
 				`	"Can't you just make your own batteries?"`
@@ -471,9 +470,9 @@ mission "Unfettered Bring Batteries"
 			`	"That is what we usually do, except that the need for those has increased recently, and we lack sufficient production to keep up with it. So we ask Hai Sympathizers and privateers like yourself to get them for us when we are in big need. Our navy must not seem weak or the Hai could use that opportunity to strike."`
 				goto choose
 	on complete
-		outfit "Valley Battery" -1
+		outfit "Hai Valley Batteries" -1
 		payment 500000
-		dialog `You bring the Valley Battery to the deck workers, who seem to be in a hurry to put it to use, "About time! Would it have been any later it would have probably been too late! Here are your <payment>."`
+		dialog `You bring the batteries to the deck workers, who seem to be in a hurry to put it to use, "About time! Would it have been any later it would have probably been too late! Here are your <payment>."`
 
 
 mission "Unfettered Bring Ion Cannons"
@@ -510,7 +509,7 @@ mission "Unfettered Bring Ion Cannons"
 		fine 1000000
 	on complete
 		outfit "Ion Cannon" -2
-		payment 500000
+		payment 600000
 		dialog `You go bring the Ion Cannons personally to the captain, "Thanks, I will bring those to my warlord as soon as possible. Here is an extra <payment> for the journey. I wish you safe travels!" She seems in a bit of a rush, and leaves straight away.`
 
 
