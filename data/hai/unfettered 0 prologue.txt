@@ -891,7 +891,7 @@ mission "Unfettered: Escort Hai Fleet"
 				"Centipede"
 				"Geocoris"
 				"Water Bug"
-	npc accompany
+	npc
 		government "Hai (Governor Escort)"
 		to spawn
 			has "unfettered: stopped on Greenbloom"

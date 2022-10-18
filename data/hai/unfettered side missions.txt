@@ -347,6 +347,10 @@ ship "Behemoth" "Behemoth (Mammoth)"
 	cargo
 		outfits
 			"Loot" 400
+
+ship "Marauder Firebird" "Marauder Firebird (Bars)"
+	cargo
+		outfits
 			"Gold Bars" 15
 
 mission "Unfettered: Loot: Ion Cannon Materials"
@@ -419,11 +423,11 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				decline
 	waypoint "Rajak"
 	on waypoint
-		dialog `You can't find the ship here, but you find a bit of abandoned cargo. There may have been a fight... Maybe the ship's moved to a nearby system.`
+		dialog `You can't find the ship here, but you find a bit of abandoned cargo. There may have been a fight... Maybe the ship has ran away to a nearby system.`
 	on enter "Sumar"
-		dialog `Multiple pirate ships have already disabled the ship and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
 		conversation
-			`"This is our loot, maggot! Get out of here right now, and we'll pretend we didn't see your ugly ship!" They aren't in the mood for negotiations.`
+			`Multiple pirate ships have already disabled the ship and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
+			`	"This is our loot, maggot! We've already done most of the work, you won't be stealing the bounty now, especially since the boss asked for this fat ship to be taken down, and no other. Get out of here right now, and we'll pretend we didn't see your ugly ship!" They aren't in the mood for negotiations.`
 			choice
 				`	"I'll be taking that cargo, like it or not."`
 					goto words
@@ -448,7 +452,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		personality disables staying
 		system "Sumar"
 		fleet "Small Northern Pirates" 6
-		ship "Firebird" "Valkiry"
+		ship "Marauder Firebird (Bars)" "Valkiry"
 
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
