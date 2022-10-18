@@ -955,7 +955,6 @@ void MapPanel::DrawTravelPlan()
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
-		bool systemJumpRange = previous->JumpRange() > 0.;
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
@@ -967,14 +966,13 @@ void MapPanel::DrawTravelPlan()
 		if(!isHyper && !isJump && !isWormhole)
 			break;
 
-		double jumpDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel(systemJumpRange ? 0. : jumpDistance) : it.first->HyperdriveFuel();
+					double cost = it.first->GetCheapestJumpType(previous, next).second;
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;
