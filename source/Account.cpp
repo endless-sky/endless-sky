@@ -33,6 +33,7 @@ namespace {
 
 
 // Load account information from a data file (saved game or starting conditions).
+// I added this comment to trigger the CI
 void Account::Load(const DataNode &node, bool clearFirst)
 {
 	if(clearFirst)
