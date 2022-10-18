@@ -456,9 +456,12 @@ uint32_t Outfit::FreeCrewBunks(uint32_t shipCrew) const
 
 
 
-uint32_t Outfit::BunkType(string typeName)
+uint32_t Outfit::BunkType(string typeName) const
 {
-	return bunkTypes[typeName];
+	auto finder = bunkTypes.find(typeName);
+	if(finder != bunkTypes.end())
+		return finder->second;
+	return 0;
 }
 
 
