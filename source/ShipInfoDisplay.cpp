@@ -204,10 +204,26 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
 			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
 	attributesHeight += 20;
-	attributeLabels.push_back("required crew / crew bunks / bunks:");
-	attributeValues.push_back(Format::Number(ship.RequiredCrew())
-		+ " / " + Format::Number(attributes.CrewBunks()) + " / " + Format::Number(attributes.Bunks()));
+	attributeLabels.push_back("bunks");
+	attributeValues.push_back(Format::Number(attributes.Bunks()));
 	attributesHeight += 20;
+	attributeLabels.push_back("required crew / crew bunks");
+	attributeValues.push_back(Format::Number(ship.RequiredCrew())
+		+ " / " + Format::Number(attributes.CrewBunks()));
+	attributesHeight += 20;
+	if(attributes.BunkTypes().size() > 0)
+	{
+		attributeLabels.push_back("special bunks:");
+		attributeValues.push_back(" ");
+		for(const auto &it : attributes.BunkTypes())
+		{
+			attributesHeight += 20;
+			attributeLabels.push_back(it.first);
+			attributeValues.push_back(Format::Number(it.second));
+
+		}
+		attributesHeight += 20;
+	}
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	if(isGeneric)
