@@ -101,11 +101,11 @@ outfit "Twin Blaster"
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 12
-		"firing energy" 13.9
-		"firing heat" 43.2
+		"firing energy" 11.6
+		"firing heat" 36
 		"shield damage" 21.2
 		"hull damage" 13.2
-	description "The Energy Blaster's ubiquity, low price, and stable performance have made it irresistible to tinkerers from the day it was first introduced. These blasters have been bolted together to fit within a single gun port, offering twice the damage of a single blaster at the cost of a little more than twice the heat, mass, and power consumption."
+	description "The Energy Blaster's ubiquity, low price, and stable performance have made it irresistible to tinkerers from the day it was first introduced. These blasters have been bolted together to fit within a single gun port, offering twice the damage of a single blaster at the cost of twice the heat and power consumption, along with some additional mass."
 
 effect "blaster impact"
 	sprite "effect/blaster impact"
@@ -180,8 +180,8 @@ outfit "Twin Modified Blaster"
 		"velocity" 10
 		"lifetime" 48
 		"reload" 12
-		"firing energy" 15.6
-		"firing heat" 60.5
+		"firing energy" 13
+		"firing heat" 50.4
 		"shield damage" 26.4
 		"hull damage" 17.6
 	description "An enterprising engineer, presumably having decided that the Modified Blaster's already-frightening lack of safety control was insufficient, has taken two of the weapons and shoved them together in the same gun port, crudely welded together with fervid enthusiasm. Whether or not this weapon will destroy the target before it melts its own components is anyone's guess; perhaps the intent was that the twin barrels would intimidate enemies into submission before the weapon would have to be fired."
