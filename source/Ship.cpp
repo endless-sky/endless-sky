@@ -3205,10 +3205,10 @@ bool Ship::NeedsFuel(bool followParent) const
 		// but only if the location is reachable.
 		auto p = GetParent();
 		if(p)
-			jumpFuel = JumpFuel(p->GetTargetSystem());
+			jumpFuel = navigation.JumpFuel(p->GetTargetSystem());
 	}
 	if(!jumpFuel)
-		jumpFuel = JumpFuel(targetSystem);
+		jumpFuel = navigation.JumpFuel(targetSystem);
 	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
 }
 
