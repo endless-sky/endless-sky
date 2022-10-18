@@ -102,14 +102,9 @@ outfit "Twin Blaster"
 		"inaccuracy" 3
 		"lifetime" 0
 		"reload" 12
-		"firing energy" 13.9
-		"firing heat" 43.2
-	description "The Energy Blaster's ubiquity, low price, and stable performance have made it irresistible to tinkerers from the day it was first introduced. These blasters have been bolted together to fit within a single gun port, offering twice the damage of a single blaster at the cost of a little more than twice the heat, mass, and power consumption."
 		"firing energy" 11.6
 		"firing heat" 36
-		"shield damage" 21.2
-		"hull damage" 13.2
-	description "The Energy Blaster's ubiquity, low price, and stable performance have made it irresistible to tinkerers from the day it was first introduced. These blasters have been bolted together to fit within a single gun port, offering twice the damage of a single blaster at the cost of twice the heat and power consumption, along with some additional mass."
+	description "The Energy Blaster's ubiquity, low price, and stable performance have made it irresistible to tinkerers from the day it was first introduced. These blasters have been bolted together to fit within a single gun port, offering twice the damage of a single blaster at the cost of a little more than twice the heat, mass, and power consumption."
 
 outfit "Blaster Submunition"
 	weapon
