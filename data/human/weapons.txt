@@ -97,10 +97,8 @@ outfit "Twin Blaster"
 		sound "blaster"
 		"submunition" "Blaster Submunition"
 			"offset" 3 0
-			"facing" 0
 		"submunition" "Blaster Submunition"
 			"offset" -3 0
-			"facing" 0
 		"inaccuracy" 3
 		"lifetime" 0
 		"reload" 12
