@@ -2634,6 +2634,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
+	auto &&nameProvider = conditions.GetProviderNamed("playername: " + firstName + " " + lastName);
+	nameProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return true; });
+
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
 	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t {
