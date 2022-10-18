@@ -124,6 +124,9 @@ class Error(object):
 	def __str__(self):
 		return f"\tERROR: line {self.line}: {self.reason} in text '{self.text}'"
 
+	def __lt__(self, other):
+		return self.line < other.line
+
 
 # A class representing warning messages.
 # These are stored in the error_list list to be displayed after all checks are done.
@@ -553,10 +556,14 @@ if __name__ == '__main__':
 
 		errors += len(e)
 		warnings += len(w)
+		e.sort()
+		w.sort()
 		if e or w:
 			print(file)
-			print(*e, sep='\n', end='')
-			print(*w, sep='\n')
+			if e:
+				print(*e, sep='\n')
+			if w:
+				print(*w, sep='\n')
 	print()
 	text = ""
 	if errors > 0:
