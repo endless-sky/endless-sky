@@ -2634,9 +2634,30 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
-	auto &&nameProvider = conditions.GetProviderNamed("playername: " + firstName + " " + lastName);
-	nameProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return true; });
+	auto &&playerNameProvider = conditions.GetProviderPrefixed("playername: ");
+	auto playerNameFun = [this](const string &name) -> bool
+	{
+		return name == "playername: " + firstName + " " + lastName;
+	};
+	playerNameProvider.SetHasFunction(playerNameFun);
+	playerNameProvider.SetGetFunction(playerNameFun);
+
+	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("playername first: ");
+	auto playerNameFirstFun = [this](const string &name) -> bool
+	{
+		return name == "playername: " + firstName;
+	};
+	playerNameFirstProvider.SetHasFunction(playerNameFirstFun);
+	playerNameFirstProvider.SetGetFunction(playerNameFirstFun);
+
+	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("playername last: ");
+	auto playerNameLastFun = [this](const string &name) -> bool
+	{
+		return name == "playername: " + lastName;
+	};
+	playerNameLastProvider.SetHasFunction(playerNameLastFun);
+	playerNameLastProvider.SetGetFunction(playerNameLastFun);
+
 
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
