@@ -245,6 +245,7 @@ mission "Remnant: Cognizance 5"
 		personality escort launching appeasing unconstrained disables plunders
 		fleet
 			names "remnant"
+			cargo 0
 			variant
 				"Albatross (Shield)"
 				"Albatross"
@@ -317,6 +318,7 @@ mission "Remnant: Cognizance 7"
 		system "Nenia"
 		fleet
 			names "korath"
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)" 2
 				"'olofez" 4
@@ -347,6 +349,7 @@ mission "Remnant: Cognizance 8"
 		system "Nenia"
 		fleet
 			names "korath"
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)" 3
 				"'olofez" 6
@@ -447,7 +450,8 @@ mission "Remnant: Cognizance 12"
 		personality timid launching escort
 		fleet
 			names "remnant"
-			cargo 8 equipment
+			cargo 1
+			commodities "Equipment"
 			variant
 				Pelican
 				Puffin 4
@@ -618,6 +622,7 @@ mission "Remnant: Cognizance 18"
 		personality pacifist coward launching escort
 		fleet
 			names "remnant"
+			cargo 0
 			variant
 				"Pelican (Heavy Lift)" 6
 	npc
@@ -630,6 +635,7 @@ mission "Remnant: Cognizance 18"
 		system "Nenia"
 		fleet
 			names "korath"
+			outfitters "Void Sprite Parts"
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 3
@@ -1029,13 +1035,12 @@ mission "Remnant: Cognizance 23"
 	npc kill
 		government "Korath"
 		personality coward target uninterested staying
-		system
-			system "Farinus"
+		system "Farinus"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-			outfitters "Korath Basics" "Korath Exiles"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship that Taely sent you to hunt down. Return to <destination> to report the Mergansers' performance."
@@ -1044,6 +1049,7 @@ mission "Remnant: Cognizance 23"
 		personality escort unconstrained launching
 		fleet
 			names "remnant"
+			cargo 0
 			variant
 				"Merganser" 4
 	on complete
@@ -1162,7 +1168,7 @@ mission "Remnant: Cognizance 25"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"'olofez" 3
@@ -1239,9 +1245,7 @@ mission "Remnant: Cognizance 28"
 		system "Parca"
 		fleet
 			names "korath"
-			cargo 3
-			commodities Food Metal Plastic "Heavy Metals"
-			outfitters "Korath Basics" "Korath Exiles"
+			cargo 0
 			variant
 				"Rano'erek" 1
 				"Rano'erek (Ground Assault)" 4
@@ -1275,9 +1279,7 @@ mission "Remnant: Cognizance 29"
 		system "Parca"
 		fleet
 			names "korath"
-			cargo 3
-			commodities Food Metal Plastic "Heavy Metals"
-			outfitters "Korath Basics" "Korath Exiles"
+			cargo 0
 			variant
 				"Rano'erek" 1
 				"Rano'erek (Ground Assault)" 2
