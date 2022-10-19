@@ -219,7 +219,7 @@ void MapPanel::Draw()
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1f, 0.f);
 	RingShader::Draw(Zoom() * (playerSystem.Position() + center), System::DEFAULT_NEIGHBOR_DISTANCE * Zoom(), 2.0f, 1.0f,
-		dimColor, 25.0, 10.0);
+		dimColor);
 	// Draw the jump range circle around your current location if it is different than the
 	// visible range.
 	Color dimColorJump(.3f, 0.f);
