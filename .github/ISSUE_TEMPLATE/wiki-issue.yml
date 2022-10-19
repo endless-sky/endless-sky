@@ -1,5 +1,5 @@
-name: Wiki Issue
-description: Something is wrong with the wiki.
+name: Documentation Issue
+description: There is an error in documentation, such as documentation being wrong or outdated. Documentation may include the wiki on GitHub, RFCs, style guides, or other such pages/documents.
 labels: [documentation]
 
 body:
