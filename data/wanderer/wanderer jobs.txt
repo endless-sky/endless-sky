@@ -791,9 +791,8 @@ mission "Wanderer Governor Transport"
 	source
 		government "Wanderer"
 		not attributes "evacuation"
-		not planet "Vara K'chrai"
-	destination
-		planet "Vara K'chrai"
+		near "Ka'ch'chrai" 1 10
+	destination "Vara K'chrai"
 	to offer
 		has "language: Wanderer"
 		has "Wanderers Solifuge Recon 2: done"
