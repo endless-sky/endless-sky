@@ -3418,7 +3418,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 								other.Cost() : (other.ChassisCost() * 2.);
 							// Even if we divide by 0, doubles can contain and handle infinity,
 							// and we should definitely board that one then.
-							return cost * cost / current.DistanceSquared(other.Position());
+							return cost * cost / (current.DistanceSquared(other.Position()) + 0.1);
 						};
 					// Default to distance priorities (the default setting).
 					default:
