@@ -500,7 +500,7 @@ void Ship::Load(const DataNode &node)
 	if(pluralModelName.empty())
 	{
 		pluralModelName = modelName + 's';
-		if(modelName.back() == 's')
+		if(modelName.back() == 's' && base)
 			node.PrintTrace("Warning: ship \"" + name
 					+ "\" requires an explicit plural name definition, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
