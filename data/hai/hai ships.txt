@@ -1365,7 +1365,7 @@ ship "Tick"
 		"drag" .55
 		"heat dissipation" .7
 		"outfit space" 63
-		"weapon capacity" 13
+		"weapon capacity" 14
 		"engine capacity" 22
 		"automaton" 1
 		weapon

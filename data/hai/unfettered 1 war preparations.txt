@@ -98,6 +98,10 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 	bay "Fighter" 0 32
 	bay "Fighter" 0 83
 
+ship "Far Osk 27" "Far Osk 27 (Hacked)"
+	add attributes
+		"self destruct" -.6
+
 mission "Unfettered: Alphas 2: Prove Yourself"
 	landing
 	name `Find and capture the Alpha Auxiliary`
@@ -176,10 +180,10 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying
-		ship "Far Osk 27" "Prancer"
-		ship "Far Osk 27" "Comet"
-		ship "Far Osk 27" "Dagger"
-		ship "Far Osk 27" "Oren"
+		ship "Far Osk 27 (Hacked)" "Prancer"
+		ship "Far Osk 27 (Hacked)" "Comet"
+		ship "Far Osk 27 (Hacked)" "Dagger"
+		ship "Far Osk 27 (Hacked)" "Oren"
 		ship "Far Lek 14" "Mert"
 		ship "Far Lek 14" "Dart"
 	npc
