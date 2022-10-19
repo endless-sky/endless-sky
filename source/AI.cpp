@@ -3368,12 +3368,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				ship.SetTargetShip(shared_ptr<Ship>());
 
 			bool foundEnemy = false;
-			const auto targetPriority = Preferences::GetBoardingPriority();
+			const auto boardingPriority = Preferences::GetBoardingPriority();
 
 			auto strategy = [&]() noexcept -> function<double(Ship &)>
 			{
 				Point current = ship.Position();
-				switch(targetPriority)
+				switch(boardingPriority)
 				{
 					case Preferences::BoardingPriority::cost:
 						return [this, &ship](Ship &other) noexcept -> double
@@ -3433,16 +3433,16 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			else
 			{
 				sort(boardable.begin(), boardable.end(),
-					[&ship, targetPriority](
+					[&ship, boardingPriority](
 						const shipValue &lhs, const shipValue &rhs
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
-						if(targetPriority == Preferences::BoardingPriority::cost && lhs.second == rhs.second)
+						if(boardingPriority == Preferences::BoardingPriority::cost && lhs.second == rhs.second)
 							return lhs.first->Position().DistanceSquared(ship.Position()) >
 								rhs.first->Position().DistanceSquared(ship.Position());
 						else
-							return targetPriority == Preferences::BoardingPriority::distance ?
+							return boardingPriority == Preferences::BoardingPriority::distance ?
 								lhs.second > rhs.second : lhs.second < rhs.second;
 					}
 				);
