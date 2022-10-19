@@ -494,17 +494,6 @@ void Ship::Load(const DataNode &node)
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-
-	// If no plural model name was given, default to the model name with an 's' appended.
-	// If the model name ends with an 's', print a warning because the default plural will never be correct.
-	if(pluralModelName.empty())
-	{
-		pluralModelName = modelName + 's';
-		if(modelName.back() == 's' && base)
-			node.PrintTrace("Warning: ship \"" + modelName
-					+ "\" requires an explicit plural name definition, but none is provided. Defaulting to \""
-					+ pluralModelName + "\".");
-	}
 }
 
 
@@ -513,6 +502,11 @@ void Ship::Load(const DataNode &node)
 // loaded yet. So, wait until everything has been loaded, then call this.
 void Ship::FinishLoading(bool isNewInstance)
 {
+	// Ensure that all defined bays are of a valid category. Remove and warn about any
+	// invalid bays. Add a default "launch effect" to any remaining internal bays if
+	// this ship is crewed (i.e. pressurized).
+	string warning;
+
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
@@ -523,6 +517,16 @@ void Ship::FinishLoading(bool isNewInstance)
 		explosionWeapon = &model->BaseAttributes();
 		if(pluralModelName.empty())
 			pluralModelName = model->pluralModelName;
+		// If no plural model name was given, default to the model name with an 's' appended.
+		// If the model name ends with an 's', print a warning because the default plural will never be correct.
+		if(pluralModelName.empty())
+		{
+			pluralModelName = modelName + 's';
+			if(modelName.back() == 's' && base)
+				warning += "Warning: ship \"" + VariantName()
+						+ "\" requires an explicit plural name definition, but none is provided. Defaulting to \""
+						+ pluralModelName + "\".";
+		}
 		if(noun.empty())
 			noun = model->noun;
 		if(!thumbnail)
@@ -725,10 +729,6 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 
-	// Ensure that all defined bays are of a valid category. Remove and warn about any
-	// invalid bays. Add a default "launch effect" to any remaining internal bays if
-	// this ship is crewed (i.e. pressurized).
-	string warning;
 	const auto &bayCategories = GameData::Category(CategoryType::BAY);
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
