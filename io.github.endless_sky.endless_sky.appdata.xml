@@ -47,6 +47,74 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.9.16.1" date="2022-10-18">
+      <description>
+        <p>This is a hotfix release, reverting a breaking change made in the last release that inadvertantly inroduced a bug.</p>
+        <p>Breaking changes:</p>
+        <ul>
+          <li>The change made to the accompany mission npc objective has been reverted to the behaviour before 0.9.16.</li>
+        </ul>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.16.1/changelog</url>
+    </release>
+    <release version="0.9.16" date="2022-10-16">
+      <description>
+        <p>This is a stable release, focusing on bug fixes and polishing the recent v0.9.15 release.</p>
+        <p>New changes include the following:</p>
+        <p>Breaking changes:</p>
+        <ul>
+          <li>The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live.</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Added a firing sound to the Ka'het Annihilator Turret, as it was missing one.</li>
+          <li>The jump range of systems affected by the Ssil Vida activation are now reset when Ssil Vida is deactivated in order to avoid a bug in pathfinding. This change will be reverted in the future once the pathfinding is improved.</li>
+          <li>Fixed an error where attempting to launch with a fighter as your flagship under certain circumstances could cause you to launch with no ship at all.</li>
+          <li>Fixed a longstanding bug where npcs could get stuck thinking they need fuel after traveling through a wormhole.</li>
+          <li>Fixed a bug where fighters would sometimes fail to reparent to a carrier that had space for them when recalled.</li>
+        </ul>
+        <p>Other changes:</p>
+        <ul>
+          <li>Clicking on a planet card on the left side of the map now selects that planet as a destination on your travel plan.</li>
+        </ul>
+        <p>A complete list of changes can be found in the changelog.</p>
+        <p>Special thanks to those who contributed changes to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.16/changelog</url>
+    </release>
+    <release version="0.9.15" date="2022-04-10">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Major new changes include:</p>
+        <ul>
+          <li>60+ new outfits</li>
+          <li>80+ new missions in human space and beyond</li>
+          <li>40 new stations and planets in existing systems</li>
+          <li>Improvement of many graphics, including stars, ships, effects, and outfits</li>
+          <li>The addition of parallax to background stars and haze</li>
+          <li>Sweeping balance changes to various ships and outfits</li>
+          <li>Overheating a ship only disables its energy generation</li>
+          <li>Changes to the UI, including the addition of new ship and outfit categories and an overhaul of the map screen</li>
+          <li>Changes to existing missions, including an overhaul of the first third of the Free Worlds campaign</li>
+        </ul>
+        <p>Several features have been added to the game engine, for use by plugins and other content creators.</p>
+        <p>These include:</p>
+        <ul>
+          <li>20 new swizzle options</li>
+          <li>The ability to customize ship and outfit categories in the data files</li>
+          <li>Four new damage-over-time types</li>
+          <li>Conversations can trigger mission actions</li>
+          <li>Missions can trigger actions every time the date increments</li>
+          <li>Plugins can selectively disable vanilla content</li>
+          <li>Events can remove objects from a system without needing to redefine the entire system</li>
+          <li>Removal of the 32 hardpoint limit</li>
+        </ul>
+        <p>This summary only scratches the surface of what was added during 0.9.15's year-and-a-third-long development cycle.</p>
+        <p>This release also marks the highest number of contributors to a single release, bypassing 0.9.9's record of 69.</p>
+        <p>Special thanks to the 107 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.15/changelog</url>
+    </release>
     <release version="0.9.14" date="2021-07-11">
       <description>
         <p>This is a "stable" release, focusing on bug fixes and polishing the recent v0.9.13 release.</p>

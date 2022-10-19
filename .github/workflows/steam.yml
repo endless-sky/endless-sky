@@ -100,7 +100,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-latest]
+        os: [ubuntu-20.04, ubuntu-latest]
     env:
       snapshot: latest-steam-client-general-availability
       tarball: steam-runtime.tar.xz
@@ -134,10 +134,7 @@ jobs:
     - run: steam-runtime/run.sh ./endless-sky -v
     - name: Execute data parsing test
       run: steam-runtime/run.sh ./utils/test_parse.sh ./endless-sky
-    # NOTE: As with the non-Steam integration tests, on Ubuntu 18.04 the call to SDL_GL_CreateContext fails
-    # with SDL error "Could not create GL Context: BadValue (integer parameter out of range for operation)"
     - name: Execute integration tests
-      if: matrix.os != 'ubuntu-18.04'
       env:
           PRINT_GLXINFO: true
       run: steam-runtime/run.sh tests/integration/run_tests_headless.sh
