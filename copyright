@@ -1754,6 +1754,16 @@ Copyright: Brian Swift
 License: CC-BY-SA-4.0
 Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
 
+Files:
+ images/effect/incipias flare/flare*
+ images/effect/plasma particle.png
+ images/outfit/gas class shield.png
+ images/outfit/liquid class shield.png
+ images/outfit/liquid hydrogen cell.png
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+Comment: Artwork for the Incipias
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
