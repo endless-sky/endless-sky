@@ -449,6 +449,8 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 		if(event.Actor())
 		{
+			if(event.Type() & ShipEvent::STOPPED_SCANNING)
+				actions[event.Actor()][target] &= ~ShipEvent::SCANNING;
 			actions[event.Actor()][target] |= event.Type();
 			if(event.TargetGovernment())
 				notoriety[event.Actor()][event.TargetGovernment()] |= event.Type();
@@ -457,7 +459,10 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 		const auto &actorGovernment = event.ActorGovernment();
 		if(actorGovernment)
 		{
+			if(event.Type() & ShipEvent::STOPPED_SCANNING)
+				governmentActions[actorGovernment][target] &= ~ShipEvent::SCANNING;
 			governmentActions[actorGovernment][target] |= event.Type();
+
 			if(actorGovernment->IsPlayer() && event.TargetGovernment())
 			{
 				int &bitmap = playerActions[target];
@@ -1235,9 +1240,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				if(it->GetGovernment() != gov)
 				{
 					auto ptr = it->shared_from_this();
-					// Scan friendly ships that are as-yet unscanned by this ship's government.
-					if((!(cargoScan && !it->CargoScanCompletedBy(gov)) || Has(gov, ptr, ShipEvent::SCAN_CARGO))
-							&& (!(outfitScan && !it->OutfitScanCompletedBy(gov)) || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
+					// Scan friendly ships that are as-yet unscanned by this ship's government,
+					// and are not in the process of being scanned.
+					if(((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
+							|| (Has(gov, target, ShipEvent::SCANNING) && !Has(ship, target, ShipEvent::SCANNING)))
 						continue;
 
 					double range = it->Position().Distance(ship.Position());
@@ -1443,8 +1450,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// An AI ship that is targeting a non-hostile ship should scan it, or move on.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		if((!(cargoScan && !target->CargoScanCompletedBy(gov)) || Has(gov, target, ShipEvent::SCAN_CARGO))
-				&& (!(outfitScan && !target->OutfitScanCompletedBy(gov)) || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
+		if(((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
+				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
+				|| (Has(gov, target, ShipEvent::SCANNING) && !Has(ship, target, ShipEvent::SCANNING)))
 			target.reset();
 		else
 		{
@@ -2380,11 +2388,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		// If the pointer to the target ship exists, it is targetable and in-system.
-		bool mustScanCargo = cargoScan && !target->CargoScanCompletedBy(gov)
-				&& !Has(ship, target, ShipEvent::SCAN_CARGO);
-		bool mustScanOutfits = outfitScan && !target->OutfitScanCompletedBy(gov)
-				&& !Has(ship, target, ShipEvent::SCAN_OUTFITS);
-		if(!mustScanCargo && !mustScanOutfits)
+		bool mustScanCargo = cargoScan && !Has(gov, target, ShipEvent::SCAN_CARGO);
+		bool mustScanOutfits = outfitScan && !Has(gov, target, ShipEvent::SCAN_OUTFITS);
+		if((!mustScanCargo && !mustScanOutfits)
+				|| (Has(gov, target, ShipEvent::SCANNING) && !Has(ship, target, ShipEvent::SCANNING)))
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
@@ -2396,7 +2403,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	{
 		const System *system = ship.GetSystem();
 
-		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
+		// Consider scanning any non-hostile ship in this system that your governement
+		// has not scanned yet, and is not currently scanning.
 		vector<Ship *> targetShips;
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
@@ -2408,9 +2416,9 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 				for(const auto &it : grit.second)
 				{
 					auto ptr = it->shared_from_this();
-					if((!(cargoScan && !ptr->CargoScanCompletedBy(gov)) || Has(ship, ptr, ShipEvent::SCAN_CARGO))
-						&& (!(outfitScan && !ptr->OutfitScanCompletedBy(gov))
-							|| Has(ship, ptr, ShipEvent::SCAN_OUTFITS)))
+					if(((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
+							|| (Has(gov, target, ShipEvent::SCANNING) && !Has(ship, target, ShipEvent::SCANNING)))
 						continue;
 
 					if(it->IsTargetable())

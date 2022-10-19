@@ -66,7 +66,11 @@ public:
 		// you had with the given government, first.
 		ATROCITY = (1 << 8),
 		// This ship just jumped into a different system.
-		JUMP = (1 << 9)
+		JUMP = (1 << 9),
+		// This ship is currently scanning that ship's outfits or cargo.
+		SCANNING = (1 << 10),
+		// This ship stopped scanning, because it's out of range or because it's done scanning.
+		STOPPED_SCANNING = (1 << 11)
 	};
 
 
