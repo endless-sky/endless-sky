@@ -2964,7 +2964,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 	{
 		// The frugal personality is only active when ships have more than 75% of their total health,
 		// and are not outgunned.
-		beFrugal = ship.Health() > .75;
+		beFrugal = (ship.Health() > .75);
 		if(beFrugal)
 		{
 			auto ait = allyStrength.find(ship.GetGovernment());
