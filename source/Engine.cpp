@@ -1853,7 +1853,7 @@ void Engine::HandleKeyboardInputs()
 		keyInterval = keyCooldown;
 	}
 
-	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
+	// If holding JUMP or toggling LAND or BOARD, also send WAIT. This prevents the jump from
 	// starting (e.g. while escorts are aligning), or switches the landing or boarding target.
 	if(keyHeld.Has(Command::JUMP) || ((keyHeld.Has(Command::LAND) || keyHeld.Has(Command::BOARD))
 			&& keyInterval < keyCooldown))
