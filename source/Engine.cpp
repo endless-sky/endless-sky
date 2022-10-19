@@ -1501,7 +1501,7 @@ void Engine::CalculateStep()
 		double smoothStep = offsetMultiplier < 0.5 ? 4 * pow(offsetMultiplier, 3)
 			: 1 - pow((-2 * offsetMultiplier) + 2, 3) / 2;
 		offset = flagship->Velocity() * 30. * smoothStep;
-		newCenter = Preferences::CameraAcceleration() == "on" ?
+		newCenter = Preferences::CameraAcceleration() == "on" && !flagship->IsHyperspacing() ?
 			flagship->Position() + offset : Preferences::CameraAcceleration() == "reversed" ?
 			flagship->Position() - offset : flagship->Position();
 		newCenterVelocity = flagship->Velocity();
