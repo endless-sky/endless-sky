@@ -366,7 +366,7 @@ mission "Mercenaries: Daemons Unleashed"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"
-		personality heroic staying nemesis vindictive target
+		personality heroic staying nemesis vindictive target mute
 		ship "Antlion" "Parmen"
 		conversation
 			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop making the same mistake my predecessor always did, right now, before this becomes an uncontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
@@ -385,7 +385,7 @@ mission "Mercenaries: Daemons Unleashed"
 	npc
 		system "Wah Yoot"
 		government "Shadow"
-		personality heroic nemesis
+		personality heroic nemesis mute
 		ship "Tick" "Hell Unleashed"
 		ship "Tick" "Fire Incarnate"
 		ship "Far Lek 14" "Phoenix"

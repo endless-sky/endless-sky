@@ -1184,7 +1184,7 @@ mission "Unfettered: Cavalry Arrives"
 	npc save
 		system "Misam"
 		government "Shadow"
-		personality entering heroic uninterested staying disables
+		personality entering heroic uninterested staying disables mute
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
 	npc kill

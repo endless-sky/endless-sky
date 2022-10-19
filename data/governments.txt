@@ -617,10 +617,6 @@ government "Shadow"
 		"Korath" -.01
 	bribe 0
 	fine 0
-	"friendly hail" "refuse to answer hail"
-	"friendly disabled hail" "friendly disabled unfettered"
-	"hostile hail" "refuse to answer hail"
-	"hostile disabled hail" "hostile disabled unfettered"
 	"penalty for"
 		capture 1.5
 		destroy 1.5
