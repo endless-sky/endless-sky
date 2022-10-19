@@ -48,7 +48,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 		if(!secWeapon || !secWeapon->Icon() || ammo.find(secWeapon) != ammo.end())
 			continue;
 
-		double ammoCount = -1;
+		double ammoCount = -1.;
 		// TODO: if a weapon has both an ammo requirement and consumes fuel, the ammo display will only show the ammo,
 		// not the fuel, so the weapon may not fire because it is out of fuel even though it still has ammo,
 		// and will not show a '0' in the ammo display.
