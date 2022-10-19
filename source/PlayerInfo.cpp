@@ -2634,26 +2634,26 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
-	auto &&playerNameProvider = conditions.GetProviderPrefixed("playername: ");
+	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
-		return name == "playername: " + firstName + " " + lastName;
+		return name == "name: " + firstName + " " + lastName;
 	};
 	playerNameProvider.SetHasFunction(playerNameFun);
 	playerNameProvider.SetGetFunction(playerNameFun);
 
-	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("playername first: ");
+	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("first name: ");
 	auto playerNameFirstFun = [this](const string &name) -> bool
 	{
-		return name == "playername: " + firstName;
+		return name == "first name: " + firstName;
 	};
 	playerNameFirstProvider.SetHasFunction(playerNameFirstFun);
 	playerNameFirstProvider.SetGetFunction(playerNameFirstFun);
 
-	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("playername last: ");
+	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("last name: ");
 	auto playerNameLastFun = [this](const string &name) -> bool
 	{
-		return name == "playername: " + lastName;
+		return name == "last name: " + lastName;
 	};
 	playerNameLastProvider.SetHasFunction(playerNameLastFun);
 	playerNameLastProvider.SetGetFunction(playerNameLastFun);
