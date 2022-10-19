@@ -28,6 +28,12 @@ public:
 		adaptive,
 	};
 
+	enum class BoardingPriority : int {
+		distance = 0,
+		cost,
+		mixed
+	};
+
 
 public:
 	static void Load();
@@ -60,6 +66,7 @@ public:
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
+	static Preferences::BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
 };
 

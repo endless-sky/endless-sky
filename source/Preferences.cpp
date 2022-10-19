@@ -262,6 +262,13 @@ void Preferences::ToggleBoarding()
 
 
 
+Preferences::BoardingPriority Preferences::GetBoardingPriority()
+{
+	return static_cast<BoardingPriority>(boardingIndex);
+}
+
+
+
 const std::string &Preferences::BoardingSetting()
 {
 	return BOARDING_SETTINGS[boardingIndex];
