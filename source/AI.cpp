@@ -3445,16 +3445,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			}
 			else
 			{
+				auto ships = GetShipsList(ship, true);
+				boardable.reserve(ships.size());
 				// First check if we can board enemy ships, then allies.
-				for(Ship *enemy : GetShipsList(ship, true))
+				for(Ship *enemy : ships)
 					fillBoardable(*enemy);
 				// The current target is not considered by GetShipsList.
 				if(target)
 					fillBoardable(*const_cast<Ship *>(target.get()));
 
 				if(boardable.empty())
-					for(Ship *ally : GetShipsList(ship, false))
+				{
+					ships = GetShipsList(ship, false);
+					if(ships.size() > boardable.size())
+						boardable.reserve(ships.size());
+					for(Ship *ally : ships)
 						fillBoardable(*ally);
+				}
 			}
 
 			if(boardable.empty())
