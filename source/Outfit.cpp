@@ -296,7 +296,9 @@ void Outfit::Load(const DataNode &node)
 	{
 		pluralName = name + 's';
 		if(name.back() == 's' && node.Token(0) == "outfit")
-			node.PrintTrace("Warning: outfit \"" + name + "\" requires an explicit plural name definition, but none is provided. Defaulting to \"" + pluralName + "\".");
+			node.PrintTrace("Warning: outfit \"" + name +
+					"\" requires an explicit plural name definition, but none is provided. Defaulting to \""
+					+ pluralName + "\".");
 	}
 
 	// Only outfits with the jump drive and jump range attributes can

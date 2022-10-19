@@ -190,7 +190,6 @@ void Ship::Load(const DataNode &node)
 	if(node.Size() >= 2)
 	{
 		modelName = node.Token(1);
-		pluralModelName = modelName + 's';
 	}
 	if(node.Size() >= 3)
 	{
@@ -494,6 +493,17 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+
+	// If no plural model name was given, default to the model name with an 's' appended.
+	// If the model name ends with an 's', print a warning because the default plural will never be correct.
+	if(pluralModelName.empty())
+	{
+		pluralModelName = modelName + 's';
+		if(modelName.back() == 's')
+			node.PrintTrace("Warning: ship \"" + name
+					+ "\" requires an explicit plural name definition, but none is provided. Defaulting to \""
+					+ pluralModelName + "\".");
 	}
 }
 
