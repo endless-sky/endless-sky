@@ -1084,7 +1084,7 @@ int64_t Ship::ChassisCost() const
 
 int64_t Ship::Strength() const
 {
-	return Cost() * Deterrence();
+	return Cost();
 }
 
 
