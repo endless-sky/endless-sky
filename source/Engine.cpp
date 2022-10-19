@@ -458,9 +458,7 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = Preferences::CameraAcceleration() == "on" ?
-			flagship->Position() + offset : Preferences::CameraAcceleration() == "reversed" ?
-			flagship->Position() - offset : flagship->Position();
+		center = newCenter;
 		centerVelocity = flagship->Velocity();
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
@@ -1487,7 +1485,7 @@ void Engine::CalculateStep()
 		DoScanning(it);
 
 	// Draw the objects. Start by figuring out where the view should be centered:
-	Point newCenter = center;
+	newCenter = center;
 	Point newCenterVelocity;
 	if(flagship)
 	{
