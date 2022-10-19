@@ -2962,9 +2962,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
 	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
-		// Frugal ships only expend ammunition if they have lost 50% of shields
-		// and hull combined, or if they are outgunned.
-		beFrugal = (ship.Hull() + ship.Shields() < 1.5);
+		// Frugal ships do not expend ammunition except if they have lost 50%
+		// of shields and hull combined, or if they are outgunned.
+		beFrugal = (ship.Hull() + ship.Shields() > 1.5);
 		if(beFrugal)
 		{
 			auto ait = allyStrength.find(ship.GetGovernment());
