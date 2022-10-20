@@ -1043,6 +1043,24 @@ mission "Hai Leaks Response 6"
 	on complete
 		log `You found proof of more kidnapped Hai and something that seems out of place. Sayari's fears appear to have been justified...`
 
+event "secret mountaintop"
+	# Ensure Mountaintop exists so the next mission can trigger
+	system "Ultima Thule"
+		government "Uninhabited"
+		add object
+			distance 4208.63
+			period 2158.5
+			object Mountaintop
+				sprite "effect/flotsam yottrite"
+				distance 315
+				period 31.1964
+	planet Mountaintop
+		government "Unknown"
+		# Placeholder description; you can't actually land.
+		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
+		"required reputation" 1000
+		bribe 0
+
 
 
 mission "Hai Leaks Response 7"
