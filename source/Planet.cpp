@@ -179,7 +179,13 @@ void Planet::Load(const DataNode &node)
 			text += '\n';
 		}
 		else if(key == "landing speed")
-			landingSpeed = LANDING_SPEED[value];
+		{
+			const auto &it = LANDING_SPEED.find(value);
+			if(it != LANDING_SPEED.end())
+				landingSpeed = it->second;
+			else
+				child.PrintTrace("Skipping unrecognized landing speed:");
+		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "required reputation")
