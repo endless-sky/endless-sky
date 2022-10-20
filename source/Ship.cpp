@@ -4116,7 +4116,7 @@ double Ship::CalculateDeterrence() const
 		if(hardpoint.GetOutfit())
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
-			if(weapon->Ammo() && !OutfitCount(weapon->Ammo()))
+			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
 				continue;
 			double strength = weapon->ShieldDamage() + weapon->HullDamage()
 				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
