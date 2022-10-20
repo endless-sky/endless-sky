@@ -29,7 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const map<string, float> LANDING_SPEED = {
+	map<const string, float> LANDING_SPEED = {
 		{"very slow landing", .8f},
 		{"slow landing", .9f},
 		{"fast landing", 1.1f},
