@@ -66,7 +66,7 @@ public:
 
 	// Return the speed at which we should land on this planet. If it is not set,
 	// returns 0.f
-	const float LandingSpeed() const;
+	float LandingSpeed() const;
 
 	// Check whether there is a spaceport (which implies there is also trading,
 	// jobs, banking, and hiring).
