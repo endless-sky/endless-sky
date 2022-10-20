@@ -33,7 +33,8 @@ public:
 	
 
 private:
+	std::string typeName;
+
 	bool canHoldCrew = false;
 	bool canHoldPassengers = false;
-	std::string typeName;
 };
