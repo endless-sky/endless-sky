@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sale.h"
 #include "Set.h"
 
+#include "BunkType.h"
 #include "Color.h"
 #include "Conversation.h"
 #include "Effect.h"
