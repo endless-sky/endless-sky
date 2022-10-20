@@ -722,8 +722,11 @@ void Ship::FinishLoading(bool isNewInstance)
 		attributes.Set("drag", 100.);
 	}
 
-	attraction = CalculateAttraction();
-	deterrence = CalculateDeterrence();
+	if(IsYours())
+	{
+		attraction = CalculateAttraction();
+		deterrence = CalculateDeterrence();
+	}
 
 	if(!warning.empty())
 	{
@@ -3696,13 +3699,15 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->IsWeapon())
 		{
 			armament.Add(outfit, count);
-			deterrence = CalculateDeterrence();
+			if(IsYours())
+				deterrence = CalculateDeterrence();
 		}
 
 		if(outfit->Get("cargo space"))
 		{
 			cargo.SetSize(attributes.Get("cargo space"));
-			attraction = CalculateAttraction();
+			if(IsYours())
+				attraction = CalculateAttraction();
 		}
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
@@ -3790,7 +3795,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
-		if(!OutfitCount(ammo))
+		if(IsYours() && !OutfitCount(ammo) && ammo->AmmoUsage())
 			deterrence = CalculateDeterrence();
 	}
 
