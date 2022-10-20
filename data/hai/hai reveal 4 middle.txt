@@ -680,7 +680,8 @@ mission "Hai Reveal [A03c] Report to Teeneep"
 	landing
 	name "Report to Teeneep"
 	description `Tell Teeneep about the experience with Scar's Legion.`
-	source government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
+	source
+		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
 		attributes "spaceport"
 	destination Darkwaste
 	to offer
@@ -721,7 +722,6 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	passengers 1
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste, you should return when your spare bunks are unoccupied.`
 	to offer
-		has "Hai Reveal [A04] Report to Teeneep: done"
 		has "alondo symbol timer"
 		or
 			has "Hai Reveal [A04] Report to Teeneep: done"
