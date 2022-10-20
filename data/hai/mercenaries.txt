@@ -459,7 +459,6 @@ mission "Unfettered: Special Cargo 1B"
 	destination "Warfeed"
 	to offer
 		has "Unfettered: Special Cargo: active"
-		has "reputation: Hai" >= 0
 	on offer
 		require "Mystery Cube" 0
 		conversation
