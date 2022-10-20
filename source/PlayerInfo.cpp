@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 
 #include "Audio.h"
+#include "BunkType.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -2711,7 +2712,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			int64_t retVal = 0;
 			for(const shared_ptr<Ship> &ship : ships)
 				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
-					retVal += ship->Attributes().BunkType(name);
+					retVal += ship->Attributes().GetBunkType(name);
 			return retVal;
 		});
 	}

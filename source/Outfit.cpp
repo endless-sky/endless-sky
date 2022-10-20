@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "Body.h"
+#include "BunkType.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
@@ -269,8 +270,8 @@ void Outfit::Load(const DataNode &node)
 				if(grand.Size() >= 2)
 				{
 					string loadBunkType = grand.Token(0);
-					pair<bool, pair<bool, bool>> bunkTypeData = GameData::BunkType(loadBunkType);
-					if(bunkTypeData.first)
+					const BunkType &bunkTypeData = GameData::GetBunkType(loadBunkType);
+					if(bunkTypeData.CanHoldCrew())
 						bunkTypes[loadBunkType] = grand.Value(1);
 				}
 			}
@@ -391,7 +392,7 @@ uint32_t Outfit::PassengerBunks() const
 	uint32_t passengers = bunks;
 	for(auto bunkType : bunkTypes)
 	{
-		if(GameData::BunkType(bunkType.first).second.first)
+		if(GameData::GetBunkType(bunkType.first).CanHoldPassengers())
 			passengers += bunkType.second;
 	}
 	return passengers;
@@ -403,7 +404,7 @@ uint32_t Outfit::CrewBunks() const
 {
 	uint32_t crew = bunks;
 	for(auto bunkType : bunkTypes)
-		if(GameData::BunkType(bunkType.first).second.second)
+		if(GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			crew += bunkType.second;
 	return crew;
 }
@@ -417,11 +418,14 @@ uint32_t Outfit::FreePassengerBunks(uint32_t shipCrew) const
 	uint32_t crewSpace = 0;
 	for(auto bunkType : bunkTypes)
 	{
-		if(GameData::BunkType(bunkType.first).second.first && !GameData::BunkType(bunkType.first).second.second)
+		if(GameData::GetBunkType(bunkType.first).CanHoldPassengers()
+		   && !GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			passengerSpace += bunkType.second;
-		else if(GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+		else if(GameData::GetBunkType(bunkType.first).CanHoldPassengers()
+				&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			dualUseSpace += bunkType.second;
-		else if(!GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+		else if(!GameData::GetBunkType(bunkType.first).CanHoldPassengers()
+				&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			crewSpace += bunkType.second;
 	}
 	if(shipCrew <= crewSpace)
@@ -439,9 +443,11 @@ uint32_t Outfit::FreeCrewBunks(uint32_t shipCrew) const
 	uint32_t crewSpace = 0;
 	for(auto bunkType : bunkTypes)
 	{
-		if(GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+		if(GameData::GetBunkType(bunkType.first).CanHoldPassengers()
+		   && GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			dualUseSpace += bunkType.second;
-		else if(!GameData::BunkType(bunkType.first).second.first && GameData::BunkType(bunkType.first).second.second)
+		else if(!GameData::GetBunkType(bunkType.first).CanHoldPassengers()
+				&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			crewSpace += bunkType.second;
 	}
 	if(shipCrew <= crewSpace + dualUseSpace)
@@ -451,7 +457,7 @@ uint32_t Outfit::FreeCrewBunks(uint32_t shipCrew) const
 
 
 
-uint32_t Outfit::BunkType(string typeName) const
+uint32_t Outfit::GetBunkType(string typeName) const
 {
 	auto finder = bunkTypes.find(typeName);
 	if(finder != bunkTypes.end())

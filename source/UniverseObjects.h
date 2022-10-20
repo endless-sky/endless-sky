@@ -126,7 +126,7 @@ private:
 	std::map<const Sprite *, double> solarPower;
 	std::map<const Sprite *, double> solarWind;
 	std::map<CategoryType, std::vector<std::string>> categories;
-	std::map<std::string, std::pair<bool, bool>> bunkTypes;
+	std::map<std::string, BunkType> bunkTypes;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;

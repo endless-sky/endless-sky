@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "BatchShader.h"
+#include "BunkType.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -722,17 +723,15 @@ const vector<string> &GameData::Category(const CategoryType type)
 
 
 
-const std::pair<bool, std::pair<bool, bool>> GameData::BunkType(const std::string type)
+const BunkType &GameData::GetBunkType(const std::string type)
 {
 	auto it = objects.bunkTypes.find(type);
-	if(it == objects.bunkTypes.end())
-		return make_pair(false, make_pair(false, false));
-	return make_pair(true, make_pair(it->second.first, it->second.second));
+	return it->second;
 }
 
 
 
-const std::map<std::string, std::pair<bool, bool>> &GameData::BunkTypes()
+const std::map<std::string, BunkType> &GameData::BunkTypes()
 {
 	return objects.bunkTypes;
 }

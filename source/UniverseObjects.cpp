@@ -464,7 +464,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 						else if(child.Token(2) == "crew")
 							crew = true;
 					}
-					bunkTypes[child.Token(0)] = make_pair(passengers, crew);
+					bunkTypes[child.Token(0)] = BunkType(child.Token(0), crew, passengers);
 				}
 			}
 		}

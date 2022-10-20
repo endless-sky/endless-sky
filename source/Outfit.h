@@ -63,7 +63,7 @@ public:
 	uint32_t CrewBunks() const;
 	uint32_t FreePassengerBunks(uint32_t shipCrew) const;
 	uint32_t FreeCrewBunks(uint32_t shipCrew) const;
-	uint32_t BunkType(const std::string typeName) const;
+	uint32_t GetBunkType(const std::string typeName) const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.

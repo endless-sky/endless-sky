@@ -13,6 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#ifndef BUNK_TYPE_H_
+#define BUNK_TYPE_H_
+
 #include <string>
 
 
@@ -38,3 +41,5 @@ private:
 	bool canHoldCrew = false;
 	bool canHoldPassengers = false;
 };
+
+#endif
