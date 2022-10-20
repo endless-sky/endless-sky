@@ -4264,7 +4264,7 @@ void Ship::CalculateLandingSpeed()
 
 double Ship::CalculateAttraction() const
 {
-  return max(0., .4 * sqrt(attributes.Get("cargo space")) - 1.8);
+	return max(0., .4 * sqrt(attributes.Get("cargo space")) - 1.8);
 }
 
 
