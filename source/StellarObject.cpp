@@ -77,7 +77,7 @@ const string &StellarObject::Name() const
 
 
 
-const float StellarObject::LandingSpeed() const
+float StellarObject::LandingSpeed() const
 {
 	if(!HasValidPlanet())
 		return 0.f;
