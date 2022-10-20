@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShipInfoPanel.h"
@@ -52,8 +55,8 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player)
 {
 }
 
-ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState panelState)
-	: player(player), panelState(panelState)
+ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
+	: player(player), panelState(std::move(state))
 {
 	shipIt = this->panelState.Ships().begin();
 	SetInterruptible(false);
@@ -152,9 +155,6 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(key == 'i' || command.Has(Command::INFO) || (control && key == SDLK_TAB))
 	{
-		// Set scroll so the currently shown ship will be the first in page.
-		panelState.SetScroll(shipIt - panelState.Ships().begin());
-
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
@@ -290,6 +290,8 @@ void ShipInfoPanel::UpdateInfo()
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
 		outfits[it.first->Category()].push_back(it.first);
+
+	panelState.SelectOnly(shipIt - panelState.Ships().begin());
 }
 
 
@@ -768,10 +770,11 @@ void ShipInfoPanel::Disown()
 	if(shipIt == panelState.Ships().end() || shipIt->get() == player.Flagship())
 		return;
 
-	const Ship *ship = shipIt->get();
+	const auto ship = shipIt;
 	if(shipIt != panelState.Ships().begin())
 		--shipIt;
 
-	player.DisownShip(ship);
+	player.DisownShip(ship->get());
+	panelState.Disown(ship);
 	UpdateInfo();
 }

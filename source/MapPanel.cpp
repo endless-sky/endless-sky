@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MapPanel.h"
@@ -106,7 +109,7 @@ namespace {
 			if(!system)
 				continue;
 
-			for(const auto &outfit: hold.second.Outfits())
+			for(const auto &outfit : hold.second.Outfits())
 				// Only count a system if it actually stores outfits.
 				if(outfit.second)
 					locations[system].outfits[planet] += outfit.second;
@@ -952,7 +955,6 @@ void MapPanel::DrawTravelPlan()
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
-		bool systemJumpRange = previous->JumpRange() > 0.;
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
@@ -964,14 +966,13 @@ void MapPanel::DrawTravelPlan()
 		if(!isHyper && !isJump && !isWormhole)
 			break;
 
-		double jumpDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel(systemJumpRange ? 0. : jumpDistance) : it.first->HyperdriveFuel();
+					double cost = it.first->GetCheapestJumpType(previous, next).second;
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;
