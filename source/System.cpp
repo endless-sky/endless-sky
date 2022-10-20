@@ -825,9 +825,11 @@ double System::Danger() const
 {
 	double danger = 0.;
 	for(const auto &fleet : fleets)
-		if(auto *gov = fleet.Get()->GetGovernment())
-			if(gov->IsEnemy())
-				danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
+	{
+		auto *gov = fleet.Get()->GetGovernment();
+		if(gov && gov->IsEnemy())
+			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
+	}
 	return danger;
 }
 
