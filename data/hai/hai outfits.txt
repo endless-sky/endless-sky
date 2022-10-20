@@ -83,6 +83,7 @@ outfit "Tripulse Shredder"
 		"shield damage" 45
 		"hull damage" 34
 	description "An early stage in the development of better and faster weaponry to rival that of the Wanderers, the Tripulse Shredder is essentially just three Pulse Cannons in one single, larger housing. Integrating advances in cooling capabilities has reduced the heat production per shot significantly at the cost of drawing just a touch more power. The quicker firing speed, however, still generates much more total heat in the same time. Additionally, the single shared housing results in a less stable firing pattern."
+	description "	This weapons fires in a burst, allowing for tactics like hit and run. The Unfettered designed it with the Sea Scorpions in mind. Equipped with it, it is able to harass freighters, and even beat larger ships by dealing enormous amounts of damage before running away when they can hit back, and starting the whole process again."
 
 effect "pulse impact"
 	sprite "effect/pulse impact"
@@ -158,8 +159,8 @@ outfit "Ionic Blaster Prototype"
 		"hull damage" 30
 		"ion damage" 1
 	description "Since the beginning of their conflict with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that end, they began developing the Ionic Blaster. Much smaller than the venerable Ion Cannon but still able to apply the same weapon jamming and energy draining effects, albeit to a much lesser extent, it also has enough raw damage to be useful in all situations."
-	description "The design goal for the Ionic Blaster was to produce a smaller ion weapon that can can fill all the gun ports on Shield Beetles. The result is also small enough to be equipped on the Unfettered's new fighters."
-	description "This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
+	description "	The design goal for the Ionic Blaster was to produce a smaller ion weapon that can can fill all the gun ports on Shield Beetles. The result is also small enough to be equipped on the Unfettered's new fighters."
+	description "	This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
@@ -190,7 +191,7 @@ outfit "Ionic Turret Prototype"
 		"hull damage" 50
 		"ion damage" 14
 	description "This weapon improves upon the ionization capabilities of the Ion Cannon, while also being turret-mounted, enabling it to fire at enemies in any direction, not just those directly ahead."
-	description "This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
+	description "	This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 
 outfit "Railgun Slug"
