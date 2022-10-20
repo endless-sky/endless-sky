@@ -300,7 +300,7 @@ void Ship::Load(const DataNode &node)
 						attributes.minArc = Angle(grand.Value(1));
 						attributes.maxArc = Angle(grand.Value(2));
 						needToCheckAngles = true;
-						if(attributes.minArc.Degrees() > attributes.maxArc.Degrees())
+						if(!Angle(0).IsInRange(attributes.minArc, attributes.maxArc))
 						{
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 						}
