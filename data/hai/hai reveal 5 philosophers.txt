@@ -264,7 +264,7 @@ mission "Hai Reveal [B04] The Road Not Taken"
 				accept
 
 event "reveal devil-run"
-	system Devil-Run
+	system "Devil-Run"
 		remove hidden
 
 
