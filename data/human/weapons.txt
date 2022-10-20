@@ -51,6 +51,7 @@ outfit "Twin Blaster"
 			"facing" -0.3
 		"inaccuracy" 3
 		"lifetime" 0
+		"range override" 510
 		"reload" 12
 		"firing energy" 11.6
 		"firing heat" 36
@@ -166,6 +167,7 @@ outfit "Twin Modified Blaster"
 			"facing" -0.45
 		"inaccuracy" 4
 		"lifetime" 0
+		"range override" 480
 		"reload" 12
 		"firing energy" 13
 		"firing heat" 50.4
