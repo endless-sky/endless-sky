@@ -2809,7 +2809,7 @@ mission "Home for Skadenga 1"
 			choice
 				`	(Board the Ice-Crawler.)`
 			`	The Ice-Crawler, 'Brunhilda,' smells of oil, atmosphere, and perspiration. The confines are tight, with a padded bench area and threadbare seat-belts. There are wires and hard angles everywhere. You're careful not to get tangled in the green, white and blue wires running overhead and into the cockpit. You take a seat and strap in.`
-			`	It is only a little warmer here than it was in the maintenance dock. To your left and right are wide, scratched, and frost-rimed windows.`
+			`	It is only a little warmer here than it was in the maintenance dock. To your left and right are wide, scratched, and frost-rimmed windows.`
 			`	"Velcome. I am called Hjlod." The thickly accented woman looks back from the driver's seat. She has short blonde hair, and her face and arms are covered in long weaving blue tattoos. "I am from here. I have spent whole life traversing this tundra. I know like back of hand." She gives you a lopsided grin and then pats the steering console. "And Brunhilda here, she never let you down."`
 			`	Hjlod turns away from you and starts pulling some levers. "Now," she says, "let's begin."`
 			choice
