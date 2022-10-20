@@ -326,7 +326,7 @@ const string &Planet::Noun() const
 
 
 
-const float Planet::LandingSpeed() const
+float Planet::LandingSpeed() const
 {
 	return landingSpeed;
 }
