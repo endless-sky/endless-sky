@@ -49,7 +49,7 @@ outfit "Twin Blaster"
 		"submunition" "Blaster Submunition"
 			"offset" -1 0
 			"facing" -0.3
-		"hit effect" "blaster impact"
+		"hit effect" "blaster impact" 2
 		"inaccuracy" 3
 		"lifetime" 0
 		"range override" 510
@@ -166,7 +166,7 @@ outfit "Twin Modified Blaster"
 		"submunition" "Modified Blaster Submunition"
 			"offset" -1 0
 			"facing" -0.45
-		"hit effect" "blaster impact"
+		"hit effect" "blaster impact" 2
 		"inaccuracy" 4
 		"lifetime" 0
 		"range override" 480
