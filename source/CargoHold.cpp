@@ -617,7 +617,7 @@ int CargoHold::IllegalCargoAmount() const
 	// Find any illegal outfits inside the cargo hold.
 	for(const auto &it : outfits)
 		if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
-			count += it.second * it.first->Mass();
+			count += it.second * max(0., it.first->Mass() + it.first->Get("scan brightness"));
 
 	// Find any illegal mission cargo.
 	for(const auto &it : missionCargo)
