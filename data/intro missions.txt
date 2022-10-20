@@ -65,8 +65,8 @@ mission "Intro [0]"
 			`	"<first> <last>," you say.`
 			branch MZ
 				or
-					"name: Michael Zahniser" == 1
-					"name: M Z" == 1
+					has "name: Michael Zahniser"
+					has "name: M Z"
 			`	"I'm looking forward to traveling with you, Captain <last>," says James.`
 				goto MZend
 			label MZ
