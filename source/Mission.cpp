@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Mission.h"
@@ -16,10 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -97,6 +100,8 @@ namespace {
 				return "on visit";
 			case Mission::Trigger::WAYPOINT:
 				return "on waypoint";
+			case Mission::Trigger::DAILY:
+				return "on daily";
 			default:
 				return "unknown trigger";
 		}
@@ -168,7 +173,8 @@ void Mission::Load(const DataNode &node)
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
 				else
-					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\". They are now mission-level properties:");
+					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
+						" They are now mission-level properties:");
 			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
@@ -282,7 +288,8 @@ void Mission::Load(const DataNode &node)
 				{"defer", DEFER},
 				{"visit", VISIT},
 				{"stopover", STOPOVER},
-				{"waypoint", WAYPOINT}
+				{"waypoint", WAYPOINT},
+				{"daily", DAILY},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -408,6 +415,14 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				action.Save(out);
 	}
 	out.EndChild();
+}
+
+
+
+void Mission::NeverOffer()
+{
+	// Add the equivalent "never" condition, `"'" != 0`.
+	toOffer.Add("has", "'");
 }
 
 
@@ -669,18 +684,15 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	if(!toOffer.Test(player.Conditions()))
+	const auto &playerConditions = player.Conditions();
+	if(!toOffer.Test(playerConditions))
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 
-	if(repeat)
-	{
-		auto cit = player.Conditions().find(name + ": offered");
-		if(cit != player.Conditions().end() && cit->second >= repeat)
-			return false;
-	}
+	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
+		return false;
 
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
@@ -1320,7 +1332,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = n.Validate(true);
 	if(!reason.empty())
 	{
-		Files::LogError("Instantiation Error: NPC template in mission \""
+		Logger::LogError("Instantiation Error: NPC template in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1338,7 +1350,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(ait != actions.end())
 	{
-		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1354,7 +1366,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1370,7 +1382,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(eit != genericOnEnter.end())
 	{
-		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
+		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
