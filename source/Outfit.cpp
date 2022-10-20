@@ -419,13 +419,13 @@ uint32_t Outfit::FreePassengerBunks(uint32_t shipCrew) const
 	for(auto bunkType : bunkTypes)
 	{
 		if(GameData::GetBunkType(bunkType.first).CanHoldPassengers()
-		   && !GameData::GetBunkType(bunkType.first).CanHoldCrew())
+			&& !GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			passengerSpace += bunkType.second;
 		else if(GameData::GetBunkType(bunkType.first).CanHoldPassengers()
-				&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
+			&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			dualUseSpace += bunkType.second;
 		else if(!GameData::GetBunkType(bunkType.first).CanHoldPassengers()
-				&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
+			&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			crewSpace += bunkType.second;
 	}
 	if(shipCrew <= crewSpace)
@@ -444,10 +444,10 @@ uint32_t Outfit::FreeCrewBunks(uint32_t shipCrew) const
 	for(auto bunkType : bunkTypes)
 	{
 		if(GameData::GetBunkType(bunkType.first).CanHoldPassengers()
-		   && GameData::GetBunkType(bunkType.first).CanHoldCrew())
+			&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			dualUseSpace += bunkType.second;
 		else if(!GameData::GetBunkType(bunkType.first).CanHoldPassengers()
-				&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
+			&& GameData::GetBunkType(bunkType.first).CanHoldCrew())
 			crewSpace += bunkType.second;
 	}
 	if(shipCrew <= crewSpace + dualUseSpace)
