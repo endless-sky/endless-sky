@@ -25,6 +25,14 @@ BunkType::BunkType(string name, bool crew, bool passengers)
 
 
 
+string BunkType::Name() const
+{
+	return typeName;
+}
+
+
+
+
 bool BunkType::CanHoldCrew() const
 {
 	return canHoldCrew;
