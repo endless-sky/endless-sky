@@ -132,7 +132,7 @@ mission "Pookie, Part 3"
 					decline
 			label begin
 			`	You wade through the mud as you approach the complex. At its entrance is a stout woman in a black uniform holding a shotgun. When she sees you, she looks at a list in her hand, before saying, "You're alright. Feel free to come in."`
-			`	The inside of the racing complex is packed to capacity. Around you is a swarm of elbows and shoulders, jutting into you while worming your way through the crowd. The sounds of rancorous conversation blend in with the pounding of rain on the roof as you glimpse a sight of the main attraction: a large, fenced-off oval. White lines inside the area form racing lanes, and arranged on the far side of the track are four cages covered with cloth.`
+			`	The inside of the racing complex is packed to capacity. Around you is a swarm of elbows and shoulders, jutting into you while you worm your way through the crowd. The sounds of rancorous conversation blend in with the pounding of rain on the roof as you glimpse a sight of the main attraction: a large, fenced-off oval. White lines inside the area form racing lanes, and arranged on the far side of the track are four cages covered with cloth.`
 			`	As you reach the boundary of the track, a loud siren fills the air, causing the crowd to fall silent.`
 			choice
 				`	"What's going on?"`
