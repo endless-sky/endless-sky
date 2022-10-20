@@ -157,9 +157,9 @@ outfit "Twin Modified Blaster"
 	weapon
 		sound "mod blaster"
 		"submunition" "Modified Blaster Submunition"
-			"offset" 3 0
+			"offset" 1.5 0
 		"submunition" "Modified Blaster Submunition"
-			"offset" -3 0
+			"offset" -1.5 0
 		"inaccuracy" 4
 		"lifetime" 0
 		"reload" 12
