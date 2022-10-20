@@ -29,6 +29,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	const map<string, float> LANDING_SPEED = {
+		{"very slow landing", .8f},
+		{"slow landing", .9f},
+		{"fast landing", 1.1f},
+		{"very fast landing", 1.2f},
+		{"normal landing", 1.f}
+	};
 	const string WORMHOLE = "wormhole";
 	const string PLANET = "planet";
 
@@ -114,6 +121,8 @@ void Planet::Load(const DataNode &node)
 				security = 0.;
 			else if(key == "tribute")
 				tribute = 0;
+			else if(key == "landing speed")
+				landingSpeed = 0.f;
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -169,6 +178,8 @@ void Planet::Load(const DataNode &node)
 			text += value;
 			text += '\n';
 		}
+		else if(key == "landing speed")
+			landingSpeed = LANDING_SPEED[value];
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "required reputation")
@@ -311,6 +322,13 @@ const string &Planet::Noun() const
 			return attribute;
 
 	return PLANET;
+}
+
+
+
+const float Planet::LandingSpeed() const
+{
+	return landingSpeed;
 }
 
 

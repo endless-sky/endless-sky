@@ -64,6 +64,10 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
+	// Return the speed at which we should land on this planet. If it is not set,
+	// returns 0.f
+	const float LandingSpeed() const;
+
 	// Check whether there is a spaceport (which implies there is also trading,
 	// jobs, banking, and hiring).
 	bool HasSpaceport() const;
@@ -153,6 +157,7 @@ private:
 	mutable Sale<Outfit> outfitter;
 
 	const Government *government = nullptr;
+	float landingSpeed = 0.f;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;
