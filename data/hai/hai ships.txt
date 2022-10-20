@@ -93,8 +93,8 @@ ship Antlion
 	explode "small explosion" 40
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
-	description "This ship was built near the end of the Korath raids, as a ship fast enough to catch the Koraths and delay them. Whilst it could not beat a raider alone, using energy weapons and its drones it can hold its own until cavalry arrives, and sometimes even win the fight, if lucky. It is not able to substain prolonged combat, but it is now renowned for attacking vulnerable targets in human space and disappearing away before anyone can react, as if always one move ahead."
-	description "As the raids ended and the Unfettered conflict arrose, this ship turned out to be less useful than planned, and was stolen by Mercenaries, who choose to remain neutral in this conflict."
+	description "This ship was built near the end of the Korath raids to be fast enough to catch and delay the raiders of the time. Whilst ordinarily it could not defeat one alone, its energy weapons and drones let it hold its own until cavalry arrived, and sometimes even win the fight if lucky. It is not able to sustain prolonged combat, but it is now renowned for attacking vulnerable targets in human space and disappearing before anyone can react, as if always one move ahead."
+	description "When the raids suddenly ended, this ship turned out to be less useful in the subsequent Unfettered conflict, and was stolen by Mercenaries who chose to remain neutral in the conflict."
 
 
 ship "Aphid"
@@ -1505,7 +1505,7 @@ ship "Stag Beetle"
 	explode "large explosion" 55
 	explode "huge explosion" 25
 	"final explode" "final explosion large"
-	description "This ship was built from the remains of a Korath raider that harassed the Unfettered one too many times, using its cloaking device to its advantage. Although it does suffer from higher mass than a normal shield beetle, it also enjoys a more resilient hull and shield matrix."
+	description "At the core of this vessel are the ancient remains of a Korath raider that, despite making good use of a cloaking device, harassed the Unfettered one too many times. Although it does suffer from higher mass than a normal shield beetle, it also enjoys a more resilient hull and shield matrix."
 	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
 
 
