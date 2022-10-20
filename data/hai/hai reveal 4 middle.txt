@@ -658,6 +658,44 @@ mission "Pirate Troubles [4]"
 
 
 
+# Blame Amazinite for this. They can proc at the same time if you fly around a bunch, but generally shouldn't.
+mission "Hai Reveal [A03b]"
+	invisible
+	source
+		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
+		attributes "spaceport"
+	to offer
+		# You will only trigger this before A04 if you've already done Pirate Troubles.
+		has "Hai Reveal [A03a] Symbol Identification: offered"
+		or
+			has "Pirate Troubles [4]: done"
+			has "Pirate Troubles [4]: declined"
+		not "Hai Reveal [A04] Report to Teeneep: offered"
+	on offer
+		dialog `You have already completed the Pirate Troubles mission line which is now part of this story, and are seeing this because you're playing an older save. In it you tracked down Scar's Legion and either took them tribute from the Hai, or destroyed them. Your choices there will be considered in the story here.`
+
+
+# This also.
+mission "Hai Reveal [A03c] Report to Teeneep"
+	landing
+	name "Report to Teeneep"
+	description `Tell Teeneep about the experience with Scar's Legion.`
+	source government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
+		attributes "spaceport"
+	destination Darkwaste
+	to offer
+		or
+			has "Hai Reveal [A03b]: offered"
+			has "Hai Reveal [A04] Report to Teeneep: offered"
+		or
+			has "Pirate Troubles [4]: done"
+			has "Pirate Troubles [4]: declined"
+		not "alondo symbol timer"
+	on offer
+		dialog `You are playing a save which has tripped up an issue from being on the continuous build. You have been given a mission marker to resume safely.`
+
+
+
 mission "Hai Reveal [A04] Report to Teeneep"
 	landing
 	name "Report to Teeneep"
@@ -665,6 +703,7 @@ mission "Hai Reveal [A04] Report to Teeneep"
 	source Hai-home
 	destination Darkwaste
 	to offer
+		has "alondo symbol timer"
 		or
 			has "Pirate Troubles [4]: done"
 			has "Pirate Troubles [4]: declined"
@@ -683,6 +722,10 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste, you should return when your spare bunks are unoccupied.`
 	to offer
 		has "Hai Reveal [A04] Report to Teeneep: done"
+		has "alondo symbol timer"
+		or
+			has "Hai Reveal [A04] Report to Teeneep: done"
+			has "Hai Reveal [A03b] Report to Teeneep: offered"
 	on visit
 		dialog `Teeneep is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
