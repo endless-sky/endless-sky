@@ -81,6 +81,7 @@ const float StellarObject::LandingSpeed() const
 {
 	if(!HasValidPlanet())
 		return 0.f;
+
 	float landingSpeed = GetPlanet()->LandingSpeed();
 	return landingSpeed ? landingSpeed : IsMoon() ? 1.1f : IsStation() ? 1.2f : 1.f;
 }
