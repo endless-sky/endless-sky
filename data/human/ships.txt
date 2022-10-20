@@ -1606,9 +1606,9 @@ ship "Flivver"
 		"drag" 1.0
 		"heat dissipation" .9
 		"fuel capacity" 500
-		"cargo space" 5
+		"cargo space" 15
 		"outfit space" 130
-		"weapon capacity" 25
+		"weapon capacity" 16
 		"engine capacity" 45
 		weapon
 			"blast radius" 16
@@ -1616,8 +1616,6 @@ ship "Flivver"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Meteor Missile Pod" 2
-		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
 		"KP-6 Photovoltaic Panel" 3
@@ -3058,7 +3056,7 @@ ship "Sparrow"
 	attributes
 		category "Interceptor"
 		"cost" 225000
-		"shields" 1200
+		"shields" 1400
 		"hull" 300
 		"required crew" 1
 		"bunks" 3
@@ -3068,7 +3066,7 @@ ship "Sparrow"
 		"fuel capacity" 300
 		"cargo space" 15
 		"outfit space" 130
-		"weapon capacity" 20
+		"weapon capacity" 25
 		"engine capacity" 40
 		weapon
 			"blast radius" 16

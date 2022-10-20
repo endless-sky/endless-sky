@@ -487,6 +487,24 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
+Files
+ sounds/pincer*
+Copyright: Nomadic Volcano (nomadicvolcano@gmail.com)
+License: GPL-2
+Comment: Nomadic Volcano modified these from Battle for Wesnoth (https://www.wesnoth.org) sounds, which are copyright David White <dave@whitevine.net> under GPL 2 or later.
+
+Files:
+ images/*/pincer*
+Copyright: None; CC0 (Public Domain)
+License: None; CC0 (Public Domain)
+Comment: Textures by https://texture.ninja, other art by NomadicVolcano (nomadicvolcano@gmail.com).
+
+Files:
+ images/planet/rogue-radiating*
+Copyright: None; CC0 (Public Domain)
+License: None; CC0 (Public Domain)
+Comment: Created by NomadicVolcano (nomadicvolcano@gmail.com)
+
 Files: images/outfit/railslug?rack*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
@@ -1065,6 +1083,26 @@ Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
+Files
+ images/ship/hai?ladybug*
+ images/thumbnail/hai?ladybug*
+ images/planet/station?hai?eight?geocoris*
+Copyright: None (CC0: Public Domain)
+License: CC0: Public Domain
+Comment: Made by Nomadic Volcano with textures from texture.ninja.
+
+Files
+ images/planet/wormhole-syndicate-ad*
+Copyright: NomadicVolcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license)
+
+Files
+ images/planet/station?hai?geocoris*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: rotate, flip, scale the "images/thumbnail/hai geocoris@2x.png" by Michael Zahniser (under the same license)
+
 Files:
  image/effect/firestorm?ring*
 Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
@@ -1560,6 +1598,7 @@ Files:
  images/ship/mule*
  images/ship/squall*
  images/ship/sunder*
+ images/ship/swan*
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
  images/thumbnail/hailstone*
@@ -1571,6 +1610,7 @@ Files:
  images/thumbnail/mule*
  images/thumbnail/squall*
  images/thumbnail/sunder*
+ images/thumbnail/swan*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -1753,6 +1793,13 @@ Files:
 Copyright: Brian Swift
 License: CC-BY-SA-4.0
 Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
+
+Files:
+ images/outfit/twin?blaster*
+ images/outfit/twin?mod?blaster*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
