@@ -257,69 +257,69 @@ mission "Unfettered: Alpha Business"
 		dialog `As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast. And do not interfere with that incoming ship."`
 
 
-
-mission "Unfettered: Pirate Help"
-	landing
-	name `Help the pirates.`
-	description `Once you are strong enough, go to Hai-home and convince the governor to let you help them with their pirate problem. You will instead find a way to help the pirates.`
-	source "Warfeed"
-	stopover "Allhome"
-	to offer
-		has "Unfettered: Escort Hai Fleet: done"
-		not "Pirate Troubles [0]: offered"
-		has "reputation: Hai" >= 0
-	on offer
-		conversation
-			`Entering the spaceport, you quickly find Nimo. He looks relieved you are here and that you have arrived safe and well with the convoy. It seems like he speaks to you with more respect than before. "Finally, you have arrived. When I heard about the unfettered human attack, I was worried sick."`
-			choice
-				`	"It takes more than a few pirates to scare me off."`
-					goto strong
-				`	"I almost did not make it back alive. That was a tough battle."`
-				`	"We had to run for our lives."`
-					goto run
-			`	"Close call, I see. Maybe the Hai should assign a slightly larger fleet next time... Or maybe you yourself need more ships."`
-				goto attacks
-			label run
-			`	"Oh, I may have overestimated your abilities then. You should wait a while before doing what I am about to ask, because it will require some strength."`
-				goto attacks
-			label strong
-			`	"Perfect! That means you should be ready for what I am about to ask you."`
-			label attacks
-			`	"I do not know much about warfare, but we Chiefs often speak with the warlords, who are charged with military responsibilities, among other things. One such warlord spoke to me about the unfettered human attacks, and suggested an idea. Finding a way to focus these pirates to attack elsewhere means the Hai will have fewer ships available on our border."`
-			choice
-				`	"You mean you want me to help these pirates?"`
-					goto help
-				`	"Are you planning an offensive on the Hai?"`
-			`	"Absolutely not, but as you know, we are planning an offensive to the north of our space, and it would be better if we did not have to leave too many ships behind on the border with the Hai." This does indeed make sense tactically. The warlord must have been forced to justify his position in order to convince Nimo to do such a thing, which may result in casualties on the Hai side.`
-				goto next
-			label help
-			`	"Indeed. We need you to find some way to help them, so they can disrupt the Hai operations even more. This way, we do not have to keep too many of our ships on the Hai border."`
-			label next
-			choice
-				`	"All of this seems a bit vague to me. What exactly are you proposing?"`
-			`	"Once you are strong enough, we want you to go to Allhome, which is on the border with the unfettered humans coming from the wormhole. Once there, speak to the local governor, ask him if he has any... issues with unfettered humans. Then you will find those 'pirates', as you call them, and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however, it will take even more defenders if the unfettered humans are well-equipped with Hai technology."`
-			choice
-				`	"How will I convince the Hai I'm there to help them?"`
-			`	"I hear those unfettered human attacks are very frequent these days... And that planet is on the border of Hai space. It is a very likely target for any pirates. I also have information indicating an attack will come, soon. It should be easy to arrange. Help them repel the attack and they will most likely trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet."`
-			choice
-				`	"I will go to Allhome and help them resist the attack, once I am strong enough to beat part of a pirate fleet."`
-					accept
-				`	"I'm not interested in doing this."`
-					decline
-	to fail
-		has "defeated scar's legion"
-	on fail
-		dialog `You have decided to side with the Hai on this. As this mission was not official, there will probably not be any consequences in your relations with the Unfettered. Still, do not expect any payment from them.`
-	on visit
-		dialog `Go to the spaceport to talk to the local authorities on <stopovers> about the pirate problem.`
-	to complete
-		has "accepted scar's legion tribute"
-		has "Pirate Troubles [4]: done"
-	on complete
-		log `Convinced the Hai government to supply Scar's Legion with their technology. They believe it would bring an end to the pirate attacks, while, in reality, their attacks will only intensify, as requested by the Unfettered.`
-		"reputation: Scar's Legion" >?= 1
-		payment 500000
-		dialog `The Unfettered authorities thank you for deceiving the Hai and give you a payment of <payment>.`
+# TEMPORARILY DISABLED UNTIL HR SITUATION WITH PIRATES IS CLEARED OUT
+# mission "Unfettered: Pirate Help"
+# 	landing
+# 	name `Help the pirates.`
+# 	description `Once you are strong enough, go to Hai-home and convince the governor to let you help them with their pirate problem. You will instead find a way to help the pirates.`
+# 	source "Warfeed"
+# 	stopover "Allhome"
+# 	to offer
+# 		has "Unfettered: Escort Hai Fleet: done"
+# 		not "Pirate Troubles [0]: offered"
+# 		has "reputation: Hai" >= 0
+# 	on offer
+# 		conversation
+# 			`Entering the spaceport, you quickly find Nimo. He looks relieved you are here and that you have arrived safe and well with the convoy. It seems like he speaks to you with more respect than before. "Finally, you have arrived. When I heard about the unfettered human attack, I was worried sick."`
+# 			choice
+# 				`	"It takes more than a few pirates to scare me off."`
+# 					goto strong
+# 				`	"I almost did not make it back alive. That was a tough battle."`
+# 				`	"We had to run for our lives."`
+# 					goto run
+# 			`	"Close call, I see. Maybe the Hai should assign a slightly larger fleet next time... Or maybe you yourself need more ships."`
+# 				goto attacks
+# 			label run
+# 			`	"Oh, I may have overestimated your abilities then. You should wait a while before doing what I am about to ask, because it will require some strength."`
+# 				goto attacks
+# 			label strong
+# 			`	"Perfect! That means you should be ready for what I am about to ask you."`
+# 			label attacks
+# 			`	"I do not know much about warfare, but we Chiefs often speak with the warlords, who are charged with military responsibilities, among other things. One such warlord spoke to me about the unfettered human attacks, and suggested an idea. Finding a way to focus these pirates to attack elsewhere means the Hai will have fewer ships available on our border."`
+# 			choice
+# 				`	"You mean you want me to help these pirates?"`
+# 					goto help
+# 				`	"Are you planning an offensive on the Hai?"`
+# 			`	"Absolutely not, but as you know, we are planning an offensive to the north of our space, and it would be better if we did not have to leave too many ships behind on the border with the Hai." This does indeed make sense tactically. The warlord must have been forced to justify his position in order to convince Nimo to do such a thing, which may result in casualties on the Hai side.`
+# 				goto next
+# 			label help
+# 			`	"Indeed. We need you to find some way to help them, so they can disrupt the Hai operations even more. This way, we do not have to keep too many of our ships on the Hai border."`
+# 			label next
+# 			choice
+# 				`	"All of this seems a bit vague to me. What exactly are you proposing?"`
+# 			`	"Once you are strong enough, we want you to go to Allhome, which is on the border with the unfettered humans coming from the wormhole. Once there, speak to the local governor, ask him if he has any... issues with unfettered humans. Then you will find those 'pirates', as you call them, and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however, it will take even more defenders if the unfettered humans are well-equipped with Hai technology."`
+# 			choice
+# 				`	"How will I convince the Hai I'm there to help them?"`
+# 			`	"I hear those unfettered human attacks are very frequent these days... And that planet is on the border of Hai space. It is a very likely target for any pirates. I also have information indicating an attack will come, soon. It should be easy to arrange. Help them repel the attack and they will most likely trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet."`
+# 			choice
+# 				`	"I will go to Allhome and help them resist the attack, once I am strong enough to beat part of a pirate fleet."`
+# 					accept
+# 				`	"I'm not interested in doing this."`
+# 					decline
+# 	to fail
+# 		has "defeated scar's legion"
+# 	on fail
+# 		dialog `You have decided to side with the Hai on this. As this mission was not official, there will probably not be any consequences in your relations with the Unfettered. Still, do not expect any payment from them.`
+# 	on visit
+# 		dialog `Go to the spaceport to talk to the local authorities on <stopovers> about the pirate problem.`
+# 	to complete
+# 		has "accepted scar's legion tribute"
+# 		has "Pirate Troubles [4]: done"
+# 	on complete
+# 		log `Convinced the Hai government to supply Scar's Legion with their technology. They believe it would bring an end to the pirate attacks, while, in reality, their attacks will only intensify, as requested by the Unfettered.`
+# 		"reputation: Scar's Legion" >?= 1
+# 		payment 500000
+# 		dialog `The Unfettered authorities thank you for deceiving the Hai and give you a payment of <payment>.`
 
 
 
