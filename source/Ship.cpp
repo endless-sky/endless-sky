@@ -722,6 +722,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		attributes.Set("drag", 100.);
 	}
 
+	// Only the player's ships make use of attraction and deterrence.
 	if(IsYours())
 	{
 		attraction = CalculateAttraction();
@@ -3699,6 +3700,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->IsWeapon())
 		{
 			armament.Add(outfit, count);
+			// Only the player's ships make use of attraction and deterrence.
 			if(IsYours())
 				deterrence = CalculateDeterrence();
 		}
@@ -3706,6 +3708,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->Get("cargo space"))
 		{
 			cargo.SetSize(attributes.Get("cargo space"));
+			// Only the player's ships make use of attraction and deterrence.
 			if(IsYours())
 				attraction = CalculateAttraction();
 		}
@@ -3795,6 +3798,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
+		// Only the player's ships make use of attraction and deterrence.
 		if(IsYours() && !OutfitCount(ammo) && ammo->AmmoUsage())
 			deterrence = CalculateDeterrence();
 	}
