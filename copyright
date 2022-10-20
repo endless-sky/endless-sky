@@ -1611,6 +1611,7 @@ Files:
  images/ship/mule*
  images/ship/squall*
  images/ship/sunder*
+ images/ship/swan*
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
  images/thumbnail/hailstone*
@@ -1622,6 +1623,7 @@ Files:
  images/thumbnail/mule*
  images/thumbnail/squall*
  images/thumbnail/sunder*
+ images/thumbnail/swan*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -1804,6 +1806,13 @@ Files:
 Copyright: Brian Swift
 License: CC-BY-SA-4.0
 Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
+
+Files:
+ images/outfit/twin?blaster*
+ images/outfit/twin?mod?blaster*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

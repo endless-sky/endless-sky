@@ -875,6 +875,7 @@ outfit "Void Rifle"
 
 
 outfit "Void Sprite Parts"
+	plural "Void Sprite Parts"
 	category "Unique"
 	cost 500
 	thumbnail "outfit/mouthparts"

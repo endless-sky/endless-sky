@@ -478,6 +478,23 @@ mission "Unfettered Tribute 3"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
+mission "Unfettered Jump Drive 4"
+	job
+	repeat
+	name "Sell Jump Drive"
+	description "Exchange a jump drive for a million credits."
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Jump Drive 3: offered"
+		not "event: wanderers: unfettered invasion starts"
+	on accept
+		dialog "As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them."
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		payment 1000000
+		"reputation: Hai (Unfettered)" >?= 40
+		fail
 
 
 mission "Delivery to Human Space [0]"
