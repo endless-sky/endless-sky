@@ -4249,8 +4249,8 @@ void Ship::CalculateLandingSpeed()
 	const float mass = Mass();
 	const float shipLandingSpeed = attributes.Get("landing speed");
 
-	const StellarObject *planet = landingPlanet->GetSystem()->FindStellar(landingPlanet);
-	const float planetLandingSpeed = planet->LandingSpeed();
+	const StellarObject *object = landingPlanet->GetSystem()->FindStellar(landingPlanet);
+	const float planetLandingSpeed = object->LandingSpeed();
 
 	// Ships with mass under 43 will land with fixed speed,
 	// and heavier ones will land progressively slower.
