@@ -228,15 +228,15 @@ ship "Marauder Falcon"
 		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
-		"required crew" 43
-		"bunks" 80
+		"required crew" 57
+		"bunks" 96
 		"mass" 560
 		"drag" 6.7
 		"heat dissipation" .8
 		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 265
+		"cargo space" 80
+		"outfit space" 620
+		"weapon capacity" 275
 		"engine capacity" 165
 		"self destruct" .15
 		weapon
@@ -477,8 +477,8 @@ ship "Marauder Leviathan"
 		"hull" 5500
 		"required crew" 48
 		"bunks" 69
-		"mass" 640
-		"drag" 7.6
+		"mass" 680
+		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 40
