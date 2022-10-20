@@ -32,10 +32,8 @@ mission "Hai Reveal [C01] Cleanup"
 			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. Word has traveled ahead of you through the new message links, and you are greeted by a hastily planned celebration in the capitol. After a few hours involving a brief formal parade, a great deal of cheering, some minor speeches with Xilin and Alondo trotted out to reassure everyone that there would be no conflict, and finally some more discrete parties outside the public eye, General Choot'k comes to you and Teeneep to bid his farewell.`
 			`	He shakes your hand and says, "You're a fine warrior, Captain <last>. You are as much a True Hai as any human can be, and it was an honor to fight alongside you in battle."`
 			`	Then he turns to Teeneep and tells her, "You're the future leader of all our people, Teeneep. Come back with me to Darkcloak. Join the True Hai and lead us to victory."`
-			`	Teeneep smiles and says, "I have already joined the True Hai in spirit, but my fight is here. I fight for the hearts and minds of our Fettered brethren. One day they will know the True Hai as I do, and we will be one."`
-			`	The two come close and look into each other's eyes for a moment before kissing. You're surprised at how complicated open-mouth kissing is when both participants have finger-length incisors.`
-			choice
-				`	(Give them some privacy.)`
+			`	Teeneep smiles and says, "My fight is here general. I fight for the hearts and minds of our Fettered brethren that we may find a true path. One day again we will be one people."`
+			`	Teeneep is quiet for a while after he departs, but soon enough the statesperson in her has walked you back into the celebrations, making sure to leave you with Sayari so she can keep you from embarrassing yourself.`
 			`	You're nursing the warmth of a beverage after breakfast the next morning on far too little sleep when your communicator pings. When it turns out to be Sayari, you take a moment to thank your body clock for ensuring you were already dressed and decent today, despite the suffering over it.`
 			`	"So glad to see that you've pulled up alright this morning," she says. "As one final thing, we all need to go and meet the human leaders on Mountaintop and finally close the book on this chapter. We could take any ship at this point, but I cannot overstate how much you've helped us. I thought you might like to see it through to the end."`
 			`	"We'll be ready to go in a couple of hours. What do you say?"`
@@ -52,8 +50,8 @@ mission "Hai Reveal [C01] Cleanup"
 		log `Have learned that during the crisis a single ship loaded with kidnapped Hai was misplaced and abandoned. They require rescue and may indicate the presence of a loose end.`
 		conversation
 			`Arriving on Mountaintop brings with it full diplomatic regalia. The Chancellor of the Free Worlds and President of the Republic are in their most respectable suits, Alondo and Xilin have the traditional symbols of office (though Alondo's looks like the Free Worlds have perhaps not finalized their design just yet), and dress uniforms laden with medals abound on both sides.`
-			`	When you ask around, you find out that Terry is not invited to such an event, as the Syndicate is technically part of the Republic and awarded no special diplomatic status. "Besides," Xilin mentions, "Terry left the station as soon as she was released at the end of the crisis."`
-			`	It seems this station has seen serious renovations in the past weeks. You find yourself standing with the diplomats in the grand Borealis Chamber, "Where Mountains Touch The Sky," as Teeneep makes the first publicly broadcast speech from the Hai to humanity. The three heads of state announce a resolution granting safe passage to all Hai in human space, as long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety. This meeting will now turn into a multi-day summit to discuss the creation of a formal treaty. The process will take a number of days.`
+			`	When you ask around, you find out that Remington and Terry are not invited to such an event, as the Syndicate is technically part of the Republic and awarded no special diplomatic status. "Besides," Xilin mentions, "Terry seems to have disappeared from Syndicate communications, thought I won't hazard a guess as to their internal politics."`
+			`	It seems this station has seen serious renovations in the past weeks. You find yourself standing with the diplomats in a room now called the grand Borealis Chamber, "Where Mountains Touch The Sky," as Teeneep makes the first publicly broadcast speech from the Hai to humanity. The three heads of state announce a resolution granting safe passage to all Hai in human space, as long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety. This meeting will now turn into a multi-day summit to discuss the creation of a formal treaty. The process will take a number of days.`
 			choice
 				`	(Relax.)`
 			`Just  as you finish breakfast, when you think that maybe you'll be able to get on with your own life, there's a knock on the door of your station quarters. A slightly sheepish looking Sayari and Xilin are waiting for you when you open the door.`
@@ -61,7 +59,7 @@ mission "Hai Reveal [C01] Cleanup"
 			`	You feel the deepest of sighs settle into your bones, but at this point you just gesture them inside. It would have been too easy if it was all over, wouldn't it?`
 			`	"It seems that somewhere along the way, a shipload of kidnapped Hai didn't make it to a processing area. The Hai were left on Sunracer, and the ship appears to have disappeared," begins Xilin.`
 			`	"For the moment," says Sayari, "We're the only ones who know about it. The Hai are in hiding but have tapped into a communication grid. I intercepted their transmission as it was routed through this station directly."`
-			`	Xilin looks at you pointedly. "We need you to go pick them up and bring them here. While you're at it make sure the threat really is ended. If it's not, this resolution may not happen, despite everything we've achieved."`
+			`	Xilin looks at you pointedly. "We need you to go pick them up and bring them here. While you're at it make sure there aren't any loose ends. If it's not, this resolution may not happen, despite everything we've achieved."`
 			choice
 				`	"Of course. I'll take care of it."`
 			`	You look from Xilin to Sayari and do your best to look like this isn't totally ruining the lovely breakfast you just had.`
@@ -148,7 +146,7 @@ mission "Hai Reveal [C02] Cleanup"
 			`	"The woman was very fierce and very strict about what people said aloud. She disciplined a number of our kidnappers in front of us for opening their mouths at the wrong time. We have no idea where they went, but we did hear one of them say that they were afraid they wouldn't be welcome there. It sounded like it was out of the way somewhere, wherever it was."`
 				goto responses
 			label depart
-			`	The Hai sincerely thanks you, and they load their meager possessions and board your ship in less than twenty minutes. The Star Barge isn't in good shape after being lived in instead of flown, so you leave it behind.`
+			`	The Hai sincerely thanks you, and they load their meager possessions and board your ship in less than twenty minutes. The Star Barge isn't in good shape after being lived in instead of flown, so you leave it behind. The woman they described is almost undoubtedly Terry.`
 
 
 mission "Hai Reveal [C02A] Cleanup"
@@ -179,7 +177,7 @@ mission "Hai Reveal [C03] Cleanup"
 			`	While your passengers are quietly loaded onto a handful of transports to be taken home, Sayari and Xilin find you somewhere quiet. "Thank you, <last>. You had all the necessary discretion at this sensitive time," says Sayari.`
 			`	Xilin is more direct, "I'll certainly thank you for saving me from another headache. Was there anything else you found? It seems so odd."`
 			choice
-				`	"There is something, but I'm not totally sure."`
+				`	"There is something, but I should deal with it myself."`
 			`	They both frown and huddle in closer. "Do you think some of the kidnappers escaped? Do you think they'll continue?" asks Sayari.`
 			choice
 				`	"No, but I think there's one thing I should check out."`
