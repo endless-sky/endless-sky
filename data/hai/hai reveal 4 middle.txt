@@ -222,7 +222,7 @@ mission "Hai Reveal [A03a2]"
 
 
 
-mission "Hai Reveal: Hai Reveal: Pirate Troubles [0]"
+mission "Hai Reveal: Pirate Troubles [0]"
 	name "Defend <system>"
 	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
 	source
@@ -279,7 +279,7 @@ mission "Hai Reveal: Hai Reveal: Pirate Troubles [0]"
 
 
 # If older mission chain was done: Need to remove the planet the asteroid orbits, then re-add it without the landable location to reset.
-mission "Hai Reveal: Hai Reveal: Pirate Troubles [0a]"
+mission "Hai Reveal: Pirate Troubles [0a]"
 	invisible
 	source
 		near "Waypoint" 3
@@ -287,7 +287,7 @@ mission "Hai Reveal: Hai Reveal: Pirate Troubles [0a]"
 		not planet "Allhome"
 	to offer
 		has "Pirate Troubles [0]: done"
-		has "Hai Reveal: Hai Reveal: Pirate Troubles [0]: offered"
+		has "Hai Reveal: Pirate Troubles [0]: offered"
 	on offer
 		event "clean danoa"
 
@@ -686,47 +686,6 @@ mission "Hai Reveal: Pirate Troubles [4]"
 		"reputation: Hai Merchant (Sympathizers)" += 40
 		payment 500000
 		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
-
-
-
-# Temporarily keeping all of this in comments in case I need to draw upon similar functionality in the near future.
-
-# Blame Amazinite for this. They can proc at the same time if you fly around a bunch, but generally shouldn't.
-#mission "Hai Reveal [A03b]"
-#	invisible
-#	source
-#		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
-#		attributes "spaceport"
-#	to offer
-#		# You will only trigger this before A04 if you've already done Hai Reveal: Pirate Troubles.
-#		has "Hai Reveal [A03a] Symbol Identification: offered"
-#		or
-#			has "Hai Reveal: Pirate Troubles [4]: done"
-#			has "Hai Reveal: Pirate Troubles [4]: declined"
-#		not "Hai Reveal [A04] Report to Teeneep: offered"
-#	on offer
-#		dialog `You have already completed the Hai Reveal: Pirate Troubles mission line which is now part of this story, and are seeing this because you're playing an older save. In it you tracked down Scar's Legion and either took them tribute from the Hai, or destroyed them. Your choices there will be considered in the story here.`
-#
-#
-# This also.
-#mission "Hai Reveal [A03c] Report to Teeneep"
-#	landing
-#	name "Report to Teeneep"
-#	description `Tell Teeneep about the experience with Scar's Legion.`
-#	source
-#		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
-#		attributes "spaceport"
-#	destination Darkwaste
-#	to offer
-#		or
-#			has "Hai Reveal [A03b]: offered"
-#			has "Hai Reveal [A04] Report to Teeneep: offered"
-#		or
-#			has "Pirate Troubles [4]: done"
-#			has "Pirate Troubles [4]: declined"
-#		not "alondo symbol timer"
-#	on offer
-#		dialog `You are playing a save which has tripped up an issue from being on the continuous build. You have been given a mission marker to resume safely.`
 
 
 
