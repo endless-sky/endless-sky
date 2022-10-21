@@ -162,9 +162,9 @@ void Preferences::ToggleDateFormat()
 
 
 
-string Preferences::DateFormat()
+Preferences::DateFormat Preferences::GetDateFormat()
 {
-	return DATEFMT_OPTIONS[dateFormatIndex];
+	return static_cast<DateFormat>(dateFormatIndex);
 }
 
 

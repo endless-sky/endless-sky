@@ -535,12 +535,12 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::AmmoUsage();
 		else if(setting == DATE_FORMAT)
 		{
-			string datefmtShortName = Preferences::DateFormat();
-			if(datefmtShortName == "ymd")
+			Preferences::DateFormat datefmtShortName = Preferences::GetDateFormat();
+			if(datefmtShortName == Preferences::DateFormat::ymd)
 				text = "YYYY-MM-DD";
-			else if(datefmtShortName == "dmy")
+			else if(datefmtShortName == Preferences::DateFormat::dmy)
 				text = "DD/MM/YYYY";
-			else if(datefmtShortName == "mdy")
+			else if(datefmtShortName == Preferences::DateFormat::mdy)
 				text = "MM/DD/YYYY";
 		}
 		else if(setting == TURRET_TRACKING)

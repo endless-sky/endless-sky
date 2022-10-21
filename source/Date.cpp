@@ -34,7 +34,7 @@ namespace {
 		return DAY[day];
 	}
 
-	string dateFormatInUse = "dmy";
+	Preferences::DateFormat dateFormatInUse = Preferences::DateFormat::dmy;
 }
 
 
@@ -52,7 +52,7 @@ Date::Date(int day, int month, int year)
 // Convert a date to a string.
 const string &Date::ToString() const
 {
-	string dateFormat = Preferences::DateFormat();
+	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();
 
 	if(dateFormat != dateFormatInUse)
 	{
@@ -71,7 +71,7 @@ const string &Date::ToString() const
 		static const string MONTH[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-		if(dateFormat == "ymd")
+		if(dateFormat == Preferences::DateFormat::ymd)
 		{
 			str.append(to_string(year));
 			str.append("-");
@@ -83,7 +83,7 @@ const string &Date::ToString() const
 				str.append("0");
 			str.append(to_string(day));
 		}
-		else if(dateFormat == "mdy")
+		else if(dateFormat == Preferences::DateFormat::mdy)
 		{
 			str = Weekday(day, month, year);
 			str.append(" ");
@@ -93,7 +93,7 @@ const string &Date::ToString() const
 			str.append(", ");
 			str.append(to_string(year));
 		}
-		else if(dateFormat == "dmy")
+		else if(dateFormat == Preferences::DateFormat::dmy)
 		{
 			str = Weekday(day, month, year);
 			str.append(", ");
@@ -153,16 +153,16 @@ string Date::LongString() const
 	};
 	string month = MONTH[Month() - 1];
 
-	string dateFormat = Preferences::DateFormat();
+	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();
 
 
-	if (dateFormat == "ymd" || dateFormat == "mdy")
+	if (dateFormat == Preferences::DateFormat::ymd || dateFormat == Preferences::DateFormat::mdy)
 	{
 		result += month;
 		result += " ";
 		result += dayString;
 	}
-	else if (dateFormat == "dmy")
+	else if (dateFormat == Preferences::DateFormat::dmy)
 	{
 		result += dayString;
 		result += " of ";

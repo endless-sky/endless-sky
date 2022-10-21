@@ -28,6 +28,12 @@ public:
 		adaptive,
 	};
 
+	enum class DateFormat : int {
+		dmy = 0,
+		mdy,
+		ymd
+	};
+
 
 public:
 	static void Load();
@@ -43,7 +49,7 @@ public:
 
 	// Date format preferences
 	static void ToggleDateFormat();
-	static std::string DateFormat();
+	static Preferences::DateFormat GetDateFormat();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();
