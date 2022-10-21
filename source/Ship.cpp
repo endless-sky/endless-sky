@@ -492,6 +492,17 @@ void Ship::Load(const DataNode &node)
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	// If no plural model name was given, default to the model name with an 's' appended.
+	// If the model name ends with an 's', print a warning because the default plural will never be correct.
+	// Unless this Ship is a variant, then the plural namme should be imported from the base model.
+	if(pluralModelName.empty() && variantName.empty())
+	{
+		pluralModelName = modelName + 's';
+		if((modelName.back() == 's' || modelName.back() == 'z'))
+			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+					+ pluralModelName + "\".");
+	}
 }
 
 
@@ -515,16 +526,6 @@ void Ship::FinishLoading(bool isNewInstance)
 		explosionWeapon = &model->BaseAttributes();
 		if(pluralModelName.empty())
 			pluralModelName = model->pluralModelName;
-		// If no plural model name was given, default to the model name with an 's' appended.
-		// If the model name ends with an 's', print a warning because the default plural will never be correct.
-		if(pluralModelName.empty())
-		{
-			pluralModelName = modelName + 's';
-			if((modelName.back() == 's' || modelName.back() == 'z') && base)
-				warning += "Warning: ship \"" + VariantName()
-						+ "\" requires an explicit plural name definition, but none is provided. Defaulting to \""
-						+ pluralModelName + "\".";
-		}
 		if(noun.empty())
 			noun = model->noun;
 		if(!thumbnail)
