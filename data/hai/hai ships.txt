@@ -1140,10 +1140,6 @@ ship "Rino Beetle"
 	description "This ship probably used to be a Shield Beetle, but it has received many modifications, with the obvious intent of survivability, including an enhanced shield matrix. One thing is certain, it is no longer simply meant to escort cargo, this is a proper ship for a warlord."
 	description "	It was found by Unfettered scientists that the cargo bays were more of a vulnerability than anything else for the ship, as it is not meant to be plundering but rather to lead in glorious battle. Removing those as well as surplus bunks has allowed for more space for weapons and defensive improvements, as well as more flexibility for the ship. This came at the cost of mass and agility, but that is a sacrifice the Unfettered are more than willing to make."
 
-mission "test2222"
-	landing
-	on offer
-		give ship "Rino Beetle"
 
 
 ship "Solifuge"
