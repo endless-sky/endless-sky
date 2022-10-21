@@ -2127,13 +2127,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			// First check if the factory is ready to produce.
 			if(step - productionSteps[i] < production.speed)
 				continue;
-			
+
 			// Next check if this ship has enough energy/fuel/heat etc.
 			if(shields < production.shield
-			   	|| hull < production.hull
-			   	|| energy < production.energy
+				|| hull < production.hull
+				|| energy < production.energy
 				|| fuel < production.fuel
-			   	|| heat < -production.heat)
+				|| heat < -production.heat)
 				continue;
 
 			// Next check if this ship has the required input outfits.
@@ -2184,7 +2184,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			}
 
 			// Next, finish by adding the output and adjusting energy levels.
-			
+
 			shields -= production.shield;
 			hull -= production.hull;
 			energy -= production.energy;
