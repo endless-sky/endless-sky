@@ -181,6 +181,7 @@ outfitter "Unfettered Basics"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
+#For ships, stations or corporations.
 phrase "hai"
 	word
 		"Yeer"
@@ -314,6 +315,14 @@ phrase "hai last names"
 		"chi"
 		"li"
 		"ri"
+
+phrase "unfettered chosen names"
+	word
+		"He-"
+		"Si-"
+	word
+		"Yi"
+		"Ra"
 
 phrase "friendly hai"
 	word
