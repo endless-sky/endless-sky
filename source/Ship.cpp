@@ -728,6 +728,11 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 
+	// Ensure that all defined bays are of a valid category. Remove and warn about any
+	// invalid bays. Add a default "launch effect" to any remaining internal bays if
+	// this ship is crewed (i.e. pressurized).
+	string warning;
+
 	const auto &bayCategories = GameData::Category(CategoryType::BAY);
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
