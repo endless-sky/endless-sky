@@ -257,7 +257,13 @@ namespace {
 		if(colorType == PNG_COLOR_TYPE_GRAY && bitDepth < 8)
 			png_set_expand_gray_1_2_4_to_8(png);
 		if(bitDepth == 16)
+		{
+#if PNG_LIBPNG_VER >= 10504
 			png_set_scale_16(png);
+#else
+			png_set_strip_16(png);
+#endif
+		}
 		if(bitDepth < 8)
 			png_set_packing(png);
 		if(colorType == PNG_COLOR_TYPE_PALETTE || colorType == PNG_COLOR_TYPE_RGB
