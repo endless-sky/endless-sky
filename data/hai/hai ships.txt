@@ -1076,14 +1076,15 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
-ship "Rino Beetle"
+ship "Emperor Beetle"
+	swizzle 6
 	sprite "ship/hai shield beetle"
 	thumbnail "thumbnail/hai shield beetle"
 	attributes
 		category "Heavy Warship"
 		"cost" 25100000
 		"shields" 36000
-		"hull" 11000
+		"hull" 11600
 		"required crew" 62
 		"bunks" 70
 		"mass" 750

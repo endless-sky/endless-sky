@@ -759,7 +759,7 @@ mission "Hai Reveal [B11] Moving Together"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Rino Beetle" "Rak'tchi"
+		ship "Emperor Beetle" "Rak'tchi"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
@@ -854,7 +854,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Rino Beetle" "Rak'tchi"
+		ship "Emperor Beetle" "Rak'tchi"
 
 	npc save accompany
 		government "Navy (Oathkeeper)"
@@ -1057,7 +1057,7 @@ mission "Hai Reveal [B13] Freedom"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Rino Beetle" "Rak'tchi"
+		ship "Emperor Beetle" "Rak'tchi"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
@@ -1134,4 +1134,4 @@ mission "Hai Reveal [B14] Journey to Peace"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Rino Beetle" "Rak'tchi"
+		ship "Emperor Beetle" "Rak'tchi"
