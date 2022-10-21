@@ -590,6 +590,9 @@ tip "weapon capacity needed:"
 tip "    weapon capacity:"
 	`How many tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfit space available.)`
 
+tip "scan brightness:"
+	`Modifies the likelihood of this illegal outfit appearing on a cargo scan. The higher the brightness, the more likely a scan will pick it up.`
+
 
 
 # Sale labels:
