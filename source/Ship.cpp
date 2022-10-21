@@ -2129,9 +2129,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 				continue;
 
 			// Next check if this ship has the required input outfits.
+			// If it doesn't, "continue" to the next factory.
 			const auto &outfitsToCheck
 				= (production.inputFromCargo ? cargo.Outfits() : outfits);
-			bool satisfiesInputRequirement = true;
 
 			for(const auto &input : production.input)
 			{
@@ -2140,33 +2140,48 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 				// enough of the given outfit requirement then abort.
 				if(it == outfitsToCheck.end()
 						|| it->second < input.second)
-				{
-					satisfiesInputRequirement = false;
-					break;
-				}
+					continue;
 			}
 			// Continue on to the next factory.
 			if(!satisfiesInputRequirement)
 				continue;
 
 			// Check if there is even enough space for the output.
-			bool satisfiesOutputRequirement = true;
+			// "continue" to the next factory otherwise.
+			// Apologies for such terribly ugly logic.
+
+			// There is the chance I do not understand what this for loop is for.
+			// If anything breaks, it's because I don't know what this line is doing.
 			for(const auto &output : production.output)
-				if(production.outputInCargo
-						&& (cargo.Free() < output.first->Mass() * output.second))
+				if(production.outputInCargo)
 				{
-					satisfiesOutputRequirement = false;
-					break;
+					if(production.inputFromCargo)
+					{
+						// If this factory works in only cargo space, pretend we're working inline
+						if(cargo.Free() < output.first->Mass() * output.second - input.first->Mass() * input.second)
+							continue;
+					}
+					else if(cargo.Free() < output.first->Mass() * output.second)
+						continue;
 				}
-				else if(!production.outputInCargo
-						&& !attributes.CanAdd(*output.first, output.second))
+				else
 				{
-					satisfiesOutputRequirement = false;
-					break;
+					if(!production.inputFromCargo)
+					{
+						// If this factory works in only outfit space, this is 
+						// the best way I can think of to pretend we're working inline.
+						for(const auto &it : production.input)
+							AddOutfit(it.first, -it.second);
+						if(!attributes.CanAdd(*output.first, output.second))
+						{
+							for(const auto &it : production.input)
+								AddOutfit(it.first, it.second);
+							continue;
+						}
+					}
+					else if(!attributes.CanAdd(*output.first, output.second))
+						continue;
 				}
-			// Continue on to the next factory.
-			if(!satisfiesOutputRequirement)
-				continue;
 
 			// Next remove the input from the ship and add the output.
 			for(const auto &it : production.input)
