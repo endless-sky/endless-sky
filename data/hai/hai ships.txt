@@ -1078,8 +1078,8 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
 ship "Emperor Beetle"
 	swizzle 6
-	sprite "ship/hai shield beetle"
-	thumbnail "thumbnail/hai shield beetle"
+	sprite "ship/hai emperor beetle"
+	thumbnail "thumbnail/hai emperor beetle"
 	attributes
 		category "Heavy Warship"
 		"cost" 25100000
@@ -1091,7 +1091,7 @@ ship "Emperor Beetle"
 		"drag" 9.5
 		"heat dissipation" .4
 		"fuel capacity" 400
-		"outfit space" 871
+		"outfit space" 872
 		"weapon capacity" 333
 		"engine capacity" 150
 		weapon
@@ -1142,6 +1142,7 @@ ship "Emperor Beetle"
 	"final explode" "final explosion large"
 	description "This ship probably used to be a Shield Beetle, but it has received many modifications, with the obvious intent of survivability, including an enhanced shield matrix. One thing is certain, it is no longer simply meant to escort cargo, this is a proper ship for a warlord."
 	description "	It was found by Unfettered scientists that the cargo bays were more of a vulnerability than anything else for the ship, as it is not meant to be plundering but rather to lead in glorious battle. Removing those as well as surplus bunks has allowed for more space for weapons and defensive improvements, as well as more flexibility for the ship. This came at the cost of mass and agility, but that is a sacrifice the Unfettered are more than willing to make."
+	description "	This ship was built to inspire fear out of its enemies, for it is no simple Hai or even Unfettered that has come to fight them on the battlefield, but the supreme leader of the Unfettered has come to fight them, and that leader rarely comes alone. Some could believe it to be foolish to show their leader's ship in such a manner, but that is not how the Unfettered think. Of course, this ship was built to be able to withstand more punishment than any other shield beetle, whilst still being able to dish out some damage itself, but mostly relying on its fleet for that."
 
 
 
