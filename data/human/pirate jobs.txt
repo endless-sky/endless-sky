@@ -3001,7 +3001,7 @@ mission "Cargo Theft (South)"
 
 mission "FW Assassination [1]"
 	name "Assassinate a political target"
-	description "A Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
+	description "A Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	deadline 14
@@ -3044,7 +3044,7 @@ mission "FW Assassination [1]"
 		
 mission "FW Assassination [2]"
 	name "Assassinate a political target"
-	description "A Free Worlds politician who has angered a powerful pirate warlord was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may be heavily defended."
+	description "A Free Worlds politician who angered a pirate warlord was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
 	deadline 14
@@ -3093,7 +3093,7 @@ mission "FW Assassination [2]"
 		
 mission "Syndicate Assassination [1]"
 	name "Assassinate a political target"
-	description "A Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Assassinate them by <day> in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
+	description "A Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	deadline 25
@@ -3144,7 +3144,7 @@ mission "Syndicate Assassination [1]"
 		
 mission "Syndicate Assassination [2]"
 	name "Assassinate a political target"
-	description "A Syndicate politician who has plans that worry many local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may be heavily defended."
+	description "A Syndicate politician with plans that worry local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
 	deadline 25
@@ -3205,7 +3205,7 @@ mission "Syndicate Assassination [2]"
 		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-	description "A Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in Northern space. Assassinate them by <day> in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
+	description "A Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in Northern space. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	deadline 20
@@ -3264,7 +3264,7 @@ mission "Republic Assassination [1]"
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
-	description "A Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> in order to send a message to the Republic. Payment is <payment>. Be advised that they may be heavily defended."
+	description "A Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
 	deadline 20
