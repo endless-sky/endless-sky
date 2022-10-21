@@ -318,8 +318,10 @@ phrase "hai last names"
 
 phrase "unfettered chosen names"
 	word
-		"He-"
-		"Si-"
+		"He"
+		"Si"
+	word
+		"-"
 	word
 		"Yi"
 		"Ra"
