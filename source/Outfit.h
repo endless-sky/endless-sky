@@ -51,6 +51,11 @@ public:
 	public:
 		std::map<const Outfit *, int> input;
 		std::map<const Outfit *, int> output;
+		double shield;
+		double hull;
+		double energy;
+		double fuel;
+		double heat;
 		bool inputFromCargo = true;
 		bool outputInCargo = true;
 		int speed = 60;
