@@ -181,7 +181,7 @@ outfitter "Unfettered Basics"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
-#For ships, stations or corporations.
+# For ships, stations, or corporations.
 phrase "hai"
 	word
 		"Yeer"
