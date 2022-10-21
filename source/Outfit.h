@@ -78,7 +78,7 @@ public:
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
-	
+
 	const std::vector<Production> &Productions() const;
 
 	// Determine whether the given number of instances of the given outfit can
@@ -124,7 +124,7 @@ private:
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
-	
+
 	std::vector<Production> productions;
 
 	Dictionary attributes;
