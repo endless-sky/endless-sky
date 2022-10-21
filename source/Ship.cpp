@@ -2142,52 +2142,38 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 						|| it->second < input.second)
 					continue;
 			}
-			// Continue on to the next factory.
-			if(!satisfiesInputRequirement)
-				continue;
 
-			// Check if there is even enough space for the output.
-			// "continue" to the next factory otherwise.
-			// Apologies for such terribly ugly logic.
-
-			// There is the chance I do not understand what this for loop is for.
-			// If anything breaks, it's because I don't know what this line is doing.
-			for(const auto &output : production.output)
-				if(production.outputInCargo)
-				{
-					if(production.inputFromCargo)
-					{
-						// If this factory works in only cargo space, pretend we're working inline
-						if(cargo.Free() < output.first->Mass() * output.second - input.first->Mass() * input.second)
-							continue;
-					}
-					else if(cargo.Free() < output.first->Mass() * output.second)
-						continue;
-				}
-				else
-				{
-					if(!production.inputFromCargo)
-					{
-						// If this factory works in only outfit space, this is 
-						// the best way I can think of to pretend we're working inline.
-						for(const auto &it : production.input)
-							AddOutfit(it.first, -it.second);
-						if(!attributes.CanAdd(*output.first, output.second))
-						{
-							for(const auto &it : production.input)
-								AddOutfit(it.first, it.second);
-							continue;
-						}
-					}
-					else if(!attributes.CanAdd(*output.first, output.second))
-						continue;
-				}
-
-			// Next remove the input from the ship and add the output.
+			// For sake of argument, remove the inputs from the ship.
+			// Otherwise, these checks will not properly account for
+			// inputs freeing up space for outputs.
 			for(const auto &it : production.input)
 				production.inputFromCargo
 					? static_cast<void>(cargo.Remove(it.first, it.second))
 					: AddOutfit(it.first, -it.second);
+
+			// Check if there is even enough space for the output.
+			if(production.outputInCargo)
+			{
+				double cargoUsage = 0.;
+				for(const auto &output : production.output)
+					cargoUsage += output.first->Mass() * output.second;
+
+				if(cargo.Free() < cargoUsage)
+				{
+					// Re-add the inputs because we don't have room for the outputs.
+					for(const auto &it : production.input)
+						production.inputFromCargo
+							? static_cast<void>(cargo.Add(it.first, it.second))
+							: AddOutfit(it.first, it.second);
+					continue;
+				}
+			}
+			else if(!attributes.CanAdd(*output.first, output.second))
+				continue;
+			
+			
+
+			// Next, finish by adding the output.
 
 			for(const auto &it : production.output)
 				production.outputInCargo
