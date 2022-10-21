@@ -188,9 +188,7 @@ Ship::Ship(const DataNode &node)
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
-	{
 		modelName = node.Token(1);
-	}
 	if(node.Size() >= 3)
 	{
 		base = GameData::Ships().Get(modelName);
