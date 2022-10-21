@@ -947,8 +947,8 @@ void Ship::Save(DataWriter &out) const
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			const auto &attributes = hardpoint.GetBaseAttributes();
 			const double baseDegree = attributes.baseAngle.Degrees();
-			const double firstArc = round((attributes.minArc.Degrees() - baseDegree)*100)/100;
-			const double secondArc = round((attributes.maxArc.Degrees() - baseDegree)*100)/100;
+			const double firstArc = attributes.minArc.Degrees();
+			const double secondArc = attributes.maxArc.Degrees();
 			out.BeginChild();
 			{
 				if(baseDegree)
