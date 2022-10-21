@@ -301,12 +301,25 @@ void Outfit::Load(const DataNode &node)
 
 			for(const auto &grand : child)
 			{
-				if(grand.Token(0) == "input" && grand.Size() >= 2)
-					ParseChild(grand, production.input, production.inputFromCargo);
-				else if(grand.Token(0) == "output" && grand.Size() >= 2)
-					ParseChild(grand, production.output, production.outputInCargo);
-				else if(grand.Token(0) == "speed" && grand.Size() >= 2)
-					production.speed = static_cast<int>(grand.Value(1));
+				if(grand.Size() >= 2)
+					if(grand.Token(0) == "input")
+						ParseChild(grand, production.input, production.inputFromCargo);
+					else if(grand.Token(0) == "output")
+						ParseChild(grand, production.output, production.outputInCargo);
+					else if(grand.Token(0) == "speed")
+						production.speed = static_cast<int>(grand.Value(1));
+					else if(grand.Token(0) == "shields")
+						production.shield = static_cast<double>(grand.Value(1));
+					else if (grand.Token(0) == "hull")
+						production.hull = static_cast<double>(grand.Value(1));
+					else if (grand.Token(0) == "energy consumption")
+						production.energy = static_cast<double>(grand.Value(1));
+					else if (grand.Token(0) == "fuel consumption")
+						production.fuel = static_cast<double>(grand.Value(1));
+					else if (grand.Token(0) == "heat production")
+						production.heat = static_cast<double>(grand.Value(1));
+					else
+						grand.PrintTrace("Skipping unrecognized attribute:");
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
