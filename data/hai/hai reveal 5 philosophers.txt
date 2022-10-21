@@ -759,7 +759,7 @@ mission "Hai Reveal [B11] Moving Together"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Rino Beetle" "Rak'tchi"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
@@ -775,23 +775,6 @@ mission "Hai Reveal [B11] Moving Together"
 	on complete
 		payment 600000
 		dialog `You are provided <payment> on arrival to cover ongoing expenses while helping out.`
-
-
-# Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
-ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump)"
-	outfits
-		"Large Heat Shunt" 2
-		"Jump Drive"
-		"Systems Core (Large)"
-		"Quantum Keystone"
-		"Outfits Expansion" 3
-		"Boulder Reactor" 3
-		`"Bufaer" Atomic Steering`
-		Sunbeam 6
-		"Korath Warder"
-		"Small Heat Shunt"
-		"Thruster (Planetary Class)"
-		"Fuel Processor" 2
 
 
 # Ambassadorial Centipede designed to fly deep into hostile space if necessary:
@@ -871,7 +854,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Rino Beetle" "Rak'tchi"
 
 	npc save accompany
 		government "Navy (Oathkeeper)"
@@ -1074,7 +1057,7 @@ mission "Hai Reveal [B13] Freedom"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Rino Beetle" "Rak'tchi"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
@@ -1151,4 +1134,4 @@ mission "Hai Reveal [B14] Journey to Peace"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Rino Beetle" "Rak'tchi"

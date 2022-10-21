@@ -1075,6 +1075,77 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 
 
 
+# Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
+ship "Rino Beetle"
+	sprite "ship/hai shield beetle"
+	thumbnail "thumbnail/hai shield beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 25100000
+		"shields" 36000
+		"hull" 11000
+		"required crew" 62
+		"bunks" 70
+		"mass" 750
+		"drag" 9.5
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"outfit space" 880
+		"weapon capacity" 333
+		"engine capacity" 150
+		weapon
+			"blast radius" 500
+			"shield damage" 5000
+			"hull damage" 2500
+			"hit force" 3500
+	outfits
+		"Large Heat Shunt" 2
+		"Jump Drive"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Quantum Keystone"
+		"Geode Reactor"
+		"White Sun Reactor"
+		`"Bufaer" Atomic Steering`
+		Sunbeam 6
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		"Bullfrog Anti-Missile" 2
+		"Korath Warder"
+		"Thruster (Planetary Class)"
+		"Fuel Processor" 2
+		"Pulse Rifle" 70
+	engine -45 123
+	engine 45 123
+	gun -22 -103
+	gun 22 -103
+	gun -34.5 -68
+	gun 34.5 -68
+	gun -48 -53.5
+	gun 48 -53.5
+	gun -61.5 -23
+	gun 61.5 -23
+	turret 0 5
+	turret -55.5 74.5
+	turret 55.5 74.5
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 60
+	explode "small explosion" 51
+	explode "medium explosion" 54
+	explode "large explosion" 53
+	explode "huge explosion" 22
+	"final explode" "final explosion large"
+	description "This ship probably used to be a Shield Beetle, but it has received many modifications, with the obvious intent of survivability, including an enhanced shield matrix. One thing is certain, it is no longer simply meant to escort cargo, this is a proper ship for a warlord."
+	description "	It was found by Unfettered scientists that the cargo bays were more of a vulnerability than anything else for the ship, as it is not meant to be plundering but rather to lead in glorious battle. Removing those as well as surplus bunks has allowed for more space for weapons and defensive improvements, as well as more flexibility for the ship. This came at the cost of mass and agility, but that is a sacrifice the Unfettered are more than willing to make."
+
+mission "test2222"
+	landing
+	on offer
+		give ship "Rino Beetle"
+
+
 ship "Solifuge"
 	sprite "ship/hai solifuge"
 	thumbnail "thumbnail/hai solifuge"
