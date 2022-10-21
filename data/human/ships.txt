@@ -2726,8 +2726,8 @@ ship "Rainmaker"
 		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 25
-		"outfit space" 236
-		"weapon capacity" 66
+		"outfit space" 240
+		"weapon capacity" 70
 		"engine capacity" 50
 		weapon
 			"blast radius" 40

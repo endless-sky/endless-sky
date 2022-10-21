@@ -664,7 +664,7 @@ outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
 	cost 15000
 	thumbnail "outfit/meteor launcher"
-	"mass" 4
+	"mass" 8
 	"outfit space" -14
 	"weapon capacity" -14
 	"gun ports" -1
@@ -769,7 +769,7 @@ outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
-	"mass" 5
+	"mass" 11
 	"outfit space" -20
 	"weapon capacity" -20
 	"gun ports" -1
@@ -957,7 +957,7 @@ outfit "Torpedo Launcher"
 	category "Secondary Weapons"
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
-	"mass" 13
+	"mass" 18
 	"outfit space" -30
 	"weapon capacity" -30
 	"gun ports" -1
@@ -1062,7 +1062,7 @@ outfit "Typhoon Launcher"
 	category "Secondary Weapons"
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
-	"mass" 20
+	"mass" 25
 	"outfit space" -40
 	"weapon capacity" -40
 	"gun ports" -1
@@ -1166,7 +1166,7 @@ outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
 	cost 40000
 	thumbnail "outfit/rocket launcher"
-	"mass" 10
+	"mass" 15
 	"outfit space" -25
 	"weapon capacity" -25
 	"gun ports" -1
