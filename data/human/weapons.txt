@@ -52,6 +52,7 @@ outfit "Twin Blaster"
 		"hit effect" "blaster impact" 2
 		"inaccuracy" 3
 		"lifetime" 0
+		"velocity override" 10.625
 		"range override" 510
 		"reload" 12
 		"firing energy" 11.6
@@ -169,6 +170,7 @@ outfit "Twin Modified Blaster"
 		"hit effect" "blaster impact" 2
 		"inaccuracy" 4
 		"lifetime" 0
+		"velocity override" 10
 		"range override" 480
 		"reload" 12
 		"firing energy" 13
