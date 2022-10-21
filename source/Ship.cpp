@@ -522,7 +522,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(pluralModelName.empty())
 		{
 			pluralModelName = modelName + 's';
-			if(modelName.back() == 's' && base)
+			if((modelName.back() == 's' || modelName.back() == 'z') && base)
 				warning += "Warning: ship \"" + VariantName()
 						+ "\" requires an explicit plural name definition, but none is provided. Defaulting to \""
 						+ pluralModelName + "\".";

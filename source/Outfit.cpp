@@ -295,7 +295,7 @@ void Outfit::Load(const DataNode &node)
 	if(pluralName.empty())
 	{
 		pluralName = name + 's';
-		if(name.back() == 's' && node.Token(0) == "outfit")
+		if((name.back() == 's' || name.back() == 'z') && node.Token(0) == "outfit")
 			node.PrintTrace("Warning: outfit \"" + name +
 					"\" requires an explicit plural name definition, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
