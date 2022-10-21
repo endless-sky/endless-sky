@@ -280,14 +280,11 @@ mission "Hai Reveal: Pirate Troubles [0]"
 
 # If older mission chain was done: Need to remove the planet the asteroid orbits, then re-add it without the landable location to reset.
 mission "Hai Reveal: Pirate Troubles [0a]"
+	landing
 	invisible
-	source
-		near "Waypoint" 3
-		government "Hai"
-		not planet "Allhome"
 	to offer
-		has "Pirate Troubles [0]: done"
-		has "Hai Reveal: Pirate Troubles [0]: offered"
+		has "Pirate Troubles [2]: offered"
+		has "Hai Reveal [A03a] Symbol Identification: offered"
 	on offer
 		event "clean danoa"
 
