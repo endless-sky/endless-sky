@@ -1083,7 +1083,7 @@ ship "Emperor Beetle"
 	attributes
 		category "Heavy Warship"
 		"cost" 25100000
-		"shields" 36000
+		"shields" 36500
 		"hull" 11600
 		"required crew" 62
 		"bunks" 70
@@ -1091,7 +1091,7 @@ ship "Emperor Beetle"
 		"drag" 9.5
 		"heat dissipation" .4
 		"fuel capacity" 400
-		"outfit space" 880
+		"outfit space" 871
 		"weapon capacity" 333
 		"engine capacity" 150
 		weapon
@@ -1108,25 +1108,27 @@ ship "Emperor Beetle"
 		"Geode Reactor"
 		"White Sun Reactor"
 		`"Bufaer" Atomic Steering`
-		Sunbeam 6
-		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		Sunbeam 4
+		"Thunderhead Launcher" 4
+		"Thunderhead Missile" 160
 		"Bullfrog Anti-Missile" 2
 		"Korath Warder"
 		"Thruster (Planetary Class)"
 		"Fuel Processor" 2
-		"Pulse Rifle" 70
+		"Wanderer Ramscoop"
+		"Pulse Rifle" 69
+		"Blade Of Might"
 	engine -45 123
 	engine 45 123
-	gun -22 -103
-	gun 22 -103
+	gun -22 -103 Sunbeam
+	gun 22 -103 Sunbeam
 	gun -34.5 -68
 	gun 34.5 -68
-	gun -48 -53.5
-	gun 48 -53.5
+	gun -48 -53.5 Sunbeam
+	gun 48 -53.5 Sunbeam
 	gun -61.5 -23
 	gun 61.5 -23
-	turret 0 5
+	turret 0 5 "Korath Warder"
 	turret -55.5 74.5
 	turret 55.5 74.5
 	leak "leak" 35 45

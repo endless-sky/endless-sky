@@ -680,6 +680,15 @@ outfit "Pulse Rifle"
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
 
 
+outfit "Blade Of Might"
+	category "Unique"
+	cost 1000000
+	thumbnail "outfit/blade of might"
+	"capture attack" 15
+	"capture defense" 5
+	"unplunderable" 1
+	description "This blade is somewhat able to deflect bullet, but where it shines is in its ability to change shape, and cut trough any material as if it was made out of paper. It is of great importance to the Unfettered, and only their mightiest warlord may have the honor of wearing it. Defeating the warlord in battle grants anyone that same right."
+
 outfit "Shield Beetle Pendant"
 	category "Unique"
 	thumbnail "outfit/crystal pendant"
