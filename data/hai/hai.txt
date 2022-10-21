@@ -275,12 +275,7 @@ phrase "hai first names"
 		"kei"
 		"yo"
 	word
-		""
-		""
-		""
-		""
-		""
-		""
+		"" 9
 		"aru"
 		"ow"
 		"hey"
