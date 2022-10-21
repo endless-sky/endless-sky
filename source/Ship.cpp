@@ -2170,8 +2170,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 			}
 			else if(!attributes.CanAdd(*output.first, output.second))
 				continue;
-			
-			
 
 			// Next, finish by adding the output.
 
