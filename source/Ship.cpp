@@ -495,7 +495,7 @@ void Ship::Load(const DataNode &node)
 
 	// If no plural model name was given, default to the model name with an 's' appended.
 	// If the model name ends with an 's', print a warning because the default plural will never be correct.
-	// Unless this Ship is a variant, then the plural namme should be imported from the base model.
+	// Variants will import their plural name from the base model in FinishLoading.
 	if(pluralModelName.empty() && variantName.empty())
 	{
 		pluralModelName = modelName + 's';
@@ -511,11 +511,6 @@ void Ship::Load(const DataNode &node)
 // loaded yet. So, wait until everything has been loaded, then call this.
 void Ship::FinishLoading(bool isNewInstance)
 {
-	// Ensure that all defined bays are of a valid category. Remove and warn about any
-	// invalid bays. Add a default "launch effect" to any remaining internal bays if
-	// this ship is crewed (i.e. pressurized).
-	string warning;
-
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
@@ -732,7 +727,6 @@ void Ship::FinishLoading(bool isNewInstance)
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
 	string warning;
-
 	const auto &bayCategories = GameData::Category(CategoryType::BAY);
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
