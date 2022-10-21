@@ -494,6 +494,7 @@ mission "Hai Reveal: Pirate Troubles [3]"
 	destination "Hai-home"
 	clearance
 	to offer
+		has "Hai Reveal: Pirate Troubles [2]: offered"
 		has "event: scar's hideout"
 	on offer
 		conversation
