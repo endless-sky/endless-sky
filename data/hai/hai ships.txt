@@ -1083,14 +1083,14 @@ ship "Emperor Beetle"
 	attributes
 		category "Heavy Warship"
 		"cost" 25100000
-		"shields" 36500
-		"hull" 11600
+		"shields" 37200
+		"hull" 11780
 		"required crew" 62
 		"bunks" 70
-		"mass" 750
+		"mass" 725
 		"drag" 9.5
 		"heat dissipation" .4
-		"fuel capacity" 400
+		"fuel capacity" 500
 		"outfit space" 872
 		"weapon capacity" 333
 		"engine capacity" 150
