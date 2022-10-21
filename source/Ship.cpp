@@ -2114,7 +2114,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int
 	target = GetTargetShip();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
-	
+
 	// If this ship isn't disabled then it can potentially produce outfits.
 	if(!isDisabled)
 	{
