@@ -159,7 +159,7 @@ outfit "Ionic Blaster Prototype"
 		"hull damage" 30
 		"ion damage" 1
 	description "The Unfettered conflict with the rest of the Hai has put pressure on them to gain a technological edge, despite their limited resources, to more effectively make their point. The Ionic Blaster is a result of that pressure. It is much smaller than the venerable Ion Cannon but still able to apply the same weapon jamming and energy draining effects to a useful degree. Some of that output has been traded to do enough raw damage to be useful in all situations."
-	description "	This aligns with the design goal for the Ionic Blaster, which was to produce a smaller ion weapon that can can fill all the gun ports on Shield Beetles with maximal efficiency, and still be useful on other vessels. This goal has resulted in a design which cannot yet be mass produced, but is also small enough to be equipped on the Unfettered's new fighters. These weapons have consequently become the prized possessions of the few lucky enough to possess them."
+	description "	This aligns with the design goal for the Ionic Blaster, which was to produce a smaller ion weapon that can can fill all the gun ports on Shield Beetles with maximal efficiency, and still be useful on other smaller vessels. This goal has resulted in a design which cannot yet be mass produced, but is also small enough to be equipped on the Unfettered's new fighters. These weapons have consequently become the prized possessions of the few lucky enough to possess them."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
