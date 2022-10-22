@@ -202,7 +202,7 @@ conversation "I Want To Be A Pirate Conclusion"
 		`	(Address the Capo.) "I conquered Darkstone and sold the inhabitants into slavery for a tidy profit."`
 	apply
 		set RookieSlaver
-	`	"So I heard, so I heard! It was my boys you were selling those dirt-grubbers off to. Mind you, I wasn't expecting to need to cut you in on this, but you did chase off the old owners so I suppose it's fair. One thing is sure: you've got a winner's instincts. I'm proud to sponsor you, and rest assured... People will know you're a cutthroat bastard, ready to sell any body that falls into your hands. Just like me." The Capo pauses to wipe a tear from his eye. "I swear, if I still had lips I'd be smiling."`
+	`	"So I heard, so I heard! It was my boys you were selling those dirt-grubbers off to. Mind you, I wasn't expecting to need to cut you in on this, but you did chase off the old owners so I suppose it's fair. One thing is sure: you've got a winner's instincts. I'm proud to sponsor you, and rest assured... people will know you're a cutthroat bastard, ready to sell any body that falls into your hands. Just like me." The Capo pauses to wipe a tear from his eye. "I swear, if I still had lips I'd be smiling."`
 	label outlawapproval
 	`	"Now, I'll do as I said and help make your name known to those who matter, and the lowlifes that don't. Pirates will respect you for the deeds you've done."`
 		goto tributeskip
@@ -248,7 +248,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	choice
 		`	"I've got your million-credit... thing, and a splitting headache."`
 	`	"I'll be blunt." The Mercenary thoughtfully presses her fingertips together, as if that would somehow magically make whatever words come next more diplomatic.`
-	`	"You're the most empty-headed spacer I've seen that isn't yet a corpse. Next time you want to try a stunt like that, do us all a favor and just take a walk out the airlock first. I've met asteroids with more sense than you. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... Somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
+	`	"You're the most empty-headed spacer I've seen that isn't yet a corpse. Next time you want to try a stunt like that, do us all a favor and just take a walk out the airlock first. I've met asteroids with more sense than you. Drawing a gun on my contacts after they found a bug on you? You've got some wild ideas about your own capabilities, but... somehow you were able to talk your way out of it, so perhaps you're not a lost cause after all. Whatever the case, I can't have a reputation as one who goes back on a deal, so I'll hold up my part of the bargain. Now, the canister please."`
 	choice
 		`	(Hand over the canister.)`
 	`	The merc gingerly takes the hazard-warning emblazoned canister from you, as if half expecting you to drop it on the floor and release who-knows-what into the room. The other two at the table visibly exhale in relief once the canister's out of your hands.`
@@ -370,7 +370,7 @@ mission "Lockbox Snooping"
 					decline
 			`October 3, '94`
 			`	"Bastards took the farm. Funny how you go your whole life never seeing a man in a suit, and the first one you do is there to ruin everything. Well, fine. I'm strong. I'm smart. I can go to the city and find work."`
-			`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields; flowers are abundant where nature hasn't been tamed by the colonist's hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
+			`	The next several pages are filled with landscape sketches, scenes from a verdant farming world. Trees loom tall in the divisions between fields; flowers are abundant where nature hasn't been tamed by the colonists' hand. Here, a flock of sheep graze. There, a ship streaks across the sky, the rest of the drawing seemingly contorted around it as if the world itself is focusing on the vessel as it speeds into the unknown.`
 			`October 28, '94`
 			`	"Empty stomach, empty pockets, no jobs to be found. Not a broom that needs pushing, and the mob at the factory wanting employment is at least five men deep and I dare not count how wide."`
 			`	Folk, man and woman, young and old, sit idle in the streets of a modestly sized town. Long faces, hollow with hunger, impassive in idleness, turn their gazes toward the one drawing them. There's the occasional drawing of a field or burst of beauty as captured in the pages before, but the overall spirit has shifted to the sullen.`
