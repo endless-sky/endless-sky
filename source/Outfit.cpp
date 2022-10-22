@@ -287,7 +287,7 @@ void Outfit::Load(const DataNode &node)
 	}
 
 	// If no plural name has been defined, append an 's' to the name and use that.
-	// If the name ends in an 's', and no plural name has been defined, print a
+	// If the name ends in an 's' or 'z', and no plural name has been defined, print a
 	// warning since an explicit plural name is always required in this case.
 	// Unless this outfit definition isn't declared with the `outfit` keyword,
 	// because then this is probably being done in `add attributes` on a ship,

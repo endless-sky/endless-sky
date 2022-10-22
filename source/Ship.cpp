@@ -494,12 +494,12 @@ void Ship::Load(const DataNode &node)
 	}
 
 	// If no plural model name was given, default to the model name with an 's' appended.
-	// If the model name ends with an 's', print a warning because the default plural will never be correct.
+	// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
 	// Variants will import their plural name from the base model in FinishLoading.
 	if(pluralModelName.empty() && variantName.empty())
 	{
 		pluralModelName = modelName + 's';
-		if((modelName.back() == 's' || modelName.back() == 'z'))
+		if(modelName.back() == 's' || modelName.back() == 'z')
 			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
 	}
