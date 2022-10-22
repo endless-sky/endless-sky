@@ -397,7 +397,7 @@ mission "Resistance: Smuggling: Heat"
 mission "Resistance: Smuggling: Reactors"
 	landing
 	name "Reactor Smuggling"
-	description "Bring an armageddon core, a fusion reactor, and a breeder reactor to <destination>. It will most likely take a long time for the Lunarium to move the heavy reactors, so to avoid the risk of larger Heliarch patrols you must deliver them before the fifth day of the month."
+	description "Bring an armageddon core, a fusion reactor, and a breeder reactor to <destination>. To avoid the risk of larger Heliarch patrols you must deliver them before the fifth day of any month."
 	source
 		attributes arach
 		not planet "Mebla's Portion"
