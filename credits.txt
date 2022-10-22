@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.15-alpha
+version 0.9.17-alpha
 
 This game is open source.
 To report bugs, give feedback,
@@ -162,7 +162,6 @@ contributed to Endless Sky:
   Corraban2
   CyberShadow
   czartrak
-  Darcman99
   DarcyManoel
   davidarcher
   davidwhitman

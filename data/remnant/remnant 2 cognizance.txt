@@ -164,7 +164,7 @@ mission "Remnant: Cognizance 4"
 			label voidrifle
 			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting void sprites and must realize the importance of stopping this.`
 			label next
-			`	 "It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
+			`	"It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
 				accept
 	npc kill
 		to despawn
@@ -244,6 +244,7 @@ mission "Remnant: Cognizance 5"
 		personality escort launching appeasing unconstrained plunders
 		fleet
 			names "remnant"
+			cargo 0
 			variant
 				"Albatross (Shield)"
 				"Albatross"
@@ -318,7 +319,7 @@ mission "Remnant: Cognizance 7"
 		system "Nenia"
 		fleet
 			names "korath"
-			cargo 0
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)" 2
 				"'olofez" 4
@@ -349,7 +350,7 @@ mission "Remnant: Cognizance 8"
 		system "Nenia"
 		fleet
 			names "korath"
-			cargo 0
+			outfitters "Void Sprite Parts"
 			variant
 				"Palavret (Ember)" 3
 				"'olofez" 6
@@ -406,7 +407,7 @@ mission "Remnant: Cognizance 10"
 		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
-			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>. `
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>.`
 				accept
 	on stopover
 		dialog
@@ -529,7 +530,7 @@ mission "Remnant: Cognizance 15"
 	destination "Viminal"
 	to offer
 		has "Remnant: Cognizance 14: active"
-	npc accompany
+	npc accompany save
 		government "Ember Waste"
 		personality waiting mute
 		ship "Ember Waste Node" "Unknown Entity"
@@ -552,7 +553,7 @@ mission "Remnant: Cognizance 16"
 			`	After several hours of watching the creature, one captain pushes his way forward to where you, Chilia, and Plume are talking. "I think I have an idea about this thing, Prefect!" the man signs excitedly. "Look at the positions of the glowing tips when it freezes. That pattern there matches the star positions of the main Ember Waste systems when viewed from Peragenor, and that second matches Convector." He pulls out a datapad and pulls up a projection of the starmap. "It is hard to tell due to the imprecision, but it looks like the third freeze is probably Antevorta or Nenia."`
 			`	Plume chimes in, "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating that it wants you to travel there. Please give it a try. Make sure to take a 'gaslined' ship; if the third system is Nenia, it may want you to enter the gas giants."`
 				accept
-	npc accompany
+	npc accompany save
 		government "Ember Waste"
 		personality mute
 		ship "Ember Waste Node" "Unknown Entity"
@@ -633,7 +634,7 @@ mission "Remnant: Cognizance 18"
 		system "Nenia"
 		fleet
 			names "korath"
-			cargo 0
+			outfitters "Void Sprite Parts"
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 3
@@ -1032,8 +1033,8 @@ mission "Remnant: Cognizance 23"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-			outfitters "Korath Basics" "Korath Exiles"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship that Taely sent you to hunt down. Return to <destination> to report the Mergansers' performance."
@@ -1042,6 +1043,7 @@ mission "Remnant: Cognizance 23"
 		personality escort unconstrained launching
 		fleet
 			names "remnant"
+			cargo 0
 			variant
 				"Merganser" 4
 	on complete
@@ -1159,7 +1161,7 @@ mission "Remnant: Cognizance 25"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"'olofez" 3
@@ -1237,9 +1239,7 @@ mission "Remnant: Cognizance 28"
 		system "Parca"
 		fleet
 			names "korath"
-			cargo 3
-			commodities Food Metal Plastic "Heavy Metals"
-			outfitters "Korath Basics" "Korath Exiles"
+			cargo 0
 			variant
 				"Rano'erek" 1
 				"Rano'erek (Ground Assault)" 4
@@ -1273,9 +1273,7 @@ mission "Remnant: Cognizance 29"
 		system "Parca"
 		fleet
 			names "korath"
-			cargo 3
-			commodities Food Metal Plastic "Heavy Metals"
-			outfitters "Korath Basics" "Korath Exiles"
+			cargo 0
 			variant
 				"Rano'erek" 1
 				"Rano'erek (Ground Assault)" 2
