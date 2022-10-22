@@ -2525,8 +2525,8 @@ int Ship::Scan()
 
 	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
-	double outfits = target->baseAttributes.Get("outfit space") * .005;
-	double cargo = target->attributes.Get("cargo space") * .005;
+	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
+	double cargo = max(10., target->attributes.Get("cargo space")) * .005;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
@@ -2539,22 +2539,22 @@ int Ship::Scan()
 			startedScanning |= !elapsed;
 			activeScanning = true;
 
-			/* Division is more expensive to calculate than multiplication,
-			so rearrange the formula to minimize divisions.
+			// Division is more expensive to calculate than multiplication,
+			// so rearrange the formula to minimize divisions.
 
-			"(scannerRange - distance) / scannerRange"
-			This line hits 1 at distace = 0, and 0 at distance = scannerRange.
-			This is a hard cap on scanning range.
+			// "(scannerRange - distance) / scannerRange"
+			// This line hits 1 at distace = 0, and 0 at distance = scannerRange.
+			// This is a hard cap on scanning range.
 
-			"speed / (sqrt(speed) + distance)"
-			This gives a modest speed boost at no distance (speed/sqrt(speed), and
-			the boost tapers off to 0 at arbitrary distance.
+			// "speed / (sqrt(speed) + distance)"
+			// This gives a modest speed boost at no distance, and
+			// the boost tapers off to 0 at arbitrarily large distances.
 
-			"1 / depth"
-			This doubles scan time for cargo holds or outfit sections that are twice as large. */
-			elapsed += ((scannerRange - distance) * speed) / (scannerRange * (sqrt(speed) + distance) * depth);
-			// To make up for the scan decay:
-			++elapsed;
+			// "1 / depth"
+			// This doubles scan time for cargo holds or outfit sections that are twice as large.
+
+			// To make up for previous scan delay, also add 1.
+			elapsed += ((scannerRange - distance) * speed) / (scannerRange * (sqrt(speed) + distance) * depth) + 1;
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
