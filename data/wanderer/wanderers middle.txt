@@ -1527,7 +1527,7 @@ mission "Wanderers: Tour 7"
 		has "Wanderers: Tour 6: done"
 	on offer
 		conversation
-			`You have escorted the Korath world-ship safely back to their home. Hopefully what they saw on their journey will make them more eager to be friends with the Wanderers, rather than less. Rek hands you a written report that she says is an account of the diplomatic mission and says, "Please deliver this to Sobari Tele'ek on <planet>."`
+			`You have escorted the Korath echo-galleon safely back to their home. Hopefully what they saw on their journey will make them more eager to be friends with the Wanderers, rather than less. Rek hands you a written report that she says is an account of the diplomatic mission and says, "Please deliver this to Sobari Tele'ek on <planet>."`
 			choice
 				`	"Okay, I'll do that."`
 					accept
