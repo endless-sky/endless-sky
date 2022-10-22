@@ -252,7 +252,7 @@ mission "Unfettered Big Medicals Rush"
 	repeat
 	name `Medical supplies to <planet>`
 	description `The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
-	deadline 15
+	deadline 15 1
 	cargo "medicals" 35 2 .05
 	source
 		attributes "unfettered"
@@ -263,12 +263,11 @@ mission "Unfettered Big Medicals Rush"
 	destination
 		attributes "unfettered"
 	to offer
-		has "Unfettered: Bring Medical Supplies: done"
 		random < 40
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered medicals pickup dialog"
 	on complete
-		payment 8000 3000
+		payment 10000 3000
 		dialog phrase "unfettered medicals payment dialog"
