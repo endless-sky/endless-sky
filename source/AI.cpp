@@ -1241,7 +1241,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				{
 					auto ptr = it->shared_from_this();
 					// Scan friendly ships that are as-yet unscanned by this ship's government,
-					// and are not in the process of being scanned.
+					// and are not in the process of being scanned, except if this is the ship doing it.
 					if(((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 							|| (Has(gov, target, ShipEvent::SCANNING) && !Has(ship, target, ShipEvent::SCANNING)))
