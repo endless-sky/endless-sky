@@ -1770,7 +1770,9 @@ Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 
-Files: images/outfits/skadetear*
+Files:
+ images/outfit/android*
+ images/outfit/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
 
