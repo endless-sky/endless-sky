@@ -71,38 +71,20 @@ const string &Date::ToString() const
 		static const string MONTH[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
+		string weekday_str = Weekday(day, month, year);
+		string month_str = MONTH[month - 1];
+
+		string day_str = "";
+		if (day <= 10)
+				day_str.append("0");
+		day_str.append(to_string(day));
+
 		if(dateFormat == Preferences::DateFormat::ymd)
-		{
-			str.append(to_string(year));
-			str.append("-");
-			if (to_string(month).length() == 1)
-				str.append("0");
-			str.append(to_string(month));
-			str.append("-");
-			if (to_string(day).length() == 1)
-				str.append("0");
-			str.append(to_string(day));
-		}
+			str = to_string(year) + "-" + to_string(month) + "-" + day_str;
 		else if(dateFormat == Preferences::DateFormat::mdy)
-		{
-			str = Weekday(day, month, year);
-			str.append(" ");
-			str.append(MONTH[month - 1]);
-			str.append(" ");
-			str.append(to_string(day));
-			str.append(", ");
-			str.append(to_string(year));
-		}
+			str = weekday_str + " " + month_str + " " + to_string(day) + ", " + to_string(year);
 		else if(dateFormat == Preferences::DateFormat::dmy)
-		{
-			str = Weekday(day, month, year);
-			str.append(", ");
-			str.append(to_string(day));
-			str.append(" ");
-			str.append(MONTH[month - 1]);
-			str.append(" ");
-			str.append(to_string(year));
-		}
+			str = weekday_str + ", " + to_string(day) + " " + month_str + " " + to_string(year);
 	}
 
 	return str;
