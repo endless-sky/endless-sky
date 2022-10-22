@@ -3297,9 +3297,9 @@ double Ship::HyperdriveFuel() const
 		return 0.;
 
 	if(attributes.Get("scram drive"))
-		return BestFuel("hyperdrive", "scram drive", 150., -1.);
+		return BestFuel("hyperdrive", "scram drive", 150.);
 
-	return BestFuel("hyperdrive", "", 100., -1.);
+	return BestFuel("hyperdrive", "", 100.);
 }
 
 
@@ -4143,21 +4143,16 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 
 	auto CalculateFuelCost = [this, mass, jumpDistance](const Outfit &outfit) -> double
 	{
-		// If the FTL drive has an attached "jump mass penalty"
-		// then the base fuel cost is assumed to be at 0 tons.
-		// Otherwise, base fuel cost is established to be at "jump mass".
+		// Mass cost is the fuel cost per 100 tons of ship mass. The jump base mass of a drive reduces the
+		// ship's effective mass for the jump mass cost calculation. A ship with a mass below the drive's
+		// jump base mass is allowed to have a negative cost relative to the base jump fuel cost.
+		double cost = .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass"));
+		cost += outfit.Get("jump fuel");
 
-		// Temporary note: jump mass cost is fuel cost per 100 additional tons.
-
-		double fuel = outfit.Get("jump fuel");
-
-		// If any of these are not defined, they default to 0, so nothing will break.
-		fuel += .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass"));
-
-		// It is possible to generate a negative jump fuel, but I
-		// do not think this will mess with things in any major way,
-		// so I will not stop it.
-		return fuel;
+		// Prevent the cost of jumping from dropping too low.
+		// Put a floor at 1, as a floor of 0 would be forced back up to the default cost, or
+		// be assumed later on to mean you can't jump.
+		return max(1., cost);
 	};
 
 	// Make it possible for a hyperdrive to be integrated into a ship.
@@ -4172,14 +4167,12 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		if(!jumpRange)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 
-		double fuel = CalculateFuelCost(baseAttributes);
-
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
 		// always pass.
 		if(jumpRange >= jumpDistance)
 		{
-			best = fuel;
+			best = CalculateFuelCost(baseAttributes);
 			if(!best)
 				best = defaultFuel;
 		}
