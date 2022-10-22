@@ -196,7 +196,7 @@ namespace {
 	}
 
 	const double RADAR_SCALE = .025;
-	const double MAX_FUEL_DISPLAY = 50.;
+	const double MAX_FUEL_DISPLAY = 5000.;
 }
 
 
@@ -668,11 +668,10 @@ void Engine::Step(bool isActive)
 	if(flagship)
 	{
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
-		double jumpCost = flagship->JumpFuel(flagship->GetTargetSystem());
 		// If the flagship has a large amount of fuel, display a solid bar.
-		// Otherwise, display a segment for every jump of fuel.
-		if(fuelCap <= (MAX_FUEL_DISPLAY * jumpCost))
-			info.SetBar("fuel", flagship->Fuel(), fuelCap / jumpCost);
+		// Otherwise, display a segment for every 100 units of fuel.
+		if(fuelCap <= MAX_FUEL_DISPLAY)
+			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
 		else
 			info.SetBar("fuel", flagship->Fuel());
 		info.SetBar("energy", flagship->Energy());
