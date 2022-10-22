@@ -62,7 +62,7 @@ const string &Date::ToString() const
 
 	// Because this is a somewhat "costly" operation, cache the result. The
 	// cached value is discarded if the date is changed.
-	if((date && str.empty()))
+	if(date && str.empty())
 	{
 		int day = Day();
 		int month = Month();
