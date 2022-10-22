@@ -90,6 +90,7 @@ mission "Unfettered Tribute 3"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
+
 mission "Unfettered Jump Drive 4"
 	job
 	repeat
@@ -107,3 +108,167 @@ mission "Unfettered Jump Drive 4"
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 40
 		fail
+
+
+phrase "unfettered mining payment dialog"
+	word
+		`The group of Unfettered unloading the materials you mined seems enthused. "Keep this up and we will be building new ships in no time! Some use those asteroids as target practice, you know, but most find it dull and too easy to fight an enemy that does not shoot or react in any other way," one tells you while handing over your payment of <payment>.`
+		`The local Unfettered unload your cargo of minerals, and one comes you give you your payment of <payment>. "Some Unfettered use these asteroids as target practices, but too few bring the precious materials back," he adds.`
+		`The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it," one tells you before doling out your payment of <payment>.`
+		`A group of Unfettered unload the materials you mined, without saying anything to you. When they are done, one gives you <payment>.`
+		`The leader of the Unfettered unloading the materials comes to you. "This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks." He then hands you <payment>.`
+		`The local Unfettered collect the minerals and happily hand you <payment>.`
+		`Once the unloading of materials is finished, an Unfettered comes to you, looking humble and sincere. "Thank you, captain. We need these materials - and any other kind of help - more than we would like to admit it. If you have time, please consider doing other jobs, such as bringing food for us," he says with a slight smile. He then gives you <payment>.`
+
+mission "Unfettered Silicon Asteroid Mining"
+	job
+	repeat
+	name `Gather silicon`
+	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot, and then bring them back to <destination> for <payment>.`
+	source "Darkcloak"
+	to offer
+		random < 40
+	on complete
+		payment 100000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Silicon" -50
+
+mission "Unfettered Silicon Asteroid Mining 2"
+	job
+	repeat
+	name `Gather silicon`
+	description `Mine and then collect 100 tons of silicon from the asteroid field in Wah Yoot, and then bring them back to <destination> for <payment>.`
+	source "Darkcloak"
+	to offer
+		random < 10
+	on complete
+		payment 250000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Silicon" -100
+
+
+mission "Unfettered Silver Asteroid Mining"
+	job
+	repeat
+	name `Gather silver from asteroids`
+	description `Mine and then collect 15 tons of silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 40
+	on complete
+		payment 450000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Silver" -15
+
+mission "Unfettered Silver Asteroid Mining 2"
+	job
+	repeat
+	name `Gather silver from asteroids`
+	description `Mine and then collect 30 tons of silver from the asteroid field in Ehma Ti and then bring them back to <destination> for <payment>.`
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 10
+	on complete
+		payment 1000000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Silver" -30
+
+
+mission "Unfettered Lead Asteroid Mining"
+	job
+	repeat
+	name `Gather lead from asteroids`
+	description `Mine and then collect 35 tons of lead from the asteroid field in Wah Yoot and then bring them back to <destination> for <payment>.`
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 40
+	on complete
+		payment 200000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Lead" -35
+
+mission "Unfettered Lead Asteroid Mining 2"
+	job
+	repeat
+	name `Gather lead from asteroids`
+	description `Mine and then collect 70 tons of lead from the asteroid field in Wah Yoot and then bring them back to <destination> for <payment>.`
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 10
+	on complete
+		payment 450000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Lead" -70
+
+
+phrase "unfettered medicals pickup dialog"
+	word
+		`As usual, the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong," one says while loading the supplies onto your ship.`
+		`The Hai understand the urgency of the situation, and waste no time in talking. They load the supplies on your ship, and wish you a safe trip.`
+		`There is no reticence to give you the medical supplies. "We prefer to make sure our brothers and sisters are not in need; our own needs come later," one says when done loading the supplies on your ship.`
+
+phrase "unfettered medicals payment dialog"
+	word
+		"The local health specialists are relieved that you have managed to bring the needed medical supplies back in time, and give you <payment> for it."
+		"All the Unfettered here seem busy, and you have to wait before being able to unload the medical supplies to the local hospital. After some time, a local worker gives you <payment> and tells you to drop the cargo at a specific location."
+		`Once you arrive with the medical supplies, you are greeted by a local health specialist who seems to be desperate for them. "Not a moment too soon! If this was any later the consequences could have been dire," he says and then hands you <payment>.`
+
+mission "Unfettered Small Medicals Rush"
+	job
+	repeat
+	name `Express medical supplies to <planet>`
+	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
+	deadline 10 1
+	cargo "medicals" 15 2 .05
+	source
+		attributes "unfettered"
+	stopover
+		distance 5 7
+		government "Hai"
+		attributes "spaceport"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered Jump Drive 1: offered"
+		random < 60
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on stopover
+		dialog phrase "unfettered medicals pickup dialog"
+	on complete
+		payment 10000 4000
+		dialog phrase "unfettered medicals payment dialog"
+
+
+mission "Unfettered Big Medicals Rush"
+	job
+	repeat
+	name `Medical supplies to <planet>`
+	description `The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
+	deadline 15
+	cargo "medicals" 35 2 .05
+	source
+		attributes "unfettered"
+	stopover
+		distance 5 7
+		government "Hai"
+		attributes "spaceport"
+	destination
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Bring Medical Supplies: done"
+		random < 40
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on stopover
+		dialog phrase "unfettered medicals pickup dialog"
+	on complete
+		payment 8000 3000
+		dialog phrase "unfettered medicals payment dialog"
