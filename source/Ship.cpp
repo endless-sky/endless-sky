@@ -750,6 +750,14 @@ void Ship::FinishLoading(bool isNewInstance)
 		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
 		attributes.Set("drag", 100.);
 	}
+
+	// Only the player's ships make use of attraction and deterrence.
+	if(isYours)
+	{
+		attraction = CalculateAttraction();
+		deterrence = CalculateDeterrence();
+	}
+
 	if(!warning.empty())
 	{
 		// This check is mostly useful for variants and stock ships, which have
@@ -1105,6 +1113,27 @@ int64_t Ship::Cost() const
 int64_t Ship::ChassisCost() const
 {
 	return baseAttributes.Cost();
+}
+
+
+
+int64_t Ship::Strength() const
+{
+	return Cost();
+}
+
+
+
+double Ship::Attraction() const
+{
+	return attraction;
+}
+
+
+
+double Ship::Deterrence() const
+{
+	return deterrence;
 }
 
 
@@ -1623,7 +1652,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			direction = -1;
 
 			// If you have a target planet in the destination system, exit
-			// hyperpace aimed at it. Otherwise, target the first planet that
+			// hyperspace aimed at it. Otherwise, target the first planet that
 			// has a spaceport.
 			Point target;
 			// Except when you arrive at an extra distance from the target,
@@ -1734,6 +1763,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
 					SetTargetStellar(nullptr);
+					SetTargetSystem(nullptr);
 					landingPlanet = nullptr;
 				}
 				else if(!isSpecial || personality.IsFleeing())
@@ -2427,7 +2457,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 
 // Check if this ship is boarding another ship.
-shared_ptr<Ship> Ship::Board(bool autoPlunder)
+shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 {
 	if(!hasBoarded)
 		return shared_ptr<Ship>();
@@ -2437,8 +2467,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
-	// For a fighter or drone, "board" means "return to ship."
-	if(CanBeCarried())
+	// For a fighter or drone, "board" means "return to ship." Except when the ship is
+	// explicitly of the nonDocking type.
+	if(CanBeCarried() && !nonDocking)
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
@@ -2455,7 +2486,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
-		if(!victim->JumpsRemaining() && CanRefuel(*victim))
+		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
@@ -2791,7 +2822,7 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
-// Check if this ship is currently able to enter hyperspace to it target.
+// Check if this ship is currently able to enter hyperspace to its target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
@@ -3019,18 +3050,10 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 		AddCrew(transfer);
 	}
 
-	commands.Clear();
+	// Clear this ship's previous targets.
+	ClearTargetsAndOrders();
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
-	// Clear this ship's previous targets.
-	SetTargetShip(shared_ptr<Ship>());
-	SetTargetStellar(nullptr);
-	SetTargetSystem(nullptr);
-	shipToAssist.reset();
-	targetAsteroid.reset();
-	targetFlotsam.reset();
-	hyperspaceSystem = nullptr;
-	landingPlanet = nullptr;
 
 	// This ship behaves like its new parent does.
 	isSpecial = capturer->isSpecial;
@@ -3051,6 +3074,23 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
+}
+
+
+
+// Clear all orders and targets this ship has (after capture or transfer of control).
+void Ship::ClearTargetsAndOrders()
+{
+	commands.Clear();
+	firingCommands.Clear();
+	SetTargetShip(shared_ptr<Ship>());
+	SetTargetStellar(nullptr);
+	SetTargetSystem(nullptr);
+	shipToAssist.reset();
+	targetAsteroid.reset();
+	targetFlotsam.reset();
+	hyperspaceSystem = nullptr;
+	landingPlanet = nullptr;
 }
 
 
@@ -3175,6 +3215,24 @@ int Ship::JumpsRemaining(bool followParent) const
 
 
 
+bool Ship::NeedsFuel(bool followParent) const
+{
+	double jumpFuel = 0.;
+	if(!targetSystem && followParent)
+	{
+		// If this ship has no destination, the parent's substitutes for it,
+		// but only if the location is reachable.
+		auto p = GetParent();
+		if(p)
+			jumpFuel = JumpFuel(p->GetTargetSystem());
+	}
+	if(!jumpFuel)
+		jumpFuel = JumpFuel(targetSystem);
+	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
+}
+
+
+
 double Ship::JumpFuel(const System *destination) const
 {
 	// A currently-carried ship requires no fuel to jump, because it cannot jump.
@@ -3251,10 +3309,17 @@ double Ship::JumpDriveFuel(double jumpDistance) const
 
 pair<Ship::JumpType, double> Ship::GetCheapestJumpType(const System *destination) const
 {
-	bool linked = currentSystem->Links().count(destination);
+	return GetCheapestJumpType(currentSystem, destination);
+}
+
+
+
+pair<Ship::JumpType, double> Ship::GetCheapestJumpType(const System *from, const System *to) const
+{
+	bool linked = from->Links().count(to);
 	double hyperFuelNeeded = HyperdriveFuel();
-	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
-			? 0. : currentSystem->Position().Distance(destination->Position()));
+	double jumpFuelNeeded = JumpDriveFuel((linked || from->JumpRange())
+			? 0. : from->Position().Distance(to->Position()));
 	if(linked && attributes.Get("hyperdrive") && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
 		return make_pair(JumpType::Hyperdrive, hyperFuelNeeded);
 	else if(attributes.Get("jump drive"))
@@ -3542,7 +3607,7 @@ int Ship::BaysTotal(const string &category) const
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	if(!ship.CanBeCarried())
+	if(!HasBays() || !ship.CanBeCarried() || (IsYours() && !ship.IsYours()))
 		return false;
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
@@ -3554,20 +3619,17 @@ bool Ship::CanCarry(const Ship &ship) const
 	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
-		if(escort && escort.get() != &ship && escort->attributes.Category() == category
-			&& !escort->IsDestroyed())
+		if(!escort)
+			continue;
+		if(escort == ship.shared_from_this())
+			break;
+		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
+				(!IsYours() || (IsYours() && escort->IsYours())))
 			--free;
+		if(!free)
+			break;
 	}
 	return (free > 0);
-}
-
-
-
-void Ship::AllowCarried(bool allowCarried)
-{
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
-	canBeCarried = allowCarried
-		&& find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 }
 
 
@@ -3638,6 +3700,7 @@ void Ship::UnloadBays()
 			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
+			bay.ship->UnmarkForRemoval();
 			bay.ship.reset();
 		}
 }
@@ -3774,10 +3837,20 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		attributes.Add(*outfit, count);
 		if(outfit->IsWeapon())
+		{
 			armament.Add(outfit, count);
+			// Only the player's ships make use of attraction and deterrence.
+			if(isYours)
+				deterrence = CalculateDeterrence();
+		}
 
 		if(outfit->Get("cargo space"))
+		{
 			cargo.SetSize(attributes.Get("cargo space"));
+			// Only the player's ships make use of attraction and deterrence.
+			if(isYours)
+				attraction = CalculateAttraction();
+		}
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
 		// If the added or removed outfit is a jump drive, recalculate
@@ -3864,6 +3937,9 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
+		// Only the player's ships make use of attraction and deterrence.
+		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
+			deterrence = CalculateDeterrence();
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
@@ -4162,4 +4238,30 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
+}
+
+
+
+double Ship::CalculateAttraction() const
+{
+	return max(0., .4 * sqrt(attributes.Get("cargo space")) - 1.8);
+}
+
+
+
+double Ship::CalculateDeterrence() const
+{
+	double tempDeterrence = 0.;
+	for(const Hardpoint &hardpoint : Weapons())
+		if(hardpoint.GetOutfit())
+		{
+			const Outfit *weapon = hardpoint.GetOutfit();
+			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
+				continue;
+			double strength = weapon->ShieldDamage() + weapon->HullDamage()
+				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
+				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
+			tempDeterrence += .12 * strength / weapon->Reload();
+		}
+	return tempDeterrence;
 }

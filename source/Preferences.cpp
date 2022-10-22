@@ -214,6 +214,20 @@ bool Preferences::ZoomViewOut()
 
 
 
+double Preferences::MinViewZoom()
+{
+	return ZOOMS[0];
+}
+
+
+
+double Preferences::MaxViewZoom()
+{
+	return ZOOMS[ZOOMS.size() - 1];
+}
+
+
+
 void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();

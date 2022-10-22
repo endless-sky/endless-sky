@@ -391,6 +391,9 @@ mission "Remnant: Teciimach Deployment"
 		personality staying uninterested disables plunders
 		fleet
 			names "remnant"
+			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Merganser (II)" 3
 	npc
@@ -623,7 +626,7 @@ mission "Remnant: Shattered Light 6"
 				`	"Great, but please spare me the details."`
 					goto shatteredrequest
 				`	"You figured out what happened? Great!"`
-			`	She looks crestfallen "Well, we know what the ship thinks happened, anyway. It is likely that what actually happened differs significantly." Her posture takes on a more positive stance. "We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. Particularly the logs.`
+			`	She looks crestfallen. "Well, we know what the ship thinks happened, anyway. It is likely that what actually happened differs significantly." Her posture takes on a more positive stance. "We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. Particularly the logs.`
 			`	"As we all know, it was part of the Exodus fleet that entered the Terminus wormhole. Unlike most of the other ships, however, it never emerged from the other side. Fortunately, it had a significantly larger array of instruments than was normal for ships of its type, and it looks like at least some of the databanks survived."`
 			`	At this point another Remnant takes up the narrative. "Based on the initial incident logs, it appears that something in the stabilization fields failed during transit. The data is not clear whether the systems failed, or if something in the wormhole fluctuations exceeded the parameters that the systems could handle. In any case, the ship appears to have been shunted laterally from the wormhole in mid-transit.`
 			`	"It is unclear what happened after that, but the ship was subject to significant forces including unidentified impacts that caused multiple system failures. The data loses some coherence at this point, but it basically seems to have been semi-permanently stuck out-of-phase with the prime weft until an energy surge destabilized it and it wobbled back into prime coherence. At that point, it started being visible again, and shortly after, you spotted it."`
@@ -688,7 +691,7 @@ mission "Remnant: Scent of Rain 1"
 		fleet
 			names "korath"
 			cargo 3
-			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"'olofez" 3
