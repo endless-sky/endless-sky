@@ -283,6 +283,7 @@ mission "Unwanted Cargo"
 	description "Bring a Hai child who hid in your cargo hold back to <destination>."
 	source
 		not government "Hai" "Hai (Unfettered)"
+		not near "Heia Due" 0 100
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
