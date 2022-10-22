@@ -580,7 +580,12 @@ mission "There Might Be Riots part 2"
 				`	"What do you mean, 'beyond' human space?"`
 				`	"Well, I'll look forward to the next time we meet."`
 					accept
-			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise Worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
+			branch notpublic
+				not "event: hai-human resolution announced"
+			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Of course, these days that story isn't half as interesting as it once was."`
+				goto revealed
+			label notpublic
+			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
 			branch known
 				has "First Contact: Hai: offered"
 			`	You're tempted to laugh, but he sounds serious. "Well," you say, "if I ever find a planet of intelligent squirrels, I'll be glad to take you guys there." You help them to unload their stuff, and say goodbye for now.`
@@ -590,7 +595,12 @@ mission "There Might Be Riots part 2"
 				set "met hai before TMBR"
 			`	"It sounds like you were visiting Hai space," you say, and you describe the aliens who live beyond the wormhole. "Yeah, that would be them," says Ulrich. "I'd love to go back there some time, but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
 				accept
-
+			label revealed
+			apply
+				set "met hai before TMBR"
+			`	"Well, now that they're not hiding away anymore, seems like you might have a new market you could go back to," you say.`
+			`	"I'd love to go back there some time," says Ulrich, "but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
+				accept
 
 
 mission "There Might Be Riots part 3A"
@@ -645,6 +655,14 @@ mission "There Might Be Riots part 3A"
 			`	"Yes," you say, "they're called the Hai. They live in a whole big region to the north."`
 				goto end
 			label known
+			branch notpublic
+				not "event: hai-human resolution announced"
+			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
+			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
+			`	"Aww yeah!" he exlaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
+			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
+				accept
+			label notpublic
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
 			`	"The Hai," you say.`
 			label end
@@ -1874,7 +1892,7 @@ mission "Terraforming 10"
 			`Amy, Nolan, and the other two scientists tell you the known history of Tundra's climate. Millions of years ago, an asteroid impact or large volcanic eruption altered the planet's atmosphere. Now, the planet no longer retains enough heat from its host star in order to stay warm.`
 			`	"Tundra's snow covered surface only exacerbates the problem, reflecting most of the star's light back into space," Nolan explains. "This means that we need to both alter the atmosphere in order for it to retain more heat and alter the surface in order for it to reflect less heat."`
 			`	Amy rolls out a map of the entire planet onto the table. Different regions of the surface are color coded, and a large red spot in the planet's southern hemisphere sticks out to you.`
-			`	"Tundra has very low volcanic activity, but seismic mapping has led us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is unusually thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
+			`	"Tundra has very low volcanic activity, but seismic mapping has led us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which, lucky for us, is unusually thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
 			choice
 				`	"So are we going to wait ten thousand years for it to erupt?"`
 				`	"How does this help our situation?"`
@@ -1951,7 +1969,7 @@ mission "Terraforming 12"
 		conversation
 			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for ridding the system of the pirates, a pleasantly unexpected reward.`
 			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid," Amy says, and after only a short time of searching, she finds the perfect candidate. "Just like last time, Captain."`
-			`	 Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
+			`	Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
 	
 	npc assist
@@ -2302,7 +2320,7 @@ mission "Paradise Fortune 1"
 	on offer
 		conversation
 			`As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport. While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the <origin> shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
-			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack. `
+			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack.`
 			choice
 				`	(Let her onto my ship.)`
 					goto continue
@@ -2922,7 +2940,7 @@ mission "Hauler VI cargo prototype 1"
 	destination "Skymoot"
 	to offer
 		"armament deterrence" > 0
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -2992,7 +3010,7 @@ mission "Hauler VI cargo prototype 2"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 1: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3013,7 +3031,7 @@ mission "Hauler VI cargo prototype 3"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 2: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3638,7 +3656,7 @@ mission "Street Swindle"
 			`	The cups stop. After a brief pause, the man points to the cup on the right.`
 			choice
 				`	(Watch what happens.)`
-						goto continue
+					goto continue
 				`	"You know these things are scams, right?"`
 			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
 				goto continue
@@ -3805,7 +3823,7 @@ mission "Spaceport Reminder"
 	to offer
 		not "chosen sides"
 		"spaceport reminder year" + "spaceport reminder month" != 0
-		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 3
+		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 7
 	on offer
 		conversation
 			`As soon as you touch down on <origin>, you step off your ship and head directly for the job board and trade hub, brushing past several locals on the way. The constant routine of interstellar commerce has been firmly drilled into your brain; you near unconsciously peruse the boards, trying to suss out the most profitable route.`
@@ -3813,6 +3831,8 @@ mission "Spaceport Reminder"
 			choice
 				`	"Why should I do that?"`
 				`	"I'm a spaceship captain; I don't have time to waste."`
+				`	"Yes, I know already. I'll take my time later."`
+					decline
 			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
 			choice
 				`	"I'll be sure to check more spaceports in the future."`
@@ -4050,7 +4070,7 @@ mission "Laborer"
 					goto decline
 				`	"Fine, I can take you to <planet>."`
 			label accept
-			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.`
 				accept
 			label decline
 			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
@@ -4264,7 +4284,7 @@ mission "Saving Artifacts 2"
 			choice
 				`	"Never mind, I'll pay."`
 					goto pay
-				`	"All right, I'll fight him. `
+				`	"All right, I'll fight him.`
 			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
 			choice
 				`	"Fight me."`
@@ -4292,27 +4312,27 @@ mission "Saving Artifacts 3"
 		has "Saving Artifacts 2: done"
 		not "Bought Off Artifacts"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Deth"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Warr"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Famin"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
@@ -4898,7 +4918,7 @@ mission "Riley"
 					goto bounty
 				`	(Go back to your ship.)`
 			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
-					decline
+				decline
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye

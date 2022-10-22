@@ -232,7 +232,7 @@ vector<string> Files::List(string directory)
 		return list;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
@@ -289,7 +289,7 @@ vector<string> Files::ListDirectories(string directory)
 		return list;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
@@ -357,7 +357,7 @@ void Files::RecursiveList(string directory, vector<string> *list)
 		return;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
