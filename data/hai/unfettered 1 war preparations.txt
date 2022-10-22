@@ -887,6 +887,7 @@ outfit "Mystery Cube"
 	description "You have no idea what this is."
 
 ship "Marauder Leviathan" "Leviathan (Cube)"
+	"crew" 69
 	outfits
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -897,10 +898,10 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 		"LP144a Battery Pack"
 		"Laser Rifle" 69
 		"Security Station" 5
-		"Small Bunk Room"
 		"Liquid Helium Cooler"
 		"Luxury Accommodations"
 		"Proton Turret" 3
+		"Outfits Expansion"
 		Torpedo 102
 		"Torpedo Launcher" 4
 		"Torpedo Storage Rack" 6

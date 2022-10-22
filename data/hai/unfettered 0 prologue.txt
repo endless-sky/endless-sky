@@ -971,6 +971,8 @@ outfit "Materials"
 ship "Bactrian" "Bactrian (Hydra)"
 	add attributes
 		"threshold percentage" .4
+		"outfit space" 17
+		"weapon capacity" 20 # this is a Marauder version
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
@@ -984,6 +986,7 @@ ship "Bactrian" "Bactrian (Hydra)"
 		"D67-TM Shield Generator"
 		"Hai Williwaw Cooling" 3
 		"Ramscoop"
+		"Laser Rifle" 60
 		"Pulse Rifle" 12
 		"Outfits Expansion" 2
 		`"Bufaer" Atomic Thruster`
