@@ -537,11 +537,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			Preferences::DateFormat datefmtShortName = Preferences::GetDateFormat();
 			if(datefmtShortName == Preferences::DateFormat::ymd)
-				text = "YYYY-MM-DD";
+				text = "yyyy-mm-dd";
 			else if(datefmtShortName == Preferences::DateFormat::dmy)
-				text = "DD/MM/YYYY";
+				text = "dd/mm/yyyy";
 			else if(datefmtShortName == Preferences::DateFormat::mdy)
-				text = "MM/DD/YYYY";
+				text = "mm/dd/yyyy";
 		}
 		else if(setting == TURRET_TRACKING)
 		{
