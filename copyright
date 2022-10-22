@@ -1837,6 +1837,8 @@ Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Sw
 Files:
  images/outfit/twin?blaster*
  images/outfit/twin?mod?blaster*
+ images/outfit/repeater*
+ images/outfit/repeater?turret*
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).

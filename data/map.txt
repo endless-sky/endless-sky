@@ -8987,6 +8987,7 @@ system "Devil-Hide"
 			period 18.5791
 
 system Devil-Run
+	hidden
 	pos -19 179
 	government Uninhabited
 	habitable 1071.204
