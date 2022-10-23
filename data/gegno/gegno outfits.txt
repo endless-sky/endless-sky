@@ -241,6 +241,7 @@ outfit "RG3 Torch Steering"
 	description "The oldest steering system used in Gegno space, RG3 Torch thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result."
 
 outfit "SC-1 Plasma Engines"
+	plural "SC-1 Plasma Engines"
 	category Engines
 	licenses
 		"Gegno Civilian"
@@ -335,6 +336,7 @@ outfit "SC-14 Plasma Steering"
 	description "Larger than SC-12 thrusters, SC-14 steering thrusters are one of the most powerful steering systems in Gegno space, allowing the Scin to reposition even their largest ships many times faster than their Vi counterparts."
 
 outfit "SC-15 Plasma Thrusters"
+	plural "SC-15 Plasma Thrusters"
 	category Engines
 	licenses
 		"Gegno Civilian"

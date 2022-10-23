@@ -540,6 +540,7 @@ ship Hornfel "Hornfel Heavy"
 		"RG18 Torch Thruster"
 
 ship Gneiss
+	plural "Gneiss"
 	sprite ship/gneiss
 	thumbnail thumbnail/gneiss
 	attributes

@@ -34,8 +34,8 @@ shipyard "Gegno Vi Ships"
 	"Hornfel Med"
 	Protolith
 	Schist
-	"Schist Heavy"
-	"Schist Med"
+	"Schist C"
+	"Schist B"
 	Slate
 
 outfitter "Gegno Vi Outfits"
