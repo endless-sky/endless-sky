@@ -401,6 +401,19 @@ interface "settings"
 		dimensions 90 30
 		color medium
 		hover bright
+	visible if "show next"
+	sprite "ui/dialog cancel"
+		center -115 210
+	button n "_Next"
+		center -115 210
+		dimensions 70 30
+	visible if "show previous"
+	sprite "ui/wide button"
+		center -210 210
+	button r "P_revious"
+		center -210 210
+		dimensions 90 30
+	
 
 
 

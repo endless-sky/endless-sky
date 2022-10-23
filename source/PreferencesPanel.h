@@ -63,6 +63,8 @@ private:
 	char page = 'c';
 	std::string hoverPreference;
 
+	int settingsPage = 0;
+
 	std::string selectedPlugin;
 	std::string hoverPlugin;
 
