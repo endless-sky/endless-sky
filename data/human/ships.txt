@@ -3210,7 +3210,7 @@ ship "Star Queen"
 		"shields" 4100
 		"hull" 2200
 		"required crew" 33
-		"bunks" 152
+		"bunks" 112
 		"mass" 230
 		"drag" 4.5
 		"heat dissipation" .65
