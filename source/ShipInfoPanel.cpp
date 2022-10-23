@@ -246,7 +246,7 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 		&& point.Y() <= nextHardpoint.Y() + 12.5 && point.Y() >= nextHardpoint.Y() - 12.5)
 		return DoKey('r');
 	if(point.X() <= previousHardpoint.X() + 60. && point.X() >= previousHardpoint.X()
-	   && point.Y() <= previousHardpoint.Y() + 12.5 && point.Y() >= previousHardpoint.Y() - 12.5)
+		&& point.Y() <= previousHardpoint.Y() + 12.5 && point.Y() >= previousHardpoint.Y() - 12.5)
 		return DoKey('z');
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
