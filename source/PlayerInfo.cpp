@@ -1093,18 +1093,8 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		attraction += max(0., .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8);
-		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.GetOutfit())
-			{
-				const Outfit *weapon = hardpoint.GetOutfit();
-				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
-					continue;
-				double damage = weapon->ShieldDamage() + weapon->HullDamage()
-					+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
-					+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull"));
-				deterrence += .12 * damage / weapon->Reload();
-			}
+		attraction += ship->Attraction();
+		deterrence += ship->Deterrence();
 	}
 
 	return make_pair(attraction, deterrence);
@@ -2633,6 +2623,31 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
+
+	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
+	auto playerNameFun = [this](const string &name) -> bool
+	{
+		return name == "name: " + firstName + " " + lastName;
+	};
+	playerNameProvider.SetHasFunction(playerNameFun);
+	playerNameProvider.SetGetFunction(playerNameFun);
+
+	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("first name: ");
+	auto playerNameFirstFun = [this](const string &name) -> bool
+	{
+		return name == "first name: " + firstName;
+	};
+	playerNameFirstProvider.SetHasFunction(playerNameFirstFun);
+	playerNameFirstProvider.SetGetFunction(playerNameFirstFun);
+
+	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("last name: ");
+	auto playerNameLastFun = [this](const string &name) -> bool
+	{
+		return name == "last name: " + lastName;
+	};
+	playerNameLastProvider.SetHasFunction(playerNameLastFun);
+	playerNameLastProvider.SetGetFunction(playerNameLastFun);
+
 
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
