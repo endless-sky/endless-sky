@@ -75,10 +75,10 @@ tip "cargo scan:"
 	`Lets you scan your target ship's cargo from up to this distance away.`
 
 tip "cargo scan power:"
-	`The range of this cargo scanner is proportional to the square root of this value. The speed of the scanner also decreases in proportion to the square root of this value.`
+	`The range of this cargo scanner is proportional to the square root of this value. At increasing distances, the scanner's speed will naturally decline.`
 
 tip "cargo scan speed:"
-	`The time it takes for this scanner to complete is inversely proportional to this value. Many factors can impact the speed of a scan, like the size of the target ship, its distance to the scanner, or its velocity relative to the scanner.`
+	`The time it takes for this scanner to complete, all things equal, is inversely proportional to this value. Multiple factors can impact the speed of a scan, like the size of the target ship or its distance to the scanner.`
 
 tip "cargo:"
 	`Cargo this ship is carrying right now, out of its maximum.`
@@ -339,10 +339,10 @@ tip "outfit scan:"
 	`Lets you scan your target ship's outfits from up to this distance away.`
 
 tip "outfit scan power:"
-	`The range of this outfit scanner is proportional to the square root of this value. The speed of the scanner also decreases in proportion to the square root of this value.`
+	`The range of this outfit scanner is proportional to the square root of this value. At increasing distances, the scanner's speed will naturally decline.`
 
 tip "outfit scan speed:"
-	`The time it takes for this scanner to complete is inversely proportional to this value. Many factors can impact the speed of a scan, like the size of the target ship, its distance to the scanner, or its velocity relative to the scanner.`
+	`The time it takes for this scanner to complete, all things equal. is inversely proportional to this value. Multiple factors can impact the speed of a scan, like the size of the target ship or its distance to the scanner.`
 
 tip "outfit space needed:"
 	`How much general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`
