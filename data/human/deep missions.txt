@@ -761,10 +761,15 @@ mission "Deep: TMBR 1"
 			`	While the band intermixes crowd favorites and some new songs clearly inspired by their time in Hai space, you make your way to the side of the makeshift stage. Once the concert ends, Ulrich notices you and approaches.`
 			`	"Captain <last>, it's been a while! We've been having a great time with the peaceful squirrels ever since you dropped us off. It's the craziest experience we've ever had." He regales you with a number of adventures the band has been on since they came to Hai space, and how they were all surprised that even in such an idyllic place war was still a reality. "Say, what brings you here?"`
 			`	He listens intently to your story of the scientists on <planet>, but his brow furrows when you mention the rumor of imprisonment by the Republic.`
+			branch public
+				has "event: hai-human resolution announced"
 			`	"Maybe we've been away long enough. I thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a pretty well-kept secret, so perhaps not. Maybe it's time to go back to the land of the humans."`
+				goto return
+			label public
+			`	"Maybe we've been away long enough. With recent events, I suppose it's only a matter of time until our presence here becomes known more widely to the Republic anyway, so we don't exactly gain much by staying. Maybe it's time to go back to the land of the humans."`
+			label return
 			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as they load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
-	
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
@@ -3046,7 +3051,7 @@ mission "Home for Skadenga 1"
 				decline
 			label doit
 			`	The Ondurdis smiles. "Thank you." She nods toward the door. "Come with me."`
-			`	In the light of early day, the village looks stranger than you remember. Carved wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough, the effect does not clash, but instead gives off an impression of seamless artistry. To the south, there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an usual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure, you feel unnaturally chilly.`
+			`	In the light of early day, the village looks stranger than you remember. Carved wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough, the effect does not clash, but instead gives off an impression of seamless artistry. To the south, there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an unusual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure, you feel unnaturally chilly.`
 			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more. Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk, and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
 			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Onduris continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
 			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
@@ -3204,7 +3209,7 @@ mission "Home for Skadenga 3"
 			choice
 				`	(Follow the tracker.)`
 			`	For a moment you forget the God-Stone and focus on following the tracker. It leads you to a themed restaurant on the top floor called "The Adventurer's Due." The restaurant is filled with exotic artifacts allegedly taken from all corners of known and unknown space.`
-			`	Your tracker hones in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga. The panel above it reads:`
+			`	Your tracker homes in on one case. It contains a rune covered box, with patterns that look similar to those used by the Skadenga. The panel above it reads:`
 			``
 			`	'This box once contained the cure to the Rigellian Plague. It belonged to the renowned explorer, adventurer, and researcher Dr. Henry Forsyth. It was donated by the Forsyth Foundation for Academic Honesty.'`
 			``
