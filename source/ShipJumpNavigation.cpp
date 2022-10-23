@@ -31,34 +31,47 @@ const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
 
 
 
-// Pass the current system that the ship is in to the navigation.
-void ShipJumpNavigation::SetSystem(const System *system)
-{
-	currentSystem = system;
-}
-
-
-
 // Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
 void ShipJumpNavigation::Calibrate(const Ship &ship)
 {
+	currentSystem = ship.GetSystem();
+	mass = ship.Mass();
+
 	const Outfit &attributes = ship.Attributes();
 	hasHyperdrive = attributes.Get("hyperdrive");
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
+	hasJumpMassCostDrive = attributes.Get("jump mass cost");
 
 	jumpDriveCosts.clear();
 	jumpDriveCosts[0.] = 0.;
 	hyperdriveCost = 0.;
 	maxJumpRange = 0.;
 
-	double shipHyperCost = hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST;
-
 	// Make it possible for a hyperdrive or jump drive to be integrated into a ship.
-	ParseOutfit(ship.BaseAttributes(), shipHyperCost);
+	ParseOutfit(ship.BaseAttributes());
 	// Check each outfit from this ship to determine if it has jump capabilities.
 	for(const auto &it : ship.Outfits())
-		ParseOutfit(*it.first, shipHyperCost);
+		ParseOutfit(*it.first);
+}
+
+
+
+// Recalibrate jump costs for this ship, but only if necessary.
+void ShipJumpNavigation::Recalibrate(const Ship &ship)
+{
+	// Recalibration is only necessary if this ship's mass has changed and it has drives
+	// that would be affected by that change.
+	if(hasJumpMassCostDrive && mass != ship.Mass())
+		Calibrate(ship);
+}
+
+
+
+// Pass the current system that the ship is in to the navigation.
+void ShipJumpNavigation::SetSystem(const System *system)
+{
+	currentSystem = system;
 }
 
 
@@ -161,13 +174,26 @@ bool ShipJumpNavigation::HasJumpDrive() const
 
 // Parse the given outfit to determine if it has the capability to jump, and update any
 // jump information accordingly.
-void ShipJumpNavigation::ParseOutfit(const Outfit &outfit, double shipHyperCost)
+void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 {
+	auto CalculateFuelCost = [this, &outfit](double defaultFuel) -> double
+	{
+		double baseCost = outfit.Get("jump fuel");
+		if(baseCost <= 0.)
+			baseCost = defaultFuel;
+		// Mass cost is the fuel cost per 100 tons of ship mass. The jump base mass of a drive reduces the
+		// ship's effective mass for the jump mass cost calculation. A ship with a mass below the drive's
+		// jump base mass is allowed to have a negative mass cost.
+		double massCost = .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass"));
+		// Prevent a drive with a high jump base mass on a ship with a low mass from pushing the total
+		// cost too low. Put a floor at 1, as a floor of 0 would be assumed later on to mean you can't jump.
+		// If and when explicit 0s are allowed for fuel cost, this floor can become 0.
+		return max(1., baseCost + massCost);
+	};
+
 	if(outfit.Get("hyperdrive") && (!hasScramDrive || outfit.Get("scram drive")))
 	{
-		double cost = outfit.Get("jump fuel");
-		if(cost <= 0.)
-			cost = shipHyperCost;
+		double cost = CalculateFuelCost(hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
 		if(!hyperdriveCost || cost < hyperdriveCost)
 			hyperdriveCost = cost;
 	}
@@ -176,9 +202,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit, double shipHyperCost)
 		double distance = outfit.Get("jump range");
 		if(distance <= 0.)
 			distance = System::DEFAULT_NEIGHBOR_DISTANCE;
-		double cost = outfit.Get("jump fuel");
-		if(cost <= 0.)
-			cost = DEFAULT_JUMP_DRIVE_COST;
+		double cost = CalculateFuelCost(DEFAULT_JUMP_DRIVE_COST);
 
 		UpdateJumpDriveCosts(distance, cost);
 	}

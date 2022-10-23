@@ -785,7 +785,6 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = IsDisabled();
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
-	navigation.SetSystem(currentSystem);
 	navigation.Calibrate(*this);
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
@@ -3213,6 +3212,13 @@ const ShipJumpNavigation &Ship::JumpNavigation() const
 
 
 
+void Ship::RecalibrateJumpNavigation()
+{
+	navigation.Recalibrate(*this);
+}
+
+
+
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -3672,6 +3678,9 @@ const CargoHold &Ship::Cargo() const
 void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 {
 	cargo.Remove(commodity, tons);
+	// Removing cargo will have changed the ship's mass, so the
+	// jump navigation must check for recalibration.
+	navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -3692,6 +3701,9 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 		return;
 
 	cargo.Remove(outfit, count);
+	// Removing cargo will have changed the ship's mass, so the
+	// jump navigation must check for recalibration.
+	navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -3776,12 +3788,14 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
-		// If the added or removed outfit is a hyperdrive or jump drive,
-		// recalculate this ship's jump navigation. Hyperdrives and jump
-		// drives of the same type don't stack, so only do this if the
-		// outfit is either completely new or has been completely removed.
+		// If the added or removed outfit is a hyperdrive or jump drive, recalculate this
+		// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
+		// so only do this if the outfit is either completely new or has been completely removed.
+		// Navigation may still need to be recalibrated depending on the drives a ship has.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
 			navigation.Calibrate(*this);
+		else
+			navigation.Recalibrate(*this);
 	}
 }
 

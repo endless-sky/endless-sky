@@ -1584,6 +1584,10 @@ void Engine::CalculateStep()
 // boarding events, fire weapons, and launch fighters.
 void Engine::MoveShip(const shared_ptr<Ship> &ship)
 {
+	// Various actions a ship could have taken last frame may have impacted its jump capabilities.
+	// Therefore, recalibrate its jump navigation information.
+	ship->RecalibrateJumpNavigation();
+
 	const Ship *flagship = player.Flagship();
 
 	bool isJump = ship->IsUsingJumpDrive();

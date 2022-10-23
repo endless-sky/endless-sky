@@ -312,6 +312,7 @@ public:
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
 	const ShipJumpNavigation &JumpNavigation() const;
+	void RecalibrateJumpNavigation();
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// This does not show accurate number of jumps remaining beyond 1.

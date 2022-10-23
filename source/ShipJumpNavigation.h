@@ -37,10 +37,13 @@ public:
 public:
 	ShipJumpNavigation() = default;
 
-	// Pass the current system that the ship is in to the navigation.
-	void SetSystem(const System *system);
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
 	void Calibrate(const Ship &ship);
+	// Recalibrate jump costs for this ship, but only if necessary.
+	void Recalibrate(const Ship &ship);
+
+	// Pass the current system that the ship is in to the navigation.
+	void SetSystem(const System *system);
 
 	// Get the amount of fuel that would be expended to jump to the destination. If the destination is
 	// nullptr then return the maximum amount of fuel that this ship could expend in one jump.
@@ -65,22 +68,28 @@ public:
 private:
 	// Parse the given outfit to determine if it has the capability to jump, and update any
 	// jump information accordingly.
-	void ParseOutfit(const Outfit &outfit, double shipHyperCost);
+	void ParseOutfit(const Outfit &outfit);
 	// Add the given distance, cost pair to the jump drive costs and update the fuel cost
 	// of each jump distance if necessary.
 	void UpdateJumpDriveCosts(double distance, double cost);
 
 
 private:
+	// Cached information about the ship. Checked against the ship's current
+	// information during recalibration.
+	double mass = 0.;
 	const System *currentSystem = nullptr;
 
+	// Cached jump navigation information.
 	double hyperdriveCost = 0.;
 	std::map<double, double> jumpDriveCosts;
 	double maxJumpRange = 0.;
 
+	// What drive types and characteristics the ship has.
 	bool hasHyperdrive = false;
 	bool hasScramDrive = false;
 	bool hasJumpDrive = false;
+	bool hasJumpMassCostDrive = false;
 };
 
 

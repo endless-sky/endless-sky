@@ -550,6 +550,9 @@ void MainPanel::StepEvents(bool &isActive)
 				GetUI()->Push(new BoardingPanel(player, boardedShip));
 				isActive = false;
 			}
+			// An action taken during boarding may have changed the flagship's jump
+			// capabiltiies.
+			flagship->RecalibrateJumpNavigation();
 		}
 
 		// Handle scan events of or by the player.
