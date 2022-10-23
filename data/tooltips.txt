@@ -302,6 +302,12 @@ tip "jump fuel:"
 tip "jump range:"
 	`How far you can jump between systems using this drive.`
 
+tip "jump mass cost:"
+	`How much fuel this drive consumes, per 100 tons of mass. Additive with jump fuel.`
+
+tip "jump base mass:"
+	`A modifier to the impact your ship's mass has on the jump mass cost. Ships below this mass will have a cheaper jump cost than the base jump fuel cost, while ships above this mass will have more expensive jumps.`
+
 tip "leak protection:"
 	`Protection against weapons that cause fuel leakage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
 
