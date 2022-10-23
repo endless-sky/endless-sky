@@ -533,9 +533,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		}
 		index++;
 	}
-	for(unsigned int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
+	for(int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
 	{
-		if(weaponsRight.size() > weaponIndex)
+		if(weaponsRight.size() > static_cast<unsigned int>(weaponIndex))
 		{
 			const Hardpoint *hardpoint = weaponsRight[weaponIndex];
 			string name = "[empty]";
@@ -572,7 +572,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 			y += LINE_HEIGHT;
 		}
-		if(weaponsLeft.size() > weaponIndex)
+		if(weaponsLeft.size() > static_cast<unsigned int>(weaponIndex))
 		{
 			const Hardpoint *hardpoint = weaponsLeft[weaponIndex];
 			string name = "[empty]";
