@@ -552,7 +552,7 @@ void MainPanel::StepEvents(bool &isActive)
 			}
 			// An action taken during boarding may have changed the flagship's jump
 			// capabiltiies.
-			flagship->RecalibrateJumpNavigation();
+			player.Flagship()->RecalibrateJumpNavigation();
 		}
 
 		// Handle scan events of or by the player.
