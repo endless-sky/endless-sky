@@ -87,9 +87,11 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
+	if(pageCount > 1)
+		info.SetCondition("multiple pages");
 	if(settingsPage > 0)
 		info.SetCondition("show previous");
-	if(pageCount > settingsPage + 1)
+	if(settingsPage + 1 < pageCount)
 		info.SetCondition("show next");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");

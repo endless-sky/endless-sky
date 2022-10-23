@@ -397,6 +397,11 @@ interface "settings"
 		dimensions 90 30
 		color bright
 	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "multiple pages"
 	sprite "ui/dialog cancel"
 		center -115 210
 	active if "show next"
