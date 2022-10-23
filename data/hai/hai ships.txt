@@ -177,9 +177,9 @@ ship "Centipede" "Centipede (Refugees)"
 
 
 
-ship "Cockroach"
-	sprite "ship/hai cockroach"
-	thumbnail "thumbnail/hai cockroach"
+ship "Cicada"
+	sprite "ship/hai cicada"
+	thumbnail "thumbnail/hai cicada"
 	attributes
 		category "Transport"
 		"cost" 5850000
@@ -229,7 +229,7 @@ ship "Cockroach"
 	explode "large explosion" 16
 	explode "huge explosion" 4
 	"final explode" "final explosion medium"
-	description "Cockroach."
+	description `Practically no new Cicadas have been built in recent memory. A design nearly as old as the Aphid; it is so reliable that the second-hand market is filled with Cicadas that have outlived not one, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life".`
 
 
 
@@ -836,7 +836,7 @@ ship "Scarab"
 	explode "medium explosion" 12
 	explode "large explosion" 4
 	"final explode" "final explosion small"
-	description "Scarab."
+	description `The hard-working cousin to the Lightning Bug; the Scarab has only ever grown in popularity, never declined. That this statistic is occasionally measured in thousandths of a percentage point for years at a time is immaterial to the title. This lightweight transport is commonly the pick for Grasshopper pilots looking to make money while continuing to feed their free spirit. It is also large enough to transport a large Hai family, making it perfect for nearly any odd job in Hai space.`
 
 
 
