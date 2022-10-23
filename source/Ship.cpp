@@ -4149,7 +4149,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// Mass cost is the fuel cost per 100 tons of ship mass. The jump base mass of a drive reduces the
 		// ship's effective mass for the jump mass cost calculation. A ship with a mass below the drive's
 		// jump base mass is allowed to have a negative mass cost.
-		double massCost = .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass");
+		double massCost = .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass"));
 		// Prevent a drive with a high jump base mass on a ship with a low mass from pushing the total
 		// cost too low. Put a floor at 1, as a floor of 0 would be assumed later on to mean you can't jump.
 		// If and when explicit 0s are allowed for fuel cost, this floor can become 0.
