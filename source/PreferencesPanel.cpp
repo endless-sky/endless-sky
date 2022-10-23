@@ -63,7 +63,7 @@ namespace {
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 
 	// How many pages of settings there are.
-	const int pageCount = 2;
+	const int pageCount = 1;
 }
 
 
