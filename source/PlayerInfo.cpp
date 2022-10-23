@@ -2673,9 +2673,20 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The total number of ships the player has.
-	auto &&totalShipsProvider = conditions.GetProviderNamed("total ships");
-	totalShipsProvider.SetGetFunction([this](const string &name) -> int64_t
+	// The total number of ships the player has active and present.
+	auto &&totalPresentShipsProvider = conditions.GetProviderNamed("total ships");
+	totalPresentShipsProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+				++retVal;
+		return retVal;
+	});
+
+	// The total number of ships the player has anywhere.
+	auto &&totalAnywhereShipsProvider = conditions.GetProviderNamed("total ships (all)");
+	totalAnywhereShipsProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
