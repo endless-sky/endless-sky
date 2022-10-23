@@ -1530,14 +1530,26 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/hardpoint/firestorm battery*
+ images/hardpoint/firestorm?battery*
  images/outfit/firestorm?battery*
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
  images/outfit/mcs?exctractor*
  images/projectile/firestorm?torpedo*
+ images/ship/gegno?dolomite*
+ images/ship/gegno?felsic*
+ images/ship/gegno?mica*
+ images/ship/gegno?schist*
+ images/ship/gegno?shale*
+ images/ship/gegno?slate*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/thumbnail/gegno?dolomite*
+ images/thumbnail/gegno?felsic*
+ images/thumbnail/gegno?mica*
+ images/thumbnail/gegno?schist*
+ images/thumbnail/gegno?shale*
+ images/thumbnail/gegno?slate*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
  sound/drill*
