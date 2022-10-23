@@ -464,9 +464,6 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	bool pageNeeded = height > (sprite->Height() * scale);
 	height = pageNeeded ? sprite->Height() * scale : height;
 
-	double gunY = bounds.Top() + .5 * (bounds.Height() - height);
-	double turretY = gunY + 20. * gunRows + 10. * (gunRows != 0);
-
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
 	const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
@@ -536,7 +533,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		}
 		index++;
 	}
-	for(int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
+	for(unsigned int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
 	{
 		if(weaponsRight.size() > weaponIndex)
 		{
