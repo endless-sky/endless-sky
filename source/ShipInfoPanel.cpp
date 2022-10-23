@@ -213,6 +213,10 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
+	else if(key == 'r')
+		pageIndex = pageIndex >= pages - 1 ? pageIndex : pageIndex + 1;
+	else if(key == 'z')
+		pageIndex = pageIndex <= 1 ? pageIndex : pageIndex - 1;
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else
@@ -230,11 +234,20 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 
 	draggingIndex = -1;
 	if(panelState.CanEdit() && hoverIndex >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
+	{
 		draggingIndex = hoverIndex;
+		dragRight = hoverRight;
+	}
 
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 	Point point(x, y);
+	if(point.X() <= nextHardpoint.X() + 145. && point.X() >= nextHardpoint.X() + 105.
+		&& point.Y() <= nextHardpoint.Y() + 12.5 && point.Y() >= nextHardpoint.Y() - 12.5)
+		return DoKey('r');
+	if(point.X() <= previousHardpoint.X() + 60. && point.X() >= previousHardpoint.X()
+	   && point.Y() <= previousHardpoint.Y() + 12.5 && point.Y() >= previousHardpoint.Y() - 12.5)
+		return DoKey('z');
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
 			selectedCommodity = zone.Value();
@@ -266,7 +279,10 @@ bool ShipInfoPanel::Drag(double dx, double dy)
 bool ShipInfoPanel::Release(int /* x */, int /* y */)
 {
 	if(draggingIndex >= 0 && hoverIndex >= 0 && hoverIndex != draggingIndex)
-		(**shipIt).GetArmament().Swap(hoverIndex, draggingIndex);
+	{
+			(**shipIt).GetArmament().Swap(hoverRight ? indecesRight[hoverIndex] : indecesLeft[hoverIndex],
+										dragRight ? indecesRight[draggingIndex] : indecesLeft[draggingIndex]);
+	}
 
 	draggingIndex = -1;
 	return true;
@@ -298,7 +314,8 @@ void ShipInfoPanel::UpdateInfo()
 
 void ShipInfoPanel::ClearZones()
 {
-	zones.clear();
+	zonesRight.clear();
+	zonesLeft.clear();
 	commodityZones.clear();
 	plunderZones.clear();
 }
@@ -444,14 +461,12 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	int turretRows = max(count[0][1], count[1][1]);
 	// If there are both guns and turrets, add a gap of ten pixels.
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
+	bool pageNeeded = height > (sprite->Height() * scale);
+	height = pageNeeded ? sprite->Height() * scale : height;
 
 	double gunY = bounds.Top() + .5 * (bounds.Height() - height);
 	double turretY = gunY + 20. * gunRows + 10. * (gunRows != 0);
-	double nextY[2][2] = {
-		{gunY + 20. * (gunRows - count[0][0]), turretY + 20. * (turretRows - count[0][1])},
-		{gunY + 20. * (gunRows - count[1][0]), turretY + 20. * (turretRows - count[1][1])}};
 
-	int index = 0;
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
 	const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
@@ -463,44 +478,152 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Color topColor;
 	bool hasTop = false;
 	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
+
+	// First Calculate how many pages are needed. One is always there.
+	pages = 1;
+	int gunIndex = 0;
+	int turretIndex = 0;
+	int rowsPerPage = static_cast<int>((sprite->Height() * scale) / 10.) - 1;
+	int offset = 0;
+	while(pageNeeded)
+	{
+		if(gunIndex < gunRows)
+		{
+			if((gunRows - gunIndex) * 20. >= height)
+				gunIndex += (rowsPerPage / 2);
+			else
+			{
+				offset = gunRows - gunIndex;
+				gunIndex = gunRows;
+			}
+		}
+		if(gunIndex >= gunRows && turretIndex < turretRows)
+		{
+			if(offset)
+				if((turretRows - turretIndex + offset) * 20. + 10. >= height)
+					turretIndex += (rowsPerPage / 2) - (offset + 1);
+				else
+					turretIndex = turretRows;
+			else
+			{
+				if((turretRows - turretIndex) * 20. >= height)
+					turretIndex += (rowsPerPage / 2);
+				else
+					pageNeeded = false;
+			}
+		}
+		if(turretIndex >= turretRows && gunIndex >= gunRows)
+			pageNeeded = false;
+		pages++;
+		offset = 0;
+	}
+	weaponsRight.clear();
+	weaponsLeft.clear();
+	indecesRight.clear();
+	indecesLeft.clear();
+	int index = 0;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		string name = "[empty]";
-		if(hardpoint.GetOutfit())
-			name = hardpoint.GetOutfit()->Name();
-
-		bool isRight = (hardpoint.GetPoint().X() >= 0.);
-		bool isTurret = hardpoint.IsTurret();
-
-		double &y = nextY[isRight][isTurret];
-		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
-		bool isHover = (index == hoverIndex);
-		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
-		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
-		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
-		zones.emplace_back(zoneCenter, LINE_SIZE, index);
-
-		// Determine what color to use for the line.
-		float high = (index == hoverIndex ? .8f : .5f);
-		Color color(high, .75f * high, 0.f, 1.f);
-		if(isTurret)
-			color = Color(0.f, .75f * high, high, 1.f);
-
-		// Draw the line.
-		Point from(fromX[isRight], zoneCenter.Y());
-		Point to = bounds.Center() + (2. * scale) * hardpoint.GetPoint();
-		DrawLine(from, to, color);
-		if(isHover)
+		if(hardpoint.GetPoint().X() >= 0.)
 		{
-			topFrom = from;
-			topTo = to;
-			topColor = color;
-			hasTop = true;
+			indecesRight.emplace_back(index);
+			weaponsRight.emplace_back(&hardpoint);
 		}
-
-		y += LINE_HEIGHT;
-		++index;
+		else
+		{
+			indecesLeft.emplace_back(index);
+			weaponsLeft.emplace_back(&hardpoint);
+		}
+		index++;
 	}
+	for(int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
+	{
+		if(weaponsRight.size() > weaponIndex)
+		{
+			const Hardpoint *hardpoint = weaponsRight[weaponIndex];
+			string name = "[empty]";
+			if(hardpoint->GetOutfit())
+				name = hardpoint->GetOutfit()->Name();
+
+			bool isTurret = hardpoint->IsTurret();
+
+			double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
+			double x = centerX + LABEL_DX;
+			bool isHover = (weaponIndex == hoverIndex && hoverRight);
+			layout.align = Alignment::RIGHT;
+			font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+			Point zoneCenter(labelCenter[1], y + .5 * LINE_HEIGHT);
+			zonesRight.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
+
+			// Determine what color to use for the line.
+			float high = (weaponIndex == hoverIndex  && hoverRight ? .8f : .5f);
+			Color color(high, .75f * high, 0.f, 1.f);
+			if(isTurret)
+				color = Color(0.f, .75f * high, high, 1.f);
+
+			// Draw the line.
+			Point from(fromX[1], zoneCenter.Y());
+			Point to = bounds.Center() + (2. * scale) * hardpoint->GetPoint();
+			DrawLine(from, to, color);
+			if(isHover)
+			{
+				topFrom = from;
+				topTo = to;
+				topColor = color;
+				hasTop = true;
+			}
+
+			y += LINE_HEIGHT;
+		}
+		if(weaponsLeft.size() > weaponIndex)
+		{
+			const Hardpoint *hardpoint = weaponsLeft[weaponIndex];
+			string name = "[empty]";
+			if(hardpoint->GetOutfit())
+				name = hardpoint->GetOutfit()->Name();
+
+			bool isTurret = hardpoint->IsTurret();
+
+			double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
+			double x = centerX -LABEL_DX - LABEL_WIDTH;
+			bool isHover = (weaponIndex == hoverIndex && !hoverRight);
+			layout.align = Alignment::LEFT;
+			font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+			Point zoneCenter(labelCenter[0], y + .5 * LINE_HEIGHT);
+			zonesLeft.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
+
+			// Determine what color to use for the line.
+			float high = (weaponIndex == hoverIndex && !hoverRight ? .8f : .5f);
+			Color color(high, .75f * high, 0.f, 1.f);
+			if(isTurret)
+				color = Color(0.f, .75f * high, high, 1.f);
+
+			// Draw the line.
+			Point from(fromX[0], zoneCenter.Y());
+			Point to = bounds.Center() + (2. * scale) * hardpoint->GetPoint();
+			DrawLine(from, to, color);
+			if(isHover)
+			{
+				topFrom = from;
+				topTo = to;
+				topColor = color;
+				hasTop = true;
+			}
+
+			y += LINE_HEIGHT;
+		}
+	}
+
+	if(pages > 1)
+	{
+		layout.align = Alignment::RIGHT;
+		nextHardpoint = Point(centerX + LABEL_DX, 260.);
+		font.Draw({"next>", layout}, nextHardpoint , Color(.5, .0));
+		layout.align = Alignment::LEFT;
+		previousHardpoint = Point(centerX - LABEL_DX - LABEL_WIDTH, 260.);
+		font.Draw({"<previous", layout}, previousHardpoint, Color(.5, .0));
+	}
+
 	// Make sure the line for whatever hardpoint we're hovering is always on top.
 	if(hasTop)
 		DrawLine(topFrom, topTo, topColor);
@@ -639,13 +762,25 @@ bool ShipInfoPanel::Hover(const Point &point)
 	hoverPoint = point;
 
 	hoverIndex = -1;
-	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
-	bool dragIsTurret = (draggingIndex >= 0 && weapons[draggingIndex].IsTurret());
-	for(const auto &zone : zones)
+	bool dragIsTurret = (draggingIndex >= 0 && weaponsRight[draggingIndex]->IsTurret());
+	for(const auto &zone : zonesRight)
 	{
-		bool isTurret = weapons[zone.Value()].IsTurret();
+		bool isTurret = weaponsRight[zone.Value()]->IsTurret();
 		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret))
+		{
+			hoverRight = true;
 			hoverIndex = zone.Value();
+		}
+	}
+	dragIsTurret = (draggingIndex >= 0 && weaponsLeft[draggingIndex]->IsTurret());
+	for(const auto &zone : zonesLeft)
+	{
+		bool isTurret = weaponsLeft[zone.Value()]->IsTurret();
+		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret))
+		{
+			hoverRight = false;
+			hoverIndex = zone.Value();
+		}
 	}
 
 	return true;

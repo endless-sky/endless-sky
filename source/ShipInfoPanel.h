@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Color;
+class Hardpoint;
 class Outfit;
 class PlayerInfo;
 class Rectangle;
@@ -89,14 +90,26 @@ private:
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 
 	// Track all the clickable parts of the UI (other than the buttons).
-	std::vector<ClickZone<int>> zones;
+	std::vector<ClickZone<int>> zonesRight;
+	std::vector<ClickZone<int>> zonesLeft;
+	std::vector<const Hardpoint*> weaponsRight;
+	std::vector<int> indecesRight;
+	std::vector<const Hardpoint*> weaponsLeft;
+	std::vector<int> indecesLeft;
+	bool hoverRight = false;
+	bool dragRight = false;
+	Point nextHardpoint = Point(0.0, 0.0);
+	Point previousHardpoint = Point(0.0, 0.0);
+	bool nextHover = false;
+
 	std::vector<ClickZone<std::string>> commodityZones;
 	std::vector<ClickZone<const Outfit *>> plunderZones;
 	// Keep track of which item the mouse is hovering over and which item is
 	// currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
-
+	int pages = 1;
+	int pageIndex = 1;
 	InfoPanelState panelState;
 
 	// Track the current mouse location.
