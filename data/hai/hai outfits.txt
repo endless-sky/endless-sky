@@ -267,7 +267,7 @@ effect "tracker cloud"
 	"random angle" 360
 	"random spin" 8
 	"random velocity" 1
-	"random frame rate" 2 
+	"random frame rate" 2
 	"velocity scale" -.1
 
 
@@ -685,3 +685,12 @@ outfit "Shield Beetle Pendant"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
+
+
+outfit "Failed Control System"
+	category "Systems"
+	cost 0
+	thumbnail "outfit/control transceiver"
+	"mass" 1
+	"unplunderable" 1
+	description "This was meant to control some sort of experimental system, but it appears to have failed."

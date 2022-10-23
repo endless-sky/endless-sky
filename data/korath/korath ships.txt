@@ -271,7 +271,7 @@ ship "Tubfalet"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The venerable Palavret has been a mainstay of the Korath raiding fleet, elements of its design dating back from before the era of shortages and desperation caused by a life in exile. Over forty generations of raiders have terrorised neighboring systems over the centuries."
-	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to draw upon, the Korath have created a new raider to deal with modern targets, and the Tubfalet-Class Raiding Ship is named for an admiral who dealt with such enemies. Despite extensive injuries, he remained on his flag bridge during a Remnant attack, leading his squadron to victory.`
+	description "	Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to draw upon, the Korath have created a new raider to deal with modern targets, and the Tubfalet-Class Raiding Ship is named for an admiral who dealt with such enemies. Despite extensive injuries, he remained on his flag bridge during a Remnant attack, leading his squadron to victory."
 
 
 ship "'nra'ret"
@@ -540,7 +540,7 @@ ship "Ra'gru Ik 618"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels."  
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels."
 
 
 ship "Kas'lor Ik 582"
@@ -1075,7 +1075,7 @@ ship "Echo-Galleon"
 	outfits
 		"Digger Mining Beam" 4
 		"Grab-Strike Turret" 2
-		"Banisher Grav-Turret" 
+		"Banisher Grav-Turret"
 		"Warder Anti-Missile" 2
 		
 		"Double Plasma Core"
@@ -1108,7 +1108,7 @@ ship "Echo-Galleon"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description `The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the "World-Ships" of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts.`
+	description "The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the "World-Ships" of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts."
 
 
 ship "Arch-Carrack"
@@ -1229,7 +1229,7 @@ ship "Charm-Shallop"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "A recent design, this Efreti multi-role vessel is found taking up many jobs previously relegated to a now scrapped fleet of early-model raiders. While some are used primarily for passenger transport, others are used in local mining to satiate the Efreti's perpetual demand for ores. Incorporating Quarg-inspired structural elements, its light frame allows it to complete tasks more nimbly than any other independent Korath ship." 
+	description "A recent design, this Efreti multi-role vessel is found taking up many jobs previously relegated to a now scrapped fleet of early-model raiders. While some are used primarily for passenger transport, others are used in local mining to satiate the Efreti's perpetual demand for ores. Incorporating Quarg-inspired structural elements, its light frame allows it to complete tasks more nimbly than any other independent Korath ship."
 
 
 

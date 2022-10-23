@@ -197,7 +197,7 @@ env.Install("$DESTDIR$PREFIX/games", sky)
 env.Install("$DESTDIR$PREFIX/share/applications", "endless-sky.desktop")
 
 # Install app center metadata:
-env.Install("$DESTDIR$PREFIX/share/metainfo", "endless-sky.appdata.xml")
+env.Install("$DESTDIR$PREFIX/share/metainfo", "io.github.endless_sky.endless_sky.appdata.xml")
 
 # Install icons, keeping track of all the paths.
 # Most Ubuntu apps supply 16, 22, 24, 32, 48, and 256, and sometimes others.
