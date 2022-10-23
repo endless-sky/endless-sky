@@ -135,7 +135,7 @@ government "Free Worlds"
 	raid "pirate raid"
 
 government Gegno
-	swizzle 28
+	swizzle 0
 	color 0.56 0.44 0.2
 	"player reputation" 0
 	"crew attack" 1.1
@@ -151,7 +151,7 @@ government Gegno
 	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Scin"
-	swizzle 28
+	swizzle 18
 	color 0.5 0.55 0.33
 	"player reputation" 0
 	"crew attack" 1.2
@@ -165,7 +165,7 @@ government "Gegno Scin"
 	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Vi"
-	swizzle 28
+	swizzle 0
 	color 0.68 0.4 0.4
 	"player reputation" 0
 	"crew attack" 1.3

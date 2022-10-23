@@ -10,31 +10,26 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Gegno:
+# Gegno Civilians:
 
 ship Shale
-	sprite ship/shale
-	thumbnail thumbnail/shale
-	swizzle 0
+	sprite "ship/gegno shale"
+	thumbnail "thumbnail/gegno shale"
 	attributes
 		category Transport
 		licenses
 			"Gegno Civilian"
 		cost 265000
-		mass 121
-		bunks 7
-		"cargo space" 36
-		drag 1.8
-		"engine capacity" 58
-		"fuel capacity" 400
-		"heat dissipation" 0.8
-		"heat protection" 3
-		"ion protection" 3
 		hull 760
-		"outfit space" 113
 		"required crew" 1
-		shields 0
-		"weapon capacity" 0
+		bunks 7
+		mass 121
+		drag 1.8
+		"heat dissipation" 0.8
+		"fuel capacity" 400		
+		"cargo space" 54
+		"outfit space" 113
+		"engine capacity" 58
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -42,10 +37,10 @@ ship Shale
 			"hit force" 210
 	outfits
 		"C3 Scrap Cell"
-		Hyperdrive
 		"R01 Skirmish Battery"
 		"RG15 Torch Steering"
 		"RG15 Torch Thruster"
+		Hyperdrive
 	engine 0 40
 	leak leak 50 60
 	explode "small explosion" 5
@@ -53,28 +48,23 @@ ship Shale
 	description "As the Gegno began splitting up and colonizing new worlds, they needed a smaller ship to transport smaller payloads, instead of using their enormous (and expensive) City-Ships. The Shale is the Gegno's equivalent of a shuttle: a small and compact transport. Whether it be cargo, trade goods, travellers, or recruits, Shales are the foundation of the Gegno interstellar civilization."
 
 ship Dolomite
-	sprite ship/dolomite
-	thumbnail thumbnail/dolomite
-	swizzle 0
+	sprite "ship/gegno dolomite"
+	thumbnail "thumbnail/gegno dolomite"
 	attributes
 		category "Light Freighter"
 		licenses
 			"Gegno Civilian"
 		cost 1692000
-		mass 570
-		bunks 80
-		"cargo space" 155
-		drag 5.9
-		"engine capacity" 81
-		"fuel capacity" 500
-		"heat dissipation" 0.7
-		"heat protection" 3
-		"ion protection" 3
-		hull 10500
-		"outfit space" 150
+		hull 10500	
 		"required crew" 34
-		shields 0
-		"weapon capacity" 0
+		bunks 80
+		mass 570
+		drag 5.9
+		"heat dissipation" 0.7
+		"fuel capacity" 500		
+		"cargo space" 155
+		"outfit space" 150
+		"engine capacity" 81
 		weapon
 			"blast radius" 72
 			"shield damage" 320
@@ -82,12 +72,12 @@ ship Dolomite
 			"hit force" 720
 	outfits
 		"C3 Scrap Cell"
-		Hyperdrive
 		"R01 Skirmish Battery"
 		"RG15 Torch Steering" 2
 		"RG15 Torch Thruster"
-	engine -21 155
-	engine 21 155
+		Hyperdrive
+	engine -22.5 158
+	engine 22.5 158
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 14
@@ -100,26 +90,21 @@ ship Dolomite
 ship Conglomerate
 	sprite ship/conglomerate
 	thumbnail thumbnail/conglomerate
-	swizzle 0
 	attributes
 		category "Heavy Freighter"
 		licenses
 			"Gegno Civilian"
 		cost 1692000
-		mass 760
-		bunks 166
-		"cargo space" 415
-		drag 8.9
-		"engine capacity" 136
-		"fuel capacity" 400
-		"heat dissipation" 0.7
-		"heat protection" 3
-		"ion protection" 3
 		hull 13300
-		"outfit space" 200
 		"required crew" 68
-		shields 0
-		"weapon capacity" 0
+		bunks 166
+		mass 760
+		drag 8.9
+		"heat dissipation" 0.7
+		"fuel capacity" 400
+		"cargo space" 415
+		"outfit space" 200
+		"engine capacity" 136
 		weapon
 			"blast radius" 124
 			"shield damage" 960
@@ -146,26 +131,22 @@ ship Conglomerate
 ship Gypsum
 	sprite ship/gypsum
 	thumbnail thumbnail/gypsum
-	swizzle 0
 	attributes
 		category "Light Freighter"
 		licenses
 			"Gegno Civilian"
 		cost 1692000
-		mass 380
-		bunks 40
-		"cargo space" 115
-		drag 3
-		"engine capacity" 120
-		"fuel capacity" 500
-		"heat dissipation" 0.8
-		"heat protection" 3
-		"ion protection" 3
 		hull 5200
-		"outfit space" 240
 		"required crew" 18
-		shields 0
+		bunks 40
+		mass 380
+		drag 3
+		"heat dissipation" 0.8
+		"fuel capacity" 500
+		"cargo space" 115
+		"outfit space" 240
 		"weapon capacity" 42
+		"engine capacity" 120
 		weapon
 			"blast radius" 72
 			"shield damage" 320
@@ -196,24 +177,24 @@ ship Gypsum
 ship Augen
 	sprite ship/augen
 	thumbnail thumbnail/augen
-	swizzle 0
 	attributes
 		category "Superheavy"
+			"Gegno Civilian"
+			"Vi Evocati"
+			"Vi Centurion"
+			"Vi Lord"
 		cost 58800000
-		mass 5000
-		bunks 360
-		"cargo space" 84
-		drag 40
-		"engine capacity" 460
-		"fuel capacity" 500
-		"heat dissipation" 0.4
-		"heat protection" 2
-		"ion protection" 2
 		hull 67000
-		"outfit space" 1800
 		"required crew" 280
-		shields 0
+		bunks 360
+		mass 5000
+		drag 40
+		"heat dissipation" 0.4
+		"fuel capacity" 500
+		"cargo space" 84
+		"outfit space" 1800
 		"weapon capacity" 900
+		"engine capacity" 460
 		weapon
 			"blast radius" 450
 			"shield damage" 2000
@@ -272,29 +253,23 @@ ship Augen
 	description `	This project was meant to result in two sister-ship behemoths, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
 ship Slate
-	sprite ship/slate
-	thumbnail thumbnail/slate
-	swizzle 0
+	sprite "ship/gegno slate"
+	thumbnail "thumbnail/gegno slate"
 	attributes
 		category Transport
 		licenses
 			"Gegno Civilian"
 			"Vi Evocati"
-		cost 336000
-		mass 121
-		bunks 7
-		"cargo space" 36
-		drag 2
-		"engine capacity" 58
-		"fuel capacity" 400
-		"heat dissipation" 0.8
-		"heat protection" 3
-		"ion protection" 3
-		hull 825
-		"outfit space" 122
+		cost 825
 		"required crew" 1
-		shields 0
-		"weapon capacity" 0
+		bunks 7
+		mass 121
+		drag 2
+		"heat dissipation" 0.8
+		"fuel capacity" 400
+		"cargo space" 60
+		"outfit space" 122
+		"engine capacity" 58
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -313,29 +288,26 @@ ship Slate
 	description "Designed by the Gegno Vi, the Slate is a modified Shale with a stronger hull and more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it is able to carry several Gegno cadets along with a small cargo load."
 
 ship Schist
-	sprite ship/schist
-	thumbnail thumbnail/schist
-	swizzle 0
+	sprite "ship/gegno schist a"
+	thumbnail "thumbnail/gegno schist a"
 	attributes
 		category "Light Freighter"
-		cost 1932000
 		licenses
 			"Gegno Civilian"
 			"Vi Evocati"
-		mass 560
-		bunks 86
-		"cargo space" 122
-		drag 5.9
-		"engine capacity" 106
-		"fuel capacity" 500
-		"heat dissipation" 0.7
-		"heat protection" 3
-		"ion protection" 3
+		cost 1932000
 		hull 12375
-		"outfit space" 210
 		"required crew" 36
-		shields 0
-		"weapon capacity" 38
+		bunks 86
+		mass 560
+		drag 5.9
+		"heat dissipation" 0.7
+		"fuel capacity" 500
+		"cargo space" 140
+		"outfit space" 250
+		"weapon capacity" 58
+		"engine capacity" 106
+		"weapon capacity" 58
 		weapon
 			"blast radius" 71
 			"shield damage" 310
@@ -345,12 +317,14 @@ ship Schist
 		"C7 Brawl Cell"
 		Hyperdrive
 		"Irate Cannon" 2
+		"Irate Cannon Turret"
 		"R02 Battlezone Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
-	engine 0 150
-	gun -14 -169 "Irate Cannon"
-	gun 14 -169 "Irate Cannon"
+	engine 0 154
+	gun -17.5 -160 "Irate Cannon"
+	gun 17.5 -160 "Irate Cannon"
+	turret 0 -95 "Irate Cannon Turret"
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 10
@@ -359,28 +333,28 @@ ship Schist
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description "Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Gegno Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories." 
-	description `	Although is it lightly armed compared to most Vi ships, Schists still carry a pair of cannon mounts to be able to bring something, rather than nothing, to a fight.`
+	description `	Although is it lightly armed compared to other Vi ships, Schists are still mounted a pair of cannons and a turret so it can bring some type of weaponry to a possible engagement.`
 
-ship Schist "Schist Med"
-	sprite ship/schistlight
-	thumbnail thumbnail/schistlight
+ship Schist "Schist B"
+	sprite "ship/gegno schist b"
+	thumbnail "thumbnail/gegno schist b"
 	add attributes
 		mass 22
-		"cargo space" 22
+		"cargo space" 25
 		drag 0.1
 
-ship Schist "Schist Heavy"
-	sprite ship/schistmeda
-	thumbnail thumbnail/schistmed
+ship Schist "Schist C"
+	sprite "ship/gegno schist c"
+	thumbnail "thumbnail/gegno schist c"
 	add attributes
 		mass 38
-		"cargo space" 38
+		"bunks" -12
+		"cargo space" 49
 		drag 0.2
 
 ship Eclogite
 	sprite ship/eclogite
 	thumbnail thumbnail/eclogite
-	swizzle 0
 	attributes
 		category "Light Warship"
 		licenses
@@ -388,19 +362,17 @@ ship Eclogite
 			"Vi Evocati"
 			"Vi Centurion"
 		cost 2500000
-		mass 275
-		bunks 20
-		"cargo space" 70
-		drag 3.7
-		"engine capacity" 110
-		"fuel capacity" 400
-		"heat dissipation" 0.7
-		"heat protection" 3
-		"ion protection" 3
 		hull 6900
-		"outfit space" 285
 		"required crew" 8
-		shields 0
+		bunks 20
+		mass 275
+		drag 3.7
+		"heat dissipation" 0.7
+		"fuel capacity" 400
+		"cargo space" 70
+		"outfit space" 285
+		"weapon capacity" 96
+		"engine capacity" 110
 		"weapon capacity" 96
 		weapon
 			"blast radius" 36
@@ -432,7 +404,6 @@ ship Eclogite
 ship Diorite
 	sprite ship/diorite
 	thumbnail thumbnail/diorite
-	swizzle 0
 	attributes
 		category "Medium Warship"
 		licenses
@@ -440,19 +411,17 @@ ship Diorite
 			"Vi Evocati"
 			"Vi Centurion"
 		cost 6980000
-		mass 642
-		bunks 68
-		"cargo space" 40
-		drag 6.3
-		"engine capacity" 124
-		"fuel capacity" 500
-		"heat dissipation" 0.5
-		"heat protection" 3
-		"ion protection" 3
 		hull 11600
-		"outfit space" 511
 		"required crew" 41
-		shields 0
+		bunks 68
+		mass 642
+		drag 6.3
+		"heat dissipation" 0.5
+		"fuel capacity" 500
+		"cargo space" 40
+		"outfit space" 511
+		"weapon capacity" 251
+		"engine capacity" 124
 		"weapon capacity" 251
 		weapon
 			"blast radius" 90
@@ -487,7 +456,6 @@ ship Diorite
 ship Hornfel
 	sprite ship/hornfel
 	thumbnail thumbnail/hornfel
-	swizzle 0
 	attributes
 		category "Medium Warship"
 		licenses
@@ -495,20 +463,18 @@ ship Hornfel
 			"Vi Evocati"
 			"Vi Centurion"
 		cost 7630000
-		mass 740
-		bunks 74
-		"cargo space" 120
-		drag 5.9
-		"engine capacity" 94
-		"fuel capacity" 400
-		"heat dissipation" 0.6
-		"heat protection" 3
-		"ion protection" 3
+		
 		hull 14550
-		"outfit space" 428
 		"required crew" 58
-		shields 0
+		bunks 74
+		mass 740
+		drag 5.9
+		"heat dissipation" 0.6
+		"fuel capacity" 400
+		"cargo space" 120
+		"outfit space" 428
 		"weapon capacity" 140
+		"engine capacity" 94
 		weapon
 			"blast radius" 90
 			"shield damage" 600
@@ -576,7 +542,6 @@ ship Hornfel "Hornfel Heavy"
 ship Gneiss
 	sprite ship/gneiss
 	thumbnail thumbnail/gneiss
-	swizzle 0
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -585,20 +550,17 @@ ship Gneiss
 			"Vi Centurion"
 			"Vi Lord"
 		cost 15690000
-		mass 1245
-		bunks 162
-		"cargo space" 95
-		drag 18
-		"engine capacity" 150
-		"fuel capacity" 500
-		"heat dissipation" 0.4
-		"heat protection" 3
-		"ion protection" 3
 		hull 22275
-		"outfit space" 765
 		"required crew" 142
-		shields 0
+		bunks 162
+		mass 1245
+		drag 18
+		"heat dissipation" 0.4
+		"fuel capacity" 500
+		"cargo space" 95
+		"outfit space" 765
 		"weapon capacity" 412
+		"engine capacity" 150
 		weapon
 			"blast radius" 150
 			"shield damage" 1150
@@ -634,7 +596,6 @@ ship Gneiss
 ship Protolith
 	sprite ship/protolith
 	thumbnail thumbnail/protolith
-	swizzle 0
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -643,20 +604,17 @@ ship Protolith
 			"Vi Centurion"
 			"Vi Lord"
 		cost 17600000
-		mass 1260
-		bunks 292
-		"cargo space" 530
-		drag 16.1
-		"engine capacity" 176
-		"fuel capacity" 700
-		"heat dissipation" 0.4
-		"heat protection" 3
-		"ion protection" 3
 		hull 19575
-		"outfit space" 468
 		"required crew" 84
-		shields 0
+		bunks 292
+		mass 1260
+		drag 16.1
+		"heat dissipation" 0.4
+		"fuel capacity" 700
+		"cargo space" 530
+		"outfit space" 468
 		"weapon capacity" 130
+		"engine capacity" 176
 		weapon
 			"blast radius" 280
 			"shield damage" 1550
@@ -692,7 +650,6 @@ ship Protolith
 ship Halite
 	sprite ship/halite
 	thumbnail thumbnail/halite
-	swizzle 0
 	attributes
 		category Fighter
 		licenses
@@ -700,19 +657,17 @@ ship Halite
 			"Scin Hoplologist"
 			"Scin Architect"
 		cost 129000
-		mass 30
-		bunks 1
-		"cargo space" 1
-		drag 0.74
-		"engine capacity" 21
-		"heat dissipation" 0.76
-		"heat protection" 7
-		"ion protection" 7
-		hull 780
-		"outfit space" 78
-		"required crew" 1
 		shields 210
+		hull 780
+		"required crew" 1
+		bunks 1
+		mass 30
+		drag 0.74
+		"heat dissipation" 0.76
+		"cargo space" 1
+		"outfit space" 78
 		"weapon capacity" 30
+		"engine capacity" 21
 		weapon
 			"blast radius" 14
 			"shield damage" 160
@@ -733,29 +688,24 @@ ship Halite
 	description "	Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft."
 
 ship Mica
-	sprite ship/mica
-	thumbnail thumbnail/mica
-	swizzle 0
+	sprite "ship/gegno mica"
+	thumbnail "thumbnail/gegno mica"
 	attributes
 		category Transport
 		licenses
 			"Gegno Civilian"
 			"Scin Adjutant"
 		cost 358000
-		mass 115
-		bunks 9
-		"cargo space" 36
-		drag 1.7
-		"engine capacity" 50
-		"fuel capacity" 400
-		"heat dissipation" 0.8
-		"heat protection" 3
-		"ion protection" 3
 		hull 700
-		"outfit space" 118
 		"required crew" 1
-		shields 0
-		"weapon capacity" 0
+		bunks 9
+		mass 115
+		drag 1.7
+		"heat dissipation" 0.8
+		"fuel capacity" 400
+		"cargo space" 42
+		"outfit space" 118
+		"engine capacity" 50
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -776,27 +726,23 @@ ship Mica
 ship Coesite
 	sprite ship/coesite
 	thumbnail thumbnail/coesite
-	swizzle 0
 	attributes
 		category "Light Warship"
 		licenses
 			"Gegno Civilian"
 			"Scin Adjutant"
 		cost 3120000
-		mass 245
-		bunks 26
-		"cargo space" 60
-		drag 4
-		"engine capacity" 120
-		"fuel capacity" 400
-		"heat dissipation" 0.7
-		"heat protection" 3
-		"ion protection" 3
 		hull 6450
-		"outfit space" 264
 		"required crew" 9
-		shields 0
+		bunks 26
+		mass 245
+		drag 4
+		"heat dissipation" 0.7
+		"fuel capacity" 400
+		"cargo space" 60
+		"outfit space" 264
 		"weapon capacity" 110
+		"engine capacity" 120
 		weapon
 			"blast radius" 40
 			"shield damage" 240
@@ -825,7 +771,6 @@ ship Coesite
 ship Tridymite
 	sprite ship/tridymite
 	thumbnail thumbnail/tridymite
-	swizzle 0
 	attributes
 		category "Light Warship"
 		licenses
@@ -833,20 +778,17 @@ ship Tridymite
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 1960000
-		mass 225
-		bunks 20
-		"cargo space" 40
-		drag 4
-		"engine capacity" 86
-		"fuel capacity" 400
-		"heat dissipation" 0.7
-		"heat protection" 3
-		"ion protection" 3
 		hull 5290
-		"outfit space" 190
 		"required crew" 9
-		shields 0
+		bunks 20
+		mass 225
+		drag 4
+		"heat dissipation" 0.7
+		"fuel capacity" 400
+		"cargo space" 40
+		"outfit space" 190
 		"weapon capacity" 62
+		"engine capacity" 86
 		weapon
 			"blast radius" 35
 			"shield damage" 220
@@ -874,9 +816,8 @@ ship Tridymite
 	description "Using a similar yet smaller frame to the Coesite, the Tridymite was designed as the production platform for the Gegno Scin's new Guile system. As its younger sibling, the Tridymite is a smaller escort vessel that provides anti-cannon screening for Scin fleets, while Coesites are armed with more offensive weaponry."
 
 ship Felsic
-	sprite ship/felsic
-	thumbnail thumbnail/felsic
-	swizzle 0
+	sprite "ship/gegno felsic"
+	thumbnail "thumbnail/gegno felsic"
 	attributes
 		category "Light Freighter"
 		licenses
@@ -884,20 +825,17 @@ ship Felsic
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 2342000
-		mass 565
-		bunks 78
-		"cargo space" 160
-		drag 5.9
-		"engine capacity" 106
-		"fuel capacity" 500
-		"heat dissipation" 0.7
-		"heat protection" 3
-		"ion protection" 3
 		hull 9650
-		"outfit space" 310
 		"required crew" 38
-		shields 0
+		bunks 78
+		mass 565
+		drag 5.9
+		"heat dissipation" 0.7
+		"fuel capacity" 500
+		"cargo space" 150
+		"outfit space" 310
 		"weapon capacity" 84
+		"engine capacity" 106
 		weapon
 			"blast radius" 74
 			"shield damage" 340
@@ -911,11 +849,11 @@ ship Felsic
 		"R02 Battlezone Battery"
 		"SC-14 Plasma Steering"
 		"SC-14 Plasma Thruster"
-	engine -18 152
-	engine 18 152
-	turret 0 -76 "Guile Anti-Missile"
-	turret -44 85.5 "Astuit Battery"
-	turret 44 85.5 "Astuit Battery"
+	engine -17 158
+	engine 17 158
+	turret 0 -87.5 "Guile Anti-Missile"
+	turret -43 85 "Astuit Battery"
+	turret 43 85 "Astuit Battery"
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 7
@@ -928,7 +866,6 @@ ship Felsic
 ship Feldspar
 	sprite ship/feldspar
 	thumbnail thumbnail/feldspar
-	swizzle 0
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -936,20 +873,17 @@ ship Feldspar
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 14760000
-		mass 1090
-		bunks 192
-		"cargo space" 82
-		drag 15
-		"engine capacity" 172
-		"fuel capacity" 600
-		"heat dissipation" 1
-		"heat protection" 3
-		"ion protection" 3
 		hull 18800
-		"outfit space" 566
 		"required crew" 133
-		shields 0
+		bunks 192
+		mass 1090
+		drag 15
+		"heat dissipation" 1
+		"fuel capacity" 600
+		"cargo space" 82
+		"outfit space" 566
 		"weapon capacity" 194
+		"engine capacity" 172
 		weapon
 			"blast radius" 180
 			"shield damage" 1650
@@ -1009,7 +943,6 @@ ship Feldspar
 ship Muscovite
 	sprite ship/muscovite
 	thumbnail thumbnail/muscovite
-	swizzle 0
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -1017,20 +950,17 @@ ship Muscovite
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 16460000
-		mass 1146
-		bunks 166
-		"cargo space" 700
-		drag 16.1
-		"engine capacity" 182
-		"fuel capacity" 600
-		"heat dissipation" 0.9
-		"heat protection" 3
-		"ion protection" 3
 		hull 15400
-		"outfit space" 440
 		"required crew" 68
-		shields 0
+		bunks 166
+		mass 1146
+		drag 16.1
+		"heat dissipation" 0.9
+		"fuel capacity" 600
+		"cargo space" 700
+		"outfit space" 440
 		"weapon capacity" 166
+		"engine capacity" 182
 		weapon
 			"blast radius" 216
 			"shield damage" 1920
@@ -1070,27 +1000,27 @@ ship Muscovite
 ship Kyanite
 	sprite ship/kyanite
 	thumbnail thumbnail/kyanite
-	swizzle 0
 	attributes
 		category "Utility"
+		licenses
+			"Gegno Civilian"
+			"Scin Architect"
+			"Scin Hoplologist"
 		cost 41780000
-		mass 1270
-		bunks 108
-		"cargo space" 82
-		drag 17.2
-		"engine capacity" 160
-		"fuel capacity" 400
-		"heat dissipation" 0.74
 		hull 16200
-		"outfit space" 340
 		"required crew" 98
-		shields 0
+		bunks 108
+		mass 1270
+		drag 17.2
+		"heat dissipation" 0.74
+		"fuel capacity" 400
+		"cargo space" 82
+		"outfit space" 340
 		"weapon capacity" 212
-
+		"engine capacity" 160
 		"energy capacity" 2400
 		"energy generation" 31.2
 		"heat generation" 99.4
-
 		weapon
 			"blast radius" 180
 			"shield damage" 1650
