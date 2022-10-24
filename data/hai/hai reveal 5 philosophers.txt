@@ -565,7 +565,7 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 	destination Earth
 	deadline 1
 	to offer
-		has "Hai Reveal [A06A] Smuggler Ambush: offered"
+		has "Hai Reveal [B06-long A] Smuggler Ambush: offered"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
@@ -578,6 +578,15 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 		fleet "pirate raid" 2
 
 
+mission "Hai Reveal [B06-long] Cleanup"
+	invisible
+	to offer
+		has "Hai Reveal [B06-long] Tarazed Analysis: active"
+		has "Hai Reveal [B07-long] Learn of Keystones: offered"
+	on offer
+		fail "Hai Reveal [B06-long] Tarazed Analysis"
+
+
 
 mission "Hai Reveal [B07-long] Learn of Keystones"
 	landing
@@ -587,9 +596,7 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 	destination Earth
 	clearance
 	to offer
-		has "Hai Reveal [B06-long] Tarazed Analysis: active"
-	source
-		government "Smuggler (Hai Trafficker)"
+		has "Hai Reveal [B06-long] Boarded Smuggler: done"
 	on offer
 		conversation
 			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gang's hideouts; those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
