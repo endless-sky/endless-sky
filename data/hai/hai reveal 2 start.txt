@@ -51,7 +51,7 @@
 mission "Hai Rescue: Yeertle Hint"
 	landing
 	name "Investigate a Were-Squirrel"
-	description "A truly outlandish rumor has been floating around that there might be a "were-squirrel" (Hai) hiding out on <destination>."
+	description "A truly outlandish rumor has been floating around that there might be a “were-squirrel” (Hai) hiding out on <destination>."
 	source
 		near "Betelgeuse" 4
 		government "Republic" "Syndicate"
@@ -73,7 +73,7 @@ mission "Hai Rescue: Yeertle Hint"
 			`	You stop listening on your final approach as the conversation descends into a good-natured argument. Nevertheless, it sounds like a lead on a possible stranded Hai that would be worth following up.`
 				accept
 	to complete
-		has "Hai Rescue: Yeertle Family: Offered"
+		has "Hai Rescue: Yeertle Family: offered"
 
 
 mission "Hai Rescue: Yeertle Family"
@@ -204,7 +204,7 @@ mission "Hai Rescue: Oonem Hint"
 			`	It's really hard to say what this could be, but it might be worth checking out.`
 				accept
 	to complete
-		has "Hai Rescue: Ooonem: Offered"
+		has "Hai Rescue: Ooonem: offered"
 
 
 mission "Hai Rescue: Ooonem"
@@ -426,7 +426,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. You don't hear anything specific to Hai, but when the punchline of a joke is "deep crevasses" on <planet>, it occurs to you that there would be the perfect place for both illicit activities and escapees to hide out under the radar for a long time. It's probably worth a look...`
 				accept
 	to complete
-		has "Hai Rescue: Meroot and Lucy: Offered"
+		has "Hai Rescue: Meroot and Lucy: offered"
 
 
 mission "Hai Rescue: Meroot and Lucy"

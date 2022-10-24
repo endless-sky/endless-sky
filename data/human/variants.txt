@@ -1053,7 +1053,6 @@ ship "Cruiser" "Cruiser (Mark II)"
 	turret "Heavy Anti-Missile Turret"
 
 
-# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment
 ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 	outfits
 		"Heavy Anti-Missile Turret" 3
@@ -1071,7 +1070,6 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 		"Fission Reactor"
 		"Laser Rifle" 20
 		"LP144a Battery Pack"
-
 
 
 ship "Dreadnought" "Dreadnought (Jump)"

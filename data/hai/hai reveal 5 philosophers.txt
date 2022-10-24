@@ -13,13 +13,14 @@
 
 mission "Hai Reveal [B01] Information Blackout"
 	landing
-	invisible
 	name "Information Blackout"
 	description "Meet the Syndicate Security Captain at the spaceport on <origin> when you're ready."
 	source "Sunracer"
 	clearance
 	to offer
 		has "Hai Reveal [A14] A Time of Trouble: done"
+	to complete
+		has "Hai Reveal [B02] Join the Fleet: offered"
 	on offer
 		event "hai and human ships at wormhole"
 		conversation
@@ -84,16 +85,15 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 # You as the player have one job: make sure everyone jumps in together, and don't die. During the first campaign it was really important the fights were all balanced for you to be able to tip the balance.
 # THIS mission is designed to give you a spectacle. A little visual demonstration of what a real battle could potentially look and feel like with low stakes for you. It's a visual feast, not a challenge.
 mission "Hai Reveal [B02] Join the Fleet"
+	autosave
 	name "Join the Fleet"
-	description "Join the fleet in <waypoint> and move on Stormhold."
-	deadline 9
-	# The minimum journey time is 7
+	description "Join the fleet and move on Stormhold. Make sure all ships have enough fuel to reach there at the same time."
+	deadline 12
+	# The minimum journey time is 7 if the player jumps system by system.
 	source "Sunracer"
-	waypoint "Sumar"
 	destination "Stormhold"
-	clearance
 	to offer
-		has "Hai Reveal [B01] Information Blackout: offered"
+		has "Hai Reveal [A14] A Time of Trouble: done"
 	on offer
 		conversation
 			`The Syndicate security captain in the spaceport is very easy to find. She hands you a pad with a secure validation sequence to confirm her briefing comes from the Navy, co-signed by Xilin.`
@@ -110,7 +110,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 			label prepare
 			`	She nods. "Very well, but don't take too long. We'll be waiting here for as long as we're able."`
 				defer
-	npc
+	npc accompany
 		government "Syndicate"
 		personality escort coward opportunistic vindictive
 		fleet
@@ -151,16 +151,22 @@ mission "Hai Reveal [B02] Join the Fleet"
 		system "Alcyone"
 		fleet "Marauder fleet X" 4
 	# IX is 4 decent ships each, X is 6 ships but 2 are weak each. Total Fleet Size is roughly 28 + some chaff (~8).
-
+	on fail
+		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 	on accept
 		fail "Hai Reveal [B01] Information Blackout"
 		fail "Hai Reveal [A11-B] Permanent Fleets"
 	on enter "Sumar"
 		dialog `You have reached the rendezvous and various fleets are arriving. You have never seen so many military vessels in one place. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone.`
+	on enter "Moktar"
+		dialog `Some of your escorts are traveling from far away, and could run out of fuel before Stormhold. Make sure you refuel them before traveling onward.`
 	on enter "Oblate"
 		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of Stormhold have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
 	on complete
 		event "stormhold suppressed"
+	on visit
+		dialog
+			`When the Hai and humans try to deploy troops, they're drawn off by orbital bombardment. You must defeat the entire pirate and marauder defense fleet before landing.`
 
 event "stormhold suppressed"
 	#Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
@@ -209,7 +215,7 @@ mission "Hai Reveal [B03] Contact Giti"
 			`	You eventually end up in the secured command area hastily set up in the spaceport as Choot'k and Danforth come in discussing the tactical minutiae of some location you're unfamiliar with. They are trailed by Batu, who looks to be doing his best to pay close attention, and eventually joined by Sayari and Teeneep. One of Danforth's lieutenants brings up the rear and closes the door behind you all.`
 			`	"So," begins Danforth, "Stage one has been successful. However, it looks like we're going to be here a while. Stormhold is an absolute rabbit warren of hidden places. Even with the Hai's ships and resources on top of everything we've brought, it could take several days, or even weeks, to be satisfied that we've rooted things out sufficiently."`
 			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is probably lost now. Even if we could somehow convince all the factions here to keep the secret, that blockade has drawn enough attention that really all that remains is to try and make sure issues are resolved before it becomes irretrievably common knowledge.`
-			`	"For now, all communication in and out of the area is blocked at the relay unless its too or from specific high-level Navy or Syndicate sources. Captain <last>, I'm afraid that also includes you. No communications in or out since we don't have the time or equipment to properly harden your systems against potential intrusion, but you do have the nearly exclusive freedom to leave and re-enter through the blockade. You're a pilot, not a ground combat troop operator, so I suspect that since we'll be here a while there'll be other things for you to do."`
+			`	"For now, all communication in and out of the area is blocked at the relay unless its to or from specific high-level Navy or Syndicate sources. Captain <last>, I'm afraid that also includes you. No communications in or out since we don't have the time or equipment to properly harden your systems against potential intrusion, but you do have the nearly exclusive freedom to leave and re-enter through the blockade. You're a pilot, not a ground combat troop operator, so I suspect that since we'll be here a while there'll be other things for you to do."`
 			`	"General Choot'k, would you agree with the human's assessment of the effort required here?" asks Teeneep.`
 			`	The Unfettered warlord does not even hesitate to respond, "Yes. Even with our superior capacities we will be here a while."`
 			`	Danforth looks between them. "Perhaps, Elder, you and the Ambassador would find it more comfortable to return to Mountaintop? There will be little diplomacy here, and scarcely more safety, and it would seem to me that even with Batu here as the deputy minister's eyes on the ground, it would be easier to conduct your responsibilities directly."`
@@ -257,9 +263,9 @@ mission "Hai Reveal [B04] The Road Not Taken"
 				`	"I was a little caught up, actually."`
 				`	"What do you know about the blockades?"`
 			`	As you draw breath to speak she cuts you off. "I actually don't have a lot of time or I'll miss my ride, so we'll skip the pleasantries. Obviously if you're calling me back you want to know what I found about the notation. That too is something you have good timing on, I was delayed on that until just a couple days ago. Now where was that file... ah here it is.`
-			` "So, the notation is actually quite dense, and is mostly some probably meaningless prose about something called 'Elenchus'. It sound aspirational. However, it also refers to a secret gateway. I'm sending you some coordinates." You receive a simple text message a moment later with some system coordinates in it.`
+			`	"So, the notation is actually quite dense, and is mostly some probably meaningless prose about something called 'Elenchus'. It sound aspirational. However, it also refers to a secret gateway. I'm sending you some coordinates." You receive a simple text message a moment later with some system coordinates in it.`
 			`	"What I've just send you is the modern standard presentation for a set of coordinates that were listed in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are indeed just direct from the notation, then they indicate a system in the vicinity of Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
-			`She shrugs. "Of course I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not come back and see me. If that turns up bust I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. Not sure if it'll reveal anything but we can look into it if you don't find anything. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
+			`	She shrugs. "Of course I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not come back and see me. If that turns up bust I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. Not sure if it'll reveal anything but we can look into it if you don't find anything. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
 			`She picks up a bag and starts putting some items from her desk into it. "In any event, I really must go. Check out those coordinates, and then come see me. Fly safe Captain!"`
 				accept
 
@@ -376,14 +382,14 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 mission "Hai Reveal [B06-long] Tarazed Analysis"
 	landing
 	name "Seeking Aid"
-	description `Find and board a smugglers ship. Your display will identify such ships as belonging to the "Smuggler" government. Try Syndicate space or the Far North. Head to <planet> afterwards.`
+	description `Board smuggler ships to gain information. Your display will identify such ships as belonging to the "Smuggler" government. Try near Devil's Run in Syndicate space, or the Far North.`
 	source Wayfarer
 	destination Earth
 	clearance
 	to offer
 		has "Hai Reveal [B05-long] The Red Mystery: done"
 	to complete
-		has "Hai Reveal [B06-long] Boarded Smuggler: offered"
+		never
 	on visit
 		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
 	on offer
@@ -421,6 +427,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	(Return to your ship.)`
 			`	After one last ride through the metro system of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
+			`	After a moment's thought, you realize that if the smuggling involves Devil's Run, you may find the most smugglers in systems near there.`
 			`	It may be risky, but you should disable one and board it.`
 				accept
 
@@ -448,39 +455,39 @@ event "devil-run smugglers visible"
 
 	# Route to Almaaz (and nearby systems)
 	system "Rigel"
-		add fleet "Smuggler (Hai Traffickers)" 5000
+		add fleet "Smuggler (Hai Traffickers)" 4000
 	system "Alnitak"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 6000
 	system "Saiph"
-		add fleet "Smuggler (Hai Traffickers)" 10000
+		add fleet "Smuggler (Hai Traffickers)" 8000
 	system "Betelgeuse"
-		add fleet "Smuggler (Hai Traffickers)" 10000
+		add fleet "Smuggler (Hai Traffickers)" 8000
 	system "Mintaka"
-		add fleet "Smuggler (Hai Traffickers)" 5000
+		add fleet "Smuggler (Hai Traffickers)" 4000
 	system "Gorvi"
-		add fleet "Smuggler (Hai Traffickers)" 5000
+		add fleet "Smuggler (Hai Traffickers)" 4000
 	system "Tortor"
-		add fleet "Smuggler (Hai Traffickers)" 5000
+		add fleet "Smuggler (Hai Traffickers)" 4000
 	system "Unagi"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 6000
 	system "Hatysa"
-		add fleet "Smuggler (Hai Traffickers)" 5000
+		add fleet "Smuggler (Hai Traffickers)" 4000
 	
 	# Route to Almach
 	system "Zaurak"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 5500
 	system "Sheratan"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 5500
 	system "Ruchbah"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 5500
 	system "Alpheratz"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 5500
 	system "Achernar"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 5500
 	system "Al Dhanab"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 5500
 	system "Mirach"
-		add fleet "Smuggler (Hai Traffickers)" 7000
+		add fleet "Smuggler (Hai Traffickers)" 5500
 	
 	# Staging areas for transfers
 	system "Alcyone"
@@ -588,9 +595,8 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 	clearance
 	to offer
 		has "Hai Reveal [B06-long] Tarazed Analysis: active"
-	source
-		government "Smuggler (Hai Trafficker)"
 	on offer
+		fail "Hai Reveal [B06-long] Tarazed Analysis"
 		conversation
 			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gang's hideouts; those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
 			`	Fortunately this makes it easy to find Sayari who has comparatively little to do at the moment and is mostly just helping to keep everyone communicating effectively. When you tell her of the system you found and the message from the Hai on the smuggler ship she winces. "What a terrible fate, but it does confirm what we suspected. We'll have to see what more we can find out in the meantime while we're still bogged down here."`
@@ -672,7 +678,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 		conversation
 			`Giti turns on the scanning equipment.`
 			`	"Okay, let's do the planet first..." Her voice trails off. "Wow! That's odd. This scanner is definitely not designed to properly scan this thing; I can only get surface readings."`
-			`	"Whatever it is, this planet is not normal by any stretch. It is completely inhospitable and appears to have a huge network of caves and caverns with crystalline structures that are radiating... something. Whatever it is is messing with the scanner's attempts to identify it. I'd have to know more about this scanner's functions to guess what the interference is. There's deuterium though maybe denizens of this system siphon the deuterium to make hyperspace fuel? Doesn't seem very efficient, but the solar wind is thin here. There's some kind of gravitational anomaly though, or maybe its just some kind of interference lensing. It looks like the planet has about a thousand times the mass it should, but with gravity around Earth normal. That... can't be right."`
+			`	"Whatever it is, this planet is not normal by any stretch. It is completely inhospitable and appears to have a huge network of caves and caverns with crystalline structures that are radiating... something. Whatever it is, it's messing with the scanner's attempts to identify it. I'd have to know more about this scanner's functions to guess what the interference is. There's deuterium though maybe denizens of this system siphon the deuterium to make hyperspace fuel? Doesn't seem very efficient, but the solar wind is thin here. There's some kind of gravitational anomaly though, or maybe its just some kind of interference lensing. It looks like the planet has about a thousand times the mass it should, but with gravity around Earth normal. That... can't be right."`
 			`	She shakes it off and looks at you. "Whatever it is we're looking for its not down there. Let me look at the moon... hmmm... okay. It's just an ordinary chunk of rock, but the planet's radiation is disturbing the sensors. I can only see a few dozen meters below ground even though the scanner should be able to look down at least ten times that far... Ahah!"`
 			`	"I found something. There's a facility buried in the moon's surface. There is definitely a lot of Hai tech too, so looks like the concerns you told me about were spot on. I can only see the uppermost part of the facility but it appears to be divided into two parts. One section has hydroponics, big cargo bays, docking bays for ships, even a small shipyard. Doesn't look like they have space for more than a handful of large ships though. It also seems to have the only decently sized air processor I can identify. The other section is deeper, and appears to have spacious living areas I can see some support systems, but it seems that the air supply is effectively controlled from the surface access section. I can detect 1,387 people, though no details about them, and that's just in the upper three floors that I can see."`
 			`	She looks at you eyes wide. "This isn't just a base; there's a base down there but it's controlling a whole colony."`
@@ -740,7 +746,7 @@ mission "Hai Reveal [B11] Moving Together"
 			`	The Unfettered leader opens his mouth to speak, but Teeneep raises her hand to silence him and steps forward instead. Surprisingly, he stops without complaint.`
 			`	"This is General Choot'k, supreme commander of the Unfettered Hai military."`
 			`	Marshal Kaine responds, "Good to meet you."`
-			`	Choot'k nods but Teeneep continues. "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I have installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive to use for my use."`
+			`	Choot'k nods but Teeneep continues. "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I have installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
 			`	Choot'k addresses the group. "The designs of the facility show a weak point in one of the hangars that we specifically should be able to exploit. My flagship has weapons pillaged from another species, which are strong enough to cut open the hangar doors yet precise enough not to destroy the hangar.`
 			`	"I also have two trusted captains who have been exploring the value of human weapons while they've been here, and think they have some winning combinations they would like to test in battle. I have chosen them to make use of our remaining available drives, and out of consideration for you humans. It would seem that the fewer alien weapons we carry through your space the better."`
 			`	"Which means," says Khaine, "We have all the pieces. The solution therefore, is this: <last> will escort Danforth's Cruiser, the Elder and her Centipede, the General and his Shield Beetle, and two of his closest captains to Foundry. There you'll meet up with Agent Kopkow and Captain Wallace - a decorated Navy captain who has a Parliamentary Medal of Valor for handling the rescue of slaves - who will be bringing her empty Auxiliary, and one Free World Dreadnought that the good Alondo here had the foresight to make sure was stationed nearby. There you'll load up the Syndicate troopers and go to Elenchus."`
@@ -775,6 +781,8 @@ mission "Hai Reveal [B11] Moving Together"
 	on complete
 		payment 600000
 		dialog `You are provided <payment> on arrival to cover ongoing expenses while helping out.`
+	on visit
+		dialog `You've arrived on <planet>, but you've left one or more of your escorts behind.`
 
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
@@ -807,17 +815,87 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 		"Outfits Expansion"
 		`"Biroo" Atomic Steering`
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
-		"Hai Chasm Batteries" 2
+		"Hai Corundum Regenerator"
+		"Hai Chasm Batteries"
+		"Liquid Nitrogen Cooler"
 		"Boulder Reactor"
 		Brig
-		"Fuel Pod" 3
+		"Fuel Pod" 2
+		Supercapacitor
 		"A370 Atomic Thruster"
 		"Pulse Rifle" 131
 
 
 
+# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment
+ship "Cruiser" "Cruiser (Quantum Keystone)"
+	outfits
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		Afterburner
+		"Armageddon Core"
+		"Catalytic Ramscoop"
+		"Fission Reactor"
+		"Fragmentation Grenades" 20
+		"Heavy Anti-Missile Turret" 3
+		"Jump Drive"
+		"LP072a Battery Pack"
+		"LP036a Battery Pack"
+		"Laser Rifle" 20
+		"Liquid Helium Cooler" 2
+		"Outfits Expansion" 2
+		"Plasma Cannon" 6
+		"Quantum Keystone"
+		"S-970 Regenerator"
+		"Fuel Pod" 2
+
+
+ship "Dreadnought" "Dreadnought (Quantum Keystone)"
+	outfits
+		"Catalytic Ramscoop"
+		"D94-YV Shield Generator"
+		"Heavy Anti-Missile Turret" 2
+		"Jump Drive"
+		"LP072a Battery Pack"
+		"Laser Rifle" 25
+		"Liquid Helium Cooler"
+		"Cooling Ducts"
+		"Orca Plasma Steering"
+		"Orca Plasma Thruster"
+		"Outfits Expansion" 4
+		"Fuel Pod" 2
+		"Plasma Turret" 3
+		"Quantum Keystone"
+		"Stack Core"
+		Torpedo 120
+		"Torpedo Launcher" 4
+	turret "Plasma Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Plasma Turret"
+	turret "Plasma Turret"
+
+
+ship "Auxiliary" "Auxiliary (Quantum Keystone)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"Catalytic Ramscoop"
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"S-970 Regenerator" 3
+		"Liquid Helium Cooler"
+		"Large Radar Jammer" 2
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Jump Drive"
+		"Quantum Keystone"
+
 mission "Hai Reveal [B12] Devil-Hide Battle"
+	autosave
 	landing
 	name "Storm Elenchus"
 	description "Dominate <planet>. Land with Choot'k, Teeneep, Danforth and Wallace's ships all intact..."
@@ -862,6 +940,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				launch
 	on complete
 		event "Liberated Elenchus"
+	on fail
+		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
 	# The fleet on the way to elenchus
 	npc save accompany
@@ -876,15 +956,15 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Plasma Anti-Missile)" "N.S. Peacemaker"
+		ship "Cruiser (Quantum Keystone)" "N.S. Peacemaker"
 	npc save accompany
 		government "Republic"
 		personality timid escort opportunistic
-		ship "Auxiliary (Transport)" "N.S. Braveheart"
+		ship "Auxiliary (Quantum Keystone)" "N.S. Braveheart"
 	npc accompany
 		government "Free Worlds"
 		personality escort heroic opportunistic
-		ship "Dreadnought (Jump)" "F.S. Ironwood"
+		ship "Dreadnought (Quantum Keystone)" "F.S. Ironwood"
 
 	# The defenders waiting for you. There are 4 of them, and you have 5 competent allies, and 2 vulnerable allies.
 	# This shouldn't be hard, but the longer you take the greater the odds that another pirate ship returns from somewhere and complicates things.
@@ -1078,7 +1158,7 @@ mission "Hai Reveal [B13] Freedom"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Plasma Anti-Missile)" "N.S. Peacemaker"
+		ship "Cruiser (Quantum Keystone)" "N.S. Peacemaker"
 
 
 
@@ -1129,7 +1209,7 @@ mission "Hai Reveal [B13-G] Elenctic Guard"
 mission "Hai Reveal [B14] Journey to Peace"
 	landing
 	name "Take them Home"
-	description "Escort the Hai back to <destination>."
+	description "Pick up the Deputy Minister at <stopovers> and escort Teeneep's ship back to <destination>."
 	source "Stormhold"
 	stopover "Mountaintop"
 	destination "Hai-home"
