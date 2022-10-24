@@ -2323,12 +2323,13 @@ void Ship::DoGeneration()
 	else
 	{
 		// Ramscoops work much better when close to the system center. Even if a
-		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
-		// close to the star. Carried fighters can't collect fuel or energy this way.
+		// ship has no ramscoop, the vanilla drives have a tiny bit of ramscoop, and thus 
+		// it can harvest a tiny bit of fuel by flying close to the star.
+		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")));
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			// Overheated ships produce half as much energy from solar collection.
