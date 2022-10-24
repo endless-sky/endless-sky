@@ -47,6 +47,8 @@ namespace {
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	bool universalRamscoop = true;
 }
 
 
@@ -90,6 +92,8 @@ void Preferences::Load()
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "universal ramscoop")
+			universalRamscoop = node.Value(1);
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -107,6 +111,7 @@ void Preferences::Save()
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("universal ramscoop", universalRamscoop ? "1" : "0");
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -256,4 +261,18 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+void Preferences::ToggleUniversalRamscoop()
+{
+	universalRamscoop = !universalRamscoop;
+}
+
+
+
+bool Preferences::UniversalRamscoop()
+{
+	return universalRamscoop;
 }
