@@ -2323,7 +2323,7 @@ void Ship::DoGeneration()
 	else
 	{
 		// Ramscoops work much better when close to the system center. Even if a
-		// ship has no ramscoop, the vanilla drives have a tiny bit of ramscoop, and thus 
+		// ship has no ramscoop, the vanilla drives have a tiny bit of ramscoop, and thus
 		// it can harvest a tiny bit of fuel by flying close to the star.
 		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
