@@ -227,8 +227,8 @@ mission "Unfettered Small Medicals Rush"
 	job
 	repeat
 	name "Express medical supplies to <planet>"
-	description "The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>."
-	deadline 4 1
+	description "The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> before <date> for <payment>."
+	deadline 4 2
 	cargo "medical supplies" 15 2 .05
 	source
 		attributes "unfettered"
@@ -256,8 +256,8 @@ mission "Unfettered Big Medicals Rush"
 	job
 	repeat
 	name "Medical supplies to <planet>"
-	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>."
-	deadline 12 1
+	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> before <date> for <payment>."
+	deadline 12 2
 	cargo "medicals" 35 2 .05
 	source
 		attributes "unfettered"
