@@ -565,7 +565,7 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 	destination Earth
 	deadline 1
 	to offer
-		has "Hai Reveal [A06A] Smuggler Ambush: offered"
+		has "Hai Reveal [B06-long A] Smuggler Ambush: offered"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
@@ -576,6 +576,15 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 		government "Pirate"
 		personality nemesis harvests plunders entering
 		fleet "pirate raid" 2
+
+
+mission "Hai Reveal [B06-long] Cleanup"
+	invisible
+	to offer
+		has "Hai Reveal [B06-long] Tarazed Analysis: active"
+		has "Hai Reveal [B07-long] Learn of Keystones: offered"
+	on offer
+		fail "Hai Reveal [B06-long] Tarazed Analysis"
 
 
 
