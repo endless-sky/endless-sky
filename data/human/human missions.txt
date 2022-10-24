@@ -4951,13 +4951,13 @@ mission "Riley"
 mission "Wool Smuggling 1"
 	minor
 	name "Pickup at <planet>"
-	description "Head to <destination> to pick up a shipment of <tons> of woollen goods for delivery to Bloodsea."
-	cargo "(reserved)" 15
+	description "Head to <destination> to pick up a shipment of 15 tons of woollen goods for delivery to Bloodsea."
 	source
 		distance "Muhlifain" 1 3
 	destination "New Kansas"
 	to offer
 		random < 45
+		"cargo space" >= 15
 		not "bloodsea joins free worlds"
 		not "bloodsea independent"
 	on offer
@@ -4968,7 +4968,7 @@ mission "Wool Smuggling 1"
 				`	"How much do I have to carry?"`
 				`	"Sorry, but I'll also have to pass."`
 					decline
-			`	"The cargo's stored on <planet>, so you'll have to go there first to pick up the <tons> of wool garments." The man hesitates. "Then, take the cargo to Bloodsea. I have a contact there that can pick up the goods and distribute them fairly." You recall that Bloodsea is a lawless world, home to countless bloodthirsty pirates.`
+			`	"The cargo's stored on <planet>, so you'll have to go there first to pick up the 15 tons of wool garments." The man hesitates. "Then, take the cargo to Bloodsea. I have a contact there that can pick up the goods and distribute them fairly." You recall that Bloodsea is a lawless world, home to countless bloodthirsty pirates.`
 			choice
 				`	"I'll do it."`
 					goto accept
@@ -4995,10 +4995,6 @@ mission "Wool Smuggling 1"
 			label decline
 			`	"Suit yourself, then." He haughtily walks off into the spaceport.`
 				decline
-	on visit
-		dialog `You have reached <planet>, but your escort with the space reserved for the woollen goods has not arrived! Better depart and wait for your escorts to arrive in this star system.`
-	on complete
-		dialog `When you land, dock workers begin loading crates with woollen garments on board. Time to set course for Bloodsea.`
 
 
 mission "Wool Smuggling 2"
@@ -5007,10 +5003,15 @@ mission "Wool Smuggling 2"
 	name "Wool to <planet>"
 	description "Deliver <cargo> to the pirate world of <destination>. Payment will be <payment>."
 	cargo "wool garments" 15
+	blocked `The spaceport workers inform you that you need <tons> of cargo free to pick up the woollen goods intended for <planet>.`
 	source "New Kansas"
 	destination "Bloodsea"
 	to offer
 		has "Wool Smuggling 1: done"
+	on offer
+		conversation
+			`When you land, dock workers begin loading crates with woollen garments on board as arranged. Time to set course for <planet>.`
+				accept
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
