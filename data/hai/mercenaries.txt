@@ -75,14 +75,22 @@ fleet "Marauders"
 	variant
 		"Lightning Bug" 2
 		
-mission "Mercenaries: End of the Hunt"
+mission "ZMercenaries: End of the Hunt"
+	minor
 	invisible
 	landing
 	repeat
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		not "mercenaries: thorn talon death"
+		or
+			"Mercenaries: Nemo Me Impune Lacessit: active"
+			"Mercenaries: Nemo Me Impune Lacessit 2: active"
 	on offer
 		require "Gold Bars" 0
 		fail "Mercenaries: Nemo Me Impune Lacessit"
 		fail "Mercenaries: Nemo Me Impune Lacessit 2"
+		fail
 
 phrase "mercenaries defeated" 
 	word
