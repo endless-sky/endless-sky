@@ -884,7 +884,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc accompany
 		government "Free Worlds"
 		personality escort heroic opportunistic
-		ship "Dreadnought (Jump)" "F.S. Ironwood"
+		ship "Dreadnought (Plasma Jump Keystone)" "F.S. Ironwood"
 
 	# The defenders waiting for you. There are 4 of them, and you have 5 competent allies, and 2 vulnerable allies.
 	# This shouldn't be hard, but the longer you take the greater the odds that another pirate ship returns from somewhere and complicates things.

@@ -1178,6 +1178,28 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 		"LP144a Battery Pack"
 
 
+# Same as above but repurposed for Hai Reveal.
+ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		"Jump Drive"
+		"Volcano Afterburner"
+		Supercapacitor
+		"Outfits Expansion" 2
+		"Plasma Cannon" 4
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Breeder Reactor"
+		"Quad Blaster Turret" 2
+		"Laser Rifle" 25
+		"Water Coolant System"
+		"S-270 Regenerator" 2
+		"LP144a Battery Pack"
+
+
 
 ship "Falcon" "Falcon (Heavy)"
 	outfits
