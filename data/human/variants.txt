@@ -121,6 +121,7 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 		"X5200 Ion Steering"
 		"Jump Drive"
 		"Fuel Pod"
+		"Quantum Keystone"
 	gun -12 -186
 	gun 12.5 -186
 	turret 0 -74 "Heavy Anti-Missile Turret"
@@ -1128,6 +1129,7 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 		"Fission Reactor"
 		"Laser Rifle" 20
 		"LP144a Battery Pack"
+		"Quantum Keystone"
 
 
 
