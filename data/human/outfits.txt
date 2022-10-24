@@ -175,7 +175,7 @@ outfit "Hyperdrive"
 	"ramscoop" 0.015
 	description "This mysterious box sits quietly at the heart of your ship, thinking its own inscrutable thoughts. When it comes time to travel between the stars it sets off a nuclear fusion reaction powerful enough to level an entire city, and then somehow tucks the resulting explosion in between the folds of regular space-time like a wasp stinging an oak leaf to lay her eggs inside. Your ship rides the resulting ripple in the fabric of space."
 	description "	They say that fewer than a dozen human beings alive today understand the inner workings of the hyperdrive."
-
+	description "	As a safety measure, all Hyperdrives can harvest tiny amounts of fuel when close to a star. The closer you are to the star, the faster fuel will accumulate."
 outfit "Scram Drive"
 	category "Systems"
 	cost 90000
