@@ -51,6 +51,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const bool UNIVERSAL_RAMSCOOP = !Preferences::Has("Disable universal ramscoop");
+
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
 	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
@@ -2328,7 +2330,7 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + (UNIVERSAL_RAMSCOOP * .05 * scale));
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			// Overheated ships produce half as much energy from solar collection.
