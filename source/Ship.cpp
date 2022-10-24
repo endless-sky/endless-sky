@@ -2505,7 +2505,7 @@ int Ship::Scan()
 	double outfitDistanceSquared = attributes.Get("outfit scan power");
 
 	// Bail out if this ship has no scanners.
-	if(!cargoDistance && !outfitDistance)
+	if(!cargoDistanceSquared && !outfitDistanceSquared)
 		return 0;
 
 	double cargoSpeed = attributes.Get("cargo scan speed");
@@ -2533,7 +2533,7 @@ int Ship::Scan()
 	int result = 0;
 	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event) -> void
 	{
-		if(elapsed < SCAN_TIME && distance < scannerRange)
+		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
