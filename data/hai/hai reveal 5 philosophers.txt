@@ -250,7 +250,8 @@ mission "Hai Reveal [B04] The Road Not Taken"
 		log `Passed through the wormhole in Syndicate space to a region just outside the Milky Way galaxy. It looks like a good place to hide.`
 		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now just beyond the edge of the known galactic disc. Your computer is identifying the system name as "Deep Space 7C" from old astronomical surveys done in the early 22nd century. This is definitely a good place to hide. It is past time to return to Giti now and discuss what to do next.`
 	on offer
-		conversation legacy
+		event "reveal devil-run"
+		conversation
 			`Once safely parked and hooked into the relay network from Canyon you check timezones and place a call to Giti. Astonishingly, you manage to get a remarkably clean connection and don't have to leave a message. Perhaps by fluke it's night in all the most populous places between here and there. She's at her desk when she answers, and it occurs to you for the first time that a research console on a Navy grade connection probably has pretty good bandwidth. "Oh it's a relief to see you Captain. There's been so much going on, I feared you'd been caught up and detained with all that blockade stuff that all over the news right now. You're lucky though, it's quite late here and I was just about to pack up."`
 			choice
 				`	"I was a little caught up, actually."`
@@ -261,6 +262,11 @@ mission "Hai Reveal [B04] The Road Not Taken"
 			`She shrugs. "Of course I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not come back and see me. If that turns up bust I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. Not sure if it'll reveal anything but we can look into it if you don't find anything. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
 			`She picks up a bag and starts putting some items from her desk into it. "In any event, I really must go. Check out those coordinates, and then come see me. Fly safe Captain!"`
 				accept
+
+event "reveal devil-run"
+	system "Devil-Run"
+		remove hidden
+
 
 
 # This mission exists to set a condition about whether or not you already knew about keystones going through red wormholes. (It doesn't care how you know.)
@@ -559,7 +565,7 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 	destination Earth
 	deadline 1
 	to offer
-		has "Hai Reveal [A06A] Smuggler Ambush: offered"
+		has "Hai Reveal [B06-long A] Smuggler Ambush: offered"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
@@ -572,6 +578,15 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 		fleet "pirate raid" 2
 
 
+mission "Hai Reveal [B06-long] Cleanup"
+	invisible
+	to offer
+		has "Hai Reveal [B06-long] Tarazed Analysis: active"
+		has "Hai Reveal [B07-long] Learn of Keystones: offered"
+	on offer
+		fail "Hai Reveal [B06-long] Tarazed Analysis"
+
+
 
 mission "Hai Reveal [B07-long] Learn of Keystones"
 	landing
@@ -581,9 +596,7 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 	destination Earth
 	clearance
 	to offer
-		has "Hai Reveal [B06-long] Tarazed Analysis: active"
-	source
-		government "Smuggler (Hai Trafficker)"
+		has "Hai Reveal [B06-long] Boarded Smuggler: done"
 	on offer
 		conversation
 			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gang's hideouts; those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
@@ -765,7 +778,7 @@ mission "Hai Reveal [B11] Moving Together"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Plasma Anti-Missile)" "N.S. Peacemaker"
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
 	on complete
 		payment 600000
 		dialog `You are provided <payment> on arrival to cover ongoing expenses while helping out.`
@@ -870,15 +883,15 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Plasma Anti-Missile)" "N.S. Peacemaker"
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
 	npc save accompany
 		government "Republic"
 		personality timid escort opportunistic
-		ship "Auxiliary (Transport)" "N.S. Braveheart"
+		ship "Auxiliary (Jump Transport)" "N.S. Braveheart"
 	npc accompany
 		government "Free Worlds"
 		personality escort heroic opportunistic
-		ship "Dreadnought (Jump)" "F.S. Ironwood"
+		ship "Dreadnought (Plasma Jump Keystone)" "F.S. Ironwood"
 
 	# The defenders waiting for you. There are 4 of them, and you have 5 competent allies, and 2 vulnerable allies.
 	# This shouldn't be hard, but the longer you take the greater the odds that another pirate ship returns from somewhere and complicates things.
@@ -1072,7 +1085,7 @@ mission "Hai Reveal [B13] Freedom"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Plasma Anti-Missile)" "N.S. Peacemaker"
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
 
 
 

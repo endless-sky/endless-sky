@@ -48,9 +48,6 @@ mission "Hai Reveal [A01] Visit Darkwaste"
 	to offer
 		has "event: hai rescue: teeneep message"
 		has "Hai Building Mountaintop [3] Furnishings: done"
-#		or
-#			has "Pirate Troubles [4]: done"
-#			has "Pirate Troubles [4]: declined"
 	on offer
 		conversation
 			`You receive a high priority communication from a Hai woman named Teeneep. The message is brief and cryptic, but you deduce that it refers to the Hai you've rescued from human space in the past. It advises that she needs to talk to you as soon as possible. There is a set of landing coordinates on the uninhabited Hai planet, <planet>.`
@@ -202,7 +199,7 @@ mission "Hai Reveal [A03a1]"
 		attributes "spaceport"
 	to offer
 		has "event: alondo symbol timer"
-		has "Pirate Troubles [0]: done"
+		has "Hai Reveal: Pirate Troubles [0]: done"
 	on offer
 		fail "Hai Reveal [A03a] Symbol Identification"
 		# This presumably does nothing if it's already failed.
@@ -216,13 +213,13 @@ mission "Hai Reveal [A03a2]"
 		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
 		attributes "spaceport"
 	to offer
-		has "Pirate Troubles [0]: done"
+		has "Hai Reveal: Pirate Troubles [0]: done"
 	on offer
 		fail "Hai Reveal [A03a] Symbol Identification"
 
 
 
-mission "Pirate Troubles [0]"
+mission "Hai Reveal: Pirate Troubles [0]"
 	name "Defend <system>"
 	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
 	source
@@ -278,7 +275,46 @@ mission "Pirate Troubles [0]"
 
 
 
-mission "Pirate Troubles [1]"
+# If older mission chain was done: Need to remove the planet the asteroid orbits, then re-add it without the landable location to reset.
+mission "Hai Reveal: Pirate Troubles [0a]"
+	landing
+	invisible
+	to offer
+		has "Pirate Troubles [2]: offered"
+		has "Hai Reveal [A03a] Symbol Identification: offered"
+	on offer
+		event "clean danoa"
+
+event "clean danoa"
+	system "Danoa"
+		remove object
+			sprite planet/gas6
+			distance 2069.42
+			period 3240.9
+		add object
+			sprite planet/gas6
+			distance 2069.42
+			period 3240.9
+			object
+				sprite planet/lava1-b
+				distance 293
+				period 11.3672
+			object
+				sprite planet/rock0-b
+				distance 440
+				period 20.9186
+			object
+				sprite planet/lava2-b
+				distance 607
+				period 33.895
+			object
+				sprite "planet/asteroid base"
+				distance 809
+				period 52.153
+
+
+
+mission "Hai Reveal: Pirate Troubles [1]"
 	landing
 	name "Unfettered Humans"
 	description `Track down the leaders of the pirate gang "Scar's Legion" and "persuade" them to stop attacking Hai space, then return to <destination> to tell the Hai.`
@@ -287,7 +323,7 @@ mission "Pirate Troubles [1]"
 	destination "Hai-home"
 	clearance
 	to offer
-		has "Pirate Troubles [0]: done"
+		has "Hai Reveal: Pirate Troubles [0]: done"
 	on offer
 		"reputation: Hai" += 20
 		"reputation: Hai (Wormhole Access)" += 20
@@ -325,17 +361,17 @@ mission "Pirate Troubles [1]"
 		dialog "You've returned to <planet>, but you haven't yet tracked down Scar's Legion. Perhaps you should ask around the spaceport of pirate planets near the wormhole into Hai space for information."
 	to complete
 		or
-			has "accepted scar's legion tribute"
-			has "defeated scar's legion"
+			has "hr accepted scar's legion tribute"
+			has "hr defeated scar's legion"
 
 
 
-mission "Pirate Troubles [1]: Farpoint"
+mission "Hai Reveal: Pirate Troubles [1]: Farpoint"
 	landing
 	invisible
 	source "Farpoint"
 	to offer
-		has "Pirate Troubles [1]: active"
+		has "Hai Reveal: Pirate Troubles [1]: active"
 	on offer
 		conversation
 			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, and sheepishly apologizing once they recognize you, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
@@ -344,13 +380,13 @@ mission "Pirate Troubles [1]: Farpoint"
 
 
 
-mission "Pirate Troubles [1]: Freedom or Zenith"
+mission "Hai Reveal: Pirate Troubles [1]: Freedom or Zenith"
 	landing
 	invisible
 	source
 		planet "Freedom" "Zenith"
 	to offer
-		has "Pirate Troubles [1]: active"
+		has "Hai Reveal: Pirate Troubles [1]: active"
 	on offer
 		payment -5000
 		conversation
@@ -359,15 +395,15 @@ mission "Pirate Troubles [1]: Freedom or Zenith"
 
 
 
-mission "Pirate Troubles [1]: Haven"
+mission "Hai Reveal: Pirate Troubles [1]: Haven"
 	landing
 	invisible
 	source "Haven"
 	to offer
-		has "Pirate Troubles [1]: active"
+		has "Hai Reveal: Pirate Troubles [1]: active"
 	on offer
 		payment -100
-		"scar's legion information" ++
+		"hr scar's legion information" ++
 		conversation
 			`You order a drink from a small rundown bar in the <origin> spaceport and try to make small talk with the bartender to get him open to giving information about Scar's Legion. He seems reluctant at first, but eventually warms up to you. A few other patrons of the bar join in on the conversation. Luckily no one seems mad about you asking about Scar's Legion. One of the patrons makes it clear that Scar's Legion has no friends on this world, "at least not anymore."`
 			`	You leave the bar after an hour or two. Once you return to your ship, you write down all the information you can remember. The gang used to operate exclusively out of the Far North until they crossed one of the larger gangs, causing them to flee the region a few years ago. One of the pirates guessed that they fled for the Core.`
@@ -376,14 +412,14 @@ mission "Pirate Troubles [1]: Haven"
 
 
 
-mission "Pirate Troubles [1]: Stormhold"
+mission "Hai Reveal: Pirate Troubles [1]: Stormhold"
 	landing
 	invisible
 	source "Stormhold"
 	to offer
-		has "Pirate Troubles [1]: active"
+		has "Hai Reveal: Pirate Troubles [1]: active"
 	on offer
-		"scar's legion information" ++
+		"hr scar's legion information" ++
 		conversation
 			`It doesn't take long for you to find someone who knows something about Scar's Legion. You meet someone who says he'll give you information "free of charge."`
 			`	"Scar's Legion have been a thorn in my side for months now. Wrecked my ship a while back, and have been causing me trouble ever since. If you're planning on taking them out, then I'll tell you everything you need to know."`
@@ -392,7 +428,7 @@ mission "Pirate Troubles [1]: Stormhold"
 
 
 
-mission "Pirate Troubles [2]"
+mission "Hai Reveal: Pirate Troubles [2]"
 	landing
 	name "Scar's Legion"
 	description "You've pieced together enough information to find out that the Scar's Legion hideout is in one of four systems in the Far North. Search those systems for the gang's hideout and confront them."
@@ -401,7 +437,7 @@ mission "Pirate Troubles [2]"
 	waypoint "Sumar"
 	waypoint "Hassaleh"
 	to offer
-		"scar's legion information" >= 2
+		"hr scar's legion information" >= 2
 	on offer
 		event "scar's hideout"
 		conversation
@@ -411,26 +447,15 @@ mission "Pirate Troubles [2]"
 	to complete
 		never
 	to fail
-		has "Pirate Troubles [3]: offered"
+		has "Hai Reveal: Pirate Troubles [3]: offered"
 
 event "scar's hideout"
 	system "Danoa"
-		object
-			sprite star/m3
-			period 10
-		object
-			sprite planet/desert7-b
-			distance 168.64
-			period 75.3935
-		object
-			sprite planet/fog0-b
-			distance 693.93
-			period 629.313
-			object
-				sprite planet/mercury
-				distance 174
-				period 15.1961
-		object
+		remove object
+			sprite planet/gas6
+			distance 2069.42
+			period 3240.9
+		add object
 			sprite planet/gas6
 			distance 2069.42
 			period 3240.9
@@ -461,7 +486,7 @@ planet "Scar's Hideout"
 
 
 
-mission "Pirate Troubles [3]"
+mission "Hai Reveal: Pirate Troubles [3]"
 	landing
 	name "Scar's Legion"
 	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>."
@@ -469,6 +494,7 @@ mission "Pirate Troubles [3]"
 	destination "Hai-home"
 	clearance
 	to offer
+		has "Hai Reveal: Pirate Troubles [2]: offered"
 		has "event: scar's hideout"
 	on offer
 		conversation
@@ -527,7 +553,7 @@ mission "Pirate Troubles [3]"
 				flee
 	
 	on decline
-		set "accepted scar's legion tribute"
+		set "hr accepted scar's legion tribute"
 	on accept
 		event "battle against scar's legion"
 	
@@ -551,7 +577,7 @@ mission "Pirate Troubles [3]"
 		dialog phrase "generic bounty hunting on visit"
 		
 	on complete
-		set "defeated scar's legion"
+		set "hr defeated scar's legion"
 		event "battle against scar's legion over"
 
 event "battle against scar's legion"
@@ -568,7 +594,7 @@ event "battle against scar's legion over"
 
 
 
-mission "Pirate Troubles [4]"
+mission "Hai Reveal: Pirate Troubles [4]"
 	landing
 	name "Pirate Tribute"
 	description "Escort the three Hai freighters carrying Hai weapons and technology to <stopovers>, then escort the freighters back to <destination>."
@@ -577,8 +603,8 @@ mission "Pirate Troubles [4]"
 	clearance
 	to offer
 		or
-			has "defeated scar's legion"
-			has "accepted scar's legion tribute"
+			has "hr defeated scar's legion"
+			has "hr accepted scar's legion tribute"
 	on offer
 		"reputation: Hai" += 20
 		"reputation: Hai (Wormhole Access)" += 20
@@ -589,7 +615,7 @@ mission "Pirate Troubles [4]"
 		conversation
 			`Upon landing on <origin>, the authorities at the secure spaceport give you <payment> for your assistance in defending their systems and for helping to track down the culprits. They also direct you to an emergency session of the council of elders, the now increasingly familiar elected ruling body of the Hai, to tell them about Scar's Legion. Unlike last time there is almost no wait and the Elders are very direct. The very first one of them to address you says, "Please, tell us what has occurred."`
 			branch defeated
-				has "defeated scar's legion"
+				has "hr defeated scar's legion"
 			
 			`	"They asked that you load three large freighters with various weapons and technology to give to them. Only then will they stop attacking you."`
 			`	"A simple request," the elders says. "Little more than what the Unfettered ask of us. We shall load three Geocoris immediately."`
@@ -665,9 +691,10 @@ mission "Hai Reveal [A04] Report to Teeneep"
 	source Hai-home
 	destination Darkwaste
 	to offer
+		has "alondo symbol timer"
 		or
-			has "Pirate Troubles [4]: done"
-			has "Pirate Troubles [4]: declined"
+			has "Hai Reveal: Pirate Troubles [4]: done"
+			has "Hai Reveal: Pirate Troubles [4]: declined"
 	on offer
 		dialog `Alondo is apparently away somewhere and unavailable for a short while. So, now that the situation with Scar's Legion is resolved, it's time to report to Teeneep about the experience. Maybe it will shed some light on what's going on?`
 
@@ -682,7 +709,10 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	passengers 1
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste, you should return when your spare bunks are unoccupied.`
 	to offer
-		has "Hai Reveal [A04] Report to Teeneep: done"
+		has "alondo symbol timer"
+		or
+			has "Hai Reveal [A04] Report to Teeneep: done"
+			has "Hai Reveal [A03b] Report to Teeneep: offered"
 	on visit
 		dialog `Teeneep is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
@@ -691,7 +721,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 			`	"So," she says, "please, tell me everything about this recent experience. I must know what happened and what the Elders chose to do."`
 			`	You briefly relay the initial events. Starting with the raid, the request for your assistance, the search that you went on, and the eventual discovery of Scar's Legion and their secret base in Danoa where they issued their demands.`
 			branch "appeased scar"
-				has "Pirate Troubles [4]: done"
+				has "Hai Reveal: Pirate Troubles [4]: done"
 			branch lied
 				has "lied to elders"
 			choice
