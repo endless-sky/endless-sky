@@ -1112,23 +1112,23 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 # Danforth's personal ship in HR.
 ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 	outfits
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		Afterburner
-		"Armageddon Core"
-		"Catalytic Ramscoop"
-		"Fission Reactor"
-		"Fragmentation Grenades" 20
 		"Heavy Anti-Missile Turret" 3
-		"Jump Drive"
-		"LP072a Battery Pack"
-		"LP036a Battery Pack"
-		"Laser Rifle" 20
+		"Armageddon Core"
+		"S-970 Regenerator"
 		"Liquid Helium Cooler" 2
+		"Catalytic Ramscoop"
+		"Jump Drive"
+		Afterburner
 		"Outfits Expansion" 2
 		"Plasma Cannon" 6
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Fragmentation Grenades" 20
+		"Fission Reactor"
+		"Laser Rifle" 20
+		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"Quantum Keystone"
-		"S-970 Regenerator"
 		"Fuel Pod" 2
 
 
