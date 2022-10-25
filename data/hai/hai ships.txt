@@ -593,14 +593,14 @@ ship "Sea Scorpion"
 		"Pulse Rifle" 15
 
 	engine -28.5 68.5
+		zoom 0.7
 	engine 28.5 68.5
-	"steering engine" 64.5 23.5
-		zoom 0.6
-		angle -90
+		zoom 0.7
+	"steering engine" -28.5 68.5
+		zoom 0.4
 		right
-	"steering engine" -64.5 23.5
-		zoom 0.6
-		angle 90
+	"steering engine" 28.5 68.5
+		zoom 0.4
 		left
 	gun -13 -77.5
 	gun 13 -77.5
