@@ -240,7 +240,7 @@ public:
 	void SetTravelDestination(const Planet *planet);
 
 	enum TeleportStatus {NONE, TELEPORTING, TELEPORTED};
-	void QueueTeleport(const Planet *teleportPlanet, bool _flagshiponly = false);
+	void QueueTeleport(const Planet *destination, bool flagshipOnly = false);
 	void DoQueuedTeleport();
 	TeleportStatus TeleportationStatus() const;
 	void SetTeleportStatus(TeleportStatus status);
