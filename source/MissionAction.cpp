@@ -178,7 +178,7 @@ void MissionAction::Save(DataWriter &out) const
 			{
 				out.Write("planet", teleportPlanet->Name());
 				if(flagshipOnly)
-					out.Write("flagship only")
+					out.Write("flagship only");
 			}
 			out.EndChild();
 		}
