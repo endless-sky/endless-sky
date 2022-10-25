@@ -2168,6 +2168,7 @@ mission "Colonists [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
@@ -2191,6 +2192,7 @@ mission "Colonists [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
@@ -2214,8 +2216,9 @@ mission "Stranded Field Trip"
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 4 16
 		attributes "near earth" "deep" "paradise" "urban"
+		not attributes "station" "urban"
+		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
