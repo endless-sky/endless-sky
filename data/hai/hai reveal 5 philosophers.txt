@@ -382,7 +382,7 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 mission "Hai Reveal [B06-long] Tarazed Analysis"
 	landing
 	name "Seeking Aid"
-	description `Board smuggler ships to gain information. Your display will identify such ships as belonging to the "Smuggler" government. Try near Devil's Run in Syndicate space, or the Far North.`
+	description `Find and board a smugglers ship. Your display will identify such ships as belonging to the "Smuggler" government. Try Syndicate space or the Far North. Head to <planet> afterwards.`
 	source Wayfarer
 	destination Earth
 	clearance
@@ -427,7 +427,6 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	(Return to your ship.)`
 			`	After one last ride through the metro system of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
-			`	After a moment's thought, you realize that if the smuggling involves Devil's Run, you may find the most smugglers in systems near there.`
 			`	It may be risky, but you should disable one and board it.`
 				accept
 
@@ -455,39 +454,39 @@ event "devil-run smugglers visible"
 
 	# Route to Almaaz (and nearby systems)
 	system "Rigel"
-		add fleet "Smuggler (Hai Traffickers)" 4000
+		add fleet "Smuggler (Hai Traffickers)" 5000
 	system "Alnitak"
-		add fleet "Smuggler (Hai Traffickers)" 6000
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Saiph"
-		add fleet "Smuggler (Hai Traffickers)" 8000
+		add fleet "Smuggler (Hai Traffickers)" 10000
 	system "Betelgeuse"
-		add fleet "Smuggler (Hai Traffickers)" 8000
+		add fleet "Smuggler (Hai Traffickers)" 10000
 	system "Mintaka"
-		add fleet "Smuggler (Hai Traffickers)" 4000
+		add fleet "Smuggler (Hai Traffickers)" 5000
 	system "Gorvi"
-		add fleet "Smuggler (Hai Traffickers)" 4000
+		add fleet "Smuggler (Hai Traffickers)" 5000
 	system "Tortor"
-		add fleet "Smuggler (Hai Traffickers)" 4000
+		add fleet "Smuggler (Hai Traffickers)" 5000
 	system "Unagi"
-		add fleet "Smuggler (Hai Traffickers)" 6000
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Hatysa"
-		add fleet "Smuggler (Hai Traffickers)" 4000
+		add fleet "Smuggler (Hai Traffickers)" 5000
 	
 	# Route to Almach
 	system "Zaurak"
-		add fleet "Smuggler (Hai Traffickers)" 5500
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Sheratan"
-		add fleet "Smuggler (Hai Traffickers)" 5500
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Ruchbah"
-		add fleet "Smuggler (Hai Traffickers)" 5500
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Alpheratz"
-		add fleet "Smuggler (Hai Traffickers)" 5500
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Achernar"
-		add fleet "Smuggler (Hai Traffickers)" 5500
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Al Dhanab"
-		add fleet "Smuggler (Hai Traffickers)" 5500
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Mirach"
-		add fleet "Smuggler (Hai Traffickers)" 5500
+		add fleet "Smuggler (Hai Traffickers)" 7000
 	
 	# Staging areas for transfers
 	system "Alcyone"
@@ -572,7 +571,7 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 	destination Earth
 	deadline 1
 	to offer
-		has "Hai Reveal [A06A] Smuggler Ambush: offered"
+		has "Hai Reveal [B06-long A] Smuggler Ambush: offered"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer
@@ -585,6 +584,15 @@ mission "Hai Reveal [B06-long B] Smuggler Ambush"
 		fleet "pirate raid" 2
 
 
+mission "Hai Reveal [B06-long] Cleanup"
+	invisible
+	to offer
+		has "Hai Reveal [B06-long] Tarazed Analysis: active"
+		has "Hai Reveal [B07-long] Learn of Keystones: offered"
+	on offer
+		fail "Hai Reveal [B06-long] Tarazed Analysis"
+
+
 
 mission "Hai Reveal [B07-long] Learn of Keystones"
 	landing
@@ -594,7 +602,7 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 	destination Earth
 	clearance
 	to offer
-		has "Hai Reveal [B06-long] Tarazed Analysis: active"
+		has "Hai Reveal [B06-long] Boarded Smuggler: done"
 	on offer
 		fail "Hai Reveal [B06-long] Tarazed Analysis"
 		conversation
@@ -777,7 +785,7 @@ mission "Hai Reveal [B11] Moving Together"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Plasma Anti-Missile)" "N.S. Peacemaker"
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
 	on complete
 		payment 600000
 		dialog `You are provided <payment> on arrival to cover ongoing expenses while helping out.`
@@ -825,74 +833,6 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 		"A370 Atomic Thruster"
 		"Pulse Rifle" 131
 
-
-
-# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment
-ship "Cruiser" "Cruiser (Quantum Keystone)"
-	outfits
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		Afterburner
-		"Armageddon Core"
-		"Catalytic Ramscoop"
-		"Fission Reactor"
-		"Fragmentation Grenades" 20
-		"Heavy Anti-Missile Turret" 3
-		"Jump Drive"
-		"LP072a Battery Pack"
-		"LP036a Battery Pack"
-		"Laser Rifle" 20
-		"Liquid Helium Cooler" 2
-		"Outfits Expansion" 2
-		"Plasma Cannon" 6
-		"Quantum Keystone"
-		"S-970 Regenerator"
-		"Fuel Pod" 2
-
-
-ship "Dreadnought" "Dreadnought (Quantum Keystone)"
-	outfits
-		"Catalytic Ramscoop"
-		"D94-YV Shield Generator"
-		"Heavy Anti-Missile Turret" 2
-		"Jump Drive"
-		"LP072a Battery Pack"
-		"Laser Rifle" 25
-		"Liquid Helium Cooler"
-		"Cooling Ducts"
-		"Orca Plasma Steering"
-		"Orca Plasma Thruster"
-		"Outfits Expansion" 4
-		"Fuel Pod" 2
-		"Plasma Turret" 3
-		"Quantum Keystone"
-		"Stack Core"
-		Torpedo 120
-		"Torpedo Launcher" 4
-	turret "Plasma Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Plasma Turret"
-	turret "Plasma Turret"
-
-
-ship "Auxiliary" "Auxiliary (Quantum Keystone)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		"Catalytic Ramscoop"
-		"Armageddon Core"
-		"LP144a Battery Pack"
-		"S-970 Regenerator" 3
-		"Liquid Helium Cooler"
-		"Large Radar Jammer" 2
-		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
-		"X5200 Ion Steering"
-		"Jump Drive"
-		"Quantum Keystone"
 
 mission "Hai Reveal [B12] Devil-Hide Battle"
 	autosave
@@ -956,15 +896,15 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Quantum Keystone)" "N.S. Peacemaker"
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
 	npc save accompany
 		government "Republic"
 		personality timid escort opportunistic
-		ship "Auxiliary (Quantum Keystone)" "N.S. Braveheart"
+		ship "Auxiliary (Jump Transport)" "N.S. Braveheart"
 	npc accompany
 		government "Free Worlds"
 		personality escort heroic opportunistic
-		ship "Dreadnought (Quantum Keystone)" "F.S. Ironwood"
+		ship "Dreadnought (Plasma Jump Keystone)" "F.S. Ironwood"
 
 	# The defenders waiting for you. There are 4 of them, and you have 5 competent allies, and 2 vulnerable allies.
 	# This shouldn't be hard, but the longer you take the greater the odds that another pirate ship returns from somewhere and complicates things.
@@ -1158,7 +1098,7 @@ mission "Hai Reveal [B13] Freedom"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
-		ship "Cruiser (Quantum Keystone)" "N.S. Peacemaker"
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
 
 
 

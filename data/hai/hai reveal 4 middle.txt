@@ -19,10 +19,6 @@
 mission "Hai Reveal [A00] Darkwaste Timer"
 	landing
 	invisible
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
-		not attributes "uninhabited"
-		not planet Darkwaste
 	destination Darkwaste
 	to offer
 		"hai slave prereq" >= 3
@@ -181,7 +177,8 @@ mission "Hai Reveal [A03a] Symbol Identification"
 		log `Been asked to check out the Hai spaceports in various systems near the wormhole, just to check nothing unexpected is happening.`
 		conversation
 			`You make what is beginning to feel like a standard request to land at the secure spaceport and disembark with relevant copies of files on a data stick in hand. It doesn't take long to track down Alondo, though you do end up having to wait for nearly half an hour while he finishes up some kind of meeting with a Hai official of some kind. When he's finished he waves you into the room gestures for you to take a seat, though the seat in question is clearly designed to be ergonomic for a Hai which makes for a rather strange experience for a human.`
-			`	You have a conversation where you show him the symbol, and ask him for leads. He says he knows some people who can be discreet and he'll see if he can find someone who might know something. Also something about him working with Remington lately.`
+			# TODO: Replace this paragraph with actual content. Include something about him working at Remington lately.
+			`	You show Alondo the cat symbol you found, and he says, "I know some researchers who can be discreet. I'll ask them to look into this."`
 			`	"In the meantime," he says, "could I ask you to stop by some of the Hai worlds nearer the wormhole? They have obviously ramped up security on Allhome, and I'd like to have a pair of eyes check that they're not using that as a cover to move more military through other nearby worlds into a threatening position... not that I think they'd do that but we've just been through one war, I think it's making me a little paranoid while I sit here in the most Hai place that there is."`
 			`	He shrugs. "Plus, they say they're ok, but it'd be nice for someone else on our side to check on them still. It will probably be a couple of weeks till I can track someone down for you. So, go check on that for me, and I'll let you know."`
 				accept
@@ -924,6 +921,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	Terry looks between you, "Glad you know who this is David. The Captain here is doing a lot to help us out, so please, make yourself acquainted. Don't keep them too long though, they've a job to do when they leave here." With that, she gives the both of you a parting nod and strides back into the chaos. Almost immediately a swarm of people with datapads seem to materialize from nowhere and pursue her.`
 			`	The man grins and shakes his head as she departs. "Remarkable woman. Anyway, the name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from his pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
 			`	"You may not have heard of me, but I've sure as hell heard of you." Turner turns around and waves his arm across the crowd of people working away on the station concourse. "To be involved in funding and producing this movie though, what an adventure. You know I've paid for movies to be made, or at least partially invested in them, but I've never had to actually be there while it was happening. Quite remarkable."`
+			# TODO: replace this paragraph with real content:
 			`	Turner takes a moment to enthuse about the movie and relay a brief synopsis to demonstrate how well the production is in fact going.`
 			`	"Of course, there are the communication latency issues, and the dreadful matter of the black spot that is the route through Cardax. We really do need to get coverage of that properly if we're going to provide proper security to the tourists who seem intent on coming here now. Though, I hear that you might be working on that as we speak am I right?"`
 			choice
