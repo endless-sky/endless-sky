@@ -51,7 +51,7 @@
 mission "Hai Rescue: Yeertle Hint"
 	landing
 	name "Investigate a Were-Squirrel"
-	description "A truly outlandish rumor has been floating around that there might be a “were-squirrel” (Hai) hiding out on <destination>."
+	description `A truly outlandish rumor has been floating around that there might be a "were-squirrel" (Hai) hiding out on <destination>.`
 	source
 		near "Betelgeuse" 4
 		government "Republic" "Syndicate"
