@@ -84,13 +84,14 @@ mission "ZMercenaries: End of the Hunt"
 		has "Unfettered: Prove Your Strength: done"
 		not "mercenaries: thorn talon death"
 		or
-			"Mercenaries: Nemo Me Impune Lacessit: active"
-			"Mercenaries: Nemo Me Impune Lacessit 2: active"
+			has "Mercenaries: Nemo Me Impune Lacessit: active"
+			has "Mercenaries: Nemo Me Impune Lacessit 2: active"
 	on offer
 		require "Gold Bars" 0
 		fail "Mercenaries: Nemo Me Impune Lacessit"
 		fail "Mercenaries: Nemo Me Impune Lacessit 2"
-		fail
+	to fail
+		has "ZMercenaries: End of the Hunt: active"
 
 phrase "mercenaries defeated" 
 	word
