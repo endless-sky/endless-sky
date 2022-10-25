@@ -131,9 +131,9 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == 'c' || key == 's' || key == 'p')
 		page = key;
 	else if((key == 'n' || key == SDLK_PAGEUP) && settingsPage < pageCount - 1)
-		settingsPage++;
+		++settingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && settingsPage > 0)
-		settingsPage--;
+		--settingsPage;
 	else
 		return false;
 
@@ -510,12 +510,10 @@ void PreferencesPanel::DrawSettings()
 		// If it is, continue to the next setting.
 		// Otherwise, this setting is on a later page,
 		// do not continue as no further settings are to be displayed.
-		if(page != settingsPage)
-		{
-			if(page < settingsPage)
-				continue;
+		if(page < settingsPage)
+			continue;
+		else if(page > settingsPage)
 			break;
-		}
 		// Check if this is a category break or column break.
 		if(setting.empty() || setting == "\t")
 		{
