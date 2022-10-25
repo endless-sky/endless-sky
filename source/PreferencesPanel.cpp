@@ -502,7 +502,7 @@ void PreferencesPanel::DrawSettings()
 		// Check if this is a page break.
 		if(setting == "\n")
 		{
-			page++;
+			++page;
 			continue;
 		}
 		// Check if this setting is on the page being displaying.
