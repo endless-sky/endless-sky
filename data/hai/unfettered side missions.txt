@@ -162,7 +162,7 @@ mission "Unfettered: Trust Broken"
 		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
 		fail "Unfettered: Prove Your Strength"
 	to complete
-		has "unfettered: beaten the captain"
+		has "Unfettered: Prove Your Strength: active"
 
 mission "Unfettered: Attracted Attention"
 	landing
@@ -982,6 +982,149 @@ mission "Unfettered: Cloaking Interest"
 		payment 50000000
 		outfit "Cloaking Device" -1
 		log `I gave a cloaking device to He-Yi for a very big sum. It should keep him safe.`
+
+
+
+mission "Unfettered: Trust Broken"
+	invisible
+	landing
+	to offer
+		has "Unfettered: Earn Your Prize: active"
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+	to fail
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
+	on fail
+		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
+		fail "Unfettered: Earn Your Prize"
+	to complete
+		not "Unfettered: Earn Your Prize: active"
+
+
+phrase "modified shield beetle prize"
+	word
+		`As promized by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain: a brand new ship, produced just for you. As promised, it is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Thank you for your assistance so far!"`
+
+
+mission "Unfettered: Normal Prize"
+	landing
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Earn Your Prize: done"
+		has "unfettered: prize right away"
+	on offer
+		dialog phrase "modified shield beetle prize"
+		give ship "Modified Shield Beetle" "Basilisk"
+
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Blaster)"
+	outfits
+		"Ionic Blaster Prototype" 8
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling" 3
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "Unfettered: Dakka Prize"
+	landing
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Earn Your Prize: done"
+		has "event: unfettered: more dakka"
+	on offer
+		dialog phrase "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Blaster)" "Basilisk"
+
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Heat Shunt)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling"
+		"Large Heat Shunt"
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "Unfettered: Cool Prize"
+	landing
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Earn Your Prize: done"
+		has "event: unfettered: cooler"
+	on offer
+		dialog phrase "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk"
+
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 3
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "Unfettered: Ionic Prize"
+	landing
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Earn Your Prize: done"
+		has "event: unfettered: disable-er"
+	on offer
+		dialog phrase "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk"
+
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Systems Core (Large)"
+		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "Unfettered: Immortal Prize"
+	landing
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Earn Your Prize: done"
+		has "event: unfettered: syscore's got it"
+	on offer
+		dialog phrase "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk"
 
 
 

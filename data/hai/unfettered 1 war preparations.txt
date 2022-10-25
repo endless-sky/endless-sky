@@ -859,10 +859,9 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
-		give ship "Modified Shield Beetle" "Basilisk"
 		event "unfettered: shield beetle mass production" 30
 		conversation
-			`After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message. There is also a side note, probably from He-Yi: "Make sure to check the job board for more jobs like this one. We appreciate the help. Also be mindful that it will take a while to improve the outfitter with these new materials and schematics."`
+			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find an Herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward. Go to Firelode, Mera has a very peculiar gift for you, if you prove worthy of it. He-Yi also wants you to know you should check the job board for more jobs as this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided." As soon as they delivered their message, the Herald leave without giving you a chance to ask more questions.`
 
 event "unfettered: shield beetle mass production"
 	planet "Darkcloak"
@@ -877,6 +876,119 @@ mission "Unfettered: Improved Production"
 	on offer
 		conversation
 			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
+
+
+
+mission "Unfettered: Earn Your Prize"
+	landing
+	name "Earn your prize"
+	description "The Unfettered have produced a new kind of Shield Beetle just for you, but you must beat Mera in command of it in order to earn it."
+	source "Firelode"
+	to offer
+		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+	on offer
+		conversation
+			"Do you want to go see Mera now to collect your prize, as He-Yi's Herald suggested?"
+			choice
+				`	(Sure.)`
+				`	(Later.)`
+					defer
+			`	You go to see Mera in her laboratory, where she seems to have been expecting you, "<last>! Good to see you. I guess this is not simply a courtesy visit, you must be here about the prize." As always, her phrases are translated by the crude korath translator. The Koraths seem to be focused on their tasks, but they probably are listening to everything all the same.`
+		 	choice
+				`	"That is the reason for my presence indeed."`
+					goto duel
+				`	"Why did  you leave the translator online?"`
+			`	"It was done to inspire trust from the Korath, we canot expect them to trust us if we do not trust them to hear what we have to say. This new ship is not public knowledge yet, but they would not be able to give that information away to anyone." One of the Korath makes a very gluteral sound, that could be apparented to a laugh. They do not seem to care about any of this in the slightest, and go back to their work, seemingly completely immersed in it, all of them working as one with remarkable speed.`
+			`	"What do you mean, not revealed yet? What ship are you talking about," you ask.`
+			label duel
+			`	"Well you did not come in vain, in that case.`
+			label ship
+			`	Here is your prize," she says, showing you a picture of a ship that looks pretty similar to a Shield Beetle.`
+			choice
+				`	"Alright, thanks. I guess I will be flying it then."`
+				`	"I came all this way just for a Shield Beetle?"`
+					gogo justSB
+			`	"Not so quick! You have to earn it first, and I would not mind doing some more testing... Usually I let the Unfettered captains have fun with it but I do not want to risk it getting damaged."`
+			label justSB
+			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and participate in the coming Wanderer conflict. On top of that, I added some unique prototype weaponry to it, that combines the damage of the pulse cannon with the usefulness of ionic weapons. The turrets are intended to disable even the most powerful reactors!" She seems to care about that ship a great deal.`
+			`	"But I talk too much... You shall see what kind of ship it is in the only context that matters: battle! I challenge you, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
+			branch duelrd
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, and then come back to me.`
+			label duelrd
+			``
+				accept
+	npc save disable
+		government "Hai (Unfettered Challenge)"
+		personality
+			confusion 40
+			disables staying heroic target launching
+		ship "Modified Shield Beetle" "Basilisk"
+		to spawn
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
+		to despawn
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 18
+		conversation
+			action
+				set "unfettered: defeated Mera"
+			`After you disabled her ship, Mera hails you, "Well done, captain! I may not be an expert for managing ships, but this one is still a pretty formidable opponant. Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
+			choice
+				`	"Keep it as it is."`
+				`	"I feel like it is lacking in firepower."`
+					goto dakka
+				`	"I was expecting even more ionic damage out of it."`
+					goto ion
+				`	"Could you give it some more shield regenerators?"`
+					goto shield
+				`	"It really is too unstable, more cooling is needed."`
+					goto cooling
+				`	"How about more energy storage? A bigger battery would go a long way to help it in battle, once heat brings its generators down."`
+					goto energy
+				`	"I feel like the ship would be safer with some hull regeneration."`
+					goto hull
+			action
+				set "unfettered: prize right away"
+			`	"In that case you can go claim it after tomorrow, on Darkcloak, once I am done with the repairs."`
+				accept
+			label dakka
+			action
+				event "unfettered: more dakka" 14
+			`	"This ship was never intended as a damage dealer, but rather as a survivor, that can tank many hits whilst it disables it's target with the ionic weaponry. Once the enemy is disabled, you can do all the damage you like and they won't be able to hit back. However, I could always sacrifice some anti-missile to get even more firepower."`
+				goto delay
+			label cooling
+			action
+				event "unfettered: cooler" 7
+			`	"I think I have an idea on how to fix that..."`
+				goto delay
+			label ion
+			action
+				event "unfettered: disable-er" 14
+			`	"I could swap out a shield generator and the anti-missile to be able to fit one more of the Ionic Turret Prototypes, that will do plenty of ion damage."`
+				goto delay
+			label energy
+			`	"Oh, that is true but this ship is not intended to fight against Hai weapons but rather against the aliens up north, which lack in any kind of ionic damage. But since that's what you want, I will find a way."`
+				goto delaysys
+			label hull
+			`	"Are you intending to use it against the souless machines east of here, or did you just get traumatised by the piercing weapon of earlier missions? Nevermind, I know how to address that."`
+				goto delaysys
+			label shield
+			`	"That is a valid opinion. I think I know of a way to address that, and other weaknesses the ship may have as well."`
+			label delaysys
+			action
+				event "unfettered: syscore's got it" 10
+			label delay
+			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect this to last more than a week or two, but getting more of what you asked for can be tricky... Once it is ready, the ship will be waiting for you on Darkcloak."`
+				decline
+
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog "You have not yet defeated Mera. If she did not show up it is probably because your fleet is too large."
+	to complete
+		has "unfettered: defeated Mera"
+	on complete
+		# prize in Side Missions
+		clear "unfettered: defeated Mera"
 
 
 
@@ -1108,6 +1220,7 @@ mission "Unfettered: Ready For The War"
 		has "event: unfettered: new cooling system"
 		has "Unfettered: Special Cargo 2: done"
 		has "language: Wanderer"
+		has "Unfettered: Earn Your Prize: done"
 	on offer
 		conversation
 			branch "came alone"

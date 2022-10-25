@@ -11,92 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship Antlion
-	sprite "ship/hai antlion"
-	thumbnail "thumbnail/hai antlion"
-	attributes
-		category "Medium Warship"
-		cost 35200000
-		mass 520
-		bunks 67
-		"cargo space" 56
-		drag 6.9
-		"engine capacity" 180
-		"fuel capacity" 600
-		"heat dissipation" 0.66
-		hull 9000
-		"outfit space" 696
-		"required crew" 35
-		shields 24000
-		"weapon capacity" 280
-		weapon
-			"blast radius" 260
-			"shield damage" 3600
-			"hull damage" 1820
-			"hit force" 2500
-	outfits
-		"Type 4 Radiant Thruster"
-		`"Bufaer" Atomic Steering`
-		`"Biroo" Reverse Thruster`
-		"Hai Diamond Regenerator"
-		"Chameleon Anti-Missile" 2
-		
-		"Wanderer Ramscoop"
-		"Fuel Processor"
-		"Systems Core (Medium)"
-		"Geode Reactor"
-		"Hai Valley Batteries"
-		"Value Detector"
-		
-		Hyperdrive
-		"Ionic Blaster Prototype" 4
-		"Ionic Turret Prototype" 2
-		"Quantum Keystone"
-	cargo
-		outfits
-			"Gold Bars" 50
-	"steering engine" 62 10
-		zoom 0.6
-		right
-		angle -115
-	"steering engine" -62 10
-		zoom 0.6
-		left
-		angle 115
-	"reverse engine" 0 -96
-		zoom 0.8
-	engine 44.5 64
-		zoom 0.8
-	engine -44.5 64
-		zoom 0.8
-	engine 0 110
-	gun -24 -100 "Ionic Blaster Prototype"
-	gun 24 -100 "Ionic Blaster Prototype"
-	gun -15 -97 "Ionic Blaster Prototype"
-	gun 15 -97 "Ionic Blaster Prototype"
-	turret -22.5 -57.5 "Chameleon Anti-Missile"
-	turret 22.5 -57.5 "Chameleon Anti-Missile"
-	turret -15 41 "Ionic Turret Prototype"
-	turret 15 41 "Ionic Turret Prototype"
-	bay Drone -67 -76
-		under
-	bay Drone 67 -76
-		under
-	bay Drone 0 70.5
-		over
-	leak leak 40 50
-	leak flame 50 80
-	leak "big leak" 60 50
-	explode "huge explosion" 10
-	explode "large explosion" 30
-	explode "medium explosion" 50
-	explode "small explosion" 40
-	explode "tiny explosion" 40
-	"final explode" "final explosion large"
-	description "This ship was built near the end of the Korath raids to be fast enough to catch and delay the raiders of the time. Whilst ordinarily it could not defeat one alone, its energy weapons and drones let it hold its own until cavalry arrived, and sometimes even win the fight if lucky. It is not able to sustain prolonged combat, but it is now renowned for attacking vulnerable targets in human space and disappearing before anyone can react, as if always one move ahead."
-	description "When the raids suddenly ended, this ship turned out to be less useful in the subsequent Unfettered conflict, and was stolen by Mercenaries who chose to remain neutral in the conflict."
-
-
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
@@ -708,13 +622,15 @@ ship "Modified Shield Beetle"
 			"hull damage" 3000
 			"hit force" 3600
 	outfits
-		"Ionic Blaster Prototype" 8
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
 		"Ionic Turret Prototype" 2
 		"Chameleon Anti-Missile"
 		"Boulder Reactor" 2
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator" 3
 		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 224
 		"Outfits Expansion"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -726,10 +642,10 @@ ship "Modified Shield Beetle"
 	gun 22 -103
 	gun -34.5 -68
 	gun 34.5 -68
-	gun -48 -53.5
-	gun 48 -53.5
-	gun -61.5 -23
-	gun 61.5 -23
+	gun -48 -53.5 "Hai Tracker Pod"
+	gun 48 -53.5 "Hai Tracker Pod"
+	gun -61.5 -23 "Hai Tracker Pod"
+	gun 61.5 -23 "Hai Tracker Pod"
 	turret 0 5 "Chameleon Anti-Missile"
 	turret -55.5 74.5
 	turret 55.5 74.5
@@ -881,72 +797,6 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
-
-
-ship "Sea Dragon"
-	sprite "ship/hai sea dragon"
-	thumbnail "thumbnail/hai sea dragon"
-	attributes
-		category "Medium Warship"
-		cost 5450000
-		shields 17000
-		hull 5600
-		"required crew" 18
-		bunks 36
-		mass 360
-		drag 5.2
-		"fuel capacity" 600
-		"heat dissipation" 0.6
-		"cargo space" 45
-		"outfit space" 519
-		"weapon capacity" 168
-		"engine capacity" 125
-		weapon
-			"blast radius" 100
-			"shield damage" 1050
-			"hull damage" 520
-			"hit force" 1500
-	outfits
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Boulder Reactor"
-		"Hai Diamond Regenerator" 2
-		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 3
-		"Jump Drive"
-		"Outfits Expansion" 2
-		"Pulse Rifle" 25
-		"Dual Pulse Pistols"
-		"Tripulse Shredder" 4
-		"Wanderer Ramscoop"
-	cargo
-		outfits
-			"Gold Bars" 5
-	engine -28.5 68.5
-	engine 28.5 68.5
-	"steering engine" 64.5 23.5
-		zoom 0.6
-		angle -90
-		right
-	"steering engine" -64.5 23.5
-		zoom 0.6
-		angle 90
-		left
-	gun -13 -77.5
-	gun 13 -77.5
-	gun -27 -56
-	gun 27 -56
-	turret -35.5 24.5
-	turret 35.5 24.5
-	leak "leak" 40 50
-	leak "flame" 40 30
-	explode "tiny explosion" 30
-	explode "small explosion" 50
-	explode "medium explosion" 35
-	explode "large explosion" 18
-	"final explode" "final explosion medium"
-	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
-	description "This version was built from stronger materials, allowing a stronger hull, at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile, and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
 
 
 
@@ -1681,43 +1531,6 @@ ship "Solifuge" "Solifuge (Tracker)"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
-
-
-
-ship "Tick"
-	sprite "ship/hai flea"
-	thumbnail "thumbnail/hai flea"
-	attributes
-		category "Drone"
-		"cost" 186500
-		"shields" 200
-		"hull" 1000
-		"mass" 24
-		"drag" .55
-		"heat dissipation" .7
-		"outfit space" 63
-		"weapon capacity" 14
-		"engine capacity" 22
-		"automaton" 1
-		weapon
-			"blast radius" 8
-			"shield damage" 65
-			"hull damage" 37
-			"hit force" 85
-	outfits
-		"Korath Repeater"
-		"Hai Chasm Batteries" 2
-		"Small Biochemical Cell"
-		`"Baellie" Atomic Engines`
-
-	engine 0 27 1.4
-	gun 0 -27
-	turret 0 -15
-	leak "leak" 60 50
-	explode "tiny explosion" 17
-	description "This drone was customized with the idea of using either a Repeater, to complement ion attacks, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit of mass and heat dissipation."
-	description "This handy drone was only made possible thanks to scavenging, and combining multiple alien technologies."
-	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
