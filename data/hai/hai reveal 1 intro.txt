@@ -849,6 +849,7 @@ mission "00 Hai Leaks Response 4B"
 event "returned geocoris"
 		
 ship "Geodesic Geocoris"
+	plural "Geodesic Geocoris"
 	sprite "ship/geodesic geocoris"
 	thumbnail "thumbnail/geodesic geocoris"
 	attributes

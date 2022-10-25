@@ -451,6 +451,7 @@ void PreferencesPanel::DrawSettings()
 		"Show planet labels",
 		"Show mini-map",
 		DATE_FORMAT,
+		"Always underline shortcuts",
 		"",
 		"AI",
 		"Automatic aiming",
