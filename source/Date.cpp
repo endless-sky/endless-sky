@@ -34,6 +34,18 @@ namespace {
 		return DAY[day];
 	}
 
+	const string ZeroPad(int i)
+	{
+		string s = "";
+
+		if(i < 10)
+			s.append("0");
+
+		s.append(std::to_string(i));
+
+		return s;
+	}
+
 	Preferences::DateFormat dateFormatInUse = Preferences::DateFormat::dmy;
 }
 
@@ -74,13 +86,8 @@ const string &Date::ToString() const
 		string weekday_str = Weekday(day, month, year);
 		string month_str = MONTH[month - 1];
 
-		string day_str = "";
-		if (day <= 10)
-				day_str.append("0");
-		day_str.append(to_string(day));
-
 		if(dateFormat == Preferences::DateFormat::ymd)
-			str = to_string(year) + "-" + to_string(month) + "-" + day_str;
+			str = to_string(year) + "-" + ZeroPad(month) + "-" + ZeroPad(day);
 		else if(dateFormat == Preferences::DateFormat::mdy)
 			str = weekday_str + " " + month_str + " " + to_string(day) + ", " + to_string(year);
 		else if(dateFormat == Preferences::DateFormat::dmy)
