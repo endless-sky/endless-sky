@@ -2122,7 +2122,7 @@ void PlayerInfo::QueueTeleport(const Planet *destination, bool flagshipOnly)
 
 void PlayerInfo::DoQueuedTeleport()
 {
-	if(!teleportPlanet || !flagship)
+	if(!teleportPlanet || !FlagshipPtr())
 		return;
 	if(!planet)
 	{
