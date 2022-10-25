@@ -87,7 +87,7 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 mission "Hai Reveal [B02] Join the Fleet"
 	autosave
 	name "Join the Fleet and move on Stormhold"
-	description "Join the fleet and move on Stormhold. Make sure all ships have enough fuel to reach there at the same time."
+	description "Join the fleet in orbit and move on Stormhold."
 	deadline 9
 	# The minimum journey time is 7
 	source "Sunracer"
