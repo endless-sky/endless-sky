@@ -123,11 +123,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			else
 				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 		}
-		else if(key == "teleport" && hasValue)
+		else if(key == "relocate" && hasValue)
 		{
-			teleportPlanet = GameData::Planets().Get(child.Token(1));
-			if(child.Size() > 2 && child.Token(2) == "flagship only")
-				flagshipOnly = true;
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "planet" && grand.Size() > 1)
+					teleportPlanet = GameData::Planets().Get(grand.Token(1));
+				if(grand.Token(0) == "flagship only")
+					flagshipOnly = true;
+			}
 		}
 		else
 			action.LoadSingle(child, missionName);
@@ -168,7 +172,16 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		if(teleportPlanet)
-			out.Write("teleport", teleportPlanet->Name(), flagshipOnly ? "flagship only" : "");
+		{
+			out.Write("relocate");
+			out.BeginChild();
+			{
+				out.Write("planet", teleportPlanet->Name());
+				if(flagshipOnly)
+					out.Write("flagship only")
+			}
+			out.EndChild();
+		}
 
 		action.Save(out);
 	}
