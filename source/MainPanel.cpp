@@ -87,12 +87,13 @@ void MainPanel::Step()
 
 	// If the player just landed, pop up the planet panel. When it closes, it
 	// will call this object's OnCallback() function;
-	if((isActive || player.TeleportationStatus() == PlayerInfo::TELEPORTED) && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
+	if((isActive || player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTED) &&
+		player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
 		isActive = false;
-		player.SetTeleportStatus(PlayerInfo::NONE);
+		player.SetTeleportStatus(PlayerInfo::TeleportStatus::NONE);
 	}
 
 	// Display any relevant help/tutorial messages.
@@ -190,7 +191,7 @@ void MainPanel::Draw()
 // The planet panel calls this when it closes.
 void MainPanel::OnCallback()
 {
-	if(player.TeleportationStatus() != PlayerInfo::TELEPORTED)
+	if(player.TeleportationStatus() != PlayerInfo::TeleportStatus::TELEPORTED)
 		engine.Place();
 	// Run one step of the simulation to fill in the new planet locations.
 	engine.Go();

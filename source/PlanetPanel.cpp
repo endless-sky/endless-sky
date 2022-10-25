@@ -72,9 +72,9 @@ void PlanetPanel::Step()
 {
 	// If the player is teleporting, simulate a TakeOff followed
 	// by a forced landing. No transition will be noticeable.
-	if(player.TeleportationStatus() == PlayerInfo::TELEPORTING)
+	if(player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTING)
 	{
-		player.SetTeleportStatus(PlayerInfo::TELEPORTED);
+		player.SetTeleportStatus(PlayerInfo::TeleportStatus::TELEPORTED);
 		TakeOff();
 	}
 	// If the previous mission callback resulted in a "launch", take off now.

@@ -168,7 +168,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->Name(), it.second);
 		if(teleportPlanet)
-			out.Write("teleport", teleportPlanet->Name(), flagshipOnly ? "flagship" : "fleet");
+			out.Write("teleport", teleportPlanet->Name(), flagshipOnly ? "flagship only" : "");
 
 		action.Save(out);
 	}

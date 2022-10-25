@@ -60,6 +60,13 @@ public:
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
 	};
+
+	enum class TeleportStatus : int {
+		NONE,
+		TELEPORTING,
+		TELEPORTED
+	};
+
 public:
 	PlayerInfo() = default;
 	// Don't allow copying this class.
@@ -239,7 +246,6 @@ public:
 	const Planet *TravelDestination() const;
 	void SetTravelDestination(const Planet *planet);
 
-	enum TeleportStatus {NONE, TELEPORTING, TELEPORTED};
 	void QueueTeleport(const Planet *destination, bool flagshipOnly = false);
 	void DoQueuedTeleport();
 	TeleportStatus TeleportationStatus() const;
@@ -366,7 +372,7 @@ private:
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
-	TeleportStatus teleportationStatus = NONE;
+	TeleportStatus teleportationStatus = TeleportStatus::NONE;
 	bool flagshipOnly = false;
 	const Planet *teleportPlanet = nullptr;
 
