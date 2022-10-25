@@ -531,82 +531,54 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		}
 		index++;
 	}
+
+	auto drawElements = [&] (std::vector<const Hardpoint*> &weaponList, int weaponIndex, bool right) {
+		const Hardpoint *hardpoint = weaponList[weaponIndex];
+		string name = "[empty]";
+		if(hardpoint->GetOutfit())
+			name = hardpoint->GetOutfit()->Name();
+
+		bool isTurret = hardpoint->IsTurret();
+
+		double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
+		double x = right ? centerX + LABEL_DX : centerX - LABEL_DX - LABEL_WIDTH;
+		bool isHover = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight));
+		layout.align = right ? Alignment::LEFT : Alignment::RIGHT;
+		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+		Point zoneCenter(labelCenter[right], y + .5 * LINE_HEIGHT);
+		if(right)
+			zonesRight.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
+		else
+			zonesLeft.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
+
+		// Determine what color to use for the line.
+		float high = (weaponIndex == hoverIndex  && (right ? hoverRight : !hoverRight) ? .8f : .5f);
+		Color color(high, .75f * high, 0.f, 1.f);
+		if(isTurret)
+			color = Color(0.f, .75f * high, high, 1.f);
+
+		// Draw the line.
+		Point from(fromX[right], zoneCenter.Y());
+		Point to = bounds.Center() + (2. * scale) * hardpoint->GetPoint();
+		DrawLine(from, to, color);
+		if(isHover)
+		{
+			topFrom = from;
+			topTo = to;
+			topColor = color;
+			hasTop = true;
+		}
+
+		y += LINE_HEIGHT;
+	};
+
+
 	for(int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
 	{
 		if(weaponsRight.size() > static_cast<unsigned int>(weaponIndex))
-		{
-			const Hardpoint *hardpoint = weaponsRight[weaponIndex];
-			string name = "[empty]";
-			if(hardpoint->GetOutfit())
-				name = hardpoint->GetOutfit()->Name();
-
-			bool isTurret = hardpoint->IsTurret();
-
-			double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
-			double x = centerX + LABEL_DX;
-			bool isHover = (weaponIndex == hoverIndex && hoverRight);
-			layout.align = Alignment::RIGHT;
-			font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
-			Point zoneCenter(labelCenter[1], y + .5 * LINE_HEIGHT);
-			zonesRight.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
-
-			// Determine what color to use for the line.
-			float high = (weaponIndex == hoverIndex  && hoverRight ? .8f : .5f);
-			Color color(high, .75f * high, 0.f, 1.f);
-			if(isTurret)
-				color = Color(0.f, .75f * high, high, 1.f);
-
-			// Draw the line.
-			Point from(fromX[1], zoneCenter.Y());
-			Point to = bounds.Center() + (2. * scale) * hardpoint->GetPoint();
-			DrawLine(from, to, color);
-			if(isHover)
-			{
-				topFrom = from;
-				topTo = to;
-				topColor = color;
-				hasTop = true;
-			}
-
-			y += LINE_HEIGHT;
-		}
+			drawElements(weaponsRight, weaponIndex, true);
 		if(weaponsLeft.size() > static_cast<unsigned int>(weaponIndex))
-		{
-			const Hardpoint *hardpoint = weaponsLeft[weaponIndex];
-			string name = "[empty]";
-			if(hardpoint->GetOutfit())
-				name = hardpoint->GetOutfit()->Name();
-
-			bool isTurret = hardpoint->IsTurret();
-
-			double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
-			double x = centerX -LABEL_DX - LABEL_WIDTH;
-			bool isHover = (weaponIndex == hoverIndex && !hoverRight);
-			layout.align = Alignment::LEFT;
-			font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
-			Point zoneCenter(labelCenter[0], y + .5 * LINE_HEIGHT);
-			zonesLeft.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
-
-			// Determine what color to use for the line.
-			float high = (weaponIndex == hoverIndex && !hoverRight ? .8f : .5f);
-			Color color(high, .75f * high, 0.f, 1.f);
-			if(isTurret)
-				color = Color(0.f, .75f * high, high, 1.f);
-
-			// Draw the line.
-			Point from(fromX[0], zoneCenter.Y());
-			Point to = bounds.Center() + (2. * scale) * hardpoint->GetPoint();
-			DrawLine(from, to, color);
-			if(isHover)
-			{
-				topFrom = from;
-				topTo = to;
-				topColor = color;
-				hasTop = true;
-			}
-
-			y += LINE_HEIGHT;
-		}
+			drawElements(weaponsLeft, weaponIndex, false);
 	}
 
 	if(pages > 1)
