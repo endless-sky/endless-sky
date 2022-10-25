@@ -884,6 +884,7 @@ mission "Unfettered: Earn Your Prize"
 	name "Earn your prize"
 	description "The Unfettered have produced a new kind of Shield Beetle just for you, but you must beat Mera in command of it in order to earn it."
 	source "Firelode"
+	destination "Darkcloak"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
 	on offer
@@ -893,36 +894,37 @@ mission "Unfettered: Earn Your Prize"
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	You go to see Mera in her laboratory, where she seems to have been expecting you, "<last>! Good to see you. I guess this is not simply a courtesy visit, you must be here about the prize." As always, her phrases are translated by the crude korath translator. The Koraths seem to be focused on their tasks, but they probably are listening to everything all the same.`
+			`	You go to Mera's laboratory, almost getting lost in the sheer amount of technology there is all over... She seems to be quite busy making prototypes, or maybe this is just because of the Koraths presence here. After stumbling on what you can only assume to be pieces of scrap, you find her, watching and working with the Koraths. As you wonder who is assisting who, she notices you, "<last>! He-Yi thought you would be quick to come. It is good to see you again, but I guess this is not simply a courtesy visit, you must be here about the prize." As is usual here, her phrases are translated by the crude korath translator. The Koraths seem to be focused on their tasks, but they are probably listening to the conversation at the same time, given their usual quick thinking pace.`
 			choice
 				`	"That is the reason for my presence indeed."`
 					goto duel
-				`	"Why did  you leave the translator online?"`
-			`	"It was done to inspire trust from the Korath, we cannot expect them to trust us if we do not trust them to hear what we have to say. This new ship is not public knowledge yet, but they would not be able to give that information away to anyone." One of the Korath makes a very gluteral sound, that could be apparented to a laugh. They do not seem to care about any of this in the slightest, and go back to their work, seemingly completely immersed in it, all of them working as one with remarkable speed.`
-			`	"What do you mean, not revealed yet? What ship are you talking about," you ask.`
+				`	"Why did you leave the translator online?"`
+			`	"Oh, I was talking with them, but I left it on in the hope of inspiring trust from the Korath. We cannot expect them to trust us if we do not allow them to hear what we have to say. This new ship... well it is more of a modification than an actual new ship, actually, but anyway even if it is not public knowledge yet, they would not give that information away." You are surprised when one of the Korath makes a very gluteral sound, which, you realize after some time, is probably a laugh. However, they do not seem to care about any of this in the slightest, and go back to their work, completely immersed in it, all of them working as one with remarkable speed, speaking in short phrases, and too quickly for the translator to make any sense out of it.`
+			`	"What do you mean, not revealed yet? What ship are you talking about?" you ask.`
 			label duel
 			`	"Well you did not come in vain, in that case.`
 			label ship
-			`	Here is your prize," she says, showing you a picture of a ship that looks pretty similar to a Shield Beetle.`
+			`	Here is your prize," she says, presenting you a picture of a ship that looks pretty similar to a Shield Beetle, although it has peculiar weapons, and a somewhat different look.`
 			choice
 				`	"Alright, thanks. I guess I will be flying it then."`
 				`	"I came all this way just for a Shield Beetle?"`
 					goto justSB
-			`	"Not so quick! You have to earn it first, and I would not mind doing some more testing... Usually I let the Unfettered captains have fun with it but I do not want to risk it getting damaged. Also, it's about time I get to have some fun!"`
+			`	"Not so fast! You have to earn it first, and I would not mind doing some more testing... Usually I let the Unfettered captains have fun with it but I do not want to risk it getting damaged. And then, it's about time I get to have some fun too!"`
 			label justSB
-			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and participate in the coming Wanderer conflict. On top of that, I added some unique prototype weaponry to it, that combines the damage of the pulse cannon with the usefulness of ionic weapons. The turrets are intended to disable even the most powerful reactors!" She seems to care about that ship a great deal.`
-			`	"But I talk too much... You shall see what kind of ship it is in the only context that matters: battle! I challenge you, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
+			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and thus play an important role in the coming Wanderer conflict. On top of that, I equipped it with unique prototype weaponry, different attempts at increasing the ionizing payload of our weapons. The turrets are intended to disable even the most powerful reactors! And the blasters should offer reasonable firepower, combined with a touch of ion - not enough to disable enemy ships, but enough to scramble their weapons if they are not equipped against it!" She seems to care about that ship a great deal.`
+			`	"But I talk too much... You shall see how mighty this ship is in the only context that matters: battle! I challenge you in a duel, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
 			branch duelrd
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
-			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, and then come back to me.`
+			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, say 3 medium warships at most or a heavy and a medium, and then come back to me. Best leave any ships not meant for battle out of it too.`
+				accept
 			label duelrd
-			``
+			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain, but I will give you my best!"`
 				accept
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality
 			confusion 40
-			disables staying heroic target launching
+			disables staying heroic target waiting
 		ship "Modified Shield Beetle" "Basilisk"
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 18
@@ -931,53 +933,68 @@ mission "Unfettered: Earn Your Prize"
 		conversation
 			action
 				set "unfettered: defeated Mera"
-			`After you disabled her ship, Mera hails you, "Well done, captain! I may not be an expert for managing ships, but this one is still a pretty formidable opponent. Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
+			`Now that you have disabled her ship Mera hails you, "Well done, captain! I must say, this was some fun, thank you for this chance to try my weapons first hand! I may not be an expert for managing ships, but this one still is a pretty formidable opponent, wouldn't you say so?"`
+			choice
+				`	"Nice try, but I could see you are not used to commanding a ship."`
+				`	"Are you kidding? This was a walk in the park."`
+					goto park
+				`	"I must say you surprised me with these ion weapons."`
+					goto ion
+			`	"I must admit that is true. At least I gave you a bit of a run for your money, or, in this case, your ship!"`
+				goto suggestions
+			label park
+			`	She seems a bit disapointed, "Oh... Well, in that case, how about you tell me what to do to make it better for when you get to wield this ship?"`
+				goto suggestions
+			label ion
+			`	"Thanks! I hope they will surprise the aliens north as well!"`
+			label suggestions
+			`	"Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
 			choice
 				`	"Keep it as it is."`
-				`	"I feel like it is lacking in firepower."`
+				`	"I feel like it is lacking in raw firepower, missiles will just get intercepted before they can hit."`
 					goto dakka
 				`	"I was expecting even more ionic damage out of it."`
 					goto ion
 				`	"Could you give it some more shield regenerators?"`
 					goto shield
-				`	"It really is too unstable, more cooling is needed."`
-					goto cooling
 				`	"How about more energy storage? A bigger battery would go a long way to help it in battle, once heat brings its generators down."`
 					goto energy
 				`	"I feel like the ship would be safer with some hull regeneration."`
 					goto hull
+				`	"It really is too unstable, more cooling is needed."`
+					goto cooling
 			action
 				set "unfettered: prize right away"
-			`	"In that case you can go claim it after tomorrow, on Darkcloak, once I am done with the repairs."`
+			`	"In that case you can go claim it tomorrow, on Darkcloak, once I am done with the repairs. It should not take long!"`
 				accept
 			label dakka
 			action
 				event "unfettered: more dakka" 14
-			`	"This ship was never intended as a damage dealer, but rather as a survivor, that can tank many hits whilst it disables it's target with the ionic weaponry. Once the enemy is disabled, you can do all the damage you like and they won't be able to hit back. However, I could always sacrifice some anti-missile to get even more firepower."`
+			`	"This ship was never intended as a damage dealer, but rather as a survivor that can tank many hits whilst it disables its target with the ionic weaponry. Once the enemy is disabled, you can do as much damage as you like and they won't be able to hit back. However, it is to be your ship so I will follow your preferences, and switch the tracker pods for more blasters."`
 				goto delay
 			label cooling
 			action
 				event "unfettered: cooler" 7
-			`	"I think I have an idea on how to fix that..."`
+			`	"That was one of my worries when putting 3 shield generators on it indeed, since they generate a lot of heat when recharging the shields. That said, I think I have an idea on how to fix that..."`
 				goto delay
 			label ion
 			action
 				event "unfettered: disable-er" 14
-			`	"I could swap out a shield generator and the anti-missile to be able to fit one more of the Ionic Turret Prototypes, that will do plenty of ion damage."`
+			`	"I will swap out a shield generator and the anti-missile to be able to fit one more of the Ionic Turret Prototypes, that will do plenty of ion damage."`
 				goto delay
 			label energy
-			`	"Oh, that is true but this ship is not intended to fight against Hai weapons but rather against the aliens up north, which lack in any kind of ionic damage. But since that's what you want, I will find a way."`
+			`	"Oh, that is true, but as I told you before, this ship is not intended to fight against our brethren but rather against the aliens up north, which lack in any kind of ionic damage. However, since that's what you want, and you'll be in command of that ship anyway, I will find a way to increase its energy storage."`
 				goto delaysys
 			label hull
-			`	"Are you intending to use it against the souless machines east of here, or did you just get traumatised by the piercing weapon of earlier missions? Nevermind, I know how to address that."`
+			`	"Are you intending to use it against the souless machines to the east, or did you get intimitaded that badly by the piercing weapon of earlier missions? Whatever the case, do not worry, I know how to address that, and more."`
 				goto delaysys
 			label shield
-			`	"That is a valid opinion. I think I know of a way to address that, and other weaknesses the ship may have as well."`
+			`	"I thought I had already placed enough shield generators, 3 of them in fact... But you're the one who will be flying that ship so I will do as you suggest. Indeed, I think I know of a way to address that, and other weaknesses I've foudn when piloting the ship has as well."`
 			label delaysys
 			action
 				event "unfettered: syscore's got it" 10
 			label delay
-			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect this to last more than a week or two, but getting more of what you asked for can be tricky... Once it is ready, the ship will be waiting for you on Darkcloak."`
+			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect the preparations to last more than a week or two. It is not so much a matter of finding what you asked for, but of getting the permission to equip it on this ship. Once the ship is ready, it will be waiting for you on Darkcloak, since that is where I will make the necessary modifications."`
 				decline
 
 	on fail
