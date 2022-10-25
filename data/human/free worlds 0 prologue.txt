@@ -1045,7 +1045,7 @@ mission "FW Bounty 1"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			near "Seginus" 1 2
+			near "Seginus" 1 1
 		ship "Hawk (Rocket)" "Cluny"
 		ship "Hawk (Speedy)" "Ferret"
 		ship "Berserker (Afterburner)" "Weasel"
@@ -1099,7 +1099,7 @@ mission "FW Bounty 2"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			near "Delta Sagittarii" 1 2
+			near "Delta Sagittarii" 1 1
 		ship "Behemoth (Speedy)" "Moonless Night"
 		dialog phrase "generic hunted bounty eliminated dialog"
 	
