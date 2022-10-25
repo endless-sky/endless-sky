@@ -123,7 +123,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			else
 				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 		}
-		else if(key == "relocate" && hasValue)
+		else if(key == "relocate")
 		{
 			for(const DataNode &grand : child)
 			{
