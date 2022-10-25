@@ -19,6 +19,10 @@
 mission "Hai Reveal [A00] Darkwaste Timer"
 	landing
 	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		not attributes "uninhabited"
+		not planet Darkwaste
 	destination Darkwaste
 	to offer
 		"hai slave prereq" >= 3
@@ -686,9 +690,7 @@ mission "Hai Reveal [A04] Report to Teeneep"
 	name "Report to Teeneep"
 	description `Tell Teeneep about the experience with Scar's Legion.`
 	source
-		government "Hai"
 		not planet Darkwaste
-		not attributes "uninhabited"
 	destination Darkwaste
 	to offer
 		has "event: alondo symbol timer"

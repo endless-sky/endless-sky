@@ -86,14 +86,15 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 # THIS mission is designed to give you a spectacle. A little visual demonstration of what a real battle could potentially look and feel like with low stakes for you. It's a visual feast, not a challenge.
 mission "Hai Reveal [B02] Join the Fleet"
 	autosave
-	name "Join the Fleet"
+	name "Join the Fleet and move on Stormhold"
 	description "Join the fleet and move on Stormhold. Make sure all ships have enough fuel to reach there at the same time."
-	deadline 12
-	# The minimum journey time is 7 if the player jumps system by system.
+	deadline 9
+	# The minimum journey time is 7
 	source "Sunracer"
 	destination "Stormhold"
+	clearance
 	to offer
-		has "Hai Reveal [A14] A Time of Trouble: done"
+		has "Hai Reveal [B01] Information Blackout: offered"
 	on offer
 		conversation
 			`The Syndicate security captain in the spaceport is very easy to find. She hands you a pad with a secure validation sequence to confirm her briefing comes from the Navy, co-signed by Xilin.`
@@ -125,18 +126,18 @@ mission "Hai Reveal [B02] Join the Fleet"
 
 	npc accompany
 		government "Republic"
-		system "Ultima Thule"
-		personality escort heroic opportunistic waiting
+		system "Sunracer"
+		personality escort heroic opportunistic
 		fleet "Human Wormhole Guards" 20
 	npc accompany
 		government "Hai"
-		system "Ultima Thule"
-		personality escort heroic opportunistic waiting
+		system "Sunracer"
+		personality escort heroic opportunistic
 		fleet "Hai Wormhole Guards" 20
 	npc accompany
 		government "Hai (Friendly Unfettered)"
-		system "Ultima Thule"
-		personality escort heroic opportunistic vindictive waiting
+		system "Sunracer"
+		personality escort heroic opportunistic vindictive
 		fleet "Large Friendly Unfettered" 7
 	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
 
