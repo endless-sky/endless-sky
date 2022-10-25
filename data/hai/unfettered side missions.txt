@@ -150,7 +150,7 @@ mission "Unfettered: Untrustable"
 
 
 
-mission "Unfettered: Trust Broken"
+mission "Unfettered: Si-Ra's Trust Broken"
 	invisible
 	landing
 	to offer
@@ -985,7 +985,7 @@ mission "Unfettered: Cloaking Interest"
 
 
 
-mission "Unfettered: Trust Broken"
+mission "Unfettered: Mera's Trust Broken"
 	invisible
 	landing
 	to offer
@@ -1014,7 +1014,19 @@ mission "Unfettered: Normal Prize"
 	on offer
 		dialog phrase "modified shield beetle prize"
 		give ship "Modified Shield Beetle" "Basilisk"
+		fail
 
+
+mission "Unfettered: Prize Arrived"
+	landing
+	to offer
+		or
+			has "event: unfettered: more dakka"
+			has "event: unfettered: cooler"
+			has "event: unfettered: disable-er"
+			has "event: unfettered: syscore's got it"
+	on offer
+		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak, captain."`
 
 event "unfettered: more dakka"
 
@@ -1042,6 +1054,7 @@ mission "Unfettered: Dakka Prize"
 	on offer
 		dialog phrase "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Blaster)" "Basilisk"
+		fail
 
 
 event "unfettered: cooler"
@@ -1073,6 +1086,7 @@ mission "Unfettered: Cool Prize"
 	on offer
 		dialog phrase "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk"
+		fail
 
 
 event "unfettered: disable-er"
@@ -1102,6 +1116,7 @@ mission "Unfettered: Ionic Prize"
 	on offer
 		dialog phrase "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk"
+		fail
 
 
 event "unfettered: syscore's got it"
@@ -1133,6 +1148,7 @@ mission "Unfettered: Immortal Prize"
 	on offer
 		dialog phrase "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk"
+		fail
 
 
 
