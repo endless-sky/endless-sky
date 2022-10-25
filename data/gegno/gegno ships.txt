@@ -960,7 +960,7 @@ ship Muscovite
 		"heat dissipation" 0.9
 		"fuel capacity" 600
 		"cargo space" 430
-		"outfit space" 440
+		"outfit space" 466
 		"weapon capacity" 166
 		"engine capacity" 182
 		weapon
