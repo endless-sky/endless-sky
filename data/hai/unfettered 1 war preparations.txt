@@ -894,11 +894,11 @@ mission "Unfettered: Earn Your Prize"
 				`	(Later.)`
 					defer
 			`	You go to see Mera in her laboratory, where she seems to have been expecting you, "<last>! Good to see you. I guess this is not simply a courtesy visit, you must be here about the prize." As always, her phrases are translated by the crude korath translator. The Koraths seem to be focused on their tasks, but they probably are listening to everything all the same.`
-		 	choice
+			choice
 				`	"That is the reason for my presence indeed."`
 					goto duel
 				`	"Why did  you leave the translator online?"`
-			`	"It was done to inspire trust from the Korath, we canot expect them to trust us if we do not trust them to hear what we have to say. This new ship is not public knowledge yet, but they would not be able to give that information away to anyone." One of the Korath makes a very gluteral sound, that could be apparented to a laugh. They do not seem to care about any of this in the slightest, and go back to their work, seemingly completely immersed in it, all of them working as one with remarkable speed.`
+			`	"It was done to inspire trust from the Korath, we cannot expect them to trust us if we do not trust them to hear what we have to say. This new ship is not public knowledge yet, but they would not be able to give that information away to anyone." One of the Korath makes a very gluteral sound, that could be apparented to a laugh. They do not seem to care about any of this in the slightest, and go back to their work, seemingly completely immersed in it, all of them working as one with remarkable speed.`
 			`	"What do you mean, not revealed yet? What ship are you talking about," you ask.`
 			label duel
 			`	"Well you did not come in vain, in that case.`
@@ -907,8 +907,8 @@ mission "Unfettered: Earn Your Prize"
 			choice
 				`	"Alright, thanks. I guess I will be flying it then."`
 				`	"I came all this way just for a Shield Beetle?"`
-					gogo justSB
-			`	"Not so quick! You have to earn it first, and I would not mind doing some more testing... Usually I let the Unfettered captains have fun with it but I do not want to risk it getting damaged."`
+					goto justSB
+			`	"Not so quick! You have to earn it first, and I would not mind doing some more testing... Usually I let the Unfettered captains have fun with it but I do not want to risk it getting damaged. Also, it's about time I get to have some fun!"`
 			label justSB
 			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and participate in the coming Wanderer conflict. On top of that, I added some unique prototype weaponry to it, that combines the damage of the pulse cannon with the usefulness of ionic weapons. The turrets are intended to disable even the most powerful reactors!" She seems to care about that ship a great deal.`
 			`	"But I talk too much... You shall see what kind of ship it is in the only context that matters: battle! I challenge you, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
@@ -931,7 +931,7 @@ mission "Unfettered: Earn Your Prize"
 		conversation
 			action
 				set "unfettered: defeated Mera"
-			`After you disabled her ship, Mera hails you, "Well done, captain! I may not be an expert for managing ships, but this one is still a pretty formidable opponant. Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
+			`After you disabled her ship, Mera hails you, "Well done, captain! I may not be an expert for managing ships, but this one is still a pretty formidable opponent. Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
 			choice
 				`	"Keep it as it is."`
 				`	"I feel like it is lacking in firepower."`

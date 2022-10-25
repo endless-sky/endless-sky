@@ -1016,6 +1016,8 @@ mission "Unfettered: Normal Prize"
 		give ship "Modified Shield Beetle" "Basilisk"
 
 
+event "unfettered: more dakka"
+
 ship "Modified Shield Beetle" "Modified Shield Beetle (Blaster)"
 	outfits
 		"Ionic Blaster Prototype" 8
@@ -1041,6 +1043,8 @@ mission "Unfettered: Dakka Prize"
 		dialog phrase "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Blaster)" "Basilisk"
 
+
+event "unfettered: cooler"
 
 ship "Modified Shield Beetle" "Modified Shield Beetle (Heat Shunt)"
 	outfits
@@ -1071,6 +1075,8 @@ mission "Unfettered: Cool Prize"
 		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk"
 
 
+event "unfettered: disable-er"
+
 ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
 	outfits
 		"Ionic Blaster Prototype" 4
@@ -1097,6 +1103,8 @@ mission "Unfettered: Ionic Prize"
 		dialog phrase "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk"
 
+
+event "unfettered: syscore's got it"
 
 ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
 	outfits
