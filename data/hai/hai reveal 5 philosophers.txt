@@ -13,14 +13,13 @@
 
 mission "Hai Reveal [B01] Information Blackout"
 	landing
+	invisible
 	name "Information Blackout"
 	description "Meet the Syndicate Security Captain at the spaceport on <origin> when you're ready."
 	source "Sunracer"
 	clearance
 	to offer
 		has "Hai Reveal [A14] A Time of Trouble: done"
-	to complete
-		has "Hai Reveal [B02] Join the Fleet: offered"
 	on offer
 		event "hai and human ships at wormhole"
 		conversation
@@ -35,7 +34,7 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 	invisible
 	source "Mountaintop"
 	to offer
-		has "Hai Reveal [A14] A Time of Trouble: offered"
+		has "Hai Reveal [A13] A New Elder: done"
 	to complete
 		never
 	npc
@@ -94,7 +93,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 	destination "Stormhold"
 	clearance
 	to offer
-		has "Hai Reveal [B01] Information Blackout: offered"
+		has "Hai Reveal [A14] A Time of Trouble: done"
 	on offer
 		conversation
 			`The Syndicate security captain in the spaceport is very easy to find. She hands you a pad with a secure validation sequence to confirm her briefing comes from the Navy, co-signed by Xilin.`
@@ -111,7 +110,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 			label prepare
 			`	She nods. "Very well, but don't take too long. We'll be waiting here for as long as we're able."`
 				defer
-	npc accompany
+	npc
 		government "Syndicate"
 		personality escort coward opportunistic vindictive
 		fleet
@@ -124,19 +123,19 @@ mission "Hai Reveal [B02] Join the Fleet"
 		# This special security force has acquired outfits in the post-war condition that were surplus or black market to upgrade their Splinters.
 		# However, they haven't had the time to refit and test out new options for their Protectors or Vanguards.
 
-	npc accompany
+	npc
 		government "Republic"
-		system "Sunracer"
+		system "Mirfak"
 		personality escort heroic opportunistic
 		fleet "Human Wormhole Guards" 20
-	npc accompany
+	npc
 		government "Hai"
-		system "Sunracer"
+		system "Mirfak"
 		personality escort heroic opportunistic
 		fleet "Hai Wormhole Guards" 20
-	npc accompany
+	npc
 		government "Hai (Friendly Unfettered)"
-		system "Sunracer"
+		system "Mirfak"
 		personality escort heroic opportunistic vindictive
 		fleet "Large Friendly Unfettered" 7
 	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
@@ -157,7 +156,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 	on accept
 		fail "Hai Reveal [B01] Information Blackout"
 		fail "Hai Reveal [A11-B] Permanent Fleets"
-	on enter "Sunracer"
+	on enter "Mirfak"
 		dialog `You have reached the rendezvous and various fleets are arriving. You have never seen so many military vessels in one place. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone.`
 	on enter "Oblate"
 		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of Stormhold have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
