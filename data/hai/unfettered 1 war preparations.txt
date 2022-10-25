@@ -939,13 +939,13 @@ mission "Unfettered: Earn Your Prize"
 				`	"Are you kidding? This was a walk in the park."`
 					goto park
 				`	"I must say you surprised me with these ion weapons."`
-					goto ion
+					goto ionsurprise
 			`	"I must admit that is true. At least I gave you a bit of a run for your money, or, in this case, your ship!"`
 				goto suggestions
 			label park
-			`	She seems a bit disapointed, "Oh... Well, in that case, how about you tell me what to do to make it better for when you get to wield this ship?"`
+			`	She seems a bit disappointed, "Oh... Well, in that case, how about you tell me what to do to make it better for when you get to wield this ship?"`
 				goto suggestions
-			label ion
+			label ionsurprise
 			`	"Thanks! I hope they will surprise the aliens north as well!"`
 			label suggestions
 			`	"Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
@@ -989,7 +989,7 @@ mission "Unfettered: Earn Your Prize"
 			`	"Are you intending to use it against the souless machines to the east, or did you get intimitaded that badly by the piercing weapon of earlier missions? Whatever the case, do not worry, I know how to address that, and more."`
 				goto delaysys
 			label shield
-			`	"I thought I had already placed enough shield generators, 3 of them in fact... But you're the one who will be flying that ship so I will do as you suggest. Indeed, I think I know of a way to address that, and other weaknesses I've foudn when piloting the ship has as well."`
+			`	"I thought I had already placed enough shield generators, 3 of them in fact... But you're the one who will be flying that ship so I will do as you suggest. Indeed, I think I know of a way to address that, and other weaknesses I've found when piloting the ship has as well."`
 			label delaysys
 			action
 				event "unfettered: syscore's got it" 10
