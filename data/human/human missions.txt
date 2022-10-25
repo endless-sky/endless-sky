@@ -1064,6 +1064,7 @@ mission "Shady passenger transport 3"
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
 	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
+	"apparent payment" 350000
 	minor
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -2047,6 +2048,7 @@ event "terraforming follow-up"
 mission "A wolf, a goat, and a cabbage"
 	job
 	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be 100,000 credits."
+	"apparent payment" 100000
 	to offer
 		"day" == 1
 		"month" == 4
@@ -2070,7 +2072,7 @@ mission "A wolf, a goat, and a cabbage"
 		payment 33000
 		dialog
 			`The man who collects the wolf from you on the landing pad is furious. "I told the shipping company not to put the goat in the same ship as the wolf or the cabbage," he says, "but I guess they tried to save money by subcontracting it all to the same captain."`
-			`	Because you only delivered a third of the cargo safely, he only pays you 33,000 credits.`
+			`	Because you only delivered a third of the cargo safely, he only pays you <payment>.`
 
 
 
@@ -3286,6 +3288,7 @@ mission "Spacediving professionals accident"
 	repeat
 	name "Spacediving at <planet>"
 	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	"apparent payment" 120000
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3308,6 +3311,7 @@ mission "Spacediving professionals disaster"
 	repeat
 	name "Spacediving at <planet>"
 	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	"apparent payment" 120000
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3332,6 +3336,7 @@ mission "Spacediving amateurs"
 	repeat
 	name "Spacediving at <planet>"
 	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	"apparent payment" 120000
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
