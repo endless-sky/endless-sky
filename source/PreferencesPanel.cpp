@@ -63,7 +63,7 @@ namespace {
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 
 	// How many pages of settings there are.
-	const int pageCount = 1;
+	const int SETTINGS_PAGE_COUNT = 1;
 }
 
 
@@ -87,11 +87,11 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
-	if(pageCount > 1)
+	if(SETTINGS_PAGE_COUNT > 1)
 		info.SetCondition("multiple pages");
-	if(settingsPage > 0)
+	if(currentSettingsPage > 0)
 		info.SetCondition("show previous");
-	if(settingsPage + 1 < pageCount)
+	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
@@ -130,10 +130,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
 		page = key;
-	else if((key == 'n' || key == SDLK_PAGEUP) && settingsPage < pageCount - 1)
-		++settingsPage;
-	else if((key == 'r' || key == SDLK_PAGEDOWN) && settingsPage > 0)
-		--settingsPage;
+	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
+		++currentSettingsPage;
+	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
+		--currentSettingsPage;
 	else
 		return false;
 
@@ -510,9 +510,9 @@ void PreferencesPanel::DrawSettings()
 		// If it is, continue to the next setting.
 		// Otherwise, this setting is on a later page,
 		// do not continue as no further settings are to be displayed.
-		if(page < settingsPage)
+		if(page < currentSettingsPage)
 			continue;
-		else if(page > settingsPage)
+		else if(page > currentSettingsPage)
 			break;
 		// Check if this is a category break or column break.
 		if(setting.empty() || setting == "\t")
