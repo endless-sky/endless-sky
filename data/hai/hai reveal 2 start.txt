@@ -74,6 +74,8 @@ mission "Hai Rescue: Yeertle Hint"
 				accept
 	to complete
 		has "Hai Rescue: Yeertle Family: offered"
+	to fail
+		not "Hai Leaks Response 6: active"
 
 
 mission "Hai Rescue: Yeertle Family"
@@ -205,6 +207,8 @@ mission "Hai Rescue: Oonem Hint"
 				accept
 	to complete
 		has "Hai Rescue: Ooonem: offered"
+	to fail
+		not "Hai Leaks Response 6: active"
 
 
 mission "Hai Rescue: Ooonem"
@@ -341,6 +345,8 @@ mission "Hai Rescue: Prison RP Hint"
 			`	It seems a handful of merchants have all been picking up a very faint distress signal in the vicinity of <planet>, but every time they've gone to look for it, they've either experienced some kind of engine warning, or a large group of pirates has jumped into the system, and they've bugged out. Mysteriously the pirates don't seem to have been looking for or pursuing the merchants when they've appeared though.`
 			`	It seems like a long-shot, but you wonder if perhaps this might be a legitimate call for help, maybe from someone who can't risk broadcasting themselves too aggressively...`
 				accept
+	to fail
+		not "Hai Leaks Response 6: active"
 
 
 mission "Hai Rescue: Prison Role-Players"
@@ -427,6 +433,8 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 				accept
 	to complete
 		has "Hai Rescue: Meroot and Lucy: offered"
+	to fail
+		not "Hai Leaks Response 6: active"
 
 
 mission "Hai Rescue: Meroot and Lucy"
@@ -528,6 +536,8 @@ mission "Hai Rescue: Gipeep Hint"
 		conversation
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. One guy is bragging particularly odiously about some lucrative transport jobs he'd picked up on <planet>. Of course, it could mean nothing, but it's also very suspicious for that particular world. <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
 				accept
+	to fail
+		not "Hai Leaks Response 6: active"
 
 
 mission "Hai Rescue: Gipeep"

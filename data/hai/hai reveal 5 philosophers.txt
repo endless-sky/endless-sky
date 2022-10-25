@@ -86,7 +86,7 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 # THIS mission is designed to give you a spectacle. A little visual demonstration of what a real battle could potentially look and feel like with low stakes for you. It's a visual feast, not a challenge.
 mission "Hai Reveal [B02] Join the Fleet"
 	autosave
-	name "Join the Fleet and move on Stormhold"
+	name "Invade Stormhold"
 	description "Join the fleet in orbit and move on Stormhold."
 	deadline 9
 	# The minimum journey time is 7

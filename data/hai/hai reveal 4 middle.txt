@@ -864,7 +864,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 	autosave
 	landing
 	name "Preparation & Investigation"
-	description `Visit the four systems with destroyed relays, and then pick up Batu Cegeen from <planet>.`
+	description `Deploy relays in <waypoints>, and then pick up Batu Cegeen from <planet>.`
 	source Mountaintop
 	waypoint Sumar
 	waypoint Cardax
