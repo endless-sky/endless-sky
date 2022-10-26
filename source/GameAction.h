@@ -29,6 +29,7 @@ class DataNode;
 class DataWriter;
 class GameEvent;
 class Outfit;
+class Planet;
 class PlayerInfo;
 class Ship;
 class UI;
@@ -64,7 +65,7 @@ public:
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
 
 	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui) const;
+	void Do(PlayerInfo &player, UI *ui, bool conversationEmpty = false) const;
 
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
@@ -86,6 +87,9 @@ private:
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
+
+	const Planet *teleportPlanet = nullptr;
+	bool flagshipOnly = false;
 
 	ConditionSet conditions;
 };

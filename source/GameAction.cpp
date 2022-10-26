@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
@@ -214,6 +215,16 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			GameData::Missions().Get(toFail);
 		}
 	}
+	else if(key == "relocate")
+	{
+		for(const DataNode &grand : child)
+		{
+			if(grand.Token(0) == "planet" && grand.Size() > 1)
+				teleportPlanet = GameData::Planets().Get(grand.Token(1));
+			if(grand.Token(0) == "flagship only")
+				flagshipOnly = true;
+		}
+	}
 	else
 		conditions.Add(child);
 }
@@ -257,6 +268,17 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
 		out.Write("fail", name);
+	if(teleportPlanet)
+	{
+		out.Write("relocate");
+		out.BeginChild();
+		{
+			out.Write("planet", teleportPlanet->Name());
+			if(flagshipOnly)
+				out.Write("flagship only");
+		}
+		out.EndChild();
+	}
 
 	conditions.Save(out);
 }
@@ -279,6 +301,10 @@ string GameAction::Validate() const
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->Name() + "\"";
+
+	if(teleportPlanet)
+		if(!teleportPlanet->IsValid())
+			return "teleport planet not valid";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -316,7 +342,7 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 // Perform the specified tasks.
-void GameAction::Do(PlayerInfo &player, UI *ui) const
+void GameAction::Do(PlayerInfo &player, UI *ui, bool conversationEmpty) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
@@ -367,6 +393,13 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 				player.FailMission(mission);
 	}
 
+	if(teleportPlanet)
+	{
+		player.QueueTeleport(teleportPlanet, flagshipOnly);
+		if(conversationEmpty)
+			player.DoQueuedTeleport();
+	}
+
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
 }
@@ -408,6 +441,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 
 	result.fail = fail;
+
+	result.teleportPlanet = teleportPlanet;
+	result.flagshipOnly = flagshipOnly;
 
 	result.conditions = conditions;
 
