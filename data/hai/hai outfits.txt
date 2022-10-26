@@ -687,7 +687,7 @@ outfit "Blade Of Might"
 	"capture attack" 15
 	"capture defense" 5
 	"unplunderable" 1
-	description "This unique weapon is of such great importance to the Unfettered that normally only their mightiest warlord may have the honor of wielding its power, but defeating that warlord in battle grants anyone the same right.  The Blade has the unique abilities to change its shape in response to the user's desires and to cut trough nearly any material as if through paper. In expert hands, this weapon is absolutely terrifying, and it's unorthodox nature catches many of those who face it off guard."
+	description "This unique weapon is of such great importance to the Unfettered that normally only their mightiest warlord may have the honor of wielding its power, but defeating that warlord in battle grants anyone the same right.  The Blade has the unique abilities to change its shape in response to the user's desires and to cut through nearly any material as if through paper. In expert hands, this weapon is absolutely terrifying, and it's unorthodox nature catches many of those who face it off guard."
 
 outfit "Shield Beetle Pendant"
 	category "Unique"
