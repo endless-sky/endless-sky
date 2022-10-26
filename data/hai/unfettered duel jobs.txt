@@ -263,8 +263,8 @@ mission "Unfettered Space Challenge [0]"
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
+			attributes "unfettered challenge"
 			distance 10
-			has attributes "unfettered challenge"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
@@ -294,8 +294,8 @@ mission "Unfettered Space Challenge [1A]"
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
+			attributes "unfettered challenge"
 			distance 10
-			has attributes "unfettered challenge"
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 		conversation
@@ -325,8 +325,8 @@ mission "Unfettered Space Challenge [1B]"
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
+			attributes "unfettered challenge"
 			distance 10
-			has attributes "unfettered challenge"
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
@@ -356,8 +356,8 @@ mission "Unfettered Space Challenge [2]"
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
 		system
+			attributes "unfettered challenge"
 			distance 10
-			has attributes "unfettered challenge"
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
