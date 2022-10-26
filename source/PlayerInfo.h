@@ -62,7 +62,7 @@ public:
 	};
 
 	enum class TeleportStatus : int {
-		NONE,
+		NONE = 0,
 		TELEPORTING,
 		TELEPORTED
 	};
