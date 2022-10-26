@@ -3404,7 +3404,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				Point current = ship.Position();
 				switch(boardingPriority)
 				{
-					case Preferences::BoardingPriority::cost:
+					case Preferences::BoardingPriority::value:
 						return [this, &ship](Ship &other) noexcept -> double
 						{
 							// Use the exact cost if the ship was scanned, otherwise use an estimation.
@@ -3422,7 +3422,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						};
 					// Default to distance priorities (the default setting).
 					default:
-					case Preferences::BoardingPriority::distance:
+					case Preferences::BoardingPriority::proximity:
 						return [current](Ship &other) noexcept -> double
 						{
 							return current.DistanceSquared(other.Position());
@@ -3448,7 +3448,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			else
 			{
 				auto ships = GetShipsList(ship, true);
-				boardable.reserve(ships.size());
+				boardable.reserve();
 				// First check if we can board enemy ships, then allies.
 				for(Ship *enemy : ships)
 					fillBoardable(*enemy);
@@ -3459,8 +3459,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				if(boardable.empty())
 				{
 					ships = GetShipsList(ship, false);
-					if(ships.size() > boardable.size())
-						boardable.reserve(ships.size());
 					for(Ship *ally : ships)
 						fillBoardable(*ally);
 				}
@@ -3476,11 +3474,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
-						if(boardingPriority == Preferences::BoardingPriority::cost && lhs.second == rhs.second)
+						if(boardingPriority == Preferences::BoardingPriority::value && lhs.second == rhs.second)
 							return lhs.first->Position().DistanceSquared(ship.Position()) >
 								rhs.first->Position().DistanceSquared(ship.Position());
 						else
-							return boardingPriority == Preferences::BoardingPriority::distance ?
+							return boardingPriority == Preferences::BoardingPriority::proximity ?
 								lhs.second > rhs.second : lhs.second < rhs.second;
 					}
 				);
