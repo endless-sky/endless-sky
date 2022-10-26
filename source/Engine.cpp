@@ -1837,7 +1837,7 @@ void Engine::HandleKeyboardInputs()
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
 		manueveringCommands | Command::SHIFT);
 
-	// Issuing LAND or BOARD again within the cooldown period signals a change of landing orboarding target.
+	// Issuing LAND or BOARD again within the cooldown period signals a change of landing or boarding target.
 	constexpr int keyCooldown = 60;
 	++keyInterval;
 	if(oldHeld.Has(Command::LAND) || oldHeld.Has(Command::BOARD))
