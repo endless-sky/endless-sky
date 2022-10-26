@@ -29,8 +29,8 @@ public:
 	};
 
 	enum class BoardingPriority : int {
-		distance = 0,
-		cost,
+		proximity = 0,
+		value,
 		mixed
 	};
 
