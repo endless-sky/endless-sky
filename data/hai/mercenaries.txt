@@ -571,8 +571,16 @@ mission "Mercenaries: Daemons Unleashed"
 			`As soon as you destroy the flagship of this fleet, the others cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop making the same mistake my predecessor always did, right now, before this becomes an uncontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
 			choice
 				`	"May I wear your colors as well?"`
+					goto wearcolors
+				`	"How can I restore my reputation with the Unfettered?"`
 				`	End the connection.`
 					goto endco
+			`	"They will probably forget about it if you sell them a Jump Drive."`
+			choice
+				`	"May I wear your colors as well?"`
+				`	End the connection.`
+					goto endco
+			label wearcolors
 			`	"You may paint your ship however you like." They then end the connection.`
 			action
 				event "mercenaries: joined"

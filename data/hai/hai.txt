@@ -769,11 +769,11 @@ phrase "defeated unfettered challenger"
 		"disabled "
 		"revealed my weakness% "
 	word
-		"me in a "
+		"me in a% "
 	word
 		"glorious "
 		"pathethic "
-		"unique "
+		"exceptional "
 		"grandiose "
 		"quick "
 		"strategic "
@@ -798,6 +798,8 @@ phrase "defeated unfettered challenger"
 		" Finish me! I would rather die than have to live with this insult."
 	replace
 		"% me" ""
+		"a% e" "an e"
+		"a%" "a"
 
 phrase "unfettered duelling"
 	word
