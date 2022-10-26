@@ -628,7 +628,34 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetParent(parent);
 		}
 
+		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
+		if(isPresent && !personality.IsSwarming())
+		{
+			// Each ship only switches targets twice a second, so that it can
+			// focus on damaging one particular ship.
+			targetTurn = (targetTurn + 1) & 31;
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
+			{
+				target = FindTarget(*it);
+				it->SetTargetShip(target);
+			}
+		}
+		if(isPresent)
+		{
+			AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+			AutoFire(*it, firingCommands);
+		}
+
+		// If this ship is hyperspacing, or in the act of
+		// launching or landing, it can't do anything else.
+		if(it->IsHyperspacing() || it->Zoom() < 1.)
+		{
+			it->SetCommands(command);
+			it->SetCommands(firingCommands);
+			continue;
+		}
 
 		// Run away if your hostile target is not disabled and you are badly damaged.
 		// Player ships never stop targeting hostiles, while hostile mission NPCs will
@@ -651,40 +678,18 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 						break;
 					}
 
-			if(!target)
+			if(target)
+				// This ship has nowhere to flee to: Stop fleeing.
+				it->SetFleeing(false);
+			else
 			{
 				// This ship has somewhere to flee to: Remove target and mark this ship as fleeing.
 				it->SetTargetShip(target);
 				it->SetFleeing();
 			}
 		}
-		else if(!canFlee)
+		else if(it->IsFleeing())
 			it->SetFleeing(false);
-
-		// Pick a target and automatically fire weapons.
-		if(isPresent && !it->IsFleeing() && !personality.IsSwarming())
-		{
-			// Each ship only switches targets twice a second, so that it can
-			// focus on damaging one particular ship.
-			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
-					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
-				it->SetTargetShip(FindTarget(*it));
-		}
-		if(isPresent)
-		{
-			AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
-			AutoFire(*it, firingCommands);
-		}
-
-		// If this ship is hyperspacing, or in the act of
-		// launching or landing, it can't do anything else.
-		if(it->IsHyperspacing() || it->Zoom() < 1.)
-		{
-			it->SetCommands(command);
-			it->SetCommands(firingCommands);
-			continue;
-		}
 
 		// Special actions when a ship is heavily damaged:
 		if(healthRemaining < RETREAT_HEALTH + .25)
