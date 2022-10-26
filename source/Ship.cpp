@@ -3929,9 +3929,9 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 
 
 
-void Ship::SetFleeing()
+void Ship::SetFleeing(bool fleeing)
 {
-	isFleeing = true;
+	isFleeing = fleeing;
 }
 
 
@@ -3945,9 +3945,6 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
-		// When you acquire a target, you are no longer fleeing.
-		if(ship)
-			isFleeing = false;
 	}
 	targetAsteroid.reset();
 }

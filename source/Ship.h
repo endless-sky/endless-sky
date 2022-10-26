@@ -413,8 +413,8 @@ public:
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 
-	// Designate this ship as trying to leave.
-	void SetFleeing();
+	// Mark this ship as fleeing.
+	void SetFleeing(bool fleeing = true);
 
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
