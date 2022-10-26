@@ -1106,14 +1106,20 @@ void AI::FindTarget(Ship &ship) const
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov || ship.GetPersonality().IsPacifist())
-		return ship.SetTargetShip(target);
+	{
+		ship.SetTargetShip(target);
+		return;
+	}
 
 	bool isYours = ship.IsYours();
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
 		if(it != orders.end() && (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF))
-			return ship.SetTargetShip(it->second.target.lock());
+		{
+			ship.SetTargetShip(it->second.target.lock());
+			return;
+		}
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -1126,7 +1132,10 @@ void AI::FindTarget(Ship &ship) const
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 		}
 	if(!maxRange)
-		return ship.SetTargetShip(target);
+	{
+		ship.SetTargetShip(target);
+		return;
+	}
 
 	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
@@ -1139,7 +1148,10 @@ void AI::FindTarget(Ship &ship) const
 	// unless they also have either or both of the 'disables' or 'merciful' personalities.
 	if(oldTarget && person.Plunders() && !person.Disables() && !person.IsMerciful()
 			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
-		return ship.SetTargetShip(oldTarget);
+	{
+		ship.SetTargetShip(oldTarget);
+		return;
+	}
 	shared_ptr<Ship> parentTarget;
 	bool parentIsEnemy = (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	if(ship.GetParent() && !parentIsEnemy)
@@ -1287,7 +1299,8 @@ void AI::FindTarget(Ship &ship) const
 			target.reset();
 	}
 
-	return ship.SetTargetShip(target);
+	ship.SetTargetShip(target);
+	return;
 }
 
 
