@@ -353,8 +353,8 @@ ship Schist "Schist C"
 		drag 0.2
 
 ship Eclogite
-	sprite ship/eclogite
-	thumbnail thumbnail/eclogite
+	sprite "ship/gegno eclogite"
+	thumbnail "thumbnail/gegno eclogite"
 	attributes
 		category "Light Warship"
 		licenses
@@ -387,12 +387,12 @@ ship Eclogite
 		"R03 Warforge Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
-	engine 0 70
-	gun 0 -94 "Chloeric Cannon"
-	gun -11 -57.5 "Irate Cannon"
-	gun 11 -57.5 "Irate Cannon"
-	gun -11 -38 "Irate Cannon"
-	gun 11 -38 "Irate Cannon"
+	engine 0 82
+	gun 0 -98 "Chloeric Cannon"
+	gun -12.5 -51 "Irate Cannon"
+	gun 12.5 -51 "Irate Cannon"
+	gun -12.5 -68 "Irate Cannon"
+	gun 12.5 -68 "Irate Cannon"
 	leak leak 60 50
 	leak flame 50 80
 	explode "medium explosion" 10
@@ -726,8 +726,8 @@ ship Mica
 	description `The Mica is the Gegno Scin's take on a shuttlecraft, and is based on the Shale and the Vi's Slate. It is ever so slightly smaller, since the Scin aren't as large, but carries newer engine systems so it is almost twice as fast as the Shale and the Slate.`
 
 ship Coesite
-	sprite ship/coesite
-	thumbnail thumbnail/coesite
+	sprite "ship/gegno coesite"
+	thumbnail "thumbnail/gegno coesite"
 	attributes
 		category "Light Warship"
 		licenses
@@ -737,11 +737,11 @@ ship Coesite
 		hull 6450
 		"required crew" 9
 		bunks 26
-		mass 245
+		mass 260
 		drag 4
 		"heat dissipation" 0.7
 		"fuel capacity" 400
-		"cargo space" 60
+		"cargo space" 40
 		"outfit space" 264
 		"weapon capacity" 110
 		"engine capacity" 120
@@ -758,10 +758,10 @@ ship Coesite
 		"R02 Battlezone Battery" 2
 		"SC-12 Plasma Thruster"
 		"SC-14 Plasma Steering"
-	engine 46.5 92.5
-	engine -46.5 92.5
-	turret -25 -16.5 "Astuit Battery"
-	turret 25 -16.5 "Astuit Battery"
+	engine 48 85
+	engine -48 85
+	turret -25.5 -25.5 "Astuit Battery"
+	turret 25.5 -25.5 "Astuit Battery"
 	leak leak 60 50
 	leak flame 50 80
 	explode "medium explosion" 6
@@ -771,10 +771,10 @@ ship Coesite
 	description `Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry two turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war.`
 
 ship Tridymite
-	sprite ship/tridymite
-	thumbnail thumbnail/tridymite
+	sprite "ship/gegno tridymite"
+	thumbnail "thumbnail/gegno tridymite"
 	attributes
-		category "Light Warship"
+		category "Transport"
 		licenses
 			"Gegno Civilian"
 			"Scin Architect"
@@ -782,14 +782,13 @@ ship Tridymite
 		cost 1960000
 		hull 5290
 		"required crew" 9
-		bunks 20
-		mass 225
+		bunks 29
+		mass 240
 		drag 4
 		"heat dissipation" 0.7
 		"fuel capacity" 400
-		"cargo space" 40
-		"outfit space" 190
-		"weapon capacity" 62
+		"cargo space" 56
+		"outfit space" 240
 		"engine capacity" 86
 		weapon
 			"blast radius" 35
@@ -798,24 +797,22 @@ ship Tridymite
 			"hit force" 410
 	outfits
 		"C7 Brawl Cell"
-		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
-		"SC-12 Plasma Thruster"
+		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
-	engine 38.5 73
+	engine 44.5 63
 		zoom 0.9
-	engine -38.5 73
+	engine -44.5 63
 		zoom 0.9
-	engine 0 67.5
-	turret 0 18.5 "Guile Anti-Missile"
+	engine 0 60
 	leak leak 50 40
 	leak flame 40 70
 	explode "medium explosion" 3
 	explode "small explosion" 19
 	explode "tiny explosion" 14
 	"final explode" "final explosion small"
-	description `Using a similar yet smaller frame to the Coesite, the Tridymite was designed as the production platform for the Gegno Scin's new Guile system. As its younger sibling, the Tridymite is a smaller escort vessel that provides anti-cannon screening for Scin fleets, while Coesites are armed with more offensive weaponry.`
+	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be found used by the military as scout craft.`
 
 ship Felsic
 	sprite "ship/gegno felsic"

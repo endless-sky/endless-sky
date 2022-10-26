@@ -1574,8 +1574,10 @@ Files:
  images/outfit/firestorm?torpedo*
  images/outfit/mcs?exctractor*
  images/projectile/firestorm?torpedo*
+ images/ship/gegno?coesite*
  images/ship/gegno?conglomerate*
  images/ship/gegno?dolomite*
+ images/ship/gegno?eclogite*
  images/ship/gegno?felsic*
  images/ship/gegno?mica*
  images/ship/gegno?muscovite*
@@ -1583,10 +1585,13 @@ Files:
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
+ images/ship/gegno?tridymite*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/thumbnail/gegno?coesite*
  images/thumbnail/gegno?conglomerate*
  images/thumbnail/gegno?dolomite*
+ images/thumbnail/gegno?eclogite*
  images/thumbnail/gegno?felsic*
  images/thumbnail/gegno?mica*
  images/thumbnail/gegno?muscovite*
@@ -1594,6 +1599,7 @@ Files:
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
+ images/thumbnail/gegno?tridymite*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
  sound/drill*
