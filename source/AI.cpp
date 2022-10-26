@@ -633,10 +633,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Run away if your hostile target is not disabled and you are badly damaged.
 		// Player ships never stop targeting hostiles, while hostile mission NPCs will
 		// do so only if they are allowed to leave.
-		const bool shouldFlee = (personality.IsFleeing()
+		const bool canFlee = (personality.IsFleeing()
 				|| (it->Health() < RETREAT_HEALTH + .25 * personality.IsCoward()
 					&& !personality.IsHeroic() && !personality.IsStaying()));
-		if(!it->IsYours() && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled() && shouldFlee)
+		if(!it->IsYours() && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled() && canFlee)
 		{
 			// Make sure the ship has somewhere to flee to.
 			const System *system = it->GetSystem();
@@ -658,7 +658,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetFleeing();
 			}
 		}
-		else if(!shouldFlee)
+		else if(!canFlee)
 			it->SetFleeing(false);
 
 		// Pick a target and automatically fire weapons.
