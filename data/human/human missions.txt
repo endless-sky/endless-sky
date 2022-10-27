@@ -910,19 +910,19 @@ mission "Hallucination"
 			`	The room begins to spin, and strange things happen...`
 				launch
 	
+	on accept
+		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
+	
 	on defer
 		"teetotalar" ++
 	
-	npc save
+	npc kill
 		government "Bad Trip"
 		personality nemesis heroic
 		ship "Hallucination" "Love"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"
 		ship "Hallucination" "Shiny"
-		
-	on fail
-		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
 
 
 
