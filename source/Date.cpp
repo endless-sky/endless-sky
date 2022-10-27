@@ -34,14 +34,14 @@ namespace {
 		return DAY[day];
 	}
 
-	const string ZeroPad(int i)
+	string ZeroPad(int i)
 	{
-		string s = "";
+		string s;
 
 		if(i < 10)
-			s.append("0");
+			s += '0';
 
-		s.append(std::to_string(i));
+		s += to_string(i);
 
 		return s;
 	}
@@ -69,7 +69,7 @@ const string &Date::ToString() const
 	if(dateFormat != dateFormatInUse)
 	{
 		dateFormatInUse = dateFormat;
-		str = "";
+		str.clear();
 	}
 
 	// Because this is a somewhat "costly" operation, cache the result. The
@@ -109,7 +109,7 @@ string Date::LongString() const
 	if(!date)
 		return string();
 
-	string result = "";
+	string result;
 
 	int day = Day();
 
@@ -143,15 +143,13 @@ string Date::LongString() const
 	string month = MONTH[Month() - 1];
 
 	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();
-
-
-	if (dateFormat == Preferences::DateFormat::ymd || dateFormat == Preferences::DateFormat::mdy)
+	if(dateFormat == Preferences::DateFormat::ymd || dateFormat == Preferences::DateFormat::mdy)
 	{
 		result += month;
 		result += " ";
 		result += dayString;
 	}
-	else if (dateFormat == Preferences::DateFormat::dmy)
+	else if(dateFormat == Preferences::DateFormat::dmy)
 	{
 		result += dayString;
 		result += " of ";

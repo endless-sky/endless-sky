@@ -49,7 +49,7 @@ public:
 
 	// Date format preferences
 	static void ToggleDateFormat();
-	static Preferences::DateFormat GetDateFormat();
+	static DateFormat GetDateFormat();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();
