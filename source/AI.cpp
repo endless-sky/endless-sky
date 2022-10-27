@@ -3127,7 +3127,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			// Merciful ships let fleeing ships go.
-			if(currentTarget->IsFleeing() && person.IsMerciful())
+			if(target->IsFleeing() && person.IsMerciful())
 				continue;
 
 			Point p = target->Position() - start;
