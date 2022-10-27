@@ -3430,8 +3430,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				}
 			}();
 
-			using shipValue = pair<Ship *, double>;
-			auto boardable = vector<shipValue>{};
+			using ShipValue = pair<Ship *, double>;
+			auto boardable = vector<ShipValue>{};
 
 			auto fillBoardable = [&ship, &foundEnemy, &boardable, &strategy](Ship &other) noexcept
 			{
@@ -3472,7 +3472,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			{
 				sort(boardable.begin(), boardable.end(),
 					[&ship, boardingPriority](
-						const shipValue &lhs, const shipValue &rhs
+						const ShipValue &lhs, const ShipValue &rhs
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
@@ -3492,7 +3492,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				else if(activeCommands.Has(Command::WAIT))
 				{
 					auto boardingTarget = find_if(boardable.begin(), boardable.end(),
-						[&target](const shipValue &lhs)
+						[&target](const ShipValue &lhs)
 						{
 							return lhs.first == target.get();
 						}
