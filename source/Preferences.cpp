@@ -283,7 +283,7 @@ Preferences::BoardingPriority Preferences::GetBoardingPriority()
 
 
 
-const std::string &Preferences::BoardingSetting()
+const string &Preferences::BoardingSetting()
 {
 	return BOARDING_SETTINGS[boardingIndex];
 }
