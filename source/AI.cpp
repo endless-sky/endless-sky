@@ -757,7 +757,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 
 		// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
-		if(isPresent && personality.IsMining() && !it->IsFleeing()) && !target && !isStranded && maxMinerCount)
+		if(isPresent && personality.IsMining() && !it->IsFleeing() && !target && !isStranded && maxMinerCount)
 		{
 			// Miners with free cargo space and available mining time should mine. Mission NPCs
 			// should mine even if there are other miners or they have been mining a while.
