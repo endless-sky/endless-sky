@@ -14,8 +14,8 @@ env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ, COMPILATIONDB_
 # If manually building within the Steam Runtime (scout), SCons will need to be invoked directly
 # with `python3.5`. Most other runtimes / build hosts will default to a newer version of python.
 env.EnsurePythonVersion(3, 5)
-# Make sure the current SCons version is at least v4.0.0; newer versions are allowed.
-env.EnsureSConsVersion(4, 0, 0)
+# Make sure the current SCons version is at least v3.1.0; newer versions are allowed.
+env.EnsureSConsVersion(3, 1, 0)
 
 try:
     env.Tool('compilation_db')

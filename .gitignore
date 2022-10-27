@@ -66,4 +66,3 @@ compile_commands.json
 
 # static code analysis
 /.scannerwork
-/compile_commands.json
