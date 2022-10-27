@@ -136,9 +136,20 @@ effect "ion impact"
 outfit "True Unfettered License"
 	category "Licenses"
 	thumbnail "outfit/true unfettered license"
+	"mass" -1
+	"capture attack" 5
+	"capture defense" 15
+	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
+	description "	This blade is capable of absorbing incoming shots, protecting its wearer from harm. When it strikes enemies, it is as if whatever it hits was never there, somehow absorbed by the blade. Somehow, the blade feels very light, and as though it was accompanying the strikes of its owner. However, its most handy feature no doubt is the fact that it requires no source of power whatsoever, as if it was feeding off matter itself."
+
+outfit "Ionic Blade"
+	category "Special"
+	cost 1000000
+	thumbnail "outfit/ionic blade"
 	"capture attack" 10
 	"capture defense" 10
-	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights, too. Legends even say it allows the most skilled users to phase through matter for a short period of time."
+	"energy consumption" 0.1
+	description "This legendary blade is able to affect the surrounding energy fields, powering down any energy-based weapons the enemy may have. The field can even sometimes be used to stun nearby enemies, or even a small section of their ships, in order to open hatches or temporarily deactivate defenses. However this blade needs to be recharged before each battles, and is made useless once its power supply runs out. It also has magnetic properties - the more charged it is, the more repulsive it is to any metals, making it a lifesaver in some scenarios. Some even say it can enact a small, temporary forcefield around its owner, in case of emergencies."
 
 outfit "Ionic Blaster Prototype"
 	category "Guns"

@@ -82,6 +82,9 @@ ship Antlion
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
 		"Quantum Keystone"
+		"Ionic Blade"
+		"Pulse Rifle" 61
+		"Dual Pulse Pistols" 5
 	cargo
 		outfits
 			"Gold Bars" 50
