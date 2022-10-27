@@ -874,6 +874,18 @@ outfit "Void Rifle"
 
 
 
+outfit "Void Sprite Parts"
+	plural "Void Sprite Parts"
+	category "Unique"
+	cost 500
+	thumbnail "outfit/mouthparts"
+	"mass" 1
+	"outfit space" -1
+	description "This is nothing more and nothing less than a cubic meter of void sprite parts. To the Remnant, this represents both a terrible occurrence and a dreadful opportunity."
+	description "	This could have been very valuable to someone who knew what they were doing, if it had been handled properly. Instead, it is worth little more than the value of the compounds contained within."
+
+
+
 # Special
 
 outfit "Remnant License"

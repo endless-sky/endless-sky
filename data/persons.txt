@@ -230,8 +230,8 @@ ship "Marauder Fury"
 		"heat dissipation" .85
 		"fuel capacity" 500
 		"cargo space" 15
-		"outfit space" 240
-		"weapon capacity" 80
+		"outfit space" 256
+		"weapon capacity" 96
 		"engine capacity" 100
 		"ramscoop" 2
 		weapon

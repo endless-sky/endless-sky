@@ -2,7 +2,7 @@
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
   <assemblyIdentity type="win32"
                     name="io.github.endless-sky"
-                    version="0.9.14.0"
+                    version="0.9.16.1"
   />
   <asmv3:application>
     <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">
