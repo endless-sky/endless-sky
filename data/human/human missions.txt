@@ -898,7 +898,7 @@ mission "Hallucination"
 	to offer
 		has "Drug Running 2: active"
 		random < 50
-		"teetotalar" < 3
+		"teetotaler" < 3
 	
 	on offer
 		conversation
@@ -914,7 +914,7 @@ mission "Hallucination"
 		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
 	
 	on defer
-		"teetotalar" ++
+		"teetotaler" ++
 	
 	npc kill
 		government "Bad Trip"
