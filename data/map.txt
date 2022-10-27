@@ -111,6 +111,9 @@ system "1 Axis"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 2000
+	fleet "Saryd Miners" 3000
 	fleet Heliarch 450
 	object
 		sprite star/k5
@@ -186,6 +189,9 @@ system "10 Pole"
 	fleet "Large Kimek" 1600
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 5000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 7000
 	fleet Heliarch 700
 	object
 		sprite star/k0
@@ -263,6 +269,9 @@ system "11 Autumn Above"
 	fleet "Large Kimek" 500
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 2000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 400
 	object
 		sprite star/g0
@@ -344,6 +353,9 @@ system "11 Spring Below"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 500
 	object
 		sprite star/k0
@@ -425,6 +437,9 @@ system "12 Autumn Above"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 7000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 800
 	object
 		sprite star/g5
@@ -518,6 +533,9 @@ system "14 Pole"
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 9000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 12000
 	fleet Heliarch 1200
 	object
 		sprite star/g5
@@ -648,6 +666,9 @@ system "14 Winter Below"
 	fleet "Large Kimek" 500
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 4500
 	fleet Heliarch 200
 	object
 		sprite star/g5
@@ -725,6 +746,9 @@ system "16 Autumn Rising"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 500
 	object
 		sprite star/f5
@@ -798,6 +822,9 @@ system "3 Axis"
 	fleet "Large Kimek" 300
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1600
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 4500
 	fleet Heliarch 350
 	object
 		sprite star/f0
@@ -867,6 +894,9 @@ system "3 Pole"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 4500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 4500
 	fleet Heliarch 600
 	object
 		sprite star/g5
@@ -925,6 +955,9 @@ system "3 Spring Rising"
 	fleet "Large Kimek" 1400
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 6000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 800
 	object
 		sprite star/g0
@@ -1001,6 +1034,9 @@ system "4 Axis"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 1600
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 300
 	object
 		sprite star/k5
@@ -1063,6 +1099,9 @@ system "4 Spring Rising"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 500
 	object
 		sprite star/m0
@@ -1128,6 +1167,9 @@ system "4 Summer Rising"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 900
 	object
 		sprite star/m0
@@ -1192,6 +1234,9 @@ system "4 Winter Rising"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 400
 	object
 		sprite star/m8
@@ -1266,6 +1311,9 @@ system "5 Axis"
 	fleet "Large Kimek" 600
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 3000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 300
 	object
 		sprite star/m3
@@ -1341,6 +1389,9 @@ system "5 Spring Below"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2500
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 500
 	object
 		sprite star/g0-old
@@ -1415,6 +1466,9 @@ system "5 Summer Above"
 	fleet "Large Kimek" 900
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 3500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 800
 	object
 		sprite star/k5
@@ -1480,6 +1534,9 @@ system "5 Winter Above"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 3500
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 300
 	object
 		sprite star/m0
@@ -1543,6 +1600,9 @@ system "7 Autumn Rising"
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 400
 	fleet "Large Saryd" 800
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 350
 	object
 		sprite star/k5
@@ -1613,6 +1673,9 @@ system "8 Winter Below"
 	fleet "Large Kimek" 400
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 4000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 250
 	object
 		sprite star/k0
@@ -1679,6 +1742,9 @@ system "9 Spring Above"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 900
 	fleet "Large Saryd" 2400
+	fleet "Arach Miners" 4500
+	fleet "Kimek Miners" 3500
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 700
 	object
 		sprite star/g5
@@ -1848,6 +1914,9 @@ system Ablub
 	fleet "Large Kimek" 8000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 8000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 12000
 	fleet Heliarch 200
 	object
 		sprite star/m3
@@ -4202,6 +4271,9 @@ system "Ancient Hope"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1400
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 1500
 	object
 		sprite star/m0
@@ -5227,6 +5299,9 @@ system Beginning
 	fleet "Large Kimek" 6000
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 1500
 	object
 		sprite star/k5
@@ -5412,6 +5487,9 @@ system Belug
 	fleet "Large Kimek" 1500
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 6500
 	fleet Heliarch 200
 	object
 		sprite star/k0
@@ -5480,6 +5558,9 @@ system Belugt
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 7000
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 1400
 	object
 		sprite star/k0
@@ -5698,6 +5779,9 @@ system Bloptab
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 7000
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 1500
 	object
 		sprite star/g0
@@ -5760,6 +5844,9 @@ system Blubipad
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 1300
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 7000
 	fleet Heliarch 300
 	object
 		sprite star/g0
@@ -5822,6 +5909,9 @@ system Blugtad
 	fleet "Large Kimek" 2500
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 3500
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 7000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 900
 	object
 		sprite star/g5
@@ -6207,6 +6297,9 @@ system "Broken Bowl"
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 700
 	object
 		sprite star/g0
@@ -6609,7 +6702,7 @@ system Cardea
 		sprite planet/miranda-b
 		distance 1019.79
 		period 351.297
-	object
+	object Crataegusa
 		sprite planet/neptune-b
 		distance 1540.63
 		period 652.313
@@ -7300,6 +7393,9 @@ system Companion
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 400
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 3000
 	fleet Heliarch 1200
 	object
 		sprite star/k5
@@ -7759,6 +7855,9 @@ system "Dark Hills"
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1400
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 1000
 	object
 		sprite star/g0
@@ -7946,6 +8045,594 @@ system Delia
 		sprite planet/browndwarf-y
 		distance 4586
 		period 5611.94
+
+system "Deep Space 7C"
+	pos -1502 105
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 1297
+	belt 2309
+	link "Deep Space 7F"
+	asteroids "small rock" 121 1.9558
+	asteroids "medium rock" 14 1.9096
+	asteroids "large rock" 28 1.4784
+	asteroids "small metal" 8 1.8326
+	asteroids "medium metal" 77 2.2946
+	asteroids "large metal" 19 1.7094
+	minables copper 46 2.98163
+	minables iron 82 3.78094
+	minables titanium 31 2.67322
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/gas11-b
+		distance 1449.31
+		period 717.934
+		object
+			sprite planet/rock7-b
+			distance 235
+			period 11.8817
+		object
+			sprite planet/ice0-b
+			distance 332
+			period 19.9519
+		object
+			sprite planet/rock3-b
+			distance 438
+			period 30.2335
+	object
+		sprite planet/gas14
+		distance 2557.67
+		period 1683.1
+	object "Devil-Run Wormhole"
+		sprite planet/wormhole-red
+		distance 4106.27
+		period 2904.81
+	
+system "Deep Space 7F"
+	pos -1542 83
+	government Uninhabited
+	habitable 864
+	belt 1319
+	link "Deep Space 7C"
+	link "Deep Space 5J"
+	asteroids "small rock" 22 3.99
+	asteroids "medium rock" 34 3.57
+	asteroids "large rock" 2 4.08
+	asteroids "small metal" 26 4.26
+	asteroids "medium metal" 45 1.92
+	asteroids "large metal" 4 4.35
+	minables platinum 19 4.40315
+	minables tungsten 36 5.42935
+	minables gold 28 4.7943
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/gas16
+		distance 1649.46
+		period 1214.65
+	object
+		sprite planet/gas17-b
+		distance 2828.56
+		period 1831.03
+		object
+			sprite planet/callisto
+			distance 232
+			period 15.0975
+		object
+			sprite planet/tethys
+			distance 350
+			period 27.9753
+		object
+			sprite planet/dust1-b
+			distance 498
+			period 47.4807
+
+system "Deep Space 5J"
+	pos -1618 23
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 906
+	belt 1869
+	link "Deep Space 7F"
+	link "Deep Space 5N"
+	asteroids "small rock" 27 1.44
+	asteroids "medium rock" 2 2.6304
+	asteroids "large rock" 146 1.7088
+	asteroids "small metal" 139 1.44
+	asteroids "large metal" 27 0.9792
+	minables copper 41 2.00322
+	minables lead 63 1.96636
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/gas11-b
+		distance 1449.31
+		period 717.934
+		object
+			sprite planet/rock7-b
+			distance 235
+			period 11.8817
+		object
+			sprite planet/ice0-b
+			distance 332
+			period 19.9519
+		object
+			sprite planet/rock3-b
+			distance 438
+			period 30.2335
+	object
+		sprite planet/gas8-b
+		distance 3382.55
+		period 3108.63
+		object
+			sprite planet/rhea
+			distance 230
+			period 18.5682
+		object
+			sprite planet/dust3
+			distance 335
+			period 32.6395
+		object
+			sprite planet/ice0
+			distance 490
+			period 57.7392
+
+system "Deep Space 5N"
+	pos -1623 -29
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 490
+	belt 1236
+	link "Deep Space 5J"
+	link "Deep Space 5T"
+	link "Deep Space 1Q"
+	asteroids "small rock" 23 4.48
+	asteroids "medium rock" 1 6.496
+	asteroids "large rock" 74 2.5088
+	asteroids "small metal" 7 3.136
+	asteroids "medium metal" 29 5.6
+	asteroids "large metal" 3 4.48
+	minables iron 27 6.81922
+	minables lead 11 3.63334
+	minables uranium 39 4.87538
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/k0-old
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas1-b
+		distance 536.616
+		period 125.622
+		object
+			sprite planet/ice8
+			distance 223
+			period 13.3098
+		object
+			sprite planet/dust0-b
+			distance 310
+			period 21.8151
+	object
+		sprite planet/gas14
+		distance 2557.67
+		period 1683.1
+
+system "Deep Space 5T"
+	pos -1591 -60
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 397
+	belt 1302
+	link "Deep Space 5N"
+	link "Deep Space 1Q"
+	asteroids "small rock" 99 1.403
+	asteroids "medium rock" 15 2.185
+	asteroids "large rock" 21 1.541
+	asteroids "small metal" 49 2.438
+	asteroids "medium metal" 14 3.197
+	asteroids "large metal" 15 3.22
+	minables aluminum 15 2.45602
+	minables iron 22 2.26908
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/m0
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas14-b
+		distance 1034.31
+		period 321.295
+	object
+		sprite planet/gas12
+		distance 2339.35
+		period 1143.44
+		object
+			sprite planet/europa-b
+			distance 276
+			period 12.0434
+		object
+			sprite planet/rock14
+			distance 419
+			period 22.5271
+		object
+			sprite planet/dust7
+			distance 536
+			period 32.5936
+
+system "Deep Space 1Q"
+	pos -1648 -113
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 1009
+	belt 2577
+	link "Deep Space 5T"
+	link "Deep Space 1X"
+	link "Deep Space 19M1"
+	asteroids "small rock" 182 3.2
+	asteroids "medium rock" 57 6.95
+	asteroids "large rock" 40 3.75
+	asteroids "small metal" 17 6.85
+	asteroids "medium metal" 40 2.7
+	asteroids "large metal" 5 5.55
+	minables lead 41 5.68365
+	minables silicon 72 4.34737
+	minables titanium 39 5.28035
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/a0
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas15
+		distance 1673.12
+		period 541.042
+		object
+			sprite planet/rock14-b
+			distance 231
+			period 17.3053
+		object
+			sprite planet/desert4-b
+			distance 367
+			period 34.6546
+		object
+			sprite planet/ice8-b
+			distance 467
+			period 49.7436
+		object
+			sprite planet/dust2
+			distance 575
+			period 67.9617
+	object
+		sprite planet/gas3-b
+		distance 3916.97
+		period 3086.01
+		object
+			sprite planet/rhea
+			distance 274
+			period 11.5849
+		object
+			sprite planet/dust3
+			distance 429
+			period 22.6961
+		object
+			sprite planet/dust5-b
+			distance 540
+			period 32.052
+
+system "Deep Space 1X"
+	pos -1663 -140
+	government Uninhabited
+	habitable 100
+	belt 1751
+	link "Deep Space 1Q"
+	link "Deep Space 19M1"
+	asteroids "medium rock" 1 9.801
+	asteroids "small metal" 2 9.234
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 20000
+	object
+		sprite star/nova
+		distance 49.335
+		period 18.0618
+		offset 180
+
+system "Deep Space 19M1"
+	pos -1623 -190
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 697
+	belt 2115
+	link "Deep Space 1Q"
+	link "Deep Space 1X"
+	link "Deep Space 19M2"
+	asteroids "small rock" 7 7.3606
+	asteroids "medium rock" 40 4.5942
+	asteroids "large rock" 17 4.199
+	asteroids "small metal" 19 5.3352
+	asteroids "medium metal" 81 5.0388
+	asteroids "large metal" 2 5.2858
+	minables aluminum 62 6.16545
+	minables uranium 3 5.36309
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/giant
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas16
+		distance 2193.3
+		period 995.051
+	object
+		sprite planet/gas0-b
+		distance 1549.84
+		period 334.57
+		object
+			sprite planet/dust1-b
+			distance 253
+			period 11.7934
+		object
+			sprite planet/miranda
+			distance 340
+			period 18.3728
+		object
+			sprite planet/rock14
+			distance 464
+			period 29.291
+	object
+		sprite planet/gas13-b
+		distance 3145.85
+		period 1226.52
+		offset 159.403
+	object
+		sprite planet/gas3-b
+		distance 8021.02
+		period 8863.78
+		object
+			sprite planet/rock7-b
+			distance 294
+			period 12.8761
+		object
+			sprite planet/ice7
+			distance 390
+			period 19.6726
+		object
+			sprite planet/rock17-b
+			distance 492
+			period 27.8748
+
+system "Deep Space 19M2"
+	pos -1688 -222
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 851
+	belt 1977
+	link "Deep Space 19M1"
+	asteroids "small rock" 32 1.974
+	asteroids "medium rock" 45 1.484
+	asteroids "large rock" 20 1.75
+	asteroids "small metal" 18 1.75
+	asteroids "medium metal" 186 1.638
+	asteroids "large metal" 24 1.092
+	minables iron 104 2.79327
+	minables silicon 50 1.77981
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	fleet "Pincer Beast" 5000
+	object
+		sprite star/f5-old
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/gas1
+		distance 1169.47
+		period 616.78
+	object
+		sprite planet/gas15-b
+		distance 3139.51
+		period 2141.12
+		object
+			sprite planet/lava2-b
+			distance 241
+			period 18.4411
+		object
+			sprite planet/dust0-b
+			distance 366
+			period 34.5131
+		object
+			sprite planet/ganymede-b
+			distance 471
+			period 50.3841
+		object
+			sprite planet/dust5-b
+			distance 577
+			period 68.3166
+
+system "Deep Space 19M5"
+	pos -1861 -273
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 851
+	belt 1977
+	link "Devil-Hide"
+	link "Deep Space 19K12"
+	asteroids "small rock" 52 1.974
+	asteroids "medium rock" 55 1.484
+	asteroids "large rock" 40 1.75
+	asteroids "small metal" 68 1.75
+	asteroids "medium metal" 186 1.638
+	asteroids "large metal" 124 1.092
+	minables iron 104 2.79327
+	minables platinum 64 2.79327
+	minables silicon 50 1.77981
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	object
+		sprite star/protostar-orange
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/rock10-b
+		distance 1169.47
+		period 616.78
+	object
+		sprite planet/gas1-b
+		distance 3139.51
+		period 2141.12
+		object
+			sprite planet/lava0
+			distance 241
+			period 18.4411
+		object
+			sprite planet/dust1-b
+			distance 366
+			period 34.5131
+		object
+			sprite planet/titan-b
+			distance 471
+			period 50.3841
+		object
+			sprite planet/dust5-b
+			distance 577
+			period 68.3166
+
+system "Deep Space 19K12"
+	pos -1841 -187
+	government Uninhabited
+	haze _menu/haze-black
+	habitable 851
+	belt 1977
+	link "Devil-Hide"
+	link "Deep Space 19M5"
+	asteroids "small rock" 15 1.974
+	asteroids "medium rock" 9 1.484
+	minables copper 13 2.79327
+	trade Clothing 252
+	trade Electronics 861
+	trade Equipment 361
+	trade Food 174
+	trade "Heavy Metals" 1187
+	trade Industrial 853
+	trade "Luxury Goods" 998
+	trade Medical 528
+	trade Metal 284
+	trade Plastic 350
+	object
+		sprite star/protostar-yellow
+		distance 49.335
+		period 18.0618
+		offset 180
+	object
+		sprite planet/ice8-b
+		distance 285.47
+		period 114.78
 
 system "Delta Capricorni"
 	pos -285 202
@@ -8261,6 +8948,80 @@ system Denebola
 		sprite planet/io-b
 		distance 2927.23
 		period 2677.01
+
+
+system "Devil-Hide"
+	pos -1775 -220
+	government "Pirate (Devil-Run Gang)"
+	haze _menu/haze-black
+	habitable 999
+	belt 5000
+	link "Deep Space 19M5"
+	link "Deep Space 19K12"
+	asteroids "small rock" 2 4.4226
+	asteroids "medium rock" 16 2.7594
+	asteroids "large rock" 19 4.4604
+	asteroids "small metal" 11 2.9862
+	asteroids "medium metal" 12 2.6838
+	asteroids "large metal" 5 4.347
+	minables iron 71 5.11549
+	minables silicon 57 4.13794
+	trade Clothing 316
+	trade Electronics 685
+	trade Equipment 566
+	trade Food 475
+	trade "Heavy Metals" 904
+	trade Industrial 670
+	trade "Luxury Goods" 1319
+	trade Medical 784
+	trade Metal 345
+	trade Plastic 481
+	fleet "Devil-Run Warships" 400
+	fleet "Devil-Run Miners" 5000
+	object "Devil-Eye"
+		sprite "planet/rogue-radiating"
+		period 10
+		object "Elenchus"
+			sprite "planet/asteroid base"
+			distance 251
+			period 18.5791
+
+system Devil-Run
+	hidden
+	pos -19 179
+	government Uninhabited
+	habitable 1071.204
+	asteroids "small rock" 121 1.9558
+	asteroids "medium rock" 14 1.9096
+	asteroids "large rock" 28 1.4784
+	asteroids "small metal" 8 1.8326
+	asteroids "medium metal" 77 2.2946
+	asteroids "large metal" 19 1.7094
+	minables uranium 46 2.98163
+	minables tungsten 18 3.78094
+	minables titanium 4 2.67322
+	trade Clothing 271
+	trade Electronics 722
+	trade Equipment 623
+	trade Food 236
+	trade "Heavy Metals" 755
+	trade Industrial 689
+	trade "Luxury Goods" 951
+	trade Medical 801
+	trade Metal 273
+	trade Plastic 394
+	fleet "Korath Raid" 30000
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/dust3-b
+		distance 351.97
+		period 180.59
+	object "Devil-Run Wormhole"
+		sprite planet/wormhole-red
+		distance 1805.33
+		period 1671.05
 
 system Diespiter
 	pos 332 210
@@ -8929,6 +9690,9 @@ system Eblumab
 	fleet "Large Kimek" 4000
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 5000
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 8000
 	fleet Heliarch 1000
 	object
 		sprite star/k5
@@ -10708,6 +11472,9 @@ system "Fell Omen"
 	fleet "Large Kimek" 2500
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 400
 	object
 		sprite star/k5
@@ -11091,6 +11858,9 @@ system Flugbu
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 3000
+	fleet "Kimek Miners" 4500
+	fleet "Saryd Miners" 6000
 	fleet Heliarch 500
 	object
 		sprite star/k5
@@ -11288,6 +12058,9 @@ system "Four Pillars"
 	fleet "Large Kimek" 7000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 2400
 	object
 		sprite star/k0
@@ -11878,6 +12651,9 @@ system Glubatub
 	fleet "Large Kimek" 4500
 	fleet "Small Saryd" 1400
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 9000
+	fleet "Saryd Miners" 7000
 	fleet Heliarch 500
 	object
 		sprite star/m3
@@ -13041,6 +13817,9 @@ system Homeward
 	fleet "Large Kimek" 1000
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 6000
+	fleet "Kimek Miners" 5000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 200
 	object
 		sprite star/k5
@@ -13157,6 +13936,9 @@ system Hunter
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 600
 	fleet "Large Saryd" 1200
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 900
 	object
 		sprite star/k5
@@ -16016,6 +16798,9 @@ system "Lone Cloud"
 	fleet "Large Kimek" 9000
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 2500
+	fleet "Arach Miners" 12000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 3000
 	object
 		sprite star/m3
@@ -16477,6 +17262,9 @@ system Mebla
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2400
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 350
 	object
 		sprite star/k0
@@ -17374,6 +18162,9 @@ system Miblulub
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 1500
 	fleet "Large Saryd" 5000
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 8000
+	fleet "Saryd Miners" 8000
 	fleet Heliarch 300
 	object
 		sprite star/g0
@@ -19299,6 +20090,9 @@ system Pelubta
 	fleet "Large Kimek" 2000
 	fleet "Small Saryd" 1100
 	fleet "Large Saryd" 2500
+	fleet "Arach Miners" 3500
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 7500
 	fleet Heliarch 400
 	object
 		sprite star/b3
@@ -19947,6 +20741,9 @@ system Plort
 	fleet "Large Kimek" 3000
 	fleet "Small Saryd" 1200
 	fleet "Large Saryd" 4000
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 7500
+	fleet "Saryd Miners" 9000
 	fleet Heliarch 800
 	object
 		sprite star/m0
@@ -20880,6 +21677,54 @@ system Queri
 	object
 		sprite star/g3
 		period 10
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 20
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 35
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 50
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 105
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 220
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 235
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 250
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 335
 
 system Rajak
 	pos -270 -236
@@ -21387,6 +22232,9 @@ system Remembrance
 	fleet "Large Kimek" 5000
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 3000
+	fleet "Arach Miners" 9000
+	fleet "Kimek Miners" 9000
+	fleet "Saryd Miners" 4000
 	fleet Heliarch 1200
 	object
 		sprite star/k0
@@ -23177,6 +24025,9 @@ system "Silver Bell"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 500
 	fleet "Large Saryd" 1000
+	fleet "Arach Miners" 10000
+	fleet "Kimek Miners" 10000
+	fleet "Saryd Miners" 5000
 	fleet Heliarch 300
 	object
 		sprite star/g0
@@ -23253,6 +24104,9 @@ system "Silver String"
 	fleet "Large Kimek" 2400
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1500
+	fleet "Arach Miners" 8000
+	fleet "Kimek Miners" 9000
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 500
 	object
 		sprite star/g0
@@ -23744,6 +24598,9 @@ system "Sol Arach"
 	fleet "Large Kimek" 1800
 	fleet "Small Saryd" 1000
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 2500
+	fleet "Kimek Miners" 5500
+	fleet "Saryd Miners" 5500
 	fleet Heliarch 500
 	object
 		sprite star/k0
@@ -23814,6 +24671,9 @@ system "Sol Kimek"
 	fleet "Large Kimek" 300
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1600
+	fleet "Arach Miners" 5500
+	fleet "Kimek Miners" 2500
+	fleet "Saryd Miners" 5500
 	fleet Heliarch 500
 	object
 		sprite star/k5
@@ -23885,6 +24745,9 @@ system "Sol Saryd"
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 300
 	fleet "Large Saryd" 800
+	fleet "Arach Miners" 5500
+	fleet "Kimek Miners" 5500
+	fleet "Saryd Miners" 2500
 	fleet Heliarch 900
 	object
 		sprite star/g0
@@ -24091,6 +24954,9 @@ system Speloog
 	fleet "Large Kimek" 1200
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 1800
+	fleet "Arach Miners" 5000
+	fleet "Kimek Miners" 10000
+	fleet "Saryd Miners" 10000
 	fleet Heliarch 200
 	object
 		sprite star/g5
@@ -24270,6 +25136,9 @@ system "Steep Roof"
 	fleet "Large Kimek" 800
 	fleet "Small Saryd" 700
 	fleet "Large Saryd" 1400
+	fleet "Arach Miners" 9000
+	fleet "Kimek Miners" 4500
+	fleet "Saryd Miners" 3500
 	fleet Heliarch 1200
 	object
 		sprite star/g0
@@ -24867,6 +25736,9 @@ system Tebuteb
 	fleet "Large Kimek" 7000
 	fleet "Small Saryd" 1600
 	fleet "Large Saryd" 6000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 12000
+	fleet "Saryd Miners" 12000
 	fleet Heliarch 250
 	object
 		sprite star/m0
@@ -25114,6 +25986,9 @@ system Torbab
 	fleet "Large Kimek" 1400
 	fleet "Small Saryd" 800
 	fleet "Large Saryd" 2000
+	fleet "Arach Miners" 4000
+	fleet "Kimek Miners" 6000
+	fleet "Saryd Miners" 6500
 	fleet Heliarch 250
 	object
 		sprite star/k5-old
@@ -26429,64 +27304,124 @@ system "World's End"
 		sprite star/g3
 		period 10
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 20
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 35
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 50
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 70
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 90
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 105
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 120
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 140
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 160
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 220
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 235
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 250
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 270
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 290
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 310
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 325
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 340
 
 system "Ya Hai"
 	pos -24.9453 -505.571
@@ -27834,6 +28769,14 @@ planet Covert
 	tribute 1300
 		threshold 3000
 		fleet "Large Core Pirates" 16
+		
+planet Crataegusa
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa30
+	description "At a distance, Crataegusa has a plain appearance, with linear shear cloud lines circling the planet. Beneath the surface, however, the atmosphere is a turbulent maelstrom of cyclonic winds at odds with the surface appearance."
+	description "	As you skim through the clouds your sensors report intense energy fluctuations from all directions, some of which echo the readings from the wormholes."
+	government Uninhabited
+	security 0
 
 planet Crossroads
 	attributes core mining
@@ -27978,6 +28921,17 @@ planet "Desi Seledrak"
 	landscape land/lava13
 	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
 	security 0
+
+planet Devil-Eye
+	attributes "whispering void"
+	landscape land/badlands6
+	description `There are a few sturdy mesas on which to land, but most of this planet is rough rock and dirt. Despite the lack of sunlight, the surface is warm. There must be internal processes in the planet generating heat. The scanners on your computer show a network of caves reaching deep below ground. There's high radiation in the caves, too much to support human life. Crystalline formations that coat the cave walls block detailed scans. Advanced geological scanners might enlighten you further.`
+	description `There are automated deuterium refineries on this planet, siphoning deuterium from cave walls. The refinery equipment looks Hai in origin. Some mesas have fuel pumps, filling containers with fuel for later transport to the planet's moon.`
+
+planet "Devil-Run Wormhole"
+	attributes "requires: quantum keystone"
+	description ""
+	spaceport ""
 
 planet "Devru Kaska"
 	attributes korath station
@@ -28599,7 +29553,7 @@ planet Greenrock
 planet Greenview
 	attributes hai station
 	landscape land/station38
-	description `Although not strictly humid by the standards of a planet, the air here has a rich, moist, and faintly verdant quality atypical of a space station. The station is run by the Hei Low Io species preservation foundation, and each of its four branches features a different internal climate showcasing life from worlds beyond Hai space. An infographic proclaims it to be the largest collection in the galaxy of rare organisms sourced from private collections, rebuilt from genetic samples, or rescued before being exterminated locally when they were deemed invasive on Hai worlds. It also mentions that certain exhibits have been improved in some cases with species recently acquired from human space through secret trade deals.`
+	description `Although not strictly humid by the standards of a planet, the air here has a rich, moist, and faintly verdant quality atypical of a space station. The station is run by the Hei Low Io species preservation foundation, and each of its four branches features a different internal climate showcasing life from distant worlds. An infographic proclaims it to be the largest collection in the galaxy of rare organisms sourced from private collections, rebuilt from genetic samples, or rescued before being exterminated after being deemed invasive on Hai worlds. It also mentions that certain exhibits have been improved in some cases with species recently acquired from human space through secret trade deals.`
 	description `	The central spire is still largely residential, with some nursery and laboratory facilities.`
 	spaceport `The spaceport's wide, two-level promenade is dedicated to a variety of themed eateries and gift stores, as well as some local artist galleries, a handicrafts store selling traditionally made curios from a long-abandoned world, and what appears to be an expansive and very well-equipped hospital which also services the planet below. The docking access opens directly onto the mezzanine, where a pair of information desks detail every possible route to ensure that the sizable number of tourists that visit here daily need not look far for assistance.`
 	bribe 0.1
@@ -28900,7 +29854,7 @@ planet Ingot
 
 planet "Inmost Blue"
 	attributes farming kimek urban
-	landscape land/water13
+	landscape land/water14
 	description `Inmost Blue is an ocean world, one of the first planets that the Kimek settled outside their own solar system. About two billion Kimek live on the low-lying islands and the one major continent, and the shallow ocean regions have been entirely converted into kelp farms. The Kimek take a utilitarian approach to food, and processed seaweed is a nutritious but highly unappetizing staple of their diet.`
 	spaceport `The spaceport city is built on the mountain slopes overlooking a fjord, whose water is deep enough for even the largest of cargo barges to enter. Many of the barges have landing pads on their decks so that the cargo can be transferred directly to freighter starships without needing to be stored on land first. The chief export is a gray-green meal made from dried and ground up seaweed.`
 	security 0.3
@@ -29173,7 +30127,7 @@ planet Mahoganybox
 
 planet Mainsail
 	attributes paradise rich
-	landscape land/beach7-sfiera
+	landscape land/water13
 	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
 	description `	Centuries ago Mainsail was home to pirates of the old-fashioned variety, fleets of motor boats or even old-fashioned sailing vessels that would launch raids against the city-ships.`
 	spaceport `The spaceport is on its own city-ship floating some distance away from the others, so that the locals need not deal with the noise and uncouth manners of spacefarers. Surrounding the port is a ring of docks where barges are moored; on platforms farther "inland," starships land.`
@@ -29834,6 +30788,13 @@ planet "Periaxle Circuit"
 	description `	Completed dozens of centuries before the war, the structure's original plating failed to last the test of time unscathed, unlike the Quarg's own, and is in a constant need of replacement to prevent the miniature ring's integrity from being compromised. Every so often, maintenance crafts can be seen conducting repairs on some outer section of the ring.`
 	spaceport `Having very little in the form of windows to look out into the system, and not much to gaze at the small, barren planet it encompasses, the station sees very few visitors--mostly cargo haulers bringing in supplies for the crew staffed here or the occasional university groups coming to visit the particle accelerator and deepen their knowledge.`
 	"required reputation" 15
+
+planet "Elenchus"
+	attributes "whispering void"
+	landscape land/space2
+	description `Beneath the surface of this small moon, there is a network of corridors and large rooms. The architecture looks mostly Human, but with a hint of Hai. Most are blocked off by sturdy doors with keycard access and plentiful security cameras. Frequently, you see a symbol similar to the Syndicate logo. Everywhere you walk, a security camera turns to track your movement. You get the feeling that you're not welcome here.`
+	bribe 0
+	"required reputation" 10
 
 planet "Phoenix Station"
 	attributes deep station
@@ -30956,6 +31917,7 @@ planet "Vara K'chrai"
 	spaceport `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
+	"required reputation" 25
 	bribe 0
 
 planet "Vara Ke'sok"
