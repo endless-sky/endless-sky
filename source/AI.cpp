@@ -3459,8 +3459,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				if(boardable.empty())
 				{
 					ships = GetShipsList(ship, false);
-					if(ships.capacity() > boardable.capacity())
-						boardable.reserve(ships.capacity());
+					if(ships.size() > boardable.capacity())
+						boardable.reserve(ships.size());
 					for(Ship *ally : ships)
 						fillBoardable(*ally);
 				}
