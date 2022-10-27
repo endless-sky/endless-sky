@@ -100,10 +100,11 @@ mission "Unfettered Jump Drive 4"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "event: wanderers: unfettered invasion starts"
+	to fail
+		has "Unfettered Jump Drive 4: active"
 	on accept
 		dialog "As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them."
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 40
-		fail

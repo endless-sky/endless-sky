@@ -97,6 +97,44 @@ ship "Arrow" "Arrow (Hai)"
 
 
 
+ship "Auxiliary" "Auxiliary (Jump Transport)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryt"
+	thumbnail "thumbnail/auxiliaryt"
+	add attributes
+		"bunks" 112
+		"cargo space" -200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Jump Drive"
+		"Fuel Pod"
+		"Quantum Keystone"
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -74 "Heavy Anti-Missile Turret"
+	turret 0 -17
+	turret 0 20
+	turret 0 78 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -74
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 20
+	bay "Fighter" 0 78
+
+
+
 ship "Bactrian" "Bactrian (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -1053,7 +1091,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 	turret "Heavy Anti-Missile Turret"
 
 
-# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment
+# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment.
 ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 	outfits
 		"Heavy Anti-Missile Turret" 3
@@ -1071,6 +1109,27 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 		"Fission Reactor"
 		"Laser Rifle" 20
 		"LP144a Battery Pack"
+
+
+# Danforth's personal ship in HR.
+ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		"Catalytic Ramscoop"
+		"Jump Drive"
+		Afterburner
+		"Outfits Expansion" 2
+		"Plasma Cannon" 6
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Fragmentation Grenades" 20
+		"Fission Reactor"
+		"Laser Rifle" 20
+		"LP144a Battery Pack"
+		"Quantum Keystone"
 
 
 
@@ -1117,6 +1176,29 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 		"Water Coolant System"
 		"S-270 Regenerator" 2
 		"LP144a Battery Pack"
+
+
+# Same as above but repurposed for Hai Reveal.
+ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		"Jump Drive"
+		"Volcano Afterburner"
+		Supercapacitor
+		"Outfits Expansion" 2
+		"Plasma Cannon" 4
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Breeder Reactor"
+		"Quad Blaster Turret" 2
+		"Laser Rifle" 25
+		"Water Coolant System"
+		"S-270 Regenerator" 2
+		"LP144a Battery Pack"
+		"Quantum Keystone"
 
 
 

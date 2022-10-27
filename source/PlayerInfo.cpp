@@ -257,6 +257,14 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "available job")
 			availableJobs.emplace_back(child);
+		else if(child.Token(0) == "sort type")
+			availableSortType = static_cast<SortType>(child.Value(1));
+		else if(child.Token(0) == "sort descending")
+			availableSortAsc = false;
+		else if(child.Token(0) == "separate deadline")
+			sortSeparateDeadline = true;
+		else if(child.Token(0) == "separate possible")
+			sortSeparatePossible = true;
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
@@ -1589,6 +1597,66 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
+const PlayerInfo::SortType PlayerInfo::GetAvailableSortType() const
+{
+	return availableSortType;
+}
+
+
+
+void PlayerInfo::NextAvailableSortType()
+{
+	availableSortType = static_cast<SortType>((availableSortType + 1) % (CONVENIENT + 1));
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::ShouldSortAscending() const
+{
+	return availableSortAsc;
+}
+
+
+
+void PlayerInfo::ToggleSortAscending()
+{
+	availableSortAsc = !availableSortAsc;
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::ShouldSortSeparateDeadline() const
+{
+	return sortSeparateDeadline;
+}
+
+
+
+void PlayerInfo::ToggleSortSeparateDeadline()
+{
+	sortSeparateDeadline = !sortSeparateDeadline;
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::ShouldSortSeparatePossible() const
+{
+	return sortSeparatePossible;
+}
+
+
+
+void PlayerInfo::ToggleSortSeparatePossible()
+{
+	sortSeparatePossible = !sortSeparatePossible;
+	SortAvailable();
+}
+
+
+
 // Return a pointer to the mission that was most recently accepted while in-flight.
 const Mission *PlayerInfo::ActiveBoardingMission() const
 {
@@ -1617,6 +1685,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
 }
@@ -2448,6 +2517,10 @@ void PlayerInfo::ApplyChanges()
 		ship->SetGovernment(GameData::PlayerGovernment());
 		ship->FinishLoading(false);
 	}
+
+	// Recalculate jumps that the available jobs will need
+	for(Mission &mission : availableJobs)
+		mission.CalculateJumps(system);
 }
 
 
@@ -2815,12 +2888,127 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
+}
 
-	// Sort missions on the job board alphabetically.
-	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
+
+
+void PlayerInfo::SortAvailable()
+{
+	// Destinations: planets OR system. Only counting them, so the type doesn't matter.
+	set<const void *> destinations;
+	if(availableSortType == CONVENIENT)
 	{
-		return lhs.Name() < rhs.Name();
+		for(const Mission &mission : Missions())
+		{
+			if(mission.IsVisible())
+			{
+				destinations.insert(mission.Destination());
+				destinations.insert(mission.Destination()->GetSystem());
+
+				for(const Planet *stopover : mission.Stopovers())
+				{
+					destinations.insert(stopover);
+					destinations.insert(stopover->GetSystem());
+				}
+
+				for(const System *waypoint : mission.Waypoints())
+					destinations.insert(waypoint);
+			}
+		}
+	}
+	availableJobs.sort([&](const Mission &lhs, const Mission &rhs) {
+		// First, separate rush orders with deadlines, if wanted
+		if(sortSeparateDeadline)
+		{
+			// availableSortAsc instead of true, to counter the reverse below
+			if(!lhs.Deadline() && rhs.Deadline())
+				return availableSortAsc;
+			if(lhs.Deadline() && !rhs.Deadline())
+				return !availableSortAsc;
+		}
+		// Then, separate greyed-out jobs you can't accept
+		if(sortSeparatePossible)
+		{
+			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
+				return availableSortAsc;
+			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
+				return !availableSortAsc;
+		}
+		// Sort by desired type:
+		switch(availableSortType)
+		{
+			case CONVENIENT:
+			{
+				// Sorting by "convenience" means you already have a mission to a
+				// planet. Missions at the same planet are sorted higher.
+				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
+				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
+				if(lConvenient < rConvenient)
+					return true;
+				if(lConvenient > rConvenient)
+					return false;
+			}
+			// Tiebreaker for equal CONVENIENT is SPEED.
+			case SPEED:
+			{
+				// A higher "Speed" means the mission takes less time, ie. fewer
+				// jumps.
+				const int lJumps = lhs.ExpectedJumps();
+				const int rJumps = rhs.ExpectedJumps();
+
+				if(lJumps == rJumps)
+				{
+					// SPEED compares equal - follow through to tiebreaker 'case PAY' below
+				}
+				else if(lJumps > 0 && rJumps > 0)
+				{
+					// Lower values are better, so this '>' is not '<' as expected
+					return lJumps > rJumps;
+				}
+				else
+				{
+					// Negative values indicate indeterminable mission paths.
+					// eg. through a wormhole, meaning lower values are worse.
+
+					// A value of 0 indicates the mission destination is the
+					// source, implying the actual path is complicated; consider
+					// that slow, but not as bad as an indeterminable path.
+
+					// Positive values are 'greater' because at least the number
+					// of jumps is known. (Comparing two positive values is already
+					// handled above, so the actual positive value doesn't matter.)
+
+					// Compare the value when at least one value is not positive.
+					return lJumps < rJumps;
+				}
+			}
+			// Tiebreaker for equal SPEED is PAY.
+			case PAY:
+			{
+				const int64_t lPay = lhs.DisplayedPayment();
+				const int64_t rPay = rhs.DisplayedPayment();
+				if(lPay < rPay)
+					return true;
+				else if(lPay > rPay)
+					return false;
+			}
+			// Tiebreaker for equal PAY is ABC.
+			case ABC:
+			{
+				if(lhs.Name() < rhs.Name())
+					return true;
+				else if(lhs.Name() > rhs.Name())
+					return false;
+			}
+			// Tiebreaker fallback to keep sorting consistent is unique UUID:
+			default:
+				return lhs.UUID() < rhs.UUID();
+		}
 	});
+
+	if(!availableSortAsc)
+		availableJobs.reverse();
 }
 
 
@@ -3077,6 +3265,13 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
+	out.Write("sort type", static_cast<int>(availableSortType));
+	if(!availableSortAsc)
+		out.Write("sort descending");
+	if(sortSeparateDeadline)
+		out.Write("separate deadline");
+	if(sortSeparatePossible)
+		out.Write("separate possible");
 
 	// Save any "primary condition" flags that are set.
 	conditions.Save(out);
