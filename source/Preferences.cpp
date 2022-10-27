@@ -39,7 +39,7 @@ namespace {
 
 	const string DATEFMT = "Date format";
 	const vector<string> DATEFMT_OPTIONS = {"dmy", "mdy", "ymd"};
-	int dateFormatIndex = 1;
+	int dateFormatIndex = 0;
 
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
