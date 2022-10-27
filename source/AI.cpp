@@ -661,9 +661,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Player ships never stop targeting hostiles, while hostile mission NPCs will
 		// do so only if they are allowed to leave.
 		const bool canFlee = (personality.IsFleeing()
-				|| (it->Health() < RETREAT_HEALTH + .25 * personality.IsCoward()
+				|| (healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward()
 					&& !personality.IsHeroic() && !personality.IsStaying()));
-		if(!it->IsYours() && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled() && canFlee)
+		if(!it->IsYours() && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled() && canFlee
+				&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
 		{
 			// Make sure the ship has somewhere to flee to.
 			const System *system = it->GetSystem();
