@@ -611,7 +611,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
-		if(isPresent && !personality.IsSwarming())
+		if(isPresent && !it->IsFleeing() && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
@@ -649,26 +649,19 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		{
 			// Make sure the ship has somewhere to flee to.
 			const System *system = it->GetSystem();
+			bool canFlee = false;
 			if(it->JumpsRemaining() && (!system->Links().empty() || it->Attributes().Get("jump drive")))
-				target.reset();
+				canFlee = true;
 			else
 				for(const StellarObject &object : system->Objects())
 					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
 							&& object.GetPlanet()->CanLand(*it))
 					{
-						target.reset();
+						canFlee = true;
 						break;
 					}
 
-			if(target)
-				// This ship has nowhere to flee to: Stop fleeing.
-				it->SetFleeing(false);
-			else
-			{
-				// This ship has somewhere to flee to: Remove target and mark this ship as fleeing.
-				it->SetTargetShip(target);
-				it->SetFleeing();
-			}
+			it->SetFleeing(canFlee);
 		}
 		else if(it->IsFleeing())
 			it->SetFleeing(false);
@@ -757,7 +750,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 
 		// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
-		if(isPresent && personality.IsMining() && !it->IsFleeing() && !target && !isStranded && maxMinerCount)
+		if(isPresent && personality.IsMining() && !target && !isStranded && maxMinerCount)
 		{
 			// Miners with free cargo space and available mining time should mine. Mission NPCs
 			// should mine even if there are other miners or they have been mining a while.
@@ -889,7 +882,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// If this ship has decided to recall all of its fighters because combat has ceased,
 		// it comes to a stop to facilitate their reboarding process.
 		bool mustRecall = false;
-		if(!target && it->HasBays() && !(it->IsYours() ?
+		if((!target || it->IsFleeing()) && it->HasBays() && !(it->IsYours() ?
 				thisIsLaunching : it->Commands().Has(Command::DEPLOY)))
 			for(const weak_ptr<Ship> &ptr : it->GetEscorts())
 			{
@@ -1436,7 +1429,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		// Do not move to attack, scan, or assist the target ship.
 	}
-	else if(target && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
+	else if(target && !ship.IsFleeing() && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
@@ -1761,6 +1754,8 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// (Doing so during combat will likely lead to its destruction.)
 	if(parent.IsDisabled())
 		return false;
+	if(parent.IsFleeing())
+		return true;
 
 	// A player-owned carried ship should return to its carrier when the player
 	// has ordered it to "no longer deploy" or when it is not in the current system.
