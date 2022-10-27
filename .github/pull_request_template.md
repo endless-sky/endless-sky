@@ -18,7 +18,7 @@ This save file can be used to play through the new mission content:
 
 
 -----------------------
-**Bugfix:** This PR fixes #{{insert number}}
+**Bugfix:** This PR addresses issue #{{insert number}}
 
 ## Fix Details
 {{add details}}
