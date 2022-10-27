@@ -41,7 +41,8 @@ namespace {
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
-	int screenModeIndex = 0;
+	// Default to fullscreen.
+	int screenModeIndex = 1;
 	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
 
 	// Enable standard VSync by default.
@@ -72,8 +73,6 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
-	// Fullscreen is default.
-	screenModeIndex = 1;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -204,13 +203,6 @@ void Preferences::ToggleScreenMode()
 const string &Preferences::ScreenModeSetting()
 {
 	return SCREEN_MODE_SETTINGS[screenModeIndex];
-}
-
-
-
-void Preferences::SetScreenModeIndex(int index)
-{
-	screenModeIndex = index;
 }
 
 
