@@ -203,10 +203,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::SetScrollSpeed(speed);
 			}
 			else if(zone.Value() == DATE_FORMAT)
-			{
-				isOn = true;
 				Preferences::ToggleDateFormat();
-			}
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -537,6 +534,7 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::AmmoUsage();
 		else if(setting == DATE_FORMAT)
 		{
+			isOn = true;
 			Preferences::DateFormat datefmtShortName = Preferences::GetDateFormat();
 			if(datefmtShortName == Preferences::DateFormat::ymd)
 				text = "yyyy-mm-dd";
