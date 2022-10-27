@@ -3208,10 +3208,10 @@ ship "Star Queen"
 	thumbnail "thumbnail/star queen"
 	attributes
 		category "Space Liner"
-		"cost" 5500000
+		"cost" 4200000
 		"shields" 4100
 		"hull" 2200
-		"required crew" 41
+		"required crew" 33
 		"bunks" 112
 		"mass" 230
 		"drag" 4.5
