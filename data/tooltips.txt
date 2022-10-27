@@ -302,6 +302,12 @@ tip "jump fuel:"
 tip "jump range:"
 	`How far you can jump between systems using this drive.`
 
+tip "jump mass cost:"
+	`How much fuel this drive consumes, per 100 tons of mass. Additive with jump fuel.`
+
+tip "jump base mass:"
+	`A modifier to the impact your ship's mass has on the jump mass cost. Ships below this mass will have a cheaper jump cost than the base jump fuel cost, while ships above this mass will have more expensive jumps.`
+
 tip "leak protection:"
 	`Protection against weapons that cause fuel leakage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
 
@@ -589,6 +595,12 @@ tip "weapon capacity needed:"
 
 tip "    weapon capacity:"
 	`How many tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfit space available.)`
+
+tip "scan brightness:"
+	`Modifies the likelihood of this illegal outfit appearing on a cargo scan. The higher the brightness, the more likely a scan will pick it up. A scan brightness of 5 has as much a chance of being scanned as an outfit that is 5 tons.`
+
+tip "scan concealment:"
+	`Hides an equivalent mass of illegal cargo from cargo scans, preventing you from being fined for having it. For example, if you had 10 scan concealment, then up to 10 tons of illegal cargo would not appear on cargo scans.`
 
 
 

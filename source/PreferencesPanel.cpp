@@ -445,6 +445,7 @@ void PreferencesPanel::DrawSettings()
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
+		"Always underline shortcuts",
 		"",
 		"AI",
 		"Automatic aiming",
