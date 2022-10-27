@@ -202,7 +202,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
-			else if (zone.Value() == DATE_FORMAT)
+			else if(zone.Value() == DATE_FORMAT)
 				Preferences::ToggleDateFormat();
 			// All other options are handled by just toggling the boolean state.
 			else
