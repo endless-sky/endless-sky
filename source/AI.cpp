@@ -637,7 +637,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
-				FindTarget(*it);
+			{
+				target = FindTarget(*it);
+				it->SetTargetShip(target);
+			}
 		}
 		if(isPresent)
 		{
@@ -653,6 +656,41 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetCommands(firingCommands);
 			continue;
 		}
+
+		// Run away if your hostile target is not disabled and you are badly damaged.
+		// Player ships never stop targeting hostiles, while hostile mission NPCs will
+		// do so only if they are allowed to leave.
+		const bool canFlee = (personality.IsFleeing()
+				|| (healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward()
+					&& !personality.IsHeroic() && !personality.IsStaying()));
+		if(!it->IsYours() && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled() && canFlee
+				&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
+		{
+			// Make sure the ship has somewhere to flee to.
+			const System *system = it->GetSystem();
+			if(it->JumpsRemaining() && (!system->Links().empty() || it->Attributes().Get("jump drive")))
+				target.reset();
+			else
+				for(const StellarObject &object : system->Objects())
+					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+							&& object.GetPlanet()->CanLand(*it))
+					{
+						target.reset();
+						break;
+					}
+
+			if(target)
+				// This ship has nowhere to flee to: Stop fleeing.
+				it->SetFleeing(false);
+			else
+			{
+				// This ship has somewhere to flee to: Remove target and mark this ship as fleeing.
+				it->SetTargetShip(target);
+				it->SetFleeing();
+			}
+		}
+		else if(it->IsFleeing())
+			it->SetFleeing(false);
 
 		// Special actions when a ship is heavily damaged:
 		if(healthRemaining < RETREAT_HEALTH + .25)
@@ -1100,26 +1138,20 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 
 
 // Pick a new target for the given ship.
-void AI::FindTarget(Ship &ship) const
+shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 {
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov || ship.GetPersonality().IsPacifist())
-	{
-		ship.SetTargetShip(target);
-		return;
-	}
+		return target;
 
 	bool isYours = ship.IsYours();
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
 		if(it != orders.end() && (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF))
-		{
-			ship.SetTargetShip(it->second.target.lock());
-			return;
-		}
+			return it->second.target.lock();
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -1132,10 +1164,7 @@ void AI::FindTarget(Ship &ship) const
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 		}
 	if(!maxRange)
-	{
-		ship.SetTargetShip(target);
-		return;
-	}
+		return target;
 
 	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
@@ -1148,10 +1177,7 @@ void AI::FindTarget(Ship &ship) const
 	// unless they also have either or both of the 'disables' or 'merciful' personalities.
 	if(oldTarget && person.Plunders() && !person.Disables() && !person.IsMerciful()
 			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
-	{
-		ship.SetTargetShip(oldTarget);
-		return;
-	}
+		return oldTarget;
 	shared_ptr<Ship> parentTarget;
 	bool parentIsEnemy = (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	if(ship.GetParent() && !parentIsEnemy)
@@ -1166,7 +1192,6 @@ void AI::FindTarget(Ship &ship) const
 	// ship that is within 3000 of it.
 	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
-	bool isDisabled = false;
 	bool hasNemesis = false;
 	bool canPlunder = person.Plunders() && ship.Cargo().Free();
 	// Figure out how strong this ship is.
@@ -1233,7 +1258,6 @@ void AI::FindTarget(Ship &ship) const
 		{
 			closest = range;
 			target = foe->shared_from_this();
-			isDisabled = foe->IsDisabled();
 			hasNemesis = isPotentialNemesis;
 		}
 	}
@@ -1267,29 +1291,6 @@ void AI::FindTarget(Ship &ship) const
 		}
 	}
 
-	// Run away if your hostile target is not disabled and you are badly damaged.
-	// Player ships never stop targeting hostiles, while hostile mission NPCs will
-	// do so only if they are allowed to leave.
-	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
-			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward())
-			&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
-	{
-		// Make sure the ship has somewhere to flee to.
-		const System *system = ship.GetSystem();
-		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
-			target.reset();
-		else
-			for(const StellarObject &object : system->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-						&& object.GetPlanet()->CanLand(ship))
-				{
-					target.reset();
-					break;
-				}
-		if(!target)
-			ship.SetFleeing();
-	}
-
 	// Vindictive personalities without in-range hostile targets keep firing at an old
 	// target (instead of perhaps moving about and finding one that is still alive).
 	if(!target && person.IsVindictive())
@@ -1299,8 +1300,7 @@ void AI::FindTarget(Ship &ship) const
 			target.reset();
 	}
 
-	ship.SetTargetShip(target);
-	return;
+	return target;
 }
 
 
@@ -2297,8 +2297,6 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 			toDump -= dumped;
 		}
 
-	// Merciful ships will let this one be.
-	ship->SetFleeing();
 	Messages::Add(ship->GetGovernment()->GetName() + " " + ship->Noun() + " \"" + ship->Name()
 		+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
 
