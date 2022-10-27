@@ -144,7 +144,7 @@ outfit "True Unfettered License"
 	description "	This blade is capable of absorbing incoming shots, protecting its wearer from harm. When it strikes enemies, it is as if whatever it hits was never there, somehow absorbed by the blade. Somehow, the blade feels very light, and as though it was accompanying the strikes of its owner. However, its most handy feature no doubt is the fact that it requires no source of power whatsoever, as if it was feeding off matter itself."
 
 outfit "Ionic Blade"
-	category "Special"
+	category "Unique"
 	cost 1000000
 	thumbnail "outfit/ionic blade"
 	"capture attack" 10
