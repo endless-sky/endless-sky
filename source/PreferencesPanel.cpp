@@ -623,16 +623,16 @@ void PreferencesPanel::DrawPlugins()
 		bool isSelected = (plugin_name == selectedPlugin);
 		if(isSelected || plugin_name == hoverPlugin)
 			table.DrawHighlight(back);
-		double rowHeight = table.GetRowBounds().Height();
-		double thirdHeight = rowHeight / 3;
-		Point checkboxPos = table.GetRowBounds().TopLeft();
-		checkboxPos.X() -= font.Height() / 2;
-		checkboxPos.Y() += rowHeight / 2;
 
-		SpriteShader::Draw(box[Plugins::IsEnabled(plugin_name)], checkboxPos);
-		Point zoneDimension = Point(20., thirdHeight * 2.);
-		Point zoneOffset = checkboxPos + Point(0., thirdHeight - 3);
-		Rectangle zoneBounds = Rectangle(zoneOffset, zoneDimension);
+		const Sprite *sprite = box[Plugins::IsEnabled(plugin_name)];
+		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
+		SpriteShader::Draw(box[Plugins::IsEnabled(plugin_name)], spriteBounds.Center());
+
+		topLeft.X() += 6.;
+		topLeft.Y() += 7.;
+		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width() - 8., sprite->Height() - 8.));
+
 		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin_name); });
 		if(isSelected)
 			table.Draw(plugin_name, bright);
