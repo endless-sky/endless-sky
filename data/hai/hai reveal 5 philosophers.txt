@@ -124,7 +124,8 @@ mission "Hai Reveal [B02] Join the Fleet"
 				"Splinter (Flamethrower Blaster)" 4
 		# This special security force has acquired outfits in the post-war condition that were surplus or black market to upgrade their Splinters.
 		# However, they haven't had the time to refit and test out new options for their Protectors or Vanguards.
-
+	# Fleets start at Rajak instead of Ultima Thule to ensure they
+	# have enough fuel to reach Stormhold.
 	npc
 		government "Republic"
 		system "Rajak"
@@ -832,6 +833,7 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 		Supercapacitor
 		"A370 Atomic Thruster"
 		"Pulse Rifle" 131
+
 
 
 mission "Hai Reveal [B12] Devil-Hide Battle"
