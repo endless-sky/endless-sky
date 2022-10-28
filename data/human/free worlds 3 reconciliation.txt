@@ -1328,7 +1328,7 @@ mission "FW Pug Jump Drive Check"
 	on offer
 		require "Jump Drive" 0
 		conversation
-			`Somehow, you've misplaced or lost the jump drive needed to continue the Free Worlds story! If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+			`Somehow, you've misplaced or lost the jump drive needed to continue the Free Worlds story! If you are unable to find your jump drive, you should revert to the autosave or another earlier snapshot of the game.`
 				decline
 
 
