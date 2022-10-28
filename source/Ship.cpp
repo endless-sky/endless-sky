@@ -3377,8 +3377,9 @@ double Ship::IdleHeat() const
 	return production / dissipation;
 	*/
 
-	// Newton's method is a robust approximation, approaching the zero of a
-	// quadratic quickly and cheaply. It does not provide infinite accuracy,
+	// The Secant Method, closely related to Newton's Method,
+	// is a robust approximation, approaching the zero of any curve
+	// quickly and cheaply. It does not provide infinite accuracy,
 	// but in exchange it is trivial to add more functionality to
 	// the curve it is approximating a zero of.
 	// To do so- implement your heat change in ship::DoGeneration()
@@ -3391,14 +3392,15 @@ double Ship::IdleHeat() const
 	double secondGuess = MaximumHeat();
 	double secondOutput = NetIdleHeatAt(secondGuess);
 
-	double middlingGuess = 0.;
-	double middlingOutput = 0.;
+	double middlingGuess;
+	double middlingOutput;
 
 	// Guard clause, to catch weird cases.
 	if(firstGuess == secondGuess || firstOutput <= secondOutput)
 		return secondOutput > 0. ? numeric_limits<double>::max() : 0;
 
-	// Magic number: an arbitrary, imperceptibly-small error margin - epsilon.
+	// 0.001 here is a magic number which could be anything "sufficiently small".
+	// Normally it's called an Epsilon, a number that approaches but is not zero.
 	while((attempts > 0) && (fabs(firstGuess - secondGuess) > .001))
 	{
 		// Do not allow a negative-heat guess.
