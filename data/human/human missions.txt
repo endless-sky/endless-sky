@@ -898,6 +898,7 @@ mission "Hallucination"
 	to offer
 		has "Drug Running 2: active"
 		random < 50
+		"teetotaler" < 3
 	
 	on offer
 		conversation
@@ -909,6 +910,12 @@ mission "Hallucination"
 			`	The room begins to spin, and strange things happen...`
 				launch
 	
+	on accept
+		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
+	
+	on defer
+		"teetotaler" ++
+	
 	npc kill
 		government "Bad Trip"
 		personality nemesis heroic
@@ -916,9 +923,6 @@ mission "Hallucination"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"
 		ship "Hallucination" "Shiny"
-		
-	on complete
-		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
 
 
 
