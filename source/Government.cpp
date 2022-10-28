@@ -153,19 +153,17 @@ void Government::Load(const DataNode &node)
 			if(!add)
 				illegals.clear();
 			for(const DataNode &grand : child)
-				if(grand.Size() == 2)
-						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
-				else if(grand.Size() >= 3)
+				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "remove")
-					{
-						if(!illegals.erase(GameData::Outfits().Get(grand.Token(1))))
-							grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
-					}
-					else if(grand.Token(0) == "ignore")
+					if(grand.Token(0) == "ignore")
 						illegals[GameData::Outfits().Get(grand.Token(1))] = 0;
 					else
-						grand.PrintTrace("Skipping unrecognized attribute:");
+						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
+				}
+				else if(grand.Size() >= 3 && grand.Token(0) == "remove")
+				{
+					if(!illegals.erase(GameData::Outfits().Get(grand.Token(1))))
+						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
@@ -175,7 +173,6 @@ void Government::Load(const DataNode &node)
 			if(!add)
 				atrocities.clear();
 			for(const DataNode &grand : child)
-			{
 				if(grand.Size() >= 2)
 				{
 					if(grand.Token(0) == "remove" && !atrocities.erase(GameData::Outfits().Get(grand.Token(1))))
@@ -185,7 +182,6 @@ void Government::Load(const DataNode &node)
 				}
 				else
 					atrocities[GameData::Outfits().Get(grand.Token(0))] = true;
-			}
 		}
 		else if(key == "enforces" && child.HasChildren())
 			enforcementZones.emplace_back(child);
