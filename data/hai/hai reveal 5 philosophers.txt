@@ -924,11 +924,27 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			variant
 				"Palavret"
 
+
+fleet "Devil-Run Warships"
+	government "Pirate (Devil-Run Gang)"
+	names "pirate"
+	cargo 0
+	personality
+		heroic plunders harvests
+	variant
+		"Bactrian"
+		"Dagger" 3
+
+		"Leviathan (Laser)"
+		"Protector (Proton)"
+		"Vanguard (Missile)"
+		"Firebird"
+
 event "Elenchus can be dominated"
 	planet "Elenchus"
 		tribute 7000
 			threshold 2400
-			fleet "Devil-Run Warships" 4
+			fleet "Elenchus Tribute"
 
 
 # This allows the mission to preserve the correct number of Unfettered support ships - if one dies it will stay dead:
