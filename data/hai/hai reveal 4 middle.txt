@@ -861,6 +861,7 @@ mission "Hai Reveal [A06a] The Calm"
 		
 		
 mission "Hai Reveal [A07] Deliver the Relays"
+	# TODO: The relays should vanish from your cargo bay when deployed.
 	autosave
 	landing
 	name "Preparation & Investigation"
