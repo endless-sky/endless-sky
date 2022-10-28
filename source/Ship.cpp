@@ -2979,13 +2979,33 @@ bool Ship::IsFuelLow() const
 // refuel.  If the ship has no fuel then it can't be low.
 bool Ship::IsFuelLow(double compareTo) const
 {
-	bool lowFuel = attributes.Get("fuel capacity");
+	double fuelCapacity = attributes.Get("fuel capacity");
+	bool lowFuel = fuelCapacity;
+
+	// This ship has no fuel so assume it is not low fuel.
+	if(!lowFuel)
+		return false;
+
 	// Fighters can have less than 100 fuel and can also transfer 100% of fuel
 	// to other escorts.
-	if(CanBeCarried())
+	if(CanBeCarried() && Preferences::Has("Fighter fleet logistics"))
 		lowFuel &= (fuel < 100. || Fuel() < .5) && Fuel() < 1.;
+	else if(CanBeCarried())
+	{
+		// Return to base fuel level i.e. return to carrier in case ship
+		// definition is customized.
+		double rtbFuel = attributes.Get("rtb fuel level");
+		// Treat RTB fuel as a percentage or fuel level.
+		if(rtbFuel > 0. && rtbFuel < 1.)
+			lowFuel &= Fuel() < rtbFuel;
+		else if(rtbFuel)
+			lowFuel &= fuel < rtbFuel;
+		else
+			lowFuel &= (fuel < 100. || Fuel() < .5) && Fuel() < 1.;
+		lowFuel &= Fuel() < 1.;
+	}
 	else if(IsYours() || GetPersonality().IsEscort())
-		lowFuel &= fuel < attributes.Get("fuel capacity");
+		lowFuel &= fuel < fuelCapacity;
 	else
 		lowFuel &= JumpFuel() < compareTo - fuel;
 	return lowFuel;
