@@ -181,7 +181,8 @@ mission "Hai Reveal [A03a] Symbol Identification"
 		log `Been asked to check out the Hai spaceports in various systems near the wormhole, just to check nothing unexpected is happening.`
 		conversation
 			`You make what is beginning to feel like a standard request to land at the secure spaceport and disembark with relevant copies of files on a data stick in hand. It doesn't take long to track down Alondo, though you do end up having to wait for nearly half an hour while he finishes up some kind of meeting with a Hai official of some kind. When he's finished he waves you into the room gestures for you to take a seat, though the seat in question is clearly designed to be ergonomic for a Hai which makes for a rather strange experience for a human.`
-			`	<You have a conversation where you show him the symbol, and ask him for leads. He says he knows some people who can be discreet and he'll see if he can find someone who might know something. Also something about him working with Remington lately.>`
+			# TODO: Replace this paragraph with actual content. Include something about him working at Remington lately.
+			`	You show Alondo the cat symbol you found, and he says, "I know some researchers who can be discreet. I'll ask them to look into this."`
 			`	"In the meantime," he says, "could I ask you to stop by some of the Hai worlds nearer the wormhole? They have obviously ramped up security on Allhome, and I'd like to have a pair of eyes check that they're not using that as a cover to move more military through other nearby worlds into a threatening position... not that I think they'd do that but we've just been through one war, I think it's making me a little paranoid while I sit here in the most Hai place that there is."`
 			`	He shrugs. "Plus, they say they're ok, but it'd be nice for someone else on our side to check on them still. It will probably be a couple of weeks till I can track someone down for you. So, go check on that for me, and I'll let you know."`
 				accept
@@ -688,10 +689,11 @@ mission "Hai Reveal [A04] Report to Teeneep"
 	landing
 	name "Report to Teeneep"
 	description `Tell Teeneep about the experience with Scar's Legion.`
-	source Hai-home
+	source
+		not planet Darkwaste
 	destination Darkwaste
 	to offer
-		has "alondo symbol timer"
+		has "event: alondo symbol timer"
 		or
 			has "Hai Reveal: Pirate Troubles [4]: done"
 			has "Hai Reveal: Pirate Troubles [4]: declined"
@@ -709,7 +711,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	passengers 1
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste, you should return when your spare bunks are unoccupied.`
 	to offer
-		has "alondo symbol timer"
+		has "event: alondo symbol timer"
 		or
 			has "Hai Reveal [A04] Report to Teeneep: done"
 			has "Hai Reveal [A03b] Report to Teeneep: offered"
@@ -803,7 +805,7 @@ mission "Hai Reveal [A06a] The Calm"
 			`As soon as you disembark Teeneep slips off through an entirely different security checkpoint. She definitely shows them some sort of ID but you're some distance away by that point. A quick inquiry confirms that Alondo is actually around this time and you send him a message to alert him that you're heading his way.`
 			`	As you approach the office where Alondo seems to have been set up for the time being you can hear voices through the open door and you slow to a stop as you realize they sound agitated. "Look, Gruyere, you can't expect me to not organize some things around you when you're off being busy elsewhere. Regardless of whether it was your idea."`
 			`	You clearly identify Alondo when he responds, "I wouldn't blame you if you'd at least tried to contact me, or left a message, but it's just typical of how you operate."`
-			`	"You were eleven hours out of sync across timezones, it was four in the morning where you are, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since terry is now on Mountaintop and I am absent any assistance."`
+			`	"You were eleven hours out of sync across timezones, it was four in the morning where you are, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since Terry is now on Mountaintop and I am absent any assistance."`
 			`	"Sam, it's done, it's fine, the things that need to be happening are happening. I don't care, just stop expecting me to thank you for it. I'm not doing this again," says Alondo, exasperated.`
 			`	The man you now recognize as Remington pauses for a moment before speaking in a low tone. "Are you going to hold that one against me forever Gru?"`
 			`	"Don't call me Gru."`
@@ -859,10 +861,11 @@ mission "Hai Reveal [A06a] The Calm"
 		
 		
 mission "Hai Reveal [A07] Deliver the Relays"
+	# TODO: The relays should vanish from your cargo bay when deployed.
 	autosave
 	landing
 	name "Preparation & Investigation"
-	description `Stop by <planet> to pick up Batu Cegeen on your way to following up the lead from Alondo.`
+	description `Deploy relays in <waypoints>, and return the deployment hardware to <planet>.`
 	source Mountaintop
 	waypoint Sumar
 	waypoint Cardax
@@ -921,7 +924,8 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	Terry looks between you, "Glad you know who this is David. The Captain here is doing a lot to help us out, so please, make yourself acquainted. Don't keep them too long though, they've a job to do when they leave here." With that, she gives the both of you a parting nod and strides back into the chaos. Almost immediately a swarm of people with datapads seem to materialize from nowhere and pursue her.`
 			`	The man grins and shakes his head as she departs. "Remarkable woman. Anyway, the name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from his pocket and hands it to you. The card contains his contact information, an address on Martini, and makes sure to boast in golden letters his net worth of more than three billion credits.`
 			`	"You may not have heard of me, but I've sure as hell heard of you." Turner turns around and waves his arm across the crowd of people working away on the station concourse. "To be involved in funding and producing this movie though, what an adventure. You know I've paid for movies to be made, or at least partially invested in them, but I've never had to actually be there while it was happening. Quite remarkable."`
-			`<Turner takes a moment to enthuse about the movie and relay a brief synopsis to demonstrate how well the production is in fact going.>`
+			# TODO: replace this paragraph with real content:
+			`	Turner takes a moment to enthuse about the movie and relay a brief synopsis to demonstrate how well the production is in fact going.`
 			`	"Of course, there are the communication latency issues, and the dreadful matter of the black spot that is the route through Cardax. We really do need to get coverage of that properly if we're going to provide proper security to the tourists who seem intent on coming here now. Though, I hear that you might be working on that as we speak am I right?"`
 			choice
 				`	"Yes."`
@@ -930,7 +934,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	Turner smiles with a little twinkle in his eye.`
 			label yes
 			`	"Of course, the famous Captain <last> always has their finger on the pulse. Being right where they need to be. Good thing we got the advertising out there up in time hey?" He taps his nose and gives a shockingly conspicuous wink.`
-			`"Anyway, give me your details too just in case I need them, and I'll let you get to your business. Good luck out there." He checks your details into his pad and gives you a firm handshake before hurrying off towards people moving a very large prop. 'No, no, they said they wanted that on stage five! Stage five!'.`
+			`	"Anyway, give me your details too just in case I need them, and I'll let you get to your business. Good luck out there." He checks your details into his pad and gives you a firm handshake before hurrying off towards people moving a very large prop. 'No, no, they said they wanted that on stage five! Stage five!'.`
 			`	Time to drop off those relays and head to <planet>.`
 				accept
 	on enter Sumar
@@ -941,7 +945,8 @@ mission "Hai Reveal [A07] Deliver the Relays"
 		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
 	on enter Volax
 		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
-
+	on visit
+		dialog `To finish this mission, you must visit all four systems, and return the deployment hardware to <planet>. It may be in an escort that hasn't arrived.`
 
 
 mission "Hai Reveal [A08] Symbol Identification"
@@ -952,7 +957,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 	destination Hai-home
 	passengers 1
 	to offer
-		has "Hai Reveal [A07] Deliver the Relays: offered"
+		has "Hai Reveal [A07] Deliver the Relays: done"
 	on visit
 		dialog `Batu is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
@@ -962,7 +967,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organization. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
 		
 		conversation
-			`After landing, you search up the way to the adjunct research library at the navy intelligence observatory in Moscow. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours. For someone of your background there are parts of this trip that seem dizzyingly unreal. As well traveled as you now are, actually navigating the urban environments of <origin> away from any particular spaceport is an experience not quite like any other. Once you reach the building in question you take a moment at the reception desk to interpret 'room number: 3017A19' - the 301st floor, section 7A, room 19 - and get directions. It's amazing how large Earth's megabuildings have become. Some planets have smaller populations than the building you are standing in right now, and it is but one of hundreds you've seen on your short journey.`
+			`After landing, you search up the way to the adjunct research library at the Navy Intelligence Observatory in Moscow. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours. For someone of your background there are parts of this trip that seem dizzyingly unreal. As well traveled as you now are, actually navigating the urban environments of <origin> away from any particular spaceport is an experience not quite like any other. Once you reach the building in question you take a moment at the reception desk to interpret 'room number: 3017A19' - the 301st floor, section 7A, room 19 - and get directions. It's amazing how large Earth's megabuildings have become. Some planets have smaller populations than the building you are standing in right now, and it is but one of hundreds you've seen on your short journey.`
 			`	Reaching the room in question you knock on the door which has a nameplate that reads, 'Giti Gilani' with the title 'Research Librarian' in small print underneath. You are swiftly greeted by a short, energetic looking lady. She looks you up and down and nods. "Captain <last>, you're not as tall as I thought you'd be in person. Please, please come in."`
 			`	Clearly someone took the liberty of informing Giti of at least the basic information about what was being searched for, and that it was you doing so. Once the door is shut and locked though it becomes clear she is quite excited about this search as she gestures to a seat near her work desk and briefly tidies some of the more egregiously scattered research items. "Would you like a drink? Tea, coffee, vodka? I already have some notes on the cat symbol but I need to discuss some things with you. Do you have any more images?"`
 			choice
@@ -979,7 +984,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	"Oh excellent," she says, quickly pouring herself a coffee from the pot and practically skipping over to take her seat.`
 			label explain
 			`	"Well, you'll probably be disappointed with what I have so far," she begins, "but I'll start with what I have found and then you can show me any new pictures you have and we can see what I can do." She waits for you to indicate your understanding before she continues.`
-			`	So, this cat symbol was originally used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
+			`	"So, this cat symbol was originally used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
 			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
 			`	"Officially, the Syndicate maintains that they wiped Base Principles out to the last individual, but evidence never proved it had been conclusively terminated."`
 			choice
@@ -1097,7 +1102,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			label watch
 			`	The leader's voice booms from where he sits at the other end of the room. "Come False Hai. You have entered here to make a case, have at it."`
 			`	Teeneep explains to the leader, "Five thousand Hai have been enslaved by human pirates, or vaporised when the human authorities have shot down their captors with no regard for the innocents on board. The Elders do not act. Will not act. They know, and do nothing. I have learned that they have known of some pirates who they felt were too much of a headache for decades, and that rather than hunt them down, they have paid them with technology. Our weapons and technology. Paid them off to simply leave us alone, and not even to return any Hai they may have captured.`
-			`	"You were once the protectors of all Hai. I would honor that not out of political opportunism, but because our people need heroes and protectors that the Elders are not . So I stand here to ask you to be so again. Free our people from slavery and kill their human slavers."`
+			`	"You were once the protectors of all Hai. I would honor that not out of political opportunism, but because our people need heroes and protectors that the Elders are not. So I stand here to ask you to be so again. Free our people from slavery and kill their human slavers."`
 			`	The Unfettered leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you, a race of slothful cowards? Your people are willingly blind and lost, an insult to all Hai."`
 			`	Teeneep suddenly takes three strides forward, closing the distance between her and the Unfettered leader in less than a second. You had forgotten how quick Hai are; few humans could do what she just did. "I challenge you for rule of the Unfettered military!"`
 			`	"You haven't the authority to do that," he responds, laughing.`
@@ -1108,7 +1113,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			choice
 				`	(Walk to her.)`
 			`	"Captain <first> <last> led great fleets during a civil war of the humans. We will have the honor of fighting alongside this warrior of the humans."`
-			`	He looks at you appraisingly. "That is will, but there is a matter yet to be addressed. We cannot just waltz through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
+			`	He looks at you appraisingly. "That is well, but there is a matter yet to be addressed. We cannot just waltz through Hai and human space without being blasted. How will you convince your Elders to allow us passage?"`
 			`	"They will not allow it," says Teeneep. "We must force them."`
 			`	A round of muttering breaks out around the room.`
 			`	"The threat of true war then..." In the ensuing silence you swear you could have heard a pin drop.`
@@ -1269,7 +1274,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 mission "Hai Reveal [A13] A New Elder"
 	landing
 	name "A New Elder"
-	description "Travel with Teeneep and the diplomatic corps to <stopover> and escort the Unfettered to <planet>."
+	description "Travel with Teeneep and the diplomatic corps to <stopovers> and escort the Unfettered to <planet>."
 	source "Hai-home"
 	stopover "Everhope"
 	destination "Mountaintop"
@@ -1329,7 +1334,7 @@ mission "Hai Reveal [A13] A New Elder"
 			`	Her expression is deeply wounded, but she sets her resolve. "Then this is no longer a request. It's a requirement.`
 				goto end
 			label course
-			`	She looks relieved. "Thankyou, I really appreciate it.`
+			`	She looks relieved. "Thank you, I really appreciate it.`
 			label end
 			`	"I'll be along in a bit, I need to go and collect my things for traveling now too."`
 				accept
@@ -1372,7 +1377,7 @@ mission "Hai Reveal [A13-A] Unfettered Pickup"
 		has "Hai Reveal [A13] A New Elder: active"
 	npc
 		government "Hai (Friendly Unfettered)"
-		system "Ultima Thule"
+		system "Bote Asu"
 		personality escort heroic opportunistic
 		fleet "Large Friendly Unfettered" 7
 
