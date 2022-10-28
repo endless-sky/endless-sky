@@ -75,7 +75,7 @@ mission "Hai Rescue: Yeertle Hint"
 	to complete
 		has "Hai Rescue: Yeertle Family: offered"
 	to fail
-		not "Hai Leaks Response 6: active"
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Yeertle Family"
@@ -208,7 +208,7 @@ mission "Hai Rescue: Oonem Hint"
 	to complete
 		has "Hai Rescue: Ooonem: offered"
 	to fail
-		not "Hai Leaks Response 6: active"
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Ooonem"
@@ -434,7 +434,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 	to complete
 		has "Hai Rescue: Meroot and Lucy: offered"
 	to fail
-		not "Hai Leaks Response 6: active"
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Meroot and Lucy"
@@ -537,7 +537,7 @@ mission "Hai Rescue: Gipeep Hint"
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. One guy is bragging particularly odiously about some lucrative transport jobs he'd picked up on <planet>. Of course, it could mean nothing, but it's also very suspicious for that particular world. <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
 				accept
 	to fail
-		not "Hai Leaks Response 6: active"
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Gipeep"
