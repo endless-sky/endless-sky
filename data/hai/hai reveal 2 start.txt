@@ -434,7 +434,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 	to complete
 		has "Hai Rescue: Meroot and Lucy: offered"
 	to fail
-		not "Hai Leaks Response 6: active"
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Meroot and Lucy"
