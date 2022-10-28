@@ -13,13 +13,15 @@
 
 mission "Hai Reveal [B01] Information Blackout"
 	landing
-	invisible
 	name "Information Blackout"
 	description "Meet the Syndicate Security Captain at the spaceport on <origin> when you're ready."
 	source "Sunracer"
 	clearance
 	to offer
-		has "Hai Reveal [A14] A Time of Trouble: done"
+		has "Hai Reveal [A13] A New Elder: done"
+	to complete
+		has "Joint the Fleet and Invade Stormhold: offered"
+		not "Joint the Fleet and Invade Stormhold: active"
 	on offer
 		event "hai and human ships at wormhole"
 		conversation
@@ -85,8 +87,8 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 # THIS mission is designed to give you a spectacle. A little visual demonstration of what a real battle could potentially look and feel like with low stakes for you. It's a visual feast, not a challenge.
 mission "Hai Reveal [B02] Join the Fleet"
 	autosave
-	name "Invade Stormhold"
-	description "Join the fleet in orbit and move on Stormhold."
+	name "Joint the Fleet and Invade Stormhold"
+	description "The fleet will arrive in Moktar soon. Join it, and lead it to Stormhold."
 	deadline 9
 	# The minimum journey time is 7
 	source "Sunracer"
@@ -125,17 +127,17 @@ mission "Hai Reveal [B02] Join the Fleet"
 
 	npc
 		government "Republic"
-		system "Mirfak"
+		system "Rajak"
 		personality escort heroic opportunistic
 		fleet "Human Wormhole Guards" 20
 	npc
 		government "Hai"
-		system "Mirfak"
+		system "Rajak"
 		personality escort heroic opportunistic
 		fleet "Hai Wormhole Guards" 20
 	npc
 		government "Hai (Friendly Unfettered)"
-		system "Mirfak"
+		system "Rajak"
 		personality escort heroic opportunistic vindictive
 		fleet "Large Friendly Unfettered" 7
 	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
@@ -156,7 +158,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 	on accept
 		fail "Hai Reveal [B01] Information Blackout"
 		fail "Hai Reveal [A11-B] Permanent Fleets"
-	on enter "Mirfak"
+	on enter "Moktar"
 		dialog `You have reached the rendezvous and various fleets are arriving. You have never seen so many military vessels in one place. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone.`
 	on enter "Oblate"
 		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of Stormhold have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
@@ -380,7 +382,7 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 mission "Hai Reveal [B06-long] Tarazed Analysis"
 	landing
 	name "Seeking Aid"
-	description `Find and board a smugglers ship. Your display will identify such ships as belonging to the "Smuggler" government. Try Syndicate space or the Far North. Head to <planet> afterwards.`
+	description `Find and board a smugglers ship. Your display will identify them as the "Smuggler" government. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
 	source Wayfarer
 	destination Earth
 	clearance
@@ -388,6 +390,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 		has "Hai Reveal [B05-long] The Red Mystery: done"
 	to complete
 		has "Hai Reveal [B06-long] Boarded Smuggler: offered"
+		not "Hai Reveal [B06-long] Boarded Smuggler: active"
 	on visit
 		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
 	on offer
@@ -547,7 +550,7 @@ mission "Hai Reveal [B06-long A] Smuggler Ambush"
 	destination Earth
 	deadline 1
 	to offer
-		has "Hai Reveal [A05] Boarded Smuggler: offered"
+		has "Hai Reveal [B06-long] Boarded Smuggler: offered"
 	source
 		government "Smuggler (Hai Trafficker)"
 	on offer

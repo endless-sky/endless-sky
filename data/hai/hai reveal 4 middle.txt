@@ -864,7 +864,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 	autosave
 	landing
 	name "Preparation & Investigation"
-	description `Deploy relays in <waypoints>, and then pick up Batu Cegeen from <planet>.`
+	description `Deploy relays in <waypoints>, and return the deployment hardware to <planet>.`
 	source Mountaintop
 	waypoint Sumar
 	waypoint Cardax
@@ -944,7 +944,8 @@ mission "Hai Reveal [A07] Deliver the Relays"
 		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
 	on enter Volax
 		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
-
+	on visit
+		dialog `To finish this mission, you must visit all four systems, and return the deployment hardware to <planet>. It may be in an escort that hasn't arrived.`
 
 
 mission "Hai Reveal [A08] Symbol Identification"
@@ -955,7 +956,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 	destination Hai-home
 	passengers 1
 	to offer
-		has "Hai Reveal [A07] Deliver the Relays: offered"
+		has "Hai Reveal [A07] Deliver the Relays: done"
 	on visit
 		dialog `Batu is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
