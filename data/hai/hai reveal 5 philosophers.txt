@@ -903,6 +903,13 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		government "Republic"
 		personality timid escort opportunistic
 		ship "Auxiliary (Jump Transport)" "N.S. Braveheart"
+	npc
+		government "Republic"
+		personality timid escort opportunistic
+		fleet
+			fighters "republic fighter"
+			variant
+				ship "Dagger" 4
 	npc accompany
 		government "Free Worlds"
 		personality escort heroic opportunistic
