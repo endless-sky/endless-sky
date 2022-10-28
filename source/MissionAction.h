@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MISSION_ACTION_H_
@@ -57,12 +60,15 @@ public:
 	bool CanBeDone(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
-	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr, const bool isUnique = true) const;
+	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr,
+		const std::shared_ptr<Ship> &ship = nullptr, const bool isUnique = true) const;
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int64_t payload) const;
+	MissionAction Instantiate(std::map<std::string, std::string> &subs,
+		const System *origin, int jumps, int64_t payload) const;
 
+	int64_t Payment() const noexcept;
 
 private:
 	std::string trigger;
