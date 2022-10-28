@@ -6,296 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-fleet "Small Hai"
-	government "Hai"
-	names "hai"
-	cargo 3
-	personality
-		disables opportunistic
-	variant 3
-		"Water Bug"
-		"Lightning Bug (Pulse)" 2
-	variant 3
-		"Water Bug (Pulse)"
-		"Lightning Bug" 2
-	variant 1
-		"Water Bug"
-		"Water Bug (Pulse)"
-		"Lightning Bug"
-	variant 1
-		"Water Bug" 2
-		"Lightning Bug (Pulse)"
-	variant 3
-		"Lightning Bug" 2
-		"Aphid (Armed)" 3
-	variant 1
-		"Lightning Bug"
-		"Aphid (Armed)" 5
-	variant 2
-		"Lightning Bug (Pulse)" 2
-		"Aphid" 3
-	variant 2
-		"Lightning Bug (Pulse)"
-		"Aphid" 5
-	variant 1
-		"Lightning Bug" 3
-	variant 1
-		"Lightning Bug (Pulse)" 3
-	variant 1
-		"Lightning Bug (Pulse)"
-		"Lightning Bug" 2
-	variant 1
-		"Lightning Bug"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Centipede"
-	variant 3
-		"Aphid (Armed)" 3
-		"Centipede"
-	variant 1
-		"Centipede" 2
-		"Centipede (Pulse)" 3
-	variant 1
-		"Centipede" 2
-		"Lightning Bug" 2
-	variant 2
-		"Centipede" 2
-		"Water Bug"
-	variant 1
-		"Centipede"
-		"Lightning Bug" 2
-	variant 1
-		"Centipede"
-		"Aphid (Armed)" 5
-	variant 1
-		"Centipede" 2
-		"Lightning Bug" 2
-	variant 1
-		"Centipede" 2
-		"Lightning Bug"
-	variant 1
-		"Grasshopper" 3
-	variant 1
-		"Grasshopper"
-		"Centipede" 2
-	variant 1
-		"Grasshopper"
-		"Grasshopper (Tracker)"
-		"Centipede"
-	variant 1
-		"Lightning Bug" 2
-		"Grasshopper"
-		"Grasshopper (Tracker)"
-	variant 1
-		"Lightning Bug"
-		"Centipede (Pulse)"
-		"Grasshopper" 2
-
-fleet "Large Hai"
-	government "Hai"
-	names "hai"
-	cargo 3
-	personality
-		disables opportunistic
-	variant 2
-		"Shield Beetle"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Shield Beetle (Tracker)"
-		"Lightning Bug" 2
-	variant 1
-		"Shield Beetle"
-		"Lightning Bug (Pulse)"
-		"Aphid (Armed)" 4
-	variant 1
-		"Shield Beetle (Tracker)"
-		"Lightning Bug"
-		"Aphid" 4
-	variant 3
-		"Shield Beetle"
-		"Lightning Bug (Pulse)"
-		"Water Bug"
-		"Water Bug (Pulse)"
-	variant 3
-		"Shield Beetle"
-		"Water Bug"
-		"Water Bug (Pulse)"
-	variant 3
-		"Shield Beetle (Tracker)"
-		"Lightning Bug" 2
-		"Water Bug"
-	variant 3
-		"Shield Beetle (Tracker)"
-		"Water Bug" 3
-	variant 3
-		"Shield Beetle (Pulse)"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Shield Beetle (Pulse)"
-		"Shield Beetle"
-	variant 2
-		"Shield Beetle (Pulse)"
-		"Shield Beetle (Tracker)"
-	variant 1
-		"Shield Beetle (Pulse)"
-		"Shield Beetle"
-		"Lightning Bug (Pulse)" 2
-	variant 1
-		"Shield Beetle (Pulse)"
-		"Shield Beetle (Tracker)"
-		"Lightning Bug" 2
-	variant 1
-		"Shield Beetle (Tracker)"
-		"Centipede" 3
-	variant 2
-		"Water Bug" 3
-		"Centipede" 2
-	variant 1
-		"Centipede" 3
-		"Centipede (Pulse)" 2
-	variant 3
-		"Centipede" 2
-		"Lightning Bug" 3
-		"Water Bug"
-	variant 2
-		"Aphid (Armed)" 2
-		"Lightning Bug"
-		"Centipede"
-	variant 2
-		"Centipede"
-		"Shield Beetle (Pulse)" 2
-		"Shield Beetle (Tracker)"
-	variant 1
-		"Centipede" 2
-		"Lightning Bug" 2
-		"Aphid (Armed)" 3
-	variant 1
-		"Geocoris"
-		"Shield Beetle (Pulse)"
-		"Shield Beetle (Tracker)"
-	variant 1
-		"Geocoris"
-		"Shield Beetle (Pulse)"
-		"Grasshopper"
-		"Grasshopper (Tracker)"
-	variant 1
-		"Geocoris"
-		"Shield Beetle (Pulse)"
-		"Grasshopper"
-		"Grasshopper (Tracker)"
-	variant 1
-		"Geocoris (Tracker)"
-		"Shield Beetle"
-		"Aphid" 2
-		"Aphid (Armed)"
-	variant 1
-		"Centipede"
-		"Geocoris (Tracker)"
-		"Lightning Bug"
-		"Water Bug"
-		"Grasshopper (Tracker)"
-
-fleet "Hai Surveillance"
-	government "Hai"
-	names "hai"
-	cargo 0
-	personality
-		surveillance unconstrained
-	variant 10
-		"Shield Beetle (Police)"
-	variant 5
-		"Lightning Bug (Surveillance)"
-	variant 5
-		"Lightning Bug (Surveillance)" 2
-	variant 5
-		"Lightning Bug (Surveillance)" 3
-	variant 3
-		"Grasshopper (Surveillance)" 3
-	variant 3
-		"Grasshopper (Surveillance)" 4
-	variant 3
-		"Grasshopper (Surveillance)" 5
-
-
-fleet "Small Unfettered"
-	government "Hai (Unfettered)"
-	names "hai"
-	cargo 1
-	personality
-		disables
-		plunders
-	variant 3
-		"Lightning Bug (Pulse)" 2
-	variant 3
-		"Lightning Bug" 2
-	variant
-		"Lightning Bug"
-	variant
-		"Lightning Bug (Pulse)"
-
-fleet "Large Unfettered"
-	government "Hai (Unfettered)"
-	names "hai"
-	cargo 1
-	personality
-		disables
-		plunders
-	variant 2
-		"Shield Beetle"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Shield Beetle (Tracker)"
-		"Lightning Bug" 2
-	variant 1
-		"Shield Beetle"
-		"Lightning Bug (Pulse)"
-	variant 1
-		"Shield Beetle (Tracker)"
-		"Lightning Bug"
-	variant 3
-		"Shield Beetle (Tracker)"
-		"Shield Beetle"
-	variant 1
-		"Shield Beetle (Tracker)" 2
-	variant 1
-		"Shield Beetle" 2
-	variant 1
-		"Lightning Bug" 5
-	variant 3
-		"Shield Beetle (Pulse)"
-		"Lightning Bug (Pulse)" 2
-	variant 2
-		"Shield Beetle (Pulse)"
-		"Shield Beetle"
-	variant 2
-		"Shield Beetle (Pulse)"
-		"Shield Beetle (Tracker)"
-	variant
-		"Shield Beetle (Pulse)"
-		"Shield Beetle"
-		"Lightning Bug (Pulse)" 2
-	variant
-		"Shield Beetle (Pulse)"
-		"Shield Beetle (Tracker)"
-		"Lightning Bug" 2
-
-fleet "Unfettered Raid"
-	government "Hai (Unfettered)"
-	names "hai"
-	cargo 1
-	personality
-		disables
-		plunders
-	variant
-		"Shield Beetle (Jump)" 3
-	variant
-		"Shield Beetle (Jump)" 2
-		"Shield Beetle (Jump, Tracker)" 1
-	variant
-		"Shield Beetle (Jump)" 1
-		"Shield Beetle (Jump, Tracker)" 2
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 shipyard "Hai Basics"
 	"Aphid"
@@ -333,6 +47,7 @@ outfitter "Hai Basics"
 	"Small Bunk Room"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
 	"Local Map"
@@ -361,10 +76,13 @@ outfitter "Hai Intermediate"
 	"Bunk Room"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
+	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
 	`"Benga" Atomic Steering`
+	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	"Local Map"
@@ -401,10 +119,13 @@ outfitter "Hai Advanced"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
+	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
 	`"Benga" Atomic Steering`
+	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	`"Bondir" Atomic Thruster`
@@ -418,6 +139,23 @@ outfitter "Hai Advanced"
 	"Outfit Scanner"
 	"Cargo Scanner"
 	"Sand Cell"
+
+outfitter "Hai Security"
+	"Hai Tracker"
+	"Hai Tracker Pod"
+	"Tracker Storage Pod"
+	"Bullfrog Anti-Missile"
+	"Chameleon Anti-Missile"
+	"Hai Corundum Regenerator"
+	"Hai Diamond Regenerator"
+	"Supercapacitor"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
+	"Quantum Keystone"
+	"Pulse Rifle"
 
 shipyard "Unfettered Basics"
 	"Lightning Bug"
@@ -443,14 +181,19 @@ outfitter "Unfettered Basics"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
+# For ships, stations, or corporations.
 phrase "hai"
 	word
+		"Yeer"
+		"Wah'"
 		"Du"
 		"Mon"
 		"Luf"
 		"Vai"
 		"Woh"
 		"Far"
+		"Yoot"
+		"Imo"
 	word
 		" "
 		" "
@@ -461,6 +204,7 @@ phrase "hai"
 		" Sook "
 		" Woa "
 		" Ood "
+		" Loo "
 	word
 		"Loh"
 		"Eh"
@@ -469,6 +213,113 @@ phrase "hai"
 		"Lur"
 		"Sen"
 		"Bin"
+		"Bah"
+		"Ki"
+		"Blep"
+		"Tee"
+		"Say"
+		"Hiya"
+		"Choo"
+		"Gip"
+		"Oo"
+		"Mer"
+		"Ki"
+		"Tou"
+
+phrase "hai first names"
+	word
+		"Tee"
+		"Say"
+		"Hiya"
+		"Choo"
+		"Gip"
+		"Oo"
+		"Mer"
+		"Ki"
+		"Tou"
+		"Cor"
+		"Yo"
+		"Sook"
+		"Woa"
+		"Loh"
+		"Eh"
+		"Ow"
+		"Hey"
+		"Lur"
+		"Sen"
+		"Bin"
+		"Na"
+		"Ya"
+		"Os"
+		"Gem"
+		"Mis"
+		"Ey"
+		"Ra"
+		"Des"
+	word
+		"neep"
+		"ari"
+		"mah"
+		"t'k"
+		"eep"
+		"nem"
+		"oot"
+		"ru"
+		"har"
+		"na"
+		"shi"
+		"en"
+		"ana"
+		"ama"
+		"heep"
+		"kei"
+		"yo"
+	word
+		"" 9
+		"aru"
+		"ow"
+		"hey"
+		"lur"
+		"sen"
+		"bin"
+		"chi"
+		"li"
+		"ri"
+
+phrase "hai last names"
+	word
+		"Yeer"
+		"Wah'"
+		"Du'"
+		"Mon"
+		"Luf"
+		"Vai'"
+		"Woh'"
+		"Far"
+		"Yoot"
+		"Imo'"
+	word
+		"tle"
+		"uden"
+		"aru"
+		"ow"
+		"hey"
+		"lur"
+		"sen"
+		"bin"
+		"chi"
+		"li"
+		"ri"
+
+phrase "unfettered chosen names"
+	word
+		"He"
+		"Si"
+	word
+		"-"
+	word
+		"Yi"
+		"Ra"
 
 phrase "friendly hai"
 	word
@@ -768,19 +619,22 @@ phrase "hostile unfettered"
 		"Peace"
 		"Peacefulness"
 		"Nonviolence"
-		"Understanding"
-		"Reconciliation"
+		"Humility"
+		"Agreeableness"
 		"Harmony"
-		"Concord"
-		"Cooperation"
-		"Love"
-		"Tenderness"
-		"Compassion"
-		"Friendship"
-		"Amity"
-		"Empathy"
-		"Care"
-		"Kindness"
+		"Meekness"
+		"Docility"
+		"Submission"
+		"Modesty"
+		"Diffidence"
+		"Stoicism"
+		"Patience"
+		"Resignation"
+		"Forbearance"
+		"Fatalism"
+		"Pacifism"
+		"Passivity"
+		"Apathy"
 	word
 		" is for the "
 	word
@@ -788,6 +642,10 @@ phrase "hostile unfettered"
 		"frail"
 		"pathetic"
 		"weak"
+		"impure"
+		"deluded"
+		"misguided"
+		"confused"
 	word
 		"; we are the "
 		"! We are the "

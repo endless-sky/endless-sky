@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MapPanel.h"
@@ -44,6 +47,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "opengl.h"
@@ -101,8 +105,11 @@ namespace {
 			// Get the system in which the planet storage is located.
 			const Planet *planet = hold.first;
 			const System *system = planet->GetSystem();
+			// Skip outfits stored on planets without a system.
+			if(!system)
+				continue;
 
-			for(const auto &outfit: hold.second.Outfits())
+			for(const auto &outfit : hold.second.Outfits())
 				// Only count a system if it actually stores outfits.
 				if(outfit.second)
 					locations[system].outfits[planet] += outfit.second;
@@ -210,14 +217,15 @@ void MapPanel::Draw()
 		FogShader::Draw(center, Zoom(), player);
 
 	// Draw the "visible range" circle around your current location.
-	Color dimColor(.1f, 0.f);
+	const Color &viewRangeColor = *GameData::Colors().Get("map view range color");
 	RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+		System::DEFAULT_NEIGHBOR_DISTANCE * Zoom(), 2.0f, 1.0f, viewRangeColor);
 	// Draw the jump range circle around your current location if it is different than the
 	// visible range.
+	const Color &jumpRangeColor = *GameData::Colors().Get("map jump range color");
 	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
 		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
+			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), jumpRangeColor);
 
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
@@ -436,7 +444,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 'f')
 	{
 		GetUI()->Push(new Dialog(
-			this, &MapPanel::Find, "Search for:"));
+			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
@@ -948,7 +956,6 @@ void MapPanel::DrawTravelPlan()
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
-		bool systemJumpRange = previous->JumpRange() > 0.;
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
@@ -960,14 +967,13 @@ void MapPanel::DrawTravelPlan()
 		if(!isHyper && !isJump && !isWormhole)
 			break;
 
-		double jumpDistance = previous->Position().Distance(next->Position());
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = isJump ? it.first->JumpDriveFuel(systemJumpRange ? 0. : jumpDistance) : it.first->HyperdriveFuel();
+					double cost = it.first->GetCheapestJumpType(previous, next).second;
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;

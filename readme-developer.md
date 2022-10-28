@@ -68,7 +68,7 @@ MinGW provides the tools used to compile the source code into the game's executa
 - Threads: `posix`
 - Exception: `seh`
 
-Endless Sky requires precompiled libraries to compile and play: [Download link](http://endless-sky.github.io/win64-dev.zip)
+Endless Sky requires precompiled libraries to compile and play: [Download link](https://endless-sky.github.io/win64-dev.zip)
 
 The zip can be extracted anywhere on your filesystem; to minimize additional configuration, you can move the `dev64` folder to `C:\`.
 
@@ -77,7 +77,7 @@ The zip can be extracted anywhere on your filesystem; to minimize additional con
 
 If you want to build the game from the command line via Scons, you will need [Python 3.8 or later](https://www.python.org/downloads/). When installing, be sure to select the "Add to PATH" checkbox.
 
-Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, to to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
+Afterwards, you will need to add your MinGW installation to your path manually. To do so on Windows 10, go to **Settings** > **System** > **About** > **System info** or **Related Settings** > **Advanced system settings** > **Environment Variables**. From each, select **Path** under System variables, and click Edit.
 
 If you used the defaults for MinGW up to this point, add "New" and enter the following in separate entries:
 
@@ -116,22 +116,9 @@ Refer to the build pipeline files under `.github\` to tailor the build process t
 
 ### Running the Game
 
-For Endless Sky to run on Windows, it needs various .dll files included in the base directory. Go to `C:\dev64\bin\`, and copy the files to your base directory. These should include:
+For Endless Sky to run on Windows, it needs various .dll files included in the base directory. Go to `C:\dev64\bin\`, and copy every file to your base directory.
 
-  - glew32.dll
-  - **libgcc_s_seh-1.dll**
-  - libjpeg-62.dll
-  - libmad-0.dll
-  - libpng15-15.dll
-  - **libstdc++-6.dll**
-  - libturbojpeg.dll
-  - libwinpthread-1.dll
-  - OpenAL32.dll
-  - SDL2.dll
-  - soft_oal.dll
-  - zlib1.dll
-
-**After** you have copied all those libraries, take note of the **bolded** libraries. Those will need to be included from your MinGW installation, instead of from the precompiled ones. By default, you can go to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, and copy those libraries to your Endless Sky directory to overwrite the current ones.
+**After** you have copied all those libraries, you will need additional libraries from your MinGW installation: libstdc++-6.dll, libwinpthread-1.dll, libgcc_s_seh-1.dll. By default, you can go to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, and copy those libraries to your Endless Sky directory to overwrite the current ones.
 
 Once all the libraries in place, the game is ready to run! You have three options depending on how you built it:
 
@@ -145,7 +132,7 @@ Once all the libraries in place, the game is ready to run! You have three option
 
 To build Endless Sky with native tools, you will first need to download Xcode from the App Store.
 
-Next, install [Homebrew](http://brew.sh). Once it is installed, use it to install the libraries you will need:
+Next, install [Homebrew](https://brew.sh). Once it is installed, use it to install the libraries you will need:
 
 ```
   $ brew install libmad libpng jpeg-turbo
