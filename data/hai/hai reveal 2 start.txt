@@ -75,7 +75,7 @@ mission "Hai Rescue: Yeertle Hint"
 	to complete
 		has "Hai Rescue: Yeertle Family: offered"
 	to fail
-		not "Hai Leaks Response 6: active"
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Yeertle Family"
