@@ -2168,6 +2168,7 @@ mission "Colonists [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
@@ -2191,6 +2192,7 @@ mission "Colonists [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
@@ -2214,8 +2216,9 @@ mission "Stranded Field Trip"
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 4 16
 		attributes "near earth" "deep" "paradise" "urban"
+		not attributes "station" "urban"
+		distance 4 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -2859,7 +2862,7 @@ mission "Bounty Hunting (Big)"
 
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
-	description "A medium pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> is posing as a merchant ship near the <system> system. Find a merchant ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
@@ -2907,7 +2910,7 @@ mission "Bounty Hunting (Small, Hidden)"
 
 mission "Bounty Hunting (Medium, Hidden)"
 	name "Disguised pirate near <system>"
-	description "A sizable pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> is posing as a merchant ship near the <system> system. Find a merchant ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
@@ -2949,7 +2952,7 @@ mission "Bounty Hunting (Medium, Hidden)"
 
 mission "Bounty Hunting (Big, Hidden)"
 	name "Disguised warlord near <system>"
-	description "A heavy warship known as the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A heavy warship known as the <npc> is posing as a merchant ship near the <system> system. Find a merchant ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
