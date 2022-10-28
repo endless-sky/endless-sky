@@ -1333,7 +1333,7 @@ mission "Hai Reveal [A13] A New Elder"
 			`	Her expression is deeply wounded, but she sets her resolve. "Then this is no longer a request. It's a requirement.`
 				goto end
 			label course
-			`	She looks relieved. "Thankyou, I really appreciate it.`
+			`	She looks relieved. "Thank you, I really appreciate it.`
 			label end
 			`	"I'll be along in a bit, I need to go and collect my things for traveling now too."`
 				accept

@@ -674,7 +674,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 				`	(Share all your data except for the cadmium poisoning.)`
 			action
 				set "syndicate learns of alien tech anyway"
-			`	Director Moray looks through some of the data you share while you summarize the key points. "Thankyou very much, we will have our experts go over this promptly."`
+			`	Director Moray looks through some of the data you share while you summarize the key points. "Thank you very much, we will have our experts go over this promptly."`
 			label mission
 			`	With your explanation finished seems to straighten in preparation for something. "Well, I have some leads to follow up. Someone has an extensive array of contacts, possibly very close to home within the Syndicate - perhaps even executives, but for certain at least a department head somewhere. This is too much to be entirely independent. I can say for sure though that they're definitely doing this without the permission of the Syndicate proper.`
 			`	"The Hai have insisted they be involved in any solution should we find anywhere that could have captured Hai. Which means I will have to send you back to them soon, but before that I need information. We both need information, but my due diligence demands I ensure you are properly equipped to retrieve what I need also. Take Giti and the scanning equipment I am now loading onto your ship. I also recommend having a ramscoop for safety. Investigate the systems and bring her back here, after that you'll have to go back to the Hai without her."`
