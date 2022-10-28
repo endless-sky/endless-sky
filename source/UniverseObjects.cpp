@@ -450,8 +450,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 				{
 					bool passengers = false;
 					bool crew = false;
-					passengers = child.Size() >= 3 ? child.Token(2) == "passengers" || child.Token(1) == "passengers" : child.Size() >= 2 ? child.Token(1) == "passengers";
-					crew = child.Size() >= 3 ? child.Token(2) == "crew" || child.Token(1) == "crew" : child.Size() >= 2 ? child.Token(1) == "crew";
+					passengers = child.Size() >= 3 ? child.Token(2) == "passengers" || child.Token(1) == "passengers" : child.Size() >= 2 ? child.Token(1) == "passengers" : false;
+					crew = child.Size() >= 3 ? child.Token(2) == "crew" || child.Token(1) == "crew" : child.Size() >= 2 ? child.Token(1) == "crew" : false;
 					bunkTypes[child.Token(0)] = BunkType(child.Token(0), crew, passengers);
 				}
 			}
