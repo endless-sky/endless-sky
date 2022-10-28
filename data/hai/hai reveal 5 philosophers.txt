@@ -909,7 +909,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		fleet
 			fighters "republic fighter"
 			variant
-				ship "Dagger" 4
+				"Dagger" 4
+				"Combat Drone" 4
 	npc accompany
 		government "Free Worlds"
 		personality escort heroic opportunistic
