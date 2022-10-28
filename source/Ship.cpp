@@ -2777,6 +2777,13 @@ bool Ship::IsLanding() const
 
 
 
+bool Ship::IsFleeing() const
+{
+	return isFleeing;
+}
+
+
+
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
@@ -4009,6 +4016,13 @@ shared_ptr<Minable> Ship::GetTargetAsteroid() const
 shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 {
 	return targetFlotsam.lock();
+}
+
+
+
+void Ship::SetFleeing(bool fleeing)
+{
+	isFleeing = fleeing;
 }
 
 
