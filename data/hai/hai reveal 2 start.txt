@@ -208,7 +208,7 @@ mission "Hai Rescue: Oonem Hint"
 	to complete
 		has "Hai Rescue: Ooonem: offered"
 	to fail
-		not "Hai Leaks Response 6: active"
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Ooonem"
