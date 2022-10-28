@@ -912,8 +912,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 event "Elenchus can be dominated"
 	planet "Elenchus"
 		tribute 7000
-			threshold 3000
-			fleet "Devil-Run Warships" 5
+			threshold 2400
+			fleet "Devil-Run Warships" 4
 
 
 # This allows the mission to preserve the correct number of Unfettered support ships - if one dies it will stay dead:
