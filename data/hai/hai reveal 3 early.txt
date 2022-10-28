@@ -323,7 +323,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 				`	"How do you know all this?"`
 				`	"How do we make them less alien?"`
 					goto lessalien
-			`	Terry raises an eyebrow at you, "The Oracle may have been an AI supercomputer that could predict the economic situation across the whole of human habited space up to fifteen years in the future, but it was still dependent on an incredibly developed data gathering, reporting, and collation infrastructure. With or without it, the Syndicate knows data. How else do you think we're so profitable?"`
+			`	Terry raises an eyebrow at you, "The Oracle may have been an AI supercomputer that could predict the economic situation across the whole of human-inhabited space up to fifteen years in the future, but it was still dependent on an incredibly developed data gathering, reporting, and collation infrastructure. With or without it, the Syndicate knows data. How else do you think we're so profitable?"`
 			`	When she puts it that way, it does suddenly feel like a bit of a stupid question.`
 			`	"As it turns out, that infrastructure is predicting that the Syndicate stands to lose billions of credits, per day, for the duration of any crisis evolving from this which involves the uncontrolled release of the Hai secret; however, we have a plan."`
 				goto plan
