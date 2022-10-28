@@ -160,7 +160,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 		fail "Hai Reveal [B01] Information Blackout"
 		fail "Hai Reveal [A11-B] Permanent Fleets"
 	on enter "Moktar"
-		dialog `You have reached the rendezvous and various fleets are arriving. You have never seen so many military vessels in one place. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone.`
+		dialog `You have reached the rendezvous and various fleets are arriving. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone. You have never seen so many military vessels in one place.`
 	on enter "Oblate"
 		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of Stormhold have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
 	on complete
