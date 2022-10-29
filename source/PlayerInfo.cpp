@@ -2708,8 +2708,8 @@ void PlayerInfo::RegisterDerivedConditions()
 				count += flagship->OutfitCount(&outfit.second);
 		return count;
 	};
-	outfitTagProvider.SetHasFunction(flagshipModelFun);
-	outfitTagProvider.SetGetFunction(flagshipModelFun);
+	outfitTagProvider.SetHasFunction(outfitTagFun);
+	outfitTagProvider.SetGetFunction(outfitTagFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
