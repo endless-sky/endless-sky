@@ -43,7 +43,7 @@ mission "Hai Reveal: Reputation Reset"
 		"reputation: Human Alliance" = 1000
 		"reputation: Hai (Friendly Unfettered)" = 1000
 		"reputation: Bounty Hunter that Attacks Hai" = -1000
-		"reputation: Philosophers" = 1000
+		"reputation: Elenctic Commune" = 1000
 		"reputation: Pirate (Devil-Run Gang)" = -1000
 		fail
 
@@ -1031,7 +1031,7 @@ mission "Hai Leaks Response 6"
 			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
 			label mean
 			choice
-				`	"Thankyou, I will."`
+				`	"Thank you, I will."`
 					accept
 				`	"What does it mean?"`
 			`	She winks at you. "It would be much less effective if I told you."`
