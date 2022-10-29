@@ -2836,9 +2836,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks all sources of outfits which are present with the player.
-	// If in orbit, this means checking all ships in-system for installed and in cargo outfits, as
-	// well as the storage for any in-system planets. If landed, this means checking all landed
-	// ships for installed outfits, the pooled cargo hold, and the planetary storage of the planet.
+	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
+	// If landed, this means checking all landed ships for installed outfits, the pooled cargo
+	// hold, and the planetary storage of the planet.
 	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit: ");
 	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -2852,15 +2852,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			auto it = planetaryStorage.find(planet);
 			if(it != planetaryStorage.end())
 				retVal += it->second.Get(outfit);
-		}
-		else
-		{
-			for(const StellarObject &object : system->Objects())
-			{
-				auto it = planetaryStorage.find(object.GetPlanet());
-				if(object.HasValidPlanet() && it != planetaryStorage.end())
-					retVal += it->second.Get(outfit);
-			}
 		}
 		for(const shared_ptr<Ship> &ship : ships)
 		{
