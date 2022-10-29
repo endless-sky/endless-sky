@@ -25,6 +25,7 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
+		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
 		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
@@ -256,6 +257,8 @@
 		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
+		938E07E0235970CE00DC2C2B /* FormationPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPattern.cpp; path = source/FormationPattern.cpp; sourceTree = "<group>"; };
+		938E07E1235970CE00DC2C2B /* FormationPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPattern.h; path = source/FormationPattern.h; sourceTree = "<group>"; };
 		6833448DAEB9861D28445DD5 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameAction.h; path = source/GameAction.h; sourceTree = "<group>"; };
 		6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextReplacements.cpp; path = source/TextReplacements.cpp; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
@@ -661,6 +664,8 @@
 				A968630F1AE6FD0B004FE1FE /* FontSet.h */,
 				A96863101AE6FD0B004FE1FE /* Format.cpp */,
 				A96863111AE6FD0B004FE1FE /* Format.h */,
+				938E07E0235970CE00DC2C2B /* FormationPattern.cpp */,
+				938E07E1235970CE00DC2C2B /* FormationPattern.h */,
 				A96863121AE6FD0B004FE1FE /* FrameTimer.cpp */,
 				A96863131AE6FD0B004FE1FE /* FrameTimer.h */,
 				A96863141AE6FD0B004FE1FE /* Galaxy.cpp */,
@@ -1159,6 +1164,7 @@
 				B590161321ED4A0F00799178 /* Utf8.cpp in Sources */,
 				A96863D41AE6FD0E004FE1FE /* Mask.cpp in Sources */,
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
+				938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
 				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
 				B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */,
