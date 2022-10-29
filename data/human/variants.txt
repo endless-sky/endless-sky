@@ -762,7 +762,7 @@ ship "Clipper" "Clipper (Hai Trafficker)"
 
 
 
-ship "Combat Drone" Combat Drone (Sidewinder Missiles)"
+ship "Combat Drone" "Combat Drone (Sidewinder Missiles)"
 	outfits
 		"Sidewinder Missile" 50
 		"Sidewinder Missile Pod"
