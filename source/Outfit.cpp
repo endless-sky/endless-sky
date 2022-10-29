@@ -109,6 +109,7 @@ namespace {
 		{"discharge resistance energy", 0.},
 		{"discharge resistance fuel", 0.},
 		{"discharge resistance heat", 0.},
+		{"drag reduction", -0.99},
 		{"corrosion resistance energy", 0.},
 		{"corrosion resistance fuel", 0.},
 		{"corrosion resistance heat", 0.},
