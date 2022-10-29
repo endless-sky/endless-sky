@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 person "Michael Zahniser"
 	government "Author"
@@ -227,8 +230,8 @@ ship "Marauder Fury"
 		"heat dissipation" .85
 		"fuel capacity" 500
 		"cargo space" 15
-		"outfit space" 240
-		"weapon capacity" 80
+		"outfit space" 256
+		"weapon capacity" 96
 		"engine capacity" 100
 		"ramscoop" 2
 		weapon

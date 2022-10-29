@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "HailPanel.h"
@@ -72,15 +75,15 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
-		if(!flagship->JumpsRemaining() || flagship->IsDisabled())
+		if(flagship->NeedsFuel(false) || flagship->IsDisabled())
 			message = "Sorry, we can't help you, because our ship is disabled.";
 	}
 	else
 	{
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
-		// Check if the player is in need of fuel to jump away.
-		if(!flagship->JumpsRemaining() && flagship->JumpFuelMissing())
+		// Check if the player is out of fuel.
+		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
 			canGiveFuel = ship->CanRefuel(*flagship);
