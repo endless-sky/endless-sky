@@ -46,5 +46,8 @@ This save file can be used to verify the bugfix. The bug will occur when using {
 ## Testing Done
 {{describe how you tested the new feature}}
 
+### Automated tests added
+{{describe which automated tests you added (using the unit-test framework, integration-test framework or otherwise) to reduce the risk of regressions in the future}}
+
 ## Performance Impact
 {{describe any performance impact (positive or negative). "N/A" if no performance-critical code is changed. }}
