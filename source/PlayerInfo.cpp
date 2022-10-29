@@ -2765,20 +2765,47 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	salaryIncomeProvider.SetHasFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
-	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool { accounts.SetSalaryIncome(name, value); return true; });
-	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool { accounts.SetSalaryIncome(name, 0); return true; });
+	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
+	{
+		accounts.SetSalaryIncome(name, value);
+		return true;
+	});
+	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
+	{
+		 accounts.SetSalaryIncome(name, 0);
+		 return true;
+	});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
-	tributeProvider.SetHasFunction([this](const string &name) -> bool { return GetTributeForPlanet(name); });
-	tributeProvider.SetGetFunction([this](const string &name) -> int64_t { return GetTributeForPlanet(name); });
-	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool { return SetTribute(name, value); });
-	tributeProvider.SetEraseFunction([this](const string &name) -> bool	{ return SetTribute(name, 0); });
+	tributeProvider.SetHasFunction([this](const string &name) -> bool {
+		return GetTributeForPlanet(name); });
+	tributeProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return GetTributeForPlanet(name); });
+	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
+		return SetTribute(name, value); });
+	tributeProvider.SetEraseFunction([this](const string &name) -> bool	{
+		return SetTribute(name, 0); });
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
-	licenseProvider.SetHasFunction([this](const string &name) -> bool { return licenses.count(name); });
-	licenseProvider.SetGetFunction([this](const string &name) -> int64_t { return licenses.count(name); });
-	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool { if(!value) licenses.erase(name); else licenses.insert(name); return true; });
-	licenseProvider.SetEraseFunction([this](const string &name) -> bool	{ licenses.erase(name); return true; });
+	licenseProvider.SetHasFunction([this](const string &name) -> bool {
+		return licenses.count(name); });
+	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return licenses.count(name); });
+
+	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
+	{
+		if(!value)
+			licenses.erase(name);
+		else
+			licenses.insert(name);
+		return true;
+	});
+
+	licenseProvider.SetEraseFunction([this](const string &name) -> bool
+	{
+		licenses.erase(name);
+		return true;
+	});
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
