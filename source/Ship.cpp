@@ -3361,29 +3361,13 @@ double Ship::JumpFuelMissing() const
 // Get the heat level at idle.
 double Ship::IdleHeat() const
 {
-	/*
-	// This ship's cooling ability:
-	double coolingEfficiency = CoolingEfficiency();
-	double cooling = coolingEfficiency * attributes.Get("cooling");
-	double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-
-	// Idle heat is the heat level where:
-	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
-	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
-	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
-	double production = max(0., attributes.Get("heat generation") - cooling);
-	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
-	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
-	return production / dissipation;
-	*/
-
 	// The Secant Method, closely related to Newton's Method,
 	// is a robust approximation, approaching the zero of any curve
 	// quickly and cheaply. It does not provide infinite accuracy,
 	// but in exchange it is trivial to add more functionality to
-	// the curve it is approximating a zero of.
+	// the curve it is approximating a root of.
 	// To do so- implement your heat change in ship::DoGeneration()
-	// and then add the same change to Ship::NetIdleHeatAt().
+	// and then add the same change to Ship::NetIdleHeatAt() below.
 
 	int attempts = 10;
 	double firstGuess = 0.;
@@ -3395,7 +3379,6 @@ double Ship::IdleHeat() const
 	double middlingGuess;
 	double middlingOutput;
 
-	// Guard clause, to catch weird cases.
 	if(firstGuess == secondGuess || firstOutput <= secondOutput)
 		return secondOutput > 0. ? numeric_limits<double>::max() : 0;
 
@@ -3419,11 +3402,11 @@ double Ship::IdleHeat() const
 
 
 // Get the net heat production at a certain number of heat units (not temperature).
-// If you have a % of maximum heat, multiply that by Ship::MaximumHeat() first.
 double Ship::NetIdleHeatAt(double heatLevel) const
 {
-	// Combine heat generation and cooling.
 	double coolingEfficiency = CoolingEfficiency();
+
+	// Combine heat generation and cooling.
 	double generation = attributes.Get("heat generation")
 			+ attributes.Get("solar heat")
 			+ attributes.Get("fuel heat")
