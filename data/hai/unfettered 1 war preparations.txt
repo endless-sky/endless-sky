@@ -52,51 +52,6 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 
 
 
-outfit "Alpha Pirate Crew"
-	category "Hand to Hand"
-	thumbnail "outfit/unknown"
-	"crew attack" -45
-	"crew defense" -45
-	"unplunderable" 1
-	description "This ship is mostly manned by pirates and not actual Alphas, though they do lead them."
-	description "You need to land on the Alpha base in the Host system, with this outfit and the Auxiliary."
-
-ship "Auxiliary" "Auxiliary (Alpha)"
-	sprite "ship/auxiliaryc"
-	thumbnail "thumbnail/auxiliaryc"
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Korath Disruptor"
-		"Korath Slicer Turret"
-		"Bullfrog Anti-Missile" 2
-
-		"Double Plasma Core"
-		"Systems Core (Large)" 2
-		"Large Heat Shunt" 2
-		"Wanderer Ramscoop"
-		"Fuel Processor"
-		"Fuel Pod" 5
-		"Alpha Pirate Crew"
-		"Brig"
-		"Laser Rifle" 20
-
-		`"Bufaer" Atomic Thruster`
-		"Steering (Planetary Class)"
-		"Jump Drive"
-	add attributes
-		"bunks" -112
-		"cargo space" 200
-	gun -12 -180 "Hai Tracker Pod"
-	gun 12 -180 "Hai Tracker Pod"
-	turret 0 -72 "Bullfrog Anti-Missile"
-	turret 0 -21 "Korath Disruptor"
-	turret 0 31 "Korath Slicer Turret"
-	turret 0 83 "Bullfrog Anti-Missile"
-	bay "Fighter" 0 -72
-	bay "Fighter" 0 -20
-	bay "Fighter" 0 32
-	bay "Fighter" 0 83
 
 ship "Far Osk 27" "Far Osk 27 (Hacked)"
 	add attributes
@@ -171,10 +126,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying vindictive target
-		ship "Auxiliary (Alpha)" "Settler"
+		ship "Alpha Auxiliary" "Settler"
 		conversation
-			action
-				set "unfettered: capped auxiliary"
 			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of mercenaries. There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
 		government "Alpha"
@@ -205,6 +158,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		dialog `You have landed, but without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have!`
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
+		has "flagship model: Alpha Auxiliary"
 	on complete
 		outfit "Alpha Pirate Crew" -1
 		outfit "Jump Drive" -10
@@ -278,7 +232,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
-		has "unfettered: capped auxiliary"
+		has "ship model: Alpha Auxiliary"
 	on offer
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`

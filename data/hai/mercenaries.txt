@@ -267,24 +267,8 @@ fleet "Marauders"
 		"Sea Scorpion (Pulse)"
 	variant
 		"Lightning Bug" 2
-		
-mission "ZMercenaries: End of the Hunt"
-	minor
-	invisible
-	landing
-	repeat
-	to offer
-		has "Unfettered: Prove Your Strength: done"
-		not "mercenaries: thorn talon death"
-		or
-			has "Mercenaries: Nemo Me Impune Lacessit: active"
-			has "Mercenaries: Nemo Me Impune Lacessit 2: active"
-	on offer
-		require "Gold Bars" 0
-		fail "Mercenaries: Nemo Me Impune Lacessit"
-		fail "Mercenaries: Nemo Me Impune Lacessit 2"
-	to fail
-		has "ZMercenaries: End of the Hunt: active"
+
+
 
 phrase "mercenaries defeated" 
 	word
@@ -311,7 +295,9 @@ mission "Mercenaries: Nemo Me Impune Lacessit"
 		fleet "Marauders" 3
 		dialog phrase "mercenaries defeated"
 	to fail
-		has "mercenaries: took out leader"
+		or
+			has "mercenaries: took out leader"
+			"outfit (installed): Gold Bars" + "outfit (cargo): Gold Bars" == 0
 
 mission "Mercenaries: Nemo Me Impune Lacessit 2"
 	minor
@@ -334,7 +320,9 @@ mission "Mercenaries: Nemo Me Impune Lacessit 2"
 		fleet "Marauders" 5
 		dialog phrase "mercenaries defeated"
 	to fail
-		has "mercenaries: took out leader"
+		or
+			has "mercenaries: took out leader"
+			"outfit (installed): Gold Bars" + "outfit (cargo): Gold Bars" == 0
 
 
 

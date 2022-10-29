@@ -1369,7 +1369,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		government "Alpha"
 		personality entering timid staying target
 		system "Hi Yahr"
-		ship "Auxiliary (Alpha with supplies)" "Settler"
+		ship "Alpha Auxiliary (Supplies)" "Settler"
 
 		conversation
 			`You have finished scanning the Auxiliary. There can be no doubt: it is controlled by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`

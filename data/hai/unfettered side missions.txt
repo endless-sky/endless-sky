@@ -183,15 +183,47 @@ mission "Unfettered: Attracted Attention"
 
 
 
-ship "Auxiliary" "Auxiliary (Alpha with supplies)"
+outfit "Alpha Pirate Crew"
+	category "Hand to Hand"
+	thumbnail "outfit/unknown"
+	"crew attack" -45
+	"crew defense" -45
+	"unplunderable" 1
+	description "This ship is mostly manned by pirates and not actual Alphas, though they do lead them."
+	description "You need to land on the Alpha base in the Host system, with this outfit and the Auxiliary."
+
+# needs its own definition to have a proper model
+ship "Alpha Auxiliary"
+	plural "Auxiliaries"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
+	attributes
+		category "Utility"
+		"cost" 13720000
+		"shields" 17100
+		"hull" 5900
+		"required crew" 87
+		"bunks" 138
+		"mass" 820
+		"drag" 13.3
+		"heat dissipation" .45
+		"fuel capacity" 900
+		"cargo space" 450
+		"outfit space" 720
+		"weapon capacity" 160
+		"engine capacity" 200
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
 	outfits
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
 		"Korath Disruptor"
 		"Korath Slicer Turret"
 		"Bullfrog Anti-Missile" 2
+		"Alpha Pirate Crew"
 
 		"Double Plasma Core"
 		"Systems Core (Large)" 2
@@ -203,18 +235,6 @@ ship "Auxiliary" "Auxiliary (Alpha with supplies)"
 		`"Bufaer" Atomic Thruster`
 		"Steering (Planetary Class)"
 		"Jump Drive"
-	add attributes
-		"bunks" -112
-		"cargo space" 200
-	cargo
-		outfits
-			"Jump Drive" 5
-		commodities
-			"Military" 150
-			"Electronics" 100
-			"Metal" 50
-			"Heavy Metals" 50
-
 	gun -12 -180 "Hai Tracker Pod"
 	gun 12 -180 "Hai Tracker Pod"
 	turret 0 -72 "Bullfrog Anti-Missile"
@@ -225,6 +245,28 @@ ship "Auxiliary" "Auxiliary (Alpha with supplies)"
 	bay "Fighter" 0 -20
 	bay "Fighter" 0 32
 	bay "Fighter" 0 83
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 30 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
+	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
+
+ship "Alpha Auxiliary" "Alpha Auxiliary (Supplies)"
+	cargo
+		outfits
+			"Jump Drive" 5
+		commodities
+			"Military" 150
+			"Electronics" 100
+			"Metal" 50
+			"Heavy Metals" 50
+
 
 mission "Unfettered: Alpha Business"
 	invisible
@@ -247,7 +289,7 @@ mission "Unfettered: Alpha Business"
 		government "Alpha"
 		personality entering uninterested fleeing
 		system "Hi Yahr"
-		ship "Auxiliary (Alpha with supplies)" "Settler"
+		ship "Alpha Auxiliary (Supplies)" "Settler"
 		conversation
 			`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
 			action
