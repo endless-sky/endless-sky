@@ -59,6 +59,8 @@ public:
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
+	// Find out if the outfit has the given tag.
+	bool HasTag(const std::string) const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 
@@ -109,6 +111,8 @@ private:
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
+	// Tags to identify this outfit.
+	std::vector<std::string> tags;
 
 	Dictionary attributes;
 

@@ -275,6 +275,12 @@ void Outfit::Load(const DataNode &node)
 				if(isNewLicense(licenses, grand.Token(0)))
 					licenses.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "tags" && child.Size() >= 2)
+		{
+			if(child.Size() >= 2)
+				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+					tags.push_back(*it);
+		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
 			// Jump range must be positive.
@@ -387,6 +393,13 @@ const string &Outfit::Description() const
 const vector<string> &Outfit::Licenses() const
 {
 	return licenses;
+}
+
+
+
+bool Outfit::HasTag(const std::string tagName) const
+{
+	return count(tags.begin(), tags.end(), tagName);
 }
 
 

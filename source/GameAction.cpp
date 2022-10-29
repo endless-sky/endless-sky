@@ -127,6 +127,14 @@ namespace {
 			message += "flagship.";
 		Messages::Add(message, Messages::Importance::High);
 	}
+
+	void DoTakeByTag(PlayerInfo &player, std::string tagName, UI *ui)
+	{
+		Ship *flagship = player.Flagship();
+		for(auto &outfit : GameData::Outfits())
+			if(outfit.second.HasTag(tagName))
+				flagship->AddOutfit(&outfit.second, flagship->OutfitCount(&outfit.second));
+	}
 }
 
 
@@ -176,6 +184,10 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
 			child.PrintTrace("Error: Skipping invalid outfit quantity:");
+	}
+	else if(key == "outfittag" && hasValue)
+	{
+		takeOutfitsByTag.emplace_back(child.Token(1));
 	}
 	else if(key == "payment")
 	{
@@ -249,6 +261,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("give", "ship", it.first->VariantName(), it.second);
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
+	for(auto it : takeOutfitsByTag)
+		out.Write("outfittag", it);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -331,6 +345,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
+	for(auto it : takeOutfitsByTag)
+		if(!it.empty())
+			DoTakeByTag(player, it, ui);
 	for(auto &&it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);

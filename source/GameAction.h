@@ -79,6 +79,7 @@ private:
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
+	std::vector<std::string> takeOutfitsByTag;
 
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

@@ -2697,6 +2697,20 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
+	auto &&outfitTagProvider = conditions.GetProviderPrefixed("outfit tag: ");
+	auto outfitTagFun = [this](const string &name) -> bool
+	{
+		if(!flagship)
+			return false;
+		int count = 0;
+		for(auto &outfit : GameData::Outfits())
+			if(outfit.second.HasTag(name))
+				count += flagship->OutfitCount(&outfit.second);
+		return count;
+	};
+	outfitTagProvider.SetHasFunction(flagshipModelFun);
+	outfitTagProvider.SetGetFunction(flagshipModelFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
