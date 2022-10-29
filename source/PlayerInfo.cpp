@@ -2758,7 +2758,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto salaryIncomeHasGetFun = [this](const string &name) -> int64_t
 	{
 		const map<string, int64_t> &si = accounts.SalariesIncome();
-		auto it = si.find(name);
+		auto it = si.find(name.substr(strlen("salary: ")));
 		if(it == si.end())
 			return 0;
 		return it->second;
@@ -2767,43 +2767,43 @@ void PlayerInfo::RegisterDerivedConditions()
 	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
-		accounts.SetSalaryIncome(name, value);
+		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
 		return true;
 	});
 	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
 	{
-		 accounts.SetSalaryIncome(name, 0);
+		 accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
 		 return true;
 	});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
 	tributeProvider.SetHasFunction([this](const string &name) -> bool {
-		return GetTributeForPlanet(name); });
+		return GetTributeForPlanet(name.substr(strlen("tribute: "))); });
 	tributeProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return GetTributeForPlanet(name); });
+		return GetTributeForPlanet(name.substr(strlen("tribute: "))); });
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
-		return SetTribute(name, value); });
+		return SetTribute(name.substr(strlen("tribute: ")), value); });
 	tributeProvider.SetEraseFunction([this](const string &name) -> bool	{
-		return SetTribute(name, 0); });
+		return SetTribute(name.substr(strlen("tribute: ")), 0); });
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
 	licenseProvider.SetHasFunction([this](const string &name) -> bool {
-		return licenses.count(name); });
+		return licenses.count(name.substr(strlen("license: "))); });
 	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return licenses.count(name); });
+		return licenses.count(name.substr(strlen("license: "))); });
 
 	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
 		if(!value)
-			licenses.erase(name);
+			licenses.erase(name.substr(strlen("license: ")));
 		else
-			licenses.insert(name);
+			licenses.insert(name.substr(strlen("license: ")));
 		return true;
 	});
 
 	licenseProvider.SetEraseFunction([this](const string &name) -> bool
 	{
-		licenses.erase(name);
+		licenses.erase(name.substr(strlen("license: ")));
 		return true;
 	});
 
