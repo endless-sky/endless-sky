@@ -2993,6 +2993,10 @@ bool Ship::IsFuelLow(double compareTo) const
 		// Return to base fuel level i.e. return to carrier in case ship
 		// definition is customized.
 		double rtbFuel = attributes.Get("rtb fuel level");
+		// Ramscoop grants a 75% improvement for RTB refueling behavior.  Mainly
+		// because the ship will not disable if out of fuel.
+		if(IsRefueledByRamscoop())
+			rtbFuel *= .25;
 		// Treat RTB fuel as a percentage or fuel level.
 		if(!Preferences::Has("Fighter fleet logistics") && rtbFuel)
 			lowFuel &= (rtbFuel < 1.) ? Fuel() < rtbFuel : fuel < rtbFuel;
