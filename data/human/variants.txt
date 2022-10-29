@@ -762,6 +762,16 @@ ship "Clipper" "Clipper (Hai Trafficker)"
 
 
 
+ship "Combat Drone" Combat Drone (Sidewinder Missiles)"
+	outfits
+		"Sidewinder Missile" 50
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile Rack" 2
+		"X1050 Ion Engines"
+		"nGVF-AA Fuel Cell"
+
+
+
 ship "Container Transport" "Container Transport (Blaster)"
 	outfits
 		"Quad Blaster Turret" 5
@@ -1094,6 +1104,30 @@ ship "Cruiser" "Cruiser (Mark II)"
 
 # Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment.
 ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
+	outfits
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		Afterburner
+		"Armageddon Core"
+		"Catalytic Ramscoop"
+		"Fragmentation Grenades" 20
+		"Fuel Pod" 2
+		"Heavy Anti-Missile Turret" 2
+		"Hyperdrive"
+		"LP144a Battery Pack"
+		"Laser Rifle" 20
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 2
+		"Plasma Cannon" 6
+		"Plasma Turret"
+		"Quantum Keystone"
+		"S-970 Regenerator"
+		"D67-TM Shield Generator"
+
+
+# Danforth's personal ship in HR.
+ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 	crew 136
 	outfits
 		"A520 Atomic Thruster"
@@ -1114,29 +1148,6 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 		"Plasma Turret"
 		"Quantum Keystone"
 		"S-970 Regenerator" 2
-
-
-# Danforth's personal ship in HR.
-ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		"Catalytic Ramscoop"
-		"Jump Drive"
-		Afterburner
-		"Outfits Expansion" 2
-		"Plasma Cannon" 6
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Fragmentation Grenades" 20
-		"Fission Reactor"
-		"Laser Rifle" 20
-		"LP072a Battery Pack"
-		"LP036a Battery Pack"
-		"Quantum Keystone"
-		"Fuel Pod" 2
 
 
 
