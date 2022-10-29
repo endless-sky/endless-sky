@@ -2836,9 +2836,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks all sources of outfits which are present with the player.
-	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
-	// If landed, this means checking all landed ships for installed outfits, the pooled cargo hold,
-	// and any planetary storage.
+	// If in orbit, this means checking all ships in-system for installed and in cargo outfits, as
+	// well as the storage for any in-system planets. If landed, this means checking all landed
+	// ships for installed outfits, the pooled cargo hold, and the planetary storage of the planet.
 	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit: ");
 	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -2849,25 +2849,28 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(planet)
 		{
 			retVal += Cargo().Get(outfit);
-			if(planetaryStorage.count(planet))
-				retVal += planetaryStorage[planet].Get(outfit);
+			auto it = planetaryStorage.find(planet);
+			if(it != planetaryStorage.end())
+				retVal += it->second.Get(outfit);
 		}
 		else
 		{
 			for(const StellarObject &object : system->Objects())
-				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet()))
-					retVal += planetaryStorage[object.GetPlanet()].Get(outfit);
+			{
+				auto it = planetaryStorage.find(object.GetPlanet());
+				if(object.HasValidPlanet() && it != planetaryStorage.end())
+					retVal += it->second.Get(outfit);
+			}
 		}
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			if(ship->IsDestroyed() || ship->GetActualSystem() != system)
+			// If not on a planet, parked ships in system don't count.
+			// If on a planet, the ship's planet must match.
+			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
+					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
 				continue;
-			// If not on a planet, parked ships don't count. If on a planet, the ship's planet must match.
-			if((!planet && !ship->IsParked()) || (planet && ship->GetPlanet() == planet))
-			{
-				retVal += ship->OutfitCount(outfit);
-				retVal += ship->Cargo().Get(outfit);
-			}
+			retVal += ship->OutfitCount(outfit);
+			retVal += ship->Cargo().Get(outfit);
 		}
 		return retVal;
 	});
@@ -2904,11 +2907,12 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			if(ship->IsDestroyed() || ship->GetActualSystem() != system)
+			// If not on a planet, parked ships in system don't count.
+			// If on a planet, the ship's planet must match.
+			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
+					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
 				continue;
-			// If not on a planet, parked ships don't count. If on a planet, the ship's planet must match.
-			if((!planet && !ship->IsParked()) || (planet && ship->GetPlanet() == planet))
-				retVal += ship->OutfitCount(outfit);
+			retVal += ship->OutfitCount(outfit);
 		}
 		return retVal;
 	});
@@ -2952,11 +2956,12 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += Cargo().Get(outfit);
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			if(ship->IsDestroyed() || ship->GetActualSystem() != system)
+			// If not on a planet, parked ships in system don't count.
+			// If on a planet, the ship's planet must match.
+			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
+					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
 				continue;
-			// If not on a planet, parked ships don't count. If on a planet, the ship's planet must match.
-			if((!planet && !ship->IsParked()) || (planet && ship->GetPlanet() == planet))
-				retVal += ship->Cargo().Get(outfit);
+			retVal += ship->Cargo().Get(outfit);
 		}
 		return retVal;
 	});
@@ -2981,12 +2986,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
 	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		if(!flagship)
-			return 0;
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship cargo): ")));
 		if(!outfit)
 			return 0;
-		return flagship->Cargo().Get(outfit) + (planet ? Cargo().Get(outfit) : 0);
+		return (flagship ? flagship->Cargo().Get(outfit) : 0) + (planet ? Cargo().Get(outfit) : 0);
 	});
 
 	// The following condition checks planetary storage on the current planet.
@@ -2997,13 +3000,19 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!outfit)
 			return 0;
 		if(planet)
-			return planetaryStorage.count(planet) ? planetaryStorage[planet].Get(outfit) : 0;
+		{
+			auto it = planetaryStorage.find(planet);
+			return it != planetaryStorage.end() ? it->second.Get(outfit) : 0;
+		}
 		else
 		{
 			int64_t retVal = 0;
 			for(const StellarObject &object : system->Objects())
-				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet()))
-					retVal += planetaryStorage[object.GetPlanet()].Get(outfit);
+			{
+				auto it = planetaryStorage.find(object.GetPlanet());
+				if(object.HasValidPlanet() && it != planetaryStorage.end())
+					retVal += it->second.Get(outfit);
+			}
 			return retVal;
 		}
 	});
