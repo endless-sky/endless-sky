@@ -106,23 +106,23 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 		"bunks" 112
 		"cargo space" -200
 	outfits
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Armageddon Core"
-		"Catalytic Ramscoop"
-		"Cooling Ducts"
-		"Fragmentation Grenades" 500
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"Jump Drive"
-		"LP288a Battery Pack"
-		"Laser Rifle" 362
+		"Catalytic Ramscoop"
 		"Liquid Helium Cooler"
+		"Cooling Ducts"
 		"Outfits Expansion" 2
-		"Quad Blaster Turret" 2
-		"Quantum Keystone"
 		"S-970 Regenerator" 5
-		"Sidewinder Missile" 90
-		"Sidewinder Missile Launcher" 2
+		"Quantum Keystone"
+		"Armageddon Core"
+		"LP288a Battery Pack"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Laser Rifle" 362
+		"Fragmentation Grenades" 500
 	gun -12 -186
 	gun 12.5 -186
 	turret 0 -74 "Heavy Anti-Missile Turret"
