@@ -2992,7 +2992,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		return (flagship ? flagship->Cargo().Get(outfit) : 0) + (planet ? Cargo().Get(outfit) : 0);
 	});
 
-	// The following condition checks planetary storage on the current planet.
+	// The following condition checks planetary storage on the current planet, or on
+	// planets in the current system if in orbit.
 	auto &&presentStorageOutfitProvider = conditions.GetProviderPrefixed("outfit (storage): ");
 	presentStorageOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
