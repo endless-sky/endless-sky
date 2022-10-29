@@ -794,6 +794,7 @@ mission "Hai Reveal [B11] Moving Together"
 		dialog `You've arrived on <planet>, but you've left one or more of your escorts behind.`
 
 
+
 # Ambassadorial Centipede designed to fly deep into hostile space if necessary:
 ship "Centipede" "Centipede (Teeneep Jump)"
 	# Add some ambassadorial staff:
