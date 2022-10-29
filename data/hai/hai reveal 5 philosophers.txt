@@ -939,7 +939,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				"Palavret"
 
 
-fleet "Devil-Run Warships"
+fleet "Elenchus Tribute"
 	government "Pirate (Devil-Run Gang)"
 	names "pirate"
 	cargo 0
