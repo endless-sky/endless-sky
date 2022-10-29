@@ -58,7 +58,10 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	text.Wrap(planet.Description());
+	if(player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTED)
+		text.Wrap(player.OldTeleportPlanet()->Description());
+	else
+		text.Wrap(planet.Description());
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
@@ -354,7 +357,7 @@ void PlanetPanel::TakeOffIfReady()
 void PlanetPanel::TakeOff()
 {
 	player.Save();
-	if(player.TakeOff(GetUI()))
+	if(player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTED ? player.LeavePlanet() : player.TakeOff(GetUI()))
 	{
 		if(callback)
 			callback();

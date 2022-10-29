@@ -175,8 +175,10 @@ public:
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
+	bool EnterPlanet(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
+	bool LeavePlanet();
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
@@ -262,6 +264,7 @@ public:
 	void DoQueuedTeleport();
 	TeleportStatus TeleportationStatus() const;
 	void SetTeleportStatus(TeleportStatus status);
+	const Planet *OldTeleportPlanet() const;
 
 	// Toggle which secondary weapon the player has selected.
 	const std::set<const Outfit *> &SelectedWeapons() const;
@@ -392,6 +395,7 @@ private:
 	TeleportStatus teleportationStatus = TeleportStatus::NONE;
 	bool flagshipOnly = false;
 	const Planet *teleportPlanet = nullptr;
+	const Planet *oldTeleportPlanet = nullptr;
 
 	std::set<const Outfit *> selectedWeapons;
 

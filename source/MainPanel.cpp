@@ -91,7 +91,10 @@ void MainPanel::Step()
 		player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
-		player.Land(GetUI());
+		if(player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTED)
+			player.EnterPlanet(GetUI());
+		else
+			player.Land(GetUI());
 		isActive = false;
 		player.SetTeleportStatus(PlayerInfo::TeleportStatus::NONE);
 	}
