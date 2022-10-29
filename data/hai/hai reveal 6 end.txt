@@ -283,7 +283,7 @@ mission "Hai Reveal [C04] Cleanup"
 			`	She steps to a doorway and vanishes inside. Within seconds, the windows are closed, the gates are open, and you are left alone in the alley with the bustle of the spaceport beyond.`
 				accept
 	# This is a gamble. If you indicate in any way that you are overtly hostile, she'll kill you and deal with the consequences later.
-	# She also knows that if you go missing, someone else will come looking. Someone will eventually find her great-grandaughter, and she can't intercept everyone.
+	# She also knows that if you go missing, someone else will come looking. Someone will eventually find her great-granddaughter, and she can't intercept everyone.
 	# She's acting as the gatekeeper, gambling that the one she chooses to let through will have compassion and understanding.
 	
 event "lofty goals"

@@ -2716,6 +2716,14 @@ const System *Ship::GetSystem() const
 
 
 
+const System *Ship::GetActualSystem() const
+{
+	auto p = GetParent();
+	return currentSystem ? currentSystem : (p ? p->GetSystem() : nullptr);
+}
+
+
+
 // If the ship is landed, get the planet it has landed on.
 const Planet *Ship::GetPlanet() const
 {
@@ -2775,6 +2783,13 @@ bool Ship::IsBoarding() const
 bool Ship::IsLanding() const
 {
 	return landingPlanet;
+}
+
+
+
+bool Ship::IsFleeing() const
+{
+	return isFleeing;
 }
 
 
@@ -3948,6 +3963,13 @@ shared_ptr<Minable> Ship::GetTargetAsteroid() const
 shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 {
 	return targetFlotsam.lock();
+}
+
+
+
+void Ship::SetFleeing(bool fleeing)
+{
+	isFleeing = fleeing;
 }
 
 
