@@ -53,6 +53,28 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	// Move the flagship to the start of your list of ships. It does not make sense
+	// that the flagship would change if you are reunited with a different ship that
+	// was higher up the list.
+	void MoveFlagshipBegin(vector<shared_ptr<Ship>> &ships, const shared_ptr<Ship> &flagship)
+	{
+		if(!flagship)
+			return;
+
+		// Find the current location of the flagship.
+		auto it = find(ships.begin(), ships.end(), flagship);
+		if(it != ships.begin() && it != ships.end())
+		{
+			// Move all ships before the flagship one position backwards (which overwrites
+			// the flagship at its position).
+			move_backward(ships.begin(), it, next(it));
+			// Re-add the flagship at the beginning of the list.
+			ships[0] = flagship;
+		}
+	}
+}
+
 
 
 // Completely clear all loaded information, to prepare for loading a file or
@@ -107,8 +129,8 @@ void PlayerInfo::New(const StartConditions &start)
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
-	start.GetConditions().Apply(conditions);
 	RegisterDerivedConditions();
+	start.GetConditions().Apply(conditions);
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -139,7 +161,7 @@ void PlayerInfo::Load(const string &path)
 	// we provide the same access to services in this session, too.
 	bool hasFullClearance = false;
 
-	// Register derived conditions now, so old primary versions can load into them
+	// Register derived conditions now, so old primary versions can load into them.
 	RegisterDerivedConditions();
 
 	DataFile file(path);
@@ -235,6 +257,14 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "available job")
 			availableJobs.emplace_back(child);
+		else if(child.Token(0) == "sort type")
+			availableSortType = static_cast<SortType>(child.Value(1));
+		else if(child.Token(0) == "sort descending")
+			availableSortAsc = false;
+		else if(child.Token(0) == "separate deadline")
+			sortSeparateDeadline = true;
+		else if(child.Token(0) == "separate possible")
+			sortSeparatePossible = true;
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
@@ -801,6 +831,39 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 
 
 
+// Set the flagship (on departure or during flight).
+void PlayerInfo::SetFlagship(Ship &other)
+{
+	// Remove active data in the old flagship.
+	if(flagship && flagship.get() != &other)
+		flagship->ClearTargetsAndOrders();
+
+	// Set the new flagship pointer.
+	flagship = other.shared_from_this();
+
+	// Make sure your jump-capable ships all know who the flagship is.
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
+		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
+	}
+
+	// Move the flagship to the beginning to the list of ships.
+	MoveFlagshipBegin(ships, flagship);
+
+	// Make sure your flagship is not included in the escort selection.
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+	{
+		shared_ptr<Ship> ship = it->lock();
+		if(!ship || ship == flagship)
+			it = selectedShips.erase(it);
+		else
+			++it;
+	}
+}
+
+
+
 // Access the full list of ships that the player owns.
 const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 {
@@ -828,6 +891,11 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				flightChecks.emplace(ship, checks);
 
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
+			// Ensure bayCount has an entry for this category for the special case
+			// where we have no bays at all available for this type of ship.
+			if(ship->CanBeCarried())
+				bayCount.emplace(ship->Attributes().Category(), 0);
+
 			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
 
@@ -1033,18 +1101,8 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		attraction += max(0., .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8);
-		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.GetOutfit())
-			{
-				const Outfit *weapon = hardpoint.GetOutfit();
-				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
-					continue;
-				double damage = weapon->ShieldDamage() + weapon->HullDamage()
-					+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
-					+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull"));
-				deterrence += .12 * damage / weapon->Reload();
-			}
+		attraction += ship->Attraction();
+		deterrence += ship->Deterrence();
 	}
 
 	return make_pair(attraction, deterrence);
@@ -1247,13 +1305,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(!system || !planet)
 		return false;
 
-	if(flagship)
-		flagship->AllowCarried(true);
-	flagship.reset();
 	flagship = FlagshipPtr();
 	if(!flagship)
 		return false;
-	flagship->AllowCarried(false);
 
 	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
@@ -1270,30 +1324,9 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 
-	// Move the flagship to the start of your list of ships. It does not make
-	// sense that the flagship would change if you are reunited with a different
-	// ship that was higher up the list.
-	auto it = find(ships.begin(), ships.end(), flagship);
-	if(it != ships.begin() && it != ships.end())
-	{
-		ships.erase(it);
-		ships.insert(ships.begin(), flagship);
-	}
-	// Make sure your jump-capable ships all know who the flagship is.
-	for(const shared_ptr<Ship> &ship : ships)
-	{
-		bool shouldHaveParent = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
-		ship->SetParent(shouldHaveParent ? flagship : shared_ptr<Ship>());
-	}
-	// Make sure your flagship is not included in the escort selection.
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
-	{
-		shared_ptr<Ship> ship = it->lock();
-		if(!ship || ship == flagship)
-			it = selectedShips.erase(it);
-		else
-			++it;
-	}
+	// Move the flagship to the start of the list of ships and ensure that all
+	// escorts know which ship is acting as flagship.
+	SetFlagship(*flagship);
 
 	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
@@ -1354,7 +1387,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(auto &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
-			if(ship->CanBeCarried())
+			if(ship->CanBeCarried() && ship != flagship)
 				toLoad.emplace_back(ship);
 			else if(ship->HasBays())
 				carriers.emplace_back(ship.get());
@@ -1564,6 +1597,66 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
+const PlayerInfo::SortType PlayerInfo::GetAvailableSortType() const
+{
+	return availableSortType;
+}
+
+
+
+void PlayerInfo::NextAvailableSortType()
+{
+	availableSortType = static_cast<SortType>((availableSortType + 1) % (CONVENIENT + 1));
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::ShouldSortAscending() const
+{
+	return availableSortAsc;
+}
+
+
+
+void PlayerInfo::ToggleSortAscending()
+{
+	availableSortAsc = !availableSortAsc;
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::ShouldSortSeparateDeadline() const
+{
+	return sortSeparateDeadline;
+}
+
+
+
+void PlayerInfo::ToggleSortSeparateDeadline()
+{
+	sortSeparateDeadline = !sortSeparateDeadline;
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::ShouldSortSeparatePossible() const
+{
+	return sortSeparatePossible;
+}
+
+
+
+void PlayerInfo::ToggleSortSeparatePossible()
+{
+	sortSeparatePossible = !sortSeparatePossible;
+	SortAvailable();
+}
+
+
+
 // Return a pointer to the mission that was most recently accepted while in-flight.
 const Mission *PlayerInfo::ActiveBoardingMission() const
 {
@@ -1592,6 +1685,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
 }
@@ -2423,6 +2517,10 @@ void PlayerInfo::ApplyChanges()
 		ship->SetGovernment(GameData::PlayerGovernment());
 		ship->FinishLoading(false);
 	}
+
+	// Recalculate jumps that the available jobs will need
+	for(Mission &mission : availableJobs)
+		mission.CalculateJumps(system);
 }
 
 
@@ -2599,6 +2697,31 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
+	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
+	auto playerNameFun = [this](const string &name) -> bool
+	{
+		return name == "name: " + firstName + " " + lastName;
+	};
+	playerNameProvider.SetHasFunction(playerNameFun);
+	playerNameProvider.SetGetFunction(playerNameFun);
+
+	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("first name: ");
+	auto playerNameFirstFun = [this](const string &name) -> bool
+	{
+		return name == "first name: " + firstName;
+	};
+	playerNameFirstProvider.SetHasFunction(playerNameFirstFun);
+	playerNameFirstProvider.SetGetFunction(playerNameFirstFun);
+
+	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("last name: ");
+	auto playerNameLastFun = [this](const string &name) -> bool
+	{
+		return name == "last name: " + lastName;
+	};
+	playerNameLastProvider.SetHasFunction(playerNameLastFun);
+	playerNameLastProvider.SetGetFunction(playerNameLastFun);
+
+
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
 	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t {
@@ -2765,12 +2888,127 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
+}
 
-	// Sort missions on the job board alphabetically.
-	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
+
+
+void PlayerInfo::SortAvailable()
+{
+	// Destinations: planets OR system. Only counting them, so the type doesn't matter.
+	set<const void *> destinations;
+	if(availableSortType == CONVENIENT)
 	{
-		return lhs.Name() < rhs.Name();
+		for(const Mission &mission : Missions())
+		{
+			if(mission.IsVisible())
+			{
+				destinations.insert(mission.Destination());
+				destinations.insert(mission.Destination()->GetSystem());
+
+				for(const Planet *stopover : mission.Stopovers())
+				{
+					destinations.insert(stopover);
+					destinations.insert(stopover->GetSystem());
+				}
+
+				for(const System *waypoint : mission.Waypoints())
+					destinations.insert(waypoint);
+			}
+		}
+	}
+	availableJobs.sort([&](const Mission &lhs, const Mission &rhs) {
+		// First, separate rush orders with deadlines, if wanted
+		if(sortSeparateDeadline)
+		{
+			// availableSortAsc instead of true, to counter the reverse below
+			if(!lhs.Deadline() && rhs.Deadline())
+				return availableSortAsc;
+			if(lhs.Deadline() && !rhs.Deadline())
+				return !availableSortAsc;
+		}
+		// Then, separate greyed-out jobs you can't accept
+		if(sortSeparatePossible)
+		{
+			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
+				return availableSortAsc;
+			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
+				return !availableSortAsc;
+		}
+		// Sort by desired type:
+		switch(availableSortType)
+		{
+			case CONVENIENT:
+			{
+				// Sorting by "convenience" means you already have a mission to a
+				// planet. Missions at the same planet are sorted higher.
+				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
+				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
+				if(lConvenient < rConvenient)
+					return true;
+				if(lConvenient > rConvenient)
+					return false;
+			}
+			// Tiebreaker for equal CONVENIENT is SPEED.
+			case SPEED:
+			{
+				// A higher "Speed" means the mission takes less time, ie. fewer
+				// jumps.
+				const int lJumps = lhs.ExpectedJumps();
+				const int rJumps = rhs.ExpectedJumps();
+
+				if(lJumps == rJumps)
+				{
+					// SPEED compares equal - follow through to tiebreaker 'case PAY' below
+				}
+				else if(lJumps > 0 && rJumps > 0)
+				{
+					// Lower values are better, so this '>' is not '<' as expected
+					return lJumps > rJumps;
+				}
+				else
+				{
+					// Negative values indicate indeterminable mission paths.
+					// eg. through a wormhole, meaning lower values are worse.
+
+					// A value of 0 indicates the mission destination is the
+					// source, implying the actual path is complicated; consider
+					// that slow, but not as bad as an indeterminable path.
+
+					// Positive values are 'greater' because at least the number
+					// of jumps is known. (Comparing two positive values is already
+					// handled above, so the actual positive value doesn't matter.)
+
+					// Compare the value when at least one value is not positive.
+					return lJumps < rJumps;
+				}
+			}
+			// Tiebreaker for equal SPEED is PAY.
+			case PAY:
+			{
+				const int64_t lPay = lhs.DisplayedPayment();
+				const int64_t rPay = rhs.DisplayedPayment();
+				if(lPay < rPay)
+					return true;
+				else if(lPay > rPay)
+					return false;
+			}
+			// Tiebreaker for equal PAY is ABC.
+			case ABC:
+			{
+				if(lhs.Name() < rhs.Name())
+					return true;
+				else if(lhs.Name() > rhs.Name())
+					return false;
+			}
+			// Tiebreaker fallback to keep sorting consistent is unique UUID:
+			default:
+				return lhs.UUID() < rhs.UUID();
+		}
 	});
+
+	if(!availableSortAsc)
+		availableJobs.reverse();
 }
 
 
@@ -3027,6 +3265,13 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
+	out.Write("sort type", static_cast<int>(availableSortType));
+	if(!availableSortAsc)
+		out.Write("sort descending");
+	if(sortSeparateDeadline)
+		out.Write("separate deadline");
+	if(sortSeparatePossible)
+		out.Write("separate possible");
 
 	// Save any "primary condition" flags that are set.
 	conditions.Save(out);

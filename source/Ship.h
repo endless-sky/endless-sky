@@ -103,6 +103,13 @@ public:
 		Angle facing;
 	};
 
+	enum class JumpType : uint8_t
+	{
+		Hyperdrive,
+		JumpDrive,
+		None
+	};
+
 
 public:
 	// Functions provided by the Body base class:
@@ -156,6 +163,11 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
+	int64_t Strength() const;
+	// Get the attraction and deterrance of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double Attraction() const;
+	double Deterrence() const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
@@ -204,7 +216,7 @@ public:
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
-	std::shared_ptr<Ship> Board(bool autoPlunder = true);
+	std::shared_ptr<Ship> Board(bool autoPlunder, bool nonDocking);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
 	int Scan();
@@ -232,6 +244,7 @@ public:
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
+	bool IsFleeing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if some condition is keeping this ship from acting. (That is, it is
@@ -278,6 +291,8 @@ public:
 	double TransferFuel(double amount, Ship *to);
 	// Mark this ship as property of the given ship.
 	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Clear all orders and targets this ship has (after capture or transfer of control).
+	void ClearTargetsAndOrders();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
@@ -301,8 +316,10 @@ public:
 	double HullUntilDisabled() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
+	// This does not show accurate number of jumps remaining beyond 1.
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
+	bool NeedsFuel(bool followParent = true) const;
 	// Get the amount of fuel expended per jump.
 	double JumpFuel(const System *destination = nullptr) const;
 	// Get the distance that this ship can jump.
@@ -310,6 +327,8 @@ public:
 	// Get the cost of making a jump of the given type (if possible).
 	double HyperdriveFuel() const;
 	double JumpDriveFuel(double jumpDistance = 0.) const;
+	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
+	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
@@ -357,9 +376,6 @@ public:
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
-	// Change whether this ship can be carried. If false, the ship cannot be
-	// carried. If true, the ship can be carried if its category allows it.
-	void AllowCarried(bool allowCarried);
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
@@ -407,15 +423,20 @@ public:
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
 	const StellarObject *GetTargetStellar() const;
+	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 
+	// Mark this ship as fleeing.
+	void SetFleeing(bool fleeing = true);
+
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
 	void SetTargetStellar(const StellarObject *object);
+	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
@@ -444,6 +465,11 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+
+	// Calculate the attraction and deterrance of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double CalculateAttraction() const;
+	double CalculateDeterrence() const;
 
 
 private:
@@ -481,6 +507,7 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	bool isFleeing = false;
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
@@ -497,6 +524,9 @@ private:
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;
+
+	double attraction = 0.;
+	double deterrence = 0.;
 
 	Command commands;
 	FireCommand firingCommands;
