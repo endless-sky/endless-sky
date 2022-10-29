@@ -51,7 +51,7 @@
 mission "Hai Rescue: Yeertle Hint"
 	landing
 	name "Investigate a Were-Squirrel"
-	description "A truly outlandish rumor has been floating around that there might be a "were-squirrel" (Hai) hiding out on <destination>."
+	description `A truly outlandish rumor has been floating around that there might be a "were-squirrel" (Hai) hiding out on <destination>.`
 	source
 		near "Betelgeuse" 4
 		government "Republic" "Syndicate"
@@ -73,7 +73,9 @@ mission "Hai Rescue: Yeertle Hint"
 			`	You stop listening on your final approach as the conversation descends into a good-natured argument. Nevertheless, it sounds like a lead on a possible stranded Hai that would be worth following up.`
 				accept
 	to complete
-		has "Hai Rescue: Yeertle Family: Offered"
+		has "Hai Rescue: Yeertle Family: offered"
+	to fail
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Yeertle Family"
@@ -204,7 +206,9 @@ mission "Hai Rescue: Oonem Hint"
 			`	It's really hard to say what this could be, but it might be worth checking out.`
 				accept
 	to complete
-		has "Hai Rescue: Ooonem: Offered"
+		has "Hai Rescue: Ooonem: offered"
+	to fail
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Ooonem"
@@ -341,6 +345,8 @@ mission "Hai Rescue: Prison RP Hint"
 			`	It seems a handful of merchants have all been picking up a very faint distress signal in the vicinity of <planet>, but every time they've gone to look for it, they've either experienced some kind of engine warning, or a large group of pirates has jumped into the system, and they've bugged out. Mysteriously the pirates don't seem to have been looking for or pursuing the merchants when they've appeared though.`
 			`	It seems like a long-shot, but you wonder if perhaps this might be a legitimate call for help, maybe from someone who can't risk broadcasting themselves too aggressively...`
 				accept
+	to fail
+		not "Hai Leaks Response 6: active"
 
 
 mission "Hai Rescue: Prison Role-Players"
@@ -426,7 +432,9 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. You don't hear anything specific to Hai, but when the punchline of a joke is "deep crevasses" on <planet>, it occurs to you that there would be the perfect place for both illicit activities and escapees to hide out under the radar for a long time. It's probably worth a look...`
 				accept
 	to complete
-		has "Hai Rescue: Meroot and Lucy: Offered"
+		has "Hai Rescue: Meroot and Lucy: offered"
+	to fail
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Meroot and Lucy"
@@ -528,6 +536,8 @@ mission "Hai Rescue: Gipeep Hint"
 		conversation
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. One guy is bragging particularly odiously about some lucrative transport jobs he'd picked up on <planet>. Of course, it could mean nothing, but it's also very suspicious for that particular world. <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
 				accept
+	to fail
+		has "event: hai-human treaty signed"
 
 
 mission "Hai Rescue: Gipeep"
