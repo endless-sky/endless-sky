@@ -9846,8 +9846,8 @@ system "Ehma Ti"
 	trade Medical 915
 	trade Metal 188
 	trade Plastic 532
-	fleet "Small Plundering Unfettered" 400
-	fleet "Large Plundering Unfettered" 400
+	fleet "Small Unfettered" 500
+	fleet "Large Unfettered" 500
 	fleet "Unfettered Raid" 2500
 	object
 		sprite star/k0
@@ -13643,8 +13643,8 @@ system "Hi Yahr"
 	trade Medical 825
 	trade Metal 308
 	trade Plastic 372
-	fleet "Small Plundering Unfettered" 400
-	fleet "Large Plundering Unfettered" 400
+	fleet "Small Unfettered" 500
+	fleet "Large Unfettered" 500
 	object
 		sprite star/g5
 		period 10
@@ -26985,8 +26985,8 @@ system "Wah Yoot"
 	trade Medical 925
 	trade Metal 248
 	trade Plastic 472
-	fleet "Small Plundering Unfettered" 800
-	fleet "Large Plundering Unfettered" 400
+	fleet "Small Unfettered" 1000
+	fleet "Large Unfettered" 500
 	object
 		sprite star/g0
 		period 10
