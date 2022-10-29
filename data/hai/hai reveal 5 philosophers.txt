@@ -905,7 +905,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		fleet
 			fighters "republic fighter"
 			variant
-				"Combat Drone" 4
+				"Combat Drone (Sidewinder Missiles)" 4
 	npc save accompany
 		government "Republic"
 		personality timid escort opportunistic
@@ -914,9 +914,9 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		government "Republic"
 		personality escort opportunistic
 		fleet
-			fighters "republic fighter"
+			fighters "syndicate fighter"
 			variant
-				"Dagger" 4
+				"Barb (Proton)" 4
 	npc accompany
 		government "Free Worlds"
 		personality escort heroic opportunistic
