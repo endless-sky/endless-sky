@@ -1102,52 +1102,48 @@ ship "Cruiser" "Cruiser (Mark II)"
 	turret "Heavy Anti-Missile Turret"
 
 
-# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment.
+# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment, intended against the Hai.
 ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 	outfits
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		Afterburner
+		"Heavy Anti-Missile Turret" 3
 		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
 		"Catalytic Ramscoop"
-		"Fragmentation Grenades" 20
-		"Fuel Pod" 2
-		"Heavy Anti-Missile Turret" 2
-		"Hyperdrive"
-		"LP144a Battery Pack"
-		"Laser Rifle" 20
-		"Liquid Helium Cooler"
-		"Liquid Nitrogen Cooler"
+		Hyperdrive
+		Afterburner
 		"Outfits Expansion" 2
 		"Plasma Cannon" 6
-		"Plasma Turret"
-		"Quantum Keystone"
-		"S-970 Regenerator"
-		"D67-TM Shield Generator"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Fragmentation Grenades" 20
+		"Fission Reactor"
+		"Laser Rifle" 20
+		"LP144a Battery Pack"
 
 
 # Danforth's personal ship in HR.
 ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 	crew 136
 	outfits
+		"Plasma Cannon" 6
+		"Plasma Turret"
+		"Heavy Anti-Missile Turret" 2
+		"Catalytic Ramscoop"
+		"Fuel Pod" 3
+		"Jump Drive"
+		"Quantum Keystone"
+		"S-970 Regenerator" 2
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 2
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		Afterburner
 		"Armageddon Core"
-		"Catalytic Ramscoop"
-		"Fragmentation Grenades" 40
-		"Fuel Pod" 3
-		"Heavy Anti-Missile Turret" 2
-		"Jump Drive"
 		"LP144a Battery Pack"
 		"Laser Rifle" 100
-		"Liquid Helium Cooler"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion" 2
-		"Plasma Cannon" 6
-		"Plasma Turret"
-		"Quantum Keystone"
-		"S-970 Regenerator" 2
+		"Fragmentation Grenades" 60
 
 
 
