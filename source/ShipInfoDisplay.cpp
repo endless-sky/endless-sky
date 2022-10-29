@@ -227,7 +227,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
-	attributeValues.push_back(Format::Number(60. * forwardThrust / attributes.Get("drag")));
+	double trueDrag = ship.Drag();
+	attributeValues.push_back(Format::Number(60. * forwardThrust / trueDrag));
 	attributesHeight += 20;
 
 	attributeLabels.push_back("acceleration:");

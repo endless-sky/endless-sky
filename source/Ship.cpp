@@ -1802,7 +1802,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	double mass = Mass();
 	bool isUsingAfterburner = false;
 	if(isDisabled)
-		velocity *= 1. - attributes.Get("drag") / mass;
+	{
+		double trueDrag = Drag();
+		velocity *= 1. - trueDrag / mass;
+	}
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -1959,7 +1962,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+		double trueDrag = Drag();
+		Point dragAcceleration = acceleration - velocity * (trueDrag / mass);
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
@@ -3324,7 +3328,13 @@ int Ship::Crew() const
 	return crew;
 }
 
-
+// Calculate drag reduction.
+double Ship::Drag() const
+{
+	double trueDrag;
+	trueDrag = attributes.Get("drag") / (1 + attributes.Get("drag reduction"));
+	return trueDrag;
+}
 
 int Ship::RequiredCrew() const
 {
@@ -3387,14 +3397,16 @@ double Ship::MaxVelocity() const
 	// v * drag == thrust
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
+	double trueDrag = Drag();
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / trueDrag;
 }
 
 
 
 double Ship::MaxReverseVelocity() const
 {
-	return attributes.Get("reverse thrust") / attributes.Get("drag");
+	double trueDrag = Drag();
+	return attributes.Get("reverse thrust") / trueDrag;
 }
 
 
