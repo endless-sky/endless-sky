@@ -89,7 +89,7 @@ private:
 	bool hasHyperdrive = false;
 	bool hasScramDrive = false;
 	bool hasJumpDrive = false;
-	bool hasJumpMassCostDrive = false;
+	bool hasJumpMassCost = false;
 };
 
 

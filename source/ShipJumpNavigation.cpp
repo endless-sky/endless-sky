@@ -41,7 +41,7 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	hasHyperdrive = attributes.Get("hyperdrive");
 	hasScramDrive = attributes.Get("scram drive");
 	hasJumpDrive = attributes.Get("jump drive");
-	hasJumpMassCostDrive = attributes.Get("jump mass cost");
+	hasJumpMassCost = attributes.Get("jump mass cost");
 
 	jumpDriveCosts.clear();
 	jumpDriveCosts[0.] = 0.;
@@ -62,7 +62,7 @@ void ShipJumpNavigation::Recalibrate(const Ship &ship)
 {
 	// Recalibration is only necessary if this ship's mass has changed and it has drives
 	// that would be affected by that change.
-	if(hasJumpMassCostDrive && mass != ship.Mass())
+	if(hasJumpMassCost && mass != ship.Mass())
 		Calibrate(ship);
 }
 

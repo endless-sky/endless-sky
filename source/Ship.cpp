@@ -3679,8 +3679,11 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 {
 	cargo.Remove(commodity, tons);
 	// Removing cargo will have changed the ship's mass, so the
-	// jump navigation must check for recalibration.
-	navigation.Recalibrate(*this);
+	// jump navigation info may be out of date. Only do this for
+	// player ships as to display correct information on the map.
+	// Non-player ships will recalibrate before they jump.
+	if(isYours)
+		navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -3702,8 +3705,11 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 
 	cargo.Remove(outfit, count);
 	// Removing cargo will have changed the ship's mass, so the
-	// jump navigation must check for recalibration.
-	navigation.Recalibrate(*this);
+	// jump navigation info may be out of date. Only do this for
+	// player ships as to display correct information on the map.
+	// Non-player ships will recalibrate before they jump.
+	if(isYours)
+		navigation.Recalibrate(*this);
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
@@ -3791,10 +3797,12 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// If the added or removed outfit is a hyperdrive or jump drive, recalculate this
 		// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
 		// so only do this if the outfit is either completely new or has been completely removed.
-		// Navigation may still need to be recalibrated depending on the drives a ship has.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
 			navigation.Calibrate(*this);
-		else
+		// Navigation may still need to be recalibrated depending on the drives a ship has.
+		// Only do this for player ships as to display correct information on the map.
+		// Non-player ships will recalibrate before they jump.
+		else if(isYours)
 			navigation.Recalibrate(*this);
 	}
 }
