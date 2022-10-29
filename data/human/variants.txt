@@ -1094,22 +1094,26 @@ ship "Cruiser" "Cruiser (Mark II)"
 
 # Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment.
 ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
+	crew 136
 	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		"Catalytic Ramscoop"
-		Hyperdrive
-		Afterburner
-		"Outfits Expansion" 2
-		"Plasma Cannon" 6
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-		"Fragmentation Grenades" 20
-		"Fission Reactor"
-		"Laser Rifle" 20
+		Afterburner
+		"Armageddon Core"
+		"Catalytic Ramscoop"
+		"Fragmentation Grenades" 40
+		"Fuel Pod" 3
+		"Heavy Anti-Missile Turret" 2
+		"Jump Drive"
 		"LP144a Battery Pack"
+		"Laser Rifle" 100
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 2
+		"Plasma Cannon" 6
+		"Plasma Turret"
+		"Quantum Keystone"
+		"S-970 Regenerator" 2
 
 
 # Danforth's personal ship in HR.
