@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PLAYER_INFO_H_
@@ -182,6 +185,18 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+
+	enum SortType {ABC, PAY, SPEED, CONVENIENT};
+	const SortType GetAvailableSortType() const;
+	void NextAvailableSortType();
+	const bool ShouldSortAscending() const;
+	void ToggleSortAscending();
+	const bool ShouldSortSeparateDeadline() const;
+	void ToggleSortSeparateDeadline();
+	const bool ShouldSortSeparatePossible() const;
+	void ToggleSortSeparatePossible();
+	void SortAvailable();
+
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI *ui);
@@ -295,6 +310,9 @@ private:
 	// Check for and apply any punitive actions from planetary security.
 	void Fine(UI *ui);
 
+	// Set the flagship (on departure or during flight).
+	void SetFlagship(Ship &other);
+
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
@@ -345,6 +363,11 @@ private:
 	// This pointer to the most recently accepted boarding mission enables
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
+	// How to sort availableJobs
+	bool availableSortAsc = true;
+	SortType availableSortType;
+	bool sortSeparateDeadline = false;
+	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
 
