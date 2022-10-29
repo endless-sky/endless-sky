@@ -393,6 +393,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				else if(clickAction != MapPlanetCard::ClickAction::NONE)
 				{
 					selectedPlanet = card.GetPlanet();
+					if(selectedPlanet && player.Flagship())
+						player.SetTravelDestination(selectedPlanet);
 					if(clickAction != MapPlanetCard::ClickAction::SELECTED)
 						SetCommodity(static_cast<int>(clickAction));
 				}
