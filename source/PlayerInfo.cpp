@@ -2772,8 +2772,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
 	{
-		 accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
-		 return true;
+		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
+		return true;
 	});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
