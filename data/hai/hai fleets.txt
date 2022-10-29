@@ -571,21 +571,6 @@ fleet "Small Unfettered"
 	variant
 		"Lightning Bug (Pulse)"
 
-fleet "Small Plundering Unfettered"
-	government "Hai (Unfettered)"
-	names "hai"
-	cargo 1
-	personality
-		disables plunders coward
-	variant 3
-		"Lightning Bug (Pulse)" 2
-	variant 3
-		"Lightning Bug" 2
-	variant
-		"Lightning Bug"
-	variant
-		"Lightning Bug (Pulse)"
-
 fleet "Large Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
