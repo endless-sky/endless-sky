@@ -329,10 +329,12 @@ public:
 	double JumpDriveFuel(double jumpDistance = 0.) const;
 	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
 	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
-	// Get the amount of fuel missing for the next jump (smart refuelling)
+	// Get the amount of fuel missing for the next jump (smart refuelling).
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Get the net heat generation at a specified heat amount (not temperature).
+	double NetIdleHeatAt(double heatLevel) const;
 	// Get the heat dissipation, in heat units per heat unit per frame.
 	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
