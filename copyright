@@ -1805,6 +1805,17 @@ Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
+Files:
+ images/projectile/pumkin*
+Copyright: Clipart.info
+License: CC BY 4.0
+
+Files:
+ images/ship/pumkinsword*
+Copyright: RisingLeaf
+License: CC BY 4.0
+Comment: Derived from works by Karirawri and Clipart.info (under the same license).
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

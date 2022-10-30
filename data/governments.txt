@@ -995,6 +995,14 @@ government "Smuggler (Hai Trafficker)"
 		destroy 0
 		atrocity 0
 
+government "Spooky"
+	swizzle 0
+	"player reputation" 0
+	"friendly hail" "spooky hail"
+	"friendly disabled hail" "spooky hail"
+	"hostile hail" "spooky hail"
+	"hostile disabled hail" "spooky hail"
+
 government "Syndicate"
 	swizzle 4
 	color 0 .41 .71
