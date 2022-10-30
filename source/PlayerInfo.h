@@ -61,7 +61,7 @@ public:
 		int64_t assetsReturns = 0;
 	};
 
-	enum class TeleportStatus : int {
+	enum class RelocateStatus : int {
 		NONE = 0,
 		TELEPORTING,
 		TELEPORTED
@@ -260,11 +260,11 @@ public:
 	const Planet *TravelDestination() const;
 	void SetTravelDestination(const Planet *planet);
 
-	void QueueTeleport(const Planet *destination, bool flagshipOnly = false);
-	void DoQueuedTeleport();
-	TeleportStatus TeleportationStatus() const;
-	void SetTeleportStatus(TeleportStatus status);
-	const Planet *OldTeleportPlanet() const;
+	void QueueRelocation(const Planet *destination, bool flagshipOnly = false);
+	void DoQueuedRelocation();
+	RelocateStatus RelocationStatus() const;
+	void SetRelocationStatus(RelocateStatus status);
+	const Planet *OldRelocationPlanet() const;
 
 	// Toggle which secondary weapon the player has selected.
 	const std::set<const Outfit *> &SelectedWeapons() const;
@@ -392,10 +392,10 @@ private:
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
-	TeleportStatus teleportationStatus = TeleportStatus::NONE;
-	bool flagshipOnly = false;
-	const Planet *teleportPlanet = nullptr;
-	const Planet *oldTeleportPlanet = nullptr;
+	RelocateStatus relocationStatus = RelocateStatus::NONE;
+	bool relocateFlagshipOnly = false;
+	const Planet *relocationPlanet = nullptr;
+	const Planet *oldRelocationPlanet = nullptr;
 
 	std::set<const Outfit *> selectedWeapons;
 

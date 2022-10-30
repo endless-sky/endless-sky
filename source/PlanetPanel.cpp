@@ -58,8 +58,8 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	if(player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTED)
-		text.Wrap(player.OldTeleportPlanet()->Description());
+	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED)
+		text.Wrap(player.OldRelocationPlanet()->Description());
 	else
 		text.Wrap(planet.Description());
 
@@ -75,9 +75,9 @@ void PlanetPanel::Step()
 {
 	// If the player is teleporting, simulate a TakeOff followed
 	// by a forced landing. No transition will be noticeable.
-	if(player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTING)
+	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTING)
 	{
-		player.SetTeleportStatus(PlayerInfo::TeleportStatus::TELEPORTED);
+		player.SetRelocationStatus(PlayerInfo::RelocateStatus::TELEPORTED);
 		TakeOff();
 	}
 	// If the previous mission callback resulted in a "launch", take off now.
@@ -357,7 +357,7 @@ void PlanetPanel::TakeOffIfReady()
 void PlanetPanel::TakeOff()
 {
 	player.Save();
-	if(player.TeleportationStatus() == PlayerInfo::TeleportStatus::TELEPORTED ? player.LeavePlanet() : player.TakeOff(GetUI()))
+	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED ? player.LeavePlanet() : player.TakeOff(GetUI()))
 	{
 		if(callback)
 			callback();

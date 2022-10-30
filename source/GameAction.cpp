@@ -395,9 +395,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui, bool conversationEmpty) const
 
 	if(teleportPlanet)
 	{
-		player.QueueTeleport(teleportPlanet, flagshipOnly);
+		player.QueueRelocation(teleportPlanet, flagshipOnly);
 		if(conversationEmpty)
-			player.DoQueuedTeleport();
+			player.DoQueuedRelocation();
 	}
 
 	// Check if applying the conditions changes the player's reputations.

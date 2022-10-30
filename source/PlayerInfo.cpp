@@ -1844,7 +1844,7 @@ void PlayerInfo::MissionCallback(int response)
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
-	DoQueuedTeleport();
+	DoQueuedRelocation();
 }
 
 
@@ -1854,7 +1854,7 @@ void PlayerInfo::MissionCallback(int response)
 void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
-	DoQueuedTeleport();
+	DoQueuedRelocation();
 	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
 }
 
@@ -2130,59 +2130,59 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 
-void PlayerInfo::QueueTeleport(const Planet *destination, bool flagshipOnly)
+void PlayerInfo::QueueRelocation(const Planet *destination, bool flagshipOnly)
 {
-	teleportPlanet = destination;
+	relocationPlanet = destination;
 	flagshipOnly = flagshipOnly;
 }
 
 
 
-void PlayerInfo::DoQueuedTeleport()
+void PlayerInfo::DoQueuedRelocation()
 {
-	if(!teleportPlanet || !FlagshipPtr())
+	if(!relocationPlanet || !FlagshipPtr())
 		return;
 	if(!planet)
 	{
-		teleportPlanet = nullptr;
+		relocationPlanet = nullptr;
 		return;
 	}
 
-	flagship->SetSystem(teleportPlanet->GetSystem());
-	flagship->SetPlanet(teleportPlanet);
-	if(!flagshipOnly)
+	flagship->SetSystem(relocationPlanet->GetSystem());
+	flagship->SetPlanet(relocationPlanet);
+	if(!relocateFlagshipOnly)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDestroyed() && ship->GetPlanet() == planet)
 			{
-				ship->SetSystem(teleportPlanet->GetSystem());
-				ship->SetPlanet(teleportPlanet);
+				ship->SetSystem(relocationPlanet->GetSystem());
+				ship->SetPlanet(relocationPlanet);
 			}
-	system = teleportPlanet->GetSystem();
-	planet = teleportPlanet;
-	teleportationStatus = TeleportStatus::TELEPORTING;
-	oldTeleportPlanet = teleportPlanet;
-	teleportPlanet = nullptr;
+	system = relocationPlanet->GetSystem();
+	planet = relocationPlanet;
+	relocationStatus = RelocateStatus::TELEPORTING;
+	oldRelocationPlanet = relocationPlanet;
+	relocationPlanet = nullptr;
 }
 
 
 
-PlayerInfo::TeleportStatus PlayerInfo::TeleportationStatus() const
+PlayerInfo::RelocateStatus PlayerInfo::RelocationStatus() const
 {
-	return teleportationStatus;
+	return relocationStatus;
 }
 
 
 
-void PlayerInfo::SetTeleportStatus(PlayerInfo::TeleportStatus status)
+void PlayerInfo::SetRelocationStatus(PlayerInfo::RelocateStatus status)
 {
-	teleportationStatus = status;
+	relocationStatus = status;
 }
 
 
 
-const Planet *PlayerInfo::OldTeleportPlanet() const
+const Planet *PlayerInfo::OldRelocationPlanet() const
 {
-	return oldTeleportPlanet;
+	return oldRelocationPlanet;
 }
 
 
