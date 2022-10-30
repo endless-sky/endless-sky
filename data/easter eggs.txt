@@ -1,0 +1,97 @@
+# Copyright (c) 2020 by @RisingLeaf
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "Pumpkin Cannon"
+	category "Guns"
+	cost 16000
+	thumbnail "outfit/blaster"
+	"mass" 5
+	"outfit space" -5
+	"weapon capacity" -5
+	"gun ports" -1
+	weapon
+		sprite "projectile/blaster"
+		sound "blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 3
+		"velocity" 3.3
+		"lifetime" 600
+		"reload" 22.5
+		"firing energy" 5.8
+		"firing heat" 18
+		"shield damage" 83.5
+		"hull damage" 87.6
+		"heat damage" 27
+	description "The pumpkin cannon, a mysterious joke by someone."
+
+ship "Falcon" "Pumpkin Falcon"
+	sprite "ship/falcon"
+	outfits
+		"Pumpkin Cannon" 4
+		"Heavy Anti-Missile Turret" 4
+		
+		"Breeder Reactor"
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 15
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Jump Drive"
+
+	gun -16 -86.5 "Pumpkin Cannon"
+	gun 16 -86.5 "Pumpkin Cannon"
+	gun -19 -76.5 "Pumpkin Cannon"
+	gun 19 -76.5 "Pumpkin Cannon"
+	turret -16 -29 "Heavy Anti-Missile Turret"
+	turret 16 -29 "Heavy Anti-Missile Turret"
+	turret -50 39.5 "Heavy Anti-Missile Turret"
+	turret 50 39.5 "Heavy Anti-Missile Turret"
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 60 30
+	explode "tiny explosion" 40
+	explode "small explosion" 55
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	"final explode" "final explosion medium"
+	description "The Tarazed Falcon is one of the most powerful warships that civilians can buy, a sleeker and more maneuverable alternative to the venerable and somewhat outdated Leviathan."
+
+mission "A pumpkin falcon"
+	invisible
+	landing
+	repeat
+	to offer
+		"month" == 10
+		"day" >= 28
+		"random" >= 80
+	to fail
+		"month" == 11
+		"day" >= 1
+	to complete
+		never
+	npc 
+		government "Spooky"
+		ship "Pumpkin Falcon" "The pumpkins revenge"
+		personality heroic unconstrained
+			confusion 40
+
+phrase "spooky hail"
+	word
+		"It is spooky season!"
+		"Boooo!"
+		"How is my costume?"
