@@ -28,7 +28,7 @@ mission "Halloween"
 		"day" >= 25
 		"day" <= 31
 	on offer
-	 	event "Halloween"
+		event "Halloween"
 
 mission "Halloween revert"
 	invisible
