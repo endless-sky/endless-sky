@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-outfit "Pumpkin Cannon"
+outfit "Energy Blaster"
 	category "Guns"
 	cost 16000
 	thumbnail "outfit/blaster"
@@ -24,19 +24,14 @@ outfit "Pumpkin Cannon"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"velocity" 2.5
-		"lifetime" 600
-		"reload" 22.5
+		"velocity" 10.625
+		"lifetime" 48
+		"reload" 12
 		"firing energy" 5.8
 		"firing heat" 18
-		"shield damage" 83.5
-		"hull damage" 87.6
-		"heat damage" 27
-		"acceleration" 0.6
-		"drag" .1
-		"turn" 4
-		"homing" 3
-	description "The pumpkin cannon, a mysterious joke by someone."
+		"shield damage" 10.6
+		"hull damage" 6.6
+	description "Although not the most accurate or damaging of weapons, the Energy Blaster is popular because it is small enough to be installed on even the tiniest of ships. One blaster is not enough to do appreciable damage to anything larger than a fighter, but a ship equipped with several of them becomes a force to be reckoned with."
 
 outfit "Twin Blaster"
 	category "Guns"
