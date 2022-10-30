@@ -259,6 +259,8 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	// Get the hyperspace completion as a percent
+	int HyperCount() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
@@ -333,6 +335,13 @@ public:
 	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
 	// Get the amount of fuel missing for the next jump (smart refuelling)
 	double JumpFuelMissing() const;
+	// Gets the stage the hyperjump is at.
+	// 0 - Not Jumping
+	// 1 - Jump Starting - one Frame
+	// 2 - Jumping (In original system)
+	// 3 - Switching to next system - One frame
+	// 4 - Finishing Jump (Movement is still locked)
+	uint8_t HyperState() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
 	// Get the heat dissipation, in heat units per heat unit per frame.
@@ -595,6 +604,7 @@ private:
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
+	uint8_t hyperState = 0;
 
 	double jumpRange = 0.;
 

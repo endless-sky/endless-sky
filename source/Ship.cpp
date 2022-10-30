@@ -1611,6 +1611,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
+		hyperState = (hyperState > 2) ? 4 : 2;
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 
@@ -1642,6 +1643,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		if(hyperspaceCount == HYPER_C)
 		{
+			hyperState = 3;
 			currentSystem = hyperspaceSystem;
 			hyperspaceSystem = nullptr;
 			targetSystem = nullptr;
@@ -1813,7 +1815,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(hyperspaceSystem);
 		isUsingJumpDrive = (jumpUsed.first == JumpType::JumpDrive);
 		hyperspaceFuelCost = jumpUsed.second;
+		hyperState = 1;
 	}
+	else
+		hyperState = 0;
 
 	if(pilotError)
 		--pilotError;
@@ -2837,6 +2842,13 @@ bool Ship::IsHyperspacing() const
 
 
 
+int Ship::HyperCount() const
+{
+	return hyperspaceCount;
+}
+
+
+
 // Check if this ship is hyperspacing, specifically via a jump drive.
 bool Ship::IsUsingJumpDrive() const
 {
@@ -3362,6 +3374,13 @@ double Ship::JumpFuelMissing() const
 		return 0.;
 
 	return jumpFuel - fuel;
+}
+
+
+
+uint8_t Ship::HyperState() const
+{
+	return hyperState;
 }
 
 
