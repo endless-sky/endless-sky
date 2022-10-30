@@ -12,6 +12,33 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 event "Halloween"
+	government "Merchant"
+		"friendly hail" "spooky hail"
+
+event "Halloween revert"
+	government "Merchant"
+		"friendly hail" "spooky hail"
+
+mission "Halloween"
+	invisible
+	repeat
+	landing
+	to offer
+		"month" == 10
+		"day" >= 25
+		"day" <= 31
+	on offer
+	 	event "Halloween"
+
+mission "Halloween revert"
+	invisible
+	repeat
+	landing
+	to offer
+		"month" == 11
+		"day" >= 2
+	on offer
+		event "Halloween revert"
 
 phrase "spooky hail"
 	word
