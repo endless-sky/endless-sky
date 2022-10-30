@@ -937,10 +937,11 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				auto it = flightChecks.find(carriable);
 				string warning = "no bays?";
 				if(it != flightChecks.end())
-					it->second.emplace_back(warning);
+					it->second.emplace(it->second.begin(), warning);
 				else
 					flightChecks.emplace(carriable, vector<string>{warning});
 			}
+
 		}
 	}
 	return flightChecks;
