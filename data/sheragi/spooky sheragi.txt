@@ -35,7 +35,8 @@ outfit "Pumpkin Cannon"
 		"acceleration" 0.6
 		"drag" .1
 		"turn" 4
-		"homing" 3
+		"homing" 4
+		"infrared tracking" 0.8
 	description "The pumpkin cannon, a mysterious joke by someone."
 
 ship "Emerald Sword" "Pumpkin Sword"
@@ -43,7 +44,7 @@ ship "Emerald Sword" "Pumpkin Sword"
 	thumbnail "thumbnail/emeraldsword"
 	swizzle 0
 	outfits
-		"Pumkin Cannon"
+		"Pumpkin Cannon"
 		"Sheragi Anti-Missile" 8
 		
 		"Large EM Battery"
@@ -61,22 +62,24 @@ ship "Emerald Sword" "Pumpkin Sword"
 	turret "Sheragi Anti-Missile"
 	turret "Sheragi Anti-Missile"
 	turret "Sheragi Anti-Missile"
-	gun "Pumkin Cannon"
+	gun "Pumpkin Cannon"
 
-mission "A pumkin sword"
+mission "A pumpkin sword"
 	invisible
 	landing
+	repeat
 	to offer
 		"month" == 10
-		"day" >= 20
+		"day" >= 28
+		"random" >= 80
 	to fail
 		"month" == 11
-		"day" >= 10
+		"day" >= 1
 	to complete
 		never
 	npc 
 		government "Spooky"
-		ship "Pumkin Sword" "The pumpkins revenge"
+		ship "Pumpkin Sword" "The pumpkins revenge"
 		personality heroic unconstrained
 			confusion 40
 
