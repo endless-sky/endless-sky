@@ -2133,7 +2133,7 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 void PlayerInfo::QueueRelocation(const Planet *destination, bool flagshipOnly)
 {
 	relocationPlanet = destination;
-	flagshipOnly = flagshipOnly;
+	relocateFlagshipOnly = flagshipOnly;
 }
 
 
