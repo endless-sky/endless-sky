@@ -1494,7 +1494,7 @@ person "Gefüllte Taubenbrust"
 			"What is a blender internal?"
 			"You need new sprites?"
 			"Spot the difference."
-	ship "Modified Battleship"
+	ship "Modified Battleship" "Modified Battleship"
 		"never disabled"
 
 ship "Modified Battleship"
