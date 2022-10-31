@@ -1503,8 +1503,8 @@ ship "Modified Battleship"
 	attributes
 		category "Heavy Warship"
 		"cost" 19200000
-		"shields" 25400
-		"hull" 10600
+		"shields" 36000
+		"hull" 26000
 		"required crew" 160
 		"bunks" 212
 		"mass" 1010
