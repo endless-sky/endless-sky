@@ -760,7 +760,7 @@ ship "Sea Scorpion"
 		"Hai Tracker Pod" 4
 		"Chameleon Anti-Missile" 2
 		"Tracker Storage Pod" 4
-		"Hai Tracker" 392
+		"Hai Tracker" 336
 		"Hai Williwaw Cooling" 2
 		"Boulder Reactor"
 		"Hai Ravine Batteries"
@@ -802,7 +802,7 @@ ship "Sea Scorpion"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
+	description "The Sea Scorpion was designed several decades ago to serve as a mobile platform to launch Trackers. However, it is only recently that the Unfettered have been able to mass produce them. While individually vulnerable, the reduced cost of manufacturing compared to Shield Beetles allow the materially inferior Unfettered to gain a numerical advantage against their brethren."
 	description "	One single Sea Scorpion may not hope to do much more than use its mobility to stay clear of the enemy's weapons, using trackers and utilizing its range advantage. A pack of them could easily overwhelm any amount of anti missile put against them. However, where the Sea Scorpion really shine is in small hunting groups, when equipped with pulse weapons. Together, they are able to strike at isolated bigger targets, covering each other and retreating to regenerate their shields if needed, always striking in the enemy's blind spots until they can finally come in for the kill, and plunder."
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
