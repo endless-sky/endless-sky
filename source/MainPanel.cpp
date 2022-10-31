@@ -90,11 +90,16 @@ void MainPanel::Step()
 	if((isActive || player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED) &&
 		player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
-		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED)
+		{
+			GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this), *player.OldRelocationPlanet()));
 			player.EnterPlanet(GetUI());
+		}
 		else
+		{
+			GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this), *player.GetPlanet()));
 			player.Land(GetUI());
+		}
 		isActive = false;
 		player.SetRelocationStatus(PlayerInfo::RelocateStatus::NONE);
 	}

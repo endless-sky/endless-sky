@@ -36,7 +36,7 @@ class System;
 // (trading, jobs, bank, port, and crew) are displayed within this dialog.
 class PlanetPanel : public Panel {
 public:
-	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
+	PlanetPanel(PlayerInfo &player, std::function<void()> callback, const Planet &planet);
 
 	virtual void Step() override;
 	virtual void Draw() override;

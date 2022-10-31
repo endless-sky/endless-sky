@@ -45,9 +45,9 @@ using namespace std;
 
 
 
-PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
+PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback, const Planet &planet)
 	: player(player), callback(callback),
-	planet(*player.GetPlanet()), system(*player.GetSystem()),
+	planet(planet), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
@@ -58,10 +58,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED)
-		text.Wrap(player.OldRelocationPlanet()->Description());
-	else
-		text.Wrap(planet.Description());
+	text.Wrap(planet.Description());
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
@@ -135,12 +132,16 @@ void PlanetPanel::Draw()
 			info.SetCondition("has shipyard");
 
 		if(planet.HasOutfitter())
+		{
 			for(const auto &it : player.Ships())
 				if(it->GetSystem() == &system && !it->IsDisabled())
 				{
 					info.SetCondition("has outfitter");
 					break;
 				}
+			if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED)
+				info.SetCondition("has outfitter");
+		}
 	}
 
 	ui.Draw(info, this);
