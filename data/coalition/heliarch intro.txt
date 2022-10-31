@@ -1135,7 +1135,7 @@ mission "Heliarch Expedition 5"
 
 mission "Heliarch Containment 1"
 	name "Transport Heliarch Soldiers"
-	description "Bring these <bunks> Heliarch soldiers, along with <cargo>, to <destination>, so they can contain a rioting group."
+	description "Bring these <bunks> Heliarch soldiers, along with <cargo>, to <destination>, so they can combat a terrorist group."
 	minor
 	deadline
 	passengers 33
@@ -1150,24 +1150,23 @@ mission "Heliarch Containment 1"
 	destination "Fourth Shadow"
 	on offer
 		conversation
-			`The spaceport on <origin> is in quite a lot of turmoil, as dozens of Heliarch agents march around at an accelerated pace. Some prepare to board their own ships, and others speak with some of the captains here.`
-			`	It's no different with you. A Kimek agent approaches you after noticing you watching.`
+			`The spaceport on <origin> is in quite a lot of turmoil, as dozens of Heliarch agents march around at an accelerated pace. Some prepare to board their own ships, and others speak with some of the captains here. It's no different with you, as a Kimek agent approaches you after noticing you watching.`
 			`	"Much assistance, we require, Captain," they say. "A transport for <destination>, we need. For <bunks> of us, and <cargo>. Of great urgency, this task is."`
-			`	Without you even noticing it, an Arach agent has also gotten close, and after the Kimek is done speaking, says, "To contain a riot, there, we must go. <payment>, you will receive."`
+			`	Without you even noticing it, an Arach agent has also gotten close, and after the Kimek is done speaking, says, "Attacking several factory districts and government buildings, the terrorists are, so at once we must go. <payment>, you will receive, if by <date> we arrive."`
 			choice
-				`	"Okay. Bring your friends and the cargo to my ship."`
-					accept
-				`	"That seems a bit excessive."`
-					goto excessive
+				`	"I'd be glad to help. Bring your colleagues and the cargo to my ship."`
+					goto accept
+				`	"Terrorists? Can't the Heliarchs on that planet take care of it themselves?"`
 				`	"You'll have to find someone else. I'm not heading there right now."`
 					decline
-			label excessive
-			`	"To keep the peace, our job is," the Arach responds. "If with achieving that goal, you wish to help, transport us there, you should."`
+			`	"As I said, hit many government buildings, they have," the Arach explains. "Damaged several garrisons, the attacks did, and crippled the local agents' immediate response capabilities, they have. Not to mention, a very populous and busy world, <planet> is, so a more difficult task, locating and arresting the criminals is."`
+			`	"To keep the peace, our job is," the Kimek adds. "If to assist in achieving that goal, you wish, transport us there, you should."`
 			choice
-				`	"Okay. Bring your friends and the cargo to my ship."`
-					accept
+				`	"Okay. Bring your colleagues and the cargo to my ship."`
 				`	"You'll have to find someone else. I'm not heading there right now."`
 					decline
+			label accept
+			`	They thank you for your cooperation, and call in a device for the rest of the agents to come to your ship, along with their cargo. After securing the last of the containers in your hold, you show them to their bunks, and head to the cockpit.`
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -1189,22 +1188,25 @@ mission "Heliarch Containment 2"
 	on offer
 		conversation
 			`You're stopped by a group of Heliarch agents as you enter the spaceport, most of them Arachi.`
-			`	"Injured, many colleagues of ours have been. On Delve of Bloptab, they are," one of them says.`
-			`	"<bunks>, in total. In need of medical assistance, they are. To <destination>, they must be brought," the one Saryd of the group says.`
+			`	"Injured, many colleagues of ours have been. On <stopovers>, they are," one of them says. "Dealing with containing criminal operations, they were, surprised them with an attack amidst civilians, the rogues did. Given the circumstances, dangerous for them, it might be, if treated within hospitals there, they are."`
+			`	"<bunks>, in total, you would transport. To <destination> by <date>, they must be brought," the one Saryd of the group adds.`
 			choice
 				`	"Don't worry, I'll make sure they get help quickly."`
-					accept
-				`	"Can't you ask some of the other captains here?"`
-					goto othercaptains
+					goto accept
+				`	"Can't you pick them up in your own ships?"`
+					goto ships
 				`	"Tragic, but I'm not interested. Sorry."`
 					decline
-			label othercaptains
-			`	"And asking, we are," a Kimek replies. "Heading there, seven other ships already are. As much help as possible, in need of we are."`
+			label ships
+			`	The Saryd shakes her head. "Fled <stopovers> right after the attack, many of the outlaws have. On high alert, local fleets are, to attempt to intercept their ships. Sent a few available ships as aid, we of course have, but still, use more help, we could."`
+			`	"Enlisting the aid of other captains, we have been," another Arach from the group replies. "Heading there, seven other ships already are. As much help as possible, in need of we are."`
 			choice
-				`	"Oh, I see. Alright, I'll help them."`
-					accept
-				`	"Seven ships? Guess you've got it all figured out then. I'm not interested."`
+				`	"I see. Alright, I'll head there to pick them up."`
+				`	"Sorry, but it sounds like you've got a lot of help already, and I'm busy with something else."`
 					decline
+			label accept
+			`	They thank you, and urge you to move to <stopovers> with haste. Spotting a convoy of Kimek ships landing nearby, the group moves to new potential captains to help with the efforts.`
+				accept
 	on stopover
 		dialog `You notice dozens of Heliarch warships rapidly surveying the planet. When you land, you see more of the ships that came to help pick up the injured agents. Hundreds of bandaged Saryds, Kimek, and Arachi are being brought to the ships that keep arriving and departing. You pick up your passengers and prepare to head to the medical center on <destination>.`
 	on visit
@@ -1212,18 +1214,16 @@ mission "Heliarch Containment 2"
 	on complete
 		payment 360000
 		conversation
-			`You help the medical workers get the agents on transports, and one of the Arachi Heliarchs supervising the operation hands you <payment>.`
-			`	"Avoided, many casualties were, thanks to your assistance in our conjoint efforts, Captain," she says. "Of this cooperativeness, inform the consuls, I shall."`
+			`You help the medical workers get the agents on transports vehicle, and one of the Arach Heliarchs supervising the operation hands you <payment>.`
+			`	"Avoided, many casualties were, thanks to your assistance in our conjoint efforts, Captain," she says. "Of this cooperativeness, inform my superiors, I shall."`
 			choice
-				`	"Thanks, but I didn't really do anything too impressive. It was just a simple transport mission."`
-					goto impress
-				`	"There were a lot of injured people there. What happened? Some major factory accident?"`
+				`	"Thank you, but I didn't really do anything too impressive. It was just a simple transport mission."`
+				`	"There were a lot of injured people there. What happened there with the outlaws, exactly?"`
 					goto accident
-			label impress
-			`	"Overvalued, the rare singular 'impressive' acts are. Your continuous assistance, much more do we value."`
+			`	"Nonsense. Looking for 'impressive' actions, we are not, when asking for assistance we are. Much more valued, your continuous assistance and cooperation is. The key to our Coalition's success, such assistance is."`
 				goto end
 			label accident
-			`	"A terrorist attack, it was. The valuable resources there, they sought. Thanks to their efforts though, robbed, the warehouses were not," she says, pointing to the injured agents.`
+			`	"A terrorist attack, it was. The valuable resources and equipment stockpiled there, they sought. Thanks to the agents' efforts though, robbed, the warehouses were not," she says, pointing to the injured Heliarchs being moved from your ship and into the land vehicles.`
 			label end
 			`	She bids you farewell and goes back to making sure the injured agents find their way to hospitals.`
 				accept
@@ -1233,7 +1233,7 @@ mission "Heliarch Containment 3"
 	description "While picking up <cargo> from Secret Sky, let loose the spy bots the Heliarchs gave you to act as surveillance for the planet."
 	cargo "medication" 15
 	to offer
-		has "Heliarch Containment 1: done"
+		has "Heliarch Containment 2: done"
 		not "Resistance: Questions: done"
 	source "Ring of Power"
 	stopover "Secret Sky"
@@ -1242,12 +1242,10 @@ mission "Heliarch Containment 3"
 			`Three Heliarch officers approach you as you're walking around the spaceport. "Greetings, Captain <last>. Interested, would you be, in accompanying us? A proposition, we have," the Saryd says.`
 			choice
 				`	"What's it about?"`
-					goto inquire
 				`	"Sure, lead the way."`
 					goto way
 				`	"Sorry, not up for taking a stroll right now."`
 					decline
-			label inquire
 			`	"Inform you of that, we cannot," the Kimek says. "Not until accepted our offer, you have."`
 			choice
 				`	"Fine. Bring me to somewhere you can tell me."`
