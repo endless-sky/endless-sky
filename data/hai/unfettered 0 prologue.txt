@@ -491,11 +491,11 @@ mission "Unfettered: Bring Medical Supplies"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		log `Brought medial supplies to Darkcloak to prevent an epidemic.`
-		log "People" "Nimo" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
+		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello, captain <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. When you have the time, make sure to check the job board for more jobs like this, it would mean a great deal to me."`
-			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanour and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Nimo." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Nimo. "Worry not, <first> <last>, I already know who you are."`
+			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanour and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					decline
@@ -839,7 +839,7 @@ mission "Unfettered: Escort Hai Fleet"
 		has "reputation: Hai Merchant (Sympathizers)" >= 0
 	on offer
 		conversation
-			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Nimo, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their heart beats true still, and I blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
+			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their heart beats true still, and I blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
 			choice
 				`	"What are you even doing here?"`
 				`	"Why do you need my help?"`
@@ -919,9 +919,9 @@ mission "Unfettered: Escort Hai Fleet"
 		event "unfettered: shipment lost" 20
 		payment 500000
 		conversation
-			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Nimo to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently Here are your <payment>, you deserved them.`
-			`	My name is Kira, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
-		log "Minor People" "Kira" `A Hai governor that is not scared to put himself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
+			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently Here are your <payment>, you deserved them.`
+			`	My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
+		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put himself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
 mission "Unfettered: Taking Off With Hai Fleet"
 	landing
@@ -1013,13 +1013,13 @@ mission "Unfettered: Materials Intercepted Job Board Notification"
 		random < 20
 	on offer
 		conversation
-			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Nimo, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`
+			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Sookootow, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`
 				decline
 
 mission "Unfettered: Materials Intercepted"
 	job
 	name `Looking for stolen cargo`
-	description `Nimo wants an apt captain to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be located in the pirate worlds near Korath space, and not too far from the wormhole.`
+	description `Sookootow wants an apt captain to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be located in the pirate worlds near Korath space, and not too far from the wormhole.`
 	source
 		attributes "unfettered"
 	to offer
@@ -1105,12 +1105,12 @@ mission "Unfettered: Materials Intercepted"
 		conversation
 			action
 				set "unfettered: boarded bactrian"
-			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Nimo talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Nimo.`
+			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of materials when you can and bring them back to Sookootow.`
 			branch "allies died"
 				has "Unfettered: Cavalry Arrives: failed"
 			`	Seeing how the fight is almost over, if not completely, your surprise allies hail you. "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
-				`	"Where you sent by Nimo's contact?"`
+				`	"Where you sent by Sookootow's contact?"`
 				`	"What are these weapons you are using?"`
 					goto weapons
 			`	They laugh a bit, hearing the way you referenced their leader, "Yes, you could call her that."`
@@ -1157,9 +1157,9 @@ mission "Unfettered: Materials Intercepted"
 		clear "unfettered: materials intercepted offered"
 		outfit "Materials" -142
 		payment 2000000
-		log "Helped Nimo by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas, and the Shadows."
+		log "Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas, and the Shadows."
 		conversation
-			`You look for Nimo in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
+			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
 			`	The Elder then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
 			choice
 				`	"Thanks. Here is the cargo."`
