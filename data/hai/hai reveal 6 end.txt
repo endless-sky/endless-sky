@@ -67,37 +67,17 @@ mission "Hai Reveal [C01] Cleanup"
 				
 event "mountaintop ascendant"
 	system "Ultima Thule"
-		object
-			sprite star/f0
-			period 10
-		object
-			sprite planet/desert5
-			distance 200
-			period 22.3607
-		object
-			sprite planet/europa-b
-			distance 403.41
-			period 64.056
-		object
-			sprite planet/desert7-b
-			distance 824.9
-			period 187.302
-		object
-			sprite planet/gas1
-			distance 1706.99
-			period 557.553
-			object
-				sprite planet/ice8-b
-				distance 216
-				period 11.1964
-		object "Wormhole Alpha"
+		government "Hai"
+		# Take down the advertisement and put the wormhole back. Mountaintop remains on its own object.
+		remove object "Wormhole Alpha"
+			sprite planet/wormhole-syndicate-ad
+			distance 4208.63
+			period 2158.5
+		add object "Wormhole Alpha"
 			sprite planet/wormhole
 			distance 4208.63
 			period 2158.5
-			object Mountaintop
-				sprite "planet/station hai eight geocoris"
-				distance 315
-				period 31.1964
+	
 	planet Mountaintop
 		government "Hai"
 		attributes hai "hai tourism"
