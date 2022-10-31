@@ -1521,7 +1521,7 @@ ship "Modified Battleship"
 			"hull damage" 1700
 			"hit force" 5100
 	outfits
-		"Modified Fusion Cannon"
+		"Prototype Fusion Cannon"
 		"Quad Blaster Turret" 4
 		"Heavy Laser Turret" 4
 		"Electron Turret" 2
@@ -1555,7 +1555,7 @@ ship "Modified Battleship"
 	gun 72 26 "Torpedo Pod"
 	gun -84 38 "Torpedo Pod"
 	gun 84 38 "Torpedo Pod"
-	gun 0 -223 "Modified Fusion Cannon"
+	gun 0 -223 "Prototype Fusion Cannon"
 	turret -37 -11 "Electron Turret"
 	turret 37 -11 "Electron Turret"
 	turret -37 31 "Quad Blaster Turret"
@@ -1575,7 +1575,7 @@ ship "Modified Battleship"
 	"final explode" "final explosion large"
 	description `Never underestimate how far an individual is willing to go to modify their favorite spacecraft- sometimes before it even exists.`
 
-outfit "Modified Fusion Cannon"
+outfit "Prototype Fusion Cannon"
 	category "Secondary Weapons"
 	cost 1200000
 	thumbnail "outfit/fusion cannon"
@@ -1586,7 +1586,7 @@ outfit "Modified Fusion Cannon"
 	"railgun bolt capacity" 50
 	weapon
 		sprite "effect/fusion plasma"
-		sprite "projectile/plasma"
+		sprite "projectile/fusion gun bolt"
 			"no repeat"
 			"frame rate" .25
 		sound "dragonflame"
@@ -1613,7 +1613,7 @@ outfit "Modified Fusion Cannon"
 		"disruption damage" 5
 		"hit force" 100
 		"missile strength" 10
-	description "This is a personally obtained Fusion Cannon- where it came from, nobody knows except the owner."
+	description "This is a personally obtained prototype Fusion Cannon, a deadly, massive spinal weapon. Where it came from, nobody knows except the owner, and those who wish to ask are too afraid of being on the receiving end."
 	
 effect "fusion cannon fire"
 	sprite "effect/plasma fire"
