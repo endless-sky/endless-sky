@@ -1817,8 +1817,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		hyperspaceFuelCost = jumpUsed.second;
 		hyperState = 1;
 	}
+	else if (hyperState == 4)
+		hyperState = 5;
 	else
-		hyperState = hyperState == 0 ? 0 : 5;
+		hyperState = 0;
 
 	if(pilotError)
 		--pilotError;
