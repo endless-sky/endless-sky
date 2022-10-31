@@ -1502,7 +1502,7 @@ ship "Modified Battleship"
 	thumbnail "thumbnail/battleship"
 	attributes
 		category "Heavy Warship"
-		"cost" 19200000
+		"cost" 35000000
 		"shields" 36000
 		"hull" 26000
 		"required crew" 160
