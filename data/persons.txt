@@ -1573,7 +1573,7 @@ ship "Modified Battleship"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `The largest ship made by the navy so far, it is hoped to help repel any future invasions by aliens in human space. Its design leans towards turrets more than guns and has the equivalnt armament of a small fleet.`
+	description `Never underestimate how far an individual is willing to go to modify their favorite spacecraft- sometimes before it even exists.`
 
 outfit "Modified Fusion Cannon"
 	category "Secondary Weapons"
@@ -1613,7 +1613,7 @@ outfit "Modified Fusion Cannon"
 		"disruption damage" 5
 		"hit force" 100
 		"missile strength" 10
-	description "This is a placeholder."
+	description "This is a personally obtained Fusion Cannon- where it came from, nobody knows except the owner."
 	
 effect "fusion cannon fire"
 	sprite "effect/plasma fire"
