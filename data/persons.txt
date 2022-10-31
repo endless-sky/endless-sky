@@ -1485,25 +1485,20 @@ person "Gefüllte Taubenbrust"
 		heroic plunders opportunistic
 	phrase
 		word
-			"Sus."
-			"Bruh."
-			"Poggers."
-			"Based."
 			"The whole room is spinning."
 			"I am fueling your nightmares."
 			"Turrets = woke. Spinals = broke."
 			"My eyes are on fire."
-			"Bruh moment."
-			"Los bruh momentos."
 			"Curve modifier is love. Curve modifier is life."
 			"Just use denoising."
 			"What is a blender internal?"
 			"You need new sprites?"
+	ship "Modified Battleship"
+		"never disabled"
 
-ship "Battleship"
+ship "Modified Battleship"
 	sprite "ship/battleship"
 	thumbnail "thumbnail/battleship"
-	"never disabled"
 	attributes
 		category "Heavy Warship"
 		"cost" 19200000
@@ -1525,7 +1520,7 @@ ship "Battleship"
 			"hull damage" 1700
 			"hit force" 5100
 	outfits
-		"Fusion Cannon"
+		"Modified Fusion Cannon"
 		"Quad Blaster Turret" 4
 		"Heavy Laser Turret" 4
 		"Electron Turret" 2
@@ -1559,7 +1554,7 @@ ship "Battleship"
 	gun 72 26 "Torpedo Pod"
 	gun -84 38 "Torpedo Pod"
 	gun 84 38 "Torpedo Pod"
-	gun 0 -223 "Fusion Cannon"
+	gun 0 -223 "Modified Fusion Cannon"
 	turret -37 -11 "Electron Turret"
 	turret 37 -11 "Electron Turret"
 	turret -37 31 "Quad Blaster Turret"
@@ -1579,7 +1574,7 @@ ship "Battleship"
 	"final explode" "final explosion large"
 	description `The largest ship made by the navy so far, it is hoped to help repel any future invasions by aliens in human space. Its design leans towards turrets more than guns and has the equivalnt armament of a small fleet.`
 
-outfit "Fusion Cannon"
+outfit "Modified Fusion Cannon"
 	category "Secondary Weapons"
 	cost 1200000
 	thumbnail "outfit/fusion cannon"
