@@ -1478,7 +1478,7 @@ ship "Modified Boxwing"
 
 
 
-person "Gefüllte Taubenbrust"
+person "Gefullte Taubenbrust"
 	government "Author"
 	frequency 1000
 	personality
