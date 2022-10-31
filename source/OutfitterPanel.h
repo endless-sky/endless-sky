@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef OUTFITTER_PANEL_H_
@@ -45,6 +48,7 @@ public:
 
 protected:
 	virtual int TileSize() const override;
+	virtual int VisibilityCheckboxesSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
@@ -60,7 +64,10 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
+	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
+
+
 
 
 private:
@@ -79,12 +86,12 @@ private:
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
-	// Allow toggling whether outfits that are for sale are shown. If turned
-	// off, only outfits in the currently selected ships are shown.
+	// Allow toggling whether outfits that are for sale are shown.
 	bool showForSale = true;
-	// Remember what ships are selected if the player switches to cargo.
-	Ship *previousShip = nullptr;
-	std::set<Ship *> previousShips;
+	// Allow toggling whether stored outfits are shown.
+	bool showStorage = true;
+	// Allow toggling whether outfits in cargo are shown.
+	bool showCargo = true;
 
 	Sale<Outfit> outfitter;
 

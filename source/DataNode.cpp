@@ -7,12 +7,15 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DataNode.h"
 
-#include "Files.h"
+#include "Logger.h"
 
 #include <algorithm>
 #include <cctype>
@@ -121,7 +124,7 @@ double DataNode::Value(const string &token)
 	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
 	if(!IsNumber(token))
 	{
-		Files::LogError("Cannot convert value \"" + token + "\" to a number.");
+		Logger::LogError("Cannot convert value \"" + token + "\" to a number.");
 		return 0.;
 	}
 	const char *it = token.c_str();
@@ -246,11 +249,7 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
-	{
-		// Put an empty line in the log between each error message.
-		Files::LogError("");
-		Files::LogError(message);
-	}
+		Logger::LogError(message);
 
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
@@ -275,7 +274,11 @@ int DataNode::PrintTrace(const string &message) const
 		if(hasSpace)
 			line += hasQuote ? '`' : '"';
 	}
-	Files::LogError(line);
+	Logger::LogError(line);
+
+	// Put an empty line in the log between each error message.
+	if(!message.empty())
+		Logger::LogError("");
 
 	// Tell the caller what indentation level we're at now.
 	return indent;

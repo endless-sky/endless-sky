@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Format.h"
@@ -187,6 +190,7 @@ string Format::Decimal(double value, int places)
 
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
+// It can also contain spaces or "," as separators like 1,000 or 1 000.
 double Format::Parse(const string &str)
 {
 	double place = 1.;
@@ -201,7 +205,7 @@ double Format::Parse(const string &str)
 	{
 		if(*it == '.')
 			place = .1;
-		else if(*it == ',') {}
+		else if(*it == ',' || *it == ' ') {}
 		else if(*it < '0' || *it > '9')
 			break;
 		else

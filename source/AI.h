@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ES_AI_H_
 #define ES_AI_H_
 
 #include "Command.h"
+#include "FireCommand.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -94,7 +98,8 @@ private:
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
+	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
+		const Point &targetVelocity, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Body &target);
@@ -106,6 +111,7 @@ private:
 	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
 	// Special personality behaviors.
+	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
@@ -122,11 +128,11 @@ private:
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
 	// Aim the given ship's turrets.
-	void AimTurrets(const Ship &ship, Command &command, bool opportunistic = false) const;
+	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, Command &command, bool secondary = true) const;
-	void AutoFire(const Ship &ship, Command &command, const Body &target) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
@@ -188,6 +194,10 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
+	// General firing command for ships. This is a data member to avoid
+	// thrashing the heap, since we can reuse the storage for
+	// each ship.
+	FireCommand firingCommands;
 
 	bool isCloaking = false;
 
@@ -215,7 +225,7 @@ private:
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
-	std::map<const Ship *, double> appeasmentThreshold;
+	std::map<const Ship *, double> appeasementThreshold;
 
 	std::map<const Ship *, int64_t> shipStrength;
 

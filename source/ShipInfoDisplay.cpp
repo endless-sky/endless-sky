@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShipInfoDisplay.h"
@@ -51,6 +54,13 @@ void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation,
 
 
 
+int ShipInfoDisplay::GetAttributesHeight(bool sale) const
+{
+	return attributesHeight + (sale ? saleHeight : 0);
+}
+
+
+
 int ShipInfoDisplay::OutfitsHeight() const
 {
 	return outfitsHeight;
@@ -58,17 +68,32 @@ int ShipInfoDisplay::OutfitsHeight() const
 
 
 
-int ShipInfoDisplay::SaleHeight() const
+void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	return saleHeight;
+	DrawAttributes(topLeft, false);
 }
 
 
 
 // Draw each of the panels.
-void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
+void ShipInfoDisplay::DrawAttributes(const Point &topLeft, const bool sale) const
 {
-	Point point = Draw(topLeft, attributeLabels, attributeValues);
+	// Header.
+	Point point = Draw(topLeft, attributeHeaderLabels, attributeHeaderValues);
+
+	// Sale info.
+	if(sale)
+	{
+		point = Draw(point, saleLabels, saleValues);
+
+		const Color &color = *GameData::Colors().Get("medium");
+		FillShader::Fill(point + Point(.5 * WIDTH, 5.), Point(WIDTH - 20., 1.), color);
+	}
+	else
+		point -= Point(0, 10.);
+
+	// Body.
+	point = Draw(point, attributeLabels, attributeValues);
 
 	// Get standard colors to draw with.
 	const Color &labelColor = *GameData::Colors().Get("medium");
@@ -104,23 +129,20 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::DrawSale(const Point &topLeft) const
-{
-	Draw(topLeft, saleLabels, saleValues);
-
-	const Color &color = *GameData::Colors().Get("medium");
-	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);
-}
-
-
-
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
+	attributeHeaderLabels.clear();
+	attributeHeaderValues.clear();
+
+	attributeHeaderLabels.push_back("model:");
+	attributeHeaderValues.push_back(ship.ModelName());
+	attributesHeight = 20;
+
 	attributeLabels.clear();
 	attributeValues.clear();
-	attributesHeight = 20;
+	attributesHeight += 20;
 
 	const Outfit &attributes = ship.Attributes();
 
@@ -145,9 +167,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	bool hasShieldRegen = shieldRegen > 0.;
 	if(hasShieldRegen)
 	{
-		attributeLabels.push_back("shields charge / max:");
-		attributeValues.push_back(Format::Number(60. * shieldRegen)
-			+ " / " + Format::Number(attributes.Get("shields")));
+		attributeLabels.push_back("shields (charge):");
+		attributeValues.push_back(Format::Number(attributes.Get("shields"))
+			+ " (" + Format::Number(60. * shieldRegen) + "/s)");
 	}
 	else
 	{
@@ -160,9 +182,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	bool hasHullRepair = hullRepair > 0.;
 	if(hasHullRepair)
 	{
-		attributeLabels.push_back("hull repair / max:");
-		attributeValues.push_back(Format::Number(60. * hullRepair)
-			+ " / " + Format::Number(attributes.Get("hull")));
+		attributeLabels.push_back("hull (repair):");
+		attributeValues.push_back(Format::Number(attributes.Get("hull"))
+			+ " (" + Format::Number(60. * hullRepair) + "/s)");
 	}
 	else
 	{
@@ -173,14 +195,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double emptyMass = attributes.Mass();
 	double currentMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
-	attributeValues.push_back(Format::Number(isGeneric ? emptyMass : currentMass));
+	attributeValues.push_back(Format::Number(isGeneric ? emptyMass : currentMass) + " tons");
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "cargo space:" : "cargo:");
 	if(isGeneric)
-		attributeValues.push_back(Format::Number(attributes.Get("cargo space")));
+		attributeValues.push_back(Format::Number(attributes.Get("cargo space")) + " tons");
 	else
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
-			+ " / " + Format::Number(attributes.Get("cargo space")));
+			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
 	attributesHeight += 20;
 	attributeLabels.push_back("required crew / bunks:");
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())
@@ -201,7 +223,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	attributeLabels.push_back(isGeneric ? "movement, full / no cargo:" : "movement:");
+	attributeLabels.push_back(isGeneric ? "movement (full - no cargo):" : "movement:");
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
@@ -213,7 +235,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / currentMass));
 	else
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " / " + Format::Number(3600. * forwardThrust / emptyMass));
+			+ " - " + Format::Number(3600. * forwardThrust / emptyMass));
 	attributesHeight += 20;
 
 	attributeLabels.push_back("turning:");
@@ -221,7 +243,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / currentMass));
 	else
 		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
-			+ " / " + Format::Number(60. * attributes.Get("turn") / emptyMass));
+			+ " - " + Format::Number(60. * attributes.Get("turn") / emptyMass));
 	attributesHeight += 20;
 
 	// Find out how much outfit, engine, and weapon space the chassis has.
