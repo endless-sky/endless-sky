@@ -1818,7 +1818,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		hyperState = 1;
 	}
 	else
-		hyperState = hyperstate == 0 ? 0 : 5;
+		hyperState = hyperState == 0 ? 0 : 5;
 
 	if(pilotError)
 		--pilotError;
