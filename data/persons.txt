@@ -1493,6 +1493,7 @@ person "Gefüllte Taubenbrust"
 			"Just use denoising."
 			"What is a blender internal?"
 			"You need new sprites?"
+			"Spot the difference."
 	ship "Modified Battleship"
 		"never disabled"
 
