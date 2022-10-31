@@ -1577,7 +1577,7 @@ ship "Battleship"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `The largest ship made by the navy so far, it is hoped to help repel any future invasions by aliens in human space. Its design leans towards turrets more than guns and has the equivilent armament of a small fleet.`
+	description `The largest ship made by the navy so far, it is hoped to help repel any future invasions by aliens in human space. Its design leans towards turrets more than guns and has the equivalnt armament of a small fleet.`
 
 outfit "Fusion Cannon"
 	category "Secondary Weapons"
@@ -1680,7 +1680,7 @@ effect "fusion cannon nuke"
 	"random spin" 3
 	"velocity scale" .0
 
-effect "fusion cannon spark"
+effect "fusion cannonspark"
 	sprite "effect/static"
 		"no repeat"
 		"frame rate" 30
