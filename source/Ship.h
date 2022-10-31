@@ -58,6 +58,15 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
+	enum HyperStage {
+		NotJumping,
+		BeginJumping,
+		Jumping,
+		ChangeSystem,
+		InSystem,
+		EndJump
+	};
+
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
@@ -341,7 +350,7 @@ public:
 	// 2 - Jumping (In original system)
 	// 3 - Switching to next system - One frame
 	// 4 - Finishing Jump (Movement is still locked)
-	uint8_t HyperState() const;
+	int HyperState() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
 	// Get the heat dissipation, in heat units per heat unit per frame.
@@ -604,7 +613,7 @@ private:
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
-	uint8_t hyperState = 0;
+	HyperStage hyperState = HyperStage::NotJumping;
 
 	double jumpRange = 0.;
 

@@ -1611,7 +1611,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
-		hyperState = (hyperState > 2) ? 4 : 2;
+		hyperState = (hyperState > HyperStage::Jumping) ? HyperStage::InSystem : HyperStage::Jumping;
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 
@@ -1643,7 +1643,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		if(hyperspaceCount == HYPER_C)
 		{
-			hyperState = 3;
+			hyperState = HyperStage::ChangeSystem;
 			currentSystem = hyperspaceSystem;
 			hyperspaceSystem = nullptr;
 			targetSystem = nullptr;
@@ -1815,12 +1815,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(hyperspaceSystem);
 		isUsingJumpDrive = (jumpUsed.first == JumpType::JumpDrive);
 		hyperspaceFuelCost = jumpUsed.second;
-		hyperState = 1;
+		hyperState = HyperStage::BeginJumping;
 	}
-	else if (hyperState == 4)
-		hyperState = 5;
+	else if (hyperState == HyperStage::InSystem)
+		hyperState = HyperStage::EndJump;
 	else
-		hyperState = 0;
+		hyperState = HyperStage::NotJumping;
 
 	if(pilotError)
 		--pilotError;
@@ -3380,7 +3380,7 @@ double Ship::JumpFuelMissing() const
 
 
 
-uint8_t Ship::HyperState() const
+int Ship::HyperState() const
 {
 	return hyperState;
 }
