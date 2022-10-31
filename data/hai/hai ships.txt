@@ -1092,7 +1092,7 @@ ship "Emperor Beetle"
 		"heat dissipation" .4
 		"fuel capacity" 500
 		"outfit space" 872
-		"weapon capacity" 333
+		"weapon capacity" 364
 		"engine capacity" 150
 		weapon
 			"blast radius" 500
