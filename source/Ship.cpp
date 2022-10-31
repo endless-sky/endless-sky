@@ -1802,9 +1802,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	double mass = Mass();
 	bool isUsingAfterburner = false;
 	if(isDisabled)
-	{
 		velocity *= 1. - Drag() / mass;
-	}
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -3326,7 +3324,7 @@ int Ship::Crew() const
 	return crew;
 }
 
-// Calculate drag reduction.
+// Calculate drag, accounting for drag reduction.
 double Ship::Drag() const
 {
 	return attributes.Get("drag") / (1 + attributes.Get("drag reduction"));
