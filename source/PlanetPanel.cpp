@@ -75,6 +75,9 @@ void PlanetPanel::Step()
 	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTING)
 	{
 		player.SetRelocationStatus(PlayerInfo::RelocateStatus::TELEPORTED);
+		UI *ui = GetUI();
+		while(ui->IsTop(this))
+			ui->Pop(ui->Top().get());
 		TakeOff();
 	}
 	// If the previous mission callback resulted in a "launch", take off now.
