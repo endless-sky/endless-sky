@@ -1512,8 +1512,8 @@ ship "Modified Battleship"
 		"heat dissipation" .35
 		"fuel capacity" 1000
 		"cargo space" 30
-		"outfit space" 1050
-		"weapon capacity" 490
+		"outfit space" 1058
+		"weapon capacity" 498
 		"engine capacity" 123
 		weapon
 			"blast radius" 340
@@ -1526,9 +1526,11 @@ ship "Modified Battleship"
 		"Heavy Laser Turret" 4
 		"Electron Turret" 2
 		"Wanderer Anti-Missile"
-		"Torpedo Pod" 6
+		"Torpedo Pod" 4
 		"Torpedo Storage Rack" 2
-		"Torpedo" 48
+		"Torpedo" 42
+		"Typhoon Pod" 2
+		"Typhoon Torpedo" 34
 		
 		"Dark Storm Shielding" 2
 		"Triple Plasma Core"
@@ -1549,8 +1551,8 @@ ship "Modified Battleship"
 	engine -45 212
 	engine -21 220
 		zoom 0.8
-	gun -59 14 "Torpedo Pod"
-	gun 59 14 "Torpedo Pod"
+	gun -59 14 "Typhoon Pod"
+	gun 59 14 "Typhoon Pod"
 	gun -72 25 "Torpedo Pod"
 	gun 72 26 "Torpedo Pod"
 	gun -84 38 "Torpedo Pod"
