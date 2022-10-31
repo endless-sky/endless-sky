@@ -1573,7 +1573,7 @@ ship "Modified Battleship"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `Never underestimate how far an individual is willing to go to modify their favorite spacecraft- sometimes before it even exists.`
+	description `Never underestimate how far an individual is willing to go to modify their favorite spacecraft - sometimes before it even exists.`
 
 outfit "Prototype Fusion Cannon"
 	category "Secondary Weapons"
