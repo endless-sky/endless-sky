@@ -58,7 +58,7 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
-	enum class HyperStage : int{
+	enum class HyperStage : int {
 		NotJumping = 0,
 		BeginJumping,
 		Jumping,
