@@ -3324,11 +3324,15 @@ int Ship::Crew() const
 	return crew;
 }
 
+
+
 // Calculate drag, accounting for drag reduction.
 double Ship::Drag() const
 {
 	return attributes.Get("drag") / (1 + attributes.Get("drag reduction"));
 }
+
+
 
 int Ship::RequiredCrew() const
 {

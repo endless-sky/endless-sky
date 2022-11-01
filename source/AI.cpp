@@ -2078,7 +2078,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 		command.SetTurn(targetAngle);
 
 	// Determine whether to apply thrust.
-	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
+	Point drag = ship.Velocity() * ship.Drag() / mass;
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Don't take drag into account when reverse thrusting, because this
