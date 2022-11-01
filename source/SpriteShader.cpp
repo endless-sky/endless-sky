@@ -76,8 +76,7 @@ namespace {
 		{GL_RED, GL_GREEN, GL_RED, GL_ALPHA}, // 26 faded magenta
 		{GL_ALPHA, GL_BLUE, GL_BLUE, GL_ALPHA}, // 27 bright red (heat)
 		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}, // 28 black only (outline)
-		{GL_BLUE, GL_BLUE, GL_ALPHA, GL_ALPHA}, // 29 bright blue only (shielding)
-
+		{GL_GREEN, GL_RED, GL_ALPHA, GL_ALPHA} // 29 bright blue only (shielding)
 	};
 }
 
@@ -252,7 +251,7 @@ void SpriteShader::Init(bool useShaderSwizzle)
 		"      color = vec4(0.f, 0.f, 0.f, color.a);\n"
 		"      break;\n"
 		"    case 29:\n"
-		"      color = color.bbaa;\n"
+		"      color = vec4(color.r*0.43f, color.r*0.55f, color.r*0.70, color.a);\n"
 		"      break;\n"
 		"  }\n";
 	}

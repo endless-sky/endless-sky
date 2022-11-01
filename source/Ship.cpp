@@ -2213,7 +2213,7 @@ void Ship::DoGeneration()
 	fuel -= leakage;
 	heat += burning;
 
-	recentShield *= 0.8;
+	recentShield *= 0.75;
 	recentHeat *= 0.984;
 
 	// TODO: Mothership gives status resistance to carried ships?
@@ -3205,13 +3205,6 @@ double Ship::ShieldLevel() const
 double Ship::DisruptionLevel() const
 {
 	return disruption;
-}
-
-
-
-double Ship::RecentHeat() const
-{
-	return recentHeat;
 }
 
 

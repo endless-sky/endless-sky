@@ -317,7 +317,6 @@ public:
 	// disabled threshold.
 	double HullUntilDisabled() const;
 	double RecentShield() const;
-	double RecentHeat() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// This does not show accurate number of jumps remaining beyond 1.
