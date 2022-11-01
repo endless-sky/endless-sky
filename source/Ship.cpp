@@ -3329,7 +3329,7 @@ int Ship::Crew() const
 // Calculate drag, accounting for drag reduction.
 double Ship::Drag() const
 {
-	return attributes.Get("drag") / (1 + attributes.Get("drag reduction"));
+	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
 }
 
 
