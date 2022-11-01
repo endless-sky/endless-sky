@@ -2323,14 +2323,20 @@ void Engine::AddSprites(const Ship &ship)
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
+	double shield = sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
+	double heat = sqrt(ship.RecentHeat()/ship.MaximumHeat());
 	auto &itemsToDraw = draw[calcTickTock];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
+	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked](const Body &body) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
+			itemsToDraw.AddSwizzled(body, 10, 0.6);
+		else
 			itemsToDraw.AddSwizzled(body, 27);
-		itemsToDraw.Add(body, cloak);
+		itemsToDraw.Add(body, cloak + heat);
+		itemsToDraw.AddSwizzled(body, 29, 1-shield);
+
 	};
 
 	if(hasFighters)

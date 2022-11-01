@@ -2212,6 +2212,10 @@ void Ship::DoGeneration()
 	energy -= ionization;
 	fuel -= leakage;
 	heat += burning;
+
+	recentShield *= 0.8;
+	recentHeat *= 0.984;
+
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
@@ -3205,6 +3209,20 @@ double Ship::DisruptionLevel() const
 
 
 
+double Ship::RecentHeat() const
+{
+	return recentHeat;
+}
+
+
+
+double Ship::RecentShield() const
+{
+	return max(recentShield*4, 0.);
+}
+
+
+
 // Get the (absolute) amount of hull that needs to be damaged until the
 // ship becomes disabled. Returns 0 if the ships hull is already below the
 // disabled threshold.
@@ -3504,6 +3522,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	bool wasDestroyed = IsDestroyed();
 
 	shields -= damage.Shield();
+	recentShield += damage.Shield();
+
 	if(damage.Shield() && !isDisabled)
 	{
 		int disabledDelay = attributes.Get("depleted shield delay");
@@ -3517,6 +3537,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	energy -= damage.Energy();
 	heat += damage.Heat();
 	fuel -= damage.Fuel();
+
+	recentHeat += damage.Heat();
 
 	discharge += damage.Discharge();
 	corrosion += damage.Corrosion();

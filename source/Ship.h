@@ -316,6 +316,8 @@ public:
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
+	double RecentShield() const;
+	double RecentHeat() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
 	// This does not show accurate number of jumps remaining beyond 1.
@@ -577,6 +579,9 @@ private:
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
+	// Recent damage taken.
+	double recentShield = 0.;
+	double recentHeat = 0.;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 
