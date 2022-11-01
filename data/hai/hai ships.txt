@@ -182,15 +182,15 @@ ship "Cicada"
 	thumbnail "thumbnail/hai cicada"
 	attributes
 		category "Transport"
-		"cost" 5850000
-		"shields" 4900
-		"hull" 2800
-		"required crew" 7
+		"cost" 3850000
+		"shields" 5400
+		"hull" 2000
+		"required crew" 8
 		"bunks" 51
-		"mass" 240
+		"mass" 300
 		"drag" 4.7
 		"heat dissipation" .75
-		"fuel capacity" 600
+		"fuel capacity" 500
 		"cargo space" 143
 		"outfit space" 323
 		"weapon capacity" 89
@@ -794,15 +794,15 @@ ship "Scarab"
 	thumbnail "thumbnail/hai scarab"
 	attributes
 		category "Transport"
-		"cost" 1720000
-		"shields" 4500
-		"hull" 1600
-		"required crew" 5
+		"cost" 1620000
+		"shields" 4600
+		"hull" 1500
+		"required crew" 4
 		"bunks" 27
 		"mass" 146
 		"drag" 3.8
 		"heat dissipation" .87
-		"fuel capacity" 500
+		"fuel capacity" 400
 		"cargo space" 44
 		"outfit space" 231
 		"weapon capacity" 49
