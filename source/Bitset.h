@@ -42,6 +42,8 @@ public:
 	bool Test(size_t index) const noexcept;
 	// Sets the bit at the specified index.
 	void Set(size_t index) noexcept;
+	// Resets all bits in the bitset.
+	void Reset() noexcept;
 	// Whether any bits are set.
 	bool Any() const noexcept;
 	// Whether no bits are set.
