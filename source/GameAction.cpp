@@ -186,9 +186,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			child.PrintTrace("Error: Skipping invalid outfit quantity:");
 	}
 	else if(key == "outfittag" && hasValue)
-	{
 		takeOutfitsByTag.emplace_back(child.Token(1));
-	}
 	else if(key == "payment")
 	{
 		if(child.Size() == 1)
