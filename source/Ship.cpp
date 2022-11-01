@@ -3218,7 +3218,7 @@ double Ship::RecentHeat() const
 
 double Ship::RecentShield() const
 {
-	return max(recentShield*4, 0.);
+	return recentShield;
 }
 
 

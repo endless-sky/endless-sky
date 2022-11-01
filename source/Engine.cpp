@@ -2326,7 +2326,7 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawCloaked = (cloak && ship.IsYours());
 	bool drawHeat = ship.RecentHeat() > 4.;
 	bool drawShield = ship.RecentShield() > 4.;
-	double shield = sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
+	double shield = sqrt(ship.RecentShield()*4/ship.Attributes().Get("shields"));
 	double heat = sqrt(ship.RecentHeat()/ship.MaximumHeat());
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked, drawShield, drawHeat, damageHighlight](const Body &body) -> void
