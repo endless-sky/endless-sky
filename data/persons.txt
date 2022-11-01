@@ -1512,9 +1512,10 @@ ship "Modified Battleship"
 		"heat dissipation" .35
 		"fuel capacity" 1000
 		"cargo space" 30
-		"outfit space" 1058
-		"weapon capacity" 498
+		"outfit space" 1152
+		"weapon capacity" 592
 		"engine capacity" 123
+		"spinal mount" 1
 		weapon
 			"blast radius" 340
 			"shield damage" 3400
@@ -1579,15 +1580,15 @@ ship "Modified Battleship"
 
 outfit "Prototype Fusion Cannon"
 	category "Secondary Weapons"
-	cost 1200000
+	cost 160000000
 	thumbnail "outfit/fusion cannon"
-	"mass" 45
-	"outfit space" -50
-	"weapon capacity" -50
+	"mass" 145
+	"outfit space" -144
+	"weapon capacity" -144
 	"gun ports" -1
-	"railgun bolt capacity" 50
+	"spinal mount" -1
+	"required crew" 12
 	weapon
-		sprite "effect/fusion plasma"
 		sprite "projectile/fusion gun bolt"
 			"no repeat"
 			"frame rate" .25
