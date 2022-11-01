@@ -58,8 +58,8 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
-	enum HyperStage {
-		NotJumping,
+	enum class HyperStage : int{
+		NotJumping = 0,
 		BeginJumping,
 		Jumping,
 		ChangeSystem,
@@ -350,7 +350,7 @@ public:
 	// 2 - Jumping (In original system)
 	// 3 - Switching to next system - One frame
 	// 4 - Finishing Jump (Movement is still locked)
-	int HyperState() const;
+	HyperStage HyperState() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
 	// Get the heat dissipation, in heat units per heat unit per frame.

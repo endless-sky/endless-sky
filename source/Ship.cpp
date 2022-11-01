@@ -3380,7 +3380,7 @@ double Ship::JumpFuelMissing() const
 
 
 
-int Ship::HyperState() const
+Ship::HyperStage Ship::HyperState() const
 {
 	return hyperState;
 }
