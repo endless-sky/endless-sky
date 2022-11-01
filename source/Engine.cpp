@@ -2322,21 +2322,31 @@ void Engine::AddSprites(const Ship &ship)
 {
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
+	bool damageHighlight = Preferences::Has("Damage highlights");
 	bool drawCloaked = (cloak && ship.IsYours());
+	bool drawHeat = ship.RecentHeat() > 4.;
+	bool drawShield = ship.RecentShield() > 4.;
 	double shield = sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
 	double heat = sqrt(ship.RecentHeat()/ship.MaximumHeat());
 	auto &itemsToDraw = draw[calcTickTock];
-	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked](const Body &body) -> void
+	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked, drawShield, drawHeat, damageHighlight](const Body &body) -> void
 	{
-		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
-		// sprite with an increasingly transparent "regular" sprite.
+		// Draw cloaked/cloaking sprites swizzled transparent grey.
 		if(drawCloaked)
 			itemsToDraw.AddSwizzled(body, 10, 0.6);
-		else
-			itemsToDraw.AddSwizzled(body, 27);
-		itemsToDraw.Add(body, cloak + heat);
-		itemsToDraw.AddSwizzled(body, 29, 1-shield);
-
+		if(damageHighlight)
+		{
+			// Draw the sprite swizzled red when taking heat damage.
+			if(drawHeat)
+				itemsToDraw.AddSwizzled(body, 27);
+			// Overlay this solid sprite with an increasingly transparent "regular" sprite.
+			itemsToDraw.Add(body, max(cloak,drawHeat ? heat : 0.));
+			// Draw another sprite swizzled blue over when the shields are damaged.
+			if(drawShield)
+				itemsToDraw.AddSwizzled(body, 29, 1-shield);
+		}
+		else // We would have missed on this step if damageHighlight was disabled.
+			itemsToDraw.Add(body, cloak);
 	};
 
 	if(hasFighters)

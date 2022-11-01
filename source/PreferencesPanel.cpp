@@ -442,6 +442,7 @@ void PreferencesPanel::DrawSettings()
 		VSYNC_SETTING,
 		"Show status overlays",
 		"Highlight player's flagship",
+		"Damage highlights",
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		"Show mini-map",
