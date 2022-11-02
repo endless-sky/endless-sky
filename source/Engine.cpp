@@ -199,7 +199,7 @@ namespace {
 	const double MAX_FUEL_DISPLAY = 5000.;
 
 	const double HEAT_THRESHHOLD = .9;
-	const double HEAT_EFFECT_MULTIPLIER = 0.11;
+	const double HEAT_EFFECT_MULTIPLIER = 0.15;
 }
 
 
@@ -954,11 +954,23 @@ void Engine::Draw() const
 			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
 	}
 
+	Point dCenter = player.FlagshipPtr()->Position();
 	for(const shared_ptr<Ship> &ship : ships)
 	{
 		if(ship->Cloaking() && ship->IsYours() && ship->GetSystem() == player.GetSystem())
-			OutlineShader::Draw(ship->GetSprite(), (ship->Position()-center-ship->Velocity())*zoom, Point(ship->Width(), ship->Height())*zoom,
-								Color(0.6f, 0.1f, 0.1f, 0.8f*static_cast<float>(ship->Cloaking())), ship->Facing().Unit(), ship->GetFrame());
+		{
+			float cloak = .1f * static_cast<float>(ship->Cloaking());
+			OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
+								Color(6 * cloak, cloak, cloak, 8 * cloak), ship->Facing().Unit(), ship->GetFrame());
+		}
+
+		if(Preferences::Has("Damage highlights"))
+		{
+			float shields = min(10.f*static_cast<float>(sqrt(ship->RecentShield()/ship->Attributes().Get("shields"))), 1.f);
+			if(ship->RecentShield() > 4. && ship->GetSystem() == player.GetSystem())
+				OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
+									Color(.61f * shields, .78f * shields, shields, shields),ship->Facing().Unit(), ship->GetFrame());
+		}
 	}
 
 	// Draw the flagship highlight, if any.
@@ -2336,7 +2348,7 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawCloaked = (cloak && ship.IsYours());
 	bool drawHeat = ship.Heat() > 0.9;
 	bool drawShield = ship.RecentShield() > 4.;
-	double shield = 2*sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
+	double shield = sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
 	double heat = min((ship.Heat() - HEAT_THRESHHOLD) * HEAT_EFFECT_MULTIPLIER, 1.);
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked, drawShield, drawHeat, damageHighlight](const Body &body) -> void
@@ -2353,7 +2365,7 @@ void Engine::AddSprites(const Ship &ship)
 			itemsToDraw.Add(body, max(cloak, drawHeat ? heat : 0.));
 			// Draw another the sprite scaled up swizzled blue over when the shields are damaged.
 			if(drawShield)
-				itemsToDraw.AddSwizzled(body, 29, max(1-shield, 0.4));
+				itemsToDraw.AddSwizzled(body, 29, max(1-shield, 0.75));
 		}
 		else // We would have missed on this step if damageHighlight was disabled.
 			itemsToDraw.Add(body, cloak);

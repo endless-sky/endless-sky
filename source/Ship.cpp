@@ -2215,7 +2215,8 @@ void Ship::DoGeneration()
 	fuel -= leakage;
 	heat += burning;
 
-	recentShield *= RECENT_SHIELD_MULT;
+	if(Preferences::Has("Damage highlights"))
+		recentShield *= RECENT_SHIELD_MULT;
 
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
