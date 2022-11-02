@@ -63,6 +63,8 @@ namespace {
 
 	const double SCAN_TIME = 60.;
 
+	const double RECENT_SHIELD_MULT = 0.75;
+
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
 	void DoRepair(double &stat, double &available, double maximum)
@@ -2213,8 +2215,7 @@ void Ship::DoGeneration()
 	fuel -= leakage;
 	heat += burning;
 
-	recentShield *= 0.75;
-	recentHeat *= 0.984;
+	recentShield *= RECENT_SHIELD_MULT;
 
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
@@ -3530,8 +3531,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	energy -= damage.Energy();
 	heat += damage.Heat();
 	fuel -= damage.Fuel();
-
-	recentHeat += damage.Heat();
 
 	discharge += damage.Discharge();
 	corrosion += damage.Corrosion();

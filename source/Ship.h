@@ -580,7 +580,6 @@ private:
 	int hullDelay = 0;
 	// Recent damage taken.
 	double recentShield = 0.;
-	double recentHeat = 0.;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 
