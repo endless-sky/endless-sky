@@ -2336,7 +2336,7 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawHeat = ship.Heat() > 0.9;
 	bool drawShield = ship.RecentShield() > 4.;
 	double shield = sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
-	double heat = min((ship.Heat()-0.9)/10, 1.);
+	double heat = min((ship.Heat()-0.9) / 16, 1.);
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked, drawShield, drawHeat, damageHighlight](const Body &body) -> void
 	{
@@ -2349,7 +2349,7 @@ void Engine::AddSprites(const Ship &ship)
 			if(drawHeat)
 				itemsToDraw.AddSwizzled(body, 27);
 			// Overlay this solid sprite with an increasingly transparent "regular" sprite.
-			itemsToDraw.Add(body, max(cloak,drawHeat ? heat : 0.));
+			itemsToDraw.Add(body, max(cloak, drawHeat ? heat : 0.));
 			// Draw another the sprite scaled up swizzled blue over when the shields are damaged.
 			if(drawShield)
 				itemsToDraw.AddSwizzled(body, 29, max(1-shield, 0.3));
