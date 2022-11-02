@@ -760,6 +760,8 @@ mission "Hai Leaks Response 4"
 		personality staying marked target
 		system "Waypoint"
 		ship "Marauder Leviathan (Weapons)" "Black Lich"
+	on visit
+		dialog `You have returned, but the fate of the pirates and the captured Hai is still in doubt. Ensure that the Black Lich is defeated and that the fate of the captured Hai, whether or deceased or safely with you, is certainly known.`
 	to complete
 		or
 			has "00 Hai Leaks Response 4B: declined"
