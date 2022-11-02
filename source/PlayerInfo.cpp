@@ -3597,6 +3597,8 @@ void PlayerInfo::Save(const string &path) const
 		for(const auto &it : offWorldMissionCargo)
 			for(const auto &it2 : it.second)
 				out.Write(it.first, it2.first, it2.second);
+		out.EndChild();
+		out.EndChild();
 	}
 	if(!offWorldMissionPassengers.empty())
 	{
@@ -3607,6 +3609,8 @@ void PlayerInfo::Save(const string &path) const
 		for(const auto &it : offWorldMissionPassengers)
 			for(const auto &it2 : it.second)
 				out.Write(it.first, it2.first, it2.second);
+		out.EndChild();
+		out.EndChild();
 	}
 
 	for(const Mission &mission : availableJobs)
