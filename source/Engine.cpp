@@ -966,7 +966,7 @@ void Engine::Draw() const
 
 		if(Preferences::Has("Damage highlights"))
 		{
-			float shields = min(10.f*static_cast<float>(sqrt(ship->RecentShield()/ship->Attributes().Get("shields"))), 1.f);
+			float shields = min(6.f*static_cast<float>(sqrt(ship->RecentShield()/ship->Attributes().Get("shields"))), 1.f);
 			if(ship->RecentShield() > 4. && ship->GetSystem() == player.GetSystem())
 				OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
 									Color(.61f * shields, .78f * shields, shields, shields),ship->Facing().Unit(), ship->GetFrame());
