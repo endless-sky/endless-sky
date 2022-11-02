@@ -200,7 +200,7 @@ namespace {
 
 	const double HEAT_THRESHHOLD = .9;
 	const double HEAT_EFFECT_MULTIPLIER = 0.15;
-	const double SHIELD_OUTLINE_MULT = 6.;
+	const float SHIELD_OUTLINE_MULT = 6.f;
 }
 
 
