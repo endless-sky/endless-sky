@@ -2381,6 +2381,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
 {
+	bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
 	// ship has a target, that target is guaranteed to be targetable.
 	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
@@ -2397,7 +2398,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	}
 
 	// Choose a surveillance behavior.
-	if(ship.GetTargetSystem())
+	if(ship.GetTargetSystem() && !isStaying)
 	{
 		// Unload surveillance drones in this system before leaving.
 		PrepareForHyperspace(ship, command);
@@ -2416,7 +2417,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
 			ship.SetTargetStellar(nullptr);
-		else
+		else if(!isStaying)
 			command |= Command::LAND;
 	}
 	else if(target)
