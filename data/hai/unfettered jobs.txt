@@ -442,7 +442,7 @@ mission "Unfettered Get Jump Drives(1)"
 		attributes "unfettered"
 	stopover
 		distance 12 18
-		government "Pirate""
+		government "Pirate"
 	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
 	destination "Darkcloak"
 	to offer
@@ -476,9 +476,9 @@ mission "Unfettered Get Jump Drives (2)"
 		attributes "unfettered"
 	stopover
 		distance 12 18
-		government "Pirate""
+		government "Pirate"
 	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
-	destination "Darkcloak""
+	destination "Darkcloak"
 	to offer
 		random < 15
 		has "Unfettered: Prove your strength 2: done"
@@ -506,7 +506,7 @@ mission "Unfettered Get Jump Drives (3)"
 	description "Go to the pirate world of <stopovers> and recover 3 jump drives from a vault, then bring those to <destination> for <payment>."
 	source
 		attributes "unfettered"
-	stopover "Deadman's Cove""
+	stopover "Deadman's Cove"
 	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
 	destination "Darkcloak"
 	to offer
@@ -569,7 +569,7 @@ mission "Unfettered Darkcloak Ship Materials"
 	source `Darkcloak`
 	stopover
 		distance 12 18
-		government "Pirate""
+		government "Pirate"
 	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
 	cargo "ship materials" 50 15 .015
 	to offer
