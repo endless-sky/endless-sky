@@ -442,7 +442,8 @@ mission "Unfettered Get Jump Drives(1)"
 		attributes "unfettered"
 	stopover
 		distance 12 18
-		government "Pirate"
+		government "Pirate""
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
 	destination "Darkcloak"
 	to offer
 		random < 30
@@ -475,8 +476,9 @@ mission "Unfettered Get Jump Drives (2)"
 		attributes "unfettered"
 	stopover
 		distance 12 18
-		government "Pirate"
-	destination "Darkcloak"
+		government "Pirate""
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
+	destination "Darkcloak""
 	to offer
 		random < 15
 		has "Unfettered: Prove your strength 2: done"
@@ -504,7 +506,8 @@ mission "Unfettered Get Jump Drives (3)"
 	description "Go to the pirate world of <stopovers> and recover 3 jump drives from a vault, then bring those to <destination> for <payment>."
 	source
 		attributes "unfettered"
-	stopover "Deadman's Cove"
+	stopover "Deadman's Cove""
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
 	destination "Darkcloak"
 	to offer
 		random < 5
@@ -566,7 +569,8 @@ mission "Unfettered Darkcloak Ship Materials"
 	source `Darkcloak`
 	stopover
 		distance 12 18
-		government "Pirate"
+		government "Pirate""
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
 	cargo "ship materials" 50 15 .015
 	to offer
 		random < 50
@@ -630,7 +634,7 @@ mission "Unfettered Cargo Interception West"
 	job
 	repeat
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas on the western side of pirate space, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
@@ -660,13 +664,13 @@ mission "Unfettered Cargo Interception East"
 	job
 	repeat
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas om the eastern side of pirate space, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
 		attributes "unfettered"
 	to offer
-		random < 15
+		random < 20
 		has "Unfettered: Materials Intercepted: done"
 	npc board
 		government "Pirate"
