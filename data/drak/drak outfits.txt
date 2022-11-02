@@ -54,7 +54,7 @@ outfit "Drak Draining Field"
 		"blast radius" 1200
 		"trigger radius" 1200
 		"reload" 1
-		"firing energy" 20
+		"firing energy" -20
 		"firing heat" 5
 		"firing force" 30
 		"hit force" 100
@@ -83,7 +83,7 @@ outfit "Drak Draining Field (Augmented)"
 		"blast radius" 1100
 		"trigger radius" 1100
 		"reload" 1
-		"firing energy" 20
+		"firing energy" -20
 		"firing heat" 5
 		"firing force" 30
 		"hit force" 1000
