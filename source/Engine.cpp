@@ -951,6 +951,15 @@ void Engine::Draw() const
 			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
 	}
 
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		if(ship->Cloaking() && ship->IsYours() && ship->GetSystem() == player.GetSystem())
+		{
+			OutlineShader::Draw(ship->GetSprite(), (ship->Position()-center-ship->Velocity())*zoom, Point(ship->Width(), ship->Height())*zoom,
+								Color(0.6f, 0.1f, 0.1f, 0.8f*static_cast<float>(ship->Cloaking())), ship->Facing().Unit(), ship->GetFrame());
+		}
+	}
+
 	// Draw the flagship highlight, if any.
 	if(highlightSprite)
 	{
@@ -2327,13 +2336,13 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawHeat = ship.Heat() > 0.9;
 	bool drawShield = ship.RecentShield() > 4.;
 	double shield = sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
-	double heat = min(ship.Heat()-0.9, 1.);
+	double heat = min((ship.Heat()-0.9)/10, 1.);
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked, drawShield, drawHeat, damageHighlight](const Body &body) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled transparent grey.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, 10, 0.5);
+			itemsToDraw.AddSwizzled(body, 10, 0.7);
 		if(damageHighlight)
 		{
 			// Draw the sprite swizzled red when overheating.
@@ -2343,8 +2352,7 @@ void Engine::AddSprites(const Ship &ship)
 			itemsToDraw.Add(body, max(cloak,drawHeat ? heat : 0.));
 			// Draw another the sprite scaled up swizzled blue over when the shields are damaged.
 			if(drawShield)
-				itemsToDraw.AddSwizzled(Body(body.GetSprite(), body.Position(), body.Velocity(), body.Facing(), body.Zoom()*1.1),
-										29, max(1-shield, 0.33));
+				itemsToDraw.AddSwizzled(body, 29, max(1-shield, 0.3));
 		}
 		else // We would have missed on this step if damageHighlight was disabled.
 			itemsToDraw.Add(body, cloak);

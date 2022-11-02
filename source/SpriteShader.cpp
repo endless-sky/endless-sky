@@ -74,7 +74,7 @@ namespace {
 		{GL_GREEN, GL_BLUE, GL_GREEN, GL_ALPHA}, // 24 darkened magenta
 		{GL_RED, GL_BLUE, GL_RED, GL_ALPHA}, // 25 pure magenta
 		{GL_RED, GL_GREEN, GL_RED, GL_ALPHA}, // 26 faded magenta
-		{GL_ALPHA, GL_BLUE, GL_BLUE, GL_ALPHA}, // 27 bright red (heat)
+		{GL_ALPHA, GL_GREEN, GL_BLUE, GL_ALPHA}, // 27 bright red (heat)
 		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}, // 28 black only (outline)
 		{GL_RED, GL_ALPHA, GL_ALPHA, GL_ALPHA} // 29 bright blue only (shielding)
 	};
