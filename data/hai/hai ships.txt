@@ -1131,38 +1131,38 @@ ship "Emperor Beetle"
 		"Pulse Rifle" 65
 		"Fragmentation Grenades" 65
 		"Blade Of Might"
-	engine -43 133
+	engine -43 131
 		zoom 0.85
-	engine 43 133
+	engine 43 131
 		zoom 0.85
-	engine 0 123
-		zoom 0.7
-	"reverse engine" -62 -23
+	engine 0 126.5
+		zoom 0.6
+	"reverse engine" -61 -18.5
 		zoom 0.8
-		angle -10
-	"reverse engine" 62 -23
+		angle -30
+	"reverse engine" 62 -18.5
 		zoom 0.8
-		angle -350
-	"steering engine" -78 47
+		angle -330
+	"steering engine" -73 46
 		zoom 0.5
 		angle 100
 		left
-	"steering engine" 78 47
+	"steering engine" 73 46
 		zoom 0.5
 		angle -100
 		right
-	gun -22 -103 "Thunderhead Launcher"
-	gun 22 -103 "Thunderhead Launcher"
-	gun -36 -68 "Thunderhead Launcher"
-	gun 36 -68 "Thunderhead Launcher"
-	gun -48 -52 "Thunderhead Launcher"
-	gun 48 -52 "Thunderhead Launcher"
-	turret -16 3 "Thermal Repeater Turret"
-	turret 16 3 "Thermal Repeater Turret"
-	turret -55.5 74.5 "Thermal Repeater Turret"
-	turret 0 108 "Warder Anti-Missile"
-	turret 0 -24 "Warder Anti-Missile"
-	turret 55.5 74.5 "Thermal Repeater Turret"
+	gun -42.5 -53.5
+	gun 43.5 -54.5
+	gun -23 -102.5
+	gun 24.5 -102.5
+	gun 12.5 -128
+	gun -10 -128
+	turret 0.5 -25.5 "Warder Anti-Missile"
+	turret -47.5 11.5
+	turret 48.5 11.5
+	turret 62.5 76
+	turret -61.5 76.5
+	turret 0 107.5 "Warder Anti-Missile"
 	leak "leak" 35 45
 	leak "flame" 60 95
 	leak "big leak" 50 45
