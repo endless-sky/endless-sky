@@ -1139,10 +1139,10 @@ ship "Emperor Beetle"
 		zoom 0.6
 	"reverse engine" -61 -18.5
 		zoom 0.8
-		angle -30
+		angle -35
 	"reverse engine" 62 -18.5
 		zoom 0.8
-		angle -330
+		angle -325
 	"steering engine" -73 46
 		zoom 0.5
 		angle 100
