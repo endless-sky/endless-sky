@@ -3573,7 +3573,6 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out);
 	for(const Mission &mission : inactiveMissions)
 		mission.Save(out);
-	
 	map<string, map<string, int>> offWorldMissionCargo;
 	map<string, map<string, int>> offWorldMissionPassengers;
 	for(const auto &it : ships)
