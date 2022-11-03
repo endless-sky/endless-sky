@@ -2216,7 +2216,7 @@ void Ship::DoGeneration()
 	heat += burning;
 
 	if(Preferences::Has("Damage highlights"))
-		recentShield *= RECENT_SHIELD_MULT;
+		recentShieldDamage *= RECENT_SHIELD_MULT;
 
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
@@ -3211,9 +3211,9 @@ double Ship::DisruptionLevel() const
 
 
 
-double Ship::RecentShield() const
+double Ship::RecentShieldDamage() const
 {
-	return recentShield;
+	return recentShieldDamage;
 }
 
 
@@ -3517,7 +3517,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	bool wasDestroyed = IsDestroyed();
 
 	shields -= damage.Shield();
-	recentShield += damage.Shield();
+	recentShieldDamage += damage.Shield();
 
 	if(damage.Shield() && !isDisabled)
 	{

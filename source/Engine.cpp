@@ -932,6 +932,25 @@ void Engine::Draw() const
 	draw[drawTickTock].Draw();
 	batchDraw[drawTickTock].Draw();
 
+	Point dCenter = player.FlagshipPtr()->Position();
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		if(ship->Cloaking() && ship->IsYours() && ship->GetSystem() == player.GetSystem())
+		{
+			float cloak = .1f * static_cast<float>(ship->Cloaking());
+			OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
+								Color(6 * cloak, cloak, cloak, 8 * cloak), ship->Facing().Unit(), ship->GetFrame());
+		}
+
+		if(Preferences::Has("Damage highlights"))
+		{
+			float shields = min(SHIELD_OUTLINE_MULT*static_cast<float>(sqrt(ship->RecentShieldDamage()/ship->Attributes().Get("shields"))), 1.f);
+			if(ship->RecentShieldDamage() > 4. && ship->GetSystem() == player.GetSystem())
+				OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
+									Color(.61f * shields, .78f * shields, shields, shields),ship->Facing().Unit(), ship->GetFrame());
+		}
+	}
+
 	for(const auto &it : statuses)
 	{
 		static const Color color[8] = {
@@ -953,25 +972,6 @@ void Engine::Draw() const
 			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
 		if(it.disabled > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
-	}
-
-	Point dCenter = player.FlagshipPtr()->Position();
-	for(const shared_ptr<Ship> &ship : ships)
-	{
-		if(ship->Cloaking() && ship->IsYours() && ship->GetSystem() == player.GetSystem())
-		{
-			float cloak = .1f * static_cast<float>(ship->Cloaking());
-			OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
-								Color(6 * cloak, cloak, cloak, 8 * cloak), ship->Facing().Unit(), ship->GetFrame());
-		}
-
-		if(Preferences::Has("Damage highlights"))
-		{
-			float shields = min(SHIELD_OUTLINE_MULT*static_cast<float>(sqrt(ship->RecentShield()/ship->Attributes().Get("shields"))), 1.f);
-			if(ship->RecentShield() > 4. && ship->GetSystem() == player.GetSystem())
-				OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
-									Color(.61f * shields, .78f * shields, shields, shields),ship->Facing().Unit(), ship->GetFrame());
-		}
 	}
 
 	// Draw the flagship highlight, if any.
@@ -2348,8 +2348,8 @@ void Engine::AddSprites(const Ship &ship)
 	bool damageHighlight = Preferences::Has("Damage highlights");
 	bool drawCloaked = (cloak && ship.IsYours());
 	bool drawHeat = ship.Heat() > 0.9;
-	bool drawShield = ship.RecentShield() > 4.;
-	double shield = sqrt(ship.RecentShield()/ship.Attributes().Get("shields"));
+	bool drawShield = ship.RecentShieldDamage() > 4.;
+	double shield = sqrt(ship.RecentShieldDamage()/ship.Attributes().Get("shields"));
 	double heat = min((ship.Heat() - HEAT_THRESHHOLD) * HEAT_EFFECT_MULTIPLIER, 1.);
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked, drawShield, drawHeat, damageHighlight](const Body &body) -> void
@@ -2361,7 +2361,7 @@ void Engine::AddSprites(const Ship &ship)
 		{
 			// Draw the sprite swizzled red when overheating.
 			if(drawHeat)
-				itemsToDraw.AddSwizzled(body, 27);
+				itemsToDraw.AddSwizzled(body, 30);
 			// Overlay this solid sprite with an increasingly transparent "regular" sprite.
 			itemsToDraw.Add(body, max(cloak, drawHeat ? heat : 0.));
 			// Draw another the sprite scaled up swizzled blue over when the shields are damaged.
