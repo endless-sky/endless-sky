@@ -1077,7 +1077,6 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
 ship "Emperor Beetle"
-	swizzle 6
 	sprite "ship/hai emperor beetle"
 	thumbnail "thumbnail/hai emperor beetle"
 	attributes
