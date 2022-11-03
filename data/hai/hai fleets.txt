@@ -115,7 +115,6 @@ fleet "Large Hai"
 		"Grasshopper"
 		"Grasshopper (Tracker)"
 
-
 fleet "Hai Surveillance"
 	government "Hai"
 	names "hai"
@@ -137,6 +136,67 @@ fleet "Hai Surveillance"
 	variant 3
 		"Grasshopper (Surveillance)" 5
 
+# Hai that hunt pirates near the wormhole. They have custom builds suitable for smashing pirates but useless against other Hai. Two versions: travel through wormhole or not.
+
+fleet "Anti-Pirate Hai (Wormhole Travel)"
+	government "Hai (Wormhole Access)"
+	names "hai"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant
+		"Shield Beetle (Six Ion)"
+		"Ladybug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse Tracker)"
+		"Ladybug (Tracker)" 2
+	variant
+		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Durable Pulse)" 2
+		
+fleet "Anti-Pirate Hai (No Wormhole Travel)"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant
+		"Shield Beetle (Six Ion)"
+		"Ladybug (Pulse)" 2
+	variant
+		"Shield Beetle (Six Ion)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Pulse Tracker)"
+		"Ladybug (Tracker)" 2
+	variant
+		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Tracker)" 2
+	variant
+		"Shield Beetle (Durable Pulse)" 2
+
+fleet "Hai Wormhole Guards"
+	government "Hai"
+	names hai
+	cargo 0
+	personality heroic
+	variant 7
+		"Shield Beetle (Police)"
+	variant 7
+		"Shield Beetle (Tracker)"
+	variant 7
+		"Shield Beetle (Pulse)"
+	variant 7
+		"Shield Beetle"
+	variant 10
+		"Lightning Bug" 2
+	variant 10
+		"Lightning Bug (Pulse)" 2
 
 fleet "Small Hai Merchant"
 	government "Hai"
@@ -519,6 +579,51 @@ fleet "Large Unfettered"
 	personality
 		disables
 		plunders
+	variant 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant 1
+		"Shield Beetle (Tracker)" 2
+	variant 1
+		"Shield Beetle" 2
+	variant 1
+		"Lightning Bug" 5
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+
+fleet "Large Friendly Unfettered"
+	government "Hai (Friendly Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		disables plunders
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2

@@ -42,8 +42,9 @@ mission "Liberate Kornephoros"
 				`	"I wish it hadn't come to this."`
 			
 			`	"We all do," he says. "No one wanted this. Not us, certainly not the Navy. But if they attack us to take our freedom, we must defend ourselves in order to keep it. Understood?"`
-			`	"Yes, sir," you say. "I'll prepare my ship for another battle."`
-				accept
+			choice
+				`	"Yes, sir. I'll prepare my ship for another battle."`
+					accept
 	
 	npc
 		government "Free Worlds"
@@ -378,7 +379,7 @@ mission "FW Syndicate Diplomacy 1B"
 			`	You take a step into Remington's path as Alondo boards your ship. Remington stops face-to-face with you. "What, a guy can't talk to an old friend?" he says while looking over your shoulder`
 			label remington
 			choice
-				`	"He's clearly not interested"`
+				`	"He's clearly not interested."`
 					goto interested
 				`	"You know Alondo?"`
 			
@@ -848,18 +849,16 @@ mission "FW Plasma Testing 1B"
 					goto fighters
 			
 			label hardpoints
-			`	"It's true," he says, "most ships are designed expecting to be equipped with a larger number of smaller guns. But we think this might open up some interesting new directions in ship design."`
+			`	"It's true," he says, "most ships are designed expecting to be equipped with a larger number of smaller guns. But we think this might open up some interesting new directions in ship design.`
 				goto next
 			
 			label fighters
-			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a Cruiser. Right now the Navy's heaviest ships have ours severely outgunned."`
+			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a Cruiser. Right now the Navy's heaviest ships have ours severely outgunned.`
 			
 			label next
-			`	"Do you know what my next assignment is?" you ask.`
-			`	"Yes," he says, "leading a supply convoy to the front. You can meet up with them in the spaceport. Oh, and this is to thank you for your help." He hands you <payment>. "To help you pay for your first plasma turret once we've got them on the market," he says.`
+			`	"This is to thank you for your help." Barmy hands you <payment>. "To help you pay for your first plasma turret once we've got them on the market," he says.`
 			`	"When do you think that will be?" you ask.`
-			`	"A month or two. I'll send you a message when they're available."`
-			`	"Sounds good," you say. "Thanks for involving me in your tests!"`
+			`	"A month or two. I'll send you a message when they're available. Oh, and as for your next assignment, you're escorting a supply convoy to the front. You can meet up with them in the spaceport."`
 
 
 
@@ -1123,8 +1122,7 @@ mission "FW Pirates 2"
 			
 			label next
 			`	"But I suppose we need to wait for the Senate to decide?" you ask.`
-			`	"Perhaps," he says. "In the meantime, I've got a related mission for you. While the Senate is deliberating, I'd like you to lead a patrol through our systems in the Southern Rim, to keep up enough of a presence to keep the pirates at bay. Once you've finished patrolling, bring the fleet back to <planet>. By then I should be back there, and we'll discuss our next steps. Can you do that?"`
-			`	"Of course!" you say.`
+			`	"Perhaps," he says. "In the meantime, I've got a related mission for you. While the Senate is deliberating, I'd like you to lead a patrol through our systems in the Southern Rim, to keep up enough of a presence to keep the pirates at bay. Once you've finished patrolling, bring the fleet back to <planet>. By then I should be back there, and we'll discuss our next steps."`
 				accept
 	
 	npc

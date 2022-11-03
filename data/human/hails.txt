@@ -81,8 +81,6 @@ phrase "band"
 
 phrase "media name"
 	word
-		`"`
-	word
 		"Sad Archie"
 		"Gluttony"
 		"Save the Nanobots"
@@ -258,8 +256,6 @@ phrase "media name"
 		"Not a Story the Quarg Would Tell You"
 		"Burger Truck In"
 		"No Strangers to Love"
-	word
-		`"`
 
 phrase "drugs"
 	word
@@ -412,11 +408,13 @@ phrase "friendly civilian"
 		"Once I finish my trip, I'm catching up on "
 		"I'm off to a fan convention for "
 		"Gotta say, I enjoy watching "
+	word
+		`"`
 	phrase
 		"media name"
 	word
-		". It's "
-		", "
+		`." It's `
+		`," `
 	word
 		""
 		"definitely "
@@ -463,17 +461,17 @@ phrase "friendly civilian"
 		"I wasted lots of time viewing"
 		"I'm never getting back the time I lost to"
 	word
-		" "
+		` "`
 	phrase
 		"media name"
 	word
-		", definitely"
-		", easily"
-		", without a doubt"
-		". It's"
-		". It has to be"
-		", which everyone knows is"
-		", which is obviously"
+		`," definitely`
+		`," easily`
+		`," without a doubt`
+		`." It's`
+		`." It has to be`
+		`," which everyone knows is`
+		`," which is obviously`
 	word
 		" the "
 	word
@@ -595,11 +593,11 @@ phrase "friendly civilian"
 	word
 		"song"
 	word
-		" "
+		` "`
 	phrase
 		"media name"
 	word
-		" "
+		`" `
 	word
 		"is so great"
 		"is my kind of music"
