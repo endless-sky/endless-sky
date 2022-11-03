@@ -366,3 +366,10 @@ int64_t MissionAction::Payment() const noexcept
 {
 	return action.Payment();
 }
+
+
+
+bool MissionAction::HasRelocation() const
+{
+	return action.HasRelocation();
+}

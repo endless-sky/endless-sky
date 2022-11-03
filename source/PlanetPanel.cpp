@@ -76,9 +76,15 @@ void PlanetPanel::Step()
 	{
 		player.SetRelocationStatus(PlayerInfo::RelocateStatus::TELEPORTED);
 		UI *ui = GetUI();
-		while(ui->IsTop(this))
+		while(!ui->IsTop(this))
 			ui->Pop(ui->Top().get());
-		TakeOff();
+		player.Save();
+		player.LeavePlanet();
+		if(callback)
+			callback();
+		if(selectedPanel)
+			GetUI()->Pop(selectedPanel);
+		GetUI()->Pop(this);
 	}
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
@@ -361,7 +367,7 @@ void PlanetPanel::TakeOffIfReady()
 void PlanetPanel::TakeOff()
 {
 	player.Save();
-	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED ? player.LeavePlanet() : player.TakeOff(GetUI()))
+	if(player.TakeOff(GetUI()))
 	{
 		if(callback)
 			callback();

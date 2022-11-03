@@ -1288,7 +1288,7 @@ bool PlayerInfo::EnterPlanet(UI *ui)
 	else if(ui && !inactiveMissions.empty())
 	{
 		string message = "These active missions or jobs were deactivated due to a missing definition"
-		" - perhaps you recently removed a plugin?\n";
+			" - perhaps you recently removed a plugin?\n";
 		auto mit = inactiveMissions.rbegin();
 		int named = 0;
 		while(mit != inactiveMissions.rend() && (++named < 10))
@@ -1313,6 +1313,17 @@ bool PlayerInfo::TakeOff(UI *ui)
 {
 	if(!LeavePlanet())
 		return false;
+
+	flagship = FlagshipPtr();
+	if(!flagship)
+		return false;
+
+	// Move the flagship to the start of the list of ships and ensure that all
+	// escorts know which ship is acting as flagship.
+	SetFlagship(*flagship);
+
+	// Special persons who appeared last time you left the planet, can appear again.
+	GameData::ResetPersons();
 
 	map<string, int> originalTotals = cargo.Commodities();
 
@@ -1502,10 +1513,6 @@ bool PlayerInfo::LeavePlanet()
 	if(!system || !planet)
 		return false;
 
-	flagship = FlagshipPtr();
-	if(!flagship)
-		return false;
-
 	shouldLaunch = false;
 
 	// Jobs are only available when you are landed.
@@ -1513,13 +1520,6 @@ bool PlayerInfo::LeavePlanet()
 	availableMissions.clear();
 	doneMissions.clear();
 	stock.clear();
-
-	// Special persons who appeared last time you left the planet, can appear again.
-	GameData::ResetPersons();
-
-	// Move the flagship to the start of the list of ships and ensure that all
-	// escorts know which ship is acting as flagship.
-	SetFlagship(*flagship);
 
 	return true;
 }

@@ -63,6 +63,7 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
+	bool HasRelocation() const;
 
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui, bool conversationEmpty = false) const;

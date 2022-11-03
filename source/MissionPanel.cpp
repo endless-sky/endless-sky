@@ -919,6 +919,8 @@ void MissionPanel::Accept(bool force)
 
 	++availableIt;
 	player.AcceptJob(toAccept, GetUI());
+	if(toAccept.GetAction(Mission::ACCEPT).HasRelocation())
+		GetUI()->Pop(this);
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
 

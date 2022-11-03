@@ -341,6 +341,13 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
+bool GameAction::HasRelocation() const
+{
+	return teleportPlanet;
+}
+
+
+
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui, bool conversationEmpty) const
 {
