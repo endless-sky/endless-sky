@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Engine.h"
 
+#include "AlertLabel.h"
 #include "Audio.h"
 #include "CategoryTypes.h"
 #include "CoreStartData.h"
@@ -636,6 +637,7 @@ void Engine::Step(bool isActive)
 
 	// Create the planet labels.
 	labels.clear();
+	aLabels.clear();
 	if(currentSystem && Preferences::Has("Show planet labels"))
 	{
 		for(const StellarObject &object : currentSystem->Objects())
@@ -646,6 +648,16 @@ void Engine::Step(bool isActive)
 			Point pos = object.Position() - center;
 			if(pos.Length() - object.Radius() < 600. / zoom)
 				labels.emplace_back(pos, object, currentSystem, zoom);
+		}
+	}
+
+	if(Preferences::Has("Show missile overlays"))
+	{
+		for(const Projectile &projectile : projectiles)
+		{
+			Point pos = projectile.Position() - center;
+			if((pos.Length() < Screen::Width() / zoom)  && projectile.MissileStrength())
+				aLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
 		}
 	}
 
@@ -950,6 +962,10 @@ void Engine::Draw() const
 		if(it.disabled > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
 	}
+
+	// Draw labels on missiles
+	for(const AlertLabel &label : aLabels)
+		label.Draw();
 
 	// Draw the flagship highlight, if any.
 	if(highlightSprite)

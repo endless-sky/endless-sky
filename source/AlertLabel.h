@@ -1,5 +1,5 @@
-/* PlanetLabel.h
-Copyright (c) 2016 by Michael Zahniser
+/* AlertLabel.h
+Copyright (c) 2022 by Daniel Yoon
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,35 +13,37 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_LABEL_H_
-#define PLANET_LABEL_H_
+#ifndef ALERT_LABEL_H_
+#define ALERT_LABEL_H_
 
 #include "Color.h"
 #include "Point.h"
 
 #include <algorithm>
+#include <memory>
 #include <string>
 
+class Projectile;
 class StellarObject;
 class System;
+class Ship;
 
 
 
-class PlanetLabel {
+class AlertLabel {
 public:
-	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom);
+	AlertLabel(Point &position, const Projectile& projectile, std::shared_ptr<Ship> flagship, double zoom);
 
 	void Draw() const;
 
 
 private:
 	Point position;
-	double radius = 0.;
-	std::string name;
-	std::string government;
+	double radius;
+	std::string bigText;
+	std::string smallText;
 	Color color;
-	int hostility = 0;
-	int direction = 0;
+	Color color2;
 };
 
 
