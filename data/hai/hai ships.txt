@@ -1082,55 +1082,87 @@ ship "Emperor Beetle"
 	thumbnail "thumbnail/hai emperor beetle"
 	attributes
 		category "Heavy Warship"
-		"cost" 25100000
-		"shields" 37200
-		"hull" 11780
-		"required crew" 62
-		"bunks" 70
-		"mass" 725
-		"drag" 9.5
-		"heat dissipation" .4
-		"fuel capacity" 500
-		"outfit space" 872
+		cost 35100000
+		shields 26700
+		hull 19600
+		"required crew" 83
+		bunks 91
+		mass 870
+		drag 9.8
+		"outfit space" 887
+		"cargo space" 27
 		"weapon capacity" 364
 		"engine capacity" 150
+		"heat dissipation" 0.675
+		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
+		"tactical scan power" 30
+		ramscoop 1.5
+		"fuel capacity" 800
 		weapon
-			"blast radius" 500
 			"shield damage" 5000
 			"hull damage" 2500
-			"hit force" 3500
+			# High hit force and wide radius for a spectacle if the leader dies.
+			# This should be adjusted downward if the ship is reused more widely.
+			"blast radius" 800
+			"hit force" 8000
 	outfits
-		"Large Heat Shunt" 2
+		"Thermal Repeater Rifle" 25
+		"Thermal Repeater Turret" 4
+		"Thunderhead Launcher" 6
+		"Thunderhead Missile" 320
+		"Thunderhead Storage Array" 4
+		"Warder Anti-Missile" 2
+		
+		"Liquid Sodium Cooler"
 		"Jump Drive"
+		"Quantum Keystone"
 		"Systems Core (Large)"
 		"Systems Core (Medium)"
-		"Quantum Keystone"
-		"Geode Reactor"
+		"Outfits Expansion"
+		
 		"White Sun Reactor"
-		`"Bufaer" Atomic Steering`
-		Sunbeam 4
-		"Thunderhead Launcher" 4
-		"Thunderhead Missile" 160
-		"Bullfrog Anti-Missile" 2
-		"Korath Warder"
+		"Large Biochemical Cell"
+		
+		"Afterburner (Asteroid Class)"
+		"Reverser (Comet Class)"
+		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
-		"Fuel Processor" 2
-		"Wanderer Ramscoop"
-		"Pulse Rifle" 69
+		
+		"Pulse Rifle" 65
+		"Fragmentation Grenades" 65
 		"Blade Of Might"
-	engine -45 123
-	engine 45 123
-	gun -22 -103 Sunbeam
-	gun 22 -103 Sunbeam
-	gun -34.5 -68
-	gun 34.5 -68
-	gun -48 -53.5 Sunbeam
-	gun 48 -53.5 Sunbeam
-	gun -61.5 -23
-	gun 61.5 -23
-	turret 0 5 "Korath Warder"
-	turret -55.5 74.5
-	turret 55.5 74.5
+	engine -43 133
+		zoom 0.85
+	engine 43 133
+		zoom 0.85
+	engine 0 123
+		zoom 0.7
+	"reverse engine" -62 -23
+		zoom 0.8
+		angle -10
+	"reverse engine" 62 -23
+		zoom 0.8
+		angle -350
+	"steering engine" -78 47
+		zoom 0.5
+		angle 100
+		left
+	"steering engine" 78 47
+		zoom 0.5
+		angle -100
+		right
+	gun -22 -103 "Thunderhead Launcher"
+	gun 22 -103 "Thunderhead Launcher"
+	gun -36 -68 "Thunderhead Launcher"
+	gun 36 -68 "Thunderhead Launcher"
+	gun -48 -52 "Thunderhead Launcher"
+	gun 48 -52 "Thunderhead Launcher"
+	turret -16 3 "Thermal Repeater Turret"
+	turret 16 3 "Thermal Repeater Turret"
+	turret -55.5 74.5 "Thermal Repeater Turret"
+	turret 0 108 "Warder Anti-Missile"
+	turret 0 -24 "Warder Anti-Missile"
+	turret 55.5 74.5 "Thermal Repeater Turret"
 	leak "leak" 35 45
 	leak "flame" 60 95
 	leak "big leak" 50 45
@@ -1140,9 +1172,9 @@ ship "Emperor Beetle"
 	explode "large explosion" 53
 	explode "huge explosion" 22
 	"final explode" "final explosion large"
-	description "This ship probably used to be a Shield Beetle, but it has received many modifications, with the obvious intent of survivability, including an enhanced shield matrix. One thing is certain, it is no longer simply meant to escort cargo, this is a proper ship for a warlord."
-	description "	It was found by Unfettered scientists that the cargo bays were more of a vulnerability than anything else for the ship, as it is not meant to be plundering but rather to lead in glorious battle. Removing those as well as surplus bunks has allowed for more space for weapons and defensive improvements, as well as more flexibility for the ship. This came at the cost of mass and agility, but that is a sacrifice the Unfettered are more than willing to make."
-	description "	The Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai or even Unfettered but rather the foremost military leader of the Unfettered, at the front of those he commands. Some believe it to be foolish to show their leader's ship in such a manner, but that is not how the Unfettered think. Of course, this ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
+	description "Before the Shield Beetle, the Hai used the Titan Beetle, a weaker but more capable ship of a similar design. The Emperor Beetle is a Titan coated with many layers of modern armor, making it a more powerful warship than anything else the Hai have built in modern time. Unfortunately, the advanced features are quite expensive, so these ships are used sparingly, as flagships and trophy ships."
+	description "	It was found by Unfettered scientists that the cargo bays were more of a vulnerability than anything else for the ship, as it is not meant to be plundering but rather to lead in glorious battle. Removing those has allowed for more space for weapons and defensive improvements, as well as more flexibility for the ship. This came at the cost of mass and agility, but that is a sacrifice the Unfettered are more than willing to make."
+	description "	More than a ship, the Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai or even Unfettered but rather the military leaders of the Unfettered, at the front of those they commands. Some believe it to be foolish to show their leaders' ships in such a manner, but that is not how the Unfettered think. Of course, this ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
 
 
 
