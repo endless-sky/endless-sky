@@ -76,15 +76,13 @@ void PlanetPanel::Step()
 	{
 		player.SetRelocationStatus(PlayerInfo::RelocateStatus::COMPLETE);
 		UI *ui = GetUI();
-		while(!ui->IsTop(this))
-			ui->Pop(ui->Top().get());
 		player.Save();
 		player.Relocate(GetUI());
 		if(callback)
 			callback();
 		if(selectedPanel)
 			GetUI()->Pop(selectedPanel);
-		GetUI()->Pop(this);
+		GetUI()->PopThrough(this);
 	}
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
