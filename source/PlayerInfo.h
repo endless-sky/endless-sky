@@ -74,8 +74,8 @@ public:
 		: relocationPlanet(relocationPlanet), relocateFlagshipOnly(relocateFlagshipOnly) {}
 
 		RelocateStatus relocationStatus = RelocateStatus::NONE;
-		bool relocateFlagshipOnly = false;
-		const Planet *relocationPlanet = nullptr;
+		bool relocateFlagshipOnly;
+		const Planet *relocationPlanet;
 		const Planet *oldRelocationPlanet = nullptr;
 	};
 
