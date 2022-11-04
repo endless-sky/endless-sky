@@ -143,7 +143,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 		"Building Mountaintop Deferred" ++
 	on accept
 		event "role-play station before construction"
-		log `The diplomats have elected to double down on the movie production angle, with the costumed community "focus group", citing its success. This requires a station to be built; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. Agreed to fulfill the role of supervisor after being asked by the diplomats and completing some sort of test by the Hai Elders involving some odd questions.`
+		log `The diplomats have elected to double down on the movie production angle, with the costumed community "focus group," citing its success. This requires a station to be built; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. Agreed to fulfill the role of supervisor after being asked by the diplomats and completing some sort of test by the Hai Elders involving some odd questions.`
 	on stopover
 		dialog `A fleet of eight Geocoris is waiting to accompany you when you arrive, with just the final items being loaded as you come in to land. They will follow you to the site where the new station will be built.`
 	to complete
