@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SPACEPORT_PANEL_H_
@@ -28,21 +31,21 @@ class PlayerInfo;
 class SpaceportPanel : public Panel {
 public:
 	explicit SpaceportPanel(PlayerInfo &player);
-	
+
 	void UpdateNews();
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
 private:
 	const News *PickNews() const;
-	
-	
+
+
 private:
 	PlayerInfo &player;
 	WrappedText text;
-	
+
 	// Current news item (if any):
 	bool hasNews = false;
 	bool hasPortrait = false;

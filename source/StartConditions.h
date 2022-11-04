@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef START_CONDITIONS_H_
@@ -17,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "ExclusiveItem.h"
 
 #include <string>
 #include <vector>
@@ -31,40 +35,39 @@ class StartConditions : public CoreStartData {
 public:
 	StartConditions() = default;
 	explicit StartConditions(const DataNode &node);
-	
+
 	void Load(const DataNode &node);
 	// Finish loading the ship definitions.
 	void FinishLoading();
-	
+
 	// A valid start scenario has a valid system, planet, and conversation.
 	// Any ships given to the player must also be valid models.
 	bool IsValid() const;
-	
+
 	const ConditionSet &GetConditions() const noexcept;
 	const std::vector<Ship> &Ships() const noexcept;
-	
+
 	// Get this start's intro conversation.
 	const Conversation &GetConversation() const;
-	
+
 	// Information needed for the scenario picker.
 	const Sprite *GetThumbnail() const noexcept;
 	const std::string &GetDisplayName() const noexcept;
 	const std::string &GetDescription() const noexcept;
-	
-	
+
+
 private:
 	// Conditions that will be set for any pilot that begins with this scenario.
 	ConditionSet conditions;
 	// Ships that a new pilot begins with (rather than being required to purchase one).
 	std::vector<Ship> ships;
-	
+
 	// The conversation to display when a game begins with this scenario.
-	Conversation conversation;
-	const Conversation *stockConversation = nullptr;
-	
+	ExclusiveItem<Conversation> conversation;
+
 	const Sprite *thumbnail = nullptr;
 	// The user-friendly display name for this starting scenario.
-	std::string name = "(Unnamed start)";
+	std::string name;
 	std::string description;
 };
 

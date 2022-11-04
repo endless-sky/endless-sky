@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef EFFECT_H_
 #define EFFECT_H_
 
+#include "Angle.h"
 #include "Body.h"
 
 #include <string>
@@ -29,26 +33,25 @@ class Sound;
 // template provided by an Effect.
 class Effect : public Body {
 public:
-	/* Functions provided by the Body base class:
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	double Zoom() const;
-	*/
-	
+	// Functions provided by the Body base class:
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+	// double Zoom() const;
+
 	const std::string &Name() const;
 	void SetName(const std::string &name);
-	
+
 	void Load(const DataNode &node);
-	
-	
+
+
 private:
 	std::string name;
-	
+
 	const Sound *sound = nullptr;
-	
+
 	// Parameters used for randomizing spin and velocity. The random angle is
 	// added to the parent angle, and then a random velocity in that direction
 	// is added to the parent velocity.
@@ -57,10 +60,15 @@ private:
 	double randomAngle = 0.;
 	double randomSpin = 0.;
 	double randomFrameRate = 0.;
-	
+	// Absolute values are independent of the parent Body if specified.
+	Angle absoluteAngle;
+	bool hasAbsoluteAngle = false;
+	double absoluteVelocity = 0.;
+	bool hasAbsoluteVelocity = false;
+
 	int lifetime = 0;
 	int randomLifetime = 0;
-	
+
 	// Allow the Visual class to access all these private members.
 	friend class Visual;
 };

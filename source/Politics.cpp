@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Politics.h"
@@ -28,16 +31,41 @@ using namespace std;
 
 
 
+namespace {
+	// Check if the ship evades being cargo scanned.
+	bool EvadesCargoScan(const Ship &ship)
+	{
+		// Illegal goods can be hidden inside legal goods to avoid detection.
+		const int contraband = ship.Cargo().IllegalCargoAmount();
+		const int netIllegalCargo = contraband - ship.Attributes().Get("scan concealment");
+		if(netIllegalCargo <= 0)
+			return true;
+
+		const int legalGoods = ship.Cargo().Used() - contraband;
+		const double illegalRatio = legalGoods ? max(1., 2. * netIllegalCargo / legalGoods) : 1.;
+		const double scanChance = illegalRatio / (1. + ship.Attributes().Get("scan interference"));
+		return Random::Real() > scanChance;
+	}
+
+	// Check if the ship evades being outfit scanned.
+	bool EvadesOutfitScan(const Ship &ship)
+	{
+		return Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+	}
+}
+
+
+
 // Reset to the initial political state defined in the game data.
 void Politics::Reset()
 {
 	reputationWith.clear();
 	dominatedPlanets.clear();
 	ResetDaily();
-	
+
 	for(const auto &it : GameData::Governments())
 		reputationWith[&it.second] = it.second.InitialPlayerReputation();
-	
+
 	// Disable fines for today (because the game was just loaded, so any fines
 	// were already checked for when you first landed).
 	for(const auto &it : GameData::Governments())
@@ -50,7 +78,7 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 {
 	if(first == second)
 		return false;
-	
+
 	// Just for simplicity, if one of the governments is the player, make sure
 	// it is the first one.
 	if(second->IsPlayer())
@@ -61,11 +89,11 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 			return false;
 		if(provoked.count(second))
 			return true;
-		
+
 		auto it = reputationWith.find(second);
 		return (it != reputationWith.end() && it->second < 0.);
 	}
-	
+
 	// Neither government is the player, so the question of enemies depends only
 	// on the attitude matrix.
 	return (first->AttitudeToward(second) < 0. || second->AttitudeToward(first) < 0.);
@@ -81,12 +109,12 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 {
 	if(gov->IsPlayer())
 		return;
-	
+
 	for(const auto &it : GameData::Governments())
 	{
 		const Government *other = &it.second;
 		double weight = other->AttitudeToward(gov);
-		
+
 		// You can provoke a government even by attacking an empty ship, such as
 		// a drone (count = 0, because count = crew).
 		if(eventType & ShipEvent::PROVOKE)
@@ -94,21 +122,21 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			if(weight > 0.)
 			{
 				// If you bribe a government but then attack it, the effect of
-				// your bribe is cancelled out.
+				// your bribe is canceled out.
 				bribed.erase(other);
 				provoked.insert(other);
 			}
 		}
-		else if(count && abs(weight) >= .05)
+		if(count && abs(weight) >= .05)
 		{
 			// Weights less than 5% should never cause permanent reputation
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
 			double penalty = (count * weight) * other->PenaltyFor(eventType);
-			if(eventType & ShipEvent::ATROCITY)
+			if(eventType & ShipEvent::ATROCITY && weight > 0)
 				reputationWith[other] = min(0., reputationWith[other]);
-			
+
 			reputationWith[other] -= penalty;
 		}
 	}
@@ -133,11 +161,11 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 		return false;
 	if(!planet->IsInhabited())
 		return true;
-	
+
 	const Government *gov = ship.GetGovernment();
 	if(!gov->IsPlayer())
 		return !IsEnemy(gov, planet->GetGovernment());
-	
+
 	return CanLand(planet);
 }
 
@@ -155,7 +183,7 @@ bool Politics::CanLand(const Planet *planet) const
 		return true;
 	if(provoked.count(planet->GetGovernment()))
 		return false;
-	
+
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
 
@@ -167,11 +195,11 @@ bool Politics::CanUseServices(const Planet *planet) const
 		return false;
 	if(dominatedPlanets.count(planet))
 		return true;
-	
+
 	auto it = bribedPlanets.find(planet);
 	if(it != bribedPlanets.end())
 		return it->second;
-	
+
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
 
@@ -209,22 +237,19 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	// detection.
 	if(fined.count(gov) || Random::Real() > security || !gov->GetFineFraction())
 		return "";
-	
+
 	string reason;
 	int64_t maxFine = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
-		// Check if the ship evades being scanned due to interference plating.
-		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
-			continue;
 		if(target && target != &*ship)
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
-		
+
 		int failedMissions = 0;
-		
-		if(!scan || (scan & ShipEvent::SCAN_CARGO))
+
+		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
@@ -236,7 +261,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				{
 					if(mission.IsFailed())
 						continue;
-					
+
 					// Append the illegalCargoMessage from each applicable mission, if available
 					string illegalCargoMessage = mission.IllegalCargoMessage();
 					if(!illegalCargoMessage.empty())
@@ -253,8 +278,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				}
 			}
 		}
-		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
-		{
+		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
@@ -267,14 +291,13 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
-		}
 		if(failedMissions && maxFine > 0)
 		{
-			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission") 
+			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
 				+ " after your illegal cargo was discovered.";
 		}
 	}
-	
+
 	if(maxFine < 0)
 	{
 		gov->Offend(ShipEvent::ATROCITY);

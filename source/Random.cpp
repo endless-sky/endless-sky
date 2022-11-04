@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Random.h"
@@ -58,12 +61,13 @@ uint32_t Random::Int()
 
 
 
-uint32_t Random::Int(uint32_t modulus)
+uint32_t Random::Int(uint32_t upper_bound)
 {
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	return uniform(gen) % modulus;
+	const uint32_t x = uniform(gen);
+	return (static_cast<uint64_t>(x) * static_cast<uint64_t>(upper_bound)) >> 32;
 }
 
 

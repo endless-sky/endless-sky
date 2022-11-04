@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Marauder Arrow"
 	sprite "ship/marrows"
@@ -120,7 +123,7 @@ ship "Marauder Bounder"
 		"mass" 145
 		"drag" 3.7
 		"heat dissipation" .8
-		"fuel capacity" 900
+		"fuel capacity" 800
 		"cargo space" 20
 		"outfit space" 240
 		"weapon capacity" 80
@@ -145,7 +148,7 @@ ship "Marauder Bounder"
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 		
 	engine -12 44
@@ -225,15 +228,15 @@ ship "Marauder Falcon"
 		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
-		"required crew" 43
-		"bunks" 80
+		"required crew" 57
+		"bunks" 96
 		"mass" 560
 		"drag" 6.7
 		"heat dissipation" .8
 		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 265
+		"cargo space" 80
+		"outfit space" 620
+		"weapon capacity" 275
 		"engine capacity" 165
 		"self destruct" .15
 		weapon
@@ -474,8 +477,8 @@ ship "Marauder Leviathan"
 		"hull" 5500
 		"required crew" 48
 		"bunks" 69
-		"mass" 640
-		"drag" 7.6
+		"mass" 680
+		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 40
@@ -602,7 +605,7 @@ ship "Marauder Manta"
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 390
+		"outfit space" 400
 		"weapon capacity" 155
 		"engine capacity" 110
 		"self destruct" .25
@@ -612,10 +615,9 @@ ship "Marauder Manta"
 			"hull damage" 450
 			"hit force" 1350
 	outfits
-		"Plasma Cannon" 2
-		"Particle Cannon" 2
+		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret"
 		
 		"Dwarf Core"
@@ -629,15 +631,15 @@ ship "Marauder Manta"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -33 38
-	engine 33 38
-	gun -66 -30 "Meteor Missile Launcher"
-	gun 66 -30 "Meteor Missile Launcher"
-	gun -27 -30 "Plasma Cannon"
-	gun 27 -30 "Plasma Cannon"
-	gun -20 -30 "Particle Cannon"
-	gun 20 -30 "Particle Cannon"
-	turret 0 -29 "Quad Blaster Turret"
+	engine -33 40
+	engine 33 40
+	gun -20 -31 "Plasma Cannon"
+	gun 20 -31 "Plasma Cannon"
+	gun -26.5 -30 "Plasma Cannon"
+	gun 26.5 -30 "Plasma Cannon"
+	gun -68.5 -33 "Meteor Missile Launcher"
+	gun 68.5 -33 "Meteor Missile Launcher"
+	turret 0 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -653,7 +655,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	outfits
 		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Quad Blaster Turret"
 		
 		"Dwarf Core"
@@ -666,9 +668,9 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -33.5 38
-	engine 0 76
-	engine 33.5 38
+	engine -33 43
+	engine 0 82.5 0.7
+	engine 33 43
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 	gun "Plasma Cannon"
@@ -688,7 +690,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"Particle Cannon" 2
 		"Proton Gun" 2
 		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Meteor Missile" 60
 		"Heavy Anti-Missile Turret"
 		
 		"Fission Reactor"
@@ -705,13 +707,13 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		
 	engine -33.5 38
 	engine 33.5 38
-	gun -66 -34 "Meteor Missile Launcher"
-	gun 66 -34 "Meteor Missile Launcher"
-	gun -27 -35 "Proton Gun"
-	gun 27 -35 "Proton Gun"
-	gun -20 -35 "Particle Cannon"
-	gun 20 -35 "Particle Cannon"
-	turret 0 -29 "Heavy Anti-Missile Turret"
+	gun -68.5 -43 "Meteor Missile Launcher"
+	gun 68.5 -43 "Meteor Missile Launcher"
+	gun -26.5 -33 "Proton Gun"
+	gun 26.5 -33 "Proton Gun"
+	gun -20 -33 "Particle Cannon"
+	gun 20 -33 "Particle Cannon"
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
 	description `This Manta has undergone extensive modification, featuring extra gun ports, hull plating, and shield emitters. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
 
 
@@ -755,15 +757,20 @@ ship "Marauder Quicksilver"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -16 52
-	engine 16 52
-	gun -7 -39 "Heavy Laser"
-	gun 7 -39 "Heavy Laser"
-	turret 0 15 "Heavy Anti-Missile Turret"
+	engine -15.5 54
+	engine 15.5 54
+	gun -6 -39.5 "Heavy Laser"
+	gun 6 -39.5 "Heavy Laser"
+	turret 0 26 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
 	description "This Megaparsec Quicksilver is a bit of a hotrod, being a little faster, with extra shield projectors, hull plating, and an extra bunk. This aftermarket model also features a turret mount, perhaps in an answer to Lionheart's Headhunter. The shop that built this ship is sure to see more customers."
+
+
+ship "Marauder Quicksilver" "Marauder Quicksilver (Safe)"
+	add attributes
+		"self destruct" -.25
 
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
@@ -771,6 +778,33 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
 		"engine capacity" 40
+	outfits
+		"Pulse Cannon" 2
+		"Anti-Missile Turret"
+		
+		"Fission Reactor"
+		"S-270 Regenerator"
+		"LP036a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"Security Station" 2
+		"Laser Rifle" 5
+		
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	
+	engine -15.5 54
+	engine 0 57
+	engine 15.5 54
+	description "This Quicksilver has even more space available for engine use - and even another thruster port! It's also got a few extra shield projectors, more hull plating, and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
+
+
+ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
+	sprite "ship/mquicksilvere"
+	thumbnail "thumbnail/mquicksilvere"
+	add attributes
+		"engine capacity" 40
+		"self destruct" -.25
 	outfits
 		"Pulse Cannon" 2
 		"Anti-Missile Turret"
@@ -797,6 +831,33 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	thumbnail "thumbnail/mquicksilverw"
 	add attributes
 		"weapon capacity" 15
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"S-270 Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Security Station" 4
+		"Laser Rifle"
+		
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	
+	gun -6 -52.5 "Heavy Laser"
+	gun 6 -52.5 "Heavy Laser"
+	turret 0 26 "Heavy Laser Turret"
+	description "This Quicksilver has even bigger gun ports. It's also got a few extra shield emitters, more hull plating, and an extra bunk. Outfitted right, this aftermarket model could be even faster than a stock model, bringing a couple of extra cannons and a turret to a fight in more menacing mimicry of Lionheart's Headhunter."
+
+
+ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons) (Safe)"
+	sprite "ship/mquicksilverw"
+	thumbnail "thumbnail/mquicksilverw"
+	add attributes
+		"weapon capacity" 15
+		"self destruct" -.25
 	outfits
 		"Heavy Laser" 2
 		"Heavy Laser Turret"
@@ -854,16 +915,16 @@ ship "Marauder Raven"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 	
-	engine -12 45
-	engine 12 45
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Heavy Laser"
-	gun 16 -28 "Heavy Laser"
-	turret 0 -19 "Heavy Laser Turret"
+	engine -9.5 63
+	engine 9.5 63
+	gun -13.5 -35.5 "Heavy Laser"
+	gun 13.5 -35.5 "Heavy Laser"
+	gun -21 -28 "Heavy Laser"
+	gun 21 -28 "Heavy Laser"
+	turret 0 7.5 "Heavy Laser Turret"
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "tiny explosion" 28
@@ -891,10 +952,11 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -12 45 .7
-	engine 0 43
-	engine 12 45 .7
-	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility. This one appears to have been modified for even more of the latter at the expense of the former, and the central hull can only be recognized as a Raven because of the wings. A third engine bay, more outfit space, additional shield emitters, and a turret make this already deadly warship appear even more frightening."
+	engine -10.5 63.5
+	engine 10.5 63.5
+	engine -4.5 62.5 .5
+	engine 4.5 62.5 .5
+	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility. This one appears to have been modified for even more of the latter at the expense of the former, and the central hull can only be recognized as a Raven because of the wings. Two more engine bays, more outfit space, additional shield emitters, and a turret make this already deadly warship appear even more frightening."
 
 
 ship "Marauder Raven" "Marauder Raven (Weapons)"
@@ -917,11 +979,11 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
-	gun -11 -33 "Plasma Cannon"
-	gun 11 -33 "Plasma Cannon"
-	gun -17 -28 "Pulse Cannon"
-	gun 17 -28 "Pulse Cannon"
-	turret 0 -19 "Heavy Laser Turret"
+	gun -13.5 -35.5 "Plasma Cannon"
+	gun 13.5 -35.5 "Plasma Cannon"
+	gun -21 -28 "Pulse Cannon"
+	gun 21 -28 "Pulse Cannon"
+	turret 0 7.5 "Heavy Laser Turret"
 	description "A former owner of this ship apparently didn't like the lithe Raven, and has added so much more to it - more weapons, more shields, and more outfit capacity - that the central hull can only be recognized because of the wings. Besides adding a turret, this ship has enormous gun ports, making you wonder how much more deadly you could possibly make a warship this small."
 
 
@@ -965,13 +1027,13 @@ ship "Marauder Splinter"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -14 112
-	engine 14 112
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
-	turret -17 -28 "Heavy Laser Turret"
-	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Heavy Laser Turret"
+	engine -15.5 115
+	engine 15.5 115
+	gun -12 -93 "Plasma Cannon"
+	gun 12 -93 "Plasma Cannon"
+	turret -13 42 "Heavy Laser Turret"
+	turret 0 9 "Heavy Anti-Missile Turret"
+	turret 13 42 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -1002,9 +1064,9 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	engine -15 114 .7
-	engine 0 118
-	engine 15 114 .7
+	engine -15.5 115 .7
+	engine 0 117
+	engine 15.5 115 .7
 	turret "Quad Blaster Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Quad Blaster Turret"
@@ -1032,11 +1094,11 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
-	gun -7.5 -98 "Plasma Cannon"
-	gun 7.5 -98 "Plasma Cannon"
-	gun -15 -82 "Plasma Cannon"
-	gun 15 -82 "Plasma Cannon"
-	turret -17 -28 "Quad Blaster Turret"
-	turret 0 -28 "Heavy Anti-Missile Turret"
-	turret 17 -28 "Quad Blaster Turret"
+	gun -11.5 -98 "Plasma Cannon"
+	gun 11.5 -98 "Plasma Cannon"
+	gun -23.5 -28 "Plasma Cannon"
+	gun 23.5 -28 "Plasma Cannon"
+	turret -13.5 42.5 "Quad Blaster Turret"
+	turret 0 9 "Heavy Anti-Missile Turret"
+	turret 13.5 42.5 "Quad Blaster Turret"
 	description "This Splinter has had extensive modification to its weapons space, with two new forward hard points on either side of the bridge. Large sections of the hull are covered with extra shield emitters and hull plating. Much of the stock cargo space has been converted to space for outfits, weapons, and engines; coupled with a streamlining of existing internal systems, it makes the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."

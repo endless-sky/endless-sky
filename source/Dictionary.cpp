@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Dictionary.h"
@@ -29,14 +32,14 @@ namespace {
 		// At each step of the search, we know the key is in [low, high).
 		size_t low = 0;
 		size_t high = v.size();
-		
+
 		while(low != high)
 		{
 			size_t mid = (low + high) / 2;
 			int cmp = strcmp(key, v[mid].first);
 			if(!cmp)
 				return make_pair(mid, true);
-			
+
 			if(cmp < 0)
 				high = mid;
 			else
@@ -53,7 +56,7 @@ double &Dictionary::operator[](const char *key)
 	pair<size_t, bool> pos = Search(key, *this);
 	if(pos.second)
 		return data()[pos.first].second;
-	
+
 	return insert(begin() + pos.first, make_pair(StringInterner::Intern(key), 0.))->second;
 }
 

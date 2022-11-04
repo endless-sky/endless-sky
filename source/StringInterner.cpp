@@ -1,5 +1,5 @@
 /* StringInterner.cpp
-Copyright (c) 2017-2021 by Michael Zahniser
+Copyright (c) 2017-2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -27,7 +27,7 @@ const char *StringInterner::Intern(const char *key)
 {
 	static set<string> interned;
 	static mutex m;
-	
+
 	// Just in case this function is accessed from multiple threads:
 	lock_guard<mutex> lock(m);
 	return interned.insert(key).first->c_str();
