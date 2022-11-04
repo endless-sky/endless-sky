@@ -307,7 +307,7 @@ mission "Hai Rescue: Ooonem"
 			`	The woman shakes her head at you and runs off into the shadows. You doubt you'll ever see her again.`
 				decline
 	on accept
-		dialog `Those pursuing Oonem have caught on quickly and followed you into orbit. You'll probably have to fight them, but they're pirates from the Core and don't look equipped to make the journey back to Hai space successfully. If you're fast enough, you could probably attempt to simply dodge them instead.`
+		dialog `Those pursuing Oonem have caught on quickly and followed you into orbit. You'll probably have to fight them, but they're only Core pirates and don't look equipped to make the journey back to Hai space successfully. If you're fast enough, you could probably attempt to simply dodge them instead.`
 	on complete
 		log `Rescued a kidnapped Hai researcher, Ooonem, from Stormhold and returned her to Makerplace. She was tricked into leaving Hai space for a fake business deal, and the merchant who agreed to take her there kidnapped her instead. Men have been hunting her since she escaped. She doesn't know the real identities of the kidnappers.`
 		log "Minor People" "Oonem" `A Hai researcher with a remarkable talent for stealth and laser rifles. Also a predilection for shooting first and not taking prisoners. She escaped kidnapping and survived independently on <origin> for a remarkable length of time where she acquired the moniker 'angel of death'. She's also quite the capitalist.`
@@ -592,7 +592,7 @@ mission "Hai Rescue: Gipeep"
 				launch
 	on complete
 		log `Rescued a Hai ship architect named Gipeep who was kidnapped near his home on <planet> and transported in a locked cargo crate. The crate's key had a marking on it like an angry cat in a circle.`
-		log "Minor People" "Gipeep Anl'ooh" `A Hai ship architect whom you rescued from his captors. His tenacity of spirit may have helped you in more than just his recovery to Hai space.`
+		log "Minor People" "Gipeep Anl'ooh" `A Hai ship architect whom you rescued from his captors. His tenacity of spirit may have helped you to do more than just recover him to Hai space.`
 		payment 285000
 		"hai slave prereq" ++
 		dialog `The Hai, who has since introduced himself as Gipeep Anl'ooh, thanks you for helping him finally finish his long walk home from the store. His grateful family give you <payment>. None of them know who kidnapped him or why.`
