@@ -28,7 +28,7 @@ class System;
 class Ship;
 
 
-
+// A class that holds an overlay for a missile
 class AlertLabel {
 public:
 	AlertLabel(Point &position, const Projectile& projectile, std::shared_ptr<Ship> flagship, double zoom);
@@ -39,8 +39,7 @@ public:
 private:
 	Point position;
 	double radius;
-	std::string bigText;
-	std::string smallText;
+	double damagePercent;
 	Color color;
 	Color color2;
 };

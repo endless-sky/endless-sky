@@ -656,7 +656,7 @@ void Engine::Step(bool isActive)
 		for(const Projectile &projectile : projectiles)
 		{
 			Point pos = projectile.Position() - center;
-			if((pos.Length() < Screen::Width() / zoom)  && projectile.MissileStrength())
+			if((pos.Length() < Screen::Width() / zoom)  && projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy())
 				aLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
 		}
 	}

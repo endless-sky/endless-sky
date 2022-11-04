@@ -46,21 +46,18 @@ AlertLabel::AlertLabel(Point &position, const Projectile &projectile, shared_ptr
 {
 
 	const bool isTargetingMe = projectile.TargetPtr() == flagship;
-	const Government *gov = projectile.GetGovernment();
 	const bool isInDanger = projectile.GetWeapon().HullDamage() > flagship->Attributes().Get("hull")/10;
-
-	color = gov->GetColor();
-
-	if(isInDanger && gov->IsEnemy())
-		bigText = "!DANGER!";
+	damagePercent = projectile.GetWeapon().HullDamage() / flagship->Attributes().Get("Hull");
 
 	if(isTargetingMe)
-		smallText = "LOCK";
-
-	if(projectile.TargetGovernment()->IsPlayer())
-		color2 = isInDanger ? Color(1.f, 0.1f, .1f, 1.f) : Color(color.Get()[0] * .5f + .5f, color.Get()[1] * .5f + .1f, color.Get()[2] * .5f + .1f);
+		color = Color(.8f, .8f, .4f, .5f);
 	else
-		color2 = color;
+		color = Color(1.f, .96f, .37f, .5f);
+
+	if(isInDanger)
+		color = Color(1.f, .6f, .4f, .5f);
+
+	color2 = isInDanger ? color : Color(0.f, 0.f);
 
 	radius = zoom*projectile.Radius();
 }
@@ -69,26 +66,8 @@ AlertLabel::AlertLabel(Point &position, const Projectile &projectile, shared_ptr
 
 void AlertLabel::Draw() const
 {
-	// Draw any active labels.
-	const Font &font = FontSet::Get(14);
-	const Font &bigFont = FontSet::Get(18);
-
 	double innerAngle = 60.;
 	double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
-	Point unit = Angle(innerAngle).Unit();
-	RingShader::Draw(position, radius, 2.f, .9f, color2, 0.f, innerAngle);
-	RingShader::Draw(position, radius + GAP, 1.5f, .6f, color, 0.f, outerAngle);
-
-	if(!bigText.empty() || !smallText.empty())
-	{
-		Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
-		Point to = from + LINE_LENGTH * unit;
-		LineShader::Draw(from, to, 1.3f, color);
-
-		double bigX = to.X() + 2.;
-		bigFont.DrawAliased(bigText, bigX, to.Y() - .5 * bigFont.Height(), color2);
-
-		double smallX = to.X() + 4.;
-		font.DrawAliased(smallText, smallX, to.Y() + .5 * bigFont.Height() + 1., color);
-	}
+	RingShader::Draw(position, radius, 2.f, .9f, color, 0.f, innerAngle);
+	RingShader::Draw(position, radius + GAP, 15 * damagePercent, .6f, color2, 0.f, outerAngle);
 }
