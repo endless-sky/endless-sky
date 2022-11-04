@@ -98,7 +98,7 @@ conversation "hai reveal republic or syndicate news"
 	`	The severe-looking anchorwoman bores down the camera with an expression that demands attention.`
 	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at six."`
 	`	You raise your eyebrows. Actual footage of an unknown alien conflict doesn't seem likely.`
-	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.` # Option to wait and see, to break the dialogue up.
+	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.` # There should be an option to wait and see, to break the dialog up.
 	`	The news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and appears very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
@@ -402,7 +402,7 @@ mission "Hai Tour [2] Alta Hai"
 	to offer
 		has "ZZ Hai Tour [1] Stonebreak: done"
 	on offer
-		conversation # The dialogue should be changed to give some new information, instead of repeating the planet's description. 
+		conversation # The dialog should be changed to give some new information, instead of repeating the planet's description; or something else. 
 			`This star system has an unusual number of metallic asteroids, which you noticed the Hai harvesting for the raw materials before you landed. Stonebreak itself is home to incredibly large cities: massive, clearly planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards.`
 			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is a dull and slightly irregular gray color, all made from the same material which seems to be some metallic alloy, and the corners of each building are slightly beveled instead of meeting at right angles.`
 			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, while warehouses and living quarters dot the inside of the ring.`
@@ -540,8 +540,8 @@ mission "Hai Leaks Response 1"
 			choice
 				`	"That seems practical."`
 				`	"I don't really have an option to refuse, do I?"`
-			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, we can begin a dialogue on how best to deal with this current scenario."`
-			`	She hands you an officially branded box containing what appears to be a diplomatic ID. The text on the ID appears to identify you in a few scripts you've seen in human space and definitely recognise as human, but it also has another script you've never seen before that must be in Hai. You wonder for a brief moment how they were able to gain this information on you ahead of time.` # Perhaps the ID could be a licence that blocks the player from purchasing anything Hai until now, and allows access to Hai-home. 
+			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a dialogue on how best to deal with this current scenario."`
+			`	She hands you an officially branded box containing what appears to be a diplomatic ID. The text on the ID appears to identify you in a few scripts you've seen in human space and definitely recognize as human, but it also has another script you've never seen before that must be in Hai. You wonder for a brief moment how they were able to gain this information on you ahead of time.` # Perhaps the ID could be a license that allows unrestricted access to Hai-home. If anything it just makes this bit meaningful. 
 			choice
 				`	"Various? We only have two governments."`
 			`	"Oh," she says, "we've treated the Syndicate as a de facto government for many decades now; with the amount of influence they have it was the only prudent thing to do."`
