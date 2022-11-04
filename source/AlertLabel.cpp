@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "LineShader.h"
 #include "Projectile.h"
-#include "PI.h"
+#include "pi.h"
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
