@@ -126,7 +126,7 @@ mission "Unfettered Silicon Asteroid Mining"
 	job
 	repeat
 	name "Gather Silicon from asteroids"
-	description "Mine and collect 50 tons of silicon from the asteroid field in Wah Yoot, then bring the minerals to <destination> for <payment>."
+	description "Mine and collect 50 tons of silicon, then bring the minerals to <destination> for <payment>. Silicon is available in the asteroid field of Wah Yoot."
 	source "Darkcloak"
 	to offer
 		random < 40
@@ -139,7 +139,7 @@ mission "Unfettered Silicon Asteroid Mining 2"
 	job
 	repeat
 	name "Gather Silicon from asteroids"
-	description "Mine and collect 100 tons of silicon from the asteroid field in Wah Yoot, then bring the minerals to <destination> for <payment>."
+	description "Mine and collect 100 tons of silicon, then bring the minerals to <destination> for <payment>. Silicon is available in the asteroid field in Wah Yoot."
 	source "Darkcloak"
 	to offer
 		random < 10
@@ -153,7 +153,7 @@ mission "Unfettered Silver Asteroid Mining"
 	job
 	repeat
 	name "Gather Silver from asteroids"
-	description "Mine and collect 15 tons of silver from the asteroid field in Ehma Ti, then bring the minerals back to <destination> for <payment>."
+	description "Mine and collect 15 tons of silver, then bring the minerals back to <destination> for <payment>. Silver is available in the asteroid field in Ehma Ti."
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
@@ -168,7 +168,7 @@ mission "Unfettered Silver Asteroid Mining 2"
 	job
 	repeat
 	name "Gather Silver from asteroids"
-	description `Mine and collect 30 tons of silver from the asteroid field in Ehma Ti, then bring the minerals to <destination> for <payment>.`
+	description "Mine and collect 30 tons of silver, then bring the minerals to <destination> for <payment>. Silver is available in the asteroid field in Ehma Ti."
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
@@ -184,7 +184,7 @@ mission "Unfettered Lead Asteroid Mining"
 	job
 	repeat
 	name "Gather Lead from asteroids"
-	description "Mine and  collect 35 tons of lead from the asteroid field in Wah Yoot, then bring the minerals to <destination> for <payment>."
+	description "Mine and  collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
@@ -199,7 +199,7 @@ mission "Unfettered Lead Asteroid Mining 2"
 	job
 	repeat
 	name "Gather Lead from asteroids"
-	description "Mine and collect 70 tons of lead from the asteroid field in Wah Yoot, then bring the minerals to <destination> for <payment>."
+	description "Mine and collect 70 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
 		attributes "unfettered"
 	destination "Darkcloak"
