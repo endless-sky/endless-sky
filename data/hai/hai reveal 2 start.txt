@@ -121,7 +121,7 @@ mission "Hai Rescue: Yeertle Family"
 				`	"Yes, that's a holoprojector and you're a Hai."`
 				`	"Yes, I've been looking for someone like yourself."`
 			`	He peers at you for a second, perhaps pondering if he can trust you with the answer.`
-			`	"Yes, well, holography is my trade, and Hai children sometimes construct holoprojectors for fun. This one is primitive but it is functional, if only barely, thanks to these inferior human components I've had to scavenge."`
+			`	"Yes, well, holography is my trade, and Hai children sometimes construct holoprojectors for fun. This one is primitive but it is functional, if only barely, thanks to inferior human components I've had to scavenge."`
 			choice
 				`	"Do you need a ride home to Hai space?"`
 					goto "ride offer"
@@ -258,7 +258,7 @@ mission "Hai Rescue: Ooonem"
 				`	"Sorry to bother you. I'll leave you to your business."`
 					goto decline
 			label hai
-			`	"I was going to meet a businessman on Shroud to arrange a large-scale import deal for my research project. I asked a human merchant to take me there, but I was tricked. The businessman doesn't really exist and the deal was faked. The merchant locked me in a cell and brought me here instead. When he opened the cell, I managed to grab his rifle, shoot him, and hide. It's amazing how slowly humans move."`
+			`	"I was going to meet a businessman on Shroud to arrange a large-scale import deal for my research project. I asked a human merchant to take me there, but I was tricked. The businessman doesn't really exist, and the deal was faked. The merchant locked me in a cell and brought me here instead. When he opened the cell, I managed to grab his rifle, shoot him, and hide. It's amazing how slowly humans move."`
 				goto "more questions"
 			label who
 			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up."`
@@ -285,10 +285,10 @@ mission "Hai Rescue: Ooonem"
 				`	"I have a better ship parked somewhere else. I'll go get that first."`	
 				`	"You should find a different ride then."`
 					decline
-			`	She looks at you curiously. "You're a good one, aren't you? Very well, take this transmitter. When you return come back to this area, activate it. I will find you, but come alone."`
+			`	She looks at you curiously. "You're a good one, aren't you? Very well, take this transmitter. When you return, come back to this area. Activate it, and I will find you. Come alone."`
 			action
 				set "Oonem Transmitter"
-			`	She quickly keys something into the transmitter and it beeps before displaying a locked icon on the screen. No sooner has she handed it over than she has turned and melted down an alley you weren't even entirely aware of. The transmitter in your hand is small, and looks to have been modified from whatever device it was before. Whoever this Hai is, she's capable.`
+			`	She quickly keys something into the transmitter, and it beeps before displaying a locked icon on the screen. As soon as she has handed it over, she turns and melts down an alley which you weren't even entirely aware of. The transmitter in your hand is small, and looks custom modified. Whoever this Hai is, she's capable.`
 				defer
 			label transmitter
 			`	You return to the twisting alleyway you first met the mysterious 'angel of death' in and activate the transmitter. It's been a little while, but on your way in there was a bulletin out for her capture being broadcast, so it seems she's definitely still at large.`
@@ -299,8 +299,8 @@ mission "Hai Rescue: Ooonem"
 					goto decline
 			label go
 			`	"Okay. I guess I should have introduced myself... it's easy to forget social niceties in a place like this. My name is Ooonem, and I'm a researcher from <planet>. Thank you for agreeing to take me home."`
-			`	The pair of you, at her direction, make your way back to your ship, with you quietly greasing the palms of those at one of the many access points to the spaceport. Despite precautions, though, as you weave between parked ships on your final approach you notice several men sitting on a nearby ship's loading ramp looking intently at Ooonem. Before the men start shooting Ooonem pulls a grenade out of her cloak and throws it at the men in one smooth movement. Gas explodes outward, and the men, hands halfway to their weapons, drop to the ground clutching their throats instead, dead in seconds.`
-			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off of the pirates a few days ago. They're quite illegal." You notice a label on the grenades: "Sarin Gas: twenty-meter radius." This was a nerve gas grenade that uses one of the older varieties of the gas. They're cheap and plentiful in pirate space.`
+			`	The pair of you, at her direction, make your way back to your ship, with you quietly greasing the palms of those at one of the many access points to the spaceport. Despite your precautions, though, as you weave between parked ships on your final approach, you notice several men sitting on a nearby ship's loading ramp looking intently at Ooonem, their guns lying close by. Before the men are able to shoot, Ooonem pulls a grenade out of her cloak and throws it at the gunmen in one smooth movement. A thick gas billows from the canister and the men, hands halfway to their weapons, drop to the ground clutching their throats instead. They're dead within seconds.`
+			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off some pirates a few days ago. They're quite illegal." You notice a label on the grenades: "Sarin Gas: twenty-meter radius." This was a nerve gas grenade that uses one of the older varieties of the gas. They're cheap and plentiful in pirate space.`
 			`	You quickly board your ship and immediately take off.`
 				launch
 			label decline
