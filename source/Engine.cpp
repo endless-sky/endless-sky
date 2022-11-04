@@ -938,7 +938,7 @@ void Engine::Draw() const
 		if(ship->Cloaking() && ship->IsYours() && ship->GetSystem() == player.GetSystem())
 		{
 			float cloak = .1f * static_cast<float>(ship->Cloaking());
-			OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
+			OutlineShader::Draw(ship->GetSprite(), (ship->Position() - dCenter) * zoom, Point(ship->Width(), ship->Height()) * zoom,
 								Color(6 * cloak, cloak, cloak, 8 * cloak), ship->Facing().Unit(), ship->GetFrame());
 		}
 
@@ -946,8 +946,8 @@ void Engine::Draw() const
 		{
 			float shields = min(SHIELD_OUTLINE_MULT*static_cast<float>(sqrt(ship->RecentShieldDamage()/ship->Attributes().Get("shields"))), 1.f);
 			if(ship->RecentShieldDamage() > 4. && ship->GetSystem() == player.GetSystem())
-				OutlineShader::Draw(ship->GetSprite(), (ship->Position()-dCenter)*zoom, Point(ship->Width(), ship->Height())*zoom,
-									Color(.61f * shields, .78f * shields, shields, shields),ship->Facing().Unit(), ship->GetFrame());
+				OutlineShader::Draw(ship->GetSprite(), (ship->Position() - dCenter) * zoom, Point(ship->Width(), ship->Height()) * zoom,
+									Color(.61f * shields, .78f * shields, shields, shields), ship->Facing().Unit(), ship->GetFrame());
 		}
 	}
 
