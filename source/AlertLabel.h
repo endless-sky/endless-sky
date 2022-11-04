@@ -37,11 +37,12 @@ public:
 
 
 private:
+	bool isDangerous;
+	bool isTargetingMe;
 	Point position;
 	double radius;
-	double damagePercent;
+	float damagePercent;
 	Color color;
-	Color color2;
 };
 
 

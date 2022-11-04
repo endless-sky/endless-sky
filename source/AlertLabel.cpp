@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LineShader.h"
 #include "Projectile.h"
 #include "pi.h"
+#include "PointerShader.h"
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -32,12 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double LINE_ANGLE[4] = {60., 120., 300., 240.};
-	const double LINE_LENGTH = 6.;
-	const double INNER_SPACE = 1.;
-	const double LINE_GAP = 1.;
-	const double GAP = 4.;
-	const double MIN_DISTANCE = 1.;
+	const double GAP = 3.;
 }
 
 
@@ -45,29 +41,33 @@ namespace {
 AlertLabel::AlertLabel(Point &position, const Projectile &projectile, shared_ptr<Ship> flagship, double zoom) : position(position * zoom)
 {
 
-	const bool isTargetingMe = projectile.TargetPtr() == flagship;
-	const bool isInDanger = projectile.GetWeapon().HullDamage() > flagship->Attributes().Get("hull")/10;
+	isTargetingMe = projectile.TargetPtr() == flagship;
+	isDangerous = projectile.GetWeapon().HullDamage() > flagship->Attributes().Get("hull")/10;
 	damagePercent = projectile.GetWeapon().HullDamage() / flagship->Attributes().Get("Hull");
 
-	if(isTargetingMe)
+	if(!isTargetingMe)
 		color = Color(.8f, .8f, .4f, .5f);
 	else
-		color = Color(1.f, .96f, .37f, .5f);
+		color = Color(5.f, .48f, .16f, .5f);
 
-	if(isInDanger)
+	if(isDangerous)
 		color = Color(1.f, .6f, .4f, .5f);
 
-	color2 = isInDanger ? color : Color(0.f, 0.f);
-
-	radius = zoom*projectile.Radius();
+	radius = zoom*projectile.Radius()*0.75;
 }
 
 
 
 void AlertLabel::Draw() const
 {
-	double innerAngle = 60.;
-	double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
-	RingShader::Draw(position, radius, 2.f, .9f, color, 0.f, innerAngle);
-	RingShader::Draw(position, radius + GAP, 15 * damagePercent, .6f, color2, 0.f, outerAngle);
+	double angle[3] = {270., 150., 30.};
+	float dangerScale = 3 * min(damagePercent, 1.f);
+	for(int i; i < 3; i++)
+	{
+		RingShader::Draw(position, radius, 2.f, .16f, color, 0.f, angle[i]);
+		if(isTargetingMe)
+			PointerShader::Draw(position, Angle(angle[i] + 30.).Unit(), 7.5f, 15.f, radius + 18.75, color);
+	}
+	if(isDangerous)
+		RingShader::Draw(position, radius + GAP + dangerScale, dangerScale, 1.f, Color(1.f, 0.1f, 0.1f, 1.f));
 }
