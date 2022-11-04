@@ -37,6 +37,7 @@ public:
 
 
 private:
+	double rotation;
 	bool isDangerous;
 	bool isTargetingMe;
 	Point position;

@@ -54,6 +54,7 @@ AlertLabel::AlertLabel(Point &position, const Projectile &projectile, shared_ptr
 		color = Color(1.f, .6f, .4f, .5f);
 
 	radius = zoom*projectile.Radius()*0.75;
+	rotation = projectile.Facing().Degrees() + 180.;
 }
 
 
@@ -64,9 +65,9 @@ void AlertLabel::Draw() const
 	float dangerScale = 3 * min(damagePercent, 1.f);
 	for(int i; i < 3; i++)
 	{
-		RingShader::Draw(position, radius, 2.f, .16f, color, 0.f, angle[i]);
+		RingShader::Draw(position, radius, 2.f, .16f, color, 0.f, angle[i] + rotation);
 		if(isTargetingMe)
-			PointerShader::Draw(position, Angle(angle[i] + 30.).Unit(), 7.5f, 15.f, radius + 18.75, color);
+			PointerShader::Draw(position, Angle(angle[i] + 30. + rotation).Unit(), 7.5f, 15.f, radius + 18.75, color);
 	}
 	if(isDangerous)
 		RingShader::Draw(position, radius + GAP + dangerScale, dangerScale, 1.f, Color(1.f, 0.1f, 0.1f, 1.f));
