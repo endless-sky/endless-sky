@@ -67,7 +67,7 @@ void AlertLabel::Draw() const
 	{
 		RingShader::Draw(position, radius, 2.f, .16f, color, 0.f, angle[i] + rotation);
 		if(isTargetingMe)
-			PointerShader::Draw(position, Angle(angle[i] + 30. + rotation).Unit(), 7.5f, 15.f, radius + 18.75, color);
+			PointerShader::Draw(position, Angle(angle[i] + 30. + rotation).Unit(), 7.5f, (i == 1) ? 25.f : 15.f, radius + (i == 1) ? 18.75 : 28.75, color);
 	}
 	if(isDangerous)
 		RingShader::Draw(position, radius + GAP + dangerScale, dangerScale, 1.f, Color(1.f, 0.1f, 0.1f, 1.f));
