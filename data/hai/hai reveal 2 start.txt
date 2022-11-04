@@ -148,7 +148,7 @@ mission "Hai Rescue: Yeertle Family"
 				goto leave
 			label looking
 			`	The man's holographic expression doesn't change, but his body language shifts in a way that speaks of distress.`
-			`	"The Hai government... no, no they wouldn't. Let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly.`
+			`	"The Hai government? No, they wouldn't. I can't explain it now, but let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly.`
 			`	"Doubtlessly I'm on a register somewhere, with a timer counting down. It is even possible that someone has been told to watch for if I show up on Darkcloak. Ultimately though, the authorities don't often look for missing persons, unless they're very wealthy, until at least four months have passed by. We have been gone for only two."`
 			choice
 				`	"Do you need a ride home to Hai space?"`
