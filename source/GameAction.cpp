@@ -18,14 +18,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
+#include "Effect.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Messages.h"
-#include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "Sound.h"
+#include "Sprite.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -220,7 +222,10 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			for(const DataNode &grand : child)
 				hardpoints.emplace_back(grand);
 		else if(child.Token(1) == "attributes" && child.HasChildren())
-			attributes.emplace_back(child);
+		{
+			attributes.emplace_back();
+			attributes.end()->Load(child);
+		}
 	}
 	else
 		conditions.Add(child);
@@ -282,52 +287,52 @@ void GameAction::Save(DataWriter &out) const
 		{
 			out.BeginChild();
 			{
-				out.Write("category", baseAttributes.Category());
-				out.Write("cost", baseAttributes.Cost());
-				out.Write("mass", baseAttributes.Mass());
-				for(const auto &it : baseAttributes.FlareSprites())
+				out.Write("category", attribute.Category());
+				out.Write("cost", attribute.Cost());
+				out.Write("mass", attribute.Mass());
+				for(const auto &it : attribute.FlareSprites())
 					for(int i = 0; i < it.second; ++i)
 						it.first.SaveSprite(out, "flare sprite");
-				for(const auto &it : baseAttributes.FlareSounds())
+				for(const auto &it : attribute.FlareSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("flare sound", it.first->Name());
-				for(const auto &it : baseAttributes.ReverseFlareSprites())
+				for(const auto &it : attribute.ReverseFlareSprites())
 					for(int i = 0; i < it.second; ++i)
 						it.first.SaveSprite(out, "reverse flare sprite");
-				for(const auto &it : baseAttributes.ReverseFlareSounds())
+				for(const auto &it : attribute.ReverseFlareSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("reverse flare sound", it.first->Name());
-				for(const auto &it : baseAttributes.SteeringFlareSprites())
+				for(const auto &it : attribute.SteeringFlareSprites())
 					for(int i = 0; i < it.second; ++i)
 						it.first.SaveSprite(out, "steering flare sprite");
-				for(const auto &it : baseAttributes.SteeringFlareSounds())
+				for(const auto &it : attribute.SteeringFlareSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("steering flare sound", it.first->Name());
-				for(const auto &it : baseAttributes.AfterburnerEffects())
+				for(const auto &it : attribute.AfterburnerEffects())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("afterburner effect", it.first->Name());
-				for(const auto &it : baseAttributes.JumpEffects())
+				for(const auto &it : attribute.JumpEffects())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("jump effect", it.first->Name());
-				for(const auto &it : baseAttributes.JumpSounds())
+				for(const auto &it : attribute.JumpSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("jump sound", it.first->Name());
-				for(const auto &it : baseAttributes.JumpInSounds())
+				for(const auto &it : attribute.JumpInSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("jump in sound", it.first->Name());
-				for(const auto &it : baseAttributes.JumpOutSounds())
+				for(const auto &it : attribute.JumpOutSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("jump out sound", it.first->Name());
-				for(const auto &it : baseAttributes.HyperSounds())
+				for(const auto &it : attribute.HyperSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("hyperdrive sound", it.first->Name());
-				for(const auto &it : baseAttributes.HyperInSounds())
+				for(const auto &it : attribute.HyperInSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("hyperdrive in sound", it.first->Name());
-				for(const auto &it : baseAttributes.HyperOutSounds())
+				for(const auto &it : attribute.HyperOutSounds())
 					for(int i = 0; i < it.second; ++i)
 						out.Write("hyperdrive out sound", it.first->Name());
-				for(const auto &it : baseAttributes.Attributes())
+				for(const auto &it : attribute.Attributes())
 					if(it.second)
 						out.Write(it.first, it.second);
 			}
@@ -444,10 +449,10 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 				player.FailMission(mission);
 	}
 
-	for(const auto hardpoint : hardpoints)
+	for(const auto &hardpoint : hardpoints)
 		player.FlagshipPtr()->AddHardpoint(hardpoint);
-	for(const auto attribute : attributes)
-		player.FlagshipPtr()->AddOutfit(attribute, 1);
+	for(const auto &attribute : attributes)
+		player.FlagshipPtr()->AddOutfit(&attribute, 1);
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());

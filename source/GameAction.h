@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "Outfit.h"
 
 #include <cstdint>
 #include <map>
