@@ -63,8 +63,20 @@ public:
 
 	enum class RelocateStatus : int {
 		NONE = 0,
-		TELEPORTING,
-		TELEPORTED
+		IN_PROGRESS,
+		COMPLETE
+	};
+
+	class Relocation {
+	public:
+		Relocation() = default;
+		Relocation(const Planet *relocationPlanet, bool relocateFlagshipOnly = false)
+		: relocationPlanet(relocationPlanet), relocateFlagshipOnly(relocateFlagshipOnly) {}
+
+		RelocateStatus relocationStatus = RelocateStatus::NONE;
+		bool relocateFlagshipOnly = false;
+		const Planet *relocationPlanet = nullptr;
+		const Planet *oldRelocationPlanet = nullptr;
 	};
 
 public:
@@ -262,6 +274,7 @@ public:
 
 	void QueueRelocation(const Planet *destination, bool flagshipOnly = false);
 	void DoQueuedRelocation();
+	void Relocate(UI *ui);
 	RelocateStatus RelocationStatus() const;
 	void SetRelocationStatus(RelocateStatus status);
 	const Planet *OldRelocationPlanet() const;
@@ -392,17 +405,14 @@ private:
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
-	RelocateStatus relocationStatus = RelocateStatus::NONE;
-	bool relocateFlagshipOnly = false;
-	const Planet *relocationPlanet = nullptr;
-	const Planet *oldRelocationPlanet = nullptr;
-
 	std::set<const Outfit *> selectedWeapons;
 
 	std::map<const Outfit *, int> stock;
 	Depreciation depreciation;
 	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;
+
+	Relocation relocation;
 
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

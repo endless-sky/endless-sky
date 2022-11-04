@@ -2132,57 +2132,64 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 void PlayerInfo::QueueRelocation(const Planet *destination, bool flagshipOnly)
 {
-	relocationPlanet = destination;
-	relocateFlagshipOnly = flagshipOnly;
+	relocation = Relocation(destination, flagshipOnly);
 }
 
 
 
 void PlayerInfo::DoQueuedRelocation()
 {
-	if(!relocationPlanet || !FlagshipPtr())
+	if(!relocation.relocationPlanet || !FlagshipPtr())
 		return;
 	if(!planet)
 	{
-		relocationPlanet = nullptr;
+		relocation.relocationPlanet = nullptr;
 		return;
 	}
 
-	flagship->SetSystem(relocationPlanet->GetSystem());
-	flagship->SetPlanet(relocationPlanet);
-	if(!relocateFlagshipOnly)
+	flagship->SetSystem(relocation.relocationPlanet->GetSystem());
+	flagship->SetPlanet(relocation.relocationPlanet);
+	if(!relocation.relocateFlagshipOnly)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDestroyed() && ship->GetPlanet() == planet)
 			{
-				ship->SetSystem(relocationPlanet->GetSystem());
-				ship->SetPlanet(relocationPlanet);
+				ship->SetSystem(relocation.relocationPlanet->GetSystem());
+				ship->SetPlanet(relocation.relocationPlanet);
 			}
-	system = relocationPlanet->GetSystem();
-	planet = relocationPlanet;
-	relocationStatus = RelocateStatus::TELEPORTING;
-	oldRelocationPlanet = relocationPlanet;
-	relocationPlanet = nullptr;
+	system = relocation.relocationPlanet->GetSystem();
+	planet = relocation.relocationPlanet;
+	relocation.relocationStatus = RelocateStatus::IN_PROGRESS;
+	relocation.oldRelocationPlanet = relocation.relocationPlanet;
+	relocation.relocationPlanet = nullptr;
+}
+
+
+
+void PlayerInfo::Relocate(UI *ui)
+{
+	LeavePlanet();
+	EnterPlanet(ui);
 }
 
 
 
 PlayerInfo::RelocateStatus PlayerInfo::RelocationStatus() const
 {
-	return relocationStatus;
+	return relocation.relocationStatus;
 }
 
 
 
 void PlayerInfo::SetRelocationStatus(PlayerInfo::RelocateStatus status)
 {
-	relocationStatus = status;
+	relocation.relocationStatus = status;
 }
 
 
 
 const Planet *PlayerInfo::OldRelocationPlanet() const
 {
-	return oldRelocationPlanet;
+	return relocation.oldRelocationPlanet;
 }
 
 

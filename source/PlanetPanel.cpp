@@ -47,7 +47,7 @@ using namespace std;
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback, const Planet &planet)
 	: player(player), callback(callback),
-	planet(planet), system(*player.GetSystem()),
+	planet(planet), system(*planet.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
@@ -72,14 +72,14 @@ void PlanetPanel::Step()
 {
 	// If the player is teleporting, simulate a TakeOff followed
 	// by a forced landing. No transition will be noticeable.
-	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTING)
+	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::IN_PROGRESS)
 	{
-		player.SetRelocationStatus(PlayerInfo::RelocateStatus::TELEPORTED);
+		player.SetRelocationStatus(PlayerInfo::RelocateStatus::COMPLETE);
 		UI *ui = GetUI();
 		while(!ui->IsTop(this))
 			ui->Pop(ui->Top().get());
 		player.Save();
-		player.LeavePlanet();
+		player.Relocate(GetUI());
 		if(callback)
 			callback();
 		if(selectedPanel)
@@ -148,8 +148,6 @@ void PlanetPanel::Draw()
 					info.SetCondition("has outfitter");
 					break;
 				}
-			if(player.RelocationStatus() == PlayerInfo::RelocateStatus::TELEPORTED)
-				info.SetCondition("has outfitter");
 		}
 	}
 
