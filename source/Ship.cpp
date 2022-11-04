@@ -3885,6 +3885,141 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 
 
+void Ship::AddHardpoint(DataNode data) {
+	std::string key = data.Token(0);
+	if((key == "engine" || key == "reverse engine" || key == "steering engine") && data.Size() >= 3)
+	{
+		bool reverse = (key == "reverse engine");
+		bool steering = (key == "steering engine");
+
+		vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
+		(reverse ? reverseEnginePoints : steeringEnginePoints);
+		editPoints.emplace_back(0.5 * data.Value(1), 0.5 * data.Value(2),
+								(data.Size() > 3 ? data.Value(3) : 1.));
+		EnginePoint &engine = editPoints.back();
+		if(reverse)
+			engine.facing = Angle(180.);
+		for(const DataNode &grand : data)
+		{
+			const string &grandKey = grand.Token(0);
+			if(grandKey == "zoom" && grand.Size() >= 2)
+				engine.zoom = grand.Value(1);
+			else if(grandKey == "angle" && grand.Size() >= 2)
+				engine.facing += Angle(grand.Value(1));
+			else
+			{
+				for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
+					if(grandKey == ENGINE_SIDE[j])
+						engine.side = j;
+				if(steering)
+					for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
+						if(grandKey == STEERING_FACING[j])
+							engine.steering = j;
+			}
+		}
+	}
+	else if(key == "gun" || key == "turret")
+	{
+		const Outfit *outfit = nullptr;
+		Point hardpoint;
+		if(data.Size() >= 3)
+		{
+			hardpoint = Point(data.Value(1), data.Value(2));
+			if(data.Size() >= 4)
+				outfit = GameData::Outfits().Get(data.Token(3));
+		}
+		else
+		{
+			if(data.Size() >= 2)
+				outfit = GameData::Outfits().Get(data.Token(1));
+		}
+		Angle gunPortAngle = Angle(0.);
+		bool gunPortParallel = false;
+		bool drawUnder = (key == "gun");
+		if(data.HasChildren())
+		{
+			for(const DataNode &grand : data)
+			{
+				if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					gunPortAngle = grand.Value(1);
+				else if(grand.Token(0) == "parallel")
+					gunPortParallel = true;
+				else if(grand.Token(0) == "under")
+					drawUnder = true;
+				else if(grand.Token(0) == "over")
+					drawUnder = false;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
+		if(key == "gun")
+			armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
+		else
+			armament.AddTurret(hardpoint, drawUnder, outfit);
+	}
+	else if(((key == "fighter" || key == "drone") && data.Size() >= 3) ||
+			(key == "bay" && data.Size() >= 4))
+	{
+		// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
+		// standard format is `bay <ship-category>`, with the same signature for other values.
+		string category = "Fighter";
+		int childOffset = 0;
+		if(key == "drone")
+			category = "Drone";
+		else if(key == "bay")
+		{
+			category = data.Token(1);
+			childOffset += 1;
+		}
+
+		bays.emplace_back(data.Value(1 + childOffset), data.Value(2 + childOffset), category);
+		Bay &bay = bays.back();
+		for(int i = 3 + childOffset; i < data.Size(); ++i)
+		{
+			for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
+				if(data.Token(i) == BAY_SIDE[j])
+					bay.side = j;
+			for(unsigned j = 1; j < BAY_FACING.size(); ++j)
+				if(data.Token(i) == BAY_FACING[j])
+					bay.facing = BAY_ANGLE[j];
+		}
+		if(data.HasChildren())
+			for(const DataNode &grand : data)
+			{
+				// Load in the effect(s) to be displayed when the ship launches.
+				if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+				{
+					int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+					const Effect *e = GameData::Effects().Get(grand.Token(1));
+					bay.launchEffects.insert(bay.launchEffects.end(), count, e);
+				}
+				else if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					bay.facing = Angle(grand.Value(1));
+				else
+				{
+					bool handled = false;
+					for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
+						if(grand.Token(0) == BAY_SIDE[i])
+						{
+							bay.side = i;
+							handled = true;
+						}
+					for(unsigned i = 1; i < BAY_FACING.size(); ++i)
+						if(grand.Token(0) == BAY_FACING[i])
+						{
+							bay.facing = BAY_ANGLE[i];
+							handled = true;
+						}
+					if(!handled)
+						grand.PrintTrace("Skipping unrecognized attribute:");
+				}
+			}
+	}
+}
+
+
+
+
 // Get the list of weapons.
 Armament &Ship::GetArmament()
 {

@@ -80,6 +80,9 @@ private:
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
+	std::vector<DataNode> hardpoints;
+	std::vector<Outfit> attributes;
+
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
