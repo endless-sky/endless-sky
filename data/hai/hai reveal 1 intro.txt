@@ -565,11 +565,11 @@ mission "Hai Leaks Response 2"
 	passengers 4
 	on offer
 		event "pirates respond to leaks"
-		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
+		log "People" "Yang Xilin" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
 		conversation
 			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you, when presented, also seems to trigger some sort of classified override, fast-tracking the process from the quoted "two to three business days" to "2 hours after landing."`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a private room at the spaceport.`
-			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake. "Xilin Yang. It's an honor to meet a hero of the Pug crisis such as yourself."`
+			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake. "Yang Xilin. It's an honor to meet a hero of the Pug crisis such as yourself."`
 			choice
 				`	"It was hard-fought, but it was necessary."`
 				`	"Thanks, but it wasn't as dramatic as they made it out to be. I'm just happy to have helped where I could."`
@@ -631,7 +631,7 @@ mission "Hai Leaks Response 2A"
 		conversation
 			`When you land on Deep, Katya is there waiting for you along with Alondo. "<first>! It's so good to see you again! When the Republic briefed the new Chancellor and his Cabinet on the Hai, he brought us in for advice. We thought to try and reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting. "I thought it seemed odd when they said I was meeting you for this, Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
-			`	"Oh it was always going to be Alondo," she says, "but there's never a bad excuse for traveling with an old friend, especially when you're meeting other friends too."`
+			`	"Oh, it was always going to be Alondo," she says, "but there's never a bad excuse for traveling with an old friend, especially when you're meeting other friends too."`
 			`	"Do we have time for a drink before we leave?" asks Alondo.`
 			`	You look around at the busy spaceport and see the workers haven't even noticed your ship waiting for refueling yet.`
 			`	"I think we can spare a short while, and you really should meet Mr. Yang."`
@@ -707,7 +707,7 @@ mission "Hai Leaks Response 3"
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Xilin. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
 			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them rout the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
