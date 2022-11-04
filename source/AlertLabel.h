@@ -38,9 +38,10 @@ public:
 
 private:
 	double rotation;
+	Point position;
+	double zoom;
 	bool isDangerous;
 	bool isTargetingMe;
-	Point position;
 	double radius;
 	float damagePercent;
 	Color color;
