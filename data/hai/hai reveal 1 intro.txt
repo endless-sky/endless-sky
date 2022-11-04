@@ -738,11 +738,11 @@ mission "Hai Leaks Response 4"
 			`	"Uh well, yes. I presume you saw the pirates on your way in? They've been appearing en masse and overwhelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet, capturing Hai, and taking them away."`
 			choice
 				`	"I have heard about the kidnapping."`
-			`	He nods. "Unfortunately, it's taking a while for them to redistribute an appropriately resourced defense force, thanks to the Unfettered. It's bad enough that we've had to bring the old Ladybug models out of mothballs to bolster our forces here."`
+			`	He nods. "Unfortunately, it's taking a while for them to redistribute an appropriately resourced defense force, because of the Unfettered. It's bad enough that we've had to reinstate these old Ladybug models to bolster our forces here."`
 			`	"Even more unfortunately," he continues, "it seems that the overabundance of these pirates is the result of one particular individual's success. His ship, called the Black Lich, is in Waypoint with a stolen Geocoris that has been converted into some kind of semi-stable weapons platform and is now being used as a temporary base."`
 			`	"This does give us an opportunity, however. If the kidnapped Hai are still on board, we might be able to rescue them, and if we can defeat the Black Lich, we may stem the tide of opportunists that are swarming through the wormhole.`
 			`	"What do you say?"`
-			`	The poor Captain seems desperate.`
+			`	The poor quartermaster seems desperate.`
 			choice
 				`	"We'll capture the Geocoris and bring them safely home."`
 					accept
