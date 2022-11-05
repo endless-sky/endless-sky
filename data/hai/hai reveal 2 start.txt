@@ -91,6 +91,8 @@ mission "Hai Rescue: Yeertle Family"
 			has "Hai Leaks Response 6: offered"
 		not "event: hai-human treaty signed"
 		"Hai Rescue: Yeertle Family (defer count)" < 3
+	on defer
+		"Hai Rescue: Yeertle Family (defer count)" ++
 	on offer
 		conversation
 			branch nohint
@@ -167,8 +169,6 @@ mission "Hai Rescue: Yeertle Family"
 				launch
 	on accept
 		dialog `It appears some unsavory types have followed you into orbit in pursuit of the Yeertle family. You could fight them, but they don't look equipped to make the journey back to Hai space successfully; so you could also probably outrun them if you prefer.`
-	on defer
-		"Hai Rescue: Yeertle Family (defer count)" ++
 	on complete
 		log `Found a Hai family that had been locked up by some crooked merchants meant to be providing transport. A lively bunch, returned them to <planet>.`
 		log "Minor People" "Duniip Yeertle" `A holographer from <planet>, he was able to cobble together five holoprojectors from scrap parts while hiding in little more than a cave in order to protect his family.`
@@ -182,7 +182,7 @@ mission "Hai Rescue: Yeertle Family"
 
 
 
-mission "Hai Rescue: Oonem Hint"
+mission "Hai Rescue: Ooonem Hint"
 	landing
 	name "A (Short) Angel of Death"
 	description "There have been some mysterious deaths on <destination>."
@@ -222,16 +222,17 @@ mission "Hai Rescue: Ooonem"
 		or
 			has "Unwanted Cargo: done"
 			has "Hai Leaks Response 6: offered"
-		not "event: hai-human treaty signed"
+		not "Hai Reveal [B01-A] The Blockade Goes Up: offered"
 		"Hai Rescue: Ooonem (defer count)" < 3
-	on offer
+	on defer
 		"Hai Rescue: Ooonem (defer count)" ++
+	on offer
 		conversation
 			branch transmitter
 				has "Oonem Transmitter"
 			branch nohint
 				and
-					not "Hai Rescue: Oonem Hint: offered"
+					not "Hai Rescue: Ooonem Hint: offered"
 					not "Hai Rescue: Ooonem (defer count)" >= 1
 			`Following reports of the last time the 'angel of death' was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. They might be a Hai. Do you want to talk to them?`
 				goto start
@@ -362,8 +363,9 @@ mission "Hai Rescue: Prison Role-Players"
 		not "event: hai-human treaty signed"
 		"Hai Rescue: Prison Role-Players (defer count)" < 3
 		# No combat rating requirement since there are no NPCs.
-	on offer
+	on defer
 		"Hai Rescue: Prison Role-Players (defer count)" ++
+	on offer
 		conversation
 			`As you set your landing vector, you detect a very faint distress call directed at your ship. Your scanners show it appears to come from a remote island. Do you want to check it out?`
 			choice
@@ -448,8 +450,9 @@ mission "Hai Rescue: Meroot and Lucy"
 		has "Hai Leaks Response 6: active"
 		not "event: hai-human treaty signed"
 		"Hai Rescue: Meroot and Lucy (defer count)" < 3
-	on offer
+	on defer
 		"Hai Rescue: Meroot and Lucy (defer count)" ++
+	on offer
 		conversation
 			`As you walk through a major street, you notice a woman approach an alcove in the side of a building carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel. You only had a moment to observe, but through the gap you spotted something hiding inside the small alcove which might have had tufts of hair sticking out of the clothing across its body. It's probably a Hai.`
 			`	Do you want to investigate?`
@@ -555,7 +558,7 @@ mission "Hai Rescue: Gipeep"
 		conversation
 			branch hint
 				has "Hai Rescue: Gipeep Hint: offered"
-			`As you come in to land one guy is on the comms, bragging particularly odiously about some lucrative transport jobs he'd picked up. This catches your attention only because <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
+			`As you come in to land one guy is on the comms, bragging particularly odiously about some lucrative transport jobs he'd picked up. This catches your attention only because <origin> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
 			label hint
 			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order but that just means that at the very least maybe you should pick up a job yourself.`
 			choice

@@ -61,9 +61,9 @@ mission "Event: Pug Media Coverage"
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
-			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that lead to the events precipitating the war would not be tolerated.`
+			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that led to the events precipitating the war would not be tolerated.`
 			`	Others...`
-			`	You sigh deeply as you watch some paranoid fringe-world politician, one Senator Maduena Kabiru from Bounty, demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it feels rather cheap coming from a senator whose system is a mere two jumps from a brand new Navy base.`
+			`	One particular paranoid fringe-world politician dominates the air on the channel you're watching here. The Senator Maduena Kabiru from Bounty demands that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it feels rather cheap coming from a senator whose system is a mere two jumps from a brand new Navy base.`
 			`	In this very public space you spot a couple of people who seem to hesitantly recognize you, presumably from other coverage. As such, your thoughts, you keep to yourself.`
 				decline
 
@@ -382,7 +382,7 @@ mission "ZZ Hai Tour [1] Stonebreak"
 	to offer
 		or
 			has "ZZ Event Hai Secret Leaks: RS: offered"
-			has "ZZ Event Hai Secret Leaks: RS: offered"
+			has "ZZ Event Hai Secret Leaks: FW: offered"
 	on offer
 		fail "Trader Directions to Hai Space"
 		conversation
@@ -532,7 +532,7 @@ mission "Hai Leaks Response 1"
 			`	As you are making the walk you hear questions posed and rumors stated. Occasionally you hear words like "honorable" and "reasonable" thrown in amongst the babble.`
 			label main
 			`	You arrive at a very comfortable office and are received by a mature-looking Hai with the appropriate regalia of a diplomat. She holds out a paw to greet you and says, "My name is Sayari. I was the envoy to the human government a century ago."`
-			`	The present media storm is all the evidence you need that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then they're probably still trying to work out a suppression strategy and have been too busy to send an envoy quicker than your own trip took.`
+			`	The present media storm is all the evidence you need to know that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then they're probably still trying to work out a suppression strategy and have been too busy to send an envoy quicker than your own trip took.`
 			`	Sayari continues, "Our reports tell us that you are a well-known and respected individual in human space. We also know 'Hai' is quickly becoming a buzzword in your space. A few traders brought the news ahead of you."`
 			`	She pauses and looks at you seriously. "We think it would be prudent for you to represent your people as our point of contact. Would you accept such a role?"`
 			`	You give it a moment of thought.`
@@ -566,8 +566,8 @@ mission "Hai Leaks Response 2"
 		event "pirates respond to leaks"
 		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
 		conversation
-			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you, when presented, also seems to trigger some sort of classified override, fast-tracking the process from the quoted "two to three business days" to "2 hours after landing."`
-			`	The Republic Deputy Minister for Foreign Affairs meets you in a private room at the spaceport.`
+			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you, when presented, also seems to trigger some sort of classified override, fast-tracking the process from the quoted "two to three business days" to "two hours after landing."`
+			`	The Republic's Deputy Minister for Foreign Affairs meets you in a private room at the spaceport.`
 			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake. "Xilin Yang. It's an honor to meet a hero of the Pug crisis such as yourself."`
 			choice
 				`	"It was hard-fought, but it was necessary."`
@@ -592,7 +592,7 @@ mission "Hai Leaks Response 2"
 			`	"Excellent," he says as he begins to gather stacks of papers, shoving them into a briefcase.`
 				goto end
 			label sam
-			`	"Remington is the Syndicate's head of public relations, and exactly the man we need in an event like this," he explains while gathering stacks of papers, shoving them into a briefcase.`
+			`	"Remington is the Syndicate's head of public relations, and exactly the man we need in an event like this," he explains while gathering two datapads and a selection of folders, shoving them into a briefcase.`
 			label end
 			`	"Now, the situation is progressing quickly and plans are still being made, so I am not entirely sure if it is they themselves who will be coming with us. Someone of Remington's caliber is likely too busy to come personally, but we'll find out when we get there. In any case I think we should go to Deep first for speed, but you are the captain. Shall we be off?"`
 				accept
@@ -777,8 +777,8 @@ mission "Hai Leaks Response 4"
 			`	In an oddly human gesture that feels very deliberate, he places one of his furry hands comfortingly on your shoulder, "I'm sure you did all you could."`
 				goto end
 			label "saved geocoris"
-			`	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy."`
-			`	"I do need to do a full security scan of it to complete all the incident paperwork before I let it go, so if you have any business on-world here, please take your time."`
+			`	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy.`
+			`	"I do need to do a full security scan of it to complete all the incident paperwork before I let it go though, so if you have any business on-world here, please take your time."`
 			label end
 			`	"In any event, let's hope a more permanent solution can be devised soon. In the meantime, the local dealers have decided to start selling the Ladybugs again. I hear it's something about a spike in interest among the humans here, so feel free to have a look at them. I shouldn't get too distracted though, I'm sure they'll be waiting for you back on Hai-home."`
 			branch "saved geocoris2"
@@ -1006,8 +1006,8 @@ mission "Hai Leaks Response 6"
 			`	"I should not be coming to you with this, so you must promise to say nothing of it to anyone just yet," she says.`
 			choice
 				`	"Of course."`
-			`	"A very sweet friend of mine, who is much too enthusiastic and perhaps led by the vagaries of youth but nonetheless quite astute, keeps harping on to me about this theory of hers that some kind of smuggling ring is kidnapping Hai and transporting them into human space with the quiet support of one of your legal entities."`
-			`	"Of course, a thorough investigation has occurred on our side, and no admissible evidence of such things has turned up, but..."`
+			`	"A very sweet friend of mine, who is much too enthusiastic and perhaps led by the vagaries of youth but nonetheless quite astute, keeps harping on to me about this theory of hers that some kind of smuggling ring is kidnapping Hai and transporting them into human space with the quiet support of one of your legal entities.`
+			`	"Of course, a thorough investigation has occurred on our side, and no admissible evidence of such things has turned up, but...`
 			`	"Well, you see we cannot investigate your space openly or easily. I have paid it little mind, written it off as one of her eccentricities, but things are very tense right now. The Council of Elders wants to maintain our secrecy, the human diplomats are willing to accommodate us, but we sense their governments grow tired of maintaining the fiction. We are well aware that human intelligence services are highly competent, and motivated by many different factors. It worries me that one of your factions may not be wholly honest, and may have knowledge they intend to use as ammunition if things don't work out well for them."`
 			`	You have not had much exposure to this elected "Council of Elders", but it seems they must hold some kind of final authority over decisions.`
 			choice
