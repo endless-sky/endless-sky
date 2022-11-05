@@ -3885,21 +3885,22 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 
 
-void Ship::AddHardpoint(DataNode data) {
-	std::string key = data.Token(0);
-	if((key == "engine" || key == "reverse engine" || key == "steering engine") && data.Size() >= 3)
+void Ship::AddHardpoint(const DataNode &node)
+{
+	std::string key = node.Token(0);
+	if((key == "engine" || key == "reverse engine" || key == "steering engine") && node.Size() >= 3)
 	{
 		bool reverse = (key == "reverse engine");
 		bool steering = (key == "steering engine");
 
 		vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
 		(reverse ? reverseEnginePoints : steeringEnginePoints);
-		editPoints.emplace_back(0.5 * data.Value(1), 0.5 * data.Value(2),
-								(data.Size() > 3 ? data.Value(3) : 1.));
+		editPoints.emplace_back(0.5 * node.Value(1), 0.5 * node.Value(2),
+								(node.Size() > 3 ? node.Value(3) : 1.));
 		EnginePoint &engine = editPoints.back();
 		if(reverse)
 			engine.facing = Angle(180.);
-		for(const DataNode &grand : data)
+		for(const DataNode &grand : node)
 		{
 			const string &grandKey = grand.Token(0);
 			if(grandKey == "zoom" && grand.Size() >= 2)
@@ -3922,23 +3923,23 @@ void Ship::AddHardpoint(DataNode data) {
 	{
 		const Outfit *outfit = nullptr;
 		Point hardpoint;
-		if(data.Size() >= 3)
+		if(node.Size() >= 3)
 		{
-			hardpoint = Point(data.Value(1), data.Value(2));
-			if(data.Size() >= 4)
-				outfit = GameData::Outfits().Get(data.Token(3));
+			hardpoint = Point(node.Value(1), node.Value(2));
+			if(node.Size() >= 4)
+				outfit = GameData::Outfits().Get(node.Token(3));
 		}
 		else
 		{
-			if(data.Size() >= 2)
-				outfit = GameData::Outfits().Get(data.Token(1));
+			if(node.Size() >= 2)
+				outfit = GameData::Outfits().Get(node.Token(1));
 		}
 		Angle gunPortAngle = Angle(0.);
 		bool gunPortParallel = false;
 		bool drawUnder = (key == "gun");
-		if(data.HasChildren())
+		if(node.HasChildren())
 		{
-			for(const DataNode &grand : data)
+			for(const DataNode &grand : node)
 			{
 				if(grand.Token(0) == "angle" && grand.Size() >= 2)
 					gunPortAngle = grand.Value(1);
@@ -3957,8 +3958,8 @@ void Ship::AddHardpoint(DataNode data) {
 		else
 			armament.AddTurret(hardpoint, drawUnder, outfit);
 	}
-	else if(((key == "fighter" || key == "drone") && data.Size() >= 3) ||
-			(key == "bay" && data.Size() >= 4))
+	else if(((key == "fighter" || key == "drone") && node.Size() >= 3) ||
+			(key == "bay" && node.Size() >= 4))
 	{
 		// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
 		// standard format is `bay <ship-category>`, with the same signature for other values.
@@ -3968,23 +3969,23 @@ void Ship::AddHardpoint(DataNode data) {
 			category = "Drone";
 		else if(key == "bay")
 		{
-			category = data.Token(1);
+			category = node.Token(1);
 			childOffset += 1;
 		}
 
-		bays.emplace_back(data.Value(1 + childOffset), data.Value(2 + childOffset), category);
+		bays.emplace_back(node.Value(1 + childOffset), node.Value(2 + childOffset), category);
 		Bay &bay = bays.back();
-		for(int i = 3 + childOffset; i < data.Size(); ++i)
+		for(int i = 3 + childOffset; i < node.Size(); ++i)
 		{
 			for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
-				if(data.Token(i) == BAY_SIDE[j])
+				if(node.Token(i) == BAY_SIDE[j])
 					bay.side = j;
 			for(unsigned j = 1; j < BAY_FACING.size(); ++j)
-				if(data.Token(i) == BAY_FACING[j])
+				if(node.Token(i) == BAY_FACING[j])
 					bay.facing = BAY_ANGLE[j];
 		}
-		if(data.HasChildren())
-			for(const DataNode &grand : data)
+		if(node.HasChildren())
+			for(const DataNode &grand : node)
 			{
 				// Load in the effect(s) to be displayed when the ship launches.
 				if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
