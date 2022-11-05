@@ -2853,6 +2853,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 			|| hyperspaceCount || !targetSystem || !currentSystem)
 		return false;
 
+
 	// Check if the target system is valid and there is enough fuel to jump.
 	pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(targetSystem);
 	double fuelCost = jumpUsed.second;

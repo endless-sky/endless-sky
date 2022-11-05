@@ -219,6 +219,8 @@ private:
 	// be interpreted as positive values.
 	double extraJumpArrivalDistance = 0.;
 
+	double departureDistance = 0.;
+
 	// Commodity prices.
 	std::map<std::string, Price> trade;
 
