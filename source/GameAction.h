@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
-#include "DataNode.h"
 #include <cstdint>
 #include <map>
 #include <set>
@@ -25,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+class DataNode;
 class DataWriter;
 class GameEvent;
 class Outfit;
@@ -79,8 +79,8 @@ private:
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
-	std::vector<const DataNode> hardpoints;
-	std::vector<const DataNode> attributes;
+	std::vector<const DataNode *> hardpoints;
+	std::vector<const DataNode *> attributes;
 
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

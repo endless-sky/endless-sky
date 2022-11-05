@@ -217,11 +217,11 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	{
 		if(child.Token(1) == "hardpoints" && child.HasChildren())
 			for(const DataNode &grand : child)
-				hardpoints.emplace_back(grand);
+				hardpoints.emplace_back(&grand);
 		else if(child.Token(1) == "attributes" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
-				attributes.emplace_back(grand);
+				attributes.emplace_back(&grand);
 		}
 	}
 	else
@@ -272,8 +272,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("flagship add", "hardpoints");
 		out.BeginChild();
 		{
-			for(const DataNode &hardpoint : hardpoints)
-				out.Write(hardpoint);
+			for(const DataNode *hardpoint : hardpoints)
+				out.Write(*hardpoint);
 		}
 		out.EndChild();
 	}
@@ -282,8 +282,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("flagship add", "attributes");
 		out.BeginChild();
 		{
-			for(const DataNode &attribute : attributes)
-				out.Write(attribute);
+			for(const DataNode *attribute : attributes)
+				out.Write(*attribute);
 		}
 		out.EndChild();
 	}
@@ -397,10 +397,10 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 				player.FailMission(mission);
 	}
 
-	for(const DataNode &hardpoint : hardpoints)
-		player.FlagshipPtr()->AddHardpoint(hardpoint);
-	for(const DataNode &attribute : attributes)
-		player.FlagshipPtr()->AddStats(attribute);
+	for(const DataNode *hardpoint : hardpoints)
+		player.FlagshipPtr()->AddHardpoint(*hardpoint);
+	for(const DataNode *attribute : attributes)
+		player.FlagshipPtr()->AddStats(*attribute);
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
