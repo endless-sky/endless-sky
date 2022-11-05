@@ -576,10 +576,10 @@ void MapDetailPanel::DrawKey()
 		vector<pair<double, const Government *>> distances;
 		for(const auto &it : closeGovernments)
 		{
-			auto &it2 = displayNames.find(it.first->GetName());
+			auto it2 = displayNames.find(it.first->GetName());
 			if(it2 != displayNames.end() && it2->second->GetColor() == it.first->GetColor())
 			{
-				auto &it3 = find(distances.begin(), distances.end(),
+				auto it3 = find_if(distances.begin(), distances.end(),
 						[&it2](const pair<double, const Government *> &item)
 						{
 							return item.second == it2->second;
