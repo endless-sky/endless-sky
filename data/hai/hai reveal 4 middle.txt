@@ -1108,7 +1108,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			`	"You haven't the authority to do that," he responds, laughing.`
 			`	"Besides..." you see one of the other Unfettered to the right of the leader begin to step out. "You would ha..." Teeneep cuts the leader off as she draws a throwing knife and launches it. It zips through the air, and spears the shoulder of the Unfettered who began to move, embedding itself in the wall behind and pinning them in place.`
 			`	"I would have to what, defeat your right hand first?" She takes a step back and smirks at him. "Now, will you face a woman half your size?" From her expression, you're unsure if she genuinely has that much faith in her abilities, or if this is a bluff.`
-			` The Unfettered leader pauses, then smiles. "There is no need. Even on our planets, I've rarely met a Hai half as brave as you. You have the courage to turn an act into action. You are a True Hai, and we protect our own. You have vouched for the value of the lives of these Hai, so I say now we are willing to send our fleets to their aid. I would come myself."`
+			`	The Unfettered leader pauses, then smiles. "There is no need. Even on our planets, I've rarely met a Hai half as brave as you. You have the courage to turn an act into action. You are a True Hai, and we protect our own. You have vouched for the value of the lives of these Hai, so I say now we are willing to send our fleets to their aid. I would come myself."`
 			`	She re-sheaths her swords and calls you over. "I have brought with me one of the greatest war heroes of the humans."`
 			choice
 				`	(Walk to her.)`
