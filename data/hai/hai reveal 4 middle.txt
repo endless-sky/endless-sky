@@ -339,7 +339,7 @@ mission "Hai Reveal: Pirate Troubles [1]"
 				`	"What issue?"`
 			`	"I understand that you just defended this system from human pirates. That is the issue that needs resolved.`
 			label explain
-			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. I'm told you recently assisted in dealing with a much more successful one on Allhome. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for the recent raids.`
+			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. I'm told you recently assisted in dealing with a much more successful one on Allhome. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for some of the recent raids.`
 			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
 			choice
 				`	"I'll see what I can do."`
@@ -894,10 +894,10 @@ mission "Hai Reveal [A07] Deliver the Relays"
 				`	"Your regular job?"`
 					goto regular
 				`	"Your job as a secretary?"`
-			`	She rolls her eyes and shakes her head with a little huff. "Ridiculous, that. It's what Sam tried to have me doing. No, I mean the job I had at the Syndicate right before the end of the war; the job I still seem to be doing seventy percent of even while I'm here."`
+			`	She rolls her eyes and shakes her head with a little huff. "It's ridiculous that Sam tried to make me look like some common witless secretary. No, I mean the job I had right before the end of the war, and the job I still seem to be doing seventy percent of even while I'm here."`
 				goto card
 			label regular
-			`	"Yes, my regular job. Specifically the one I had at the Syndicate before the end of the war, and before this farce they have me doing now, while my successor tries and fails to be half as competent."`
+			`	"Yes, my regular job. Specifically the one I had before the end of the war, and before this farce they have me doing now, while my successor tries and fails to be half as competent."`
 			label card
 			`	She pushes a button on the case of her datapad and it ejects a business card which she hands to you. Printed on the card, among other things, is the text, "Chief Operations Officer".`
 			`	"Of course," she says, taking the card back and neatly pushing it back into a slot in the case, "I'm not allowed to go around disseminating those cards right at the moment. At least not until this is over, when I can take back my position after the fool in my place has made a mess of things."`
@@ -985,7 +985,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			label explain
 			`	"Well, you'll probably be disappointed with what I have so far," she begins, "but I'll start with what I have found and then you can show me any new pictures you have and we can see what I can do." She waits for you to indicate your understanding before she continues.`
 			`	"So, this cat symbol was originally used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
-			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place. Syndicate Internal Affairs quickly put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
+			`	"These others didn't cover their tracks well enough; the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs quickly put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
 			`	"Officially, the Syndicate maintains that they wiped Base Principles out to the last individual, but evidence never proved it had been conclusively terminated."`
 			choice
 				`	"That's it?"`
@@ -1285,7 +1285,7 @@ mission "Hai Reveal [A13] A New Elder"
 #		log ``
 		conversation
 			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. You have arrived late in the day and there is a gloom developing as the sun disappears behind the buildings of the capital as you enter into what you have begun to think of as the 'diplomatic wing' of the government complex. Fortunately, though the place appears nearly deserted, you swiftly run into Alondo and Remington who are sitting in the empty cafeteria area with paired glasses of what appears to be scotch whiskey.`
-			`	When he sees you Alondo raises a hand and gestures for you to sit with them. "Captain <last>! Bloody hell, come join us."`
+			`	When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
 			choice
 				`	"Are you all ok?"`
 					goto ok
@@ -1297,7 +1297,7 @@ mission "Hai Reveal [A13] A New Elder"
 			label continue
 			`	Alondo gestures at the large, wall-mounted monitor they've been watching, and you realize that it must be displaying some kind of post-election coverage. The writing is all in Hai, but it seems that the majority of the information that would matter to the diplomats has been displayed visually. On its own you'd have never guessed at trying to read Teeneep's name written in Hai, but when it's presented next to her face and then shown on a pie chart next to percentages and other graphics, it becomes easy enough to follow what's happening.`
 			`	"Every so often they have a segment in something we can understand, presumably because of the rest of us out there," says Remington, gesturing vaguely beyond the walls to the outside. "You wouldn't believe some of the rhetoric the last few days while you've been gone."`
-			`	Alondo visibly trembles, and pushes the bottle across the table back to Remington. "Sometimes it was like watching the old documentaries and political dramas I studied back at school. The ones where there's some populist extremist with dangerous ideas that the establishment is just blindly assuming couldn't possibly be successful, while at the same time that same populist is whipping crowds into a violent frenzy on the streets outside."`
+			`	Alondo visibly shudders, and pushes the bottle across the table back to Remington. "Sometimes it was like watching the old documentaries and political dramas I studied back at school. The ones where there's some populist extremist with dangerous ideas that the establishment is just blindly assuming couldn't possibly be successful, while at the same time that same populist is whipping crowds into a violent frenzy on the streets outside."`
 			`	On the screen the face of a charming-looking male Hai comes up and Alondo points with sudden vigor. "Him! I swear there was going to be torches and pitchforks right below my window one night thanks to him. He's here on Hai-home, as are his followers."`
 			`	You are relieved to see that when it flicks over to the stats, the individual in question looks to be losing out on whatever his target was by a nice, comfortable, seven percentage points.`
 			`	Remington nods sagely and an unreadable expression flicks between them for a moment before he looks back at you. "The Hai electoral system seems quite simple on the surface, but they seem to have a complex series of reserve steps and fail-safes for if any outcomes aren't clear enough for their thresholds. For almost all of yesterday I couldn't even find a Hai in this very building who could translate what was going on well enough to make sense of it.`
