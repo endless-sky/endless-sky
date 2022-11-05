@@ -572,13 +572,14 @@ void MapDetailPanel::DrawKey()
 		// Each system is colored by the government of the system. Only the
 		// four largest visible governments are labeled in the legend.
 		vector<pair<double, const Government *>> distances;
-		bool skip = false;
+		map<float, string> checkList;
+		bool skip;
 		for(const auto &it : closeGovernments)
 		{
 			skip = false;
-			for(const auto &distance : distances)
-				if(distance.second->GetColor().Get() == it.first->GetColor().Get()
-					&& distance.second->GetName() == it.first->GetName())
+			auto find = checkList.find(*it.first->GetColor().Get());
+			if(find != checkList.end())
+				skip = find->second == it.first->GetName();
 			if(!skip)
 				distances.emplace_back(it.second, it.first);
 		}
