@@ -370,6 +370,7 @@ mission "Hai Reveal [C05] Cleanup"
 		event "Vara K'chrai is accessible"
 		event "wandering nightmare map" 11
 		fail "Hai Reveal [A11-A] Permanent Fleets"
+		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 		conversation
 			`When you return to <planet>, you reassure Sayari and Xilin that there is nothing more to do. The danger is over, for good.`
 			`	As it happens, the summit has functionally concluded by the time you return. In fact, diplomats had been running interference to prolong things, knowing that your return could potentially have critical consequences. Now that you're here, the remaining agenda items miraculously get resolved within hours, and late in the day, you find yourself once again "Where Mountains Touch The Sky," as the successful resolution is announced.`
@@ -423,6 +424,7 @@ mission "Hai Reveal [C05C] Cleanup Check"
 		has "Hai Reveal [A11-A] Permanent Fleets: active"
 	on offer
 		fail "Hai Reveal [A11-A] Permanent Fleets"
+		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 
 
 ########################################################################
