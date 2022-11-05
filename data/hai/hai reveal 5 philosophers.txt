@@ -756,7 +756,7 @@ mission "Hai Reveal [B11] Moving Together"
 			`	"This is General Choot'k, supreme commander of the Unfettered Hai military."`
 			`	Marshal Kaine responds, "Good to meet you."`
 			`	Choot'k nods but Teeneep continues. "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I have installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
-			` Choot'k addresses the group. "Our scan of the facility show one faulty hangar we can open, at the bottom of a kilometer-long tunnel. There is a twenty-meter-thick blast door at the top of the tunnel, made of stronger material than we've ever seen. My flagship has weapons pillaged from another species which can melt through those doors. Then we just fly down the tunnel and pass into the facility.`
+			`	Choot'k addresses the group. "Our scan of the facility show one faulty hangar we can open, at the bottom of a kilometer-long tunnel. There is a twenty-meter-thick blast door at the top of the tunnel, made of stronger material than we've ever seen. My flagship has weapons pillaged from another species which can melt through those doors. Then we just fly down the tunnel and pass into the facility.`
 			`	"I also have two trusted captains who have been exploring the value of human weapons while they've been here, and think they have some winning combinations they would like to test in battle. I have chosen them to make use of our remaining available drives, and out of consideration for you humans. It would seem that the fewer alien weapons we carry through your space the better."`
 			`	"Which means," says Khaine, "We have all the pieces. The solution therefore, is this: <last> will escort Danforth's Cruiser, the Elder and her Centipede, the General and his Shield Beetle, and two of his closest captains to Foundry. There you'll meet up with Agent Kopkow and Captain Wallace - a decorated Navy captain who has a Parliamentary Medal of Valor for handling the rescue of slaves - who will be bringing her empty Auxiliary, and one Free World Dreadnought that the good Alondo here had the foresight to make sure was stationed nearby. There you'll load up the Syndicate troopers and go to Elenchus."`
 			# One crack team of people from all over working together.
@@ -819,6 +819,119 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 		"Pulse Rifle" 131
 
 
+# Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
+ship "Emperor Beetle"
+	sprite "ship/hai emperor beetle"
+	thumbnail "thumbnail/hai emperor beetle"
+	attributes
+		category "Heavy Warship"
+		cost 35100000
+		shields 26700
+		hull 19600
+		"required crew" 83
+		bunks 91
+		mass 870
+		drag 9.8
+		"outfit space" 887
+		"cargo space" 27
+		"weapon capacity" 364
+		"engine capacity" 150
+		"heat dissipation" 0.675
+		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
+		"tactical scan power" 30
+		ramscoop 1.5
+		"fuel capacity" 800
+		weapon
+			"shield damage" 5000
+			"hull damage" 2500
+			# High hit force and wide radius for a spectacle if the leader dies.
+			# This should be adjusted downward if the ship is reused more widely.
+			"blast radius" 800
+			"hit force" 8000
+	outfits
+		"Thermal Repeater Turret" 4
+		"Thunderhead Launcher" 6
+		"Thunderhead Missile" 320
+		"Thunderhead Storage Array" 4
+		"Warder Anti-Missile" 2
+		
+		"Liquid Sodium Cooler"
+		"Jump Drive"
+		"Quantum Keystone"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Outfits Expansion"
+		
+		"White Sun Reactor"
+		"Large Biochemical Cell"
+		
+		"Afterburner (Asteroid Class)"
+		"Reverser (Comet Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		
+		"Pulse Rifle" 65
+		"Fragmentation Grenades" 65
+		"Thermal Repeater Rifle" 25
+		"Blade Of Might"
+	engine -43 131
+        zoom 0.85
+    engine 43 131
+        zoom 0.85
+    engine 0 126.5
+        zoom 0.5
+    "reverse engine" -61 -18.5
+        angle -35
+    "reverse engine" 62 -18.5
+        angle 35
+    "steering engine" -61 -18.5
+        zoom 0.6
+        angle 145
+        left
+    "steering engine" 62 -18.5
+        zoom 0.6
+        angle 215
+        right
+    "steering engine" -73 46
+        zoom 0.5
+        angle 80
+        left
+    "steering engine" 73 46
+        zoom 0.5
+        angle -80
+        right
+    "steering engine" -43 131
+        zoom 0.45
+        right
+    "steering engine" 43 131
+        zoom 0.45
+        left
+	gun -42.5 -53.5
+	gun 43.5 -54.5
+	gun -23 -102.5
+	gun 24.5 -102.5
+	gun 12.5 -128
+	gun -10 -128
+	turret 0.5 -25.5 "Warder Anti-Missile"
+	turret -47.5 11.5
+	turret 48.5 11.5
+	turret 62.5 76
+	turret -61.5 76.5
+	turret 0 107.5 "Warder Anti-Missile"
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 60
+	explode "small explosion" 51
+	explode "medium explosion" 54
+	explode "large explosion" 53
+	explode "huge explosion" 22
+	"final explode" "final explosion large"
+	description "Before the Shield Beetle, the Hai used the Titan Beetle, a weaker but more capable ship of a similar design. The Emperor Beetle is a Titan coated with many layers of modern armor, making it a more powerful warship than anything else the Hai have built in modern time. Unfortunately, the advanced features are quite expensive, so these ships are used sparingly, as flagships and trophy ships."
+	description "	It was found by Unfettered scientists that the cargo bays were more of a vulnerability than anything else for the ship, as it is not meant to be plundering but rather to lead in glorious battle. Removing those has allowed for more space for weapons and defensive improvements, as well as more flexibility for the ship. This came at the cost of mass and agility, but that is a sacrifice the Unfettered are more than willing to make."
+	description "	More than a ship, the Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai or even Unfettered but rather the military leaders of the Unfettered, at the front of those they commands. Some believe it to be foolish to show their leaders' ships in such a manner, but that is not how the Unfettered think. Of course, this ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
+
+
 
 mission "Hai Reveal [B12] Devil-Hide Battle"
 	autosave
@@ -857,7 +970,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`To complete this mission, you must land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 	on enter "Devil-Hide"
 		conversation
-			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. In case Choot'k gets into trouble, here's how to recognize his Shield Beetle from a  distance: it is reinforced with a darkened hull and has red engine flares while the others have blue. The baffling won't work forever, so get to it.`
+			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The baffling won't work forever, so get to it.`
 			`	(NOTE: You need to dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send multiple waves of defense fleets. Demand tribute after defeating the final wave, and they'll agree. Then land to finish the mission.)`
 			`	(WARNING: The Unfettered will not help you fight the defense fleets sent in response to your tribute demands, but they will fight any other pirate ships in the system.)`
 	on visit
