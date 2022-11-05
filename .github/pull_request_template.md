@@ -13,7 +13,7 @@ This save file can be used to play through the new mission content:
 
 ## Artwork Checklist
  - [ ] I updated the copyright attributions, or decline to claim copyright of any assets produced or modified
- - [ ] I created a PR to the [endless-sky-assets repo](https://github.com/EndlessSkyCommunity/endless-sky-assets) with the necessary image, blend, and texture assets: {{insert PR link}}
+ - [ ] I created a PR to the [endless-sky-assets repo](https://github.com/endless-sky/endless-sky-assets) with the necessary image, blend, and texture assets: {{insert PR link}}
  - [ ] I created a PR to the [endless-sky-high-dpi repo](https://github.com/endless-sky/endless-sky-high-dpi) with the `@2x` versions of these art assets: {{insert PR link}}
 
 
