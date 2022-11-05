@@ -22490,6 +22490,7 @@ system Rutilicus
 	government Republic
 	attributes "dirt belt"
 	arrival 625
+	departure 600
 	habitable 625
 	belt 1771
 	link Arcturus
