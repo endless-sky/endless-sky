@@ -197,7 +197,7 @@ mission "Hai Rescue: Ooonem Hint"
 		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Ooonem: offered"
-		not "event: hai-human treaty signed"
+		not "Hai Reveal [B01-A] The Blockade Goes Up: offered"
 		random < 30
 	on offer
 		conversation
@@ -208,7 +208,7 @@ mission "Hai Rescue: Ooonem Hint"
 	to complete
 		has "Hai Rescue: Ooonem: offered"
 	to fail
-		has "event: hai-human treaty signed"
+		has "Hai Reveal [B01-A] The Blockade Goes Up: offered"
 
 
 mission "Hai Rescue: Ooonem"
