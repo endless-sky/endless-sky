@@ -224,7 +224,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		else if(child.Token(1) == "attributes" && child.HasChildren())
 		{
 			attributes.emplace_back();
-			attributes.end()->Load(child);
+			attributes.back().Load(child);
 		}
 	}
 	else
