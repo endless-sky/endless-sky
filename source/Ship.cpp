@@ -2853,7 +2853,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 			|| hyperspaceCount || !targetSystem || !currentSystem)
 		return false;
 
-	if(position.Length() <= currentSystem->DepartureDistance())
+	if(position.LengthSquared() <= currentSystem->DepartureDistance() * currentSystem->DepartureDistance())
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
