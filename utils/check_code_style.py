@@ -46,6 +46,9 @@ line_include = {re.compile(regex): description for regex, description in {
 	";[^\\)}]+$": "semicolon should terminate line",
 	# Matches any whitespaces at the end of a line
 	"\\s+$": "trailing whitespace at end of line",
+	# Matches any number of operators that have no leading whitespace,
+	# except if preceded by '(', '[' or '{', or inside a 'case' constant expression.
+	"(?<!^case\\s.*)([^([{\\s" + std_op + "](?<!^.*[^\\w0-9]?operator))[" + std_op + "]+([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator"
 }.items()}
 # Dict of patterns for selecting potential formatting issues in a full segment.
 # (a segment is a part of a line that is between any strings, chars or comments)
@@ -72,9 +75,6 @@ segment_include = {re.compile(regex): description for regex, description in {
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
 word_include = {re.compile(regex): description for regex, description in {
-	# Matches any number of operators that have no leading whitespace,
-	# except if preceded by '(', '[' or '{'.
-	"([^([{\\s" + std_op + "](?<!^.*[^\\w0-9]?operator))[" + std_op + "]+([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator",
 	# Matches any single '+', '/', '%', '=' operator that has no trailing whitespace.
 	"^([^+/%=]?(?<!operator))[+/%=][^+/%=,\\s\\)\\]}]": "missing whitespace after operator",
 	# Matches any series of operators ending with '=', '<' or '>' that have no trailing whitespace.
@@ -122,10 +122,16 @@ class Error(object):
 		self.reason = reason
 
 	def __str__(self):
-		return f"\tERROR: line {self.line}: {self.reason} in text '{self.text}'"
+		return f"\tERROR: line {self.line}: {self.reason} in '{self.text}'"
 
 	def __lt__(self, other):
 		return self.line < other.line
+
+	def __eq__(self, other):
+		return self.line == other.line and self.text == other.text and self.reason == other.reason
+
+	def __hash__(self):
+		return self.line
 
 
 # A class representing warning messages.
@@ -139,7 +145,7 @@ class Warning(Error):
 		Error.__init__(self, text, line, reason)
 
 	def __str__(self):
-		return f"\tWARNING: line {self.line}: {self.reason} in text '{self.text}'"
+		return f"\tWARNING: line {self.line}: {self.reason} in '{self.text}'"
 
 
 # Checks the format of all source files.
@@ -556,8 +562,9 @@ if __name__ == '__main__':
 
 		errors += len(e)
 		warnings += len(w)
-		e.sort()
-		w.sort()
+
+		e = sorted(set(e))
+		w = sorted(set(w))
 		if e or w:
 			print(file)
 			if e:
