@@ -58,13 +58,13 @@ mission "Event: Pug Media Coverage"
 		has "event: pug media coverage"
 	on offer
 		event "hai secret leaks" 10 15
-		log "Minor People" "Maduena Kabiru" `A councillor from Bounty in the Delta Velorum system. He is somewhat paranoid, and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
+		log "Minor People" "Maduena Kabiru" `A councilor from Bounty in the Delta Velorum system. He is somewhat paranoid, and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
 			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you also suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that lead to the events precipitating the war would not be tolerated.`
 			`	But others...`
-			`	You sigh deeply as you watch some paranoid fringe-world politician, one Councillor Maduena Kabiru from Bounty, demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it feels cheap coming from a councillor whose system is only two jumps from a brand new Navy base.`
-			`	In this very public space you spot a couple of people who seem to hesitantly recognize you, presumably from other coverage. You keep your thoughts to yourself.`
+			`	You sigh deeply as you watch some paranoid fringe-world politician, one Councilor Maduena Kabiru from Bounty, demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it feels cheap coming from a councillor whose system is only two jumps from a brand new Navy base.`
+			`	In this very public space you spot a couple of people who seem to hesitantly recognize you, presumably from other coverage, and so you keep your thoughts to yourself.`
 				decline
 
 event "hai secret leaks"
