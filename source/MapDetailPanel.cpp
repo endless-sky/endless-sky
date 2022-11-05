@@ -581,7 +581,10 @@ void MapDetailPanel::DrawKey()
 			if(find != checkList.end())
 				skip = find->second == it.first->GetName();
 			if(!skip)
+			{
+				checkList.emplace(*it.first->GetColor().Get(), it.first->GetName());
 				distances.emplace_back(it.second, it.first);
+			}
 		}
 		sort(distances.begin(), distances.end());
 		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
