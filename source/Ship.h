@@ -410,7 +410,7 @@ public:
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
 
-	void AddHardpoint(const DataNode &data);
+	void AddHardpoint(const DataNode &node);
 
 	// Get the list of weapons.
 	Armament &GetArmament();
