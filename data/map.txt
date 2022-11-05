@@ -32236,3 +32236,4 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
+
