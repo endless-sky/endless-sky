@@ -41,6 +41,10 @@ public:
 	// Status indicators for the test that we selected (if any).
 	enum class Status {ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
 
+	// A tag type to denote a failing test that is not an error, such as a
+	// "known failure" test failing.
+	struct known_failure_tag {};
+
 
 public:
 	// Class representing a single step in a test
@@ -125,6 +129,7 @@ private:
 
 	// Fail the test using the given message as reason.
 	void Fail(const TestContext &context, const PlayerInfo &player, const std::string &testFailReason) const;
+	void FailingTestSucceeded() const;
 
 
 private:

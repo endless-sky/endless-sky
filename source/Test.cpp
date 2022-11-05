@@ -396,7 +396,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 
 		if(context.callstack.empty())
 		{
-			// Done, no failures, exit the game with exitcode success.
+			// If this test was supposed to fail diagnose this here.
+			if(status >= Status::KNOWN_FAILURE)
+				FailingTestSucceeded();
+
+			// Done, no failures, exit the game.
 			SendQuitEvent();
 			return;
 		}
@@ -576,8 +580,20 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	else
 		Logger::LogError("No test conditions were set at the moment of failure.");
 
+	// If this test is supposed to have failed, don't make it fail.
+	if(status >= Status::KNOWN_FAILURE)
+		throw known_failure_tag{};
+
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
 	throw runtime_error(message);
+}
+
+
+
+void Test::FailingTestSucceeded() const
+{
+	throw runtime_error("Failing test succeeded: Test marked with '" + StatusText()
+		+ "' should have failed.\n");
 }
