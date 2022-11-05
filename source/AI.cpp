@@ -1685,7 +1685,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		}
 		else if(parentPlanet->IsWormhole())
 		{
-			SelectRoute(ship, parentPlanet->WormholeDestination(currentSystem));
+			const auto *wormhole = parentPlanet->GetWormhole();
+			SelectRoute(ship, &wormhole->WormholeDestination(*currentSystem));
 
 			if(ship.GetTargetSystem())
 			{
