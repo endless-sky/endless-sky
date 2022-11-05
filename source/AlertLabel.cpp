@@ -63,7 +63,7 @@ void AlertLabel::Draw() const
 {
 	double angle[3] = {150., 30., 270.};
 	float dangerScale = 1.5 * min(damagePercent, 1.f);
-	for(int i; i < 3; i++)
+	for(int i = 0; i < 3; i++)
 	{
 		RingShader::Draw(position, radius, 1.2f, .16f, color, 0.f, angle[i] + rotation);
 		if(isTargetingMe)
