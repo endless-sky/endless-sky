@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Michael Zahniser
+&# Copyright (c) 2014 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -28930,8 +28930,12 @@ planet Devil-Eye
 
 planet "Devil-Run Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+
+wormhole "Devil-Run Wormhole"
+	mappable
+	link "Deep Space 7C" "Devil-Run"
+	link "Devil-Run" "Deep Space 7C"
 
 planet "Devru Kaska"
 	attributes korath station
