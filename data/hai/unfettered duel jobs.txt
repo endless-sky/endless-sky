@@ -462,19 +462,6 @@ mission "Unfettered Clear Challenges"
 		clear "unfettered challenger defeated"
 
 
-
-mission "Unfettered Saw Flamethrower In Action"
-	invisible
-	landing
-	source
-		attributes "unfettered"
-	to offer
-		has "Unfettered: Prove Your Strength 2: done"
-		has "unfettered challenger defeated"
-	on offer
-		require "Flamethrower"
-		fail
-
 mission "Unfettered Bring Fire"
 	job
 	name "Bring 2 Flamethrowers"
@@ -482,7 +469,7 @@ mission "Unfettered Bring Fire"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered Saw Flamethrower In Action: offered"
+		has "outfit (installed): Flamethrower"
 		random < "unfettered challenger defeated" * 5
 	on complete
 		outfit "Flamethrower" -2
@@ -497,18 +484,24 @@ ship "Stag Beetle" "Stag Beetle (Flamer)"
 		"Korath Grab-Strike"
 		"Korath Banisher"
 		"Bullfrog Anti-Missile" 3
-		"Large Heat Shunt"
+		
+		"Liquid Sodium Cooler"
 		"Systems Core (Large)" 2
 		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
 		"Jump Drive"
-		"Fuel Processor"
+		
 		`"Bufaer" Atomic Steering`
-		"Thruster (Planetary Class)"
-		"White Sun Reactor"
-		"Generator (Furnace Class)"
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
 		"Korath Repeater Rifle" 20
 		"Pulse Rifle" 60
 		"Dual Pulse Pistols" 10
+		"True Unfettered License"
 	gun 0 -7 "Korath Detainer"
 	gun -22 -102 "Sunbeam"
 	gun 22 -102 "Sunbeam"
@@ -524,17 +517,6 @@ ship "Stag Beetle" "Stag Beetle (Flamer)"
 	turret 56.5 75 "Bullfrog Anti-Missile"
 	turret 0 85.5 "Bullfrog Anti-Missile"
 
-mission "Unfettered Saw Ka'Het Ravager Beam In Action"
-	invisible
-	landing
-	source
-		attributes "unfettered"
-	to offer
-		has "Unfettered: Prove Your Strength 2: done"
-		has "unfettered challenger defeated"
-	on offer
-		require "Ka'het Ravager Beam"
-		fail
 
 mission "Unfettered Bring Carnage"
 	job
@@ -543,25 +525,13 @@ mission "Unfettered Bring Carnage"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered Saw Ka'Het Ravager Beam In Action: offered"
+		has "outfit (installed): Ka'het Ravager Beam"
 		random < "unfettered challenger defeated" * 5
 	on complete
 		outfit "Ka'het Ravager Beam" -2
 		payment 2000000
 		dialog `You bring the Ravagers to the captain, and she seems really happy, "Now this is a weapon that does damage to the hull of a ship! The Wanderers have a lot of that, I am sure it will help me pludering! Our legends speak of this weapon... Oh, of course, here are your <payment>."`
 
-
-mission "Unfettered Saw Plasma Repeater In Action"
-	invisible
-	landing
-	source
-		attributes "unfettered"
-	to offer
-		has "Unfettered: Prove Your Strength 2: done"
-		has "unfettered challenger defeated"
-	on offer
-		require "Plasma Repeater"
-		fail
 
 mission "Unfettered Bring Repeater"
 	job
@@ -570,25 +540,13 @@ mission "Unfettered Bring Repeater"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered Saw Plasma Repeater In Action: offered"
+		has "outfit (installed): Plasma Repeater"
 		random < "unfettered challenger defeated" * 5
 	on complete
 		outfit "Plasma Repeater" -2
 		payment 1500000
 		dialog `It does not take long to find the captain, you find him impatiently waiting for you and the Repeaters, "I love exotic weapons! Here are your <payment>, please bring me more variety if you can, I would reward it highly." He says, before heading hastily to his ship, probably to test these weapons.`
 
-
-mission "Unfettered Particle Cannon In Action"
-	invisible
-	landing
-	source
-		attributes "unfettered"
-	to offer
-		has "Unfettered: Prove Your Strength 2: done"
-		has "unfettered challenger defeated"
-	on offer
-		require "Plasma Repeater"
-		fail
 
 mission "Unfettered Bring Particles"
 	job
@@ -597,7 +555,7 @@ mission "Unfettered Bring Particles"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered Saw Particle Cannon In Action: offered"
+		has "outfit (installed): Particle Cannon"
 		random < "unfettered challenger defeated" * 5
 	on complete
 		outfit "Particle Cannon" -2

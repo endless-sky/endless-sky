@@ -282,12 +282,12 @@ mission "Mercenaries: Nemo Me Impune Lacessit"
 	source
 		near "Ya Hai" 10
 	to offer
-		has "Unfettered: Jump Drive Retrieval: done"
+		or
+			has "outfit (installed): Gold Bars"
+			has "outfit (cargo): Gold Bars"
 		not "mercenaries: sold bars"
 		not "mercenaries: took out leader"
 		random < 3
-	on offer
-		require "Gold Bars"
 	npc disable
 		government "Mercenaries"
 		system
@@ -307,12 +307,10 @@ mission "Mercenaries: Nemo Me Impune Lacessit 2"
 	source
 		near Sol 100
 	to offer
-		has "Unfettered: Jump Drive Retrieval: done"
+		"outfit (installed): Gold Bars" + "outfit (cargo): Gold Bars" > 15
 		not "mercenaries: sold bars"
 		not "mercenaries: took out leader"
 		random < 1
-	on offer
-		require "Gold Bars" 20
 	npc disable
 		government "Mercenaries"
 		system
@@ -335,8 +333,8 @@ mission "Mercenaries: Betrayal For The Bars"
 		random < 40
 		has "Unfettered: Jump Drive Retrieval: done"
 		has "flagship crew" > 4
+		"outfit (flagship installed): Gold Bars" + "outfit (flagship cargo): Gold Bars" >= 5
 	on offer
-		require "Gold Bars" 5
 		conversation
 			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits, as most of them have already disembarked.`
 			choice
@@ -657,8 +655,8 @@ mission "Unfettered: Special Cargo 1B"
 	destination "Warfeed"
 	to offer
 		has "Unfettered: Special Cargo: active"
+		not "outfit (all): Mystery Cube"
 	on offer
-		require "Mystery Cube" 0
 		conversation
 			`You land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive.`
 			choice

@@ -171,8 +171,7 @@ mission "Unfettered: Attracted Attention"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength 2: active"
-	on offer
-		require "Jump Drive"
+		has "outfit (installed): Jump Drive"
 	on enter "Almaaz"
 		dialog `The Unfettered "pirate" spits a a string of old-timey nautical curses,  but one word, which you can barely hear him mutter, stands out: "Hydra." He then comes closer to address you directly, "There even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
 	npc evade
@@ -766,8 +765,8 @@ mission "Unfettered: Non Lethal Weapons Hint"
 	to offer
 		has "event: looking for a gun"
 		has "Unfettered: Close Quarter: active"
+		not "outfit (all): Pug Peacekeeping Staff"
 	on offer
-		require "Pug Peacekeeping Staff" 0
 		conversation
 			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
 				accept
@@ -1240,7 +1239,6 @@ mission "Bring Pug Staves"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		require "Pug Peacekeeping Staff" 20
 		dialog `Do you want to sell 20 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
 	on accept
 		payment 2500000
@@ -1255,7 +1253,6 @@ mission "Bring Coalition Weapons"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		require "Enforcer Riot Staff" 20
 		dialog `Do you want to sell 20 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
 	on accept
 		payment 4000000
@@ -1270,7 +1267,7 @@ mission "Bring Void Rifle"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		require "Void Rifle" 1
+		require "Void Rifle"
 		conversation
 			`He-Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
 			choice
