@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-class StringInterner 
+class StringInterner
 {
 public:
 	static const char *Intern(const char *key);

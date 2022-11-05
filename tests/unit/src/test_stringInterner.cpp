@@ -30,7 +30,7 @@ SCENARIO( "Interning String", "[StringInterner]" ) {
 		std::string blaBla = "bla bla";
 		std::string daDa = "da da";
 		const char *blaBlaPtr = nullptr;
-		
+
 		WHEN( "the string is interned" ) {
 			blaBlaPtr = StringInterner::Intern(blaBla);
 			THEN( "it still represents the same string" ) {

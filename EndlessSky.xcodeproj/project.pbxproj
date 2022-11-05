@@ -903,7 +903,6 @@
 				CCE547DBB6C74E18E1B84D29 /* PrintData.h */,
 				A7F240B4AC219841424A387A /* Logger.cpp */,
 				AE57401AA43232EDEABFAE13 /* Logger.h */,
->>>>>>> master
 			);
 			name = source;
 			sourceTree = "<group>";
