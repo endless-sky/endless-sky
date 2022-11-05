@@ -573,6 +573,13 @@ double System::ExtraJumpArrivalDistance() const
 
 
 
+double System::DepartureDistance() const
+{
+	return departureDistance;
+}
+
+
+
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them.
 const set<const System *> &System::VisibleNeighbors() const

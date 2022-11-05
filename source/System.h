@@ -102,6 +102,9 @@ public:
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
 	double ExtraJumpArrivalDistance() const;
+
+	double DepartureDistance() const;
+
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
 	const std::set<const System *> &VisibleNeighbors() const;
