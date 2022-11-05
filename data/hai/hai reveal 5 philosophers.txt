@@ -794,31 +794,6 @@ mission "Hai Reveal [B11] Moving Together"
 		dialog `You've arrived on <planet>, but you've left one or more of your escorts behind.`
 
 
-
-# Ambassadorial Centipede designed to fly deep into hostile space if necessary:
-ship "Centipede" "Centipede (Teeneep Jump)"
-	# Add some ambassadorial staff:
-	add attributes
-		"required crew" 50
-	outfits
-		"Catalytic Ramscoop"
-		"Jump Drive"
-		"Chameleon Anti-Missile" 3
-		"Quantum Keystone"
-		"Outfits Expansion"
-		`"Biroo" Atomic Steering`
-		"Hai Diamond Regenerator"
-		"Hai Corundum Regenerator"
-		"Hai Chasm Batteries"
-		"Liquid Nitrogen Cooler"
-		"Boulder Reactor"
-		Brig
-		"Fuel Pod" 2
-		Supercapacitor
-		"A370 Atomic Thruster"
-		"Pulse Rifle" 131
-
-
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
 ship "Emperor Beetle"
 	sprite "ship/hai emperor beetle"
@@ -873,39 +848,38 @@ ship "Emperor Beetle"
 		"Pulse Rifle" 65
 		"Fragmentation Grenades" 65
 		"Thermal Repeater Rifle" 25
-		"Blade Of Might"
 	engine -43 131
-        zoom 0.85
-    engine 43 131
-        zoom 0.85
-    engine 0 126.5
-        zoom 0.5
-    "reverse engine" -61 -18.5
-        angle -35
-    "reverse engine" 62 -18.5
-        angle 35
-    "steering engine" -61 -18.5
-        zoom 0.6
-        angle 145
-        left
-    "steering engine" 62 -18.5
-        zoom 0.6
-        angle 215
-        right
-    "steering engine" -73 46
-        zoom 0.5
-        angle 80
-        left
-    "steering engine" 73 46
-        zoom 0.5
-        angle -80
-        right
-    "steering engine" -43 131
-        zoom 0.45
-        right
-    "steering engine" 43 131
-        zoom 0.45
-        left
+		zoom 0.85
+	engine 43 131
+		zoom 0.85
+	engine 0 126.5
+		zoom 0.5
+	"reverse engine" -61 -18.5
+		angle -35
+	"reverse engine" 62 -18.5
+		angle 35
+	"steering engine" -61 -18.5
+		zoom 0.6
+		angle 145
+		left
+	"steering engine" 62 -18.5
+		zoom 0.6
+		angle 215
+		right
+	"steering engine" -73 46
+		zoom 0.5
+		angle 80
+		left
+	"steering engine" 73 46
+		zoom 0.5
+		angle -80
+		right
+	"steering engine" -43 131
+		zoom 0.45
+		right
+	"steering engine" 43 131
+		zoom 0.45
+		left
 	gun -42.5 -53.5
 	gun 43.5 -54.5
 	gun -23 -102.5
@@ -930,6 +904,30 @@ ship "Emperor Beetle"
 	description "Before the Shield Beetle, the Hai used the Titan Beetle, a weaker but more capable ship of a similar design. The Emperor Beetle is a Titan coated with many layers of modern armor, making it a more powerful warship than anything else the Hai have built in modern time. Unfortunately, the advanced features are quite expensive, so these ships are used sparingly, as flagships and trophy ships."
 	description "	It was found by Unfettered scientists that the cargo bays were more of a vulnerability than anything else for the ship, as it is not meant to be plundering but rather to lead in glorious battle. Removing those has allowed for more space for weapons and defensive improvements, as well as more flexibility for the ship. This came at the cost of mass and agility, but that is a sacrifice the Unfettered are more than willing to make."
 	description "	More than a ship, the Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai or even Unfettered but rather the military leaders of the Unfettered, at the front of those they commands. Some believe it to be foolish to show their leaders' ships in such a manner, but that is not how the Unfettered think. Of course, this ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
+
+
+# Ambassadorial Centipede designed to fly deep into hostile space if necessary:
+ship "Centipede" "Centipede (Teeneep Jump)"
+	# Add some ambassadorial staff:
+	add attributes
+		"required crew" 50
+	outfits
+		"Catalytic Ramscoop"
+		"Jump Drive"
+		"Chameleon Anti-Missile" 3
+		"Quantum Keystone"
+		"Outfits Expansion"
+		`"Biroo" Atomic Steering`
+		"Hai Diamond Regenerator"
+		"Hai Corundum Regenerator"
+		"Hai Chasm Batteries"
+		"Liquid Nitrogen Cooler"
+		"Boulder Reactor"
+		Brig
+		"Fuel Pod" 2
+		Supercapacitor
+		"A370 Atomic Thruster"
+		"Pulse Rifle" 131
 
 
 
