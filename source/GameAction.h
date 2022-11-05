@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
-#include "Outfit.h"
-
 #include <cstdint>
 #include <map>
 #include <set>
@@ -82,7 +80,7 @@ private:
 	std::map<const Outfit *, int> giftOutfits;
 
 	std::vector<DataNode> hardpoints;
-	std::vector<Outfit> attributes;
+	std::vector<DataNode> attributes;
 
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

@@ -223,8 +223,8 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 				hardpoints.emplace_back(grand);
 		else if(child.Token(1) == "attributes" && child.HasChildren())
 		{
-			attributes.emplace_back();
-			attributes.back().Load(child);
+			for(const DataNode &grand : child)
+				attributes.emplace_back(grand);
 		}
 	}
 	else
@@ -283,61 +283,12 @@ void GameAction::Save(DataWriter &out) const
 	if(attributes.size())
 	{
 		out.Write("flagship add", "attributes");
-		for(const auto &attribute : attributes)
+		out.BeginChild();
 		{
-			out.BeginChild();
-			{
-				out.Write("category", attribute.Category());
-				out.Write("cost", attribute.Cost());
-				out.Write("mass", attribute.Mass());
-				for(const auto &it : attribute.FlareSprites())
-					for(int i = 0; i < it.second; ++i)
-						it.first.SaveSprite(out, "flare sprite");
-				for(const auto &it : attribute.FlareSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("flare sound", it.first->Name());
-				for(const auto &it : attribute.ReverseFlareSprites())
-					for(int i = 0; i < it.second; ++i)
-						it.first.SaveSprite(out, "reverse flare sprite");
-				for(const auto &it : attribute.ReverseFlareSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("reverse flare sound", it.first->Name());
-				for(const auto &it : attribute.SteeringFlareSprites())
-					for(int i = 0; i < it.second; ++i)
-						it.first.SaveSprite(out, "steering flare sprite");
-				for(const auto &it : attribute.SteeringFlareSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("steering flare sound", it.first->Name());
-				for(const auto &it : attribute.AfterburnerEffects())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("afterburner effect", it.first->Name());
-				for(const auto &it : attribute.JumpEffects())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("jump effect", it.first->Name());
-				for(const auto &it : attribute.JumpSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("jump sound", it.first->Name());
-				for(const auto &it : attribute.JumpInSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("jump in sound", it.first->Name());
-				for(const auto &it : attribute.JumpOutSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("jump out sound", it.first->Name());
-				for(const auto &it : attribute.HyperSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("hyperdrive sound", it.first->Name());
-				for(const auto &it : attribute.HyperInSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("hyperdrive in sound", it.first->Name());
-				for(const auto &it : attribute.HyperOutSounds())
-					for(int i = 0; i < it.second; ++i)
-						out.Write("hyperdrive out sound", it.first->Name());
-				for(const auto &it : attribute.Attributes())
-					if(it.second)
-						out.Write(it.first, it.second);
-			}
-			out.EndChild();
+			for(const auto &attribute : attributes)
+				out.Write(attribute);
 		}
+		out.EndChild();
 	}
 
 	conditions.Save(out);
@@ -452,7 +403,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	for(const auto &hardpoint : hardpoints)
 		player.FlagshipPtr()->AddHardpoint(hardpoint);
 	for(const auto &attribute : attributes)
-		player.FlagshipPtr()->AddOutfit(&attribute, 1);
+		player.FlagshipPtr()->AddStats(attribute);
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());

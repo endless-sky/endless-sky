@@ -409,6 +409,7 @@ public:
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
+	void AddStats(const DataNode &node);
 
 	void AddHardpoint(const DataNode &node);
 

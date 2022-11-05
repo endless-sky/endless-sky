@@ -3885,6 +3885,15 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 
 
+void Ship::AddStats(const DataNode &node)
+{
+	attributes = Outfit();
+	attributes.Load(node);
+	baseAttributes.Add(attributes);
+}
+
+
+
 void Ship::AddHardpoint(const DataNode &node)
 {
 	std::string key = node.Token(0);
