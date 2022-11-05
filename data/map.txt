@@ -28931,6 +28931,7 @@ planet Devil-Eye
 planet "Devil-Run Wormhole"
 	attributes "requires: quantum keystone"
 	spaceport ""
+	wormhole "Devil-Run Wormhole"
 
 wormhole "Devil-Run Wormhole"
 	mappable
