@@ -40,12 +40,12 @@ ship "Sea Scorpion" "Sari'Sea Scorpion (Pulse)"
 			"Gold Bars" 15
 
 
-# Ship of She Of the Void, Shadow of Mintaka, leader of the Marauders
+# Ship of She of the Void, Shadow of Mintaka, leader of the Marauders.
 ship Antlion
 	sprite "ship/hai antlion"
 	thumbnail "thumbnail/hai antlion"
 	attributes
-		category "Medium Warship"
+		category "Heavy Warship"
 		cost 35200000
 		mass 520
 		bunks 67
