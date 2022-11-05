@@ -826,7 +826,7 @@ ship "Emperor Beetle"
 	outfits
 		"Thermal Repeater Turret" 4
 		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 320
+		"Thunderhead Missile" 291
 		"Thunderhead Storage Array" 4
 		"Warder Anti-Missile" 2
 		
