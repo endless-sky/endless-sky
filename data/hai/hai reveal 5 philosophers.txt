@@ -814,8 +814,8 @@ ship "Emperor Beetle"
 		"heat dissipation" 0.675
 		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
 		"tactical scan power" 30
-		ramscoop 1.5
-		"fuel capacity" 800
+		ramscoop .5
+		"fuel capacity" 600
 		weapon
 			"shield damage" 5000
 			"hull damage" 2500
@@ -831,10 +831,12 @@ ship "Emperor Beetle"
 		"Warder Anti-Missile" 2
 		
 		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Wanderer Ramscoop"
 		"Jump Drive"
-		"Quantum Keystone"
+		"Quantum Keystone" 2
 		"Systems Core (Large)"
-		"Systems Core (Medium)"
+		"Systems Core (Small)"
 		"Outfits Expansion"
 		
 		"White Sun Reactor"
@@ -968,7 +970,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`To complete this mission, you must land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 	on enter "Devil-Hide"
 		conversation
-			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The baffling won't work forever, so get to it.`
+			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The general's ship is the Emperor Beetle, Kratos. The baffling won't work forever, so get to it.`
 			`	(NOTE: You need to dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send multiple waves of defense fleets. Demand tribute after defeating the final wave, and they'll agree. Then land to finish the mission.)`
 			`	(WARNING: The Unfettered will not help you fight the defense fleets sent in response to your tribute demands, but they will fight any other pirate ships in the system.)`
 	on visit
