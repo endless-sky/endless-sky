@@ -121,7 +121,7 @@ mission "Hai Rescue: Yeertle Family"
 				`	"Yes, that's a holoprojector and you're a Hai."`
 				`	"Yes, I've been looking for someone like yourself."`
 			`	He peers at you for a second, perhaps pondering if he can trust you with the answer.`
-			`	"Yes, well, holography is my trade, and Hai children sometimes construct holoprojectors for fun. This one is primitive but it is functional, if only barely, thanks to inferior human components I've had to scavenge."`
+			`	"Yes, well, holography is my trade, and Hai children sometimes construct holoprojectors for fun. This one is primitive but functional, if only barely, thanks to inferior human components I've had to scavenge."`
 			choice
 				`	"Do you need a ride home to Hai space?"`
 					goto "ride offer"
