@@ -47,6 +47,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -2853,7 +2854,8 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 			|| hyperspaceCount || !targetSystem || !currentSystem)
 		return false;
 
-	if(position.Length() <= targetSystem->DepartureDistance())
+	cout<<"Hi: "<<position.Length()<<" "<<currentSystem->DepartureDistance()<<endl;
+	if(position.Length() <= currentSystem->DepartureDistance())
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
