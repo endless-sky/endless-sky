@@ -312,6 +312,11 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : wormholes)
 		if(it.second.Name().empty())
 			Warn("wormhole", it.first);
+
+	// Formation patterns are not serialized, but their usage is.
+	for(auto &&it : formations)
+		if(it.second.Name().empty())
+			NameAndWarn("formation", it);
 }
 
 
@@ -340,6 +345,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			events.Get(node.Token(1))->Load(node);
 		else if(key == "fleet" && node.Size() >= 2)
 			fleets.Get(node.Token(1))->Load(node);
+		else if(key == "formation" && node.Size() >= 2)
+			formations.Get(node.Token(1))->Load(node);
 		else if(key == "galaxy" && node.Size() >= 2)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)
