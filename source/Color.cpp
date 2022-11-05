@@ -33,6 +33,16 @@ Color::Color(float r, float g, float b, float a)
 
 
 
+bool Color::operator==(const Color &other) const
+{
+	for(int i = 0; i < 4; ++i)
+		if(color[i] != other.color[i])
+			return false;
+	return true;
+}
+
+
+
 // Set all four color components to the given values.
 void Color::Load(double r, double g, double b, double a)
 {
