@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
-#include "Effect.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -26,8 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
-#include "Sound.h"
-#include "Sprite.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -275,7 +272,7 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("flagship add", "hardpoints");
 		out.BeginChild();
 		{
-			for(const auto &hardpoint : hardpoints)
+			for(const DataNode &hardpoint : hardpoints)
 				out.Write(hardpoint);
 		}
 		out.EndChild();
@@ -285,7 +282,7 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("flagship add", "attributes");
 		out.BeginChild();
 		{
-			for(const auto &attribute : attributes)
+			for(const DataNode &attribute : attributes)
 				out.Write(attribute);
 		}
 		out.EndChild();
@@ -400,9 +397,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 				player.FailMission(mission);
 	}
 
-	for(const auto &hardpoint : hardpoints)
+	for(const DataNode &hardpoint : hardpoints)
 		player.FlagshipPtr()->AddHardpoint(hardpoint);
-	for(const auto &attribute : attributes)
+	for(const DataNode &attribute : attributes)
 		player.FlagshipPtr()->AddStats(attribute);
 
 	// Check if applying the conditions changes the player's reputations.
@@ -445,8 +442,10 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 
-	result.hardpoints = hardpoints;
-	result.attributes = attributes;
+	for(const auto &hardpoint : hardpoints)
+		result.hardpoints.emplace_back(hardpoint);
+	for(const auto &attribute : attributes)
+		result.attributes.emplace_back(attribute);
 
 	result.fail = fail;
 
