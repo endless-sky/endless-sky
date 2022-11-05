@@ -2853,9 +2853,6 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 			|| hyperspaceCount || !targetSystem || !currentSystem)
 		return false;
 
-	if(position.LengthSquared() <= currentSystem->DepartureDistance() * currentSystem->DepartureDistance())
-		return false;
-
 	// Check if the target system is valid and there is enough fuel to jump.
 	pair<Ship::JumpType, double> jumpUsed = GetCheapestJumpType(targetSystem);
 	double fuelCost = jumpUsed.second;
@@ -2865,6 +2862,19 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	Point direction = targetSystem->Position() - currentSystem->Position();
 	bool isJump = (jumpUsed.first == JumpType::JumpDrive);
 	double scramThreshold = attributes.Get("scram drive");
+
+	if(isJump)
+	{
+		if(position.LengthSquared()
+			<= currentSystem->JumpDepartureDistance() * currentSystem->JumpDepartureDistance())
+			return false;
+	}
+	else
+	{
+		if(position.LengthSquared()
+			<= currentSystem->HyperDepartureDistance() * currentSystem->HyperDepartureDistance())
+			return false;
+	}
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
 	// and pointed in the right direction.

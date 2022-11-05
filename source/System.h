@@ -103,7 +103,8 @@ public:
 	// Additional travel distance to target for ships entering using a jumpdrive.
 	double ExtraJumpArrivalDistance() const;
 
-	double DepartureDistance() const;
+	double JumpDepartureDistance() const;
+	double HyperDepartureDistance() const;
 
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
@@ -222,7 +223,8 @@ private:
 	// be interpreted as positive values.
 	double extraJumpArrivalDistance = 0.;
 
-	double departureDistance = 0.;
+	double jumpDepartureDistance = 0.;
+	double hyperDepartureDistance = 0.;
 
 	// Commodity prices.
 	std::map<std::string, Price> trade;

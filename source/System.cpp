@@ -354,7 +354,23 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 		}
 		else if (key == "departure" && hasValue)
-			departureDistance = child.Value(1);
+		{
+			if(child.Size() >= 2)
+			{
+				jumpDepartureDistance = child.Value(1);
+				hyperDepartureDistance = fabs(child.Value(1));
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
+					hyperDepartureDistance = grand.Value(1);
+				else if(type == "jump" && grand.Size() >= 2)
+					jumpDepartureDistance = fabs(grand.Value(1));
+				else
+					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -573,9 +589,16 @@ double System::ExtraJumpArrivalDistance() const
 
 
 
-double System::DepartureDistance() const
+double System::JumpDepartureDistance() const
 {
-	return departureDistance;
+	return jumpDepartureDistance;
+}
+
+
+
+double System::HyperDepartureDistance() const
+{
+	return hyperDepartureDistance;
 }
 
 
