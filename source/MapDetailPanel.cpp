@@ -56,6 +56,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <set>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -569,11 +570,29 @@ void MapDetailPanel::DrawKey()
 	}
 	else if(commodity == SHOW_GOVERNMENT)
 	{
+		unordered_map<string, const Government *> displayNames;
 		// Each system is colored by the government of the system. Only the
 		// four largest visible governments are labeled in the legend.
 		vector<pair<double, const Government *>> distances;
 		for(const auto &it : closeGovernments)
-			distances.emplace_back(it.second, it.first);
+		{
+			auto &it2 = displayNames.find(it.first->GetName());
+			if(it2 != displayNames.end() && &it2->second->GetColor() == &it.first->GetColor())
+			{
+				auto &it3 = find(distances.begin(), distances.end(),
+						[&it2](const pair<double, const Government *> &item)
+						{
+							return item.second == it2->second;
+						});
+				if(it3 != distances.end() && it3->first > it.second)
+					it3->first = it.second;
+			}
+			else
+			{
+				distances.emplace_back(it.second, it.first);
+				displayNames[it.first->GetName()] = it.first;
+			}
+		}
 		sort(distances.begin(), distances.end());
 		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
 		{
