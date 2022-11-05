@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "DataNode.h"
 #include <cstdint>
 #include <map>
 #include <set>
@@ -24,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
-class DataNode;
 class DataWriter;
 class GameEvent;
 class Outfit;
