@@ -99,6 +99,8 @@
 		<Unit filename="source/Command.h" />
 		<Unit filename="source/ConditionSet.cpp" />
 		<Unit filename="source/ConditionSet.h" />
+		<Unit filename="source/ConditionsStore.cpp" />
+		<Unit filename="source/ConditionsStore.h" />
 		<Unit filename="source/Conversation.cpp" />
 		<Unit filename="source/Conversation.h" />
 		<Unit filename="source/ConversationPanel.cpp" />
@@ -149,6 +151,8 @@
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
 		<Unit filename="source/FogShader.h" />
+		<Unit filename="source/FormationPattern.cpp" />
+		<Unit filename="source/FormationPattern.h" />
 		<Unit filename="source/FrameTimer.cpp" />
 		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
@@ -191,6 +195,8 @@
 		<Unit filename="source/LoadPanel.h" />
 		<Unit filename="source/LocationFilter.cpp" />
 		<Unit filename="source/LocationFilter.h" />
+		<Unit filename="source/Logger.cpp" />
+		<Unit filename="source/Logger.h" />
 		<Unit filename="source/LogbookPanel.cpp" />
 		<Unit filename="source/LogbookPanel.h" />
 		<Unit filename="source/MainPanel.cpp" />
@@ -201,6 +207,8 @@
 		<Unit filename="source/MapOutfitterPanel.h" />
 		<Unit filename="source/MapPanel.cpp" />
 		<Unit filename="source/MapPanel.h" />
+		<Unit filename="source/MapPlanetCard.cpp" />
+		<Unit filename="source/MapPlanetCard.h" />
 		<Unit filename="source/MapSalesPanel.cpp" />
 		<Unit filename="source/MapSalesPanel.h" />
 		<Unit filename="source/MapShipyardPanel.cpp" />
@@ -267,6 +275,8 @@
 		<Unit filename="source/Preferences.h" />
 		<Unit filename="source/PreferencesPanel.cpp" />
 		<Unit filename="source/PreferencesPanel.h" />
+		<Unit filename="source/PrintData.cpp" />
+		<Unit filename="source/PrintData.h" />
 		<Unit filename="source/Projectile.cpp" />
 		<Unit filename="source/Projectile.h" />
 		<Unit filename="source/Radar.cpp" />

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ES_AI_H_
@@ -95,7 +98,8 @@ private:
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity, double radius, double slow);
+	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
+		const Point &targetVelocity, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Body &target);
@@ -191,7 +195,7 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	// General firing command for ships. This is a data member to avoid
-	// thrashing the heap, since we can reuse the the storage for
+	// thrashing the heap, since we can reuse the storage for
 	// each ship.
 	FireCommand firingCommands;
 

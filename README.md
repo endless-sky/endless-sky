@@ -4,7 +4,7 @@ Explore other star systems. Earn money by trading, carrying passengers, or compl
 
 ------
 
-Endless Sky is a sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control. You start out as the captain of a tiny space ship and can choose what to do from there. The game includes a major plot line and many minor missions, but you can choose whether you want to play through the plot or strike out on your own as a merchant or bounty hunter or explorer.
+Endless Sky is a sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control. You start out as the captain of a tiny spaceship and can choose what to do from there. The game includes a major plot line and many minor missions, but you can choose whether you want to play through the plot or strike out on your own as a merchant or bounty hunter or explorer.
 
 See the [player's manual](https://github.com/endless-sky/endless-sky/wiki/PlayersManual) for more information, or the [home page](https://endless-sky.github.io/) for screenshots and the occasional blog post.
 
@@ -16,9 +16,9 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 
 || Minimum | Recommended |
 |---|----:|----:|
-|RAM | 400 MB | 1 GB |
+|RAM | 500 MB | 1 GB |
 |Graphics | OpenGL 3.0 | OpenGL 3.3 |
-|Storage Free | 200 MB | 400 MB |
+|Storage Free | 250 MB | 1 GB |
 
 ## Building from source
 Most development is done on Linux and Windows, using the [SCons](https://scons.org/) build tool to compile the project. For those wishing to use an IDE, project files are provided for [XCode](https://developer.apple.com/xcode/) and [Code::Blocks](https://www.codeblocks.org/) to simplify the project setup. It is possible to use other IDEs or build systems to compile the game, but support is not provided.  
@@ -30,4 +30,4 @@ As a free and open source game, Endless Sky is the product of many peoples' work
 Endless Sky's main discussion and development area was once [Google Groups](https://groups.google.com/g/endless-sky), but due to factors outside our control, it is now inaccessible to new users.
 
 # Licensing
-Endless Sky is a free, open source game. The [source code](https://github.com/endless-sky/endless-sky/) is available under the GPL v3 license, and all the artwork is either public domain or released under a variety of Creative Commons licenses. (To determine the copyright status of any of the artwork, consult the [copyright file](https://github.com/endless-sky/endless-sky/blob/master/copyright).)
+Endless Sky is a free, open source game. The [source code](https://github.com/endless-sky/endless-sky/) is available under the GPL v3 license, and all the artwork is either public domain or released under a variety of Creative Commons (and similarly permissive) licenses. (To determine the copyright status of any of the artwork, consult the [copyright file](https://github.com/endless-sky/endless-sky/blob/master/copyright).)
