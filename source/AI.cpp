@@ -287,6 +287,8 @@ namespace {
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
+
+	const double SAFETY_OFFSET = 1.;
 }
 
 
@@ -1981,6 +1983,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	const double squaredDeparture =  isJump ?
 		ship.GetSystem()->JumpDepartureDistance() * ship.GetSystem()->JumpDepartureDistance() :
 		ship.GetSystem()->HyperDepartureDistance() * ship.GetSystem()->HyperDepartureDistance();
+	squaredDeparture += SAFETY_OFFSET;
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
 		Point closestDeparturePoint = ship.Position() * (squaredDeparture / (ship.Position().LengthSquared() + 0.1));
