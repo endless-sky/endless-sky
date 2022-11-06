@@ -155,7 +155,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 		fleet "Marauder fleet X" 4
 	# IX is 4 decent ships each, X is 6 ships but 2 are weak each. Total Fleet Size is roughly 28 + some chaff (~8).
 	on fail
-		dialog `You have failed an essential mission. (ALL of one fleet has been wiped out.) To complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential mission (ALL of one fleet has been wiped out). To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 	on accept
 		fail "Hai Reveal [B01] Information Blackout"
 		fail "Hai Reveal [A11-B] Permanent Fleets"

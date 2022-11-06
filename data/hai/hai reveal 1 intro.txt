@@ -63,7 +63,7 @@ mission "Event: Pug Media Coverage"
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
 			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that led to the events precipitating the war would not be tolerated.`
 			`	Others...`
-			`	One particular paranoid fringe-world politician dominates the air on the channel you're watching here. The Senator Maduena Kabiru from Bounty demands that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it feels rather cheap coming from a senator whose system is a mere two jumps from a brand new Navy base.`
+			`	One particular paranoid fringe-world politician dominates the air on the channel you're watching here. Senator Maduena Kabiru from Bounty demands that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it feels rather cheap coming from a senator whose system is a mere two jumps from a brand new Navy base.`
 			`	In this very public space you spot a couple of people who seem to hesitantly recognize you, presumably from other coverage. As such, your thoughts, you keep to yourself.`
 				decline
 
@@ -532,7 +532,7 @@ mission "Hai Leaks Response 1"
 			`	As you are making the walk you hear questions posed and rumors stated. Occasionally you hear words like "honorable" and "reasonable" thrown in amongst the babble.`
 			label main
 			`	You arrive at a very comfortable office and are received by a mature-looking Hai with the appropriate regalia of a diplomat. She holds out a paw to greet you and says, "My name is Sayari. I was the envoy to the human government a century ago."`
-			`	The present media storm is all the evidence you need to know that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then they're probably still trying to work out a suppression strategy and have been too busy to send an envoy quicker than your own trip took.`
+			`	The present media storm is all the evidence needed to make it clear that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then they're probably still trying to work out a suppression strategy and have been too busy to send an envoy quicker than your own trip took.`
 			`	Sayari continues, "Our reports tell us that you are a well-known and respected individual in human space. We also know 'Hai' is quickly becoming a buzzword in your space. A few traders brought the news ahead of you."`
 			`	She pauses and looks at you seriously. "We think it would be prudent for you to represent your people as our point of contact. Would you accept such a role?"`
 			`	You give it a moment of thought.`
@@ -778,7 +778,7 @@ mission "Hai Leaks Response 4"
 				goto end
 			label "saved geocoris"
 			`	"Your rescue of our kidnapped people is deeply appreciated also. Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy.`
-			`	"I do need to do a full security scan of it to complete all the incident paperwork before I let it go though, so if you have any business on-world here, please take your time."`
+			`	"I do need to do a full security scan of it to complete all the incident paperwork before I let it go, though, so if you have any business on-world here, please take your time."`
 			label end
 			`	"In any event, let's hope a more permanent solution can be devised soon. In the meantime, the local dealers have decided to start selling the Ladybugs again. I hear it's something about a spike in interest among the humans here, so feel free to have a look at them. I shouldn't get too distracted though, I'm sure they'll be waiting for you back on Hai-home."`
 			branch "saved geocoris2"
