@@ -609,8 +609,7 @@ void MapDetailPanel::DrawKey()
 		// given reputation (0.1, 100, and 10000) are shown for each sign.
 		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
 		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
-		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColo
-						r(1e4, true, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
 		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 
