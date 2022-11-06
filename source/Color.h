@@ -31,6 +31,7 @@ public:
 	Color(float r, float g, float b, float a = 1.f);
 
 	bool operator==(const Color &other) const;
+	bool operator!=(const Color &other) const;
 
 	// Set this color to the given RGBA values.
 	void Load(double r, double g, double b, double a);

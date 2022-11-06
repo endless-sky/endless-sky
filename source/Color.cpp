@@ -43,6 +43,13 @@ bool Color::operator==(const Color &other) const
 
 
 
+bool Color::operator!=(const Color &other) const
+{
+	return !(*this == other);
+}
+
+
+
 // Set all four color components to the given values.
 void Color::Load(double r, double g, double b, double a)
 {
