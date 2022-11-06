@@ -584,7 +584,7 @@ void MapDetailPanel::DrawKey()
 		for(const auto &it : distances)
 		{
 			const string &displayName = it.second->GetName();
-			const Color &displayColor = GovernmentColor(it.second);
+			const Color &displayColor = it.second->GetColor();
 			auto foundRange = alreadyDisplayed.equal_range(displayName);
 			auto foundIt = find_if(foundRange.first, foundRange.second, [&displayColor](const pair<const string, const Color *> &item)
 					{
