@@ -124,9 +124,18 @@ public:
 	double CrewDefense() const;
 
 	bool IsProvokedOnScan() const;
-	bool ShowReputation() const;
-	void SetShowReputation(bool input);
+
+	bool ShowReputationTitle(const std::map<std::string, std::map<std::string, std::string>> &specialLogs) const;
+	void SetTitleVisibility(bool input);
 	std::string GetReputationTitle() const;
+
+
+private:
+	enum class TitleVisibility : int_fast8_t {
+		HIDDEN = 0,
+		SHOWN_ON_LOG,
+		SHOWN
+	};
 
 
 private:
@@ -152,7 +161,7 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
-	bool showReputation = false;
+	TitleVisibility titleVisibility = TitleVisibility::HIDDEN;
 	std::map<double, std::string> titles;
 };
 

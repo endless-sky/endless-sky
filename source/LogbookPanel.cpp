@@ -324,7 +324,7 @@ void LogbookPanel::Update(bool selectLast)
 	for(const pair<const string, Government> &govPair : GameData::Governments())
 	{
 		const Government &gov = govPair.second;
-		if(!gov.ShowReputation())
+		if(!gov.ShowReputationTitle(player.SpecialLogs()))
 			continue;
 		string name = gov.GetName();
 		string title = gov.GetReputationTitle();

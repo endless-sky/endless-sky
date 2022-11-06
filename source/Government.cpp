@@ -148,10 +148,12 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
-		else if(child.Token(0) == "show reputation")
-			showReputation = true;
-		else if(child.Token(0) == "hide reputation")
-			showReputation = false;
+		else if(child.Token(0) == "show title")
+			titleVisibility = TitleVisibility::SHOWN;
+		else if(child.Token(0) == "hide title")
+			titleVisibility = TitleVisibility::HIDDEN;
+		else if(child.Token(0) == "show title on log")
+			titleVisibility = TitleVisibility::SHOWN_ON_LOG;
 		else if(child.Token(0) == "reputation titles")
 			titles = LoadReputationTitles(child);
 		else if(!hasValue)
@@ -477,16 +479,23 @@ bool Government::IsProvokedOnScan() const
 
 
 
-bool Government::ShowReputation() const
+bool Government::ShowReputationTitle(const map<string, map<string, string>> &specialLogs) const
 {
-	return showReputation;
+	if(titleVisibility == TitleVisibility::SHOWN_ON_LOG)
+	{
+		auto it = specialLogs.find("Factions");
+		if(it != specialLogs.end() && it->second.find(GetName()) != it->second.end())
+			return true;
+		return false;
+	}
+	return titleVisibility == TitleVisibility::SHOWN;
 }
 
 
 
-void Government::SetShowReputation(bool input)
+void Government::SetTitleVisibility(bool input)
 {
-	showReputation = input;
+	titleVisibility = input ? TitleVisibility::SHOWN : TitleVisibility::HIDDEN;
 }
 
 
