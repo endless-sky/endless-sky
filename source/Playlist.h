@@ -14,6 +14,10 @@
  */
 
 #include "ConditionSet.h"
+#include "LocationFilter.h"
+#include "Track.h"
+#include "WeightedList.h"
+
 
 #include <string>
 #include <map>
@@ -21,6 +25,7 @@
 
 
 class DataNode;
+class PlayerInfo;
 
 
 // Class to store a track of music that can be used in a playlist.
@@ -34,14 +39,29 @@ public:
 
 	void Load(const DataNode &node);
 
+	const Track *GetRandomTrack() const;
+
+	bool MatchingConditions(PlayerInfo &player) const;
+
+	int Priority() const;
+	int Weight() const;
+
 private:
 	std::string name;
 
 	ConditionSet toPlay;
-	std::vector<std::string> requiredAttributes;
+	LocationFilter location;
 
 	int silence = 0;
 	// Parameters for generating random silence times:
 	int silenceLimit = 0;
 	double silenceProb = 0.;
+
+	int priority = 0;
+	int weight = 0;
+
+	bool overridePlaylist = false;
+
+	std::string progressionStyle;
+	WeightedList<const Track *> tracks;
 };

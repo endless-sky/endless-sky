@@ -16,8 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 
 #include "Files.h"
+#include "GameData.h"
 #include "Logger.h"
 #include "Music.h"
+#include "PlayerInfo.h"
+#include "Playlist.h"
 #include "Point.h"
 #include "Random.h"
 #include "Sound.h"
@@ -38,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <thread>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -115,6 +119,8 @@ namespace {
 	shared_ptr<Music> previousTrack;
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
+
+	const Playlist *currentPlaylist = nullptr;
 }
 
 
@@ -246,8 +252,34 @@ const Sound *Audio::Get(const string &name)
 // Set the listener's position, and also update any sounds that have been
 // added but deferred because they were added from a thread other than the
 // main one (the one that called Init()).
-void Audio::Update(const Point &listenerPosition)
+void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
 {
+	if(currentTrack->IsFinished())
+	{
+		if(currentPlaylist ? !currentPlaylist->MatchingConditions(player) : true)
+		{
+			WeightedList<const Playlist *> validPlaylists;
+			int priority = 0;
+			for(const auto &playlist : GameData::Playlists())
+				if(playlist.second.MatchingConditions(player))
+				{
+					if(playlist.second.Priority() == priority)
+						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
+					else if (playlist.second.Priority() > priority)
+					{
+						priority =  playlist.second.Priority();
+						validPlaylists.clear();
+						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
+					}
+				}
+			if(validPlaylists.size())
+				currentPlaylist = validPlaylists.Get();
+			else
+				currentPlaylist = nullptr;
+		}
+		if(currentPlaylist)
+			PlayMusic(currentPlaylist->GetRandomTrack()->GetTitle(Track::GameState::IDLE));
+	}
 	if(!isInitialized)
 		return;
 
@@ -292,10 +324,6 @@ void Audio::Play(const Sound *sound, const Point &position)
 void Audio::PlayMusic(const string &name)
 {
 	if(!isInitialized)
-		return;
-
-	// Skip changing music if the requested music is already playing.
-	if(name == currentTrack->GetSource())
 		return;
 
 	// Don't worry about thread safety here, since music will always be started

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class PlayerInfo;
 class Point;
 class Sound;
 
@@ -52,7 +53,7 @@ public:
 	// Set the listener's position, and also update any sounds that have been
 	// added but deferred because they were added from a thread other than the
 	// main one (the one that called Init()).
-	static void Update(const Point &listenerPosition);
+	static void Update(const Point &listenerPosition, PlayerInfo &player);
 
 	// Play the given sound, at full volume.
 	static void Play(const Sound *sound);

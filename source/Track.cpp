@@ -52,3 +52,10 @@ void Track::Load(const DataNode &node)
 			titles[GameState::LANDED] = child.Token(1);
 	}
 }
+
+
+
+const std::string Track::GetTitle(GameState state) const
+{
+	return titles.find(state)->second;
+}

@@ -506,7 +506,7 @@ void Engine::Step(bool isActive)
 	testContext = nullptr;
 
 	wasActive = isActive;
-	Audio::Update(center);
+	Audio::Update(center, player);
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)

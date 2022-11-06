@@ -13,6 +13,8 @@
  this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#ifndef TRACK_H
+#define TRACK_H
 
 #include <string>
 #include <map>
@@ -38,9 +40,13 @@ public:
 	Track(const DataNode &node);
 
 	void Load(const DataNode &node);
+
+	const std::string GetTitle(GameState state) const;
 	
 private:
 	std::string name;
 	double volumeModifier = 0.;
 	std::map<GameState, std::string> titles;
 };
+
+#endif

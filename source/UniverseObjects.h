@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "Playlist.h"
 #include "Ship.h"
 #include "StartConditions.h"
 #include "System.h"
@@ -112,6 +113,7 @@ private:
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
+	Set<Playlist> playlists;
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;

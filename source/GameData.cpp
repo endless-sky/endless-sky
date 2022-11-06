@@ -603,6 +603,13 @@ const Set<Planet> &GameData::Planets()
 
 
 
+const Set<Playlist> &GameData::Playlists()
+{
+	return objects.playlists;
+}
+
+
+
 const Set<Ship> &GameData::Ships()
 {
 	return objects.ships;
@@ -620,6 +627,13 @@ const Set<Test> &GameData::Tests()
 const Set<TestData> &GameData::TestDataSets()
 {
 	return objects.testDataSets;
+}
+
+
+
+const Set<Track> &GameData::Tracks()
+{
+	return objects.tracks;
 }
 
 

@@ -192,8 +192,10 @@ void Music::Decode()
 		mad_frame_init(&frame);
 		mad_synth_init(&synth);
 
+		finished = hasNewFile;
+
 		// Loop until we are asked to switch files.
-		while(true)
+		while(!finished)
 		{
 			// If the "next" buffer has filled up, wait until it is retrieved.
 			// Generally try to queue up two chunks worth of samples in it, just
@@ -219,9 +221,9 @@ void Music::Decode()
 
 			// Now, read a chunk of data from the file.
 			size_t read = fread(&input.front() + remainder, 1, INPUT_CHUNK - remainder, file);
-			// If you get the end of the file, loop around to the beginning.
+			// If you get the end of the file, stop playing.
 			if(!read || feof(file))
-				rewind(file);
+				finished = true;
 			// If there is nothing to decode, return to the top of this loop.
 			if(!(read + remainder))
 				continue;
@@ -285,4 +287,18 @@ void Music::Decode()
 		mad_stream_finish(&stream);
 		fclose(file);
 	}
+}
+
+
+
+bool Music::IsFinished() const
+{
+	return finished;
+}
+
+
+
+void Music::Finish()
+{
+	finished = true;
 }
