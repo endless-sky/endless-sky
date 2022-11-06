@@ -60,6 +60,7 @@ void GameLoadingPanel::Step()
 		// e.g. due to capitalization errors or other typos.
 		SpriteSet::CheckReferences();
 		Audio::CheckReferences();
+
 		// All sprites with collision masks should also have their 1x scaled versions, so create
 		// any additional scaled masks from the default one.
 		GameData::GetMaskManager().ScaleMasks();

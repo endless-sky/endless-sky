@@ -28,6 +28,7 @@ MenuAnimationPanel::MenuAnimationPanel()
 	SetTrapAllEvents(false);
 
 	Audio::Play(Audio::Get("landing"));
+	Audio::PlayMusic("music/main_screen");
 }
 
 
