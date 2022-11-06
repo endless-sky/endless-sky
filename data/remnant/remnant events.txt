@@ -286,7 +286,7 @@ event "remnant: remove hidden"
 
 
 
-event "remnant: ssil vida area unvisted"
+event "remnant: ssil vida area unvisited"
 	unvisit "Diespiter"
 	unvisit "Egeria"
 	unvisit "Prosa"
