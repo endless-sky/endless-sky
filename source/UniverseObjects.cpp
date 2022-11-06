@@ -394,6 +394,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			tests.Get(node.Token(1))->Load(node);
 		else if((key == "test-data") && node.Size() >= 2)
 			testDataSets.Get(node.Token(1))->Load(node, path);
+		else if(key == "track")
+			tracks.Get(node.Token(1))->Load(node);
 		else if(key == "trade")
 			trade.Load(node);
 		else if(key == "landing message" && node.Size() >= 2)

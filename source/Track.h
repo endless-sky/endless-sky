@@ -18,6 +18,9 @@
 #include <map>
 
 
+class DataNode;
+
+
 // Class to store a track of music that can be used in a playlist.
 class Track
 {
@@ -27,9 +30,15 @@ public:
 		IDLE,
 		COMBAT,
 		LANDED
-	}
+	};
 public:
-	Track
+	Track() = default;
+
+	// Construct and Load() at the same time.
+	Track(const DataNode &node);
+
+	void Load(const DataNode &node);
+	
 private:
 	std::string name;
 	double volumeModifier = 0.;

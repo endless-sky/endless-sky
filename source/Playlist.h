@@ -12,3 +12,36 @@
  You should have received a copy of the GNU General Public License along with
  this program. If not, see <https://www.gnu.org/licenses/>.
  */
+
+#include "ConditionSet.h"
+
+#include <string>
+#include <map>
+#include <vector>
+
+
+class DataNode;
+
+
+// Class to store a track of music that can be used in a playlist.
+class Playlist
+{
+public:
+	Playlist() = default;
+
+	// Construct and Load() at the same time.
+	Playlist(const DataNode &node);
+
+	void Load(const DataNode &node);
+
+private:
+	std::string name;
+
+	ConditionSet toPlay;
+	std::vector<std::string> requiredAttributes;
+
+	int silence = 0;
+	// Parameters for generating random silence times:
+	int silenceLimit = 0;
+	double silenceProb = 0.;
+};

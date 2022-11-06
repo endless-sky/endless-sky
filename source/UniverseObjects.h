@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Test.h"
 #include "TestData.h"
 #include "TextReplacements.h"
+#include "Track.h"
 #include "Trade.h"
 
 #include <future>
@@ -114,6 +115,7 @@ private:
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;
+	Set<Track> tracks;
 	Set<TestData> testDataSets;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
