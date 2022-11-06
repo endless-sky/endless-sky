@@ -482,11 +482,11 @@ Conversation LoadConversation()
 // (active/missing feature/known failure)..
 void PrintTestsTable()
 {
-    for(auto &it : GameData::Tests())
-        if(it.second.GetStatus() != Test::Status::PARTIAL
-                && it.second.GetStatus() != Test::Status::BROKEN)
-            cout << it.second.Name() << '\n';
-    cout.flush();
+	for(auto &it : GameData::Tests())
+		if(it.second.GetStatus() != Test::Status::PARTIAL
+			&& it.second.GetStatus() != Test::Status::BROKEN)
+			cout << it.second.Name() << '\n';
+	cout.flush();
 }
 
 
