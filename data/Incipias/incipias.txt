@@ -86,7 +86,7 @@ news "Hicemus official"
 		word
 			"We go forward to [evolve, be superior], no one can stop us."
 			"Have you seen our newest engines, they are much more efficient than anything before them."
-			"Our technic is superior, no one can question our authority."
+			"Our technology is superior, no one can question our authority."
 			"As long as we exist, we will progress."
 
 news "special"
