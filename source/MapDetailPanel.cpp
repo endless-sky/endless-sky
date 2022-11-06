@@ -570,27 +570,34 @@ void MapDetailPanel::DrawKey()
 	}
 	else if(commodity == SHOW_GOVERNMENT)
 	{
-		unordered_map<string, const Government *> displayNames;
+		unordered_map<string, vector<const Government *>> displayNames;
 		// Each system is colored by the government of the system. Only the
 		// four largest visible governments are labeled in the legend.
 		vector<pair<double, const Government *>> distances;
 		for(const auto &it : closeGovernments)
 		{
-			auto it2 = displayNames.find(it.first->GetName());
-			if(it2 != displayNames.end() && it2->second->GetColor() == it.first->GetColor())
-			{
-				auto it3 = find_if(distances.begin(), distances.end(),
-						[&it2](const pair<double, const Government *> &item)
+			auto displayNameIt = displayNames.find(it.first->GetName());
+			vector<const Government *>::iterator matchingGov;
+			if(displayNameIt != displayNames.end())
+				matchingGov = find_if(displayNameIt->second.begin(), displayNameIt->second.end(),
+						[&it](const Government *gov)
 						{
-							return item.second == it2->second;
+							return gov->GetColor() == it.first->GetColor();
 						});
-				if(it3 != distances.end() && it3->first > it.second)
-					it3->first = it.second;
+			if(&*matchingGov && matchingGov != displayNameIt->second.end())
+			{
+				auto existingEntry = find_if(distances.begin(), distances.end(),
+						[&matchingGov](const pair<double, const Government *> &item)
+						{
+							return item.second == *matchingGov;
+						});
+				if(existingEntry != distances.end() && existingEntry->first > it.second)
+					existingEntry->first = it.second;
 			}
 			else
 			{
 				distances.emplace_back(it.second, it.first);
-				displayNames[it.first->GetName()] = it.first;
+				displayNames[it.first->GetName()].emplace_back(it.first);
 			}
 		}
 		sort(distances.begin(), distances.end());
