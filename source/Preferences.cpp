@@ -86,6 +86,8 @@ void Preferences::Load()
 			Screen::SetZoom(node.Value(1));
 		else if(node.Token(0) == "volume" && node.Size() >= 2)
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
+		else if(node.Token(0) == "music volume" && node.Size() >= 2)
+			Audio::SetMusicVolume(node.Value(1) * VOLUME_SCALE);
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
@@ -108,6 +110,7 @@ void Preferences::Save()
 	DataWriter out(Files::Config() + "preferences.txt");
 
 	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
+	out.Write("music volume", Audio::MusicVolume() / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);

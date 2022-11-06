@@ -78,7 +78,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	}
 
 	if(player.GetPlanet())
-		Audio::PlayMusic(player.GetPlanet()->MusicName());
+		Audio::UpdateMusic(player, Track::GameState::LANDED);
 }
 
 

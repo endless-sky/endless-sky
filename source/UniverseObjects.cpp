@@ -379,6 +379,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node, wormholes);
+		else if(key == "playlist" && node.Size() >= 2)
+			playlists.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.
@@ -410,6 +412,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			tests.Get(node.Token(1))->Load(node);
 		else if((key == "test-data") && node.Size() >= 2)
 			testDataSets.Get(node.Token(1))->Load(node, path);
+		else if(key == "track")
+			tracks.Get(node.Token(1))->Load(node);
 		else if(key == "trade")
 			trade.Load(node);
 		else if(key == "landing message" && node.Size() >= 2)

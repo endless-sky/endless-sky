@@ -88,6 +88,7 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
+	info.SetBar("music volume", Audio::MusicVolume());
 	if(SETTINGS_PAGE_COUNT > 1)
 		info.SetCondition("multiple pages");
 	if(currentSettingsPage > 0)
@@ -153,6 +154,11 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	{
 		Audio::SetVolume((20 - y) / 200.);
 		Audio::Play(Audio::Get("warder"));
+		return true;
+	}
+	else if(x >= 309.5 && x < 340.5 && y >= -220 && y < 70)
+	{
+		Audio::SetMusicVolume((20 - y) / 200.);
 		return true;
 	}
 

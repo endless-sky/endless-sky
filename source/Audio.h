@@ -16,9 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef AUDIO_H_
 #define AUDIO_H_
 
+#include "Track.h"
+
 #include <string>
 #include <vector>
 
+class PlayerInfo;
 class Point;
 class Sound;
 
@@ -44,6 +47,10 @@ public:
 	static double Volume();
 	static void SetVolume(double level);
 
+	// Get or set the music volume (between 0 and 1).
+	static double MusicVolume();
+	static void SetMusicVolume(double level);
+
 	// Get a pointer to the named sound. The name is the path relative to the
 	// "sound/" folder, and without ~ if it's on the end, or the extension.
 	// Do not call this function until Progress() is 100%.
@@ -53,6 +60,7 @@ public:
 	// added but deferred because they were added from a thread other than the
 	// main one (the one that called Init()).
 	static void Update(const Point &listenerPosition);
+	static void UpdateMusic(PlayerInfo &player, Track::GameState state);
 
 	// Play the given sound, at full volume.
 	static void Play(const Sound *sound);

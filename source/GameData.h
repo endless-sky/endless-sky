@@ -51,6 +51,7 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class Playlist;
 class Politics;
 class Ship;
 class Sprite;
@@ -60,6 +61,7 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
+class Track;
 class Wormhole;
 
 
@@ -129,11 +131,13 @@ public:
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
+	static const Set<Playlist> &Playlists();
 	static const Set<Ship> &Ships();
 	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
+	static const Set<Track> &Tracks();
 	static const Set<Wormhole> &Wormholes();
 
 	static ConditionsStore &GlobalConditions();

@@ -12,6 +12,8 @@
 		03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 499B4DA7A9C7351120660643 /* MaskManager.cpp */; };
 		072599D126A8CB2F007EC229 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
 		072599D426A8CD5D007EC229 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E77AFDF2918751D00864BB5 /* Playlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E77AFDE2918751300864BB5 /* Playlist.cpp */; };
+		0E77AFE02918751D00864BB5 /* Track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E77AFDC2918751300864BB5 /* Track.cpp */; };
 		1578F883250B5F8A00D318FB /* InfoPanelState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1578F880250B5F8A00D318FB /* InfoPanelState.cpp */; };
 		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		1F884DB590D5152608510676 /* ShipJumpNavigation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */; };
@@ -228,6 +230,10 @@
 		086E48E490C9BAD6660C7274 /* ExclusiveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExclusiveItem.h; path = source/ExclusiveItem.h; sourceTree = "<group>"; };
 		0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeightedList.h; path = source/WeightedList.h; sourceTree = "<group>"; };
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
+		0E77AFDB2918751300864BB5 /* Playlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Playlist.h; path = source/Playlist.h; sourceTree = "<group>"; };
+		0E77AFDC2918751300864BB5 /* Track.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Track.cpp; path = source/Track.cpp; sourceTree = "<group>"; };
+		0E77AFDD2918751300864BB5 /* Track.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Track.h; path = source/Track.h; sourceTree = "<group>"; };
+		0E77AFDE2918751300864BB5 /* Playlist.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Playlist.cpp; path = source/Playlist.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
 		13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipJumpNavigation.cpp; path = source/ShipJumpNavigation.cpp; sourceTree = "<group>"; };
@@ -591,6 +597,10 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				0E77AFDE2918751300864BB5 /* Playlist.cpp */,
+				0E77AFDB2918751300864BB5 /* Playlist.h */,
+				0E77AFDC2918751300864BB5 /* Track.cpp */,
+				0E77AFDD2918751300864BB5 /* Track.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -1155,6 +1165,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E77AFDF2918751D00864BB5 /* Playlist.cpp in Sources */,
+				0E77AFE02918751D00864BB5 /* Track.cpp in Sources */,
 				A96863AD1AE6FD0E004FE1FE /* Command.cpp in Sources */,
 				A96863E71AE6FD0E004FE1FE /* PointerShader.cpp in Sources */,
 				A96863E51AE6FD0E004FE1FE /* PlayerInfo.cpp in Sources */,
