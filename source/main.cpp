@@ -181,6 +181,10 @@ int main(int argc, char *argv[])
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
 	}
+	catch(Test::known_failure_tag)
+	{
+		// This is not an error. Simply exit succesfully.
+	}
 	catch(const runtime_error &error)
 	{
 		Audio::Quit();
