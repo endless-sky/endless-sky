@@ -576,6 +576,8 @@ void MapDetailPanel::DrawKey()
 		vector<pair<double, const Government *>> distances;
 		for(const auto &it : closeGovernments)
 		{
+			if(!it.first)
+				continue;
 			auto displayNameIt = displayNames.find(it.first->GetName());
 			vector<const Government *>::iterator matchingGov;
 			if(displayNameIt != displayNames.end())
