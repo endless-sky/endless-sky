@@ -178,6 +178,8 @@ int main(int argc, char *argv[])
 
 		Audio::Init(GameData::Sources());
 
+		Audio::PlayMusic("music/startup");
+
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
 	}
