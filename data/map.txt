@@ -7311,7 +7311,6 @@ system Clepsydra
 	asteroids "medium metal" 3 1.261
 	asteroids "large metal" 1 1.287
 	minables aluminum 3 1.513
-	fleet "Ignotus Harvest" 400
 	object
 		sprite star/neutron
 		period 10
