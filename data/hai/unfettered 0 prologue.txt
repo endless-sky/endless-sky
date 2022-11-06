@@ -1370,15 +1370,19 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		personality entering timid staying target
 		system "Hi Yahr"
 		ship "Alpha Auxiliary (Supplies)" "Settler"
-
 		conversation
 			`You have finished scanning the Auxiliary. There can be no doubt: it is controlled by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
 			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here. We have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
 			choice
 				`	"I will land, as you ask."`
 					accept
+				`	"But I can jump away without risk."`
+					goto jump
 				`	"Screw you and your Chiefs! I'm taking that ship down!"`
 			`	"Consider this carefully before taking any actions you may regret in the future. Our offer still stands." The transmission cuts out.`
+				decline
+			label jump
+			`	"Maybe, but there is no garantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defences will protect you."`
 	npc
 		government "Alpha"
 		personality timid staying vindictive
@@ -1387,6 +1391,8 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		ship "Far Osk 27" "Vixen"
 		ship "Far Osk 27" "Anger"
 		ship "Far Osk 27" "Dart"
+	on visit
+		dialog "You should have landed on <destination>, but you did not scan the Auxiliary yet. Time is of the essence, take of and scan its cargo as soon as possible!"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
