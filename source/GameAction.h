@@ -44,6 +44,15 @@ class UI;
 // Conversation.
 class GameAction {
 public:
+	class ShipModifier
+	{
+	public:
+		ShipModifier() {}
+		std::vector<std::string> scopes;
+		std::vector<std::string> outfitTags;
+		std::vector<std::string> outfitAttributes;
+	};
+public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
 	GameAction(const DataNode &node, const std::string &missionName);
@@ -79,7 +88,8 @@ private:
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<std::pair<const Ship *, std::string>> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
-	std::vector<std::string> takeOutfitsByTag;
+
+	std::vector<ShipModifier> shipModifiers;
 
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

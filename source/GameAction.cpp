@@ -128,12 +128,45 @@ namespace {
 		Messages::Add(message, Messages::Importance::High);
 	}
 
-	void DoTakeByTag(PlayerInfo &player, std::string tagName, UI *ui)
+	void DoShipModifier(PlayerInfo &player, GameAction::ShipModifier &modifier, UI *ui)
 	{
-		Ship *flagship = player.Flagship();
-		for(auto &outfit : GameData::Outfits())
-			if(outfit.second.HasTag(tagName))
-				flagship->AddOutfit(&outfit.second, flagship->OutfitCount(&outfit.second));
+		bool fleet = count(modifier.scopes.begin(), modifier.scopes.end(), "fleet");
+		bool parked = count(modifier.scopes.begin(), modifier.scopes.end(), "parked");
+		bool flagship = count(modifier.scopes.begin(), modifier.scopes.end(), "flagship");
+		bool sameSystem = count(modifier.scopes.begin(), modifier.scopes.end(), "system");
+		if(modifier.outfitTags.size() || modifier.outfitAttributes.size())
+		{
+			if(flagship || !modifier.scopes.size())
+			{
+				Ship *flagshipPtr = player.Flagship();
+				for(const auto &outfit : flagshipPtr->Outfits())
+				{
+					for(const auto &tag : modifier.outfitTags)
+						if(outfit.first->HasTag(tag))
+							flagshipPtr->AddOutfit(outfit.first, flagshipPtr->OutfitCount(outfit.first));
+					for(const auto &attribute : modifier.outfitAttributes)
+						if(outfit.first->Get(attribute))
+							flagshipPtr->AddOutfit(outfit.first, flagshipPtr->OutfitCount(outfit.first));
+				}
+			}
+			if(fleet)
+				for(const auto &ship : player.Ships())
+				{
+					if(sameSystem && ship->GetSystem() != player.GetSystem())
+						continue;
+					if(!parked && ship->IsParked())
+						continue;
+					for(const auto &outfit : ship->Outfits())
+					{
+						for(const auto &tag : modifier.outfitTags)
+							if(outfit.first->HasTag(tag))
+								ship->AddOutfit(outfit.first, ship->OutfitCount(outfit.first));
+						for(const auto &attribute : modifier.outfitAttributes)
+							if(outfit.first->Get(attribute))
+								ship->AddOutfit(outfit.first, ship->OutfitCount(outfit.first));
+					}
+				}
+		}
 	}
 }
 
@@ -185,8 +218,25 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		else
 			child.PrintTrace("Error: Skipping invalid outfit quantity:");
 	}
-	else if(key == "outfittag" && hasValue)
-		takeOutfitsByTag.emplace_back(child.Token(1));
+	else if(key == "modify ship")
+	{
+		shipModifiers.emplace_back();
+		for(const auto &token : child.Tokens())
+			shipModifiers.back().scopes.emplace_back(token);
+		for(const auto &grand : child)
+		{
+			if(grand.Token(0) == "take outfits")
+				for(const auto &greatGrand : child)
+				{
+					if(greatGrand.Token(0) == "attributes")
+						for(const auto &token : greatGrand.Tokens())
+							shipModifiers.back().outfitAttributes.emplace_back(token);
+					else if (greatGrand.Token(0) == "tags")
+						for(const auto &token : greatGrand.Tokens())
+							shipModifiers.back().outfitTags.emplace_back(token);
+				}
+		}
+	}
 	else if(key == "payment")
 	{
 		if(child.Size() == 1)
@@ -259,8 +309,38 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("give", "ship", it.first->VariantName(), it.second);
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
-	for(auto it : takeOutfitsByTag)
-		out.Write("outfittag", it);
+	for(auto it : shipModifiers)
+	{
+		out.WriteToken("modify ship");
+		for(const auto &scope : it.scopes)
+			out.WriteToken(scope);
+		out.Write();
+		out.BeginChild();
+		{
+			if(it.outfitTags.size() || it.outfitAttributes.size())
+			{
+				out.Write("take outfits");
+				out.BeginChild();
+				{
+					if(it.outfitTags.size())
+					{
+						out.WriteToken("tags");
+						for(const auto &tag : it.outfitTags)
+							out.WriteToken(tag);
+						out.Write();
+					}
+					if(it.outfitAttributes.size())
+					{
+						out.WriteToken("attributes");
+						for(const auto &attribute : it.outfitAttributes)
+							out.WriteToken(attribute);
+						out.Write();
+					}
+				}
+			}
+		}
+		out.EndChild();
+	}
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -343,9 +423,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
-	for(auto it : takeOutfitsByTag)
-		if(!it.empty())
-			DoTakeByTag(player, it, ui);
+	for(auto it : shipModifiers)
+		DoShipModifier(player, it, ui);
 	for(auto &&it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
