@@ -12,3 +12,26 @@
  You should have received a copy of the GNU General Public License along with
  this program. If not, see <https://www.gnu.org/licenses/>.
  */
+
+
+#include <string>
+#include <map>
+
+
+// Class to store a track of music that can be used in a playlist.
+class Track
+{
+public:
+	enum class GameState
+	{
+		IDLE,
+		COMBAT,
+		LANDED
+	}
+public:
+	Track
+private:
+	std::string name;
+	double volumeModifier = 0.;
+	std::map<GameState, std::string> titles;
+};
