@@ -341,6 +341,8 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
+	// Calculate the ship's drag after accounting for drag reduction.
+	double Drag() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
