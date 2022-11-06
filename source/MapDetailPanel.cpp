@@ -581,7 +581,7 @@ void MapDetailPanel::DrawKey()
 		sort(distances.begin(), distances.end());
 		int drawn = 0;
 		multimap<const string, const Color *> alreadyDisplayed;
-		for(auto &it : distances)
+		for(const auto &it : distances)
 		{
 			const string &displayName = it.second->GetName();
 			const Color &displayColor = GovernmentColor(it.second);
