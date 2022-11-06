@@ -129,7 +129,7 @@ private:
 
 	// Fail the test using the given message as reason.
 	void Fail(const TestContext &context, const PlayerInfo &player, const std::string &testFailReason) const;
-	void FailingTestSucceeded() const;
+	void UnexpectedSuccessResult() const;
 
 
 private:

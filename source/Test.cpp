@@ -398,7 +398,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		{
 			// If this test was supposed to fail diagnose this here.
 			if(status >= Status::KNOWN_FAILURE)
-				FailingTestSucceeded();
+				UnexpectedSuccessResult();
 
 			// Done, no failures, exit the game.
 			SendQuitEvent();
@@ -580,7 +580,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	else
 		Logger::LogError("No test conditions were set at the moment of failure.");
 
-	// If this test is supposed to have failed, don't make it fail.
+	// If this test was expected to fail, then return a success exitcode from the program because the test did what it was expected to do.
 	if(status >= Status::KNOWN_FAILURE)
 		throw known_failure_tag{};
 
@@ -592,8 +592,8 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 
 
 
-void Test::FailingTestSucceeded() const
+void Test::UnexpectedSuccessResult() const
 {
-	throw runtime_error("Failing test succeeded: Test marked with '" + StatusText()
-		+ "' should have failed.\n");
+	throw runtime_error("Unexpected test result: Test marked with status '" + StatusText()
+		+ "' was not expected to finish succesfully.\n");
 }
