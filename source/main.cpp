@@ -66,6 +66,7 @@ void PrintVersion();
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 void PrintTestsTable();
+void PrintTestsList();
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -84,6 +85,7 @@ int main(int argc, char *argv[])
 	bool debugMode = false;
 	bool loadOnly = false;
 	bool printTests = false;
+	bool printTestsList = false;
 	bool printData = false;
 	string testToRunName = "";
 
@@ -113,6 +115,8 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
+		else if(arg == "--list-tests")
+			printTestsList = true;
 	}
 	if(PrintData::IsPrintDataArgument(argv))
 		printData = true;
@@ -120,7 +124,7 @@ int main(int argc, char *argv[])
 
 	try {
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printTests || printData;
+		bool isConsoleOnly = loadOnly || printTests || printTestsList || printData;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -142,6 +146,11 @@ int main(int argc, char *argv[])
 		if(printTests)
 		{
 			PrintTestsTable();
+			return 0;
+		}
+		if(printTestsList)
+		{
+			PrintTestsList();
 			return 0;
 		}
 
@@ -421,6 +430,7 @@ void PrintHelp()
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
+	cerr << "    --list-tests: print list of test names that can be run, then exit.." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
 	PrintData::Help();
 	cerr << endl;
@@ -489,6 +499,18 @@ void PrintTestsTable()
 		cout << test.StatusText() << '\t';
 		cout << "\"" << test.Name() << "\"" << '\n';
 	}
+	cout.flush();
+}
+
+
+
+// This prints out a list of every test.
+void PrintTestsList()
+{
+	for(auto &it : GameData::Tests())
+		if(it.second.GetStatus() != Test::Status::PARTIAL
+				&& it.second.GetStatus() != Test::Status::BROKEN)
+			cout << it.second.Name() << '\n';
 	cout.flush();
 }
 
