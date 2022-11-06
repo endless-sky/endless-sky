@@ -150,7 +150,7 @@ fi
 # Set separator to newline (in case tests have spaces in their name)
 IFS=$'\n'
 
-TESTS=$("${ES_EXEC_PATH}" --list-tests --resources "${RESOURCES}" --config "${ES_CONFIG_TEMPLATE_PATH}")
+TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}" --config "${ES_CONFIG_TEMPLATE_PATH}")
 TESTS_OK=($(echo "${TESTS}")) || true
 NUM_TOTAL=${#TESTS_OK[@]}
 
