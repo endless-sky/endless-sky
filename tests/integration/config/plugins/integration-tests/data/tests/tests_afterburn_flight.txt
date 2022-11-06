@@ -90,10 +90,29 @@ test-data "burning flyers"
 		"visited planet" Ruin
 
 test "Afterburner-flight - Simple depart land"
-	status "Active"
+	status active
 	description "Tests if the AI can use the afterburner as regular thruster for departure and landing."
 	sequence
 		inject "burning flyers"
-		load "burning flyers.txt"
-		launch
-		land
+		call "Load First Savegame"
+		assert
+			"flagship planet: Ruin" == 1
+		watchdog 12000
+		call "Depart"
+		# Wait for 10 seconds to drift away from the planet.
+		apply
+			"test: steps to wait" = 10 * 60
+		label "floating"
+		# empty input to make time pass
+		input
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" > 0
+		input
+			command land
+		label "landing"
+		# empty input to make time pass
+		input
+		branch "landing"
+			"flagship planet: Ruin" == 0
