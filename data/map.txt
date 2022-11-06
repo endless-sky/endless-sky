@@ -7296,6 +7296,39 @@ system Cinxia
 			distance 270
 			period 16.6355
 
+system Clepsydra
+	pos 264 -874
+	habitable 150
+	belt 1134 9
+	link "Pedita Pri"
+	link "Pedita Sec"
+	link "Supra Pri"
+	link "Supra Sec"
+	asteroids "small rock" 6 0.988
+	asteroids "medium rock" 2 0.832
+	asteroids "large rock" 3 1.209
+	asteroids "small metal" 5 0.832
+	asteroids "medium metal" 3 1.261
+	asteroids "large metal" 1 1.287
+	minables aluminum 3 1.513
+	fleet "Ignotus Harvest" 400
+	object
+		sprite star/neutron
+		period 10
+	object
+		sprite planet/ganymede-b
+		distance 999.815
+		period 186.08
+	object
+		sprite planet/desert9
+		distance 1728.265
+		period 563.87
+	object
+		sprite planet/rock7-b
+		distance 1391.088
+		period 30
+		offset 25
+
 system Coluber
 	pos 149.504 197.389
 	government Uninhabited
@@ -7547,7 +7580,7 @@ system "Cor Caroli"
 		period 1104.91
 
 system "Cura Dic"
-	pos 325.933 -856.506
+	pos 202.6 -825.506
 	government Quarg
 	attributes ringworld
 	arrival 700
@@ -9429,7 +9462,7 @@ system Dokdobaru
 		offset 220
 
 system Dom'us
-	pos 255.716 -786.552
+	pos 180.716 -760.552
 	government "Incipias"
 	habitable 560.92
 	belt 1259
@@ -14062,7 +14095,7 @@ system Host
 			period 41.3874
 
 system Hui'uc
-	pos 325.933 -781.506
+	pos 248.933 -792.506
 	habitable 1505.92
 	belt 1246
 	link Dom'us
@@ -14317,7 +14350,7 @@ system Ildaria
 		period 799.338
 
 system Il'le
-	pos 280.933 -720.506
+	pos 255.933 -716.506
 	government Uninhabited
 	arrival 1300
 	habitable 1200
@@ -20342,6 +20375,97 @@ system Peacock
 			distance 498
 			period 49.3926
 
+system "Pedita Pri"
+	pos 207.333 -936
+	habitable 10000.045
+	belt 1909 6
+	link Clepsydra
+	link "Pedita Sec"
+	asteroids "small rock" 1 2.58
+	asteroids "medium rock" 7 2.64
+	asteroids "large rock" 27 2.94
+	asteroids "small metal" 5 1.8
+	asteroids "medium metal" 4 2.55
+	asteroids "large metal" 6 2.67
+	minables iron 15 3.025
+	object
+		sprite star/l-dwarf
+		distance 148.515
+		period 45.7
+		offset 180
+	object
+		sprite star/o5
+		distance 1.485
+		period 45.7
+	object
+		sprite planet/desert1-b
+		distance 339
+		period 24.967
+	object
+		sprite planet/rock11
+		distance 725
+		period 78.085
+	object
+		sprite planet/forest4
+		distance 1186
+		period 163.375
+		object
+			sprite planet/rock14
+			distance 184
+			period 65.32
+	object
+		sprite planet/luna-b
+		distance 1943
+		period 342.585
+	object
+		sprite planet/saturn
+		distance 4534
+		period 1221.185
+		object
+			sprite planet/ice8-b
+			distance 268
+			period 165.845
+		object
+			sprite planet/rock17-b
+			distance 389
+			period 472.518
+		object
+			sprite planet/dust1
+			distance 520
+			period 368.794
+	object
+		sprite planet/gas14-b
+		distance 6037
+		period 1876.25
+		object
+			sprite planet/europa-b
+			distance 236
+			period 171.506
+
+system "Pedita Sec"
+	pos 185.333 -888
+	habitable 1080
+	belt 1554 9
+	belt 2215 10
+	link Clepsydra
+	link "Pedita Pri"
+	asteroids "large metal" 1 4.638
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert8-b
+		distance 285
+		period 58.562
+	object
+		sprite planet/mercury-b
+		distance 963
+		period 363.737
+	object
+		sprite planet/gas2-b
+		distance 2193
+		period 1249.989
+
 system Pelubta
 	pos -757.587 575.051
 	government Coalition
@@ -25726,6 +25850,109 @@ system Sumprast
 			sprite planet/rock14
 			distance 464
 			period 29.291
+
+system "Supra Pri"
+	pos 319 -820
+	habitable 11500.792
+	belt 1481 8
+	belt 2151 8
+	link Clepsydra
+	link "Supra Sec"
+	asteroids "small rock" 23 2.088
+	asteroids "medium rock" 72 2.064
+	asteroids "large rock" 62 1.752
+	asteroids "small metal" 4 1.608
+	asteroids "medium metal" 174 2.352
+	asteroids "large metal" 8 1.296
+	minables lead 32 3.752
+	object
+		sprite star/m8
+		distance 152.482
+		period 52.635
+	object
+		sprite star/o3
+		distance 18.018
+		period 52.635
+		offset 180
+	object
+		sprite planet/browndwarf-l
+		distance 611
+		period 56.332
+		object
+			sprite planet/callisto-b
+			distance 297
+			period 133.953
+	object
+		sprite planet/gas7-b
+		distance 1592
+		period 236.925
+		object
+			sprite planet/rock7-b
+			distance 253
+			period 190.367
+		object
+			sprite planet/miranda
+			distance 404
+			period 384.135
+	object
+		sprite planet/gas16-b
+		distance 2597
+		period 493.633
+	object
+		sprite planet/uranus
+		distance 3257
+		period 693.302
+		object
+			sprite planet/io
+			distance 242
+			period 142.306
+
+system "Supra Sec"
+	pos 340.667 -859.667
+	habitable 3650
+	belt 1291 5
+	link Clepsydra
+	link "Supra Pri"
+	asteroids "large metal" 1 2.611
+	object
+		sprite star/a0
+		period 10
+	object
+		sprite planet/desert0
+		distance 286
+		period 32.023
+	object
+		sprite planet/gas1-b
+		distance 1449
+		period 365.188
+		object
+			sprite planet/ice8
+			distance 504
+			period 427.707
+	object
+		sprite planet/gas17
+		distance 3017
+		period 1097.177
+		object
+			sprite planet/desert4
+			distance 251
+			period 188.115
+	object
+		sprite planet/gas13
+		distance 4915
+		period 2281.386
+		object
+			sprite planet/rock0-b
+			distance 303
+			period 199.372
+		object
+			sprite planet/desert4-b
+			distance 433
+			period 426.23
+	object
+		sprite planet/jupiter-b
+		distance 4127.799
+		period 2990.574
 
 system Tais
 	pos -346 381
