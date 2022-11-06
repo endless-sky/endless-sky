@@ -90,6 +90,11 @@ color "overlay hostile disabled" .3 .3 0 .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
+# Colors used when "missile overlays" are enabled
+color "missile enemy" .8 .8 .4 .7
+color "missile locked" .9 .48 .16 .9
+color "missile dangerous" 4. .1 .1 .9
+
 # Colors used in the radar map while in-flight.
 color "radar player" .2 1. 0. 0.
 color "radar friendly" .4 .6 1. 0.
