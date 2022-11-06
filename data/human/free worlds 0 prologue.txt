@@ -546,7 +546,6 @@ mission "FW Escort 0"
 			has "chosen sides"
 			has "FW Escort 1: offered"
 			has "FW Escort 1: done"
-	
 	on offer
 		conversation
 			`As you are walking through the spaceport, a man in a militia uniform approaches you. Judging by the markings on his uniform, you suspect that he is very highly ranked within the militia.`
