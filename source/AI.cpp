@@ -1981,9 +1981,9 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	const double squaredDeparture =  isJump ?
 		ship.GetSystem()->JumpDepartureDistance() * ship.GetSystem()->JumpDepartureDistance() :
 		ship.GetSystem()->HyperDepartureDistance() * ship.GetSystem()->HyperDepartureDistance();
-	if(ship.Position().Length() <= squaredDeparture)
+	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
-		Point closestDeparturePoint = ship.Position() * (squaredDeparture / ship.Position().LengthSquared());
+		Point closestDeparturePoint = ship.Position() * (squaredDeparture / (ship.Position().LengthSquared() + 0.1));
 		MoveTo(ship, command, closestDeparturePoint, Point(.0, .0), .0, .0);
 	}
 	else if(!isJump && scramThreshold)
