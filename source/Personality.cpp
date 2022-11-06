@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Personality.h"
@@ -46,10 +49,11 @@ namespace {
 	const int APPEASING = (1 << 22);
 	const int MUTE = (1 << 23);
 	const int OPPORTUNISTIC = (1 << 24);
-	const int TARGET = (1 << 25);
-	const int MARKED = (1 << 26);
-	const int LAUNCHING = (1 << 27);
-	
+	const int MERCIFUL = (1 << 25);
+	const int TARGET = (1 << 26);
+	const int MARKED = (1 << 27);
+	const int LAUNCHING = (1 << 28);
+
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
 		{"forbearing", FORBEARING},
@@ -76,18 +80,19 @@ namespace {
 		{"appeasing", APPEASING},
 		{"mute", MUTE},
 		{"opportunistic", OPPORTUNISTIC},
+		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING}
 	};
-	
+
 	const double DEFAULT_CONFUSION = 10.;
 }
 
 
 
 // Default settings for player's ships.
-Personality::Personality()
+Personality::Personality() noexcept
 	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
 }
@@ -102,13 +107,13 @@ void Personality::Load(const DataNode &node)
 		flags = 0;
 	for(int i = 1 + (add || remove); i < node.Size(); ++i)
 		Parse(node, i, remove);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion value:");
+				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
 			else
@@ -230,6 +235,13 @@ bool Personality::IsOpportunistic() const
 
 
 
+bool Personality::IsMerciful() const
+{
+	return flags & MERCIFUL;
+}
+
+
+
 bool Personality::IsStaying() const
 {
 	return flags & STAYING;
@@ -347,7 +359,7 @@ void Personality::UpdateConfusion(bool isFiring)
 	// If you're firing weapons, aiming accuracy should slowly improve until it
 	// is 4 times more precise than it initially was.
 	aimMultiplier = .99 * aimMultiplier + .01 * (isFiring ? .5 : 2.);
-	
+
 	// Try to correct for any error in the aim, but constantly introduce new
 	// error and overcompensation so it oscillates around the origin. Apply
 	// damping to the position and velocity to avoid extreme outliers, though.
@@ -370,10 +382,21 @@ Personality Personality::Defender()
 
 
 
+// Remove target and marked since the defender defeat check doesn't actually care
+// about carried ships.
+Personality Personality::DefenderFighter()
+{
+	Personality defender;
+	defender.flags = STAYING | HEROIC | UNCONSTRAINED;
+	return defender;
+}
+
+
+
 void Personality::Parse(const DataNode &node, int index, bool remove)
 {
 	const string &token = node.Token(index);
-	
+
 	auto it = TOKEN.find(token);
 	if(it != TOKEN.end())
 	{
@@ -383,5 +406,5 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 			flags |= it->second;
 	}
 	else
-		node.PrintTrace("Invalid personality setting: \"" + token + "\"");
+		node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
 }

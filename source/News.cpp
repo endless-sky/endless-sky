@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "News.h"
@@ -15,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Random.h"
 #include "SpriteSet.h"
+
+#include <algorithm>
 
 using namespace std;
 
@@ -24,34 +29,93 @@ void News::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		const string &tag = child.Token(0);
+		const bool add = (child.Token(0) == "add");
+		const bool remove = (child.Token(0) == "remove");
+		if((add || remove) && child.Size() < 2)
+		{
+			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
+			continue;
+		}
+
+		// Get the key and value (if any).
+		const string &tag = child.Token((add || remove) ? 1 : 0);
+		const int valueIndex = (add || remove) ? 2 : 1;
+		const bool hasValue = child.Size() > valueIndex;
+
 		if(tag == "location")
-			location.Load(child);
+		{
+			if(remove)
+				location = LocationFilter{};
+			else
+				location.Load(child);
+		}
 		else if(tag == "name")
-			names.Load(child);
+		{
+			if(remove)
+				names = Phrase{};
+			else
+				names.Load(child);
+		}
 		else if(tag == "portrait")
 		{
-			for(int i = 1; i < child.Size(); ++i)
-				portraits.push_back(SpriteSet::Get(child.Token(i)));
-			for(const DataNode &grand : child)
-				portraits.push_back(SpriteSet::Get(grand.Token(0)));
+			if(remove && !hasValue)
+				portraits.clear();
+			else if(remove)
+			{
+				// Collect all values to be removed.
+				auto toRemove = set<const Sprite *>{};
+				for(int i = valueIndex; i < child.Size(); ++i)
+					toRemove.emplace(SpriteSet::Get(child.Token(i)));
+
+				// Erase them in unison.
+				portraits.erase(remove_if(portraits.begin(), portraits.end(),
+						[&toRemove](const Sprite *sprite) { return toRemove.find(sprite) != toRemove.end(); }),
+					portraits.end());
+			}
+			else
+			{
+				for(int i = valueIndex; i < child.Size(); ++i)
+					portraits.push_back(SpriteSet::Get(child.Token(i)));
+				for(const DataNode &grand : child)
+					portraits.push_back(SpriteSet::Get(grand.Token(0)));
+			}
 		}
 		else if(tag == "message")
-			messages.Load(child);
+		{
+			if(remove)
+				messages = Phrase{};
+			else
+				messages.Load(child);
+		}
+		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
+		{
+			if(remove)
+				toShow = ConditionSet{};
+			else
+				toShow.Load(child);
+		}
 		else
-			child.PrintTrace("Unrecognized news attribute:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
 
 
-// Check if this news item is available on the given planet.
-bool News::Matches(const Planet *planet) const
+bool News::IsEmpty() const
+{
+	return messages.IsEmpty() || names.IsEmpty();
+}
+
+
+
+// Check if this news item is available given the player's planet and conditions.
+bool News::Matches(const Planet *planet, const ConditionsStore &conditions) const
 {
 	// If no location filter is specified, it should never match. This can be
 	// used to create news items that are never shown until an event "activates"
 	// them by specifying their location.
-	return location.IsEmpty() ? false : location.Matches(planet);
+	// Similarly, by updating a news item with "remove location", it can be deactivated.
+	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test(conditions));
 }
 
 

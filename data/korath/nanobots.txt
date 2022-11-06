@@ -1,0 +1,71 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Nanobot"
+	attributes
+		"hull" 100
+		"automaton" 1
+		"mass" 10
+		"drag" 1
+		"heat dissipation" .9
+		"outfit space" 5
+		"weapon capacity" 5
+		
+		"energy generation" .7
+		"energy capacity" 100
+		"turn" 40
+		"turning energy" .2
+		"thrust" 10
+		"thrusting energy" .3
+	outfits
+		"Nano Strike"
+	
+	engine -17 35
+	engine 17 35
+	gun 0 0
+
+outfit "Nano Strike"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"mass" 5
+	"outfit space" -5
+	"weapon capacity" -5
+	"gun ports" -1
+	weapon
+		"hit effect" "nano spark"
+		"die effect" "nano spark"
+		"inaccuracy" 10
+		"velocity" 200
+		"lifetime" 1
+		"reload" 10
+		"firing energy" 5
+		"shield damage" 10
+		"hull damage" 10
+
+effect "nano spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+fleet "Nanobots"
+	government "Korath Nanobots"
+	personality
+		heroic
+		vindictive
+	variant
+		"Nanobot" 10

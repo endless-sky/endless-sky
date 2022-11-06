@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "CaptureOdds.h"
@@ -40,14 +43,14 @@ double CaptureOdds::Odds(int attackingCrew, int defendingCrew) const
 	// If the defender has no crew remaining, odds are 100%.
 	if(!defendingCrew)
 		return 1.;
-	
+
 	// Make sure the input is within range, with the special constraint that the
 	// attacker can never succeed if they don't have two crew left (one to pilot
 	// each of the ships).
 	int index = Index(attackingCrew, defendingCrew);
 	if(attackingCrew < 2 || index < 0)
 		return 0.;
-	
+
 	return capture[index];
 }
 
@@ -62,7 +65,7 @@ double CaptureOdds::AttackerCasualties(int attackingCrew, int defendingCrew) con
 	int index = Index(attackingCrew, defendingCrew);
 	if(attackingCrew < 2 || !defendingCrew || index < 0)
 		return 0.;
-	
+
 	return casualtiesA[index];
 }
 
@@ -77,7 +80,7 @@ double CaptureOdds::DefenderCasualties(int attackingCrew, int defendingCrew) con
 	int index = Index(attackingCrew, defendingCrew);
 	if(attackingCrew < 2 || !defendingCrew || index < 0)
 		return 0.;
-	
+
 	return casualtiesD[index];
 }
 
@@ -89,7 +92,7 @@ double CaptureOdds::AttackerPower(int attackingCrew) const
 {
 	if(static_cast<unsigned>(attackingCrew - 1) >= powerA.size())
 		return 0.;
-	
+
 	return powerA[attackingCrew - 1];
 }
 
@@ -101,7 +104,7 @@ double CaptureOdds::DefenderPower(int defendingCrew) const
 {
 	if(static_cast<unsigned>(defendingCrew - 1) >= powerD.size())
 		return 0.;
-	
+
 	return powerD[defendingCrew - 1];
 }
 
@@ -112,7 +115,7 @@ void CaptureOdds::Calculate()
 {
 	if(powerD.empty() || powerA.empty())
 		return;
-	
+
 	// The first row represents the case where the attacker has only one crew left.
 	// In that case, the defending ship can never be successfully captured.
 	capture.resize(powerD.size(), 0.);
@@ -129,7 +132,7 @@ void CaptureOdds::Calculate()
 		casualtiesA.push_back((1. - odds) * (casualtiesA[up] + 1.));
 		casualtiesD.push_back(odds + (1. - odds) * casualtiesD[up]);
 		++up;
-		
+
 		// Loop through each number of crew the defender might have.
 		for(unsigned d = 2; d <= powerD.size(); ++d)
 		{
@@ -155,7 +158,7 @@ int CaptureOdds::Index(int attackingCrew, int defendingCrew) const
 		return -1;
 	if(static_cast<unsigned>(defendingCrew - 1) > powerD.size())
 		return -1;
-	
+
 	return (attackingCrew - 1) * powerD.size() + (defendingCrew - 1);
 }
 
@@ -168,12 +171,12 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	vector<double> power;
 	if(!ship.Crew())
 		return power;
-	
+
 	// Check for any outfits that assist with attacking or defending:
 	const string attribute = (isDefender ? "capture defense" : "capture attack");
 	const double crewPower = (isDefender ?
 		ship.GetGovernment()->CrewDefense() : ship.GetGovernment()->CrewAttack());
-	
+
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.
 	for(const auto &it : ship.Outfits())
@@ -184,15 +187,15 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	}
 	// Use the best weapons first.
 	sort(power.begin(), power.end(), greater<double>());
-	
+
 	// Resize the vector to have exactly one entry per crew member.
 	power.resize(ship.Crew(), 0.);
-	
+
 	// Calculate partial sums. That is, power[N - 1] should be your total crew
 	// power when you have N crew left.
 	power.front() += crewPower;
 	for(unsigned i = 1; i < power.size(); ++i)
 		power[i] += power[i - 1] + crewPower;
-	
+
 	return power;
 }
