@@ -1444,7 +1444,7 @@ mission "Remnant: Cognizance 33"
 				"Quicksilver (Proton)" 3
 	on complete
 		payment 250000
-		event "remnant: ssil vida area unvisted"
+		event "remnant: ssil vida area unvisited"
 		event "remnant: ssil vida activation"
 		conversation
 			`When you contact <planet> to confirm where to unload your cargo you are greeted by Dusk, who directs you to a docking bay closer to the main reactor. As you open the hatch, though, it is Gavriil and a group of Remnant with lifters waiting. They welcome you cheerfully, but they definitely seem in a rush to get the processed fuel unloaded and shuttled into the depths of the station. Once the last unit is off your ship, Gavriil slows down enough to thank you for the prompt delivery, but apologizes as they rush off as there is not much time left. Their parting gesture suggests you talk to Dusk up in the control room.`
