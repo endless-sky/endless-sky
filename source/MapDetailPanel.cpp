@@ -585,13 +585,12 @@ void MapDetailPanel::DrawKey()
 		{
 			const string &displayName = it.second->GetName();
 			const Color &displayColor = GovernmentColor(it.second);
-			auto lower = alreadyDisplayed.lower_bound(displayName);
-			auto upper = alreadyDisplayed.upper_bound(displayName);
-			auto found = find_if(lower, upper, [&displayColor](const pair<const string, const Color *> &item)
+			auto foundRange = alreadyDisplayed.equal_range(displayName);
+			auto foundIt = find_if(foundRange.first, foundRange.second, [&displayColor](const pair<const string, const Color *> &item)
 					{
 						return *item.second == displayColor;
 					});
-			if(found != upper)
+			if(foundIt != foundRange.second)
 				continue;
 			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
 			font.Draw(it.second->GetName(), pos + textOff, dim);
