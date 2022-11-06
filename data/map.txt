@@ -8047,7 +8047,7 @@ system Delia
 		period 5611.94
 
 system "Deep Space 7C"
-	pos -424 -1130
+	pos -774 -450
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 1297
@@ -8102,7 +8102,7 @@ system "Deep Space 7C"
 		period 2904.81
 	
 system "Deep Space 7F"
-	pos -464 -1152
+	pos -814 -472
 	government Uninhabited
 	habitable 864
 	belt 1319
@@ -8153,7 +8153,7 @@ system "Deep Space 7F"
 			period 47.4807
 
 system "Deep Space 5J"
-	pos -540 -1212
+	pos -890 -532
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 906
@@ -8215,7 +8215,7 @@ system "Deep Space 5J"
 			period 57.7392
 
 system "Deep Space 5N"
-	pos -545 -1264
+	pos -895 -584
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 490
@@ -8266,7 +8266,7 @@ system "Deep Space 5N"
 		period 1683.1
 
 system "Deep Space 5T"
-	pos -513 -1295
+	pos -863 -615
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 397
@@ -8319,7 +8319,7 @@ system "Deep Space 5T"
 			period 32.5936
 
 system "Deep Space 1Q"
-	pos -570 -1348
+	pos -920 -668
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 1009
@@ -8390,7 +8390,7 @@ system "Deep Space 1Q"
 			period 32.052
 
 system "Deep Space 1X"
-	pos -585 -1375
+	pos -935 -695
 	government Uninhabited
 	habitable 100
 	belt 1751
@@ -8416,7 +8416,7 @@ system "Deep Space 1X"
 		offset 180
 
 system "Deep Space 19M1"
-	pos -545 -1425
+	pos -895 -745
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 697
@@ -8491,7 +8491,7 @@ system "Deep Space 19M1"
 			period 27.8748
 
 system "Deep Space 19M2"
-	pos -610 -1457
+	pos -960 -777
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 851
@@ -8547,7 +8547,7 @@ system "Deep Space 19M2"
 			period 68.3166
 
 system "Deep Space 19M5"
-	pos -783 -1508
+	pos -1133 -828
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 851
@@ -8604,7 +8604,7 @@ system "Deep Space 19M5"
 			period 68.3166
 
 system "Deep Space 19K12"
-	pos -763 -1427
+	pos -1113 -747
 	government Uninhabited
 	haze _menu/haze-black
 	habitable 851
@@ -8951,7 +8951,7 @@ system Denebola
 
 
 system "Devil-Hide"
-	pos -697 -1455
+	pos -1047 -775
 	government "Pirate (Devil-Run Gang)"
 	haze _menu/haze-black
 	habitable 999
