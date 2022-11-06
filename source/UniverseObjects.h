@@ -118,7 +118,7 @@ private:
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
 	std::set<double> neighborDistances;
-	std::vector<std::pair<double, std::string>> reputationTitles;
+	std::map<double, std::string> reputationTitles;
 
 	TextReplacements substitutions;
 	Trade trade;

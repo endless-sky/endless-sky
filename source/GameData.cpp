@@ -97,7 +97,7 @@ namespace {
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
 
-	vector<pair<double, string>> reputationTitles;
+	map<double, string> reputationTitles;
 }
 
 
@@ -641,9 +641,9 @@ const Set<System> &GameData::Systems()
 
 
 
-const vector<pair<double, string>> *GameData::ReputationTitles()
+const map<double, string> &GameData::ReputationTitles()
 {
-	return &reputationTitles;
+	return reputationTitles;
 }
 
 

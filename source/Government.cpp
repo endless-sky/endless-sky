@@ -206,10 +206,10 @@ void Government::Load(const DataNode &node)
 
 
 
-// Load a set of reputation titles and return them as a pair of arrays.
-vector<pair<double, string>> Government::LoadReputationTitles(const DataNode &node)
+// Load a set of reputation titles and return them as a map.
+map<double, string> Government::LoadReputationTitles(const DataNode &node)
 {
-	vector<pair<double, string>> result;
+	map<double, string> result;
 	if(!node.HasChildren())
 		return result;
 	for(const DataNode &child : node)
@@ -219,7 +219,7 @@ vector<pair<double, string>> Government::LoadReputationTitles(const DataNode &no
 			child.PrintTrace("Skipping incorrectly formatted reputation title node.");
 			continue;
 		}
-		result.emplace_back(child.Token(0) == "-infinity" ? numeric_limits<double>::min() : child.Value(0), child.Token(1));
+		result[child.Token(0) == "-infinity" ? numeric_limits<double>::lowest() : child.Value(0)] = child.Token(1);
 	}
 	return result;
 }
@@ -496,11 +496,11 @@ string Government::GetReputationTitle() const
 	double rep = Reputation();
 	auto tempTitles = titles;
 	if(tempTitles.empty())
-		tempTitles = *GameData::ReputationTitles();
+		tempTitles = GameData::ReputationTitles();
 	if(tempTitles.empty())
 		return "";
 	string title;
-	for(auto item : tempTitles)
+	for(auto &item : tempTitles)
 	{
 		double lowerBound = item.first;
 		if(rep < lowerBound)

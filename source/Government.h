@@ -49,7 +49,8 @@ public:
 
 	// Load a government's definition from a file.
 	void Load(const DataNode &node);
-	static std::vector<std::pair<double, std::string>> LoadReputationTitles(const DataNode &node);
+
+	static std::map<double, std::string> LoadReputationTitles(const DataNode &node);
 
 	// Get the display name of this government.
 	const std::string &GetName() const;
@@ -152,7 +153,7 @@ private:
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
 	bool showReputation = false;
-	std::vector<std::pair<double, std::string>> titles;
+	std::map<double, std::string> titles;
 };
 
 
