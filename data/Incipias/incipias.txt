@@ -91,7 +91,7 @@ news "Hicemus official"
 
 news "special"
 	location
-		planet "Pontes"
+		planet "Pon'tes"
 	name
 		word
 			"ES Developer"
