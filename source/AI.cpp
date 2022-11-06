@@ -2381,7 +2381,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
 {
-	bool isStaying = ship.GetPersonality().IsStaying();
+	const bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
 	// ship has a target, that target is guaranteed to be targetable.
 	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
