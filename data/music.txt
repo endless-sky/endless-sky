@@ -10,7 +10,7 @@ track "test1"
 
 playlist "test"
 	location
-		government "Hai"
+		not government "Hai"
 	priority 1
 	weight 10
 	tracks "linear"

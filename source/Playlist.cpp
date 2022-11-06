@@ -51,7 +51,7 @@ void Playlist::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "conditions")
 			toPlay.Load(child);
-		else if(child.Token(0) == "location" && child.Size() >= 2)
+		else if(child.Token(0) == "location")
 			location.Load(child);
 		else if(child.Token(0) == "silence" && child.Size() >= 2)
 		{

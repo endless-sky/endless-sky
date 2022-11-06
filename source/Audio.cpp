@@ -254,9 +254,10 @@ const Sound *Audio::Get(const string &name)
 // main one (the one that called Init()).
 void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
 {
-	if(currentTrack->IsFinished())
+	bool currentPlaylistValid = currentPlaylist ? currentPlaylist->MatchingConditions(player) : false;
+	if(currentTrack->IsFinished() || !currentPlaylistValid)
 	{
-		if(currentPlaylist ? !currentPlaylist->MatchingConditions(player) : true)
+		if(!currentPlaylistValid)
 		{
 			WeightedList<const Playlist *> validPlaylists;
 			int priority = 0;
@@ -279,6 +280,8 @@ void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
 		}
 		if(currentPlaylist)
 			PlayMusic(currentPlaylist->GetRandomTrack()->GetTitle(Track::GameState::IDLE));
+		else
+			currentTrack->Finish();
 	}
 	if(!isInitialized)
 		return;
