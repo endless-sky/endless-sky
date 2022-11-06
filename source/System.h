@@ -103,6 +103,8 @@ public:
 	// Additional travel distance to target for ships entering using a jumpdrive.
 	double ExtraJumpArrivalDistance() const;
 
+	// The minimum distances from the system center to jump out of the system.
+	// Separated by jump drives and hyperdrives.
 	double JumpDepartureDistance() const;
 	double HyperDepartureDistance() const;
 
@@ -223,6 +225,7 @@ private:
 	// be interpreted as positive values.
 	double extraJumpArrivalDistance = 0.;
 
+	// The minimum distances from the system center to jump out of the system.
 	double jumpDepartureDistance = 0.;
 	double hyperDepartureDistance = 0.;
 
