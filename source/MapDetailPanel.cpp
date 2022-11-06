@@ -586,7 +586,7 @@ void MapDetailPanel::DrawKey()
 						{
 							return gov->GetColor() == it.first->GetColor();
 						});
-			if(&*matchingGov && matchingGov != displayNameIt->second.end())
+			if(displayNameIt != displayNames.end() && matchingGov != displayNameIt->second.end())
 			{
 				auto existingEntry = find_if(distances.begin(), distances.end(),
 						[&matchingGov](const pair<double, const Government *> &item)
