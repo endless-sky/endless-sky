@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double GAP = 3.;
+	const double DANGEROUS_ABOVE = .05;
 }
 
 
@@ -46,7 +46,7 @@ AlertLabel::AlertLabel(const Point position, const Projectile &projectile, const
 	double maxHP = flagship->Attributes().Get("hull") + flagship->Attributes().Get("shield");
 	double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
 	damagePercent = missileDamage / maxHP;
-	isDangerous = damagePercent > .05;
+	isDangerous = damagePercent > DANGEROUS_ABOVE;
 
 	if(!isTargetingMe)
 		color = GameData::Colors().Get("missile enemy");
