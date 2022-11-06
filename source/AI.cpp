@@ -1987,7 +1987,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
 		Point closestDeparturePoint;
-		if(ship.Position().Length())
+		if(ship.Position())
 			closestDeparturePoint = ship.Position()
 				* (squaredDeparture / ship.Position().LengthSquared());
 		else
