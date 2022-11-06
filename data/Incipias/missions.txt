@@ -19,7 +19,7 @@ mission "Incipias: First Contact II"
 		set "talked to quarg about incipias"
 		conversation
 			`As you leave your ship it occurs to you that the Quarg seem to settle near each intelligent species.  Maybe you can find out more about this new species here.`
-`Just like that, you notice a Quarg approaching you.`
+			`Just like that, you notice a Quarg approaching you.`
 			`    "A human in this region of space? This is... uncommon. May I ask what one of your kind is doing here?"`
 			choice
 				"I am exploring the depths of the galaxy."
