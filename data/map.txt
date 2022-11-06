@@ -40,6 +40,10 @@ galaxy "label graveyard"
 galaxy "label hai"
 	pos -74 -497
 
+galaxy "label incipias"
+	pos 275 -825
+	sprite label/incipias
+
 galaxy "label kimek"
 	pos -1250 215
 
