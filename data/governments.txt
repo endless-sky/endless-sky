@@ -1008,7 +1008,7 @@ government "Silent Ones"
 		"Hicemus" 0.0
 		"Incipias" 0.0
 		"Quarg" 0.0
-  "penalty for"
+	"penalty for"
 		assist 0
 		disable 0
 		board 0
