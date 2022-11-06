@@ -1986,14 +1986,12 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	squaredDeparture += SAFETY_OFFSET;
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
-		// Add a constant to the squared length to be sure to not divide by zero.
 		Point closestDeparturePoint;
 		if(ship.Position().Length())
 			closestDeparturePoint = ship.Position()
 				* (squaredDeparture / ship.Position().LengthSquared());
 		else
-			closestDeparturePoint = Point(1., 1.);
-			* (squaredDeparture / Point(1., 1.));
+			closestDeparturePoint = Point(1., 1.) * (squaredDeparture / Point(1., 1.).LengthSquared());
 		MoveTo(ship, command, closestDeparturePoint, Point(.0, .0), .0, .0);
 	}
 	else if(!isJump && scramThreshold)
