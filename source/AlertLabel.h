@@ -20,18 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #include <memory>
-#include <string>
 
 class Projectile;
-class StellarObject;
-class System;
 class Ship;
 
 
 // A class that holds an overlay for a missile
 class AlertLabel {
 public:
-	AlertLabel(const Point position, const Projectile& projectile, const std::shared_ptr<Ship> flagship, const double zoom);
+	AlertLabel(const Point &position, const Projectile &projectile, const std::shared_ptr<Ship> &flagship, double zoom);
 
 	void Draw() const;
 
@@ -40,10 +37,8 @@ private:
 	double rotation = 0;
 	Point position;
 	double zoom = 1.;
-	bool isDangerous = false;
-	bool isTargetingMe = true;
+	bool isTargetingFlagship = true;
 	double radius = 15.;
-	float damagePercent = 0.;
 	const Color *color;
 };
 

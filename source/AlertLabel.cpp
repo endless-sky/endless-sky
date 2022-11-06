@@ -34,41 +34,39 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double DANGEROUS_ABOVE = .05;
+	const double DANGEROUS_ABOVE = .1;
 }
 
 
 
-AlertLabel::AlertLabel(const Point position, const Projectile &projectile, const shared_ptr<Ship> flagship, const double zoom)
-		: position(position * zoom), zoom(zoom)
+AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, const shared_ptr<Ship> &flagship, double zoom)
+		: position(position), zoom(zoom)
 {
-	isTargetingMe = projectile.TargetPtr() == flagship;
+	isTargetingFlagship = projectile.TargetPtr() == flagship;
 	double maxHP = flagship->Attributes().Get("hull") + flagship->Attributes().Get("shield");
 	double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
-	damagePercent = missileDamage / maxHP;
-	isDangerous = damagePercent > DANGEROUS_ABOVE;
-
-	if(!isTargetingMe)
-		color = GameData::Colors().Get("missile enemy");
-	else
-		color = GameData::Colors().Get("missile locked");
+	bool isDangerous = (missileDamage / maxHP) > DANGEROUS_ABOVE;
 
 	if(isDangerous)
 		color = GameData::Colors().Get("missile dangerous");
+	else if(isTargetingFlagship)
+		color = GameData::Colors().Get("missile locked");
+	else
+		color = GameData::Colors().Get("missile enemy");
 
 	radius = zoom * projectile.Radius() * 0.75;
-	rotation = projectile.Facing().Degrees() + 180.;
+	rotation = projectile.Facing().Degrees();
 }
 
 
 
 void AlertLabel::Draw() const
 {
-	double angle[3] = {150., 30., 270.};
+	double angle[3] = {330., 210., 90.};
 	for(int i = 0; i < 3; i++)
 	{
-		RingShader::Draw(position, radius, 1.2f, .16f, *color, 0.f, angle[i] + rotation);
-		if(isTargetingMe)
-			PointerShader::Draw(position, Angle(angle[i] + 30. + rotation).Unit(), 7.5f, (i ? 10.f : 22.f)*zoom, radius + (i ? 10 : 20)*zoom, *color);
+		RingShader::Draw(position * zoom, radius, 1.2f, .16f, *color, 0.f, angle[i] + rotation);
+		if(isTargetingFlagship)
+			PointerShader::Draw(position * zoom, Angle(angle[i] + 30. + rotation).Unit(), 7.5f, (i ? 10.f : 22.f)*zoom, radius + (i ? 10 : 20)*zoom, *color);
 	}
 }
