@@ -289,6 +289,7 @@ namespace {
 	const double RETREAT_HEALTH = .25;
 
 	const double SAFETY_OFFSET = 1.;
+	const double ZERO_OFFSET = 0.1;
 }
 
 
@@ -1986,7 +1987,8 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	squaredDeparture += SAFETY_OFFSET;
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
-		Point closestDeparturePoint = ship.Position() * (squaredDeparture / (ship.Position().LengthSquared() + 0.1));
+		// Add a constant to the squared length to be sure to not divide by zero.
+		Point closestDeparturePoint = ship.Position() * (squaredDeparture / (ship.Position().LengthSquared() + ZERO_OFFSET));
 		MoveTo(ship, command, closestDeparturePoint, Point(.0, .0), .0, .0);
 	}
 	else if(!isJump && scramThreshold)
