@@ -484,7 +484,7 @@ void PrintTestsTable()
 {
 	for(auto &it : GameData::Tests())
 		if(it.second.GetStatus() != Test::Status::PARTIAL
-			&& it.second.GetStatus() != Test::Status::BROKEN)
+				&& it.second.GetStatus() != Test::Status::BROKEN)
 			cout << it.second.Name() << '\n';
 	cout.flush();
 }
