@@ -56,7 +56,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <set>
-#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -570,7 +569,6 @@ void MapDetailPanel::DrawKey()
 	}
 	else if(commodity == SHOW_GOVERNMENT)
 	{
-		unordered_map<string, vector<const Government *>> displayNames;
 		// Each system is colored by the government of the system. Only the
 		// four largest visible governments are labeled in the legend.
 		vector<pair<double, const Government *>> distances;
@@ -578,36 +576,30 @@ void MapDetailPanel::DrawKey()
 		{
 			if(!it.first)
 				continue;
-			auto displayNameIt = displayNames.find(it.first->GetName());
-			vector<const Government *>::iterator matchingGov;
-			if(displayNameIt != displayNames.end())
-				matchingGov = find_if(displayNameIt->second.begin(), displayNameIt->second.end(),
-						[&it](const Government *gov)
-						{
-							return gov->GetColor() == it.first->GetColor();
-						});
-			if(displayNameIt != displayNames.end() && matchingGov != displayNameIt->second.end())
-			{
-				auto existingEntry = find_if(distances.begin(), distances.end(),
-						[&matchingGov](const pair<double, const Government *> &item)
-						{
-							return item.second == *matchingGov;
-						});
-				if(existingEntry != distances.end() && existingEntry->first > it.second)
-					existingEntry->first = it.second;
-			}
-			else
-			{
-				distances.emplace_back(it.second, it.first);
-				displayNames[it.first->GetName()].emplace_back(it.first);
-			}
+			distances.emplace_back(it.second, it.first);
 		}
 		sort(distances.begin(), distances.end());
-		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
+		int drawn = 0;
+		multimap<const string, const Color *> alreadyDisplayed;
+		for(auto &it : distances)
 		{
-			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
-			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
+			const string &displayName = it.second->GetName();
+			const Color &displayColor = GovernmentColor(it.second);
+			auto lower = alreadyDisplayed.lower_bound(displayName);
+			auto upper = alreadyDisplayed.upper_bound(displayName);
+			auto found = find_if(lower, upper, [&displayColor](const pair<const string, const Color *> &item)
+					{
+						return *item.second == displayColor;
+					});
+			if(found != upper)
+				continue;
+			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
+			font.Draw(it.second->GetName(), pos + textOff, dim);
 			pos.Y() += 20.;
+			alreadyDisplayed.emplace(displayName, &displayColor);
+			++drawn;
+			if(drawn >= 4)
+				break;
 		}
 	}
 	else if(commodity == SHOW_REPUTATION)
@@ -617,7 +609,8 @@ void MapDetailPanel::DrawKey()
 		// given reputation (0.1, 100, and 10000) are shown for each sign.
 		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
 		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
-		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColo
+						r(1e4, true, false));
 		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 
