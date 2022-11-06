@@ -353,7 +353,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
 			}
 		}
-		else if (key == "departure" && hasValue)
+		else if (key == "departure")
 		{
 			if(child.Size() >= 2)
 			{
