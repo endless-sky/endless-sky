@@ -84,8 +84,27 @@ void Playlist::Load(const DataNode &node)
 
 
 
-const Track *Playlist::GetRandomTrack() const
+void Playlist::Activate()
 {
+	currentTrack = tracks.Get();
+}
+
+
+
+const Track *Playlist::GetCurrentTrack()
+{
+	if(progressionStyle == "linear")
+	{
+		const Track * tmpTrack = currentTrack;
+		auto it = find(tracks.begin(), tracks.end(), tmpTrack);
+		++it;
+		if(it == tracks.end())
+			it = tracks.begin();
+		currentTrack = *it.base();
+		return currentTrack;
+	}
+	else if (progressionStyle == "pick")
+		return currentTrack;
 	return tracks.Get();
 }
 

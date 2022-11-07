@@ -120,7 +120,7 @@ namespace {
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
 
-	const Playlist *currentPlaylist = nullptr;
+	Playlist *currentPlaylist = nullptr;
 }
 
 
@@ -259,9 +259,9 @@ void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
 	{
 		if(!currentPlaylistValid)
 		{
-			WeightedList<const Playlist *> validPlaylists;
+			WeightedList<Playlist *> validPlaylists;
 			int priority = 0;
-			for(const auto &playlist : GameData::Playlists())
+			for(auto &playlist : GameData::Playlists())
 				if(playlist.second.MatchingConditions(player))
 				{
 					if(playlist.second.Priority() == priority)
@@ -278,8 +278,8 @@ void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
 			else
 				currentPlaylist = nullptr;
 		}
-		if(currentPlaylist)
-			PlayMusic(currentPlaylist->GetRandomTrack()->GetTitle(Track::GameState::IDLE));
+		if(currentPlaylist != nullptr)
+			PlayMusic(currentPlaylist->GetCurrentTrack()->GetTitle(Track::GameState::IDLE));
 		else
 			currentTrack->Finish();
 	}
