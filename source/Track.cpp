@@ -78,6 +78,7 @@ const std::string Track::GetTitle(GameState state) const
 			return landedTitle;
 			break;
 		default:
+			return idleTitle;
 			break;
 	}
 }
