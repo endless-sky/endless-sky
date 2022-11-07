@@ -432,32 +432,32 @@ ship "Rai'alorej"
 		"Steering (Planetary Class)"
 		"Scram Drive"
 
-	"reverse engine" -82 -193.5
+	"reverse engine" -79 -186
 		zoom 0.8
-	"reverse engine" 82 -193.5
+	"reverse engine" 79 -186
 		zoom 0.8
-	engine -99 181.5
+	engine -101 196
 		zoom 0.9
-	engine 99 181.5
+	engine 101 196
 		zoom 0.9
-	engine -60 167 0.8
-	engine 60 167 0.8
-	engine -29.5 195.5
-	engine 29.5 195.5
-	gun -81.5 41.5 "Firelight Missile Bank"
+	engine -60 190 0.8
+	engine 60 190 0.8
+	engine -29 212
+	engine 29 212
+	gun -81.5 58 "Firelight Missile Bank"
 		angle 270
-	turret -88.5 -150 "Banisher Grav-Turret"
-	turret 88.5 -150 "Warder Anti-Missile"
-	turret -110.5 -142 "Warder Anti-Missile"
-	turret 110.5 -142 "Banisher Grav-Turret"
-	turret 49.5 -53.5 "Langrage Hyper-Heaver"
-	turret -64 28 "Warder Anti-Missile"
-	turret 64 28 "Banisher Grav-Turret"
-	turret -64 50 "Banisher Grav-Turret"
-	turret 64 50 "Warder Anti-Missile"
-	bay "Fighter" -119.5 -179
+	turret -89 -134 "Banisher Grav-Turret"
+	turret 89 -134 "Warder Anti-Missile"
+	turret -110 -126 "Warder Anti-Missile"
+	turret 110 -126 "Banisher Grav-Turret"
+	turret 36.5 -55.5 "Langrage Hyper-Heaver"
+	turret -63.5 44 "Warder Anti-Missile"
+	turret 63.5 44 "Banisher Grav-Turret"
+	turret -63.5 66.5 "Banisher Grav-Turret"
+	turret 63.5 66.5 "Warder Anti-Missile"
+	bay "Fighter" -115 -152
 		angle 30
-	bay "Fighter" 119.5 -179
+	bay "Fighter" 115 -152
 		angle 330
 	explode "tiny explosion" 30
 	explode "small explosion" 45
