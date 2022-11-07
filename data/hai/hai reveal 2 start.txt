@@ -148,7 +148,7 @@ mission "Hai Rescue: Yeertle Family"
 				goto leave
 			label looking
 			`	The man's holographic expression doesn't change, but his body language shifts in a way that speaks of distress.`
-			`	"The Hai government? No, they wouldn't. I can't explain it now, but let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly.`
+			`	"The Hai government... no. No, they wouldn't. Let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly.`
 			`	"Doubtlessly I'm on a register somewhere, with a timer counting down. It is even possible that someone has been told to watch for if I show up on Darkcloak. Ultimately though, the authorities don't often look for missing persons, unless they're very wealthy, until at least four months have passed by. We have been gone for only two."`
 			choice
 				`	"Do you need a ride home to Hai space?"`
@@ -299,7 +299,7 @@ mission "Hai Rescue: Ooonem"
 					goto decline
 			label go
 			`	"Okay. I guess I should have introduced myself... it's easy to forget social niceties in a place like this. My name is Ooonem, and I'm a researcher from <planet>. Thank you for agreeing to take me home."`
-			`	The pair of you, at her direction, make your way back to your ship, with you quietly greasing the palms of those at one of the many access points to the spaceport. Despite your precautions, though, as you weave between parked ships on your final approach, you notice several men sitting on a nearby ship's loading ramp looking intently at Ooonem, their guns lying close by. Before the men are able to shoot, Ooonem pulls a grenade out of her cloak and throws it at the gunmen in one smooth movement. The grenade lands squarely on the ramp, but, instead of releasing the gas cleanly, bursts into a fine mist. The men, hands halfway to their weapons, drop to the ground instead. From the screams of pain and the sounds of convulsion behind you, they're probably not going to trouble you any longer.`
+			`	The pair of you, at her direction, make your way back to your ship, with you quietly greasing the palms of those at one of the many access points to the spaceport. Despite your precautions, though, as you weave between parked ships on your final approach, you notice several men sitting on a nearby ship's loading ramp looking intently at Ooonem, their guns lying close by. Before the men are able to shoot, Ooonem pulls a grenade out of her cloak and throws it at the gunmen in one smooth movement. The grenade lands squarely on the ramp, but, instead of releasing the gas cleanly, bursts into a fine mist. The men, hands halfway to their weapons, drop from the platform to the ground with a crack instead. From the screams of pain and the sounds of convulsion behind you, they're probably not going to trouble you any longer.`
 			`	"I had better leave these behind," she says, dropping a few gas grenades on the ground. "I took them off some pirates a few days ago. They're quite illegal." You notice a label on the grenades: "Sarin Gas: twenty-meter radius." This was a nerve gas grenade that uses one of the older varieties of the gas. They're cheap and plentiful in pirate space.`
 			`	You quickly board your ship and immediately take off.`
 				launch
@@ -371,7 +371,7 @@ mission "Hai Rescue: Prison Role-Players"
 				`	(Ignore it and come back later.)`
 					defer
 			`	You put your ship down in a forest clearing and step out to find some wary-looking Hai with a directional transmitter and a very broken freighter in pirate colors.`
-			`	One of them, a lady, steps forward. "Oh, it's Captain <last>! Please help us. We need to get home to <destination>."`
+			`	One of them, a lady, steps forward, and as she does so her face lights up as if she's seen you before. "Captain <last>, Captain <last>! Please help us, we need to get home to <destination>!"`
 				goto "actual questions"
 			label questions
 			`	"Do you want to know anything else, or can we leave now?"`
