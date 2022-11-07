@@ -38,6 +38,9 @@ public:
 	// This is true if the screen is high DPI, or if the zoom is above 100%.
 	static bool IsHighResolution();
 
+	static void SetFrameRate(int frameRate);
+	static int FrameRate();
+
 	static Point Dimensions();
 	static int Width();
 	static int Height();

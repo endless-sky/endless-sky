@@ -27,6 +27,7 @@ namespace {
 	int USER_ZOOM = 100;
 	int EFFECTIVE_ZOOM = 100;
 	bool HIGH_DPI = false;
+	int FRAME_RATE = 60;
 }
 
 
@@ -88,6 +89,20 @@ void Screen::SetHighDPI(bool isHighDPI)
 bool Screen::IsHighResolution()
 {
 	return HIGH_DPI || (EFFECTIVE_ZOOM > 100);
+}
+
+
+
+void Screen::SetFrameRate(int frameRate)
+{
+	FRAME_RATE = frameRate;
+}
+
+
+
+int Screen::FrameRate()
+{
+	return FRAME_RATE;
 }
 
 

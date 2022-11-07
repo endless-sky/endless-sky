@@ -93,7 +93,8 @@ bool GameWindow::Init()
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
 		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
-			" The game will run more slowly.");
+			" The game will stutter.");
+	Screen::SetFrameRate(mode.refresh_rate);
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int minWidth = 640;

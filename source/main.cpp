@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <future>
+#include <cmath>
 #include <stdexcept>
 #include <string>
 
@@ -234,7 +235,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	int testDebugUIDelay = 3 * 60;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
-	int skipFrame = 0;
+	uint64_t frame = 0;
+	double newMod = 0;
 
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
@@ -349,12 +351,11 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// We don't skip UI-frames to ensure we test the UI code more.
 			if(inFlight && !debugMode)
 			{
-				skipFrame = (skipFrame + 1) % 30;
-				if(skipFrame)
+				if(frame % 30)
 					continue;
 			}
 			else
-				skipFrame = 0;
+				frame = 0;
 		}
 		// Caps lock slows the frame rate in debug mode.
 		// Slowing eases in and out over a couple of frames.
@@ -376,8 +377,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 			if(isFastForward && inFlight)
 			{
-				skipFrame = (skipFrame + 1) % 3;
-				if(skipFrame)
+				if(frame % 3)
+					continue;
+			}
+
+			if(Screen::FrameRate() < 60)
+			{
+				double oldMod = newMod;
+				newMod = fmod(static_cast<double>(frame), 60./static_cast<double>(Screen::FrameRate()));
+
+				if(oldMod < newMod)
 					continue;
 			}
 		}
@@ -400,6 +409,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
 			player.AddPlayTime(chrono::steady_clock::now() - start);
+
+		frame++;
 	}
 
 	// If player quit while landed on a planet, save the game if there are changes.
