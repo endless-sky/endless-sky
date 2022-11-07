@@ -173,7 +173,7 @@ namespace {
 		}
 		return transferred;
 	}
-	
+
 	// Ships which are ionized have a chance for their weapons to jam,
 	// delaying their firing for another reload cycle. The less energy
 	// a ship has relative to its max and the more ionized the ship is,
