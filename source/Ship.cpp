@@ -3550,10 +3550,13 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
+	double scale = Energy() * 220.;
+	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
 	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
-			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
+			&& (!personality.IsForbearing() || Shields() < .9 || Hull() < .9
+				|| isOverheated || jamChance > 0.1 || slowness > 10.)
 			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
 		type |= ShipEvent::PROVOKE;
 
