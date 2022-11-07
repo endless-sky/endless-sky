@@ -16,10 +16,10 @@ outfit "Nanotech Battery"
 	category "Power"
 	cost 3000000
 	thumbnail "outfit/quarg nanotech battery"
-	"mass" 50
-	"outfit space" -50
-	"energy capacity" 60000
-	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being less than a third the size."
+	"mass" 30
+	"outfit space" -30
+	"energy capacity" 40000
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing almost as much energy as the best human batteries while being less than a third the size."
 
 outfit "Antimatter Core"
 	category "Power"
@@ -113,7 +113,7 @@ outfit "Medium Graviton Thruster"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
-	"thrust" 80
+	"thrust" 100
 	"thrusting energy" 20
 	"thrusting heat" 10
 	"flare sprite" "effect/medium graviton flare"
@@ -126,9 +126,9 @@ outfit "Medium Graviton Steering"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50
-	"turn" 1600
-	"turning energy" 10
-	"turning heat" 5
+	"turn" 2400
+	"turning energy" 12
+	"turning heat" 6
 	"steering flare sprite" "effect/medium graviton flare"
 	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
 
@@ -138,6 +138,6 @@ outfit "Quantum Shield Generator"
 	thumbnail "outfit/quarg quantum shield generator"
 	"mass" 120
 	"outfit space" -120
-	"shield generation" 10
-	"shield energy" 10
+	"shield generation" 15
+	"shield energy" 15
 	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."

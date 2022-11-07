@@ -42,7 +42,7 @@ ship "Quarg Skylark"
 		"Quarg Anti-Missile" 2
 		
 		"Antimatter Core"
-		"Nanotech Battery"
+		"Nanotech Battery" 2
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 120
 		
@@ -96,7 +96,7 @@ ship "Quarg Wardragon"
 		"Quarg Anti-Missile" 2
 		
 		"Antimatter Core"
-		"Nanotech Battery"
+		"Nanotech Battery" 2
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 160
 		
