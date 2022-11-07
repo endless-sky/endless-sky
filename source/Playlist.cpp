@@ -19,6 +19,7 @@
 #include "PlayerInfo.h"
 #include "System.h"
 
+#include <algorithm>
 
 using namespace std;
 
