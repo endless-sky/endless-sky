@@ -670,7 +670,7 @@ void Engine::Step(bool isActive)
 	{
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
-		// Otherwise, display a segment for every 100 fuel.
+		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
 			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
 		else
@@ -2449,11 +2449,11 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		if(ship->GetGovernment() == attacker && ship->GetTargetShip() == target)
 		{
 			++attackerCount;
-			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();
+			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Strength();
 		}
 
 	// Only ask for help if outmatched.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
+	double targetStrength = (target->Shields() + target->Hull()) * target->Strength();
 	if(attackerStrength <= targetStrength)
 		return;
 

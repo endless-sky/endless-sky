@@ -41,7 +41,8 @@ namespace {
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
-	int screenModeIndex = 0;
+	// Default to fullscreen.
+	int screenModeIndex = 1;
 	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
 
 	// Enable standard VSync by default.
