@@ -58,7 +58,7 @@ mission "Event: Pug Media Coverage"
 		has "event: pug media coverage"
 	on offer
 		event "hai secret leaks" 10 15
-		log "Minor People" "Maduena Kabiru" `A councilor from Bounty in the Delta Velorum system. He is somewhat paranoid and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
+		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
 			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you also suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that lead to the events precipitating the war would not be tolerated.`
@@ -81,7 +81,7 @@ conversation "hai reveal free worlds news"
 		has "First Contact: Hai: offered"
 	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other, and fire weapons quite unlike anything produced in human space.`
 	`	You raise your eyebrows. Actual footage of an unknown alien conflict doesn't seem likely.`
-	`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is definitely rented - you couldn't imagine how a crewman would be able to afford a suit like that on their salary - and he's clearly anxious about what he's exposed. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit crumples slightly. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the 'Hai'.`
+	`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is definitely rented - you couldn't imagine how a crewman would be able to afford a suit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the 'Hai'.`
 	`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing... You listen in to collect the relevant details for future reference.` # Add an option to listen for more information, to break it up.  
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer.` # And the player could be told to go to Prime in Betelgeuse as well. If the player's met the guy asking for intelligent squirrels, that could be mentioned.
 		accept
@@ -120,7 +120,7 @@ conversation "What is going on in Hai space? (Have not met Unfettered.)"
 		`	"Why does everyone seem so afraid?"`
 	`	She shakes her head and wrinkles her nose with a look of distaste. "Within about three days of hearing that the Hai were being splashed all over major news networks back home, a whole heap of curious pirates have chanced the wormhole en masse. The local security forces on patrol at the time got blown out of the sky by a surprise attack, and everyone has been a bit shaken up since."`
 	`	"Oh, that's awful!" you say.`
-	`	She nods. "Unfortunately, these pirates are increasing in number by the day, and it's taking a while for the government to redistribute an appropriately resourced security force because of the Unfettered."`
+	`	She nods. "Unfortunately, these pirates are increasing in number by the day, and it's taking a while for the government to redistribute an appropriately resourced security force thanks to the Unfettered."`
 	choice
 		# Rewrote question so it makes sense whether you met them or not
 		`	"Who are the Unfettered?"`
@@ -136,13 +136,13 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 			goto pink
 	`	She shakes her head and wrinkles her nose with a look of distaste. "Some marauder came here just yesterday, posing as a trader to investigate the rumors. We thought the Hai had means of keeping them out, but this one snuck in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils. We're just... in shock, I suppose. It's completely unprecedented for something like that to happen in broad daylight."`
 	`	She sighs deeply and says, "Naturally they've ramped up security, but everyone is just a bit shaken and distrustful at the moment."`
-	`	"Oh that's awful!" you say.`
+	`	"Oh, that's awful!" you say.`
 	`	She nods and forces a little bit of false cheer into her voice, "This is why we're all wearing pink, just a little show of local solidarity.`
 		goto main
 	label pink
-	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris, and kidnapped a number of Hai, probably into slavery. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but everyone is a bit shaken up. Us locals are wearing pink in solidarity, and so we're not mistaken for a security risk.`
+	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris, and kidnapped a number of Hai, probably into slavery. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but everyone is a bit shaken up so us locals are wearing pink in solidarity... and so we're not mistaken for a security risk.`
 	label main
-	`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force because of the Unfettered. So far they've only been able to recall those on leave and up their vigilance."`
+	`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered. So far they've only been able to recall those on leave and up their vigilance."`
 	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
 	`	"Are you Captain <last>?" one of them asks you. "Don't worry, you're not in trouble."`
 	`	You nod your affirmation.`
@@ -177,7 +177,7 @@ mission "ZZ Event Hai Secret Leaks: RSHU"
 		event "news: hai video clip published"
 		conversation "hai reveal republic or syndicate news"
 	on visit
-		dialog "You should first visit Allhome, where most of the humans in Hai space live, to see how things are going before you get more heavily involved."
+		dialog "You should first visit Allhome, where the most humans are, to see how things are going before you get more heavily involved."
 	on stopover
 		conversation "What is going on in Hai space? (Met the Unfettered.)"
 
@@ -203,7 +203,7 @@ mission "ZZ Event Hai Secret Leaks: FWHU"
 		event "news: hai video clip published"
 		conversation "hai reveal free worlds news"
 	on visit
-		dialog "You should first visit Allhome, where most of the humans in Hai space live, to see how things are going before you get more heavily involved."
+		dialog "You should first visit Allhome, where the most humans are, to see how things are going before you get more heavily involved."
 	on stopover
 		conversation "What is going on in Hai space? (Met the Unfettered.)"
 
@@ -255,7 +255,7 @@ mission "ZZ Event Hai Secret Leaks: FWH"
 mission "ZZ Event Hai Secret Leaks: RS"
 	landing
 	name "Investigate the Hai"
-	description "There have been reports of a secret, violent alien race that traders have known about for ages. The rumours seem unsubstantiated, but you should go and find out what's really going on."
+	description "There have been reports of a secret, violent alien race that traders have known about for ages. You should go and find out what's really going on."
 	source
 		government "Republic" "Syndicate"
 		attributes "spaceport"
@@ -274,7 +274,7 @@ mission "ZZ Event Hai Secret Leaks: RS"
 mission "ZZ Event Hai Secret Leaks: FW"
 	landing
 	name "Investigate the Hai"
-	description "There have been reports of a secret, violent alien race waging war just outside of human space. The rumors seem unsubstantiated, but you should go and find out what's really going on."
+	description "There have been reports of a secret, violent alien race waging war just outside of human space. You should go and find out what's really going on."
 	source
 		government "Free Worlds"
 		attributes "spaceport"
@@ -737,7 +737,7 @@ mission "Hai Leaks Response 4"
 			`	"Uh well, yes. I presume you saw the pirates on your way in? They've been appearing en masse and overwhelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet, capturing Hai, and taking them away."`
 			choice
 				`	"I have heard about the kidnapping."`
-			`	He nods. "Unfortunately, it's taking a while for them to redistribute an appropriately resourced defense force, because of the Unfettered. It's bad enough that we've had to bring these old Ladybug models out of mothballs to bolster our forces here."`
+			`	He nods. "Unfortunately, it's taking a while for them to redistribute an appropriately resourced defense force, thanks to the Unfettered. It's bad enough that we've had to bring the old Ladybug models out of mothballs to bolster our forces here."`
 			`	"Even more unfortunately," he continues, "it seems that the overabundance of these pirates is the result of one particular individual's success. His ship, called the Black Lich, is in Waypoint with a stolen Geocoris that has been converted into some kind of semi-stable weapons platform and is now being used as a temporary base."`
 			`	"This does give us an opportunity, however. If the kidnapped Hai are still on board, we might be able to rescue them, and if we can defeat the Black Lich, we may stem the tide of opportunists that are swarming through the wormhole.`
 			`	"What do you say?"`
