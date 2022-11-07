@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionSet.h"
 #include "Date.h"
 #include "EsUuid.h"
+#include "Location.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
@@ -90,7 +91,9 @@ public:
 	bool IsAtSetting(Setting setting) const;
 
 	// Information about what you are doing.
+	bool DestinationIsPlanet() const;
 	const Planet *Destination() const;
+	const System *DestinationSystem() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
 	const std::set<const Planet *> &Stopovers() const;
@@ -227,9 +230,9 @@ private:
 	ConditionSet toComplete;
 	ConditionSet toFail;
 
-	const Planet *source = nullptr;
+	Location source;
 	LocationFilter sourceFilter;
-	const Planet *destination = nullptr;
+	Location destination;
 	LocationFilter destinationFilter;
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
