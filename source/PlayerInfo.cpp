@@ -1693,7 +1693,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 
 
 // Look at the list of available missions and see if any of them can be offered
-// right now, in the given location (landing or spaceport). If there are no
+// right now, in the given location (landing, spaceport, or entering). If there are no
 // missions that can be accepted, return a null pointer.
 Mission *PlayerInfo::MissionToOffer(Mission::Setting setting)
 {
@@ -1887,6 +1887,29 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
 		}
+
+	// If we're jumping to a new system, see if any new missions should offer upon entering.
+	// Jump events are only created for the player's flagship.
+	if((event.Type() & ShipEvent::JUMP) && event.Actor())
+	{
+		for(auto &it : GameData::Missions())
+		{
+			if(!it.second.IsAtSetting(Mission::ENTERING))
+				continue;
+
+			if(it.second.CanOffer(*this))
+			{
+				list<Mission> &missions = availableMissions;
+
+				missions.push_back(it.second.Instantiate(*this));
+				if(missions.back().HasFailed(*this))
+					missions.pop_back();
+			}
+		}
+		Mission *mission = MissionToOffer(Mission::ENTERING);
+		if(mission && mission->HasSpace(*flagship))
+			mission->Do(Mission::OFFER, *this, ui);
+	}
 
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
@@ -3101,7 +3124,7 @@ void PlayerInfo::CreateMissions()
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
-		if(it.second.IsAtSetting(Mission::BOARDING) || it.second.IsAtSetting(Mission::ASSISTING))
+		if(it.second.IsAtSetting(Mission::BOARDING) || it.second.IsAtSetting(Mission::ASSISTING) || it.second.IsAtSetting(Mission::ENTERING))
 			continue;
 		if(skipJobs && it.second.IsAtSetting(Mission::JOB))
 			continue;
