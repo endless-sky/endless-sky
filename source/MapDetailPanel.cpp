@@ -580,22 +580,19 @@ void MapDetailPanel::DrawKey()
 		}
 		sort(distances.begin(), distances.end());
 		int drawn = 0;
-		vector<pair<string, const Color *>> alreadyDisplayed;
+		vector<pair<string, Color>> alreadyDisplayed;
 		for(const auto &it : distances)
 		{
 			const string &displayName = it.second->GetName();
 			const Color &displayColor = it.second->GetColor();
-			auto foundIt = find_if(alreadyDisplayed.begin(), alreadyDisplayed.end(),
-					[&displayName, &displayColor](const pair<const string, const Color *> &item)
-					{
-						return (item.first == displayName) && (*item.second == displayColor);
-					});
+			auto foundIt = find(alreadyDisplayed.begin(), alreadyDisplayed.end(),
+					make_pair(displayName, displayColor));
 			if(foundIt != alreadyDisplayed.end())
 				continue;
 			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
 			font.Draw(it.second->GetName(), pos + textOff, dim);
 			pos.Y() += 20.;
-			alreadyDisplayed.emplace_back(displayName, &displayColor);
+			alreadyDisplayed.emplace_back(displayName, displayColor);
 			++drawn;
 			if(drawn >= 4)
 				break;
