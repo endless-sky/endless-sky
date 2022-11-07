@@ -503,7 +503,7 @@ bool Mission::IsValid() const
 		return false;
 	if(destination.system && !destination.system->IsValid())
 		return false;
-	
+
 	// All stopovers must be valid.
 	for(auto &&planet : Stopovers())
 		if(!planet->IsValid())
@@ -743,7 +743,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	{
 		if(source.system && source.system != player.GetSystem())
 			return false;
-		
+
 		if(!sourceFilter.Matches(player.GetSystem()))
 			return false;
 	}
