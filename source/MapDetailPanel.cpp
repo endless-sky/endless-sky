@@ -580,7 +580,7 @@ void MapDetailPanel::DrawKey()
 		}
 		sort(distances.begin(), distances.end());
 		int drawn = 0;
-		vector<pair<const string, const Color *>> alreadyDisplayed;
+		vector<pair<string, const Color *>> alreadyDisplayed;
 		for(const auto &it : distances)
 		{
 			const string &displayName = it.second->GetName();
