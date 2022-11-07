@@ -1,6 +1,5 @@
 test "Sell 0 ships"
-	# Known failure, see https://github.com/endless-sky/endless-sky/issues/6628
-	status "known failure"
+	status active
 	description "Test departing without sell a ship."
 	sequence
 		# Create/inject the savegame and load it.
