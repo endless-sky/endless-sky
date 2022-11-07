@@ -508,14 +508,19 @@ void Engine::Step(bool isActive)
 
 	wasActive = isActive;
 
-	Track::GameState state = Track::GameState::IDLE;
-	if(hadHostiles)
-		state = Track::GameState::COMBAT;
-	if(player.GetPlanet())
-		state = Track::GameState::LANDED;
 
-	if(player.IsLoaded())
-		Audio::Update(center, player, state);
+	Audio::Update(center);
+
+	if(isActive && GameData::IsLoaded())
+	{
+		Track::GameState state = Track::GameState::IDLE;
+		if(hadHostiles)
+			state = Track::GameState::COMBAT;
+		if(player.GetPlanet())
+			state = Track::GameState::LANDED;
+		Audio::UpdateMusic(player, state);
+	}
+
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)

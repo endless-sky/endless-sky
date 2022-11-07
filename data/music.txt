@@ -1,9 +1,9 @@
-track "test2"
+track "testos"
 	idle "music/mainscreen"
 	combat "music/mainscreen"
 	landing "music/mainscreen"
 
-track "test1"
+track "testus"
 	idle "music/haispace"
 	combat "music/haispace"
 	landing "music/haispace"
@@ -14,5 +14,5 @@ playlist "test"
 	priority 1
 	weight 10
 	tracks "linear"
-		"test1" 20
-		"test2" 20
+		"testos" 20
+		"testus" 20

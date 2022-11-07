@@ -253,43 +253,8 @@ const Sound *Audio::Get(const string &name)
 // Set the listener's position, and also update any sounds that have been
 // added but deferred because they were added from a thread other than the
 // main one (the one that called Init()).
-void Audio::Update(const Point &listenerPosition, PlayerInfo &player, Track::GameState state)
+void Audio::Update(const Point &listenerPosition)
 {
-	bool currentPlaylistValid = currentPlaylist ? currentPlaylist->MatchingConditions(player) : false;
-	if(currentTrack->IsFinished() || !currentPlaylistValid)
-	{
-		if(!currentPlaylistValid)
-		{
-			WeightedList<Playlist *> validPlaylists;
-			int priority = 0;
-			for(auto &playlist : GameData::Playlists())
-				if(playlist.second.MatchingConditions(player))
-				{
-					if(playlist.second.Priority() == priority)
-						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
-					else if (playlist.second.Priority() > priority)
-					{
-						priority =  playlist.second.Priority();
-						validPlaylists.clear();
-						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
-					}
-				}
-			if(validPlaylists.size())
-				currentPlaylist = validPlaylists.Get();
-			else
-				currentPlaylist = nullptr;
-		}
-		if(currentPlaylist != nullptr)
-		{
-			const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
-			SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
-			PlayMusic(currentPlaylistTrack->GetTitle(state));
-		}
-		else
-			currentTrack->Finish();
-	}
-
-	
 	if(!isInitialized)
 		return;
 
@@ -298,6 +263,55 @@ void Audio::Update(const Point &listenerPosition, PlayerInfo &player, Track::Gam
 	for(const auto &it : deferred)
 		queue[it.first].Add(it.second);
 	deferred.clear();
+}
+
+
+
+void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
+{
+	if(!isInitialized)
+		return;
+	
+	if(Preferences::Has("ingame music"))
+	{
+		bool currentPlaylistValid = currentPlaylist ? currentPlaylist->MatchingConditions(player) : false;
+		if(currentTrack->IsFinished() || !currentPlaylistValid)
+		{
+			if(!currentPlaylistValid)
+			{
+				WeightedList<Playlist *> validPlaylists;
+				int priority = 0;
+				for(auto &playlist : GameData::Playlists())
+					if(playlist.second.MatchingConditions(player))
+					{
+						if(playlist.second.Priority() == priority)
+							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
+						else if (playlist.second.Priority() > priority)
+						{
+							priority =  playlist.second.Priority();
+							validPlaylists.clear();
+							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
+						}
+					}
+				if(validPlaylists.size())
+					currentPlaylist = validPlaylists.Get();
+				else
+					currentPlaylist = nullptr;
+			}
+			if(currentPlaylist != nullptr)
+			{
+				const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
+				if(currentPlaylistTrack->Name().size())
+				{
+					SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
+					PlayMusic(currentPlaylistTrack->GetTitle(state));
+					std::cout<<"Hi: "<<currentPlaylistTrack->GetTitle(state)<<endl;
+				}
+			}
+			else
+				currentTrack->Finish();
+		}
+	}
 }
 
 

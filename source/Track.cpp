@@ -47,23 +47,37 @@ void Track::Load(const DataNode &node)
 		if(child.Token(0) == "volume" && child.Size() >= 2)
 			volumeModifier = child.Value(1);
 		else if (child.Token(0) == "idle" && child.Size() >= 2)
-			titles[GameState::IDLE] = child.Token(1);
+			idleTitle = child.Token(1);
 		else if (child.Token(0) == "combat" && child.Size() >= 2)
-			titles[GameState::COMBAT] = child.Token(1);
+			combatTitle = child.Token(1);
 		else if (child.Token(0) == "landed" && child.Size() >= 2)
-			titles[GameState::LANDED] = child.Token(1);
+			landedTitle = child.Token(1);
 	}
 	finishedLoading = true;
 }
 
 
 
+const std::string Track::Name() const
+{
+	return name;
+}
+
+
+
 const std::string Track::GetTitle(GameState state) const
 {
-	std::cout<<"Hi: "<<finishedLoading<<std::endl;
-	if(!finishedLoading)
-		return nullptr;
-	return titles.find(state)->second;
+	switch (state) {
+		case GameState::IDLE:
+			return idleTitle;
+			break;
+		case GameState::COMBAT:
+			return combatTitle;
+			break;
+		case GameState::LANDED:
+			return landedTitle;
+			break;
+	}
 }
 
 

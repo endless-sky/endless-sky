@@ -41,13 +41,17 @@ public:
 
 	void Load(const DataNode &node);
 
+	const std::string Name() const;
+
 	const std::string GetTitle(GameState state) const;
 	const double GetVolumeModifier() const;
 	
 private:
 	std::string name;
 	double volumeModifier = 0.;
-	std::map<GameState, std::string> titles;
+	std::string idleTitle = "";
+	std::string combatTitle = "";
+	std::string landedTitle = "";
 
 	bool finishedLoading = false;
 };
