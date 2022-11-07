@@ -22,5 +22,6 @@
 "Toggle fast-forward" 1073741881
 "Fleet: Fight my target" 102
 "Fleet: Gather around me" 103
-"Fleet: Hold position" 104
+"Fleet: Hold fire" 104
+"Fleet: Stay in position" 112
 "Fleet: Toggle ammo usage" 117

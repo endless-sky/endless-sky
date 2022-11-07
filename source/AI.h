@@ -161,6 +161,7 @@ private:
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
 		static const int MOVE_TO = 0x002;
+		static const int HOLD_FIRE = 0x010;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;

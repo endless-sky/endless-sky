@@ -350,6 +350,7 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
+		Command::STAY,
 		Command::HOLD,
 		Command::AMMO
 	};
