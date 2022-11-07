@@ -157,6 +157,9 @@ tip "disruption resistance heat:"
 
 tip "drag:"
 	`Limits the maximum speed of a ship.`
+	
+tip "drag reduction:"
+	`Reduces drag. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in drag, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
