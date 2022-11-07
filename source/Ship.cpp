@@ -1817,7 +1817,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		hyperspaceFuelCost = jumpUsed.second;
 		hyperState = HyperStage::BeginJumping;
 	}
-	else if (hyperState == HyperStage::InSystem)
+	else if(hyperState == HyperStage::InSystem)
 		hyperState = HyperStage::EndJump;
 	else
 		hyperState = HyperStage::NotJumping;
