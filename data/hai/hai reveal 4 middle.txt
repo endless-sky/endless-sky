@@ -689,8 +689,7 @@ mission "Hai Reveal [A04] Report to Teeneep"
 	landing
 	name "Report to Teeneep"
 	description `Tell Teeneep about the experience with Scar's Legion.`
-	source
-		not planet Darkwaste
+	source Hai-home
 	destination Darkwaste
 	to offer
 		has "event: alondo symbol timer"
@@ -861,11 +860,11 @@ mission "Hai Reveal [A06a] The Calm"
 		
 		
 mission "Hai Reveal [A07] Deliver the Relays"
-	# TODO: The relays should vanish from your cargo bay when deployed.
+	# TODO: The relays should vanish from your cargo bay when deployed if it ever becomes possible.
 	autosave
 	landing
 	name "Preparation & Investigation"
-	description `Deploy relays in <waypoints>, and return the deployment hardware to <planet>.`
+	description `Deploy relays in <waypoints>, and pick up Batu Cegeen on <planet>.`
 	source Mountaintop
 	waypoint Sumar
 	waypoint Cardax
