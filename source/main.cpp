@@ -235,6 +235,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	int testDebugUIDelay = 3 * 60;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
+	int skipFrame = 0;
 	uint64_t frame = 0;
 	double newMod = 0;
 
@@ -351,7 +352,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// We don't skip UI-frames to ensure we test the UI code more.
 			if(inFlight && !debugMode)
 			{
-				if(frame % 30)
+				skipFrame = (skipFrame + 1) % 30;
+				if(skipFrame)
 					continue;
 			}
 			else
@@ -375,18 +377,19 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				timer.SetFrameRate(frameRate);
 			}
 
-			if(isFastForward && inFlight)
-			{
-				if(frame % 3)
-					continue;
-			}
-
 			if(Screen::FrameRate() < 60)
 			{
 				double oldMod = newMod;
-				newMod = fmod(static_cast<double>(frame), 60./static_cast<double>(Screen::FrameRate()));
+				newMod = fmod(static_cast<double>(frame), 60./Screen::FrameRate());
 
 				if(oldMod < newMod)
+					continue;
+			}
+
+			if(isFastForward && inFlight)
+			{
+				skipFrame = (skipFrame + 1) % 3;
+				if(skipFrame)
 					continue;
 			}
 		}
