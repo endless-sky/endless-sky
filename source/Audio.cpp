@@ -294,8 +294,10 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 						}
 					}
 				if(validPlaylists.size())
+				{
 					currentPlaylist = validPlaylists.Get();
 					currentPlaylist->Activate();
+				}
 				else
 					currentPlaylist = nullptr;
 			}
