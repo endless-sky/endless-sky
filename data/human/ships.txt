@@ -36,8 +36,7 @@ ship "Aerie"
 			"hit force" 1200
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 136
-		"Sidewinder Missile Rack" 2
+		"Sidewinder Missile" 90
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
 		
@@ -321,8 +320,8 @@ ship "Bactrian"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
-		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo Launcher"
+		"Torpedo" 30
 		"Heavy Laser Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		
@@ -339,7 +338,7 @@ ship "Bactrian"
 		
 	engine 18.5 232
 	engine -15 232
-	gun -9 -231.5 "Torpedo Launcher"
+	gun -9 -231.5
 	gun 13.5 -231.5 "Torpedo Launcher"
 	gun 36.5 -197 "Sidewinder Missile Launcher"
 	gun 42 -193 "Sidewinder Missile Launcher"
@@ -673,7 +672,7 @@ ship "Bounder"
 		"mass" 130
 		"drag" 3.7
 		"heat dissipation" .8
-		"fuel capacity" 900
+		"fuel capacity" 800
 		"cargo space" 40
 		"outfit space" 220
 		"weapon capacity" 50
@@ -770,8 +769,8 @@ ship "Bulk Freighter"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
@@ -788,7 +787,7 @@ ship "Bulk Freighter"
 	engine -22 198
 	engine 22 198
 	gun -20 -175 "Sidewinder Missile Launcher"
-	gun 20 -175 "Sidewinder Missile Launcher"
+	gun 20 -175
 	turret -12 -155 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
 	turret 0 5 "Laser Turret"
@@ -803,7 +802,7 @@ ship "Bulk Freighter"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. Its on-board gearing allows it to service even the most primitive colonies, though dock workers in busier spaceports often joke that it would be simpler to carry smaller freighters within its gigantic holds."
-	description "	It is also an incredibly slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+	description "	It is also an incredibly slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of Bulk Freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
 
 
 
@@ -835,8 +834,7 @@ ship "Carrier"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
-		"Meteor Missile" 150
-		"Meteor Missile Box" 2
+		"Meteor Missile" 120
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -920,8 +918,8 @@ ship "Class C Freighter"
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		"Anti-Missile Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		
 		"Fusion Reactor"
 		"LP036a Battery Pack"
@@ -939,8 +937,8 @@ ship "Class C Freighter"
 		
 	engine -20 195.5
 	engine 20 195.5
-	gun -20 -175 "Meteor Missile Launcher"
-	gun 20 -175 "Meteor Missile Launcher"
+	gun -20 -175 "Sidewinder Missile Launcher"
+	gun 20 -175
 	turret -12 -155 "Quad Blaster Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
 	turret 0 5 "Proton Turret"
@@ -1086,8 +1084,8 @@ ship "Container Transport"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1104,7 +1102,7 @@ ship "Container Transport"
 	engine -20 195.5
 	engine 20 195.5
 	gun -23.5 -182 "Sidewinder Missile Launcher"
-	gun 23.5 -182 "Sidewinder Missile Launcher"
+	gun 23.5 -182
 	turret 0 -90.5 "Laser Turret"
 	turret 0 -40.5 "Heavy Anti-Missile Turret"
 	turret 0 9.5 "Laser Turret"
@@ -1119,7 +1117,7 @@ ship "Container Transport"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "The Container Transport is a newer, more popular configuration of the Bulk Freighter that replaces the outboard loose cargo holds with intermodal containers for more efficient turnaround in larger, better-equipped ports."
-	description "	As with its geared cousin, however, it remains a slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+	description "	As with its geared cousin, however, it remains a slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of Container Transports just to avoid the hassle of constantly having to wait for the Container Transport to properly align itself for hyperspace travel."
 
 
 
@@ -1296,10 +1294,10 @@ ship "Dagger"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -15 30
-	engine 15 30
-	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Javelin Mini Pod"
+	engine -8 34
+	engine 8 34
+	gun -11 -21 "Beam Laser"
+	gun 11 -21 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1334,8 +1332,8 @@ ship "Dreadnought"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Torpedo Launcher" 4
-		"Torpedo" 120
+		"Torpedo Launcher" 3
+		"Torpedo" 90
 		"Plasma Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1357,7 +1355,7 @@ ship "Dreadnought"
 	gun -9.5 -186 "Torpedo Launcher"
 	gun 9.5 -186 "Torpedo Launcher"
 	gun -18.5 -173.5 "Torpedo Launcher"
-	gun 18.5 -173.5 "Torpedo Launcher"
+	gun 18.5 -173.5
 	turret 0 -99.5 "Plasma Turret"
 	turret -39 -63.5 "Heavy Anti-Missile Turret"
 	turret 39 -63.5 "Heavy Anti-Missile Turret"
@@ -1431,14 +1429,14 @@ ship "Falcon"
 		"shields" 12800
 		"hull" 3700
 		"required crew" 52
-		"bunks" 75
+		"bunks" 91
 		"mass" 510
 		"drag" 6.7
 		"heat dissipation" .7
 		"fuel capacity" 600
-		"cargo space" 90
-		"outfit space" 540
-		"weapon capacity" 240
+		"cargo space" 130
+		"outfit space" 560
+		"weapon capacity" 250
 		"engine capacity" 150
 		weapon
 			"blast radius" 160
@@ -1606,9 +1604,9 @@ ship "Flivver"
 		"drag" 1.0
 		"heat dissipation" .9
 		"fuel capacity" 500
-		"cargo space" 5
+		"cargo space" 15
 		"outfit space" 130
-		"weapon capacity" 25
+		"weapon capacity" 16
 		"engine capacity" 45
 		weapon
 			"blast radius" 16
@@ -1616,8 +1614,6 @@ ship "Flivver"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Meteor Missile Pod" 2
-		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
 		"KP-6 Photovoltaic Panel" 3
@@ -1719,8 +1715,10 @@ ship "Frigate"
 			"hit force" 1500
 	outfits
 		"Particle Cannon" 2
-		"Torpedo Launcher" 2
+		"Torpedo Launcher"
+		"Sidewinder Missile Launcher"
 		"Torpedo" 60
+		"Sidewinder Missile" 45
 		"Blaster Turret" 2
 		"Anti-Missile Turret"
 		
@@ -1741,7 +1739,7 @@ ship "Frigate"
 	gun -11 -84.5 "Particle Cannon"
 	gun 11 -84.5 "Particle Cannon"
 	gun -11 -84.5 "Torpedo Launcher"
-	gun 11 -84.5 "Torpedo Launcher"
+	gun 11 -84.5 "Sidewinder Missile Launcher"
 	turret 0 -37.5 "Anti-Missile Turret"
 	turret -15.5 -12.5 "Blaster Turret"
 	turret 15.5 -12.5 "Blaster Turret"
@@ -2245,8 +2243,8 @@ ship "Leviathan"
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 480
-		"drag" 7.6
+		"mass" 600
+		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 80
@@ -2320,9 +2318,9 @@ ship "Manta"
 			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 75
-		"Meteor Missile Box"
+		"Meteor Missile Launcher"
+		"Meteor Missile" 60
+		"Meteor Missile Box" 2
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2333,14 +2331,14 @@ ship "Manta"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -33 38
-	engine 33 38
-	gun -21 -35 "Particle Cannon"
-	gun 21 -35 "Particle Cannon"
-	gun -27 -35 "Particle Cannon"
-	gun 27 -35 "Particle Cannon"
-	gun -66 -32 "Meteor Missile Launcher"
-	gun 66 -32 "Meteor Missile Launcher"
+	engine -33 40
+	engine 33 40
+	gun -20 -31 "Particle Cannon"
+	gun 20 -31 "Particle Cannon"
+	gun -26.5 -30 "Particle Cannon"
+	gun 26.5 -30 "Particle Cannon"
+	gun -68.5 -33 "Meteor Missile Launcher"
+	gun 68.5 -33
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
@@ -2442,7 +2440,7 @@ ship "Mule"
 		"Sidewinder Missile" 136
 		"Sidewinder Missile Rack" 2
 		"Heavy Laser Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret" 2
 		
 		"NT-200 Nucleovoltaic"
 		"KP-6 Photovoltaic Array"
@@ -2461,9 +2459,9 @@ ship "Mule"
 	gun -11 -125 "Sidewinder Missile Launcher"
 	gun 11 -125 "Sidewinder Missile Launcher"
 	turret -22 -53.5 "Heavy Laser Turret"
-	turret 19.5 -39 "Heavy Anti-Missile Turret"
+	turret 19.5 -39 "Anti-Missile Turret"
 	turret 20 33 "Heavy Laser Turret"
-	turret -20.5 103.5 "Heavy Anti-Missile Turret"
+	turret -20.5 103.5 "Anti-Missile Turret"
 	bay "Fighter" -25 -25
 	leak "leak" 50 50
 	leak "flame" 80 80
@@ -2472,7 +2470,7 @@ ship "Mule"
 	explode "small explosion" 30
 	explode "medium explosion" 20
 	"final explode" "final explosion medium"
-	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but must be classified as a warship because of its heavy armament and shields. This hodgepodge nature has its downside, though, namely its high crew requirement and the fact that any dedicated ship of the same cost will do better in a specialized role than the Mule will."
+	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but can also be used as a warship because of its heavy armament and shields. This hodgepodge nature has its downside, though, namely its high crew requirement and the fact that any dedicated ship of the same cost will do better in a specialized role than the Mule will."
 
 
 
@@ -2625,7 +2623,8 @@ ship "Protector"
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"Quad Blaster Turret" 6
-		"Heavy Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
@@ -2649,7 +2648,7 @@ ship "Protector"
 	turret 68.5 0 "Quad Blaster Turret"
 	turret -48.5 48.5 "Quad Blaster Turret"
 	turret 48.5 48.5 "Quad Blaster Turret"
-	turret 0 30 "Heavy Anti-Missile Turret"
+	turret 0 30 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
@@ -2725,8 +2724,8 @@ ship "Rainmaker"
 		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 25
-		"outfit space" 230
-		"weapon capacity" 60
+		"outfit space" 240
+		"weapon capacity" 70
 		"engine capacity" 50
 		weapon
 			"blast radius" 40
@@ -2791,8 +2790,10 @@ ship "Raven"
 			"hit force" 900
 	outfits
 		"Heavy Laser" 2
-		"Torpedo Launcher" 2
+		"Torpedo Launcher"
 		"Torpedo" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		
 		"RT-I Radiothermal"
 		"KP-6 Photovoltaic Panel" 2
@@ -2809,7 +2810,7 @@ ship "Raven"
 	gun -13.5 -35.5 "Heavy Laser"
 	gun 13.5 -35.5 "Heavy Laser"
 	gun -21 -28 "Torpedo Launcher"
-	gun 21 -28 "Torpedo Launcher"
+	gun 21 -28 "Sidewinder Missile Launcher"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "medium explosion" 24
@@ -2891,9 +2892,9 @@ ship "Scout"
 	attributes
 		category "Transport"
 		"cost" 850000
-		"shields" 1200
+		"shields" 2000
 		"hull" 400
-		"required crew" 2
+		"required crew" 1
 		"bunks" 12
 		"mass" 110
 		"drag" 3.4
@@ -3013,7 +3014,8 @@ ship "Skein"
 		"Meteor Missile" 29
 		"Meteor Missile Box"
 		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
@@ -3032,7 +3034,7 @@ ship "Skein"
 	gun 14.5 -166.5
 	turret -21.5 -122 "Quad Blaster Turret"
 	turret 21.5 -122 "Heavy Anti-Missile Turret"
-	turret -18.5 152.5 "Heavy Anti-Missile Turret"
+	turret -18.5 152.5 "Anti-Missile Turret"
 	turret 18.5 152.5 "Quad Blaster Turret"
 	bay "Fighter" -47 -61 under
 	bay "Fighter" 47 -61 under
@@ -3058,7 +3060,7 @@ ship "Sparrow"
 	attributes
 		category "Interceptor"
 		"cost" 225000
-		"shields" 1200
+		"shields" 1400
 		"hull" 300
 		"required crew" 1
 		"bunks" 3
@@ -3068,7 +3070,7 @@ ship "Sparrow"
 		"fuel capacity" 300
 		"cargo space" 15
 		"outfit space" 130
-		"weapon capacity" 20
+		"weapon capacity" 25
 		"engine capacity" 40
 		weapon
 			"blast radius" 16
@@ -3206,10 +3208,10 @@ ship "Star Queen"
 	thumbnail "thumbnail/star queen"
 	attributes
 		category "Space Liner"
-		"cost" 5500000
+		"cost" 4200000
 		"shields" 4100
 		"hull" 2200
-		"required crew" 41
+		"required crew" 33
 		"bunks" 112
 		"mass" 230
 		"drag" 4.5
@@ -3225,8 +3227,8 @@ ship "Star Queen"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Heavy Anti-Missile Turret" 2
 		
 		"KP-6 Photovoltaic Array" 4
@@ -3248,7 +3250,7 @@ ship "Star Queen"
 		over
 	gun 0 -113
 	gun -24 -76 "Sidewinder Missile Launcher"
-	gun 24 -76 "Sidewinder Missile Launcher"
+	gun 24 -76
 	turret -21.5 2.5 "Heavy Anti-Missile Turret"
 	turret 21.5 2.5 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50

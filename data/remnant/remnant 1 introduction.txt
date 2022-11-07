@@ -320,7 +320,9 @@ mission "Remnant: Defense 2"
 			distance 1 2
 		fleet
 			names "korath"
-			cargo 3
+			# This ship has been here for a while and all its cargo outfits are gone, it just has commodities.
+			cargo 4
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
@@ -362,7 +364,7 @@ mission "Remnant: Defense 3"
 		system "Parca"
 		fleet
 			names "korath"
-			cargo 3
+			cargo 0
 			variant
 				"Palavret (Crippled)"
 				"'olofez" 2
@@ -746,7 +748,8 @@ mission "Remnant: Void Sprites 3"
 				`	"Sorry, that's more than I'm willing to commit to."`
 					decline
 
-			`	"Excellent," he says. "This ship is an antique, so be careful with the shields. They are projected around the ship and are unable to adapt to new obstacles. Hard-shell shields, I believe they were called at the time of the Exodus, as opposed to the skin shields of today that fit close to the hull." He pauses and looks thoughtful, then continues. "Just make sure nothing valuable is near the hull when the shields activate - it will either be sheared in two or break the shields. And it is important to know that the pressure suit included with the ship is able to remotely activate and deactivate the shields and other ship systems. Good luck."`
+			`	"Excellent," he says. "This ship is an antique, so be careful with the shields. They are projected around the ship and are unable to adapt to new obstacles. Hard-shell shields, I believe they were called at the time of the Exodus, as opposed to the skin shields of today that fit close to the hull." He pauses and looks thoughtful, then continues. "Just make sure nothing valuable is near the hull when the shields activate - it will either be sheared in two or break the shields. And it is important to know that the pressure suit included with the ship is able to remotely activate and deactivate the shields and other ship systems."`
+			`	He moves to step away, then looks back at you. "My notes indicate that there is a superstition about how visiting Crataegusa in the Cardea system was considered to bring good fortune to explorers. There is no scientific reason that should be the case, but might be worth landing on it anyway."`
 				accept
 	on accept
 		event "remnant: puffin"
@@ -754,7 +757,7 @@ mission "Remnant: Void Sprites 3"
 	npc
 		government "Drak (Hostile)"
 		system "Nenia"
-		personality staying heroic nemesis uninterested
+		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
 	on stopover
 		conversation
@@ -2067,7 +2070,7 @@ mission "Remnant: Return the Samples"
 	npc
 		government "Drak (Hostile)"
 		system "Nenia"
-		personality staying heroic nemesis uninterested
+		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
 	on accept
 		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the void sprites and a leading expert in non-carbon based lifeforms.`
@@ -2275,6 +2278,8 @@ mission "Remnant: Salvage 2"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+			outfitters "Korath Exiles Remnant Donations"
 			variant
 				"Rano'erek"
 				"'olofez" 4
@@ -2525,7 +2530,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 				`	(Offer to take her there.)`
 				`	(Don't offer.)`
 					decline
-			`	 You offer to take her and a couple of her colleagues to see the Quarg. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
+			`	You offer to take her and a couple of her colleagues to see the Quarg. She eagerly accepts, although she expresses a preference for landing on the human world, so they can observe the Quarg ships from a distance, as they would rather not draw any attention to themselves. She runs out of the cafeteria after telling you they will meet you at your ship in half an hour.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that you left Dawn and her colleagues on one of your escorts that hasn't entered the system. Better depart and wait for it to arrive.`

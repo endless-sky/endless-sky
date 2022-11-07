@@ -400,7 +400,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				ScrollAbsolute(selected);
 		}
 	}
-	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
+	else if(panelState.CanEdit() && (key == 'k' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -419,7 +419,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				player.ParkShip(&ship, !allParked);
 		}
 	}
-	else if(panelState.CanEdit() && (key == 'A' || (key == 'a' && shift)) && panelState.Ships().size() > 1)
+	else if(panelState.CanEdit() && (key == 'a') && panelState.Ships().size() > 1)
 	{
 		// Toggle the parked status for all ships except the flagship.
 		bool allParked = true;

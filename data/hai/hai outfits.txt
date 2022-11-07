@@ -267,7 +267,7 @@ effect "tracker cloud"
 	"random angle" 360
 	"random spin" 8
 	"random velocity" 1
-	"random frame rate" 2 
+	"random frame rate" 2
 	"velocity scale" -.1
 
 
@@ -549,6 +549,50 @@ outfit `"Bufaer" Atomic Thruster`
 	"flare sound" "atomic large"
 	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
 
+outfit `"Basrem" Reverse Thruster`
+	category "Engines"
+	"cost" 150000
+	thumbnail "outfit/tiny atomic reverse hai"
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
+	"reverse thrust" 12.5
+	"reverse thrusting energy" 1.4
+	"reverse thrusting heat" 2.8
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
+	description "These tiny reverse thrusters allow even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own."
+
+outfit `"Benga" Reverse Thruster`
+	category "Engines"
+	"cost" 300000
+	thumbnail "outfit/small atomic reverse hai"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"reverse thrust" 22.4
+	"reverse thrusting energy" 2.5
+	"reverse thrusting heat" 4.8
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"flare sound" "atomic tiny"
+	description "Considering them to be well worth the steep cost, many Hai freighter pilots install reverse thrusters such as these to supplement the often poor steering on larger Hai vessels."
+
+outfit `"Biroo" Reverse Thruster`
+	category "Engines"
+	"cost" 610000
+	thumbnail "outfit/medium atomic reverse hai"
+	"mass" 44
+	"outfit space" -44
+	"weapon capacity" -44
+	"reverse thrust" 39.4
+	"reverse thrusting energy" 4
+	"reverse thrusting heat" 8.2
+	"reverse flare sprite" "effect/atomic flare/small"
+		"frame rate" 13
+	"reverse flare sound" "atomic small"
+	description "With pilots generally preferring to focus on steering when actual agility is needed, these are the largest reverse thrusters the Hai offer. They still boast an impressive amount of power for their size, which allows even the largest Hai ships to quickly come to a stop when needed."
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
@@ -641,3 +685,12 @@ outfit "Shield Beetle Pendant"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
+
+
+outfit "Failed Control System"
+	category "Systems"
+	cost 0
+	thumbnail "outfit/control transceiver"
+	"mass" 1
+	"unplunderable" 1
+	description "This was meant to control some sort of experimental system, but it appears to have failed."
