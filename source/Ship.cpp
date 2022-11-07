@@ -188,10 +188,7 @@ Ship::Ship(const DataNode &node)
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
-	{
 		modelName = node.Token(1);
-		pluralModelName = modelName + 's';
-	}
 	if(node.Size() >= 3)
 	{
 		base = GameData::Ships().Get(modelName);
@@ -494,6 +491,17 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+
+	// If no plural model name was given, default to the model name with an 's' appended.
+	// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
+	// Variants will import their plural name from the base model in FinishLoading.
+	if(pluralModelName.empty() && variantName.empty())
+	{
+		pluralModelName = modelName + 's';
+		if(modelName.back() == 's' || modelName.back() == 'z')
+			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+					+ pluralModelName + "\".");
 	}
 }
 
@@ -1833,7 +1841,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	double mass = Mass();
 	bool isUsingAfterburner = false;
 	if(isDisabled)
-		velocity *= 1. - attributes.Get("drag") / mass;
+		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -1990,7 +1998,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+		Point dragAcceleration = acceleration - velocity * (Drag() / mass);
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
@@ -2706,6 +2714,14 @@ const System *Ship::GetSystem() const
 
 
 
+const System *Ship::GetActualSystem() const
+{
+	auto p = GetParent();
+	return currentSystem ? currentSystem : (p ? p->GetSystem() : nullptr);
+}
+
+
+
 // If the ship is landed, get the planet it has landed on.
 const Planet *Ship::GetPlanet() const
 {
@@ -2765,6 +2781,13 @@ bool Ship::IsBoarding() const
 bool Ship::IsLanding() const
 {
 	return landingPlanet;
+}
+
+
+
+bool Ship::IsFleeing() const
+{
+	return isFleeing;
 }
 
 
@@ -3398,6 +3421,14 @@ int Ship::Crew() const
 
 
 
+// Calculate drag, accounting for drag reduction.
+double Ship::Drag() const
+{
+	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+}
+
+
+
 int Ship::RequiredCrew() const
 {
 	if(attributes.Get("automaton"))
@@ -3459,14 +3490,14 @@ double Ship::MaxVelocity() const
 	// v * drag == thrust
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
 }
 
 
 
 double Ship::MaxReverseVelocity() const
 {
-	return attributes.Get("reverse thrust") / attributes.Get("drag");
+	return attributes.Get("reverse thrust") / Drag();
 }
 
 
@@ -4005,6 +4036,13 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 
 
 
+void Ship::SetFleeing(bool fleeing)
+{
+	isFleeing = fleeing;
+}
+
+
+
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
@@ -4131,6 +4169,23 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 {
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
+	double mass = Mass();
+
+	auto CalculateFuelCost = [mass, defaultFuel](const Outfit &outfit) -> double
+	{
+		double baseCost = outfit.Get("jump fuel");
+		if(baseCost <= 0.)
+			baseCost = defaultFuel;
+		// Mass cost is the fuel cost per 100 tons of ship mass. The jump base mass of a drive reduces the
+		// ship's effective mass for the jump mass cost calculation. A ship with a mass below the drive's
+		// jump base mass is allowed to have a negative mass cost.
+		double massCost = .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass"));
+		// Prevent a drive with a high jump base mass on a ship with a low mass from pushing the total
+		// cost too low. Put a floor at 1, as a floor of 0 would be assumed later on to mean you can't jump.
+		// If and when explicit 0s are allowed for fuel cost, this floor can become 0.
+		return max(1., baseCost + massCost);
+	};
+
 	// Make it possible for a hyperdrive to be integrated into a ship.
 	if(baseAttributes.Get(type) && (subtype.empty() || baseAttributes.Get(subtype)))
 	{
@@ -4142,15 +4197,12 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		double jumpRange = baseAttributes.Get("jump range");
 		if(!jumpRange)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
+
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
 		// always pass.
 		if(jumpRange >= jumpDistance)
-		{
-			best = baseAttributes.Get("jump fuel");
-			if(!best)
-				best = defaultFuel;
-		}
+			best = CalculateFuelCost(baseAttributes);
 	}
 	// Search through all the outfits.
 	for(const auto &it : outfits)
@@ -4161,9 +4213,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 			if(jumpRange >= jumpDistance)
 			{
-				double fuel = it.first->Get("jump fuel");
-				if(!fuel)
-					fuel = defaultFuel;
+				double fuel = CalculateFuelCost(*it.first);
 				if(!best || fuel < best)
 					best = fuel;
 			}
