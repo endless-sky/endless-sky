@@ -173,6 +173,20 @@ namespace {
 		}
 		return transferred;
 	}
+	
+	// Ships which are ionized have a chance for their weapons to jam,
+	// delaying their firing for another reload cycle. The less energy
+	// a ship has relative to its max and the more ionized the ship is,
+	// the higher the chance that a weapon will jam. The jam chance is
+	// capped at 50%. Very small amounts of ionization are ignored.
+	// The scale is such that a weapon with an ion damage of 5 and a reload
+	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
+	// of 5% when it is at 100% energy.
+	double CalculateJamChance(double maxEnergy, double ionization)
+	{
+		double scale = maxEnergy * 220.;
+		return ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+	}
 }
 
 
@@ -2651,16 +2665,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	antiMissileRange = 0.;
 
-	// Ships which are ionized have a chance for their weapons to jam,
-	// delaying their firing for another reload cycle. The less energy
-	// a ship has relative to its max and the more ionized the ship is,
-	// the higher the chance that a weapon will jam. The jam chance is
-	// capped at 50%. Very small amounts of ionization are ignored.
-	// The scale is such that a weapon with an ion damage of 5 and a reload
-	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
-	// of 5% when it is at 100% energy.
-	double scale = Energy() * 220.;
-	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+	double jamChance = CalculateJamChance(Energy(), ionization);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2690,8 +2695,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 
-	double scale = Energy() * 220.;
-	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+	double jamChance = CalculateJamChance(Energy(), ionization);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -3550,12 +3554,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	double ionWeaponJamChance = 0.;
-	if(damage.Ion())
-	{
-		double scale = Energy() * 220.;
-		ionWeaponJamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
-	}
+	double ionWeaponJamChance = damage.Ion() ? CalculateJamChance(Energy(), ionization) : 0.;
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
 	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
