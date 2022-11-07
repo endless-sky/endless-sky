@@ -279,7 +279,15 @@ void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
 				currentPlaylist = nullptr;
 		}
 		if(currentPlaylist != nullptr)
-			PlayMusic(currentPlaylist->GetCurrentTrack()->GetTitle(Track::GameState::IDLE));
+		{
+			const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
+			volume += currentPlaylistTrack->GetVolumeModifier();
+			if(volume < 0.)
+				volume = 0.;
+			else if (volume > 100.)
+				volume = 100.;
+			PlayMusic(currentPlaylistTrack->GetTitle(Track::GameState::IDLE));
+		}
 		else
 			currentTrack->Finish();
 	}

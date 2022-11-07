@@ -42,6 +42,7 @@ public:
 	void Load(const DataNode &node);
 
 	const std::string GetTitle(GameState state) const;
+	const double GetVolumeModifier() const;
 	
 private:
 	std::string name;

@@ -59,3 +59,10 @@ const std::string Track::GetTitle(GameState state) const
 {
 	return titles.find(state)->second;
 }
+
+
+
+const double Track::GetVolumeModifier() const
+{
+	return volumeModifier;
+}
