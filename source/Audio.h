@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef AUDIO_H_
 #define AUDIO_H_
 
+#include "Track.h"
+
 #include <string>
 #include <vector>
 
@@ -53,7 +55,7 @@ public:
 	// Set the listener's position, and also update any sounds that have been
 	// added but deferred because they were added from a thread other than the
 	// main one (the one that called Init()).
-	static void Update(const Point &listenerPosition, PlayerInfo &player);
+	static void Update(const Point &listenerPosition, PlayerInfo &player, Track::GameState state);
 
 	// Play the given sound, at full volume.
 	static void Play(const Sound *sound);

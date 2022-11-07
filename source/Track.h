@@ -48,6 +48,8 @@ private:
 	std::string name;
 	double volumeModifier = 0.;
 	std::map<GameState, std::string> titles;
+
+	bool finishedLoading = false;
 };
 
 #endif

@@ -101,7 +101,7 @@ const Track *Playlist::GetCurrentTrack()
 		if(it == tracks.end())
 			it = tracks.begin();
 		currentTrack = *it.base();
-		return currentTrack;
+		return tmpTrack;
 	}
 	else if (progressionStyle == "pick")
 		return currentTrack;
@@ -112,6 +112,9 @@ const Track *Playlist::GetCurrentTrack()
 
 bool Playlist::MatchingConditions(PlayerInfo &player) const
 {
+	if(player.GetPlanet())
+		if(!location.Matches(player.GetPlanet()))
+			return false;
 	return toPlay.Test(player.Conditions()) && location.Matches(player.GetSystem());
 }
 

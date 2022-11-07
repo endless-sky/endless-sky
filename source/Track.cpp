@@ -16,6 +16,8 @@
 #include "DataNode.h"
 #include "Track.h"
 
+#include <iostream>
+
 
 Track::Track(const DataNode &node)
 {
@@ -51,12 +53,16 @@ void Track::Load(const DataNode &node)
 		else if (child.Token(0) == "landed" && child.Size() >= 2)
 			titles[GameState::LANDED] = child.Token(1);
 	}
+	finishedLoading = true;
 }
 
 
 
 const std::string Track::GetTitle(GameState state) const
 {
+	std::cout<<"Hi: "<<finishedLoading<<std::endl;
+	if(!finishedLoading)
+		return nullptr;
 	return titles.find(state)->second;
 }
 

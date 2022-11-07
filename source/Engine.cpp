@@ -61,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "Test.h"
 #include "TestContext.h"
+#include "Track.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
@@ -506,7 +507,15 @@ void Engine::Step(bool isActive)
 	testContext = nullptr;
 
 	wasActive = isActive;
-	Audio::Update(center, player);
+
+	Track::GameState state = Track::GameState::IDLE;
+	if(hadHostiles)
+		state = Track::GameState::COMBAT;
+	if(player.GetPlanet())
+		state = Track::GameState::LANDED;
+
+	if(player.IsLoaded())
+		Audio::Update(center, player, state);
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)

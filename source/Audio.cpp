@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Playlist.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Sound.h"
 
@@ -252,7 +253,7 @@ const Sound *Audio::Get(const string &name)
 // Set the listener's position, and also update any sounds that have been
 // added but deferred because they were added from a thread other than the
 // main one (the one that called Init()).
-void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
+void Audio::Update(const Point &listenerPosition, PlayerInfo &player, Track::GameState state)
 {
 	bool currentPlaylistValid = currentPlaylist ? currentPlaylist->MatchingConditions(player) : false;
 	if(currentTrack->IsFinished() || !currentPlaylistValid)
@@ -281,16 +282,14 @@ void Audio::Update(const Point &listenerPosition, PlayerInfo &player)
 		if(currentPlaylist != nullptr)
 		{
 			const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
-			volume += currentPlaylistTrack->GetVolumeModifier();
-			if(volume < 0.)
-				volume = 0.;
-			else if (volume > 100.)
-				volume = 100.;
-			PlayMusic(currentPlaylistTrack->GetTitle(Track::GameState::IDLE));
+			SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
+			PlayMusic(currentPlaylistTrack->GetTitle(state));
 		}
 		else
 			currentTrack->Finish();
 	}
+
+	
 	if(!isInitialized)
 		return;
 
