@@ -236,12 +236,12 @@ void Mission::Load(const DataNode &node)
 		{
 			if(setting == ENTERING)
 			{
-				source.system = GameData::Systems().Get(child.Token(1));
+				source = GameData::Systems().Get(child.Token(1));
 				ParseMixedSpecificity(child, "system", 2);
 			}
 			else
 			{
-				source.planet = GameData::Planets().Get(child.Token(1));
+				source = GameData::Planets().Get(child.Token(1));
 				ParseMixedSpecificity(child, "planet", 2);
 			}
 		}
@@ -249,8 +249,17 @@ void Mission::Load(const DataNode &node)
 			sourceFilter.Load(child);
 		else if(child.Token(0) == "destination" && child.Size() == 2)
 		{
-			destination.planet = GameData::Planets().Get(child.Token(1));
+			destination = GameData::Planets().Get(child.Token(1));
 			ParseMixedSpecificity(child, "planet", 2);
+		}
+		else if(child.Token(0) == "destination system")
+		{
+			finishInSystem = true;
+			if(child.Size() >= 2)
+			{
+				destination = GameData::Systems().Get(child.Token(1));
+				ParseMixedSpecificity(child, "system", 2);
+			}
 		}
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
@@ -1237,7 +1246,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
+		if(finishInSystem)
+			result.destination = destinationFilter.PickSystem(sourceSystem);
+		else
+			result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
 		if(!result.destination)
 			return result;
 	}

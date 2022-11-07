@@ -232,6 +232,7 @@ private:
 
 	Location source;
 	LocationFilter sourceFilter;
+	bool finishInSystem = false;
 	Location destination;
 	LocationFilter destinationFilter;
 	// Systems that must be visited:
