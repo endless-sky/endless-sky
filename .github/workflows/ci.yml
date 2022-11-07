@@ -592,7 +592,7 @@ jobs:
       if: ${{ failure() || cancelled() }}
       shell: bash
 
-  build_windows_clang:
+  build_windows_clang_cmake:
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: windows-latest
