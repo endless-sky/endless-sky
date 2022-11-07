@@ -3559,7 +3559,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	// it is now "provoked" against that government.
 	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& (!personality.IsForbearing() || Shields() < .9 || Hull() < .9
-				|| isOverheated || ionWeaponJamChance > 0.1 || slowness > 10. && damage.Slowing())
+				|| isOverheated || ionWeaponJamChance > 0.1 || (slowness > 10. && damage.Slowing()))
 			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
 		type |= ShipEvent::PROVOKE;
 
