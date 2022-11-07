@@ -42,6 +42,8 @@ outfit "Quarg Skylance"
 	"weapon capacity" -60
 	"turret mounts" -1
 	"required crew" 1
+	"active cooling" 10
+	"cooling energy" 1
 	weapon
 		sprite "projectile/skylance"
 			"frame rate" 1
@@ -59,7 +61,7 @@ outfit "Quarg Skylance"
 		"shield damage" 50
 		"hull damage" 40
 		"ion damage" .1
-	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
+	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them. Because this weapon produces a lot of heat by Quarg standards, they have equipped it with an integrated cooler."
 
 effect "skylance impact"
 	sprite "effect/skylance impact"
@@ -113,11 +115,12 @@ outfit "Medium Graviton Thruster"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
-	"thrust" 100
+	"thrust" 85
 	"thrusting energy" 20
-	"thrusting heat" 10
+	"thrusting heat" 3
+	"force protection" 0.1
 	"flare sprite" "effect/medium graviton flare"
-	description "Quarg thrusters are extremely powerful for their size, but at the cost of consuming immense amounts of energy."
+	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy. Quarg engines are somehow capable of making their ship resist external hit forces, as if the ship was heavier."
 
 outfit "Medium Graviton Steering"
 	category "Engines"
@@ -126,11 +129,12 @@ outfit "Medium Graviton Steering"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50
-	"turn" 2400
-	"turning energy" 12
-	"turning heat" 6
+	"turn" 1800
+	"turning energy" 10
+	"turning heat" 2
+	"force protection" 0.1
 	"steering flare sprite" "effect/medium graviton flare"
-	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
+	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors. Quarg engines are somehow capable of making their ship resist external hit forces, as if the ship was heavier."
 
 outfit "Quantum Shield Generator"
 	category "Systems"
