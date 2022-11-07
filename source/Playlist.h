@@ -67,5 +67,5 @@ private:
 	WeightedList<const Track *> tracks;
 
 	// For linear progression an index is needed, for the others just use a pointer.
-	const Track *currentTrack;
+	const Track *currentTrack = nullptr;
 };
