@@ -129,8 +129,8 @@ ship Conglomerate
 	description `Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated City-Ships. Conglomerates are built to haul large amounts of cargo and personnel across Gegno space.`
 
 ship Gypsum
-	sprite ship/gypsum
-	thumbnail thumbnail/gypsum
+	sprite "ship/gegno gypsum"
+	thumbnail "thumbnail/gegno gypsum"
 	attributes
 		category "Light Freighter"
 		licenses
@@ -335,7 +335,7 @@ ship Schist
 	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Gegno Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
 	description `	Although is it lightly armed compared to other Vi ships, Schists are still mounted a pair of cannons and a turret so it can bring some type of weaponry to a possible engagement.`
 
-ship Schist "Schist B"
+ship Schist "Schist Light Load"
 	sprite "ship/gegno schist b"
 	thumbnail "thumbnail/gegno schist b"
 	add attributes
@@ -343,7 +343,7 @@ ship Schist "Schist B"
 		"cargo space" 25
 		drag 0.1
 
-ship Schist "Schist C"
+ship Schist "Schist Heavy Load"
 	sprite "ship/gegno schist c"
 	thumbnail "thumbnail/gegno schist c"
 	add attributes
@@ -402,8 +402,8 @@ ship Eclogite
 	description `The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another pounding.`
 
 ship Diorite
-	sprite ship/diorite
-	thumbnail thumbnail/diorite
+	sprite "ship/gegno diorite"
+	thumbnail "thumbnail/gegno diorite"
 	attributes
 		category "Medium Warship"
 		licenses
@@ -454,8 +454,8 @@ ship Diorite
 	description "Placeholder".
 
 ship Hornfel
-	sprite ship/hornfel
-	thumbnail thumbnail/hornfel
+	sprite "ship/gegno hornfel a"
+	thumbnail "thumbnail/gegno hornfel a"
 	attributes
 		category "Medium Warship"
 		licenses
@@ -505,25 +505,25 @@ ship Hornfel
 	"final explode" "final explosion medium"
 	description `Hornfels are the workhorse of the Gegno Vi's military. They're decently sized, decently fast, and more than decently armed in order to be able to fight on their own. Because the Gegno Vi always require more replacement supplies in war, they double as a secondary cargo transport as well, and are seen occasionally with cargo pods attached to the several racks lining the sides of the ship.`
 
-ship Hornfel "Hornfel Light"
-	sprite ship/hornfellight
-	thumbnail thumbnail/hornfellight
+ship Hornfel "Hornfel Light Load"
+	sprite "ship/gegno hornfel b"
+	thumbnail "thumbnail/gegno hornfel b"
 	add attributes
 		mass 40
 		"cargo space" 40
 		drag 0.4
 
-ship Hornfel "Hornfel Med"
-	sprite ship/hornfelmed
-	thumbnail thumbnail/hornfelmed
+ship Hornfel "Hornfel Heavy Load"
+	sprite "ship/gegno hornfel c"
+	thumbnail "thumbnail/gegno hornfel c"
 	add attributes
 		mass 60
 		"cargo space" 60
 		drag 0.7
 
-ship Hornfel "Hornfel Heavy"
-	sprite ship/hornfelheavy
-	thumbnail thumbnail/hornfelheavy
+ship Hornfel "Hornfel Heavy Weapons"
+	sprite "ship/gegno hornfel d"
+	thumbnail "thumbnail/gegno hornfel d"
 	add attributes
 		mass 80
 		"cargo space" 80
@@ -541,8 +541,8 @@ ship Hornfel "Hornfel Heavy"
 
 ship Gneiss
 	plural "Gneiss"
-	sprite ship/gneiss
-	thumbnail thumbnail/gneiss
+	sprite "ship/gegno gneiss"
+	thumbnail "thumbnail/gegno gneiss"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -650,8 +650,8 @@ ship Protolith
 # Gegno Scin:
 
 ship Halite
-	sprite ship/halite
-	thumbnail thumbnail/halite
+	sprite "ship/gegno halite"
+	thumbnail "thumbnail/gegno halite"
 	attributes
 		category Fighter
 		licenses
@@ -863,8 +863,8 @@ ship Felsic
 	description `Felsics are based on Schists, but offer many upgrades in exchange for less durability and space for engines. The Scin have opted for three turret mounts, as well as expanded capacity for outfits and weapons. All this allows these ships to perform logistical duties well as well as doubling as a secondary combat vessel, making up for the lack of a dedicated Scin warship.`
 
 ship Feldspar
-	sprite ship/feldspar
-	thumbnail thumbnail/feldspar
+	sprite "ship/gegno feldspar"
+	thumbnail "thumbnail/gegno feldspar"
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -999,6 +999,7 @@ ship Muscovite
 	description `Muscovites are large independent research platforms with decently-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks eitehr help transport groups of Scin scientists to their project destinations, where they perform research or experiments, or allow for mobile on-board demonstrations and observations. Each Muscovite is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Muscovites can also be used as a secondary warship when needed.`
 	description `	Like other Gegno Scin ships, Muscovites themselves are an experimental test bed, and are built around the large engine system tested on Feldspars, making them notably fast for their size.`
 
+# Note: Not used at the start.
 ship Kyanite
 	sprite ship/kyanite
 	thumbnail thumbnail/kyanite

@@ -13,6 +13,7 @@
 outfit "Impulse Engine"
 	category "Engines"
 	"cost" 20000000
+	thumbnail "unknown"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
@@ -26,11 +27,13 @@ outfit "Impulse Engine"
 	"turning heat" 5
 	"flare sound" "impulse engine"
 	"steering flare sound" "impulse engine"
-	description "A mysterious propulsion device the vyu'Ira use to move."
+	"reverse flare sound" "impulse engine"
+	description `A mysterious propulsion device the vyu'Ira use to move.`
 
 outfit "Fate Sealer"
 	category Guns
 	cost 77777777
+	thumbnail "unknown"
 	mass 131
 	"outfit space" -131
 	"gun ports" -1
@@ -52,6 +55,7 @@ outfit "Fate Sealer"
 		"firing energy" 800
 		"firing heat" 400
 		"submunition" "Fate Sealer Activated"
+	description `A quantum-energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pulls the target closer to the origin of the blast.`
 
 outfit "Fate Sealer Activated"
 	weapon
@@ -70,6 +74,7 @@ outfit "Fate Sealer Activated"
 outfit "Fate Divider"
 	category Guns
 	cost 77777777
+	thumbnail "unknown"
 	mass 131
 	"outfit space" -131
 	"gun ports" -1
@@ -91,6 +96,7 @@ outfit "Fate Divider"
 		"firing heat" 400
 		"safe"
 		"submunition" "Fate Divider Activated"
+	description `A quantum-energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pushes the target farther from the origin of the blast.`
 
 outfit "Fate Divider Activated"
 	weapon
@@ -129,6 +135,7 @@ effect "fusion blast"
 
 outfit "Abyssal Composer"
 	category "Guns"
+	thumbnail "unknown"
 	cost 170000
 	thumbnail "outfit/unknown"
 	"mass" 21
@@ -158,7 +165,7 @@ outfit "Abyssal Composer"
 		"firing shields" -50
 		"firing hull" -10
 		"safe"
-	description "Placeholder."
+	description `This is an extremely dangerous weapon that uses graviton technology to pull a target's mass and energy apart, and then feeds it to the firing ship's systems.`
 
 effect "composed"
 	sprite "effect/composed"

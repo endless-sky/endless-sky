@@ -10,10 +10,11 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship vyu'Ira
+ship "vyu-Ira"
 	noun entity
-	sprite ship/vyuira/vyuira
+	sprite "ship/vyuira/vyuira"
 		"frame rate" 4
+	thumbnail "thumbnail/vyuira"
 	swizzle 0
 	attributes
 		category "Heavy Warship"
@@ -52,6 +53,7 @@ ship vyu'Ira
 
 	engine 0 200
 	"steering engine" 0 200
+	"reverse engine" 0 200
 	gun -67 26.5 "Fate Sealer"
 	gun 67 26.5 "Fate Sealer"
 	gun -93 41 "Fate Divider"
@@ -63,5 +65,5 @@ ship vyu'Ira
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description "An ancient relic."
+	description `The vyu-Ira is an ancient ship of the Vyu, one of several chambers of the Rulei. It is not known whether or not this was their final ship-class, or one of many, but the technology found on it may represent the height of the Rulei's advancements, as well as the cause of their fall.`
 

@@ -23,7 +23,7 @@ outfit "Jump Organ"
 	"hyperdrive sound" "organ drive"
 	"hyperdrive out sound" "organ drive out"
 	"hyperdrive in sound" "organ drive in"
-	description "Iije jump organ."
+	description "A jump organ allows an Iije lifeform to traverse a hyperspace lane, though how it does is a mystery."
 
 	
 ship "Jje"
@@ -74,7 +74,7 @@ ship "Jje"
 	leak blood 10 5
 	explode blood
 	"final explode" blood
-	description "Iije adolescent."
+	description "This is an adolescent form of the Iije, having recently consumed quanities of stellar dust, matter, and energy They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
 
 ship "Ayym"
 	noun "creature"
@@ -153,7 +153,7 @@ ship "Ayym"
 	leak blood 10 5
 	explode blood
 	"final explode" blood
-	description "Iije Adult."
+	description "This is an adult form of the Iije, having grown enourmous from consuming stellar matter over hundreds of thousands of years. They can be seen carrying the smaller Jje around the Umbral Reach, but the exact purpose of this is unknown."
 
 # Fleets:
 
