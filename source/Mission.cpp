@@ -201,13 +201,13 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
-			location = JOB;
+			setting = JOB;
 		else if(child.Token(0) == "landing")
-			location = LANDING;
+			setting = LANDING;
 		else if(child.Token(0) == "assisting")
-			location = ASSISTING;
+			setting = ASSISTING;
 		else if(child.Token(0) == "boarding")
-			location = BOARDING;
+			setting = BOARDING;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -305,7 +305,7 @@ void Mission::Load(const DataNode &node)
 
 	if(displayName.empty())
 		displayName = name;
-	if(hasPriority && location == LANDING)
+	if(hasPriority && setting == LANDING)
 		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
@@ -344,13 +344,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("minor");
 		if(autosave)
 			out.Write("autosave");
-		if(location == LANDING)
+		if(setting == LANDING)
 			out.Write("landing");
-		if(location == ASSISTING)
+		if(setting == ASSISTING)
 			out.Write("assisting");
-		if(location == BOARDING)
+		if(setting == BOARDING)
 			out.Write("boarding");
-		if(location == JOB)
+		if(setting == JOB)
 			out.Write("job");
 		if(!clearance.empty())
 		{
@@ -531,9 +531,9 @@ bool Mission::IsMinor() const
 
 
 
-bool Mission::IsAtLocation(Location location) const
+bool Mission::IsAtSetting(Setting setting) const
 {
-	return (this->location == location);
+	return (this->setting == setting);
 }
 
 
@@ -685,7 +685,7 @@ bool Mission::HasFullClearance() const
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
-	if(location == BOARDING || location == ASSISTING)
+	if(setting == BOARDING || setting == ASSISTING)
 	{
 		if(!boardingShip)
 			return false;
@@ -1002,7 +1002,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 	// "Jobs" should never show dialogs when offered, nor should they call the
 	// player's mission callback.
-	if(trigger == OFFER && location == JOB)
+	if(trigger == OFFER && setting == JOB)
 		ui = nullptr;
 
 	// If this trigger has actions tied to it, perform them. Otherwise, check
@@ -1016,7 +1016,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// marker.
 	if(it != actions.end())
 		it->second.Do(player, ui, (destination && isVisible) ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
-	else if(trigger == OFFER && location != JOB)
+	else if(trigger == OFFER && setting != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 
 	return true;
@@ -1147,7 +1147,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
 	result.autosave = autosave;
-	result.location = location;
+	result.setting = setting;
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;

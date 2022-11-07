@@ -1695,7 +1695,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 // Look at the list of available missions and see if any of them can be offered
 // right now, in the given location (landing or spaceport). If there are no
 // missions that can be accepted, return a null pointer.
-Mission *PlayerInfo::MissionToOffer(Mission::Location location)
+Mission *PlayerInfo::MissionToOffer(Mission::Setting setting)
 {
 	if(ships.empty())
 		return nullptr;
@@ -1703,7 +1703,7 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 	// If a mission can be offered right now, move it to the start of the list
 	// so we know what mission the callback is referring to, and return it.
 	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && it->HasSpace(*this))
+		if(it->IsAtSetting(setting) && it->CanOffer(*this) && it->HasSpace(*this))
 		{
 			availableMissions.splice(availableMissions.begin(), availableMissions, it);
 			return &availableMissions.front();
@@ -1726,12 +1726,12 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	// "boardingMissions" is emptied by MissionCallback, but to be sure:
 	boardingMissions.clear();
 
-	Mission::Location location = (ship->GetGovernment()->IsEnemy()
+	Mission::Setting setting = (ship->GetGovernment()->IsEnemy()
 			? Mission::BOARDING : Mission::ASSISTING);
 
 	// Check for available boarding or assisting missions.
 	for(const auto &it : GameData::Missions())
-		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
+		if(it.second.IsAtSetting(setting) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));
 			if(boardingMissions.back().HasFailed(*this))
@@ -1756,14 +1756,14 @@ void PlayerInfo::ClearActiveBoardingMission()
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+void PlayerInfo::HandleBlockedMissions(Mission::Setting setting, UI *ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
 		return;
 
 	for(auto it = missionList.begin(); it != missionList.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
+		if(it->IsAtSetting(setting) && it->CanOffer(*this) && !it->HasSpace(*this))
 		{
 			string message = it->BlockedMessage(*this);
 			if(!message.empty())
@@ -1813,7 +1813,7 @@ void PlayerInfo::MissionCallback(int response)
 		// If this is a mission offered in-flight, expose a pointer to it
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
-		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING))
+		if(mission.IsAtSetting(Mission::BOARDING) || mission.IsAtSetting(Mission::ASSISTING))
 			activeBoardingMission = &*--spliceIt;
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
@@ -3101,20 +3101,20 @@ void PlayerInfo::CreateMissions()
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
-		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
+		if(it.second.IsAtSetting(Mission::BOARDING) || it.second.IsAtSetting(Mission::ASSISTING))
 			continue;
-		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
+		if(skipJobs && it.second.IsAtSetting(Mission::JOB))
 			continue;
 
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =
-				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
+				it.second.IsAtSetting(Mission::JOB) ? availableJobs : availableMissions;
 
 			missions.push_back(it.second.Instantiate(*this));
 			if(missions.back().HasFailed(*this))
 				missions.pop_back();
-			else if(!it.second.IsAtLocation(Mission::JOB))
+			else if(!it.second.IsAtSetting(Mission::JOB))
 				hasPriorityMissions |= missions.back().HasPriority();
 		}
 	}
@@ -3126,7 +3126,7 @@ void PlayerInfo::CreateMissions()
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
-			if(it->IsAtLocation(Mission::SPACEPORT) && !it->HasPriority())
+			if(it->IsAtSetting(Mission::SPACEPORT) && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
 				++it;

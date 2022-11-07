@@ -86,8 +86,8 @@ public:
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
-	bool IsAtLocation(Location location) const;
+	enum Setting {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, ENTERING};
+	bool IsAtSetting(Setting setting) const;
 
 	// Information about what you are doing.
 	const Planet *Destination() const;
@@ -191,7 +191,7 @@ private:
 	std::string displayName;
 	std::string description;
 	std::string blocked;
-	Location location = SPACEPORT;
+	Setting setting = SPACEPORT;
 
 	EsUuid uuid;
 

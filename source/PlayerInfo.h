@@ -201,13 +201,13 @@ public:
 	void UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI *ui);
 	// Check to see if there is any mission to offer right now.
-	Mission *MissionToOffer(Mission::Location location);
+	Mission *MissionToOffer(Mission::Setting setting);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
 	void ClearActiveBoardingMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
-	void HandleBlockedMissions(Mission::Location location, UI *ui);
+	void HandleBlockedMissions(Mission::Setting setting, UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
 	// Basic callback for handling forced departure from a planet.
