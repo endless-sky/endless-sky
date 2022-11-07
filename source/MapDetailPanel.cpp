@@ -590,7 +590,7 @@ void MapDetailPanel::DrawKey()
 			if(foundIt != alreadyDisplayed.end())
 				continue;
 			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
-			font.Draw(it.second->GetName(), pos + textOff, dim);
+			font.Draw(displayName, pos + textOff, dim);
 			pos.Y() += 20.;
 			alreadyDisplayed.emplace_back(displayName, displayColor);
 			++drawn;
