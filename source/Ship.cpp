@@ -3554,7 +3554,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(damage.Ion())
 	{
 		double scale = Energy() * 220.;
-		double ionWeaponJamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+		ionWeaponJamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
 	}
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
