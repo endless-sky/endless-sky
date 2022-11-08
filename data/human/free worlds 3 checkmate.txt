@@ -1064,7 +1064,7 @@ mission "FWC Pug 1"
 				"Argosy (Turret)"
 	
 	npc evade
-		personality staying disables heroic ramming
+		personality staying disables heroic
 		government Pug
 		fleet 2
 			names "pug"
@@ -1079,7 +1079,7 @@ mission "FWC Pug 1"
 				"Pug Zibruka" 2
 	
 	npc evade
-		personality entering disables heroic ramming
+		personality entering disables heroic
 		government Pug
 		fleet 2
 			names "pug"
@@ -1094,7 +1094,7 @@ mission "FWC Pug 1"
 				"Pug Zibruka" 2
 	
 	npc evade
-		personality disables heroic ramming
+		personality disables heroic
 		government Pug
 		system "Delta Capricorni"
 		fleet 2
@@ -1544,7 +1544,7 @@ mission "FWC Pug 3B"
 				"Argosy (Turret)"
 	
 	npc disable
-		personality entering disables heroic ramming
+		personality entering disables heroic
 		government Pug
 		fleet
 			names "pug"
@@ -1622,7 +1622,7 @@ mission "FWC Pug 3D"
 		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	
 	npc evade
-		personality disables heroic staying ramming
+		personality disables heroic staying
 		government Pug
 		system Rasalhague
 		fleet
@@ -1733,7 +1733,7 @@ mission "FWC Pug 4"
 		event "fwc liberation of rasalhague"
 	
 	npc disable
-		personality disables heroic entering ramming
+		personality disables heroic entering
 		government Pug
 		system Rasalhague
 		fleet
@@ -1749,7 +1749,7 @@ mission "FWC Pug 4"
 				"Pug Zibruka" 2
 	
 	npc disable
-		personality disables heroic ramming
+		personality disables heroic
 		government Pug
 		system Alderamin
 		fleet 2
@@ -1765,7 +1765,7 @@ mission "FWC Pug 4"
 				"Pug Zibruka" 2
 	
 	npc disable
-		personality disables heroic ramming
+		personality disables heroic
 		government Pug
 		system Markab
 		fleet 4
@@ -1776,7 +1776,7 @@ mission "FWC Pug 4"
 				"Pug Zibruka" 2
 	
 	npc disable
-		personality disables heroic ramming
+		personality disables heroic
 		government Pug
 		system Alpheratz
 		fleet 2
@@ -2068,7 +2068,7 @@ mission "FWC Pug 5"
 				"Dagger" 4
 	
 	npc evade
-		personality disables heroic staying ramming
+		personality disables heroic staying
 		government Pug
 		system Vega
 		fleet 2

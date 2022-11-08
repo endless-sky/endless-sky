@@ -1813,7 +1813,7 @@ mission "FW Pug 4"
 				accept
 	
 	npc evade
-		personality disables staying ramming
+		personality disables staying
 		system "Delta Capricorni"
 		government Pug
 		fleet 2
@@ -1868,7 +1868,7 @@ mission "FW Pug 4A"
 	npc
 		system Deneb
 		government Pug
-		personality disables ramming
+		personality disables
 		fleet
 			names "pug"
 			variant
@@ -1884,7 +1884,7 @@ mission "FW Pug 4A"
 	npc disable
 		system Rasalhague
 		government Pug
-		personality disables ramming
+		personality disables
 		dialog `You receive a message from Freya: "Captain, I think I've figured out the transmitter, and there is indeed a chance that we can reopen the hyperspace links. Meet me back down on the planet as soon as possible - I'll need you to take some equipment back to Hephaestus and set it up there."`
 		fleet
 			names "pug"
@@ -1950,7 +1950,7 @@ mission "FW Pug 4B: Enemies"
 		has "FW Pug 6: done"
 	
 	npc kill
-		personality waiting disables ramming
+		personality waiting disables
 		system Deneb
 		government Pug
 		fleet 4
@@ -2048,7 +2048,7 @@ mission "FW Pug 5"
 		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	
 	npc evade
-		personality staying disables ramming
+		personality staying disables
 		system Altair
 		government Pug
 		fleet 3
@@ -2075,7 +2075,7 @@ mission "FW Pug 5A: Enemies"
 		has "FW Pug 6: done"
 	
 	npc kill
-		personality waiting disables ramming
+		personality waiting disables
 		system Deneb
 		government Pug
 		fleet 4
@@ -2177,7 +2177,7 @@ mission "FW Pug 5B"
 	
 	npc evade
 		government Pug
-		personality staying disables ramming
+		personality staying disables
 		system Altair
 		fleet 5
 			names "pug"
