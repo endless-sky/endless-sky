@@ -1,5 +1,5 @@
-/* ShipAICache->cpp
-Copyright (c) 2014 by Michael Zahniser
+/* ShipAICache.cpp
+Copyright (c) 2022 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -7,7 +7,7 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
 */
 
 #include "ShipAICache.h"
@@ -105,11 +105,8 @@ void ShipAICache::UpdateWeaponCache()
 	// and other ships with exceptionally long range weapons such as detainers
 	// The AI shouldn't use artilleryAI if it has no reverse and it's turning
 	// capabilities are very bad. Otherwise it spends most of it's time flying around
-	if(rangedSpace > totalSpace * 0.5 && (ship->MaxReverseVelocity() ||
-			turningRadius < 0.2 * shortestArtillery))
-		artilleryAI = true;
-	else
-		artilleryAI = false;
+	artilleryAI = (rangedSpace > totalSpace * 0.5 && (ship->MaxReverseVelocity() ||
+			turningRadius < 0.2 * shortestArtillery));
 	
 	// Don't try to avoid your own splash damage if it means you whould be losing out
 	// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash

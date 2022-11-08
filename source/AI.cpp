@@ -2072,7 +2072,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 void AI::Attack(Ship &ship, Command &command, const Ship &target)
 {
 	ShipAICache &shipAICache = ship.GetAICache();
-	bool artilleryAI = shipAICache.ArtilleryAI();
+	bool artilleryAI = shipAICache.IsArtilleryAI();
 	double shortestRange = shipAICache.ShortestRange();
 	double shortestArtillery = shipAICache.ShortestArtillery();
 	double minSafeDistance = shipAICache.MinSafeDistance();
@@ -2096,17 +2096,17 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
 		
 		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(d.Unit());
-		double slowdownDistance = 0;
+		double slowdownDistance = 0.;
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
 		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
 				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed);
 		if(useReverse)
 			slowdownDistance = approachSpeed * approachSpeed
-					/ ship.ReverseAcceleration() / 2;
+					/ ship.ReverseAcceleration() / 2.;
 		else
 			slowdownDistance = approachSpeed * (approachSpeed / ship.Acceleration()
-					+ 150. / ship.TurnRate()) / 2;
+					+ 150. / ship.TurnRate()) / 2.;
 		
 	
 		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), artilleryAI *
@@ -2155,10 +2155,10 @@ void AI::AimToAttack(Ship &ship, Command &command, const Body &target)
 void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 {
 	Point d = target.Position() - ship.Position();
-	
+
 	// First of all, aim in the direction that will hit this target.
 	AimToAttack(ship, command, target);
-	
+
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
 	if(ship.Facing().Unit().Dot(d.Unit()) < -.75 && ship.Attributes().Get("reverse thrust"))

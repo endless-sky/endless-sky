@@ -295,8 +295,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 	}
 	
-	// Only when the weapon is not safe and has a blast radius is safeRange needed.
-	// oh, and only when it's not already overriden
+	// Only when the weapon is not safe and has a blast radius is safeRange needed, except if it is already overridden.
 	if(!isSafe && blastRadius > 0 && !safeRangeOverriden)
 		safeRange = (blastRadius + triggerRadius);
 }
