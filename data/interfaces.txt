@@ -1174,6 +1174,18 @@ interface "info panel"
 	button a "Unpark _All"
 		center 145 305
 		dimensions 90 30
+	visible if "show park system"
+	sprite "ui/wide button"
+		center 40 305
+	button o "Park Cl_ose"
+		center 40 305
+		dimensions 90 30
+	visible if "show unpark system"
+	sprite "ui/wide button"
+		center 40 305
+	button o "Unpark Cl_ose"
+		center 40 305
+		dimensions 90 30
 	visible if "show save order"
 	sprite "ui/wide button"
 		center -195 305
