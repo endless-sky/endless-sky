@@ -624,7 +624,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+			if(targetTurn == (step & 31) || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
@@ -2157,6 +2157,18 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 
 void AI::Attack(Ship &ship, Command &command, const Ship &target)
 {
+	// Deploy any fighters you are carrying.
+	if(!ship.IsYours() && ship.HasBays())
+	{
+		command |= Command::DEPLOY;
+		Deploy(ship, false);
+	}
+	if(ship.GetPersonality().IsRamming())
+	{
+		MoveToAttack(ship, command, target);
+		return;
+	}
+
 	ShipAICache &shipAICache = ship.GetAICache();
 	bool artilleryAI = shipAICache.IsArtilleryAI();
 	double shortestRange = shipAICache.ShortestRange();
@@ -2164,39 +2176,26 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	double minSafeDistance = shipAICache.MinSafeDistance();
 	double totalRadius = ship.Radius() + target.Radius();
 	Point d = target.Position() - ship.Position();
-	double weaponDistance = d.Length() - totalRadius/3;
-	
-	// Deploy any fighters you are carrying.
-	if(!ship.IsYours() && ship.HasBays())
-	{
-		command |= Command::DEPLOY;
-		Deploy(ship, false);
-	}
-	
+	double weaponDistance = d.Length() - totalRadius / 3.;
 
 	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
-	// if a weapon has blast radius, some leeway helps avoid getting hurt
-	if(minSafeDistance > 1 || (artilleryAI && shortestRange < weaponDistance))
+	// If a weapon has blast radius, some leeway helps avoid getting hurt.
+	if(minSafeDistance || (artilleryAI && shortestRange < weaponDistance))
 	{
 		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
-		
+
 		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(d.Unit());
 		double slowdownDistance = 0.;
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
 		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
 				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed);
-		if(useReverse)
-			slowdownDistance = approachSpeed * approachSpeed
-					/ ship.ReverseAcceleration() / 2.;
-		else
-			slowdownDistance = approachSpeed * (approachSpeed / ship.Acceleration()
-					+ 150. / ship.TurnRate()) / 2.;
-		
-	
-		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), artilleryAI *
-				.7 * shortestArtillery))
+		slowdownDistance = approachSpeed * approachSpeed / useReverse ?
+			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate()) / 2.;
+
+		// If we're too close, run away.
+		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), artilleryAI * .75 * shortestArtillery))
 		{
 			if(useReverse)
 			{
@@ -2210,20 +2209,20 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 				if(ship.Facing().Unit().Dot(d) <= 0.)
 					command |= Command::FORWARD;
 			}
-			return;
 		}
 		else
 		{
 			// This isn't perfect, but it works well enough.
-			if((artilleryAI && (approachSpeed > 0 && weaponDistance < shortestArtillery * 0.9)) ||
-					weaponDistance < shortestRange * 0.75)
+			if((artilleryAI && (approachSpeed > 0. && weaponDistance < shortestArtillery * .9)) ||
+					weaponDistance < shortestRange * .75)
 				AimToAttack(ship, command, target);
 			else
 				MoveToAttack(ship, command, target);
 		}
 	}
+	// Fire if we can or move closer to use all weapons.
 	else
-		if(weaponDistance < shortestRange * 0.75)
+		if(weaponDistance < shortestRange * .75)
 			AimToAttack(ship, command, target);
 		else
 			MoveToAttack(ship, command, target);

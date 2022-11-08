@@ -50,9 +50,10 @@ namespace {
 	const int MUTE = (1 << 23);
 	const int OPPORTUNISTIC = (1 << 24);
 	const int MERCIFUL = (1 << 25);
-	const int TARGET = (1 << 26);
-	const int MARKED = (1 << 27);
-	const int LAUNCHING = (1 << 28);
+	const int RAMMING = (1 << 26);
+	const int TARGET = (1 << 27);
+	const int MARKED = (1 << 28);
+	const int LAUNCHING = (1 << 29);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -81,6 +82,7 @@ namespace {
 		{"mute", MUTE},
 		{"opportunistic", OPPORTUNISTIC},
 		{"merciful", MERCIFUL},
+		{"ramming", RAMMING},
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING}
@@ -238,6 +240,13 @@ bool Personality::IsOpportunistic() const
 bool Personality::IsMerciful() const
 {
 	return flags & MERCIFUL;
+}
+
+
+
+bool Personality::IsRamming() const
+{
+	return flags & RAMMING;
 }
 
 
