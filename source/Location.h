@@ -28,9 +28,9 @@ public:
 	Location(const Planet *planet);
 	Location(const System *system);
 
-	Location operator=(const Location &location) const;
-	Location operator=(const Planet *planet) const;
-	Location operator=(const System *system) const;
+	Location &operator=(const Location &location);
+	Location &operator=(const Planet *planet);
+	Location &operator=(const System *system);
 	operator bool() const;
 
 	bool IsPlanet() const;

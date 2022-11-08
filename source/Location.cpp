@@ -30,40 +30,51 @@ using namespace std;
 
 
 Location::Location(const Planet *planet)
-	: planet(planet)
+	: planet(planet), system(nullptr)
 {
 }
 
 
 
 Location::Location(const System *system)
-	: system(system)
+	: planet(nullptr), system(system)
 {
 }
 
 
 
-Location Location::operator=(const Location &location) const
+Location &Location::operator=(const Location &location)
 {
-	if(planet)
-		return Location(planet);
-	if(system)
-		return Location(system);
-	return Location();
+	if(location.planet)
+		*this = location.planet;
+		//this->planet = location.planet;
+	else if(location.system)
+		*this = location.system;
+		//this->system = location.system;
+	else
+	{
+		this->planet = nullptr;
+		this->system = nullptr;
+	}
+	return *this;
 }
 
 
 
-Location Location::operator=(const Planet *planet) const
+Location &Location::operator=(const Planet *planet)
 {
-	return Location(planet);
+	this->planet = planet;
+	this->system = nullptr;
+	return *this;
 }
 
 
 
-Location Location::operator=(const System *system) const
+Location &Location::operator=(const System *system)
 {
-	return Location(system);
+	this->system = system;
+	this->planet = nullptr;
+	return *this;
 }
 
 
