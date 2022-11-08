@@ -172,14 +172,13 @@
       }
     },
     {
-      "name": "vs",
-      "displayName": "Visual Studio",
-      "description": "Builds with clang-cl as a VS 2022 project",
+      "name": "clang-cl",
+      "displayName": "clang-cl",
+      "description": "Builds with clang-cl on Windows",
       "inherits": "base",
-      "generator": "Visual Studio 17 2022",
-      "toolset": "ClangCL",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-windows"
+        "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "CMAKE_CXX_COMPILER": "clang-cl"
       },
       "condition": {
         "type": "equals",
@@ -244,14 +243,13 @@
       }
     },
     {
-      "name": "vs-ci",
-      "displayName": "Visual Studio CI",
-      "description": "Builds with VS clang for CI purposes",
+      "name": "clang-cl-ci",
+      "displayName": "clang-cl CI",
+      "description": "Builds with clang-cl for CI purposes",
       "inherits": "ci",
-      "generator": "Visual Studio 17",
-      "toolset": "ClangCL",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-windows-release"
+        "VCPKG_TARGET_TRIPLET": "x64-windows-release",
+        "CMAKE_CXX_COMPILER": "clang-cl"
       }
     }
   ],
@@ -373,15 +371,15 @@
       "inherits": "release"
     },
     {
-      "name": "vs-debug",
+      "name": "clang-cl-debug",
       "displayName": "Debug",
-      "configurePreset": "vs",
+      "configurePreset": "clang-cl",
       "inherits": "debug"
     },
     {
-      "name": "vs-release",
+      "name": "clang-cl-release",
       "displayName": "Release",
-      "configurePreset": "vs",
+      "configurePreset": "clang-cl",
       "inherits": "release"
     },
     {
@@ -415,9 +413,9 @@
       "inherits": "ci"
     },
     {
-      "name": "vs-ci",
+      "name": "clang-cl-ci",
       "displayName": "VS CI build",
-      "configurePreset": "vs-ci",
+      "configurePreset": "clang-cl-ci",
       "inherits": "ci"
     }
   ],
@@ -611,15 +609,15 @@
       "inherits": "benchmark"
     },
     {
-      "name": "vs-test",
+      "name": "clang-cl-test",
       "displayName": "Tests",
-      "configurePreset": "vs",
+      "configurePreset": "clang-cl",
       "inherits": "test"
     },
     {
-      "name": "vs-benchmark",
+      "name": "clang-cl-benchmark",
       "displayName": "Benchmarks",
-      "configurePreset": "vs",
+      "configurePreset": "clang-cl",
       "inherits": "benchmark"
     },
     {
@@ -671,9 +669,9 @@
       "inherits": "test"
     },
     {
-      "name": "vs-ci",
+      "name": "clang-cl-ci",
       "displayName": "VS CI Tests",
-      "configurePreset": "vs-ci",
+      "configurePreset": "clang-cl-ci",
       "inherits": "ci"
     }
   ]
