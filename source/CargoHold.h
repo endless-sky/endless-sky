@@ -107,6 +107,9 @@ public:
 	// bad that it warrants a death sentence.
 	int IllegalCargoFine() const;
 
+	// Returns the amount tons of illegal cargo.
+	int IllegalCargoAmount() const;
+
 
 private:
 	// Use -1 to indicate unlimited capacity.
