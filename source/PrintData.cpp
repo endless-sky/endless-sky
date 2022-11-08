@@ -35,7 +35,7 @@ namespace {
 	string ObjectName(const Ship &object) { return object.ModelName(); }
 
 	template <>
-	string ObjectName(const Outfit &object) { return object.Name(); }
+	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
 	template <class Type>
 	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales, const string &name, const string &saleName)
