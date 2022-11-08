@@ -121,6 +121,7 @@ namespace {
 	vector<int16_t> fadeBuffer;
 
 	Playlist *currentPlaylist = nullptr;
+	Track::GameState oldState = Track::GameState::IDLE;
 }
 
 
@@ -273,10 +274,12 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 
 	if(Preferences::Has("ingame music"))
 	{
-		// If the current playlists conditions are still matching. If not search a new one.
+		// If the current playlists conditions are not marching anymore, search a new one.
 		bool currentPlaylistValid = currentPlaylist ?
 			currentPlaylist->MatchingConditions(player) : false;
-		if(currentTrack->IsFinished() || !currentPlaylistValid)
+		// The track has to be updated if the current track is finished, the playlist is not matching
+		// anymore or the state has changed.
+		if(currentTrack->IsFinished() || !currentPlaylistValid || state != oldState)
 		{
 			if(!currentPlaylistValid)
 			{
@@ -316,6 +319,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			// If no playlist is set this means nothing should be played, so stop everything.
 			else
 				currentTrack->Finish();
+			oldState = state;
 		}
 	}
 }

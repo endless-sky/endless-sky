@@ -512,6 +512,7 @@ void Engine::Step(bool isActive)
 	if(GameData::IsLoaded())
 	{
 		Track::GameState state = Track::GameState::IDLE;
+		// If there are hostile ships in the system, set the state to COMBAT.
 		if(hadHostiles)
 			state = Track::GameState::COMBAT;
 		if(player.GetPlanet())
