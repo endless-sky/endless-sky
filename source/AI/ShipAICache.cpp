@@ -45,11 +45,11 @@ void ShipAICache::UpdateWeaponCache()
 
 	for(const Hardpoint &hardpoint : ship->Weapons())
 	{
-		const Outfit  *weapon = hardpoint.GetOutfit();
+		const Outfit *weapon = hardpoint.GetOutfit();
 		if(weapon && !hardpoint.IsAntiMissile())
 		{
 			isArmed = true;
-			bool lackingAmmo = (!weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()));
+			bool lackingAmmo = (weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()));
 			// Weapons without ammo might as well not exsit, so don't even consider them
 			if(lackingAmmo)
 				continue;

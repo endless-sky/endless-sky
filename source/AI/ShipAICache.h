@@ -36,9 +36,9 @@ public:
 
 
 private:
-	const Ship* ship = nullptr;
+	const Ship *ship = nullptr;
 
-	bool artilleryAI = false;
+	bool useArtilleryAI = false;
 	double shortestRange = 1000.;
 	double shortestArtillery = 4000.;
 	double minSafeDistance = 0.;
