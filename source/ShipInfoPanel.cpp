@@ -474,7 +474,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	bool hasTop = false;
 	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
 
-	// First Calculate how many pages are needed. One is always there.
+	// First calculate how many pages are needed. One is always there.
 	pages = 1;
 	int gunIndex = 0;
 	int turretIndex = 0;
