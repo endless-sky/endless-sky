@@ -3462,9 +3462,10 @@ bool Ship::CanBeFlagship() const
 
 
 
+// Account for inertia reduction
 double Ship::Mass() const
 {
-	return carriedMass + cargo.Used() + attributes.Mass();
+	return carriedMass + cargo.Used() + attributes.Mass() / (1 + attributes.Get("inertia reduction"));
 }
 
 
