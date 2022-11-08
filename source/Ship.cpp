@@ -3462,7 +3462,8 @@ bool Ship::CanBeFlagship() const
 
 
 
-// Account for inertia reduction
+// Account for inertia reduction, which only affects the ship's mass and not cargo or carried ships.
+// It also has no effect on maximum heat or heat capacity.
 double Ship::Mass() const
 {
 	return carriedMass + cargo.Used() + attributes.Mass() / (1 + attributes.Get("inertia reduction"));
