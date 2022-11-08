@@ -1436,7 +1436,10 @@ Files:
  images/effect/finisher?impact*
  images/effect/ion?flare/*
  images/effect/korath?flare/*
+ images/effect/plasma?cloud*
  images/effect/plasma?flare/*
+ images/effect/plasma?fire*
+ images/effect/plasma?impact*
  images/effect/pug?flare/*
  images/effect/tracker?cloud*
  images/effect/wanderer?flare/*
@@ -1458,6 +1461,7 @@ Files:
  images/outfit/*efreti?steering*
  images/outfit/*efreti?thruster*
  images/outfit/finisher?maegrolain*
+ images/outfit/fusion?cannon*
  images/outfit/moonbeam*
  images/outfit/moonbeam?turret*
  images/outfit/nuke*
@@ -1480,10 +1484,12 @@ Files:
  images/planet/ringworld?left*
  images/planet/ringworld?right*
  images/projectile/fire-lance*
+ images/projectile/fusion?gun?bolt*
  images/projectile/blaze-pike*
  images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
+ images/ship/battleship*
  images/ship/corvette*
  images/ship/dagger*
  images/ship/flivver*
@@ -1492,6 +1498,7 @@ Files:
  images/ship/raven*
  images/ship/splinter*
  images/star/neutron*
+ images/thumbnail/battleship*
  images/thumbnail/corvette*
  images/thumbnail/dagger*
  images/thumbnail/flivver*
@@ -1620,6 +1627,15 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
+ images/ship/hai?cicada*
+ images/ship/hai?scarab*
+ images/thumbnail/hai?cicada*
+ images/thumbnail/hai?scarab*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Evan Fluharty (under the same license).
 
 Files:
  images/hardpoint/blaze-pike*

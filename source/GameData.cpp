@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 #include "FogShader.h"
 #include "text/FontSet.h"
+#include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
@@ -507,6 +508,13 @@ const Set<GameEvent> &GameData::Events()
 const Set<Fleet> &GameData::Fleets()
 {
 	return objects.fleets;
+}
+
+
+
+const Set<FormationPattern> &GameData::Formations()
+{
+	return objects.formations;
 }
 
 
