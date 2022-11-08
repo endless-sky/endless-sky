@@ -138,7 +138,7 @@ mission "Coalition: Contributor"
 			label end
 			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters.`
 
-#For pre-0.9.7 compatibility
+# For pre-0.9.7 compatibility
 mission "Coalition License Patch"
 	invisible
 	landing
@@ -1502,7 +1502,7 @@ mission "Saryd University Lecture"
 					decline
 			label accept
 			`	"Thank you! Aelbris, my name is. To be late I do not wish, as not recorded, the event is." He soon gathers his things and boards your ship.`
-					accept
+				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Aelbris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -1561,7 +1561,7 @@ mission "Saryd University Lecture"
 					goto scared
 			label scared
 			`	"To answer their questions, if you really don't want, I can't stop you, I suppose." Aelbris says with a sigh.`
-					decline
+				decline
 			label questions
 			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. The Arach Heliarch comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
 			branch hai
@@ -1607,7 +1607,7 @@ mission "Saryd University Lecture"
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
-			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it contiunes to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
+			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
 				goto questionthree
 			label war
 			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
@@ -1653,7 +1653,7 @@ mission "Saryd University Lecture"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
-			`	"I've met an alien species there called the Korath," you say. "They're reptillian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	"I've met an alien species there called the Korath," you say. "They're reptilian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			branch unfettered
 				has "coalition knows hai"
@@ -2460,7 +2460,7 @@ mission "Coalition: Expeditions Past 3"
 	on offer
 		conversation
 			`The Heliarch council representatives guide you far from the planet's equator to a region close to a snowy mountain, and tell you to land on top of a cube-shaped plateau. Dozens of searchlights are dotted along the edges, lighting the ground below, while a warehouse complex sits at the center of the plateau top. As you're approaching the plateau, your ship's sensors alert you to incoming vessels; you look at your radar to see a Saryd Sojourner, followed by three Travelers, getting closer to your ship. They appear unarmed, but as you land on the plateau and they follow you down, defensive turrets on the edges of the complex remain locked onto them.`
-			`	Once the Sojourner lands, a Saryd comes down the ramp and heads to your ship. Sedlitaris sighs and leaves to meet him, followed by the representatives of the Heliarch council. Once you're all out of your ship, you see the Saryd has been stopped by a trio of Arach guards, clad in winter uniforms and blocking the his path. "Told mother or father about this, have you?" he shouts at Sedlitaris as she walks closer. "Because important enough to be told, I apparently am not. That out to die you were, told I was by some Kimek arbiter that met, I never had!"`
+			`	Once the Sojourner lands, a Saryd comes down the ramp and heads to your ship. Sedlitaris sighs and leaves to meet him, followed by the representatives of the Heliarch council. Once you're all out of your ship, you see the Saryd has been stopped by a trio of Arach guards, clad in winter uniforms and blocking his path. "Told mother or father about this, have you?" he shouts at Sedlitaris as she walks closer. "Because important enough to be told, I apparently am not. That out to die you were, told I was by some Kimek arbiter that met, I never had!"`
 			`	"Repilor, a work trip, this is. Away for long, I won't be, so wish to trouble you all with the news, I didn't," she responds.`
 			`	"Trouble us? In truth, know that wrong, you are, but face telling father that you're throwing your life away, you couldn't!"`
 			`	He tries to push his way to her, but the guards stop him before he can make much progress. One of the Heliarch representatives gets closer, saying, "A restricted area, this is. Invading government property, you are, so suggest that you leave immediately, I do."`
@@ -2983,8 +2983,8 @@ mission "Coalition: Long Lost Property 3"
 			label fail
 			`	"Now I can't just trust you to get every last one of their ships, can I?" he replies. "If you want to make it worth for me, it's a million. If you're not interested, there's nothing I can do about it."`
 			
-# For the mission NPCs to work properly, this needs to force an accept at this point.
-# Add a choice to defer once some sort of "on board" child of "npc" exists and allows for all NPCs to be defined in just this mission.
+			# For the mission NPCs to work properly, this needs to force an accept at this point.
+			# Add a choice to defer once some sort of "on board" child of "npc" exists and allows for all NPCs to be defined in just this mission.
 			
 			choice
 				`	"Fine, just tell me already."`
