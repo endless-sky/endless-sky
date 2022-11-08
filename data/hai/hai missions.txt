@@ -831,6 +831,8 @@ mission "Nanachi 1"
 		# This is a mandatory mission, so the range is as far as a
 		# Heavy Shuttle can reach (500 fuel)
 		near "Wah Ki" 1 5
+		government "Hai"
+		not attributes "uninhabited" "station"
 	destination "Cloudfire"
 	deadline 2 1
 	to offer

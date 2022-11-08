@@ -2577,7 +2577,7 @@ mission "Eliminating Competition (Marauders, Medium)"
 
 mission "Eliminating Competition (Marauders, Large)"
 	name "Marauder Elimination"
-	description "The pirates of the <system> system have grown dissatisified with the actions of the ruling Marauder gang. Take them out and return to <planet> by <day> for a payment of <payment>."
+	description "The pirates of the <system> system have grown dissatisfied with the actions of the ruling Marauder gang. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20

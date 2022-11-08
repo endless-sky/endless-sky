@@ -2132,7 +2132,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 		command.SetTurn(targetAngle);
 
 	// Determine whether to apply thrust.
-	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
+	Point drag = ship.Velocity() * ship.Drag() / mass;
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Don't take drag into account when reverse thrusting, because this
@@ -2395,6 +2395,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
 {
+	const bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
 	// ship has a target, that target is guaranteed to be targetable.
 	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
@@ -2414,8 +2415,11 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	if(ship.GetTargetSystem())
 	{
 		// Unload surveillance drones in this system before leaving.
-		PrepareForHyperspace(ship, command);
-		command |= Command::JUMP;
+		if(!isStaying)
+		{
+			PrepareForHyperspace(ship, command);
+			command |= Command::JUMP;
+		}
 		if(ship.HasBays())
 		{
 			command |= Command::DEPLOY;
@@ -2430,7 +2434,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
 			ship.SetTargetStellar(nullptr);
-		else
+		else if(!isStaying)
 			command |= Command::LAND;
 	}
 	else if(target)
