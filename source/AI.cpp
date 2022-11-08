@@ -2184,8 +2184,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		double reverseSpeed = ship.MaxReverseVelocity();
 		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
 				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed);
-		slowdownDistance = approachSpeed * approachSpeed / useReverse ?
-			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate()) / 2.;
+		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
+			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
 
 		// If we're too close, run away.
 		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), artilleryAI * .75 * shortestArtillery))

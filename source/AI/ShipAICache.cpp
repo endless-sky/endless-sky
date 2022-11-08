@@ -88,7 +88,7 @@ void ShipAICache::UpdateWeaponCache()
 	// If this ship was using the missile boat AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This
 	// is not realistic, but it's less annoying for the player.
-	if(isArmed && !hasAmmo)
+	if(isArmed && !hasAmmo && !ship->IsYours())
 	{
 		shortestRange = 0.;
 		shortestArtillery = 0.;
