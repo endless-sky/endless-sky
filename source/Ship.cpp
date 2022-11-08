@@ -3910,10 +3910,11 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 				outfits.erase(it);
 		}
 		attributes.Add(*outfit, count);
+		// This could be a better engine, less mass, a weapon... update the AI behavior to match.
+		AICache.UpdateWeaponCache();
 		if(outfit->IsWeapon())
 		{
 			armament.Add(outfit, count);
-			AICache.UpdateWeaponCache();
 			// Only the player's ships make use of attraction and deterrence.
 			if(isYours)
 				deterrence = CalculateDeterrence();
@@ -4013,8 +4014,12 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Only the player's ships make use of attraction and deterrence.
-		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
-			deterrence = CalculateDeterrence();
+		if(!OutfitCount(ammo) && ammo->AmmoUsage())
+		{
+			if(isYours)
+				deterrence = CalculateDeterrence();
+			AICache.UpdateWeaponCache();
+		}
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;

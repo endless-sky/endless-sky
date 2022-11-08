@@ -515,9 +515,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 
 	const Ship *flagship = player.Flagship();
-	step = (step + 1) & 127;
+	step = (step + 1) & 31;
 	int targetTurn = 0;
-	int weaponUpdateTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
@@ -573,12 +572,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(it->IsParalyzed())
 			continue;
 
-		// Update the stats of the ship's weapons and cache the results.
-		// This can be better, but it works fine.
-		weaponUpdateTurn = (weaponUpdateTurn + 1) & 127;
-		if(weaponUpdateTurn == (step & 127))
-			it->GetAICache().UpdateWeaponCache();
-
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
 		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
@@ -624,7 +617,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == (step & 31) || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
