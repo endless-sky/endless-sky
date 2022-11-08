@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 mission "Paradise Job: Care Package"
@@ -430,7 +433,7 @@ mission "Paradise Job: Parolees"
 	passengers 20 4 .1
 	to offer
 		random < 15
-		"passenger space" > 50
+		"passenger space" > 40
 	on offer
 		require "Brig"
 	source
@@ -454,7 +457,7 @@ mission "Paradise Job: Debtors"
 	passengers 20 4 .1
 	to offer
 		random < 15
-		"passenger space" > 50
+		"passenger space" > 40
 	on offer
 		require "Brig"
 	source
@@ -479,8 +482,8 @@ mission "Paradise Job: Retirees"
 	cargo "treasured possessions" 7 12 .2
 	to offer
 		random < 10
-		"passenger space" > 30
-		"cargo space" > 120
+		"passenger space" > 15
+		"cargo space" > 40
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -503,7 +506,7 @@ mission "Paradise Job: Wilderness Retreat"
 	passengers 10 4 .1
 	to offer
 		random < 10
-		"passenger space" > 30
+		"passenger space" > 25
 	on offer
 		require "Luxury Accommodations"
 	source

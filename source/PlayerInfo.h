@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PLAYER_INFO_H_
@@ -15,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "CargoHold.h"
+#include "ConditionsStore.h"
 #include "CoreStartData.h"
 #include "DataNode.h"
 #include "Date.h"
@@ -146,7 +150,7 @@ public:
 	void RenameShip(const Ship *selected, const std::string &name);
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
-	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
 
@@ -181,6 +185,18 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+
+	enum SortType {ABC, PAY, SPEED, CONVENIENT};
+	const SortType GetAvailableSortType() const;
+	void NextAvailableSortType();
+	const bool ShouldSortAscending() const;
+	void ToggleSortAscending();
+	const bool ShouldSortSeparateDeadline() const;
+	void ToggleSortSeparateDeadline();
+	const bool ShouldSortSeparatePossible() const;
+	void ToggleSortSeparatePossible();
+	void SortAvailable();
+
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI *ui);
@@ -204,13 +220,9 @@ public:
 	void HandleEvent(const ShipEvent &event, UI *ui);
 
 	// Access the "condition" flags for this player.
-	int64_t GetCondition(const std::string &name) const;
-	std::map<std::string, int64_t> &Conditions();
-	const std::map<std::string, int64_t> &Conditions() const;
-	// Set and check the reputation conditions, which missions and events
-	// can use to modify the player's reputation with other governments.
-	void SetReputationConditions();
-	void CheckReputationConditions();
+	ConditionsStore &Conditions();
+	const ConditionsStore &Conditions() const;
+	std::map<std::string, std::string> GetSubstitutions() const;
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;
@@ -286,9 +298,10 @@ private:
 	void ApplyChanges();
 	// After loading & applying changes, make sure the player & ship locations are sensible.
 	void ValidateLoad();
+	// Helper to register derived conditions.
+	void RegisterDerivedConditions();
 
 	// New missions are generated each time you land on a planet.
-	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
 	void StepMissions(UI *ui);
 	void Autosave() const;
@@ -296,6 +309,9 @@ private:
 
 	// Check for and apply any punitive actions from planetary security.
 	void Fine(UI *ui);
+
+	// Set the flagship (on departure or during flight).
+	void SetFlagship(Ship &other);
 
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
@@ -347,8 +363,13 @@ private:
 	// This pointer to the most recently accepted boarding mission enables
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
+	// How to sort availableJobs
+	bool availableSortAsc = true;
+	SortType availableSortType;
+	bool sortSeparateDeadline = false;
+	bool sortSeparatePossible = false;
 
-	std::map<std::string, int64_t> conditions;
+	ConditionsStore conditions;
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

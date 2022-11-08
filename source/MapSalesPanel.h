@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MAP_SALES_PANEL_H_
@@ -46,6 +49,8 @@ protected:
 
 	virtual const Sprite *SelectedSprite() const = 0;
 	virtual const Sprite *CompareSprite() const = 0;
+	virtual int SelectedSpriteSwizzle() const;
+	virtual int CompareSpriteSwizzle() const;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
 	virtual const std::string &KeyLabel(int index) const = 0;
@@ -62,8 +67,8 @@ protected:
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite) const;
-	void Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
+	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const;
+	void Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale, bool isSelected,
 		const std::string &name, const std::string &price, const std::string &info,
 		const std::string &storage = "");
 
@@ -96,8 +101,6 @@ private:
 	std::vector<ClickZone<int>> zones;
 	int selected = -1;
 	int compare = -1;
-
-	int swizzle = 0;
 };
 
 

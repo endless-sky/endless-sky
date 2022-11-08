@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MapShipyardPanel.h"
@@ -61,6 +64,20 @@ const Sprite *MapShipyardPanel::SelectedSprite() const
 const Sprite *MapShipyardPanel::CompareSprite() const
 {
 	return compare ? compare->Thumbnail() ? compare->Thumbnail() : compare->GetSprite() : nullptr;
+}
+
+
+
+int MapShipyardPanel::SelectedSpriteSwizzle() const
+{
+	return selected->CustomSwizzle();
+}
+
+
+
+int MapShipyardPanel::CompareSpriteSwizzle() const
+{
+	return compare->CustomSwizzle();
 }
 
 
@@ -199,7 +216,8 @@ void MapShipyardPanel::DrawItems()
 			const Sprite *sprite = ship->Thumbnail();
 			if(!sprite)
 				sprite = ship->GetSprite();
-			Draw(corner, sprite, isForSale, ship == selected, ship->ModelName(), price, info);
+			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
+					ship->ModelName(), price, info);
 			list.push_back(ship);
 		}
 	}

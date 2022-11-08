@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DataWriter.h"
@@ -101,19 +104,19 @@ void DataWriter::WriteComment(const string &str)
 void DataWriter::WriteToken(const char *a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
-	bool hasSpace = !*a;
+	bool needsQuoting = !*a || *a == '#';
 	bool hasQuote = false;
 	for(const char *it = a; *it; ++it)
 	{
-		hasSpace |= (*it <= ' ' && *it >= 0);
+		needsQuoting |= (*it <= ' ' && *it >= 0);
 		hasQuote |= (*it == '"');
 	}
 
 	// Write the token, enclosed in quotes if necessary.
 	out << *before;
-	if(hasSpace && hasQuote)
+	if(needsQuoting && hasQuote)
 		out << '`' << a << '`';
-	else if(hasSpace)
+	else if(needsQuoting)
 		out << '"' << a << '"';
 	else
 		out << a;

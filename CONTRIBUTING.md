@@ -40,3 +40,5 @@ The labels I assign to issues are:
 * **unconfirmed**: More information is needed to be sure this bug is really a bug.
 * **unlikely**: An enhancement or other change that I consider lowest priority, too large or difficult, or not appropriate.
 * **wontfix**: A change that I definitely do not think should be made.
+* **art**: A request for anything related to the addition or modification of images, sprites, and graphics.
+* **sound**: A request for the addition or modification of anything to do with sound effects, music or other audio.

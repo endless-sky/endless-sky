@@ -1,45 +1,57 @@
 data:
- - 'changelog*'
- - 'copyright*'
- - credits.txt
- - icon.png
- - keys.txt
- - license.txt
- - 'data/**/*'
- - 'images/**/*'
- - 'sounds/**/*'
+  - 'changelog*'
+  - 'copyright*'
+  - credits.txt
+  - icon.png
+  - keys.txt
+  - license.txt
+  - 'data/**/*'
+  - 'images/**/*'
+  - 'sounds/**/*'
 
 game_code: &build
- - 'source/**'
+  - 'source/**'
 
 macos:
- - 'XCode/**'
- - '**/*.xcodeproj'
- - 'icons/endless-sky.iconset/**'
- - 'utils/fetch_sdl2_framework.sh'
- - 'utils/set_dylibs_rpath.sh'
- - *build
+  - 'XCode/**'
+  - '**/*.xcodeproj'
+  - 'icons/endless-sky.iconset/**'
+  - 'utils/fetch_sdl2_framework.sh'
+  - 'utils/set_dylibs_rpath.sh'
+  - *build
 
 windows:
- - '**/*.cbp'
- - EndlessSky.workspace
- - SConstruct
- - .winmake
- - *build
+  - '**/*.cbp'
+  - EndlessSky.workspace
+  - SConstruct
+  - .winmake
+  - *build
 
 linux:
- - SConstruct
- - *build
+  - SConstruct
+  - *build
 
 unit_tests:
- - 'tests/**/*.h'
- - 'tests/**/*.hpp'
- - 'tests/**/*.cpp'
+  - 'tests/unit/**/*.h'
+  - 'tests/unit/**/*.hpp'
+  - 'tests/unit/**/*.cpp'
 
 integration_tests:
- - 'tests/test_parse.*'
- - 'tests/run_tests*'
- - 'data/tests/**'
+  - 'utils/test_parse.*'
+  - 'tests/integration/run_tests*'
+  - 'data/tests/**'
+  - 'tests/integration/universes/**'
 
 codespell:
- - .codespell.exclude
+  - .codespell.exclude
+
+xcode_files:
+  - 'EndlessSky.xcodeproj/**'
+  - 'utils/check_xcode.sh'
+
+codeblocks_files:
+  - '*.cbp'
+  - 'utils/check_codeblocks.sh'
+
+copyright:
+  - 'copyright'
