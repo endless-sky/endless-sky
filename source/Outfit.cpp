@@ -299,7 +299,7 @@ void Outfit::Load(const DataNode &node)
 	// Unless this outfit definition isn't declared with the `outfit` keyword,
 	// because then this is probably being done in `add attributes` on a ship,
 	// so the name doesn't matter.
-	if(!name.empty() && pluralName.empty())
+	if(!displayName.empty() && pluralName.empty())
 	{
 		pluralName = displayName + 's';
 		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
