@@ -61,7 +61,7 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
-	const double SCAN_TIME = 60.;
+	const double SCAN_TIME = 600.;
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -1841,7 +1841,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	double mass = Mass();
 	bool isUsingAfterburner = false;
 	if(isDisabled)
-		velocity *= 1. - attributes.Get("drag") / mass;
+		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -1998,7 +1998,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+		Point dragAcceleration = acceleration - velocity * (Drag() / mass);
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
@@ -2308,9 +2308,8 @@ void Ship::DoGeneration()
 
 	isDisabled = hull < MinimumHull() || (!crew && RequiredCrew());
 
-	// Whenever not actively scanning, the amount of scan information the ship
-	// has "decays" over time. For a scanner with a speed of 1, one second of
-	// uninterrupted scanning is required to successfully scan its target.
+	// Whenever not actively scanning, the amount of
+	// scan information the ship has "decays" over time.
 	// Only apply the decay if not already done scanning the target.
 	if(cargoScan < SCAN_TIME)
 		cargoScan = max(0., cargoScan - 1.);
@@ -2541,43 +2540,68 @@ int Ship::Scan()
 		return 0;
 
 	// The range of a scanner is proportional to the square root of its power.
-	double cargoDistance = 100. * sqrt(attributes.Get("cargo scan power"));
-	double outfitDistance = 100. * sqrt(attributes.Get("outfit scan power"));
+	// Because of Pythagoras, if we use square-distance, we can skip this square root.
+	double cargoDistanceSquared = attributes.Get("cargo scan power");
+	double outfitDistanceSquared = attributes.Get("outfit scan power");
 
 	// Bail out if this ship has no scanners.
-	if(!cargoDistance && !outfitDistance)
+	if(!cargoDistanceSquared && !outfitDistanceSquared)
 		return 0;
 
-	// Scanning speed also uses a square root, so you need four scanners to get
-	// twice the speed out of them.
-	double cargoSpeed = sqrt(attributes.Get("cargo scan speed"));
+	double cargoSpeed = attributes.Get("cargo scan speed");
 	if(!cargoSpeed)
 		cargoSpeed = 1.;
-	double outfitSpeed = sqrt(attributes.Get("outfit scan speed"));
+
+	double outfitSpeed = attributes.Get("outfit scan speed");
 	if(!outfitSpeed)
 		outfitSpeed = 1.;
 
 	// Check how close this ship is to the target it is trying to scan.
-	double distance = (target->position - position).Length();
+	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or multiply by 0.0001.
+	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
+	double distanceSquared = (target->position - position).LengthSquared() * .0001;
+
+	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
+	// Normalized around 200 tons of cargo/outfit space.
+	// A ship with less than 10 tons of outfit space or cargo space takes as long to
+	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
+	// causing a divide by zero error at sizes of 0.
+	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
+	double cargo = max(10., target->attributes.Get("cargo space")) * .005;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const int event) -> void
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event) -> void
 	{
-		if(elapsed < SCAN_TIME && distance < scannerRange)
+		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
 		{
 			startedScanning |= !elapsed;
 			activeScanning = true;
-			// To make up for the scan decay above:
-			elapsed += speed + 1.;
+
+			// Division is more expensive to calculate than multiplication,
+			// so rearrange the formula to minimize divisions.
+
+			// "(scannerRange - distance) / scannerRange"
+			// This line hits 1 at distace = 0, and 0 at distance = scannerRange.
+			// This is a hard cap on scanning range.
+
+			// "speed / (sqrt(speed) + distance)"
+			// This gives a modest speed boost at no distance, and
+			// the boost tapers off to 0 at arbitrarily large distances.
+
+			// "1 / depth"
+			// This makes scan time proportional to cargo or outfit space.
+
+			// To make up for previous scan delay, also add 1.
+			elapsed += ((scannerRange - distanceSquared) * speed) / (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
 	};
-	doScan(cargoScan, cargoSpeed, cargoDistance, ShipEvent::SCAN_CARGO);
-	doScan(outfitScan, outfitSpeed, outfitDistance, ShipEvent::SCAN_OUTFITS);
+	doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
+	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
@@ -3421,6 +3445,14 @@ int Ship::Crew() const
 
 
 
+// Calculate drag, accounting for drag reduction.
+double Ship::Drag() const
+{
+	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+}
+
+
+
 int Ship::RequiredCrew() const
 {
 	if(attributes.Get("automaton"))
@@ -3482,14 +3514,14 @@ double Ship::MaxVelocity() const
 	// v * drag == thrust
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
 }
 
 
 
 double Ship::MaxReverseVelocity() const
 {
-	return attributes.Get("reverse thrust") / attributes.Get("drag");
+	return attributes.Get("reverse thrust") / Drag();
 }
 
 
