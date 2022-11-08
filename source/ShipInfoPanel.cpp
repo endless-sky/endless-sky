@@ -279,8 +279,8 @@ bool ShipInfoPanel::Drag(double dx, double dy)
 bool ShipInfoPanel::Release(int /* x */, int /* y */)
 {
 	if(draggingIndex >= 0 && hoverIndex >= 0 && hoverIndex != draggingIndex)
-			(**shipIt).GetArmament().Swap(hoverRight ? indecesRight[hoverIndex] : indecesLeft[hoverIndex],
-										dragRight ? indecesRight[draggingIndex] : indecesLeft[draggingIndex]);
+			(**shipIt).GetArmament().Swap(hoverRight ? indicesRight[hoverIndex] : indicesLeft[hoverIndex],
+										dragRight ? indicesRight[draggingIndex] : indicesLeft[draggingIndex]);
 
 	draggingIndex = -1;
 	return true;
@@ -514,25 +514,26 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	}
 	weaponsRight.clear();
 	weaponsLeft.clear();
-	indecesRight.clear();
-	indecesLeft.clear();
+	indicesRight.clear();
+	indicesLeft.clear();
 	int index = 0;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		if(hardpoint.GetPoint().X() >= 0.)
 		{
-			indecesRight.emplace_back(index);
+			indicesRight.emplace_back(index);
 			weaponsRight.emplace_back(&hardpoint);
 		}
 		else
 		{
-			indecesLeft.emplace_back(index);
+			indicesLeft.emplace_back(index);
 			weaponsLeft.emplace_back(&hardpoint);
 		}
 		index++;
 	}
 
-	auto drawElements = [&] (std::vector<const Hardpoint*> &weaponList, int weaponIndex, bool right) {
+	auto DrawElements = [&] (std::vector<const Hardpoint *> &weaponList, int weaponIndex, bool right)
+	{
 		const Hardpoint *hardpoint = weaponList[weaponIndex];
 		string name = "[empty]";
 		if(hardpoint->GetOutfit())
@@ -576,9 +577,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	for(int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
 	{
 		if(weaponsRight.size() > static_cast<unsigned int>(weaponIndex))
-			drawElements(weaponsRight, weaponIndex, true);
+			DrawElements(weaponsRight, weaponIndex, true);
 		if(weaponsLeft.size() > static_cast<unsigned int>(weaponIndex))
-			drawElements(weaponsLeft, weaponIndex, false);
+			DrawElements(weaponsLeft, weaponIndex, false);
 	}
 
 	if(pages > 1)

@@ -93,14 +93,13 @@ private:
 	std::vector<ClickZone<int>> zonesRight;
 	std::vector<ClickZone<int>> zonesLeft;
 	std::vector<const Hardpoint*> weaponsRight;
-	std::vector<int> indecesRight;
+	std::vector<int> indicesRight;
 	std::vector<const Hardpoint*> weaponsLeft;
-	std::vector<int> indecesLeft;
+	std::vector<int> indicesLeft;
 	bool hoverRight = false;
 	bool dragRight = false;
 	Point nextHardpoint = Point(0.0, 0.0);
 	Point previousHardpoint = Point(0.0, 0.0);
-	bool nextHover = false;
 
 	std::vector<ClickZone<std::string>> commodityZones;
 	std::vector<ClickZone<const Outfit *>> plunderZones;
