@@ -572,7 +572,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Paralyzed ships are effectively disabled, and cannot fire, cloak, etc.
 		if(it->IsParalyzed())
 			continue;
-		
+
 		// Update the stats of the ship's weapons and cache the results.
 		// This can be better, but it works fine.
 		weaponUpdateTurn = (weaponUpdateTurn + 1) & 127;

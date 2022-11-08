@@ -95,7 +95,7 @@ private:
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	static void UpdateWeaponStats(Ship &ship);
-	
+
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);

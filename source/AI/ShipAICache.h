@@ -21,11 +21,12 @@ class Ship;
 // for every ship.
 class ShipAICache {
 public:
+	ShipAICache() = default;
 	// Construct and Load() at the same time.
 	ShipAICache(const Ship &ship);
-	
+
 	void UpdateWeaponCache();
-	
+
 	// Accessors and setters for AI data
 	bool IsArtilleryAI() const;
 	double ShortestRange() const;

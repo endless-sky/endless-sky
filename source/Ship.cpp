@@ -806,7 +806,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
-	
+
 	// Initate the AI cache
 	ShipAICache AICache(*this);
 	this->AICache = AICache;
@@ -3913,6 +3913,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->IsWeapon())
 		{
 			armament.Add(outfit, count);
+			AICache.UpdateWeaponCache();
 			// Only the player's ships make use of attraction and deterrence.
 			if(isYours)
 				deterrence = CalculateDeterrence();
