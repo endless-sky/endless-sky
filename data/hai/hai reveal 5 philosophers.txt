@@ -807,12 +807,12 @@ ship "Emperor Beetle"
 		bunks 91
 		mass 870
 		drag 9.8
-		"outfit space" 887
+		"outfit space" 893
 		"cargo space" 27
 		"weapon capacity" 364
 		"engine capacity" 150
-		"heat dissipation" 0.675
 		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
+		"heat dissipation" 0.7
 		"tactical scan power" 30
 		ramscoop .5
 		"fuel capacity" 600
@@ -830,11 +830,10 @@ ship "Emperor Beetle"
 		"Thunderhead Storage Array" 4
 		"Warder Anti-Missile" 2
 		
-		"Liquid Sodium Cooler"
+		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Wanderer Ramscoop"
 		"Jump Drive"
-		"Quantum Keystone" 2
+		"Quantum Keystone"
 		"Systems Core (Large)"
 		"Systems Core (Small)"
 		"Outfits Expansion"
