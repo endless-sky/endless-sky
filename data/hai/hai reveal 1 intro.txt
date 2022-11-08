@@ -539,8 +539,8 @@ mission "Hai Leaks Response 1"
 			choice
 				`	"That seems practical."`
 				`	"I don't really have an option to refuse, do I?"`
-			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a dialogue on how best to deal with this current scenario."`
-			`	She hands you an officially branded box containing a metallic badge. There is a symbol minutely engraved into the front that you remember seeing on your way into the complex, and must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licences in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.` 
+			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a dialog on how best to deal with this current scenario."`
+			`	She hands you an officially branded box containing a metallic badge. There is a symbol minutely engraved into the front that you remember seeing on your way into the complex, and must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.` 
 			choice
 				`	"Various? We only have two governments."`
 			`	"Oh," she says, "we've treated the Syndicate as a de facto government for many decades now; with the amount of influence they have it was the only prudent thing to do."`
