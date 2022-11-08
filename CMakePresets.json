@@ -100,6 +100,21 @@
       }
     },
     {
+      "name": "clang-cl",
+      "displayName": "clang-cl",
+      "description": "Builds with clang-cl on Windows",
+      "inherits": "base",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "mingw",
       "displayName": "MinGW",
       "description": "Builds with the MinGW compiler toolchain",
@@ -172,21 +187,6 @@
       }
     },
     {
-      "name": "clang-cl",
-      "displayName": "clang-cl",
-      "description": "Builds with clang-cl on Windows",
-      "inherits": "base",
-      "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-windows",
-        "CMAKE_CXX_COMPILER": "clang-cl"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
       "name": "linux-ci",
       "displayName": "Linux CI",
       "description": "Builds for Linux for CI purposes",
@@ -217,6 +217,16 @@
       }
     },
     {
+      "name": "clang-cl-ci",
+      "displayName": "clang-cl CI",
+      "description": "Builds with clang-cl for CI purposes",
+      "inherits": "ci",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows-release",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      }
+    },
+    {
       "name": "mingw-ci",
       "displayName": "MinGW CI",
       "description": "Builds with MinGW for CI purposes",
@@ -240,16 +250,6 @@
         "CMAKE_AR": "i686-w64-mingw32-gcc-ar",
         "CMAKE_RANLIB": "i686-mingw32-gcc-ranlib",
         "VCPKG_TARGET_TRIPLET": "win32-release"
-      }
-    },
-    {
-      "name": "clang-cl-ci",
-      "displayName": "clang-cl CI",
-      "description": "Builds with clang-cl for CI purposes",
-      "inherits": "ci",
-      "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-windows-release",
-        "CMAKE_CXX_COMPILER": "clang-cl"
       }
     }
   ],
@@ -347,6 +347,18 @@
       "inherits": "release"
     },
     {
+      "name": "clang-cl-debug",
+      "displayName": "Debug",
+      "configurePreset": "clang-cl",
+      "inherits": "debug"
+    },
+    {
+      "name": "clang-cl-release",
+      "displayName": "Release",
+      "configurePreset": "clang-cl",
+      "inherits": "release"
+    },
+    {
       "name": "mingw-debug",
       "displayName": "Debug",
       "configurePreset": "mingw",
@@ -371,18 +383,6 @@
       "inherits": "release"
     },
     {
-      "name": "clang-cl-debug",
-      "displayName": "Debug",
-      "configurePreset": "clang-cl",
-      "inherits": "debug"
-    },
-    {
-      "name": "clang-cl-release",
-      "displayName": "Release",
-      "configurePreset": "clang-cl",
-      "inherits": "release"
-    },
-    {
       "name": "linux-ci",
       "displayName": "Linux CI build",
       "configurePreset": "linux-ci",
@@ -401,6 +401,12 @@
       "inherits": "ci"
     },
     {
+      "name": "clang-cl-ci",
+      "displayName": "VS CI build",
+      "configurePreset": "clang-cl-ci",
+      "inherits": "ci"
+    },
+    {
       "name": "mingw-ci",
       "displayName": "MinGW CI build",
       "configurePreset": "mingw-ci",
@@ -410,12 +416,6 @@
       "name": "mingw32-ci",
       "displayName": "MinGW x86 CI build",
       "configurePreset": "mingw32-ci",
-      "inherits": "ci"
-    },
-    {
-      "name": "clang-cl-ci",
-      "displayName": "VS CI build",
-      "configurePreset": "clang-cl-ci",
       "inherits": "ci"
     }
   ],
@@ -585,6 +585,18 @@
       "inherits": "benchmark"
     },
     {
+      "name": "clang-cl-test",
+      "displayName": "Tests",
+      "configurePreset": "clang-cl",
+      "inherits": "test"
+    },
+    {
+      "name": "clang-cl-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "clang-cl",
+      "inherits": "benchmark"
+    },
+    {
       "name": "mingw-test",
       "displayName": "Tests",
       "configurePreset": "mingw",
@@ -606,18 +618,6 @@
       "name": "mingw32-benchmark",
       "displayName": "Benchmarks",
       "configurePreset": "mingw32",
-      "inherits": "benchmark"
-    },
-    {
-      "name": "clang-cl-test",
-      "displayName": "Tests",
-      "configurePreset": "clang-cl",
-      "inherits": "test"
-    },
-    {
-      "name": "clang-cl-benchmark",
-      "displayName": "Benchmarks",
-      "configurePreset": "clang-cl",
       "inherits": "benchmark"
     },
     {
@@ -651,6 +651,12 @@
       "inherits": "test"
     },
     {
+      "name": "clang-cl-ci",
+      "displayName": "VS CI Tests",
+      "configurePreset": "clang-cl-ci",
+      "inherits": "ci"
+    },
+    {
       "name": "mingw-ci",
       "displayName": "Mingw CI Tests",
       "configurePreset": "mingw-ci",
@@ -667,12 +673,6 @@
       "displayName": "Mingw CD Tests",
       "configurePreset": "mingw-ci",
       "inherits": "test"
-    },
-    {
-      "name": "clang-cl-ci",
-      "displayName": "VS CI Tests",
-      "configurePreset": "clang-cl-ci",
-      "inherits": "ci"
     }
   ]
 }
