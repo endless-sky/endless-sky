@@ -68,7 +68,7 @@ void ShipAICache::UpdateWeaponCache()
 				splashSpace += outfitSpace;
 			}
 
-			// The artillery AI should be applied at 1000 pixels range, or any if the weapon is homing.
+			// The artillery AI should be applied at 1000 pixels range, or 500 if the weapon is homing.
 			double range = weapon->Range();
 			shortestRange = min(range, shortestRange);
 			if(range >= 1000. || (weapon->Homing() && range >= 500.))
@@ -81,11 +81,11 @@ void ShipAICache::UpdateWeaponCache()
 
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
-	double stepsInFullTurn = 360. / ship->TurnRate();
+	double stepsInFullTurn = 180. / ship->TurnRate();
 	double circumference = stepsInFullTurn * ship->Velocity().Length();
 	turningRadius = circumference / PI;
 
-	// If this ship was using the missile boat AI to run away and bombard its
+	// If this ship was using the artillery AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This
 	// is not realistic, but it's less annoying for the player.
 	if(isArmed && !hasAmmo && !ship->IsYours())
@@ -95,17 +95,17 @@ void ShipAICache::UpdateWeaponCache()
 	}
 	else if(isArmed)
 	{
-		// ArtilleryAI is the AI responsible for handling the behavior of missile boats
+		// Artillery AI is the AI responsible for handling the behavior of missile boats
 		// and other ships with exceptionally long range weapons such as detainers
-		// The AI shouldn't use artilleryAI if it has no reverse and it's turning
+		// The AI shouldn't use the artillery AI if it has no reverse and it's turning
 		// capabilities are very bad. Otherwise it spends most of it's time flying around.
-		artilleryAI = (artillerySpace > totalSpace / 2.
+		useArtilleryAI = (artillerySpace > totalSpace / 2.
 			&& (ship->MaxReverseVelocity() || turningRadius < 0.2 * shortestArtillery));
 
 		// Don't try to avoid your own splash damage if it means you whould be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash
 		// weapons being overly afraid of dying.
-		if(minSafeDistance && !(artilleryAI || shortestRange * (splashSpace / totalSpace) > turningRadius))
+		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashSpace / totalSpace) > turningRadius))
 			minSafeDistance = 0.;
 	}
 }

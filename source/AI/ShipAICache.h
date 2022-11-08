@@ -22,7 +22,7 @@ class Ship;
 class ShipAICache {
 public:
 	ShipAICache() = default;
-	// Construct and Load() at the same time.
+	// Construct and UpdateWeaponCache() at the same time.
 	ShipAICache(const Ship &ship);
 
 	void UpdateWeaponCache();
@@ -48,7 +48,7 @@ private:
 
 
 // Inline the accessors and setters because they get called so frequently.
-inline bool ShipAICache::IsArtilleryAI() const { return artilleryAI; }
+inline bool ShipAICache::IsArtilleryAI() const { return useArtilleryAI; }
 inline double ShipAICache::ShortestRange() const { return shortestRange; }
 inline double ShipAICache::ShortestArtillery() const { return shortestArtillery; }
 inline double ShipAICache::MinSafeDistance() const { return minSafeDistance; }

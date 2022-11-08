@@ -2163,7 +2163,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	}
 
 	ShipAICache &shipAICache = ship.GetAICache();
-	bool artilleryAI = shipAICache.IsArtilleryAI();
+	bool useArtilleryAI = shipAICache.IsArtilleryAI();
 	double shortestRange = shipAICache.ShortestRange();
 	double shortestArtillery = shipAICache.ShortestArtillery();
 	double minSafeDistance = shipAICache.MinSafeDistance();
@@ -2174,7 +2174,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
 	// If a weapon has blast radius, some leeway helps avoid getting hurt.
-	if(minSafeDistance || (artilleryAI && shortestRange < weaponDistance))
+	if(minSafeDistance || (useArtilleryAI && shortestRange < weaponDistance))
 	{
 		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
 
@@ -2188,7 +2188,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
 
 		// If we're too close, run away.
-		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), artilleryAI * .75 * shortestArtillery))
+		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), useArtilleryAI * .75 * shortestArtillery))
 		{
 			if(useReverse)
 			{
@@ -2206,7 +2206,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		else
 		{
 			// This isn't perfect, but it works well enough.
-			if((artilleryAI && (approachSpeed > 0. && weaponDistance < shortestArtillery * .9)) ||
+			if((useArtilleryAI && (approachSpeed > 0. && weaponDistance < shortestArtillery * .9)) ||
 					weaponDistance < shortestRange * .75)
 				AimToAttack(ship, command, target);
 			else

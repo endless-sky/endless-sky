@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
-#include "AI/ShipAICache.h"
 
 #include <list>
 #include <map>
@@ -48,6 +47,7 @@ class Planet;
 class Projectile;
 class StellarObject;
 class System;
+class ShipAICache;
 class Visual;
 
 
