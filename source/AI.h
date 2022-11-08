@@ -94,8 +94,6 @@ private:
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
-	static void UpdateWeaponStats(Ship &ship);
-
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
@@ -191,7 +189,7 @@ private:
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
 
-	// The current step count for the AI, ranging from 0 to 127. Its value
+	// The current step count for the AI, ranging from 0 to 30. Its value
 	// helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
 
