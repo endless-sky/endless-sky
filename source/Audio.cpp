@@ -292,7 +292,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
 						}
 					}
-				if(validPlaylists.size())
+				if(!validPlaylists.empty())
 				{
 					currentPlaylist = validPlaylists.Get();
 					currentPlaylist->Activate();
@@ -300,14 +300,13 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 				else
 					currentPlaylist = nullptr;
 			}
-			if(currentPlaylist != nullptr)
+			if(currentPlaylist)
 			{
 				const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
 				if(currentPlaylistTrack->Name().size())
 				{
 					SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
 					PlayMusic(currentPlaylistTrack->GetTitle(state));
-					std::cout<<"Hi: "<<currentPlaylistTrack->GetTitle(state)<<endl;
 				}
 			}
 			else
