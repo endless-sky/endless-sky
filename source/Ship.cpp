@@ -41,7 +41,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "TextReplacements.h"
 #include "Visual.h"
-#include "AI/ShipAICache.h"
 
 #include <algorithm>
 #include <cassert>

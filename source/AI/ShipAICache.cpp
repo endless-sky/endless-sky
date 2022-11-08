@@ -35,9 +35,9 @@ void ShipAICache::UpdateWeaponCache()
 {
 	bool hasAmmo = false;
 	bool isArmed = false;
-	double totalSpace = 0.;
-	double splashSpace = 0.;
-	double artillerySpace = 0.;
+	double totalDPS = 0.;
+	double splashDPS = 0.;
+	double artilleryDPS = 0.;
 
 	shortestRange = 4000.;
 	shortestArtillery = 4000.;
@@ -49,23 +49,24 @@ void ShipAICache::UpdateWeaponCache()
 		if(weapon && !hardpoint.IsAntiMissile())
 		{
 			isArmed = true;
-			bool lackingAmmo = (weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()));
+			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship->OutfitCount(weapon->Ammo()));
 			// Weapons without ammo might as well not exsit, so don't even consider them
 			if(lackingAmmo)
 				continue;
 			hasAmmo = true;
 
-			// Account for weapons that may have different weapon capacity usage compared to outfit space usage.
-			// Also account for any "weapons" that might use engine capacity.
-			double outfitSpace =
-				-(weapon->Get("outfit space") + weapon->Get("weapon capacity") + weapon->Get("engine capacity")) / 2.;
-			totalSpace += outfitSpace;
+			// Calculate the damage per second, ignoring any special effects. (could be improved to account for those)
+			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
+				+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
+				+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull")))
+				/ weapon->Reload();
+			totalDPS += DPS;
 
 			// Exploding weaponry that can damage this ship requires special consideration.
 			if(weapon->SafeRange())
 			{
 				minSafeDistance = max(weapon->SafeRange(), minSafeDistance);
-				splashSpace += outfitSpace;
+				splashDPS += DPS;
 			}
 
 			// The artillery AI should be applied at 1000 pixels range, or 500 if the weapon is homing.
@@ -74,15 +75,15 @@ void ShipAICache::UpdateWeaponCache()
 			if(range >= 1000. || (weapon->Homing() && range >= 500.))
 			{
 				shortestArtillery = min(range, shortestArtillery);
-				artillerySpace += outfitSpace;
+				artilleryDPS += DPS;
 			}
 		}
 	}
 
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
-	double stepsInFullTurn = 180. / ship->TurnRate();
-	double circumference = stepsInFullTurn * ship->Velocity().Length();
+	double stepsInHalfTurn = 180. / ship->TurnRate();
+	double circumference = stepsInHalfTurn * ship->Velocity().Length();
 	turningRadius = circumference / PI;
 
 	// If this ship was using the artillery AI to run away and bombard its
@@ -99,13 +100,13 @@ void ShipAICache::UpdateWeaponCache()
 		// and other ships with exceptionally long range weapons such as detainers
 		// The AI shouldn't use the artillery AI if it has no reverse and it's turning
 		// capabilities are very bad. Otherwise it spends most of it's time flying around.
-		useArtilleryAI = (artillerySpace > totalSpace / 2.
+		useArtilleryAI = (artilleryDPS > totalDPS / 2.
 			&& (ship->MaxReverseVelocity() || turningRadius < 0.2 * shortestArtillery));
 
 		// Don't try to avoid your own splash damage if it means you whould be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash
 		// weapons being overly afraid of dying.
-		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashSpace / totalSpace) > turningRadius))
+		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > turningRadius))
 			minSafeDistance = 0.;
 	}
 }
