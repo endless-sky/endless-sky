@@ -112,6 +112,7 @@ void Music::SetSource(const string &name)
 	else
 		nextFile = Files::Open(path);
 	hasNewFile = true;
+	finished = false;
 
 	// Also clear any decoded data left over from the previous file.
 	next.clear();
@@ -191,8 +192,6 @@ void Music::Decode()
 		mad_stream_init(&stream);
 		mad_frame_init(&frame);
 		mad_synth_init(&synth);
-
-		finished = hasNewFile;
 
 		// Loop until we are asked to switch files.
 		while(!finished)

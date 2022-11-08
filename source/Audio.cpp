@@ -353,9 +353,13 @@ void Audio::PlayMusic(const string &name)
 	if(!isInitialized)
 		return;
 
+	if(name == currentTrack->GetSource())
+		return;
+
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
 	musicFade = 65536;
+	previousTrack.reset(new Music());
 	swap(currentTrack, previousTrack);
 	// If the name is empty, it means to turn music off.
 	currentTrack->SetSource(name);
