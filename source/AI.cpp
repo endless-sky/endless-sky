@@ -3018,7 +3018,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 				disabledOverride = (it->second.type == Orders::FINISH_OFF);
 				friendlyOverride = disabledOverride | (it->second.type == Orders::ATTACK);
 			}
-			if(it->second.type == Orders::HOLD_FIRE)
+			else if(it->second.type == Orders::HOLD_FIRE)
 				return;
 		}
 	}
