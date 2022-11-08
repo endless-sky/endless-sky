@@ -270,7 +270,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 {
 	if(!isInitialized)
 		return;
-	
+
 	if(Preferences::Has("ingame music"))
 	{
 		// If the current playlists conditions are still matching. If not search a new one.
