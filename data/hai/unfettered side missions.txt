@@ -256,46 +256,89 @@ ship "Alpha Auxiliary"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
 	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
-ship "Alpha Auxiliary" "Alpha Auxiliary (Supplies)"
+# TODO: when possible to define a cargo for npc, use that and some custom outfitters
+ship "Alpha Auxiliary" "Alpha Auxiliary (Bringing Supplies)"
 	cargo
 		outfits
 			"Jump Drive" 5
+			"Control Transceiver" 4
+			"Fuel Processor" 2
+			"Afterburner (Asteroid Class)" 3
+			"Reasoning Node" 3
+			"Engine (Meteor Class)" 2
+			"Fire-Lance" 8
 		commodities
-			"Military" 150
-			"Electronics" 100
-			"Metal" 50
-			"Heavy Metals" 50
+			"Military" 50
+			"Electronics" 50
+
+ship "Alpha Auxiliary" "Alpha Auxiliary (Leaving With Supplies)"
+	cargo
+		outfits
+			"Ion Cannon"
+			"Hai Tracker Pod"
+			"Hai Tracker" 95
+		commodities
+			"Metal" 100
+			"Heavy Metals" 150
 
 
-mission "Unfettered: Alpha Business"
+conversation "unfettered: destroyed auxiliary"
+	`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
+	action
+		set "unfettered: destroyed auxiliary"
+		"reputation: Hai (Unfettered)" <?= -1
+
+mission "Unfettered: Alpha Bringing Supplies"
 	invisible
 	minor
 	repeat
 	landing
 	source "Warfeed"
+	deadline
 	to offer
 		not "Unfettered: Alphas: Find The Auxiliary: offered"
 		not "unfettered: destroyed auxiliary"
-		or
-			random < 8
-			and
-				not "Unfettered: Alpha Business: offered"
-				random < 50
-		not "Unfettered: Alpha Business: active"
+		not "Unfettered: Alpha Bringing Supplies: active"
+		not "Unfettered: Alpha Leaving With Supplies: active"
 		"reputation: Hai (Unfettered)" >= 0
-	deadline 2
+		or
+			not "unfettered: saw auxiliary"
+			random < 5
+	on offer
+		set "unfettered: saw auxiliary"
+	on enter
+		dialog `As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast. And do not interfere with that incoming ship."`
 	npc kill
 		government "Alpha"
-		personality entering uninterested fleeing
-		system "Hi Yahr"
-		ship "Alpha Auxiliary (Supplies)" "Settler"
-		conversation
-			`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
-			action
-				set "unfettered: destroyed auxiliary"
-				"reputation: Hai (Unfettered)" <?= -1
+		personality entering uninterested fleeing timid
+		ship "Alpha Auxiliary (Bringing Supplies)" "Settler"
+		conversation "unfettered: destroyed auxiliary"
+
+mission "Unfettered: Alpha Leaving With Supplies"
+	invisible
+	minor
+	repeat
+	landing
+	source "Warfeed"
+	deadline
+	to offer
+		not "Unfettered: Alphas: Find The Auxiliary: offered"
+		not "unfettered: destroyed auxiliary"
+		not "Unfettered: Alpha Bringing Supplies: active"
+		not "Unfettered: Alpha Leaving With Supplies: active"
+		"reputation: Hai (Unfettered)" >= 0
+		or
+			not "unfettered: saw auxiliary"
+			random < 5
+	on offer
+		set "unfettered: saw auxiliary"
 	on enter "Hi Yahr"
-		dialog `As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast. And do not interfere with that incoming ship."`
+		dialog `As you launch, the local authorities hail you, "An important guest is leaving with you. They seem to have activated their weapon systems... Get out, fast. And do not interfere with that launching ship."`
+	npc kill
+		government "Alpha"
+		personality launching uninterested fleeing timid
+		ship "Alpha Auxiliary (Leaving With Supplies)" "Settler"
+		conversation "unfettered: destroyed auxiliary"
 
 
 # TEMPORARILY DISABLED UNTIL HR SITUATION WITH PIRATES IS CLEARED OUT

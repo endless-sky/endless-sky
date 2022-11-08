@@ -614,6 +614,8 @@ mission "Wanderers: Defend Vara Ke'sok"
 		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
 	on complete
 		event "Sich'ka'ara restored"
+	on enter
+		dialog `As you were preparing to engage the Unfettered, one of their ships hails you, "What's a fish like you doing here, lost so deep in the sea? Whoever you are, let it be known to ye that this is yer last chance to keep proper relations with us! Defend this world, and you will be considered fettered forever. Make your choice carefuly, captain, I recommend you abort this mission."`
 	
 	npc
 		government "Wanderer"

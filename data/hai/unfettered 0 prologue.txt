@@ -1369,7 +1369,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		government "Alpha"
 		personality entering timid staying target
 		system "Hi Yahr"
-		ship "Alpha Auxiliary (Supplies)" "Settler"
+		ship "Alpha Auxiliary (Bringing Supplies)" "Settler"
 		conversation
 			`You have finished scanning the Auxiliary. There can be no doubt: it is controlled by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
 			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here. We have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
@@ -1382,7 +1382,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			`	"Consider this carefully before taking any actions you may regret in the future. Our offer still stands." The transmission cuts out.`
 				decline
 			label jump
-			`	"Maybe, but there is no garantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defences will protect you."`
+			`	"Maybe, but there is no guarantee their ship will not pursue you. Please, land straight away, I assure you the other ship will land on another planet, and if not, our orbital defences will protect you."`
 	npc
 		government "Alpha"
 		personality timid staying vindictive
