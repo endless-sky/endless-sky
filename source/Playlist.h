@@ -53,15 +53,8 @@ private:
 	ConditionSet toPlay;
 	LocationFilter location;
 
-	int silence = 0;
-	// Parameters for generating random silence times:
-	int silenceLimit = 0;
-	double silenceProb = 0.;
-
 	int priority = 0;
 	int weight = 0;
-
-	bool overridePlaylist = false;
 
 	std::string progressionStyle;
 	WeightedList<const Track *> tracks;

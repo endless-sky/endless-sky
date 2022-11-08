@@ -280,6 +280,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		{
 			if(!currentPlaylistValid)
 			{
+				// If the current playlist is not valid, find a new one based on priority and weight.
 				WeightedList<Playlist *> validPlaylists;
 				int priority = 0;
 				for(auto &playlist : GameData::Playlists())
@@ -302,6 +303,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 				else
 					currentPlaylist = nullptr;
 			}
+			// Only switch to a new track if a playlist is set.
 			if(currentPlaylist)
 			{
 				const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();

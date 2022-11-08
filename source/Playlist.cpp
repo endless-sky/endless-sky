@@ -54,20 +54,10 @@ void Playlist::Load(const DataNode &node)
 			toPlay.Load(child);
 		else if(child.Token(0) == "location")
 			location.Load(child);
-		else if(child.Token(0) == "silence" && child.Size() >= 2)
-		{
-			silence = child.Value(1);
-			if(child.Size() >= 3)
-				silenceLimit = child.Value(2);
-			if(child.Size() >= 4)
-				silenceProb = child.Value(3);
-		}
 		else if(child.Token(0) == "priority" && child.Size() >= 2)
 			priority = child.Value(1);
 		else if(child.Token(0) == "weight" && child.Size() >= 2)
 			weight = child.Value(1);
-		else if(child.Token(0) == "override")
-			overridePlaylist = true;
 		else if(child.Token(0) == "tracks")
 		{
 			if(child.Size() >= 2)

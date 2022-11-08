@@ -1208,7 +1208,6 @@ void Engine::EnterSystem()
 	const Date &today = player.GetDate();
 
 	const System *system = flagship->GetSystem();
-	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
 
 	Messages::Add("Entering the " + system->Name() + " system on "
