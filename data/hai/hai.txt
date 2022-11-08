@@ -298,6 +298,7 @@ phrase "hai last names"
 		"Far"
 		"Yoot"
 		"Imo'"
+		"Anl'"
 	word
 		"tle"
 		"uden"
@@ -310,6 +311,7 @@ phrase "hai last names"
 		"chi"
 		"li"
 		"ri"
+		"ooh"
 
 phrase "unfettered chosen names"
 	word
