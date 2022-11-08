@@ -290,7 +290,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
 						else if (playlist.second.Priority() > priority)
 						{
-							priority =  playlist.second.Priority();
+							priority = playlist.second.Priority();
 							validPlaylists.clear();
 							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
 						}
