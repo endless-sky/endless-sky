@@ -544,7 +544,7 @@ mission "FW Escort 0"
 		not "FW Escort 1: offered"
 	to fail
 		has "chosen sides"
-
+	
 	on offer
 		conversation
 			`As you are walking through the spaceport, a man in a militia uniform approaches you. Judging by the markings on his uniform, you suspect that he is very highly ranked within the militia.`
