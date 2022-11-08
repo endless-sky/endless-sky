@@ -1838,7 +1838,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
-	double mass = Mass();
+	double mass = InertialMass();
 	bool isUsingAfterburner = false;
 	if(isDisabled)
 		velocity *= 1. - Drag() / mass;
@@ -2453,7 +2453,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
 			// Update the cached sum of carried ship masses.
-			carriedMass -= bay.ship->Mass();
+			carriedMass -= bay.ship->InertialMass();
 			// Create the desired launch effects.
 			for(const Effect *effect : bay.launchEffects)
 				visuals.emplace_back(*effect, exitPoint, velocity, launchAngle);
@@ -3462,9 +3462,16 @@ bool Ship::CanBeFlagship() const
 
 
 
+double Ship::Mass() const
+{
+	return carriedMass + cargo.Used() + attributes.Mass();
+}
+
+
+
 // Account for inertia reduction, which only affects the ship's mass and not cargo or carried ships.
 // It also has no effect on maximum heat or heat capacity.
-double Ship::Mass() const
+double Ship::InertialMass() const
 {
 	return carriedMass + cargo.Used() + attributes.Mass() / (1 + attributes.Get("inertia reduction"));
 }
@@ -3473,7 +3480,7 @@ double Ship::Mass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / Mass();
+	return attributes.Get("turn") / InertialMass();
 }
 
 
@@ -3481,7 +3488,7 @@ double Ship::TurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass();
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass();
 }
 
 
@@ -3597,7 +3604,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 		return;
 	}
 
-	double currentMass = Mass();
+	double currentMass = InertialMass();
 	if(!currentMass)
 		return;
 
@@ -3717,7 +3724,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			TransferAmmo(toRestock, *ship, *this);
 
 			// Update the cached mass of the mothership.
-			carriedMass += ship->Mass();
+			carriedMass += ship->InertialMass();
 			return true;
 		}
 	return false;
@@ -3730,7 +3737,7 @@ void Ship::UnloadBays()
 	for(Bay &bay : bays)
 		if(bay.ship)
 		{
-			carriedMass -= bay.ship->Mass();
+			carriedMass -= bay.ship->InertialMass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship->UnmarkForRemoval();
@@ -4171,7 +4178,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 {
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
-	double mass = Mass();
+	double mass = InertialMass();
 
 	auto CalculateFuelCost = [mass, defaultFuel](const Outfit &outfit) -> double
 	{
