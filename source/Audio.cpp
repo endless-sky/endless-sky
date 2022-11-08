@@ -286,6 +286,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 				for(auto &playlist : GameData::Playlists())
 					if(playlist.second.MatchingConditions(player))
 					{
+						// Higher priorities always win.
 						if(playlist.second.Priority() == priority)
 							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
 						else if (playlist.second.Priority() > priority)
@@ -297,6 +298,8 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 					}
 				if(!validPlaylists.empty())
 				{
+					// This will return a random playlist, with playlist with a higher weight being more
+					// probable to be returned.
 					currentPlaylist = validPlaylists.Get();
 					currentPlaylist->Activate();
 				}
@@ -310,6 +313,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 				SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
 				PlayMusic(currentPlaylistTrack->GetTitle(state));
 			}
+			// If no playlist is set this means nothing should be played, so stop everything.
 			else
 				currentTrack->Finish();
 		}
@@ -359,6 +363,8 @@ void Audio::PlayMusic(const string &name)
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
 	musicFade = 65536;
+	// Clear of the previous track so that we can use it again without having
+	// old data to deal with.
 	previousTrack.reset(new Music());
 	swap(currentTrack, previousTrack);
 	// If the name is empty, it means to turn music off.
