@@ -2167,47 +2167,50 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	double shortestRange = shipAICache.ShortestRange();
 	double shortestArtillery = shipAICache.ShortestArtillery();
 	double minSafeDistance = shipAICache.MinSafeDistance();
+
 	double totalRadius = ship.Radius() + target.Radius();
-	Point d = target.Position() - ship.Position();
-	double weaponDistance = d.Length() - totalRadius / 3.;
+	Point distanceFromTarget = target.Position() - ship.Position();
+	// Average distance from this ship's weapons to the enemy ship.
+	double weaponDistanceFromTarget = distanceFromTarget.Length() - totalRadius / 3.;
 
 	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
 	// If a weapon has blast radius, some leeway helps avoid getting hurt.
-	if(minSafeDistance || (useArtilleryAI && shortestRange < weaponDistance))
+	if(minSafeDistance || (useArtilleryAI && shortestRange < weaponDistanceFromTarget))
 	{
 		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
 
-		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(d.Unit());
+		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(distanceFromTarget.Unit());
 		double slowdownDistance = 0.;
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
 		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
-				|| target.Velocity().Dot(-d.Unit()) <= reverseSpeed);
+				|| target.Velocity().Dot(-distanceFromTarget.Unit()) <= reverseSpeed);
 		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
 			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
 
 		// If we're too close, run away.
-		if(d.Length() < max(minSafeDistance + max(slowdownDistance, 0.), useArtilleryAI * .75 * shortestArtillery))
+		if(distanceFromTarget.Length() <
+				max(minSafeDistance + max(slowdownDistance, 0.), useArtilleryAI * .75 * shortestArtillery))
 		{
 			if(useReverse)
 			{
-				command.SetTurn(TurnToward(ship, d));
-				if(ship.Facing().Unit().Dot(d) >= 0.)
+				command.SetTurn(TurnToward(ship, distanceFromTarget));
+				if(ship.Facing().Unit().Dot(distanceFromTarget) >= 0.)
 					command |= Command::BACK;
 			}
 			else
 			{
-				command.SetTurn(TurnToward(ship, -d));
-				if(ship.Facing().Unit().Dot(d) <= 0.)
+				command.SetTurn(TurnToward(ship, -distanceFromTarget));
+				if(ship.Facing().Unit().Dot(distanceFromTarget) <= 0.)
 					command |= Command::FORWARD;
 			}
 		}
 		else
 		{
 			// This isn't perfect, but it works well enough.
-			if((useArtilleryAI && (approachSpeed > 0. && weaponDistance < shortestArtillery * .9)) ||
-					weaponDistance < shortestRange * .75)
+			if((useArtilleryAI && (approachSpeed > 0. && weaponDistanceFromTarget < shortestArtillery * .9)) ||
+					weaponDistanceFromTarget < shortestRange * .75)
 				AimToAttack(ship, command, target);
 			else
 				MoveToAttack(ship, command, target);
@@ -2215,7 +2218,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	}
 	// Fire if we can or move closer to use all weapons.
 	else
-		if(weaponDistance < shortestRange * .75)
+		if(weaponDistanceFromTarget < shortestRange * .75)
 			AimToAttack(ship, command, target);
 		else
 			MoveToAttack(ship, command, target);
@@ -2232,22 +2235,22 @@ void AI::AimToAttack(Ship &ship, Command &command, const Body &target)
 
 void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 {
-	Point d = target.Position() - ship.Position();
+	Point distanceFromTarget = target.Position() - ship.Position();
 
 	// First of all, aim in the direction that will hit this target.
 	AimToAttack(ship, command, target);
 
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
-	if(ship.Facing().Unit().Dot(d.Unit()) < -.75 && ship.Attributes().Get("reverse thrust"))
+	if(ship.Facing().Unit().Dot(distanceFromTarget.Unit()) < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
 	// This isn't perfect, but it works well enough.
-	else if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > max(200., ship.GetAICache().TurningRadius()))
-			|| (ship.Velocity().Dot(d) < 0. && ship.Facing().Unit().Dot(d.Unit()) >= .9))
+	else if((ship.Facing().Unit().Dot(distanceFromTarget) >= 0. && distanceFromTarget.Length() > max(200., ship.GetAICache().TurningRadius()))
+			|| (ship.Velocity().Dot(distanceFromTarget) < 0. && ship.Facing().Unit().Dot(distanceFromTarget.Unit()) >= .9))
 		command |= Command::FORWARD;
 
 	// Use an equipped afterburner if possible.
-	if(command.Has(Command::FORWARD) && d.Length() < 1000. && ShouldUseAfterburner(ship))
+	if(command.Has(Command::FORWARD) && distanceFromTarget.Length() < 1000. && ShouldUseAfterburner(ship))
 		command |= Command::AFTERBURNER;
 }
 

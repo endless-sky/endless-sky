@@ -83,7 +83,7 @@ void ShipAICache::UpdateWeaponCache()
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
 	// can make while at full speed.
 	double stepsInHalfTurn = 180. / ship->TurnRate();
-	double circumference = stepsInHalfTurn * ship->Velocity().Length();
+	double circumference = stepsInHalfTurn * ship->MaxVelocity();
 	turningRadius = circumference / PI;
 
 	// If this ship was using the artillery AI to run away and bombard its
