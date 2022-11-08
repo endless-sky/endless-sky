@@ -273,7 +273,9 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 	
 	if(Preferences::Has("ingame music"))
 	{
-		bool currentPlaylistValid = currentPlaylist ? currentPlaylist->MatchingConditions(player) : false;
+		// If the current playlists conditions are still matching. If not search a new one.
+		bool currentPlaylistValid = currentPlaylist ?
+			currentPlaylist->MatchingConditions(player) : false;
 		if(currentTrack->IsFinished() || !currentPlaylistValid)
 		{
 			if(!currentPlaylistValid)
@@ -303,11 +305,8 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			if(currentPlaylist)
 			{
 				const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
-				if(currentPlaylistTrack->Name().size())
-				{
-					SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
-					PlayMusic(currentPlaylistTrack->GetTitle(state));
-				}
+				SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
+				PlayMusic(currentPlaylistTrack->GetTitle(state));
 			}
 			else
 				currentTrack->Finish();
