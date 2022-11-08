@@ -138,6 +138,7 @@ namespace {
 		{"piercing protection", -0.99},
 		{"force protection", -0.99},
 		{"discharge protection", -0.99},
+		{"drag reduction", -0.99},
 		{"corrosion protection", -0.99},
 		{"ion protection", -0.99},
 		{"leak protection", -0.99},
