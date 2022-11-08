@@ -507,11 +507,9 @@ void Engine::Step(bool isActive)
 	testContext = nullptr;
 
 	wasActive = isActive;
-
-
 	Audio::Update(center);
 
-	if(isActive && GameData::IsLoaded())
+	if(GameData::IsLoaded())
 	{
 		Track::GameState state = Track::GameState::IDLE;
 		if(hadHostiles)
