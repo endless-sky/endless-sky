@@ -29,7 +29,7 @@ fleet "Small Vi"
 		Gneiss
 	variant
 		Eclogite 2
-		"Hornfel Light"
+		"Hornfel Light Load"
 	variant
 		Gneiss
 
@@ -47,9 +47,9 @@ fleet "Large Vi"
 	variant 3
 		Hornfel
 	variant 3
-		"Hornfel Med"
+		"Hornfel Heavy Load"
 	variant 3
-		"Hornfel Light"
+		"Hornfel Light Load
 	variant 3
 		Gneiss
 	variant 3
@@ -59,10 +59,10 @@ fleet "Large Vi"
 		Eclogite 2
 		Hornfel 2
 	variant
-		"Hornfel Med"
-		"Hornfel Light"
+		"Hornfel Heavy Load"
+		"Hornfel Light Load"
 	variant
-		"Hornfel Med"
+		"Hornfel Heavy Load"
 		Gneiss
 	variant
 		Eclogite
@@ -70,22 +70,22 @@ fleet "Large Vi"
 		Gneiss
 	variant 2
 		Eclogite 2
-		"Hornfel Light"
-		"Hornfel Med"
+		"Hornfel Light Load"
+		"Hornfel Heavy Load"
 	variant
 		Eclogite
-		"Hornfel Light"
-		"Hornfel Med"
+		"Hornfel Light Load"
+		"Hornfel Heavy Load"
 		Gneiss
 	variant
 		Eclogite 2
 	variant
-		"Hornfel Heavy"
-		"Hornfel Light"
+		"Hornfel Heavy Weapons"
+		"Hornfel Light Load"
 		Eclogite
 	variant
 		Gneiss
-		"Hornfel Heavy"
+		"Hornfel Heavy Weapons"
 
 fleet "Vi Transport"
 	government "Gegno Vi"
@@ -100,23 +100,23 @@ fleet "Vi Transport"
 	variant 8
 		Schist
 	variant 3
-		"Schist B"
+		"Schist Light Load"
 	variant 2
 		Slate
-		"Schist C"
-		"Schist B"
+		"Schist Heavy Load"
+		"Schist Light Load"
 	variant 2
 		Slate 2
 		Schist
 	variant 4
 		Slate
-		"Schist C"
+		"Schist Heavy Load"
 	variant
 		Schist 2
 	variant 2
-		"Schist B"
+		"Schist Light Load"
 	variant
-		"Schist C"
+		"Schist Heavy Load"
 	variant
 		Protolith
 
@@ -127,23 +127,23 @@ fleet "Vi Cargo"
 	personality
 		plunders heroic opportunistic
 	variant 2
-		"Schist C"
+		"Schist Heavy Load"
 	variant 2
-		"Hornfel Light"
+		"Hornfel Light Load"
 	variant
-		"Hornfel Heavy"
+		"Hornfel Heavy Weapons"
 	variant 2
-		"Schist B"
+		"Schist Light Load"
 	variant
 		Hornfel
 	variant
 		Schist
 	variant
-		"Hornfel Med"
-		"Schist C"
+		"Hornfel Heavy Load"
+		"Schist Heavy Load"
 	variant
 		Protolith
-		"Schist C"
+		"Schist Heavy Load"
 
 fleet "Small Scin"
 	government "Gegno Scin"
@@ -261,10 +261,10 @@ fleet "Vi Warfleet"
 		Eclogite
 		Hornfel 2
 	variant 2
-		"Hornfel Heavy"
+		"Hornfel Heavy Weapons"
 	variant
 		Gneiss 2
-		"Hornfel Med"
+		"Hornfel Heavy Load"
 
 fleet "Scin Warfleet"
 	government "Gegno Scin"
