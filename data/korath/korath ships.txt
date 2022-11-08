@@ -392,19 +392,19 @@ ship "Rai'alorej"
 	thumbnail "thumbnail/rai-alorej"
 	attributes
 		category "Utility"
-		cost 81970000
-		shields 63000
-		hull 57000
+		cost 31970000
+		shields 43000
+		hull 27000
 		"required crew" 523
 		"bunks" 1433
-		"mass" 2060
-		"drag" 29.6
+		"mass" 1660
+		"drag" 27.6
 		"heat dissipation" .36
 		"fuel capacity" 700
 
 		"cargo space" 351
-		"outfit space" 1029
-		"weapon capacity" 431
+		"outfit space" 1019
+		"weapon capacity" 371
 		"engine capacity" 309
 		weapon
 			"blast radius" 600
@@ -431,6 +431,7 @@ ship "Rai'alorej"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Scram Drive"
+		"Jump Drive"
 
 	"reverse engine" -79 -186
 		zoom 0.8
