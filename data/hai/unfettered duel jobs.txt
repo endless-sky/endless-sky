@@ -13,37 +13,6 @@
 
 
 
-ship "Sea Scorpion" "Sea Scorpion (Ionic)"
-	outfits
-		`"Biroo" Atomic Steering`
-		`"Bondir" Atomic Thruster`
-		"Boulder Reactor"
-		"Chameleon Anti-Missile"
-		"Hai Corundum Regenerator"
-		"Hai Diamond Regenerator"
-		"Hai Valley Batteries"
-		"Hyperdrive"
-		"Ion Cannon"
-		"Ionic Blaster Prototype" 2
-		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
-
-ship "Sea Scorpion" "Sea Scorpion (Shredder)"
-	outfits
-		`"Biroo" Atomic Steering`
-		`"Biroo" Atomic Thruster`
-		"Boulder Reactor"
-		"Bullfrog Anti-Missile"
-		"Hai Diamond Regenerator" 2
-		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 4
-		"Hyperdrive"
-		"Pulse Cannon" 2
-		"Pulse Rifle" 15
-		"Pulse Turret"
-		"Quantum Keystone"
-		"Tripulse Shredder" 2
-
 ship "Sea Scorpion" "Sea Scorpion (Shields)"
 	outfits
 		`"Biroo" Atomic Steering`
