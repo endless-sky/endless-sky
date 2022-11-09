@@ -116,6 +116,7 @@ public:
 
 public:
 	const std::string &Name() const;
+	Status GetStatus() const;
 	const std::string &StatusText() const;
 
 	// Check the game status and perform the next test action.

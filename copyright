@@ -366,6 +366,7 @@ Files:
  images/effect/mhd?spark*
  images/land/nasa9*
  images/hardpoint/annihilator?turret*
+ images/hardpoint/hai?ionic?turret*
  images/hardpoint/inhibitor?turret*
  images/hardpoint/ion?hail?turret*
  images/hardpoint/ravager?turret*
@@ -397,6 +398,8 @@ Files:
  images/outfit/flamethrower*
  images/outfit/fuel?pod*
  images/outfit/gat*
+ images/outfit/hai?ionic?blaster*
+ images/outfit/hai?ionic?turret*
  images/outfit/heavy?anti-missile*
  images/outfit/heavy?laser?turret*
  images/outfit/heavy?laser*
@@ -453,6 +456,7 @@ Files:
  images/outfit/rock?3*
  images/outfit/rock?4*
  images/scene/penguinscene*
+ images/ship/hai?sea?scorpion*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -464,6 +468,7 @@ Files:
  images/ship/pug?enfolta*
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
+ images/thumbnail/hai?sea?scorpion*
  images/thumbnail/ibis*
  images/thumbnails/merganser*
  images/thumbnail/penguin*
@@ -1362,6 +1367,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license).
 
 Files:
+ images/outfit/tripulse?shredder*
+ images/outfit/value?detector*
+Copyright: Ejo Thims
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/star/a-dwarf*
  images/star/a-giant*
  images/star/a-supergiant*
@@ -1629,6 +1641,15 @@ License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
+ images/ship/hai?cicada*
+ images/ship/hai?scarab*
+ images/thumbnail/hai?cicada*
+ images/thumbnail/hai?scarab*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Evan Fluharty (under the same license).
+
+Files:
  images/hardpoint/blaze-pike*
  images/hardpoint/korath?inferno*
  images/hardpoint/shunt-strike*
@@ -1646,6 +1667,7 @@ Files:
  images/planet/station7cb*
  images/projectile/firelight*
  images/projectile/firelight?active*
+ sounds/ion?blast*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
@@ -1673,6 +1695,7 @@ Comment: Derived from work by Griffin Schutte (theronepic@gmail.com) (under same
 License: CC-BY-SA-4.0
 
 Files:
+ images/projectiles/ionic?blast*
  images/ship/kestrel*
  images/ship/kestrele*
  images/ship/kestrels*

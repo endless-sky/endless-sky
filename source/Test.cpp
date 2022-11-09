@@ -374,6 +374,13 @@ const string &Test::Name() const
 
 
 
+Test::Status Test::GetStatus() const
+{
+	return status;
+}
+
+
+
 // Check the game status and perform the next test action.
 void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const
 {

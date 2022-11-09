@@ -541,6 +541,7 @@ mission "FW Escort 0"
 	destination "Longjump"
 	to offer
 		random < 20 * "assisted free worlds"
+		not "FW Escort 1: offered"
 	to fail
 		has "chosen sides"
 	
