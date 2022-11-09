@@ -615,7 +615,9 @@ mission "Wanderers: Defend Vara Ke'sok"
 	on complete
 		event "Sich'ka'ara restored"
 	on enter
-		dialog `As you were preparing to engage the Unfettered, one of their ships hails you, "What's a fish like you doing here, lost so deep in the sea? Whoever you are, let it be known to ye that this is yer last chance to keep proper relations with us! Defend this world, and you will be considered fettered forever. Make your choice carefully, captain, I recommend you abort this mission."`
+		dialog `As you are preparing to engage the Unfettered, one of their ships hails you. "What be a guppy like ye doing this far out to sea? Be ye lost, landlubber? This be yer last chance! Take arms to defend this world against us, and ye will be considered fettered forever. Make yer choice carefully, Captain. I strongly council ye to abort this mission, savvy?."`
+	on fail
+		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpfull lad back in Unfettered space... Feel free to visit Darkcloak, I'll be there once I'm done with this raid."`
 	
 	npc
 		government "Wanderer"
