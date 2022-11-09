@@ -91,9 +91,7 @@ public:
 	bool IsAtSetting(Setting setting) const;
 
 	// Information about what you are doing.
-	bool DestinationIsPlanet() const;
-	const Planet *Destination() const;
-	const System *DestinationSystem() const;
+	const Location &Destination() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
 	const std::set<const Planet *> &Stopovers() const;

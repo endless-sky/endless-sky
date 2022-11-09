@@ -2007,11 +2007,11 @@ bool PlayerInfo::KnowsName(const System &system) const
 		return true;
 
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->IsInSystem(&system))
+		if(mission.Destination().GetSystem() == &system)
 			return true;
 
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
+		if(mission.IsVisible() && mission.Destination().GetSystem() == &system)
 			return true;
 
 	return false;
@@ -2508,7 +2508,7 @@ void PlayerInfo::ApplyChanges()
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
 		{
-			mission.Destination()->Bribe(mission.HasFullClearance());
+			mission.Destination().GetPlanet()->Bribe(mission.HasFullClearance());
 			for(const Planet *planet : mission.Stopovers())
 				planet->Bribe(mission.HasFullClearance());
 		}
@@ -3187,8 +3187,8 @@ void PlayerInfo::SortAvailable()
 		{
 			if(mission.IsVisible())
 			{
-				destinations.insert(mission.Destination());
-				destinations.insert(mission.Destination()->GetSystem());
+				destinations.insert(mission.Destination().GetPlanet());
+				destinations.insert(mission.Destination().GetSystem());
 
 				for(const Planet *stopover : mission.Stopovers())
 				{
@@ -3227,8 +3227,8 @@ void PlayerInfo::SortAvailable()
 				// Sorting by "convenience" means you already have a mission to a
 				// planet. Missions at the same planet are sorted higher.
 				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
-				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
-				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
+				const int lConvenient = destinations.count(lhs.Destination().GetPlanet()) + destinations.count(lhs.Destination().GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination().GetPlanet()) + destinations.count(rhs.Destination().GetSystem());
 				if(lConvenient < rConvenient)
 					return true;
 				if(lConvenient > rConvenient)
@@ -3333,7 +3333,7 @@ void PlayerInfo::StepMissions(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
+		else if(mission.Destination().GetPlanet() == GetPlanet() && !freshlyLoaded)
 		{
 			mission.Do(Mission::VISIT, *this, ui);
 			if(mission.IsUnique() || !mission.IsVisible())
@@ -3690,7 +3690,7 @@ void PlayerInfo::Fine(UI *ui)
 	// Planets should not fine you if you have mission clearance or are infiltrating.
 	for(const Mission &mission : missions)
 		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
-					(mission.Destination() == planet || mission.Stopovers().count(planet))))
+					(mission.Destination().GetPlanet() == planet || mission.Stopovers().count(planet))))
 			return;
 
 	// The planet's government must have the authority to enforce laws.

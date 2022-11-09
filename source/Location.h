@@ -33,11 +33,12 @@ public:
 	Location &operator=(const System *system);
 	operator bool() const;
 
+	const Planet *GetPlanet() const;
+	const System *GetSystem() const;
+
 	bool IsPlanet() const;
 	bool IsSystem() const;
 	bool IsValid() const;
-
-	const System *GetSystem() const;
 
 	const Planet *planet = nullptr;
 	const System *system = nullptr;

@@ -571,23 +571,9 @@ bool Mission::IsAtSetting(Setting setting) const
 
 
 // Information about what you are doing.
-bool Mission::DestinationIsPlanet() const
+const Location &Mission::Destination() const
 {
-	return destination.planet;
-}
-
-
-
-const Planet *Mission::Destination() const
-{
-	return destination.planet;
-}
-
-
-
-const System *Mission::DestinationSystem() const
-{
-	return destination.system;
+	return destination;
 }
 
 

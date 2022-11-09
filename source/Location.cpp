@@ -86,6 +86,25 @@ Location::operator bool() const
 
 
 
+const Planet *Location::GetPlanet() const
+{
+	return planet;
+}
+
+
+
+const System *Location::GetSystem()  const
+{
+	if(planet)
+		return planet->GetSystem();
+	if(system)
+		return system;
+	return nullptr;
+}
+
+
+
+
 bool Location::IsPlanet() const
 {
 	return planet && !system;
@@ -109,11 +128,3 @@ bool Location::IsValid() const
 	return false;
 }
 
-const System *Location::GetSystem()  const
-{
-	if(planet)
-		return planet->GetSystem();
-	if(system)
-		return system;
-	return nullptr;
-}

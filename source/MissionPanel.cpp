@@ -63,7 +63,7 @@ namespace {
 		if(!system)
 			return false;
 
-		if(mission.Destination()->IsInSystem(system))
+		if(mission.Destination().GetSystem() == system)
 			return true;
 
 		for(const System *waypoint : mission.Waypoints())
@@ -149,12 +149,12 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	// Auto select the destination system for the current mission.
 	if(availableIt != available.end())
 	{
-		selectedSystem = availableIt->Destination()->GetSystem();
+		selectedSystem = availableIt->Destination().GetSystem();
 		DoScroll(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
+		selectedSystem = acceptedIt->Destination().GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 
@@ -350,12 +350,12 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	// mission list, update the selected system, and pan the map.
 	if(availableIt != available.end())
 	{
-		selectedSystem = availableIt->Destination()->GetSystem();
+		selectedSystem = availableIt->Destination().GetSystem();
 		DoScroll(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
+		selectedSystem = acceptedIt->Destination().GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 	CenterOnSystem(selectedSystem);
@@ -410,7 +410,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			selectedSystem = availableIt->Destination()->GetSystem();
+			selectedSystem = availableIt->Destination().GetSystem();
 			DoScroll(available, availableIt, availableScroll, false);
 			CenterOnSystem(selectedSystem);
 			return true;
@@ -430,7 +430,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			selectedSystem = acceptedIt->Destination()->GetSystem();
+			selectedSystem = acceptedIt->Destination().GetSystem();
 			DoScroll(accepted, acceptedIt, acceptedScroll, true);
 			CenterOnSystem(selectedSystem);
 			return true;
@@ -677,7 +677,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 	RingShader::Bind();
 	{
 		// Draw a colored ring around the destination system.
-		drawRing(mission.Destination()->GetSystem(), color);
+		drawRing(mission.Destination().GetSystem(), color);
 		// Draw bright rings around systems that still need to be visited.
 		for(const System *system : toVisit)
 			drawRing(system, waypoint);
@@ -926,13 +926,13 @@ void MissionPanel::Accept(bool force)
 	// jobs that also have the same destination planet.
 	if(toAccept.Destination())
 	{
-		const Planet *planet = toAccept.Destination();
-		const System *system = planet->GetSystem();
+		const Planet *planet = toAccept.Destination().GetPlanet();
+		const System *system = toAccept.Destination().GetSystem();
 		for(auto it = available.begin(); it != available.end(); ++it)
-			if(it->Destination() && it->Destination()->IsInSystem(system))
+			if(it->Destination() && it->Destination().GetSystem() == system)
 			{
 				availableIt = it;
-				if(it->Destination() == planet)
+				if(!planet || it->Destination().GetPlanet() == planet)
 					break;
 			}
 	}
@@ -1004,10 +1004,10 @@ bool MissionPanel::FindMissionForSystem(const System *system)
 	acceptedIt = accepted.end();
 
 	for(availableIt = available.begin(); availableIt != available.end(); ++availableIt)
-		if(availableIt->Destination()->IsInSystem(system))
+		if(availableIt->Destination().GetSystem() == system)
 			return true;
 	for(acceptedIt = accepted.begin(); acceptedIt != accepted.end(); ++acceptedIt)
-		if(acceptedIt->IsVisible() && acceptedIt->Destination()->IsInSystem(system))
+		if(acceptedIt->IsVisible() && acceptedIt->Destination().GetSystem() == system)
 			return true;
 
 	return false;

@@ -348,7 +348,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			if(!mission.IsVisible())
 				continue;
 
-			if(mission.Destination()->IsInSystem(&system))
+			if(mission.Destination().GetSystem() == &system)
 			{
 				bool blink = false;
 				if(mission.Deadline())
@@ -1194,7 +1194,7 @@ void MapPanel::DrawMissions()
 	// Calculate the available (and unavailable) jobs, but don't draw them yet.
 	for(const Mission &mission : player.AvailableJobs())
 	{
-		const System *system = mission.Destination()->GetSystem();
+		const System *system = mission.Destination().GetSystem();
 		auto &it = missionCount[system];
 		if(mission.CanAccept(player))
 			++it.available;
@@ -1206,7 +1206,7 @@ void MapPanel::DrawMissions()
 		if(!mission.IsVisible())
 			continue;
 
-		const System *system = mission.Destination()->GetSystem();
+		const System *system = mission.Destination().GetSystem();
 
 		// Reserve a maximum of half of the slots for available missions.
 		auto &&it = missionCount[system];

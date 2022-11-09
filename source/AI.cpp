@@ -3289,17 +3289,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			// If the accessible destination of a mission is in this system, and you've been
 			// to all waypoints and stopovers (i.e. could complete it), consider landing on it.
 			if(mission.Stopovers().empty() && mission.Waypoints().empty()
-					&& mission.Destination()->IsInSystem(system)
-					&& mission.Destination()->IsAccessible(&ship))
+					&& mission.Destination().IsPlanet() && mission.Destination().GetSystem() == system
+					&& mission.Destination().GetPlanet()->IsAccessible(&ship))
 			{
-				destinations.insert(mission.Destination());
+				destinations.insert(mission.Destination().GetPlanet());
 				++missions;
 				// If this mission has a deadline, check if it is the soonest
 				// deadline. If so, this should be your ship's destination.
 				if(!deadline || (mission.Deadline() && mission.Deadline() < deadline))
 				{
 					deadline = mission.Deadline();
-					bestDestination = mission.Destination();
+					bestDestination = mission.Destination().GetPlanet();
 				}
 			}
 			// Also check for stopovers in the destination system.
