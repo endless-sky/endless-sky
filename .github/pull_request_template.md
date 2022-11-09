@@ -22,11 +22,15 @@ A good Pull Request title will use the following structure:
 <details>
  <summary>Suggested Scopes</summary>
 
--   `content`: Additional missions, ships, outfits, or other content that doesn't require code changes
 -   `balance`: Addition or modification of existing ship/outfit stats
 -   `mechanics`: Modifications to the game engine which affect gameplay
 -   `UI`: Modifications of existing User Interface elements
 -   `enhancement`: Additional features added to the game engine
+-   `AI`: Modification to the game engine which affect NPC/Escort Behavior
+-   `mission`: Addition or Modification of missions
+-   `ship`: Addition or Modification of ships
+-   `outfit`: Addition or Modification of outfits
+-   `content`: Additional content that is not ships, outfits or missions
 
 </details>
 
