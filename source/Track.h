@@ -48,9 +48,9 @@ public:
 private:
 	std::string name;
 	double volumeModifier = 0.;
-	std::string idleTitle = "";
-	std::string combatTitle = "";
-	std::string landedTitle = "";
+	std::string idleTitle;
+	std::string combatTitle;
+	std::string landedTitle;
 
 	bool finishedLoading = false;
 };
