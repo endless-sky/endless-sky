@@ -441,7 +441,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
 				player.ParkShip(it.get(), !allParked);
 	}
-	else if(panelState.CanEdit() && (key == 'o') && panelState.Ships().size() > 1)
+	else if(panelState.CanEdit() && (key == 'y') && panelState.Ships().size() > 1)
 	{
 		// Toggle the parked status for all ships in system except the flagship.
 		bool allParked = true;
