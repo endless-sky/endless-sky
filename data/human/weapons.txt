@@ -16,8 +16,8 @@ outfit "Tethys Cannon"
 	cost 1067000
 	mass 128
 	thumbnail "outfit/rnd_gun2_turret"
-	"outfit space" -110
-	"weapon capacity" -97
+	"outfit space" -128
+	"weapon capacity" -128
 	"drag" 7
 	"required crew" 4
 	"turret mounts" -1
