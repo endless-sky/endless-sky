@@ -177,6 +177,62 @@ ship "Centipede" "Centipede (Refugees)"
 
 
 
+ship "Cicada"
+	sprite "ship/hai cicada"
+	thumbnail "thumbnail/hai cicada"
+	attributes
+		category "Transport"
+		"cost" 3850000
+		"shields" 5400
+		"hull" 2000
+		"required crew" 8
+		"bunks" 51
+		"mass" 300
+		"drag" 4.7
+		"heat dissipation" .75
+		"fuel capacity" 500
+		"cargo space" 143
+		"outfit space" 323
+		"weapon capacity" 89
+		"engine capacity" 58
+		weapon
+			"blast radius" 80
+			"shield damage" 960
+			"hull damage" 420
+			"hit force" 1280
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 84
+		"Tracker Storage Pod"
+		"Bullfrog Anti-Missile" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+	engine -6 75
+	engine 6 75
+	gun 0 -76 "Hai Tracker Pod"
+	turret 34.5 -16.5 "Chameleon Anti-Missile"
+	turret -34.5 -16.5 "Chameleon Anti-Missile"
+	turret -20 42 "Bullfrog Anti-Missile"
+	turret 20 42 "Bullfrog Anti-Missile"
+	leak "leak" 50 30
+	leak "flame" 40 50
+	leak "big leak" 20 40
+	explode "small explosion" 11
+	explode "medium explosion" 24
+	explode "large explosion" 16
+	explode "huge explosion" 4
+	"final explode" "final explosion medium"
+	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life".`
+
+
+
 ship "Flea"
 	sprite "ship/hai flea"
 	thumbnail "thumbnail/hai flea"
@@ -730,6 +786,57 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
+
+
+ship "Scarab"
+	sprite "ship/hai scarab"
+	thumbnail "thumbnail/hai scarab"
+	attributes
+		category "Transport"
+		"cost" 1620000
+		"shields" 4600
+		"hull" 1500
+		"required crew" 4
+		"bunks" 27
+		"mass" 146
+		"drag" 3.8
+		"heat dissipation" .87
+		"fuel capacity" 400
+		"cargo space" 44
+		"outfit space" 231
+		"weapon capacity" 49
+		"engine capacity" 93
+		weapon
+			"blast radius" 52
+			"shield damage" 540
+			"hull damage" 230
+			"hit force" 780
+	outfits
+		"Bullfrog Anti-Missile"
+		"Chameleon Anti-Missile"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+	engine -29 27
+	engine 29 27
+	turret 0 -30 "Bullfrog Anti-Missile"
+	turret 0 38 "Chameleon Anti-Missile"
+	leak "leak" 70 50
+	leak "flame" 50 40
+	explode "tiny explosion" 14
+	explode "small explosion" 28
+	explode "medium explosion" 12
+	explode "large explosion" 4
+	"final explode" "final explosion small"
+	description `The hard-working cousin to the Lightning Bug, the Scarab has only ever grown in popularity, never declined. That this statistic is occasionally measured in thousandths of a percentage point for years at a time is immaterial to the title. This lightweight transport is commonly the pick for Grasshopper pilots looking to make money while continuing to feed their free spirit. It is also large enough to transport a large Hai family, making it perfect for nearly any odd job in Hai space.`
 
 
 
