@@ -756,7 +756,7 @@ mission "Hai Reveal [B11] Moving Together"
 			`	"This is General Choot'k, supreme commander of the Unfettered Hai military."`
 			`	Marshal Kaine responds, "Good to meet you."`
 			`	Choot'k nods but Teeneep continues. "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I have installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
-			`	Choot'k addresses the group. "Our scan of the facility show one faulty hangar we can open, at the bottom of a kilometer-long tunnel. There is a twenty-meter-thick blast door at the top of the tunnel, made of stronger material than we've ever seen. My flagship has weapons pillaged from another species which can melt through those doors. Then we just fly down the tunnel and pass into the facility.`
+			`	Choot'k addresses the group. "Our scan of the facility show one faulty hangar we can open, at the bottom of a kilometer-long tunnel. There is a twenty-meter-thick blast door at the top of the tunnel, made of stronger material than we've ever seen. My flagship has enough sheer damage output to destroy the door, combined with the ion to disable its shielding. Then we just fly down the tunnel and pass into the facility.`
 			`	"I also have two trusted captains who have been exploring the value of human weapons while they've been here, and think they have some winning combinations they would like to test in battle. I have chosen them to make use of our remaining available drives, and out of consideration for you humans. It would seem that the fewer alien weapons we carry through your space the better."`
 			`	"Which means," says Khaine, "We have all the pieces. The solution therefore, is this: <last> will escort Danforth's Cruiser, the Elder and her Centipede, the General and his Shield Beetle, and two of his closest captains to Foundry. There you'll meet up with Agent Kopkow and Captain Wallace - a decorated Navy captain who has a Parliamentary Medal of Valor for handling the rescue of slaves - who will be bringing her empty Auxiliary, and one Free World Dreadnought that the good Alondo here had the foresight to make sure was stationed nearby. There you'll load up the Syndicate troopers and go to Elenchus."`
 			# One crack team of people from all over working together.
@@ -807,10 +807,10 @@ ship "Emperor Beetle"
 		bunks 91
 		mass 870
 		drag 9.8
-		"outfit space" 893
+		"outfit space" 891
 		"cargo space" 27
-		"weapon capacity" 364
-		"engine capacity" 150
+		"weapon capacity" 352
+		"engine capacity" 139
 		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
 		"heat dissipation" 0.7
 		"tactical scan power" 30
@@ -824,25 +824,23 @@ ship "Emperor Beetle"
 			"blast radius" 800
 			"hit force" 8000
 	outfits
-		"Thermal Repeater Turret" 4
-		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 291
-		"Thunderhead Storage Array" 4
+		"Tripulse Shredder" 2
+		"Ionic Blaster Prototype" 4
+		"Pulse Turret" 4
 		"Warder Anti-Missile" 2
 		
-		"Large Heat Shunt" 2
+		"Large Heat Shunt"
 		"Fuel Processor"
 		"Jump Drive"
 		"Quantum Keystone"
 		"Systems Core (Large)"
-		"Systems Core (Small)"
-		"Outfits Expansion"
+		"Systems Core (Medium)"
+		"Wanderer Ramscoop"
 		
 		"White Sun Reactor"
 		"Large Biochemical Cell"
 		
-		"Afterburner (Asteroid Class)"
-		"Reverser (Comet Class)"
+		"Afterburner (Comet Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		
@@ -881,8 +879,8 @@ ship "Emperor Beetle"
 	"steering engine" 43 131
 		zoom 0.45
 		left
-	gun -42.5 -53.5
-	gun 43.5 -54.5
+	gun -42.5 -53.5 "Tripulse Shredder"
+	gun 43.5 -54.5 "Tripulse Shredder"
 	gun -23 -102.5
 	gun 24.5 -102.5
 	gun 12.5 -128
