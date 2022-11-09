@@ -120,7 +120,8 @@ namespace {
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
 
-	Playlist *currentPlaylist = nullptr;
+	const Playlist *currentPlaylist = nullptr;
+	const Track *currentPlaylistTrack = nullptr;
 	Track::GameState oldState = Track::GameState::IDLE;
 }
 
@@ -277,14 +278,14 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		// If the current playlists conditions are not marching anymore, search a new one.
 		bool currentPlaylistValid = currentPlaylist ?
 			currentPlaylist->MatchingConditions(player) : false;
-		// The track has to be updated if the current track is finished, the playlist is not matching
-		// anymore or the state has changed.
-		if(currentTrack->IsFinished() || !currentPlaylistValid || state != oldState)
+		// The track has to be updated if the current track is finished or the playlist is not matching
+		// anymore.
+		if(currentTrack->IsFinished() || !currentPlaylistValid)
 		{
 			if(!currentPlaylistValid)
 			{
 				// If the current playlist is not valid, find a new one based on priority and weight.
-				WeightedList<Playlist *> validPlaylists;
+				WeightedList<const Playlist *> validPlaylists;
 				int priority = 0;
 				for(auto &playlist : GameData::Playlists())
 					if(playlist.second.MatchingConditions(player))
@@ -312,14 +313,19 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			// Only switch to a new track if a playlist is set.
 			if(currentPlaylist)
 			{
-				const Track *currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
+				currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
 				SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
 				PlayMusic(currentPlaylistTrack->GetTitle(state));
+				oldState = state;
 			}
 			// If no playlist is set this means nothing should be played, so stop everything.
 			else
 				currentTrack->Finish();
+		}
+		if(oldState != state)
+		{
 			oldState = state;
+			PlayMusic(currentPlaylistTrack->GetTitle(state));
 		}
 	}
 }

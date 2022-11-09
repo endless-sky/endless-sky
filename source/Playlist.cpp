@@ -24,6 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
+namespace {
+	const Track *currentTrack = nullptr;
+};
+
+
 
 Playlist::Playlist(const DataNode &node)
 {
@@ -75,14 +80,14 @@ void Playlist::Load(const DataNode &node)
 
 
 
-void Playlist::Activate()
+void Playlist::Activate() const
 {
 	currentTrack = tracks.Get();
 }
 
 
 
-const Track *Playlist::GetCurrentTrack()
+const Track *Playlist::GetCurrentTrack() const
 {
 	if(progressionStyle == "linear")
 	{
@@ -96,6 +101,8 @@ const Track *Playlist::GetCurrentTrack()
 	}
 	else if (progressionStyle == "pick")
 		return currentTrack;
+
+	// Asuming the progression style is "random".
 	return tracks.Get();
 }
 

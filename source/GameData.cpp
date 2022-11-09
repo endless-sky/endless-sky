@@ -603,7 +603,7 @@ const Set<Planet> &GameData::Planets()
 
 
 
-Set<Playlist> &GameData::Playlists()
+const Set<Playlist> &GameData::Playlists()
 {
 	return objects.playlists;
 }

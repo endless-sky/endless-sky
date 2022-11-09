@@ -39,8 +39,8 @@ public:
 
 	void Load(const DataNode &node);
 
-	void Activate();
-	const Track *GetCurrentTrack();
+	void Activate() const;
+	const Track *GetCurrentTrack() const;
 
 	bool MatchingConditions(PlayerInfo &player) const;
 
@@ -58,7 +58,4 @@ private:
 
 	std::string progressionStyle;
 	WeightedList<const Track *> tracks;
-
-	// For linear progression an index is needed, for the others just use a pointer.
-	const Track *currentTrack = nullptr;
 };
