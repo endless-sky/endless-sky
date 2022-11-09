@@ -60,7 +60,6 @@ A good Pull Request title will use the following structure:
 NOTICE: Delete the sections that do not apply to your PR, and fill out the section that does.
 (You can open a PR to add or improve a section, if you find them lacking!)
 
-
 ----------------------
 **Content (Artwork / Missions / Jobs)**
 
