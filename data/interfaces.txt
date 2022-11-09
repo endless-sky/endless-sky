@@ -1177,13 +1177,13 @@ interface "info panel"
 	visible if "show park system"
 	sprite "ui/wide button"
 		center 40 305
-	button y "Park Nearb_y"
+	button c "Park Lo_cal"
 		center 40 305
 		dimensions 90 30
 	visible if "show unpark system"
 	sprite "ui/wide button"
 		center 40 305
-	button y "Unpark Nearb_y"
+	button c "Unpark Lo_cal"
 		center 40 305
 		dimensions 90 30
 	visible if "show save order"
