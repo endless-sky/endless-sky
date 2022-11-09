@@ -476,6 +476,7 @@ Files:
  images/ship/pug?enfolta*
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
+ images/thumbnail/hai?sea?scorpion*
  images/thumbnail/ibis*
  images/thumbnails/merganser*
  images/thumbnail/penguin*
@@ -1723,6 +1724,7 @@ Comment: Derived from work by Griffin Schutte (theronepic@gmail.com) (under same
 License: CC-BY-SA-4.0
 
 Files:
+ images/projectiles/ionic?blast*
  images/ship/kestrel*
  images/ship/kestrele*
  images/ship/kestrels*

@@ -572,6 +572,8 @@ fleet "Small Unfettered"
 		"Lightning Bug (Pulse)"
 	variant 2
 		"Sea Scorpion"
+	variant 2
+		"Sea Scorpion (Ion)"
 	variant
 		"Sea Scorpion (Pulse)"
 		"Lightning Bug"
@@ -629,6 +631,10 @@ fleet "Large Unfettered"
 		"Sea Scorpion (Pulse)" 2
 		"Shield Beetle"
 	variant 2
+		"Sea Scorpion (Ion)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle"
+	variant 2
 		"Sea Scorpion (Pulse)" 2
 		"Shield Beetle (Pulse)"
 	variant 4
@@ -644,6 +650,10 @@ fleet "Large Unfettered"
 	variant 2
 		"Lightning Bug"
 		"Sea Scorpion"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion (Ion)"
 		"Shield Beetle (Pulse)"
 	variant 2
 		"Lightning Bug (Pulse)"
