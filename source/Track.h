@@ -19,13 +19,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <map>
 
-
 class DataNode;
 
 
+
 // Class to store a track of music that can be used in a playlist.
-class Track
-{
+class Track {
 public:
 	enum class GameState
 	{

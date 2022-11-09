@@ -23,14 +23,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <vector>
 
-
 class DataNode;
 class PlayerInfo;
 
 
+
 // Class to store a track of music that can be used in a playlist.
-class Playlist
-{
+class Playlist {
 public:
 	Playlist() = default;
 
