@@ -1,5 +1,65 @@
+### How To Title Your PR
+
+A good Pull Request title will use the following structure:
+`<type>(<scope>): [optional faction] Title`
+
+<details>
+ <summary>Suggested Types</summary>
+
+- `build`: Changes that affect the build system or external dependencies.
+- `chore`: Changes to the build process or additional tools and libraries such as documentation generation.
+- `ci`: Changes to our CI configuration files and scripts.
+- `docs`: Documentation only changes
+- `feat`: A new feature
+- `fix`: A bug fix
+- `perf`: A code change that improves performance
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `style`: Changes that do not affect the meaning of the code (white space, formatting, missing semi-colons, etc.)
+- `test`: Adding missing tests or correcting existing tests
+
+</details>
+
+<details>
+ <summary>Suggested Scopes</summary>
+
+-   `content`: Additional missions, ships, outfits, or other content that doesn't require code changes
+-   `balance`: Addition or modification of existing ship/outfit stats
+-   `mechanics`: Modifications to the game engine which affect gameplay
+-   `UI`: Modifications of existing User Interface elements
+-   `enhancement`: Additional features added to the game engine
+
+</details>
+
+<details>
+ <summary>Suggested Factions</summary>
+
+-   `Human`
+-   `Hai`
+-   `Wanderer`
+-   `Remnant`
+-   `Builder`
+-   `Korath`
+-   `Coalition`
+-   `Quarg`
+-   `Drak`
+-   `Pug`
+-   `Sheragi`
+-   Others not listed are allowed; use your best judgment when necessary.
+
+</details>
+
+<details>
+ <summary>Title</summary>
+
+- Provide a clear, concise, and descriptive title of your PR's function without repeating information already provided with the previous tags.
+
+ </details>
+
+### PR Template
+
 NOTICE: Delete the sections that do not apply to your PR, and fill out the section that does.
 (You can open a PR to add or improve a section, if you find them lacking!)
+
 
 ----------------------
 **Content (Artwork / Missions / Jobs)**
