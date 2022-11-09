@@ -14,11 +14,10 @@
 outfit "Tethys Cannon"
 	category "Turrets"
 	cost 1067000
-	mass 128
+	mass 118
 	thumbnail "outfit/rnd_gun2_turret"
-	"outfit space" -128
-	"weapon capacity" -128
-	"drag" 7
+	"outfit space" -118
+	"weapon capacity" -118
 	"required crew" 4
 	"turret mounts" -1
 	"shell capacity" 40
@@ -42,12 +41,10 @@ outfit "Tethys Cannon"
 		"hull damage" 537
 		"firing energy" 1000
 		"firing heat" 590
-		"blast radius" 5
+		"blast radius" 1
 		cluster
 		phasing
 	description "The Heavy Barrage cannon is an extremely long-range weapon capable of barraging Capital ships with devastating volleys. Its range excels against most other weapons, and with enough of these in your fleet, they can quickly take out fleets of Capital warships. Its big weaknesses is its turning rate, firing velocity, and firing rate, allowing quicker ships to evade it easily. Instead of a weapon that could lay down consistent fire, the engineers turned this weapon into a support artillery weapon."
-	
-	description "The weapon fires hot enough that it comes with its own cooling unit. This cooling unit is not very efficient, however, so it requires a strong generator to remain operational."
 	
 	description "Considering the sheer size of these turrets, a crew of four are needed to operate this monstrosity. An engineer is required to check that the weapon is stable after every fire. Another person tracks targets in real-time via a built-in radar and reads out relative coordinates and directions; this person also calculates the ship's turns to provide accuracy checks. The gunner tracks targets within visual range and pulls the trigger. The turret crew has a fourth spot for a second engineer. This crew member checks for energy levels to make sure their own turret is able to fire. Due to the amount of energy this cannon requires, this second engineer is constantly in contact with the generator room and other turret engineers to coordinate salvos and individual artillery strikes."
 	
@@ -106,11 +103,8 @@ outfit "Enceladus Cannon"
 	cost 770000
 	thumbnail "outfit/rnd_gun3_turret"
 	"mass" 70
-	"outfit space" -60
-	"active cooling" 2.1667
-	"cooling energy" 1.5
-	drag 3
-	"weapon capacity" -56
+	"outfit space" -70
+	"weapon capacity" -70
 	"turret mounts" -1
 	"required crew" 2
 	"shell capacity" 150
@@ -147,14 +141,14 @@ outfit "Light Flak Turret"
 	thumbnail "outfit/rnd_gun1_turret"
 	mass 6
 	"outfit space" -6
-	"weapon capacity" -5
+	"weapon capacity" -6
 	"turret mounts" -1
 	weapon
 		sprite "projectile/ion bult"
 		"hardpoint sprite" "hardpoint/rnd_gun1_turret_flak"
 		"hit effect" "proton impact" 3
 		"turret turn" 2
-		"submunition" "Heavy Proton Split" 7
+		"submunition" "Flak Split" 7
 		"inaccuracy" 20
 		"velocity" 35
 		"lifetime" 12
@@ -168,17 +162,17 @@ outfit "Light Flak Turret"
 		
 	description "This light anti-fighter turret is a baseplate mount that can either be manned or automated by the computer. It fires explosive shells that split into dozens of shrapnel shards that pepper the area around the target, often hitting other enemies as well. Against larger ships, the smaller pieces of shrapnel don't do quite so much damage, and direct hits from the explosive shells don't do much damage either."
 		
-outfit "Heavy Proton Split"
+outfit "Flak Split"
 	weapon
 		"hit effect" "drak bolt impact"
-		"submunition" "Heavy Proton Blast" 3
+		"submunition" "Flak Blast" 3
 		"inaccuracy" 360
 		"random lifetime" 2
 		drag 1000
 		"blast radius" 20
 		"split range" 70
 		
-outfit "Heavy Proton Blast"
+outfit "Flak Blast"
 	weapon
 		sprite "projectile/ion bult"
 			"no repeat"
