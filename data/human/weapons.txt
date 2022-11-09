@@ -22,8 +22,6 @@ outfit "Tethys Cannon"
 	"required crew" 4
 	"turret mounts" -1
 	"shell capacity" 40
-	"active cooling" 4
-	"cooling energy" 3
 	weapon
 		safe
 		"hardpoint sprite" "hardpoint/rnd_gun2_turret_tethys"
