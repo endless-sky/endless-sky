@@ -160,6 +160,7 @@ outfitter "Hai Security"
 shipyard "Unfettered Basics"
 	"Lightning Bug"
 	"Water Bug"
+	"Sea Scorpion"
 
 outfitter "Unfettered Basics"
 	"Pulse Cannon"
@@ -177,6 +178,7 @@ outfitter "Unfettered Basics"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
+	"Value Detector"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
