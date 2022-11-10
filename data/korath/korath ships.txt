@@ -494,7 +494,7 @@ ship "Ikatila'ej"
 			"hull damage" 4800
 			"hit force" 20000
 	outfits
-		"Microbot Factory"
+		"Microbot Grinder"
 		"Shunt-Strike Turret" 3
 		"Grab-Strike Turret" 2
 		"Warder Anti-Missile" 3
@@ -526,7 +526,7 @@ ship "Ikatila'ej"
 		zoom 0.8
 	engine 27 249.5
 		zoom 0.8
-	gun 0 -190 "Microbot Factory"
+	gun 0 -190 "Microbot Grinder"
 	turret 89 -168 "Grab-Strike Turret"
 	turret -89 -168 "Grab-Strike Turret"
 	turret -56 96 "Shunt-Strike Turret"
@@ -542,7 +542,7 @@ ship "Ikatila'ej"
 	explode "huge explosion" 25
 	"final explode" "final explosion large"
 	description "For most of their manufacturing needs, the Korath rely, as even some terrestrial species do, upon their space station and asteroid infrastructure. Due to their spacebound existence, however, the acceptability for failure and downtime is slim to nonexistent. Should equipment aboard a station or a world-ship fail, the Ikatila'ej, named for an inventor famously proficient in a variety of fields, is called in to provide critical support. Its microbot-run factory produces basic living supplies, machine parts, and systems cores, and may assist in continuing stalled production."
-	description "	When not assisting with damaged ships and stations, or replenishing its own stores, the Ikatila'ej serves as an all-in-one recycling, mining, refining, and factory ship, rapidly turning asteroids and garbage into whatever products the civilian economic planning committees have determined to be in the most dire need."
+	description "	When not assisting with damaged ships and stations, or replenishing its own stores, the Ikatila'ej serves as an all-in-one recycling, mining, refining, and factory ship, using its microbot-powered grinder to rapidly turn asteroids and garbage into whatever products the civilian economic planning committees have determined to be in the most dire need."
 
 
 ship "Lor'kas Ik 577"
