@@ -234,8 +234,6 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
-        "CMAKE_AR": "x86_64-w64-mingw32-gcc-ar",
-        "CMAKE_RANLIB": "x86_64-w64-mingw32-gcc-ranlib",
         "VCPKG_TARGET_TRIPLET": "win64-release"
       }
     },
@@ -247,8 +245,6 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
-        "CMAKE_AR": "i686-w64-mingw32-gcc-ar",
-        "CMAKE_RANLIB": "i686-mingw32-gcc-ranlib",
         "VCPKG_TARGET_TRIPLET": "win32-release"
       }
     }
