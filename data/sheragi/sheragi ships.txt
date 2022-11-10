@@ -12,7 +12,10 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Emerald Sword"
-	sprite ship/emeraldsword
+	sprite ship/emeraldsword/emeraldsword
+	normal ship/emeraldsword/emeraldswordnormal
+	base ship/emeralsword/emeraldswordbase
+	emit ship/emeralsword/emeraldswordemit
 	thumbnail "thumbnail/emeraldsword"
 	swizzle 3
 	attributes
@@ -134,6 +137,9 @@ ship "Emerald Sword"
 
 ship "Emerald Sword" "Emerald Sword (Fixed)"
 	sprite ship/emeraldsword
+	normal ship/emeraldsword/emeraldswordnormal
+	base ship/emeraldsword/emeraldswordbase
+	emit ship/emeraldsword/emeraldswordemit
 	thumbnail "thumbnail/emeraldsword"
 	swizzle 3
 	outfits

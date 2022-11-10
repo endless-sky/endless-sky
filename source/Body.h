@@ -39,10 +39,18 @@ public:
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 
+	uint32_t SpritesAvailable() const;
+
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
+	bool HasNormal() const;
+	bool HasBase() const;
+	bool HasEmit() const;
 	// Access the underlying Sprite object.
 	const Sprite *GetSprite() const;
+	const Sprite *GetNormal() const;
+	const Sprite *GetBase() const;
+	const Sprite *GetEmit() const;
 	// Get the dimensions of the sprite.
 	double Width() const;
 	double Height() const;
@@ -72,8 +80,17 @@ public:
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
+	void LoadNormal(const DataNode &node);
+	void SaveNormal(DataWriter &out, const std::string &tag = "normal") const;
+	void LoadBase(const DataNode &node);
+	void SaveBase(DataWriter &out, const std::string &tag = "base") const;
+	void LoadEmit(const DataNode &node);
+	void SaveEmit(DataWriter &out, const std::string &tag = "emit") const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite);
+	void SetNormal(const Sprite *sprite);
+	void SetBase(const Sprite *sprite);
+	void SetEmit(const Sprite *sprite);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
@@ -110,8 +127,17 @@ private:
 
 
 private:
+	static const int sprI = 1;
+	static const int nrmI = 2;
+	static const int bseI = 4;
+	static const int emtI = 8;
+	static const int hasI = 16;
+
 	// Animation parameters.
 	const Sprite *sprite = nullptr;
+	const Sprite *normal = nullptr;
+	const Sprite *base = nullptr;
+	const Sprite *emit = nullptr;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 

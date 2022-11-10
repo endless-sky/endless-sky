@@ -220,6 +220,12 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
+		else if(key == "normal")
+			LoadNormal(child);
+		else if(key == "base")
+			LoadBase(child);
+		else if(key == "emit")
+			LoadEmit(child);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
@@ -833,6 +839,9 @@ void Ship::Save(DataWriter &out) const
 		if(!noun.empty())
 			out.Write("noun", noun);
 		SaveSprite(out);
+		SaveNormal(out);
+		SaveBase(out);
+		SaveEmit(out);
 		if(thumbnail)
 			out.Write("thumbnail", thumbnail->Name());
 

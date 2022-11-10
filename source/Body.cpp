@@ -52,6 +52,22 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 
 
 
+uint32_t Body::SpritesAvailable() const
+{
+	uint32_t spritesAvailable = 0;
+	if(HasSprite())
+		spritesAvailable += sprI;
+	if(HasNormal())
+		spritesAvailable += nrmI;
+	if(HasBase())
+		spritesAvailable += bseI;
+	if(HasEmit())
+		spritesAvailable += emtI;
+	return spritesAvailable;
+}
+
+
+
 // Check that this Body has a sprite and that the sprite has at least one frame.
 bool Body::HasSprite() const
 {
@@ -60,10 +76,52 @@ bool Body::HasSprite() const
 
 
 
+bool Body::HasNormal() const
+{
+	return (normal && normal->Frames());
+}
+
+
+
+bool Body::HasBase() const
+{
+	return (base && base->Frames());
+}
+
+
+
+bool Body::HasEmit() const
+{
+	return (emit && emit->Frames());
+}
+
+
+
 // Access the underlying Sprite object.
 const Sprite *Body::GetSprite() const
 {
 	return sprite;
+}
+
+
+
+const Sprite *Body::GetNormal() const
+{
+	return normal;
+}
+
+
+
+const Sprite *Body::GetBase() const
+{
+	return base;
+}
+
+
+
+const Sprite *Body::GetEmit() const
+{
+	return emit;
 }
 
 
@@ -242,6 +300,42 @@ void Body::LoadSprite(const DataNode &node)
 
 
 
+void Body::LoadNormal(const DataNode &node)
+{
+	if(node.Size() < 2)
+		return;
+	normal = SpriteSet::Get(node.Token(1));
+
+	if(scale != 1.f)
+		GameData::GetMaskManager().RegisterScale(normal, Scale());
+}
+
+
+
+void Body::LoadBase(const DataNode &node)
+{
+	if(node.Size() < 2)
+		return;
+	base = SpriteSet::Get(node.Token(1));
+
+	if(scale != 1.f)
+		GameData::GetMaskManager().RegisterScale(base, Scale());
+}
+
+
+
+void Body::LoadEmit(const DataNode &node)
+{
+	if(node.Size() < 2)
+		return;
+	emit = SpriteSet::Get(node.Token(1));
+
+	if(scale != 1.f)
+		GameData::GetMaskManager().RegisterScale(emit, Scale());
+}
+
+
+
 // Save the sprite specification, including all animation attributes.
 void Body::SaveSprite(DataWriter &out, const string &tag) const
 {
@@ -269,11 +363,62 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 
 
 
+void Body::SaveNormal(DataWriter &out, const string &tag) const
+{
+	if(!normal)
+		return;
+
+	out.Write(tag, normal->Name());
+}
+
+
+
+void Body::SaveBase(DataWriter &out, const string &tag) const
+{
+	if(!base)
+		return;
+
+	out.Write(tag, base->Name());
+}
+
+
+
+void Body::SaveEmit(DataWriter &out, const string &tag) const
+{
+	if(!emit)
+		return;
+
+	out.Write(tag, emit->Name());
+}
+
+
+
 // Set the sprite.
 void Body::SetSprite(const Sprite *sprite)
 {
 	this->sprite = sprite;
 	currentStep = -1;
+}
+
+
+
+void Body::SetNormal(const Sprite *sprite)
+{
+	normal = sprite;
+}
+
+
+
+void Body::SetBase(const Sprite *sprite)
+{
+	base = sprite;
+}
+
+
+
+void Body::SetEmit(const Sprite *sprite)
+{
+	emit = sprite;
 }
 
 

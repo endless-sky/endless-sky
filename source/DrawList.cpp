@@ -18,9 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "ShadowedSpriteShader.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+
+#include "Messages.h"
 
 #include <cmath>
 
@@ -97,20 +100,20 @@ bool DrawList::AddSwizzled(const Body &body, int swizzle)
 // Draw all the items in this list.
 void DrawList::Draw() const
 {
-	SpriteShader::Bind();
+	ShadowedSpriteShader::Bind();
 
 	bool withBlur = Preferences::Has("Render motion blur");
-	for(const SpriteShader::Item &item : items)
-		SpriteShader::Add(item, withBlur);
+	for(const ShadowedSpriteShader::Item &item : items)
+		ShadowedSpriteShader::Add(item, withBlur);
 
-	SpriteShader::Unbind();
+	ShadowedSpriteShader::Unbind();
 }
 
 
 
 bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) const
 {
-	if(!body.HasSprite() || !body.Zoom())
+	if(!body.HasSprite() || !body.Zoom() || (!body.HasSprite() && !body.HasBase()))
 		return true;
 
 	Point unit = body.Facing().Unit();
@@ -133,14 +136,32 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 
 void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle)
 {
-	SpriteShader::Item item;
+	bool isAdvancedShading = Preferences::Has("Render advanced shading");
+
+	ShadowedSpriteShader::Item item;
 
 	item.texture = body.GetSprite()->Texture(isHighDPI);
 	item.frame = body.GetFrame(step);
 	item.frameCount = body.GetSprite()->Frames();
 
+	if(isAdvancedShading)
+		item.spriteIndex = isAdvancedShading ? body.SpritesAvailable() : 1;
+
+	if(item.spriteIndex & 2)
+		item.normal = body.GetNormal()->Texture(isHighDPI);
+	if(item.spriteIndex & 4)
+		item.base = body.GetBase()->Texture(isHighDPI);
+	if(item.spriteIndex & 8)
+		item.emit = body.GetEmit()->Texture(isHighDPI);
+
 	item.position[0] = static_cast<float>(pos.X() * zoom);
 	item.position[1] = static_cast<float>(pos.Y() * zoom);
+
+	Point unrotated = (-body.Facing()).Rotate(-body.Position());
+
+	item.worldPosition[0] = static_cast<float>(-unrotated.X());
+	item.worldPosition[1] = static_cast<float>(unrotated.Y());
+	item.worldPosition[2] = 100.f;
 
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();
