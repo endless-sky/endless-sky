@@ -617,7 +617,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 	on enter
 		dialog `As you are preparing to engage the Unfettered, one of their ships hails you. "What be a guppy like ye doing this far out to sea? Be ye lost, landlubber? This be yer last chance! Take arms to defend this world against us, and ye will be considered fettered forever. Make yer choice carefully, Captain. I strongly council ye to abort this mission, savvy?."`
 	on fail
-		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpfull lad back in Unfettered space... Feel free to visit Darkcloak, I'll be there once I'm done with this raid."`
+		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpful lad back in Unfettered space... Feel free to visit Darkcloak, I'll be there once I'm done with this raid."`
 	
 	npc
 		government "Wanderer"

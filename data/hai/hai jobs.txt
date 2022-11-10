@@ -319,7 +319,9 @@ mission "Unfettered Aid [0]"
 	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
 	cargo "food (aid)" 25 2 .05
 	to offer
-		random < 40
+		or
+			"unfettered: hunger"
+			random < 40
 		"cargo space" >= 50
 		has "Ask the Hai about the Unfettered: offered"
 	source
@@ -338,6 +340,7 @@ mission "Unfettered Aid [0]"
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
 		"reputation: Hai Merchant (Sympathizers)" += 5
+		"unfettered: hunger stops" += 20
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [1]"
@@ -348,7 +351,9 @@ mission "Unfettered Aid [1]"
 	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
 	cargo "food (aid)" 30 2 .05
 	to offer
-		random < 30
+		or
+			"unfettered: hunger"
+			random < 30
 		"cargo space" > 60
 		has "Ask the Hai about the Unfettered: offered"
 	source
@@ -367,6 +372,7 @@ mission "Unfettered Aid [1]"
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
 		"reputation: Hai Merchant (Sympathizers)" += 5
+		"unfettered: hunger stops" += 40
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [2]"
@@ -377,7 +383,9 @@ mission "Unfettered Aid [2]"
 	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
 	cargo "food (aid)" 35 2 .05
 	to offer
-		random < 20
+		or
+			"unfettered: hunger"
+			random < 20
 		"cargo space" > 65
 		has "Ask the Hai about the Unfettered: offered"
 	source
@@ -396,6 +404,37 @@ mission "Unfettered Aid [2]"
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
 		"reputation: Hai Merchant (Sympathizers)" += 5
+		"unfettered: hunger stops" += 70
+		dialog phrase "unfettered aid payment dialog"
+
+mission "Unfettered Aid [3]"
+	name "Aid shipment to Unfettered"
+	job
+	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
+	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
+	cargo "food (aid)" 55 2 .05
+	to offer
+		"unfettered: hunger"
+		"cargo space" > 85
+		has "Ask the Hai about the Unfettered: offered"
+	source
+		government "Hai"
+	destination
+		distance 5 6
+		attributes "unfettered"
+	on accept
+		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 10000 2800
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
+		"unfettered: hunger stops" += 100
 		dialog phrase "unfettered aid payment dialog"
 
 

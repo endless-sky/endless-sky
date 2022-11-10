@@ -180,6 +180,166 @@ mission "Unfettered: Attracted Attention"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates"
 
+mission "Unfettered: Hunger!"
+	landing
+	invisible
+	minor
+	to offer
+		not "event: unfettered: need for food"
+		or
+			has "unfettered: hunger"
+			and
+				not "unfettered: hunger"
+				has "Unfettered: Jump Drive 2: offered"
+				# 1 chance in 250
+				random < 1
+				random < 40
+	on offer
+		event "unfettered: need for food"
+		clear "unfettered: hunger stops"
+	on enter
+		dialog `Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be hailing all ships in range, in human and Hai... Their situation must be desperate. "Attention, to all that are sympathethic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negociated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food supplies. That is what we need you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future. We are not used or confortable with begging, but please, help us! Spread the word, bring food, we will reword you handsomely as ever, do it for the money if you must, or do it because you care."`
+	on daily
+		"unfettered: hunger stops" += random
+	to fail
+		# lasts 30 to 120 days, if the player does nothing
+		"unfettered: hunger stops" > 3000
+	on fail
+		event "unfettered: need for food stops"
+		dialog "It seems that with the increased food brought the famine amongst the Unfettered has recessed, hopefully permanently."
+
+event "unfettered: need for food"
+	clear "event: unfettered: need for food stops"
+	set "unfettered: hunger"
+	system "Wah Oh"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Io Mann"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Due Yoot"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Rati Cal"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Lom Tahr"
+		add fleet "Emergency Sympathizer Food" 3000
+	system "Heia Due"
+		add fleet "Emergency Sympathizer Food" 3000
+	system "Io Lowe"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Ya Hai"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Bote Asu"
+		add fleet "Emergency Sympathizer Food" 1000
+	system "Bore Fah"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Ula Mon"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Mei Yohn"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Zuba Zub"
+		add fleet "Emergency Sympathizer Food" 1500
+	system "Wah Ki"
+		add fleet "Emergency Sympathizer Food" 800
+	
+	system "Wah Yoot"
+		add fleet "Emergency Symathizer Food" 1200
+	system "Ehma Ti"
+		add fleet "Emergency Sympathizer Food" 2500
+	system "Hi Yahr"
+		add fleet "Emergency Sympathizer Food" 2500
+
+	system "Chy'chra"
+		add fleet "Unfettered Raid" 5000
+	system "Prakacha'a"
+		add fleet "Unfettered Raid" 5000
+	system "Ehma Ti"
+		add fleet "Unfettered Raid" 2500
+	system "Wah Ki"
+		add fleet "Large Unfettered" 1200
+
+
+event "unfettered: need for food stops"
+	clear "event: unfettered: need for food"
+	clear "unfettered: hunger"
+	system "Wah Ki"
+		remove fleet "Emergency Sympathizer Food"
+	system "Bore Fah"
+		remove fleet "Emergency Sympathizer Food"
+	system "Bote Asu"
+		remove fleet "Emergency Sympathizer Food"
+	system "Ula Mon"
+		remove fleet "Emergency Sympathizer Food"
+	system "Ya Hai"
+		remove fleet "Emergency Sympathizer Food"
+	system "Io Lowe"
+		remove fleet "Emergency Sympathizer Food"
+	system "Zuba Zub"
+		remove fleet "Emergency Sympathizer Food"
+	system "Wah Oh"
+		remove fleet "Emergency Sympathizer Food"
+	system "Due Yoot"
+		remove fleet "Emergency Sympathizer Food"
+	system "Io Mann"
+		remove fleet "Emergency Sympathizer Food"
+	system "Rati Cal"
+		remove fleet "Emergency Sympathizer Food"
+	
+	system "Wah Yoot"
+		remove fleet "Emergency Symathizer Food"
+	system "Ehma Ti"
+		remove fleet "Emergency Sympathizer Food"
+	system "Hi Yahr"
+		remove fleet "Emergency Sympathizer Food"
+
+	system "Chy'chra"
+		remove fleet "Unfettered Raid"
+	system "Prakacha'a"
+		remove fleet "Unfettered Raid"
+	system "Ehma Ti"
+		remove fleet "Unfettered Raid"
+	system "Wah Ki"
+		remove fleet "Large Unfettered"
+		remove fleet "Large Unfettered"
+		add fleet "Large Unfettered" 550
+
+
+fleet "Emergency Sympathizer Food"
+	government "Hai Merchant (Sympathizers)"
+	names "hai"
+	commodities "food"
+	personality
+		confusion 25
+		timid frugal appeasing
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Water Bug" 3
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Centipede" 3
+	variant 2
+		"Water Bug" 3
+		"Centipede" 2
+	variant 1
+		"Centipede" 3
+		"Centipede (Pulse)" 2
+	variant 3
+		"Centipede" 2
+		"Lightning Bug" 3
+		"Water Bug"
+	variant 2
+		"Aphid (Armed)" 2
+		"Lightning Bug"
+		"Centipede"
+	variant 1
+		"Geocoris (Tracker)"
+		"Shield Beetle"
+		"Aphid" 2
+		"Aphid (Armed)"
+	variant 1
+		"Centipede"
+		"Geocoris (Tracker)"
+		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
 
 
 outfit "Alpha Pirate Crew"

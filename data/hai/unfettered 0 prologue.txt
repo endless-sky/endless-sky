@@ -931,9 +931,15 @@ mission "Unfettered: Escort Hai Fleet"
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
 		event "unfettered: shipment lost" 20
+		set "unfettered: hunger"
+		fail "Unfettered: Hunger!"
 		payment 500000
 		conversation
-			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently Here are your <payment>, you deserved them.`
+			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently Here are your <payment>, you deserved them. However you should know this is not the end. This disaster did more than distressing a few people, it was the wind that makes the rotten tree fall. The Unfettered rely on this world for what little food they can still make. They are now in desperate need for food, and whilst we brought them some, along with competent people to help them produce more food, it will never be enough."`
+			choice
+				`	"What are they going to do then?"`
+				`	"Can we do something about it?"`
+			`	"They will be forced to keep militirazing more... I am sure that many Hai will come to help alleviate the situation, but I am effrayed it will not be enough.`
 			`	My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
 		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put himself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
