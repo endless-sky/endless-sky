@@ -401,12 +401,11 @@ ship "Rai'alorej"
 		"drag" 27.6
 		"heat dissipation" .36
 		"fuel capacity" 700
+
 		"cargo space" 351
 		"outfit space" 856
 		"weapon capacity" 237
 		"engine capacity" 195
-		"capture defense" 200
-		illegal 40000000
 		weapon
 			"blast radius" 600
 			"shield damage" 9000
@@ -486,8 +485,6 @@ ship "Ikatila'ej"
 		"weapon capacity" 440
 		"engine capacity" 259
 		"spinal mount" 1
-		"capture defense" 800
-		illegal 40000000
 		weapon
 			"blast radius" 600
 			"shield damage" 9000
