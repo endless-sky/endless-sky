@@ -225,6 +225,7 @@ government "Drak"
 	"attitude toward"
 		"Indigenous Lifeform" 1
 		"Ember Waste" 1
+		"Korath (Civilian)" 0.02
 
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
@@ -865,6 +866,22 @@ government "Korath (Civilian)"
 
 	"player reputation" 1
 
+government "Korath (Greedy)"
+	"display name" "Korath"
+	swizzle 21
+	color .8 .5 .1
+	"crew attack" 1.4
+	"crew defense" 2.1
+	language "Korath"
+
+	"attitude toward"
+		"Korath (Civilian)" .01
+		"Korath" .01
+		"Remnant" -1
+		"Indigenous Lifeform" -.01
+
+	"player reputation" -10
+
 government "Korath Nanobots"
 	"player reputation" -1000
 	"bribe" 0
@@ -1141,6 +1158,7 @@ government "Remnant"
 		"Korath" -.05
 		"Alpha" -.05
 		"Remnant (Research)" 1
+		"Korath (Civilian)" 0.02
 	"penalty for"
 		assist -0.25
 		disable 1
