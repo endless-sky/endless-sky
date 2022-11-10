@@ -462,7 +462,7 @@ fleet "Korath Rescue"
 	fighters "korath"
 	commodities Medical
 	personality
-		timid disables coward surveillance harvests opportunistic
+		timid disables coward surveillance harvests opportunistic merciful
 	variant
 		"Rai'alorej"
 		"'olofez (World-Ship)" 2
