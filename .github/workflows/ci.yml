@@ -607,9 +607,9 @@ jobs:
         prependedCacheKey: vs-x64
     - uses: lukka/run-cmake@v10
       with:
-        configurePreset: 'vs-ci'
-        buildPreset: 'vs-ci'
-        testPreset: 'vs-ci'
+        configurePreset: 'clang-cl-ci'
+        buildPreset: 'clang-cl-ci'
+        testPreset: 'clang-cl-ci'
     - name: Prevent saving cache on failure
       run: |
         echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
