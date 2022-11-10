@@ -320,7 +320,7 @@ mission "Unfettered Aid [0]"
 	cargo "food (aid)" 25 2 .05
 	to offer
 		or
-			"unfettered: hunger"
+			has "unfettered: hunger"
 			random < 40
 		"cargo space" >= 50
 		has "Ask the Hai about the Unfettered: offered"
@@ -352,7 +352,7 @@ mission "Unfettered Aid [1]"
 	cargo "food (aid)" 30 2 .05
 	to offer
 		or
-			"unfettered: hunger"
+			has "unfettered: hunger"
 			random < 30
 		"cargo space" > 60
 		has "Ask the Hai about the Unfettered: offered"
@@ -384,7 +384,7 @@ mission "Unfettered Aid [2]"
 	cargo "food (aid)" 35 2 .05
 	to offer
 		or
-			"unfettered: hunger"
+			has "unfettered: hunger"
 			random < 20
 		"cargo space" > 65
 		has "Ask the Hai about the Unfettered: offered"
@@ -415,7 +415,7 @@ mission "Unfettered Aid [3]"
 	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
 	cargo "food (aid)" 55 2 .05
 	to offer
-		"unfettered: hunger"
+		has "unfettered: hunger"
 		"cargo space" > 85
 		has "Ask the Hai about the Unfettered: offered"
 	source

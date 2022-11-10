@@ -932,7 +932,8 @@ mission "Unfettered: Escort Hai Fleet"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
 		event "unfettered: shipment lost" 20
 		set "unfettered: hunger"
-		fail "Unfettered: Hunger!"
+		# if there already was a hunger situation make it last longer
+		clear "unfettered: hunger stops"
 		payment 500000
 		conversation
 			`The governor hails you, "My thanks for the escort, captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush, I am sure he will be interested in your opinion of it, even if he probably has already heard about this petty attempt at capturing my ship. I suspected such a thing would happen, but I thought your presence would protect me... I was wrong apparently Here are your <payment>, you deserved them. However you should know this is not the end. This disaster did more than distressing a few people, it was the wind that makes the rotten tree fall. The Unfettered rely on this world for what little food they can still make. They are now in desperate need for food, and whilst we brought them some, along with competent people to help them produce more food, it will never be enough."`
