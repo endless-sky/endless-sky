@@ -49,7 +49,7 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> AUTO_AIM_SETTINGS = {"off", "when firing", "on"};
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "when firing", "always"};
 	int autoAimIndex = 2;
 }
 
