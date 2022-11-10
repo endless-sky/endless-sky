@@ -59,6 +59,10 @@ public:
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	static void ToggleAutoAim();
+	static const int AutoAimIndex();
+	static const std::string &AutoAimSetting();
 };
 
 

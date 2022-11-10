@@ -48,6 +48,9 @@ namespace {
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "when firing", "on"};
+	int autoAimIndex = 2;
 }
 
 
@@ -56,7 +59,6 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
@@ -89,6 +91,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "auto aim")
+			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else
@@ -108,6 +112,7 @@ void Preferences::Save()
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("auto aim", autoAimIndex);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -257,4 +262,25 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+const string &Preferences::AutoAimSetting()
+{
+	return AUTO_AIM_SETTINGS[autoAimIndex];
+}
+
+
+
+const int Preferences::AutoAimIndex()
+{
+	return autoAimIndex;
+}
+
+
+
+void Preferences::ToggleAutoAim()
+{
+	autoAimIndex = (autoAimIndex + 1) % 3;
 }
