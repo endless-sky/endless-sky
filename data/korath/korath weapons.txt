@@ -1030,7 +1030,7 @@ outfit "Microbot Grinder"
 		"velocity" 10
 		"lifetime" 2
 		"reload" 6
-		"firing energy" 5
+		"firing energy" 100
 		"blast radius" 100
 		"shield damage" 48
 		"corrosion damage" 3
