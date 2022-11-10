@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Immigrant Workers"
-	description "This young couple wants to start a new life on <destination>."
+	description "A young couple wants to start a new life on <destination>, and can pay you <payment> to bring them there. They are also bringing along <cargo>."
 	minor
 	passengers 2
 	cargo "luggage and furniture" 2
@@ -29,17 +29,17 @@ mission "Immigrant Workers"
 		log "Minor People" "George and Samantha" `George and Samantha used to work on New Iceland before they decided to leave due to Samantha's conditions.`
 	on offer
 		conversation
-			"As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
+			`As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles.`
 			choice
-				"	(Talk to them.)"
-				"	(Ignore them.)"
+				`	(Talk to them.)`
+				`	(Ignore them.)`
 					decline
-			"	The couple introduces themselves as George and Samantha. As you shake hands with them, you notice that Samantha's eyes under the goggles are rimmed in red, and she keeps coughing quietly: a dry, careful cough. George explains that they came here several years ago to take jobs in the factories, but the volcanic fumes have been giving Samantha trouble ever since they arrived. They will pay for transport for themselves and their household goods to <destination>."
+			`	The couple introduces themselves as George and Samantha. As you shake hands with them, you notice that Samantha's eyes under the goggles are rimmed in red, and she keeps coughing quietly: a dry, careful cough. George explains that they came here several years ago to take jobs in the factories, but the volcanic fumes have been giving Samantha trouble ever since they arrived. They can pay <payment> for transport for themselves and <tons> of household goods to <destination>.`
 			choice
-				"	(Accept.)"
-				"	(Decline.)"
+				`	(Accept.)`
+				`	(Decline.)`
 					decline
-			"	They thank you for your assistance, and you give them a hand pushing the heavy cart into your cargo bay."
+			`	They thank you for your assistance, and you give them a hand pushing the heavy cart into your cargo bay.`
 				accept
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -115,7 +115,7 @@ mission "Pookie, Part 2"
 
 mission "Smuggler's Den, Part 1"
 	name "Refugees to <planet>"
-	description "You met Joe and Maria, a young couple with a newborn baby, on the Smuggler's Den station. They want to start a new life on <destination>."
+	description "Joe and Maria, a young couple with a newborn baby, want to escape slavery and start a new life on <destination>."
 	minor
 	source "Smuggler's Den"
 	destination "Arabia"
@@ -191,7 +191,7 @@ mission "Smuggler's Den, Part 1"
 mission "Smuggler's Den, Part 2"
 	landing
 	name "Refugees to <planet>"
-	description "Joe and Maria were unable to find work on <origin>. Take them to <destination> to see if they can get a job there."
+	description "Unable to find work on <origin>, Joe and Maria want to travel to <destination> to see if they can get a job there."
 	destination "Millrace"
 	passengers 2
 	to offer
@@ -264,7 +264,7 @@ mission "Smuggler's Den: Follow Up"
 
 mission "Expedition to Hope 1"
 	name "Expedition to Hope"
-	description "Transport a team of scientists to the abandoned world of <planet>, where they will be placing some meteorological equipment."
+	description "Transport a team of <bunks> scientists to the abandoned world of <planet>, where they will be placing <tons> of meteorological equipment. Payment will be 80,000 credits."
 	minor
 	source
 		near Wei 2 8
@@ -277,7 +277,7 @@ mission "Expedition to Hope 1"
 	
 	on offer
 		conversation
-			`A group of scientists approaches you and asks if you would be willing to take them to the abandoned planet of Hope, and then back home from there. "The transport we'd arranged for bailed out on us at the last moment," says their leader, a middle-aged man wearing thick-rimmed glasses.`
+			`A group of <bunks> scientists approaches you and asks if you would be willing to take them and <cargo> to the abandoned planet of Hope, and then back home from there. "The transport we'd arranged for bailed out on us at the last moment," says their leader, a middle-aged man wearing thick-rimmed glasses. "We have 80,000 credits allocated for payment."`
 			choice
 				`	"Sure, I'd be glad to help."`
 					goto yes
@@ -304,7 +304,7 @@ mission "Expedition to Hope 1"
 mission "Expedition to Hope 2"
 	landing
 	name "Expedition to Hope"
-	description "Transport the team of scientists home to <destination>."
+	description "Transport the team of <bunks> scientists home to <destination>, to receive the second half of payment."
 	source Hope
 	destination
 		distance 2 5
@@ -329,7 +329,7 @@ mission "Expedition to Hope 2"
 
 mission "Transport Workers A"
 	name "Transport Family"
-	description "Transport this family to <destination>, where they hope that steady work will be easier to come by."
+	description "Transport a family of <bunks>, as well as <cargo>, to <destination>, where they hope that steady work will be easier to come by. Payment is <payment>."
 	minor
 	source
 		attributes "dirt belt"
@@ -342,7 +342,7 @@ mission "Transport Workers A"
 	cargo "household goods" 2
 	
 	on offer
-		dialog `In one of the corners of the spaceport, you meet a family with two kids, and a pile of trunks and boxes spread out next to them. They tell you that they are trying to book passage to <planet>. "Work has gotten way too hard to come by here," explains the father. "I've had seven different jobs in the past year, and none of them lasted more than a month. So we thought we'd try our luck on a Syndicate world."`
+		dialog `In one of the corners of the spaceport, you meet a family with two kids, and a pile of trunks and boxes spread out next to them. They tell you that they are trying to book passage to <planet>. "Work has gotten way too hard to come by here," explains the father. "I've had seven different jobs in the past year, and none of them lasted more than a month. So we thought we'd try our luck on a Syndicate world. We can pay you <payment> for the trouble."`
 	
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -372,7 +372,7 @@ mission "Transport Workers B"
 				`	"You're traveling all by yourself? You aren't in any trouble, I hope?"`
 				`	"Sorry, I don't expect to be headed that way any time soon."`
 					decline
-			`	"Well, here's the story," he says. "My girlfriend's father won't let us get married until I have some money saved up. They say there's plenty of jobs to be had on <planet>. So I'm headed there to put down roots and get myself established, then in a year or two she can come and join me."`
+			`	"Well, here's the story," he says. "My girlfriend's father won't let us get married until I have some money saved up. They say there's plenty of jobs to be had on <planet>. So I'm headed there to put down roots and get myself established, then in a year or two she can come and join me. Don't worry, I have <payment> that I can give to you."`
 			choice
 				`	"I'd be glad to take you there."`
 					goto thanks
@@ -408,7 +408,7 @@ mission "Transport Workers B"
 
 mission "Transport Workers C"
 	name "Farming Family"
-	description "Transport this family of farmers, and their livestock, to <destination>."
+	description "Transport this family of <bunks> farmers and <tons> of livestock, to <destination>. Payment is <payment>."
 	minor
 	source
 		attributes "dirt belt"
@@ -423,12 +423,12 @@ mission "Transport Workers C"
 	
 	on offer
 		conversation
-			`On the dirt near your landing pad is parked a large wagon, hitched to a draft horse and loaded down with furniture and various farming implements. A family is gathered in the shade of the cart, and several goats and sheep are tied up behind it. Do you approach them and find out where they are headed?`
+			`On the dirt near your landing pad is parked a large wagon, hitched to a draft horse and loaded down with furniture and various farming implements. A family is gathered in the shade of the cart, and several goats and sheep are tied up behind it.`
 			choice
-				`	(Yes.)`
-				`	(No, I'm not interested in carrying livestock in my shiny new space ship.)`
+				`	(Approach the farmers.)`
+				`	(I'm not interested in carrying livestock in my shiny new space ship.)`
 					defer
-			`	The farmers introduce themselves as Jim and Annette Patterson; their kids are Erin, Kyle, and Sarah. "Any chance you've got space for some livestock?" asks Jim. "The droughts the last few years have been fierce, and we're hoping to start a new homestead on <planet>."`
+			`	The farmers introduce themselves as Jim and Annette Patterson; their kids are Erin, Kyle, and Sarah. "Any chance you've got space for <tons> of livestock?" asks Jim. "The droughts the last few years have been fierce, and we're hoping to start a new homestead on <planet>. We have <payment> saved for payment."`
 			choice
 				`	"Sure, I'd be glad to take you there."`
 					accept
@@ -447,7 +447,7 @@ mission "Transport Workers C"
 
 mission "WR Star 1"
 	name "Star Research"
-	description "Fly through the <waypoints> system with this team of scientists, then return them to <destination>."
+	description "Fly through the <waypoints> system with a team of <bunks> scientists and <cargo>, then return them to <destination>."
 	minor
 	source
 		attributes "deep"
@@ -459,7 +459,7 @@ mission "WR Star 1"
 	cargo "sensors" 2
 	
 	on offer
-		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
+		dialog `A group of <bunks> scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
 	
 	on visit
 		dialog phrase "generic missing waypoint or cargo and passengers"
@@ -489,7 +489,7 @@ mission "There Might Be Riots 1"
 				`	"What is it?"`
 				`	"Not right now."`
 					defer
-			`	"My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
+			`	"My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take <fare> and <tons> of cargo to <destination>? Given the circumstances, we can pay quite well."`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm not headed in that direction right now."`
@@ -580,7 +580,12 @@ mission "There Might Be Riots part 2"
 				`	"What do you mean, 'beyond' human space?"`
 				`	"Well, I'll look forward to the next time we meet."`
 					accept
-			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise Worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
+			branch notpublic
+				not "event: hai-human resolution announced"
+			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Of course, these days that story isn't half as interesting as it once was."`
+				goto revealed
+			label notpublic
+			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
 			branch known
 				has "First Contact: Hai: offered"
 			`	You're tempted to laugh, but he sounds serious. "Well," you say, "if I ever find a planet of intelligent squirrels, I'll be glad to take you guys there." You help them to unload their stuff, and say goodbye for now.`
@@ -590,7 +595,12 @@ mission "There Might Be Riots part 2"
 				set "met hai before TMBR"
 			`	"It sounds like you were visiting Hai space," you say, and you describe the aliens who live beyond the wormhole. "Yeah, that would be them," says Ulrich. "I'd love to go back there some time, but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
 				accept
-
+			label revealed
+			apply
+				set "met hai before TMBR"
+			`	"Well, now that they're not hiding away anymore, seems like you might have a new market you could go back to," you say.`
+			`	"I'd love to go back there some time," says Ulrich, "but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
+				accept
 
 
 mission "There Might Be Riots part 3A"
@@ -645,6 +655,14 @@ mission "There Might Be Riots part 3A"
 			`	"Yes," you say, "they're called the Hai. They live in a whole big region to the north."`
 				goto end
 			label known
+			branch notpublic
+				not "event: hai-human resolution announced"
+			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
+			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
+			`	"Aww yeah!" he exlaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
+			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
+				accept
+			label notpublic
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
 			`	"The Hai," you say.`
 			label end
@@ -732,7 +750,7 @@ mission "There Might Be Riots part 3B"
 
 mission "Drug Running 1"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -748,7 +766,7 @@ mission "Drug Running 1"
 		"said no to drugs" < 4
 	
 	on offer
-		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet> for <payment>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
+		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport <tons> of "recreational pharmaceuticals" to <planet> for <payment>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
 	
 	on accept
 		"said no to drugs" --
@@ -767,7 +785,7 @@ mission "Drug Running 1"
 
 mission "Drug Running 2"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -783,7 +801,7 @@ mission "Drug Running 2"
 		has "Drug Running 1: done"
 	
 	on offer
-		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you this will be a very lucrative operation. What do you say?"`
+		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got <tons> of the good stuff that needs to get to <planet>. I promise you this will be a very lucrative operation. What do you say?"`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -797,7 +815,7 @@ mission "Drug Running 2"
 
 mission "Drug Running 3"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -880,6 +898,7 @@ mission "Hallucination"
 	to offer
 		has "Drug Running 2: active"
 		random < 50
+		"teetotaler" < 3
 	
 	on offer
 		conversation
@@ -891,6 +910,12 @@ mission "Hallucination"
 			`	The room begins to spin, and strange things happen...`
 				launch
 	
+	on accept
+		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
+	
+	on defer
+		"teetotaler" ++
+	
 	npc kill
 		government "Bad Trip"
 		personality nemesis heroic
@@ -898,9 +923,6 @@ mission "Hallucination"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"
 		ship "Hallucination" "Shiny"
-		
-	on complete
-		log `Agreed to transport illegal drugs. Tried some of them while refueling and instantly regretted it. The sky truly is endless.`
 
 
 
@@ -1046,6 +1068,7 @@ mission "Shady passenger transport 3"
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
 	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
+	"apparent payment" 350000
 	minor
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1172,7 +1195,7 @@ mission "Shady passenger transport 3 - double cross big payment"
 
 
 mission "Rescue Miners 1"
-	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
+	description "Participate in the medical evacuation of miners injured on <planet> by bringing <bunks> emergency workers and <cargo> to the planet."
 	name "Rescue Miners"
 	minor
 	source
@@ -1188,7 +1211,7 @@ mission "Rescue Miners 1"
 		random < 60
 	
 	on offer
-		dialog `You've just sat down in the spaceport bar and ordered a drink when someone in uniform runs into the room and shouts, "There's been a mine explosion on <planet>! We need all available ships to carry relief workers and supplies and to evacuate the injured to a world where there are better medical facilities." Do you volunteer?`
+		dialog `You've just sat down in the spaceport bar and ordered a drink when someone in uniform runs into the room and shouts, "There's been a mine explosion on <planet>! We need all available ships to carry relief workers and supplies and to evacuate the injured to a world where there are better medical facilities."`
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 
@@ -1196,7 +1219,7 @@ mission "Rescue Miners 1"
 
 mission "Rescue Miners 2"
 	landing
-	description "Participate in the medical evacuation of some miners injured in a recent accident on <origin>."
+	description "Participate in the medical evacuation of miners injured on <origin> by bringing <bunks> passengers to the medical facilities on <destination>."
 	name "Rescue Miners"
 	destination
 		attributes "core"
@@ -1232,7 +1255,7 @@ mission "Courier 1"
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me? The payment for the job is <payment>."`
+		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery of <cargo> to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me? The payment for the job is <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1288,7 +1311,7 @@ mission "Courier 2"
 	name "Package to <planet>"
 	repeat
 	deadline
-	description "Deliver a package to <destination> by <date>. Payment is <payment>."
+	description "Deliver a package weighing <tons> to <destination> by <date>. Payment is <payment>."
 	minor
 	cargo package 2
 	to offer
@@ -1312,7 +1335,7 @@ mission "Courier 2"
 mission "Courier 3"
 	name "Papers to <planet>"
 	deadline
-	description "Deliver some legal papers to <destination> by <date>. Payment is <payment>."
+	description "Deliver <tons> of legal papers to <destination> by <date>. Payment is <payment>."
 	minor
 	cargo "legal papers" 1
 	to offer
@@ -1335,7 +1358,7 @@ mission "Courier 3"
 mission "Courier 4"
 	name "Lizard to <planet>"
 	deadline
-	description "Deliver an exotic pet to <destination> by <date>. Payment is <payment>."
+	description "Deliver an exotic pet (weighing <tons>) to <destination> by <date>. Payment is <payment>."
 	minor
 	cargo "exotic lizard" 3
 	to offer
@@ -1353,7 +1376,7 @@ mission "Courier 4"
 				`	(Find out what he wants.)`
 				`	(Ignore him.)`
 					decline
-			`	"My name is Alphonse," he says. "I am a breeder of exotic lizards. A new client on <planet> has just ordered one, and will pay you quite handsomely to transport it. Naturally, being a live animal, it's a rush delivery; it needs to be done by <day>. What do you say?"`
+			`	"My name is Alphonse," he says. "I am a breeder of exotic lizards. A new client on <planet> has just ordered one, and will pay you <payment> to transport it. Naturally, being a live animal, it's a rush delivery; it needs to be done by <day>. What do you say?"`
 			choice
 				`	"I'd be glad to."`
 				`	"Sorry, I'm not interested in that sort of work."`
@@ -1372,7 +1395,7 @@ mission "Courier 4"
 
 mission "Migrant Workers 1"
 	name "Migrant Workers"
-	description "Bring this group of migrant workers to <planet>."
+	description "Bring a group of <bunks> migrant workers to <planet>. Payment is <payment>."
 	minor
 	passengers 6 7
 	source
@@ -1390,7 +1413,7 @@ mission "Migrant Workers 1"
 				`	(Approach them.)`
 				`	(Ignore them.)`
 					defer
-			`	You strike up a conversation with the workers. They say that they are tired of the seasonal fluctuations of farm work, and are looking for something a bit steadier and better paying. "We hear there's always work to be had in the mines on <planet>," they say. "Can you take us there?"`
+			`	You strike up a conversation with the workers. They say that they are tired of the seasonal fluctuations of farm work, and are looking for something a bit steadier and better paying. "We hear there's always work to be had in the mines on <planet>," they say. "Can you take us there? We've pooled together our savings, and can pay you <payment>."`
 			choice
 				`	"Sure!"`
 					accept
@@ -1408,7 +1431,7 @@ mission "Migrant Workers 1"
 
 mission "Humanitarian 1"
 	name "Vaccine to <planet>"
-	description "Bring a shipment of flu vaccines to the lawless world of <planet>. Be sure the medicine gets into the right hands."
+	description "Bring <tons> of flu vaccines to the lawless world of <planet>. Be sure the medicine gets into the right hands."
 	minor
 	cargo "vaccine" 20
 	to offer
@@ -1448,7 +1471,7 @@ mission "Humanitarian 1"
 
 mission "Humanitarian 2"
 	name "Food to <planet>"
-	description "Bring a shipment of food to the lawless world of <planet>, to help alleviate a famine."
+	description "Bring <tons> of food to the lawless world of <planet>, to help alleviate a famine."
 	minor
 	cargo "emergency rations" 50
 	to offer
@@ -1488,7 +1511,7 @@ mission "Humanitarian 2"
 
 mission "Terraforming 1"
 	name "Terraforming Rand"
-	description "Bring a delegation from Rand to the Academy of Planetary Sciences on Glory."
+	description "Bring a delegation of two people from Rand to the Academy of Planetary Sciences on Glory."
 	minor
 	source "Rand"
 	destination "Glory"
@@ -1521,7 +1544,7 @@ mission "Terraforming 1"
 mission "Terraforming 2"
 	landing
 	name "Terraforming Rand"
-	description "Return to Rand with a student who thinks she can terraform the planet cheaply."
+	description "Return to Rand with the delegation and a student who thinks she can terraform the planet cheaply."
 	source "Glory"
 	destination "Rand"
 	passengers 3
@@ -1635,7 +1658,7 @@ mission "Terraforming 3"
 
 mission "Terraforming 4"
 	name "Terraforming Rand"
-	description "Collect some hardy plants that can grow in a low-light environment from <destination>."
+	description "Bring Amy to <destination> to collect some hardy plants that can grow in a low-light environment."
 	source "Rand"
 	destination "New Portland"
 	to offer
@@ -1662,7 +1685,7 @@ mission "Terraforming 4"
 
 mission "Terraforming 5"
 	name "Terraforming Rand"
-	description "Bring some hardy plants that can grow in a low-light environment back to <destination>."
+	description "Bring Amy and <tons> of hardy plants that can grow in a low-light environment back to <destination>."
 	source "New Portland"
 	destination "Rand"
 	to offer
@@ -1874,7 +1897,7 @@ mission "Terraforming 10"
 			`Amy, Nolan, and the other two scientists tell you the known history of Tundra's climate. Millions of years ago, an asteroid impact or large volcanic eruption altered the planet's atmosphere. Now, the planet no longer retains enough heat from its host star in order to stay warm.`
 			`	"Tundra's snow covered surface only exacerbates the problem, reflecting most of the star's light back into space," Nolan explains. "This means that we need to both alter the atmosphere in order for it to retain more heat and alter the surface in order for it to reflect less heat."`
 			`	Amy rolls out a map of the entire planet onto the table. Different regions of the surface are color coded, and a large red spot in the planet's southern hemisphere sticks out to you.`
-			`	"Tundra has very low volcanic activity, but seismic mapping has led us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is unusually thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
+			`	"Tundra has very low volcanic activity, but seismic mapping has led us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which, lucky for us, is unusually thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
 			choice
 				`	"So are we going to wait ten thousand years for it to erupt?"`
 				`	"How does this help our situation?"`
@@ -1951,7 +1974,7 @@ mission "Terraforming 12"
 		conversation
 			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for ridding the system of the pirates, a pleasantly unexpected reward.`
 			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid," Amy says, and after only a short time of searching, she finds the perfect candidate. "Just like last time, Captain."`
-			`	 Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
+			`	Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
 	
 	npc assist
@@ -2029,6 +2052,7 @@ event "terraforming follow-up"
 mission "A wolf, a goat, and a cabbage"
 	job
 	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be 100,000 credits."
+	"apparent payment" 100000
 	to offer
 		"day" == 1
 		"month" == 4
@@ -2052,7 +2076,7 @@ mission "A wolf, a goat, and a cabbage"
 		payment 33000
 		dialog
 			`The man who collects the wolf from you on the landing pad is furious. "I told the shipping company not to put the goat in the same ship as the wolf or the cabbage," he says, "but I guess they tried to save money by subcontracting it all to the same captain."`
-			`	Because you only delivered a third of the cargo safely, he only pays you 33,000 credits.`
+			`	Because you only delivered a third of the cargo safely, he only pays you <payment>.`
 
 
 
@@ -2302,7 +2326,7 @@ mission "Paradise Fortune 1"
 	on offer
 		conversation
 			`As with all Paradise Worlds, the air is just the right temperature when you step out of your ship, and a light breeze rustles the leaves of the trees planted around the spaceport. While taking a moment to breathe in the fresh air, you hear yelling coming from the entrance to the <origin> shipyard. Looking over, you spot a young girl with a backpack running from two spaceport security guards. "Get back here!" they yell at the girl, chasing her with no success.`
-			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack. `
+			`	"Someone help me!" the girl shrieks out. As she runs, a credit chip falls out of her backpack.`
 			choice
 				`	(Let her onto my ship.)`
 					goto continue
@@ -2534,7 +2558,7 @@ mission "Paradise Fortune 4"
 mission "Northern Blockade"
 	minor
 	name `Mebsuta Disaster`
-	description `<destination> is under attack by pirates. Assist the Republic by delivering <commodity> to the planet as soon as possible.`
+	description `<destination> is under attack by pirates. Assist the Republic by delivering <cargo> to the planet as soon as possible.`
 	source
 		near "Mebsuta" 2 4
 	destination "Featherweight"
@@ -2583,7 +2607,7 @@ mission "Northern Blockade"
 mission "Southern Blockade"
 	minor
 	name `Spaceport Defenses`
-	description `<stopovers> are under attack and in need of spaceport defenses. Drop off your cargo on these three planets and return to <destination> for payment.`
+	description `<stopovers> are under attack and in need of spaceport defenses. Drop off your cargo of <cargo> on these three planets and return to <destination> for payment. (<payment>)`
 	source
 		near "Pherkad" 2 4
 		government "Free Worlds"
@@ -2922,7 +2946,7 @@ mission "Hauler VI cargo prototype 1"
 	destination "Skymoot"
 	to offer
 		"armament deterrence" > 0
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -2992,7 +3016,7 @@ mission "Hauler VI cargo prototype 2"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 1: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3013,7 +3037,7 @@ mission "Hauler VI cargo prototype 3"
 	landing
 	to offer
 		has "Hauler VI cargo prototype 2: done"
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		personality escort timid
 		ship "Hauler III" "SB-Labs Testament"
@@ -3268,6 +3292,7 @@ mission "Spacediving professionals accident"
 	repeat
 	name "Spacediving at <planet>"
 	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	"apparent payment" 120000
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3290,6 +3315,7 @@ mission "Spacediving professionals disaster"
 	repeat
 	name "Spacediving at <planet>"
 	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	"apparent payment" 120000
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3314,6 +3340,7 @@ mission "Spacediving amateurs"
 	repeat
 	name "Spacediving at <planet>"
 	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	"apparent payment" 120000
 	passengers 5 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3638,7 +3665,7 @@ mission "Street Swindle"
 			`	The cups stop. After a brief pause, the man points to the cup on the right.`
 			choice
 				`	(Watch what happens.)`
-						goto continue
+					goto continue
 				`	"You know these things are scams, right?"`
 			`	You try to warn him, but someone in the crowd shushes you. He doesn't hear.`
 				goto continue
@@ -3805,7 +3832,7 @@ mission "Spaceport Reminder"
 	to offer
 		not "chosen sides"
 		"spaceport reminder year" + "spaceport reminder month" != 0
-		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 3
+		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 7
 	on offer
 		conversation
 			`As soon as you touch down on <origin>, you step off your ship and head directly for the job board and trade hub, brushing past several locals on the way. The constant routine of interstellar commerce has been firmly drilled into your brain; you near unconsciously peruse the boards, trying to suss out the most profitable route.`
@@ -3813,6 +3840,8 @@ mission "Spaceport Reminder"
 			choice
 				`	"Why should I do that?"`
 				`	"I'm a spaceship captain; I don't have time to waste."`
+				`	"Yes, I know already. I'll take my time later."`
+					decline
 			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
 			choice
 				`	"I'll be sure to check more spaceports in the future."`
@@ -4050,7 +4079,7 @@ mission "Laborer"
 					goto decline
 				`	"Fine, I can take you to <planet>."`
 			label accept
-			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.`
 				accept
 			label decline
 			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
@@ -4264,7 +4293,7 @@ mission "Saving Artifacts 2"
 			choice
 				`	"Never mind, I'll pay."`
 					goto pay
-				`	"All right, I'll fight him. `
+				`	"All right, I'll fight him.`
 			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
 			choice
 				`	"Fight me."`
@@ -4292,27 +4321,27 @@ mission "Saving Artifacts 3"
 		has "Saving Artifacts 2: done"
 		not "Bought Off Artifacts"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Deth"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Warr"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Famin"
 
-	npc kill 
+	npc kill
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
@@ -4858,7 +4887,7 @@ mission "Riley"
 			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
 			`	"It... worked." His voice fizzles, and his tone is not the one you recognize from before. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Do not be alarmed. I have been working on a personal project for over a decade now. My mind was uploaded to the modified Core you are looking at. I had to say goodbye in case the procedure failed - I did not know if it would work. You cannot upload a mind while it's still alive. I tried that many times." The tone of his voice sounds almost sorrowful, but still retains a robotic quality.`
 			choice
-				`	(Stay silent.)"`
+				`	(Stay silent.)`
 					goto continue
 				`	"Is this... legal?"`
 			`	"No," he replies. "Not under Republic law. I assure you that my only intention is to continue my work: nothing more."`
@@ -4898,7 +4927,7 @@ mission "Riley"
 					goto bounty
 				`	(Go back to your ship.)`
 			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
-					decline
+				decline
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye
