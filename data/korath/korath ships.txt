@@ -403,28 +403,28 @@ ship "Rai'alorej"
 		"fuel capacity" 700
 
 		"cargo space" 351
-		"outfit space" 1019
-		"weapon capacity" 371
-		"engine capacity" 309
+		"outfit space" 856
+		"weapon capacity" 237
+		"engine capacity" 195
 		weapon
 			"blast radius" 600
 			"shield damage" 9000
 			"hull damage" 4800
 			"hit force" 20000
 	outfits
-		"Banisher Grav-Turret" 4
-		"Warder Anti-Missile" 4
-		"Langrage Hyper-Heaver" 1
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile" 2
+		"Langrage Hyper-Heaver" 2
 		"Firelight Missile Bank"
-		"Firelight Missile" 18
+		"Firelight Missile" 20
 
-		"Triple Plasma Core"
+		"Double Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Small Heat Shunt" 2
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
 		"Fuel Processor" 2
-		"Korath Repeater Rifle" 523
-		"Microbot Defense Station" 18
+		"Thermal Repeater Rifle" 526
+		"Microbot Defense Station" 25
 
 		"Afterburner (Planetary Class)"
 		"Reverser (Lunar Class)"
@@ -447,15 +447,11 @@ ship "Rai'alorej"
 	engine 29 212
 	gun -81.5 58 "Firelight Missile Bank"
 		angle 270
-	turret -89 -134 "Banisher Grav-Turret"
-	turret 89 -134 "Warder Anti-Missile"
-	turret -110 -126 "Warder Anti-Missile"
-	turret 110 -126 "Banisher Grav-Turret"
-	turret 36.5 -55.5 "Langrage Hyper-Heaver"
-	turret -63.5 44 "Warder Anti-Missile"
-	turret 63.5 44 "Banisher Grav-Turret"
-	turret -63.5 66.5 "Banisher Grav-Turret"
-	turret 63.5 66.5 "Warder Anti-Missile"
+	turret -96.5 -129.5 "Langrage Hyper-Heaver"
+	turret 96.5 -129.5 "Warder Anti-Missile"
+	turret -62.5 55 "Warder Anti-Missile"
+	turret 62.5 55 "Langrage Hyper-Heaver"
+	turret 36.5 -55.5 "Banisher Grav-Turret"
 	bay "Fighter" -115 -152
 		angle 30
 	bay "Fighter" 115 -152
@@ -485,9 +481,9 @@ ship "Ikatila'ej"
 		"heat dissipation" .29
 		"fuel capacity" 800
 		"cargo space" 845
-		"outfit space" 1829
-		"weapon capacity" 680
-		"engine capacity" 290
+		"outfit space" 1314
+		"weapon capacity" 440
+		"engine capacity" 259
 		"spinal mount" 1
 		weapon
 			"blast radius" 600
@@ -496,23 +492,22 @@ ship "Ikatila'ej"
 			"hit force" 20000
 	outfits
 		"Microbot Factory"
-		"Shunt-Strike Turret" 5
-		"Grab-Strike Turret" 4
-		"Warder Anti-Missile" 5
+		"Shunt-Strike Turret" 3
+		"Grab-Strike Turret" 2
+		"Warder Anti-Missile" 3
 
 		"Triple Plasma Core"
 		"Double Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt" 2
-		"Korath Repeater Rifle"  957
-		"Microbot Defense Station" 20
+		"Thermal Repeater Rifle"  986
+		"Microbot Defense Station" 26
 
 		"Afterburner (Lunar Class)"
 		"Reverser (Lunar Class)"
 		"Steering (Stellar Class)"
 		"Thruster (Stellar Class)"
-		"Hyperdrive"
+		"Scram Drive"
 
 	"reverse engine" -105 -190.5
 		zoom 0.8
@@ -529,20 +524,14 @@ ship "Ikatila'ej"
 	engine 27 249.5
 		zoom 0.8
 	gun 0 -190 "Microbot Factory"
-	turret -90.5 -176 "Grab-Strike Turret"
-	turret 90.5 -176 "Grab-Strike Turret"
-	turret -95 -156 "Grab-Strike Turret"
-	turret 95 -156 "Grab-Strike Turret"
-	turret -51.5 -98.5 "Shunt-Strike Turret"
-	turret 51.5 -98.5 "Warder Anti-Missile"
-	turret 0 -94.5 "Shunt-Strike Turret"
-	turret 0 14 "Shunt-Strike Turret"
-	turret -145.5 83 "Shunt-Strike Turret"
-	turret 145.5 83 "Warder Anti-Missile"
-	turret -44.5 113 "Warder Anti-Missile"
-	turret 44.5 113 "Warder Anti-Missile"
-	turret -139.5 178 "Warder Anti-Missile"
-	turret 139.5 178 "Shunt-Strike Turret"
+	turret 89 -168 "Grab-Strike Turret"
+	turret -89 -168 "Grab-Strike Turret"
+	turret -56 96 "Shunt-Strike Turret"
+	turret 56 96 "Warder Anti-Missile"
+	turret -146 83.5 "Warder Anti-Missile"
+	turret 146 83.5 "Shunt-Strike Turret"
+	turret -141.5 177 "Shunt-Strike Turret"
+	turret 141.5 177 "Warder Anti-Missile"
 	explode "tiny explosion" 180
 	explode "small explosion" 80
 	explode "medium explosion" 90
