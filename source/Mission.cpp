@@ -1148,6 +1148,12 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		// any was performed, update this mission's NPC spawn states.
 		if(Enter(system, player, ui))
 			UpdateNPCs(player);
+		
+		// This code will probably need to be moved after the NPC check below,
+		// or that moved up, depending on if NPC stuff needs to be updated before checking completion.
+		if(!destination.GetPlanet() && system == destination.GetSystem()
+				&& CanComplete(player) && IsSatisfied(player))
+			Do(COMPLETE, player, ui);
 	}
 
 	for(NPC &npc : npcs)
