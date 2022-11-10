@@ -4887,7 +4887,7 @@ mission "Riley"
 			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
 			`	"It... worked." His voice fizzles, and his tone is not the one you recognize from before. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Do not be alarmed. I have been working on a personal project for over a decade now. My mind was uploaded to the modified Core you are looking at. I had to say goodbye in case the procedure failed - I did not know if it would work. You cannot upload a mind while it's still alive. I tried that many times." The tone of his voice sounds almost sorrowful, but still retains a robotic quality.`
 			choice
-				`	(Stay silent.)"`
+				`	(Stay silent.)`
 					goto continue
 				`	"Is this... legal?"`
 			`	"No," he replies. "Not under Republic law. I assure you that my only intention is to continue my work: nothing more."`
