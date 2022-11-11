@@ -898,12 +898,6 @@ ship "Ra'at Ik 621"
 	bay "Fighter" -50 303 back
 	bay "Fighter" 50 303 back
 	bay "Fighter" 50 303 back
-	bay "Drone" -100 -169
-	bay "Drone" 100 -169
-	bay "Drone" -98 156 back
-	bay "Drone" 98 156 back
-	bay "Drone" -50 303 back
-	drone 50 303 back
 	gun -71 -209 "Fire-Lance"
 	gun 0 -209 "Fire-Lance"
 	gun 71 -209 "Fire-Lance"

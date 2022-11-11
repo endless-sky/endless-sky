@@ -1030,6 +1030,21 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	turret "Thermal Repeater Turret"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
+	bay "Fighter" -100 -169
+	bay "Fighter" 0 -169
+	bay "Fighter" 100 -169
+	bay "Fighter" -98 156 back
+	bay "Fighter" 98 156 back
+	bay "Fighter" -50 303 back
+	bay "Fighter" -50 303 back
+	bay "Fighter" 50 303 back
+	bay "Fighter" 50 303 back
+	bay "Drone" -100 -169
+	bay "Drone" 100 -169
+	bay "Drone" -98 156 back
+	bay "Drone" 98 156 back
+	bay "Drone" -50 303 back
+	bay "Drone" 50 303 back
 
 
 
@@ -1064,6 +1079,15 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
 	turret "Shunt-Strike Turret"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
+	bay "Drone" -100 -169
+	bay "Drone" 0 -169
+	bay "Drone" 100 -169
+	bay "Drone" -98 156 back
+	bay "Drone" 98 156 back
+	bay "Drone" -50 303 back
+	bay "Drone" -50 303 back
+	bay "Drone" 50 303 back
+	bay "Drone" 50 303 back
 
 
 

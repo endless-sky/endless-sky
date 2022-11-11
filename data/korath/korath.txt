@@ -351,7 +351,7 @@ fleet "Korath Surveillance"
 		disables plunders opportunistic harvests surveillance
 	variant 
 		"Ra'at Ik 621 (Probes)"
-		"Ra'ik Tek" 6
+		"Ra'ik Tek" 9
 
 fleet "Korath Large Raid"
 	government "Korath"
