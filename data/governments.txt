@@ -375,6 +375,8 @@ government "Hai (Unfettered)"
 		"Shadow" 1
 		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
+		"Hai (Unfettered Blue Challenger)" 1
+		"Hai (Unfettered Red Challenger)" 1
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -402,15 +404,12 @@ government "Hai (Friendly Unfettered)"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
 
-government "Hai (Unfettered Challenge)"
-	swizzle 4
-	color .69 .33 .82
+government "Hai (Unfettered Challenger)"
+	swizzle 3
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
 	"player reputation" -1000
-	"attitude toward"
-		"Hai (Unfettered)" 1
 	"bribe" .0001
 	"fine" 0
 
@@ -421,12 +420,10 @@ government "Hai (Unfettered Challenge)"
 
 # Ships belonging to this government are ready to start a duel in space at any time.
 government "Hai (Unfettered Glory Seeker)"
-	swizzle 4
-	color .69 .33 .82
+	swizzle 3
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
-	"player reputation" 1
 	"attitude toward"
 		"Hai (Unfettered)" 1
 	"bribe" .0001
@@ -446,13 +443,11 @@ government "Hai (Unfettered Glory Seeker)"
 
 # A government used to make unfettered challengers fight each others.
 government "Hai (Unfettered Blue Challenger)"
-	"display name" "Unfettered Challenge"
-	swizzle 4
-	color .69 .33 .82
+	"display name" "Unfettered Challenged"
+	swizzle 1
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
-	"player reputation" 1
 	"attitude toward"
 		"Hai (Unfettered Red Challenger)" -.01
 	"bribe" 0
@@ -472,13 +467,11 @@ government "Hai (Unfettered Blue Challenger)"
 
 # A government used to make unfettered challengers fight each others.
 government "Hai (Unfettered Red Challenger)"
-	"display name" "Unfettered Challenge"
-	swizzle 4
-	color .69 .33 .82
+	"display name" "Unfettered Challenged"
+	swizzle 9
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
-	"player reputation" 1
 	"attitude toward"
 		"Hai (Unfettered Blue Challenger)" -.01
 	"bribe" 0

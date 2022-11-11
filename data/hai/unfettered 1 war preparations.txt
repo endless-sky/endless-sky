@@ -875,7 +875,7 @@ mission "Unfettered: Earn Your Prize"
 			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain, but I will give you my best!"`
 				accept
 	npc save disable
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		personality
 			confusion 40
 			disables staying heroic target waiting
@@ -1299,7 +1299,7 @@ mission "Unfettered: Ready For The War"
 	npc save disable
 		to despawn
 			has "unfettered: defeated Si-Ra"
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		ship "Enhanced Shield Beetle (Pulse)" "Defiant"
 		personality disables staying heroic target launching
 		conversation
@@ -1310,7 +1310,7 @@ mission "Unfettered: Ready For The War"
 		to spawn
 			has "unfettered: defeated Si-Ra"
 			not "Unfettered Bring Fire: done"
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		ship "Stag Beetle" "Tejolis"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
@@ -1318,7 +1318,7 @@ mission "Unfettered: Ready For The War"
 		to spawn
 			has "unfettered: defeated Si-Ra"
 			has "Unfettered Bring Fire: done"
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		ship "Stag Beetle (Flamer)" "Tejolis"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"

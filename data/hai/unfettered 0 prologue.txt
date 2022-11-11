@@ -601,7 +601,7 @@ mission "Unfettered: Prove Your Strength"
 			`The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship or a small group of lighter vessels.)`
 				accept
 	npc save disable
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching
 		ship "Sari'Sea Scorpion (Pulse)" "Intrepid"
 		to spawn

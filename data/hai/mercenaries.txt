@@ -477,7 +477,7 @@ mission "Mercenaries: Duel Squared"
 		"mercenaries: duel startdays" = day + month * 30 + year * 365
 	npc disable save
 		system "Misam"
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		to despawn
 			has "mercenaries: stop the duel"
 		personality waiting heroic uninterested staying disables

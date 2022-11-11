@@ -102,7 +102,7 @@ mission "Unfettered Challenge [0]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		random < 60
 	npc save disable
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
@@ -133,7 +133,7 @@ mission "Unfettered Challenge [1A]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 20
 	npc save disable
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
@@ -164,7 +164,7 @@ mission "Unfettered Challenge [1B]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 20
 	npc save disable
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
@@ -195,7 +195,7 @@ mission "Unfettered Challenge [2]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
 		random < 20
 	npc save disable
-		government "Hai (Unfettered Challenge)"
+		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"
