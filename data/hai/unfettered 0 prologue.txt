@@ -950,7 +950,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	"They will be forced to keep militirazing more... I am sure that many Hai will come to help alleviate the situation, but I am effrayed it will not be enough.`
 				goto introduce
 			label dosmth
-			`	"Of couse you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
+			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
 			label introduce
 			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
 		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put himself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`

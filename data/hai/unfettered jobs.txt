@@ -167,47 +167,49 @@ mission "Proud Unfettered Boarded"
 		neighbor attributes "unfettered"
 	destination "Darkcloak"
 	to offer
-		"flagship crew" > 120
-		random < "flagship crew" / 8
+		random < "flagship crew" / 12
 	on offer
 		dialog phrase "unfettered boarded"
 		conversation
-			`For a moment, it is as if time froze, everyone waiting for the start explosion to happen, or for your order to disengage...`
+			`For a moment, it is as if time froze, everyone waiting for the start of the explosion to happen, or for your order to disengage...`
 			choice
 				`	"Retreat!"`
 					goto retreat
 				`	"It's a bluff."`
 			branch bluff
-				random < 50
+				or
+					"flagship crew" < 120
+					random < 50
 			branch blowup
 				random < 2
 			`	They weren't bluffing, and you already see escape pods leaving the ship, trying to to a safe distance. Better get out of here quickly!`
-				flee
+				launch
 			label blowup
-			`	It was not a bluff at all. In fact, they did not even hesitate to cause their own reactor to explode, nor did they head to their escape pods. They blow up, taking you down with them.`
+			`	It was no bluff at all. In fact, they did not even hesitate when sabotaging their own ship, nor did they head to their escape pods. They blow up almost instantly, taking you down with them.`
 				explode
 			label bluff
-			`	But then, nothing. It seems this was just a bluff, or maybe it was an attempt to stall you? You hear alarm of new ships entering the system.`
+			`	But then, nothing.`
+			`	It seems this was just a bluff, or maybe it was an attempt to stall you? You hear alarms signaling new ships entering the system.`
 				accept
 			
 			label retreat
 			branch reinforcements
-				random < 10
+				random < 20
 			branch normalretreat
 				random < 80
-			`	You give the order to retreat as soon as possible, but it seems it may have been too late, the ship is already starting to explode...`
+			`	You give the order to retreat as soon as possible, and not a moment too soon as the ship is already starting to explode...`
 				flee
 			label reinforcements
-			`	You head back but it seems like they have called reinforcements.`
+			`	You start the disengagement procedure, but it seems like they have no intention of actually blowing up. In fact, they have called for reinforcements.`
 				accept
 			label normalretreat
-			`	Whether or not they were going to explode, it seems you gave your order quick enough for them not to do so. It would probably be avised to leave before they change their minds...`
+			`	Whether or not they were going to explode, it seems you gave your order quick enough for them not to do so. It would probably be wise to leave before they change their minds...`
 				decline
 	npc evade
 		government "Hai (Unfettered)"
 		personality entering vindictive staying
 		fleet "Large Unfettered"
-		fleet "Small Unfettered"
+		fleet "Small Unfettered" 2
 
 
 
