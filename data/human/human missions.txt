@@ -1942,20 +1942,30 @@ mission "Terraforming 11"
 	on enter "Cebalrai"
 		dialog
 			`Your ship is targeted by pirate fleets when you enter the system. Before you engage, you receive a message from Amy.`
-			`"Captain, these pirate ships have been occupying the system for days. You must take them out if we are to safely crash an asteroid into Tundra."`
+			`	"Captain, these pirate ships have been occupying the system for days. They must be taken out if we are to safely crash an asteroid into Tundra. If you aren't able to fight them, distract them until backup arrives."`
 	on visit
 		dialog `You return to <planet>, but not all of the pirates have been fought off. They don't look like they're leaving any time soon either. Better depart and finish them off for good.`
 	npc evade
 		government "Pirate"
-		personality nemesis staying target
+		personality staying target
 		system "Cebalrai"
 		fleet
 			names "pirate"
 			variant
 				"Marauder Quicksilver"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
+				"Headhunter"
+				"Wasp"
 				"Bastion"
+	npc
+		government "Republic"
+		personality heroic opportunistic
+		system "Aldebaran"
+		fleet
+			names "republic small"
+			variant
+				"Frigate" 2
+				"Gunboat" 3
+				"Rainmaker" 2
 
 
 
@@ -1972,7 +1982,7 @@ mission "Terraforming 12"
 	on offer
 		payment 300000
 		conversation
-			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for ridding the system of the pirates, a pleasantly unexpected reward.`
+			`The pirates that occupied the system did not make an effort to land on Tundra, but they did harass any merchant ships that passed through the system. The government of Tundra pays you <payment> for helping in ridding the system of the pirates, a pleasantly unexpected reward.`
 			`	You gather with the scientists in the spaceport bar. The Tundra native informs you that all residents close enough to the volcano to be in danger have been evacuated. "All we need to do now is find the right asteroid," Amy says, and after only a short time of searching, she finds the perfect candidate. "Just like last time, Captain."`
 			`	Spaceport workers load a small thruster and the equipment you will need to mount it on the asteroid into your ship.`
 				accept
