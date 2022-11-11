@@ -6,7 +6,7 @@ target_compile_definitions(EndlessSkyLib PUBLIC ES_CMAKE)
 if(MSVC)
 	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
 		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/WX;/Oi>")
-	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE" "$<IF:$<CONFIG:Debug>,_DEBUG,NDEBUG>")
+	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC "-Wall" "-fno-rtti" "$<$<CONFIG:Release>:-Werror>")
 endif()
