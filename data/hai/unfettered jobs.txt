@@ -160,9 +160,11 @@ mission "Proud Unfettered Boarded"
 	boarding
 	minor
 	repeat
+	invisible
 	source
 		government "Hai (Unfettered)"
 		category "Heavy Warship"
+		neighbor attributes "unfettered"
 	destination "Darkcloak"
 	to offer
 		"flagship crew" > 120
@@ -170,8 +172,42 @@ mission "Proud Unfettered Boarded"
 	on offer
 		dialog phrase "unfettered boarded"
 		conversation
-			`They weren't bluffing, and you already see escape pods leaving the ship, trying to to a safe distance. Better get out of here quickly!`
+			`For a moment, it is as if time froze, everyone waiting for the start explosion to happen, or for your order to disengage...`
+			choice
+				`	"Retreat!"`
+					goto retreat
+				`	"It's a bluff."`
+			branch bluff
+				random < 50
+			branch blowup
+				random < 2
+			`	They weren't bluffing, and you already see escape pods leaving the ship, trying to to a safe distance. Better get out of here quickly!`
 				flee
+			label blowup
+			`	It was not a bluff at all. In fact, they did not even hesitate to cause their own reactor to explode, nor did they head to their escape pods. They blow up, taking you down with them.`
+				explode
+			label bluff
+			`	But then, nothing. It seems this was just a bluff, or maybe it was an attempt to stall you? You hear alarm of new ships entering the system.`
+				accept
+			
+			label retreat
+			branch reinforcements
+				random < 10
+			branch normalretreat
+				random < 80
+			`	You give the order to retreat as soon as possible, but it seems it may have been too late, the ship is already starting to explode...`
+				flee
+			label reinforcements
+			`	You head back but it seems like they have called reinforcements.`
+				accept
+			label normalretreat
+			`	Whether or not they were going to explode, it seems you gave your order quick enough for them not to do so. It would probably be avised to leave before they change their minds...`
+				decline
+	npc evade
+		government "Hai (Unfettered)"
+		personality entering vindictive staying
+		fleet "Large Unfettered"
+		fleet "Small Unfettered"
 
 
 

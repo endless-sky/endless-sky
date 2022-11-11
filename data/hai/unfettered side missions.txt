@@ -610,13 +610,13 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		set "unfettered: offered loot"
 	on offer
 		conversation
-			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you.`
+			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you, although they are doing more than drinking and chatting, judging by the smell...`
 			choice
 				`	(Join him.)`
 				`	(I don't have time for this now.)`
 					defer
 			`	The bar almost feels familiar. There are of course weird beverages, and the general architecture of it is simple to say the least, like all Unfettered buildings. But, in a way, it looks similar to pirate bars. Maybe some things are common between alien species...`
-			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks. When he sees you, he starts shouting. "This is my friend, Captain <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
+			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks, or consumed too much of whatever that weird smell comes from. When he sees you, he starts shouting. "This is my friend, Captain <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
 			choice
 				`	"Old ship? You don't have it any more?"`
 					goto ship
@@ -738,7 +738,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? Well, whatever, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
 				goto celebrate
 			label pirates
-			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah!" His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
+			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah! I see I am not the only one then..." His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
 			label celebrate
 			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sookootow was taking when you first came here, now he has a purple one.`
 			choice
@@ -987,12 +987,13 @@ mission "Unfettered: Wanderer Homeworld"
 	invisible
 	source "Firelode"
 	destination "Vara K'chrai"
+	clearance "You manage to make the aliens understand you are here to talk, and they allow you to land."
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		not "language: Wanderer"
 	to fail
 		has "Unfettered: Speak Hai: failed"
-	waypoint "Ka'ch'chrai"
-	on waypoint
+	on enter "Ka'ch'chrai"
 		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
 
 mission "Unfettered: Speak Hai"
