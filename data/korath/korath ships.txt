@@ -401,7 +401,7 @@ ship "Kas'ik Tek 11"
 		"heat dissipation" 1
 		"drag" 0.76
 		"outfit space" 48
-		"cargo capacity" 4
+		"cargo space" 4
 		"engine capacity" 18
 		"atmosphere scan" 100
 		"outfit scan power" 18
