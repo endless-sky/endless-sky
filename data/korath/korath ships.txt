@@ -951,7 +951,7 @@ ship "Ra'ik Tek"
 	engine 10 29
 	explode "tiny explosion" 7
 	explode "small explosion" 11
-	description `These small recon proves are deployed by larger Korath Exile ships to keep eyes on all corners of their territory, providing them with any and all types of information.`
+	description `These small recon probes are deployed by larger Korath Exile ships to keep eyes on all corners of their territory, providing them with any and all types of information.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
