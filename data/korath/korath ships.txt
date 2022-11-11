@@ -935,7 +935,7 @@ ship "Ra'ik Tek"
 		"mass" 40
 		"heat dissipation" 1
 		"drag" 0.76
-		"oufit space" 48
+		"outfit space" 48
 		"engine capacity" 18
 		"atmosphere scan" 100
 		"outfit scan power" 18
