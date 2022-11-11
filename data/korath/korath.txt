@@ -343,7 +343,6 @@ fleet "Korath Defense"
 		"'olofez (Expeller)" 2
 
 
-# Only intended for use in Korath home systems.
 fleet "Korath Surveillance"
 	government "Korath"
 	names "korath"
