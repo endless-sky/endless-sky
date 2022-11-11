@@ -29,13 +29,13 @@ shipyard "Gegno Vi Ships"
 	Eclogite
 	Gneiss
 	Hornfel
-	"Hornfel Heavy"
-	"Hornfel Light"
-	"Hornfel Med"
+	"Hornfel Heavy Weapons"
+	"Hornfel Light Load"
+	"Hornfel Heavy Load"
 	Protolith
 	Schist
-	"Schist C"
-	"Schist B"
+	"Schist Light Load"
+	"Schist Heavy Load"
 	Slate
 
 outfitter "Gegno Vi Outfits"

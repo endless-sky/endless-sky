@@ -49,7 +49,7 @@ fleet "Large Vi"
 	variant 3
 		"Hornfel Heavy Load"
 	variant 3
-		"Hornfel Light Load
+		"Hornfel Light Load"
 	variant 3
 		Gneiss
 	variant 3
