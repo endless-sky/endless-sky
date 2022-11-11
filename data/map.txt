@@ -6147,7 +6147,7 @@ system "Bote Asu"
 		period 616.804
 		object Everhope
 			sprite planet/stationh-ancient2
-				scale 0.5
+				scale 0.4
 			distance 380
 			period 31.6482
 	object
@@ -7598,7 +7598,7 @@ system "Da Ent"
 		period 705.482
 		object Violetwake
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -7607,7 +7607,7 @@ system "Da Ent"
 		period 1332.80
 		object Darkrest
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -7677,7 +7677,7 @@ system "Da Lest"
 		period 581.731
 		object Eldergrasp
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -9504,7 +9504,7 @@ system "Due Yoot"
 		period 887.598
 		object Greenview
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -10917,7 +10917,7 @@ system "Fah Soom"
 		period 569.720
 		object Firefall
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -13380,7 +13380,7 @@ system "Heia Due"
 		period 184.727
 		object Sandsnap
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object Allhome
@@ -14136,7 +14136,7 @@ system "Imo Dep"
 		period 380.303
 		object Bluerun
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object Stonebreak
@@ -14269,7 +14269,7 @@ system "Io Lowe"
 		period 760.291
 		object Greymoon
 			sprite planet/stationh-ancient2
-				scale 0.5
+				scale 0.4
 			distance 380
 			period 31.6482
 	object
@@ -14358,7 +14358,7 @@ system "Io Mann"
 			period 14.8772
 		object Thornlight
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 422
 			period 28.5
 	object
@@ -16763,7 +16763,7 @@ system "Lom Tahr"
 		period 1146.17
 		object Iritoroost
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 
@@ -21980,7 +21980,7 @@ system "Rati Cal"
 		period 1994.11
 		object Limejog
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 
@@ -26224,7 +26224,7 @@ system "Ula Mon"
 		period 584.389
 		object Goldcrawl
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -26233,7 +26233,7 @@ system "Ula Mon"
 		period 1185.03
 		object Ironfirth
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -26550,7 +26550,7 @@ system "Uwa Fahn"
 		period 694.638
 		object Swiftsong
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -26918,7 +26918,7 @@ system "Wah Oh"
 		period 41.8307
 		object Ochrescoop
 			sprite planet/stationh-ancient2
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 35.7401
 	object
@@ -27493,7 +27493,7 @@ system "Ya Hai"
 			period 26.1298
 		object Mahoganybox
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 440
 			period 47.5
 	object
@@ -27889,7 +27889,7 @@ system "Zuba Zub"
 		period 1583.58
 		object Redwatch
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
