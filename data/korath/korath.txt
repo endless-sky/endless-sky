@@ -241,7 +241,7 @@ fleet "Korath Miners"
 	personality
 		timid disables plunders frugal mining harvests
 	variant
-		"Rano'erek (Digger)"
+		"Rano'erek"
 		"'olofez (Digger)" 4
 
 fleet "Korath Civilian Miners"
