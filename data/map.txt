@@ -4717,6 +4717,7 @@ system Arculus
 	fleet "Remnant Transport" 2200
 	fleet "Remnant Home Guard" 2000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Rescue" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -6147,7 +6148,7 @@ system "Bote Asu"
 		period 616.804
 		object Everhope
 			sprite planet/stationh-ancient2
-				scale 0.5
+				scale 0.4
 			distance 380
 			period 31.6482
 	object
@@ -6356,6 +6357,7 @@ system Caeculus
 	trade Metal 272
 	trade Plastic 289
 	fleet "Korath Ember Waste Raid" 20000
+	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
 	fleet Embershades 12000
@@ -7324,6 +7326,7 @@ system Coluber
 	trade Metal 475
 	trade Plastic 362
 	fleet "Korath Ember Waste Raid" 10000
+	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -7598,7 +7601,7 @@ system "Da Ent"
 		period 705.482
 		object Violetwake
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -7607,7 +7610,7 @@ system "Da Ent"
 		period 1332.80
 		object Darkrest
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -7677,7 +7680,7 @@ system "Da Lest"
 		period 581.731
 		object Eldergrasp
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -9504,7 +9507,7 @@ system "Due Yoot"
 		period 887.598
 		object Greenview
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -9754,6 +9757,7 @@ system Edusa
 	fleet "Small Remnant" 2400
 	fleet "Remnant Transport" 2400
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Rescue" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -10917,7 +10921,7 @@ system "Fah Soom"
 		period 569.720
 		object Firefall
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -11209,6 +11213,7 @@ system Farinus
 	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -13380,7 +13385,7 @@ system "Heia Due"
 		period 184.727
 		object Sandsnap
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object Allhome
@@ -14136,7 +14141,7 @@ system "Imo Dep"
 		period 380.303
 		object Bluerun
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object Stonebreak
@@ -14269,7 +14274,7 @@ system "Io Lowe"
 		period 760.291
 		object Greymoon
 			sprite planet/stationh-ancient2
-				scale 0.5
+				scale 0.4
 			distance 380
 			period 31.6482
 	object
@@ -14358,7 +14363,7 @@ system "Io Mann"
 			period 14.8772
 		object Thornlight
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 422
 			period 28.5
 	object
@@ -16461,6 +16466,7 @@ system Levana
 	trade Metal 407
 	trade Plastic 222
 	fleet "Korath Ember Waste Raid" 10000
+	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -16763,7 +16769,7 @@ system "Lom Tahr"
 		period 1146.17
 		object Iritoroost
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 
@@ -16851,6 +16857,7 @@ system Lucina
 	trade Metal 524
 	trade Plastic 410
 	fleet "Korath Ember Waste Raid" 20000
+	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -19880,6 +19887,7 @@ system Parca
 	trade Metal 531
 	trade Plastic 445
 	fleet "Korath Ember Waste Raid" 10000
+	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -20164,6 +20172,7 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Rescue" 90000
 	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -20280,6 +20289,7 @@ system Perfica
 	fleet "Small Remnant" 7500
 	fleet "Remnant Transport" 7500
 	fleet "Korath Ember Waste Raid" 30000
+	fleet "Korath Rescue" 45000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -21980,7 +21990,7 @@ system "Rati Cal"
 		period 1994.11
 		object Limejog
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 
@@ -23342,6 +23352,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Rescue" 90000
 	fleet Embershades 15000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -25203,6 +25214,7 @@ system Stercutus
 	trade Metal 299
 	trade Plastic 294
 	fleet "Korath Ember Waste Raid" 20000
+	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
@@ -26224,7 +26236,7 @@ system "Ula Mon"
 		period 584.389
 		object Goldcrawl
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -26233,7 +26245,7 @@ system "Ula Mon"
 		period 1185.03
 		object Ironfirth
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -26550,7 +26562,7 @@ system "Uwa Fahn"
 		period 694.638
 		object Swiftsong
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
@@ -26918,7 +26930,7 @@ system "Wah Oh"
 		period 41.8307
 		object Ochrescoop
 			sprite planet/stationh-ancient2
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 35.7401
 	object
@@ -27493,7 +27505,7 @@ system "Ya Hai"
 			period 26.1298
 		object Mahoganybox
 			sprite planet/stationh-ancient1
-				scale 0.5
+				scale 0.4
 			distance 440
 			period 47.5
 	object
@@ -27889,7 +27901,7 @@ system "Zuba Zub"
 		period 1583.58
 		object Redwatch
 			sprite planet/stationh-ancient0
-				scale 0.5
+				scale 0.4
 			distance 240
 			period 17.5
 	object
