@@ -398,10 +398,10 @@ ship "Kas'ik Tek 11"
 		"hull" 800
 		"automation" 1
 		"mass" 21
-		"heat dissipation" 1
 		"drag" 0.6
-		"outfit space" 48
+		"heat dissipation" 1
 		"cargo space" 4
+		"outfit space" 48
 		"engine capacity" 18
 		"atmosphere scan" 100
 		"outfit scan power" 18
