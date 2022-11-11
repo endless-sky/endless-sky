@@ -114,6 +114,7 @@ void Preferences::Save()
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("date format", static_cast<int>(Preferences::GetDateFormat()));
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
