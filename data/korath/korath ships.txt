@@ -388,7 +388,7 @@ ship "'olofez"
 
 
 
-ship "Kas'ik Tek 11"
+ship "Kas'ik Tek 7"
 	sprite "ship/kas-ik tek 11"
 	thumbnail "thumbnail/kas-ik tek 11"
 	attributes
@@ -424,7 +424,7 @@ ship "Kas'ik Tek 11"
 	engine 8.5 25
 	explode "tiny explosion" 9
 	explode "small explosion" 6
-	description `These small probes are deployed by larger Korath Exile ships to scan for intruders, evaluate foreign vessels, and analyse system bodies. Secondarily, they retrieve small debris and deactivated microbots spread across Korath space which have fallen off their ships, been fired from shunt-strikes, or even been deliberately deployed. Although the data observed and logged by an individual microbot is extremely limited, processing them in bulk yields a valuable gestalt of information. More importantly, the microbots can be recycled for use afterwards.`
+	description `These small probes are deployed by larger Korath Exile ships to scan for intruders, evaluate foreign vessels, and analyze system bodies. Secondarily, they retrieve small debris and deactivated microbots spread across Korath space which have fallen off their ships, been fired from shunt-strikes, or even been deliberately deployed. Although the data observed and logged by an individual microbot is extremely limited, processing them in bulk yields a valuable gestalt of information. More importantly, the microbots can be recycled for use afterwards.`
 	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`
 
 
