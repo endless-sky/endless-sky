@@ -23,7 +23,7 @@ target_link_libraries(EndlessSkyLib PUBLIC SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(EndlessSkyLib PUBLIC rpcrt4 Winmm)
-else(UNIX AND NOT APPLE)
+else()
 	target_link_libraries(EndlessSkyLib PUBLIC pthread)
 endif()
 
