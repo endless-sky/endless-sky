@@ -1947,7 +1947,7 @@ mission "Terraforming 11"
 		dialog `You return to <planet>, but not all of the pirates have been fought off. They don't look like they're leaving any time soon either. Better depart and finish them off for good.`
 	npc evade
 		government "Pirate"
-		personality staying target
+		personality nemesis staying target
 		system "Cebalrai"
 		fleet
 			names "pirate"
