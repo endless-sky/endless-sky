@@ -333,6 +333,17 @@ fleet "Korath Defense"
 		"'olofez" 4
 		"'olofez (Expeller)" 2
 
+fleet "Korath Surveillance"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests surveillance
+	variant 
+		"Ra'at Ik 621 (Probes)"
+		"Ra'ik Tek" 6
+
 fleet "Korath Large Raid"
 	government "Korath"
 	names "korath"
