@@ -419,8 +419,9 @@ ship "Kas'ik Tek 11"
 		"Generator (Candle Class)"
 		"Small Heat Shunt"
 		"Engine (Meteor Class)"
-	engine 8.5 25 
-	engine -8.5 25
+	engine 0 22.5 
+	engine -8.5 25 
+	engine 8.5 25
 	explode "tiny explosion" 9
 	explode "small explosion" 6
 	description `These small recon probes are deployed by larger Korath Exile ships to keep eyes on all corners of their territory, providing them with any and all types of information.`
