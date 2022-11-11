@@ -1959,7 +1959,7 @@ mission "Terraforming 11"
 	npc
 		government "Republic"
 		personality heroic opportunistic
-		system "Aldebaran"
+		system "Procyon"
 		fleet
 			names "republic small"
 			variant
