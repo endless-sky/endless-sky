@@ -342,7 +342,6 @@ fleet "Korath Defense"
 		"'olofez" 4
 		"'olofez (Expeller)" 2
 
-
 fleet "Korath Surveillance"
 	government "Korath"
 	names "korath"
@@ -352,7 +351,7 @@ fleet "Korath Surveillance"
 		disables plunders opportunistic harvests surveillance
 	variant 
 		"Ra'at Ik 621 (Probes)"
-		"Kas'ik Tek 11" 9
+		"Kas'ik Tek 7" 9
 
 fleet "Korath Large Raid"
 	government "Korath"

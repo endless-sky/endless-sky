@@ -993,7 +993,6 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 	turret "Firestorm Battery"
 
 
-
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	outfits
 		"Korath Detainer"
@@ -1045,7 +1044,6 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	bay "Drone" 98 156 back
 	bay "Drone" -50 303 back
 	bay "Drone" 50 303 back
-
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
