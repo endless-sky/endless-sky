@@ -282,6 +282,8 @@ mission "Efret: Quarg Rescue"
 			label ignore
 			action
 				"reputation: Quarg" <?= -1
+			`"So be it. Thou shalt pay for thine evil deeds 'gainst the Efret!" The Quarg begin powering up their weapons...`
+				accept
 			label "unfriendly quarg"
 			`Three hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Thy evil deeds 'gainst the Efret wilt not be tolerated anymore!"`
 				accept
