@@ -405,7 +405,7 @@ government "Hai (Friendly Unfettered)"
 	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Hai (Unfettered Challenger)"
-	swizzle 3
+	swizzle 5
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
@@ -420,7 +420,7 @@ government "Hai (Unfettered Challenger)"
 
 # Ships belonging to this government are ready to start a duel in space at any time.
 government "Hai (Unfettered Glory Seeker)"
-	swizzle 3
+	swizzle 5
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
