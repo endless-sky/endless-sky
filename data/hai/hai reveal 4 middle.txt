@@ -136,7 +136,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			choice
 				`	"Yes, I have."`
 				`	"No, I've never seen it before."`
-			`	Wayou nods. "This symbol has been found a number of times where rescued Hai have had of cadmium poisoning, but we cannot identify its origin or meaning. This may be key to finding the kidnappers' identity and whereabouts."`
+			`	Wayou nods. "This symbol has been found a number of times where rescued Hai have had cadmium poisoning, but we cannot identify its origin or meaning. This may be key to finding the kidnappers' identity and whereabouts."`
 			
 			label gipeep
 			`	Teeneep smiles and gestures for you to follow as she walks over to a desk where an elderly Hai is in conversation with someone who you realize, to your surprise, is Gipeep. "Captain <last>! It's good to see you again. I still can't thank you enough," he enthuses.`
