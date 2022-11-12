@@ -115,7 +115,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	"We believe someone is targeting researchers and specialists and trying to hide it beneath the noise."`
 				goto questions
 			label kidnappings
-			`	Teeneep answers, "In human space, we don't know, but after collating records in Hai space it seems to have happened in three spates each lasting several years. The earliest date back to only about a decade after we made contact with humans, around 90 years, but often with different kidnapping methods and targets. This means that we can't even say for sure if it's even been the same people, but every investigation has ultimately dead-ended with similar difficulties."`
+			`	Teeneep answers, "In human space, we don't know, but after collating records in Hai space it seems to have happened in three spates each lasting several years. The earliest date back to only about a decade after we made contact with humans, but often with different kidnapping methods and targets. This means that we can't even say for sure if it's even been the same people, but every investigation has ultimately dead-ended with similar difficulties."`
 			`	"Nevertheless, from the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. We haven't the data to make an estimate for human disappearances."`
 				goto questions
 			label know
