@@ -52,7 +52,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			label oversee
 			`	"You're learning to navigating the maze of galactic politics quickly, Captain <last>," says Sayari. "We are at an impasse. The Elders are less than keen on allowing a partisan observer to see the construction."`
 			`	Xilin continues her thought, "The Republic won't let the Hai build a station on our side of the wormhole without a trusted observer monitoring construction.`
-			`	"Both sides trust you though", he says, as Sayari nods.`
+			`	"Both sides trust you, though," he says, as Sayari nods.`
 			label elders
 			choice
 				`	"Who are these Elders?"`
