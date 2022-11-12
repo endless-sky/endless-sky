@@ -99,7 +99,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 				`	"That's enough information. How can I help you?"`
 					goto help
 			label uninhabited
-			`	Teeneep looks at you as if you were daft. "Kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide critical people or information. If the kidnappings are a coordinated effort as we suspect, they would track down threats to the operation, like escaped victims, or our organization. We have plenty of space here to do our work without precautions that would be necessary on a populated planet."`
+			`	Teeneep looks at you as if you were daft. "Kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide critical people or information. If the kidnappings are a coordinated effort as we suspect, they would track down threats to the operation, like escaped victims or our organization. We have plenty of space here to do our work without precautions that would be necessary on a populated planet."`
 				goto questions
 			label cadmium
 			`	A Hai in a medical uniform explains, "The victims each have been exposed to complex cadmium compounds, shortly before rescue. These compounds leave a human or Hai quickly, but the level after rescue is high enough to detect.`
