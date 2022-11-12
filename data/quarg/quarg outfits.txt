@@ -119,7 +119,7 @@ outfit "Medium Graviton Thruster"
 	"thrusting energy" 20
 	"thrusting heat" 3
 	"force protection" 0.1
-	"drag reduction" 0.05
+	"inertia reduction" 0.05
 	"flare sprite" "effect/medium graviton flare"
 	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy. Quarg engines are somehow capable of making their ship act as if it was heavier when affected by external hit forces, or lighter when it is moving the ship."
 
@@ -134,7 +134,7 @@ outfit "Medium Graviton Steering"
 	"turning energy" 10
 	"turning heat" 2
 	"force protection" 0.1
-	"drag reduction" 0.05
+	"inertia reduction" 0.05
 	"steering flare sprite" "effect/medium graviton flare"
 	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors. Quarg engines are somehow capable of making their ship act as if it was heavier when affected by external hit forces, or lighter when it is moving the ship."
 
