@@ -300,6 +300,90 @@ mission "Unfettered Jump Drive 3"
 
 
 
+mission "Unfettered Jump Drive Trading"
+	minor
+	landing
+	invisible
+	source "Darkcloak"
+	to offer
+		has "Unfettered Jump Drive 3: offered"
+		not "Wanderers: Jump Drive Source: active"
+	on offer
+		conversation
+			`The Unfettered are starting to know you for bringing jump drives to them. This time, one of them is waiting for you at your hatch, with different weapons. Maybe they mean to exchange those with you. Do you want to sell them another drive?`
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	You exit your ship and this time you meet with an Unfettered engineer, that is anxious to present these weapons to you. Now that you can take a closer look, you notice these seem fairly similar to the rest of Hai weaponry, but enhanced someway or another.`
+			`	"Hello captain! Now that you have sold us multiple jump drives, I can tell you that we can offer something way more valuable than money to you. Which one of these weapons would be of the biggest interest to you?" They say, presenting you the different guns.`
+			label weapons
+			choice
+				`	"The first one, the three pulse guns weapon."`
+					goto tripulse
+				`	"The second one, the pulse style gun with ion."`
+					goto blaster
+				`	"The third one, the ionized turret."`
+					goto turret
+				`	"I'm missing space to outfit any of these weapons on the ship or in cargo, I'll come back later."`
+					defer
+				`	"I would just prefer the money, actually."`
+			`	"Oh. Well, in that case, we will not bother you again with these weapons, captain."`
+			choice
+				`	"Sounds good to me."`
+				`	"Wait, one of those weapons caught my eye..."`
+					goto weapons
+			action
+				payment 1000000
+				set "unfettered: money for drives"
+			`	"As you wish. Do remember that if you want to sell further jump drives to us for money you may go to the job board."`
+				accept
+			
+			label tripulse
+			scene "outfit/tripulse shredder"
+			`	"Good choice! The tripulse shredder may seem crude, but it packs a punch and its specialty is how it combines a lot of firepower in one gun slot, and even allows for hit and run tactics. I may offer you two of these in exchange for your jump drive."`
+			choice
+				`	"I'll take that offer."`
+				`	"What were the other weapons again?"`
+					goto weapons
+			action
+				outfit "Tripulse Shredder" 2
+			``
+				goto cangetmore
+
+			label blaster
+			scene "outfit/hai ionic blaster"
+			`	"Ah, the blaster. It is a favorite of many Shield Beetle captains, because it can easily help them turn the tide of battle, without needing to dedicate too much weapon space for it. It is true that it does not do enough ion damage to properly disable the enemy ship, but it is able to jam their weapons, thus giving you the upper hand in a long fight, especially since its damage potential is acceptable. I may offer you three of these in exchange for your jump drive."`
+			choice
+				`	"I'll take that offer."`
+				`	"What were the other weapons again?"`
+					goto weapons
+			action
+				outfit "Ionic Blaster Prototype" 3
+			``
+				goto cangetmore
+
+			label turret
+			scene "outfit/hai ionic turret"
+			`	"That is my favourite weapon out of all of them, by far. Unlike the ion cannon that is a hybrid weapon meant to be able to damage the enemy from long range whilst applying a good deal of ion, this one's role is mostly to disable enemy ships. Even a ship with high batteries will cower before this weapon! I may offer you one of these in exchange for your jump drive."`
+			choice
+				`	"I'll take that offer."`
+				`	"What were the other weapons again?"`
+					goto weapons
+			action
+				outfit "Ionic Turret Prototype"
+
+			label cangetmore
+			`	"Do note that if you ever want more weapons we will always be willing to trade them for jump drives in the job board."`
+				accept
+	on accept
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		"reputation: Hai (Unfettered)" >?= 40
+		fail
+
+
+
 phrase "Essential Unfettered Mission Fail"
 	word
 		`You have failed an essential Unfettered mission. You may want to reload your previous save.`

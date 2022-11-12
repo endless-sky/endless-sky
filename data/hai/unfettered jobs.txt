@@ -130,7 +130,7 @@ mission "Unfettered Jump Drive 4"
 	job
 	repeat
 	name "Sell Jump Drive"
-	description "Exchange a jump drive for a million credits."
+	description "Exchange a jump drive for money, or weapons if an outfitter is available."
 	source
 		attributes "unfettered"
 	to offer
@@ -139,11 +139,47 @@ mission "Unfettered Jump Drive 4"
 	to fail
 		has "Unfettered Jump Drive 4: active"
 	on accept
-		dialog "As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them."
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 40
+		conversation
+			branch "want outfits"
+				not "unfettered: money for drives"
+				has "Unfettered Jump Drive Trading: offered"
+				has "flagship planet: Darkcloak"
+			label money
+			action
+				payment 1000000
+			`As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
+				goto trade
+
+			label "want outfits"
+			`The Unfettered usual deal of trading a jump drive for weapons still stands.`
+			choice
+				`	(Take two tripulse shredders.)`
+				`	(Take three ionic blasters.)`
+					goto blaster
+				`	(Take one ionic turret.)`
+					goto turret
+				`	(Take money instead.)`
+					goto money
+			action
+				outfit "Tripulse Shredder" 2
+			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
+				goto trade
+
+			label blaster
+			action
+				outfit "Ionic Blaster Prototype" 3
+			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
+				goto trade
+
+			label turret
+			action
+				outfit "Ionic Turret Prototype"
+			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
+
+			label trade
+				outfit "Jump Drive" -1
+				outfit "Hyperdrive" 1
+				"reputation: Hai (Unfettered)" >?= 40
 
 
 
@@ -779,3 +815,4 @@ mission "Unfettered Bring More Coolers"
 		outfit "Liquid Nitrogen Cooler" -10
 		dialog `You deliver the coolers to the usual contact of Mera, and he thanks you personally "You must have made a long trip to bing these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being able to buy the new Zephyr Coolings."`
 		payment 1250000
+
