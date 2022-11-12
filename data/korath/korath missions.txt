@@ -268,7 +268,7 @@ mission "Efret: Quarg Rescue"
 	on offer
 		"old efret rep" = "reputation: Kor Efret"
 		# bring it low enough that capping this will result in war
-		"reputation: Quarg" <?= 1
+		"reputation: Kor Efret" <?= 1
 		conversation
 			branch "unfriendly quarg" # if you're already at war with them
 				"reputation: Quarg" < 0
