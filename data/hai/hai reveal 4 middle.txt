@@ -802,7 +802,7 @@ mission "Hai Reveal [A06a] The Calm"
 		has "Hai Reveal [A05] Take Teeneep to Hai-home: done"
 	on offer
 		conversation
-			`As soon as you disembark, Teeneep enters another security checkpoint and shows them some ID, but you're too far to see what it is. A quick inquiry confirms that Alondo is actually around this time and you send him a message to alert him that you're heading his way.`
+			`As soon as you disembark, Teeneep enters another security checkpoint and shows them some ID, but you're too far away to see what it is. A quick inquiry confirms that Alondo is finally around this time, and you send him a message to alert him that you're heading his way.`
 			`	As you approach Alondo's temporary office, you can hear voices through the open door and you slow to a stop as you realize they sound agitated. "Look, Gruyere, you can't expect me to not organize some things around you when you're off being busy elsewhere. Regardless of whether it was your idea."`
 			`	You clearly identify Alondo when he responds, "I wouldn't blame you if you'd at least tried to contact me, or left a message, but it's just typical of how you operate."`
 			`	"You were eleven hours out of sync across timezones, it was four in the morning where you are, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since Terry is now on Mountaintop and I am absent any assistance."`
