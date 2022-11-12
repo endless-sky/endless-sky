@@ -272,27 +272,27 @@ mission "Efret: Quarg Rescue"
 		conversation
 			branch "unfriendly quarg" # if you're already at war with them
 				"reputation: Quarg" < 0
-			`The Quarg have brought reinforcements, probably in reaction to a distress call by the <ship>. They hail you, with barely contained anger in their voice. "Remove thyself from hence, and we may yet forgive thy aggression. The Kor Efret art under our protection! Doth not e'en think about capturing yond vessel."`
+			`The Quarg have brought reinforcements, probably in reaction to a distress call by the <ship>. They hail you, with barely contained anger in their voice. "Remove yourself from hence, and we may yet forgive your aggression. The Kor Efret are under our protection! Think not even about capturing yonder vessel."`
 			choice
 				`  "I had not realized they were under your protection. I will leave at once."`
 				`  (Ignore the warning.)`
 					goto ignore
 				`  "I think you should leave. This is my prize and I'll take what I please."`
 					goto refuse
-			`  "Leaveth then anon, ere we changeth our mind."`
+			`  "Leave then anon, ere we change our mind."`
 				accept
 			label ignore
 			action
 				"reputation: Quarg" <?= -1
-			`  "So be it. Thou shalt pay for thine evil deeds 'gainst the Efret!" The Quarg begin powering up their weapons...`
+			`  "So be it. You shall pay for your evil deeds against the Efret!" The Quarg begin powering up their weapons...`
 				accept
 			label refuse
 			action
 				"reputation: Quarg" <?= -1
-			`  "What impetuous evil is this! Nay, we shall not allow thee thy plunder; such mayest not be tolerated." The Quarg open fire before you have a chance to disengage.`
+			`  "What impetuous evil is this! Nay, we shall not allow you your plunder; such may not be tolerated." The Quarg open fire before you have a chance to disengage.`
 				launch
 			label "unfriendly quarg"
-			`Three hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Thy evil deeds 'gainst the Efret wilt not be tolerated anymore!"`
+			`Three hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Your evil deeds against the Efret shall not be tolerated any longer!"`
 				accept
 	npc evade
 		government "Quarg"
