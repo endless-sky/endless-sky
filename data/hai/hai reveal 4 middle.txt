@@ -839,7 +839,7 @@ mission "Hai Reveal [A06a] The Calm"
 			`	"This one that you see in front of you is different though." He makes eye contact with Alondo and very deliberately emphases the word as he continues, "WE have been working with the Hai to make relays that look human-made, but utilize advanced Hai technology to baffle scanners attempting to find them. They'll form communication links the marauders can't destroy."`
 			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered a trustworthy human who's not likely to get blown up by a marauder."`
 			choice
-				`	"I can do that for you."`
+				`	"I can deploy the relays for you."`
 					goto accepted
 				`	"Not sure I want to do this."`
 			`	Alondo looks at you and says, "We need you to do this. It'll be very helpful."`
