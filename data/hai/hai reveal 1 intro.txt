@@ -473,8 +473,8 @@ mission "Hai Tour [5] Tour Ends"
 			`Soon after you land on <planet>, you notice a news broadcast on a nearby wall. "Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils. This unprecedented raid in broad daylight has the security forces scrambling to redistribute appropriate resources to handle the threat, and all security personnel on leave have been reactivated until better support can be provided."`
 			label "that's awful"
 			choice
-				`	Observe the reaction of the Hai in the room.`
-				`	Ignore the news and move on.`
+				`	(Observe the reaction of the Hai in the room.)`
+				`	(Keep walking.)`
 					goto interrupted
 			`	At a table nearby you hear a Hai staff member exclaim, "Oh, that's awful!"`
 			`	The rumors must be spreading further by the day. There's no doubt even more problems than this marauder will follow.`
@@ -533,13 +533,13 @@ mission "Hai Leaks Response 1"
 			`	Word of your status in human space also seems to have spread ahead of you, perhaps because you are a significant human visitor in the current climate. A small crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
 			label resume
 			choice
-				`	Keep silent and observe.`
+				`	(Keep silent and observe.)`
 					goto karma
-				`	Ask about the large security detachment.`
+				`	(Ask about the large security detachment.)`
 			`	You turn to the Hai with the most decorated uniform and ask, "Why do I have so many escorts?"`
 			`	The Hai responds, "Crowd control," he says. "You've become the center of attention of politicians in a media circus. Life in Hai space is complicated of late, and we want to make sure you are not stopped by crowds with endless questions before reaching your meeting."`
 			choice
-				`	Keep silent and observe.`
+				`	(Keep silent and observe.)`
 				`	"Thank you for your service."`
 					goto thank
 			branch karma
