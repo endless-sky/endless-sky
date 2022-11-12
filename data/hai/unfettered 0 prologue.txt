@@ -305,6 +305,7 @@ mission "Unfettered Jump Drive Trading"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
+		random < 8
 	on offer
 		conversation
 			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them - that looks like an engineer judging by the pad and equipement they have - is waiting for you at your hatch. Maybe they mean to trade something else than money with you. Do you want to bargain another drive with them?`
