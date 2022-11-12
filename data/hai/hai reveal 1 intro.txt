@@ -685,7 +685,7 @@ mission "Hai Leaks Response 2C"
 				has "met remington"
 			action
 				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai.`
-			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department."  He gestures to the woman behind him and says, "Let me introduce you to Terry."`
+			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. I'm sure you've heard of my work. I..." He stops suddenly. "You know what, nevermind. We're not here to make small talk, there's more important matters to discuss. I look forward to working alongside you in handling this emerging crisis.`
 				goto next
 			
 			label met
