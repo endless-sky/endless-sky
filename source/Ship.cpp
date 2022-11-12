@@ -2453,7 +2453,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
 			// Update the cached sum of carried ship masses.
-			carriedMass -= bay.ship->InertialMass();
+			carriedMass -= bay.ship->Mass();
 			// Create the desired launch effects.
 			for(const Effect *effect : bay.launchEffects)
 				visuals.emplace_back(*effect, exitPoint, velocity, launchAngle);
@@ -3469,11 +3469,10 @@ double Ship::Mass() const
 
 
 
-// Account for inertia reduction, which only affects the ship's mass and not cargo or carried ships.
-// It also has no effect on maximum heat or heat capacity.
+// Account for inertia reduction, which affects movement but has no effect on the ship's heat capacity.
 double Ship::InertialMass() const
 {
-	return (carriedMass + cargo.Used() + attributes.Mass()) / (1. + attributes.Get("inertia reduction"));
+	return Mass() / (1. + attributes.Get("inertia reduction"));
 }
 
 
@@ -3724,7 +3723,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			TransferAmmo(toRestock, *ship, *this);
 
 			// Update the cached mass of the mothership.
-			carriedMass += ship->InertialMass();
+			carriedMass += ship->Mass();
 			return true;
 		}
 	return false;
@@ -3737,7 +3736,7 @@ void Ship::UnloadBays()
 	for(Bay &bay : bays)
 		if(bay.ship)
 		{
-			carriedMass -= bay.ship->InertialMass();
+			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship->UnmarkForRemoval();

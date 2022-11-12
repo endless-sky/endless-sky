@@ -217,7 +217,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 			+ " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 
-	double fullMass = emptyMass + attributes.Get("cargo space");
+	double fullMass = emptyMass + attributes.Get("cargo space") / (1. + attributes.Get("inertia reduction"));
 	isGeneric &= (fullMass != emptyMass);
 	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
 	attributeLabels.push_back(string());
