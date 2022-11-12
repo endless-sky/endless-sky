@@ -1081,7 +1081,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 		payment 100000
 		conversation
 			`Teeneep makes a request on your approach and then goes to prepare. You are subsequently directed to a restricted landing zone near their government complex. When she reappears Teeneep has prepared to meet the Unfettered in a somewhat surprising manner; she's wearing what looks like a fencing outfit. There are two swords on her back and several balanced knives on her belt. She's wearing a headband with a medallion on it that looks like an athletic medal.`
-			`	She pays you for the trip and explains, "These blades are not ceremonial. Bring your gun with you, but it behind when we reach the chambers, or the Unfettered may think you're an assassin. Trust me, we'll be fine.`
+			`	She pays you for the trip and explains, "These blades are not ceremonial. Bring your gun with you, but leave it behind when we reach the chambers, or the Unfettered may think you're an assassin. Trust me, we'll be fine.`
 			`	"Let's go," she says.`
 			choice
 				`	"What's your plan?"`
@@ -1101,13 +1101,13 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			label watch
 			`	The leader's voice booms from where he sits at the other end of the room. "Come, False Hai. You have entered here to make a case, have at it."`
 			`	Teeneep explains to the leader, "Five thousand Hai have been enslaved by human pirates, or vaporised when the human authorities have shot down their captors with no regard for the innocents on board. The Elders do not act. Will not act. They know, and do nothing. I have learned that they have known of some pirates who they felt were too much of a headache for decades, and that rather than hunt them down, they have paid them with technology. Our weapons and technology. Paid them off to simply leave us alone, and not even to return any Hai they may have captured.`
-			`	"You were once the protectors of all Hai. I would honor that not out of political opportunism, but because our people need heroes and protectors that the Elders are not. So I stand here to ask you to be so again. Free our people from slavery and kill their human slavers."`
+			`	"You were once the protectors of all Hai. I would honor that, not out of political opportunism, but because our people need heroes and protectors that the Elders are not. So I stand here to ask you to be so again. Free our people from slavery and kill their human slavers."`
 			`	The Unfettered leader responds, "Your people have outlawed and abandoned us. You give us insulting food donations with propaganda on them. You block our ships from returning to Hai-home. Why should we help you, a race of slothful cowards? Your people are willingly blind and lost, an insult to all Hai."`
 			`	Teeneep suddenly takes three strides forward, closing the distance between her and the Unfettered leader in less than a second. You had forgotten how quick Hai are; few humans could do what she just did. "I challenge you for rule of the Unfettered military!"`
 			`	"You haven't the authority to do that," he responds, laughing.`
 			`	"Besides..." you see one of the other Unfettered to the right of the leader begin to step out. "You would ha..." Teeneep cuts the leader off as she draws a throwing knife and launches it. It zips through the air, and spears the shoulder of the Unfettered who began to move, embedding itself in the wall behind and pinning them in place.`
 			`	"I would have to do what, defeat your right hand first?" She takes a step back and smirks at him. "Now, will you face a woman half your size?" From her expression, you're unsure if she genuinely has that much faith in her abilities, or if this is a bluff.`
-			`	The Unfettered leader pauses, then smiles. "There is no need. Even on our planets, I've rarely met a Hai half as brave as you. You have the courage to turn an act into action. You are a True Hai, and we protect our own. You have vouched for the value of the lives of these Hai, so I say now we are willing to send our fleets to their aid. I would come myself."`
+			`	The Unfettered leader pauses, then smiles. "There is no need. Even on our planets, I've rarely met a Hai half as brave as you. You have the courage to turn an act into action. You are a True Hai, and we protect our own. You have vouched for the value of the lives of these Hai, so I say now we are willing to send our fleets to their aid. I will come myself."`
 			`	She re-sheaths her swords and calls you over. "I have brought with me one of the greatest war heroes of the humans."`
 			choice
 				`	(Walk to her.)`
