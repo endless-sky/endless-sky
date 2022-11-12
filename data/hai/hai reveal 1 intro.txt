@@ -712,7 +712,7 @@ mission "Hai Leaks Response 3"
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
 			choice
-				`	Keep silent and let the meeting begin.`
+				`	(Keep silent and let the meeting begin.)`
 					goto "keep silent"
 				`	"I don't recall there being nearly so many pirates before."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`
