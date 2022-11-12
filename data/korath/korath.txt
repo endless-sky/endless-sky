@@ -192,7 +192,16 @@ phrase "kor mereti"
 		":"
 	phrase
 		"digit"
-
+		
+phrase "korath probes"
+	word
+		"X'x"
+	word
+		" "
+	phrase
+		"digit"
+	phrase
+		"digit"
 
 fleet "Korath Raid"
 	government "Korath"
@@ -241,7 +250,7 @@ fleet "Korath Miners"
 	personality
 		timid disables plunders frugal mining harvests
 	variant
-		"Rano'erek (Digger)"
+		"Rano'erek"
 		"'olofez (Digger)" 4
 
 fleet "Korath Civilian Miners"
@@ -251,15 +260,17 @@ fleet "Korath Civilian Miners"
 	cargo 0
 	personality
 		heroic disables frugal mining harvests coward
-	variant
+	variant 5
 		"Rano'erek (Civilian)"
 		"'olofez (Digger)" 4
-	variant 2
+	variant 10
 		"Lor'kas Ik 577 (Digger)"
 		"'olofez (Digger)" 3
-	variant 1
+	variant 4
 		"Ra'at Ik 621 (Digger)"
 		"'olofez (Digger)" 9
+	variant 1
+		"Ikatila'ej"
 
 fleet "Korath Home"
 	government "Korath"
@@ -331,6 +342,17 @@ fleet "Korath Defense"
 		"'olofez" 4
 		"'olofez (Expeller)" 2
 
+fleet "Korath Surveillance"
+	government "Korath"
+	names "korath"
+	fighters "korath probes"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests surveillance
+	variant 
+		"Ra'at Ik 621 (Probes)"
+		"Kas'ik Tek 7" 9
+
 fleet "Korath Large Raid"
 	government "Korath"
 	names "korath"
@@ -396,22 +418,22 @@ fleet "Korath Civilian Large"
 	cargo 3
 	personality
 		frugal opportunistic disables forbearing
-	variant 11
+	variant 22
 		"Lor'nag Ik 590"
 		"'olofez (Expeller)" 3
-	variant 6
+	variant 12
 		"Lor'kas Ik 577"
 		"'olofez (Expeller)" 3
-	variant 5
+	variant 10
 		"Kasichara A'awoj"
 		"Palavret" 2
 		"'olofez" 4
-	variant 8
+	variant 16
 		"Kasichara A'awoj"
-	variant 5
+	variant 10
 		"Kas'lor Ik 582"
 		"'olofez (Expeller)" 3
-	variant 2
+	variant 4
 		"Rano'erek (Civilian)" 2
 		"'olofez (Digger)" 4
 		"'olofez (Expeller)" 4
@@ -422,8 +444,14 @@ fleet "Korath Civilian Large"
 		"Ra'gru Ik 618"
 	variant 1
 		"Ra'gru Ik 618 (Grab)"
-	variant 1
+	variant 2
 		"'olofez (World-Ship)"
+	variant 1
+		"Ikatila'ej"
+	variant 2
+		"Rai'alorej"
+		"'olofez (Expeller)" 2
+
 
 fleet "Korsmanath A'awojs"
 	government "Korath (Civilian)"
@@ -447,6 +475,17 @@ fleet "Korsmanath A'awojs"
 		"Korsmanath A'awoj (Blaze)"
 		"'olofez (Expeller)" 15
 		"'olofez" 9
+
+fleet "Korath Rescue"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	commodities Medical
+	personality
+		timid disables coward surveillance harvests opportunistic merciful
+	variant
+		"Rai'alorej"
+		"'olofez (World-Ship)" 2
 
 
 fleet "Kor Efret Home"
