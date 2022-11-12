@@ -272,18 +272,18 @@ mission "Efret: Quarg Rescue"
 		conversation
 			branch "unfriendly quarg" # if you're already at war with them
 				"reputation: Quarg" < 0
-			`The Quarg have brought reinforcements, probably in reaction to a distress call by the <ship>. They hail you, with barely contained anger in their voice. "Get out of here, and we may still forgive your aggression. The Kor Efret are under our protection! Do not even think about capturing that ship."`
+			`The Quarg have brought reinforcements, probably in reaction to a distress call by the <ship>. They hail you, with barely contained anger in their voice. "Remove thyself from hence, and we may yet forgive thy aggression. The Kor Efret art under our protection! Doth not e'en think about capturing yond vessel."`
 			choice
 				`  "I had not realized they were under your protection. I will leave at once."`
 				`  (Ignore the warning.)`
 					goto ignore
-			`  "Leave now then, before we change our mind."`
+			`  "Leaveth then anon, ere we changeth our mind."`
 				accept
 			label ignore
 			action
 				"reputation: Quarg" <?= -1
 			label "unfriendly quarg"
-			`3 hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Your evil deeds against the Efret will not be tolerated anymore!"`
+			`Three hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Thy evil deeds 'gainst the Efret wilt not beest tolerated anymore!"`
 				accept
 	npc evade
 		government "Quarg"
