@@ -102,7 +102,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	Teeneep looks at you as if you were daft. "Kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide critical people or information. If the kidnappings are a coordinated effort as we suspect, they would track down threats to the operation, like escaped victims or our organization. We have plenty of space here to do our work without precautions that would be necessary on a populated planet."`
 				goto questions
 			label cadmium
-			`	A Hai in a medical uniform explains, "The victims each have been exposed to complex cadmium compounds, shortly before rescue. These compounds leave a human or Hai quickly, but the level after rescue is high enough to detect.`
+			`	A Hai in a medical uniform explains. "The victims each have been exposed to airborne cadmium particles, which must have been circulating through a ship's ventilation. Although the level of exposure is quite low, after being rescued we can detect clearly elevated levels in many who were taken.`
 			`	"No known human or Hai ship technology exhausts these cadmium compounds. There are some Hai medical microbots that leave behind similar compounds, but not the same ones, and those are self-contained for disposal. We believe this is coming from another race's technology."`
 			`	They share a glance with Teeneep, "We have our suspicions but they're not conclusive yet."`
 			branch questions
