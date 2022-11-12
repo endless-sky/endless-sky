@@ -284,7 +284,7 @@ mission "Efret: Quarg Rescue"
 			label ignore
 			action
 				"reputation: Quarg" <?= -1
-			`  "So be it. You shall pay for your evil deeds against the Efret!" The Quarg begin powering up their weapons...`
+			`  "So be it. You shall pay for your transgression against the Efret!" The Quarg begin powering up their weapons...`
 				accept
 			label refuse
 			action
