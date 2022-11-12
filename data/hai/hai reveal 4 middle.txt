@@ -907,7 +907,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	"Now, speaking of my second job, you have relays on your ship that will make that easier, yes?"`
 			choice
 				`	"Yes, I have the relays."`
-			`	"Wonderful, the latency has been killing me lately. These are the coordinates for deployment." She flicks the relevant data files from her pad to you. "Make sure those are loaded into the relays, deploy roughly the right place, and they'll move to their own positions."`
+			`	"Wonderful, the latency has been killing me lately. These are the coordinates for deployment." She flicks the relevant data files from her pad to you. "Make sure those are loaded into the relays. Deploy them roughly in the right place, and they'll move to their own positions."`
 			`	She checks something on her pad and then stands up. "Now, come with me. I need to introduce you to someone in case you need each other and I'm busy."`
 			`	With astonishing speed she strides down the concourse, clearing a path between all manner of employees and visitors. This clear path perhaps being the only reason you are able to keep up. She calls out to a human dressed in a business suit who turns with evident surprise, sees you both, and approaches.`
 			`	"Captain <last>, one of the many heroes of humanity! I noticed you right away when I laid my eyes upon you. I'd like to personally thank you for what you've done."`
