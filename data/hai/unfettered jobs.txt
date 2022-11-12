@@ -94,7 +94,7 @@ mission "Unfettered Jump Drive 4"
 	job
 	repeat
 	name "Sell Jump Drive"
-	description "Exchange a jump drive for a million credits."
+	description "Exchange a jump drive for money, or weapons if an outfitter is available."
 	source
 		attributes "unfettered"
 	to offer
@@ -105,17 +105,17 @@ mission "Unfettered Jump Drive 4"
 	on accept
 		conversation
 			branch "want outfits"
-				or
-					not "unfettered: money for drives"
-					not "Unfettered Jump Drive Trading: offered"
+				not "unfettered: money for drives"
+				has "Unfettered Jump Drive Trading: offered"
+				has "flagship planet: Darkcloak"
 			label money
 			action
 				payment 1000000
 			`As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
-			goto trade
+				goto trade
 
 			label "want outfits"
-			`The Unfettered usual deal of trading a jump drive for some weapons still stands.`
+			`The Unfettered usual deal of trading a jump drive for weapons still stands.`
 			choice
 				`	(Take two tripulse shredders.)`
 				`	(Take three ionic blasters.)`
@@ -131,18 +131,16 @@ mission "Unfettered Jump Drive 4"
 
 			label blaster
 			action
-				outfit "Ionic Blaster" 3
+				outfit "Ionic Blaster Prototype" 3
 			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
 				goto trade
 
 			label turret
 			action
-				outfit "Ionic Turret"
+				outfit "Ionic Turret Prototype"
 			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
-				goto trade
+
 			label trade
 				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
 				"reputation: Hai (Unfettered)" >?= 40
-			``
-				accept
