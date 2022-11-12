@@ -283,7 +283,7 @@ mission "Efret: Quarg Rescue"
 			action
 				"reputation: Quarg" <?= -1
 			label "unfriendly quarg"
-			`Three hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Thy evil deeds 'gainst the Efret wilt not beest tolerated anymore!"`
+			`Three hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Thy evil deeds 'gainst the Efret wilt not be tolerated anymore!"`
 				accept
 	npc evade
 		government "Quarg"
@@ -296,7 +296,6 @@ mission "Efret: Quarg Rescue"
 				"Quarg Wardragon" 2
 	npc evade
 		government "Quarg"
-		names "quarg"
 		to spawn
 			"reputation: Quarg" < 0
 		# they don't just disable.
@@ -313,7 +312,8 @@ mission "Efret: Quarg Rescue"
 			branch "did not listen to warning"
 				"reputation: Quarg" < 0
 				"old quarg rep" >= 0
-			"reputation: Quarg" = "old quarg rep"
+			action
+				"reputation: Quarg" = "old quarg rep"
 			"The Quarg and they seem to be willing to forgive this transgression, this time."
 				decline
 			label "did not listen to warning"
@@ -325,5 +325,4 @@ mission "Efret: Quarg Rescue"
 			"Is seems like the Quarg will not pursue you... But you may want to refrain from assaulting the Efret in the future."
 			action
 				"reputation: Kor Efret" <?= -1
-	#doesnt matter but we need a destination
 	destination "Kuwaru Efreti"
