@@ -3554,13 +3554,18 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	double ionWeaponJamChance = damage.Ion() ? CalculateJamChance(Energy(), ionization) : 0.;
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
 	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
-			&& (!personality.IsForbearing() || Shields() < .9 || Hull() < .9
-				|| isOverheated || ionWeaponJamChance > 0.1 || slowness > 10.)
-			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
+			&& personality.IsForbearing() && !personality.IsPacifist()
+			&& (((damage.Shield() || damage.Discharge()) && Shields() < .9)
+			|| ((damage.Hull() || damage.Corrosion()) && Hull() < .9)
+			|| ((damage.Heat() || damage.Burn()) && isOverheated)
+			|| (damage.Ion() && CalculateJamChance(Energy(), ionization) > 0.1)
+			|| (damage.Slowing() && slowness > 10.)
+			|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
+			|| ((damage.Fuel() || damage.Leak()) && fuel < JumpFuel() * 2.)
+			|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
 
 	// Create target effect visuals, if there are any.
