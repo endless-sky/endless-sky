@@ -23,7 +23,7 @@ mission "Deep: Syndicate Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -112,7 +112,7 @@ mission "Deep: Tarazed Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -204,7 +204,7 @@ mission "Deep: Kraz Convoy"
 	to offer
 		"combat rating" > 80
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
