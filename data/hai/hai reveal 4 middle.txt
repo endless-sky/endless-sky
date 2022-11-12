@@ -932,7 +932,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			choice
 				`	"Yes, I'll fix the latency issue."`
 					goto yes
-				`	"Those systems on my way."`
+				`	"Those systems are on my way."`
 			`	Turner smiles with a little twinkle in his eye.`
 			label yes
 			`	"Of course, the famous Captain <last> always has a finger on the pulse. Being right where they need to be. Good thing we got the advertising out there up in time, hey?" He taps his nose and gives a shockingly conspicuous wink.`
