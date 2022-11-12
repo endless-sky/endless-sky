@@ -280,7 +280,8 @@ mission "Efret: Quarg Rescue"
 			`  "Leave now then, before we change our mind."`
 				accept
 			label ignore
-			"reputation: Quarg" <?= -1
+			action
+				"reputation: Quarg" <?= -1
 			label "unfriendly quarg"
 			`3 hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Your evil deeds against the Efret will not be tolerated anymore!"`
 				accept
@@ -304,7 +305,8 @@ mission "Efret: Quarg Rescue"
 			names "quarg"
 			variant
 				"Quarg Wardragon" 3
-	on fail
+	# next time we enter a system
+	on enter
 		conversation
 			branch "already was hostile"
 				"old quarg rep" < 0
@@ -312,12 +314,16 @@ mission "Efret: Quarg Rescue"
 				"reputation: Quarg" < 0
 				"old quarg rep" >= 0
 			"reputation: Quarg" = "old quarg rep"
-			"You listened to the warning of the Quarg and they seem to be willing to forgive this transgression, this time."
+			"The Quarg and they seem to be willing to forgive this transgression, this time."
 				decline
 			label "did not listen to warning"
+			action
+				"reputation: Kor Efret" <?= -1
 			"You disregarded the warning of the Quarg... They will probably never forgive you."
 				decline
 			label "already was hostile"
 			"Is seems like the Quarg will not pursue you... But you may want to refrain from assaulting the Efret in the future."
+			action
+				"reputation: Kor Efret" <?= -1
 	#doesnt matter but we need a destination
-	destination "Earth"
+	destination "Kuwaru Efreti"
