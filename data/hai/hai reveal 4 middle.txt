@@ -647,7 +647,6 @@ mission "Hai Reveal: Pirate Troubles [4]"
 			`	"Better that we eliminate a threat instead of making them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or, worse still, attacked other humans with them, making us complicit in their slaughter."`
 			
 			label end
-			action
 			`	The elders thank you for your assistance in this situation and send you on your way.`
 				decline
 	
