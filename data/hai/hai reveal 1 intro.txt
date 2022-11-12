@@ -1016,7 +1016,7 @@ mission "Hai Leaks Response 6"
 			label about
 			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images.`
 			`	"There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise' with a whole cast of anthropomorphic squirrels. The production of the first series was entirely funded through a government grants program, as a cover for accidental leaks about the Hai. Xilin tells me that since then it's pretty much run itself.`
-			`	"We're going to make a tourist trap type theme park destination and advertise it with a big-budget movie production of the show. We've found a Seerwood producer who'll spoil a 'big surprise' release, and we're passing off the footage as leaked promotional material. For the sake of the cover, we've also hired a 'fan community' to support the production for consistency and accuracy."`
+			`	"We're going to make a tourist trap type theme park destination, and advertise it with a big-budget movie production of the show. We've found a Seerwood producer who'll spoil a 'big surprise' release, and we're passing off the footage as leaked promotional material. For the sake of the cover, we've also hired a 'fan community' to support the production for consistency and accuracy."`
 			`	He chuckles tiredly. "That's where the uh, furry, explanation came into things. It also probably can't hold up as a cover indefinitely. Still, things have been going very well while you've been away!`
 			label next
 			`	"I hear you were instrumental in driving off some opportunistic pirates and helping stem the information leak. Come on, I'll buy you a drink on the others' behalf."`
