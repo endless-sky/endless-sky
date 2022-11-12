@@ -109,18 +109,16 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
-		"Fusion Reactor"
-		"LP288a Battery Pack"
-		"D94-YV Shield Generator"
-		"D67-TM Shield Generator"
-		"Water Coolant System"
-		"Large Radar Jammer"
-		"Ramscoop"
+		"Catalytic Ramscoop"
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"S-970 Regenerator" 3
+		"Liquid Helium Cooler"
+		"Large Radar Jammer" 2
 		"X4700 Ion Thruster"
 		"X1700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Jump Drive"
-		"Fuel Pod"
 		"Quantum Keystone"
 	gun -12 -186
 	gun 12.5 -186
@@ -1128,8 +1126,10 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 		"Fragmentation Grenades" 20
 		"Fission Reactor"
 		"Laser Rifle" 20
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"Quantum Keystone"
+		"Fuel Pod" 2
 
 
 
@@ -1183,23 +1183,22 @@ ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
 	outfits
 		"Heavy Anti-Missile Turret" 3
 		"Armageddon Core"
-		"S-970 Regenerator"
+		"S-970 Regenerator" 2
 		"Liquid Helium Cooler" 2
+		"Cooling Ducts"
 		"Jump Drive"
 		"Volcano Afterburner"
-		Supercapacitor
 		"Outfits Expansion" 2
 		"Plasma Cannon" 4
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-		"Breeder Reactor"
+		"Fission Reactor"
 		"Quad Blaster Turret" 2
 		"Laser Rifle" 25
-		"Water Coolant System"
-		"S-270 Regenerator" 2
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"Quantum Keystone"
-
+		"Fuel Pod" 2
+		"Catalytic Ramscoop"
 
 
 ship "Falcon" "Falcon (Heavy)"

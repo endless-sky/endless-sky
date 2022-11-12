@@ -170,6 +170,7 @@ namespace {
 		{"corrosion protection", 4},
 		{"discharge protection", 4},
 		{"disruption protection", 4},
+		{"drag reduction", 4},
 		{"energy protection", 4},
 		{"force protection", 4},
 		{"fuel protection", 4},

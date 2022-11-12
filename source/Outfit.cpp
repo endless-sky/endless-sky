@@ -138,6 +138,7 @@ namespace {
 		{"piercing protection", -0.99},
 		{"force protection", -0.99},
 		{"discharge protection", -0.99},
+		{"drag reduction", -0.99},
 		{"corrosion protection", -0.99},
 		{"ion protection", -0.99},
 		{"leak protection", -0.99},
@@ -292,7 +293,7 @@ void Outfit::Load(const DataNode &node)
 	// Unless this outfit definition isn't declared with the `outfit` keyword,
 	// because then this is probably being done in `add attributes` on a ship,
 	// so the name doesn't matter.
-	if(pluralName.empty())
+	if(!name.empty() && pluralName.empty())
 	{
 		pluralName = name + 's';
 		if((name.back() == 's' || name.back() == 'z') && node.Token(0) == "outfit")
