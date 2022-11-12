@@ -258,56 +258,64 @@ mission "Small Scale Delivery"
 		payment 1000
 		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`
 
-mission "Quarg Rescue"
+mission "Efret: Quarg Rescue"
 	boarding
 	repeat
 	invisible
 	deadline 1
 	source
 		government "Kor Efret"
-		ship "Echo-Galleon"
-		system
-			government "Kor Efret"
+		category "Utility"
 	on offer
 		"old quarg rep" = "reputation: Quarg"
+		# bring it low enough that capping this will result in war
 		"reputation: Quarg" <?= 1
 		conversation
 			branch "unfriendly quarg" # if you're already at war with them
-				"reputation: Quarg" < 1
+				"reputation: Quarg" < 0
 			`The Quarg have brought reinforcements, probably in reaction to a distress call by the <ship>. They hail you, with barely contained anger in their voice. "Get out of here, and we may still forgive your aggression. The Kor Efret are under our protection! Do not even think about capturing that ship."`
-		choice
-			`	"I had not realized they were under your protection. I will leave at once."`
-			`	(Ignore the warning.)`
-		`	"Leave now then, before we change our mind."`
-		action
-			"reputation: Quarg" >?= 1
-		label "unfriendly quarg"
-		`3 hostile Wardragons arrive in the system, in response to your act of aggression. "Your evil deeds against the Efret will not be tolerated anymore!"`
+			choice
+				`  "I had not realized they were under your protection. I will leave at once."`
+				`  (Ignore the warning.)`
+					accept
+			`  "Leave now then, before we change our mind."`
+				accept
+			label "unfriendly quarg"
+			`3 hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Your evil deeds against the Efret will not be tolerated anymore!"`
+				accept
 	npc evade
 		government "Quarg"
+		names "quarg"
 		to spawn
 			"reputation: Quarg" > 0
 		personality disables staying entering
-		ship "Quarg Wardragon" 2
+		ship "Quarg Wardragon"
+		ship "Quarg Wardragon"
 	npc evade
 		government "Quarg"
-		to spawn 
-			"reputation: Quarg" < 0
-		personality staying entering
-		ship "Quarg Wardragon" 3
+		names "quarg"
+		to spawn
+		"reputation: Quarg" < 0
+		# they don't just disable.
+		personality staying entering heroic
+		ship "Quarg Wardragon"
+		ship "Quarg Wardragon"
+		ship "Quarg Wardragon"
 	on fail
 		conversation
 			branch "did not listen to warning"
 				"reputation: Quarg" < 0
 				"old quarg rep" > 0
-			branch "already was hostile"
-				"old quarg rep" < 0
-			"reputation: Quarg" = "old quarg rep"
-			"You listened to the warning of the Quarg and they seem to be willing to forgive this transgression, this time."
-				decline
+		branch "already was hostile"
+			"old quarg rep" < 0
+		"reputation: Quarg" = "old quarg rep"
+		"You listened to the warning of the Quarg and they seem to be willing to forgive this transgression, this time."
+			decline
 		label "did not listen to warning"
 		"You disregarded the warning of the Quarg... They will probably never forgive you."
 			decline
 		label "already was hostile"
 		"Is seems like the Quarg will not pursue you to this system... But you may want to refrain from assaulting the Efret in the future."
+
+	#doesnt matter but we need a destination
 	destination "Earth"
