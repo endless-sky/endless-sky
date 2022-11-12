@@ -972,7 +972,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 				`	(Take the direct route.)`
 					goto "take the direct route"
 				`	(Enjoy the sights along the way.)`
-			`	Moscow is thousands of kilometers away, so you travel most of the route on Shuttles. It seems some new pilots took an option you never considered: planet-side travel in an exclusive contract with local transit authorities who pay half the mortgage. Certainly a safe career, but not as exciting as your experiences.`
+			`	Moscow is thousands of kilometers away, so you travel most of the route on shuttlecraft. It seems some new pilots took an option you never considered: planet-side travel in an exclusive contract with local transit authorities who pay half the mortgage. Certainly a safe career, but it's too dull to be restrained to just one planet.`
 			`	You fly past mountain ranges, lakes, and deserts, and the occasional tundra. Everywhere, you see the gray cities of Earth packed in their ancient locations. Even from kilometers above, the cities' vast megabuildings are an imposing sight. There's still some farmland, even now that farming has largely moved off-world; but as you well know, all of that isn't enough for the twenty billion people living on Earth.`
 			`	After three shuttle trips, you land in the city of Nizhny, and board a two-story train that hovers in a tunnel of superconducting magnets. Such a complex system would be unprofitable anywhere else in human space, but the population is so high here that these village-sized trains run non-stop at full capacity.`
 			choice
