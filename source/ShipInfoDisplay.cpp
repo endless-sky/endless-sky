@@ -195,7 +195,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	double emptyMass = attributes.Mass() / (1. + attributes.Get("inertia reduction"));
 	double currentMass = ship.InertialMass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
-	attributeValues.push_back(Format::Number(isGeneric ? emptyMass : currentMass) + " tons");
+	attributeValues.push_back(Format::Number(isGeneric ? attributes.Mass() : ship.Mass()) + " tons");
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "cargo space:" : "cargo:");
 	if(isGeneric)

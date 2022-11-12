@@ -3473,7 +3473,7 @@ double Ship::Mass() const
 // It also has no effect on maximum heat or heat capacity.
 double Ship::InertialMass() const
 {
-	return carriedMass + cargo.Used() + attributes.Mass() / (1. + attributes.Get("inertia reduction"));
+	return (carriedMass + cargo.Used() + attributes.Mass()) / (1. + attributes.Get("inertia reduction"));
 }
 
 
