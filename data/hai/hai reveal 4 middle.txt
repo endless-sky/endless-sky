@@ -967,7 +967,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 		
 		conversation
 			`You land at Ulaanbaatar's spaceport and receive a message that Batu has to finalize some arrangements and will arrive in the evening. That leaves plenty of time for you to see to your business of angry cat symbols.`
-			`	At an information desk, you inquire about the route to the library, and are given two options. You can take a very expensive private hovertaxi service, which will be payed for by the Syndicate. Or, you can take the long route and see the sights. Either way, you'll have plenty of time before Batu arrives.`
+			`	At an information desk, you inquire about the route to the library, and are given two options. You can take a very expensive private taxi service, which will be payed for by the Syndicate. Or, you can take the long route and see the sights. Either way, you'll have plenty of time before Batu arrives.`
 			choice
 				`	(Take the direct route.)`
 					goto "take the direct route"
@@ -984,7 +984,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	Reaching the room in question you knock on the door which has a nameplate that reads, 'Giti Gilani' with the title 'Research Librarian' in small print underneath. You are swiftly greeted by a short, energetic looking lady. She looks you up and down and nods. "Captain <last>, you're not as tall as I thought you'd be in person. Please, please come in."`
 				goto "converse with giti"
 			label "take the direct route"
-			`	You're ushered to a luxury hover-taxi with built-in bar and entertainment. It moves at hypersonic speeds, reaching your destination in under twenty minutes. The taxi attaches its aft exit to the side of the building, about half the way up. The well-dressed driver leads you into the building and escorts to your destination.`
+			`	You're ushered to a luxury taxi, complete with built-in bar and the latest forms entertainment. The taxi enters a ballistic trajectory into space and back down, reaching your destination in under an hour. It links its aft exit port to the side of the building, about half the way up. The well-dressed driver leads you into the building and escorts to your destination.`
 			`	"Floor 301, section 7A, room 19, sir," he says. "This is the office of research librarian Giti Giliani." You bid him goodbye, and he returns to his taxi.`
 			choice
 				`	(Knock on the door.)`
