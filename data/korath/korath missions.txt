@@ -266,7 +266,7 @@ mission "Efret: Quarg Rescue"
 	source
 		government "Kor Efret"
 	on offer
-		"old quarg rep" = "reputation: Quarg"
+		"old efret rep" = "reputation: Kor Efret"
 		# bring it low enough that capping this will result in war
 		"reputation: Quarg" <?= 1
 		conversation
@@ -317,21 +317,18 @@ mission "Efret: Quarg Rescue"
 	on enter
 		conversation
 			branch "already was hostile"
-				"old quarg rep" < 0
-			branch "did not listen to warning"
 				"reputation: Quarg" < 0
-				"old quarg rep" >= 0
-			action
-				"reputation: Quarg" = "old quarg rep"
-			"The Quarg and they seem to be willing to forgive this transgression, this time."
+			branch "did not listen to warning"
+				"reputation: Kor Efret" < "old efret rep"
+			`The Quarg and they seem to be willing to forgive this transgression, this time.`
 				decline
 			label "did not listen to warning"
 			action
-				"reputation: Kor Efret" <?= -1
-			"You disregarded the warning of the Quarg... They will probably never forgive you."
+				"reputation: Quarg" <?= -1
+			`You disregarded the warning of the Quarg... They will probably never forgive you.`
 				decline
 			label "already was hostile"
-			"Is seems like the Quarg will not pursue you... But you may want to refrain from assaulting the Efret in the future."
+			`Is seems like the Quarg will not pursue you... But you may want to refrain from assaulting the Efret in the future.`
 			action
-				"reputation: Kor Efret" <?= -1
+				"reputation: Quarg" <?= -1
 	destination "Kuwaru Efreti"
