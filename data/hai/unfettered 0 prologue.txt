@@ -316,8 +316,6 @@ mission "Unfettered Jump Drive Trading"
 			`	"Welcome to the special section of the outfitter, captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we can offer something way more valuable than money. Which one of these weapons would be of the biggest interest to you?" They say, presenting the weapons to you.`
 			label weapons
 			choice
-				`	"The three pulse cannon weapon."`
-					goto tripulse
 				`	"The small ion weapon."`
 					goto blaster
 				`	"The ionized turret."`
@@ -335,18 +333,6 @@ mission "Unfettered Jump Drive Trading"
 				set "unfettered: money for drives"
 			`	"As you wish. Do remember that if you want to sell further jump drives to us for money you may go to the job board."`
 				accept
-			
-			label tripulse
-			`	"Good choice! The tripulse shredder may seem crude, but it packs a punch and its specialty is how it combines a lot of firepower in one gun slot, and even allows for hit and run tactics. I may offer you two of these in exchange for your jump drive."`
-			scene "outfit/tripulse shredder"
-			choice
-				`	"I'll take that offer."`
-				`	"What were the other weapons again?"`
-					goto weapons
-			action
-				outfit "Tripulse Shredder" 2
-			``
-				goto cangetmore
 
 			label blaster
 			`	"Ah, the blaster. It is a favored by many Shield Beetle captains, because it can easily help them turn the tide of battle, without needing to dedicate too much weapon space for it. It is true that it does not do enough ion damage to properly disable the enemy ship, but it is able to jam their weapons, thus giving you the upper hand in a long fight, especially since its damage potential is acceptable. I may offer you three of these in exchange for your jump drive."`
