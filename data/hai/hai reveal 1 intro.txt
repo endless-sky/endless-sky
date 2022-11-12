@@ -58,7 +58,7 @@ mission "Event: Pug Media Coverage"
 		has "event: pug media coverage"
 	on offer
 		event "hai secret leaks" 10 15
-		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
+		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
 			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you also suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that led to the events precipitating the war would not be tolerated.`
@@ -82,7 +82,7 @@ conversation "hai reveal free worlds news"
 	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other, and fire weapons quite unlike anything produced in human space.`
 	`	You raise your eyebrows. Actual footage of an unknown alien conflict doesn't seem likely.`
 	`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is definitely rented - you couldn't imagine how a crewman would be able to afford a suit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the 'Hai'.`
-	`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing... You listen in to collect the relevant details for future reference.` # Add an option to listen for more information, to break it up.  
+	`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing... You listen in to collect the relevant details for future reference.`
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer.`
 		accept
 	label "hai knowledge"
@@ -539,7 +539,7 @@ mission "Hai Leaks Response 1"
 			choice
 				`	"That seems practical."`
 				`	"I don't really have an option to refuse, do I?"`
-			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a dialog on how best to deal with this current scenario."`
+			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a liaison on how best to deal with this current scenario."`
 			`	She hands you an officially branded box containing a metallic badge. There is a symbol minutely engraved into the front that you remember seeing on your way into the complex, and must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.` 
 			choice
 				`	"Various? We only have two governments."`
@@ -634,7 +634,7 @@ mission "Hai Leaks Response 2A"
 			`	"Do we have time for a drink before we leave?" asks Alondo.`
 			`	You look around at the busy spaceport and see the workers haven't even noticed your ship waiting for refueling yet.`
 			`	"I think we can spare a short while, and you really should meet Mr. Yang."`
-			`	Mr. Yang had been studiously pretending he wasn't eavesdropping from a distance of a few meters but, before you could call him over, Alondo's slightly suggestive comment of, "Oh I should definitely meet Mr. Yang," had evidently been overheard.`
+			`	Mr. Yang had been studiously pretending he wasn't eavesdropping from a distance of a few meters but, before you could call him over, Alondo's slightly suggestive comment of, "Oh, I should definitely meet Mr. Yang," had evidently been overheard.`
 			`	Fortunately, after an hour and a couple of drinks, the embarrassment is long-forgotten when you return to your ship.`
 				decline
 	
@@ -664,7 +664,7 @@ mission "Hai Leaks Response 2C"
 				has "met remington"
 			action
 				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai.`
-			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may have not heard of me before but I've sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
+			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may have not heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
 				goto next
 			
 			label met
