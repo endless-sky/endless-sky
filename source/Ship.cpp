@@ -1852,7 +1852,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
-	double mass = Mass();
+	double mass = InertialMass();
 	bool isUsingAfterburner = false;
 	if(isDisabled)
 		velocity *= 1. - Drag() / mass;
@@ -3497,9 +3497,17 @@ double Ship::Mass() const
 
 
 
+// Account for inertia reduction, which affects movement but has no effect on the ship's heat capacity.
+double Ship::InertialMass() const
+{
+	return Mass() / (1. + attributes.Get("inertia reduction"));
+}
+
+
+
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / Mass();
+	return attributes.Get("turn") / InertialMass();
 }
 
 
@@ -3507,7 +3515,7 @@ double Ship::TurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass();
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass();
 }
 
 
@@ -3630,7 +3638,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 		return;
 	}
 
-	double currentMass = Mass();
+	double currentMass = InertialMass();
 	if(!currentMass)
 		return;
 
@@ -4204,7 +4212,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 {
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
-	double mass = Mass();
+	double mass = InertialMass();
 
 	auto CalculateFuelCost = [mass, defaultFuel](const Outfit &outfit) -> double
 	{

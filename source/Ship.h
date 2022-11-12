@@ -356,6 +356,7 @@ public:
 
 	// Get this ship's movement characteristics.
 	double Mass() const;
+	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
