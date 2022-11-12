@@ -387,10 +387,9 @@ ship "'olofez"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
-
 ship "Kas'ik Tek 7"
-	sprite "ship/kas-ik tek 11"
-	thumbnail "thumbnail/kas-ik tek 11"
+	sprite "ship/kas-ik tek 7"
+	thumbnail "thumbnail/kas-ik tek 7"
 	attributes
 		category "Drone"
 		"cost" 210000
@@ -426,7 +425,6 @@ ship "Kas'ik Tek 7"
 	explode "small explosion" 6
 	description `These small probes are primarily deployed by larger Korath Exile ships to scan for intruders, evaluate foreign vessels, and analyze system bodies. Their secondary function is to retrieve small debris and deactivated microbots spread across Korath space which have fallen off their ships, been fired from Shunt-Strikes, or were even deliberately deployed. Although the data observed and logged by an individual microbot is extremely limited, processing them in bulk yields a valuable gestalt of information. More importantly, the microbots can be recycled for use afterwards.`
 	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`
-
 
 
 ship "Rai'alorej"
@@ -957,7 +955,6 @@ ship "Ra'at Ik 621"
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This many-lobed ship has been adapted to carry fighters into large-scale raids, or mining craft into asteroid belts. Its radial arrangements of hangars allows fighters a maximum variety of safe approach patterns in combat."
-
 
 
 ship "Kasichara A'awoj"
