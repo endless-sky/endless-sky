@@ -277,13 +277,20 @@ mission "Efret: Quarg Rescue"
 				`  "I had not realized they were under your protection. I will leave at once."`
 				`  (Ignore the warning.)`
 					goto ignore
+				`  "I think you should leave. This is my prize and I'll take what I please."`
+					goto refuse
 			`  "Leaveth then anon, ere we changeth our mind."`
 				accept
 			label ignore
 			action
 				"reputation: Quarg" <?= -1
-			`"So be it. Thou shalt pay for thine evil deeds 'gainst the Efret!" The Quarg begin powering up their weapons...`
+			`  "So be it. Thou shalt pay for thine evil deeds 'gainst the Efret!" The Quarg begin powering up their weapons...`
 				accept
+			label refuse
+			action
+				"reputation: Quarg" <?= -1
+			`  "What impetuous evil is this! Nay, we shall not allow thee thy plunder; such mayest not be tolerated." The Quarg open fire before you have a chance to disengage.`
+				launch
 			label "unfriendly quarg"
 			`Three hostile Wardragons arrive in the system, in response to your act of aggression. One hails you. "Thy evil deeds 'gainst the Efret wilt not be tolerated anymore!"`
 				accept
