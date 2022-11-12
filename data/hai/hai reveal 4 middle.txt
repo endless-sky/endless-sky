@@ -64,7 +64,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 	to offer
 		has "Hai Reveal [A01] Visit Darkwaste: done"
 	on offer
-		log "People" "Teeneep Goot'r" `Teeneep is an activist and social leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped specialists.`
+		log "People" "Teeneep Goot'r" `Teeneep is an activist and social leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about disappearing specialists, and suspects a large kidnapping operation.`
 		log `Many Hai and humans have gone missing over the past few decades. Many of the ones who have subsequently been rescued have had mild cadmium poisoning from some technology not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
 		conversation
 			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
@@ -76,12 +76,12 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a social advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and human victims are here; they were mostly rescued by other kind merchants in human space, but around half of those here are my staff."`
 			`	"My organization has been researching the disappearance of Hai ever since humans began disappearing here under similar circumstances. We've discovered some patterns to these abductions, and through those we've been able to reach some of the victims more quickly upon their return, and even rescue some ourselves. But we have noticed something strange among the abductees: those Hai that you rescued, and several others, too, are all experiencing mild cadmium poisoning."`
 			choice
-				`	"What patterns have you noticed in the kidnappings?"`
+				`	"What patterns have you noticed in the disappearances?"`
 					goto patterns
 				`	"Tell me about the cadmium poisoning."`
 					goto cadmium
-				`	"How long have the kidnappings been happening?"`
-					goto kidnappings
+				`	"How long have the disappearances been happening?"`
+					goto disappearances
 			label questions
 			choice
 				`	"How do you know all of this?"`
@@ -90,32 +90,32 @@ mission "Hai Reveal [A02] Symbol Identification"
 					goto uninhabited
 				`	"Is anyone helping you?"`
 					goto anyone
-				`	"What patterns have you noticed in the kidnappings?"`
+				`	"What patterns have you noticed in the disappearances?"`
 					goto patterns
 				`	"Tell me about the cadmium poisoning."`
 					goto cadmium
-				`	"How long have the kidnappings been happening?"`
-					goto kidnappings
+				`	"How long have the disappearances been happening?"`
+					goto disappearances
 				`	"That's enough information. How can I help you?"`
 					goto help
 			label uninhabited
-			`	Teeneep looks at you as if you were daft. "Kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide critical people or information. If the kidnappings are a coordinated effort as we suspect, they would track down threats to the operation, like escaped victims or our organization. We have plenty of space here to do our work without precautions that would be necessary on a populated planet."`
+			`	Teeneep looks at you as if you were daft. "Kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide critical people or information. If there is a coordinated kidnapping effort as we suspect, they would track down threats to the operation, like escaped victims or our organization. We have plenty of space here to do our work without precautions that would be necessary on a populated planet."`
 				goto questions
 			label cadmium
 			`	A Hai in a medical uniform explains. "The victims each have been exposed to airborne cadmium particles, which must have been circulating through a ship's ventilation. Although the level of exposure is quite low, after being rescued we can detect clearly elevated levels in many who were taken.`
-			`	"No known human or Hai ship technology exhausts these cadmium compounds. There are some Hai medical microbots that leave behind similar compounds, but not the same ones, and those are self-contained for disposal. We believe this is coming from another race's technology."`
+			`	"No known human or Hai ship technology exhausts these particles. There are some Hai medical microbots that leave behind something similar, but not quite the same, and those are microbots are self-contained for disposal. We believe this is coming from another race's technology."`
 			`	They share a glance with Teeneep, "We have our suspicions but they're not conclusive yet."`
 			branch questions
 				not "00 Hai Leaks Response 4B: declined"
 			`	"We were able to look at the scan of that modified Geocoris you recovered. It has self-repair systems that use technology which could be responsible for something like this, and we suspect they came from the same place."`
 				goto questions
 			label patterns
-			`	"First, you must understand that violent crimes in Hai space are not a rare thing, though they aren't a day-to-day part of life as in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Some Hai go on an adventure one day and then fall in a crevasse or get eaten by a beast. Some join the Unfettered but don't tell anyone. Most cases are solved: the person is found dead or alive. Sometimes, though, the person or body is ever found."`
-			`	"In recent years, a disproportionate number of Hai and human kidnapping victims seem to be purposefully picked from the intelligentsia: doctors, scientists, engineers, architects. Most were specialists within their field. None were prominent enough for their departure to send shock waves in the community though. Some disappeared from worlds where we'd expect to be able to track them to their general area, but instead, they are simply... gone.`
-			`	"We believe someone is targeting researchers and specialists and trying to hide it beneath the noise."`
+			`	"First, you must understand that violent crimes in Hai space are not a rare thing, though they aren't a day-to-day part of life as in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Some Hai go on an adventure one day and then fall in a crevasse or get eaten by a beast. Some join the Unfettered but don't tell anyone. Most cases are solved: the person is found dead or alive. Sometimes, though, no person or body is ever found."`
+			`	"In recent years, a disproportionate number of Hai and human disappearances are from the intelligentsia: doctors, scientists, engineers, architects. Most were specialists within their field. None were prominent enough for their departure to send shock waves in the community though. Some disappeared from worlds where we'd expect to be able to track them to their general area, but instead, they are simply... gone.`
+			`	"We believe someone is kidnapping researchers and specialists and trying to hide it beneath the noise."`
 				goto questions
-			label kidnappings
-			`	Teeneep answers, "In human space, we don't know, but after collating records in Hai space it seems to have happened in three spates each lasting several years. The earliest date back to only about a decade after we made contact with humans, but often with different kidnapping methods and targets. This means that we can't even say for sure if it's even been the same people, but every investigation has ultimately dead-ended with similar difficulties."`
+			label disappearances
+			`	Teeneep answers, "In human space, we don't know, but after collating records in Hai space it seems to have happened in three spates each lasting several years. The earliest date back to only about a decade after we made contact with humans, but the circumstances and types of victims varied over the years. This means that we can't even say for sure if the same people are behind it, but every investigation has ultimately dead-ended with similar difficulties."`
 			`	"Nevertheless, from the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. We don't have the data to make an estimate for human disappearances."`
 				goto questions
 			label know
@@ -125,7 +125,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			label anyone
 			`	A Hai near Teeneep responds. "Yes... and no. We work with police who investigate the disappearances, and sometimes they find the missing person.`
 			`	"Our biggest problem is a lack of help in human space. Local police are overwhelmed with crime in the regions where the kidnapping victims are found. Worse, the kidnappers leave behind virtually no evidence to investigate. Your navies and agencies haven't the time to help us; they're busy cleaning up after the war. The Syndicate has unfinished business they won't talk about.`
-			`	"Hai space is more manageable, but our resources are not infinite. The pattern just isn't clear enough yet for the Elders to justify more expenditure. They tell me that if we can prove the kidnappings are from a coordinated effort, they'll put all the resources they can spare into stopping the crime. They also say their investigators have been unable to discover anything, but sometimes their responses don't add up. We presume this is because they're blocking our access to classified information."`
+			`	"Hai space is more manageable, but our resources are not infinite. The pattern just isn't clear enough yet for the Elders to justify more expenditure. They tell me that if we can prove the disappearances are part of a coordinated kidnapping effort, they'll put all the resources they can spare into stopping the crime. They also say their investigators have been unable to discover anything, but sometimes their responses don't add up. We presume this is because they're blocking our access to classified information."`
 			`	Teeneep nods. "We need a skilled and trustworthy pilot with the strength and connections to investigate locations we cannot easily access. Our mutual friend recommended you."`
 				goto questions
 			label help
