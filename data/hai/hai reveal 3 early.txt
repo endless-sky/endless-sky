@@ -51,8 +51,8 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				goto elders
 			label oversee
 			`	"You're learning to navigating the maze of galactic politics quickly, Captain <last>," says Sayari. "We are at an impasse. The Elders are less than keen on allowing a partisan observer to see the construction."`
-			`	Xilin continues her thought, "The Republic won't let the Hai build a station on our side of the wormhole without a trusted observer monitoring construction.`
-			`	"Both sides trust you though", he says, as Sayari nods.`
+			`	Xilin continues her thought. "The Republic won't let the Hai build a station on our side of the wormhole without a trusted observer monitoring construction.`
+			`	"Both sides trust you, though," he says, as Sayari nods.`
 			label elders
 			choice
 				`	"Who are these Elders?"`
@@ -113,7 +113,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"I will have a thorough look later," is all she says.`
 			`	No sooner has she finished than there is a knock at the door, and an aide looks in. "The Council will see you now."`
 			choice
-				`	Walk to the Elder Council chambers.`
+				`	(Walk into the Council chambers.)`
 			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recorded in the Freedom of Information report. You're not really sure what most of it has to do with anything, but eventually one of the Elders stands up.`
 			`	"I think we've generally had enough of this here. Answer me two questions, and then we shall make our decision. Firstly, do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
 			`	This seems like a very strange question...`
