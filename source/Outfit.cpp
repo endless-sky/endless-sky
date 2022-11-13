@@ -140,6 +140,7 @@ namespace {
 		{"discharge protection", -0.99},
 		{"drag reduction", -0.99},
 		{"corrosion protection", -0.99},
+		{"inertia reduction", -0.99},
 		{"ion protection", -0.99},
 		{"leak protection", -0.99},
 		{"burn protection", -0.99},
