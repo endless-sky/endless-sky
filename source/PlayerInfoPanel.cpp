@@ -220,7 +220,6 @@ void PlayerInfoPanel::Draw()
 	{
 		bool allParked = true;
 		bool allParkedSystem = true;
-		bool hasParked = false;
 		bool hasOtherShips = false;
 		const Ship *flagship = player.Flagship();
 		const System *flagshipSystem = flagship->GetSystem();
@@ -228,7 +227,6 @@ void PlayerInfoPanel::Draw()
 			if(!it->IsDisabled() && it.get() != flagship)
 			{
 				allParked &= it->IsParked();
-				hasParked |= it->IsParked();
 				hasOtherShips = true;
 				if(it->GetSystem() == flagshipSystem)
 					allParkedSystem &= it->IsParked();
