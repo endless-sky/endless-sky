@@ -154,26 +154,10 @@ mission "Unfettered Jump Drive 4"
 			`The Unfettered usual deal of trading a jump drive for weapons still stands.`
 			choice
 				`	(Take two tripulse shredders.)`
-				`	(Take three ionic blasters.)`
-					goto blaster
-				`	(Take one ionic turret.)`
-					goto turret
 				`	(Take money instead.)`
 					goto money
 			action
 				outfit "Tripulse Shredder" 2
-			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
-				goto trade
-
-			label blaster
-			action
-				outfit "Ionic Blaster Prototype" 3
-			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
-				goto trade
-
-			label turret
-			action
-				outfit "Ionic Turret Prototype"
 			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
 
 			label trade
