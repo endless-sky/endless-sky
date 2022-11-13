@@ -381,7 +381,7 @@ mission "Unfettered Jump Drive Trading"
 			`	You manage to dodge the blade but are then left defenceless when the same Unfettered that threw you the blade comes in with another one, and slashes down to strike. They stop at the last possible moment, with a discontent face. "So this is how you 'fight', captain? You hide? You dodge? A weapon thrown at you no longer belongs to the enemy, you can claim it!`
 				goto fail
 			label flee
-			`	You run away from the blade without any difficulties but then the Hai that threw it catches up to you in mere seconds, and immobilizes you with their blade on your throat. "You disapoint me, captain. In battle it is of great importance that you identify your advantages over the enemy, and not show yourself weak by running else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me, all you did was show fear."`
+			`	You run away from the blade without any difficulties but then the Hai that threw it catches up to you in mere seconds, and immobilizes you with their blade on your throat. "You disappoint me, captain. In battle it is of great importance that you identify your advantages over the enemy, and not show yourself weak by running else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me, all you did was show fear."`
 
 			label fail
 			action
