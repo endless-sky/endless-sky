@@ -387,6 +387,46 @@ ship "'olofez"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
+ship "Kas'ik Tek 7"
+	sprite "ship/kas-ik tek 7"
+	thumbnail "thumbnail/kas-ik tek 7"
+	attributes
+		category "Drone"
+		"cost" 210000
+		"shields" 1400
+		"hull" 800
+		"automation" 1
+		"mass" 21
+		"drag" 0.6
+		"heat dissipation" 1
+		"cargo space" 4
+		"outfit space" 48
+		"engine capacity" 18
+		"atmosphere scan" 100
+		"outfit scan power" 18
+		"outfit scan speed" 2
+		"cargo scan power" 6
+		"cargo scan speed" 2
+		"tactical scan power" 30
+		"asteroid scan power" 20
+		weapon
+			"blast radius" 6
+			"shield damage" 40
+			"hull damage" 30
+			"hit force" 80
+	outfits
+		"Generator (Candle Class)"
+		"Small Heat Shunt"
+		"Engine (Meteor Class)"
+	engine 0 22.5 
+	engine -8.5 25 
+	engine 8.5 25
+	explode "tiny explosion" 9
+	explode "small explosion" 6
+	description `These small probes are primarily deployed by larger Korath Exile ships to scan for intruders, evaluate foreign vessels, and analyze system bodies. Their secondary function is to retrieve small debris and deactivated microbots spread across Korath space which have fallen off their ships, been fired from Shunt-Strikes, or were even deliberately deployed. Although the data observed and logged by an individual microbot is extremely limited, processing them in bulk yields a valuable gestalt of information. More importantly, the microbots can be recycled for use afterwards.`
+	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`
+
+
 ship "Rai'alorej"
 	sprite "ship/rai-alorej"
 	thumbnail "thumbnail/rai-alorej"
@@ -898,12 +938,6 @@ ship "Ra'at Ik 621"
 	bay "Fighter" -50 303 back
 	bay "Fighter" 50 303 back
 	bay "Fighter" 50 303 back
-	bay "Drone" -100 -169
-	bay "Drone" 100 -169
-	bay "Drone" -98 156 back
-	bay "Drone" 98 156 back
-	bay "Drone" -50 303 back
-	drone 50 303 back
 	gun -71 -209 "Fire-Lance"
 	gun 0 -209 "Fire-Lance"
 	gun 71 -209 "Fire-Lance"

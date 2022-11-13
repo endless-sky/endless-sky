@@ -192,7 +192,16 @@ phrase "kor mereti"
 		":"
 	phrase
 		"digit"
-
+		
+phrase "korath probes"
+	word
+		"X'x"
+	word
+		" "
+	phrase
+		"digit"
+	phrase
+		"digit"
 
 fleet "Korath Raid"
 	government "Korath"
@@ -332,6 +341,17 @@ fleet "Korath Defense"
 		"Palavret (Blaze)"
 		"'olofez" 4
 		"'olofez (Expeller)" 2
+
+fleet "Korath Surveillance"
+	government "Korath"
+	names "korath"
+	fighters "korath probes"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests surveillance
+	variant 
+		"Ra'at Ik 621 (Probes)"
+		"Kas'ik Tek 7" 9
 
 fleet "Korath Large Raid"
 	government "Korath"
