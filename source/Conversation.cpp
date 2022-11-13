@@ -114,8 +114,6 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			AddNode();
 			nodes.back().scene = SpriteSet::Get(child.Token(1));
 		}
-		else if(child.Token(0) == "invisible")
-			isInvisible = true;
 		else if(child.Token(0) == "label" && child.Size() >= 2)
 		{
 			// You cannot merge text above a label with text below it.
@@ -252,8 +250,6 @@ void Conversation::Save(DataWriter &out) const
 
 			if(node.scene)
 				out.Write("scene", node.scene->Name());
-			if(isInvisible)
-				out.Write("invisible");
 			if(!node.branch.IsEmpty())
 			{
 				out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
@@ -396,13 +392,6 @@ bool Conversation::IsAction(int node) const
 		return false;
 
 	return !nodes[node].actions.IsEmpty();
-}
-
-
-
-bool Conversation::IsInvisible() const
-{
-	return isInvisible;
 }
 
 

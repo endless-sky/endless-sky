@@ -192,8 +192,6 @@ void Mission::Load(const DataNode &node)
 			// This was an "illegal" or "stealth" entry. It has already been
 			// parsed, so nothing more needs to be done here.
 		}
-		else if(child.Token(0) == "invisible")
-			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
 		else if(child.Token(0) == "minor")
@@ -336,8 +334,6 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
 		if(failIfDiscovered)
 			out.Write("stealth");
-		if(!isVisible)
-			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
 		if(isMinor)

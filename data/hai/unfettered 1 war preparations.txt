@@ -395,7 +395,9 @@ mission "Unfettered: The Word Has Spread"
 		dialog `Nemo sends you a message, "congratulations, you managed to gather many true Hai. Should you want to bring more to their new homes be sure to check the job boards."`
 
 mission "Unfettered: Refresh The Clock"
+	landing
 	invisible
+	minor
 	repeat
 	to offer
 		has "Unfettered: The Word Has Spread: active"

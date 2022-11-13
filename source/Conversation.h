@@ -81,7 +81,6 @@ public:
 	int Choices(int node) const;
 	bool IsBranch(int node) const;
 	bool IsAction(int node) const;
-	bool IsInvisible() const;
 	const ConditionSet &Branch(int node) const;
 	const GameAction &GetAction(int node) const;
 	const std::string &Text(int node, int choice = 0) const;

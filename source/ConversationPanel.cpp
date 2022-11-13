@@ -92,12 +92,6 @@ void ConversationPanel::SetCallback(function<void(int)> fun)
 // Draw this panel.
 void ConversationPanel::Draw()
 {
-	if(conversation.IsInvisible())
-	{
-		this->Exit();
-		return;
-	}
-
 	// Dim out everything outside this panel.
 	DrawBackdrop();
 

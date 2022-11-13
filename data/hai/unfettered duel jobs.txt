@@ -88,6 +88,10 @@ phrase "unfettered challenger defeated"
 		`"Is your fleet not too big for this battle? Or do you use superior weaponry? You must have had an edge! Whatever the case, here are your <payment>, but don't expect to see us again anytime soon."`
 		`"Well done, I guess it is only fair that you be allowed to plunder a few of my outfits... But do not expect it will be tolerated every time, given you already received <payment> from winning this little skirmish."`
 
+substitutions
+	"<won duel>" "Winning the duel has increased your reputation with the Unfettered. Do keep in mind that you are in no way allowed to do any more than plundering the ship once, and destroying or capturing it may result in the Unfettered getting angry."
+
+
 mission "Unfettered Challenge [0]"
 	job
 	repeat
@@ -107,16 +111,18 @@ mission "Unfettered Challenge [0]"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 200000
 				"reputation: Hai (Unfettered)" += 45
 				fail "Unfettered Challenge [0]"
 	on abort
-		"reputation: Hai (Unfettered)" += 40
+		# neutralize the rep loss when aborting it
+		"reputation: Hai (Unfettered)" += 85
+		"unfettered challenger defeated"++
 	on fail
-		"reputation: Hai (Unfettered)" -= 40
+		"reputation: Hai (Unfettered)" -= 85
 		"unfettered challenger defeated"--
 
 mission "Unfettered Challenge [1A]"
@@ -138,16 +144,18 @@ mission "Unfettered Challenge [1A]"
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 500000
 				"reputation: Hai (Unfettered)" += 90
 				fail "Unfettered Challenge [1A]"
 	on abort
-		"reputation: Hai (Unfettered)" += 80
+		# both ships could have been killed or just one, no way to know
+		"reputation: Hai (Unfettered)" += 135
+		"unfettered challenger defeated"++
 	on fail
-		"reputation: Hai (Unfettered)" -= 80
+		"reputation: Hai (Unfettered)" -= 135
 		"unfettered challenger defeated"--
 
 mission "Unfettered Challenge [1B]"
@@ -169,16 +177,17 @@ mission "Unfettered Challenge [1B]"
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 500000
 				"reputation: Hai (Unfettered)" += 90
 				fail "Unfettered Challenge [1B]"
 	on abort
-		"reputation: Hai (Unfettered)" += 80
+		"reputation: Hai (Unfettered)" += 170
+		"unfettered challenger defeated"++
 	on fail
-		"reputation: Hai (Unfettered)" -= 80
+		"reputation: Hai (Unfettered)" -= 170
 		"unfettered challenger defeated"--
 
 mission "Unfettered Challenge [2]"
@@ -201,16 +210,17 @@ mission "Unfettered Challenge [2]"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 800000
-				"reputation: Hai (Unfettered)" += 160
+				"reputation: Hai (Unfettered)" += 140
 				fail "Unfettered Challenge [2]"
 	on abort
-		"reputation: Hai (Unfettered)" += 140
+		"reputation: Hai (Unfettered)" += 150
+		"unfettered challenger defeated"++
 	on fail
-		"reputation: Hai (Unfettered)" -= 140
+		"reputation: Hai (Unfettered)" -= 150
 		"unfettered challenger defeated"--
 
 
@@ -226,8 +236,8 @@ mission "Unfettered Space Challenge [0]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		random < 30
 	on offer
-		"reputation: Hai (Unfettered)" += 40
 		fail "Unfettered Space Challenge [0]"
+		"reputation: Hai (Unfettered)" += 40
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
@@ -237,7 +247,7 @@ mission "Unfettered Space Challenge [0]"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 200000
@@ -257,8 +267,8 @@ mission "Unfettered Space Challenge [1A]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 10
 	on offer
-		"reputation: Hai (Unfettered)" += 80
 		fail "Unfettered Space Challenge [1A]"
+		"reputation: Hai (Unfettered)" += 60
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
@@ -268,13 +278,13 @@ mission "Unfettered Space Challenge [1A]"
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 500000
 				"reputation: Hai (Unfettered)" += 10
 	on fail
-		"reputation: Hai (Unfettered)" -= 80
+		"reputation: Hai (Unfettered)" -= 60
 		"unfettered challenger defeated"--
 
 mission "Unfettered Space Challenge [1B]"
@@ -288,8 +298,8 @@ mission "Unfettered Space Challenge [1B]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 10
 	on offer
-		"reputation: Hai (Unfettered)" += 80
 		fail "Unfettered Space Challenge [1B]"
+		"reputation: Hai (Unfettered)" += 80
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
@@ -299,7 +309,7 @@ mission "Unfettered Space Challenge [1B]"
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 500000
@@ -319,8 +329,8 @@ mission "Unfettered Space Challenge [2]"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
 		random < 10
 	on offer
-		"reputation: Hai (Unfettered)" += 140
 		fail "Unfettered Space Challenge [2]"
+		"reputation: Hai (Unfettered)" += 100
 	npc save disable
 		government "Hai (Unfettered Glory Seeker)"
 		personality disables staying heroic target
@@ -331,13 +341,13 @@ mission "Unfettered Space Challenge [2]"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 		conversation
-			invisible
+			"<won duel>"
 			action
 				"unfettered challenger defeated"++
 				payment 800000
 				"reputation: Hai (Unfettered)" += 20
 	on fail
-		"reputation: Hai (Unfettered)" -= 140
+		"reputation: Hai (Unfettered)" -= 100
 		"unfettered challenger defeated"--
 
 
