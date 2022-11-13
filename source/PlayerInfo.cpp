@@ -3598,7 +3598,7 @@ void PlayerInfo::Save(const string &path) const
 			out.BeginChild();
 			{
 				for(const auto &it : toSave)
-					for(const auto &sit: it.second)
+					for(const auto &sit : it.second)
 						out.Write(it.first, sit.first, sit.second);
 			}
 			out.EndChild();
