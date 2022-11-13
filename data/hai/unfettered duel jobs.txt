@@ -45,7 +45,7 @@ fleet "Sea Scorpion Challenger"
 		"Sea Scorpion (Ion)"
 	variant
 		"Sea Scorpion (Ionic)"
-	variant
+	variant 2
 		"Sea Scorpion (Shredder)"
 
 fleet "Shield Beetle Challenger"
