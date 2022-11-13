@@ -139,7 +139,6 @@ private:
 	std::multimap<std::string, std::pair<int, int>> unresolved;
 	// The actual conversation data:
 	std::vector<Node> nodes;
-	bool isInvisible = false;
 };
 
 
