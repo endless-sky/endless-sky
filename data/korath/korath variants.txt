@@ -1090,6 +1090,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
+	"uncapturable"
 	outfits
 		"Banisher Grav-Turret" 7
 		"Grab-Strike Turret" 4
@@ -1147,6 +1148,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
+	"uncapturable"
 	outfits
 		"Banisher Grav-Turret" 4
 		"Digger Mining Turret" 6
@@ -1205,6 +1207,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
+	"uncapturable"
 	outfits
 		"Banisher Grav-Turret" 4
 		"Grab-Strike Turret" 2
