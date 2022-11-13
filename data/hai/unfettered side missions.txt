@@ -1247,7 +1247,7 @@ mission "Unfettered: Mera's Trust Broken"
 
 conversation "modified shield beetle prize"
 	`As promized by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain: a brand new ship, produced just for you. As promised, it is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Thank you for your assistance so far!"`
-	`	When you enter the ship you realize that something is blinking in the cockpit. It seems this is a communicator with a message left on it, from Mera also. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it."`
+	`	When you enter the ship you realize that something is blinking red in the cockpit. Getting close you realize it is a communicator with a high priority message from Mera. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it. Eventually you will be able to use it to coordinate fleet actions, or even to call for reinforcements, I hope."`
 	branch "has communicator"
 		has "language: Wanderer"
 	`	"Once you acquire a translator we will include it in your ship so you may easily communicate with any Hai."`

@@ -333,11 +333,11 @@ mission "Unfettered Jump Drive Trading"
 			scene "outfit/hai ionic blaster"
 				goto backtochoose
 			label turret
-			`	"That is my prefered weapon out of all of them, by far. Unlike the ion cannon that is a hybrid weapon meant to be able to damage the enemy from long range whilst applying a good deal of ion, this one's role is mostly to disable enemy ships. Even a ship with high batteries will cower before this weapon! And due to it being a high range turret, fighters and small ships will never bother you again!"`
+			`	"That is my preferred weapon out of all of them, by far. Unlike the ion cannon that is a hybrid weapon meant to be able to damage the enemy from long range whilst applying a good deal of ion, this one's role is mostly to disable enemy ships. Even a ship with high batteries will cower before this weapon! And due to it being a high range turret, fighters and small ships will never bother you again!"`
 			scene "outfit/hai ionic turret"
 			label backtochoose
 			`	"However, we only have these weapons in very limited quantity, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
-				goto choice
+				goto weapons
 
 			label money
 			`	"Oh. Well, in that case, we will not bother you again with this weapon, or any other, captain, here or in the job board."`
