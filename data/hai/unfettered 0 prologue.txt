@@ -318,7 +318,7 @@ mission "Unfettered Jump Drive Trading"
 			`	"Welcome to the special section of the outfitter, captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we can offer something way more valuable than money. For now, I can only offer you the mighty tripulse shredder, but eventually we will give you access to all kinds of weapons. 2 tripulse cannons for one jump drive and our sympathy is the deal I propose." They say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to the rest of Hai weaponry, but enhanced someway or another. There even are some ion looking weapons, but one is smaller than an ion cannon whilst another one looks like a turreted version of it.`
 			label weapons
 			choice
-				`	"I'll take the two 'three pulse cannons'."`
+				`	"Tell me more about that tripulse cannon I can buy."`
 					goto tripulse
 				`	"Can you tell me more about that ion looking small weapon?"`
 				`	"I'd like to learn about the ion turret."`
