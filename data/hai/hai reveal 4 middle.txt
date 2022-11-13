@@ -1423,7 +1423,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			choice
 				`	"I'm ready to mediate. Let's assemble the heads of state."`
 					goto "begin the meeting"
-				`	"Can they really pass through, with the Republic Navy blocking their way?"`
+				`	"Can the Hai really pass through, with the Republic Navy blocking their way?"`
 					goto "navy blocks hai"
 				`	"What if we let them through, to attack the pirate planets?"`
 					goto "let hai through"
