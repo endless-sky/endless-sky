@@ -1428,7 +1428,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label uncertainties
 			`	Teeneep looks mildly perturbed, while many Elders nod with agreement.`
 			label "next question"
-			`	The moderator looks deeply serious, says, "Captain <last>, you have the unique vantage point of an accomplished outsider who has seen all parts of this conflict. We have become unwittingly embroiled in human internal conflicts, and attacked for the first time in 300 years. Much of this is beyond our experience, but perhaps not beyond yours. What do you advise?"`
+			`	The moderator turns back to you with a deeply serious face. "Captain <last>, you have the unique vantage point of an accomplished outsider who has seen all parts of this conflict. We have become unwittingly embroiled in human internal conflicts, and have been attacked for the first time in 300 years. Much of this is beyond our experience, but perhaps not beyond yours. What do you advise?"`
 			`	You should carefully choose your words before speaking, as this may be a pivotal moment in history. This may spark a war - or prevent one.`
 			choice
 				`	(Get dinner.)`
