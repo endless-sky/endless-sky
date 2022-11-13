@@ -159,7 +159,6 @@
 		0E1C738E2920B379008435BB /* Angle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C72332920B378008435BB /* Angle.cpp */; };
 		0E1C738F2920B379008435BB /* DataWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C72362920B378008435BB /* DataWriter.cpp */; };
 		0E1C73902920B379008435BB /* FillShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C723A2920B378008435BB /* FillShader.cpp */; };
-		0E1C73912920B379008435BB /* libmad.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1C723E2920B378008435BB /* libmad.0.dylib */; };
 		0E1C73972920B670008435BB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1C73962920B670008435BB /* OpenGL.framework */; };
 		0E1C73992920B678008435BB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1C73982920B678008435BB /* OpenAL.framework */; };
 		0E1C739B2920B6AF008435BB /* libjpeg.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1C739A2920B6AF008435BB /* libjpeg.9.dylib */; };
@@ -5220,7 +5219,6 @@
 		0E1C70EE2920B377008435BB /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		0E1C70EF2920B377008435BB /* EndlessSkyTests.cbp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EndlessSkyTests.cbp; sourceTree = "<group>"; };
 		0E1C70F12920B377008435BB /* keys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = keys.txt; sourceTree = "<group>"; };
-		0E1C70F42920B377008435BB /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
 		0E1C70F52920B377008435BB /* copyright */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright; sourceTree = "<group>"; };
 		0E1C70F62920B377008435BB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0E1C70F72920B377008435BB /* credits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credits.txt; sourceTree = "<group>"; };
@@ -5544,8 +5542,6 @@
 		0E1C72382920B378008435BB /* Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Variant.h; sourceTree = "<group>"; };
 		0E1C72392920B378008435BB /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWindow.h; sourceTree = "<group>"; };
 		0E1C723A2920B378008435BB /* FillShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FillShader.cpp; sourceTree = "<group>"; };
-		0E1C723E2920B378008435BB /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmad.0.dylib; sourceTree = "<group>"; };
-		0E1C723F2920B378008435BB /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		0E1C72402920B378008435BB /* EndlessSkyLib.cbp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EndlessSkyLib.cbp; sourceTree = "<group>"; };
 		0E1C72422920B378008435BB /* check_copyright.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = check_copyright.py; sourceTree = "<group>"; };
 		0E1C72432920B378008435BB /* build_custom_libmad.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build_custom_libmad.sh; sourceTree = "<group>"; };
@@ -5713,7 +5709,6 @@
 				0E1C739B2920B6AF008435BB /* libjpeg.9.dylib in Frameworks */,
 				0E1C73992920B678008435BB /* OpenAL.framework in Frameworks */,
 				0E1C73972920B670008435BB /* OpenGL.framework in Frameworks */,
-				0E1C73912920B379008435BB /* libmad.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5737,17 +5732,9 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
-		0E1C5D102920B372008435BB /* vcpkg */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = vcpkg;
-			sourceTree = "<group>";
-		};
 		0E1C5D112920B372008435BB /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				0E1C5D122920B372008435BB /* music */,
 				0E1C5D132920B372008435BB /* heaver shard hit.wav */,
 				0E1C5D142920B372008435BB /* mod blaster.wav */,
 				0E1C5D152920B372008435BB /* explosion nuke.wav */,
@@ -5867,13 +5854,6 @@
 				0E1C5D882920B372008435BB /* hyperdrive out.wav */,
 			);
 			path = sounds;
-			sourceTree = "<group>";
-		};
-		0E1C5D122920B372008435BB /* music */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = music;
 			sourceTree = "<group>";
 		};
 		0E1C5D3E2920B372008435BB /* ambient */ = {
@@ -11330,29 +11310,6 @@
 			path = scene;
 			sourceTree = "<group>";
 		};
-		0E1C70F02920B377008435BB /* docs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = docs;
-			sourceTree = "<group>";
-		};
-		0E1C70F22920B377008435BB /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				0E1C70F32920B377008435BB /* icons */,
-				0E1C70F42920B377008435BB /* endless-sky.iconset */,
-			);
-			path = resources;
-			sourceTree = "<group>";
-		};
-		0E1C70F32920B377008435BB /* icons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = icons;
-			sourceTree = "<group>";
-		};
 		0E1C70F92920B377008435BB /* source */ = {
 			isa = PBXGroup;
 			children = (
@@ -11695,30 +11652,6 @@
 			path = text;
 			sourceTree = "<group>";
 		};
-		0E1C723B2920B378008435BB /* overlays */ = {
-			isa = PBXGroup;
-			children = (
-				0E1C723C2920B378008435BB /* catch2 */,
-			);
-			path = overlays;
-			sourceTree = "<group>";
-		};
-		0E1C723C2920B378008435BB /* catch2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = catch2;
-			sourceTree = "<group>";
-		};
-		0E1C723D2920B378008435BB /* build */ = {
-			isa = PBXGroup;
-			children = (
-				0E1C723E2920B378008435BB /* libmad.0.dylib */,
-				0E1C723F2920B378008435BB /* SDL2.framework */,
-			);
-			path = build;
-			sourceTree = "<group>";
-		};
 		0E1C72412920B378008435BB /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -11986,13 +11919,11 @@
 		0EDDB97D2920B28500C8D354 = {
 			isa = PBXGroup;
 			children = (
-				0E1C723D2920B378008435BB /* build */,
 				0E1C5CC62920B372008435BB /* changelog */,
 				0E1C70EE2920B377008435BB /* CONTRIBUTING.md */,
 				0E1C70F52920B377008435BB /* copyright */,
 				0E1C70F72920B377008435BB /* credits.txt */,
 				0E1C72502920B378008435BB /* data */,
-				0E1C70F02920B377008435BB /* docs */,
 				0E1C70ED2920B377008435BB /* endless-sky.6 */,
 				0E1C724F2920B378008435BB /* endless-sky.desktop */,
 				0E1C70F82920B377008435BB /* EndlessSky.cbp */,
@@ -12005,15 +11936,12 @@
 				0E1C5CC72920B372008435BB /* io.github.endless_sky.endless_sky.appdata.xml */,
 				0E1C70F12920B377008435BB /* keys.txt */,
 				0E1C5CC82920B372008435BB /* license.txt */,
-				0E1C723B2920B378008435BB /* overlays */,
 				0E1C72DC2920B378008435BB /* readme-developer.md */,
 				0E1C70F62920B377008435BB /* README.md */,
-				0E1C70F22920B377008435BB /* resources */,
 				0E1C72DE2920B379008435BB /* SConstruct */,
 				0E1C5D112920B372008435BB /* sounds */,
 				0E1C70F92920B377008435BB /* source */,
 				0E1C72412920B378008435BB /* utils */,
-				0E1C5D102920B372008435BB /* vcpkg */,
 				0EDDB9872920B28500C8D354 /* Products */,
 				0E1C73932920B61D008435BB /* Frameworks */,
 			);
@@ -12063,7 +11991,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0EDDB9812920B28500C8D354 /* Build configuration list for PBXProject "endless-sky" */;
+			buildConfigurationList = 0EDDB9812920B28500C8D354 /* Build configuration list for PBXProject "EndlessSky" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -12424,7 +12352,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0EDDB9812920B28500C8D354 /* Build configuration list for PBXProject "endless-sky" */ = {
+		0EDDB9812920B28500C8D354 /* Build configuration list for PBXProject "EndlessSky" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0EDDB98B2920B28500C8D354 /* Debug */,
