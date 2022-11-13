@@ -313,8 +313,20 @@ mission "Unfettered Jump Drive Trading"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You exit your ship and immediately the engineer starts leads you to the outfitter, "We will show you the weapon once you arrive. For now you will only be allowed to access one of them, but if you continue to prove of great assistance to us we may give you access to the others." They lead you trough the usual outfitter but then go to an area you never noticed before, probably because you were not meant to. You have to pass trough a check where they let you keep weapons but verify your identity and history.`
-			`	You are eventually taken to an underground zone, passing trough what looks like very basic weapon testing. Unfettered are there, doing small modifications and testing them, but never going really far in the tests. Seeing you look, the engineer explains. "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually shoots before Unfettered captain can get their hands on it." Now that they mention it you notice a few captains looking at the tests, and one even requests a weapon to be taken to his ship, apparently satisfied with its performances.`
+			`	You exit your ship and immediately the engineer starts leads you to the outfitter, "We will show you the weapon once you arrive. For now you will only be allowed to access one of them, but if you continue to prove of great assistance to us we may give you access to the others." They lead you trough the usual outfitter but then go to an area you never noticed before, probably because you were not meant to. As you were about to pass trough what you assumed to be a security check, an Unfettered throws a blade to your face you.`
+			choice
+				`	(Try to grab it.)`
+					goto grab
+				`	(Try to dodge it.)`
+					goto dodge
+				`	(Leap to the side and use my own weapon.)`
+			`	You leap to the side, and get your own weapon just in time to threaten the Unfettered that threw the blade at you with it. They lower their weapon, and seem a bit surprised by your unconventional tactics. "Good! There is higher honor than surviving, on the field of battle. I am Desneeparu, and it is my pleasure to meet you, captain."`
+				goto meet
+			`	You manage to grab the weapon, just in time to deflect an incoming attack from the same Unfettered. You duel with them for what feels like an eternity, and you are astonished by the fact you managed to survive that long. Then, suddenly, they smile, and lower their weapon. "You sure know how to fight! I am Desneeparu, and it is pleasure to meet you, captain <last>!" She says, before laughing at your surprised face.`
+			label meet
+			action
+				log "minor people" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. She fought you to test your resolve before you were given access to their weapons. You suspect she was holding back or you would never have stood a chance.`
+			`	Now that you have successfully passed the test, you are then taken to an underground zone, passing trough what looks like very basic weapon testing. Many Hai are there, doing small modifications and testing them, but never going really far in the tests. Seeing your interest, the engineer explains. "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually shoots before Unfettered captain can get their hands on it." Now that they mention it you notice a few captains looking at the tests, and one even requests a weapon to be taken to his ship, apparently satisfied with its performances. You keep on walking until you enter a proper outfitter section of the facility.`
 			`	"Welcome to the special section of the outfitter, captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we can offer something way more valuable than money. For now, I can only offer you the mighty tripulse shredder, but eventually we will give you access to all kinds of weapons. 2 tripulse cannons for one jump drive and our sympathy is the deal I propose." They say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to the rest of Hai weaponry, but enhanced someway or another. There even are some ion looking weapons, but one is smaller than an ion cannon whilst another one looks like a turreted version of it.`
 			label weapons
 			choice
@@ -361,6 +373,10 @@ mission "Unfettered Jump Drive Trading"
 				outfit "Tripulse Shredder" 2
 			`	They order their crew to do the transfer, and come address you before leaving. "Do note that if you ever want more weapons we will always be willing to trade them for jump drives in the job board. We can of course always offer money instead if that is of higher value to you."`
 				accept
+			label dodge
+			`	You manage to dodge the blade but are then left defenceless when the same Unfettered that threw you the blade comes in with another one, and slashes down to strike. They stop at the last possible moment, with a discontent face. "So this is how you 'fight', captain? You hide? You dodge? A weapon thrown at you no longer belongs to the enemy, you can claim it! We cannot give you access to our vault, because our weapons are meant for warriors. You will of course still be able to trade jump drives for money, but that is the extent of it."`
+			action
+				set "unfettered: money for drives"
 	on accept
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
