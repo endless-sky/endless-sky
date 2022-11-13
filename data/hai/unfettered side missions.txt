@@ -1245,9 +1245,18 @@ mission "Unfettered: Mera's Trust Broken"
 		not "Unfettered: Earn Your Prize: active"
 
 
-phrase "modified shield beetle prize"
-	word
-		`As promized by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain: a brand new ship, produced just for you. As promised, it is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Thank you for your assistance so far!"`
+conversation "modified shield beetle prize"
+	`As promized by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward, Captain: a brand new ship, produced just for you. As promised, it is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, and includes a reinforced shield matrix. Thank you for your assistance so far!"`
+	`	When you enter the ship you realize that something is blinking in the cockpit. It seems this is a communicator with a message left on it, from Mera also. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it."`
+	branch "has communicator"
+		has "language: Wanderer"
+	`	"Once you acquire a translator we will include it in your ship so you may easily communicate with any Hai."`
+		goto then
+	label "has communicator"
+	`	"Since you already have a translator, here are the instructions to equip it on your ship." You install it on your ship as requested, and do a little test to make sure it is working properly.`
+	label then
+	`	"As you may have guessed by now, this ship is way more than just a ship. It is a symbol. As such, it will grant you access to the ionic weaponry on Darkcloak. You can park it anywhere in the galaxy and we will know, using the communicator, but should you lose it you will also lose access to those weapons. It is a symbol of trust, like a license you humans use, if you will."`
+	`	The message ends. Time to try the new beetle to see what it can do.`
 
 
 mission "Unfettered: Normal Prize"
@@ -1257,7 +1266,7 @@ mission "Unfettered: Normal Prize"
 		has "Unfettered: Earn Your Prize: done"
 		has "unfettered: prize right away"
 	on offer
-		dialog phrase "modified shield beetle prize"
+		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle" "Basilisk"
 		fail
 
@@ -1297,7 +1306,7 @@ mission "Unfettered: Dakka Prize"
 		has "Unfettered: Earn Your Prize: done"
 		has "event: unfettered: more dakka"
 	on offer
-		dialog phrase "modified shield beetle prize"
+		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Blaster)" "Basilisk"
 		fail
 
@@ -1329,7 +1338,7 @@ mission "Unfettered: Cool Prize"
 		has "Unfettered: Earn Your Prize: done"
 		has "event: unfettered: cooler"
 	on offer
-		dialog phrase "modified shield beetle prize"
+		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk"
 		fail
 
@@ -1359,7 +1368,7 @@ mission "Unfettered: Ionic Prize"
 		has "Unfettered: Earn Your Prize: done"
 		has "event: unfettered: disable-er"
 	on offer
-		dialog phrase "modified shield beetle prize"
+		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk"
 		fail
 
@@ -1391,7 +1400,7 @@ mission "Unfettered: Immortal Prize"
 		has "Unfettered: Earn Your Prize: done"
 		has "event: unfettered: syscore's got it"
 	on offer
-		dialog phrase "modified shield beetle prize"
+		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk"
 		fail
 

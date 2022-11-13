@@ -152,13 +152,37 @@ mission "Unfettered Jump Drive 4"
 
 			label "want outfits"
 			`The Unfettered usual deal of trading a jump drive for weapons still stands.`
+			branch "has respect"
+				has "ships model (all): Modified Shield Beetle"
 			choice
 				`	(Take two tripulse shredders.)`
 				`	(Take money instead.)`
 					goto money
+			label tripulse
 			action
 				outfit "Tripulse Shredder" 2
 			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
+				goto trade
+
+			label "has respect"
+			`	They add that since you still have the modified shield beetle, you may access the special weaponry intended for it.`
+			choice
+				`	(Take two tripulse shredders.)`
+					goto tripulse
+				`	(Take 3 ionic blasters.)`
+				`	(Take 1 ionic turret.)`
+					goto turret
+				`	(Take money instead.)`
+					goto money
+			action
+				outfit "Ionic Blaster Prototype" 3
+			`	The three blasters are loaded on your ship, in exchange for your jump drive.`
+				goto trade
+
+			label turret
+			action
+				outfit "Ionic Turret Prototype"
+			`	The turret is loaded on your ship, in exchange for your jump drive.`
 
 			label trade
 				outfit "Jump Drive" -1
