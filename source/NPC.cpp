@@ -117,8 +117,6 @@ void NPC::Load(const DataNode &node)
 			personality.Load(child);
 		else if(child.Token(0) == "dialog")
 		{
-			if(!conversation->IsEmpty())
-				conversationFirst = false;
 			bool hasValue = (child.Size() > 1);
 			// Dialog text may be supplied from a stock named phrase, a
 			// private unnamed phrase, or directly specified.
@@ -457,12 +455,10 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	{
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
-		if(!dialogText.empty() && !conversationFirst)
+		if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 		if(!conversation->IsEmpty())
 			ui->Push(new ConversationPanel(player, *conversation, nullptr, ship));
-		if(!dialogText.empty() && conversationFirst)
-			ui->Push(new Dialog(dialogText));
 	}
 }
 
