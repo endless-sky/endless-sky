@@ -2887,18 +2887,12 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	bool isJump = (jumpUsed.first == JumpType::JumpDrive);
 	double scramThreshold = attributes.Get("scram drive");
 
-	if(isJump)
-	{
-		if(position.LengthSquared()
-			<= currentSystem->JumpDepartureDistance() * currentSystem->JumpDepartureDistance())
-			return false;
-	}
-	else
-	{
-		if(position.LengthSquared()
-			<= currentSystem->HyperDepartureDistance() * currentSystem->HyperDepartureDistance())
-			return false;
-	}
+	double departure = isJump ?
+		currentSystem->JumpDepartureDistance() * currentSystem->JumpDepartureDistance()
+		: currentSystem->HyperDepartureDistance() * currentSystem->HyperDepartureDistance();
+	if(position.LengthSquared() <= departure)
+		return false;
+
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
 	// and pointed in the right direction.

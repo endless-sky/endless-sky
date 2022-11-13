@@ -1984,8 +1984,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	double departure =  isJump ?
 		ship.GetSystem()->JumpDepartureDistance() :
 		ship.GetSystem()->HyperDepartureDistance();
-	double squaredDeparture = departure * departure;
-	squaredDeparture += SAFETY_OFFSET;
+	double squaredDeparture = departure * departure + SAFETY_OFFSET;
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
 		Point closestDeparturePoint;
