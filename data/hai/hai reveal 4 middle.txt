@@ -1141,28 +1141,43 @@ mission "Hai Reveal [A11] Sound the Alarm"
 		event "hai and human ships at wormhole"
 		log `Teeneep has been rejected by the Elders again, but has set in a motion a plan which has triggered an election instead. This snap election has closed the border and risked creating a diplomatic incident.`
 		conversation
-			`Upon your return, Teeneep demands another audience with the Elders. None of them seem thrilled about a repeat session, but this time you must attend as a witness in the Chambers in support of the case. Sayari accompanies you to act as interpreter. When Teeneep presents the Unfettered's offer of assistance there is a smattering of largely disbelieving sounds, though when she tells them about their willingness to force the matter the tone of the conversation gets remarkably more tense. "If you don't do it, they will. Whether that's with you, or through you."`
-			`	One of the Elders takes the time to address you as a witness, and confirm that threat was indeed real. Even so, though, that only seems to sway a small selection. One of the more stubborn Elders stands up. "The Unfettered have made serious attempts to push through at Wah Ki before, to no avail. More recently, they've been more trouble again, and again we have organized more than enough security to keep their disruption contained, even with the current human crisis. This is ridiculous, and the Unfettered would not dare, not while they are so dependent on our food and medical supplies these past years."`
-			`	"You are blind. Blind and old and foolish," snaps Teeneep. "If you will not even listen to this, then apparently I must now be the one to present a pathway to avoid war. If you do not take action, I will make the history of inaction I have discovered public knowledge. Every Hai from Greenwater to Snowfeather will know by the end of the day."`
-			`	Two different Elders respond simultaneously. The first says, "Five thousand Hai in two hundred years is barely a concern. That many managed to get themselves killed swimming with Gelo Appanoh in the last decade alone."`
-			`	That one is left searching the room for someone who might actually be listening halfway through his sentence, though, as the second points at Teeneep and loudly says, "You wouldn't dare!" To which Teeneep responds, "It is already scheduled to happen unless I actively stop it!"`
-			`	Sayari has to raise her voice above the din and disentangles their two responses for you as the room devolves into shouting and several Elders who look quite worried leave the room. A moment later all three of you are escorted out and the chambers are closed.`
-			`	Teeneep just shakes her head, pulls out a datapad, and quickly taps a few times. "Well, that was going to happen in an hour. No point waiting, though. Let's get dinner."`
+			`Upon your return, Teeneep sends an urgent demand for an audience with the Elders, along with a few paragraphs written in Hai. The meeting is called within an hour, and the room is entirely full. This may be the entire Elder Council; if so, they must consider this a grave matter. Teeneep and Sayari are waiting for you to follow them into the chambers.`
+			`	The Elder moderating the proceedings calls Teeneep to testify, using your language. It seems they consider your participation critical.`
+			`	Teeneep begins, "For the first time in three hundred years, we find ourselves beset on our borders by hostile forces. They have kidnapped five thousand of our people, and this council has been too paralyzed with fear of change to defend us. The Unfettered were once the defenders of all Hai, and I have convinced them to be so once again. Will you do what is right for our people, or will you be replaced?"`
+			`	At the word "replaced," murmurs rise and Sayari looks at you with deep concern. The moderator silences the room and asks you to testify. "Captain <last>, you have the unique vantage point of an accomplished outsider who has seen all parts of this conflict. What do you advise?`
+			`	You carefully choose your words before speaking, as this may be a pivotal moment in history. This may spark a war - or prevent one.`
 			choice
-				`	(Get dinner.)`
-					goto dinner
-				`	(Decline and maybe eat with the diplomats.)`
-			`	There are some perfectly adequate meal places in the cafeteria area. There you manage to join Alondo and Remington, who have a surprisingly civilized conversation the entire time. Albeit mostly about work.`
-			`	You're still finishing up a little shortly after they leave, at which point a harried-looking Sayari appears and practically sprints across the room to you.`
-				goto alarm
-			label dinner
-			`	You join Teeneep and Sayari at a fusion restaurant about a block down the road from the 'Elders' Chambers' - which turns out to be the official name of the whole government complex.`
-			`	Having finished your main meal, and while waiting for some dessert that Teeneep has ordered, Sayari pulls out her datapad. "You know, while we're waiting. It's probably a good idea to check the damage. I don't know if your plan is actually going to have the desired effect, you know. I mean, seriously, Tee, what will you do if it doesn't? Will the Hai actually have to shed our brethren's blood with lethal intent?"`
-			`	Teeneep just sips her drink and shakes her head. "Oh, Sayari, you really are getting too long in the tooth for domestic politics these days."`
-			`	A moment later Sayari squeaks and looks up in horror. "You triggered an election?! This wasn't just making it public, you had the petition for redress ready to go all along!"`
-			`	She scrolls down on her pad several times and begins to mutter, "Oh dear, oh no." She lapses into Hai for a moment before returning. "It hit the trending issues board, and triggered the safety policy alert response. People got direct notifications that this was an issue. There are over two billion supporting votes for an injunctive action and it's only been two hours... this is what you hoped would happen, isn't it?"`
-			`Teeneep places a gentle hand on Sayari's arm. "Better this than war."`
-			label alarm
+				`	"You can trust the Unfettered to defend you, but you must be careful to avoid a war with the humans. That would be catastrophic for everyone."`
+				`	"The Unfettered have offered their help because you would not help your people. If you change your decision, you will not need their involvement."`
+					goto "turn back unfettered"
+			action
+				set "told hai to accept unfettered help"
+			`	One Elder rises and says, "The Unfettered only know how to make war. Once they are in human space, there's no telling what they'll do." Many in the room nod in agreement.`
+			`	Teeneep responds, "They are clever strategists and dedicated in our protection. Never would they take such unnecessary risks. I am certain they would accept an overseer among us to advise them on limits to their actions."`
+				goto "the elders vote"
+			label "turn back unfettered"
+			action
+				set "told hai to reject unfettered help"
+			`	A disgruntled Elder responds, "Change our decision? Our decision not to violate human sovereignty? Even if I lose my Eldership, I will not vote for violence."`
+			`	Teeneep says, "If you take no action, and refuse help from our brethren, they'll pass through our territory anyway. Fighting at Wah Ki has stopped, as the military is anticipating an agreement."`
+			label "the elders vote"
+			`	Another Elder interjects, "You're exaggerating the impact, Teeneep. Five thousand Hai in two hundred years is barely a concern. That many managed to get themselves killed swimming with Gelo Appanoh in the last decade alone."`
+			`	Many Elders seem appalled by that observation, but the moderator interrupts. "We will vote on two counts: Do we act? Do we accept Unfettered help?"`
+			choice
+				`	(Await the vote.)`
+			`	After a few more minutes of private discussions, the vote is tallied. Unfortunately, the majority vote "no" on both counts. Your words may not have swayed the vote, but perhaps they'll resonate in the Hai psyche long enough to have an effect.`
+			`	Teeneep is allowed to respond, and says ominously, "You know what will happen next."`
+			`	An angry Elder replies, "You wouldn't dare!" To which Teeneep responds, "It is already scheduled to happen unless I actively stop it!" She smiles and leaves the room as Sayari follows, motioning for you to do so as well.`
+			`	Sayari leads you to a private meeting room.`
+			`	Teeneep explains her ominous words, "Our democracy allows a Petition of No Confidence against the government. If there are enough petitioners, it forces an election. Activists in my organization have been pushing a petition for weeks.`
+			`	"It was obvious what the Elder Council's response would be," and with a sarcastic smile, she adds, "and I knew I would only come back alive if the Unfettered agreed to help. So, I arranged in advance for the petition to be promoted along with a widespread broadcast of these proceedings."`
+			`	Sayari assures you, "These petitions take time, and rarely succeed. It is more of a warning to the Elders than anything else. Still, we should watch the situation.`
+			`	"For now," she says, "we're all in need of lunch"`
+			choice
+				`	(Go to lunch.)`
+			`	You join Teeneep and Sayari at a fusion restaurant about a block down the road from the "Elders' Chambers" - which turns out to be the official name of the whole government complex.`
+			`	Not half way through her food, Sayari's data pad beeps frantically. She looks at it and mutters, "Oh dear, oh no." She lapses into Hai for a moment before returning. "The petition! It hit the trending issues board, and triggered the safety policy alert response. People got direct notifications that this was an issue. There are over a two billion supporting votes for an injunctive action and it's only been an hour... this is what you hoped would happen, isn't it?"`
+			`	Teeneep places a gentle hand on Sayari's arm. "Better this than war."`
 			`	Sayari's eyes are alive with thinly-veiled panic as she slams her hand down on the table. "Captain <last>, you must leave immediately. Get on your ship and fly to <planet> right now! The winds of change are afoot and we will have an election. They'll hit the threshold in maybe only twenty minutes, and it'll take maybe thirty more for the bureaucracy to act on it. The instant the election is announced formally, all non-essential ships will be grounded, all communication in or out of Hai space will be cut off, and the border will be sealed to everyone - not in the polite way either. If even one ship tries to cross the border to investigate... there's no telling what will happen.`
 			`	"Go, go with all possible haste! I will tell the others, but right now you must go. Now!"`
 				launch
