@@ -131,6 +131,7 @@ private:
 	std::list<std::string> shipNames;
 	std::list<ExclusiveItem<Fleet>> fleets;
 
+	bool conversationFirst = true;
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;
 	int failIf = 0;
