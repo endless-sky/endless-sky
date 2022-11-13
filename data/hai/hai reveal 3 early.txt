@@ -36,8 +36,8 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"This means we need a station, on your side of the wormhole in Ultima Thule. It also means we need it fast, much faster than your people could ever hope to assemble it. The Hai can build it much quicker than humanity can; we actually considered the possibility of needing to raise a station quickly a while back. The alien look that the station will have if we build it has been considered just another favorable aspect of the movie and it provides a long-term commercial justification for the whole idea; the, uh, 'tourist trap'.`
 			choice
 				`	"I should oversee the construction, given the current political situation."`
-				`	"Good idea. Let me know when the station is complete."`
 					goto oversee
+				`	"Good idea. Let me know when the station is complete."`
 			`	"It's not so simple." Sayari continues, "In the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't actually built one in so, so long."`
 			`	Now that she mentions it, all of the stations in Hai space do seem to be very, very old.`
 			`	"However, therein lies a problem," says Xilin.`
