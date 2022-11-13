@@ -1172,7 +1172,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Teeneep explains her ominous words, "Our democracy allows a Petition of No Confidence against the government. If there are enough petitioners, it forces an election. Activists in my organization have been pushing a petition for weeks.`
 			`	"It was obvious what the Elder Council's response would be," and with a sarcastic smile, she adds, "and I knew I would only come back alive if the Unfettered agreed to help. So, I arranged in advance for the petition to be promoted along with a widespread broadcast of these proceedings."`
 			`	Sayari assures you, "These petitions take time, and rarely succeed. It is more of a warning to the Elders than anything else. Still, we should watch the situation.`
-			`	"For now," she says, "we're all in need of lunch"`
+			`	"For now," she says, "we're all in need of some lunch."`
 			choice
 				`	(Go to lunch.)`
 			`	You join Teeneep and Sayari at a fusion restaurant about a block down the road from the "Elders' Chambers" - which turns out to be the official name of the whole government complex.`
