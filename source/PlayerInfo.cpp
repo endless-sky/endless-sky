@@ -364,14 +364,14 @@ void PlayerInfo::Load(const string &path)
 		for(const auto &it : toDistribute)
 		{
 			const auto missionIt = find_if(missions.begin(), missions.end(),
-					[&it](const Mission &mission) {return mission.UUID().ToString() == it.first; });
+					[&it](const Mission &mission) { return mission.UUID().ToString() == it.first; });
 			if(missionIt != missions.end())
 			{
 				const Mission *cargoOf = &*missionIt;
 				for(const auto &shipCargo : it.second)
 				{
 					auto shipIt = find_if(ships.begin(), ships.end(),
-							[&shipCargo](const shared_ptr<Ship> &ship) {return ship->UUID().ToString() == shipCargo.first; });
+							[&shipCargo](const shared_ptr<Ship> &ship) { return ship->UUID().ToString() == shipCargo.first; });
 					if(shipIt != ships.end())
 					{
 						Ship *destination = shipIt->get();
@@ -3593,12 +3593,16 @@ void PlayerInfo::Save(const string &path) const
 		else
 			out.Write("mission cargo");
 		out.BeginChild();
-		out.Write("player ships");
-		out.BeginChild();
-		for(const auto &it : toSave)
-			for(const auto &it2 : it.second)
-				out.Write(it.first, it2.first, it2.second);
-		out.EndChild();
+		{
+			out.Write("player ships");
+			out.BeginChild();
+			{
+				for(const auto &it : toSave)
+					for(const auto &sit: it.second)
+						out.Write(it.first, sit.first, sit.second);
+			}
+			out.EndChild();
+		}
 		out.EndChild();
 	};
 	if(!offWorldMissionCargo.empty())
