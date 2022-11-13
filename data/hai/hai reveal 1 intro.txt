@@ -534,7 +534,7 @@ mission "Hai Leaks Response 1"
 			label resume
 			choice
 				`	(Keep silent and observe.)`
-					goto karma
+					goto observe
 				`	(Ask about the large security detachment.)`
 			`	You turn to the Hai with the most decorated uniform and ask, "Why do I have so many escorts?"`
 			`	"Crowd control," the Hai responds. "You've become the center of attention of politicians in a media circus. Life in Hai space is complicated of late, and we want to make sure you are not stopped by crowds with endless questions before reaching your meeting."`
@@ -542,6 +542,7 @@ mission "Hai Leaks Response 1"
 				`	(Keep silent and observe.)`
 				`	"Thank you for your service."`
 					goto thank
+			label observe
 			branch karma
 				karma > 1
 			`	As you are making the walk you hear questions posed and rumors stated. Occasionally you hear words like "survivor" and "dangerous" thrown in amongst the babble.`
