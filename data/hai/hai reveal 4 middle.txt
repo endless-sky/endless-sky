@@ -1297,6 +1297,10 @@ mission "Hai Reveal [A13] A New Elder"
 			`	Alondo grimaces, raises his eyebrows, and gives a lopsided shrug which altogether does a remarkable job of conveying the sentiment: 'so far it looks like it, but I still need at least one more stiff drink to get over it'. Remington looks at him and chuckles halfheartedly before emptying his glass and putting it down with a sharp clink. "We weren't sure for a while there, but other than being cut off, we're okay."`
 			label continue
 			`	Alondo gestures at the large, wall-mounted monitor they've been watching, and you realize that it must be displaying some kind of post-election coverage. The writing is all in Hai, but it seems that the majority of the information that would matter to the diplomats has been displayed visually. On its own you'd have never guessed at trying to read Teeneep's name written in Hai, but when it's presented next to her face and then shown on a pie chart next to percentages and other graphics, it becomes easy enough to follow what's happening.`
+			choice
+				`	"Can you tell me who won the election?"`
+					goto "who won"
+				`	(Let him get to the point in his own time.)`
 			`	"Every so often they have a segment in something we can understand, presumably because of the rest of us out there," says Remington, gesturing vaguely beyond the walls to the outside. "You wouldn't believe some of the rhetoric the last few days while you've been gone."`
 			`	Alondo visibly shudders, and pushes the bottle across the table back to Remington. "Sometimes it was like watching the old documentaries and political dramas I studied back at school. The ones where there's some populist extremist with dangerous ideas that the establishment is just blindly assuming couldn't possibly be successful, while at the same time that same populist is whipping crowds into a violent frenzy on the streets outside."`
 			`	On the screen the face of a charming-looking male Hai comes up and Alondo points with sudden vigor. "Him! I swear there was going to be torches and pitchforks right below my window one night thanks to him. He's here on Hai-home, as are his followers."`
@@ -1306,6 +1310,10 @@ mission "Hai Reveal [A13] A New Elder"
 			`	He manages to make that last line sound both bewildered and grumpy at the same time. "That Teeneep you've been running around with - and yes, don't look at me in shock, Sayari told me when we were concerned you might not get out. You've developed some friends in high places and I admire that... where was I?"`
 			`	"Teeneep!" says Alondo, perhaps a little too loudly, nearly poking Remington in the face.`
 			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
+				goto "walk or drink"
+			label "who won"
+			`	Remington answers your question, "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
+			label "walk or drink"
 			choice
 				`	(Wait with them.)`
 				`	(Drink with them.)`
