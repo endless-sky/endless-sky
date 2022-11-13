@@ -12306,10 +12306,15 @@
 		0EDDB98E2920B28500C8D354 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build",
+				);
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include,
+					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -12321,6 +12326,7 @@
 					/opt/homebrew/Cellar/sdl2/2.24.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SYMROOT = build;
 			};
@@ -12329,10 +12335,15 @@
 		0EDDB98F2920B28500C8D354 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build",
+				);
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include,
+					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -12344,6 +12355,7 @@
 					/opt/homebrew/Cellar/sdl2/2.24.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SYMROOT = build;
 			};
