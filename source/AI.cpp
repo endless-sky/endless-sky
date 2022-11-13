@@ -3652,7 +3652,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			autoPilot = activeCommands;
 	}
 	bool shouldAutoAim = false;
-	if((Preferences::AutoAimIndex() ? ((Preferences::AutoAimIndex() == 1) ? (activeCommands.Has(Command::PRIMARY)) : true) : false)
+	if((Preferences::AutoAimIndex() == 2 || ((Preferences::AutoAimIndex() == 1) && (activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY))))
 			&& !command.Turn() && !ship.IsBoarding()
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()) || ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))

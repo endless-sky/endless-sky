@@ -49,7 +49,7 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> AUTO_AIM_SETTINGS = {"off", "when firing", "always"};
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "when firing", "always on"};
 	int autoAimIndex = 2;
 }
 
@@ -91,7 +91,7 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
-		else if(node.Token(0) == "auto aim")
+		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
@@ -112,7 +112,7 @@ void Preferences::Save()
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("auto aim", autoAimIndex);
+	out.Write("Automatic aiming", autoAimIndex);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
