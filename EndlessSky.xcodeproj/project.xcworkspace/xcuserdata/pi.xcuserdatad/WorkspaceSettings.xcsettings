@@ -4,5 +4,11 @@
 <dict>
 	<key>BuildLocationStyle</key>
 	<string>UseTargetSettings</string>
+	<key>CustomBuildLocationType</key>
+	<string>RelativeToDerivedData</string>
+	<key>DerivedDataLocationStyle</key>
+	<string>Default</string>
+	<key>ShowSharedSchemesAutomaticallyEnabled</key>
+	<true/>
 </dict>
 </plist>
