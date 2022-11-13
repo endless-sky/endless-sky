@@ -1418,7 +1418,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	The Elder moderating the proceedings calls Teeneep to testify, using your language. It seems they consider your participation critical.`
 			`	Teeneep begins, "For the first time in three hundred years, we find ourselves beset on our borders by hostile forces. They have kidnapped five thousand of our people, and this council has been too paralyzed with fear of change to defend us. The Unfettered were once the defenders of all Hai, and I have convinced them to be so once again. Will you do what is right for our people, or will you be replaced?"`
 			`	At the word "replaced," murmurs rise and Sayari looks at you with deep concern. The moderator silences the room and asks you to testify. "Captain <last>, you have the unique vantage point of an accomplished outsider who has seen all parts of this conflict. What do you advise?`
-			`	You carefully choose your words before speaking, as this may be a pivotal moment in history. This may spark a war - or prevent one.`
+			`	You should carefully choose your words before speaking, as this may be a pivotal moment in history. This may spark a war - or prevent one.`
 			choice
 				`	(Get dinner.)`
 					goto dinner
