@@ -2150,7 +2150,7 @@ mission "FW Refinery 1"
 	on offer
 		conversation
 			`JJ and Freya meet you soon after you land on <origin>. "Great work in the battle, Captain," Freya says. "Unfortunately, we now need to turn our attention to cleaning up Tomek's mess."`
-			`	"The people of Thule became very weary of our deal with them after Tomek's attack on Greenrock," JJ explains. "They feared that they would be next, and that our negotiations with them were just an attempt to get them to distance themselves from what would be their main line of defense."`
+			`	"The people of Thule became wary of our deal with them after Tomek's attack on Greenrock," JJ explains. "They feared that they would be next, and that our negotiations with them were just an attempt to get them to distance themselves from what would be their main line of defense."`
 			`	"We have to show them that our offer was genuine," Freya says.`
 			choice
 				`	"How are we going to do that?"`
