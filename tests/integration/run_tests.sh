@@ -151,11 +151,9 @@ fi
 IFS=$'\n'
 
 TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}" --config "${ES_CONFIG_TEMPLATE_PATH}")
-TESTS_OK=($(echo "${TESTS}" | grep -e "^active" | cut -f2)) || true
-TESTS_NOK=($(echo "${TESTS}" | grep -e "^known failure" -e "^missing feature" | cut -f2)) || true
+TESTS_OK=($(echo "${TESTS}")) || true
 NUM_TOTAL=${#TESTS_OK[@]}
 
-#TODO: Allow running known-failures by default as well (to check if they accidentally got solved)
 if [ ${NUM_TOTAL} -eq 0 ]
 then
   echo "1..1"
