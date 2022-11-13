@@ -117,12 +117,12 @@ mission "Unfettered Jump Drive 4"
 			label "want outfits"
 			`The Unfettered usual deal of trading a jump drive for weapons still stands.`
 			choice
-				`	(Take two tripulse shredders.)`
+				`	(Take two Tripulse Shredders.)`
 				`	(Take money instead.)`
 					goto money
 			action
 				outfit "Tripulse Shredder" 2
-			`	The two shredders are loaded on your ship, in exchange for your jump drive.`
+			`	The two Shredders are loaded on your ship, in exchange for your jump drive.`
 
 			label trade
 				outfit "Jump Drive" -1

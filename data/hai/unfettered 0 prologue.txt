@@ -308,12 +308,12 @@ mission "Unfettered Jump Drive Trading"
 		random < 15
 	on offer
 		conversation
-			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them - that looks like an engineer judging by the pad and equipement they have - is waiting for you at your hatch. Maybe they mean to trade something else than money with you. Do you want to bargain another drive with them?`
+			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them - an engineer judging by the writing pad and equipment they have - is waiting for you at your hatch. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
 			choice
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You exit your ship and immediately the engineer starts leads you to the outfitter, "We will show you the weapon once you arrive. For now you will only be allowed to access one of them, but if you continue to prove of great assistance to us we may give you access to the others." They lead you trough the usual outfitter but then go to an area you never noticed before, probably because you were not meant to. As you were about to pass trough what you assumed to be a security check, an Unfettered throws a blade to your face you.`
+			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We will show you the weapon once you arrive. For now you will only be allowed to access one of them, but if you continue to prove of great assistance to us we may give you access to the others." They lead you through the usual outfitter but then go to an area you never noticed before, probably because you were not meant to. As you were about to pass through what you assumed to be a security check, an Unfettered throws a blade at your face.`
 			choice
 				`	(Try to grab it.)`
 					goto grab
@@ -322,26 +322,26 @@ mission "Unfettered Jump Drive Trading"
 				`	(Leap to the side and use my own weapon.)`
 				`	(Flee.)`
 					goto flee
-			`	You leap to the side, and get your own weapon just in time to threaten the Unfettered that threw the blade at you with it. They lower their weapon, and seem a bit surprised by your unconventional tactics. "Well done! There is higher honor than surviving, on the field of battle. A tactic is only good if you can find and execute it quickly enough to give you an edge. I am Desneeparu, and it is my pleasure to meet you, captain."`
+			`	You leap to the side, and get your own weapon just in time to threaten the Unfettered that threw the blade at you with it. They lower their weapon, and seem a bit surprised by your unconventional tactics. "Well done! There is higher honor than surviving on the field of battle. A tactic is only good if you can find and execute it quickly enough to give you an edge. I am Desneeparu, and it is my pleasure to meet you, captain."`
 				goto meet
 			label grab
 			`	You manage to grab the weapon, just in time to deflect an incoming attack from the same Unfettered. You duel with them for what feels like an eternity, and you are astonished by the fact you managed to survive that long. Then, suddenly, they smile, and lower their weapon. "You sure know how to fight! I am Desneeparu, and it is pleasure to meet you, captain <last>!" She says, before laughing at your surprised face.`
 			label meet
 			action
 				log "minor people" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. She fought you to test your resolve before you were given access to their weapons. You suspect she was holding back or you would never have stood a chance.`
-			`	Now that you have successfully passed the test, you are then taken to an underground zone, passing trough what looks like very basic weapon testing. Many Hai are there, doing small modifications and testing them, but never going really far in the tests. Seeing your interest, the engineer explains. "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually shoots before Unfettered captain can get their hands on it." Now that they mention it you notice a few captains looking at the tests, and one even requests a weapon to be taken to his ship, apparently satisfied with its performances. You keep on walking until you enter a proper outfitter section of the facility.`
-			`	"Welcome to the special section of the outfitter, captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we can offer something way more valuable than money. For now, I can only offer you the mighty tripulse shredder, but eventually we will give you access to all kinds of weapons. 2 tripulse cannons for one jump drive and our sympathy is the deal I propose." They say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to the rest of Hai weaponry, but enhanced someway or another. There even are some ion looking weapons, but one is smaller than an ion cannon whilst another one looks like a turreted version of it.`
+			`	Now that you have successfully passed the test, you are then taken to an underground zone, passing through what looks like very basic weapon testing. Many Hai are there, experimenting with small modifications, but never performing any extreme tests. Seeing your interest, the engineer explains. "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually shoots before Unfettered captains can get their hands on it." You now notice a few captains looking at the tests, and one even requests a weapon to be taken to his ship, apparently satisfied with its performances. You keep on walking until you enter a proper outfitter section of the facility.`
+			`	"Welcome to the special section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. 2 Tripulse Cannons for one jump drive and our sympathy is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to the rest of Hai weaponry, but enhanced one way or another. There even are some weapons that appear to be ion-based, but one is smaller than an Ion Cannon whilst another one looks like a turreted version of it.`
 			label weapons
 			choice
-				`	"Tell me more about that tripulse cannon I can buy."`
+				`	"Tell me more about that Tripulse Cannon I can buy."`
 					goto tripulse
-				`	"Can you tell me more about that ion looking small weapon?"`
-				`	"I'd like to learn about the ion turret."`
+				`	"Can you tell me more about that ionic small weapon?"`
+				`	"I'd like to learn about the Ion Turret."`
 					goto turret
 				`	"I would just prefer the money, actually."`
 					goto money
 			label blaster
-			`	"Ah, the blaster. It is a favored by many Shield Beetle captains, because it can easily help them turn the tide of battle, without needing to dedicate too much weapon space for it. It is true that it does not do enough ion damage to properly disable the enemy ship, but it is able to jam their weapons, thus giving you the upper hand in a long fight, especially since its damage potential is acceptable."`
+			`	"Ah, the Blaster. It is a favored by many Shield Beetle captains, because it can easily help them turn the tide of battle, without needing to dedicate too much weapon space for it. It is true that it does not do enough ion damage to properly disable the enemy ship, but it is able to jam their weapons and give you the upper hand in a long fight, especially since its damage potential is acceptable."`
 			scene "outfit/hai ionic blaster"
 				goto backtochoose
 			label turret
@@ -352,7 +352,7 @@ mission "Unfettered Jump Drive Trading"
 				goto weapons
 
 			label money
-			`	"Oh. Well, in that case, we will not bother you again with this weapon, or any other, captain, here or in the job board."`
+			`	"Oh. Well, in that case, we will not bother you again with this weapon, or any other, Captain, here or in the job board."`
 			choice
 				`	"Sounds good to me."`
 				`	"Wait, what was that weapon again?"`
@@ -364,13 +364,13 @@ mission "Unfettered Jump Drive Trading"
 				accept
 
 			label tripulse
-			`	"The tripulse shredder may seem crude, but it packs a punch and its specialty is how it combines a lot of firepower in one gun slot, and even allows for hit and run tactics due to its burst nature. Some captains even say that a Sea Scorpion can take out a Shield Beetle if it uses 4 of them. If you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
+			`	"The tripulse shredder may seem crude, but it packs a punch and its specialty is how it combines a lot of firepower in one gun slot, and even allows for hit and run tactics due to its burst nature. Some captains even say that a Sea Scorpion can take out a Shield Beetle if it uses 4 of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
 			scene "outfit/tripulse shredder"
 			choice
 				`	"I'll take that offer."`
 				`	"I'd like to learn more about the other weapons first."`
 					goto weapons
-				`	"Actually, could you give me money instead?"`
+				`	"Actually, could you give me the money instead?"`
 					goto money
 			action
 				outfit "Tripulse Shredder" 2
@@ -378,10 +378,10 @@ mission "Unfettered Jump Drive Trading"
 				accept
 
 			label dodge
-			`	You manage to dodge the blade but are then left defenceless when the same Unfettered that threw you the blade comes in with another one, and slashes down to strike. They stop at the last possible moment, with a discontent face. "So this is how you 'fight', captain? You hide? You dodge? A weapon thrown at you no longer belongs to the enemy, you can claim it!`
+			`	You manage to dodge the blade but are then left defenseless when the same Unfettered that threw the blade at you comes in with another one, and slashes down to strike. They stop at the last possible moment, with a discontent face. "So this is how you 'fight', Captain? You hide? You dodge? A weapon thrown at you no longer belongs to the enemy, you can claim it!`
 				goto fail
 			label flee
-			`	You run away from the blade without any difficulties but then the Hai that threw it catches up to you in mere seconds, and immobilizes you with their blade on your throat. "You disappoint me, captain. In battle it is of great importance that you identify your advantages over the enemy, and not show yourself weak by running else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me, all you did was show fear."`
+			`	You run away from the blade without any difficulties but then the Hai that threw it catches up to you in mere seconds, and immobilizes you with their blade on your throat. "You disappoint me, Captain. In battle it is of great importance that you identify your advantages over the enemy and not show yourself weak by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
 
 			label fail
 			action
