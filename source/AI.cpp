@@ -1934,7 +1934,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 		forwardTime += stopTime;
 
 		// Figure out your reverse thruster stopping time:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
 		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
 		reverseTime += speed / reverseAcceleration;
 
@@ -2081,7 +2081,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 	double maxV = ship.MaxVelocity();
 	double accel = ship.Acceleration();
 	double turn = ship.TurnRate();
-	double mass = ship.Mass();
+	double mass = ship.InertialMass();
 	Point unit = ship.Facing().Unit();
 	double currentAngle = ship.Facing().Degrees();
 	// This is where we want to be relative to where we are now:
@@ -2790,7 +2790,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
 		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
 		reverseDistance += .5 * v * v / reverseAcceleration;
 
