@@ -115,7 +115,7 @@ mission "Unfettered Jump Drive 4"
 phrase "unfettered mining payment dialog"
 	word
 		`The group of Unfettered unloading the materials you mined seems enthused. "Keep this up and we will be building new ships in no time! Some use asteroids as target practice, but find it too dull and easy to fight an enemy that does not react," one tells you while handing over your payment of <payment>.`
-		`The local Unfettered unload your cargo of minerals, and one comes to give you your payment of <payment>. "Some Unfettered use these asteroids as target practices, but too few bring the precious materials back," he adds.`
+		`The local Unfettered unload your cargo of minerals, and one comes to give you your payment of <payment>. "Some Unfettered use these asteroids as target practice, but too few bring the precious materials back," he says.`
 		`The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it," one tells you before doling out your payment of <payment>.`
 		`A group of Unfettered unload the materials you mined, without saying anything to you. When they are done, one gives you <payment>.`
 		`The leader of the Unfettered unloading the materials comes to you. "This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks." He then hands you <payment>.`
