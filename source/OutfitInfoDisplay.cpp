@@ -176,6 +176,7 @@ namespace {
 		{"fuel protection", 4},
 		{"heat protection", 4},
 		{"hull protection", 4},
+		{"inertia reduction", 4},
 		{"ion protection", 4},
 		{"leak protection", 4},
 		{"piercing protection", 4},
