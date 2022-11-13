@@ -22,8 +22,6 @@ Release/
 scons-local*
 .sconsign.dblite
 /*.d
-endless-sky.xcodeproject/xcuserdata/
-endless-sky.xcodeproject/project.xcworkspace/
 
 # Test Reports
 test-report.xml
@@ -64,4 +62,3 @@ ipch/
 CMakeLists.txt
 compile_commands.json
 /.gitmodules
-
