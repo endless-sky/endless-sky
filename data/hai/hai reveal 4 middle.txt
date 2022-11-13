@@ -1247,15 +1247,14 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	You can't find Terry. She seems to be battling organizational fires and moving round the station fast enough that by the time you get to where she's last been, she's already moved on somewhere else; possibly twice. However, Turner manages to find you in relatively short order.`
 			`	"Captain <last>!" he calls out, audible even over the chaos. He strides up to you quickly and then pulls you aside to a sheltered spot. "Thank the cosmos you're here. I don't know what the devil is going on, either out there or in here, but it's absolute madness."`
 			`	Before you can get a word in he's powered on.`
-			`	"Look at this!" He thrusts a stack of pages at you, pointing to some text that's too small to read while he keeps moving it. "Somehow there's now three alien races involved in this plot, and two are transparently Quarg and Korath."`
+			`	"Look at this!" He thrusts a stack of pages at you, pointing to some text that's too small to read while he keeps moving it. "Somehow there's now three alien races involved in this plot, and two are transparently Quarg and Korath. People aren't even meant to know about the Korath! There's philosopher kings involved, and they go off to some ringworld that someone's made up just to work out how to track something through hyperspace! Have you ever heard of anything so ridiculous? This whole plot device wasn't explained until today, and now we've got two thirds of the scenes shot and a script that needs massive rewrites!`
+			`	"I mean look at this, look!" He flips to another page with a section circled in red. He takes it back reads aloud, "The two come close and look into each other's eyes for a moment before kissing. Stage Note: Produce different models to focus group the aesthetic look of open-mouth kissing when both participants have finger-length incisors."`
+			`	He gesticulates, apparently at a loss for words. "Who even wrote this? Who writes this stuff? Why would you even put that in there?"`
 			choice 
 				`	(Interrupt him.)`
 					goto interrupt
 				`	(Wait.)`
-			`	He continues, "People aren't even meant to know about the Korath! There's philosopher kings involved, and they go off to some ringworld that someone's made up just to work out how to track something through hyperspace! Have you ever heard of anything so ridiculous? This whole plot device wasn't explained until today, and now we've got two thirds of the scenes shot and a script that needs massive rewrites!`
-			`	"I mean look at this, look!" He flips to another page with a section circled in red. He takes it back reads aloud, "The two come close and look into each other's eyes for a moment before kissing. Stage Note: Produce different models to focus group the aesthetic look of open-mouth kissing when both participants have finger-length incisors."`
-			`	He gesticulates, apparently at a loss for words. "Who even wrote this? Who writes this stuff? Why would you even put that in there?"`
-			`	Sorry, you were presumably here on business, what's going on out there?"`
+			`Sorry, you were presumably here on business, what's going on out there?"`
 			label interrupt
 			choice
 				`	"The border is closed."`
@@ -1267,8 +1266,6 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	"We suspected that, we haven't been game to test, but why?" He listens incredulously as you explain the situation with pirate slavers, the Unfettered support, the public shaming and the snap election.`
 			label continue
 			`	When you finish on the possibility of an Unfettered war fleet appearing at the wormhole to scour pirate worlds, he stops you with a pained expression. "Well, it's all falling apart, isn't it... Alright, look, this is above my pay-grade, and I don't think within Terry's either. You need to go contact Admiral Danforth. The connection from here to Farpoint is excellent, now since all our traffic is routing through those new relays, so it should be easy enough. I'll make sure no one does anything stupid from this side. I'm sure there's a solution here, we all just need to keep our heads and call the right people."`
-			choice
-				`	(Return to your ship and call Admiral Danforth.)`
 			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems unsurprised, but disappointed. "Well, I'll scramble some additional Navy forces. We'll hopefully make sure that whatever happens, we'll have some options."`
 			`	You can hear him grimace on the call. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
 			`	"I'll be there with a fleet soon. In the meantime, you need to go back to <planet> to ensure the safety of the diplomatic corps. Get them out if need be, otherwise just be there with a ship so you can monitor the situation."`
