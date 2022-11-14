@@ -108,6 +108,11 @@ after_comment = re.compile("[^\\s#]")
 whitespace_only = re.compile("^\\s*$")
 whitespaces = re.compile("\\s+")
 
+# List of "" and <> includes to be treated as the other type;
+# that is, any listed "" include should be grouped with <> includes,
+# and vice versa.
+reversed_includes = ["\"opengl.h\""]
+
 
 # A class representing error messages.
 # These are stored in the error_list list to be displayed after all checks are done.
@@ -499,8 +504,12 @@ def check_include(sanitized_lines, original_lines, file):
 	errors = []
 	warnings = []
 
-	# opengl.h is treated as a <> include in most cases
-	original_lines = [line if line != "#include \"opengl.h\"" else "#include <opengl.h>" for line in original_lines]
+	# Replacing include statements
+	for include in reversed_includes:
+		stripped = include[1:-1]
+		replacement = '<' + stripped + '>' if include[0] == '"' else '"' + stripped + '"'
+
+		original_lines = [line if line != "#include " + include else "#include " + replacement for line in original_lines]
 
 	name = file.split("/")[-1]
 	if name.endswith(".cpp"):
