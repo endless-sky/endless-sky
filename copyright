@@ -1636,6 +1636,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  sound/drill*
+ sound/ion?rain*
  sound/korath?afterburner*
  sound/remnant?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
