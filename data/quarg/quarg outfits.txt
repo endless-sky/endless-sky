@@ -144,7 +144,10 @@ outfit "Quantum Shield Generator"
 	thumbnail "outfit/quarg quantum shield generator"
 	"mass" 120
 	"outfit space" -120
-	"shield generation" 6
-	"shield energy" 6
-	"shield protection" 0.1
+	"shield generation" 12
+	"shield energy" 8
+	"disruption resistance" 5
+	"disruption resistance energy" 2
+	"discharge resistance" 5
+	"discharge resistance energy" 2
 	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
