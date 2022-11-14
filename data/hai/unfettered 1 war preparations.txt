@@ -399,6 +399,8 @@ mission "Unfettered: Refresh The Clock"
 	invisible
 	minor
 	repeat
+	source
+		attributes "hai" "unfettered"
 	to offer
 		has "Unfettered: The Word Has Spread: active"
 	on offer

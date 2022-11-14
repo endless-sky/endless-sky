@@ -183,8 +183,11 @@ mission "Unfettered: Attracted Attention"
 mission "Unfettered: Hunger!"
 	landing
 	invisible
+	repeat
 	minor
 	to offer
+		not "event: wanderers: unfettered invasion starts"
+		# to not make it restart if it's already going and is triggered by the Hai Escort mission and only make it last longer
 		not "event: unfettered: need for food"
 		or
 			has "unfettered: hunger"
@@ -198,12 +201,22 @@ mission "Unfettered: Hunger!"
 		event "unfettered: need for food"
 		clear "unfettered: hunger stops"
 	on enter
-		dialog `Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be hailing all ships in range, in human and Hai... Their situation must be desperate. "Attention, to all that are sympathethic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food supplies. That is what we need you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future. We are not used or comfortable with begging, but please, help us! Spread the word, bring food, we will reword you handsomely as ever, do it for the money if you must, or do it because you care."`
+		conversation
+			branch "not first time"
+				has "Unfettered: Hunger!: offered"
+			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be hailing all ships in range, both in human and hai... Their situation must be desperate.`
+				goto message
+			label "not first time"
+			`The local Unfettered authorities hail you. They are hailing all ships, in human and hai. This is not the first time they do this, and you suppose another starvation is happening. If that is the case, they did not manage their food issue in a permanent manner.`
+			label message
+			`	"Attention, to all that are sympathethic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food supplies. That is what we need you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future. We are not used or comfortable with begging, but please, help us! Spread the word, bring food, we will reword you handsomely as ever, do it for the money if you must, or do it because you care."`
 	on daily
 		"unfettered: hunger stops" += random
 	to fail
-		# lasts 30 to 120 days, if the player does nothing
-		"unfettered: hunger stops" > 3000
+		or
+			# lasts 30 to 120 days, if the player does nothing
+			"unfettered: hunger stops" > 3000
+			has "event: wanderers: unfettered invasion starts"
 	on fail
 		event "unfettered: need for food stops"
 		dialog "It seems that with the increased food brought the famine amongst the Unfettered has recessed, hopefully permanently."
