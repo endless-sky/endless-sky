@@ -150,4 +150,5 @@ outfit "Quantum Shield Generator"
 	"disruption resistance energy" 2
 	"discharge resistance" 1
 	"discharge resistance energy" 2
+	"piercing resistance" 0.05
 	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
