@@ -66,13 +66,6 @@ namespace {
 		}
 		out.EndChild();
 	}
-
-	// Send a warning indicated that the `apply` syntax is deprecated and `action` should be used instead.
-	bool WarnApplyDeprecation(const DataNode &node)
-	{
-		node.PrintTrace("Warning: `apply` is deprecated syntax. Use `action` instead to ensure future compatibility.");
-		return true;
-	}
 }
 
 // The possible outcomes of a conversation:
@@ -184,8 +177,10 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 				}
 			}
 		}
-		else if(child.Token(0) == "action" || (child.Token(0) == "apply" && WarnApplyDeprecation(child)))
+		else if(child.Token(0) == "action" || child.Token(0) == "apply")
 		{
+			if(child.Token(0) == "apply")
+				child.PrintTrace("Warning: `apply` is deprecated syntax. Use `action` instead to ensure future compatibility.");
 			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
