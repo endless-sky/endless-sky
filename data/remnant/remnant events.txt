@@ -129,6 +129,34 @@ event "korath hunting"
 
 
 
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: postverta reveal"
 	unvisit Caeculus
 	unvisit Diespiter
@@ -257,6 +285,16 @@ event "remnant: ssil vida inhabited"
 
 
 
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: cognizance peregrine"
 	outfitter "Remnant"
 		"Bellows-Class Afterburner"
@@ -332,6 +370,7 @@ event "remnant: ssil vida activation"
 		trade Metal 272
 		trade Plastic 289
 		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
 		hazard "Ember Waste Base Heat" 100
@@ -497,6 +536,7 @@ event "remnant: ssil vida activation"
 		trade Metal 407
 		trade Plastic 222
 		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
