@@ -181,7 +181,7 @@ mission "Hai Reveal [A03a] Symbol Identification"
 		log `Alondo asked me to check out the Hai spaceports in various systems near the wormhole, to see if anything unexpected is happening.`
 		conversation
 			`You make what is beginning to feel like a standard request to land at the secure spaceport and disembark with relevant copies of files on a data stick in hand. It doesn't take long to track down Alondo, though you do have to wait nearly half an hour while he finishes a meeting with a Hai official. When he's done, he waves you into the room and asks you to take a seat. The seat you choose is clearly designed to be comfortable for a Hai, making for a rather strange experience for a human.`
-			`	You show Alondo the cat symbol you found, and he says, "There's a research institute on Earth that specializes in history of politics during the early hyperspace travel era. If anyone would recognize this symbol, it's them. I'll pass it on and let you know what they say."`
+			`	You show Alondo the cat symbol you found. He says, "There's a research institute on Earth that specializes in the history of politics during the early hyperspace travel era. If anyone would recognize this symbol, it's them. I'll pass it on and let you know what they say."`
 			`	"In the meantime," he says, "could you stop by some of the Hai worlds near the wormhole? They've obviously ramped up security on Allhome, but I'd like to have a pair of friendly eyes check it out. The Hai may be using this as a cover to put thir military into a threatening position... not that I think they'd do that, but we've just been through one war. I may be getting paranoid sitting in the most Hai place that there is."`
 				accept
 	to complete
