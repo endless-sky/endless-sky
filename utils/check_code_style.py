@@ -112,6 +112,8 @@ whitespaces = re.compile("\\s+")
 # that is, any listed "" include should be grouped with <> includes,
 # and vice versa.
 reversed_includes = ["\"opengl.h\""]
+# The list of files for which the include checks are skipped.
+exclude_include_check = ["source/main.cpp"]
 
 
 # A class representing error messages.
@@ -402,7 +404,7 @@ def check_match(regex, text, segment):
 # Returns a tuple of errors and warnings.
 def check_global_format(sanitized_lines, original_lines, file):
 	issues = ([], [])
-	if file != "source/main.cpp":
+	if file not in exclude_include_check:
 		join(issues, check_include(sanitized_lines, original_lines, file))
 	return issues
 
@@ -416,6 +418,8 @@ def check_copyright(lines, file):
 	warnings = []
 
 	name = file.split("/")[-1]
+	# The two halves of the copyright notice. There might be a couple lines of text separating the two halves.
+	# The bool value stores whether the text is interpreted as a regex.
 	copyright_begin = [
 		["/* " + name, False],
 		["Copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .*", True]
