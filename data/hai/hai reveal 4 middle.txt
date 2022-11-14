@@ -1285,7 +1285,7 @@ mission "Hai Reveal [A13] A New Elder"
 	on offer
 #		log ``
 		conversation
-			`You are granted access to the secure spaceport, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day and there is a gloom developing as the sun disappears behind the buildings of the capital when you enter the diplomatic wing of the government complex. Fortunately, though the place appears nearly deserted, you swiftly run into Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey.`
+			`You are granted access to the secure spaceport, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day, and there is a gloom developing as Ya Hai disappears behind the buildings of the capital, when you enter the diplomatic wing of the government complex. Fortunately, though the place appears nearly deserted, you swiftly run into Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey.`
 			`	When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
 			choice
 				`	"Are you all ok?"`
