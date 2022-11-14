@@ -37,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
-#include <thread>
 #include <utility>
 #include <vector>
 

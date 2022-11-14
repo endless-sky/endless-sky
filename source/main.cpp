@@ -46,7 +46,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <chrono>
 #include <iostream>
 #include <map>
-#include <thread>
 
 #include <cassert>
 #include <future>

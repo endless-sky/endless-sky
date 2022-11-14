@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <future>
 #include <mutex>
 #include <string>
-#include <thread>
 #include <vector>
 
 
