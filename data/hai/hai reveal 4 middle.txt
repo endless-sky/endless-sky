@@ -1420,7 +1420,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	At the word "replaced," murmurs rise and Sayari looks at you with deep concern. The moderator silences the room and asks you to testify.`
 			`	"Captain <last>, can you speak to the truth of these disappearances?"`
 			choice
-				`	"The evidence that they are kidnappings is circumstantial but compelling. We must expand the investigation."`
+				`	"The evidence that there are ongoing kidnappings is circumstantial, but compelling. We must expand the investigation."`
 					goto uncertainties
 				`	"It is a coordinated kidnapping campaign, and we must put a stop to it, but take care not to start a war."`
 			`	You hear many murmurs of dissent, but the moderator raises his paws to delay discussion.`
