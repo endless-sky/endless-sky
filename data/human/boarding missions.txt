@@ -751,8 +751,7 @@ mission "Turn in Tarquin"
 		has "captured tarquin"
 	destination "Earth"
 	on offer
+		set "turned in tarquin"
 		conversation
-			action
-				set "turned in tarquin"
 			"You haul captain Tarquin out of your brig and bring him to the portside police station, presenting evidence from your suit cameras and notarized witness statements compiled from your crew members attesting to his crimes of being involved in slavery. The officer on duty thanks you for the service you've rendered, and takes Tarquin into custody. He shoots one final black look at you that sends a shiver up your spine."
 				decline
