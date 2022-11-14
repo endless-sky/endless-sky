@@ -1181,7 +1181,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	An angry Elder replies, "You wouldn't dare!" to which Teeneep yells back, "It is already scheduled to happen unless I actively stop it!" She smiles, a little self indulgently, and withdraws from the room. Sayari follows, motioning for you to do so as well.`
 			`	Sayari leads you to a private meeting room.`
 			`	Teeneep explains her ominous words. "Our democracy allows a Petition of No Confidence against the Elders. If there are enough petitioners, it forces an election. Activists in my organization have been pushing a petition for weeks.`
-			`	"It was obvious what the Elder Council's response would be," and with a sarcastic smile, she adds, "and I knew I would only come back alive if the Unfettered agreed to help. So, I arranged in advance for the petition to be promoted along with a widespread broadcast of these proceedings."`
+			`	"It was obvious what the Elder Council's response would be," and with a bit of sarcasm she adds, "and I knew I would only come back alive if the Unfettered agreed to help. So, I arranged in advance for the petition to be promoted along with a widespread broadcast of these proceedings."`
 			`	Sayari assures you, "These petitions take time, and rarely succeed. It is more of a warning to the Elders than anything else. Still, we should watch the situation.`
 			`	"For now," she says, "we're all in need of some lunch."`
 			choice
