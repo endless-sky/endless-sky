@@ -1271,7 +1271,7 @@ mission "Longcow Antibiotics 1"
 	on stopover
 		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
+		dialog `You land on <planet>, but the Arach ranchers don't come to meet you as you've not brought the longcow antibiotics. Make sure all your ships carrying the cargo arrive in this system after you've picked it up.`
 	on complete
 		"coalition jobs" += 2
 		payment 421000
