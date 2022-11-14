@@ -885,6 +885,13 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.speed = 360. / node.Value(1);
 	else if(key == "offset" && hasValue)
 		object.offset = node.Value(1);
+	else if(key == "lightradius" && hasValue)
+		object.lightRadius = node.Value(1);
+	else if(key == "lightcolor" && hasValue)
+	{
+		object.lightColor = Color(node.Value(1), node.Value(2), node.Value(3), node.Value(4));
+		object.isLight = true;
+	}
 	else if(removing && (key == "hazard" || key == "object"))
 		node.PrintTrace("Key \"" + key + "\" cannot be removed from an object:");
 	else

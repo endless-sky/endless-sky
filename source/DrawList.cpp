@@ -159,9 +159,13 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 
 	Point unrotated = (-body.Facing()).Rotate(-body.Position());
 
-	item.worldPosition[0] = static_cast<float>(-unrotated.X());
-	item.worldPosition[1] = static_cast<float>(unrotated.Y());
-	item.worldPosition[2] = 100.f;
+	item.facing = body.Facing();
+
+	item.worldSpacePos = body.Position();
+
+	item.worldPosition[0] = static_cast<float>(unrotated.X());
+	item.worldPosition[1] = static_cast<float>(-unrotated.Y());
+	item.worldPosition[2] = -15.f;
 
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();

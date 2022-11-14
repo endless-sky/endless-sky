@@ -20,6 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Sprite.h"
 
+#include "Messages.h"
+
+#include <limits>
 #include <sstream>
 #include <vector>
 
@@ -46,8 +49,19 @@ namespace {
 	GLint spriteIndexI;
 	GLint worldPositionI;
 
+	GLint subLightPosI;
+	GLint subLightColI;
+//	GLint subLightRadiusI;
+
 	GLuint vao;
 	GLuint vbo;
+
+	struct Light{
+		Point position = Point();
+		Color color = Color(1., 0.);
+		double radius = 0.;
+	};
+	static std::vector<Light> lights;
 
 	const vector<vector<GLint>> SWIZZLE = {
 		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // 0 red + yellow markings (republic)
@@ -81,6 +95,27 @@ namespace {
 		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA} // 28 black only (outline)
 	};
 }
+
+
+
+void ShadowedSpriteShader::AddLight(const Point &position, const Color color, const double radius)
+{
+	Light newLight;
+	newLight.position = position;
+	newLight.color = color;
+	newLight.radius = radius;
+	lights.push_back(newLight);
+}
+
+
+
+void ShadowedSpriteShader::ClearLights()
+{
+	lights.clear();
+}
+
+
+
 
 bool ShadowedSpriteShader::useShaderSwizzle = false;
 
@@ -120,6 +155,9 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"uniform sampler2DArray base;\n"
 		"uniform sampler2DArray emit;\n"
 		"uniform vec3 worldPosition;\n"
+		"uniform vec3 subLightPos;\n"
+		"uniform vec4 subLightCol;\n"
+//		"uniform float subLightRadius;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform int spriteIndex;\n"
@@ -143,7 +181,8 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"  {\n"
 		"    vec4 normCol = texture(normal, vec3(fragTexCoord, first));\n"
 		"    vec4 texCol = texture(tex, vec3(fragTexCoord, first));\n"
-		"    vec3 lightVector = -1.f * normalize(worldPosition);\n"
+		"    vec3 lightVector = normalize(worldPosition);\n"
+		"    vec3 subLightVector = normalize(subLightPos);\n"
 		"	 if(spriteIndex == 7 || spriteIndex == 15)\n"
 		"	 {\n"
 		"      if(blur.x == 0.f && blur.y == 0.f)\n"
@@ -181,7 +220,8 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"	 }\n"
 		"    vec3 norm = vec3(normCol.x - 0.5f, normCol.y - 0.5f, normCol.z - 0.5f) * 4.f;\n"
 		"    float dotP = 0.5f + (0.5f * dot(norm, lightVector));\n"
-		"    color = color * vec4(vec3(dotP * texCol.a), texCol.a);\n"
+		"    float dotP2 = min(max(0.5f + (0.5f * dot(norm, subLightVector)), 0.f) / length(subLightPos), 1.f);\n"
+		"    color = color * vec4(vec3(dotP * texCol.a) + (dotP2 * subLightCol.rgb * subLightCol.a), texCol.a);\n"
 		"    color = vec4(texture(emit, vec3(fragTexCoord, first)).rgb + color.rgb, texCol.a);\n"
 		"  }\n"
 		"  else\n"
@@ -319,6 +359,9 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 	frameI = shader.Uniform("frame");
 	frameCountI = shader.Uniform("frameCount");
 	worldPositionI = shader.Uniform("worldPosition");
+	subLightPosI = shader.Uniform("subLightPos");
+	subLightColI = shader.Uniform("subLightCol");
+//	subLightRadiusI = shader.Uniform("subLightRadius");
 	spriteIndexI = shader.Uniform("spriteIndex");
 	positionI = shader.Uniform("position");
 	transformI = shader.Uniform("transform");
@@ -432,6 +475,33 @@ void ShadowedSpriteShader::Add(const Item &item, bool withBlur)
 	glUniform1f(frameCountI, item.frameCount);
 	glUniform1i(spriteIndexI, item.spriteIndex);
 	glUniform3f(worldPositionI, item.worldPosition[0], item.worldPosition[1], item.worldPosition[2]);
+	Light closestLight;
+	double shortestDistance = std::numeric_limits<double>::infinity();
+	bool hasLight = false;
+	Messages::Add(to_string(lights.size()));
+	if(!(lights.empty()))
+	{
+
+		for(const Light &it : lights)
+		{
+			if((item.worldSpacePos - it.position).LengthSquared() < shortestDistance)
+			{
+				closestLight = it;
+				shortestDistance = (item.worldSpacePos - it.position).LengthSquared();
+				hasLight = true;
+			}
+		}
+		if(hasLight)
+		{
+			Point offseted = closestLight.position - item.worldSpacePos;
+			offseted = (-item.facing).Rotate(-offseted);
+			glUniform3f(subLightPosI, -offseted.X(), offseted.Y(), -15.);
+			glUniform4fv(subLightColI, 1, closestLight.color.Get());
+		//	glUniform1f(subLightRadiusI, closestLight.radius);
+		}
+	}
+
+
 	glUniform2fv(positionI, 1, item.position);
 	glUniformMatrix2fv(transformI, 1, false, item.transform);
 	// Special case: check if the blur should be applied or not.

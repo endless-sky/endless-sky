@@ -1284,6 +1284,13 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
+	ShadowedSpriteShader::ClearLights();
+	for(const StellarObject &obj : system->Objects())
+	{
+		if(obj.HasValidLight())
+			ShadowedSpriteShader::AddLight(obj.Position(), obj.GetLightColor(), obj.GetLightRadius());
+	}
+
 	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
 	const Government *raidGovernment = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGovernment && raidGovernment->IsEnemy())

@@ -30,7 +30,7 @@ using namespace std;
 // Object default constructor.
 StellarObject::StellarObject()
 	: planet(nullptr),
-	distance(0.), speed(0.), offset(0.), parent(-1),
+	distance(0.), speed(0.), offset(0.), parent(-1), lightRadius(0.), lightColor(1.f, 0.f),
 	message(nullptr), isStar(false), isStation(false), isMoon(false)
 {
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
@@ -53,6 +53,27 @@ double StellarObject::Radius() const
 		radius = min(radius, 80.);
 
 	return radius;
+}
+
+
+
+double StellarObject::GetLightRadius() const
+{
+	return lightRadius;
+}
+
+
+
+Color StellarObject::GetLightColor() const
+{
+	return lightColor;
+}
+
+
+
+bool StellarObject::HasValidLight() const
+{
+	return isLight;
 }
 
 

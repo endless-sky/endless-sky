@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STELLAR_OBJECT_H_
 
 #include "Body.h"
+#include "Color.h"
 #include "Hazard.h"
 #include "RandomEvent.h"
 
@@ -46,6 +47,10 @@ public:
 
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
+
+	double GetLightRadius() const;
+	Color GetLightColor() const;
+	bool HasValidLight() const;
 
 	// Determine if this object represents a planet with valid data.
 	bool HasValidPlanet() const;
@@ -83,10 +88,14 @@ private:
 	std::vector<RandomEvent<Hazard>> hazards;
 	int parent;
 
+	double lightRadius = 0.;
+	Color lightColor = Color(0, 0);
+
 	const std::string *message;
 	bool isStar;
 	bool isStation;
 	bool isMoon;
+	bool isLight = false;
 
 	// Let System handle setting all the values of an Object.
 	friend class System;

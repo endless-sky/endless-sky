@@ -16,10 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SHADOWED_SPRITE_SHADER_H_
 #define SHADOWED_SPRITE_SHADER_H_
 
+#include "Angle.h"
+#include "Color.h"
+#include "Point.h"
+
 class Sprite;
-class Point;
 
 #include <cstdint>
+#include <vector>
 
 
 
@@ -30,6 +34,7 @@ class Point;
 // parameters based on an object's rotation, animation frame, etc.
 class ShadowedSpriteShader {
 public:
+
 	class Item {
 	public:
 		uint32_t texture = 0;
@@ -42,6 +47,8 @@ public:
 		float position[2] = {0.f, 0.f};
 		float worldPosition[3] = {0.f, 0.f, 0.f};
 		float transform[4] = {0.f, 0.f, 0.f, 0.f};
+		Angle facing = 0.;
+		Point worldSpacePos = Point();
 		float blur[2] = {0.f, 0.f};
 		float clip = 1.f;
 		float alpha = 1.f;
@@ -52,6 +59,9 @@ public:
 public:
 	// Initialize the shaders.
 	static void Init(bool useShaderSwizzle);
+
+	static void AddLight(const Point &position, const Color lightColor, const double lightRadius = 0.);
+	static void ClearLights();
 
 	// Draw a sprite.
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);

@@ -4360,6 +4360,8 @@ system Ankaa
 		sprite planet/dust3
 		distance 997.42
 		period 504.007
+		lightcolor 1. 3. 3. 1.
+		lightradius 15.
 	object
 		sprite planet/ice0
 		distance 1347.43
@@ -7359,6 +7361,8 @@ system Coluber
 		sprite planet/wormhole-red
 		distance 2354.54
 		period 1371.69
+		lightcolor 1. .2 .1 400.
+		lightradius 30.
 
 system Companion
 	pos -1032.59 709.051
