@@ -813,7 +813,7 @@ mission "Coalition Outbreak 2"
 	on stopover
 		dialog `A group of Saryd workers is waiting for you, and they load the <cargo> onto your ship. A laboratory worker babbles about how you must care for them.`
 	on visit
-		dialog `You've reached <planet>, but the vaccines aren't here yet. Depart and wait for whichever ships are carrying them to arrive.`
+		dialog `You've reached <planet>, but the vaccines aren't here yet. Once you've picked them up, make sure all ships that are carrying them arrive in this system.`
 	on complete
 		payment 943720
 		"coalition jobs" += 2
