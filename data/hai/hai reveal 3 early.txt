@@ -47,7 +47,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"Anyway," she continues, "thanks to a little Freedom of Information request to the Republic, I have been looking at things, and I think I have the solution."`
 			choice
 				`	"Is it me?"`
-			`	Sayari winks at you, "Catch on quick, don't you? The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and our Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
+			`	Sayari winks at you. "Catch on quick, don't you? The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and our Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
 				goto elders
 			label oversee
 			`	"You're learning to navigating the maze of galactic politics quickly, Captain <last>," says Sayari. "We are at an impasse. The Elders are less than keen on allowing a partisan observer to see the construction."`
