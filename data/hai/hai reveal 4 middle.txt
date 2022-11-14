@@ -1418,7 +1418,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 		conversation
 			`Upon docking at <planet>, now bereft of civilians, you and Sayari are kept out of things for a little while, as some business occurs behind a Navy security barricade in the direction of where Teeneep's ship docked. Neither Terry nor Turner are are allowed through either, as Navy personnel progressively establish operations and set secure areas on the station. Eventually Batu is sent out to get all of you and escort you in.`
 			`	As you reach Xilin and the other diplomats, who is also joined by Danforth, Sayari is intercepted by a Hai functionary and led away. Xilin looks at you all with a grave face, and begins. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. We're at a political impasse now, as Cabinet is blocking any progress.`
-			`	"The Hai have demanded we cut through the red tape by having the heads of state meet." He turns to you briefly. "They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed. We've gathered to prepare you for the meeting."`
+			`	"The Hai have demanded we cut through the red tape by having the heads of state meet." He turns to you briefly. "They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed, and we've gathered to prepare you for the meeting."`
 			label questions
 			choice
 				`	"I'm ready to mediate. Let's assemble the heads of state."`
@@ -1437,10 +1437,10 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	Xilin nods grimly. "However, that would be a drastic failure of foreign policy."`
 				goto questions
 			label "let hai through"
-			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood The Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
+			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
 				goto questions
 			label "hai concerns"
-			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. Enough people in Cabinet disagree, that we're sort of at an impasse, for the moment."`
+			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. Enough people in Cabinet disagree, that we're sort of at an impasse for the moment."`
 				goto questions
 			label "who is blocking"
 			`	Xilin proceeds to list off a number of names, but after a few Turner cuts in again. "Remington, I know you're the PR guy, and you keep your nose out of sales, so I apologize if it's presumptuous for me to assume you haven't considered this, but, most of those names are people who listen to the Syndicate. I should know, I've had to negotiate with them as a bloc often enough for government contracts. Has anyone on your side reported back to the Syndicate Board and suggested that perhaps, if we can influence them to support a solution that we propose, even if we don't have that solution defined yet, the Hai could be a very large and very profitable market for Syndicate goods?"`
@@ -1452,7 +1452,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			choice
 				`	"How do the human governments respond?"`
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
-			`	The Chancellor continues, "The Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
+			`	The Chancellor states, "However, the Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
 			choice
 				`	"Is this an acceptable proposal to the Hai?"`
 			`	Teeneep looks perturbed while she holds back her anger and resentment. The other heads of state don't seem notice; perhaps you're more sensitive to Hai facial expressions after the time you spent with Hai. Teeneep calms down after a few seconds and is ready to respond.`
