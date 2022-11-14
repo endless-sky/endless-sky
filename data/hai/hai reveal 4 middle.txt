@@ -1464,7 +1464,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	Teeneep looks relieved by this suggestion.`
 			choice
 				`	"Is this an acceptable counter-proposal?"`
-			`	Teeneep takes a moment to respond, "That sounds like an acceptable future state... but I cannot sign any treaty yet. The Hai will not be satisfied until our kidnapped brethren are returned."`
+			`	Teeneep takes a moment to respond. "That sounds like an acceptable future state... but I cannot sign any treaty yet. The Hai will not be satisfied until our kidnapped brethren are returned."`
 			`	The President replies, "The Minister for Foreign Affairs has been keeping Cabinet apprised of the major details and proposals reported back by Deputy Minister Yang. Under the circumstances we believe it would be appropriate for us to attempt a joint effort to address your concerns. We agree to making this effort against one target, and to reassessing the situation afterwards depending upon what is discovered in that process. The Republic representatives there with you now will work with you to identify that target and plan the action accordingly."`
 			`	The smoothness with which this goes down gives you the sense that the main points of this were all provisionally agreed to already, with only a little wiggle room left to be settled in this conversation.`
 			`	Sayari steps up and whispers something to Teeneep who then seems to think for a moment before returning to the screens. "This pathway is acceptable."`
