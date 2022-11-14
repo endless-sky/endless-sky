@@ -1417,7 +1417,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 		log `The Hai have threatened the Republic if suitable action isn't taken. Required to escort civilians out of the possible danger zone.`
 		conversation
 			`Upon docking at <planet>, now bereft of civilians, you and Sayari are kept out of things for a little while, as some business occurs behind a Navy security barricade in the direction of where Teeneep's ship docked. Neither Terry nor Turner are are allowed through either, as Navy personnel progressively establish operations and set secure areas on the station. Eventually Batu is sent out to get all of you and escort you in.`
-			`	As you reach Xilin and the other diplomats, who is also joined by Danforth, Sayari is intercepted by a Hai functionary and led away. Xilin looks at you all with a grave face, and begins. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. We're at a political impasse now, as Cabinet is blocking any progress.`
+			`	As you reach Xilin and the other diplomats, who is also joined by Danforth, Sayari is intercepted by a Hai functionary and led away. Xilin looks at you all with a grave face, and begins. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. We're at a political impasse now, as the Cabinet is blocking any progress.`
 			`	"The Hai have demanded we cut through the red tape by having the heads of state meet." He turns to you briefly. "They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed. We've gathered to prepare you for the meeting."`
 			label questions
 			choice
@@ -1429,7 +1429,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 					goto "let hai through"
 				`	"What if we solve the kidnapping problem instead of the Hai doing it?"`
 					goto "hai concerns"
-				`	"Who in Cabinet is blocking progress?"`
+				`	"Who in the Cabinet is blocking progress?"`
 					goto "who is blocking"
 			label "navy blocks hai"
 			`	Xilin responds, "The Navy has blockaded the wormhole to the best of its ability, but the reality is that the Navy is already heavily committed, and barely look to be a match for the Hai fleet numbers. The Hai, on the other hand, do not yet appear to be committed heavily." He looks at Alondo briefly. "We had the unstated privilege of observing the Hai security fleet left behind on Everhope in addition to what we saw beyond the wormhole on our way in."`
@@ -1440,7 +1440,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood The Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
 				goto questions
 			label "hai concerns"
-			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. Enough people in Cabinet disagree, that we're sort of at an impasse, for the moment."`
+			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. Enough people in the Cabinet disagree, that we're sort of at an impasse, for the moment."`
 				goto questions
 			label "who is blocking"
 			`	Xilin proceeds to list off a number of names, but after a few Turner cuts in again. "Remington, I know you're the PR guy, and you keep your nose out of sales, so I apologize if it's presumptuous for me to assume you haven't considered this, but, most of those names are people who listen to the Syndicate. I should know, I've had to negotiate with them as a bloc often enough for government contracts. Has anyone on your side reported back to the Syndicate Board and suggested that perhaps, if we can influence them to support a solution that we propose, even if we don't have that solution defined yet, the Hai could be a very large and very profitable market for Syndicate goods?"`
@@ -1465,7 +1465,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			choice
 				`	"Is this an acceptable counter-proposal?"`
 			`	Teeneep takes a moment to respond, "That sounds like an acceptable future state... but I cannot sign any treaty yet. The Hai will not be satisfied until our kidnapped brethren are returned."`
-			`	The President replies, "The Minister for Foreign Affairs has been keeping Cabinet apprised of the major details and proposals reported back by Deputy Minister Yang. Under the circumstances we believe it would be appropriate for us to attempt a joint effort to address your concerns. We agree to making this effort against one target, and to reassessing the situation afterwards depending upon what is discovered in that process. The Republic representatives there with you now will work with you to identify that target and plan the action accordingly."`
+			`	The President replies, "The Minister for Foreign Affairs has been keeping the Cabinet apprised of the major details and proposals reported back by Deputy Minister Yang. Under the circumstances we believe it would be appropriate for us to attempt a joint effort to address your concerns. We agree to making this effort against one target, and to reassessing the situation afterwards depending upon what is discovered in that process. The Republic representatives there with you now will work with you to identify that target and plan the action accordingly."`
 			`	The smoothness with which this goes down gives you the sense that the main points of this were all provisionally agreed to already, with only a little wiggle room left to be settled in this conversation.`
 			`	Sayari steps up and whispers something to Teeneep who then seems to think for a moment before returning to the screens. "This pathway is acceptable."`
 			choice
