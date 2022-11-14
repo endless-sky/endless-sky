@@ -23,7 +23,7 @@ mission "Deep: Syndicate Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -112,7 +112,7 @@ mission "Deep: Tarazed Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -204,7 +204,7 @@ mission "Deep: Kraz Convoy"
 	to offer
 		"combat rating" > 80
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -2722,7 +2722,7 @@ mission "Stone of our Fathers 5"
 				goto drinkandbemerry
 			label followcairn
 			`	You follow Thorleif up a mostly overgrown trail for about half an hour before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special and timeless about this meadow.`
-			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize. It is covered with filled with letters and images that are unfamiliar to you.`
+			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize. It is covered with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
 			`	He points at a smallish cairn next to the Elf-Stone. "This, though, is what we're here for."`
 			`	You eye the worn and weather-beaten cairn with a faded name plate that has 'Hlewagast' carved into its base.`
@@ -2790,7 +2790,7 @@ mission "Home for Skadenga 1"
 			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
 			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
 			`	She hits a switch and the hatch opens; she then escorts you into a frigid maintenance dock. A loud, ugly vehicle is whirring at the center of a mess of broken and discarded parts. "There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
-			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mismash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
+			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mishmash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
 			choice
 				`	"Are you sure this thing is safe?"`
 				`	"How old is this thing?!"`
@@ -3849,6 +3849,7 @@ mission "Home for Skadenga 13"
 			has "Home for Skadenga Captain: done"
 	on offer
 		outfit "Tear of Skade"
+		event "the book" 200
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
 			scene "outfit/skadetear"
@@ -3883,7 +3884,7 @@ mission "Home for Skadenga 13"
 			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
 			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your clothes.`
-			`	You wonder if you're forgetting anything - if you should find Hroar, or Hjlod, and speak with them. But they are nowhere in sight, and you realize there will be time to see them again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
+			`	You wonder if you're forgetting anything - if you should find Hjlod and speak with her. But she is nowhere in sight, and you realize there will be time to see her again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
 				decline
 
 
@@ -4094,10 +4095,7 @@ mission "The Book of Skadenga"
 	to offer
 		random < 10
 		or
-			has "Stones of Skadenga 4: done"
-			and
-				has "Skadenga Call 2: done"
-				has "event: the book"
+			has "event: the book"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
@@ -4107,7 +4105,7 @@ mission "The Book of Skadenga"
 					goto ignore
 				`	(Pick the book up.)`
 			branch windblain
-				has "Stones of Skadenga 4: done"
+				has "Home for Skadenga 13: offered"
 			`	The book feels solid in your hands, and you scan through it. There are chapters about near death survival on Nifel, the subtle hostility of Asgard, the sudden death of the old Ondurdis, who you learn was named Eymani, and the triumph of Hjlod and the survivors on Nifel.`
 				goto end
 			label windblain
