@@ -83,46 +83,22 @@ mission "Hai Reveal [D01B] Summoned to Mountaintop"
 #Redefine Cardax to have a named location for the station.
 event "cardax site chosen"
 	system Cardax
-		object
-			sprite star/g0
-			distance 45.4545
-			period 13.3761
-			offset 180
-		object
-			sprite star/g5
-			distance 78.5455
-			period 13.3761
-		object
-			sprite planet/rock8-b
-			distance 315.795
-			period 54.3634
-		object
-			sprite planet/io
+		add object
 			distance 667.205
 			period 166.95
 			object Mooncreek
 				sprite "effect/flotsam yottrite"
 				distance 212
 				period 31.1964
-		object
-			sprite planet/ice8
-			distance 1271.3
-			period 439.104
-		object
-			sprite planet/gas1
-			distance 2131.94
-			period 953.584
-			object
-				sprite planet/rock0
-				distance 244
-				period 13.4426
+	
 	planet Mooncreek
 		government "Unknown"
 		# Placeholder description; you can't actually land.
 		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
 		"required reputation" 1000
-	
-	
+
+
+
 mission "Hai Reveal [D02] Escort to Cardax"
 	landing
 	name "<planet> Construction"
@@ -252,39 +228,16 @@ mission "Hai Reveal [D03] Defend Mooncreek Construction Site"
 # Update sprite & planet, and restore regular pirates.
 event "mooncreek founded"
 	system Cardax
-		object
-			sprite star/g0
-			distance 45.4545
-			period 13.3761
-			offset 180
-		object
-			sprite star/g5
-			distance 78.5455
-			period 13.3761
-		object
-			sprite planet/rock8-b
-			distance 315.795
-			period 54.3634
-		object
-			sprite planet/io
+		remove object
+			distance 667.205
+			period 166.95
+		add object
 			distance 667.205
 			period 166.95
 			object Mooncreek
 				sprite "planet/station hai geocoris"
 				distance 212
 				period 31.1964
-		object
-			sprite planet/ice8
-			distance 1271.3
-			period 439.104
-		object
-			sprite planet/gas1
-			distance 2131.94
-			period 953.584
-			object
-				sprite planet/rock0
-				distance 244
-				period 13.4426
 		add fleet "Small Northern Pirates" 1000
 		add fleet "Large Northern Pirates" 3000
 		add fleet "Small Core Pirates" 2000
@@ -336,42 +289,19 @@ mission "Hai Reveal [D04] Escort Republic Outfitters"
 # Update sprite & planet, and add security patrol to counter regular pirates.
 event "mooncreek operational"
 	system Cardax
-		object
-			sprite star/g0
-			distance 45.4545
-			period 13.3761
-			offset 180
-		object
-			sprite star/g5
-			distance 78.5455
-			period 13.3761
-		object
-			sprite planet/rock8-b
-			distance 315.795
-			period 54.3634
-		object
-			sprite planet/io
+		government "Hai"
+		remove object
+			distance 667.205
+			period 166.95
+		add object
 			distance 667.205
 			period 166.95
 			object Mooncreek
 				sprite "planet/station hai eight geocoris"
 				distance 212
 				period 31.1964
-		object
-			sprite planet/ice8
-			distance 1271.3
-			period 439.104
-		object
-			sprite planet/gas1
-			distance 2131.94
-			period 953.584
-			object
-				sprite planet/rock0
-				distance 244
-				period 13.4426
 		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
 	planet Mooncreek
-		government "Hai"
 		remove attributes uninhabited
 		description `This station is made of eight Geocoris ships dismantled and reassembled into a spherical structure with external storage and landing platforms. In this dangerous place, critical tactical systems have been installed first, with only minimal life support and amenities. Other than the docking and repair facilities, its main focus is a vast integrated holographic projection system, which projects false security ships into space to confuse attackers and draw fire away from the actual defenders of the station.`
 		security 0.4

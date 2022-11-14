@@ -227,9 +227,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
-	attributeValues.push_back(Format::Number(60. * forwardThrust / attributes.Get("drag")));
+	attributeValues.push_back(Format::Number(60. * forwardThrust / ship.Drag()));
 	attributesHeight += 20;
 
+	// Movement stats are influenced by inertia redeuction.
+	double reduction = 1. + attributes.Get("inertia reduction");
+	emptyMass /= reduction;
+	currentMass /= reduction;
+	fullMass /= reduction;
 	attributeLabels.push_back("acceleration:");
 	if(!isGeneric)
 		attributeValues.push_back(Format::Number(3600. * forwardThrust / currentMass));
