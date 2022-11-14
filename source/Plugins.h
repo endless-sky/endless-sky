@@ -16,7 +16,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLUGINS_H_
 #define PLUGINS_H_
 
+#include "Set.h"
+
 #include <string>
+
+
+
+// Represents information about a single plugin.
+struct Plugin {
+	// Checks whether this plugin is valid, i.e. whether it exists.
+	bool IsValid() const;
+
+	// The name that identifies this plugin.
+	std::string name;
+	// The path to the plugin's folder.
+	std::string path;
+	// The about text, if any, of this plugin.
+	std::string aboutText;
+
+	// Whether this plugin was enabled, i.e. if it was loaded by the game.
+	bool enabled = true;
+	// The current state state of the plugin.
+	bool currentState = true;
+};
 
 
 
@@ -24,16 +46,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
-	static void Load();
+	// Load a plugin at the given path.
+	static const Plugin *Load(const std::string &path);
+
+	static void LoadSettings();
 	static void Save();
 
-	static bool Has(const std::string &name);
+	// Whether the path points to a valid plugin.
+	static bool IsPlugin(const std::string &path);
+	// Returns true if any plugin enabled or disabled setting has changed since
+	// launched via user preferences.
 	static bool HasChanged();
-	static bool IsEnabled(const std::string &name);
-	static void SetPlugin(const std::string &name, bool on);
-	static void SetPlugin(const std::string &name);
+
+	// Returns the list of plugins that have been identified by the game.
+	static const Set<Plugin> &Get();
+
+	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);
-	static bool InitialPluginState(const std::string &name);
 };
 
 

@@ -69,8 +69,13 @@ namespace {
 PreferencesPanel::PreferencesPanel()
 	: editing(-1), selected(0), hover(-1)
 {
-	if(!GameData::PluginAboutText().empty())
-		selectedPlugin = GameData::PluginAboutText().begin()->first;
+	// Select the first valid plugin.
+	for(const auto &plugin : Plugins::Get())
+		if(plugin.second.IsValid())
+		{
+			selectedPlugin = plugin.first;
+			break;
+		}
 
 	SetIsFullScreen(true);
 }
@@ -615,33 +620,36 @@ void PreferencesPanel::DrawPlugins()
 
 	const Font &font = FontSet::Get(14);
 
-	for(const auto &plugin : GameData::PluginAboutText())
+	for(const auto &it : Plugins::Get())
 	{
-		const string &plugin_name = plugin.first;
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin_name);
+		const auto &plugin = it.second;
+		if(!plugin.IsValid())
+			continue;
 
-		bool isSelected = (plugin_name == selectedPlugin);
-		if(isSelected || plugin_name == hoverPlugin)
+		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+
+		bool isSelected = (plugin.name == selectedPlugin);
+		if(isSelected || plugin.name == hoverPlugin)
 			table.DrawHighlight(back);
 
-		const Sprite *sprite = box[Plugins::IsEnabled(plugin_name)];
+		const Sprite *sprite = box[plugin.currentState];
 		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
-		SpriteShader::Draw(box[Plugins::IsEnabled(plugin_name)], spriteBounds.Center());
+		SpriteShader::Draw(sprite, spriteBounds.Center());
 
 		topLeft.X() += 6.;
 		topLeft.Y() += 7.;
 		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width() - 8., sprite->Height() - 8.));
 
-		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin_name); });
+		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
 		if(isSelected)
-			table.Draw(plugin_name, bright);
+			table.Draw(plugin.name, bright);
 		else
-			table.Draw(plugin_name, Plugins::InitialPluginState(plugin_name) ? medium : dim);
+			table.Draw(plugin.name, plugin.enabled ? medium : dim);
 
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(plugin_name);
+			const Sprite *sprite = SpriteSet::Get(plugin.name);
 			Point top(15., firstY);
 			if(sprite)
 			{
@@ -653,7 +661,7 @@ void PreferencesPanel::DrawPlugins()
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
 			static const string EMPTY = "(No description given.)";
-			wrap.Wrap(plugin.second.empty() ? EMPTY : plugin.second);
+			wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
 			wrap.Draw(top, medium);
 		}
 	}

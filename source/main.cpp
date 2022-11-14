@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 
 	try {
 		// Load plugin preferences before game data if any.
-		Plugins::Load();
+		Plugins::LoadSettings();
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;

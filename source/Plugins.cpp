@@ -21,75 +21,93 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 
 #include <algorithm>
+#include <cassert>
 #include <map>
 
 using namespace std;
 
 namespace {
-	// Plugin enabled state is used to compare initial settings from startup
-	// with changes made by user in plugins UI.
-	struct EnabledState
-	{
-		bool initial = true;
-		bool current = true;
-		EnabledState(bool startValue = true)
-		{
-			initial = startValue;
-			current = startValue;
-		}
-	};
+	Set<Plugin> plugins;
 
-	// The first item in pair is plugin state on load, second item is user changing preference.
-	map<string, EnabledState> settings;
-
-	void LoadSettings(const string &path)
+	void LoadSettingsFromFile(const string &path)
 	{
 		DataFile prefs(path);
 		for(const DataNode &node : prefs)
 		{
-			const string &key = node.Token(0);
-			if(key == "state")
-				for(const DataNode &child : node)
-					if(child.Size() == 2)
-						settings[child.Token(0)] = EnabledState(child.Value(1));
+			if(node.Token(0) != "state")
+				continue;
+
+			for(const DataNode &child : node)
+				if(child.Size() == 2)
+				{
+					auto *plugin = plugins.Get(child.Token(0));
+					plugin->enabled = child.Value(1);
+					plugin->currentState = child.Value(1);
+				}
 		}
 	}
 }
 
 
 
-void Plugins::Load()
+// Checks whether this plugin is valid, i.e. whether it exists.
+bool Plugin::IsValid() const
+{
+	return !name.empty();
+}
+
+
+
+// Try to load a plugin at the given path. Returns true if loading succeeded.
+const Plugin *Plugins::Load(const string &path)
+{
+	// Get the name of the folder containing the plugin.
+	size_t pos = path.rfind('/', path.length() - 2) + 1;
+	string name = path.substr(pos, path.length() - 1 - pos);
+
+	auto *plugin = plugins.Get(name);
+	plugin->name = std::move(name);
+	plugin->path = path;
+	plugin->aboutText = Files::Read(path + "about.txt");
+
+	return plugin;
+}
+
+
+
+void Plugins::LoadSettings()
 {
 	// Global plugin settings
-	LoadSettings(Files::Resources() + "plugins.txt");
+	LoadSettingsFromFile(Files::Resources() + "plugins.txt");
 	// Local plugin settings
-	LoadSettings(Files::Config() + "plugins.txt");
+	LoadSettingsFromFile(Files::Config() + "plugins.txt");
 }
 
 
 
 void Plugins::Save()
 {
-	if(settings.empty())
+	if(plugins.empty())
 		return;
 	DataWriter out(Files::Config() + "plugins.txt");
 
 	out.Write("state");
 	out.BeginChild();
 	{
-		for(const auto &it : settings)
-			out.Write(it.first, it.second.current);
+		for(const auto &it : plugins)
+			out.Write(it.first, it.second.currentState);
 	}
 	out.EndChild();
 }
 
 
 
-// Check if a plugin is known. It does not matter if it is enabled or disabled.
-bool Plugins::Has(const string &name)
+// Whether the path points to a valid plugin.
+bool Plugins::IsPlugin(const string &path)
 {
-	auto it = settings.find(name);
-	return it != settings.end();
+	// A folder is a valid plugin if it contains one (or more) of the assets folders.
+	// (They can be empty too).
+	return Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds");
 }
 
 
@@ -98,36 +116,18 @@ bool Plugins::Has(const string &name)
 // launched via user preferences.
 bool Plugins::HasChanged()
 {
-	for(const auto &it : settings)
-		if(it.second.initial != it.second.current)
+	for(const auto &it : plugins)
+		if(it.second.enabled != it.second.currentState)
 			return true;
 	return false;
 }
 
 
 
-// Plugins are enabled by default and disabled if the user prefers it to be
-// disabled.
-bool Plugins::IsEnabled(const string &name)
+// Returns the list of plugins that have been identified by the game.
+const Set<Plugin> &Plugins::Get()
 {
-	auto it = settings.find(name);
-	return (it == settings.end()) || it->second.current;
-}
-
-
-
-// Enable or disable a plugin from loading next time the game is restarted.
-void Plugins::SetPlugin(const string &name, bool on)
-{
-	settings[name].current = on;
-}
-
-
-
-// Enable a plugin for loading next time the game is restarted.
-void Plugins::SetPlugin(const string &name)
-{
-	settings[name] = EnabledState();
+	return plugins;
 }
 
 
@@ -135,14 +135,6 @@ void Plugins::SetPlugin(const string &name)
 // Toggles enabling or disabling a plugin for the next game restart.
 void Plugins::TogglePlugin(const string &name)
 {
-	settings[name].current = !IsEnabled(name);
-}
-
-
-
-// Get the state of the plugin from when the game was first loaded.
-bool Plugins::InitialPluginState(const string &name)
-{
-	const auto it = settings.find(name);
-	return (it == settings.end()) || it->second.initial;
+	auto *plugin = plugins.Get(name);
+	plugin->currentState = !plugin->currentState;
 }
