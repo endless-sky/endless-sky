@@ -385,7 +385,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		+ firingHeat
 		+ shieldHeat
 		+ hullHeat;
-	tableLabels.push_back("overall:");
+	tableLabels.push_back("max change:");
 	energyTable.push_back(Format::Number(60. * overallEnergy));
 	heatTable.push_back(Format::Number(60. * overallHeat));
     
