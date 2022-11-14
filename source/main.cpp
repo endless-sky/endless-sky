@@ -120,7 +120,12 @@ int main(int argc, char *argv[])
 	Files::Init(argv);
 
 	try {
-		TaskQueue taskQueue;
+		// Initialize the necessary threading, which also needs to be
+		// correctly destroyed after use.
+		TaskQueue::Init();
+		struct TaskQueueDeleter {
+			~TaskQueueDeleter() { TaskQueue::Destroy(); }
+		} _;
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;

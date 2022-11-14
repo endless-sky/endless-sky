@@ -104,7 +104,7 @@ namespace {
 
 
 // Initialize the threads used to execute the tasks.
-TaskQueue::TaskQueue()
+void TaskQueue::Init()
 {
 	threads.resize(max(4u, thread::hardware_concurrency()));
 	for(thread &t : threads)
@@ -113,7 +113,7 @@ TaskQueue::TaskQueue()
 
 
 
-TaskQueue::~TaskQueue()
+void TaskQueue::Destroy()
 {
 	{
 		lock_guard<mutex> lock(asyncMutex);

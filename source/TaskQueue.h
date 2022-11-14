@@ -26,8 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class TaskQueue {
 public:
 	// Initialize the threads used to execute the tasks.
-	TaskQueue();
-	~TaskQueue();
+	static void Init();
+	static void Destroy();
 
 	// Queue a function to execute in parallel.
 	static std::future<void> Run(std::function<void()> f);
