@@ -375,7 +375,7 @@ mission "Unfettered Jump Drive Trading"
 					goto money
 			action
 				outfit "Tripulse Shredder" 2
-			`	They order their crew to do the transfer, and come address you before leaving. "Do note that if you ever want more weapons we will always be willing to trade them for jump drives in the job board. We can of course always offer money instead if that is of higher value to you."`
+			`	They order their crew to do the transfer, and come address you before leaving. "Do note that if you ever want more weapons we will always be willing to trade them for jump drives in the job board. We can of course always offer money instead if that is of higher value to you. Of course, we can only do this exchange here, on <origin>."`
 				accept
 
 			label dodge
