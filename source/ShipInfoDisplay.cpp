@@ -374,7 +374,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 
     // Add up the maximum possible energy and heat changes; add the total to the table.
-    attributesHeight += 20;
+	attributesHeight += 20;
 	const double overallEnergy = idleEnergyPerFrame
 		- movingEnergyPerFrame
 		- firingEnergy
