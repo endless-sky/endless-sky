@@ -605,7 +605,7 @@ ship "Marauder Manta"
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 390
+		"outfit space" 400
 		"weapon capacity" 155
 		"engine capacity" 110
 		"self destruct" .25
@@ -615,8 +615,7 @@ ship "Marauder Manta"
 			"hull damage" 450
 			"hit force" 1350
 	outfits
-		"Plasma Cannon" 2
-		"Particle Cannon" 2
+		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"Quad Blaster Turret"
@@ -634,8 +633,8 @@ ship "Marauder Manta"
 	
 	engine -33 40
 	engine 33 40
-	gun -20 -31 "Particle Cannon"
-	gun 20 -31 "Particle Cannon"
+	gun -20 -31 "Plasma Cannon"
+	gun 20 -31 "Plasma Cannon"
 	gun -26.5 -30 "Plasma Cannon"
 	gun 26.5 -30 "Plasma Cannon"
 	gun -68.5 -33 "Meteor Missile Launcher"

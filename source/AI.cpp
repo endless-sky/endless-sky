@@ -287,6 +287,9 @@ namespace {
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
+
+	// An offset to prevent the ship from being not quite over the point to departure.
+	const double SAFETY_OFFSET = 1.;
 }
 
 
@@ -616,9 +619,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
-					&& personality.Disables()) || !target->IsTargetable())
-				it->SetTargetShip(FindTarget(*it));
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
+			{
+				target = FindTarget(*it);
+				it->SetTargetShip(target);
+			}
 		}
 		if(isPresent)
 		{
@@ -634,6 +640,41 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetCommands(firingCommands);
 			continue;
 		}
+
+		// Run away if your hostile target is not disabled and you are badly damaged.
+		// Player ships never stop targeting hostiles, while hostile mission NPCs will
+		// do so only if they are allowed to leave.
+		const bool shouldFlee = (personality.IsFleeing() ||
+			(!personality.IsHeroic() && !personality.IsStaying()
+			&& healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward()));
+		if(!it->IsYours() && shouldFlee && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
+			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
+		{
+			// Make sure the ship has somewhere to flee to.
+			const System *system = it->GetSystem();
+			if(it->JumpsRemaining() && (!system->Links().empty() || it->Attributes().Get("jump drive")))
+				target.reset();
+			else
+				for(const StellarObject &object : system->Objects())
+					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+							&& object.GetPlanet()->CanLand(*it))
+					{
+						target.reset();
+						break;
+					}
+
+			if(target)
+				// This ship has nowhere to flee to: Stop fleeing.
+				it->SetFleeing(false);
+			else
+			{
+				// This ship has somewhere to flee to: Remove target and mark this ship as fleeing.
+				it->SetTargetShip(target);
+				it->SetFleeing();
+			}
+		}
+		else if(it->IsFleeing())
+			it->SetFleeing(false);
 
 		// Special actions when a ship is heavily damaged:
 		if(healthRemaining < RETREAT_HEALTH + .25)
@@ -718,8 +759,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 
-		// Attacking a hostile ship and stopping to be refueled are more important than mining.
-		if(isPresent && personality.IsMining() && !target && !isStranded && maxMinerCount)
+		// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
+		if(isPresent && personality.IsMining() && !shouldFlee && !target && !isStranded && maxMinerCount)
 		{
 			// Miners with free cargo space and available mining time should mine. Mission NPCs
 			// should mine even if there are other miners or they have been mining a while.
@@ -1129,13 +1170,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(oldTarget && person.IsTimid() && oldTarget->IsDisabled()
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
-	// Ships with 'plunders' personality always destroy the ships they have boarded.
-	if(oldTarget && person.Plunders() && !person.Disables()
+	// Ships with 'plunders' personality always destroy the ships they have boarded
+	// unless they also have either or both of the 'disables' or 'merciful' personalities.
+	if(oldTarget && person.Plunders() && !person.Disables() && !person.IsMerciful()
 			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
 		return oldTarget;
 	shared_ptr<Ship> parentTarget;
-	bool parentIsEnemy = (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
-	if(ship.GetParent() && !parentIsEnemy)
+	if(ship.GetParent() && !ship.GetParent()->GetGovernment()->IsEnemy(gov))
 		parentTarget = ship.GetParent()->GetTargetShip();
 	if(parentTarget && !parentTarget->IsTargetable())
 		parentTarget.reset();
@@ -1147,7 +1188,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// ship that is within 3000 of it.
 	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
-	bool isDisabled = false;
 	bool hasNemesis = false;
 	bool canPlunder = person.Plunders() && ship.Cargo().Free();
 	// Figure out how strong this ship is.
@@ -1185,6 +1225,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				continue;
 		}
 
+		// Merciful ships do not attack any ships that are trying to escape.
+		if(person.IsMerciful() && foe->IsFleeing())
+			continue;
+
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
 				&& foe->IsDisabled() && !canPlunder)
@@ -1210,7 +1254,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		{
 			closest = range;
 			target = foe->shared_from_this();
-			isDisabled = foe->IsDisabled();
 			hasNemesis = isPotentialNemesis;
 		}
 	}
@@ -1242,28 +1285,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					}
 				}
 		}
-	}
-
-	// Run away if your hostile target is not disabled and you are badly damaged.
-	// Player ships never stop targeting hostiles, while hostile mission NPCs will
-	// do so only if they are allowed to leave.
-	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
-			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward())
-			&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
-	{
-		// Make sure the ship has somewhere to flee to.
-		const System *system = ship.GetSystem();
-		// TODO: This is not correct if the fleeing ship can use wormholes.
-		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
-			target.reset();
-		else
-			for(const StellarObject &object : system->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-						&& object.GetPlanet()->CanLand(ship))
-				{
-					target.reset();
-					break;
-				}
 	}
 
 	// Vindictive personalities without in-range hostile targets keep firing at an old
@@ -1913,7 +1934,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 		forwardTime += stopTime;
 
 		// Figure out your reverse thruster stopping time:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
 		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
 		reverseTime += speed / reverseAcceleration;
 
@@ -1960,7 +1981,21 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	bool isJump = (ship.GetCheapestJumpType(ship.GetTargetSystem()).first == Ship::JumpType::JumpDrive);
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	if(!isJump && scramThreshold)
+	double departure =  isJump ?
+		ship.GetSystem()->JumpDepartureDistance() :
+		ship.GetSystem()->HyperDepartureDistance();
+	double squaredDeparture = departure * departure + SAFETY_OFFSET;
+	if(ship.Position().LengthSquared() < squaredDeparture)
+	{
+		Point closestDeparturePoint;
+		if(ship.Position())
+			closestDeparturePoint = ship.Position()
+				* (squaredDeparture / ship.Position().LengthSquared());
+		else
+			closestDeparturePoint = Point(1., squaredDeparture);
+		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
+	}
+	else if(!isJump && scramThreshold)
 	{
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
@@ -2046,7 +2081,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 	double maxV = ship.MaxVelocity();
 	double accel = ship.Acceleration();
 	double turn = ship.TurnRate();
-	double mass = ship.Mass();
+	double mass = ship.InertialMass();
 	Point unit = ship.Facing().Unit();
 	double currentAngle = ship.Facing().Degrees();
 	// This is where we want to be relative to where we are now:
@@ -2106,7 +2141,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 		command.SetTurn(targetAngle);
 
 	// Determine whether to apply thrust.
-	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
+	Point drag = ship.Velocity() * ship.Drag() / mass;
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Don't take drag into account when reverse thrusting, because this
@@ -2363,6 +2398,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
 {
+	const bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
 	// ship has a target, that target is guaranteed to be targetable.
 	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
@@ -2382,8 +2418,11 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	if(ship.GetTargetSystem())
 	{
 		// Unload surveillance drones in this system before leaving.
-		PrepareForHyperspace(ship, command);
-		command |= Command::JUMP;
+		if(!isStaying)
+		{
+			PrepareForHyperspace(ship, command);
+			command |= Command::JUMP;
+		}
 		if(ship.HasBays())
 		{
 			command |= Command::DEPLOY;
@@ -2398,7 +2437,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
 			ship.SetTargetStellar(nullptr);
-		else
+		else if(!isStaying)
 			command |= Command::LAND;
 	}
 	else if(target)
@@ -2751,7 +2790,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
 		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
 		reverseDistance += .5 * v * v / reverseAcceleration;
 
@@ -3107,6 +3146,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, target->shared_from_this(), ShipEvent::BOARD);
 			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
+				continue;
+			// Merciful ships let fleeing ships go.
+			if(target->IsFleeing() && person.IsMerciful())
 				continue;
 
 			Point p = target->Position() - start;

@@ -217,14 +217,15 @@ void MapPanel::Draw()
 		FogShader::Draw(center, Zoom(), player);
 
 	// Draw the "visible range" circle around your current location.
-	Color dimColor(.1f, 0.f);
+	const Color &viewRangeColor = *GameData::Colors().Get("map view range color");
 	RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-		(System::DEFAULT_NEIGHBOR_DISTANCE + .5) * Zoom(), (System::DEFAULT_NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
+		System::DEFAULT_NEIGHBOR_DISTANCE * Zoom(), 2.0f, 1.0f, viewRangeColor);
 	// Draw the jump range circle around your current location if it is different than the
 	// visible range.
+	const Color &jumpRangeColor = *GameData::Colors().Get("map jump range color");
 	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
 		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), dimColor);
+			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), jumpRangeColor);
 
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
@@ -1194,6 +1195,8 @@ void MapPanel::DrawMissions()
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
+		if(!system)
+			continue;
 		auto &it = missionCount[system];
 		if(mission.CanAccept(player))
 			++it.available;
@@ -1206,6 +1209,8 @@ void MapPanel::DrawMissions()
 			continue;
 
 		const System *system = mission.Destination()->GetSystem();
+		if(!system)
+			continue;
 
 		// Reserve a maximum of half of the slots for available missions.
 		auto &&it = missionCount[system];

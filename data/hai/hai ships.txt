@@ -177,6 +177,62 @@ ship "Centipede" "Centipede (Refugees)"
 
 
 
+ship "Cicada"
+	sprite "ship/hai cicada"
+	thumbnail "thumbnail/hai cicada"
+	attributes
+		category "Transport"
+		"cost" 3850000
+		"shields" 5400
+		"hull" 2000
+		"required crew" 8
+		"bunks" 51
+		"mass" 300
+		"drag" 4.7
+		"heat dissipation" .75
+		"fuel capacity" 500
+		"cargo space" 143
+		"outfit space" 323
+		"weapon capacity" 89
+		"engine capacity" 58
+		weapon
+			"blast radius" 80
+			"shield damage" 960
+			"hull damage" 420
+			"hit force" 1280
+	outfits
+		"Hai Tracker Pod"
+		"Hai Tracker" 84
+		"Tracker Storage Pod"
+		"Bullfrog Anti-Missile" 2
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+	engine -6 75
+	engine 6 75
+	gun 0 -76 "Hai Tracker Pod"
+	turret 34.5 -16.5 "Chameleon Anti-Missile"
+	turret -34.5 -16.5 "Chameleon Anti-Missile"
+	turret -20 42 "Bullfrog Anti-Missile"
+	turret 20 42 "Bullfrog Anti-Missile"
+	leak "leak" 50 30
+	leak "flame" 40 50
+	leak "big leak" 20 40
+	explode "small explosion" 11
+	explode "medium explosion" 24
+	explode "large explosion" 16
+	explode "huge explosion" 4
+	"final explode" "final explosion medium"
+	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life".`
+
+
+
 ship "Flea"
 	sprite "ship/hai flea"
 	thumbnail "thumbnail/hai flea"
@@ -730,6 +786,189 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
+
+
+ship "Sea Scorpion"
+	sprite "ship/hai sea scorpion"
+	thumbnail "thumbnail/hai sea scorpion"
+	attributes
+		category "Medium Warship"
+		"cost" 5450000
+		"shields" 15500
+		"hull" 4900
+		"required crew" 14
+		"bunks" 36
+		"mass" 360
+		"drag" 5.2
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 45
+		"outfit space" 510
+		"weapon capacity" 168
+		"engine capacity" 117
+		weapon
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
+	outfits
+		"Hai Tracker Pod" 4
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 336
+		"Hai Williwaw Cooling" 2
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+	engine -28.5 68.5
+	engine 28.5 68.5
+	"steering engine" -28.5 68.5
+		zoom 0.4
+		right
+	"steering engine" 28.5 68.5
+		zoom 0.4
+		left
+	"steering engine" 64.5 23.5
+		zoom 0.55
+		angle -90
+		right
+	"steering engine" -64.5 23.5
+		zoom 0.55
+		angle 90
+		left
+	gun -13 -77.5
+	gun 13 -77.5
+	gun -27 -56
+	gun 27 -56
+	turret -35.5 24.5
+	turret 35.5 24.5
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "The Sea Scorpion was designed several decades ago to serve as a mobile platform to launch Trackers. However, it is only recently that the Unfettered have been able to mass produce them. While individually vulnerable, the reduced cost of manufacturing compared to Shield Beetles allow the materially inferior Unfettered to gain a numerical advantage against their brethren."
+
+ship "Sea Scorpion" "Sea Scorpion (Pulse)"
+	outfits
+		"Pulse Cannon" 4
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Hai Ravine Batteries"
+		"Supercapacitor" 5
+		"Hai Diamond Regenerator" 2
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Ion)"
+	outfits
+		"Ion Cannon" 3
+		"Hai Tracker Pod"
+		"Tracker Storage Pod"
+		"Hai Tracker" 84
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Hai Diamond Regenerator" 2
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Value Detector"
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"Chameleon Anti-Missile"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Hai Valley Batteries"
+		"Hyperdrive"
+		"Ion Cannon"
+		"Ionic Blaster Prototype" 2
+		"Ionic Turret Prototype"
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Shredder)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile"
+		"Hai Diamond Regenerator" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 4
+		"Hyperdrive"
+		"Pulse Cannon" 2
+		"Pulse Rifle" 15
+		"Pulse Turret"
+		"Quantum Keystone"
+		"Tripulse Shredder" 2
+
+
+
+ship "Scarab"
+	sprite "ship/hai scarab"
+	thumbnail "thumbnail/hai scarab"
+	attributes
+		category "Transport"
+		"cost" 1620000
+		"shields" 4600
+		"hull" 1500
+		"required crew" 4
+		"bunks" 27
+		"mass" 146
+		"drag" 3.8
+		"heat dissipation" .87
+		"fuel capacity" 400
+		"cargo space" 44
+		"outfit space" 231
+		"weapon capacity" 49
+		"engine capacity" 93
+		weapon
+			"blast radius" 52
+			"shield damage" 540
+			"hull damage" 230
+			"hit force" 780
+	outfits
+		"Bullfrog Anti-Missile"
+		"Chameleon Anti-Missile"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+
+	engine -29 27
+	engine 29 27
+	turret 0 -30 "Bullfrog Anti-Missile"
+	turret 0 38 "Chameleon Anti-Missile"
+	leak "leak" 70 50
+	leak "flame" 50 40
+	explode "tiny explosion" 14
+	explode "small explosion" 28
+	explode "medium explosion" 12
+	explode "large explosion" 4
+	"final explode" "final explosion small"
+	description `The hard-working cousin to the Lightning Bug, the Scarab has only ever grown in popularity, never declined. That this statistic is occasionally measured in thousandths of a percentage point for years at a time is immaterial to the title. This lightweight transport is commonly the pick for Grasshopper pilots looking to make money while continuing to feed their free spirit. It is also large enough to transport a large Hai family, making it perfect for nearly any odd job in Hai space.`
 
 
 
