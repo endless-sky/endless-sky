@@ -683,7 +683,7 @@ outfit "Flamethrower Projectile"
 		"inaccuracy" 20
 		"lifetime" 22
 		"damage dropoff" 0 198
-		"dropoff modifier"
+		"dropoff modifier" .5
 		"shield damage" .8
 		"hull damage" .7
 		"heat damage" 150
