@@ -3529,7 +3529,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Hull() || damage.Corrosion()) && Hull() < .9)
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
-				|| ((damage.Fuel() || damage.Leak()) && fuel < JumpFuel() * 2.)
+				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
 				|| (damage.Ion() && CalculateJamChance(Energy(), ionization) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
