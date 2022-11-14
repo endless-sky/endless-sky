@@ -38,7 +38,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				`	"I should oversee the construction, given the current political situation."`
 					goto oversee
 				`	"Good idea. Let me know when the station is complete."`
-			`	"It's not so simple." Sayari continues, "In the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't actually built one in so, so long."`
+			`	"It's not so simple," Sayari responds. "In the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't actually built one in so, so long."`
 			`	Now that she mentions it, all of the stations in Hai space do seem to be very, very old.`
 			`	"However, therein lies a problem," says Xilin.`
 			`	"The Republic will not allow the Hai to build a station on our side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
