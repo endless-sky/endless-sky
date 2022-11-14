@@ -60,6 +60,7 @@ namespace {
 				// Check whether it is time for this thread to quit.
 				if(shouldQuit)
 					return;
+				// No more tasks to execute, just to to sleep.
 				if(tasks.empty())
 					break;
 

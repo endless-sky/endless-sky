@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "StarField.h"
+#include "TaskQueue.h"
 
 #include <algorithm>
 #include <iterator>
@@ -78,7 +79,7 @@ future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]() noexcept -> void
+	return TaskQueue::Run([this, sources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)

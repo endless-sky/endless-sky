@@ -25,10 +25,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
+#include "PlanetLabel.h"
+#include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "Visual.h"
+#include "Weather.h"
 
 #include <condition_variable>
+#include <future>
 #include <list>
 #include <map>
 #include <memory>
@@ -40,15 +45,11 @@ class Flotsam;
 class Government;
 class NPC;
 class Outfit;
-class PlanetLabel;
 class PlayerInfo;
-class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
 class TestContext;
-class Visual;
-class Weather;
 
 
 
@@ -62,7 +63,6 @@ class Weather;
 class Engine {
 public:
 	explicit Engine(PlayerInfo &player);
-	~Engine();
 
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
@@ -101,7 +101,6 @@ public:
 private:
 	void EnterSystem();
 
-	void ThreadEntryPoint();
 	void CalculateStep();
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
@@ -173,14 +172,10 @@ private:
 
 	AI ai;
 
-	std::thread calcThread;
-	std::condition_variable condition;
-	std::mutex swapMutex;
-
+	std::future<void> calculation;
 	bool calcTickTock = false;
 	bool drawTickTock = false;
-	bool hasFinishedCalculating = true;
-	bool terminate = false;
+
 	bool wasActive = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
