@@ -1251,7 +1251,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 				`	(Interrupt him.)`
 					goto interrupt
 				`	(Wait.)`
-			`Sorry, you were presumably here on business, what's going on out there?"`
+			`	"Sorry, you were presumably here on business, what's going on out there?"`
 			label interrupt
 			choice
 				`	"The border is closed."`
