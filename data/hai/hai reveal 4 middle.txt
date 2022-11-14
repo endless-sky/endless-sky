@@ -1437,7 +1437,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	Xilin nods grimly. "However, that would be a drastic failure of foreign policy."`
 				goto questions
 			label "let hai through"
-			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood The Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
+			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
 				goto questions
 			label "hai concerns"
 			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. Enough people in the Cabinet disagree, that we're sort of at an impasse, for the moment."`
