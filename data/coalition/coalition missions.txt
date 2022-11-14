@@ -1196,7 +1196,7 @@ mission "Saryd Couple 4"
 				`	"You don't need to worry about paying me, I helped because I wanted to, not for a payday."`
 				`	"Well, I hope everything goes well. Best of luck to you two!"`
 					goto end
-			apply
+			action
 				set "refused saryd couple payment"
 			`	They look at you confused and then try to insist on paying you, but after some minutes they agree. "Too kind a heart you are, Captain," Aunaris says.`
 			label end
@@ -2633,7 +2633,7 @@ mission "Coalition: Expeditions Past 6"
 				`	"Actually, yes. They were called Sheragi."`
 				`	"No, I didn't even know there used to be ruins here."`
 					goto notknow
-			apply
+			action
 				"told coalition about sheragi" ++
 			`	Surprised that you know more, she listens to your story with Albert Foster, and how you had a dream about ships evacuating Zug. You tell her of the city buried under the layers of rock, the efforts to uncover it, and how the Quarg eventually sent someone to keep watch of the digging process.`
 			`	"Cities buried whole by lava? Tuned their scanners to look for such odd ruins, no expedition must have..." she stops and thinks for a few minutes, working on the pylon's command panel. "Tell the story again, could you, Captain <last>? Formally record the findings here, I would like." You spend the next few hours retelling what you saw, and helping her collect what information on the Sheragi and their ruins humans have learned since Foster published his initial findings.`
@@ -2849,7 +2849,7 @@ mission "Coalition: Expeditions Past 10"
 			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits and thanking you for helping recover the data of the sixth expedition.`
 				decline
 			label sheragi
-			apply
+			action
 				clear "told coalition about sheragi"
 			action
 				payment 50000000
@@ -2976,7 +2976,7 @@ mission "Coalition: Long Lost Property 3"
 			branch "convince" "fail"
 				random < 20
 			label convince
-			apply
+			action
 				payment -100000
 			`	He stares at you for a few seconds, and lets out a laugh. "Well, it was worth a try. Alright, a hundred thousand it is."`
 				goto where
@@ -2989,7 +2989,7 @@ mission "Coalition: Long Lost Property 3"
 			choice
 				`	"Fine, just tell me already."`
 			label bribe
-			apply
+			action
 				payment -1000000
 			`	"Thank you for your patronage," he says, and sits back down.`
 			label where
@@ -3013,7 +3013,7 @@ mission "Coalition: Long Lost Property 3"
 		system "Persian"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Cohen"
 		conversation
-			apply
+			action
 				set "idriss probe recovered"
 			`The pirates are waiting for you when you board their Quicksilver, and you exchange shots for a while. Once you've cleared the entrance, you explore the ship, and find what should be the probe - it matches what you were shown by House Idriss' workers, if with a lot of extra wiring wrapped around it. The pirates must have tinkered with it in attempts to use it as a warning system about incoming fleets. You remove the wires, free the probe from its attachments to the ship, and let it loose into the void. You then hurry back to your ship, and catch the drifting probe into your hold. Now you need only bring it back to House Idriss.`
 				launch
