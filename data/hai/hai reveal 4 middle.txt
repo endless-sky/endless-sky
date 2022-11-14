@@ -1418,7 +1418,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 		conversation
 			`Upon docking at <planet>, now bereft of civilians, you and Sayari are kept out of things for a little while, as some business occurs behind a Navy security barricade in the direction of where Teeneep's ship docked. Neither Terry nor Turner are are allowed through either, as Navy personnel progressively establish operations and set secure areas on the station. Eventually Batu is sent out to get all of you and escort you in.`
 			`	As you reach Xilin and the other diplomats, who is also joined by Danforth, Sayari is intercepted by a Hai functionary and led away. Xilin looks at you all with a grave face, and begins. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. We're at a political impasse now, as the cabinet is blocking any progress.`
-			`	"The Hai have demanded we cut through the red tape by having the heads of state meet. They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed. We've gathered to brief you before the meeting."`
+			`	"The Hai have demanded we cut through the red tape by having the heads of state meet. They insist on <first> as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed. We've gathered to brief you before the meeting."`
 			label questions
 			choice
 				`	"I'm ready to mediate. Let's assemble the heads of state."`
