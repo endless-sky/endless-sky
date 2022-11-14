@@ -62,6 +62,7 @@ class TestContext;
 class Engine {
 public:
 	explicit Engine(PlayerInfo &player);
+	~Engine();
 
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();

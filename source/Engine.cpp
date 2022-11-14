@@ -250,6 +250,14 @@ Engine::Engine(PlayerInfo &player)
 
 
 
+Engine::~Engine()
+{
+	if(calculation.valid())
+		calculation.wait();
+}
+
+
+
 void Engine::Place()
 {
 	ships.clear();

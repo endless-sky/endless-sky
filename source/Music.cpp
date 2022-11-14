@@ -59,6 +59,9 @@ void Music::Init(const vector<string> &sources)
 // Destructor, which waits for the thread to stop.
 Music::~Music()
 {
+	if(decoder.valid())
+		decoder.wait();
+
 	mad_synth_finish(&synth);
 	mad_frame_finish(&frame);
 	mad_stream_finish(&stream);
