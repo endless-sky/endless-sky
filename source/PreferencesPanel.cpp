@@ -506,7 +506,7 @@ void PreferencesPanel::DrawSettings()
 			continue;
 		}
 		// Check if this setting is on the page being displayed.
-		// If this setting isn't on the page being displayed, check if it on an earlier page.
+		// If this setting isn't on the page being displayed, check if it is on an earlier page.
 		// If it is, continue to the next setting.
 		// Otherwise, this setting is on a later page,
 		// do not continue as no further settings are to be displayed.
