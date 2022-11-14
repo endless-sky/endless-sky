@@ -958,7 +958,7 @@ fleet "Elenchus Tribute"
 
 event "Elenchus can be dominated"
 	planet "Elenchus"
-		tribute 7000
+		tribute 5000
 			threshold 2400
 			fleet "Elenchus Tribute"
 
