@@ -140,6 +140,7 @@ event "war begins"
 		security .9
 	planet "Bourne"
 		description `Bourne is a well-developed industrial world that was first settled four centuries ago. Its cities are home to some of the richest individuals in this section of the galaxy, but also home to tens of thousands of homeless people, and many others whose factory jobs are barely providing enough to make ends meet.`
+		description `	Outside the cities, the climate is somewhat dry, but the deep valleys and some coastal regions are suitable for farming. Very little of the planet remains that is untouched by human hands.`
 		description `Bourne is also the seat of government for the newly formed Free Worlds.`
 
 mission "event: war begins"
