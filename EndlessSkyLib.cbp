@@ -151,6 +151,8 @@
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
 		<Unit filename="source/FogShader.h" />
+		<Unit filename="source/FormationPattern.cpp" />
+		<Unit filename="source/FormationPattern.h" />
 		<Unit filename="source/FrameTimer.cpp" />
 		<Unit filename="source/FrameTimer.h" />
 		<Unit filename="source/Galaxy.cpp" />
@@ -273,6 +275,8 @@
 		<Unit filename="source/Preferences.h" />
 		<Unit filename="source/PreferencesPanel.cpp" />
 		<Unit filename="source/PreferencesPanel.h" />
+		<Unit filename="source/PrintData.cpp" />
+		<Unit filename="source/PrintData.h" />
 		<Unit filename="source/Projectile.cpp" />
 		<Unit filename="source/Projectile.h" />
 		<Unit filename="source/Radar.cpp" />

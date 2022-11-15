@@ -129,6 +129,34 @@ event "korath hunting"
 
 
 
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: postverta reveal"
 	unvisit Caeculus
 	unvisit Diespiter
@@ -257,6 +285,16 @@ event "remnant: ssil vida inhabited"
 
 
 
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: cognizance peregrine"
 	outfitter "Remnant"
 		"Bellows-Class Afterburner"
@@ -286,7 +324,7 @@ event "remnant: remove hidden"
 
 
 
-event "remnant: ssil vida area unvisted"
+event "remnant: ssil vida area unvisited"
 	unvisit "Diespiter"
 	unvisit "Egeria"
 	unvisit "Prosa"
@@ -332,12 +370,13 @@ event "remnant: ssil vida activation"
 		trade Metal 272
 		trade Plastic 289
 		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
-			sprite star/wr1
+			sprite star/wr
 			period 10
 		object
 			sprite planet/dust6-b
@@ -497,6 +536,7 @@ event "remnant: ssil vida activation"
 		trade Metal 407
 		trade Plastic 222
 		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
@@ -587,6 +627,7 @@ event "remnant: ssil vida activation"
 			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta
+				scale 0.5
 			distance 1408
 			period 554
 	system Prosa
@@ -760,6 +801,10 @@ event "remnant: ssil vida activation"
 
 
 
+# The default value of a system's "jump range" is 0. In this state, the global default will be used.
+# When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
+# the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
+# may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
 event "remnant: ssil vida deactivation"
 	clear "remnant: ssil vida active"
 	planet Fertriery
@@ -778,6 +823,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
+		"jump range" 0
 		link Statina
 		link Vaticanus
 		asteroids "small rock" 1 8
@@ -825,6 +871,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
+		"jump range" 0
 		link Statina
 		link Postverta
 		asteroids "small rock" 65 3
@@ -878,6 +925,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
+		"jump range" 0
 		link Diespiter
 		link Prosa
 		link Statina
@@ -911,6 +959,7 @@ event "remnant: ssil vida deactivation"
 			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta
+				scale 0.5
 			distance 1408
 			period 554
 	system Prosa
@@ -921,6 +970,7 @@ event "remnant: ssil vida deactivation"
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
+		"jump range" 0
 		link Vaticanus
 		link Postverta
 		asteroids "medium metal" 11 2
@@ -974,6 +1024,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
+		"jump range" 0
 		link Diespiter
 		link Egeria
 		link Postverta
@@ -1024,6 +1075,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
+		"jump range" 0
 		link Egeria
 		link Prosa
 		asteroids "small rock" 3 6
@@ -1168,4 +1220,18 @@ event "remnant: shattered light"
 
 
 
-event "remnant: shattered light research" 
+event "remnant: shattered light research"
+
+event "remnant: tubfalet appearance"
+	fleet "Korath Raid"
+		add variant 1
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Ember Waste Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Large Raid"
+		add variant 3
+			"Tubfalet" 2
+			"'olofez" 6
