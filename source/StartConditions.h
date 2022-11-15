@@ -55,6 +55,7 @@ public:
 	const std::string &GetDisplayName() const noexcept;
 	const std::string &GetDescription() const noexcept;
 
+
 private:
 	// Conditions that will be set for any pilot that begins with this scenario.
 	ConditionSet conditions;
