@@ -329,8 +329,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
-	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));
-    
+	heatTable.push_back(Format::Number(60. * idleHeatPerFrame))
+	
 	// Add energy and heat while moving to the table.
 	attributesHeight += 20;
 	const double movingEnergyPerFrame =
@@ -343,7 +343,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
 	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
-    
+
 	// Add energy and heat while firing to the table.
 	attributesHeight += 20;
 	double firingEnergy = 0.;
@@ -357,7 +357,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	tableLabels.push_back("firing:");
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
 	heatTable.push_back(Format::Number(60. * firingHeat));
-    
+
 	// Add energy and heat when doing shield and hull repair to the table.
 	attributesHeight += 20;
 	double shieldEnergy = (hasShieldRegen) ? attributes.Get("shield energy")
@@ -388,7 +388,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	tableLabels.push_back("max change:");
 	energyTable.push_back(Format::Number(60. * overallEnergy));
 	heatTable.push_back(Format::Number(60. * overallHeat));
-    
+
 	// Add maximum values of energy and heat to the table.
 	attributesHeight += 20;
 	const double maxEnergy = attributes.Get("energy capacity");
