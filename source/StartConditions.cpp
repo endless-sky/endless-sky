@@ -223,13 +223,3 @@ const std::string &StartConditions::GetDescription() const noexcept
 {
 	return description;
 }
-
-
-
-const bool StartConditions::CanBeDisplayed() const
-{
-	for(const auto &globalCondition : toDisplay)
-		if(!GlobalConditions::HasSetting(globalCondition))
-			return false;
-	return true;
-}
