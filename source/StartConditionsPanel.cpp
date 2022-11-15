@@ -97,7 +97,7 @@ void StartConditionsPanel::Draw()
 
 	const Font &font = FontSet::Get(14);
 	for(auto it = scenarios.begin(); it != scenarios.end();
-		++it, pos += Point(0., entryBox.Height()))
+			++it, pos += Point(0., entryBox.Height()))
 	{
 		// Any scenario wholly outside the bounds can be skipped.
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());

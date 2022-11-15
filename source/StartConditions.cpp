@@ -119,9 +119,6 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(Conversation(child));
 		else if(key == "conversation" && hasValue && !child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
-		else if(key == "to display" && child.HasChildren())
-			for(const DataNode &grand : child)
-				toDisplay.emplace_back(grand.Token(0));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
 		else
