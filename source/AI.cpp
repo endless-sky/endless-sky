@@ -1981,7 +1981,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	bool isJump = (ship.GetCheapestJumpType(ship.GetTargetSystem()).first == Ship::JumpType::JumpDrive);
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	double departure =  isJump ?
+	double departure = isJump ?
 		ship.GetSystem()->JumpDepartureDistance() :
 		ship.GetSystem()->HyperDepartureDistance();
 	double squaredDeparture = departure * departure + SAFETY_OFFSET;
