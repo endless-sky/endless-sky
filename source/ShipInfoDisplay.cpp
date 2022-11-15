@@ -329,7 +329,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
-	heatTable.push_back(Format::Number(60. * idleHeatPerFrame))
+	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));
 
 	// Add energy and heat while moving to the table.
 	attributesHeight += 20;
