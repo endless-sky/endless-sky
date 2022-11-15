@@ -1469,7 +1469,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 				`	"With respect, Chancellor, what you propose would take years to resolve a problem of immediate concern. How does the Hai representative respond?"`
 					goto "keep teeneep calm"
 				`	"Is this an acceptable proposal, Teeneep?"`
-			`	Teeneep looks perturbed while she holds back her anger and resentment. The other heads of state don't seem notice; perhaps you're more sensitive to Hai facial expressions after the time you spent with Hai.  "Of course, not," she says.`
+			`	Teeneep looks perturbed, but she makes an effort to hold back her anger and resentment. The other heads of state don't seem notice; perhaps you're more sensitive to Hai facial expressions after the time you spent with Hai.  "Of course not," she says.`
 			label "keep teeneep calm"
 			`	Teeneep responds plainly, "We are a peaceful people by nature, but these pirate attacks have gone too far. We support a solution that benefits the innocent inhabitants of the pirate worlds. However, there must be immediate action, not years of delay."`
 			choice
