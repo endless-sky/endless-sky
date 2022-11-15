@@ -224,10 +224,10 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		auto bestAngle = make_pair(4., 0.);
 		for(const System *it : links)
 		{
-			// Skip the currently selected link, if any. Also skip links to
+			// Skip the currently selected link, if any, and non valid system links. Also skip links to
 			// systems the player has not seen, and skip hyperspace links if the
 			// player has not visited either end of them.
-			if(it == original)
+			if(!it->IsValid() || it == original)
 				continue;
 			if(!player.HasSeen(*it))
 				continue;
