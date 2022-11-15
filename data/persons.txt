@@ -1723,8 +1723,8 @@ ship "Modified Ladybug"
 		"cost" 8950000
 		
 		# To be buffed:
-		"shields" 12300
-		"hull" 3600
+		"shields" 26000
+		"hull" 20000
 		
 		"required crew" 16
 		"bunks" 33
