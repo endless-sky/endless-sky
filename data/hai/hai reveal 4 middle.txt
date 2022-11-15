@@ -1461,7 +1461,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 				`	"Thank you, Hai representative. It is unfortunate that your people have suffered in that way, and I'm sure your esteemed colleges from the other side of the wormhole can help you solve this problem. President? Chancellor?"`
 					goto formality2
 				`	"Thank you, Teeneep. President, Chancellor, please explain the piracy situation from the human point of view."`
-			`	The President seems surprised by the informal tone of your question, as if you just made a faux pah. The Chancellor looks more at ease than before, and perhaps a little amused.`
+			`	The President seems surprised by the informal tone of your question, as if you just made a faux pas. The Chancellor looks more at ease than before, and perhaps a little amused.`
 			label formality2
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
 			`	The Chancellor states, "However, the Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
