@@ -330,7 +330,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
 	heatTable.push_back(Format::Number(60. * idleHeatPerFrame))
-	
+
 	// Add energy and heat while moving to the table.
 	attributesHeight += 20;
 	const double movingEnergyPerFrame =
