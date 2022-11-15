@@ -376,7 +376,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	}
 
 	for(const string &globalCondition : globalCondtions)
-		GlobalConditions::SetSetting(globalCondition);
+		GlobalConditions::SetCondition(globalCondition);
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());

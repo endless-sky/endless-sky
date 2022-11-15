@@ -20,12 +20,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Files.h"
 
-#include <map>
+#include <set>
 
 using namespace std;
 
 namespace {
-	map<string, bool> globalConditions;
+	set<string> globalConditions;
 };
 
 
@@ -34,7 +34,7 @@ void GlobalConditions::Load()
 {
 	DataFile prefs(Files::Config() + "globalConditions.txt");
 	for(const DataNode &node : prefs)
-		globalConditions[node.Token(0)] = (node.Size() == 1 || node.Value(1));
+		globalConditions.insert(node.Token(0));
 }
 
 
@@ -43,19 +43,22 @@ void GlobalConditions::Save()
 {
 	DataWriter out(Files::Config() + "globalConditions.txt");
 	for(const auto &it : globalConditions)
-		out.Write(it.first, it.second);
+		out.Write(it);
 }
 
 
 
-bool GlobalConditions::HasSetting(const std::string settingName)
+bool GlobalConditions::HasCondition(const std::string settingName)
 {
-	return globalConditions[settingName];
+	return globalConditions.count(settingName);
 }
 
 
 
-void GlobalConditions::SetSetting(const std::string settingName, bool active)
+void GlobalConditions::SetCondition(const std::string settingName, bool active)
 {
-	globalConditions[settingName] = active;
+	if(active)
+		globalConditions.insert(settingName);
+	else
+		globalConditions.erase(settingName);
 }

@@ -27,8 +27,8 @@ public:
 	static void Load();
 	static void Save();
 
-	static bool HasSetting(const std::string settingName);
-	static void SetSetting(const std::string settingName, bool active = true);
+	static bool HasCondition(const std::string settingName);
+	static void SetCondition(const std::string settingName, bool active = true);
 };
 
 
