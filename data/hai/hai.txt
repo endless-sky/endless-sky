@@ -188,7 +188,6 @@ outfitter "Unfettered Basics"
 	"Pulse Rifle"
 	"Asteroid Scanner"
 	"Outfit Scanner"
-	"Value Detector"
 
 outfitter "Unfettered"
 	"Pulse Turret"
