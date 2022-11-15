@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 class Sprite;
+class System;
 
 #include <cstdint>
 #include <vector>
@@ -61,7 +62,7 @@ public:
 	static void Init(bool useShaderSwizzle);
 
 	static void AddLight(const Point &position, const Color lightColor, const double lightRadius = 0.);
-	static void ClearLights();
+	static void ClearLights(const System *system);
 
 	// Draw a sprite.
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);

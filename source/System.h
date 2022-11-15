@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "Color.h"
 #include "Hazard.h"
 #include "Point.h"
 #include "RandomEvent.h"
@@ -83,6 +84,7 @@ public:
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
+	const Color *GetStarColor() const;
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
 
@@ -207,6 +209,7 @@ private:
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
+	Color starColor = Color(1, 1);
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.

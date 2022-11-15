@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
+#include "System.h"
 #include "Sprite.h"
 
 #include "Messages.h"
@@ -47,10 +48,17 @@ namespace {
 	GLint swizzlerI;
 
 	GLint spriteIndexI;
+	GLint starlightColI;
 	GLint worldPositionI;
 
-	GLint subLightPosI;
-	GLint subLightColI;
+	GLint subLightPos1I;
+	GLint subLightCol1I;
+	GLint subLightPos2I;
+	GLint subLightCol2I;
+	GLint subLightPos3I;
+	GLint subLightCol3I;
+	GLint subLightPos4I;
+	GLint subLightCol4I;
 //	GLint subLightRadiusI;
 
 	GLuint vao;
@@ -62,6 +70,10 @@ namespace {
 		double radius = 0.;
 	};
 	static std::vector<Light> lights;
+
+	static Color starlight;
+
+	const GLint *subLightPos[4] = {&subLightPos1I, &subLightPos2I, &subLightPos3I, &subLightPos4I};
 
 	const vector<vector<GLint>> SWIZZLE = {
 		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // 0 red + yellow markings (republic)
@@ -109,8 +121,9 @@ void ShadowedSpriteShader::AddLight(const Point &position, const Color color, co
 
 
 
-void ShadowedSpriteShader::ClearLights()
+void ShadowedSpriteShader::ClearLights(const System *system)
 {
+	starlight = *system->GetStarColor();
 	lights.clear();
 }
 
@@ -154,9 +167,16 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"uniform sampler2DArray normal;\n"
 		"uniform sampler2DArray base;\n"
 		"uniform sampler2DArray emit;\n"
+		"uniform vec4 starlightCol;\n"
 		"uniform vec3 worldPosition;\n"
-		"uniform vec3 subLightPos;\n"
-		"uniform vec4 subLightCol;\n"
+		"uniform vec3 subLightPos1;\n"
+		"uniform vec4 subLightCol1;\n"
+		"uniform vec3 subLightPos2;\n"
+		"uniform vec4 subLightCol2;\n"
+		"uniform vec3 subLightPos3;\n"
+		"uniform vec4 subLightCol3;\n"
+		"uniform vec3 subLightPos4;\n"
+		"uniform vec4 subLightCol4;\n"
 //		"uniform float subLightRadius;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
@@ -182,7 +202,10 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"    vec4 normCol = texture(normal, vec3(fragTexCoord, first));\n"
 		"    vec4 texCol = texture(tex, vec3(fragTexCoord, first));\n"
 		"    vec3 lightVector = normalize(worldPosition);\n"
-		"    vec3 subLightVector = normalize(subLightPos);\n"
+		"    vec3 subLightVector1 = normalize(subLightPos1);\n"
+		"    vec3 subLightVector2 = normalize(subLightPos2);\n"
+		"    vec3 subLightVector3 = normalize(subLightPos3);\n"
+		"    vec3 subLightVector4 = normalize(subLightPos4);\n"
 		"	 if(spriteIndex == 7 || spriteIndex == 15)\n"
 		"	 {\n"
 		"      if(blur.x == 0.f && blur.y == 0.f)\n"
@@ -220,8 +243,15 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"	 }\n"
 		"    vec3 norm = vec3(normCol.x - 0.5f, normCol.y - 0.5f, normCol.z - 0.5f) * 4.f;\n"
 		"    float dotP = 0.5f + (0.5f * dot(norm, lightVector));\n"
-		"    float dotP2 = min(max(0.5f + (0.5f * dot(norm, subLightVector)), 0.f) / length(subLightPos), 1.f);\n"
-		"    color = color * vec4(vec3(dotP * texCol.a) + (dotP2 * subLightCol.rgb * subLightCol.a), texCol.a);\n"
+		"    float dotP1 = min(max(0.5f + (0.5f * dot(norm, subLightVector1)), 0.f) / (log2(length(subLightPos1)) * length(subLightPos1)), 1.f);\n"
+		"    float dotP2 = min(max(0.5f + (0.5f * dot(norm, subLightVector2)), 0.f) / (log2(length(subLightPos2)) * length(subLightPos2)), 1.f);\n"
+		"    float dotP3 = min(max(0.5f + (0.5f * dot(norm, subLightVector3)), 0.f) / (log2(length(subLightPos3)) * length(subLightPos3)), 1.f);\n"
+		"    float dotP4 = min(max(0.5f + (0.5f * dot(norm, subLightVector4)), 0.f) / (log2(length(subLightPos4)) * length(subLightPos4)), 1.f);\n"
+		"    vec3 col1 = (dotP1 * subLightCol1.rgb * subLightCol1.a);\n"
+		"    vec3 col2 = (dotP2 * subLightCol2.rgb * subLightCol2.a);\n"
+		"    vec3 col3 = (dotP3 * subLightCol3.rgb * subLightCol3.a);\n"
+		"    vec3 col4 = (dotP4 * subLightCol4.rgb * subLightCol4.a);\n"
+		"    color = color * vec4((dotP * starlightCol.rgb * starlightCol.a) + col1 + col2 + col3 + col4, texCol.a);\n"
 		"    color = vec4(texture(emit, vec3(fragTexCoord, first)).rgb + color.rgb, texCol.a);\n"
 		"  }\n"
 		"  else\n"
@@ -358,9 +388,16 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 	scaleI = shader.Uniform("scale");
 	frameI = shader.Uniform("frame");
 	frameCountI = shader.Uniform("frameCount");
+	starlightColI = shader.Uniform("starlightCol");
 	worldPositionI = shader.Uniform("worldPosition");
-	subLightPosI = shader.Uniform("subLightPos");
-	subLightColI = shader.Uniform("subLightCol");
+	subLightPos1I = shader.Uniform("subLightPos1");
+	subLightCol1I = shader.Uniform("subLightCol1");
+	subLightPos2I = shader.Uniform("subLightPos2");
+	subLightCol2I = shader.Uniform("subLightCol2");
+	subLightPos3I = shader.Uniform("subLightPos3");
+	subLightCol3I = shader.Uniform("subLightCol3");
+	subLightPos4I = shader.Uniform("subLightPos4");
+	subLightCol4I = shader.Uniform("subLightCol4");
 //	subLightRadiusI = shader.Uniform("subLightRadius");
 	spriteIndexI = shader.Uniform("spriteIndex");
 	positionI = shader.Uniform("position");
@@ -474,32 +511,53 @@ void ShadowedSpriteShader::Add(const Item &item, bool withBlur)
 	glUniform1f(frameI, item.frame);
 	glUniform1f(frameCountI, item.frameCount);
 	glUniform1i(spriteIndexI, item.spriteIndex);
+	glUniform4fv(starlightColI, 1, starlight.Get());
 	glUniform3f(worldPositionI, item.worldPosition[0], item.worldPosition[1], item.worldPosition[2]);
-	Light closestLight;
-	double shortestDistance = std::numeric_limits<double>::infinity();
-	bool hasLight = false;
+	Light closestLight[4];
+	closestLight[0].position = Point(99999., 99999.);
+	closestLight[1].position = Point(99999., 99999.);
+	closestLight[2].position = Point(99999., 99999.);
+	closestLight[3].position = Point(99999., 99999.);
+//	double shortestDistance = std::numeric_limits<double>::infinity();
+//	bool hasLight = false;
 	Messages::Add(to_string(lights.size()));
 	if(!(lights.empty()))
 	{
 
 		for(const Light &it : lights)
 		{
-			if((item.worldSpacePos - it.position).LengthSquared() < shortestDistance)
+			double distance = (item.worldSpacePos - it.position).LengthSquared();
+			int index = 0;
+			for(int i = 3; i >= 0; --i)
 			{
-				closestLight = it;
-				shortestDistance = (item.worldSpacePos - it.position).LengthSquared();
-				hasLight = true;
+				if(distance < (item.worldSpacePos - closestLight[i].position).LengthSquared())
+				{
+					index = i;
+					continue;
+				}
 			}
+			for(int i = 3; i > index; --i)
+			{
+				closestLight[i] = closestLight[i-1];
+			}
+			closestLight[index] = it;
+//			hasLight = true;
 		}
-		if(hasLight)
-		{
-			Point offseted = closestLight.position - item.worldSpacePos;
-			offseted = (-item.facing).Rotate(-offseted);
-			glUniform3f(subLightPosI, -offseted.X(), offseted.Y(), -15.);
-			glUniform4fv(subLightColI, 1, closestLight.color.Get());
-		//	glUniform1f(subLightRadiusI, closestLight.radius);
-		}
+//		if(hasLight)
+//		{
+//		//	glUniform1f(subLightRadiusI, closestLight.radius);
+//		}
 	}
+	for(int i = 0; i < 4; i++)
+	{
+		Point offseted = closestLight[i].position - item.worldSpacePos;
+		offseted = (-item.facing).Rotate(-offseted);
+		glUniform3f(*subLightPos[i], -offseted.X(), offseted.Y(), -15.);
+	}
+	glUniform4fv(subLightCol1I, 1, closestLight[0].color.Get());
+	glUniform4fv(subLightCol2I, 1, closestLight[1].color.Get());
+	glUniform4fv(subLightCol3I, 1, closestLight[2].color.Get());
+	glUniform4fv(subLightCol4I, 1, closestLight[3].color.Get());
 
 
 	glUniform2fv(positionI, 1, item.position);

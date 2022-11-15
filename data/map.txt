@@ -7328,6 +7328,7 @@ system Coluber
 	fleet "Korath Ember Waste Raid" 10000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	starcolor 1. .87 .79 1.1
 	object
 		sprite star/k5-old
 		distance 17.0555
@@ -7361,8 +7362,7 @@ system Coluber
 		sprite planet/wormhole-red
 		distance 2354.54
 		period 1371.69
-		lightcolor 1. .2 .1 400.
-		lightradius 30.
+		lightcolor .5 .1 .05 5000.
 
 system Companion
 	pos -1032.59 709.051

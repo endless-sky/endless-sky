@@ -1284,7 +1284,7 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	ShadowedSpriteShader::ClearLights();
+	ShadowedSpriteShader::ClearLights(system);
 	for(const StellarObject &obj : system->Objects())
 	{
 		if(obj.HasValidLight())

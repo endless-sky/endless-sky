@@ -333,6 +333,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
 			haze = SpriteSet::Get(value);
+		else if(key == "starcolor")
+		{
+			starColor = Color(child.Value(1), child.Value(2), child.Value(3), child.Value(4));
+		}
 		else if(key == "trade" && child.Size() >= 3)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "arrival")
@@ -505,6 +509,13 @@ const Government *System::GetGovernment() const
 {
 	static const Government empty;
 	return government ? government : &empty;
+}
+
+
+
+const Color *System::GetStarColor() const
+{
+	return &starColor;
 }
 
 
