@@ -87,6 +87,9 @@ private:
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 
+	// When this actions is performed, set these global conditions.
+	std::set<std::string> globalCondtions;
+
 	ConditionSet conditions;
 };
 

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "GameLoadingPanel.h"
 #include "GameWindow.h"
+#include "GlobalConditions.h"
 #include "Hardpoint.h"
 #include "Logger.h"
 #include "MenuPanel.h"
@@ -167,6 +168,7 @@ int main(int argc, char *argv[])
 #endif
 
 		Preferences::Load();
+		GlobalConditions::Load();
 
 		if(!GameWindow::Init())
 			return 1;
@@ -198,6 +200,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
+	GlobalConditions::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();

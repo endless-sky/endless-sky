@@ -97,8 +97,10 @@ void StartConditionsPanel::Draw()
 
 	const Font &font = FontSet::Get(14);
 	for(auto it = scenarios.begin(); it != scenarios.end();
-			++it, pos += Point(0., entryBox.Height()))
+			++it)
 	{
+		if(!it->CanBeDisplayed())
+			continue;
 		// Any scenario wholly outside the bounds can be skipped.
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
 		if(!(entriesContainer.Contains(zone.TopLeft()) || entriesContainer.Contains(zone.BottomRight())))
@@ -114,6 +116,7 @@ void StartConditionsPanel::Draw()
 
 		const auto name = DisplayText(it->GetDisplayName(), Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
+		pos += Point(0., entryBox.Height());
 	}
 
 	// TODO: Prevent lengthy descriptions from overflowing.

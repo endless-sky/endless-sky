@@ -55,6 +55,7 @@ public:
 	const std::string &GetDisplayName() const noexcept;
 	const std::string &GetDescription() const noexcept;
 
+	const bool CanBeDisplayed() const;
 
 private:
 	// Conditions that will be set for any pilot that begins with this scenario.
@@ -69,6 +70,8 @@ private:
 	// The user-friendly display name for this starting scenario.
 	std::string name;
 	std::string description;
+
+	std::vector<std::string> toDisplay;
 };
 
 

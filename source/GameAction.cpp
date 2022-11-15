@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
+#include "GlobalConditions.h"
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
@@ -214,6 +215,11 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			GameData::Missions().Get(toFail);
 		}
 	}
+	else if(key == "global set")
+	{
+		if(child.Size() >= 2)
+			globalCondtions.insert(child.Token(1));
+	}
 	else
 		conditions.Add(child);
 }
@@ -257,6 +263,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
 		out.Write("fail", name);
+	for(const string &globalCondition : globalCondtions)
+		out.Write("global set", globalCondition);
 
 	conditions.Save(out);
 }
@@ -367,6 +375,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 				player.FailMission(mission);
 	}
 
+	for(const string &globalCondition : globalCondtions)
+		GlobalConditions::SetSetting(globalCondition);
+
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
 }
@@ -408,6 +419,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 
 	result.fail = fail;
+
+	result.globalCondtions = globalCondtions;
 
 	result.conditions = conditions;
 

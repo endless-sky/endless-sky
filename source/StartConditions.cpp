@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
+#include "GlobalConditions.h"
 #include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
@@ -118,6 +119,9 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(Conversation(child));
 		else if(key == "conversation" && hasValue && !child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
+		else if(key == "to display" && child.HasChildren())
+			for(const DataNode &grand : child)
+				toDisplay.emplace_back(grand.Token(0));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
 		else
@@ -218,4 +222,14 @@ const std::string &StartConditions::GetDisplayName() const noexcept
 const std::string &StartConditions::GetDescription() const noexcept
 {
 	return description;
+}
+
+
+
+const bool StartConditions::CanBeDisplayed() const
+{
+	for(const auto &globalCondition : toDisplay)
+		if(!GlobalConditions::HasSetting(globalCondition))
+			return false;
+	return true;
 }
