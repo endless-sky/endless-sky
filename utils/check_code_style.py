@@ -79,8 +79,6 @@ word_include = {re.compile(regex): description for regex, description in {
 	"^([^+/%=]?(?<!operator))[+/%=][^+/%=,\\s\\)\\]}]": "missing whitespace after operator",
 	# Matches any series of operators ending with '=', '<' or '>' that have no trailing whitespace.
 	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s\\)\\]}]": "missing whitespace after operator",
-	# Matches any 'dynamic_cast' or 'const_cast' statements
-	"^(dynamic|const)_cast<": "C-style typecasts are not to be used",
 	# Matches any '(void)' arguments in methods
 	"\\(void\\)": "do not use void to denote a function with no arguments"
 }.items()}
