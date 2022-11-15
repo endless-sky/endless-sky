@@ -13,11 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "GlobalConditions.h"
+
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
-#include "GlobalConditions.h"
 
 #include <map>
 
