@@ -18,6 +18,11 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 	description `Go to <destination> to learn where you can find the Alpha ship.`
 	source "Darkcloak"
 	destination "Firelode"
+	substitutions
+		<message> "You try to discern meaning out of it, it seems it is asking you to stop assisting the Unfettered, or you may not be... redeemed?"
+			not "language: Wanderer"
+		<message> `Your translator makes sense of it. "Captain <last>, we have been observing your [actions, movements]. We know you are [helping, working with] the Unfettered. Do be warned that we will not [allow, forgive] this behavior if you do it any further."`
+			has "language: Wanderer"
 	to offer
 		not "unfettered: destroyed auxiliary"
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
@@ -49,6 +54,16 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 					decline
 			`	Before you go, one of the warlords comes to speak to you personally. "Do not dare come back to us asking for more cooperation, should you fail this. That said, I'm not sure you would ever come back if you are not victorious. But never forget that jump drives matter more than anything else. You should steal as many as you can if you do indeed manage to beat the Alphas."`
 				accept
+		on enter
+			conversation
+				branch "know wand"
+					has "First Contact: Wanderer: offered"
+				`You receive an ominous message from an unknown source, in Hai. <message> You assume this comes from potential enemies of the Unfettered, maybe an alien race.`
+					goto transmissiondown
+				label "knowwand"
+				`You receive an ominous message from an unknown source, in Hai. <message> You assume this comes from the Wanderers, as they are enemies of the Unfettered, and they seem to speak Hai as well.`
+				label transmissiondown
+				`	Whatever it was that emitted the message your sensors did not manage to detect it, and you assume neither did the Unfettered's. This message was meant for your ears alone.`
 
 
 

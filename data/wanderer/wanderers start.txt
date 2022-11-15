@@ -80,7 +80,7 @@ mission "First Contact: Wanderer"
 			`	It seems like they do not trust you; they are very hesitant to come your way. They probably somehow know that you've worked with the Unfettered.`
 			choice
 				`	"I come to learn more about you, on behalf of the Unfettered."`
-				goto tryunderstand
+					goto tryunderstand
 			label normal
 			choice
 				`	"Hello. I come in peace."`
@@ -885,7 +885,7 @@ mission "Wanderers: Jump Drive Source"
 		conversation
 			branch "warm welcome"
 				has "Unfettered: Alphas 2: Prove Yourself: active"
-			`When you arrive on <origin>, Iktat Rekt greets you with suspicion. "Human," he says, "it seems you have [unfinished, unclear] business with the Unfettered. If you wish to help us you must [stop, discontinue] all dealing with them. When you did, come back here.`
+			`When you arrive on <origin>, Iktat Rekt greets you with suspicion. "Human," he says, "it seems you have [unfinished, unclear] business with the Unfettered. If you wish to help us you must [stop, discontinue] all dealing with them. When that is done, come back here and we will see what we can do about the Unfettered [crisis, situation].`
 				defer
 			label "warm welcome"
 			`When you arrive on <origin>, Iktat Rek greets you warmly. "Human," he says, "it is a [relief, delight] to have [peace, safety] within our territory. But the Unfettered will not be [placated, satisfied] forever. I have spoken with ambassador Sayari about this and we are agreed that we must know what [allies, accomplices] the Unfettered have, what their [strength, capability] is, and how they have acquired jump drives."`
