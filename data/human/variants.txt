@@ -1122,27 +1122,30 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 		"LP144a Battery Pack"
 
 
-# Danforth's personal ship in HR.
+# Danforth's personal ship in HR. Outfitted against the Hai and then modified to fight devil hide.
 ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 	crew 136
 	outfits
 		"Plasma Cannon" 6
 		"Plasma Turret"
 		"Heavy Anti-Missile Turret" 2
+		
 		"Catalytic Ramscoop"
 		"Fuel Pod" 3
 		"Jump Drive"
 		"Quantum Keystone"
-		"S-970 Regenerator" 2
+		"S-970 Regenerator" 3
 		"Liquid Helium Cooler"
-		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 2
-		"A520 Atomic Thruster"
+		
+		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
 		Afterburner
-		"Armageddon Core"
+		
+		"Stack Core"
 		"LP144a Battery Pack"
-		"Laser Rifle" 100
+		"Supercapacitor" 2
+		"Laser Rifle" 82
 		"Fragmentation Grenades" 60
 
 
