@@ -325,13 +325,13 @@ mission "Hai Reveal [C05] Cleanup"
 					goto judge
 			label spare
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
-			apply
+			action
 				set "spared terry"
 			`	The holster clicks as you put the weapon away.`
 				goto return
 			label end
 			`	You draw your weapon and point it at her, your thumb on the safety. Some prices are too high to pay for a better future.`
-			apply
+			action
 				set "ended terry"
 			`	The retort of the weapon is taken away on the wind.`
 				goto return

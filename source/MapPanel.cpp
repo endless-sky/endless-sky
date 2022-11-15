@@ -1195,6 +1195,8 @@ void MapPanel::DrawMissions()
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
+		if(!system)
+			continue;
 		auto &it = missionCount[system];
 		if(mission.CanAccept(player))
 			++it.available;
@@ -1207,6 +1209,8 @@ void MapPanel::DrawMissions()
 			continue;
 
 		const System *system = mission.Destination()->GetSystem();
+		if(!system)
+			continue;
 
 		// Reserve a maximum of half of the slots for available missions.
 		auto &&it = missionCount[system];
