@@ -1476,7 +1476,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 				`	"Surely a group of enlightened human leaders can propose an alternative?"`
 				`	"Are there any counter-proposals?"`
 					goto "keep president happy"
-			`	The President seems genuinely annoyed by being patronized, while the Chancellor smirks. You get a furry little smile from Teeneep.`
+			`	The President seems genuinely irritated by being patronized, but the Chancellor smirks. You get a furry little smile from Teeneep.`
 			label "keep president happy"
 			`	"We have a counter-proposal," the President says. "We cannot afford to change our policy in totality, it would cost too many lives. However, we propose the following: The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`
 			`	"The Free Worlds will also extend our protection, of course," the Chancellor adds.`
