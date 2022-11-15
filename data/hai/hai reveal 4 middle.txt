@@ -1448,22 +1448,45 @@ mission "Hai Reveal [A14] A Time of Trouble"
 				goto questions
 			label "begin the meeting"
 			`	A few hours later, they manage to set up a clear channel dedicated to the meeting in a room with large wall-mounted displays. You knew it was coming, and yet you're still a little surprised to see before you the President of the Republic and the Chancellor of the Free Worlds in remarkable clarity and surprisingly low latency. The windows behind the Chancellor suggest they were awoken in the middle of the night for this, but you wouldn't guess it from looking at them.`
-			`	Teeneep begins, "I speak as the voice of the Hai and with the full authority of the Elder Council. Thousands of our people have been kidnapped over the past few decades, and they still largely reside under the servitude of various pirate factions that the Republic allows to continue. Even worse, your authorities have allowed numerous Hai to be slipped past on slaver ships, without attempting rescue because of the no boarding policy your forces employ, even on disabled and potentially doomed ships. We demand the return of our people and an immediate end to the policy of letting slaves die or escape without attempting boarding and rescue."`
+			`	After a few seconds, you realize that three galactic leaders are waiting for you to begin the proceedings. As you've never been a galactic negotiator, you improvise the best you can.`
 			choice
-				`	"How do the human governments respond?"`
+				`	"The tragedy we see around us can become a future of peace. Would the Hai representative please present us the problem we must solve together?"`
+					goto formality
+				`	"Teeneep, please explain the problem to the human leaders. I'm sure we can come to a compromise that will suit everyone."`
+			`	Teeneep responds, "Thank you for mediating these proceedings, Captain <last>."`
+			`	Both human leaders seem put off by the level of familiarity you just expressed, but Teeneep looks as if you took a world of stress off her shoulders.`
+			label formality
+			`	Teeneep explains, "I speak as the voice of the Hai and with the full authority of the Elder Council. Thousands of our people have been kidnapped over the past few decades, and they still largely reside under the servitude of various pirate factions that the Republic allows to continue. Even worse, your authorities have allowed numerous Hai to be slipped past on slaver ships, without attempting rescue because of the no boarding policy your forces employ, even on disabled and potentially doomed ships. We demand the return of our people and an immediate end to the policy of letting slaves die or escape without attempting boarding and rescue."`
+			choice
+				`	"Thank you, Hai representative. It is unfortunate that your people have suffered in that way, and I'm sure your esteemed colleges from the other side of the wormhole can help you solve this problem. President? Chancellor?"`
+					goto formality2
+				`	"Thank you, Teeneep. President, Chancellor, please explain the piracy situation from the human point of view."`
+			`	The President seems surprised by the informal tone of your question, as if you just made a faux pah. The Chancellor looks more at ease than before, and perhaps a little amused.`
+			label formality2
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
 			`	The Chancellor states, "However, the Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
 			choice
-				`	"Is this an acceptable proposal to the Hai?"`
-			`	Teeneep looks perturbed while she holds back her anger and resentment. The other heads of state don't seem notice; perhaps you're more sensitive to Hai facial expressions after the time you spent with Hai.`
-			`	She calms down and responds. "Of course not. We are a peaceful people by nature, but these pirate attacks have gone too far. We support a solution that benefits the innocent inhabitants of the pirate worlds. However, there must be immediate action, not years of delay."`
+				`	"With respect Chancellor, what you propose would take years to resolve a problem that is an immediate concern. How does the Hai representative respond?"`
+					goto "keep teeneep calm"
+				`	"Is this an acceptable proposal, Teeneep?"`
+			`	Teeneep looks perturbed while she holds back her anger and resentment. The other heads of state don't seem notice; perhaps you're more sensitive to Hai facial expressions after the time you spent with Hai.  "Of course, not," she says.`
+			label "keep teeneep calm"
+			`	Teeneep responds plainly, "We are a peaceful people by nature, but these pirate attacks have gone too far. We support a solution that benefits the innocent inhabitants of the pirate worlds. However, there must be immediate action, not years of delay."`
 			choice
+				`	"Surely a group of enlightened human leaders can propose an alternative?"`
 				`	"Are there any counter-proposals?"`
+					goto "keep president happy"
+			`	The President seems genuinely annoyed by being patronized, while the Chancellor smirks. You get a furry little smile from Teeneep.`
+			label "keep president happy"
 			`	"We have a counter-proposal," the President says. "We cannot afford to change our policy in totality, it would cost too many lives. However, we propose the following: The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`
 			`	"The Free Worlds will also extend our protection, of course," the Chancellor adds.`
 			`	Teeneep looks relieved by this suggestion.`
 			choice
-				`	"Is this an acceptable counter-proposal?"`
+				`	"That sounds like a viable solution that will benefit all parties. How does the Hai representative respond?"`
+				`	"Teeneep, will that satisfy the Hai?"`
+					goto "no human response"
+			`	Both human leaders nod in agreement with you.`
+			label "no human response"
 			`	Teeneep takes a moment to respond. "That sounds like an acceptable future state... but I cannot sign any treaty yet. The Hai will not be satisfied until our kidnapped brethren are returned."`
 			`	The President replies, "The Minister for Foreign Affairs has been keeping Cabinet apprised of the major details and proposals reported back by Deputy Minister Yang. Under the circumstances we believe it would be appropriate for us to attempt a joint effort to address your concerns. We agree to making this effort against one target, and to reassessing the situation afterwards depending upon what is discovered in that process. The Republic representatives there with you now will work with you to identify that target and plan the action accordingly."`
 			`	The smoothness with which this goes down gives you the sense that the main points of this were all provisionally agreed to already, with only a little wiggle room left to be settled in this conversation.`
