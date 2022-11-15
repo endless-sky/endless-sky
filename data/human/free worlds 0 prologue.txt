@@ -259,7 +259,9 @@ mission "FW Recon 0"
 	passengers 1
 	to offer
 		has "event: initial deployment 4"
-		random < 35 + 5 * "assisted free worlds" * "assisted free worlds"
+		or
+			random < 35 + 5 * "assisted free worlds" * "assisted free worlds"
+			has "flagship planet: Deep"
 	to fail
 		has "chosen sides"
 	
@@ -540,8 +542,11 @@ mission "FW Escort 0"
 		near "Sabik" 1 100
 	destination "Longjump"
 	to offer
-		random < 20 * "assisted free worlds"
+		has "assisted free worlds"
 		not "FW Escort 1: offered"
+		or
+			random < 20 * "assisted free worlds"
+			has "flagship planet: Glaze"
 	to fail
 		has "chosen sides"
 	
@@ -993,7 +998,7 @@ mission "FW Escort Second Chance"
 				`	"I will. Thank you for giving me a second chance, sir."`
 				`	"I'll try my best."`
 			`	He shakes your hand and leaves, without ordering anything to drink. You get the feeling that he still does not think very highly of you.`
-			apply
+			action
 				"assisted free worlds" ++
 
 
@@ -1167,7 +1172,9 @@ mission "FW Katya 1"
 		government "Free Worlds"
 	destination "Glory"
 	to offer
-		random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
+		or
+			random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
+			has "flagship planet: Zug"
 	to fail
 		has "chosen sides"
 	
@@ -1389,7 +1396,10 @@ mission "FW Katya Alt 2"
 	passengers 1
 	to offer
 		has "event: FW Katya Alt 2: ready"
-		random < 25 * "assisted free worlds"
+		has "assisted free worlds"
+		or
+			random < 25 * "assisted free worlds"
+			has "flagship planet: Zug"
 	to fail
 		has "chosen sides"
 	
