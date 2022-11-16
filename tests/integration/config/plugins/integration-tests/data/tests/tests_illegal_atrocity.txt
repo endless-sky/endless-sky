@@ -49,11 +49,13 @@ test-data "quarg scanning"
 			credits 100000000
 			score 400
 			history
-		mission "Wardragon Scanning You!"
-			name "Wardragon Scanning You!"
-			uuid 50660c05-4451-4bb1-bdac-9b86b9bf8a88
+		mission "%TEST%: Wardragon Scanning You!"
+			name "%TEST%: Wardragon Scanning You!"
+			uuid 58363365-d579-4914-b407-3fb475054588
+			landing
+			destination Ruin
 			npc
-				uuid 3cac29a8-778a-49de-a973-e8ea2514c6f1
+				uuid 449c28f4-922a-493b-89f6-782e5fd741d9
 				succeed 1
 				government Quarg
 				personality
@@ -65,22 +67,22 @@ test-data "quarg scanning"
 					name Scanner
 					sprite ship/wardragon
 					thumbnail thumbnail/wardragon
-					uuid 86da571c-8651-4a0a-a00a-a19fba1c393e
+					uuid 52834b2a-711f-439a-aff1-b529613f710e
 					attributes
 						category "Heavy Warship"
 						cost 5900000
-						mass 1
+						mass 360
 						bunks 185
 						"cargo space" 50
-						drag 1
+						drag 9.3
 						"engine capacity" 120
 						"fuel capacity" 800
 						"heat dissipation" 0.5
+						"outfit scan speed" 1000000
+						"outfit scan power" 1000000
 						hull 50000
 						"hull energy" 5
 						"hull repair rate" 5
-						"outfit scan power" 10000000
-						"outfit scan speed" 10000000
 						"outfit space" 600
 						ramscoop 10
 						"required crew" 160
@@ -90,7 +92,6 @@ test-data "quarg scanning"
 					outfits
 						"Antimatter Core"
 						"Intrusion Countermeasures" 160
-						"Jump Drive"
 						"Medium Graviton Steering"
 						"Medium Graviton Thruster"
 						"Nanotech Battery"
@@ -101,7 +102,7 @@ test-data "quarg scanning"
 					fuel 800
 					shields 0
 					hull 2884.5
-					position 885.13693 -758.45598
+					position 0 -1000
 					engine -14 47
 						zoom 1
 						angle 0
@@ -125,11 +126,11 @@ test-data "quarg scanning"
 					explode "tiny explosion" 12
 					"final explode" "final explosion medium" 1
 					system "Terra Incognita"
-				on offer
-					conversation
-						label 0
-						"You must be scanned or be killed."
-							accept
+			on offer
+				conversation
+					label 0
+					"You must be scanned or be killed."
+						accept
 
 		event "illegal stuff"
 			government "Quarg"
@@ -138,6 +139,35 @@ test-data "quarg scanning"
 					Hyperdrive 1
 		visited "Terra Incognita"
 		"visited planet" Ruin
+		conditions
+			"%TEST%: Wardragon Scanning You!: active"
+			"%TEST%: Wardragon Scanning You!: offered"
+			"%TEST%: SCANNING ILLEGALS"
+
+
+ship "Quarg Wardragon" "%TEST%: Dumbdragon"
+	outfits
+		"Antimatter Core"
+		"Medium Graviton Steering"
+		"Medium Graviton Thruster"
+		"Nanotech Battery"
+	add attributes
+		"outfit scan power" 1000000000
+		"outfit scan speed" 1000000000
+
+mission "%TEST%: Wardragon Scanning You!"
+	landing
+	to offer
+		has "%TEST%: SCANNING ILLEGALS"
+	on offer
+		conversation
+			"You must be scanned or be killed."
+				accept
+	npc assist
+		government "Quarg"
+		# I used another definition that had 1 million scan power but whatever
+		ship "%TEST%: Dumbdragon" "Scanner"
+		personality derelict surveillance target
 
 test "Illegal Test - Ignore and add"
 	status active
