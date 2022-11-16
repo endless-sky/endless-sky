@@ -58,6 +58,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
+#include "Storyline.h"
 #include "System.h"
 #include "Test.h"
 #include "TestData.h"
@@ -627,6 +628,13 @@ const Set<TestData> &GameData::TestDataSets()
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
+}
+
+
+
+const Set<Storyline> &GameData::Storylines()
+{
+	return objects.storylines;
 }
 
 

@@ -55,6 +55,7 @@ class Ship;
 class Sprite;
 class StarField;
 class StartConditions;
+class Storyline;
 class System;
 class Test;
 class TestData;
@@ -129,6 +130,7 @@ public:
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();
 	static const Set<Sale<Ship>> &Shipyards();
+	static const Set<Storyline> &Storylines();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
