@@ -168,6 +168,31 @@ mission "FW Diplomacy 1D"
 		dialog `You are still finding it hard to believe that you made it to Earth and back in one piece. Alondo thanks you for transporting him and says, "Now I just have to break the bad news to the Senate. JJ and I will meet you in the spaceport bar in a few hours, once we've decided what our next steps will be."`
 		event "navy using mark ii ships"
 
+mission "Greenrock Lost Announcement"
+	invisible
+	landing
+	source
+		government "Free Worlds"
+	to offer 
+		has "event: fw abandoned Greenrock"
+	on offer
+		conversation 
+			`As you go about your business, you hear an announcement coming from some unseen loudspeaker. "Attention! The Free Worlds have withdrawn our presence from Greenrock. Be advised that any further travel to the Shaula system may carry the risk of pirate attacks." The message cuts off abruptly, only to repeat a minute later.` 
+			branch attacked
+				has "FW Pirates: Attack 3: done"
+			`	It's a shame to hear that Greenrock is back under pirate control after so many lives were lost capturing it.`
+			goto ponder
+			label attacked 
+			`	You clench your fists in anger. All that work, all the risks you and Tomek took... for nothing.`
+			label ponder
+			choice
+				`	(Shake your head and move on.)`
+					decline
+				`	(Ask someone what happened.)`
+			`	You find a fellow Militia captain who looks at you sympathetically. "I guess it was bound to happen sooner or later, wasn't it? We just don't have the ships to fight the Navy and control a planet full of anarchists at the same time. The Senate even said so, right?"`
+			`	"Still, I wish things could have gone differently. With pirate raids coming from Greenrock again, it looks like we'll have our hands full for the foreseeable future."`
+			`	On that note, the two of you return to your duties.`
+		decline		
 
 
 mission "FW Southern Recon 1"
