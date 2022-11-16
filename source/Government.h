@@ -120,7 +120,7 @@ public:
 	double CrewDefense() const;
 
 	bool IsProvokedOnScan() const;
-	bool IsUsingForeignPenalties() const;
+	bool IsUsingForeignPenaltiesFor(const Government *government) const;
 
 
 private:
@@ -146,7 +146,7 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
-	bool usesForeignPenalties = false;
+	std::vector<const Government *> useForeignPenaltiesFor;
 };
 
 
