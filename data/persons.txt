@@ -1706,12 +1706,28 @@ person "MasterOfGrey"
 	frequency 1000
 	personality
 		heroic plunders opportunistic
+	system
+		government "Hai"
 	phrase
 		word
-			"I blame Nomadic."
 			"Why is everything Alphas?"
-			"<placeholder>"
 			"You're only a terrorist if the people experience terror."
+			"Have you finished FW story?"
+			"Things don’t have to mimic an earth creature to be not very alien."
+			"I have questions. Questions that do not yet need answers."
+			"There are no bugs in my code, only Xapleaux precursors."
+			"If I were green I would photosynthesise."
+			`"Trust the process" isn't a joke for no reason.`
+			"Have you reviewed Hai Reveal yet?"
+			"I gotta go get ready for work. Play nice and don’t @ me."
+			"I don’t even like yellow."
+			"I really enjoy the backstory for the Marauders."
+			"Falling into the ember waste and emerging into absolute silence for the first time in dozens of gameplay hours was profoundly moving."
+			"Planet descriptions will be the death of me."
+			"Have you tried Quyykk's editor for map work?"
+			"Did systems get made big yet?"
+			"Heat lasers and hull lasers are different metas and shouldn't be combined."
+			"<placeholder text>"
 	ship "Modified Ladybug" "Revealer of Hai"
 		"never disabled"
 
@@ -1802,4 +1818,4 @@ ship "Modified Ladybug"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells, two in the back replacing the old engine pods, and one in the front replacing the gun mounts. You'd think the person who owned the ship is a bit crazy with such dangerous modifications, but sometimes speed is king.`
+	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells -  two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy."
