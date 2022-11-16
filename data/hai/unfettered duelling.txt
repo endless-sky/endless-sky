@@ -13,7 +13,7 @@
 
 phrase "unfettered boarded"
 	word
-		`As you board the Unfettered warship you immediately notice something is wrong: the engines are emitting  bursts of fire, something Hai engines would never do. That probably means the ship is getting ready to explode! The captain sends you a message.`
+		`As you board the Unfettered warship you immediately notice something is wrong: the engines are emitting bursts of fire, something Hai engines would never do. That probably means the ship is getting ready to explode! The captain sends you a message.`
 	word
 		`"This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
 		`"This ship is the property of the True Hai, maybe even the Fettered, but never shall it belong to monkeys! We'd rather die than let you have it."`
@@ -23,7 +23,7 @@ phrase "unfettered boarded"
 # accept means you are disengaged from boarding and the mission triggers.
 # launch is the same but the ship blows up. Decline does nothing.
 conversation "explode or not"
-	`For a moment, it is as if time froze, everyone waiting for the start of the explosion to happen, or for your order to disengage...`
+	`For a moment, it is as if time froze, everyone waiting for the start of the explosion to happen, or for your order to disengage... It would be very risky to try and call their bluff but maybe it is worth the risk? Or maybe there is a better solution to this.`
 	choice
 		`	"Retreat!"`
 			goto retreat
