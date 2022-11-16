@@ -71,6 +71,18 @@ bool DrawList::Add(const Body &body, Point position, double cloak)
 
 
 
+bool DrawList::AddAsteroid(const Body &body, Point position, double cloak)
+{
+	Point blur = body.Velocity() - centerVelocity;
+	if(Cull(body, position - center, blur))
+		return false;
+
+	Push(body, std::move(position), std::move(blur), cloak, body.GetSwizzle(), true);
+	return true;
+}
+
+
+
 bool DrawList::AddUnblurred(const Body &body)
 {
 	Point position = body.Position() - center;
@@ -134,7 +146,7 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 
 
 
-void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle)
+void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle, bool isAsteroid)
 {
 	bool isAdvancedShading = Preferences::Has("Render advanced shading");
 
@@ -154,18 +166,18 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 	if(item.spriteIndex & 8)
 		item.emit = body.GetEmit()->Texture(isHighDPI);
 
-	item.position[0] = static_cast<float>(pos.X() * zoom);
-	item.position[1] = static_cast<float>(pos.Y() * zoom);
+	item.position[0] = static_cast<float>((isAsteroid ? pos.X() - center.X() : pos.X()) * zoom);
+	item.position[1] = static_cast<float>((isAsteroid ? pos.Y() - center.Y() : pos.Y()) * zoom);
 
-	Point unrotated = (-body.Facing()).Rotate(-body.Position());
+	Point unrotated = (-body.Facing()).Rotate(isAsteroid ? pos : -body.Position()) * (isAsteroid ? -1. : 1.);
 
 	item.facing = body.Facing();
 
-	item.worldSpacePos = body.Position();
+	item.worldSpacePos = isAsteroid ? pos : body.Position();
 
 	item.worldPosition[0] = static_cast<float>(unrotated.X());
 	item.worldPosition[1] = static_cast<float>(-unrotated.Y());
-	item.worldPosition[2] = -15.f;
+	item.worldPosition[2] = -50.f;
 
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();

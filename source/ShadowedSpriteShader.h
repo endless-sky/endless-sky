@@ -54,6 +54,7 @@ public:
 		float clip = 1.f;
 		float alpha = 1.f;
 		uint32_t spriteIndex = 0;
+		bool isAsteroid = false;
 	};
 
 
@@ -62,7 +63,7 @@ public:
 	static void Init(bool useShaderSwizzle);
 
 	static void AddLight(const Point &position, const Color lightColor, const double lightRadius = 0.);
-	static void ClearLights(const System *system);
+	static void ResetLights(const System *system);
 
 	// Draw a sprite.
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);

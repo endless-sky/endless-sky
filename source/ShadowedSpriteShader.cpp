@@ -121,7 +121,7 @@ void ShadowedSpriteShader::AddLight(const Point &position, const Color color, co
 
 
 
-void ShadowedSpriteShader::ClearLights(const System *system)
+void ShadowedSpriteShader::ResetLights(const System *system)
 {
 	starlight = *system->GetStarColor();
 	lights.clear();
@@ -197,7 +197,7 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"  float second = mod(ceil(frame), frameCount);\n"
 		"  float fade = frame - first;\n"
 		"  vec4 color;\n"
-		"  if(spriteIndex > 2)\n"
+		"  if(spriteIndex == 3 || spriteIndex == 7 || spriteIndex == 11 || spriteIndex == 15)\n"
 		"  {\n"
 		"    vec4 normCol = texture(normal, vec3(fragTexCoord, first));\n"
 		"    vec4 texCol = texture(tex, vec3(fragTexCoord, first));\n"
@@ -234,15 +234,14 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"        }\n"
 		"      }\n"
 		"	 }\n"
-		"    else\n"
+		"    if(spriteIndex == 3 || spriteIndex == 11)\n"
 		"	 {\n"
-		"		vec3 ogSunVector = vec3(-0.6, -0.7, 0.355);\n"
-		"	    vec3 mNormal = vec3(normCol.x - 0.5f, normCol.y - 0.5f, normCol.z - 0.5f) * 3.f;\n"
-		"	    float dotProd = max(dot(mNormal, ogSunVector) + 0.2f, 0.f);\n"
+		"	    vec3 mNormal = normalize(vec3(normCol.x - 0.5f, normCol.y - 0.5f, normCol.z - 0.5f));\n"
+		"	    float dotProd = max(dot(mNormal, vec3(-0.6, -0.7, 0.355)) + 0.2f, 0.f);\n"
 		"	    color = vec4(texCol.rgb + vec3(texture(tex, vec3(1.f-fragTexCoord.x, fragTexCoord.y, first)).rgb*dotProd), texCol.a);\n"
 		"	 }\n"
-		"    vec3 norm = vec3(normCol.x - 0.5f, normCol.y - 0.5f, normCol.z - 0.5f) * 4.f;\n"
-		"    float dotP = 0.5f + (0.5f * dot(norm, lightVector));\n"
+		"    vec3 norm = normalize(vec3(normCol.x - 0.5f, normCol.y - 0.5f, normCol.z - 0.5f));\n"
+		"    float dotP = min(max(0.2 + dot(norm, lightVector), 0.f) * min(4000.f / length(worldPosition), 1.f), 1.);\n"
 		"    float dotP1 = min(max(0.5f + (0.5f * dot(norm, subLightVector1)), 0.f) / (log2(length(subLightPos1)) * length(subLightPos1)), 1.f);\n"
 		"    float dotP2 = min(max(0.5f + (0.5f * dot(norm, subLightVector2)), 0.f) / (log2(length(subLightPos2)) * length(subLightPos2)), 1.f);\n"
 		"    float dotP3 = min(max(0.5f + (0.5f * dot(norm, subLightVector3)), 0.f) / (log2(length(subLightPos3)) * length(subLightPos3)), 1.f);\n"
@@ -252,7 +251,8 @@ void ShadowedSpriteShader::Init(bool useShaderSwizzle)
 		"    vec3 col3 = (dotP3 * subLightCol3.rgb * subLightCol3.a);\n"
 		"    vec3 col4 = (dotP4 * subLightCol4.rgb * subLightCol4.a);\n"
 		"    color = color * vec4((dotP * starlightCol.rgb * starlightCol.a) + col1 + col2 + col3 + col4, texCol.a);\n"
-		"    color = vec4(texture(emit, vec3(fragTexCoord, first)).rgb + color.rgb, texCol.a);\n"
+		"    if(spriteIndex > 8)\n"
+		"        color = vec4(texture(emit, vec3(fragTexCoord, first)).rgb + color.rgb, texCol.a);\n"
 		"  }\n"
 		"  else\n"
 		"  {\n"
@@ -508,11 +508,13 @@ void ShadowedSpriteShader::Add(const Item &item, bool withBlur)
 		glActiveTexture(GL_TEXTURE3);
 		glBindTexture(GL_TEXTURE_2D_ARRAY, item.emit);
 	}
+	glActiveTexture(GL_TEXTURE0);
+
 	glUniform1f(frameI, item.frame);
 	glUniform1f(frameCountI, item.frameCount);
 	glUniform1i(spriteIndexI, item.spriteIndex);
 	glUniform4fv(starlightColI, 1, starlight.Get());
-	glUniform3f(worldPositionI, item.worldPosition[0], item.worldPosition[1], item.worldPosition[2]);
+	glUniform3fv(worldPositionI, 1, item.worldPosition);
 	Light closestLight[4];
 	closestLight[0].position = Point(99999., 99999.);
 	closestLight[1].position = Point(99999., 99999.);
@@ -552,7 +554,7 @@ void ShadowedSpriteShader::Add(const Item &item, bool withBlur)
 	{
 		Point offseted = closestLight[i].position - item.worldSpacePos;
 		offseted = (-item.facing).Rotate(-offseted);
-		glUniform3f(*subLightPos[i], -offseted.X(), offseted.Y(), -15.);
+		glUniform3f(*subLightPos[i], -offseted.X(), offseted.Y(), -30.);
 	}
 	glUniform4fv(subLightCol1I, 1, closestLight[0].color.Get());
 	glUniform4fv(subLightCol2I, 1, closestLight[1].color.Get());
@@ -588,9 +590,6 @@ void ShadowedSpriteShader::Unbind()
 		glUniform1i(swizzlerI, 0);
 	else
 		glTexParameteriv(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[0].data());
-
-	// Reset the active texture.
-	glActiveTexture(GL_TEXTURE0);
 
 	glBindVertexArray(0);
 	glUseProgram(0);

@@ -58,8 +58,11 @@ void AsteroidField::Clear()
 void AsteroidField::Add(const string &name, int count, double energy)
 {
 	const Sprite *sprite = SpriteSet::Get("asteroid/" + name + "/spin");
+	const Sprite *normal = SpriteSet::Get("asteroid/" + name + "/normal");
+	const Sprite *base = SpriteSet::Get("asteroid/" + name + "/base");
+	const Sprite *emit = SpriteSet::Get("asteroid/" + name + "/emit");
 	for(int i = 0; i < count; ++i)
-		asteroids.emplace_back(sprite, energy);
+		asteroids.emplace_back(sprite, energy, normal, base, emit);
 }
 
 
@@ -176,11 +179,19 @@ const list<shared_ptr<Minable>> &AsteroidField::Minables() const
 
 
 // Construct an asteroid with the given sprite and "energy level."
-AsteroidField::Asteroid::Asteroid(const Sprite *sprite, double energy)
+AsteroidField::Asteroid::Asteroid(const Sprite *sprite, double energy, const Sprite *normal, const Sprite *base, const Sprite *emit)
 {
 	// Energy level determines how fast the asteroid rotates.
 	SetSprite(sprite);
 	SetFrameRate(Random::Real() * 4. * energy + 5.);
+
+	if(normal)
+		SetNormal(normal);
+	if(base)
+		SetBase(base);
+	if(emit)
+		SetEmit(emit);
+
 
 	// Pick a random position within the wrapped square.
 	position = Point(Random::Real() * WRAP, Random::Real() * WRAP);
@@ -240,5 +251,5 @@ void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, double z
 	// Draw any instances of this asteroid that are on screen.
 	for(double y = startY; y < bottomRight.Y(); y += WRAP)
 		for(double x = startX; x < bottomRight.X(); x += WRAP)
-			draw.Add(*this, Point(x, y));
+			draw.AddAsteroid(*this, Point(x, y));
 }

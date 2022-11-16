@@ -71,7 +71,7 @@ private:
 	// deflected from its trajectory, and that repeats every 4096 pixels.
 	class Asteroid : public Body {
 	public:
-		Asteroid(const Sprite *sprite, double energy);
+		Asteroid(const Sprite *sprite, double energy, const Sprite *normal, const Sprite *base, const Sprite *emit);
 
 		void Step();
 		void Draw(DrawList &draw, const Point &center, double zoom) const;
