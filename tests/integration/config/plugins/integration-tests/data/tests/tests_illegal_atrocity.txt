@@ -12,10 +12,10 @@ test-data "quarg scanning"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 70
+				mass 10
 				bunks 3
 				"cargo space" 50
-				drag 2.1
+				drag 1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -49,99 +49,84 @@ test-data "quarg scanning"
 			credits 100000000
 			score 400
 			history
-		mission "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
-			uuid 58363365-d579-4914-b407-3fb475054588
-			landing
-			destination Ruin
-			npc
-				uuid 449c28f4-922a-493b-89f6-782e5fd741d9
-				succeed 1
-				government Quarg
-				personality
-					confusion 10
-					derelict
-					surveillance
-					target
-				ship "Quarg Wardragon"
-					name Scanner
-					sprite ship/wardragon
-					thumbnail thumbnail/wardragon
-					uuid 52834b2a-711f-439a-aff1-b529613f710e
-					attributes
-						category "Heavy Warship"
-						cost 5900000
-						mass 360
-						bunks 185
-						"cargo space" 50
-						drag 9.3
-						"engine capacity" 120
-						"fuel capacity" 800
-						"heat dissipation" 0.5
-						"outfit scan speed" 1000000
-						"outfit scan power" 1000000
-						hull 50000
-						"hull energy" 5
-						"hull repair rate" 5
-						"outfit space" 600
-						ramscoop 10
-						"required crew" 160
-						shields 160000
-						"turret mounts" 4
-						"weapon capacity" 200
-					outfits
-						"Antimatter Core"
-						"Intrusion Countermeasures" 160
-						"Medium Graviton Steering"
-						"Medium Graviton Thruster"
-						"Nanotech Battery"
-						"Quantum Shield Generator"
-						"Quarg Anti-Missile" 2
-						"Quarg Skylance" 2
-					crew 162
-					fuel 800
-					shields 0
-					hull 2884.5
-					position 0 -1000
-					engine -14 47
-						zoom 1
-						angle 0
-						under
-					engine 14 47
-						zoom 1
-						angle 0
-						under
-					turret -28 7 "Quarg Skylance"
-						over
-					turret 28 7 "Quarg Skylance"
-						over
-					turret -9 -14 "Quarg Anti-Missile"
-						over
-					turret 9 -14 "Quarg Anti-Missile"
-						over
-					explode "huge explosion" 20
-					explode "large explosion" 40
-					explode "medium explosion" 30
-					explode "small explosion" 16
-					explode "tiny explosion" 12
-					"final explode" "final explosion medium" 1
-					system "Terra Incognita"
-			on offer
-				conversation
-					label 0
-					"You must be scanned or be killed."
-						accept
 
 		event "illegal stuff"
 			government "Quarg"
 				illegals
 					ignore "Nerve Gas"
 					Hyperdrive 1
+				# they enforce all currently but to be sure
+				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		conditions
-			"%TEST%: Wardragon Scanning You!: active"
-			"%TEST%: Wardragon Scanning You!: offered"
+			"%TEST%: SCANNING ILLEGALS"
+
+
+test-data "quarg scanning"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		"reputation with"
+			Quarg 1000
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+				"Nerve Gas"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+
+		event "atrocity stuff"
+			government "Quarg"
+				atrocity
+					Hyperdrive
+				# they don't have it yet but to be sure
+				remove "death sentence"
+				remove "enforces"
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		conditions
 			"%TEST%: SCANNING ILLEGALS"
 
 
@@ -156,6 +141,7 @@ ship "Quarg Wardragon" "%TEST%: Dumbdragon"
 		"outfit scan speed" 1000000000
 
 mission "%TEST%: Wardragon Scanning You!"
+	priority
 	landing
 	to offer
 		has "%TEST%: SCANNING ILLEGALS"
@@ -169,15 +155,70 @@ mission "%TEST%: Wardragon Scanning You!"
 		ship "%TEST%: Dumbdragon" "Scanner"
 		personality derelict surveillance target
 
-test "Illegal Test - Ignore and add"
-	status active
-	description "Test if a Quarg ship spawning next to you will give you a fine for an illegal outfit and ignore the fine for another."
+test "Land On Ruin helper"
+	status partial
+	description "Helper for landing on Ruin."
 	sequence
-		inject "burning flyers"
+		input
+			command land
+		label landing
+		branch landing
+			"flagship planet: Ruin" < 1
+		assert
+			"flagship planet: Ruin" > 0
+
+test "Illegal Test - Ignore and New Illegal"
+	status active
+	description "Test if a Quarg ship spawning disabled in the system will give you a fine for an illegal outfit and ignore the fine for another, after you repaired it."
+	sequence
+		inject "quarg scanning"
 		call "Load First Savegame"
 		watchdog 12000
+		assert
+			"fines" == 0
 		call "Depart"
-		# board the ship so we're sure we get close to it
+		# land again to trigger the mission
+		call "Land On Ruin helper"
+		input
+			command "enter"
+		call "Depart"
+		# board the ship so we're sure we get close to it to get scanned
+		input
+			command board
+		# Wait for 10 seconds so it should be repaired
+		apply
+			"test: steps to wait" = 10 * 60
+		label "floating"
+		# empty input to make time pass
+		input
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" > 0
+		# skip the dialog message for the fine
+		input
+			command "enter"
+		# land back with a fine of 1
+		call "Land On Ruin helper"
+		assert
+			"fines" == 1
+
+test "Atrocity Test - New Atrocity"
+	status active
+	description "Test if a Quarg ship spawning disabled in the system will consider an outfit an atrocity when specified by an event."
+	sequence
+		inject "quarg atrocity"
+		call "Load First Savegame"
+		watchdog 12000
+		assert
+			"reputation: Quarg" == 1000
+		call "Depart"
+		# land again to trigger the mission
+		call "Land On Ruin helper"
+		input
+			command "enter"
+		call "Depart"
+		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
 		# Wait for 10 seconds so it should be boarded
@@ -190,15 +231,10 @@ test "Illegal Test - Ignore and add"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
-		# land back wiht a fine of 1
+		# skip the dialog message for the fine
 		input
-			command land
-		label "landing"
-		# this will despawn the ship
-		call "Depart"
-		input
-			command land
-		# empty input to make time pass, the fine should be of 1 now
-		input
-		branch "landing"
-			"credits" == (100000000 - 1)
+			command "enter"
+		# land back with a fine of 1
+		call "Land On Ruin helper"
+		assert
+			"reputation: Quarg" < 1
