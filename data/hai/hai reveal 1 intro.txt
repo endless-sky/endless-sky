@@ -552,7 +552,7 @@ mission "Hai Leaks Response 1"
 			`	As you are making the walk you hear questions posed and rumors stated. Occasionally you hear words like "honorable" and "reasonable" thrown in amongst the babble.`
 				goto main
 			label thank
-			`	He nods to you, and returns to his duties: holding back one oncoming Hai reporter after another, and the occasional protester.`
+			`	He nods to you, and returns to his duties: holding back one oncoming Hai journalist after another.`
 			label main
 			`	You arrive at a very comfortable office and are received by a mature-looking Hai with the appropriate regalia of a diplomat. She holds out a paw to greet you and says, "My name is Sayari. I was the envoy to the human government a century ago."`
 			`	The present media storm is all the evidence needed to make it clear that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then they're probably still trying to work out a suppression strategy and have been too busy to send an envoy quicker than your own trip took.`
