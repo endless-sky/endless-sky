@@ -75,7 +75,7 @@ namespace {
 		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
 			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
 #else
-# warning SDL 2.0.14 or higher is needed for opening folders
+#warning SDL 2.0.14 or higher is needed for opening folders!
 		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
 #endif
 	}
