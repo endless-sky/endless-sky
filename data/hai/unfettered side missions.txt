@@ -184,7 +184,7 @@ mission "Proud Unfettered Boarded (Small)"
 			and
 				"flagship crew" <= 20
 				# they won't blow up except if you have more crew than they do bunks but they can bluff
-				random < ("flagship crew" - 4) * 3
+				random < "flagship crew" * 3 - 12
 			and
 				"flagship crew" > 20
 				random < 50
@@ -221,7 +221,7 @@ mission "Proud Unfettered Boarded (Medium)"
 		or
 			and
 				"flagship crew" <= 68
-				random < ("flagship crew" - 14)
+				random < "flagship crew" - 14
 			and
 				"flagship crew" > 68
 				random < 50
@@ -258,7 +258,7 @@ mission "Proud Unfettered Boarded (Heavy)"
 		or
 			and
 				"flagship crew" <= 95
-				random < ("flagship crew" - 55)
+				random < "flagship crew" - 55
 			and
 				"flagship crew" > 95
 				random < 50
