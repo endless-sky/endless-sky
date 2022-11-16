@@ -143,7 +143,7 @@ outfit "Abyssal Composer"
 	"weapon capacity" -21
 	"gun ports" -1
 	weapon
-		sound "drone2"
+		sound "composer"
 		"hit effect" "composed" 2
 		"hit effect" "drained"
 		"inaccuracy" 45
@@ -172,7 +172,7 @@ effect "composed"
 		"no repeat"
 		"scale" 0.75
 		"frame rate" 20
-	sound "drone2"
+	sound "composer"
 	"lifetime" 30
 	"random velocity" 1
 	"velocity scale" -0.001
@@ -182,7 +182,7 @@ effect "drained"
 		"no repeat"
 		"frame rate" 30
 		"scale" 0.3
-	sound "drone2"
+	sound "composer drain"
 	"lifetime" 20
 	"random velocity" 1
 	"velocity scale" -0.01
