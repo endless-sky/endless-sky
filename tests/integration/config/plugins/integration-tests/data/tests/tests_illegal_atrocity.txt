@@ -1,0 +1,174 @@
+test-data "quarg scanning"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+				"Nerve Gas"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 1
+			score 400
+			history
+		mission "Wardragon Scanning You!"
+			name "Wardragon Scanning You!"
+			uuid 50660c05-4451-4bb1-bdac-9b86b9bf8a88
+			npc
+				uuid 3cac29a8-778a-49de-a973-e8ea2514c6f1
+				succeed 1
+				government Quarg
+				personality
+					confusion 10
+					derelict
+					surveillance
+					target
+				ship "Quarg Wardragon"
+					name Scanner
+					sprite ship/wardragon
+					thumbnail thumbnail/wardragon
+					uuid 86da571c-8651-4a0a-a00a-a19fba1c393e
+					attributes
+						category "Heavy Warship"
+						cost 5900000
+						mass 1
+						bunks 185
+						"cargo space" 50
+						drag 1
+						"engine capacity" 120
+						"fuel capacity" 800
+						"heat dissipation" 0.5
+						hull 50000
+						"hull energy" 5
+						"hull repair rate" 5
+						"outfit scan power" 10000000
+						"outfit scan speed" 10000000
+						"outfit space" 600
+						ramscoop 10
+						"required crew" 160
+						shields 160000
+						"turret mounts" 4
+						"weapon capacity" 200
+					outfits
+						"Antimatter Core"
+						"Intrusion Countermeasures" 160
+						"Jump Drive"
+						"Medium Graviton Steering"
+						"Medium Graviton Thruster"
+						"Nanotech Battery"
+						"Quantum Shield Generator"
+						"Quarg Anti-Missile" 2
+						"Quarg Skylance" 2
+					crew 162
+					fuel 800
+					shields 0
+					hull 2884.5
+					position 885.13693 -758.45598
+					engine -14 47
+						zoom 1
+						angle 0
+						under
+					engine 14 47
+						zoom 1
+						angle 0
+						under
+					turret -28 7 "Quarg Skylance"
+						over
+					turret 28 7 "Quarg Skylance"
+						over
+					turret -9 -14 "Quarg Anti-Missile"
+						over
+					turret 9 -14 "Quarg Anti-Missile"
+						over
+					explode "huge explosion" 20
+					explode "large explosion" 40
+					explode "medium explosion" 30
+					explode "small explosion" 16
+					explode "tiny explosion" 12
+					"final explode" "final explosion medium" 1
+					system "Terra Incognita"
+				on offer
+					conversation
+						label 0
+						"You must be scanned or be killed."
+							accept
+
+		event "illegal stuff"
+			government "Quarg"
+				illegals
+					ignore "Nerve Gas"
+					Hyperdrive 1
+		visited "Terra Incognita"
+		"visited planet" Ruin
+
+test "Illegal Test - Ignore and add"
+	status active
+	description "Test if a Quarg ship spawning next to you will give you a fine for an illegal outfit and ignore the fine for another."
+	sequence
+		inject "burning flyers"
+		call "Load First Savegame"
+		watchdog 12000
+		call "Depart"
+		# board the ship so we're sure we get close to it
+		input
+			command board
+		# Wait for 10 seconds so it should be boarded
+		apply
+			"test: steps to wait" = 10 * 60
+		label "floating"
+		# empty input to make time pass
+		input
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" > 0
+		# land back wiht a fine of 1
+		input
+			command land
+		label "landing"
+		# this will despawn the ship
+		call "Depart"
+		input
+			command land
+		# empty input to make time pass, the fine should be of 1 now
+		input
+		branch "landing"
+			"credits" == 0
