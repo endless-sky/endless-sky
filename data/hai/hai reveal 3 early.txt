@@ -417,4 +417,46 @@ event "role-play station active"
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad, carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 0.7
 		"required reputation" -10
-	
+
+
+# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.	
+mission "Hai Building Mountaintop [3b]"
+	landing
+	invisible
+	to offer
+		has "event: role-play station active"
+	on offer
+		event "ladybug surveillance" 20 30
+		fail
+
+event "ladybug surveillance"
+	fleet "Hai Surveillance"
+		add variant 10
+			"Shield Beetle (Police)"
+			"Ladybug"
+		add variant 5
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 2
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 1
+			"Ladybug" 2
+		add variant 3
+			"Grasshopper (Surveillance)" 2
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 3
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 4
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 2
+			"Ladybug" 2
+		add variant 3
+			"Grasshopper (Surveillance)" 3
+			"Ladybug" 2
