@@ -1,0 +1,281 @@
+# Copyright (c) 2022 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "unfettered boarded"
+	word
+		`As you board the Unfettered warship you immediately notice something is wrong: the engines are emitting  bursts of fire, something Hai engines would never do. That probably means the ship is getting ready to explode! The captain sends you a message.`
+	word
+		`"This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
+		`"This ship is the property of the True Hai, maybe even the Fettered, but never shall it belong to monkeys! We'd rather die than let you have it."`
+		`"It is truly sad it had to come to this, but we know you will not listen to reason. We have no choice but to destroy our ship."`
+		`"I may not let you have this ship, too many proud Hai have died because of you already. In their memory, it is best it be destroyed."`
+
+# accept means you are disengaged from boarding and the mission triggers.
+# launch is the same but the ship blows up. Decline does nothing.
+conversation "explode or not"
+	`For a moment, it is as if time froze, everyone waiting for the start of the explosion to happen, or for your order to disengage...`
+	choice
+		`	"Retreat!"`
+			goto retreat
+		`	"It's a bluff."`
+		`	"Wait! I challenge you to a duel."`
+			goto duel
+	label bluffnobluff
+	# you choose to stay, either they blow up (with you or not) or they called reinforcements
+	branch bluff
+		or
+			and
+				has "unfettered: light warship"
+				or
+					# if the ships are outnumbered by 25% they will consider blowing up
+					"flagship crew" < 13
+					# the more you outnumber their bunks the more likely they blow up
+					random > "flagship crew" - 10
+			and
+				has "unfettered: medium warship"
+				or
+					"flagship crew" < 45
+					random > "flagship crew" - 36
+			and
+				has "unfettered: heavy warship"
+				or
+					"flagship crew" < 114
+					random > "flagship crew" - 95
+	branch blowup
+		random < 2
+	`	They weren't bluffing, and you already see escape pods leaving the ship, trying to get to a safe distance. Better get out of here quickly!`
+		launch
+	label blowup
+	`	It was no bluff at all. In fact, they did not even hesitate, nor did they head to their escape pods. They blowed themselves up almost instantly, taking you down with them.`
+		explode
+	label bluff
+	`	But then, nothing.`
+	`	It seems this was just a bluff, or maybe it was an attempt to stall you? You hear alarms signaling new ships entering the system, and quickly disconnect the boarding clamps to respond to the incoming threat.`
+		accept
+	
+	label retreat
+	branch reinforcements
+		random < 20
+	branch normalretreat
+		random < 80
+	`	You give the order to retreat as soon as possible, and not a moment too soon as the ship is already starting to explode...`
+		flee
+	label reinforcements
+	`	You start the disengagement procedure, but by the time it is over it is clear they have no intention of actually blowing up. In fact, they have called for reinforcements.`
+		accept
+	label normalretreat
+	action
+		set "unfettered: no reinforcements"
+	`	Whether or not they were going to explode, it seems you gave your order quick enough for them not to do so. It would probably be wise to leave before they change their minds...`
+		accept
+	
+	label duel
+	`	You can hear some of the crew laughing but the captain disciplines them. "We are not in any position to show disrespect. This captain has shown themselves more adept than us." He says to them, before addressing you. "Very well. In that case come to my ship, we will give you a blade."`
+	choice
+		`	"What are the terms? What do I have to win?"`
+			goto terms
+		`	"I would prefer not to come alone to your ship."`
+			goto alone
+		`	"Is there not a risk of getting shot by Hai ships?"`
+	`	"You clearly know very little of our ways, captain. The Hai would never attack a defenceless ship, and if you meant the True Hai would attempt such a thing you are mistaken."`
+		goto terms
+	label alone
+	`	This seems to anger them, "You dare insult my honor? My word? Fine, take a few soldiers if it reassures you, they will do a fine audiance. It was planned you would come with your honor gard anyway."`
+	label terms
+	`	"Now as for the terms of the fight, I assume honor is not enough for you? I will not destroy my ship if you win, and you may do with us what you like. We will not call reinforcements, so you will be able to loot anything you want out of this ship, or even attempt to capture us. We will also remain in this system, defenceless, for a few days.`
+	`	"On top of that, the winner will receive 100 thousand credits from the loser. As for how the duel will happen, it is not meant to be to the death, although we will not use children blades either. As I clearly have an advantage over you I will be fighting weaponless."`
+	choice
+		`	"Alright. I will make my way to your ship now."`
+		`	"I won't be tricked into doing this meaningless fight. Self destruct if you want."`
+			goto bluffnobluff
+	`	You make your way to their ship, with your agreed 'honor gard' of 4 crew members. As you arrive you are directed to a training room, where the captain is waiting for you. They give you a blade, and the captain makes themselves ready, weaponless as they promised. "Ready, captain?"`
+	action
+		set "unfettered: no reinforcements"
+	choice
+		`	"En garde!"`
+	branch immobile
+		random < 50
+	`	In a fraction of a second, the captain goes from being immobile to rushing unto you, quickly covering the distance between the two of you.`
+		goto whatdo
+	label immobile
+	`	The captain does not move, at all. It almost seems like they are a statue, but you presume they are simply waiting for you to make the first move.`
+	label whatdo
+	# Even with this weapon you are completely outclassed. Your only chance it to make the battle end quickly.
+	choice
+		`	(Defend.)`
+			goto defend
+		`	(Dodge.)`
+			goto dodge
+		`	(Attack.)`
+	branch lucky
+		random < 30
+	`	Somehow, the captain deflects your blade with their bare hands, before hitting you with their first, using their relative small size to their advantage. You are left a bit disoriented by the attack. The Unfettered still is within reach of your blade.`
+	choice
+		`	(Attack again now that they are close.)`
+		`	(Move out of the way.)`
+	`	You try to act but lose your footing due to the captain swooping his leg. You fall on your back. And cannot react before they arm wressle you, forcing you to concede the duel. You go back to your ship, ashamed, and proceed to disconnect from the enemy ship after paying the due 100 thousand credits.`
+		goto payup
+	label defend
+	`	Seeing you on the defensive the captain attacks, fainting to the left and then hitting you from the right with a fist of such strength and speed you cannot do anything before they hit, knocking you out in one attack. You hear them laugh before losing consciousness.`
+	label lost
+	`	` # empty line to separate
+	`	Later on, you wake up in your ship, having been brought back by your crew members. One of them explains what happened. "The Unfettered simply moved out of the way when you lost, and demanded we remind you about the money you have to pay. We have already engaged the procedures to disconnect from their ship."`
+	label payup
+	action
+		fine 100000
+	``
+		accept
+	label dodge
+	`	Seeing you waiting the captain moves your way, and readies an attack but were ready for this, and move to the side before hiting them on the back with the side of the sword. The captain embraces their fall, using it to their advantage, grasping your clothes and making you fall as well.`
+	choice
+		`	(Get up.)`
+		`	(Strike.)`
+			goto strike
+	`	You try to get up but they are much faster than you, and stun by hitting you to the head with their foot.`
+		goto lost
+	label strike
+	branch gotlucky
+		random < 30
+	`	You try to strike them as they are rising but they seem to have seen this coming, and jump on you instead, swiftly disarming you and forcing you to concede the fight by applying pressure to your leg in a way you had never seen before. You go back to your ship, ashamed, and proceed to disconnect from the enemy ship after paying the due 100 thousand credits.`
+		goto payup
+	
+	label gotlucky
+	label lucky
+	action
+		payment 100000
+	`	You get lucky and manage to hit the captain with the pomel of the blade, rendering them unconscious and winning the duel. Their crew give you the agreed 100 thousand credits and you make your way back to your ship, victorious.`
+		decline
+	
+
+event "unfettered: bribe no more!"
+	government "Hai (Unfettered)"
+		bribe 0
+
+event "unfettered: blood dries quick"
+	government "Hai (Unfettered)"
+		bribe 0.2
+
+
+mission "Proud Unfettered Boarded (Small)"
+	boarding
+	minor
+	repeat
+	invisible
+	source
+		government "Hai (Unfettered)"
+		category "Light Warship"
+		neighbor
+			attributes "unfettered"
+	destination "Darkcloak"
+	deadline 3
+	to offer
+		or
+			# caps at 50% chance of offering, which happens when you have double their bunks
+			and
+				"flagship crew" <= 20
+				# they won't blow up except if you have more crew than they do bunks but they can bluff
+				random < ("flagship crew" - 4) * 3
+			and
+				"flagship crew" > 20
+				random < 50
+	on offer
+		clear "unfettered: no reinforcements"
+		set "unfettered: light warship"
+		dialog phrase "unfettered boarded"
+		conversation "explode or not"
+		clear "unfettered: light warship"
+		event "unfettered: bribe no more!"
+	npc evade
+		government "Hai (Unfettered)"
+		# being marked, these ships will not be attacked by the Hai.
+		personality entering nemesis vindictive staying marked
+		to spawn
+			not "unfettered: no reinforcements"
+		fleet "Small Unfettered" 2
+	on fail
+		event "unfettered: blood dries quick"
+
+mission "Proud Unfettered Boarded (Medium)"
+	boarding
+	minor
+	repeat
+	invisible
+	source
+		government "Hai (Unfettered)"
+		category "Medium Warship"
+		neighbor
+			attributes "unfettered"
+	destination "Darkcloak"
+	deadline 3
+	to offer
+		or
+			and
+				"flagship crew" <= 68
+				random < ("flagship crew" - 14)
+			and
+				"flagship crew" > 68
+				random < 50
+	on offer
+		clear "unfettered: no reinforcements"
+		set "unfettered: medium warship"
+		dialog phrase "unfettered boarded"
+		conversation "explode or not"
+		clear "unfettered: medium warship"
+		event "unfettered: bribe no more!"
+	npc evade
+		government "Hai (Unfettered)"
+		# being marked, these ships will not be attacked by the Hai.
+		personality entering nemesis vindictive staying marked
+		to spawn
+			not "unfettered: no reinforcements"
+		fleet "Small Unfettered" 3
+	on fail
+		event "unfettered: blood dries quick"
+
+mission "Proud Unfettered Boarded (Heavy)"
+	boarding
+	minor
+	repeat
+	invisible
+	source
+		government "Hai (Unfettered)"
+		category "Heavy Warship"
+		neighbor
+			attributes "unfettered"
+	destination "Darkcloak"
+	deadline 3
+	to offer
+		or
+			and
+				"flagship crew" <= 95
+				random < ("flagship crew" - 55)
+			and
+				"flagship crew" > 95
+				random < 50
+	on offer
+		clear "unfettered: no reinforcements"
+		set "unfettered: heavy warship"
+		dialog phrase "unfettered boarded"
+		conversation "explode or not"
+		clear "unfettered: heavy warship"
+		event "unfettered: bribe no more!"
+	npc evade
+		government "Hai (Unfettered)"
+		# being marked, these ships will not be attacked by the Hai.
+		personality entering nemesis vindictive staying marked
+		to spawn
+			not "unfettered: no reinforcements"
+		fleet "Large Unfettered"
+		fleet "Small Unfettered" 2
+	on fail
+		event "unfettered: blood dries quick"
