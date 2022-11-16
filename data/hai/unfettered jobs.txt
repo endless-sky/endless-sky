@@ -158,6 +158,7 @@ mission "Unfettered Silver Asteroid Mining"
 	description "Mine and collect 15 tons of silver, then bring the minerals back to <destination> for <payment>. Silver is available in the asteroid field in Ehma Ti."
 	source
 		attributes "unfettered"
+		not planet "Warfeed"
 	destination "Darkcloak"
 	to offer
 		random < 40
@@ -173,6 +174,7 @@ mission "Unfettered Silver Asteroid Mining 2"
 	description "Mine and collect 30 tons of silver, then bring the minerals to <destination> for <payment>. Silver is available in the asteroid field in Ehma Ti."
 	source
 		attributes "unfettered"
+		not planet "Warfeed"
 	destination "Darkcloak"
 	to offer
 		random < 10
@@ -190,6 +192,7 @@ mission "Unfettered Lead Asteroid Mining"
 	description "Mine and  collect 35 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
 		attributes "unfettered"
+		not planet "Warfeed"
 	destination "Darkcloak"
 	to offer
 		random < 40
@@ -206,6 +209,7 @@ mission "Unfettered Lead Asteroid Mining 2"
 	description "Mine and collect 70 tons of lead, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
 	source
 		attributes "unfettered"
+		not planet "Warfeed"
 	destination "Darkcloak"
 	to offer
 		random < 10
