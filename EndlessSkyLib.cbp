@@ -355,6 +355,8 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
+		<Unit filename="source/Wormhole.cpp" />
+		<Unit filename="source/Wormhole.h" />
 		<Unit filename="source/opengl.cpp" />
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
