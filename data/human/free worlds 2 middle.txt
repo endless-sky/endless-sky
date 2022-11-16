@@ -181,7 +181,7 @@ mission "Greenrock Lost Announcement"
 			branch attacked
 				has "FW Pirates: Attack 3: done"
 			`	It's a shame to hear that Greenrock is back under pirate control after so many lives were lost capturing it.`
-			goto ponder
+				goto ponder
 			label attacked 
 			`	You clench your fists in anger. All that work, all the risks you and Tomek took... for nothing.`
 			label ponder
