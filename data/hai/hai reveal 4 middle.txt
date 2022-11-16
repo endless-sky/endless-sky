@@ -1421,8 +1421,6 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	"The Hai have demanded we cut through the red tape by having the heads of state meet." He turns to you briefly. "They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed, and we've gathered to prepare you for the meeting."`
 			label questions
 			choice
-				`	"I'm ready to mediate. Let's assemble the heads of state."`
-					goto "begin the meeting"
 				`	"Can the Hai really pass through, with the Republic Navy blocking their way?"`
 					goto "navy blocks hai"
 				`	"What if we let them through, to attack the pirate planets?"`
@@ -1431,6 +1429,8 @@ mission "Hai Reveal [A14] A Time of Trouble"
 					goto "hai concerns"
 				`	"Who in the Cabinet is blocking progress?"`
 					goto "who is blocking"
+				`	"I'm ready to mediate. Let's assemble the heads of state."`
+					goto "begin the meeting"
 			label "navy blocks hai"
 			`	Xilin responds, "The Navy has blockaded the wormhole to the best of its ability, but the reality is that the Navy is already heavily committed, and barely look to be a match for the Hai fleet numbers. The Hai, on the other hand, do not yet appear to be committed heavily." He looks at Alondo briefly. "We had the unstated privilege of observing the Hai security fleet left behind on Everhope in addition to what we saw beyond the wormhole on our way in."`
 			`	Danforth interjects, "In short, we doubt we can stop them while we're stretched out here... and if the reality is that they're only going to go after pirate worlds... well, we'd be under orders to disengage. The political crisis would be more tolerable than the probable military defeat."`
@@ -1492,8 +1492,21 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	The smoothness with which this goes down gives you the sense that the main points of this were all provisionally agreed to already, with only a little wiggle room left to be settled in this conversation.`
 			`	Sayari steps up and whispers something to Teeneep who then seems to think for a moment before returning to the screens. "This pathway is acceptable."`
 			choice
-				`	(End the meeting.)`
-			`	A number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
+				`	"Thank you, President, Chancellor, and Hai representative, for a successful resolution."`
+				`	"All of us should remember this day: the day three nations came together to form a lasting peace."`
+					goto peace
+				`	"Well, I guess I saved the galaxy yet again. Captain <last>, signing out!"`
+					goto appalled
+			`	The President and Chancellor nod mechanically while Teeneep looks proud.`
+				goto end
+			label peace
+			`	The President and Chancellor both look quite relieved, while Teeneep seems proud, and Sayari nods with approval.`
+				goto end
+			label appalled
+			`	The President of the Republic looks appalled, while the Chancellor of the Free Worlds frowns with disapproval. Teeneep is annoyed, as if you ruined the moment. You can see Sayari in the background, shaking her head. A functionary near you gasps and drops her tablet, and it shatters audibly when it hits the ground.`
+				goto end
+			label end
+			`	After the screens go off, a number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
 			`	When you finally emerge Terry and Turner are waiting for you. Terry addresses you. "Captain <last>. We have a little problem. The many civilians that have been living under this cover or being serviced by it have been kept in the dark, and are very nervous about the massed Navy ships. They've been so far sold a story about a 'pirate menace,' and now we need them out of here."`
 			`	Turner smiles, "And I think it would be appropriate if you, as the famous war hero, were the one to escort them to safety and keep everyone's eyes away from what's happening here."`
 			`	The two of them look at each other for a second before Terry says,  "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
