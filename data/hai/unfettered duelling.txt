@@ -30,8 +30,7 @@ conversation "explode or not"
 		`	"It's a bluff."`
 		`	"Wait! I challenge you to a duel."`
 			goto duel
-	label bluffnobluff
-	# you choose to stay, either they blow up (with you or not) or they called reinforcements
+	label bluffornot
 	branch bluff
 		or
 			and
@@ -51,36 +50,58 @@ conversation "explode or not"
 				or
 					"flagship crew" < 114
 					random > "flagship crew" - 95
+	# not a bluff
+	branch flee
+		has "tried to retreat"
+	# hopefully this very small chance for the ship to explode and you with it will discourage chain farming
 	branch blowup
 		random < 2
-	`	They weren't bluffing, and you already see escape pods leaving the ship, trying to get to a safe distance. Better get out of here quickly!`
+	`	They weren't bluffing, and you already see escape pods leaving the ship, trying to get to a safe distance. Better get out of here quickly! You also notice`
 		launch
 	label blowup
 	`	It was no bluff at all. In fact, they did not even hesitate, nor did they head to their escape pods. They blowed themselves up almost instantly, taking you down with them.`
 		explode
+
 	label bluff
+	branch no-reinforcements
+		has "tried to retreat"
+		random < 25
+	branch reinforcements
+		has "tried to retreat"
 	`	But then, nothing.`
-	`	It seems this was just a bluff, or maybe it was an attempt to stall you? You hear alarms signaling new ships entering the system, and quickly disconnect the boarding clamps to respond to the incoming threat.`
+	`	It seems this was just a bluff, and the engine emmissions were faked. You hear alarms signaling new ships entering the system, and quickly disconnect the boarding clamps to respond to the incoming threat. Maybe this fake self-destruction was to stall you?`
 		accept
 	
 	label retreat
+	action
+		set "tried to retreat"
+	``
+		goto bluffornot
+
+	label flee
+	# since you are leaving there is less chance they are going to blow themselves up
 	branch reinforcements
-		random < 20
-	branch normalretreat
-		random < 80
+		random < 70
 	`	You give the order to retreat as soon as possible, and not a moment too soon as the ship is already starting to explode...`
 		flee
 	label reinforcements
-	`	You start the disengagement procedure, but by the time it is over it is clear they have no intention of actually blowing up. In fact, they have called for reinforcements.`
+	`	You start the disengagement procedure, but by the time it is over it is clear they have no intention of actually blowing up. It is not clear if this is what they intended to do since the start, but if they were going to self-destruct they have changed their mind, and instead called for reinforcements.`
 		accept
-	label normalretreat
+	label no-reinforcements
 	action
 		set "unfettered: no reinforcements"
 	`	Whether or not they were going to explode, it seems you gave your order quick enough for them not to do so. It would probably be wise to leave before they change their minds...`
 		accept
 	
 	label duel
-	`	You can hear some of the crew laughing but the captain disciplines them. "We are not in any position to show disrespect. This captain has shown themselves more adept than us." He says to them, before addressing you. "Very well. In that case come to my ship, we will give you a blade."`
+	branch disciplined-crew
+		random < 70
+	`	You can hear some of the crew laughing but the captain disciplines them. "We are not in any position to show disrespect. This captain has shown themselves more adept than us." He says to them, before addressing you. "Very well. I accept your challenge.`
+		goto details
+	label disciplined-crew
+	`	All is quiet for a moment, as the captain thinks about your offer. "I will not refuse a duel.`
+	label details
+	`	"Come to my ship, and we will give you a blade to prove yourself."`
 	choice
 		`	"What are the terms? What do I have to win?"`
 			goto terms
@@ -92,12 +113,12 @@ conversation "explode or not"
 	label alone
 	`	This seems to anger them, "You dare insult my honor? My word? Fine, take a few soldiers if it reassures you, they will do a fine audience. It was planned you would come with your honor guard anyway."`
 	label terms
-	`	"Now as for the terms of the fight, I assume honor is not enough for you? I will not destroy my ship if you win, and you may do with us what you like. We will not call reinforcements, so you will be able to loot anything you want out of this ship, or even attempt to capture us. We will also remain in this system, defenceless, for a few days.`
-	`	"On top of that, the winner will receive 100 thousand credits from the loser. As for how the duel will happen, it is not meant to be to the death, although we will not use children blades either. As I clearly have an advantage over you I will be fighting weaponless."`
+	`	"As for the terms of the fight, I assume honor is not enough for you, so I will bring the stakes higher. We will not self-destruct our ship if you win, and you may do with us what you like. We will not call for reinforcements either, so you will be able to loot anything you want out of this ship, or even attempt to capture us. We will also remain in this system for a few days.`
+	`	"On top of that, the winner will receive 100 thousand credits from the loser. As for how the duel will happen, it is not meant to be to the death, although we will not use children blades either. Finally, I will be fighting weaponless to equalize the odds."`
 	choice
 		`	"Alright. I will make my way to your ship now."`
 		`	"I won't be tricked into doing this meaningless fight. Self destruct if you want."`
-			goto bluffnobluff
+			goto bluffornot
 	`	You make your way to their ship, with your agreed honor guard of 4 crew members. As you arrive you are directed to a training room, where the captain is waiting for you. They give you a blade, and the captain makes themselves ready, weaponless as they promised. "Ready, captain?"`
 	action
 		set "unfettered: no reinforcements"
@@ -168,7 +189,6 @@ event "unfettered: blood dries quick"
 
 mission "Proud Unfettered Boarded (Small)"
 	boarding
-	minor
 	repeat
 	invisible
 	source
@@ -180,12 +200,12 @@ mission "Proud Unfettered Boarded (Small)"
 	deadline 3
 	to offer
 		or
-			# caps at 50% chance of offering, which happens when you have double their bunks
 			and
 				"flagship crew" <= 20
 				# they won't blow up except if you have more crew than they do bunks but they can bluff
 				random < "flagship crew" * 3 - 12
 			and
+				# caps at 50% chance of offering, which happens when you have double their bunks
 				"flagship crew" > 20
 				random < 50
 	on offer
@@ -194,6 +214,7 @@ mission "Proud Unfettered Boarded (Small)"
 		dialog phrase "unfettered boarded"
 		conversation "explode or not"
 		clear "unfettered: light warship"
+		clear "tried to retreat"
 		event "unfettered: bribe no more!"
 	npc evade
 		government "Hai (Unfettered)"
@@ -207,7 +228,6 @@ mission "Proud Unfettered Boarded (Small)"
 
 mission "Proud Unfettered Boarded (Medium)"
 	boarding
-	minor
 	repeat
 	invisible
 	source
@@ -231,10 +251,10 @@ mission "Proud Unfettered Boarded (Medium)"
 		dialog phrase "unfettered boarded"
 		conversation "explode or not"
 		clear "unfettered: medium warship"
+		clear "tried to retreat"
 		event "unfettered: bribe no more!"
 	npc evade
 		government "Hai (Unfettered)"
-		# being marked, these ships will not be attacked by the Hai.
 		personality entering nemesis vindictive staying marked
 		to spawn
 			not "unfettered: no reinforcements"
@@ -244,7 +264,6 @@ mission "Proud Unfettered Boarded (Medium)"
 
 mission "Proud Unfettered Boarded (Heavy)"
 	boarding
-	minor
 	repeat
 	invisible
 	source
@@ -268,10 +287,10 @@ mission "Proud Unfettered Boarded (Heavy)"
 		dialog phrase "unfettered boarded"
 		conversation "explode or not"
 		clear "unfettered: heavy warship"
+		clear "tried to retreat"
 		event "unfettered: bribe no more!"
 	npc evade
 		government "Hai (Unfettered)"
-		# being marked, these ships will not be attacked by the Hai.
 		personality entering nemesis vindictive staying marked
 		to spawn
 			not "unfettered: no reinforcements"
@@ -279,3 +298,38 @@ mission "Proud Unfettered Boarded (Heavy)"
 		fleet "Small Unfettered" 2
 	on fail
 		event "unfettered: blood dries quick"
+
+# So you think you have enough might for the Unfettered military? Let's see.
+mission "Proud Unfettered Boarded"
+	boarding
+	repeat
+	invisible
+	deadline 1
+	on offer
+		conversation
+			`	Even more Unfettered reinforcements arrive, lured by the promise of a great enemy.`
+				accept
+	npc evade
+		government "Hai (Unfettered)"
+		personality entering nemesis vindictive staying marked
+		to spawn
+			not "unfettered: no reinforcements"
+		to despawn
+			"armament detterence" < 32
+		fleet "Large Unfettered" 2
+	npc evade
+		government "Hai (Unfettered)"
+		personality entering nemesis vindictive staying marked
+		to spawn
+			not "unfettered: no reinforcements"
+		to despawn
+			"armament detterence" < 64
+		fleet "Large Unfettered" 2
+	npc evade
+		government "Hai (Unfettered)"
+		personality entering nemesis vindictive staying marked
+		to spawn
+			not "unfettered: no reinforcements"
+		to despawn
+			"armament detterence" < 100
+		fleet "Large Unfettered" 2
