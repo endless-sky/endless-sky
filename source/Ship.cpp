@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "TextReplacements.h"
 #include "Visual.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cassert>
@@ -1780,7 +1781,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// instantly transported.
 				if(landingPlanet->IsWormhole())
 				{
-					currentSystem = landingPlanet->WormholeDestination(currentSystem);
+					currentSystem = &landingPlanet->GetWormhole()->WormholeDestination(*currentSystem);
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
@@ -2587,7 +2588,8 @@ int Ship::Scan()
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event) -> void
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event)
+	-> void
 	{
 		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
 		{

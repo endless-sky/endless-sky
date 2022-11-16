@@ -587,7 +587,8 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	else
 		Logger::LogError("No test conditions were set at the moment of failure.");
 
-	// If this test was expected to fail, then return a success exitcode from the program because the test did what it was expected to do.
+	// If this test was expected to fail, then return a success exitcode from the program
+	// because the test did what it was expected to do.
 	if(status >= Status::KNOWN_FAILURE)
 		throw known_failure_tag{};
 
