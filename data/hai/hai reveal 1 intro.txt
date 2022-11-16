@@ -536,7 +536,7 @@ mission "Hai Leaks Response 1"
 				`	(Keep silent and observe.)`
 					goto observe
 				`	(Ask about the large security detachment.)`
-			`	You turn to the Hai with the most decorated uniform and ask, "Why do I have so many escorts?"`
+			`	The Hai closest to you, who happens to have a very decorated uniform, turns to respond. "It's for crowd control. You've become the center of attention of politicians in a media circus."`
 			`	"Crowd control," the Hai responds. "You've become the center of attention of politicians in a media circus. Life in Hai space is complicated of late, and we want to make sure you are not stopped by crowds with endless questions before reaching your meeting."`
 			choice
 				`	(Keep silent and observe.)`
