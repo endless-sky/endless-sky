@@ -1081,7 +1081,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 		payment 100000
 		conversation
 			`Teeneep makes a request on your approach and then goes to prepare. You are subsequently directed to a restricted landing zone near their government complex. When she reappears Teeneep has prepared to meet the Unfettered in a somewhat surprising manner; she's wearing what looks like a fencing outfit. There are two swords on her back and several balanced knives on her belt. She's wearing a headband with a medallion on it that looks like an athletic medal.`
-			`	She pays you for the trip and explains, "These blades are not ceremonial. Bring your gun with you, but put it behind when we reach the chambers, or the Unfettered may think you're an assassin. Trust me, we'll be fine.`
+			`	She pays you for the trip and explains, "These blades are not ceremonial. Bring your gun with you, but hand it to them when we reach the chambers, or the Unfettered may think you're an assassin. Trust me, we'll be fine.`
 			`	"Let's go," she says.`
 			choice
 				`	"What's your plan?"`
