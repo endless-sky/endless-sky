@@ -79,6 +79,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
@@ -148,6 +149,7 @@ void GameData::FinishLoading()
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
+	defaultWormholes = objects.wormholes;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -289,6 +291,7 @@ void GameData::Revert()
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
+	objects.wormholes.Revert(defaultWormholes);
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -634,6 +637,13 @@ const Set<Sale<Ship>> &GameData::Shipyards()
 const Set<System> &GameData::Systems()
 {
 	return objects.systems;
+}
+
+
+
+const Set<Wormhole> &GameData::Wormholes()
+{
+	return objects.wormholes;
 }
 
 
