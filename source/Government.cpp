@@ -98,7 +98,7 @@ void Government::Load(const DataNode &node)
 				language.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
-			else if(key == "use foreign penalties")
+			else if(key == "use foreign penalties for")
 				useForeignPenaltiesFor.clear();
 			else
 				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
@@ -149,7 +149,7 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
-		else if(key == "use foreign penalties")
+		else if(key == "use foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.emplace_back(GameData::Governments().Get(grand.Token(0)));
 		else if(!hasValue)
