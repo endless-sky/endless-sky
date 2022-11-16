@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "TextReplacements.h"
 #include "Visual.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cassert>
@@ -625,13 +626,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->TrueName() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -656,7 +657,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!it.first->IsDefined())
 		{
-			undefinedOutfits.emplace_back("\"" + it.first->Name() + "\"");
+			undefinedOutfits.emplace_back("\"" + it.first->TrueName() + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -675,7 +676,7 @@ void Ship::FinishLoading(bool isNewInstance)
 				count -= armament.Add(it.first, count);
 				if(count)
 					LogWarning(VariantName(), Name(),
-						"weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
+						"weapon \"" + it.first->TrueName() + "\" installed, but insufficient slots to use it.");
 			}
 		}
 	}
@@ -714,10 +715,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
+			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
-			warning += " \"" + outfit->Name() + "\"";
+			warning += " \"" + outfit->TrueName() + "\"";
 			Logger::LogError(warning);
 		}
 	}
@@ -788,7 +789,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
-			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
+			outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
 		Logger::LogError(message + warning + outfitNames.str());
 	}
 
@@ -919,13 +920,13 @@ void Ship::Save(DataWriter &out) const
 			using OutfitElement = pair<const Outfit *const, int>;
 			WriteSorted(outfits,
 				[](const OutfitElement *lhs, const OutfitElement *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const OutfitElement &it)
 				{
 					if(it.second == 1)
-						out.Write(it.first->Name());
+						out.Write(it.first->TrueName());
 					else
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.first->TrueName(), it.second);
 				});
 		}
 		out.EndChild();
@@ -971,7 +972,7 @@ void Ship::Save(DataWriter &out) const
 			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
 			if(hardpoint.GetOutfit())
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y(),
-					hardpoint.GetOutfit()->Name());
+					hardpoint.GetOutfit()->TrueName());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
@@ -1780,7 +1781,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// instantly transported.
 				if(landingPlanet->IsWormhole())
 				{
-					currentSystem = landingPlanet->WormholeDestination(currentSystem);
+					currentSystem = &landingPlanet->GetWormhole()->WormholeDestination(*currentSystem);
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
@@ -2587,7 +2588,8 @@ int Ship::Scan()
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
-	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event) -> void
+	auto doScan = [&](double &elapsed, const double speed, const double scannerRange, const double depth, const int event)
+	-> void
 	{
 		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
 		{
