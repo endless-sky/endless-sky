@@ -7309,8 +7309,12 @@ system Coluber
 	link Levana
 	link Lucina
 	link Parca
-	asteroids "large metal" 100 1.7199
-	asteroids "large rock" 100 2.1
+	asteroids "large metal" 75 2. 
+	asteroids "large rock" 75 2.
+	asteroids "medium metal" 100 2. 
+	asteroids "medium rock" 100 2.
+	asteroids "small metal" 150 2. 
+	asteroids "small rock" 150 2.
 	trade Clothing 315
 	trade Electronics 713
 	trade Equipment 394
