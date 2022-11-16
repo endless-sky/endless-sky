@@ -35,7 +35,7 @@ namespace {
 	string ObjectName(const Ship &object) { return object.ModelName(); }
 
 	template <>
-	string ObjectName(const Outfit &object) { return object.Name(); }
+	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
 	template <class Type>
 	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales,
@@ -573,7 +573,7 @@ void PrintData::PrintOutfitsAllStats()
 	for(auto &it : GameData::Outfits())
 	{
 		const Outfit &outfit = it.second;
-		cout << outfit.Name() << ',' << outfit.Category() << ','
+		cout << outfit.TrueName() << ',' << outfit.Category() << ','
 			<< outfit.Cost() << ',' << outfit.Mass();
 		for(const auto &attribute : attributes)
 			cout << ',' << outfit.Attributes().Get(attribute);
