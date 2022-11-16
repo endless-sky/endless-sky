@@ -120,6 +120,7 @@ public:
 	double CrewDefense() const;
 
 	bool IsProvokedOnScan() const;
+	bool IsUsingForeignPenalties() const;
 
 
 private:
@@ -145,6 +146,7 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
+	bool usesForeignPenalties = false;
 };
 
 

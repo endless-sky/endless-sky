@@ -80,6 +80,8 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
+			else if(key == "use foreign penalties")
+				usesForeignPenalties = false;
 			else if(key == "raid")
 				raidFleet = nullptr;
 			else if(key == "display name")
@@ -147,6 +149,8 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
+		else if(key == "use foreign penalties")
+			usesForeignPenalties = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -446,4 +450,11 @@ double Government::CrewDefense() const
 bool Government::IsProvokedOnScan() const
 {
 	return provokedOnScan;
+}
+
+
+
+bool Government::IsUsingForeignPenalties() const
+{
+	return usesForeignPenalties;
 }
