@@ -530,12 +530,13 @@ mission "Hai Leaks Response 1"
 			action
 				log `The Hai are very real, and human worlds seem poised to become aware of their existence. The Hai would like to avoid this. Agreed to assist by representing their interests where travel to human space is required. Their desire was for a human, yet somewhat neutral, party.`
 			`	You haven't really seen very much of the Hai so far, and you can't help but think the size of the detachment is rather militant of them. It's impossible to judge if it's for your safety or whether, given your status as a "war hero", it's for theirs.`
-			`	Word of your status in human space also seems to have spread ahead of you, perhaps because you are a significant human visitor in the current climate. A small crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
+			`	Word of your status in human space also seems to have spread ahead of you, perhaps because you are a significant human visitor in the current climate. A large crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
 			label resume
+			`	Several of the Hai guarding you usher you off to the left to avoid a large crowd.`
 			choice
-				`	(Keep silent and observe.)`
+				`	(Follow their directions silently.)`
 					goto observe
-				`	(Ask about the large security detachment.)`
+				`	"Why do I have such a large security detachment?"`
 			`	The Hai closest to you, who happens to have a very decorated uniform, turns to respond. "It's for crowd control. You've become the center of attention of politicians in a media circus."`
 			`	He looks back to the crowd for a moment. "Life in Hai space is complicated of late, and we want to make sure you are not stopped by crowds with endless questions before reaching your meeting. It would be... inefficient."`
 			choice
@@ -687,8 +688,8 @@ mission "Hai Leaks Response 2C"
 			action
 				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai.`
 			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may have not heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
+			`	"Now, allow me to introduce you to Terry," Remington says while gesturing to the woman behind him.`
 				goto next
-			
 			label met
 			action
 				log "People" "Samuel Remington" `Remington is being sent as the representative of the Syndicate to help deal with the situation regarding the Hai.`
@@ -719,10 +720,10 @@ mission "Hai Leaks Response 3"
 			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
 			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
 			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
-			`	Mr. Yang interrupts, "Well then, I'm afraid I may have some bad news. May I?`
-			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures." At his word, the holoprojector shows a series of charts.`
 			choice
-				`	(Examine the charts.)`
+				`	"How much longer can the Republic keep up their side of the ruse?"
+			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." As soon as he says, 'bad news,' the holoprojector shows a series of charts.`
+			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
 			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
@@ -1012,9 +1013,12 @@ mission "Hai Leaks Response 6"
 				`	"Am I allowed to know more?"`
 			`	Alondo gives you a quizzical look. "Of course you are, <last>."`
 			label about
-			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images.`
-			`	"There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise' with a whole cast of anthropomorphic squirrels. The production of the first series was entirely funded through a government grants program, as a cover for accidental leaks about the Hai. Xilin tells me that since then it's pretty much run itself.`
-			`	"We're going to make a tourist trap type theme park destination, and advertise it with a big-budget movie production of the show. We've found a Seerwood producer who'll spoil a 'big surprise' release, and we're passing off the footage as leaked promotional material. For the sake of the cover, we've also hired a 'fan community' to support the production for consistency and accuracy."`
+			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones.`
+			choice
+				`	"That sounds... interesting. Tell me more."`
+				`	"Never mind. It sounds like you have that under control. What's next?"`
+					goto next
+			`	"The production of the very first series was entirely funded through a government grants program though, as a cover for any accidental leaks about the Hai. Xilin tells me that since then it's pretty much run itself. The idea here is that since the last one was so successful, someone has decided that it's worth the risk to make a big budget movie production out of it and to potentially use that to kick off a sort of tourist trap type theme park destination. We've found a Seerwood producer who's willing to be all wounded on TV about the spoiling of his 'big surprise' release, and we're passing off the footage as leaked promotional material. For the sake of the cover, we've also decided that this project has a 'fan community' that have been hired on as a focus group to support the production for consistency and accuracy."`
 			`	He chuckles tiredly. "That's where the uh, furry, explanation came into things. It also probably can't hold up as a cover indefinitely. Still, things have been going very well while you've been away!`
 			label next
 			`	"I hear you were instrumental in driving off some opportunistic pirates and helping stem the information leak. Come on, I'll buy you a drink on the others' behalf."`
