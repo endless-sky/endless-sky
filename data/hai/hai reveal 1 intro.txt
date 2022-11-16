@@ -476,7 +476,7 @@ mission "Hai Tour [5] Tour Ends"
 				`	(Observe the reaction of the Hai in the room.)`
 				`	(Keep walking.)`
 					goto interrupted
-			`	At a table nearby you hear a Hai staff member exclaim, "Oh, that's awful!"`
+			`	At a table nearby, a Hai says, "Oh, that's awful!" and the human next to her responds, "Feels like being back on Solace."`
 			`	The rumors must be spreading further by the day. There's no doubt even more problems than this marauder will follow.`
 			`	No sooner has this thought crossed your mind than your solitude is interrupted by a small group of somewhat official-looking Hai.`
 				goto official
