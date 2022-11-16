@@ -721,7 +721,7 @@ mission "Hai Leaks Response 3"
 			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
 			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
 			choice
-				`	"How much longer can the Republic keep up their side of the ruse?"
+				`	"How much longer can the Republic keep up their side of the ruse?"`
 			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." As soon as he says, 'bad news,' the holoprojector shows a series of charts.`
 			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
 			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
