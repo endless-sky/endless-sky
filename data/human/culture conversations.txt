@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Sad Gamblers - Republic"
 	minor
@@ -501,7 +504,7 @@ mission "News Reporter - Paradise"
 					decline
 			label questions
 			`	The camera drones circle around you as she prepares for the interview. After a few seconds, she smiles at one of the drones and begins.`
-			`	"Welcome back. I'm here on <origin> reporting on the situation with the Free Worlds coalition. I'm joined by a merchant captain currently between trips. Captain, what do you think of the ultimatum sent to Parliament?"`
+			`	"Welcome back. I'm here on <origin> reporting on the situation with the Free Worlds. I'm joined by a merchant captain currently between trips. Captain, what do you think of the ultimatum sent to Parliament?"`
 			choice
 				`	"I think Parliament should reconsider and give the situation some thought."`
 				`	"Parliament made the right decision by refusing the demands."`
@@ -509,7 +512,7 @@ mission "News Reporter - Paradise"
 			`	The reporter frowns. "Can you explain your answer for our viewers?"`
 			choice
 				`	"The interests of every world should be considered, whether we agree or not."`
-				`	"The coalition worlds aren't represented well enough to gain traction through normal channels."`
+				`	"The Free Worlds aren't represented well enough to gain traction through normal channels."`
 				`	"The Navy is hardly defending that territory, so taxes shouldn't be as much."`
 				`	"I would prefer to not answer."`
 			`	"I'm not sure that Parliament would agree with you, but I want to thank you for your answers, and for taking the time to do this interview!" she says.`
@@ -586,7 +589,7 @@ mission "Scientists at the Pub after a Conference"
 
 mission "Sol-Bound Shuttle"
 	minor
-	source 
+	source
 		system "Sol"
 	to offer
 		random < 1

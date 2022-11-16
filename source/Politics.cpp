@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Politics.h"
@@ -25,6 +28,31 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 
 using namespace std;
+
+
+
+namespace {
+	// Check if the ship evades being cargo scanned.
+	bool EvadesCargoScan(const Ship &ship)
+	{
+		// Illegal goods can be hidden inside legal goods to avoid detection.
+		const int contraband = ship.Cargo().IllegalCargoAmount();
+		const int netIllegalCargo = contraband - ship.Attributes().Get("scan concealment");
+		if(netIllegalCargo <= 0)
+			return true;
+
+		const int legalGoods = ship.Cargo().Used() - contraband;
+		const double illegalRatio = legalGoods ? max(1., 2. * netIllegalCargo / legalGoods) : 1.;
+		const double scanChance = illegalRatio / (1. + ship.Attributes().Get("scan interference"));
+		return Random::Real() > scanChance;
+	}
+
+	// Check if the ship evades being outfit scanned.
+	bool EvadesOutfitScan(const Ship &ship)
+	{
+		return Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+	}
+}
 
 
 
@@ -214,9 +242,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	int64_t maxFine = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
-		// Check if the ship evades being scanned due to interference plating.
-		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
-			continue;
 		if(target && target != &*ship)
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
@@ -224,7 +249,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		int failedMissions = 0;
 
-		if(!scan || (scan & ShipEvent::SCAN_CARGO))
+		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
@@ -253,8 +278,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				}
 			}
 		}
-		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
-		{
+		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
@@ -267,7 +291,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
-		}
 		if(failedMissions && maxFine > 0)
 		{
 			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")

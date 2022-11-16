@@ -1,0 +1,110 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "unfettered tribute payment dialog"
+	word
+		`You drop off the tribute to the Unfettered, and they pay you <payment>.`
+
+phrase "unfettered tribute pickup dialog"
+	word
+		`When you inform the Hai that you are here to receive a tribute payment for the Unfettered, they load the cargo onto your ship with a rather surprising swiftness and cheerfulness.`
+		`The Hai dockworkers load the tribute for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
+		`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
+
+mission "Unfettered Tribute 1"
+	name "Hai Tribute to <planet>"
+	job
+	repeat
+	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 80
+	cargo "food (tribute)" 25 2 .05
+	on complete
+		payment 5000 1600
+		dialog phrase "unfettered tribute payment dialog"
+	source
+		attributes "unfettered"
+	stopover
+		distance 3 4
+		attributes "hai"
+		attributes "spaceport"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on stopover
+		dialog phrase "unfettered tribute pickup dialog"
+
+mission "Unfettered Tribute 2"
+	name "Hai Tribute to <planet>"
+	job
+	repeat
+	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 60
+	cargo "food (tribute)" 35 2 .05
+	on complete
+		payment 7000 2000
+		dialog phrase "unfettered tribute payment dialog"
+	source
+		attributes "unfettered"
+	stopover
+		distance 4 5
+		attributes "hai"
+		attributes "spaceport"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on stopover
+		dialog phrase "unfettered tribute pickup dialog"
+
+mission "Unfettered Tribute 3"
+	name "Hai Tribute to <planet>"
+	job
+	repeat
+	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 40
+	cargo "food (tribute)" 45 2 .05
+	on complete
+		payment 9000 2400
+		dialog phrase "unfettered tribute payment dialog"
+	source
+		attributes "unfettered"
+	stopover
+		distance 5 6
+		attributes "hai"
+		attributes "spaceport"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on stopover
+		dialog phrase "unfettered tribute pickup dialog"
+
+mission "Unfettered Jump Drive 4"
+	job
+	repeat
+	name "Sell Jump Drive"
+	description "Exchange a jump drive for a million credits."
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Jump Drive 3: offered"
+		not "event: wanderers: unfettered invasion starts"
+	to fail
+		has "Unfettered Jump Drive 4: active"
+	on accept
+		dialog "As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them."
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		payment 1000000
+		"reputation: Hai (Unfettered)" >?= 40

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ES_COLOR_H_
@@ -26,6 +29,9 @@ public:
 	explicit Color(float i = 1.f, float a = 1.f);
 	// Constructor for colors, opaque unless an alpha is also given.
 	Color(float r, float g, float b, float a = 1.f);
+
+	bool operator==(const Color &other) const;
+	bool operator!=(const Color &other) const;
 
 	// Set this color to the given RGBA values.
 	void Load(double r, double g, double b, double a);
