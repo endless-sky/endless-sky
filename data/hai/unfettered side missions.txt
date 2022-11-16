@@ -90,7 +90,7 @@ conversation "explode or not"
 	`	"You clearly know very little of our ways, captain. The Hai would never attack a defenceless ship, and if you meant the True Hai would attempt such a thing you are mistaken."`
 		goto terms
 	label alone
-	`	This seems to anger them, "You dare insult my honor? My word? Fine, take a few soldiers if it reassures you, they will do a fine audiance. It was planned you would come with your honor gard anyway."`
+	`	This seems to anger them, "You dare insult my honor? My word? Fine, take a few soldiers if it reassures you, they will do a fine audience. It was planned you would come with your honor guard anyway."`
 	label terms
 	`	"Now as for the terms of the fight, I assume honor is not enough for you? I will not destroy my ship if you win, and you may do with us what you like. We will not call reinforcements, so you will be able to loot anything you want out of this ship, or even attempt to capture us. We will also remain in this system, defenceless, for a few days.`
 	`	"On top of that, the winner will receive 100 thousand credits from the loser. As for how the duel will happen, it is not meant to be to the death, although we will not use children blades either. As I clearly have an advantage over you I will be fighting weaponless."`
@@ -98,7 +98,7 @@ conversation "explode or not"
 		`	"Alright. I will make my way to your ship now."`
 		`	"I won't be tricked into doing this meaningless fight. Self destruct if you want."`
 			goto bluffnobluff
-	`	You make your way to their ship, with your agreed 'honor gard' of 4 crew members. As you arrive you are directed to a training room, where the captain is waiting for you. They give you a blade, and the captain makes themselves ready, weaponless as they promised. "Ready, captain?"`
+	`	You make your way to their ship, with your agreed honor guard of 4 crew members. As you arrive you are directed to a training room, where the captain is waiting for you. They give you a blade, and the captain makes themselves ready, weaponless as they promised. "Ready, captain?"`
 	action
 		set "unfettered: no reinforcements"
 	choice
