@@ -29482,6 +29482,7 @@ planet Glaze
 	spaceport `	You notice quite a few families with children sitting by the windows on the upper stories of the tower, watching starships landing and taking off. Many of them have brought folding chairs or blankets to sit on. That must be what passes for entertainment on this world.`
 	shipyard "Basic Ships"
 	shipyard "Southbound Basics"
+	shipyard "Tarazed Basics"
 	outfitter "Common Outfits"
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
@@ -31491,6 +31492,10 @@ planet Solace
 	description `	In addition to being one of the major metropolitan centers of the galactic South, Solace is best known as the home of Delta V Corporation, makers of plasma engines and rockets of various sorts.`
 	spaceport `The spaceport on Solace serves not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
 	spaceport `	At the heart of the spaceport are a few bars, plus restaurants representing nearly every style of cuisine that you are familiar with. All the buildings are well maintained; this strikes you as a quite prosperous world, for this section of the galaxy.`
+	shipyard "Basic Ships"
+	shipyard "Southbound Basics"
+	shipyard "Tarazed Basics"
+	shipyard "Tarazed Advanced"
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Basics"
 	outfitter "Common Outfits"
