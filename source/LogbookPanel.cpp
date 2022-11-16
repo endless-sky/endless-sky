@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "Storyline.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -51,6 +52,24 @@ namespace {
 	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
 		"  July", "  August", "  September", "  October", "  November", "  December"};
+
+	const string STORYLINES = "Storylines";
+
+void DisplayVector(const string &heading, const vector<string> &entries, 
+	const Font &font, const Color &headingColor, const Color &bodyColor,
+	const Point &textOffset, Point& pos)
+{
+	if(!entries.empty())
+	{
+		font.Draw(heading, pos+textOffset, headingColor);
+		pos.Y() += LINE_HEIGHT;
+		for(const string &entry : entries)
+		{
+			font.Draw(entry, pos+textOffset, bodyColor);
+			pos.Y() += LINE_HEIGHT;
+		}
+	}
+}
 }
 
 
@@ -139,7 +158,8 @@ void LogbookPanel::Draw()
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
 
-	// Branch based on whether this is an ordinary log month or a special page.
+	// Branch based on whether this is an ordinary log month or a special page,
+	// with a special case for storylines.
 	auto pit = player.SpecialLogs().find(selectedName);
 	if(selectedDate && begin != end)
 	{
@@ -154,6 +174,10 @@ void LogbookPanel::Draw()
 			wrap.Draw(pos, medium);
 			pos.Y() += wrap.Height() + GAP;
 		}
+	}
+	else if(!selectedDate && selectedName == STORYLINES)
+	{
+		ShowStorylines(font, medium, dim, textOffset, pos);
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
 	{
@@ -311,6 +335,14 @@ void LogbookPanel::Update(bool selectLast)
 		contents.emplace_back(it.first);
 		dates.emplace_back();
 	}
+	// If there are any storylines, add a section for them. The content is
+	// generated whenever the logbook panel updates, so we can't use SpecialLogs
+	// for it.
+	if(!GameData::Storylines().empty())
+	{
+		contents.emplace_back(STORYLINES);
+		dates.emplace_back();
+	}
 	// The logbook should never be opened if it has no entries, but just in case:
 	if(player.Logbook().empty())
 	{
@@ -356,4 +388,28 @@ void LogbookPanel::Update(bool selectLast)
 	// Get the range of entries that include the selected month.
 	begin = player.Logbook().lower_bound(Date(0, selectedDate.Month(), selectedDate.Year()));
 	end = player.Logbook().lower_bound(Date(32, selectedDate.Month(), selectedDate.Year()));
+}
+
+
+
+void LogbookPanel::ShowStorylines(
+	const Font &font, const Color &headingColor, const Color &bodyColor,
+	const Point &textOffset, Point& pos)
+{
+	vector<string> started;
+	vector<string> ended;
+	vector<string> available;
+	int hidden;
+	Storyline::Progress(player, started, ended, available, hidden);
+
+	DisplayVector("Started:", started,
+		font, headingColor, bodyColor, textOffset, pos);
+	DisplayVector("Completed:", ended,
+		font, headingColor, bodyColor, textOffset, pos);
+	DisplayVector("Available:", available,
+		font, headingColor, bodyColor, textOffset, pos);
+	if(hidden > 0) {
+		font.Draw("Hidden: "+to_string(hidden), pos+textOffset, headingColor);
+		pos.Y() += LINE_HEIGHT;
+	}
 }

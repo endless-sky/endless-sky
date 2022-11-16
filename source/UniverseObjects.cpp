@@ -174,6 +174,8 @@ void UniverseObjects::Change(const DataNode &node)
 		planets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
+	else if(node.Token(0) == "storyline" && node.Size() >= 2)
+		storylines.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
 		systems.Get(node.Token(1))->Load(node, planets);
 	else if(node.Token(0) == "news" && node.Size() >= 2)
@@ -388,6 +390,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 					startConditions.emplace_back(node);
 			}
 		}
+		else if(key == "storyline" && node.Size() >= 2)
+			storylines.Get(node.Token(1))->Load(node);
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if((key == "test") && node.Size() >= 2)

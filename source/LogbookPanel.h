@@ -24,7 +24,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class Color;
+class Font;
 class PlayerInfo;
+class Point;
 
 
 
@@ -50,7 +53,7 @@ protected:
 
 private:
 	void Update(bool selectLast = true);
-
+	void ShowStorylines(const Font &font, const Color &headingColor, const Color &bodyColor, const Point &textOffset, Point &pos);
 
 private:
 	// Reference to the player, to apply any changes to them.
