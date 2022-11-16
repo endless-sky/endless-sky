@@ -1712,7 +1712,7 @@ person "MasterOfGrey"
 		word
 			"Why is everything Alphas?"
 			"You're only a terrorist if the people experience terror."
-			"Have you finished FW story?"
+			"Have you finished the Free Worlds storyline yet?"
 			"Things don’t have to mimic an Earth creature to be not very alien."
 			"I have questions. Questions that do not yet need answers."
 			"There are no bugs in my code, only Xapleaux precursors."
