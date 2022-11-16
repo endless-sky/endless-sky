@@ -208,6 +208,10 @@ def sanitize(lines, skip_checks=False):
 		line_count += 1
 		segments = []
 		is_escaped = False
+		# Checking for preprocessor text, except includes
+		if line.lstrip().startswith("#") and not line.lstrip().startswith("#include"):
+			line_segments.append(segments)
+			continue
 		# Start index is the beginning of the sequence to be tested
 		start_index = 0
 		# Looking for parts of the file that are not strings or comments
