@@ -119,6 +119,8 @@ test-data "quarg scanning"
 
 		event "atrocity stuff"
 			government "Quarg"
+				"penalty for"
+					atrocity 1000
 				atrocity
 					Hyperdrive
 				# they don't have it yet but to be sure
@@ -130,6 +132,7 @@ test-data "quarg scanning"
 			"%TEST%: SCANNING ILLEGALS"
 
 
+# No JD so it cant leave it'll only despawn from the mission. No guns so it wont kill us.
 ship "Quarg Wardragon" "%TEST%: Dumbdragon"
 	outfits
 		"Antimatter Core"
@@ -143,6 +146,7 @@ ship "Quarg Wardragon" "%TEST%: Dumbdragon"
 mission "%TEST%: Wardragon Scanning You!"
 	priority
 	landing
+	source "Ruin"
 	to offer
 		has "%TEST%: SCANNING ILLEGALS"
 	on offer
@@ -151,7 +155,6 @@ mission "%TEST%: Wardragon Scanning You!"
 				accept
 	npc assist
 		government "Quarg"
-		# I used another definition that had 1 million scan power but whatever
 		ship "%TEST%: Dumbdragon" "Scanner"
 		personality derelict surveillance target
 
@@ -177,7 +180,7 @@ test "Illegal Test - Ignore and New Illegal"
 		assert
 			"fines" == 0
 		call "Depart"
-		# land again to trigger the mission
+		# land again to trigger the mission and then skip the conversation
 		call "Land On Ruin helper"
 		input
 			command "enter"
@@ -198,7 +201,7 @@ test "Illegal Test - Ignore and New Illegal"
 		# skip the dialog message for the fine
 		input
 			command "enter"
-		# land back with a fine of 1
+		# land back with a fine of 1 for the hyperdrive, nothing from the gas
 		call "Land On Ruin helper"
 		assert
 			"fines" == 1
@@ -213,7 +216,7 @@ test "Atrocity Test - New Atrocity"
 		assert
 			"reputation: Quarg" == 1000
 		call "Depart"
-		# land again to trigger the mission
+		# land again to trigger the mission and then skip the conversation
 		call "Land On Ruin helper"
 		input
 			command "enter"
@@ -234,7 +237,7 @@ test "Atrocity Test - New Atrocity"
 		# skip the dialog message for the fine
 		input
 			command "enter"
-		# land back with a fine of 1
+		# land back with atrocity having been in effect (should nuke the reputation?)
 		call "Land On Ruin helper"
 		assert
 			"reputation: Quarg" < 1
