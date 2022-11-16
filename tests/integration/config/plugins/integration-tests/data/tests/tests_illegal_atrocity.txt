@@ -46,7 +46,7 @@ test-data "quarg scanning"
 			system "Terra Incognita"
 			planet Ruin
 		account
-			credits 1
+			credits 100000000
 			score 400
 			history
 		mission "Wardragon Scanning You!"
@@ -171,4 +171,4 @@ test "Illegal Test - Ignore and add"
 		# empty input to make time pass, the fine should be of 1 now
 		input
 		branch "landing"
-			"credits" == 0
+			"credits" == (100000000 - 1)
