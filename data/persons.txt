@@ -1818,4 +1818,4 @@ ship "Modified Ladybug"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells -  two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy.`
+	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells - two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy.`
