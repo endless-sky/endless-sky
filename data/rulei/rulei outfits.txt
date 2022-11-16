@@ -182,7 +182,7 @@ effect "drained"
 		"no repeat"
 		"frame rate" 30
 		"scale" 0.3
-	sound "composer drain"
+	sound "composer"
 	"lifetime" 20
 	"random velocity" 1
 	"velocity scale" -0.01
