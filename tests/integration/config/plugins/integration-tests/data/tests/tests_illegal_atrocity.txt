@@ -12,7 +12,7 @@ test-data "quarg scanning"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 10
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 1
@@ -61,8 +61,6 @@ test-data "quarg scanning"
 		"visited planet" Ruin
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			# to skip the landing on ruin conversation
-			"Ruin: Landing: offered"
 
 
 test-data "quarg atrocity"
@@ -81,7 +79,7 @@ test-data "quarg atrocity"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 10
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 1
@@ -131,8 +129,6 @@ test-data "quarg atrocity"
 		"visited planet" Ruin
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
-			# to skip the landing on ruin conversation
-			"Ruin: Landing: offered"
 
 
 # No JD so it cant leave it'll only despawn from the mission. No guns so it wont kill us.
@@ -147,7 +143,7 @@ ship "Quarg Wardragon" "%TEST%: Dumbdragon"
 		"outfit scan speed" 1000000000
 
 mission "%TEST%: Wardragon Scanning You!"
-	landing
+	priority
 	source "Ruin"
 	to offer
 		has "%TEST%: SCANNING ILLEGALS"
@@ -172,18 +168,13 @@ test "Land On Ruin helper"
 		assert
 			"flagship planet: Ruin" > 0
 
-test "Illegal Test - Ignore and New Illegal"
-	status active
-	description "Test if a Quarg ship spawning disabled in the system will give you a fine for an illegal outfit and ignore the fine for another, after you repaired it."
+test "Launch Quarg Scanning Mission"
+	status partial
+	description ""
 	sequence
-		inject "quarg scanning"
-		call "Load First Savegame"
-		watchdog 12000
-		assert
-			"fines" == 0
-		call "Depart"
-		# land again to trigger the mission and then skip the conversation
-		call "Land On Ruin helper"
+		# launch and accept the mission
+		input
+			key p
 		input
 			key "enter"
 		call "Depart"
@@ -200,6 +191,17 @@ test "Illegal Test - Ignore and New Illegal"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
+
+test "Illegal Test - Ignore and New Illegal"
+	status active
+	description "Test if a Quarg ship spawning disabled in the system will give you a fine for an illegal outfit and ignore the fine for another, after you repaired it."
+	sequence
+		inject "quarg scanning"
+		call "Load First Savegame"
+		watchdog 12000
+		assert
+			"fines" == 0
+		call "Launch Quarg Scanning Mission And Board"
 		# skip the dialog message for the fine
 		input
 			key "enter"
@@ -217,25 +219,7 @@ test "Atrocity Test - New Atrocity"
 		watchdog 12000
 		assert
 			"reputation: Quarg" == 1000
-		call "Depart"
-		# land again to trigger the mission and then skip the conversation
-		call "Land On Ruin helper"
-		input
-			key "enter"
-		call "Depart"
-		# board the ship so we're sure we get close to it to get scanned
-		input
-			key b
-		# Wait for 10 seconds so it should be boarded
-		apply
-			"test: steps to wait" = 10 * 60
-		label "floating"
-		# empty input to make time pass
-		input
-		apply
-			"test: steps to wait" = "test: steps to wait" - 1
-		branch "floating"
-			"test: steps to wait" > 0
+		call "Launch Quarg Scanning Mission And Board"
 		# skip the dialog message for the atrocity
 		input
 			key "enter"
