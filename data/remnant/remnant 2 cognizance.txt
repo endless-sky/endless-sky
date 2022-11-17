@@ -1183,7 +1183,7 @@ mission "Remnant: Cognizance 25"
 		dialog "You have destroyed the ships that the Palavret left behind."
 	on waypoint
 		dialog "You have patrolled all six systems."
-	on enter Egaria
+	on enter Egeria
 		dialog "As soon as you enter the system, three 'olofezes begin targeting your ship. These are probably the sort of surprises that Gavriil was worried about."
 	on complete
 		event "korath rescue: egeria tiny"
