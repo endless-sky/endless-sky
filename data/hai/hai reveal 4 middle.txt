@@ -931,9 +931,9 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			# TODO: replace this paragraph with real content:
 			`	"Of course, there are the communication latency issues, and the dreadful matter of the black spot that is the route through Cardax. We need proper coverage of that area if we're going to provide security to the tourists who seem intent on coming here. Though I hear that you might be working on that as we speak, am I right?"`
 			choice
-				`	"Yes, I'll fix the latency issue."`
+				`	"Yes, I'll fix it."
 					goto yes
-				`	"Those systems are on my way."`
+				`	"It's on my way."`
 			`	Turner smiles with a little twinkle in his eye.`
 			label yes
 			`	"Of course, the famous Captain <last> always has a finger on the pulse. Being right where they need to be. Good thing we got the advertising out there up in time, hey?" He taps his nose and gives a shockingly conspicuous wink.`
