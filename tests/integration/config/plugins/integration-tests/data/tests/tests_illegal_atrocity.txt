@@ -63,7 +63,7 @@ test-data "quarg scanning"
 			"%TEST%: SCANNING ILLEGALS"
 
 
-test-data "quarg scanning"
+test-data "quarg atrocity"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -204,7 +204,7 @@ test "Illegal Test - Ignore and New Illegal"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
 		call "Land On Ruin helper"
 		assert
-			"fines" == 1
+			"unpaid fines" == 1
 
 test "Atrocity Test - New Atrocity"
 	status active
