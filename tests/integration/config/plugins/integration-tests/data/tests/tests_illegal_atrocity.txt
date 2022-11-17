@@ -61,6 +61,8 @@ test-data "quarg scanning"
 		"visited planet" Ruin
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
+			# to skip the landing on ruin conversation
+			"Ruin: Landing: offered"
 
 
 test-data "quarg atrocity"
@@ -129,6 +131,8 @@ test-data "quarg atrocity"
 		"visited planet" Ruin
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
+			# to skip the landing on ruin conversation
+			"Ruin: Landing: offered"
 
 
 # No JD so it cant leave it'll only despawn from the mission. No guns so it wont kill us.
@@ -182,9 +186,6 @@ test "Illegal Test - Ignore and New Illegal"
 		call "Land On Ruin helper"
 		input
 			key "enter"
-		# skip the landing on ruin conversation too
-		input
-			key "enter"
 		call "Depart"
 		# board the ship so we're sure we get close to it to get scanned
 		input
@@ -219,9 +220,6 @@ test "Atrocity Test - New Atrocity"
 		call "Depart"
 		# land again to trigger the mission and then skip the conversation
 		call "Land On Ruin helper"
-		input
-			key "enter"
-		# skip the landing on ruin conversation too
 		input
 			key "enter"
 		call "Depart"
