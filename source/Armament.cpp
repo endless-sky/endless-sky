@@ -7,15 +7,19 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Armament.h"
 
-#include "Files.h"
 #include "FireCommand.h"
+#include "Logger.h"
 #include "Outfit.h"
 #include "Ship.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -56,7 +60,8 @@ int Armament::Add(const Outfit *outfit, int count)
 	// Do not equip weapons that do not define how they are mounted.
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
-		Files::LogError("Error: Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->TrueName() + "\"."
+			" Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
 		return 0;
 	}
 
@@ -197,6 +202,26 @@ int Armament::TurretCount() const
 
 
 
+// Determine the installed weaponry's reusable ammunition. That is, all ammo outfits that are not also
+// weapons (as then they would be installed on hardpoints, like the "Nuclear Missile" and other one-shots).
+set<const Outfit *> Armament::RestockableAmmo() const
+{
+	auto restockable = set<const Outfit *>{};
+	for(auto &&hardpoint : Get())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon)
+		{
+			const Outfit *ammo = weapon->Ammo();
+			if(ammo && !ammo->IsWeapon())
+				restockable.emplace(ammo);
+		}
+	}
+	return restockable;
+}
+
+
+
 // Adjust the aim of the turrets.
 void Armament::Aim(const FireCommand &command)
 {
@@ -232,7 +257,8 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals, bool jammed)
+bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile,
+	vector<Visual> &visuals, bool jammed)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return false;
