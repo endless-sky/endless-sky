@@ -49,7 +49,7 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> AUTO_AIM_SETTINGS = {"off", "when firing", "always on"};
+	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 }
 
@@ -273,7 +273,7 @@ const string &Preferences::AutoAimSetting()
 
 
 
-const int Preferences::AutoAimIndex()
+int Preferences::AutoAimIndex()
 {
 	return autoAimIndex;
 }

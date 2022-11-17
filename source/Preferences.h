@@ -61,7 +61,7 @@ public:
 	static const std::string &VSyncSetting();
 
 	static void ToggleAutoAim();
-	static const int AutoAimIndex();
+	static int AutoAimIndex();
 	static const std::string &AutoAimSetting();
 };
 
