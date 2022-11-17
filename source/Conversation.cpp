@@ -140,7 +140,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 				// just bring you to the next node in the script.
 				nodes.back().elements.emplace_back(grand.Token(0) + '\n', nodes.size());
 
-				LoadGotos(grand);
+				LoadDestinations(grand);
 			}
 			if(nodes.back().elements.empty())
 			{
@@ -195,7 +195,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			// in a goto, or if the new node has a condition, then create a new
 			// node. Otherwise, just merge this new paragraph into the previous
 			// node.
-			if(nodes.empty() || !nodes.back().canMergeOnto || HasCondition(child))
+			if(nodes.empty() || !nodes.back().canMergeOnto || HasDisplayRestriction(child))
 				AddNode();
 
 			// Always append a newline to the end of the text.
@@ -203,7 +203,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 
 			// Check whether there is a goto attached to this block of text. If
 			// so, future nodes can't merge onto this one.
-			if(LoadGotos(child))
+			if(LoadDestinations(child))
 				nodes.back().canMergeOnto = false;
 		}
 	}
@@ -475,7 +475,7 @@ int Conversation::NextNode(int node, int element) const
 
 
 // Returns whether the given node should be displayed.
-bool Conversation::ShouldShowText(const map<string, int64_t> &vars, int node, int element) const
+bool Conversation::ShouldDisplayNode(const ConditionsStore &vars, int node, int element) const
 {
 	if(!NodeIsValid(node))
 		return false;
@@ -517,35 +517,30 @@ bool Conversation::ElementIsValid(int node, int element) const
 // Parse the children of the given node to see if then contain any "gotos," or
 // "to shows." If so, link them up properly. Return true if gotos or
 // conditions were found.
-bool Conversation::LoadGotos(const DataNode &node)
+bool Conversation::LoadDestinations(const DataNode &node)
 {
 	bool hasGoto = false;
 	bool hasCondition = false;
 	for(const DataNode &child : node)
 	{
-		if(hasGoto && hasCondition)
-			child.PrintTrace("Warning: Ignoring extra text in conversation choice:");
+		if(child.Size() == 2 && child.Token(0) == "goto" && hasGoto)
+		{
+			child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
+		}
 		else if(child.Size() == 2 && child.Token(0) == "goto")
 		{
-			// Each choice can only have one goto
-			if(hasGoto)
-				child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
-			else
-			{
-				Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
-				hasGoto = true;
-			}
+			Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
+			hasGoto = true;
+		}
+		else if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display" && hasCondition)
+		{
+			// Each choice can only have one condition
+			child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
 		}
 		else if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
 		{
-			// Each choice can only have one condition
-			if(hasCondition)
-				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
-			else
-			{
-				nodes.back().elements.back().conditions.Load(child);
-				hasCondition = true;
-			}
+			nodes.back().elements.back().conditions.Load(child);
+			hasCondition = true;
 		}
 		else
 		{
@@ -570,7 +565,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 
 
 
-bool Conversation::HasCondition(const DataNode &node)
+bool Conversation::HasDisplayRestriction(const DataNode &node)
 {
 	for(const DataNode &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")

@@ -377,7 +377,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			{
 				// This is an ordinary conversation node. Perform any necessary text
 				// replacement, then add the text to the display.
-				if(conversation.ShouldShowText(player.Conditions(), node))
+				if(conversation.ShouldDisplayNode(player.Conditions(), node))
 				{
 					string altered = Format::Replace(conversation.Text(node), subs);
 					text.emplace_back(altered, conversation.Scene(node), text.empty());
@@ -386,6 +386,10 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 				{
 					// If the text was skipped, don't follow its goto.
 					++node;
+					if(!conversation.NodeIsValid(node)) {
+						node = Conversation::DECLINE;
+						break;
+					}
 					continue;
 				}
 			}
@@ -397,7 +401,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		bool skippedAChoice = false;
 		for(int i = 0; i < conversation.Choices(node); ++i)
 		{
-			if(conversation.ShouldShowText(player.Conditions(), node, i))
+			if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 			{
 				string altered = Format::Replace(conversation.Text(node, i), subs);
 				choices.emplace_back(Paragraph(altered), i);
@@ -410,8 +414,10 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// It seems there was a `choice` node, but all of the available
 			// choices failed their conditions. Fall through to the next node.
 			++node;
-			if(!conversation.NodeIsValid(node))
+			if(!conversation.NodeIsValid(node)) {
 				node = Conversation::DECLINE;
+				break;
+			}
 		}
 		else
 			break;
