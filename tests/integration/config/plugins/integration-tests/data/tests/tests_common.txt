@@ -6,7 +6,7 @@ test-data "Three Earthly Barges"
 		system Sol
 		planet Earth
 		clearance
-		# Set some reputations to positive to avoid combat
+		# Set some reputations to positive to avoid combat.
 		"reputation with"
 			Bounty 1
 			"Bounty Hunter" 1
