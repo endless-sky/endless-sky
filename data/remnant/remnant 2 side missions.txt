@@ -53,7 +53,7 @@ mission "Remnant: Visit to Paradise 1"
 				`	"Sure, I have done a bit of hoverboarding myself."`
 				`	"Maybe later."`
 					goto vaillater
-			apply
+			action
 				set "remnant: hoverboarding"
 			`	"Really? The description sounded useful for exploration, and it looked challenging." Her commlink shifts to display a hologram of a hoverboarder executing a jump with an artistic poof of snow around them. "Anyway, I think this trip should be a good diversion for us both. I will meet you onboard the <ship> shortly."`
 				accept
