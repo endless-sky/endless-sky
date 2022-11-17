@@ -35,7 +35,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"You see," says Sayari, "while you've been away it's been decided that a 'tourist trap type theme park destination' is a critical part of the cover story." Despite her Hai inflections, you can still hear the air quotes around that phrase in the tone of her voice. "So far it seems the movie cover has been circulating quite successfully, so we're leaning into it.`
 			`	"This means we need a station, on your side of the wormhole in Ultima Thule. It also means we need it fast, much faster than your people could ever hope to assemble it. The Hai can build it much quicker than humanity can; we actually considered the possibility of needing to raise a station quickly a while back. The alien look that the station will have if we build it has been considered just another favorable aspect of the movie and it provides a long-term commercial justification for the whole idea; the, uh, 'tourist trap'.`
 			choice
-				`	"I should oversee the construction, given the current political situation."`
+				`	"It would help if I oversaw the construction, wouldn't it?"`
 					goto oversee
 				`	"Good idea. Let me know when the station is complete."`
 			`	"It's not so simple," Sayari responds. "In the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't actually built one in so, so long."`
