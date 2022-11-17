@@ -984,7 +984,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	Reaching the room in question you knock on the door which has a nameplate that reads, 'Giti Gilani' with the title 'Research Librarian' in small print underneath. You are swiftly greeted by a short, energetic looking lady. She looks you up and down and nods. "Captain <last>, you're not as tall as I thought you'd be in person. Please, please come in."`
 				goto "converse with giti"
 			label "take the direct route"
-			`	You're ushered into a luxury taxi, complete with a built-in bar and the latest forms of entertainment. The taxi enters a ballistic trajectory into space and back down, reaching your destination in under an hour. It links its aft exit port to the side of the building, about half the way up. The well-dressed driver leads you into the building and escorts to your destination.`
+			`	You're ushered into a luxury taxi, complete with a built-in bar and the latest forms of entertainment. The taxi enters a ballistic trajectory into space and back down, reaching your destination in under an hour. It links its aft exit port to a hover vehicle access port about half the way up the side of the building. The well-dressed driver leads you into the building and, after briefly consulting a directory, escorts you to your destination.`
 			`	"Floor 301, section 7A, room 19, sir," he says. "This is the office of research librarian Giti Giliani." You bid him goodbye, and he returns to his taxi.`
 			choice
 				`	(Knock on the door.)`
