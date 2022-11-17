@@ -104,9 +104,9 @@ test "Conditional Test"
 			key p
 		# press accept (or decline, depending on if it is shown)
 		input
-			key "enter"
+			key "Return"
 		input
-			key "enter"
+			key "Return"
 		# Depart to refresh the conditions
 		call "Depart"
 		apply
