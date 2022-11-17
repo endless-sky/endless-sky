@@ -151,7 +151,8 @@ int Storyline::ChapterCount() const
 
 int Storyline::ChaptersStarted(const ConditionsStore &conditions) const
 {
-	if(!HasStarted(conditions)) return 0;
+	if(!HasStarted(conditions))
+	    return 0;
 	int started = 1;
 	for(const ConditionSet &c : chapterConditions) {
 		if(!c.IsEmpty() && c.Test(conditions))
