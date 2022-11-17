@@ -98,7 +98,6 @@ test-data "quarg atrocity"
 				Hyperdrive
 				"nGVF-BB Fuel Cell"
 				"LP036a Battery Pack"
-				"Nerve Gas"
 			crew 1
 			fuel 300
 			shields 600
