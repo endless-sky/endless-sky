@@ -700,6 +700,8 @@ mission "Hai Leaks Response 2C"
 			`	"Now, let's be on our way," he says. "The Hai won't save themselves with us standing here."`
 				decline
 
+
+
 #This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
 #No longer gets picked up silently due to write-read order style preferences - but may need to be moved back to Response 2 or have multiple versions of this mission when other campaigns exist.
 mission "Hai Leaks Response 3"
