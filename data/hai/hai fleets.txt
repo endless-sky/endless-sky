@@ -239,7 +239,7 @@ fleet "Small Hai Merchant"
 		"Aphid (Armed)" 3
 		"Centipede"
 	variant 3
-		"Scarab" 3
+		"Scarab" 2
 		"Geocoris"
 	variant 1
 		"Centipede" 2
