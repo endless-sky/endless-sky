@@ -838,7 +838,7 @@ mission "Hai Reveal [A06a] The Calm"
 				`	"So why haven't you placed more relays?"`
 					goto more
 			label lovenot
-			`	Remington says, "They're privately-owned relays, so we have no say over them. Lovelace Labs needs that bandwidth for their internal purposes, so they can't afford to lose priority for their own traffic. We pay a stiff sum to get the highest priority they are willing to part with."`
+			`	Remington says, "They're privately-owned relays, so we have no say over them. Lovelace Labs reserves priority status on that bandwidth for their internal purposes. We pay a stiff sum to get the highest priority they are willing to part with, but often they don't leave much for anyone else."`
 			choice
 				`	"And you want me to place some more relays?"`
 					goto relays
