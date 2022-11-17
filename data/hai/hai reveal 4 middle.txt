@@ -756,7 +756,6 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 			label fury
 			`	"WHAT!?"`
 			`	Teeneep's exclamation is loud enough that every head in the room turns towards you both. "The Elders would prioritize our secrecy over our safety, even when the purpose of the secrecy is to maintain our safety?!"`
-			`	It takes a few seconds for Teeneep to calm her fury before she continues.`
 			label unfortunate
 			`	"Clearly many of the Elders have become weak and misguided, lost in the miasma of our current difficulties. I must speak to our mutual friend and investigate this. No Hai should be accepting of this subversion of our society's critical values.`
 				goto conclusion
