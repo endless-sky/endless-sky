@@ -328,6 +328,8 @@
 		<Unit filename="source/StartConditionsPanel.h" />
 		<Unit filename="source/StellarObject.cpp" />
 		<Unit filename="source/StellarObject.h" />
+		<Unit filename="source/Storyline.cpp" />
+		<Unit filename="source/Storyline.h" />
 		<Unit filename="source/System.cpp" />
 		<Unit filename="source/System.h" />
 		<Unit filename="source/Test.cpp" />

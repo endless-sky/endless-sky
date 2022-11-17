@@ -26,10 +26,51 @@ using namespace std;
 
 
 
+int Storyline::Progress(const PlayerInfo &player,
+	vector<string> &started,
+	vector<string> &ended,
+	vector<string> &available)
+{
+	int hidden = 0;
+	const ConditionsStore &playerConditions = player.Conditions();
+	for(const auto &s : GameData::Storylines())
+	{
+		const Storyline &storyline = s.second;
+		const string &name = storyline.Name();
+		if(storyline.HasEnded(playerConditions))
+			ended.emplace_back(name);
+		else if(storyline.HasStarted(playerConditions))
+		{
+			int chapterCount = storyline.ChapterCount();
+			if(chapterCount == 1)  // 1 means there is only a start.
+				started.emplace_back(name);
+			else
+			{
+				started.emplace_back(
+					name+" (chapter "+
+					to_string(storyline.ChaptersStarted(playerConditions))+
+					" of "+to_string(chapterCount)+")");
+			}
+		}
+		else if(!storyline.IsBlocked(playerConditions))
+		{
+			if(storyline.IsVisible())
+				available.emplace_back(name);
+			else if(storyline.IsHidden())
+				hidden += 1;
+		}
+	}
+	return hidden;
+}
+
+
+
 void Storyline::Load(const DataNode &node)
 {
-	if(node.Size() < 2)
+	if(node.Size() < 2) {
+		node.PrintTrace("Storyline is missing a name");
 		return;
+	}
 	name = node.Token(1);
 	isDefined = true;
 
@@ -78,7 +119,7 @@ const string &Storyline::Name() const
 
 
 // In each of the following we return
-//  !condition.IsEmpty && condition.Test
+// !condition.IsEmpty && condition.Test
 // as an empty condition always evaluates to true.
 bool Storyline::HasStarted(const ConditionsStore &conditions) const
 {
@@ -114,7 +155,7 @@ int Storyline::ChaptersStarted(const ConditionsStore &conditions) const
 	int started = 1;
 	for(const ConditionSet &c : chapterConditions) {
 		if(!c.IsEmpty() && c.Test(conditions))
-			started += 1;
+			started++;
 	}
 	return started;
 }
@@ -132,48 +173,4 @@ bool Storyline::IsHidden() const
 {
 	// Consider unset to be the same as hidden.
 	return visibility == Visibility::hidden || visibility == Visibility::unset;
-}
-
-
-
-/*static*/
-void Storyline::Progress(const PlayerInfo &player,
-	vector<string> &started,
-	vector<string> &ended,
-	vector<string> &available,
-	int &hidden)
-{
-	hidden = 0;
-	const ConditionsStore &playerConditions = player.Conditions();
-	for(const auto &s : GameData::Storylines())
-	{
-		const Storyline &storyline = s.second;
-		const string &name = storyline.Name();
-		if(storyline.HasEnded(playerConditions))
-		{
-			ended.emplace_back(name);
-		}
-		else if(storyline.HasStarted(playerConditions))
-		{
-			int chapterCount = storyline.ChapterCount();
-			if(chapterCount == 1)  // 1 means there is only a start.
-			{
-				started.emplace_back(name);
-			}
-			else
-			{
-				started.emplace_back(
-					name+" (chapter "+
-					to_string(storyline.ChaptersStarted(playerConditions))+
-					" of "+to_string(chapterCount)+")");
-			}
-		}
-		else if(!storyline.IsBlocked(playerConditions))
-		{
-			if(storyline.IsVisible())
-				available.emplace_back(name);
-			else if(storyline.IsHidden())
-				hidden += 1;
-		}
-	}
 }

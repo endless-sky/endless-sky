@@ -55,21 +55,23 @@ namespace {
 
 	const string STORYLINES = "Storylines";
 
-void DisplayVector(const string &heading, const vector<string> &entries, 
-	const Font &font, const Color &headingColor, const Color &bodyColor,
-	const Point &textOffset, Point& pos)
-{
-	if(!entries.empty())
+
+
+	void DisplayVector(const string &heading, const vector<string> &entries, 
+		const Font &font, const Color &headingColor, const Color &bodyColor,
+		const Point &textOffset, Point& pos)
 	{
-		font.Draw(heading, pos+textOffset, headingColor);
-		pos.Y() += LINE_HEIGHT;
-		for(const string &entry : entries)
+		if(!entries.empty())
 		{
-			font.Draw(entry, pos+textOffset, bodyColor);
+			font.Draw(heading, pos+textOffset, headingColor);
 			pos.Y() += LINE_HEIGHT;
+			for(const string &entry : entries)
+			{
+				font.Draw(entry, pos+textOffset, bodyColor);
+				pos.Y() += LINE_HEIGHT;
+			}
 		}
 	}
-}
 }
 
 
@@ -176,9 +178,7 @@ void LogbookPanel::Draw()
 		}
 	}
 	else if(!selectedDate && selectedName == STORYLINES)
-	{
 		ShowStorylines(font, medium, dim, textOffset, pos);
-	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
 	{
 		for(const auto &it : pit->second)
@@ -336,8 +336,7 @@ void LogbookPanel::Update(bool selectLast)
 		dates.emplace_back();
 	}
 	// If there are any storylines, add a section for them. The content is
-	// generated whenever the logbook panel updates, so we can't use SpecialLogs
-	// for it.
+	// generated whenever the logbook panel updates, so we can't use SpecialLogs for it.
 	if(!GameData::Storylines().empty())
 	{
 		contents.emplace_back(STORYLINES);
@@ -399,8 +398,7 @@ void LogbookPanel::ShowStorylines(
 	vector<string> started;
 	vector<string> ended;
 	vector<string> available;
-	int hidden;
-	Storyline::Progress(player, started, ended, available, hidden);
+	int hidden = Storyline::Progress(player, started, ended, available);
 
 	DisplayVector("Started:", started,
 		font, headingColor, bodyColor, textOffset, pos);

@@ -31,17 +31,29 @@ class PlayerInfo;
 // chapters along the way.
 // Intended to help with discoverabiity of content and tracking player progress.
 class Storyline {
+private:
+	enum class Visibility : int {
+		// Visibility was not explicitly set. Currently equivalent to hidden,
+		// but kept separate to allow other options in future.
+		unset = 0,
+		// Name is displayed in available.
+		visible,
+		// Name is not displayed in available, but included in the count.
+		hidden,
+		// No information is displayed in available.
+		secret
+	};
+
 public:
 	// Static method to help with UIs.
 	// Returns the names of the started, ended, and visible available
-	// storylines, together with a count of the hidden available storylines. For
+	// storylines, and returns a count of the hidden available storylines. For
 	// storylines which have chapters, the started text also includes the
 	// progress.
-	static void Progress(const PlayerInfo &player,
+	static int Progress(const PlayerInfo &player,
 		std::vector<std::string> &started,
 		std::vector<std::string> &ended,
-		std::vector<std::string> &available,
-		int &hidden);
+		std::vector<std::string> &available);
 
 	// Load a storyline's definition.
 	void Load(const DataNode &node);
@@ -68,18 +80,6 @@ public:
 	bool IsHidden() const;
 
 private:
-	enum class Visibility : int {
-		// Visibility was not explicitly set. Currently equivalent to hidden,
-		// but kept separate to allow other options in future.
-		unset = 0,
-		// Name is displayed in available.
-		visible,
-		// Name is not displayed in available, but included in the count.
-		hidden,
-		// No information is displayed in available.
-		secret
-	};
-
 	bool isDefined = false;
 	std::string name;
 
