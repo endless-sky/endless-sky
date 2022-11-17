@@ -65,12 +65,12 @@ mission "%TEST%: CONDITIONAL CHOICE"
 		conversation
 			# cant actually write an integration test for seeing this or not
 			`You should not see this.`
-				to show
+				to display
 					not "%TEST%: CONDITIONAL CHOICE"
 			`Does this work? Do you not see the first sentence?`
 			choice
 				`	"No."`
-					to show
+					to display
 						has "%TEST%: CONDITIONAL CHOICE"
 					accept
 				`	"Yes."`
@@ -109,5 +109,7 @@ test "Conditional Test"
 			key "enter"
 		# Depart to refresh the conditions
 		call "Depart"
+		apply
+			"test: suceed test" = "suceed test"
 		assert
 			"succeed test" == 1
