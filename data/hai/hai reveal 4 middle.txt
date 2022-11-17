@@ -715,7 +715,6 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 		has "event: alondo symbol timer"
 		or
 			has "ZZ Hai Reveal [A04] Report to Teeneep: done"
-			has "Hai Reveal [A04] Report to Teeneep: done"
 			has "Hai Reveal [A03b] Report to Teeneep: offered"
 	on visit
 		dialog `Teeneep is on another ship not yet in the system. Take off and wait for the ship to arrive in order to continue.`
