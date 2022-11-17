@@ -902,7 +902,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	"Yes, my regular job. Specifically the one I had before the end of the war, and before this farce they have me doing now, while my successor tries and fails to be half as competent."`
 			label card
 			`	She pushes a button her datapad's case and it ejects a business card which she hands to you. You see on the card, "Chief Operations Officer".`
-			`	"Of course," she says, taking the card back and neatly pushing into the case, "I'm not allowed to dissemate those cards at the moment. At least not until this is over, when I can take back my position after the fool in my place has made a mess of things."`
+			`	"Of course," she says, taking the card back and neatly pushing into the case, "I'm not allowed to disseminate those cards at the moment. At least not until this is over, when I can take back my position after the fool in my place has made a mess of things."`
 			`	She seems absolutely sure that that's exactly how things are going to turn out.`
 			`	"Now, speaking of my second job, you have relays on your ship that will make that easier, yes?"`
 			choice
