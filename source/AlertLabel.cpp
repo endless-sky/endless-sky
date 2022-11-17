@@ -67,6 +67,7 @@ void AlertLabel::Draw() const
 	{
 		RingShader::Draw(position * zoom, radius, 1.2f, .16f, *color, 0.f, angle[i] + rotation);
 		if(isTargetingFlagship)
-			PointerShader::Draw(position * zoom, Angle(angle[i] + 30. + rotation).Unit(), 7.5f, (i ? 10.f : 22.f)*zoom, radius + (i ? 10 : 20)*zoom, *color);
+			PointerShader::Draw(position * zoom, Angle(angle[i] + 30. + rotation).Unit(),
+				7.5f, (i ? 10.f : 22.f) * zoom, radius + (i ? 10.f : 20.f) * zoom, *color);
 	}
 }

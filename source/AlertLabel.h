@@ -25,7 +25,7 @@ class Projectile;
 class Ship;
 
 
-// A class that holds an overlay for a missile
+// A class that holds an overlay for a missile.
 class AlertLabel {
 public:
 	AlertLabel(const Point &position, const Projectile &projectile, const std::shared_ptr<Ship> &flagship, double zoom);
@@ -34,7 +34,7 @@ public:
 
 
 private:
-	double rotation = 0;
+	double rotation = 0.;
 	Point position;
 	double zoom = 1.;
 	bool isTargetingFlagship = true;
