@@ -380,7 +380,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					if(crewTransferred == 1)
 						transferMessage += " has";
 					else
-						transferMessage += " have";
+						transferMessage += "s have";
 					transferMessage += " been transferred.";
 					messages.push_back(transferMessage);
 				}
