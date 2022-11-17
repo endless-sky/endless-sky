@@ -637,9 +637,10 @@ fleet "Large Hai Merchant (Human)"
 
 
 fleet "Unfettered Logistics"
-	government "Hai (Unfettered)"
+	government "Hai (Friendly Unfettered)"
 	names "hai"
-	cargo 2
+	cargo 1
+	commodities "Food" "Heavy Metals" "Medical"
 	personality
 		confusion 25
 		timid frugal appeasing
