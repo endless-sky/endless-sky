@@ -1149,7 +1149,7 @@ mission "Remnant: Cognizance 24"
 
 mission "Remnant: Cognizance 25"
 	name "Patrol systems near Postverta."
-	description "Gavriil has asked you to do a patrol through the nearby systems. Along the way, make sure that a Palavret that passed by recently didn't leave behind any surprises."
+	description "Gavriil has asked you to do a patrol through the nearby systems. Along the way, make sure that a Palavret that passed by recently did not leave behind any surprises."
 	landing
 	source "Ssil Vida"
 	waypoint "Diespiter"
