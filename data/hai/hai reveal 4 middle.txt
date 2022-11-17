@@ -694,12 +694,13 @@ mission "ZZ Hai Reveal [A04] Report to Teeneep"
 	source "Hai-home"
 	destination Darkwaste
 	to offer
+		has "event: alondo symbol timer"
 		or
 			has "Hai Reveal: Pirate Troubles [4]: done"
 			has "Hai Reveal: Pirate Troubles [4]: declined"
 			has "hr defeated scar's legion"
 	on offer
-		dialog `Now that the situation with Scar's Legion is resolved, it's time to report to Teeneep about the experience. Maybe it will shed some light on what's going on?`
+		dialog `Alondo is apparently away somewhere and unavailable for a short while. So, now that the situation with Scar's Legion is resolved, it's time to report to Teeneep about the experience. Maybe it will shed some light on what's going on?`
 
 
 mission "Hai Reveal [A05] Take Teeneep to Hai-home"
@@ -825,8 +826,8 @@ mission "Hai Reveal [A06a] The Calm"
 			label meeting
 			`	"Ah, <last>, please come in." Remington moves over and clears your path to the nearest seat.`
 			`	"It's good to see you back again, <last>," says Alondo, "and just in time for something that I think it's best to ask you to do. Would you like to tell the good Captain what the plan is, Remington?"`
-			`	The slightly accentuated formality on 'Remington' is not lost on you, but the Syndicate PR man doesn't react to it as he hands you a datapad displaying a hyperspace relay. "Since we met the Hai, the Navy maintained hyperspace relays in Rajak and Hasseleh, linking our communication network to the Hai's through a secure portal. However, while this has allowed us to communicate to anywhere back home, it has some disadvantages. What you see there is the solution.`
-			`	"There are fourteen relays between the wormhole and Earth, but that means routing through Elnath or Aldebaran. Those two relays are owned by Lovelace Labs, and they don't have enough bandwidth for the entirely of the Syndicate. During a backlog, information will be routed through even more indirect routes, which is holding up Syndicate business by problematic degrees."`
+			`	The slightly accentuated formality on 'Remington' is not lost on you, but the Syndicate PR man doesn't react to it as he hands you a datapad displaying a hyperspace relay. "Since this crisis began, the Navy maintained hyperspace relays in Rajak and Hasseleh, linking our communication network to the Hai's through a secure portal. However, while this has allowed us to communicate to anywhere back home, it has some disadvantages. What you see there is the solution.`
+			`	"There are fourteen relays between the wormhole and Earth, but that means routing through Elnath or Aldebaran. Lovelace Labs owns those relays, and they get priority access, so our bandwidth is poor there. During a backlog, information will be routed through even more indirect routes, which is holding up Syndicate business by problematic degrees."`
 			choice
 				`	"And you want me to place some more relays?"`
 					goto relays
