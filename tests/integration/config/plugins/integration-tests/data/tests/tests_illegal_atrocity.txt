@@ -121,7 +121,7 @@ test-data "quarg atrocity"
 			government "Quarg"
 				"penalty for"
 					atrocity 1000
-				atrocity
+				atrocities
 					Hyperdrive
 				# they don't have it yet but to be sure
 				remove "death sentence"
