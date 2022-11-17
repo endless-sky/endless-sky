@@ -16,20 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 
 #include "Angle.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
-#include "Government.h"
-#include "LineShader.h"
 #include "Projectile.h"
-#include "pi.h"
 #include "PointerShader.h"
 #include "RingShader.h"
 #include "Ship.h"
-#include "Sprite.h"
 
 #include <algorithm>
-#include <cmath>
 
 using namespace std;
 
@@ -62,7 +55,7 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 
 void AlertLabel::Draw() const
 {
-	double angle[3] = {330., 210., 90.};
+	const double angle[3] = {330., 210., 90.};
 	for(int i = 0; i < 3; i++)
 	{
 		RingShader::Draw(position * zoom, radius, 1.2f, .16f, *color, 0.f, angle[i] + rotation);
