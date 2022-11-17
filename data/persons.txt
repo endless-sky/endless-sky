@@ -1753,7 +1753,7 @@ ship "Modified Ladybug"
 		"heat dissipation" .85
 		"fuel capacity" 900
 		"cargo space" 91
-		"outfit space" 645
+		"outfit space" 647
 		"weapon capacity" 206
 		"engine capacity" 153
 
