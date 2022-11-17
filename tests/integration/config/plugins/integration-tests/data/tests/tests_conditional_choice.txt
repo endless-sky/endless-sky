@@ -48,14 +48,6 @@ test-data "conditional choice"
 			credits 100000000
 			score 400
 			history
-
-		event "illegal stuff"
-			government "Quarg"
-				illegals
-					ignore "Nerve Gas"
-					Hyperdrive 1
-				# they enforce all currently but to be sure
-				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		conditions
@@ -65,11 +57,13 @@ test-data "conditional choice"
 
 
 mission "%TEST%: CONDITIONAL CHOICE"
+	priority
 	source "Ruin"
 	to offer
 		has "%TEST%: CONDITIONAL CHOICE"
 	on offer
 		conversation
+			# cant actually write an integration test for seeing this or not
 			`You should not see this.`
 				to show
 					not "%TEST%: CONDITIONAL CHOICE"
@@ -82,7 +76,7 @@ mission "%TEST%: CONDITIONAL CHOICE"
 				`	"Yes."`
 					decline
 	on accept
-		set "failed test"
+		set "succeed test"
 
 test "Land On Ruin helper"
 	status partial
@@ -90,38 +84,30 @@ test "Land On Ruin helper"
 	sequence
 		input
 			command land
-		label landing
-		branch landing
-			"flagship planet: Ruin" < 1
-		assert
-			"flagship planet: Ruin" > 0
+		label "landing"
+		# empty input to make time pass
+		input
+		branch "landing"
+			"flagship planet: Ruin" == 0
 
 test "Conditional Test"
 	status active
-	description "Test if a conversation shows up"
+	description "Test if a conversation option shows up when the given condition is set."
 	sequence
-		inject "quarg scanning"
+		inject "conditional choice"
 		call "Load First Savegame"
-		watchdog 12000
+		assert
+			"%TEST%: CONDITIONAL CHOICE" == 1
+		call "Depart"
+		call "Land On Ruin helper"
 		input
 			key p
-		# board the ship so we're sure we get close to it to get scanned
-		input
-			key b
-		# Wait for 10 seconds so it should be repaired
-		apply
-			"test: steps to wait" = 10 * 60
-		label "floating"
-		# empty input to make time pass
-		input
-		apply
-			"test: steps to wait" = "test: steps to wait" - 1
-		branch "floating"
-			"test: steps to wait" > 0
-		# skip the dialog message for the fine
+		# press accept (or decline, depending on if it is shown)
 		input
 			key "enter"
-		# land back with a fine of 1 for the hyperdrive, nothing from the gas
-		call "Land On Ruin helper"
+		input
+			key "enter"
+		# Depart to refresh the conditions
+		call "Depart"
 		assert
-			"unpaid fines" == 1
+			"succeed test" == 1
