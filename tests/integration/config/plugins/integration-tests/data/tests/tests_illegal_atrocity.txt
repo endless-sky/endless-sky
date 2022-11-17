@@ -238,7 +238,7 @@ test "Atrocity Test - New Atrocity"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
-		# skip the dialog message for the fine
+		# skip the dialog message for the atrocity
 		input
 			key "enter"
 		# land back with atrocity having been in effect (should nuke the reputation?)
