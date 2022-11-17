@@ -1,3 +1,95 @@
+test-data "quarg rescue"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+				"thrust" 50
+				"turn" 1000
+				"energy generation" 10
+			outfits
+				Hyperdrive
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		"available mission" "%TEST%: Wardragon Scanning You!"
+			name "%TEST%: Wardragon Scanning You!"
+			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
+			priority
+			to offer
+				"%TEST%: SCANNING ILLEGALS" != 0
+			destination Ruin
+			npc
+				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
+				succeed 1
+				government Quarg
+				personality derelict target
+				ship "Quarg Wardragon"
+					name Scanner
+					sprite ship/wardragon
+					thumbnail thumbnail/wardragon
+					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
+					attributes
+						category "Heavy Warship"
+						cost 5900000
+						mass 360
+						automaton 1
+						drag 9.3
+						"heat dissipation" 0.5
+						hull 50000
+						"outfit scan power" 1e+09
+						"outfit scan speed" 1e+09
+						"energy generation" 10
+						shields 160000
+					fuel 0
+					shields 0
+					hull 1000
+					position 0 0
+					explode "huge explosion" 1
+					system "Terra Incognita"
+			on offer
+				conversation
+					label 0
+					"You must be scanned or be killed."
+						accept
+		conditions
+			"%TEST%: SCANNING ILLEGALS"
+			"Ruin: Landing: offered"
+
+
 test-data "quarg scanning"
 	category "savegame"
 	contents
@@ -96,6 +188,7 @@ test-data "quarg scanning"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
+			"Ruin: Landing: offered"
 
 
 test-data "quarg atrocity"
@@ -148,8 +241,6 @@ test-data "quarg atrocity"
 
 		event "atrocity stuff"
 			government "Quarg"
-				"penalty for"
-					atrocity 1000
 				atrocities
 					Hyperdrive
 				remove "enforces"
@@ -197,6 +288,7 @@ test-data "quarg atrocity"
 						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
+			"Ruin: Landing: offered"
 
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
@@ -225,10 +317,11 @@ test "Launch Quarg Scanning Mission And Board"
 		call "Depart"
 		# board the ship so we're sure we get close to it to get scanned
 		input
-			key b
-		# Wait for 10 seconds so it should be repaired
+			command board
+		# Wait for 5 seconds so it should be repaired and have scanned us
+		# is there a way to know when a dialog pops up?
 		apply
-			"test: steps to wait" = 10 * 60
+			"test: steps to wait" = 10 * 30
 		label "floating"
 		# empty input to make time pass
 		input
@@ -236,6 +329,26 @@ test "Launch Quarg Scanning Mission And Board"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
+		input
+			key "return"
+
+test "Boarding Test - Repair Friendly Ship"
+	status active
+	description "Test if you can repair a disabled Quarg ship trough an assist derelict mission."
+	sequence
+		inject "quarg rescue"
+		call "Load First Savegame"
+		watchdog 6000
+		call "Launch Quarg Scanning Mission And Board"
+		apply
+			"test: %TEST%: Wardragon Scanning You!: active" = "%TEST%: Wardragon Scanning You!: active"
+		assert
+			"%TEST%: Wardragon Scanning You!: active" == 1
+		call "Land On Ruin helper"
+		apply
+			"test: %TEST%: Wardragon Scanning You!: done" = "%TEST%: Wardragon Scanning You!: done"
+		assert
+			"%TEST%: Wardragon Scanning You!: done" == 1
 
 test "Illegal Test - Ignore and New Illegal"
 	status active
@@ -243,15 +356,14 @@ test "Illegal Test - Ignore and New Illegal"
 	sequence
 		inject "quarg scanning"
 		call "Load First Savegame"
-		watchdog 12000
+		watchdog 6000
 		assert
-			"fines" == 0
+			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
-		# skip the dialog message for the fine
-		input
-			key "escape"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
 		call "Land On Ruin helper"
+		apply
+			"test: unpaid fines" = "unpaid fines"
 		assert
 			"unpaid fines" == 1
 
@@ -261,14 +373,14 @@ test "Atrocity Test - New Atrocity"
 	sequence
 		inject "quarg atrocity"
 		call "Load First Savegame"
-		watchdog 12000
+		watchdog 6000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
-		# skip the dialog message for the atrocity
-		input
-			key "escape"
 		# land back with atrocity having been in effect (should nuke the reputation?)
 		call "Land On Ruin helper"
+		apply
+			"test: reputation: Quarg" = "reputation: Quarg"
 		assert
+			# it'll be 0 from the atrocity and then minus whatever the atrocity reputation hit it
 			"reputation: Quarg" < 1
