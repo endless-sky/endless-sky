@@ -1710,6 +1710,10 @@ person "MasterOfGrey"
 		government "Hai"
 	phrase
 		word
+			"Oh dear."
+			"Ah yes."
+			"Lovely."
+			"Suffering."
 			"Why is everything Alphas?"
 			"You're only a terrorist if the people experience terror."
 			"Have you finished the Free Worlds storyline yet?"
@@ -1738,9 +1742,9 @@ ship "Modified Ladybug"
 		category "Medium Warship"
 		"cost" 8950000
 		
-		# To be buffed:
-		"shields" 26000
-		"hull" 20000
+		# Shaming the Solifuge
+		"shields" 38000
+		"hull" 22000
 		
 		"required crew" 16
 		"bunks" 33
@@ -1749,7 +1753,7 @@ ship "Modified Ladybug"
 		"heat dissipation" .85
 		"fuel capacity" 900
 		"cargo space" 91
-		"outfit space" 611
+		"outfit space" 645
 		"weapon capacity" 206
 		"engine capacity" 153
 
@@ -1775,17 +1779,21 @@ ship "Modified Ladybug"
 		"Point Defense Turret"
 		"Warder Anti-Missile"
 
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 2
-		"Hai Ravine Batteries"
+		"Systems Core (Medium)"
+		"S-970 Regenerator"
+		"Crystal Capacitor"
 		"Double Plasma Core"
+		"Small Heat Shunt" 2
 		"Large Heat Shunt"
+		"Fuel Processor"
+		"Quantum Keystone"
 		"Thermal Repeater Rifle" 16
 		
 		`"Biroo" Reverse Thruster`
 		`"Bondir" Atomic Steering`
 		`"Bufaer" Atomic Thruster`
 		"Hyperdrive"
+		"Jump Drive"
 
 	turret 0 -47.5 "Bombardment Turret"
 	turret 35 -25 "Thermal Repeater Turret"
