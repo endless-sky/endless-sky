@@ -1037,7 +1037,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 				`	"They symbols have a complex pattern to them. Do you think they're a kind of writing?"`
 					goto impressed
 				`	"I've never seen someone speak so intensely about symbol patterns. I certainly came to the right person."`
-			`	She blushes slightly and says, "Yes, this sort of thing was my life's work before I was transferred here to be a librarian.`
+			`	She blushes slightly and says, "Yes, this sort of thing was my life's work before I transferred here to be a research librarian.`
 				goto archaic
 			label impressed
 			`	She looks impressed and says, "Very good! A pilot and a scholar? You're quite a surprise.`
