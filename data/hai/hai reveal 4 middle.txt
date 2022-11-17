@@ -966,8 +966,8 @@ mission "Hai Reveal [A08] Symbol Identification"
 		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organization. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
 		
 		conversation
-			`You land at Ulaanbaatar's spaceport and receive a message that Batu has to finalize some arrangements and will arrive in the evening. That leaves plenty of time for you to see to your business of angry cat symbols.`
-			`	At an information desk, you inquire about the route to the library, and are given two options. You can take a very expensive private taxi service, which will be payed for by the Syndicate. Or, you can take the long route and see the sights. Either way, you'll have plenty of time before Batu arrives.`
+			`You land at Ulaanbaatar's spaceport and receive a message that Batu has to finalize some arrangements and will arrive in the evening. That leaves plenty of time for you to see to your other business about the symbol.`
+			`	At an information desk, you inquire about the route to Moscow, and are given two options. You can take a very expensive private taxi service, which you could bill to Alondo. Or, you can take the long route and see the sights. Either way, you'll have plenty of time before Batu arrives.`
 			choice
 				`	(Take the direct route.)`
 					goto "take the direct route"
