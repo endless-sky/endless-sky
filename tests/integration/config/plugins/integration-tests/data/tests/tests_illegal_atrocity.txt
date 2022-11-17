@@ -221,7 +221,7 @@ test "Launch Quarg Scanning Mission And Board"
 		input
 			key p
 		input
-			key "Return"
+			key "escape"
 		call "Depart"
 		# board the ship so we're sure we get close to it to get scanned
 		input
@@ -249,7 +249,7 @@ test "Illegal Test - Ignore and New Illegal"
 		call "Launch Quarg Scanning Mission And Board"
 		# skip the dialog message for the fine
 		input
-			key "enter"
+			key "escape"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
 		call "Land On Ruin helper"
 		assert
@@ -267,7 +267,7 @@ test "Atrocity Test - New Atrocity"
 		call "Launch Quarg Scanning Mission And Board"
 		# skip the dialog message for the atrocity
 		input
-			key "enter"
+			key "escape"
 		# land back with atrocity having been in effect (should nuke the reputation?)
 		call "Land On Ruin helper"
 		assert
