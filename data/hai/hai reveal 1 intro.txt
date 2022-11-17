@@ -532,7 +532,7 @@ mission "Hai Leaks Response 1"
 			`	You haven't really seen very much of the Hai so far, and you can't help but think the size of the detachment is rather militant of them. It's impossible to judge if it's for your safety or whether, given your status as a "war hero", it's for theirs.`
 			`	Word of your status in human space also seems to have spread ahead of you, perhaps because you are a significant human visitor in the current climate. A moderate crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
 			label resume
-			`	Several of the Hai guarding you usher you off to the left to avoid a large crowd.`
+			`	Several of the Hai guarding you usher you off to the left to avoid a gathering crowd.`
 			choice
 				`	(Follow their directions silently.)`
 					goto observe
