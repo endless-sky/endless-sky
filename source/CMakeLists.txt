@@ -340,6 +340,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Weather.cpp
 	Weather.h
 	WeightedList.h
+	Wormhole.cpp
+	Wormhole.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	opengl.cpp
