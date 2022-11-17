@@ -726,7 +726,7 @@ mission "Hai Leaks Response 3"
 				`	"Are the other Hai likely to be a problem here?"`
 				`	"How much longer can the Republic keep up the ruse?"`
 					goto badnews
-			`	Sayari shakes her head. "No problem remotely so severe as the one at hand. Now, I expect you have something for us Mr. Yang?"`
+			`	Sayari shakes her head. "No problem remotely so severe as the one at hand. Now, I expect you have something for us, Mr. Yang?"`
 			`	"Well, I'm afraid I may have some bad news from our side." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
 				goto charts
 			label badnews
