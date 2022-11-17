@@ -1183,8 +1183,8 @@ mission "Remnant: Cognizance 25"
 		dialog "You have destroyed the ships that the Palavret left behind."
 	on waypoint
 		dialog "You have patrolled all six systems."
-	on visit
-		dialog "You have landed on <planet> but have not destroyed the ships the Palavret left behind. Better depart and go find them."
+	on enter Egaria
+		dialog "As soon as you enter the system, three 'olofezes begin targeting your ship. Better take care of them...
 	on complete
 		event "korath rescue: egeria tiny"
 		event "korath rescue: egeria tiny end" 14
