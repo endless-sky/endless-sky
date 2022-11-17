@@ -2650,7 +2650,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		const Outfit &attributes = ship.Attributes();
 		double cloakingFuel = attributes.Get("cloaking fuel");
 		double fuelCost = cloakingFuel
-			+ attributes.Get("fuel consumption")- attributes.Get("fuel generation");
+			+ attributes.Get("fuel consumption") - attributes.Get("fuel generation");
 		if(cloakingFuel && !attributes.Get("ramscoop"))
 		{
 			double fuel = ship.Fuel() * attributes.Get("fuel capacity");

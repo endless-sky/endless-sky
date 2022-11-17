@@ -2884,7 +2884,8 @@ bool Ship::CannotAct(ActionType actionType) const
 	bool canActCloaked = true;
 	// "cloaked action" allows for all of these at the same time.
 	if(cloak && !attributes.Get("cloaked action"))
-		switch(actionType) {
+		switch(actionType)
+		{
 			case ActionType::AFTERBURNER:
 				canActCloaked = attributes.Get("cloaked afterburner");
 			case ActionType::BOARD:

@@ -45,7 +45,7 @@ namespace {
 		{"cloaking shield", 0.},
 		{"cloaking shield delay", 0.},
 		{"cloaked firing", 0.},
-		{"shield generation", 0,},
+		{"shield generation", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},

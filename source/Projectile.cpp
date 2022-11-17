@@ -122,7 +122,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy() +
 						(cachedTarget && cachedTarget->IsCloaked() ?
-						(1. - cachedTarget->Attributes().Get("cloak infrared traceability")) * 5.: 0.)), it.weapon);
+						(1. - cachedTarget->Attributes().Get("cloak infrared traceability")) * 5. : 0.)),
+						it.weapon);
 		}
 		MarkForRemoval();
 		return;

@@ -2166,8 +2166,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
-			&& ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship != flotsam.Source() &&
+			ship->GetGovernment() != flotsam.SourceGovernment() && ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;
 			break;
