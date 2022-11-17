@@ -831,7 +831,18 @@ mission "Hai Reveal [A06a] The Calm"
 			choice
 				`	"And you want me to place some more relays?"`
 					goto relays
+				`	"Can't you just change the priorities of the Lovelace Labs relays?"`
+					goto lovenot
 				`	"So why haven't you placed more relays?"`
+					goto more
+			label lovenot
+			`	Remington says, "They're privately-owned relays, so we have no say over them. Lovelace Labs needs that bandwidth for their internal purposes, so they can't afford to lose priority for their own traffic. We pay a stiff sum to get the highest priority they are willing to part with."`
+			choice
+				`	"And you want me to place some more relays?"`
+					goto relays
+				`	"So why haven't you placed more relays?"`
+					goto more
+			label more
 			`	Remington makes an unimpressed face. "We have. They keep getting blown up by marauders."`
 			choice
 				`	"I thought even pirates wouldn't blow up relays?"`
