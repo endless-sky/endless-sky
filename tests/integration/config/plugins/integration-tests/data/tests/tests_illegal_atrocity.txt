@@ -12,10 +12,10 @@ test-data "quarg scanning"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
-				drag 1
+				drag 2.1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -25,12 +25,11 @@ test-data "quarg scanning"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
+				"thrust" 50
+				"turn" 1000
+				"energy generation" 10
 			outfits
-				"X1700 Ion Thruster"
-				"X1200 Ion Steering"
 				Hyperdrive
-				"nGVF-BB Fuel Cell"
-				"LP036a Battery Pack"
 				"Nerve Gas"
 			crew 1
 			fuel 300
@@ -39,10 +38,6 @@ test-data "quarg scanning"
 			position 0 0
 			engine -9 38 1
 			engine 9 38 1
-			turret 0 -8
-			leak leak 60 50
-			explode "tiny explosion" 10
-			explode "small explosion" 10
 			system "Terra Incognita"
 			planet Ruin
 		account
@@ -59,6 +54,46 @@ test-data "quarg scanning"
 				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
+		"available mission" "%TEST%: Wardragon Scanning You!"
+			name "%TEST%: Wardragon Scanning You!"
+			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
+			priority
+			to offer
+				"%TEST%: SCANNING ILLEGALS" != 0
+			destination Ruin
+			npc
+				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
+				succeed 1
+				government Quarg
+				personality derelict surveillance target
+				ship "Quarg Wardragon"
+					name Scanner
+					sprite ship/wardragon
+					thumbnail thumbnail/wardragon
+					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
+					attributes
+						category "Heavy Warship"
+						cost 5900000
+						mass 360
+						automaton 1
+						drag 9.3
+						"heat dissipation" 0.5
+						hull 50000
+						"outfit scan power" 1e+09
+						"outfit scan speed" 1e+09
+						"energy generation" 10
+						shields 160000
+					fuel 0
+					shields 0
+					hull 1000
+					position 0 0
+					explode "huge explosion" 1
+					system "Terra Incognita"
+			on offer
+				conversation
+					label 0
+					"You must be scanned or be killed."
+						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
 
@@ -79,10 +114,10 @@ test-data "quarg atrocity"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
-				drag 1
+				drag 2.1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -92,12 +127,11 @@ test-data "quarg atrocity"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
+				"thrust" 50
+				"turn" 1000
+				"energy generation" 10
 			outfits
-				"X1700 Ion Thruster"
-				"X1200 Ion Steering"
 				Hyperdrive
-				"nGVF-BB Fuel Cell"
-				"LP036a Battery Pack"
 			crew 1
 			fuel 300
 			shields 600
@@ -105,10 +139,6 @@ test-data "quarg atrocity"
 			position 0 0
 			engine -9 38 1
 			engine 9 38 1
-			turret 0 -8
-			leak leak 60 50
-			explode "tiny explosion" 10
-			explode "small explosion" 10
 			system "Terra Incognita"
 			planet Ruin
 		account
@@ -122,39 +152,55 @@ test-data "quarg atrocity"
 					atrocity 1000
 				atrocities
 					Hyperdrive
-				# they don't have it yet but to be sure
-				remove "death sentence"
 				remove "enforces"
+		# so we dont get a stupid plugin-like error of mission gone
+		event "mission exists!"
+			mission "%TEST%: Wardragon Scanning You!"
 		visited "Terra Incognita"
 		"visited planet" Ruin
+		"available mission" "%TEST%: Wardragon Scanning You!"
+			name "%TEST%: Wardragon Scanning You!"
+			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
+			priority
+			to offer
+				"%TEST%: SCANNING ILLEGALS" != 0
+			destination Ruin
+			npc
+				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
+				succeed 1
+				government Quarg
+				personality derelict surveillance target
+				ship "Quarg Wardragon"
+					name Scanner
+					sprite ship/wardragon
+					thumbnail thumbnail/wardragon
+					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
+					attributes
+						category "Heavy Warship"
+						cost 5900000
+						mass 360
+						automaton 1
+						drag 9.3
+						"heat dissipation" 0.5
+						hull 50000
+						"outfit scan power" 1e+09
+						"outfit scan speed" 1e+09
+						"energy generation" 10
+						shields 160000
+					fuel 0
+					shields 0
+					hull 1000
+					position 0 0
+					explode "huge explosion" 1
+					system "Terra Incognita"
+			on offer
+				conversation
+					label 0
+					"You must be scanned or be killed."
+						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
 
-
-# No JD so it cant leave it'll only despawn from the mission. No guns so it wont kill us.
-ship "Quarg Wardragon" "%TEST%: Dumbdragon"
-	outfits
-		"Antimatter Core"
-		"Medium Graviton Steering"
-		"Medium Graviton Thruster"
-		"Nanotech Battery"
-	add attributes
-		"outfit scan power" 1000000000
-		"outfit scan speed" 1000000000
-
-mission "%TEST%: Wardragon Scanning You!"
-	priority
-	source "Ruin"
-	to offer
-		has "%TEST%: SCANNING ILLEGALS"
-	on offer
-		conversation
-			"You must be scanned or be killed."
-				accept
-	npc assist
-		government "Quarg"
-		ship "%TEST%: Dumbdragon" "Scanner"
-		personality derelict surveillance target
 
 test "Land On Ruin helper"
 	status partial
@@ -168,9 +214,9 @@ test "Land On Ruin helper"
 		assert
 			"flagship planet: Ruin" > 0
 
-test "Launch Quarg Scanning Mission"
+test "Launch Quarg Scanning Mission And Board"
 	status partial
-	description ""
+	description "Starts the mission, accepts it and then boards the quarg ship to repair it."
 	sequence
 		# launch and accept the mission
 		input
