@@ -207,11 +207,11 @@ test "Land On Ruin helper"
 	sequence
 		input
 			command land
-		label landing
-		branch landing
-			"flagship planet: Ruin" < 1
-		assert
-			"flagship planet: Ruin" > 0
+		label "landing"
+		# empty input to make time pass
+		input
+		branch "landing"
+			"flagship planet: Ruin" == 0
 
 test "Launch Quarg Scanning Mission And Board"
 	status partial
