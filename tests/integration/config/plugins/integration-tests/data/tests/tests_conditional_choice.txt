@@ -160,17 +160,6 @@ mission "%TEST%: CONDITIONAL CHOICE GOTO"
 	on accept
 		set "succeed test"
 
-test "Land On Ruin helper"
-	status partial
-	description "Helper for landing on Ruin."
-	sequence
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Ruin" == 0
 
 test "Conditional Test"
 	status active
