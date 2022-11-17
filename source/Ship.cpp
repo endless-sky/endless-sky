@@ -626,13 +626,15 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
+			LogWarning(VariantName(), Name(),
+					"outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->TrueName() + "\" is not a weapon, but is installed as one.");
+			LogWarning(VariantName(), Name(),
+					"outfit \"" + it.first->TrueName() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -3091,7 +3093,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 // Convert this ship from one government to another, as a result of boarding
 // actions (if the player is capturing) or player death (poor decision-making).
-void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
+// Returns the number of crew transferred from the capturer.
+int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
 	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
@@ -3136,6 +3139,8 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
+
+	return transfer;
 }
 
 

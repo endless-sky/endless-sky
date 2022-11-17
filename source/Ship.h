@@ -291,8 +291,8 @@ public:
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
-	// Mark this ship as property of the given ship.
-	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
+	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
 
