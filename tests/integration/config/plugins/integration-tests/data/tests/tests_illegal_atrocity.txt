@@ -153,9 +153,6 @@ test-data "quarg atrocity"
 				atrocities
 					Hyperdrive
 				remove "enforces"
-		# so we dont get a stupid plugin-like error of mission gone
-		event "mission exists!"
-			mission "%TEST%: Wardragon Scanning You!"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		"available mission" "%TEST%: Wardragon Scanning You!"
@@ -201,6 +198,8 @@ test-data "quarg atrocity"
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
 
+# just so the mission actually works
+mission "%TEST%: Wardragon Scanning You!"
 
 test "Land On Ruin helper"
 	status partial
