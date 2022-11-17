@@ -146,15 +146,16 @@ mission "%TEST%: CONDITIONAL CHOICE GOTO"
 			choice
 				`	"Yes."`
 					to display
+						not "%TEST%: CONDITIONAL CHOICE GOTO"
+				`	"No."`
+					to display
 						has "%TEST%: CONDITIONAL CHOICE GOTO"
 					goto canuse
-				`	"No."`
-					decline
 			# just in case the goto is fully ignored
 			`	"You should not be here!"`
 				decline
 			label canuse
-			`	"In that case, you have succeeded in this test."`
+			`	"Some paths are meant to stay hidden."`
 				accept
 	on accept
 		set "succeed test"
@@ -188,7 +189,7 @@ test "Conditional Test"
 
 test "Conditional Test Goto"
 	status active
-	description "Test if a conversation option shows up when the given condition is set and directs correctly to a label using a goto."
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
 		inject "conditional choice goto"
 		call "Load First Savegame"
