@@ -16,15 +16,15 @@ test-data "conditional choice"
 				bunks 3
 				"cargo space" 50
 				drag 1
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
