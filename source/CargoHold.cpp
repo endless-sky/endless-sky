@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Depreciation.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "System.h"
@@ -138,7 +139,7 @@ void CargoHold::Save(DataWriter &out) const
 			}
 			firstOutfit = false;
 
-			out.Write(it.first->Name(), it.second);
+			out.Write(it.first->TrueName(), it.second);
 		}
 	// Back out any indentation blocks that are set, depending on what sorts of
 	// cargo were written to the file.
@@ -562,7 +563,7 @@ int64_t CargoHold::Value(const System *system) const
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
 // bad that it warrants a death sentence.
-int CargoHold::IllegalCargoFine() const
+int CargoHold::IllegalCargoFine(const Government *government) const
 {
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
@@ -575,8 +576,8 @@ int CargoHold::IllegalCargoFine() const
 		if(!it.second)
 			continue;
 
-		int fine = it.first->Get("illegal");
-		if(it.first->Get("atrocity") > 0.)
+		int fine = government->Fines(it.first);
+		if(government->Condemns(it.first))
 			return -1;
 		if(fine < 0)
 			return fine;
