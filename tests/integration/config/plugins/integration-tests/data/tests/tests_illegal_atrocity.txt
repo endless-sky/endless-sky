@@ -144,7 +144,6 @@ ship "Quarg Wardragon" "%TEST%: Dumbdragon"
 		"outfit scan speed" 1000000000
 
 mission "%TEST%: Wardragon Scanning You!"
-	priority
 	landing
 	source "Ruin"
 	to offer
@@ -183,11 +182,11 @@ test "Illegal Test - Ignore and New Illegal"
 		# land again to trigger the mission and then skip the conversation
 		call "Land On Ruin helper"
 		input
-			command "enter"
+			key "enter"
 		call "Depart"
 		# board the ship so we're sure we get close to it to get scanned
 		input
-			command board
+			key b
 		# Wait for 10 seconds so it should be repaired
 		apply
 			"test: steps to wait" = 10 * 60
@@ -200,7 +199,7 @@ test "Illegal Test - Ignore and New Illegal"
 			"test: steps to wait" > 0
 		# skip the dialog message for the fine
 		input
-			command "enter"
+			key "enter"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
 		call "Land On Ruin helper"
 		assert
@@ -219,11 +218,11 @@ test "Atrocity Test - New Atrocity"
 		# land again to trigger the mission and then skip the conversation
 		call "Land On Ruin helper"
 		input
-			command "enter"
+			key "enter"
 		call "Depart"
 		# board the ship so we're sure we get close to it to get scanned
 		input
-			command board
+			key b
 		# Wait for 10 seconds so it should be boarded
 		apply
 			"test: steps to wait" = 10 * 60
@@ -236,7 +235,7 @@ test "Atrocity Test - New Atrocity"
 			"test: steps to wait" > 0
 		# skip the dialog message for the fine
 		input
-			command "enter"
+			key "enter"
 		# land back with atrocity having been in effect (should nuke the reputation?)
 		call "Land On Ruin helper"
 		assert
