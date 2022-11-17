@@ -723,8 +723,15 @@ mission "Hai Leaks Response 3"
 			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
 			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
 			choice
-				`	"How much longer can the Republic keep up their side of the ruse?"`
-			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." As soon as he says, 'bad news,' the holoprojector shows a series of charts.`
+				`	"Are the other Hai likely to be a problem here?"`
+				`	"How much longer can the Republic keep up the ruse?"`
+					goto badnews
+			`	Sayari shakes her head. "No problem remotely so severe as the one at hand. Now, I expect you have something for us Mr. Yang?"`
+			`	"Well, I'm afraid I may have some bad news from our side." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
+				goto charts
+			label badnews
+			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
+			label charts
 			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
 			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
