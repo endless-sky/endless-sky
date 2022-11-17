@@ -833,10 +833,20 @@ mission "Hai Reveal [A06a] The Calm"
 					goto relays
 				`	"Can't you just change the priorities of the Lovelace Labs relays?"`
 					goto lovenot
+				`	"What if you distribute the traffic over multiple routes?"`
+					goto multiple
 				`	"So why haven't you placed more relays?"`
 					goto more
 			label lovenot
 			`	Remington says, "They're privately-owned relays, so we have no say over them. Lovelace Labs needs that bandwidth for their internal purposes, so they can't afford to lose priority for their own traffic. We pay a stiff sum to get the highest priority they are willing to part with."`
+			choice
+				`	"And you want me to place some more relays?"`
+					goto relays
+				`	"So why haven't you placed more relays?"`
+					goto more
+			label multiple
+			`	Remington says, "That's how the hyperspace relay system already works, but if part of a transmission passes through a long route, the whole transmission is delayed. You get choppy and degraded video, sound problems, and the like. None of the routes are great."`
+			`	"There are fourteen relays between the wormhole and Earth, which is theoretically the same number as there are to Markab, but for us that means routing through Elnath or Aldebaran. Those two relays are owned and maintained by Lovelace Labs, who ferry an enormous volume of data back and forth between those two systems. This means that communications back to the Syndicate tend to either get held up in a buffer waiting on priority data streams that Lovelace reserves for itself, or it gets routed for eighteen links through Sirius, or seventeen through Sol itself. Both of these systems have strained infrastructure with high throughput latencies as it is, even for priority communications. So while Xilin has the highest priority access and the shortest distance and Alondo here has all his comms routing a whole different way entirely, the Syndicate is getting many of our comms held up to sometimes problematic degrees."`
 			choice
 				`	"And you want me to place some more relays?"`
 					goto relays
