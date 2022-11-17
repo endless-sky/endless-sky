@@ -278,15 +278,15 @@ mission "FW Flamethrower 2"
 				`	"Your flamethrower doesn't seem to work very well."`
 					goto bad
 			label terrifying
-			`	"Isn't it?" he says. "Mostly useful against small ships, of course, or ships that are running way too close to their thermal thresholds. But the ability to temporarily disable a ship without even dropping its shields first could be quite useful in certain tactical situations."`
+			`	"Isn't it?" he says. "Mostly useful against small ships, of course, or ships that are running way too close to their thermal thresholds. Need to be almost on top of your target to get the full effect, too. But the ability to temporarily disable a ship without even dropping its shields first could be quite useful in certain tactical situations."`
 			`	"When will it be available for sale?" you ask.`
 				goto available
 			label damage
-			`	"No, doing damage isn't the point," he says. "The idea is to heat up the target to the point where it goes into emergency thermal shutdown. Basically a way to temporarily disable even a ship with full shields. Of course, big ships can absorb an awful lot of heat without changing temperature much, so I suspect it will be most useful against smaller targets."`
+			`	"No, doing damage isn't the point," he says. "The idea is to heat up the target to the point where it goes into emergency thermal shutdown. Basically a way to temporarily disable even a ship with full shields. Of course, big ships can absorb an awful lot of heat without changing temperature much, so I suspect it will be most useful against smaller targets. You've got to get right up close to them to get the full heating effect, which isn't going to be easy if you're dealing with larger warships like the Navy ones."`
 			`	"That is an interesting idea," you say. "Are they available for sale yet?"`
 				goto available
 			label bad
-			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. My idea was to target pirate ships with those illegal modified blasters that run hotter than usual."`
+			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. Or maybe the Doombat didn't get close enough to give you the full power of it. My idea was to target pirate ships with those illegal modified blasters that run hotter than usual."`
 			`	"I guess that makes sense," you say, "although I wouldn't want to run out of jump fuel by accident. Are you going to be making them available for sale?"`
 				goto available
 			label available
