@@ -829,7 +829,7 @@ mission "Hai Reveal [A06a] The Calm"
 			`	The slightly accentuated formality on 'Remington' is not lost on you, but the Syndicate PR man doesn't react to it as he hands you a datapad displaying a hyperspace relay. "Since this crisis began, the Navy maintained hyperspace relays in Rajak and Hasseleh, linking our communication network to the Hai's through a secure portal. However, while this has allowed us to communicate to anywhere back home, it has some disadvantages. What you see there is the solution.`
 			`	"There are fourteen relays between the wormhole and Earth, but that means routing through Elnath or Aldebaran. Lovelace Labs owns those relays, and they get priority access, so our bandwidth is poor there. During a backlog, information will be routed through even more indirect routes, which is holding up Syndicate business by problematic degrees."`
 			choice
-				`	"And you want me to place some more relays?"`
+				`	"And you want me to place some new relays?"`
 					goto relays
 				`	"Can't you just change the priorities of the Lovelace Labs relays?"`
 					goto lovenot
