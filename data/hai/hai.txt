@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 shipyard "Hai Basics"
 	"Aphid"
@@ -44,6 +47,7 @@ outfitter "Hai Basics"
 	"Small Bunk Room"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
 	"Local Map"
@@ -72,10 +76,13 @@ outfitter "Hai Intermediate"
 	"Bunk Room"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
+	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
 	`"Benga" Atomic Steering`
+	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	"Local Map"
@@ -112,10 +119,13 @@ outfitter "Hai Advanced"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
+	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
+	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
 	`"Benga" Atomic Steering`
+	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	`"Bondir" Atomic Thruster`
@@ -130,9 +140,27 @@ outfitter "Hai Advanced"
 	"Cargo Scanner"
 	"Sand Cell"
 
+outfitter "Hai Security"
+	"Hai Tracker"
+	"Hai Tracker Pod"
+	"Tracker Storage Pod"
+	"Bullfrog Anti-Missile"
+	"Chameleon Anti-Missile"
+	"Hai Corundum Regenerator"
+	"Hai Diamond Regenerator"
+	"Supercapacitor"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Pod"
+	"Quantum Keystone"
+	"Pulse Rifle"
+
 shipyard "Unfettered Basics"
 	"Lightning Bug"
 	"Water Bug"
+	"Sea Scorpion"
 
 outfitter "Unfettered Basics"
 	"Pulse Cannon"
@@ -150,18 +178,24 @@ outfitter "Unfettered Basics"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
+	"Value Detector"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
+# For ships, stations, or corporations.
 phrase "hai"
 	word
+		"Yeer"
+		"Wah'"
 		"Du"
 		"Mon"
 		"Luf"
 		"Vai"
 		"Woh"
 		"Far"
+		"Yoot"
+		"Imo"
 	word
 		" "
 		" "
@@ -172,6 +206,7 @@ phrase "hai"
 		" Sook "
 		" Woa "
 		" Ood "
+		" Loo "
 	word
 		"Loh"
 		"Eh"
@@ -180,6 +215,115 @@ phrase "hai"
 		"Lur"
 		"Sen"
 		"Bin"
+		"Bah"
+		"Ki"
+		"Blep"
+		"Tee"
+		"Say"
+		"Hiya"
+		"Choo"
+		"Gip"
+		"Oo"
+		"Mer"
+		"Ki"
+		"Tou"
+
+phrase "hai first names"
+	word
+		"Tee"
+		"Say"
+		"Hiya"
+		"Choo"
+		"Gip"
+		"Oo"
+		"Mer"
+		"Ki"
+		"Tou"
+		"Cor"
+		"Yo"
+		"Sook"
+		"Woa"
+		"Loh"
+		"Eh"
+		"Ow"
+		"Hey"
+		"Lur"
+		"Sen"
+		"Bin"
+		"Na"
+		"Ya"
+		"Os"
+		"Gem"
+		"Mis"
+		"Ey"
+		"Ra"
+		"Des"
+	word
+		"neep"
+		"ari"
+		"mah"
+		"t'k"
+		"eep"
+		"nem"
+		"oot"
+		"ru"
+		"har"
+		"na"
+		"shi"
+		"en"
+		"ana"
+		"ama"
+		"heep"
+		"kei"
+		"yo"
+	word
+		"" 9
+		"aru"
+		"ow"
+		"hey"
+		"lur"
+		"sen"
+		"bin"
+		"chi"
+		"li"
+		"ri"
+
+phrase "hai last names"
+	word
+		"Yeer"
+		"Wah'"
+		"Du'"
+		"Mon"
+		"Luf"
+		"Vai'"
+		"Woh'"
+		"Far"
+		"Yoot"
+		"Imo'"
+		"Anl'"
+	word
+		"tle"
+		"uden"
+		"aru"
+		"ow"
+		"hey"
+		"lur"
+		"sen"
+		"bin"
+		"chi"
+		"li"
+		"ri"
+		"ooh"
+
+phrase "unfettered chosen names"
+	word
+		"He"
+		"Si"
+	word
+		"-"
+	word
+		"Yi"
+		"Ra"
 
 phrase "friendly hai"
 	word
@@ -479,19 +623,22 @@ phrase "hostile unfettered"
 		"Peace"
 		"Peacefulness"
 		"Nonviolence"
-		"Understanding"
-		"Reconciliation"
+		"Humility"
+		"Agreeableness"
 		"Harmony"
-		"Concord"
-		"Cooperation"
-		"Love"
-		"Tenderness"
-		"Compassion"
-		"Friendship"
-		"Amity"
-		"Empathy"
-		"Care"
-		"Kindness"
+		"Meekness"
+		"Docility"
+		"Submission"
+		"Modesty"
+		"Diffidence"
+		"Stoicism"
+		"Patience"
+		"Resignation"
+		"Forbearance"
+		"Fatalism"
+		"Pacifism"
+		"Passivity"
+		"Apathy"
 	word
 		" is for the "
 	word
@@ -499,6 +646,10 @@ phrase "hostile unfettered"
 		"frail"
 		"pathetic"
 		"weak"
+		"impure"
+		"deluded"
+		"misguided"
+		"confused"
 	word
 		"; we are the "
 		"! We are the "

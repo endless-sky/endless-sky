@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ConversationPanel.h"
@@ -57,7 +60,8 @@ namespace {
 
 
 // Constructor.
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system, const shared_ptr<Ship> &ship)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
+	const System *system, const shared_ptr<Ship> &ship)
 	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
@@ -373,7 +377,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			{
 				// This is an ordinary conversation node. Perform any necessary text
 				// replacement, then add the text to the display.
-				if(conversation.ShouldShowText(player.Conditions(), node))
+				if(conversation.ShouldDisplayNode(player.Conditions(), node))
 				{
 					string altered = Format::Replace(conversation.Text(node), subs);
 					text.emplace_back(altered, conversation.Scene(node), text.empty());
@@ -382,6 +386,11 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 				{
 					// If the text was skipped, don't follow its goto.
 					++node;
+					if(!conversation.NodeIsValid(node))
+					{
+						node = Conversation::DECLINE;
+						break;
+					}
 					continue;
 				}
 			}
@@ -393,7 +402,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		bool skippedAChoice = false;
 		for(int i = 0; i < conversation.Choices(node); ++i)
 		{
-			if(conversation.ShouldShowText(player.Conditions(), node, i))
+			if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 			{
 				string altered = Format::Replace(conversation.Text(node, i), subs);
 				choices.emplace_back(Paragraph(altered), i);
@@ -407,7 +416,10 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// choices failed their conditions. Fall through to the next node.
 			++node;
 			if(!conversation.NodeIsValid(node))
+			{
 				node = Conversation::DECLINE;
+				break;
+			}
 		}
 		else
 			break;

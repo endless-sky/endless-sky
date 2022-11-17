@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Depreciation.h"
@@ -99,10 +102,10 @@ void Depreciation::Save(DataWriter &out, int day) const
 		using OutfitElement = pair<const Outfit *const, map<int, int>>;
 		WriteSorted(outfits,
 			[](const OutfitElement *lhs, const OutfitElement *rhs)
-				{ return lhs->first->Name() < rhs->first->Name(); },
+				{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 			[=, &out](const OutfitElement &oit)
 			{
-				out.Write("outfit", oit.first->Name());
+				out.Write("outfit", oit.first->TrueName());
 				out.BeginChild();
 				{
 					for(const auto &it : oit.second)
