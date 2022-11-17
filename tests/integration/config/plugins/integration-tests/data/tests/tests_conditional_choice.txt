@@ -1,0 +1,127 @@
+test-data "conditional choice"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+
+		event "illegal stuff"
+			government "Quarg"
+				illegals
+					ignore "Nerve Gas"
+					Hyperdrive 1
+				# they enforce all currently but to be sure
+				remove "enforces"
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		conditions
+			"%TEST%: CONDITIONAL CHOICE"
+			# to skip the landing on ruin conversation
+			"Ruin: Landing: offered"
+
+
+mission "%TEST%: CONDITIONAL CHOICE"
+	source "Ruin"
+	to offer
+		has "%TEST%: CONDITIONAL CHOICE"
+	on offer
+		conversation
+			`You should not see this.`
+				to show
+					not "%TEST%: CONDITIONAL CHOICE"
+			`Does this work? Do you not see the first sentence?`
+			choice
+				`	"No."`
+					to show
+						has "%TEST%: CONDITIONAL CHOICE"
+					accept
+				`	"Yes."`
+					decline
+	on accept
+		set "failed test"
+
+test "Land On Ruin helper"
+	status partial
+	description "Helper for landing on Ruin."
+	sequence
+		input
+			command land
+		label landing
+		branch landing
+			"flagship planet: Ruin" < 1
+		assert
+			"flagship planet: Ruin" > 0
+
+test "Conditional Test"
+	status active
+	description "Test if a conversation shows up"
+	sequence
+		inject "quarg scanning"
+		call "Load First Savegame"
+		watchdog 12000
+		input
+			key p
+		# board the ship so we're sure we get close to it to get scanned
+		input
+			key b
+		# Wait for 10 seconds so it should be repaired
+		apply
+			"test: steps to wait" = 10 * 60
+		label "floating"
+		# empty input to make time pass
+		input
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" > 0
+		# skip the dialog message for the fine
+		input
+			key "enter"
+		# land back with a fine of 1 for the hyperdrive, nothing from the gas
+		call "Land On Ruin helper"
+		assert
+			"unpaid fines" == 1
