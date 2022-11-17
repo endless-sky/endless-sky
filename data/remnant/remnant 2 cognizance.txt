@@ -1184,7 +1184,7 @@ mission "Remnant: Cognizance 25"
 	on waypoint
 		dialog "You have patrolled all six systems."
 	on enter Egaria
-		dialog "As soon as you enter the system, three 'olofezes begin targeting your ship. Better take care of them...
+		dialog "As soon as you enter the system, three 'olofezes begin targeting your ship. These are probably the sort of surprises that Gavriil was worried about."
 	on complete
 		event "korath rescue: egeria tiny"
 		event "korath rescue: egeria tiny end" 14
