@@ -221,7 +221,7 @@ test "Launch Quarg Scanning Mission And Board"
 		input
 			key p
 		input
-			key "enter"
+			key "Return"
 		call "Depart"
 		# board the ship so we're sure we get close to it to get scanned
 		input
