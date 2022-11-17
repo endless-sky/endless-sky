@@ -28,3 +28,4 @@
 "help: ship info" 1
 "help: stranded" 1
 "help: trading" 1
+vsync 0
