@@ -18,6 +18,7 @@
 		46A34BE4A0599886221093BA /* PrintData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 341645FAA25F7901221B8965 /* PrintData.cpp */; };
 		497849B2A4C5EA58A64D316C /* MapPlanetCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
+		53DA422996419974ADADE346 /* Wormhole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D414B4194239522B24F3C95 /* Wormhole.cpp */; };
 		5AB644C9B37C15C989A9DBE9 /* DisplayText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E1E458DB603BF979429117C /* DisplayText.cpp */; };
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
@@ -263,6 +264,7 @@
 		6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextReplacements.cpp; path = source/TextReplacements.cpp; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
+		6D414B4194239522B24F3C95 /* Wormhole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wormhole.cpp; path = source/Wormhole.cpp; sourceTree = "<group>"; };
 		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
 		A3B9425983D66B182BD724B4 /* ConditionsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConditionsStore.h; path = source/ConditionsStore.h; sourceTree = "<group>"; };
 		74F543598EEFB3745287E663 /* Bitset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitset.cpp; path = source/Bitset.cpp; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 		DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchShader.h; path = source/BatchShader.h; sourceTree = "<group>"; };
 		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
 		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
+		E8B4490F8091C6E3EF571515 /* Wormhole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wormhole.h; path = source/Wormhole.h; sourceTree = "<group>"; };
 		E8F645ACA30BA0E95F83803C /* FireCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FireCommand.cpp; path = source/FireCommand.cpp; sourceTree = "<group>"; };
 		EB4645F28765D37290EA6F78 /* FireCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FireCommand.h; path = source/FireCommand.h; sourceTree = "<group>"; };
 		EB634E95A88454ADDB8644B1 /* opengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opengl.h; path = source/opengl.h; sourceTree = "<group>"; };
@@ -863,6 +866,8 @@
 				0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */,
 				950742538F8CECF5D4168FBC /* EsUuid.cpp */,
 				86AB4B6E9C4C0490AE7F029B /* EsUuid.h */,
+				6D414B4194239522B24F3C95 /* Wormhole.cpp */,
+				E8B4490F8091C6E3EF571515 /* Wormhole.h */,
 				499B4DA7A9C7351120660643 /* MaskManager.cpp */,
 				191E4107A4F1CBBC2526A0E9 /* MaskManager.h */,
 				A00D4207B8915B5E7E9B4619 /* RandomEvent.h */,
@@ -1280,6 +1285,7 @@
 				6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */,
 				03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */,
 				90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */,
+				53DA422996419974ADADE346 /* Wormhole.cpp in Sources */,
 				03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */,
 				87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */,
 				301A4FE885A7A12348986C4F /* UniverseObjects.cpp in Sources */,
