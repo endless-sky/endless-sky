@@ -1200,7 +1200,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Teeneep leads you to a heavy metal pub; the music is audible from down the street. They have the best burgers you've ever tasted, even though the meat was synthetic, made from nuts.`
 				goto frantic
 			label spicy
-			`	Sayari takes you to her favorite restaurant, a famous Korean-Hai fusion place. She and Teeneep order the same dish, but Sayari tells the waiter, "I won't leave happy unless my mouth is on fire." You try a bite, but can't swallow without gagging. Sayari seems to enjoy the inferno of capsaicin.`
+			`	Sayari takes you to her favorite restaurant, a famous Korean-Hai fusion place. Sayari tells the waiter to make her food spicer than usual. "I won't leave happy unless my mouth is on fire." You try a bite from Sayari's plate, but can't swallow without gagging. Sayari seems to enjoy the inferno of capsaicin.`
 				goto frantic
 			label pizza
 			`	You join Teeneep and Sayari at a fusion restaurant about a block down the road from the "Elders' Chambers" - which turns out to be the official name of the whole government complex. The pizza is as good as the rumors you've heard, even though the "cheese" is processed nut butter.`
