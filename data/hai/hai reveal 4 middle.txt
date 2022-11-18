@@ -1340,7 +1340,7 @@ mission "Hai Reveal [A13] A New Elder"
 			label summary
 			`	The freshest of the group, Batu, seems to twig to something first. "There's going to be an ultimatum, isn't there? The fleet is a threat."`
 			`	"Yes," says Sayari. "It's going to be a very broad ultimatum though, with lots of room for the Republic to decide how it's addressed; and no one is shooting at anyone without talking first. Now, all of you except <last> are traveling with Elder Teeneep. I suggest you go and prepare immediately."`
-			`	As you begin to walk away, Sayari motions for you. She leads you away to have a private discussion.`
+			`	As the meeting disperses, Sayari motions for you. She leads you away to have a private discussion.`
 			choice
 				`	"What has Teeneep done, Sayari?"`
 					goto hasdone
