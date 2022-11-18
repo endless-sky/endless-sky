@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define CONVERSATION_H_
 
 #include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "GameAction.h"
 
 #include <map>
@@ -132,6 +133,9 @@ public:
 	// the user to select; others just automatically continue to another node.
 	// Nodes may also display images or include conditional branches.
 	bool IsChoice(int node) const;
+	// Some choices have conditions in each option. If all options are disabled,
+	// the choice cannot be shown.
+	bool HasAnyChoices(const ConditionsStore &vars,int node) const;
 	// If the given node is a choice node, check how many choices it offers.
 	int Choices(int node) const;
 	// Check if the given conversation node is a conditional branch.
@@ -142,7 +146,10 @@ public:
 	const GameAction &GetAction(int node) const;
 	const std::string &Text(int node, int element = 0) const;
 	const Sprite *Scene(int node) const;
-	int NextNode(int node, int element = 0) const;
+	// Find out where the conversation goes if the given option is chosen.
+	int NextNodeForChoice(int node, int element = 0) const;
+	// Go to the next node of the conversation, ignoring any choices.
+	int StepToNextNode(int node) const;
 	// Returns whether the given node should be displayed.
 	// Returns false if:
 	// - The node (or element) is out of range.
