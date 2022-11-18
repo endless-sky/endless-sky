@@ -532,7 +532,6 @@ jobs:
       run: python ./utils/check_code_style.py
 
 
-<<<<<<< HEAD
   # CI runs to test the CMake build system.
 
   build_ubuntu_cmake:
