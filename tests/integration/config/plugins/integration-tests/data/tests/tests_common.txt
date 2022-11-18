@@ -539,6 +539,82 @@ test "Load First Savegame"
 			key l
 
 
+test "Create New Pilot"
+	status partial
+	description "Helper function to create a new pilot."# new pilot
+		input
+			key n
+		# start
+		input
+			key s
+		# first name: F
+		input
+			key F
+		input
+			key "Return"
+		# last name: L
+		input
+			key L
+		input
+			key "Return"
+		# skip text
+		input
+			key "Return"
+		# go to the main landing panel (currently in the shipyard)
+		input
+			key "escape"
+
+
+test "Buy First Ship"
+	status partial
+	description "Helper function to buy the first ship of the shipyard."
+	sequence
+		input
+			key s
+		# buy first ship
+		input
+			key "Down"
+		input
+			key b
+		input
+			key "Return"
+		input
+			key "escape"
+
+
+test "Skip Dialog"
+	status partial
+	description "Helper function to go trough a conversation pressing enter."
+	sequence
+		# we assume there is not more than 10 that need to be skipped
+		apply
+			"test: skipper" = 10
+		label skipdialog
+		apply
+			"test: skipper" -= 1
+		input
+			key "Return"
+		branch skipdialog
+			"test: skipper" > 0
+
+test "First Game"
+	status active
+	description "Test if one can start the game correctly: choose a name, buy a ship, and go trough James dialog."
+	sequence
+		call "Create New Pilot"
+		call "Buy First Ship"
+		# James starts the convo
+		call "Skip Dialog"
+
+		# save these in temporary conditions to know if they failed
+		apply
+			"Intro [0]: active" == 1
+			"Intro [0]: offered" == 1
+		assert
+			"Intro [0]: active" == 1
+			"Intro [0]: offered" == 1
+
+
 test "Save To Default Snapshot"
 	status active
 	description "Helper function to save the game to the first snapshot. Typically used directly after opening the menu."
