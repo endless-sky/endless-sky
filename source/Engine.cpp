@@ -1621,11 +1621,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 						escapeShip->SetParent(ship->GetParent());
 					escapeShip->Place(ship->Position(), ship->Velocity(), ship->Facing());
 					newShips.push_back(escapeShip);
-					if(ship == player.FlagshipPtr())
-					{
+					if(ship->IsYours())
 						player.AddShip(escapeShip);
+					if(ship == player.FlagshipPtr())
 						player.SetFlagship(*escapeShip);
-					}
 				}
 			}
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
