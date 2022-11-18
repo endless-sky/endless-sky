@@ -113,6 +113,64 @@ test-data "conditional choice goto"
 			"Ruin: Landing: offered"
 
 
+test-data "name in conversation"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		conditions
+			"%TEST%: NAME IN CONVERSATION"
+			# to skip the landing on ruin conversation
+			"Ruin: Landing: offered"
+
+
 mission "%TEST%: CONDITIONAL CHOICE"
 	priority
 	source "Ruin"
@@ -161,6 +219,32 @@ mission "%TEST%: CONDITIONAL CHOICE GOTO"
 		set "succeed test"
 
 
+mission "%TEST%: NAME IN CONVERSATION"
+	priority
+	source "Ruin"
+	to offer
+		has "%TEST%: NAME IN CONVERSATION"
+	on offer
+		conversation
+			name
+			`	So you are <first> <last>.`
+
+
+test "Trigger Spaceport Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions."
+	sequence
+		call "Depart"
+		call "Land On Ruin helper"
+		input
+			key p
+		# press accept (or decline, depending on if it is shown) and then skip the dialog once
+		input
+			key "Return"
+		input
+			key "Return"
+
+
 test "Conditional Test"
 	status active
 	description "Test if a conversation option shows up when the given condition is set."
@@ -169,17 +253,7 @@ test "Conditional Test"
 		call "Load First Savegame"
 		assert
 			"%TEST%: CONDITIONAL CHOICE" == 1
-		call "Depart"
-		call "Land On Ruin helper"
-		input
-			key p
-		# press accept (or decline, depending on if it is shown)
-		input
-			key "Return"
-		input
-			key "Return"
-		# Depart to refresh the conditions
-		call "Depart"
+		call "Trigger Spaceport Mission"
 		# use a test-data temporary variable for debugging in case of errors
 		apply
 			"test: succeed test" = "succeed test"
@@ -195,19 +269,37 @@ test "Conditional Test Goto"
 		call "Load First Savegame"
 		assert
 			"%TEST%: CONDITIONAL CHOICE GOTO" == 1
-		call "Depart"
-		call "Land On Ruin helper"
-		input
-			key p
-		# press accept (or decline, depending on if it is shown)
-		input
-			key "Return"
-		input
-			key "Return"
-		# Depart to refresh the conditions
-		call "Depart"
+		call "Trigger Spaceport Mission"
 		# use a test-data temporary variable for debugging in case of errors
 		apply
 			"test: succeed test" = "succeed test"
 		assert
 			"succeed test" == 1
+
+
+test "Conditional Test Goto"
+	status active
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	sequence
+		inject "name in conversation"
+		call "Load First Savegame"
+		assert
+			"%TEST%: NAME IN CONVERSATION" == 1
+		call "Trigger Spaceport Mission"
+		input
+			key F
+		input
+			key "Return"
+		input
+			key L
+		input
+			key "Return"
+		input
+			key "Return"
+		# use a test-data temporary variable for debugging in case of errors
+		apply
+			"test: <first>" = "<first>"
+			"test: <last>" = "<last>"
+		assert
+			"<first>" == "F"
+			"<last>" == "L"
