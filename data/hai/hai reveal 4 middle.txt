@@ -1264,7 +1264,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			label continue
 			`	When you finish on the possibility of an Unfettered war fleet appearing at the wormhole to scour pirate worlds, he stops you with a pained expression. "Well, it's all falling apart, isn't it... Alright, look, this is above my pay-grade, and I don't think within Terry's either. You need to go contact Admiral Danforth. The connection from here to Farpoint is excellent, now since all our traffic is routing through those new relays, so it should be easy enough. I'll make sure no one does anything stupid from this side. I'm sure there's a solution here, we all just need to keep our heads and call the right people."`
 			choice
-				`	"I'll go to my ships comms now and call him."`
+				`	"I'll go to my ship's comms now and call him."`
 			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems unsurprised, but disappointed. "Well, I'll scramble some additional Navy forces. We'll hopefully make sure that whatever happens, we'll have some options."`
 			`	You can hear him grimace on the call. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
 			`	"I'll be there with a fleet soon. In the meantime, you need to go back to <planet> to ensure the safety of the diplomatic corps. Get them out if need be, otherwise just be there with a ship so you can monitor the situation."`
