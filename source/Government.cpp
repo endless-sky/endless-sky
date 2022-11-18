@@ -522,6 +522,6 @@ bool Government::IsUsingForeignPenaltiesFor(const Government *government) const
 {
 	auto it = find(useForeignPenaltiesFor.begin(), useForeignPenaltiesFor.end(), government);
 	if(it != useForeignPenaltiesFor.end())
-	    return true;
+		return true;
 	return false;
 }
