@@ -219,7 +219,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 		int nodeIndex = it.second;
 		while(nodeIndex >= 0 && Choices(nodeIndex) <= 1)
 		{
-			nodeIndex = NextNode(nodeIndex);
+			nodeIndex = NextNodeForChoice(nodeIndex);
 			if(nodeIndex == it.second)
 			{
 				node.PrintTrace("Error: Conversation contains infinite loop beginning with label \"" + it.first + "\":");
@@ -382,6 +382,32 @@ bool Conversation::IsChoice(int node) const
 
 
 
+// Check if the given conversation node is a choice node.
+bool Conversation::HasAnyChoices(const ConditionsStore &vars, int node) const
+{
+	if(!NodeIsValid(node))
+		return false;
+
+	if(!nodes[node].isChoice)
+		return false;
+
+	if(nodes[node].elements.empty())
+		// A zero-length choice is a special case: it sets the player's name.
+		return true;
+
+	for(const auto &data : nodes[node].elements)
+	{
+		if(data.conditions.IsEmpty())
+			return true;
+		if(data.conditions.Test(vars))
+			return true;
+	}
+
+	return false;
+}
+
+
+
 // If the given node is a choice node, check how many choices it offers.
 int Conversation::Choices(int node) const
 {
@@ -464,12 +490,25 @@ const Sprite *Conversation::Scene(int node) const
 
 
 // Find out where the conversation goes if the given option is chosen.
-int Conversation::NextNode(int node, int element) const
+int Conversation::NextNodeForChoice(int node, int element) const
 {
 	if(!NodeIsValid(node) || !ElementIsValid(node, element))
 		return DECLINE;
 
 	return nodes[node].elements[element].next;
+}
+
+
+
+// Go to the next node of the conversation, ignoring any choices.
+int Conversation::StepToNextNode(int node) const
+{
+	int next_node = node+1;
+
+	if(!NodeIsValid(next_node))
+		return DECLINE;
+
+	return next_node;
 }
 
 
