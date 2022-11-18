@@ -640,7 +640,7 @@ mission "FW Hope Recon 1C"
 				`	(No, sounds risky.)`
 					decline
 			
-			apply
+			action
 				set "fw caught navy planting sensors"
 			`	You approach the location, flying low to avoid detection, and come upon a Navy Gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the Gunboat is powered down.`
 			`	The moment your ship comes over the horizon, they start running back toward the Gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
@@ -663,7 +663,7 @@ mission "FW Hope Recon 1C"
 				launch
 			
 			label accept
-			apply
+			action
 				karma ++
 				set "fw accepted Susquehanna's word of honor"
 			`	Most ships are equipped with external speakers for exactly this sort of situation. You target the ship, and your scanners identify it as the <npc>.`
@@ -1102,19 +1102,19 @@ mission "FW Pirates 2"
 				`	"Occupying four pirate systems in perpetuity would be a huge drain on our resources. Why not try to negotiate with them, say by offering those worlds freedom from our interference as long as they stop supporting pirate fleets?"`
 					goto diplomacy
 			
-			apply
+			action
 				set "fw pirate suggestion: greenrock"
 			`	"That's definitely the fastest solution," he says, "although it would also be a difficult one. Defending an assault from the Navy was one thing, but subjugating the seat of pirate power in the region is another. It would be a great show of strength, though, not only to the pirates, but also to the Republic."`
 				goto next
 			
 			label antares
-			apply
+			action
 				set "fw pirate suggestion: antares"
 			`	"Sounds reasonable to me," he says. "We could probably do that with minimal loss of life. But the risk is that Greenrock would still refuse to surrender. Anyone could nip at the weakest member of the herd, but if we take down Greenrock first it would be a great show of strength, not only to the pirates, but also to the Republic."`
 				goto next
 			
 			label diplomacy
-			apply
+			action
 				set "fw pirate suggestion: diplomacy"
 			`	He frowns. "Negotiate with criminals?"`
 			`	"I'm told that only a small portion of the people on those worlds actually engage in piracy," you say, "and many of them are children pressed into service as crew members."`
@@ -2150,7 +2150,7 @@ mission "FW Refinery 1"
 	on offer
 		conversation
 			`JJ and Freya meet you soon after you land on <origin>. "Great work in the battle, Captain," Freya says. "Unfortunately, we now need to turn our attention to cleaning up Tomek's mess."`
-			`	"The people of Thule became very weary of our deal with them after Tomek's attack on Greenrock," JJ explains. "They feared that they would be next, and that our negotiations with them were just an attempt to get them to distance themselves from what would be their main line of defense."`
+			`	"The people of Thule became wary of our deal with them after Tomek's attack on Greenrock," JJ explains. "They feared that they would be next, and that our negotiations with them were just an attempt to get them to distance themselves from what would be their main line of defense."`
 			`	"We have to show them that our offer was genuine," Freya says.`
 			choice
 				`	"How are we going to do that?"`

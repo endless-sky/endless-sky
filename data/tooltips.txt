@@ -78,7 +78,7 @@ tip "cargo scan power:"
 	`The range of this cargo scanner is proportional to the square root of this value.`
 
 tip "cargo scan speed:"
-	`Determines how long it takes to perform a cargo scan. A total value of 1 means one second, and the time decreases in proportion to the square root of this value, e.g. 4 means half a second.`
+	`The maximum speed of this cargo scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger cargo hold will take longer to scan.`
 
 tip "cargo:"
 	`Cargo this ship is carrying right now, out of its maximum.`
@@ -157,6 +157,9 @@ tip "disruption resistance heat:"
 
 tip "drag:"
 	`Limits the maximum speed of a ship.`
+	
+tip "drag reduction:"
+	`Reduces drag. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in drag, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
@@ -277,6 +280,9 @@ tip "illegal:"
 
 tip "income:"
 	`Amount of credits you receive per day that you own this outfit, even if it is not in active use.`
+	
+tip "inertia reduction:"
+	`Reduces effective ship mass. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in inertia, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "ion protection:"
 	`Protection against weapons that do ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -348,7 +354,7 @@ tip "outfit scan power:"
 	`The range of this outfit scanner is proportional to the square root of this value.`
 
 tip "outfit scan speed:"
-	`Determines how long it takes to perform an outfit scan. A total value of 1 means one second, and the time decreases in proportion to the square root of this value, e.g. 4 means half a second.`
+	`The maximum speed of this outfit scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger outfit capacity will take longer to scan.`
 
 tip "outfit space needed:"
 	`How much general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`

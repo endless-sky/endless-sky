@@ -149,6 +149,13 @@ void PlayerInfo::Load(const string &path)
 	// Make sure any previously loaded data is cleared.
 	Clear();
 
+	// A listing of missions and the ships where their cargo or passengers were when the game was saved.
+	// Missions and ships are referred to by string UUIDs.
+	// Any mission cargo or passengers that were in the player's system will not be recorded here,
+	// as that can be safely redistributed from the player's overall CargoHold to any ships in their system.
+	map<string, map<string, int>> missionCargoToDistribute;
+	map<string, map<string, int>> missionPassengersToDistribute;
+
 	filePath = path;
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
@@ -255,6 +262,19 @@ void PlayerInfo::Load(const string &path)
 			missions.emplace_back(child);
 			cargo.AddMissionCargo(&missions.back());
 		}
+		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers") && child.HasChildren())
+		{
+			map<string, map<string, int>> &toDistribute = (child.Token(0) == "mission cargo")
+					? missionCargoToDistribute : missionPassengersToDistribute;
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "player ships" && grand.HasChildren())
+					for(const DataNode &great : grand)
+					{
+						if(great.Size() != 3)
+							continue;
+						toDistribute[great.Token(0)][great.Token(1)] = great.Value(2);
+					}
+		}
 		else if(child.Token(0) == "available job")
 			availableJobs.emplace_back(child);
 		else if(child.Token(0) == "sort type")
@@ -337,6 +357,36 @@ void PlayerInfo::Load(const string &path)
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
 	UpdateCargoCapacities();
+
+	auto DistributeMissionCargo = [](map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
+			vector<shared_ptr<Ship>> &ships, CargoHold &cargo, bool passengers) -> void
+	{
+		for(const auto &it : toDistribute)
+		{
+			const auto missionIt = find_if(missions.begin(), missions.end(),
+					[&it](const Mission &mission) { return mission.UUID().ToString() == it.first; });
+			if(missionIt != missions.end())
+			{
+				const Mission *cargoOf = &*missionIt;
+				for(const auto &shipCargo : it.second)
+				{
+					auto shipIt = find_if(ships.begin(), ships.end(),
+							[&shipCargo](const shared_ptr<Ship> &ship) { return ship->UUID().ToString() == shipCargo.first; });
+					if(shipIt != ships.end())
+					{
+						Ship *destination = shipIt->get();
+						if(passengers)
+							cargo.TransferPassengers(cargoOf, shipCargo.second, destination->Cargo());
+						else
+							cargo.Transfer(cargoOf, shipCargo.second, destination->Cargo());
+					}
+				}
+			}
+		}
+	};
+
+	DistributeMissionCargo(missionCargoToDistribute, missions, ships, cargo, false);
+	DistributeMissionCargo(missionPassengersToDistribute, missions, ships, cargo, true);
 
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
@@ -3501,11 +3551,11 @@ void PlayerInfo::Save(const string &path) const
 			using StockElement = pair<const Outfit *const, int>;
 			WriteSorted(stock,
 				[](const StockElement *lhs, const StockElement *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const StockElement &it)
 				{
 					if(it.second)
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.first->TrueName(), it.second);
 				});
 		}
 		out.EndChild();
@@ -3523,6 +3573,43 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out);
 	for(const Mission &mission : inactiveMissions)
 		mission.Save(out);
+	map<string, map<string, int>> offWorldMissionCargo;
+	map<string, map<string, int>> offWorldMissionPassengers;
+	for(const auto &it : ships)
+	{
+		const Ship &ship = *it.get();
+		// If the ship is at the player's planet, its mission cargo allocation does not need to be saved.
+		if(ship.GetPlanet() == planet)
+			continue;
+		for(const auto &cargo : ship.Cargo().MissionCargo())
+			offWorldMissionCargo[cargo.first->UUID().ToString()][ship.UUID().ToString()] = cargo.second;
+		for(const auto &passengers : ship.Cargo().PassengerList())
+			offWorldMissionPassengers[passengers.first->UUID().ToString()][ship.UUID().ToString()] = passengers.second;
+	}
+	auto SaveMissionCargoDistribution = [&out](map<string, map<string, int>> toSave, bool passengers) -> void
+	{
+		if(passengers)
+			out.Write("mission passengers");
+		else
+			out.Write("mission cargo");
+		out.BeginChild();
+		{
+			out.Write("player ships");
+			out.BeginChild();
+			{
+				for(const auto &it : toSave)
+					for(const auto &sit : it.second)
+						out.Write(it.first, sit.first, sit.second);
+			}
+			out.EndChild();
+		}
+		out.EndChild();
+	};
+	if(!offWorldMissionCargo.empty())
+		SaveMissionCargoDistribution(offWorldMissionCargo, false);
+	if(!offWorldMissionPassengers.empty())
+		SaveMissionCargoDistribution(offWorldMissionPassengers, true);
+
 	for(const Mission &mission : availableJobs)
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
@@ -3594,11 +3681,11 @@ void PlayerInfo::Save(const string &path) const
 					if(lhs->first != rhs->first)
 						return lhs->first->Name() < rhs->first->Name();
 					else
-						return lhs->second->Name() < rhs->second->Name();
+						return lhs->second->TrueName() < rhs->second->TrueName();
 				},
 				[&out](const HarvestLog &it)
 				{
-					out.Write(it.first->Name(), it.second->Name());
+					out.Write(it.first->Name(), it.second->TrueName());
 				});
 		}
 		out.EndChild();

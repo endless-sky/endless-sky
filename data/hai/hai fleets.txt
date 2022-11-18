@@ -571,6 +571,13 @@ fleet "Small Unfettered"
 		"Lightning Bug"
 	variant
 		"Lightning Bug (Pulse)"
+	variant 2
+		"Sea Scorpion"
+	variant 2
+		"Sea Scorpion (Ion)"
+	variant
+		"Sea Scorpion (Pulse)"
+		"Lightning Bug"
 
 fleet "Large Unfettered"
 	government "Hai (Unfettered)"
@@ -617,6 +624,43 @@ fleet "Large Unfettered"
 		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
+	variant 4
+		"Sea Scorpion (Pulse)" 3
+	variant 3
+		"Sea Scorpion (Pulse)" 2
+		"Sea Scorpion" 2
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle"
+	variant 2
+		"Sea Scorpion (Ion)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle (Pulse)"
+	variant 4
+		"Sea Scorpion" 3
+	variant 3
+		"Sea Scorpion" 4
+	variant 2
+		"Sea Scorpion" 2
+		"Shield Beetle"
+	variant 2
+		"Sea Scorpion" 2
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion (Ion)"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug (Pulse)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle (Pulse)"
 
 fleet "Large Friendly Unfettered"
 	government "Hai (Friendly Unfettered)"
