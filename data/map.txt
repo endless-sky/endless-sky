@@ -31480,7 +31480,7 @@ planet Rand
 		fleet "Large Militia" 8
 
 planet Redias
-	landscape land/nasa15
+	landscape land/gasgiant1
 	attributes "requires: gaslining"
 	"required reputation" 1
 	description "The home planet of the Incipias is reigned by powerful storms. Lightning and Thunder appear without pauses and a powerful wind is moving the clouds in an insane speed."
