@@ -22,15 +22,15 @@ test-data "Three Earthly Barges"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -61,15 +61,15 @@ test-data "Three Earthly Barges"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -100,15 +100,15 @@ test-data "Three Earthly Barges"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -168,14 +168,14 @@ test-data "Fighters and Carriers and Escorts"
 				mass 40
 				bunks 1
 				drag 0.83
-				"engine capacity" 40
+				"engine capacity" 400
 				"gun ports" 2
 				"heat dissipation" 0.85
 				hull 200
-				"outfit space" 110
+				"outfit space" 1100
 				"required crew" 1
 				shields 1100
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Emergency Ramscoop"
 				Flamethrower
@@ -219,14 +219,14 @@ test-data "Fighters and Carriers and Escorts"
 				mass 40
 				bunks 1
 				drag 0.83
-				"engine capacity" 40
+				"engine capacity" 400
 				"gun ports" 2
 				"heat dissipation" 0.85
 				hull 200
-				"outfit space" 110
+				"outfit space" 1100
 				"required crew" 1
 				shields 1100
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Emergency Ramscoop"
 				"Fuel Pod"
@@ -273,16 +273,16 @@ test-data "Fighters and Carriers and Escorts"
 				bunks 245
 				"cargo space" 530
 				drag 16.1
-				"engine capacity" 180
+				"engine capacity" 1800
 				"fuel capacity" 700
 				"gun ports" 4
 				"heat dissipation" 0.4
 				hull 8600
-				"outfit space" 740
+				"outfit space" 7400
 				"required crew" 70
 				shields 17500
 				"turret mounts" 6
-				"weapon capacity" 300
+				"weapon capacity" 3000
 			outfits
 				"Antimatter Core"
 				"Hai Tracker" 112
@@ -364,9 +364,9 @@ test-data "Fighters and Carriers and Escorts"
 				"heat dissipation" .7
 				"fuel capacity" 500
 				"cargo space" 50
-				"outfit space" 390
-				"weapon capacity" 150
-				"engine capacity" 95
+				"outfit space" 3900
+				"weapon capacity" 1500
+				"engine capacity" 950
 				weapon
 					"blast radius" 80
 					"shield damage" 800
@@ -424,15 +424,15 @@ test-data "Fighters and Carriers and Escorts"
 				bunks 2
 				"cargo space" 15
 				drag 0.9
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"gun ports" 2
 				"heat dissipation" 0.8
 				hull 300
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 1200
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
@@ -474,15 +474,15 @@ test-data "Fighters and Carriers and Escorts"
 				bunks 2
 				"cargo space" 15
 				drag 0.9
-				"engine capacity" 40
-				"fuel capacity" 300
+				"engine capacity" 400
+				"fuel capacity" 3000
 				"gun ports" 2
 				"heat dissipation" 0.8
 				hull 300
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 1200
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
