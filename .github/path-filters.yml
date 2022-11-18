@@ -40,7 +40,7 @@ integration_tests:
   - 'utils/test_parse.*'
   - 'tests/integration/run_tests*'
   - 'data/tests/**'
-  - 'tests/integration/universes/**'
+  - 'tests/integration/config/plugins/integration-tests/**'
 
 codespell:
   - .codespell.exclude
