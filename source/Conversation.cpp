@@ -383,7 +383,7 @@ bool Conversation::IsChoice(int node) const
 
 
 // Check if the given conversation node is a choice node.
-bool Conversation::HasAnyChoices(const ConditionsStore &vars,int node) const
+bool Conversation::HasAnyChoices(const ConditionsStore &vars, int node) const
 {
 	if(!NodeIsValid(node))
 		return false;

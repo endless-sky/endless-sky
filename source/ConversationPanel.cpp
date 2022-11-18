@@ -355,7 +355,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	node = index;
 	// Not every conversation node allows a choice. Move forward through the
 	// nodes until we encounter one that does, or the conversation ends.
-	while(node >= 0 && !conversation.HasAnyChoices(player.Conditions(),node))
+	while(node >= 0 && !conversation.HasAnyChoices(player.Conditions(), node))
 	{
 		int choice = 0;
 

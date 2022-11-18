@@ -135,7 +135,7 @@ public:
 	bool IsChoice(int node) const;
 	// Some choices have conditions in each option. If all options are disabled,
 	// the choice cannot be shown.
-	bool HasAnyChoices(const ConditionsStore &vars,int node) const;
+	bool HasAnyChoices(const ConditionsStore &vars, int node) const;
 	// If the given node is a choice node, check how many choices it offers.
 	int Choices(int node) const;
 	// Check if the given conversation node is a conditional branch.
