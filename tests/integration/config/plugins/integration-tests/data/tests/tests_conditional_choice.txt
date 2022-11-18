@@ -277,7 +277,7 @@ test "Conditional Test Goto"
 			"succeed test" == 1
 
 
-test "Conditional Test Goto"
+test "Enter Name in Conversation"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
@@ -298,8 +298,10 @@ test "Conditional Test Goto"
 			key "Return"
 		# use a test-data temporary variable for debugging in case of errors
 		apply
+			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
 			"test: <first>" = "<first>"
 			"test: <last>" = "<last>"
 		assert
+			"%TEST%: NAME IN CONVERSATION: offered" == 1
 			"<first>" == "F"
 			"<last>" == "L"
