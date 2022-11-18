@@ -563,9 +563,9 @@ test "Create New Pilot"
 		# skip text
 		input
 			key "Return"
-		# go to the main landing panel (currently in the shipyard)
+		# go to the main landing panel
 		input
-			key "escape"
+			key l
 
 
 test "Buy First Ship"
@@ -582,7 +582,7 @@ test "Buy First Ship"
 		input
 			key "Return"
 		input
-			key "escape"
+			key l
 
 
 test "Skip Dialog"
@@ -608,6 +608,8 @@ test "First Game"
 		call "Buy First Ship"
 		# James starts the convo
 		call "Skip Dialog"
+		# leave to refresh conditions
+		call "Depart"
 		# save these in temporary conditions to know what they are if it fails
 		apply
 			"test: Intro [0]: offered" == "Intro[0]: offered"
