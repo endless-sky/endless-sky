@@ -1175,7 +1175,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Another Elder interjects, "You're exaggerating the impact, Teeneep. Five thousand Hai in two hundred years is barely a concern. That many managed to get themselves killed swimming with Gelo Appanoh in the last decade alone."`
 			`	Many Elders seem appalled by that observation, but the moderator interrupts. "We will vote on two counts: Do we act? Do we accept Unfettered help?"`
 			choice
-				`	"Teeneep, what happens next?"`
+				`	"What's going to happen, Teeneep?"`
 					goto teeneep
 				`	"Sayari, what happens next?"`
 			`	Sayari explains, "There's a multi-step voting process, which takes into account dissent between Elders. After each stage of voting, there's discussions between strategically chosen groups of Elders and the dissent is usually lower. They iterate until they come to a consensus, unless it takes too long; then they'll use the majority vote."`
