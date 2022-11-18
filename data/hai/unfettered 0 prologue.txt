@@ -394,13 +394,13 @@ mission "Unfettered Jump Drive Trading"
 			action
 				# so its only +2 in total
 				"unfettered: jd to sell" -= 2
-			`	You manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, discontent clear on their face. "So this is how you 'fight', Captain? You hide? You dodge? A weapon thrown at you no longer belongs to the enemy. Claim it!"`
+			`	You manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, discontent clear on their face. "So this is how you 'fight', Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
 				goto fail
 			label flee
 			`	You run away from the blade without any difficulty, but the Hai that threw it catches up to you in mere seconds and immobilizes you with their blade on your throat. "You disappoint me, captain. In battle it is of great importance that you identify your advantages over the enemy and not show yourself weak by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
 
 			label fail
-			`	She then leaves, to your surprise. The engineer, who had watched the fight then explains, "Since you have failed the test we cannot give you access to our vault yet. Our weapons are only meant for the most capable of warriors. You will of course still be able to trade jump drives for money, but unless you otherwise prove yourself, that is the extent of it."`
+			`	She then leaves, to your surprise. The engineer, who had watched the fight then explains, "Since you have failed the test we cannot give you access to our vault yet. Our weapons are only meant for the most capable of warriors. You will of course still be able to trade jump drives for money, but until you otherwise prove yourself, that is the extent of it."`
 			branch enoughJD
 				"unfettered: jd to sell" + 4 < "Unfettered Jump Drive 4: failed"
 			`	"This mistake is not unforgivable, I am sure she will happily forgive you, if you will only bring us more jump drives. Another Engineer will be waiting for you at your hatch when that will be the case."`
