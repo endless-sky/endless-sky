@@ -27,7 +27,7 @@ shipyard "Mon Ki o'Uden Showroom"
 	"Lightning Bug"	#Stolen
 	"Sea Scorpion"
 	"Shield Beetle"
-	# Has "Solifuge", "Violin Spider" and "Roach"(TBD) added by event.
+	# Has "Solifuge" and "Violin Spider" added by event.
 	# Technically has the specs for the "Ladybug" but not the resources to build it.
 
 
