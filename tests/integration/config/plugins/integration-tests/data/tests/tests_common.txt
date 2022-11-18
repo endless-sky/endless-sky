@@ -605,14 +605,15 @@ test "First Game"
 		call "Buy First Ship"
 		# James starts the convo
 		call "Skip Dialog"
-
-		# save these in temporary conditions to know if they failed
+		# save these in temporary conditions to know what they are if it fails
 		apply
-			"Intro [0]: active" == 1
-			"Intro [0]: offered" == 1
+			"test: Intro [0]: offered" == "Intro[0]: offered"
+			"test: <first>" = "<first>"
+			"test: <last>" = "<last>"
 		assert
-			"Intro [0]: active" == 1
 			"Intro [0]: offered" == 1
+			"<first>" = "F"
+			"<last>" = "L"
 
 
 test "Save To Default Snapshot"
