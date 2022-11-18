@@ -391,6 +391,10 @@ bool Conversation::HasAnyChoices(const ConditionsStore &vars,int node) const
 	if(!nodes[node].isChoice)
 		return false;
 
+	if(nodes[node].elements.empty())
+		// A zero-length choice is a special case: it sets the player's name.
+		return true;
+
 	for(const auto &data : nodes[node].elements)
 	{
 		if(data.conditions.IsEmpty())

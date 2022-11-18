@@ -361,7 +361,10 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 
 		// Skip empty choices.
 		if(conversation.IsChoice(node))
+		{
+			node = conversation.StepToNextNode(node);
 			continue;
+		}
 
 		if(conversation.IsBranch(node))
 		{
@@ -399,6 +402,11 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			string altered = Format::Replace(conversation.Text(node, i), subs);
 			choices.emplace_back(Paragraph(altered), i);
 		}
+	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
+	if(choices.empty() && conversation.Choices(node) != 0)
+	{
+		node = Conversation::DECLINE;
+	}
 	this->choice = 0;
 }
 
