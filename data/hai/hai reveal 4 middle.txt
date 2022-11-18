@@ -1034,9 +1034,9 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	"You know, there's quite a lot more of these than I expected. All quite recent too judging by the file quality and that crate design. They are exactly the same as the original. Someone clearly has made a deliberate decision to reuse the exact symbol, no re-imagining or stylistic alterations whatsoever. If you ask me, that sounds like a group that has set itself to having the same goals, which means the Syndicate would probably be very interested in this. Though I suppose you'd have the connections there if... Oh!" She pauses. "Now this is interesting."`
 			`	She turns the datapad to you and shows you what looks like an amulet or maybe a jewelry charm. The scale in the image isn't very clear. "Do you see this patterning around the outside of the symbol on this? I'm quite sure nearly everyone in the galaxy would simply pass that off as decorative, but it's not." She pauses for a moment, perhaps expecting a response.`
 			choice
-				`	"I have a hunch you're going to tell it's a form of writing."`
-				`	(Remain silent.)`
+				`	(Politely wait for her to finish.)`
 					goto disappointed
+				`	"I have a hunch you're going to tell it's a form of writing."`
 			`	She looks impressed and says, "Very good! I underestimated you, Captain <last>.`
 				goto archaic
 			label disappointed
