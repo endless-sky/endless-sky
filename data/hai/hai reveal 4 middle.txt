@@ -968,7 +968,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 		conversation
 			`You land at Ulaanbaatar's spaceport and receive a message that Batu has to finalize some arrangements and will arrive in the evening. That leaves plenty of time for you to see to your other business about the symbol.`
 			`	At an information desk, you inquire about the route to Moscow, and are given two options. You can take a very expensive private taxi service, which you could bill to Alondo. Or, you can take the long route and see the sights. Either way, you'll have plenty of time before Batu arrives.`
-			`	She information desk staff asks you, "Should I contact the direct taxi service, or would you rather see the sights along the way?"`
+			`	The attendant at the information desk asks you, "Would you like to contact the direct taxi service, or would you rather see the sights along the way?"`
 			choice
 				`	"I'm in a hurry. I should take the direct route."`
 					goto "take the direct route"
