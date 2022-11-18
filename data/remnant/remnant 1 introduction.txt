@@ -69,14 +69,14 @@ mission "First Contact: Remnant"
 				`	"Okay, I'll take the blood test."`
 					goto accept
 				`	"I'm not taking any blood test."`
-			apply
+			action
 				set "remnant: declined second chance"
 				"reputation: Remnant" <?= -10
 			`	"Then leave immediately or be eliminated. You will not be welcomed here again."`
 				decline
 			
 			label accept
-			apply
+			action
 				set "remnant: accepted second chance"
 			`	"Please return to <planet>. Be on your best behavior, as there will be no third chance."`
 	
@@ -845,7 +845,7 @@ mission "Remnant: Technology Available"
 			`	He takes a bite before responding. "Basically, anything that might either pose an existential threat to humanity, or anything that we might learn from and put to use to ensure humanity's survival. It might be an invading fleet of automated machines or a spaceborn plague. But it is just as possible you might find beings that we can work alongside to form strong partnerships or ancient ruins with old technology that points us towards new discoveries. The possibilities are indeed infinite.`
 				goto feast
 			label honored
-			apply
+			action
 				set "remnant: desired to join them"
 			`	He nods, smiling. "You are not there yet, but I think you might well become one of us before too long." He takes a bite from his plate, then continues. "Keep learning, and you may well earn yourself a place among us."`
 			choice
@@ -1038,7 +1038,7 @@ mission "Remnant: Deep Surveillance"
 					decline
 			
 			label telling
-			apply
+			action
 				set "remnant: told about deep"
 			`	You ask one of the Remnant in the spaceport where you would be able to find a prefect, and they point you to what looks like an information desk of sorts. There you tell the attendant that you have something potentially important to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
 			`	"Greetings, Captain. I am Prefect Torza. I was told you had information that could be important to our security." He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same. "What do you have to tell us?"`
@@ -1050,7 +1050,7 @@ mission "Remnant: Deep Surveillance"
 				`	"A group of scientists from the Deep has discovered the Ember Waste."`
 					goto discovered
 			
-			apply
+			action
 				set "remnant: admitted to helping deep"
 			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
 			choice
@@ -1096,7 +1096,7 @@ mission "Remnant: Deep Surveillance"
 				`	"The scientists have discovered how to pass through the wormhole."`
 					goto discovered
 			
-			apply
+			action
 				set "remnant: admitted to helping deep"
 			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
 			choice
@@ -1104,7 +1104,7 @@ mission "Remnant: Deep Surveillance"
 					goto threat
 				`	"I'm sorry, but I helped them before coming to understand this."`
 			
-			apply
+			action
 				set "remnant: lied to torza: understanding"
 			`	"Liar!" Torza yells at you while standing up from the bench. "You told us of these scientists after we had already trusted you with a license." Torza walks away from you angrily, then turns his head.`
 			`	"What do they know?"`
@@ -1160,31 +1160,31 @@ mission "Remnant: Deep Surveillance"
 				`	"They have only discovered the void sprites."`
 					goto sprites
 			
-			apply
+			action
 				set "remnant: told that deep knows nothing"
 			`	Torza seems to calm down greatly after hearing this. "This is most fortunate. We will need to work to ensure that this remains the case."`
 				goto end
 			
 			label sprites
-			apply
+			action
 				set "remnant: told that deep knows sprites"
 			`	Torza seems to calm down greatly after hearing this. "Then may they not anger the Archon with their curiosity, as we have."`
 				goto end
 			
 			label location
-			apply
+			action
 				set "remnant: told that deep knows location"
 			`	Torza pauses for a long while. "I assume it only makes sense that they would know of us after discovering the Ember Waste."`
 				goto end
 			
 			label scans
-			apply
+			action
 				set "remnant: told that deep has scans"
 			`	Torza pauses for a long while. "These scientists knowing of our whereabouts is much more of a concern than them having scans of our ships."`
 				goto end
 			
 			label tech
-			apply
+			action
 				set "remnant: told that deep has tech"
 			`	"And you were the one who brought it to them," Torza responds.`
 			branch reciprocal
@@ -1210,13 +1210,13 @@ mission "Remnant: Deep Surveillance"
 				goto end
 			
 			label other
-			apply
+			action
 				set "remnant: lied to torza: technology"
 			`	Torza grits his teeth. "There are no reports of missing ships or outfits, and the only visitor capable of delivering our technology is you."`
 				goto end
 			
 			label surveilled
-			apply
+			action
 				set "remnant: told about surveillance"
 			`	"How are they doing this?" Torza asks.`
 			choice
@@ -1224,7 +1224,7 @@ mission "Remnant: Deep Surveillance"
 				`	"I don't know. I only know that they are."`
 					goto secret
 			
-			apply
+			action
 				set "remnant: told about cubes"
 			`	Torza punches a wall in anger, then relaxes. "Thank you for telling us this. We will search for and remove these devices immediately."`
 				goto end
@@ -1276,7 +1276,7 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label liar
-			apply
+			action
 				set "remnant: player is surveilled"
 			`	"Then perhaps the Remnant should reassess their trust placed in you," Torza responds. "We will be on high alert to see if these scientists make any moves. I at least commend you for giving what information you have to us, but know that you will be watched closely by us from now on." Torza gets up from the bench and shows you out without another word.`
 				decline
@@ -1305,7 +1305,7 @@ mission "Remnant: Deep Surveillance"
 				accept
 			
 			label liar2
-			apply
+			action
 				set "remnant: player is surveilled"
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we cannot allow another situation like this to occur."`
 				accept
@@ -1345,7 +1345,7 @@ mission "Remnant: Deep Surveillance"
 			`	"Funny," Ivan says with a blank expression.`
 			label digitize
 			`	"Let me just get these folders digitized for you, then I can hand you a data chip with everything on it. It'll only be a few minutes."`
-			apply
+			action
 				set "remnant: got deep anomaly research"
 			`	Ivan leaves the room with all the folders, and when he returns, he hands you a data chip before shoving all the folders back into the filing cabinet. "Well, anything else you need?"`
 			`	"No. That's all I was here for," you respond. "Good luck on the rest of your work."`
@@ -1404,7 +1404,7 @@ mission "Remnant: Deep Surveillance"
 				goto ask
 			
 			label sprites
-			apply
+			action
 				set "deep: named void sprites"
 			`	"Void sprites," Ivan says slowly, as if letting the name sit on his tongue. "Void sprites... I like it."`
 			
@@ -1422,13 +1422,13 @@ mission "Remnant: Deep Surveillance"
 			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
 			
 			label next
-			apply
+			action
 				set "remnant: got deep wormhole and sprite research"
 			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP', and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 				goto reencrypt
 			
 			label remnant
-			apply
+			action
 				"ivan's suspicion" = ( "retrieved information" / 2 * "deep: knew of stones before scientists" ) + "deep: knew of stones before scientists" + 2 * "Deep: Remnant: Engines: declined" + 2 * "Deep: Remnant: Engines: failed" + "Deep: Remnant Surveillance: declined" + "Deep: Remnant Surveillance: failed"
 			
 			branch technology
@@ -1497,13 +1497,13 @@ mission "Remnant: Deep Surveillance"
 				"ivan's suspicion" == 4
 			
 			label one
-			apply
+			action
 				set "remnant: got deep research"
 			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP' and 'RTS-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 				goto reencrypt
 			
 			label two
-			apply
+			action
 				set "remnant: got deep research"
 			`	He hesitates for a moment before pressing a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP' and 'RTS-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you.`
 			`	"So, not handing this off to anyone, are we?" he asks you.`
@@ -1518,7 +1518,7 @@ mission "Remnant: Deep Surveillance"
 				goto reencrypt
 			
 			label three
-			apply
+			action
 				set "remnant: got old deep research"
 			`	He hesitates for a moment, looks up at you, then presses a button on the desk while still looking into your eyes. "Abigail, could you please make a copy of the encrypted folders... 'TAI-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 			`	"So, you said you knew of the Remnant before working with me, right?" he asks you.`
@@ -1538,7 +1538,7 @@ mission "Remnant: Deep Surveillance"
 				goto reencrypt
 			
 			label four
-			apply
+			action
 				set "remnant: got no deep research"
 			`	He is about to press a button on his desk, then pulls away from it and turns his chair toward the courtyard. "Never mind. I can't give you a copy. That research is classified."`
 			choice
@@ -1611,7 +1611,7 @@ mission "Remnant: Deep Surveillance"
 			`	"Do you think I could get a copy of your research?" you ask.`
 			label "surveillance copy"
 			`	"A copy? Of course! Of course! You're the reason I have any of this information in the first place, so you have every right to it." Ivan presses a button on his desk. "Abigail, could you please make a copy of everything on the Institute network under my name and bring them to my office in a data chip? Thank you."`
-			apply
+			action
 				set "remnant: got all deep research"
 				
 			label reencrypt
@@ -2494,7 +2494,7 @@ mission "Remnant: Scanning Tolerances"
 			`You step out of the <ship> to see a non-descript Remnant standing attentively next to the landing pad. "Captain <first>! We have been waiting for you." They lead you into a nearby bunker. Inside, a single Remnant is standing over a hologram displaying fortifications and what appear to be troops and ships moving around.`
 			`	"Torza, Captain <first> is here." The Remnant's gestures convey a deep sense of respect.`
 			`	The Remnant steps forward and accepts the case from you. The case pops open, and he slots the crystal into a spot on the display. He nods as the display pops up several confirmations of data integrity. "Well, you have certainly made many ripples since you arrived in our little corner of the galaxy." He gestures and the large display zooms in on a spot to show you walking through a spaceport outfitter. The display shifts to show you helping wounded onto your ship. The scene shifts again to show you launching the small stealth surveillance satellite. Then the table shifts back to the display of troop movements.`
-			`	"You have not been with us too long, but you have shown yourself to be trustworthy and eager to help." He gestures at the display. "As you can see, your actions have not gone unobserved. We have decided to amend your IFF registration as a result. He points to a set of slots next to the table similar to the ones that are installed on your ship. "Please place both your licenses in those slots, and I will confirm your side of the change."`
+			`	"You have not been with us too long, but you have shown yourself to be trustworthy and eager to help." He gestures at the display. "As you can see, your actions have not gone unobserved. We have decided to amend your IFF registration as a result." He points to a set of slots next to the table similar to the ones that are installed on your ship. "Please place both your licenses in those slots, and I will confirm your side of the change."`
 			choice
 				`	(Place my licenses in the designated spots.)`
 					goto comply
@@ -3410,7 +3410,7 @@ mission "Remnant: Keystone Research 7"
 			`	He looks at you appraisingly. "There are some things you cannot learn yet. Ask us again when you have earned more of our trust."`
 				goto deliverdata
 			label capitallicense
-			apply
+			action
 				"remnant symbionts info" += 1
 			`	He leans forward and holds up his hands, poking at the leather fingerless gloves he is wearing, and you realize that they extend up under his sleeves. You note that the leather does not actually look like any leather you have seen - it has fine scales and rough ridges on it. What stands out the most, however, is that it appears to pulse faintly.`
 			`	"The truth is, when we eat, we are eating for two. You will have to ask someone else how they came to be or how it works, but suffice it to say that we have developed a symbiotic relationship with a variety of creatures we found here. These ones," He explains while holding up his hands, "have a knack for accuracy and durability. With them, I am more precise than I would otherwise be, and much tougher. In exchange, they feed through us and require regular care and attention. Normally, this causes us no hardship, but if we do not eat enough, we will consume our reserves far faster than we normally would."`
@@ -3546,7 +3546,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"Suit yourself. I will meet you onboard once I'm done." She shrugs, and returns to eating."`
 				accept
 			label whatis
-			apply
+			action
 				"remnant symbionts info" += 1
 			`	"Oh, no one has told you about them? I thought once you'd demonstrated your trustworthiness and earned your capital ship license you would have found out." She pauses to take another bite, then continues.`
 				goto dawndetails
@@ -3561,7 +3561,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 					accept
 				`	"Could you tell me more about them?"`
 			label dawndetails
-			apply
+			action
 				"remnant symbionts info" += 1
 			`	"In short, we domesticated some of the creatures found here ages ago and discovered that they could be attached to us to form a symbiotic relationship." She pauses again to eat. "I only recently received mine, so I am not fully adjusted to it yet."`
 			choice

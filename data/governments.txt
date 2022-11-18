@@ -481,55 +481,6 @@ government "Heliarch"
 		"Quarg" -.01
 		"Coalition" 1
 
-government "Human Alliance"
-	# Temporary group that forms during Hai threat.
-	swizzle 0
-	color 1 .8 .5
-	"player reputation" 10
-	
-	"attitude toward"
-		"Alpha" -.3
-		"Merchant" .25
-		"Militia" .1
-		"Pirate" -.3
-		"Pirate (Devil-Run Gang)" -.3
-		"Republic" .1
-		"Syndicate" .1
-		"Smuggler (Hai Trafficker)" -.3
-		"Navy Intelligence" .1
-		"Navy (Oathkeeper)" .1
-		"Neutral" .1
-		"Free Worlds" .1
-		"Human Alliance that won't enter wormhole" 1.0
-	# These ships exist purely as scenery and only for a short
-	# time; if they persist longer in future versions, we should
-	# add hails.
-
-government "Human Alliance that won't enter wormhole"
-	# Temporary group that forms during Hai threat.
-	"display name" "Human Alliance"
-	swizzle 0
-	color 1 .8 .5
-	"player reputation" 10
-	
-	"attitude toward"
-		"Alpha" -.3
-		"Merchant" .25
-		"Militia" .1
-		"Pirate" -.3
-		"Pirate (Devil-Run Gang)" -.3
-		"Republic" .1
-		"Syndicate" .1
-		"Smuggler (Hai Trafficker)" -.3
-		"Navy Intelligence" .1
-		"Navy (Oathkeeper)" .1
-		"Neutral" .1
-		"Free Worlds" .1
-		"Human Alliance" 1
-	# These ships exist purely as scenery and only for a short
-	# time; if they persist longer in future versions, we should
-	# add hails.
-
 government "Independent"
 	swizzle 6
 	color .78 .36 .36
@@ -1189,4 +1140,3 @@ government "Wormhole Alpha"
 		"Deep Security that won't enter wormhole" -.01
 		"Free Worlds that won't enter wormhole" -.01
 		"Republic that won't enter wormhole" -.01
-		"Human Alliance that won't enter wormhole" -.01

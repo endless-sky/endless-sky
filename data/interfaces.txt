@@ -401,11 +401,25 @@ interface "settings"
 		dimensions 90 30
 		color medium
 		hover bright
+	visible if "multiple pages"
+	sprite "ui/dialog cancel"
+		center -115 210
+	active if "show next"
+	button n "_Next"
+		center -115 210
+		dimensions 70 30
+	sprite "ui/wide button"
+		center -210 210
+	active if "show previous"
+	button r "P_revious"
+		center -210 210
+		dimensions 90 30
+	
 
 
 
 interface "plugins"
-	sprite "ui/settings panel"
+	sprite "ui/plugins panel"
 		center -20 -20
 	button c "_Controls"
 		center -300 -230
@@ -421,6 +435,9 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+	button o "_Open Plugins"
+		center -195 210
+		dimensions 120 30
 
 
 
@@ -1173,6 +1190,18 @@ interface "info panel"
 		center 145 305
 	button a "Unpark _All"
 		center 145 305
+		dimensions 90 30
+	visible if "show park system"
+	sprite "ui/wide button"
+		center 40 305
+	button c "Park Lo_cal"
+		center 40 305
+		dimensions 90 30
+	visible if "show unpark system"
+	sprite "ui/wide button"
+		center 40 305
+	button c "Unpark Lo_cal"
+		center 40 305
 		dimensions 90 30
 	visible if "show save order"
 	sprite "ui/wide button"
