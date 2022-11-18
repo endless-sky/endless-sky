@@ -1602,6 +1602,32 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// self-destruct.
 		if(ship->IsDestroyed())
 		{
+			if(!ship->Attributes().EscapeShip().empty())
+			{
+				const Ship *shipToPlace = GameData::Ships().Get(ship->Attributes().EscapeShip());
+				if(shipToPlace->IsValid())
+				{
+					const shared_ptr<Ship> escapeShip = make_shared<Ship>(*shipToPlace);
+					escapeShip->Recharge();
+					escapeShip->SetName(ship->Name());
+					escapeShip->SetGovernment(ship->GetGovernment());
+					if(ship->Attributes().EscapePersonality().IsValid())
+						escapeShip->SetPersonality(ship->Attributes().EscapePersonality());
+					else
+						escapeShip->SetPersonality(ship->GetPersonality());
+					escapeShip->SetHail(*ship->GetHailPhrase());
+					escapeShip->SetSystem(ship->GetSystem());
+					if(ship->GetParent())
+						escapeShip->SetParent(ship->GetParent());
+					escapeShip->Place(ship->Position(), ship->Velocity(), ship->Facing());
+					newShips.push_back(escapeShip);
+					if(ship == player.FlagshipPtr())
+					{
+						player.AddShip(escapeShip);
+						player.SetFlagship(*escapeShip);
+					}
+				}
+			}
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
 			// Any still-docked ships' destruction must be recorded as well.
 			for(const auto &bay : ship->Bays())

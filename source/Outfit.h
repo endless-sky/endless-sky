@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include "Dictionary.h"
+#include "Personality.h"
 
 #include <map>
 #include <string>
@@ -62,6 +63,9 @@ public:
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
+
+	const std::string &EscapeShip() const;
+	const Personality &EscapePersonality() const;
 
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
@@ -111,6 +115,9 @@ private:
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
+
+	std::string escapeShip;
+	Personality escapePersonality;
 
 	Dictionary attributes;
 

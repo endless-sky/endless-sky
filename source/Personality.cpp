@@ -125,6 +125,8 @@ void Personality::Load(const DataNode &node)
 				Parse(child, i, remove);
 		}
 	}
+
+	isValid = true;
 }
 
 
@@ -140,6 +142,13 @@ void Personality::Save(DataWriter &out) const
 				out.Write(it.first);
 	}
 	out.EndChild();
+}
+
+
+
+bool Personality::IsValid() const
+{
+	return isValid;
 }
 
 

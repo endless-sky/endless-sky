@@ -868,6 +868,11 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
+			if(!baseAttributes.EscapeShip().empty())
+			{
+				out.Write("escape ship", baseAttributes.EscapeShip());
+				baseAttributes.EscapePersonality().Save(out);
+			}
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
@@ -1413,6 +1418,13 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 	subs["<npc>"] = Name();
 	return Format::Replace(hailStr, subs);
+}
+
+
+
+const Phrase *Ship::GetHailPhrase() const
+{
+	return hail;
 }
 
 
