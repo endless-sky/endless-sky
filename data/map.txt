@@ -28671,7 +28671,7 @@ planet "Charybdis Station"
 
 planet Chiron
 	attributes "near earth" urban
-	landscape land/city18-iridium
+	landscape land/city21
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
 	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader in higher education, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
 	spaceport `There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships.`
@@ -28948,8 +28948,13 @@ planet Devil-Eye
 
 planet "Devil-Run Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Devil-Run Wormhole"
+
+wormhole "Devil-Run Wormhole"
+	mappable
+	link "Deep Space 7C" "Devil-Run"
+	link "Devil-Run" "Deep Space 7C"
 
 planet "Devru Kaska"
 	attributes korath station
@@ -29024,7 +29029,7 @@ planet "Dwelling of Speloog"
 
 planet Earth
 	attributes "near earth" tourism urban
-	landscape land/city3
+	landscape land/city19
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
 	spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
@@ -29071,21 +29076,43 @@ planet "Elek Kartanu"
 
 planet "Ember Graveyard"
 	attributes "requires: quantum keystone"
-	description ""
+	wormhole "Ember Graveyard"
+
+wormhole "Ember Graveyard"
+	mappable
+	link Polerius Ossipago
+	link Ossipago Polerius
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Ember Reaches"
+
+wormhole "Ember Reaches"
+	mappable
+	link Coluber Convector
+	link Convector Coluber
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
-	description ""
+	wormhole "Ember Threshold"
+
+wormhole "Ember Threshold"
+	mappable
+	link Cardea Terminus
+	link Terminus Cardea
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Ember Wormhole"
+
+wormhole "Ember Wormhole"
+	mappable
+	link Aescolanus Cardea
+	link Cardea Insitor
+	link Insitor Segesta
+	link Segesta Aescolanus
 
 planet Eminonu
 	attributes uninhabited
@@ -29532,11 +29559,21 @@ planet Grakhord
 	security 0.9
 
 planet "Graveyard Wormhole (Stable)"
-	description ``
+	wormhole "Graveyard Wormhole (Stable)"
+
+wormhole "Graveyard Wormhole (Stable)"
+	mappable
+	link Ritilas Fearis
+	link Fearis Ritilas
 
 planet "Graveyard Wormhole (Unstable)"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Graveyard Wormhole (Unstable)"
+
+wormhole "Graveyard Wormhole (Unstable)"
+	mappable
+	link Esix Relifer
+	link Relifer Esix
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -30458,7 +30495,7 @@ planet "New Britain"
 
 planet "New China"
 	attributes "near earth" urban
-	landscape land/city12
+	landscape land/city22
 	description `In the very early days of hyperspace travel, most settlers chose to put down roots within a few jumps of Earth, because until more fuel depots were built, colonies farther out would seldom be visited by cargo ships. As a result, a lot of effort was put into terraforming and developing worlds that would have been passed over by most colonists today.`
 	description `	New China is one such world, and it is now overpopulated, and poor enough that maintaining the terraforming equipment and climate requires almost a third of the planetary government's tax income.`
 	spaceport `The "new port" here was built several centuries ago, when the grand but impractical spaceport built by the original settlers had deteriorated to the point where it was no longer usable. This port is much simpler by comparison: just a ring of landing pads of various sizes around a large central building with ten levels of warehouse space accessible by freight elevator.`
@@ -30917,6 +30954,10 @@ planet Prime
 
 planet "Pug Wormhole"
 
+wormhole "Pug Wormhole"
+	link "Over the Rainbow" Deneb
+	link Deneb "Over the Rainbow"
+
 planet Pugglemug
 	landscape land/myrabella5
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
@@ -31001,8 +31042,13 @@ planet Relic
 
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Remnant Wormhole"
+
+wormhole "Remnant Wormhole"
+	mappable
+	link Peragenor Edusa
+	link Edusa Peragenor
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -32180,21 +32226,41 @@ planet Winter
 		fleet "Large Militia" 5
 
 planet "Wormhole Alpha"
-	description ""
 	spaceport ""
 	government "Wormhole Alpha"
+	wormhole "Wormhole Alpha"
+
+wormhole "Wormhole Alpha"
+	mappable
+	link "Ultima Thule" Waypoint
+	link Waypoint "Ultima Thule"
 
 planet "Wormhole Barren Alpha"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Wormhole Barren Alpha"
+
+wormhole "Wormhole Barren Alpha"
+	mappable
+	link Egeria Levana
+	link Levana Egeria
 
 planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Wormhole Barren Beta"
+
+wormhole "Wormhole Barren Beta"
+	mappable
+	link Caeculus Prosa
+	link Prosa Caeculus
 
 planet "Wormhole Link"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Wormhole Link"
+
+wormhole "Wormhole Link"
+	mappable
+	link Statina Vaticanus
+	link Vaticanus Statina
 
 planet "Wyvern Station"
 	attributes rim station
@@ -32255,4 +32321,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
