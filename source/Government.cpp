@@ -520,8 +520,8 @@ bool Government::IsProvokedOnScan() const
 
 bool Government::IsUsingForeignPenaltiesFor(const Government *government) const
 {
-	for(const Government *gov : useForeignPenaltiesFor)
-		if(gov == government)
-			return true;
+	auto it = find(useForeignPenaltiesFor.begin(), useForeignPenaltiesFor.end(), government);
+	if(it != useForeignPenaltiesFor.end())
+	    return true;
 	return false;
 }
