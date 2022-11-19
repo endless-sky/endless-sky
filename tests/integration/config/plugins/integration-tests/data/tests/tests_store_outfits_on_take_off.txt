@@ -111,7 +111,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
 			system Betelgeuse
 			planet Prime
 		account
-			credits 0
+			credits 100
 			score 400
 			history
 		cargo
@@ -254,7 +254,7 @@ test "Store Outfit On Take Off"
 		# Check startup conditions.
 		assert
 			and
-				"credits" == 0
+				"credits" == 100
 				"outfit: D23-QP Shield Generator" == 1
 				"outfit (cargo): D23-QP Shield Generator" == 1
 				"outfit (storage): D23-QP Shield Generator" == 0
