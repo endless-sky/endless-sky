@@ -169,6 +169,9 @@ public:
 	double Attraction() const;
 	double Deterrence() const;
 
+	const std::string &CoreShip() const;
+	const Personality &CorePersonality() const;
+
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
 	std::vector<std::string> FlightCheck() const;
@@ -500,6 +503,9 @@ private:
 	EsUuid uuid;
 	std::string name;
 	bool canBeCarried = false;
+
+	std::string coreShip;
+	Personality corePersonality;
 
 	int forget = 0;
 	bool isInSystem = true;

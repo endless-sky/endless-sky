@@ -343,6 +343,13 @@ void Ship::Load(const DataNode &node)
 			neverDisabled = true;
 		else if(key == "uncapturable")
 			isCapturable = false;
+		else if(child.Token(0) == "core ship")
+		{
+			coreShip = child.Token(1);
+			for(const auto &grand : child)
+				if(grand.Token(0) == "personality")
+					corePersonality.Load(grand);
+		}
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3) ||
 			(key == "bay" && child.Size() >= 4))
 		{
@@ -860,6 +867,12 @@ void Ship::Save(DataWriter &out) const
 		if(customSwizzle >= 0)
 			out.Write("swizzle", customSwizzle);
 
+		if(!coreShip.empty())
+		{
+			out.Write("core ship", coreShip);
+			corePersonality.Save(out);
+		}
+
 		out.Write("uuid", uuid.ToString());
 
 		out.Write("attributes");
@@ -868,11 +881,6 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
-			if(!baseAttributes.EscapeShip().empty())
-			{
-				out.Write("escape ship", baseAttributes.EscapeShip());
-				baseAttributes.EscapePersonality().Save(out);
-			}
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
@@ -1164,6 +1172,20 @@ double Ship::Attraction() const
 double Ship::Deterrence() const
 {
 	return deterrence;
+}
+
+
+
+const string &Ship::CoreShip() const
+{
+	return coreShip;
+}
+
+
+
+const Personality &Ship::CorePersonality() const
+{
+	return corePersonality;
 }
 
 

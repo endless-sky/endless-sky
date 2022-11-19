@@ -204,13 +204,6 @@ void Outfit::Load(const DataNode &node)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
-		else if(child.Token(0) == "escape ship")
-		{
-			escapeShip = child.Token(1);
-			for(const auto &grand : child)
-				if(grand.Token(0) == "personality")
-					escapePersonality.Load(grand);
-		}
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
 			flareSprites.emplace_back(Body(), 1);
@@ -421,21 +414,6 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
-const string &Outfit::EscapeShip() const
-{
-	return escapeShip;
-}
-
-
-
-const Personality &Outfit::EscapePersonality() const
-{
-	return escapePersonality;
-}
-
-
-
-
 double Outfit::Get(const char *attribute) const
 {
 	return attributes.Get(attribute);
@@ -503,11 +481,6 @@ void Outfit::Add(const Outfit &other, int count)
 		attributes[at.first] += at.second * count;
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
-	}
-	if(escapeShip.empty() && !other.escapeShip.empty())
-	{
-		escapeShip = other.escapeShip;
-		escapePersonality = other.EscapePersonality();
 	}
 
 	for(const auto &it : other.flareSprites)

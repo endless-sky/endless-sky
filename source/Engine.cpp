@@ -1602,17 +1602,17 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// self-destruct.
 		if(ship->IsDestroyed())
 		{
-			if(!ship->Attributes().EscapeShip().empty())
+			if(!ship->CoreShip().empty())
 			{
-				const Ship *shipToPlace = GameData::Ships().Get(ship->Attributes().EscapeShip());
+				const Ship *shipToPlace = GameData::Ships().Get(ship->CoreShip());
 				if(shipToPlace->IsValid())
 				{
 					const shared_ptr<Ship> escapeShip = make_shared<Ship>(*shipToPlace);
 					escapeShip->Recharge();
 					escapeShip->SetName(ship->Name());
 					escapeShip->SetGovernment(ship->GetGovernment());
-					if(ship->Attributes().EscapePersonality().IsValid())
-						escapeShip->SetPersonality(ship->Attributes().EscapePersonality());
+					if(ship->CorePersonality().IsValid())
+						escapeShip->SetPersonality(ship->CorePersonality());
 					else
 						escapeShip->SetPersonality(ship->GetPersonality());
 					escapeShip->SetHail(*ship->GetHailPhrase());
