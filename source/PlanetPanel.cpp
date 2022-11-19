@@ -263,13 +263,14 @@ void PlanetPanel::TakeOffIfReady()
 
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
-	const CargoHold &cargo = player.Cargo();
+	const CargoHold &cargo = player.DistributeCargo();
 	// Are you overbooked? Don't count fireable flagship crew.
 	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
-	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
-	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
+	int overbooked = -(flagship->Cargo().BunksFree());
+	int missionCargoToSell = cargo.MissionCargoSize();
 	// Will you have to sell something other than regular cargo?
-	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
+	int commoditiesToSell = cargo.CommoditiesSize();
+	int outfitsToSell = cargo.OutfitsSize();
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -288,13 +289,13 @@ void PlanetPanel::TakeOffIfReady()
 				}
 	}
 
-	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
 		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
-			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
+			bool both = (missionCargoToSell > 0 && overbooked > 0);
 			out << "If you take off now you will abort a mission due to not having enough ";
 
 			if(overbooked > 0)
@@ -311,6 +312,14 @@ void PlanetPanel::TakeOffIfReady()
 				out << " of your mission cargo.";
 			}
 		}
+		// Warn about outfits that can't be carried.
+		else if(outfitsToSell > 0)
+		{
+			out << "If you take off now, you will ";
+			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
+			out << (outfitsToSell > 1 ? "s" : "");
+			out << " that none of your ships can hold.";
+		}
 		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
 		{
@@ -326,10 +335,10 @@ void PlanetPanel::TakeOffIfReady()
 		{
 			out << "If you take off now you will have to sell ";
 
-			if(cargoToSell == 1)
+			if(commoditiesToSell == 1)
 				out << "a ton of cargo";
-			else if(cargoToSell > 0)
-				out << cargoToSell << " tons of cargo";
+			else if(commoditiesToSell > 0)
+				out << commoditiesToSell << " tons of cargo";
 			out << " that you do not have space for.";
 		}
 		out << " Are you sure you want to continue?";
