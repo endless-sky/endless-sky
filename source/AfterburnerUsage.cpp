@@ -17,17 +17,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-AfterburnerUsage::AfterburnerUsage(const Outfit &outfit) : afterburner(outfit)
-{
-	baseDuration = outfit.Attributes().Get("afterburner duration");
-	baseCooldown = outfit.Attributes().Get("base cooldown");
-}
+AfterburnerUsage::AfterburnerUsage(const Outfit &outfit) : 
+	afterburner(outfit), baseDuration(outfit.Attributes().Get("afterburner duration")), baseCooldown(outfit.Attributes().Get("base cooldown")) {}
 
 
 
 bool AfterburnerUsage::CanUseAfterburner() const
 {
-	return !baseCooldown || !afterburnerCooldown || afterburnerUsageTime < baseDuration;
+	return !baseCooldown || (!afterburnerCooldown && afterburnerUsageTime < baseDuration);
 }
 
 

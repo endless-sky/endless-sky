@@ -666,6 +666,8 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
 		// yet installed to the ship's armament.
+		if(it.first->IsAfterburner())
+			afterburnerUsages.emplace_back(*it.first);
 		if(it.first->IsWeapon())
 		{
 			int count = it.second;
