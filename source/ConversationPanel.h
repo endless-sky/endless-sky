@@ -110,18 +110,18 @@ private:
 	// The conversation we are displaying.
 	const Conversation &conversation;
 	// All conversations start with node 0.
-	int node;
+	int node = 0;
 	// This function should be called with the conversation outcome.
 	std::function<void(int)> callback = nullptr;
 
 	// Current scroll position.
-	double scroll;
+	double scroll = 0.;
 
 	// The "history" of the conversation up to this point:
 	std::list<Paragraph> text;
 	// The current choices being presented to you, and their indices:
 	std::list<std::pair<Paragraph, int>> choices;
-	int choice;
+	int choice = 0;
 
 	// Text entry fields for changing the player's name.
 	std::string firstName;

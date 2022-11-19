@@ -172,6 +172,8 @@ test "Enter Name in Conversation"
 	sequence
 		inject "conditional choice"
 		call "Load First Savegame"
+		assert
+			"name: Bobbi Bughunter" == 1
 		apply
 			"%TEST%: NAME IN CONVERSATION" = 1
 		call "Trigger Spaceport Mission"
@@ -186,7 +188,7 @@ test "Enter Name in Conversation"
 		input
 			key "Return"
 		call "Depart"
-		# use a test-data temporary variable for debugging in case of errors
+		# use test-data temporary variables for debugging in case of errors
 		apply
 			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
 			"test: name: Bobbi Bughunter" = "name: Bobbi Bughunter"
