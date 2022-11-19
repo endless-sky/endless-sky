@@ -17,6 +17,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+// This class stores a set of interned strings. Interning can be a slow operation during string creation/interning, but
+// it will allow fast char-pointer based comparisons when comparing two interned strings (because interning ensures that
+// each interned string only appears once in the set). Full string compares will still be needed when comparing interned
+// strings to non-interned strings.
 class StringInterner
 {
 public:
