@@ -1035,11 +1035,76 @@ mission "Hai Reveal [A09] History of Appeasement"
 		log `A group of Hai Elders agreed to immediately stop all weapons shipments to pirates, to avoid a conflict with the Republic. Unfortunately, they refused to investigate the mysterious disappearances that Teeneep believes to be kidnappings.`
 		"reputation: Hai (Unfettered)" >?= 10
 		conversation
-			`You return, giving Batu directions to Xilin, and check availabilities. The other diplomats all appear to be busy and so you soon find yourself at Sayari's office only to be met by Teeneep and Sayari arguing. You came to get an update and instead walked into a very tense standoff, with Sayari standing in front of the door and brandishing a drink bottle in one hand while Teeneep shouts in Hai and gestures at various datapads. It looks like Sayari is doing her best to prevent Teeneep from leaving, though it's hard to say if she'd actually be capable of stopping the much younger Hai physically.`
+			`You return, giving Batu directions to Xilin, and check availabilities. The other diplomats all appear to be busy and so you soon find yourself at Sayari's office only to be met by Teeneep and Sayari arguing. Teeneep is shouting with a look of anger and despair while Sayari is trying to calm her. You try to get their attention, but their conversation is so intense it takes a few seconds for them to notice you.`
 			`	Realizing that you've arrived Sayari tilts her head slightly to one side to indicate she's speaking to you, while not taking her eyes off Teeneep. "Welcome back captain <last>, I must apologize for my friend's state. She's just discovered some rather unfortunate information."`
 			`	"Unfortunate!" Teeneep very nearly shrieks the word. "They've been doing this for decades! Decades, Sayari! Tracking down and ultimately paying off pirates with our technology to leave us alone, even when they've hurt, killed, kidnapped, and enslaved our people!"`
-			`	"They gave them our weapons so that they could more efficiently go and enslave other people rather than just dealing with them properly they way they should have!" She manages to sound kind of funny. Instead of emphasizing the 'our', 'properly' and 'should have', she's placed the stresses on 'weapons', 'efficiently' and 'dealing'. It's possible that it's deliberate, but you can't help but get the sense that Teeneep hasn't had a lot of practice being angry in your language. "One hundred and seventy three reports, Sayari. That's how many times they've done this, or something like it, and those are just the ones that came up in the sweep. There's no telling how many others might be filed improperly, missing key words, or just be outside of my search range."`
-			`	Sayari looks at you apologetically. "I promise, we normally get along very well." She turns back to Teeneep. "Look, I'm not saying you shouldn't do something about it. I'm just saying your first course of action shouldn't be to parade it across every network in the whole damn cluster."`
+			`	Teeneep is clearly in the middle of an intense panic attack.`
+			choice
+				`	"Calm down, Teeneep."`
+					goto calm
+				`	"Teeneep, stop acting like a child!"`
+			`	Teeneep looks mortified. "Captain <last>, I... I'm sorry you had to see me like this. I just... Sayari?"`
+				goto begin
+			label calm
+			`	Slightly calmer, Teeneep says, "Calm down? Calm down! Sayari knew this whole time, but she did nothing to stop it!"`
+			label begin
+			`	Sayari puts her paw on Teeneep's back and turns to you. "The Elders have been making deals with pirates for years. The pirates stop attacking us, or help us keep our secrets. In return, we give them cash, supplies for their colonies, or weapons. I've known about this for as long as it has been going on."`
+			`	Teeneep closes her eyes for and uses deep breathing techniques to calm herself down. It looks like she's practiced this many times. She seems ready to talk.`
+			label questions
+			choice
+				`	"When did the Elders start making deals?"`
+					goto long
+				`	"How many deals have the Elders made?"`
+					goto many
+				`	"Are the two of you usually this argumentative?"`
+					goto friends
+				`	"Now that we know the situation, how do we fix it?"`
+					goto fix
+			label many
+			`	Teeneep presents her research. "They gave them our weapons so that they could more efficiently go and enslave other people rather than just dealing with them properly they way they should have!" She manages to sound kind of funny. Instead of emphasizing the 'our', 'properly' and 'should have', she's placed the stresses on 'weapons', 'efficiently' and 'dealing'. It's possible that it's deliberate, but you can't help but get the sense that Teeneep hasn't had a lot of practice being angry in your language. "One hundred and seventy three reports, Sayari. That's how many times they've done this, or something like it, and those are just the ones that came up in the sweep. There's no telling how many others might be filed improperly, missing key words, just outside of my search range, or older than ten years."`
+				goto questions
+			label long
+			`	Sayari loans her wisdom. "The deals started about 50 years ago, and were limited in scope and number at first. As human settlement expanded, and piracy grew, we've increased the number of pirate groups and size of payments. In the past five years, they've begun demanding weapons, and sometimes won't accept anything else."`
+				goto questions
+			label friends
+			# Vocabulary note: In some dialects of English, a young squirrel is called a "kitten."
+			`	Sayari looks at you apologetically. "She's always been quite a character, but we usually get along very well." She turns back to Teeneep who adds, "Sayari has been my close friend and mentor since I was a kitten."`
+				goto questions
+
+			label fix
+			`	"Look, the Elders are pretty much permanently on call at the moment. None of them are leaving <origin> and they're in session as we speak. Let me put a priority audience request into the system, and you can probably see them this afternoon. In the meantime, why don't I order some food here and you can use my spare desk over there to prepare what you need to say?"`
+
+
+
+# FIXME: 
+#    Teeneep should panic and threaten to go to the media.
+#    Sayari should explain that Teeneep would be ostracized.
+#    The two d
+
+
+				`	Teeneep says, "I should take this to the media so Hai will force the Elders to stop this madness."`
+
+			`	Finally Teeneep says calmly, "The point is, we know the Elders have been arming pirates for a while. If we present a good case, I think they'll stop."`
+			choice
+				`	"Do we have enough proof to convince them?"`
+				`	"Let's go see them now."`
+			`	Teeneep explains. "The Elders have been on call since the crisis started, and Sayari arranged a meeting for me. The Elders know they've been making the deals, of course, so we don't need to prove that. If you warn them of the diplomatic consequences, I think they'll listen.`
+			`	"We can also ask them to investigate the kidnappings. Maybe seeing wisdom on the other matter will open their minds to the truth."`
+			`	Sayari says, "Teeneep, you have a strong case, but don't be over-confident, or they'll see you as arrogant. It's a Special Adjunctive Triad, and you only have to wait a few more minutes."`
+			choice
+				`	"Have heart, Teeneep, things are looking up."`
+					goto looking
+				`	"What is a Special Adjunctive Triad?"`
+			`	Teeneep explains. "It's three Elders with specialized knowledge on a subject, and diverse views of it. The Elder Council has already given them power to make certain immediate decisions."`
+				goto meeting
+			label looking
+			`	
+
+
+
+
+You came to get an update and instead walked into a very tense standoff, with Sayari standing in front of the door and brandishing a drink bottle in one hand while Teeneep shouts in Hai and gestures at various datapads. It looks like Sayari is doing her best to prevent Teeneep from leaving, though it's hard to say if she'd actually be capable of stopping the much younger Hai physically.`
+
 			choice
 				`	"What should she do?"`
 					goto do
@@ -1048,8 +1113,6 @@ mission "Hai Reveal [A09] History of Appeasement"
 			label do
 			`	Teeneep seems to be taking a moment to breathe and Sayari takes that opportunity to lower the drink bottle and let you into the room, closing the door again behind you. "The grievance is against the Elders. There's a process to seek redress of grievances with the Elders. Teeneep needs to at least attempt to follow that process, and if she does not go through with normal resolution channels, she will be censured from public life. She must confront the Elders directly."`
 			`	Teeneep makes the effort to give a final, defiant snarl of disgust, and then throws herself into an empty chair. "She's right," she grates out. "I hate it but she's right. Especially because several of those reports indicate that the Navy knew of Hai on some ships and stood by while they were taken away. Which makes it your business too."`
-			`	"Look, the Elders are pretty much permanently on call at the moment. None of them are leaving <origin> and they're in session as we speak. Let me put a priority audience request into the system, and you can probably see them this afternoon. In the meantime, why don't I order some food here and you can use my spare desk over there to prepare what you need to say?"`
-			`	Teeneep takes a deep breath and accepts the plan with sudden and surprising grace. She gathers her pads and sets up where indicated. "If you're getting food, get me something with nutmeg in it. I recently discovered it at that fusion restaurant chain that's been picking up."`
 			`	Sayari makes an odd noise and Teeneep seems to take it as acknowledgment. "Now, sit down and tell me what you've been up to."`
 			choice
 				`	(Pass a little time.)`
