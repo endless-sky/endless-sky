@@ -1422,23 +1422,23 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			label questions
 			choice
 				`	"What if we solve the kidnapping problem instead of the Hai doing it?"`
+					goto concerns
 					to display
 						not "Hai Reveal [A14] A Time of Trouble: label concerns"
 						has "Hai Reveal [A14] A Time of Trouble: label navy"
-					goto concerns
 				`	"What if we let them through, to attack the pirate planets?"`
+					goto through
 					to display
 						not "Hai Reveal [A14] A Time of Trouble: label through"
 						has "Hai Reveal [A14] A Time of Trouble: label navy"
-					goto through
 				`	"Who in the Cabinet is blocking progress?"`
+					goto blocking
 					to display
 						not "Hai Reveal [A14] A Time of Trouble: label blocking"
-					goto blocking
 				`	"Can the Hai really pass through, with the Republic Navy blocking their way?"`
+					goto navy
 					to display
 						not "Hai Reveal [A14] A Time of Trouble: label navy"
-					goto navy
 				`	"I'm ready to mediate. Let's assemble the heads of state."`
 					goto begin
 			label navy
