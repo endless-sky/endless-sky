@@ -85,29 +85,29 @@ mission "Hai Reveal [A02] Symbol Identification"
 			label questions
 			choice
 				`	"How do you know all of this?"`
+					goto know
 					to display
 						not "Hai Reveal [A02] Symbol Identification: label know"
-					goto know
 				`	"Why are you on an uninhabited planet?"`
+					goto uninhabited
 					to display
 						not "Hai Reveal [A02] Symbol Identification: label uninhabited"
-					goto uninhabited
 				`	"Is anyone helping you?"`
+					goto anyone
 					to display
 						not "Hai Reveal [A02] Symbol Identification: label anyone"
-					goto anyone
 				`	"What patterns have you noticed in the disappearances?"`
+					goto patterns
 					to display
 						not "Hai Reveal [A02] Symbol Identification: label patterns"
-					goto patterns
 				`	"Tell me about the cadmium poisoning."`
+					goto cadmium
 					to display
 						not "Hai Reveal [A02] Symbol Identification: label cadmium"
-					goto cadmium
 				`	"How long have the disappearances been happening?"`
+					goto disappearances
 					to display
 						not "Hai Reveal [A02] Symbol Identification: label disappearances"
-					goto disappearances
 				`	"That's enough information. How can I help you?"`
 					goto help
 			label uninhabited
