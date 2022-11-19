@@ -387,6 +387,201 @@ ship "'olofez"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
+ship "Kas'ik Tek 7"
+	sprite "ship/kas-ik tek 7"
+	thumbnail "thumbnail/kas-ik tek 7"
+	attributes
+		category "Drone"
+		"cost" 210000
+		"shields" 1400
+		"hull" 800
+		"automation" 1
+		"mass" 21
+		"drag" 0.6
+		"heat dissipation" 1
+		"cargo space" 4
+		"outfit space" 48
+		"engine capacity" 18
+		"atmosphere scan" 100
+		"outfit scan power" 18
+		"outfit scan speed" 2
+		"cargo scan power" 6
+		"cargo scan speed" 2
+		"tactical scan power" 30
+		"asteroid scan power" 20
+		weapon
+			"blast radius" 6
+			"shield damage" 40
+			"hull damage" 30
+			"hit force" 80
+	outfits
+		"Generator (Candle Class)"
+		"Small Heat Shunt"
+		"Engine (Meteor Class)"
+	engine 0 22.5 
+	engine -8.5 25 
+	engine 8.5 25
+	explode "tiny explosion" 9
+	explode "small explosion" 6
+	description `These small probes are primarily deployed by larger Korath Exile ships to scan for intruders, evaluate foreign vessels, and analyze system bodies. Their secondary function is to retrieve small debris and deactivated microbots spread across Korath space which have fallen off their ships, been fired from Shunt-Strikes, or were even deliberately deployed. Although the data observed and logged by an individual microbot is extremely limited, processing them in bulk yields a valuable gestalt of information. More importantly, the microbots can be recycled for use afterwards.`
+	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`
+
+
+ship "Rai'alorej"
+	sprite "ship/rai-alorej"
+	thumbnail "thumbnail/rai-alorej"
+	attributes
+		category "Utility"
+		cost 31970000
+		shields 43000
+		hull 27000
+		"required crew" 523
+		"bunks" 1433
+		"mass" 1660
+		"drag" 27.6
+		"heat dissipation" .36
+		"fuel capacity" 700
+
+		"cargo space" 351
+		"outfit space" 856
+		"weapon capacity" 237
+		"engine capacity" 195
+		weapon
+			"blast radius" 600
+			"shield damage" 9000
+			"hull damage" 4800
+			"hit force" 20000
+	outfits
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile" 2
+		"Langrage Hyper-Heaver" 2
+		"Firelight Missile Bank"
+		"Firelight Missile" 20
+
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
+		"Thermal Repeater Rifle" 526
+		"Microbot Defense Station" 25
+
+		"Afterburner (Planetary Class)"
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+		"Jump Drive"
+
+	"reverse engine" -79 -186
+		zoom 0.8
+	"reverse engine" 79 -186
+		zoom 0.8
+	engine -101 196
+		zoom 0.9
+	engine 101 196
+		zoom 0.9
+	engine -60 190 0.8
+	engine 60 190 0.8
+	engine -29 212
+	engine 29 212
+	gun -81.5 58 "Firelight Missile Bank"
+		angle 270
+	turret -96.5 -129.5 "Langrage Hyper-Heaver"
+	turret 96.5 -129.5 "Warder Anti-Missile"
+	turret -62.5 55 "Warder Anti-Missile"
+	turret 62.5 55 "Langrage Hyper-Heaver"
+	turret 36.5 -55.5 "Banisher Grav-Turret"
+	bay "Fighter" -115 -152
+		angle 30
+	bay "Fighter" 115 -152
+		angle 330
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "Although fierce in battle and highly adaptable, Korath do not easily recover from injury. Without the aid of a surgeon or more equipment than fits into a standard escape pod, a stranded, injured Korath faces poor odds of survival. Therefore, Korath who leave their home territory have placed great importance on the construction of hospital ships that can quickly locate, recover, and treat the survivors of wrecked ships."
+	description "	The Rai'alorej-class Refuge, named for a pioneer in the field of microbot-assisted surgery, is thoroughly appointed with lifeform scanners, locator beacon receivers, ambulances, and search-and-rescue teams. Once onboard, crash victims are greeted with the finest hospital facilities, microbot treatments, and stores of medicine the Exiles have at hand. Even incubators and nurseries are available to treat the young who grow up aboard ship."
+
+
+ship "Ikatila'ej"
+	sprite "ship/ikatila-ej"
+	thumbnail "thumbnail/ikatila-ej"
+	attributes
+		category "Utility"
+		"cost" 109375000
+		"shields" 72700
+		"hull" 93000
+		"required crew" 957
+		"bunks" 1933
+		"mass" 5380
+		"drag" 58
+		"heat dissipation" .29
+		"fuel capacity" 800
+		"cargo space" 845
+		"outfit space" 1314
+		"weapon capacity" 440
+		"engine capacity" 259
+		"spinal mount" 1
+		weapon
+			"blast radius" 600
+			"shield damage" 9000
+			"hull damage" 4800
+			"hit force" 20000
+	outfits
+		"Microbot Grinder"
+		"Shunt-Strike Turret" 3
+		"Grab-Strike Turret" 2
+		"Warder Anti-Missile" 3
+
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Thermal Repeater Rifle"  986
+		"Microbot Defense Station" 26
+
+		"Afterburner (Lunar Class)"
+		"Reverser (Lunar Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Stellar Class)"
+		"Scram Drive"
+
+	"reverse engine" -105 -190.5
+		zoom 0.8
+	"reverse engine" 105 -190.5
+		zoom 0.8
+	engine -84 231.5
+		zoom 0.8
+	engine 84 231.5
+		zoom 0.8
+	engine -61 262.5
+	engine 61 262.5
+	engine -27 249.5
+		zoom 0.8
+	engine 27 249.5
+		zoom 0.8
+	gun 0 -190 "Microbot Grinder"
+	turret 89 -168 "Grab-Strike Turret"
+	turret -89 -168 "Grab-Strike Turret"
+	turret -56 -96 "Shunt-Strike Turret"
+	turret 56 -96 "Warder Anti-Missile"
+	turret -146 83.5 "Warder Anti-Missile"
+	turret 146 83.5 "Shunt-Strike Turret"
+	turret -141.5 177 "Shunt-Strike Turret"
+	turret 141.5 177 "Warder Anti-Missile"
+	explode "tiny explosion" 180
+	explode "small explosion" 80
+	explode "medium explosion" 90
+	explode "large explosion" 60
+	explode "huge explosion" 25
+	"final explode" "final explosion large"
+	description "For most of their manufacturing needs, the Korath rely, as even some terrestrial species do, upon their space station and asteroid infrastructure. Due to their spacebound existence, however, the acceptability for failure and downtime is slim to nonexistent. Should equipment aboard a station or a world-ship fail, the Ikatila'ej, named for an inventor famously proficient in a variety of fields, is called in to provide critical support. Its microbot-run factory produces basic living supplies, machine parts, and systems cores, and may assist in continuing stalled production."
+	description "	When not assisting with damaged ships and stations, or replenishing its own stores, the Ikatila'ej serves as an all-in-one recycling, mining, refining, and factory ship, using its microbot-powered grinder to rapidly turn asteroids and garbage into whatever products the civilian economic planning committees have determined to be in the most dire need."
+
+
 ship "Lor'kas Ik 577"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
@@ -743,12 +938,6 @@ ship "Ra'at Ik 621"
 	bay "Fighter" -50 303 back
 	bay "Fighter" 50 303 back
 	bay "Fighter" 50 303 back
-	bay "Drone" -100 -169
-	bay "Drone" 100 -169
-	bay "Drone" -98 156 back
-	bay "Drone" 98 156 back
-	bay "Drone" -50 303 back
-	drone 50 303 back
 	gun -71 -209 "Fire-Lance"
 	gun 0 -209 "Fire-Lance"
 	gun 71 -209 "Fire-Lance"

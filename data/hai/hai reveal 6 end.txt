@@ -67,37 +67,17 @@ mission "Hai Reveal [C01] Cleanup"
 				
 event "mountaintop ascendant"
 	system "Ultima Thule"
-		object
-			sprite star/f0
-			period 10
-		object
-			sprite planet/desert5
-			distance 200
-			period 22.3607
-		object
-			sprite planet/europa-b
-			distance 403.41
-			period 64.056
-		object
-			sprite planet/desert7-b
-			distance 824.9
-			period 187.302
-		object
-			sprite planet/gas1
-			distance 1706.99
-			period 557.553
-			object
-				sprite planet/ice8-b
-				distance 216
-				period 11.1964
-		object "Wormhole Alpha"
+		government "Hai"
+		# Take down the advertisement and put the wormhole back. Mountaintop remains on its own object.
+		remove object "Wormhole Alpha"
+			sprite planet/wormhole-syndicate-ad
+			distance 4208.63
+			period 2158.5
+		add object "Wormhole Alpha"
 			sprite planet/wormhole
 			distance 4208.63
 			period 2158.5
-			object Mountaintop
-				sprite "planet/station hai eight geocoris"
-				distance 315
-				period 31.1964
+	
 	planet Mountaintop
 		government "Hai"
 		attributes hai "hai tourism"
@@ -345,13 +325,13 @@ mission "Hai Reveal [C05] Cleanup"
 					goto judge
 			label spare
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
-			apply
+			action
 				set "spared terry"
 			`	The holster clicks as you put the weapon away.`
 				goto return
 			label end
 			`	You draw your weapon and point it at her, your thumb on the safety. Some prices are too high to pay for a better future.`
-			apply
+			action
 				set "ended terry"
 			`	The retort of the weapon is taken away on the wind.`
 				goto return
@@ -369,6 +349,8 @@ mission "Hai Reveal [C05] Cleanup"
 		event "hai-human resolution announced"
 		event "Vara K'chrai is accessible"
 		event "wandering nightmare map" 11
+		fail "Hai Reveal [A11-A] Permanent Fleets"
+		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 		conversation
 			`When you return to <planet>, you reassure Sayari and Xilin that there is nothing more to do. The danger is over, for good.`
 			`	As it happens, the summit has functionally concluded by the time you return. In fact, diplomats had been running interference to prolong things, knowing that your return could potentially have critical consequences. Now that you're here, the remaining agenda items miraculously get resolved within hours, and late in the day, you find yourself once again "Where Mountains Touch The Sky," as the successful resolution is announced.`
@@ -412,6 +394,26 @@ mission "Hai Reveal [C05B] End Terry"
 	on complete
 		log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Chose to end her life. This loose end is thoroughly tied up.`
 		log "People" "Terry Adrianopolous" `During the Hai-human crisis, Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and rebuilding the government to be less corrupt, but she condoned kidnapping and exploitation to achieve it. Her story ended on the bluffs of Aspiration, though no one may ever know it.`
+
+#TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
+mission "Hai Reveal [C05C] Cleanup Check"
+	landing
+	invisible
+	to offer
+		has "Hai Reveal [C05] Cleanup: done"
+		has "Hai Reveal [A11-A] Permanent Fleets: active"
+	on offer
+		fail "Hai Reveal [A11-A] Permanent Fleets"
+		fail "Hai Reveal [B02-A] The Blockade Goes Up"
+		event "stormhold unsuppressed"
+
+event "stormhold unsuppressed"
+	system "Alcyone"
+		add fleet "Small Core Pirates" 400
+		add fleet "Large Core Pirates" 600
+		add fleet "Korath Large Raid" 50000
+		remove fleet "Human Wormhole Guards"
+
 
 
 ########################################################################
@@ -561,6 +563,12 @@ event "hai-human resolution announced"
 		add fleet "Navy Friendly Wormhole Guards" 4000
 		add fleet "Free Worlds Friendly Wormhole Guards" 9000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
+	# Release the suppression of Stormhold.
+	system "Alcyone"
+		add fleet "Small Core Pirates" 400
+		add fleet "Large Core Pirates" 600
+		add fleet "Korath Large Raid" 50000
+		remove fleet "Human Wormhole Guards"
 	system "Hassaleh"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Sumar"

@@ -831,6 +831,8 @@ mission "Nanachi 1"
 		# This is a mandatory mission, so the range is as far as a
 		# Heavy Shuttle can reach (500 fuel)
 		near "Wah Ki" 1 5
+		government "Hai"
+		not attributes "uninhabited" "station"
 	destination "Cloudfire"
 	deadline 2 1
 	to offer
@@ -1239,14 +1241,14 @@ mission "Strider 1"
 					goto coalition
 			
 			label remnant
-			apply
+			action
 				set "strider: remnant"
 			`	"A group of humans with hull repair technology?" one of the elders asks with a puzzled look. "I am surprised that we have not heard of these humans before. Are they well known among the Republic?"`
 			`	"No," you explain. "They are a reclusive group unknown to most of humanity. They likely wouldn't take kindly to being visited by aliens."`
 				goto end
 			
 			label coalition
-			apply
+			action
 				set "strider: coalition"
 			`	"A group of three aliens?" one of the elders asks with a puzzled look. "It is not often in the galaxy that such groups appear."`
 			

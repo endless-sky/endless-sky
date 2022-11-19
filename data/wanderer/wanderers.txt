@@ -879,8 +879,13 @@ event "wanderers: more systems lost"
 		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
 
 planet "The Eye"
-	description ""
 	spaceport ""
+	wormhole "The Eye"
+
+wormhole "The Eye"
+	mappable
+	link Sabriset Sko'karak
+	link Sko'karak Sabriset
 
 event "wanderers: the eye begins to open"
 	system Sko'karak

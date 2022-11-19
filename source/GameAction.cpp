@@ -58,7 +58,7 @@ namespace {
 
 		Ship *flagship = player.Flagship();
 		bool isSingle = (abs(count) == 1);
-		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
+		string nameWas = (isSingle ? outfit->DisplayName() : outfit->PluralName());
 		if(!flagship || !count || nameWas.empty())
 			return;
 
@@ -259,7 +259,7 @@ void GameAction::Save(DataWriter &out) const
 	for(auto &&it : giftShips)
 		out.Write("give", "ship", it.first->VariantName(), it.second);
 	for(auto &&it : giftOutfits)
-		out.Write("outfit", it.first->Name(), it.second);
+		out.Write("outfit", it.first->TrueName(), it.second);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -300,7 +300,7 @@ string GameAction::Validate() const
 			return "gift ship model \"" + it.first->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
-			return "gift outfit \"" + outfit.first->Name() + "\"";
+			return "gift outfit \"" + outfit.first->TrueName() + "\"";
 
 	if(teleportPlanet)
 		if(!teleportPlanet->IsValid())
