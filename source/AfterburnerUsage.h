@@ -20,20 +20,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Class used to manage afterburners and their cooldowns/usages.
+// Class used to manage afterburners and their cooldowns/usages on ships.
 class AfterburnerUsage {
 public:
+	// Constructor
 	AfterburnerUsage(const Outfit &outfit);
+
 	bool CanUseAfterburner() const;
-	// Refresh the afterburner, specifying if it will be used or not, and return if it can be used.
+	// Refresh the afterburner, used if for specifying if we want to use it or not.
 	void RefreshAfterburner(bool used = false);
 	const Outfit *Afterburner() const;
 
 
 private:
 	const Outfit &afterburner;
-	double baseDuration;
-	double baseCooldown;
+	// Store the duration and cooldown locally so we don't always look for it in the dictionary.
+	const double baseDuration;
+	const double baseCooldown;
+	// The cooldown we need to wait for, and the time we've used it for already.
 	double afterburnerCooldown = 0.;
 	double afterburnerUsageTime = 0.;
 };

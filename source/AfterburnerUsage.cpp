@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 AfterburnerUsage::AfterburnerUsage(const Outfit &outfit) :
 	afterburner(outfit), baseDuration(outfit.Attributes().Get("afterburner duration")),
-	baseCooldown(outfit.Attributes().Get("base cooldown"))
+	baseCooldown(outfit.Attributes().Get("afterburner cooldown"))
 {}
 
 
@@ -46,11 +46,14 @@ void AfterburnerUsage::RefreshAfterburner(bool used)
 	{
 		if(afterburnerUsageTime < baseDuration)
 		{
-			if(!afterburnerCooldown--)
+			if(!afterburnerCooldown)
 				afterburnerUsageTime++;
+			else
+				afterburnerCooldown--;
 		}
 		else
 		{
+			// Reset the use time and trigger the cooldown.
 			afterburnerUsageTime = 0.;
 			afterburnerCooldown = baseCooldown;
 		}
