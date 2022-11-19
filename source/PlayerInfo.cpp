@@ -1557,7 +1557,6 @@ void PlayerInfo::PoolCargo()
 	// This can only be done while landed.
 	if(!system || !planet)
 		return;
-	
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet)
 				ship->Cargo().TransferAll(cargo);
