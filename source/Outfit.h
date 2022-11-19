@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include "Dictionary.h"
-#include "Personality.h"
 
 #include <map>
 #include <string>
