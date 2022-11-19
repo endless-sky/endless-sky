@@ -180,9 +180,9 @@ test "Enter Name in Conversation"
 		# use a test-data temporary variable for debugging in case of errors
 		apply
 			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
-			"test: <first>" = "<first>"
-			"test: <last>" = "<last>"
+			"test: first name: F" = "first name: F"
+			"test: last name: L" = "last name: L"
 		assert
 			"%TEST%: NAME IN CONVERSATION: offered" == 1
-			"<first>" == "F"
-			"<last>" == "L"
+			"first name: F" == 1
+			"last name: L" == 1
