@@ -366,7 +366,7 @@ mission "FW Syndicate Diplomacy 1B"
 			`	A much older man sitting next to him, Akihito, says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
 			`	"No," Remington says, surprising some of the other men at the table. "No markups necessary." None of the other men argue with Remington over this.`
 			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter within the Dirt Belt in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. In addition, Remington suggested that you might find some "extra goodies" among the Syndicate convoys heading to Tarazed specifically. You thank the Syndicate leaders, and begin the trip back to your ship.`
-			`	Alondo is silent. As you're about to leave the spaceport for the landing pads, you hear someone shout behind you. "No need to be a stranger, Gruyere. Can't stick around for a drink?" You turn to look at who it is, but Alondo keeps walking. You find Samuel Remington approaching, paying you no mind. "Are you still mad at me, Gruyere?" he asks`
+			`	Alondo is silent. As you're about to leave the spaceport for the landing pads, you hear someone shout behind you. "No need to be a stranger, Gruyere. Can't stick around for a drink?" You turn to look at who it is, but Alondo keeps walking. You find Samuel Remington approaching, paying you no mind. "Are you still mad at me, Gruyere?" he asks.`
 			choice
 				`	(Stand in Remington's way.)`
 					goto stand
