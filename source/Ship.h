@@ -105,7 +105,6 @@ public:
 	};
 
 
-
 public:
 	// Functions provided by the Body base class:
 	// bool HasSprite() const;

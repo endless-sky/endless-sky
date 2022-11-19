@@ -34,6 +34,7 @@ public:
 	static const double DEFAULT_SCRAM_DRIVE_COST;
 	static const double DEFAULT_JUMP_DRIVE_COST;
 
+
 public:
 	ShipJumpNavigation() = default;
 
@@ -82,6 +83,7 @@ private:
 
 	// Cached jump navigation information.
 	double hyperdriveCost = 0.;
+	// Map allowable jump ranges to the fuel required to jump at that range.
 	std::map<double, double> jumpDriveCosts;
 	double maxJumpRange = 0.;
 

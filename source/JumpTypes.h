@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef JUMP_TYPES_H_
 #define JUMP_TYPES_H_
 
+
+
 // All possible jump methods for a ship.
 enum class JumpType : int {
 	NONE,
