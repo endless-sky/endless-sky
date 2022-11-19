@@ -2899,7 +2899,7 @@ bool Ship::CannotAct(ActionType actionType) const
 			case ActionType::SCAN:
 				canActCloaked = attributes.Get("cloaked scanning");
 		}
-	bool canSendHail = (actionType == ActionType::COMMUNICATION && crew);
+	bool canSendHail = (actionType != ActionType::COMMUNICATION || crew);
 	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || !canSendHail
 		|| ((cloak == 1. && !canActCloaked)
 		|| (cloak != 1. && cloak && !cloakDisruption && !canActCloaked)));
