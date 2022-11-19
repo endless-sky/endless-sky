@@ -283,7 +283,7 @@ test "Store Outfit On Take Off"
 
 test "Sell Outfit On Take Off"
 	status active
-	description "Test the automatic selling of an outfit in cargo that cannot fit in any ships after taking off from a planet with no outfitter""
+	description "Test the automatic selling of an outfit in cargo that cannot fit in any ships after taking off from a planet with no outfitter."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "A Sparrow and a Shuttle and a Shield Generator on Winter"
