@@ -66,6 +66,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 	on offer
 		log "People" "Teeneep Goot'r" `Teeneep is an activist and social leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped specialists.`
 		log `Many Hai and humans have gone missing over the past few decades. Many of the ones who have subsequently been rescued have had mild cadmium poisoning from some technology not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
+		log `Teeneep doubts the Hai government would arm pirates, but she claims to be able to shut down that operation, if she has solid evidence.`
 		conversation
 			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
 			choice
@@ -76,20 +77,28 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a social advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and human victims are here; they were mostly rescued by other kind merchants in human space, but around half of those here are my staff."`
 			`	"My organization has been researching the issue of disappearing Hai ever since some humans also began disappearing here under similar circumstances, and we've discovered some patterns to the disappearances. Perhaps more pertinently though, since we've found those patterns we've been able to reach some of the victims more quickly upon their return and even rescue a couple ourselves. However, those Hai that you rescued and several others, too, have a very strange commonality. These kidnap victims are all experiencing mild cadmium poisoning."`
 			choice
-				`	"What patterns have you noticed in the kidnappings?"`
-					goto patterns
-				`	"Tell me about the cadmium poisoning."`
-					goto cadmium
-				`	"How long have the kidnappings been happening?"`
-					goto kidnappings
+				`	"Before we discuss that, can you tell me if the Hai government is arming pirates?"`
+					goto direct
+				`	"It sounds like something I can help with, but there's something I need from you first."`
+					goto infotrade
+			label infotrade
+			`	She sounds familiar with the information trade, as she says, "What do you need?"`
+				goto tribute
+			label direct
+			`	Teeneep and the other Hai seem shocked. After a surprised exclamation in Hai, she says, "What!?"`
+			label tribute
+			`	You explain about pirates having Hai weapons, and about a "trusted source" that told you about an entire warehouse of them.`
+			`	"That's... worrying, but the Elders are pacifists to a fault, so I can't imagine them doing it. It is more likely that smugglers took it there, or ordinary pilots sold their used Hai gear. Do you have more evidence?"`
+			`	After you describe what Sayari said about Hai pirate deals, Teeneep shakes her head and says, "Sayari would put a stop to any weapon deals. I'm sure it's something innocuous, like cash, or basic supplies for their anarchist worlds.`
+			`	"If you find solid proof that our government is arming pirates, I can, and will, stop them. There are extreme legal maneuvers civilians can use to force the Elder Council to change their mind.`
+			`	"In the meantime, can you help me?"`
 			label questions
-			`	"Do you have any other questions?"`
 			choice
-				`	"How do you know all of this?"`
+				`	"How do you know so much about the disappearances?"`
 					goto know
 				`	"Why are you on an uninhabited planet?"`
 					goto uninhabited
-				`	"Is anyone helping you?"`
+				`	"Is anyone helping you with your investigations?"`
 					goto anyone
 				`	"What patterns have you noticed in the kidnappings?"`
 					goto patterns
@@ -1022,6 +1031,8 @@ mission "Hai Reveal [A09] History of Appeasement"
 	on visit
 		dialog `Teeneep is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
+		fail "Hai Leaks Response 2A"
+		log `A group of Hai Elders agreed to immediately stop all weapons shipments to pirates, to avoid a conflict with the Republic. Unfortunately, they refused to investigate the mysterious disappearances that Teeneep believes to be kidnappings.`
 		"reputation: Hai (Unfettered)" >?= 10
 		conversation
 			`You return, giving Batu directions to Xilin, and check availabilities. The other diplomats all appear to be busy and so you soon find yourself at Sayari's office only to be met by Teeneep and Sayari arguing. You came to get an update and instead walked into a very tense standoff, with Sayari standing in front of the door and brandishing a drink bottle in one hand while Teeneep shouts in Hai and gestures at various datapads. It looks like Sayari is doing her best to prevent Teeneep from leaving, though it's hard to say if she'd actually be capable of stopping the much younger Hai physically.`

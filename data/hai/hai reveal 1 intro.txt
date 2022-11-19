@@ -642,22 +642,34 @@ event "pirates respond to leaks"
 #If a republic/syndicate campaign gets added this text will need variants.
 mission "Hai Leaks Response 2A"
 	landing
-	invisible
+	name "Pirates with Hai Weapons"
+	description "Katya wants you to find out if the Hai government is arming pirates, and if they are, stop them. Don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
 	source Deep
+	destination Hai-home
 	to offer
 		has "Hai Leaks Response 2: active"
+	to complete
+		has "Hai Reveal [A08] Symbol Identification: done"
 	on offer
 		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic corps for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free Worlds' interests as a diplomat to the Hai.`
+		log `Katya says the Free Worlds has found pirates with Hai weapons, including a warehouse full of them. She is worried that the Hai government may be giving weapons to pirates as tribute, and warns of an "explosive diplomatic incident" if the Republic finds out.`
 		conversation
 			`When you land on Deep, Katya is there waiting for you along with Alondo. "<first>! It's so good to see you again! When the Republic briefed the new Chancellor and his Cabinet on the Hai, he brought us in for advice. We thought to try and reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting. "I thought it seemed odd when they said I was meeting you for this, Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
 			`	"Oh, it was always going to be Alondo," she says, "but there's never a bad excuse for traveling with an old friend, especially when you're meeting other friends too."`
 			`	"Do we have time for a drink before we leave?" asks Alondo.`
-			`	You look around at the busy spaceport and see the workers haven't even noticed your ship waiting for refueling yet.`
-			`	"I think we can spare a short while, and you really should meet Mr. Yang."`
-			`	Mr. Yang had been studiously pretending he wasn't eavesdropping from a distance of a few meters but, before you could call him over, Alondo's slightly suggestive comment of, "Oh, I should definitely meet Mr. Yang," had evidently been overheard.`
-			`	Fortunately, after an hour and a couple of drinks, the embarrassment is long-forgotten when you return to your ship.`
-				decline
+			`	You spend few hours in a pub chatting with Katya and Alondo, and introducing them Yang. After a while, you all begin to leave, and Katya motions you towards her for a private conversation. You follow her to a private booth, and she looks very serious.`
+			choice
+				`	"What is it Katya?"`
+				`	"It's been a while since I've seen you so concerned."`
+			`	"Shhh," she says. "There's a problem I need you to solve... discretely. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
+			`	"I hope ordinary smugglers are at fault, but it may be something more sinister. The Hai government may be arming the pirates, hopefully just as tribute payments. In the south, we know how useful bounties and tributes are for dealing with pirates. From my time as a senator, I can tell you the Republic will not be so understanding.`
+			`	"You must find out if Hai government is arming the pirates, and if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it, and whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
+			choice
+				`	"That's worrying news, Katya. I'll look into it."`
+				`	"Don't worry. I'll stop the Hai from arming pirates."`
+			`	After a few more goodbyes, you head to your ship and prepare to depart.`
+				accept
 	
 mission "Hai Leaks Response 2B"
 	landing
