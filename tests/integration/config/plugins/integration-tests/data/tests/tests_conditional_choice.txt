@@ -167,11 +167,11 @@ test "Enter Name in Conversation"
 			"%TEST%: NAME IN CONVERSATION" = 1
 		call "Trigger Spaceport Mission"
 		input
-			key "shift" "f"
+			key "f"
 		input
 			key "Return"
 		input
-			key "shift" "l"
+			key "l"
 		input
 			key "Return"
 		input
@@ -185,4 +185,4 @@ test "Enter Name in Conversation"
 			"test: name: f l" = "name: f l"
 		assert
 			"%TEST%: NAME IN CONVERSATION: offered" == 1
-			"name: F L" == 1
+			"name: f l" == 1
