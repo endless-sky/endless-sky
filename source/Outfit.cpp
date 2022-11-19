@@ -442,42 +442,6 @@ bool Outfit::IsAfterburner() const
 
 
 
-bool Outfit::CanUseAfterburner() const
-{
-	double cooldown = attributes.Get("afterburner cooldown");
-	return !cooldown || !afterburnerCooldown || afterburnerUsageTime < attributes.Get("afterburner duration");
-}
-
-
-void Outfit::RefreshAfterburner(bool used)
-{
-	double cooldown = attributes.Get("afterburner cooldown");
-	if(!cooldown)
-		return;
-	if(!used)
-	{
-		if(afterburnerUsageTime)
-			afterburnerUsageTime--;
-		else if(afterburnerCooldown)
-			afterburnerCooldown--;
-	}
-	else if(used)
-	{
-		if(afterburnerUsageTime < attributes.Get("afterburner duration"))
-		{
-			if(!afterburnerCooldown--)
-				afterburnerUsageTime++;
-		}
-		else
-		{
-			afterburnerUsageTime = 0.;
-			afterburnerCooldown = cooldown;
-		}
-	}
-}
-
-
-
 // Determine whether the given number of instances of the given outfit can
 // be added to a ship with the attributes represented by this instance. If
 // not, return the maximum number that can be added.

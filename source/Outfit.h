@@ -68,9 +68,6 @@ public:
 	const Dictionary &Attributes() const;
 
 	bool IsAfterburner() const;
-	bool CanUseAfterburner() const;
-	// Refresh the afterburner, specifying if it will be used or not, and return if it can be used.
-	void RefreshAfterburner(bool used = false);
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -114,8 +111,6 @@ private:
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;
-	double afterburnerCooldown = 0.;
-	double afterburnerUsageTime = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 

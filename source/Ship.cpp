@@ -1969,13 +1969,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
 				&& !CannotAct();
-		for(const auto &outfit : Outfits())
-			if(outfit.first->IsAfterburner())
-			{
-				const_cast<Outfit *>(outfit.first)->RefreshAfterburner(applyAfterburner);
-				if(applyAfterburner && FireAfterburner(*outfit.first))
-					isUsingAfterburner = true;
-			}
+		for(auto &afterburner : afterburnerUsages)
+		{
+			afterburner.RefreshAfterburner(applyAfterburner);
+			if(applyAfterburner && FireAfterburner(afterburner))
+				isUsingAfterburner = true;
+		}
 	}
 	if(acceleration)
 	{
@@ -3898,6 +3897,8 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				deterrence = CalculateDeterrence();
 		}
+		if(outfit->IsAfterburner())
+			afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
 
 		if(outfit->Get("cargo space"))
 		{
@@ -4015,10 +4016,11 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 
 
 
-bool Ship::FireAfterburner(const Outfit &outfit)
+bool Ship::FireAfterburner(const Ship::AfterburnerUsage &afterburner)
 {
-	if(!outfit.CanUseAfterburner())
+	if(!afterburner.CanUseAfterburner())
 		return false;
+	const Outfit &outfit = afterburner.afterburner;
 	double thrust = outfit.Attributes().Get("afterburner thrust");
 	double shieldCost = outfit.Attributes().Get("afterburner shields");
 	double hullCost = outfit.Attributes().Get("afterburner hull");
@@ -4383,4 +4385,38 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+bool Ship::AfterburnerUsage::CanUseAfterburner() const
+{
+	return !baseCooldown || !afterburnerCooldown || afterburnerUsageTime < baseDuration;
+}
+
+
+void Ship::AfterburnerUsage::RefreshAfterburner(bool used)
+{
+	if(!baseCooldown)
+		return;
+	if(!used)
+	{
+		if(afterburnerUsageTime)
+			afterburnerUsageTime--;
+		else if(afterburnerCooldown)
+			afterburnerCooldown--;
+	}
+	else if(used)
+	{
+		if(afterburnerUsageTime < baseDuration)
+		{
+			if(!afterburnerCooldown--)
+				afterburnerUsageTime++;
+		}
+		else
+		{
+			afterburnerUsageTime = 0.;
+			afterburnerCooldown = baseCooldown;
+		}
+	}
 }
