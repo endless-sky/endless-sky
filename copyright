@@ -1013,6 +1013,8 @@ Files:
  images/thumbnail/tekkan*
  images/effect/ravager?impact*
  images/effect/swarm*
+ images/hardpoint/buzzer?am*
+ images/hardpoint/locust?turret*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
  images/outfit/ka'het?emp?deployer*
@@ -1631,12 +1633,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/effect/bunrodea?flare*
+ images/effect/buzzer?am*
+ images/effect/yellow?spark*
  images/hardpoint/firestorm battery*
  images/outfit/firestorm?battery*
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
  images/outfit/mcs?exctractor*
  images/projectile/firestorm?torpedo*
+ images/projectile/locust?blaster*
+ images/projectile/mandible?cannon*
+ images/projectile/thorax?cannon*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/thumbnail/modified?dromedary*
@@ -1677,10 +1685,15 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ sound/bunrodea?am*
  sound/drill*
  sound/ion?rain*
  sound/korath?afterburner*
+ sound/locust?blaster*
+ sound/mandible?cannon*
  sound/remnant?afterburner*
+ sound/thorax?cannon*
+ sound/swarm?missile*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.

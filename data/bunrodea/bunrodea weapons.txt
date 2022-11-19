@@ -17,10 +17,10 @@ outfit "Locust Blaster"
 	"weapon capacity" -7
 	"gun ports" -1
 	weapon
-		sprite "projectile/repeater"
-			"frame rate" 5
-		sound "repeater"
-		"hit effect" "repeater impact"
+		sprite "projectile/locust blaster"
+		sound "locust blaster"
+		"hit effect" "bullet impact"
+		"hardpoint offset" 20
 		"inaccuracy" 5
 		"velocity" 10
 		"random velocity" 2
@@ -41,12 +41,11 @@ outfit "Locust Turret"
 	"weapon capacity" -28
 	"turret mounts" -1
 	weapon
-		sprite "projectile/repeater"
-			"frame rate" 5
-		"hardpoint sprite" "hardpoint/repeater turret"
-		"hardpoint offset" 7.
-		sound "repeater"
-		"hit effect" "repeater impact"
+		sprite "projectile/locust blaster"
+		"hardpoint sprite" "hardpoint/locust turret"
+		"hardpoint offset" 40
+		sound "locust blaster"
+		"hit effect" "bullet impact"
 		"inaccuracy" 5
 		"turret turn" 6
 		"velocity" 10
@@ -70,9 +69,11 @@ outfit "Mandible Cannon"
 	"weapon capacity" -29
 	"gun ports" -1
 	weapon
-		sprite "projectile/particle beam"
-		sound "particle"
-		"hit effect" "particle impact"
+		sprite "projectile/mandible cannon"
+			"frame rate" 10
+			"random start frame"
+		sound "mandible cannon"
+		"hit effect" "proton impact"
 		"inaccuracy" .1
 		"velocity" 34
 		"lifetime" 25
@@ -100,21 +101,22 @@ outfit "Thorax Cannon"
 	"active cooling" 3.1
 	"cooling energy" 0.31
 	weapon
-		sprite "projectile/ionball"
+		sprite "projectile/thorax cannon"
 			"frame rate" 15
 			"rewind"
-		sound "ionball"
-		"fire effect" "finisher sparks" 20
-		"hit effect" "ionball ring" 15
-		"hit effect" "ionball impact"
-		"hit effect" "ionball fragment" 24
-		"live effect" "ionball spark" 140
-		"live effect" "ionball trail" 140
-		"live effect" "ionball twinkle" 560
+		sound "thorax cannon"
+		"fire effect" "torpedo fire"
+		"live effect" "yellow spark" 140
+		"live effect" "yellow spark trail" 840
+		"live effect" "yellow spark twinkle" 400
+		"hit effect" "finisher impact" 2
+		"hit effect" "spark" 10
+		"hit effect" "yellow spark fragment" 150
 		"inaccuracy" 0
 		"velocity" 15
 		"lifetime" 120
 		"reload" 120
+		#"turn" 15
 		"firing energy" 3815
 		"firing force" 1250
 		"firing heat" 1905
@@ -122,6 +124,47 @@ outfit "Thorax Cannon"
 		"shield damage" 2870
 		"hull damage" 3430
 	description "The Thorax Cannon is a massive, slow firing weapon that few ships can even support, not only because of its size but also because of the energy needed to fire it. It is also a particularly hot weapon, at least by Bunrodean standards, so it comes with its own cooling system in order to help alleviate the heat produced when fired."
+
+effect "yellow spark"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 3
+	"random velocity" 0.1
+	"velocity scale" -0.5
+
+effect "yellow spark trail"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 2
+	"lifetime" 20
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 5
+	"random spin" 10
+	"velocity scale" 0.2
+	
+effect "yellow spark twinkle"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 6
+	"lifetime" 20
+	"random angle" 360
+	"random velocity" 3
+	"random spin" 10
+	"velocity scale" 0.1
+
+effect "yellow spark fragment"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 4
+	"lifetime" 5
+	"random angle" 360
+	"random velocity" 6
+	"random spin" 10
+	"velocity scale" -0.1
 
 
 
@@ -154,7 +197,7 @@ outfit "Swarm Pod"
 	weapon
 		sprite "effect/swarm"
 			"frame rate" .01
-		sound "meteor"
+		sound "swarm missile"
 		ammo "Swarm Missile"
 		icon "icon/meteor"
 		"die effect" "missile death"
@@ -185,6 +228,15 @@ effect "swarm flare"
 	"lifetime" 40
 	"velocity scale" 0.1
 
+effect "swarm impact"
+	sprite "effect/particle impact"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion tiny"
+	"lifetime" 20
+	"random angle" 2
+	"random spin" 10
+	"velocity scale" -.05
 
 
 outfit "Buzzer Anti-Missile"
@@ -196,8 +248,8 @@ outfit "Buzzer Anti-Missile"
 	"weapon capacity" -19
 	"turret mounts" -1
 	weapon
-		"hardpoint sprite" "hardpoint/warder"
-		"hardpoint offset" 3.
+		"hardpoint sprite" "hardpoint/buzzer am"
+		"hardpoint offset" 5
 		"hit effect" "buzzer"
 		"anti-missile" 4
 		"velocity" 300
@@ -208,9 +260,9 @@ outfit "Buzzer Anti-Missile"
 	description "As the Korath began to saturate systems with mines, the effectiveness of Bunrodean fighters dropped substantially. In response, the Bunrodea developed this rapid-fire anti-missile turret, able to clear sections of a system of Korath mines at blinding speed."
 
 effect "buzzer"
-	sprite "effect/warder"
+	sprite "effect/buzzer am"
 		"no repeat"
-		"frame rate" 6
-	sound "hion"
+		"frame rate" 10
+	sound "buzzer am"
 	"lifetime" 11
 	"velocity scale" 1

@@ -208,6 +208,11 @@ outfit "Chiisana Rift Thruster"
 	"thrust" 6.25
 	"thrusting energy" 0.85
 	"thrusting heat" 0.61
+	"flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.3
+	"flare sound" "ion tiny"
 	description "While the Korath favor raw power in their engines, the Bunrodea favor efficiency, opting to make use of engines that produce less thrust for significantly less heat produced."
 
 outfit "Nami Rift Thruster"
@@ -220,6 +225,11 @@ outfit "Nami Rift Thruster"
 	"thrust" 12.1
 	"thrusting energy" 1.6
 	"thrusting heat" 1.2
+	"flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.6
+	"flare sound" "ion small"
 	description "Although Rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even when compared to terribly inefficient Korath engines."
 
 outfit "Ookii Rift Thruster"
@@ -232,6 +242,11 @@ outfit "Ookii Rift Thruster"
 	"thrust" 22.7
 	"thrusting energy" 2.9
 	"thrusting heat" 2.2
+	"flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.8
+	"flare sound" "ion medium"
 	description "Even though the energy drawn per unit thrust of Rift engines is poorer than that of Korath engines, the overall energy requirement of Rift engines is still far lesser by comparison."
 
 outfit "Subarashii Rift Thruster"
@@ -244,6 +259,10 @@ outfit "Subarashii Rift Thruster"
 	"thrust" 42.8
 	"thrusting energy" 5.3
 	"thrusting heat" 4.1
+	"flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+	"flare sound" "ion large"
 	description "Given the lower size and thrust of Rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines more powerful than even those of the Korath that would allow any ship to zip across the stars like a comet and chase down any potential target."
 
 outfit "Chiisana Rift Steering"
