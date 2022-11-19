@@ -1031,8 +1031,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 	on visit
 		dialog `Teeneep is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
-		fail "Hai Leaks Response 2A"
-		log `A group of Hai Elders agreed to immediately stop all weapons shipments to pirates, to avoid a conflict with the Republic. Unfortunately, they refused to investigate the mysterious disappearances that Teeneep believes to be kidnappings.`
+		log `A group of Hai Elders refused to immediately stop all weapons shipments to pirates, but agreed to stop if the situation deteriorates further. Unfortunately, they refused to even discuss the disappearances.`
 		"reputation: Hai (Unfettered)" >?= 10
 		conversation
 			`You return, giving Batu directions to Xilin, and check availabilities. The other diplomats all appear to be busy and so you soon find yourself at Sayari's office only to be met by Teeneep and Sayari arguing. Teeneep is shouting angrily at Sayari who is trying to calm her. Their argument is so intense that they don't hear you approaching.`
