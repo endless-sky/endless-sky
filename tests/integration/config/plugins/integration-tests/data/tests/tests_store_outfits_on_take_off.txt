@@ -276,7 +276,6 @@ test "Store Outfit On Take Off"
 			and
 				"flagship planet: Prime" > 0
 				"credits" == 0
-				"outfit: D23-QP Shield Generator" == 1
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 1
 
