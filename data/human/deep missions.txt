@@ -23,7 +23,7 @@ mission "Deep: Syndicate Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -112,7 +112,7 @@ mission "Deep: Tarazed Convoy"
 	to offer
 		"combat rating" > 65
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -204,7 +204,7 @@ mission "Deep: Kraz Convoy"
 	to offer
 		"combat rating" > 80
 		not "Deep: Mystery Cubes 4: done"
-		random < 20 + "deep convoy" * 15
+		random < 30 + "deep convoy" * 15
 		or
 			not "chosen sides"
 			has "main plot completed"
@@ -915,7 +915,7 @@ conversation "deep: questioning"
 		goto next
 	
 	label helped
-	apply
+	action
 		set "deep: helped before archaeology"
 	`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information, Captain. Before I let you go, I'd like to thank you for the work you've done for the Deep. I was interested to hear that the same Captain who helped us pursue Beelzebub also helped Albert Foster. Don't worry, we all make stupid mistakes. We'll scratch this one off your record.`
 	`	"You clearly mean no harm to the Deep, so I'll give you the privilege of asking me any questions you might have after this encounter."`
@@ -1313,12 +1313,12 @@ mission "Deep: Remnant 0"
 				`	"I already know what is on the other side of the wormhole. In fact, installing a single quantum keystone is enough to enter into the spatial anomaly."`
 				`	"Sorry, but Hai space is too far for me right now."`
 					decline
-			apply
+			action
 				set "deep: knew of stones before scientists"
 			`	Ivan looks like he is about to fall over with joy after you mention having entered the wormhole. "Really? Please, tell me what you found!"`
 			branch friendly
 				has "event: ember waste label"
-			apply
+			action
 				set "deep: did reveal remnant"
 			`	You tell Ivan all that you saw on the other side of the wormhole, and how you found strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test. You also mention the other oddities of the region of space, including the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
 				goto end
@@ -1328,14 +1328,14 @@ mission "Deep: Remnant 0"
 				`	(Reveal the existence of the Remnant.)`
 				`	(Don't reveal the existence of the Remnant.)`
 					goto secret
-			apply
+			action
 				set "deep: did reveal remnant"
 			`	You tell Ivan about how the region of space beyond the wormhole is known as the "Ember Waste" and that it is inhabited by a group of friendly humans who fled there during the Alpha Wars. These humans have advanced independently from the rest of humanity for centuries. You mention their strange culture, sharing what you can remember about the songs the Remnant people sang.`
 			`	You also mention the other oddities of the Ember Waste, including the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
 				goto end
 				
 			label secret
-			apply
+			action
 				set "deep: did not reveal remnant"
 			`	You tell Ivan about the region of space beyond the wormhole and its vast loneliness. You describe the ever-present red glow, similar to the color of the wormhole. You also mention the strange alien creatures in Nenia that are able to survive in the vacuum of space, as well as the large number of wormholes that allow traversal throughout the region.`
 				
@@ -1494,7 +1494,7 @@ conversation "deep: remnant"
 	`	You begin by recounting your experience with the strange space-dwelling creatures you found in the Nenia system. Ivan's eyes go wide when you mention the ease with which they fed on asteroids, and how they seemed to effortlessly escape from the gravity of local gas giants. You also mention that there are more strange wormholes like the one that you passed through to enter the region of space, including a series of wormholes that create a loop between multiple systems.`
 	branch friendly
 		has "event: ember waste label"
-	apply
+	action
 		set "deep: did reveal remnant"
 	`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
 		goto remnant2
@@ -1504,13 +1504,13 @@ conversation "deep: remnant"
 		`	(Reveal the existence of the Remnant.)`
 		`	(Don't reveal the existence of the Remnant.)`
 			goto secret
-	apply
+	action
 		set "deep: did reveal remnant"
 	`	You then tell them about the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
 		goto remnant2
 
 	label secret
-	apply
+	action
 		set "deep: did not reveal remnant"
 	`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the alien creatures which inhabit the region. They seem to agree that they need to learn more about these aliens.`
 	`	"We can seek to learn more about these alien creatures later," Ivan says.`
@@ -2722,7 +2722,7 @@ mission "Stone of our Fathers 5"
 				goto drinkandbemerry
 			label followcairn
 			`	You follow Thorleif up a mostly overgrown trail for about half an hour before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special and timeless about this meadow.`
-			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize. It is covered with filled with letters and images that are unfamiliar to you.`
+			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize. It is covered with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
 			`	He points at a smallish cairn next to the Elf-Stone. "This, though, is what we're here for."`
 			`	You eye the worn and weather-beaten cairn with a faded name plate that has 'Hlewagast' carved into its base.`
@@ -2785,12 +2785,12 @@ mission "Home for Skadenga 1"
 			`	The woman frowns, but nods knowingly. "I am afraid, ser, most seem to think the way you do. Still, if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that, she turns and walks briskly back to her booth.`
 				decline
 			label excursion
-			apply
+			action
 				payment -2000
 			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
 			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
 			`	She hits a switch and the hatch opens; she then escorts you into a frigid maintenance dock. A loud, ugly vehicle is whirring at the center of a mess of broken and discarded parts. "There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
-			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mismash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
+			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mishmash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
 			choice
 				`	"Are you sure this thing is safe?"`
 				`	"How old is this thing?!"`
@@ -2948,7 +2948,7 @@ mission "Home for Skadenga 1"
 				`	(Sleep now, think later.)`
 					goto villagearrival
 			label jacket
-			apply
+			action
 				set "put on jacket"
 			`	You throw on the jacket and stuff a few rags in your coat for good measure.`
 			`	Hjlod nods at you and opens the hatch. "It is only meter to surface."`
@@ -3006,7 +3006,7 @@ mission "Home for Skadenga 1"
 			`	"We are pleased to call you guest. You have saved our daughter, and more; you will save us all." The elderly woman and everyone behind her kneels before you.`
 			branch "withhjlod"
 				has "put on jacket"
-			apply
+			action
 				set "Hjlodsaved"
 			choice
 				`	"Woah, woah, woah! What do you mean 'save us all?'"`
@@ -3288,13 +3288,13 @@ mission "Home for Skadenga 4"
 				`	"Windblain."`
 				`	"Asgard."`
 					goto asgard
-			apply
+			action
 				set "Nifel"
 			`	You answer, "There is a nearly abandoned village called Hrithfjall next to a coastal God-Stone. Something about that place felt right. I believe that is where the Skadenga should migrate."`
 			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
 				goto end
 			label asgard
-			apply
+			action
 				set "Asgard"
 			`	You answer, "On Asgard, there is a great market built around their God-Stone, and many new homes in need of people to fill them. The people there have lost their way and they need the Skadenga to remind them of who they were."`
 			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis.`
@@ -3689,12 +3689,12 @@ mission "Home for Skadenga 9"
 				`	"I'm in. Deal."`
 					goto deal
 				`	"I'm out. No deal."`
-			apply
+			action
 				set "refusedhroar"
 			`	Hroar smirks. "Alright. You're out. Get outta my booth, and good luck on your little charity adventure." Hroar goes back to drinking his whiskey as the saloon's swinging door hits you on your way out."`
 				decline
 			label deal
-			apply
+			action
 				set "dealwithhroar"
 			`	"Good. Good. People making deals. That's what society is all about, ya know? Alright, listen up: it'll take me about two weeks to get my fleet ready to transport your friends. Will take a good handful of trips too, but you only need to guide us for the first one. So, come back here then and we'll get this show on the road."`
 				decline
@@ -3849,6 +3849,7 @@ mission "Home for Skadenga 13"
 			has "Home for Skadenga Captain: done"
 	on offer
 		outfit "Tear of Skade"
+		event "the book" 200
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
 			scene "outfit/skadetear"
@@ -3883,7 +3884,7 @@ mission "Home for Skadenga 13"
 			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
 			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your clothes.`
-			`	You wonder if you're forgetting anything - if you should find Hroar, or Hjlod, and speak with them. But they are nowhere in sight, and you realize there will be time to see them again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
+			`	You wonder if you're forgetting anything - if you should find Hjlod and speak with her. But she is nowhere in sight, and you realize there will be time to see her again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
 				decline
 
 
@@ -4094,10 +4095,7 @@ mission "The Book of Skadenga"
 	to offer
 		random < 10
 		or
-			has "Stones of Skadenga 4: done"
-			and
-				has "Skadenga Call 2: done"
-				has "event: the book"
+			has "event: the book"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
@@ -4107,7 +4105,7 @@ mission "The Book of Skadenga"
 					goto ignore
 				`	(Pick the book up.)`
 			branch windblain
-				has "Stones of Skadenga 4: done"
+				has "Home for Skadenga 13: offered"
 			`	The book feels solid in your hands, and you scan through it. There are chapters about near death survival on Nifel, the subtle hostility of Asgard, the sudden death of the old Ondurdis, who you learn was named Eymani, and the triumph of Hjlod and the survivors on Nifel.`
 				goto end
 			label windblain
