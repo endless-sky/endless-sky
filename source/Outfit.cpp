@@ -442,17 +442,38 @@ bool Outfit::IsAfterburner() const
 
 
 
-bool Outfit::TryUseAfterburner()
+bool Outfit::CanUseAfterburner() const
+{
+	double cooldown = attributes.Get("afterburner cooldown");
+	return !cooldown || !afterburnerCooldown || afterburnerUsageTime < attributes.Get("afterburner duration");
+}
+
+
+void Outfit::RefreshAfterburner(bool used)
 {
 	double cooldown = attributes.Get("afterburner cooldown");
 	if(!cooldown)
-		return true;
-	if(afterburnerUsageTime < attributes.Get("afterburner duration"))
-		if(!afterburnerCooldown)
-			return ++afterburnerUsageTime;
-	if(!afterburnerCooldown)
-		afterburnerCooldown = cooldown;
-	return --afterburnerCooldown;
+		return;
+	if(!used)
+	{
+		if(afterburnerUsageTime)
+			afterburnerUsageTime--;
+		else if(afterburnerCooldown)
+			afterburnerCooldown--;
+	}
+	else if(used)
+	{
+		if(afterburnerUsageTime < attributes.Get("afterburner duration"))
+		{
+			if(!afterburnerCooldown--)
+				afterburnerUsageTime++;
+		}
+		else
+		{
+			afterburnerUsageTime = 0.;
+			afterburnerCooldown = cooldown;
+		}
+	}
 }
 
 

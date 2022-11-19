@@ -1969,12 +1969,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
 				&& !CannotAct();
-		if(applyAfterburner)
-		{
-			for(const auto &outfit : Outfits())
-				if(outfit.first->IsAfterburner() && FireAfterburner(const_cast<Outfit &>(*outfit.first)))
+		for(const auto &outfit : Outfits())
+			if(outfit.first->IsAfterburner())
+			{
+				const_cast<Outfit *>(outfit.first)->RefreshAfterburner(applyAfterburner);
+				if(applyAfterburner && FireAfterburner(*outfit.first))
 					isUsingAfterburner = true;
-		}
+			}
 	}
 	if(acceleration)
 	{
@@ -4014,10 +4015,10 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 
 
 
-double Ship::FireAfterburner(Outfit &outfit)
+bool Ship::FireAfterburner(const Outfit &outfit)
 {
-	if(!outfit.TryUseAfterburner())
-		return 0.;
+	if(!outfit.CanUseAfterburner())
+		return false;
 	double thrust = outfit.Attributes().Get("afterburner thrust");
 	double shieldCost = outfit.Attributes().Get("afterburner shields");
 	double hullCost = outfit.Attributes().Get("afterburner hull");

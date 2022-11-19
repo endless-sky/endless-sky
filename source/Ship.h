@@ -424,7 +424,7 @@ public:
 	void ExpendAmmo(const Weapon &weapon);
 
 	// Try to fire this afterburner, and return the thrust.
-	double FireAfterburner(Outfit &outfit);
+	bool FireAfterburner(const Outfit &outfit);
 
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
