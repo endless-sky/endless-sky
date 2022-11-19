@@ -813,7 +813,7 @@ mission "Coalition Outbreak 2"
 	on stopover
 		dialog `A group of Saryd workers is waiting for you, and they load the <cargo> onto your ship. A laboratory worker babbles about how you must care for them.`
 	on visit
-		dialog `You've reached <planet>, but the vaccines aren't here yet. Depart and wait for whichever ships are carrying them to arrive.`
+		dialog `You've reached <planet>, but the vaccines aren't here yet. Once you've picked them up, make sure all ships that are carrying them arrive in this system.`
 	on complete
 		payment 943720
 		"coalition jobs" += 2
@@ -1196,7 +1196,7 @@ mission "Saryd Couple 4"
 				`	"You don't need to worry about paying me, I helped because I wanted to, not for a payday."`
 				`	"Well, I hope everything goes well. Best of luck to you two!"`
 					goto end
-			apply
+			action
 				set "refused saryd couple payment"
 			`	They look at you confused and then try to insist on paying you, but after some minutes they agree. "Too kind a heart you are, Captain," Aunaris says.`
 			label end
@@ -1271,7 +1271,7 @@ mission "Longcow Antibiotics 1"
 	on stopover
 		dialog `The dockworkers load <cargo> into your cargo hold after verifying you've been hired by the Arach cooperative. A bit after the last crate has been placed, you're contacted by the Arachi, and they say you should bring the antibiotics to <destination>, where they will pay you <payment>.`
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying the longcow antibiotics hasn't entered the system yet. Better depart and wait for it.`
+		dialog `You land on <planet>, but the Arach ranchers don't come to meet you as you've not brought the longcow antibiotics. Make sure all your ships carrying the cargo arrive in this system after you've picked it up.`
 	on complete
 		"coalition jobs" += 2
 		payment 421000
@@ -1607,7 +1607,7 @@ mission "Saryd University Lecture"
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
-			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it contiunes to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
+			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
 				goto questionthree
 			label war
 			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
@@ -1653,7 +1653,7 @@ mission "Saryd University Lecture"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
-			`	"I've met an alien species there called the Korath," you say. "They're reptillian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
+			`	"I've met an alien species there called the Korath," you say. "They're reptilian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			branch unfettered
 				has "coalition knows hai"
@@ -2633,7 +2633,7 @@ mission "Coalition: Expeditions Past 6"
 				`	"Actually, yes. They were called Sheragi."`
 				`	"No, I didn't even know there used to be ruins here."`
 					goto notknow
-			apply
+			action
 				"told coalition about sheragi" ++
 			`	Surprised that you know more, she listens to your story with Albert Foster, and how you had a dream about ships evacuating Zug. You tell her of the city buried under the layers of rock, the efforts to uncover it, and how the Quarg eventually sent someone to keep watch of the digging process.`
 			`	"Cities buried whole by lava? Tuned their scanners to look for such odd ruins, no expedition must have..." she stops and thinks for a few minutes, working on the pylon's command panel. "Tell the story again, could you, Captain <last>? Formally record the findings here, I would like." You spend the next few hours retelling what you saw, and helping her collect what information on the Sheragi and their ruins humans have learned since Foster published his initial findings.`
@@ -2849,9 +2849,8 @@ mission "Coalition: Expeditions Past 10"
 			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits and thanking you for helping recover the data of the sixth expedition.`
 				decline
 			label sheragi
-			apply
-				clear "told coalition about sheragi"
 			action
+				clear "told coalition about sheragi"
 				payment 50000000
 			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits and thanking you for helping recover the data of the sixth expedition. You decide to take some time to rest in your ship, after all that's happened, but not an hour passes before your ship is hailed by the local authorities, asking you to please open your hatch.`
 			`	You comply, and one of the Heliarch consuls from earlier, a Saryd, comes in. "Hello, Captain," he greets you with a somewhat shaky voice. "Just going over the findings, we were..." he struggles at finding words, eyes fixated on the ground. "Caught our attention the most, the report on Ancient Light has. The report about the 'Sheragi' and the ruins on a nearby world." He pauses, and pulls out a device similar to the one Sedlitaris used to transfer you your payment. "Finished the journey of ancient Saryd inspectors, humanity's efforts, your efforts, have. For that, hope to compensate you and the girl enough, the council cannot." He inputs a few commands, and you look to see you've received another 15,000,000 credits. "Sent her to die, we had. I had. And with answers to secrets our ancestors dreamed of unveiling, she returned." His eyes finally come up, meeting yours. "Glad I am, that proud of at least one of us, they can be." He looks away again, gives you a nod, and leaves your ship.`
@@ -2976,7 +2975,7 @@ mission "Coalition: Long Lost Property 3"
 			branch "convince" "fail"
 				random < 20
 			label convince
-			apply
+			action
 				payment -100000
 			`	He stares at you for a few seconds, and lets out a laugh. "Well, it was worth a try. Alright, a hundred thousand it is."`
 				goto where
@@ -2989,7 +2988,7 @@ mission "Coalition: Long Lost Property 3"
 			choice
 				`	"Fine, just tell me already."`
 			label bribe
-			apply
+			action
 				payment -1000000
 			`	"Thank you for your patronage," he says, and sits back down.`
 			label where
@@ -3013,7 +3012,7 @@ mission "Coalition: Long Lost Property 3"
 		system "Persian"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Cohen"
 		conversation
-			apply
+			action
 				set "idriss probe recovered"
 			`The pirates are waiting for you when you board their Quicksilver, and you exchange shots for a while. Once you've cleared the entrance, you explore the ship, and find what should be the probe - it matches what you were shown by House Idriss' workers, if with a lot of extra wiring wrapped around it. The pirates must have tinkered with it in attempts to use it as a warning system about incoming fleets. You remove the wires, free the probe from its attachments to the ship, and let it loose into the void. You then hurry back to your ship, and catch the drifting probe into your hold. Now you need only bring it back to House Idriss.`
 				launch

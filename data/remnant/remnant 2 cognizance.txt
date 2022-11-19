@@ -122,6 +122,8 @@ mission "Remnant: Cognizance 2"
 		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
 	on complete
 		event "korath hunting"
+		event "korath rescue: nenia small"
+		event "korath rescue: nenia small end" 18
 		conversation
 			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something, and then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
 
@@ -181,8 +183,10 @@ mission "Remnant: Cognizance 4"
 				"Palavret (Ember)" 4
 				"'olofez" 12
 		conversation
-			apply
+			action
 				set "remnant: cognizance: killed korath fleet"
+				event "korath rescue: aescolanus medium"
+				event "korath rescue: aescolanus medium end" 18
 			`You've destroyed the Korath fleet that was harassing the void sprites.`
 	on enter "Aescolanus"
 		set "remnant: cognizance: found korath fleet"
@@ -256,6 +260,8 @@ mission "Remnant: Cognizance 5"
 	on enter "Aescolanus"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
 	on complete
+		event "korath rescue: nenia medium"
+		event "korath rescue: nenia medium end" 18
 		conversation
 			`The task force streams back into <planet> without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to return to space for whenever it's needed. As the first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
 
@@ -372,7 +378,7 @@ mission "Remnant: Cognizance 9"
 	on offer
 		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed Esquiline station.`
 		conversation
-			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another Remnant are gathered around the stack, checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer. "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. They will be going with you."`
+			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another Remnant are gathered around the stack, checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery." He gestures to the engineer. "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. They will be going with you."`
 			`	"It will be a pleasure to work with you," signs Gavriil, making a short bow. "We will be traveling to a research station on <planet>. Yes, it is a gas giant." He smiles at that. "I have to get some equipment set up and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
 				accept
 	on complete
@@ -830,13 +836,15 @@ mission "Remnant: Cognizance 21"
 				`	(Ask if I can help with their work.)`
 					goto scienceassistant
 				`	(Explore Ssil Vida.)`
-			apply explorationinterest += 1
+			action
+				explorationinterest ++
 			`	You pick up some instruments, recording equipment, and wayfinding labels, then check the map tracking the other Remnant researchers. Picking an unexplored direction, you set off.`
 			`	The first few corridors are marked with labels indicating the direction that other explorers travelled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars along each side, and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
 			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours exploring you head back to the main area.`
 				goto wrapup
 			label scienceassistant
-			apply scienceinterest += 1
+			action
+				scienceinterest ++
 			`	You follow Dusk over to the equipment, and ask if there is anything you can do to help. He looks surprised, but pleased. After thinking about it for a moment, he asks you if you can help monitor some diagnostics and do some preventative maintenance on some of the equipment. Over the following few hours, Dusk keeps you involved in the work, occasionally explaining what the various pieces of equipment do. The rest of the team quickly follows suit, and before long you feel like part of the team. By the time Dusk starts wrapping up the observations you have started to pick up some of the scientific vocabulary, along with a few of the basics behind how the equipment works.`
 			`	You help pack up the equipment, then head back to the main room where Dusk and several others are gathered.`
 				goto wrapup
@@ -1154,7 +1162,7 @@ mission "Remnant: Cognizance 25"
 	on offer
 		event "remnant: ssil vida inhabited"
 		conversation
-			`You have barely had a chance to check to finish your pre-flight checks on <ship> before Gavriil is tapping on your airlock. "Setting up a new environment is always an interesting challenge," Gavriil gestures. "But to the task at hand: Could you do a quick patrol through this collection of newly accessible systems? We have scouts en route with surveillance satellites to place in each of them, but I picked up the signature of a Palavret that was here recently, and I want to be sure that it left no surprises." They pause, then make a gesture you have come to recognize as meaning the accompanying message is intended as a summary. "So, visit each of the systems in this sector, and make sure that the Palavret did not leave anything behind." Their gestures switch to a tone of finality. "Can you help with this?"`
+			`You have barely had a chance to finish your pre-flight checks on <ship> before Gavriil is tapping on your airlock. "Setting up a new environment is always an interesting challenge," Gavriil gestures. "But to the task at hand: Could you do a quick patrol through this collection of newly accessible systems? We have scouts en route with surveillance satellites to place in each of them, but I picked up the signature of a Palavret that was here recently, and I want to be sure that it left no surprises." They pause, then make a gesture you have come to recognize as meaning the accompanying message is intended as a summary. "So, visit each of the systems in this sector, and make sure that the Palavret did not leave anything behind." Their gestures switch to a tone of finality. "Can you help with this?"`
 			choice
 				`	"Yes."`
 					accept
@@ -1176,6 +1184,8 @@ mission "Remnant: Cognizance 25"
 	on waypoint
 		dialog "You have patrolled all six systems."
 	on complete
+		event "korath rescue: egeria tiny"
+		event "korath rescue: egeria tiny end" 14
 		payment 250000
 		conversation
 			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three 'olofezes that you located. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
@@ -1444,7 +1454,7 @@ mission "Remnant: Cognizance 33"
 				"Quicksilver (Proton)" 3
 	on complete
 		payment 250000
-		event "remnant: ssil vida area unvisted"
+		event "remnant: ssil vida area unvisited"
 		event "remnant: ssil vida activation"
 		conversation
 			`When you contact <planet> to confirm where to unload your cargo you are greeted by Dusk, who directs you to a docking bay closer to the main reactor. As you open the hatch, though, it is Gavriil and a group of Remnant with lifters waiting. They welcome you cheerfully, but they definitely seem in a rush to get the processed fuel unloaded and shuttled into the depths of the station. Once the last unit is off your ship, Gavriil slows down enough to thank you for the prompt delivery, but apologizes as they rush off as there is not much time left. Their parting gesture suggests you talk to Dusk up in the control room.`

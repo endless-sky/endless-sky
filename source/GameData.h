@@ -59,6 +59,7 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
+class Wormhole;
 
 
 
@@ -132,6 +133,7 @@ public:
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
+	static const Set<Wormhole> &Wormholes();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

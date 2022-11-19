@@ -291,8 +291,8 @@ public:
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
-	// Mark this ship as property of the given ship.
-	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
+	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
 
@@ -341,6 +341,8 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
+	// Calculate the ship's drag after accounting for drag reduction.
+	double Drag() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -354,6 +356,7 @@ public:
 
 	// Get this ship's movement characteristics.
 	double Mass() const;
+	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
