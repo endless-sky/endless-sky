@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Locust Blaster"
 	category "Guns"
@@ -86,7 +89,7 @@ outfit "Mandible Cannon"
 		"hit force" 140
 		"shield damage" 179
 		"hull damage" 115
-	description "The Mandible Cannon is a significant part of the Bunrodean arsenal due to its versatility. Its range exceeds that of smaller weapons, and its size allows it to be used in numbers on most Bunrodean ships. The energy draw required to fire is rather significant, though, particularly for Bunrodean ships that rely on solar cells."
+	description "The Mandible Cannon is a significant part of the Bunrodean arsenal due to its versatility. Its range exceeds that of smaller weapons, and its size allows it to be used in numbers on most Bunrodean ships. However, the energy draw required to fire is rather significant, particularly for Bunrodean ships that rely on solar cells."
 
 
 
@@ -174,7 +177,7 @@ outfit "Swarm Clip"
 	"mass" 2.5
 	"outfit space" -10
 	"swarm capacity" 150
-	description "Swarm clips provide a sizeable increase in ammo capacity for Swarm Pods, holding a respectible 150 missiles able to be swiftly loaded into a launcher after its current clip is empty."
+	description "Swarm Clips provide a sizeable increase in ammo capacity for Swarm Pods, holding a respectable 150 missiles able to be swiftly loaded into a launcher after its current clip is empty."
 
 outfit "Swarm Missile"
 	category "Ammunition"

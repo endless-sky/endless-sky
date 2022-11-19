@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Kaiken"
 	sprite "ship/kaiken"
@@ -52,7 +55,7 @@ ship "Kaiken"
 	leak "flame" 60 80
 	explode "tiny explosion" 20
 	explode "small explosion" 15
-	description "While not particularly fast by fighter standards, where the Kaiken lacks in speed it makes up for in durability and firepower, boasting a significant amount of weapon space and ports for up to three guns. And should the Kaiken need to retreat, each fighter has a built in cloaking device and a small amount of fuel that should be enough to allow the fighter to return to its carrier for repairs."
+	description "While not particularly fast by fighter standards, where the Kaiken lacks in speed it makes up for in durability and firepower; it boasts a significant amount of weapon space and ports for up to three guns. Should the Kaiken need to retreat, each fighter has a built in cloaking device and a small amount of fuel that should be enough to allow the fighter to return to its carrier for repairs."
 
 
 
@@ -116,7 +119,7 @@ ship "Sasumata"
 	explode "medium explosion" 20
 	explode "large explosion" 5
 	"final explode" "final explosion small"
-	description "The Sasumata is the chief scout ship of the Bunrodea. While not designed for combat, this stealth transport vessel is still capable of holding its all against some smaller warships thanks to its four fighter bays that turn the Sasumata into a force to be reckoned with while its fighters are deployed."
+	description "The Sasumata is the chief scout ship of the Bunrodea. While not designed for combat, this stealth transport vessel is still capable of holding its all against some smaller warships thanks to its four fighter bays that turn the Sasumata into a force to be reckoned with when its fighters are deployed."
 
 
 
@@ -419,7 +422,7 @@ ship "Kama"
 	explode "large explosion" 30
 	explode "huge explosion" 10
 	"final explode" "final explosion medium"
-	description "The Kama gunship is a formidable warship, capable of carrying up to ten guns as well as having a single turret mount typically equipped with an anti-missile turret, making the Kama less susceptible to missile weaponry than its smaller sibling, the Kunai."
+	description "The Kama gunship is a formidable warship, capable of carrying up to ten guns as well as having a single turret mount typically equipped with an anti-missile turret. This makes the Kama less susceptible to missile weaponry than its smaller sibling, the Kunai."
 
 
 
@@ -496,4 +499,4 @@ ship "Chigiriki"
 	explode "large explosion" 20
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Chigiriki is the largest of the Bunrodea's gunships, boasting an astonishing seventeen gun ports, one of which is equipped with the devastating Thorax Cannon, a massive canon capable of dealing significant damage to any ship that dares get in the Chigiriki's way. Some Chigiriki also double as missile platforms, raining down a walls of missiles so thick on their target that it can blot out the nearest star."
+	description "The Chigiriki is the largest of the Bunrodea's gunships, boasting an astonishing seventeen gun ports. One of these ports is equipped with the devastating Thorax Cannon, a massive cannon capable of dealing significant damage to any ship that dares get in the Chigiriki's way. Some Chigiriki also double as missile platforms, raining down a walls of missiles so thick on their target that it can blot out the nearest star."

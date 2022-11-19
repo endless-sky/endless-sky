@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Shield Relay Booster"
 	category "Systems"
@@ -17,7 +20,7 @@ outfit "Shield Relay Booster"
 	"shield generation" 0.15
 	"shield energy" 0.21
 	"relay upgrades" -1
-	description "The shield relay booster is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Boosters increase shield generation strength of a relay, but at the cost of reduced energy efficiency."
+	description "The shield relay booster is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Boosters increase the shield generation strength of a relay, but at the cost of reduced energy efficiency."
 
 outfit "Shield Relay Limiter"
 	category "Systems"
@@ -39,7 +42,7 @@ outfit "Small Shield Relay"
 	"shield generation" 0.9
 	"shield energy" 0.55
 	"relay upgrades" 6
-	description "Bunrodean shield relays are impressively effiecent; while a similarly sized shield generator from another faction might be capable of providing more shield generation, Bunrodean shield relays provide a modest amount of shield generation for only a small amount of energy."
+	description "Bunrodean shield relays are impressively efficient; while a similarly sized shield generator from another faction might be capable of providing more shield generation, Bunrodean shield relays provide a modest amount of shield generation for only a small amount of energy."
 	description "	Shield relays are able to be upgraded by installing shield boosters or limiters, which alter the performance of the shield relay. Each relay only has a limited number of slots for these upgrades, though."
 
 outfit "Large Shield Relay"
@@ -51,7 +54,7 @@ outfit "Large Shield Relay"
 	"shield generation" 2.75
 	"shield energy" 1.4
 	"relay upgrades" 16
-	description "Some Bunrodean military captains argued that trading shield generation for energy efficiency is a foolish trade, while merchant captains looking to get the best out of their reactors argued that they could be more energy efficient. As such, shield relays are able to be customized to the owner's liking using external components."
+	description "Some Bunrodean military captains argued that trading shield generation for energy efficiency is a foolish trade, while merchant captains looking to get the most out of their reactors argued that they could be more energy efficient. As such, shield relays are able to be customized to the owner's liking using external components."
 	description "	Shield relays are able to be upgraded by installing shield boosters or limiters, which alter the performance of the shield relay. Each relay only has a limited number of slots for these upgrades, though."
 
 
@@ -76,7 +79,7 @@ outfit "Nanite Limiter"
 	"hull repair rate" -0.02
 	"hull energy" -0.17
 	"nanite upgrades" -1
-	description "The nanite limiter is a component that can be installed into a Bunrodean nanite fabricators in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
+	description "The nanite limiter is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
 
 outfit "Small Nanite Fabricator"
 	category "Systems"
@@ -99,8 +102,8 @@ outfit "Large Nanite Fabricator"
 	"hull repair rate" 2.65
 	"hull energy" 4.4
 	"nanite upgrades" 10
-	description "The creation of nanite fabricators was spurred on by early contact between the Bunrodea and Korath. The hull-walking robots of Korath System Cores allowed Korath ships to make repairs without the need of a spaceport, a trait that the Bunrodea favored for use in their scout vessesl."
-	description "	Nanite fabricators are able to be upgraded by installing nanite enhancers or limiters, which alter the performance of the fabricator. Each fabricator only has a limited number of slots for these upgrades, though."
+	description "The creation of nanite fabricators was spurred on by early contact between the Bunrodea and Korath. The hull-walking microbots of Korath System Cores allowed Korath ships to make repairs without the need of a spaceport, a trait that the Bunrodea favored for use in their scout vessesl."
+	description "	Nanite fabricators are able to be upgraded by installing nanite enhancers or limiters, which alter the performance of the fabricator. Each fabricator only has a limited number of slots for these upgrades, however."
 
 
 
