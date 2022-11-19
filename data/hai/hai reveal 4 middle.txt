@@ -85,23 +85,39 @@ mission "Hai Reveal [A02] Symbol Identification"
 			label questions
 			choice
 				`	"How do you know all of this?"`
+					to display
+						not "Hai Reveal [A02] Symbol Identification: label know"
 					goto know
 				`	"Why are you on an uninhabited planet?"`
+					to display
+						not "Hai Reveal [A02] Symbol Identification: label uninhabited"
 					goto uninhabited
 				`	"Is anyone helping you?"`
+					to display
+						not "Hai Reveal [A02] Symbol Identification: label anyone"
 					goto anyone
 				`	"What patterns have you noticed in the disappearances?"`
+					to display
+						not "Hai Reveal [A02] Symbol Identification: label patterns"
 					goto patterns
 				`	"Tell me about the cadmium poisoning."`
+					to display
+						not "Hai Reveal [A02] Symbol Identification: label cadmium"
 					goto cadmium
 				`	"How long have the disappearances been happening?"`
+					to display
+						not "Hai Reveal [A02] Symbol Identification: label disappearances"
 					goto disappearances
 				`	"That's enough information. How can I help you?"`
 					goto help
 			label uninhabited
+			action
+				set "Hai Reveal [A02] Symbol Identification: label uninhabited"
 			`	Teeneep looks at you as if you were daft. "Kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide critical people or information. If there is a coordinated kidnapping effort as we suspect, they would track down threats to the operation, like escaped victims or our organization. We have plenty of space here to do our work without precautions that would be necessary on a populated planet."`
 				goto questions
 			label cadmium
+			action
+				set "Hai Reveal [A02] Symbol Identification: label cadmium"
 			`	A Hai in a medical uniform explains. "The victims each have been exposed to airborne cadmium particles, which must have been circulating through a ship's ventilation. Although the level of exposure is quite low, after being rescued we can detect clearly elevated levels in many who were taken.`
 			`	"No known human or Hai ship technology exhausts these particles. There are some Hai medical microbots that leave behind something similar, but not quite the same, and those are microbots are self-contained for disposal. We believe this is coming from another race's technology."`
 			`	They share a glance with Teeneep, "We have our suspicions but they're not conclusive yet."`
@@ -110,19 +126,27 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	"We were able to look at the scan of that modified Geocoris you recovered. It has self-repair systems that use technology which could be responsible for something like this, and we suspect they came from the same place."`
 				goto questions
 			label patterns
+			action
+				set "Hai Reveal [A02] Symbol Identification: label patterns"
 			`	"First, you must understand that violent crimes in Hai space are not a rare thing, though they aren't a day-to-day part of life as in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Some Hai go on an adventure one day and then fall in a crevasse or get eaten by a beast. Some join the Unfettered but don't tell anyone. Most cases are solved: the person is found dead or alive. Sometimes, though, no person or body is ever found."`
 			`	"In recent years, a disproportionate number of Hai and human disappearances are from the intelligentsia: doctors, scientists, engineers, architects. Most were specialists within their field. None were prominent enough for their departure to send shock waves in the community though. Some disappeared from worlds where we'd expect to be able to track them to their general area, but instead, they are simply... gone.`
 			`	"We believe someone is kidnapping researchers and specialists and trying to hide it beneath the noise."`
 				goto questions
 			label disappearances
+			action
+				set "Hai Reveal [A02] Symbol Identification: label disappearances"
 			`	Teeneep answers, "In human space, we don't know, but after collating records in Hai space it seems to have happened in three spates each lasting several years. The earliest date back to only about a decade after we made contact with humans, but the circumstances and types of victims varied over the years. This means that we can't even say for sure if the same people are behind it, but every investigation has ultimately dead-ended with similar difficulties."`
 			`	"Nevertheless, from the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. We don't have the data to make an estimate for human disappearances."`
 				goto questions
 			label know
+			action
+				set "Hai Reveal [A02] Symbol Identification: label know"
 			`	Teeneep explains, "The organization I lead has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers."`
 			`	"We've spent the last three years researching this problem, but it helped a lot to meet the people who have been rescued."`
 				goto questions
 			label anyone
+			action
+				set "Hai Reveal [A02] Symbol Identification: label anyone"
 			`	A Hai near Teeneep responds. "Yes... and no. We work with police who investigate the disappearances, and sometimes they find the missing person.`
 			`	"Our biggest problem is a lack of help in human space. Local police are overwhelmed with crime in the regions where the kidnapping victims are found. Worse, the kidnappers leave behind virtually no evidence to investigate. Your navies and agencies haven't the time to help us; they're busy cleaning up after the war. The Syndicate has unfinished business they won't talk about.`
 			`	"Hai space is more manageable, but our resources are not infinite. The pattern just isn't clear enough yet for the Elders to justify more expenditure. They tell me that if we can prove the disappearances are part of a coordinated kidnapping effort, they'll put all the resources they can spare into stopping the crime. They also say their investigators have been unable to discover anything, but sometimes their responses don't add up. We presume this is because they're blocking our access to classified information."`
