@@ -1527,16 +1527,25 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-		for(const auto &outfit : cargo.Outfits())
-		{
-			// Compute the total value for each type of excess outfit.
-			if(!outfit.second)
-				continue;
-			int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
-			for(int i = 0; i < outfit.second; ++i)
-				stockDepreciation.Buy(outfit.first, day, &depreciation);
-			income += cost;
-		}
+		if(!planet->HasOutfitter())
+			for(const auto &outfit : cargo.Outfits())
+			{
+				// Compute the total value for each type of excess outfit.
+				if(!outfit.second)
+					continue;
+				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+				for(int i = 0; i < outfit.second; ++i)
+					stockDepreciation.Buy(outfit.first, day, &depreciation);
+				income += cost;
+			}
+		else
+			for(const auto &outfit : cargo.Outfits())
+			{
+				// Compute the total value for each type of excess outfit.
+				if(!outfit.second)
+					continue;
+				cargo.Transfer(outfit.first, outfit.second, *Storage());
+			}
 	}
 	accounts.AddCredits(income);
 	cargo.Clear();
