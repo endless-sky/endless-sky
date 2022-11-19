@@ -51,7 +51,8 @@ void AfterburnerUsage::RefreshAfterburner(bool used)
 }
 
 
+
 const Outfit *AfterburnerUsage::Afterburner() const
 {
-    return &afterburner;
+	return &afterburner;
 }

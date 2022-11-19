@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Body.h"
 
-#include "Angle.h"
 #include "AfterburnerUsage.h"
+#include "Angle.h"
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"

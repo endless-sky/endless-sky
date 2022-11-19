@@ -23,21 +23,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Class used to manage afterburners and their cooldowns/usages.
 class AfterburnerUsage {
 public:
-    AfterburnerUsage(const Outfit &outfit);
-    bool CanUseAfterburner() const;
-    // Refresh the afterburner, specifying if it will be used or not, and return if it can be used.
-    void RefreshAfterburner(bool used = false);
-    const Outfit *Afterburner() const;
+	AfterburnerUsage(const Outfit &outfit);
+	bool CanUseAfterburner() const;
+	// Refresh the afterburner, specifying if it will be used or not, and return if it can be used.
+	void RefreshAfterburner(bool used = false);
+	const Outfit *Afterburner() const;
 
 
 private:
-    const Outfit &afterburner;
-    double baseDuration;
-    double baseCooldown;
-    double afterburnerCooldown = 0.;
-    double afterburnerUsageTime = 0.;
+	const Outfit &afterburner;
+	double baseDuration;
+	double baseCooldown;
+	double afterburnerCooldown = 0.;
+	double afterburnerUsageTime = 0.;
 };
 
 
 
-#endif 
+#endif
