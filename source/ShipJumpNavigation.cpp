@@ -44,7 +44,6 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	hasJumpMassCost = attributes.Get("jump mass cost");
 
 	jumpDriveCosts.clear();
-	jumpDriveCosts[0.] = 0.;
 	hyperdriveCost = 0.;
 	maxJumpRange = 0.;
 
@@ -143,7 +142,7 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *fro
 	if(linked && hasHyperdrive && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
 		return make_pair(JumpType::HYPERDRIVE, hyperFuelNeeded);
 	else if(hasJumpDrive)
-		return make_pair(JumpType::JUMPDRIVE, jumpFuelNeeded);
+		return make_pair(JumpType::JUMP_DRIVE, jumpFuelNeeded);
 	else
 		return make_pair(JumpType::NONE, 0.);
 }
@@ -240,7 +239,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 		{
 			// If any jump range below this one is more expensive, then use
 			// this new, cheaper cost.
-			for(auto sit = jumpDriveCosts.begin() ; sit != it; ++sit)
+			for(auto sit = jumpDriveCosts.begin(); sit != it; ++sit)
 				if(!sit->second || sit->second > it->second)
 					sit->second = it->second;
 		}

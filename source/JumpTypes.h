@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 enum class JumpType : int {
 	NONE,
 	HYPERDRIVE,
-	JUMPDRIVE,
+	JUMP_DRIVE,
 };
 
 

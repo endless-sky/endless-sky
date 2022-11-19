@@ -1830,7 +1830,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		hyperspaceSystem = GetTargetSystem();
 		pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(hyperspaceSystem);
-		isUsingJumpDrive = (jumpUsed.first == JumpType::JUMPDRIVE);
+		isUsingJumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE);
 		hyperspaceFuelCost = jumpUsed.second;
 	}
 
@@ -2894,7 +2894,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = (jumpUsed.first == JumpType::JUMPDRIVE);
+	bool isJump = (jumpUsed.first == JumpType::JUMP_DRIVE);
 	double scramThreshold = attributes.Get("scram drive");
 
 	// If the system has a departure distance the ship is only allowed to leave the system
