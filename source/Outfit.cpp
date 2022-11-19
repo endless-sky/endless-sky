@@ -435,6 +435,28 @@ const Dictionary &Outfit::Attributes() const
 
 
 
+bool Outfit::IsAfterburner() const
+{
+	return attributes.Get("afterburner thrust");
+}
+
+
+
+bool Outfit::TryUseAfterburner()
+{
+	double cooldown = attributes.Get("afterburner cooldown");
+	if(!cooldown)
+		return true;
+	if(afterburnerUsageTime < attributes.Get("afterburner duration"))
+		if(!afterburnerCooldown)
+			return ++afterburnerUsageTime;
+	if(!afterburnerCooldown)
+		afterburnerCooldown = cooldown;
+	return --afterburnerCooldown;
+}
+
+
+
 // Determine whether the given number of instances of the given outfit can
 // be added to a ship with the attributes represented by this instance. If
 // not, return the maximum number that can be added.

@@ -1971,45 +1971,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				&& !CannotAct();
 		if(applyAfterburner)
 		{
-			thrust = attributes.Get("afterburner thrust");
-			double shieldCost = attributes.Get("afterburner shields");
-			double hullCost = attributes.Get("afterburner hull");
-			double energyCost = attributes.Get("afterburner energy");
-			double fuelCost = attributes.Get("afterburner fuel");
-			double heatCost = -attributes.Get("afterburner heat");
-
-			double dischargeCost = attributes.Get("afterburner discharge");
-			double corrosionCost = attributes.Get("afterburner corrosion");
-			double ionCost = attributes.Get("afterburner ion");
-			double leakageCost = attributes.Get("afterburner leakage");
-			double burningCost = attributes.Get("afterburner burn");
-
-			double slownessCost = attributes.Get("afterburner slowing");
-			double disruptionCost = attributes.Get("afterburner disruption");
-
-			if(thrust && shields >= shieldCost && hull >= hullCost
-				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
-			{
-				shields -= shieldCost;
-				hull -= hullCost;
-				energy -= energyCost;
-				fuel -= fuelCost;
-				heat -= heatCost;
-
-				discharge += dischargeCost;
-				corrosion += corrosionCost;
-				ionization += ionCost;
-				leakage += leakageCost;
-				burning += burningCost;
-
-				slowness += slownessCost;
-				disruption += disruptionCost;
-
-				acceleration += angle.Unit() * thrust / mass;
-
-				// Only create the afterburner effects if the ship is in the player's system.
-				isUsingAfterburner = !forget;
-			}
+			for(const auto &outfit : Outfits())
+				if(outfit.first->IsAfterburner() && FireAfterburner(const_cast<Outfit &>(*outfit.first)))
+					isUsingAfterburner = true;
 		}
 	}
 	if(acceleration)
@@ -4046,6 +4010,51 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	corrosion += weapon.FiringCorrosion();
 	leakage += weapon.FiringLeak();
 	burning += weapon.FiringBurn();
+}
+
+
+
+double Ship::FireAfterburner(Outfit &outfit)
+{
+	if(!outfit.TryUseAfterburner())
+		return 0.;
+	double thrust = outfit.Attributes().Get("afterburner thrust");
+	double shieldCost = outfit.Attributes().Get("afterburner shields");
+	double hullCost = outfit.Attributes().Get("afterburner hull");
+	double energyCost = outfit.Attributes().Get("afterburner energy");
+	double fuelCost = outfit.Attributes().Get("afterburner fuel");
+	double heatCost = -outfit.Attributes().Get("afterburner heat");
+
+	double dischargeCost = outfit.Attributes().Get("afterburner discharge");
+	double corrosionCost = outfit.Attributes().Get("afterburner corrosion");
+	double ionCost = outfit.Attributes().Get("afterburner ion");
+	double leakageCost = outfit.Attributes().Get("afterburner leakage");
+	double burningCost = outfit.Attributes().Get("afterburner burn");
+
+	double slownessCost = outfit.Attributes().Get("afterburner slowing");
+	double disruptionCost = outfit.Attributes().Get("afterburner disruption");
+
+	if(thrust && shields >= shieldCost && hull >= hullCost
+		&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
+	{
+		shields -= shieldCost;
+		hull -= hullCost;
+		energy -= energyCost;
+		fuel -= fuelCost;
+		heat -= heatCost;
+
+		discharge += dischargeCost;
+		corrosion += corrosionCost;
+		ionization += ionCost;
+		leakage += leakageCost;
+		burning += burningCost;
+
+		slowness += slownessCost;
+		disruption += disruptionCost;
+
+		acceleration += angle.Unit() * thrust / InertialMass();
+	}
+	return thrust;
 }
 
 

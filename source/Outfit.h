@@ -67,6 +67,9 @@ public:
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
 
+	bool IsAfterburner() const;
+	bool TryUseAfterburner();
+
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
 	// not, return the maximum number that can be added.
@@ -109,6 +112,8 @@ private:
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;
+	double afterburnerCooldown = 0.;
+	double afterburnerUsageTime = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 

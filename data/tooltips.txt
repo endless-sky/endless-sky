@@ -41,6 +41,12 @@ tip "afterburner heat:"
 tip "afterburner thrust:"
 	`Thrust produced by this afterburner.`
 
+tip "afterburner cooldown:"
+	`The takes it times for the afterburner to be available again.`
+
+tip "afterburner duration:"
+	`The maximum length of time this afterburner can be used for, in a continuous manner, before requiring reload.`
+
 tip "asteroid scan power:"
 	`The range of this asteroid scanner is proportional to the square root of this value.`
 

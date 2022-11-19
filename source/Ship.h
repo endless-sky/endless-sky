@@ -423,6 +423,9 @@ public:
 	// and add whatever heat it generates. Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
 
+	// Try to fire this afterburner, and return the thrust.
+	double FireAfterburner(Outfit &outfit);
+
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
 	std::shared_ptr<Ship> GetTargetShip() const;
