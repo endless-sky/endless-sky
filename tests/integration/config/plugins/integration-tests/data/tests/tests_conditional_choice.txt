@@ -167,11 +167,11 @@ test "Enter Name in Conversation"
 			"%TEST%: NAME IN CONVERSATION" = 1
 		call "Trigger Spaceport Mission"
 		input
-			key F
+			key "f"
 		input
 			key "Return"
 		input
-			key L
+			key "l"
 		input
 			key "Return"
 		input
@@ -180,9 +180,9 @@ test "Enter Name in Conversation"
 		# use a test-data temporary variable for debugging in case of errors
 		apply
 			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
-			"test: first name: F" = "first name: F"
-			"test: last name: L" = "last name: L"
+			"test: first name: f" = "first name: f"
+			"test: last name: l" = "last name: l"
 		assert
 			"%TEST%: NAME IN CONVERSATION: offered" == 1
-			"first name: F" == 1
-			"last name: L" == 1
+			"first name: f" == 1
+			"last name: l" == 1
