@@ -224,10 +224,10 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		auto bestAngle = make_pair(4., 0.);
 		for(const System *it : links)
 		{
-			// Skip the currently selected link, if any. Also skip links to
+			// Skip the currently selected link, if any, and non valid system links. Also skip links to
 			// systems the player has not seen, and skip hyperspace links if the
 			// player has not visited either end of them.
-			if(it == original)
+			if(!it->IsValid() || it == original)
 				continue;
 			if(!player.HasSeen(*it))
 				continue;
@@ -573,13 +573,29 @@ void MapDetailPanel::DrawKey()
 		// four largest visible governments are labeled in the legend.
 		vector<pair<double, const Government *>> distances;
 		for(const auto &it : closeGovernments)
-			distances.emplace_back(it.second, it.first);
-		sort(distances.begin(), distances.end());
-		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
 		{
-			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
-			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
+			if(!it.first)
+				continue;
+			distances.emplace_back(it.second, it.first);
+		}
+		sort(distances.begin(), distances.end());
+		int drawn = 0;
+		vector<pair<string, Color>> alreadyDisplayed;
+		for(const auto &it : distances)
+		{
+			const string &displayName = it.second->GetName();
+			const Color &displayColor = it.second->GetColor();
+			auto foundIt = find(alreadyDisplayed.begin(), alreadyDisplayed.end(),
+					make_pair(displayName, displayColor));
+			if(foundIt != alreadyDisplayed.end())
+				continue;
+			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
+			font.Draw(displayName, pos + textOff, dim);
 			pos.Y() += 20.;
+			alreadyDisplayed.emplace_back(displayName, displayColor);
+			++drawn;
+			if(drawn >= 4)
+				break;
 		}
 	}
 	else if(commodity == SHOW_REPUTATION)

@@ -37,6 +37,7 @@ namespace {
 		"shipyard",
 		"system",
 		"substitutions",
+		"wormhole",
 	};
 }
 
