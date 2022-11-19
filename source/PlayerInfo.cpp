@@ -1541,10 +1541,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 		else
 			for(const auto &outfit : cargo.Outfits())
 			{
-				// Compute the total value for each type of excess outfit.
+				// Transfer the outfits from cargo to the storage on this planet.
 				if(!outfit.second)
 					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage());
+				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
 			}
 	}
 	accounts.AddCredits(income);
