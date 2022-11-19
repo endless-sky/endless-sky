@@ -177,6 +177,7 @@ test "Enter Name in Conversation"
 		input
 			key "Return"
 		call "Depart"
+		call "Land On Ruin helper"
 		# use a test-data temporary variable for debugging in case of errors
 		apply
 			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
@@ -184,4 +185,4 @@ test "Enter Name in Conversation"
 			"test: name: f l" = "name: f l"
 		assert
 			"%TEST%: NAME IN CONVERSATION: offered" == 1
-			"name: f l" == 1
+			"name: F L" == 1
