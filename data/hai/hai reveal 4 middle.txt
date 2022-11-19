@@ -1421,28 +1421,46 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	"The Hai have demanded we cut through the red tape by having the heads of state meet." He turns to you briefly. "They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed, and we've gathered to prepare you for the meeting."`
 			label questions
 			choice
-				`	"Can the Hai really pass through, with the Republic Navy blocking their way?"`
-					goto navy
-				`	"What if we let them through, to attack the pirate planets?"`
-					goto through
 				`	"What if we solve the kidnapping problem instead of the Hai doing it?"`
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label concerns"
+						has "Hai Reveal [A14] A Time of Trouble: label navy"
 					goto concerns
+				`	"What if we let them through, to attack the pirate planets?"`
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label through"
+						has "Hai Reveal [A14] A Time of Trouble: label navy"
+					goto through
 				`	"Who in the Cabinet is blocking progress?"`
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label blocking"
 					goto blocking
+				`	"Can the Hai really pass through, with the Republic Navy blocking their way?"`
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label navy"
+					goto navy
 				`	"I'm ready to mediate. Let's assemble the heads of state."`
 					goto begin
 			label navy
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label navy"
 			`	Xilin responds, "The Navy has blockaded the wormhole to the best of its ability, but the reality is that the Navy is already heavily committed, and barely look to be a match for the Hai fleet numbers. The Hai, on the other hand, do not yet appear to be committed heavily." He looks at Alondo briefly. "We had the unstated privilege of observing the Hai security fleet left behind on Everhope in addition to what we saw beyond the wormhole on our way in."`
 			`	Danforth interjects, "In short, we doubt we can stop them while we're stretched out here... and if the reality is that they're only going to go after pirate worlds... well, we'd be under orders to disengage. The political crisis would be more tolerable than the probable military defeat."`
 			`	Xilin nods grimly. "However, that would be a drastic failure of foreign policy."`
 				goto questions
 			label through
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label through"
 			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
 				goto questions
 			label concerns
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label concerns"
 			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. The Cabinet is in disagreement about what to do, so there is deadlock at the moment."`
 				goto questions
 			label blocking
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label blocking"
 			`	Xilin proceeds to list off a number of names, but to everyone's irritation and surprise, Turner cuts in. "Remington, I know you're the PR guy, and you keep your nose out of sales, so I apologize if it's presumptuous for me to assume you haven't considered this, but, most of those names are people who listen to the Syndicate. I should know, I've had to negotiate with them as a bloc often enough for government contracts. Has anyone on your side reported back to the Syndicate Board and suggested that perhaps, if we can influence them to support a solution that we propose, even if we don't have that solution defined yet, the Hai could be a very large and very profitable market for Syndicate goods?"`
 			`	There is a long, expectant pause as Remington looks to Terry and they engage in some kind of silent exchange before he replies. "You know, I don't think we'd connected those two specific dots just yet." He looks at Terry. "We need to make some calls."`
 				goto questions
