@@ -1035,41 +1035,114 @@ mission "Hai Reveal [A09] History of Appeasement"
 		log `A group of Hai Elders agreed to immediately stop all weapons shipments to pirates, to avoid a conflict with the Republic. Unfortunately, they refused to investigate the mysterious disappearances that Teeneep believes to be kidnappings.`
 		"reputation: Hai (Unfettered)" >?= 10
 		conversation
-			`You return, giving Batu directions to Xilin, and check availabilities. The other diplomats all appear to be busy and so you soon find yourself at Sayari's office only to be met by Teeneep and Sayari arguing. Teeneep is shouting with a look of anger and despair while Sayari is trying to calm her. You try to get their attention, but their conversation is so intense it takes a few seconds for them to notice you.`
-			`	Realizing that you've arrived Sayari tilts her head slightly to one side to indicate she's speaking to you, while not taking her eyes off Teeneep. "Welcome back captain <last>, I must apologize for my friend's state. She's just discovered some rather unfortunate information."`
-			`	"Unfortunate!" Teeneep very nearly shrieks the word. "They've been doing this for decades! Decades, Sayari! Tracking down and ultimately paying off pirates with our technology to leave us alone, even when they've hurt, killed, kidnapped, and enslaved our people!"`
-			`	Teeneep is clearly in the middle of an intense panic attack.`
-			choice
-				`	"Calm down, Teeneep."`
-					goto calm
-				`	"Teeneep, stop acting like a child!"`
-			`	Teeneep looks mortified. "Captain <last>, I... I'm sorry you had to see me like this. I just... Sayari?"`
-				goto begin
-			label calm
-			`	Slightly calmer, Teeneep says, "Calm down? Calm down! Sayari knew this whole time, but she did nothing to stop it!"`
-			label begin
-			`	Sayari puts her paw on Teeneep's back and turns to you. "The Elders have been making deals with pirates for years. The pirates stop attacking us, or help us keep our secrets. In return, we give them cash, supplies for their colonies, or weapons. I've known about this for as long as it has been going on."`
-			`	Teeneep closes her eyes for and uses deep breathing techniques to calm herself down. It looks like she's practiced this many times. She seems ready to talk.`
+			`You return, giving Batu directions to Xilin, and check availabilities. The other diplomats all appear to be busy and so you soon find yourself at Sayari's office only to be met by Teeneep and Sayari arguing. Teeneep is shouting with a look of anger and despair. Sayari is trying to calm her, with her paws resting on Teeneep's shoulders. You try to get their attention, but their argument is so intense they hear nothing you say.`
 			label questions
 			choice
-				`	"When did the Elders start making deals?"`
-					goto long
-				`	"How many deals have the Elders made?"`
-					goto many
+				`	(Listen in on the conversation.)`
+					goto listen
+					to display
+						not "Hai Reveal [A09] History of Appeasement: label listen"
+						not "Hai Reveal [A09] History of Appeasement: label childish"
+						not "Hai Reveal [A09] History of Appeasement: label calm"
+				`	"Am I interrupting something, Sayari?"`
+					goto interrupt
+					to display
+						not "Hai Reveal [A09] History of Appeasement: label childish"
+						not "Hai Reveal [A09] History of Appeasement: label interrupt"
+				`	"Teeneep, stop acting like a child!"`
+					goto childish
+					to display
+						not "Hai Reveal [A09] History of Appeasement: label childish"
+						not "Hai Reveal [A09] History of Appeasement: label interrupt"
 				`	"Are the two of you usually this argumentative?"`
 					goto friends
+					to display
+						or
+							has "Hai Reveal [A09] History of Appeasement: label childish"
+							has "Hai Reveal [A09] History of Appeasement: label interrupt"
+						not "Hai Reveal [A09] History of Appeasement: label friends"
+				`	"What kinds of deals are the Elders making with pirates?"`
+					goto deals
+					to display
+						or
+							has "Hai Reveal [A09] History of Appeasement: label childish"
+							has "Hai Reveal [A09] History of Appeasement: label interrupt"
+						not "Hai Reveal [A09] History of Appeasement: label deals"
+				`	"When did the Elders start making deals?"`
+					goto long
+					to display
+						has "Hai Reveal [A09] History of Appeasement: label deals"
+						not "Hai Reveal [A09] History of Appeasement: label long"
+				`	"How many deals have the Elders made?"`
+					goto many
+					to display
+						has "Hai Reveal [A09] History of Appeasement: label deals"
+						not "Hai Reveal [A09] History of Appeasement: label many"
 				`	"Now that we know the situation, how do we fix it?"`
 					goto fix
-			label many
-			`	Teeneep presents her research. "They gave them our weapons so that they could more efficiently go and enslave other people rather than just dealing with them properly they way they should have!" She manages to sound kind of funny. Instead of emphasizing the 'our', 'properly' and 'should have', she's placed the stresses on 'weapons', 'efficiently' and 'dealing'. It's possible that it's deliberate, but you can't help but get the sense that Teeneep hasn't had a lot of practice being angry in your language. "One hundred and seventy three reports, Sayari. That's how many times they've done this, or something like it, and those are just the ones that came up in the sweep. There's no telling how many others might be filed improperly, missing key words, just outside of my search range, or older than ten years."`
+					to display
+						has "Hai Reveal [A09] History of Appeasement: label long"
+						has "Hai Reveal [A09] History of Appeasement: label many"
+						not "Hai Reveal [A09] History of Appeasement: label fix"
+			label listen
+			`	
+			label childish
+			action
+				set "Hai Reveal [A09] History of Appeasement: label childish"
+			`	As the pair turn towards you, Teeneep looks mortified. "Captain <last>, I... I'm sorry you had to see me like this. I just... Sayari?"`
+			`	"Welcome back captain <last>, I must apologize for my friend's state. She's just discovered some rather unfortunate information."`
+				goto arrived
+			label interrupt
+			action
+				set "Hai Reveal [A09] History of Appeasement: label interrupt"
+			`	Realizing that you've arrived Sayari tilts her head slightly to one side to indicate she's speaking to you, while not taking her eyes off Teeneep. "Welcome back captain <last>, I must apologize for my friend's state. She's just discovered some rather unfortunate information."`
+				goto arrived
+			label arrived
+			`	"Unfortunate!" Teeneep very nearly shrieks the word. "They've been doing this for decades! Decades, Sayari! Tracking down and ultimately paying off pirates with our technology to leave us alone, even when they've hurt, killed, kidnapped, and enslaved our people!"`
+			`	Teeneep closes her eyes and uses a deep breathing technique to calm herself down. It looks like she's practiced this many times.`
+			`	The three of you sit down once Teeneep looks ready to talk.`
+				goto questions
+			label deals
+			action
+				set "Hai Reveal [A09] History of Appeasement: label deals"
+			`	Sayari says, "The Elders have been making deals with pirates for a long time. The pirates stop attacking us, or help us keep our secrets. In return, we give them cash, supplies for their colonies, or weapons. I've known about this for as long as it has been going on."`
+			`	Teeneep seems distraught. "I thought you were a model of morals, Sayari. Now I know you're no better than they are. No better than... than..."`
+			`	Sayari finishes Teeneep's thought. "No better than you? The curse of power is to sacrifice your morals to protect the ones under your care. I think you know that well, Teeneep. Perhaps better than I?" Teeneep looks briefly ashamed when Sayari says that.`
 				goto questions
 			label long
-			`	Sayari loans her wisdom. "The deals started about 50 years ago, and were limited in scope and number at first. As human settlement expanded, and piracy grew, we've increased the number of pirate groups and size of payments. In the past five years, they've begun demanding weapons, and sometimes won't accept anything else."`
+			`	Sayari loans her wisdom. "The deals started about 60 years ago, and were limited in scope and number at first. As human settlement expanded, and piracy grew, we've increased the number of pirate groups and size of payments. In the past five years, they've begun demanding weapons, and sometimes won't accept anything else."`
+				goto questions
+			label many
+			`	Teeneep presents her research. "They gave them our weapons so that they could more efficiently go and enslave other people rather than just dealing with them properly they way they should have!" She manages to sound kind of funny. Instead of emphasizing the 'our', 'properly' and 'should have', she's placed the stresses on 'weapons', 'efficiently' and 'dealing'. It's possible that it's deliberate, but you can't help but get the sense that Teeneep hasn't had a lot of practice being angry in your language. "One hundred and seventy three reports, Sayari. That's how many times they've done this, or something like it, and those are just the ones that came up in the sweep. There's no telling how many others might be filed improperly, missing key words, just outside of my search range, or older than ten years."`
 				goto questions
 			label friends
 			# Vocabulary note: In some dialects of English, a young squirrel is called a "kitten."
 			`	Sayari looks at you apologetically. "She's always been quite a character, but we usually get along very well." She turns back to Teeneep who adds, "Sayari has been my close friend and mentor since I was a kitten."`
 				goto questions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			choice
+				goto begin
+			label interrupt
+
+
+			label questions
+			choice
 
 			label fix
 			`	"Look, the Elders are pretty much permanently on call at the moment. None of them are leaving <origin> and they're in session as we speak. Let me put a priority audience request into the system, and you can probably see them this afternoon. In the meantime, why don't I order some food here and you can use my spare desk over there to prepare what you need to say?"`
