@@ -546,18 +546,18 @@ test "Create New Pilot"
 			key l
 		# new pilot
 		input
-			key "shift" "n"
+			key n
 		# start
 		input
-			key "s"
-		# first name: F
+			key s
+		# first name: a
 		input
-			key "shift" "F"
+			key a
 		input
 			key "Return"
-		# last name: L
+		# last name: b
 		input
-			key "shift" "L"
+			key b
 		input
 			key "Return"
 		# skip text
@@ -579,8 +579,10 @@ test "Buy First Ship"
 			key "Down"
 		input
 			key b
+		# confirm
 		input
 			key "Return"
+		# back to landing
 		input
 			key l
 
@@ -600,6 +602,7 @@ test "Skip Dialog"
 		branch skipdialog
 			"test: skipper" > 0
 
+
 test "First Game"
 	status active
 	description "Test if one can start the game correctly: choose a name, buy a ship, and go trough James dialog."
@@ -612,12 +615,18 @@ test "First Game"
 		call "Depart"
 		# save these in temporary conditions to know what they are if it fails
 		apply
-			"test: Intro [0]: offered" = "Intro[0]: offered"
-			"test: name: F L" = "name: F L"
-			"test: name: f l" = "name: f l"
+			"test: Intro [0]: offered" = "Intro [0]: offered"
+			"test: name: a b" = "name: a b"
+			"test: name: a B" = "name: a B"
+			"test: name: A b" = "name: A b"
+			"test: name: A B" = "name: A B"
+			"test: name: b a" = "name: b a"
+			"test: name: B a" = "name: B a"
+			"test: name: b A" = "name: b A"
+			"test: name: B A" = "name: B A"
 		assert
 			"Intro [0]: offered" == 1
-			"name: F L" == 1
+			"name: a b" == 1
 
 
 test "Save To Default Snapshot"
