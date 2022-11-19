@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "Weapon.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
@@ -263,7 +264,8 @@ namespace {
 					continue;
 
 				const Planet &planet = *object.GetPlanet();
-				if(planet.IsWormhole() && planet.IsAccessible(&ship) && planet.WormholeDestination(from) == to)
+				if(planet.IsWormhole() && planet.IsAccessible(&ship)
+						&& &planet.GetWormhole()->WormholeDestination(*from) == to)
 				{
 					ship.SetTargetStellar(&object);
 					ship.SetTargetSystem(nullptr);
@@ -289,6 +291,9 @@ namespace {
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
+
+	// An offset to prevent the ship from being not quite over the point to departure.
+	const double SAFETY_OFFSET = 1.;
 }
 
 
@@ -1685,7 +1690,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		}
 		else if(parentPlanet->IsWormhole())
 		{
-			SelectRoute(ship, parentPlanet->WormholeDestination(currentSystem));
+			const auto *wormhole = parentPlanet->GetWormhole();
+			SelectRoute(ship, &wormhole->WormholeDestination(*currentSystem));
 
 			if(ship.GetTargetSystem())
 			{
@@ -1980,7 +1986,21 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetTargetSystem()).first == JumpType::JUMPDRIVE);
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	if(!isJump && scramThreshold)
+	double departure = isJump ?
+		ship.GetSystem()->JumpDepartureDistance() :
+		ship.GetSystem()->HyperDepartureDistance();
+	double squaredDeparture = departure * departure + SAFETY_OFFSET;
+	if(ship.Position().LengthSquared() < squaredDeparture)
+	{
+		Point closestDeparturePoint;
+		if(ship.Position())
+			closestDeparturePoint = ship.Position()
+				* (squaredDeparture / ship.Position().LengthSquared());
+		else
+			closestDeparturePoint = Point(1., squaredDeparture);
+		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
+	}
+	else if(!isJump && scramThreshold)
 	{
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
@@ -3262,10 +3282,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Determine if the player is jumping to their target system or landing on a wormhole.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.HasSprite() && object.HasValidPlanet()
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 				&& object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(*object.GetPlanet())
-				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(*system))
+				&& player.HasVisited(*system))
 			{
+				const auto *wormhole = object.GetPlanet()->GetWormhole();
+				if(&wormhole->WormholeDestination(*ship.GetSystem()) != system)
+					continue;
+
 				isWormhole = true;
 				if(!ship.GetTargetStellar() || autoPilot.Has(Command::JUMP))
 					ship.SetTargetStellar(&object);

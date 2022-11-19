@@ -61,6 +61,9 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+
+	// How many pages of settings there are.
+	const int SETTINGS_PAGE_COUNT = 1;
 }
 
 
@@ -84,6 +87,12 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
+	if(SETTINGS_PAGE_COUNT > 1)
+		info.SetCondition("multiple pages");
+	if(currentSettingsPage > 0)
+		info.SetCondition("show previous");
+	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
+		info.SetCondition("show next");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
@@ -121,6 +130,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
 		page = key;
+	else if(key == 'o' && page == 'p')
+		Files::OpenUserPluginFolder();
+	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
+		++currentSettingsPage;
+	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
+		--currentSettingsPage;
 	else
 		return false;
 
@@ -434,6 +449,12 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
+	// An empty string indicates that a category has ended.
+	// A '\t' character indicates that the first column on this page has ended,
+	// and the next line should be drawn at the start of the next column.
+	// A '\n' character indicates that this page is complete, no further lines should be drawn on this page.
+	// In all three cases, the first non-special string will be considered the category heading
+	// and will be drawn differently to normal setting entries.
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
@@ -453,7 +474,7 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
-		"\n",
+		"\t",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -477,10 +498,26 @@ void PreferencesPanel::DrawSettings()
 		"Warning siren"
 	};
 	bool isCategory = true;
+	int page = 0;
 	for(const string &setting : SETTINGS)
 	{
+		// Check if this is a page break.
+		if(setting == "\n")
+		{
+			++page;
+			continue;
+		}
+		// Check if this setting is on the page being displayed.
+		// If this setting isn't on the page being displayed, check if it is on an earlier page.
+		// If it is, continue to the next setting.
+		// Otherwise, this setting is on a later page,
+		// do not continue as no further settings are to be displayed.
+		if(page < currentSettingsPage)
+			continue;
+		else if(page > currentSettingsPage)
+			break;
 		// Check if this is a category break or column break.
-		if(setting.empty() || setting == "\n")
+		if(setting.empty() || setting == "\t")
 		{
 			isCategory = true;
 			if(!setting.empty())
