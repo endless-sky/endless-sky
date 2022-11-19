@@ -53,13 +53,14 @@ jobs:
   changed:
     uses: ./.github/workflows/compute-changes.yml
 
+
   build_ubuntu:
     needs: changed
     # TODO: only build if source changed. otherwise, d/l latest continuous
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04, ubuntu-22.04]
         opengl: [desktop, gles]
     env:
         CCACHE_DIR: ./ccache/
@@ -108,13 +109,14 @@ jobs:
         name: binary-${{ matrix.os }}-${{ matrix.opengl }}
         path: ${{ env.ARTIFACT }}
 
+
   test_ubuntu-unit:
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.linux == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04, ubuntu-22.04]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
@@ -212,6 +214,7 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
+
 
   test_windows-unit:
     needs: [build_windows, changed]
@@ -316,9 +319,6 @@ jobs:
         path: ${{ env.ARTIFACT }}
 
 
-  # This section is for tests on ubuntu 16 (and on ubuntu 20).
-  # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
-  # (Both 18.04 & 20.04 have the same Open GL extension support, but the SDL library fails to initialize for 18.04)
   test_ubuntu-integration:
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.integration_tests == 'true' }}
@@ -330,15 +330,15 @@ jobs:
           - os: ubuntu-20.04
             opengl: desktop
             glew: libglew2.1
-          # - os: ubuntu-18.04
-          #   opengl: desktop
-          #   glew: libglew2.0
+          - os: ubuntu-22.04
+            opengl: desktop
+            glew: libglew2.2
           - os: ubuntu-20.04
             opengl: gles
             glew: libgles2-mesa
-          # - os: ubuntu-18.04
-          #   opengl: gles
-          #   glew: libgles2-mesa
+          - os: ubuntu-22.04
+            opengl: gles
+            glew: libgles2-mesa
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
@@ -371,8 +371,8 @@ jobs:
         include:
           - os: ubuntu-20.04
             glew: libglew2.1
-          - os: ubuntu-18.04
-            glew: libglew2.0
+          - os: ubuntu-22.04
+            glew: libglew2.2
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
@@ -492,7 +492,6 @@ jobs:
       run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --track-fds=yes --error-exitcode=1 ./endless-sky -p
 
 
-
   spellcheck:
     needs: [changed]
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
@@ -508,10 +507,27 @@ jobs:
         exclude_file: .codespell.exclude
 
 
-
   style-check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: editorconfig-checker/action-editorconfig-checker@main
     - run: editorconfig-checker
+
+
+  check-coding-style:
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: set up python environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10.6'
+    - name: install python packages
+      run: pip install regex
+    - name: Execute style checker
+      run: python ./utils/check_code_style.py
+
