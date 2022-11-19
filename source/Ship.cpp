@@ -4016,26 +4016,26 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 
 
 
-bool Ship::FireAfterburner(const Ship::AfterburnerUsage &afterburner)
+bool Ship::FireAfterburner(const AfterburnerUsage &afterburner)
 {
 	if(!afterburner.CanUseAfterburner())
 		return false;
-	const Outfit &outfit = afterburner.afterburner;
-	double thrust = outfit.Attributes().Get("afterburner thrust");
-	double shieldCost = outfit.Attributes().Get("afterburner shields");
-	double hullCost = outfit.Attributes().Get("afterburner hull");
-	double energyCost = outfit.Attributes().Get("afterburner energy");
-	double fuelCost = outfit.Attributes().Get("afterburner fuel");
-	double heatCost = -outfit.Attributes().Get("afterburner heat");
+	const Outfit *outfit = afterburner.Afterburner();
+	double thrust = outfit->Attributes().Get("afterburner thrust");
+	double shieldCost = outfit->Attributes().Get("afterburner shields");
+	double hullCost = outfit->Attributes().Get("afterburner hull");
+	double energyCost = outfit->Attributes().Get("afterburner energy");
+	double fuelCost = outfit->Attributes().Get("afterburner fuel");
+	double heatCost = -outfit->Attributes().Get("afterburner heat");
 
-	double dischargeCost = outfit.Attributes().Get("afterburner discharge");
-	double corrosionCost = outfit.Attributes().Get("afterburner corrosion");
-	double ionCost = outfit.Attributes().Get("afterburner ion");
-	double leakageCost = outfit.Attributes().Get("afterburner leakage");
-	double burningCost = outfit.Attributes().Get("afterburner burn");
+	double dischargeCost = outfit->Attributes().Get("afterburner discharge");
+	double corrosionCost = outfit->Attributes().Get("afterburner corrosion");
+	double ionCost = outfit->Attributes().Get("afterburner ion");
+	double leakageCost = outfit->Attributes().Get("afterburner leakage");
+	double burningCost = outfit->Attributes().Get("afterburner burn");
 
-	double slownessCost = outfit.Attributes().Get("afterburner slowing");
-	double disruptionCost = outfit.Attributes().Get("afterburner disruption");
+	double slownessCost = outfit->Attributes().Get("afterburner slowing");
+	double disruptionCost = outfit->Attributes().Get("afterburner disruption");
 
 	if(thrust && shields >= shieldCost && hull >= hullCost
 		&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
@@ -4385,38 +4385,4 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
-}
-
-
-
-bool Ship::AfterburnerUsage::CanUseAfterburner() const
-{
-	return !baseCooldown || !afterburnerCooldown || afterburnerUsageTime < baseDuration;
-}
-
-
-void Ship::AfterburnerUsage::RefreshAfterburner(bool used)
-{
-	if(!baseCooldown)
-		return;
-	if(!used)
-	{
-		if(afterburnerUsageTime)
-			afterburnerUsageTime--;
-		else if(afterburnerCooldown)
-			afterburnerCooldown--;
-	}
-	else if(used)
-	{
-		if(afterburnerUsageTime < baseDuration)
-		{
-			if(!afterburnerCooldown--)
-				afterburnerUsageTime++;
-		}
-		else
-		{
-			afterburnerUsageTime = 0.;
-			afterburnerCooldown = baseCooldown;
-		}
-	}
 }

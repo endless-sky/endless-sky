@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 
 #include "Angle.h"
+#include "AfterburnerUsage.h"
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
@@ -111,24 +112,6 @@ public:
 	};
 
 
-private:
-	// Probably have to move this to its own class but mac will not run if I do so later
-	class AfterburnerUsage {
-		public:
-			AfterburnerUsage(const Outfit &outfit) : afterburner(outfit) {
-				baseDuration = outfit.Attributes().Get("afterburner duration");
-				baseCooldown = outfit.Attributes().Get("base cooldown");
-			}
-			bool CanUseAfterburner() const;
-			// Refresh the afterburner, specifying if it will be used or not, and return if it can be used.
-			void RefreshAfterburner(bool used = false);
-
-			const Outfit afterburner;
-			double baseDuration;
-			double baseCooldown;
-			double afterburnerCooldown = 0.;
-			double afterburnerUsageTime = 0.;
-	};
 public:
 	// Functions provided by the Body base class:
 	// bool HasSprite() const;
@@ -442,7 +425,7 @@ public:
 	void ExpendAmmo(const Weapon &weapon);
 
 	// Try to fire this afterburner, and return the thrust.
-	bool FireAfterburner(const Ship::AfterburnerUsage &afterburner);
+	bool FireAfterburner(const AfterburnerUsage &afterburner);
 
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
