@@ -110,13 +110,12 @@ outfit "Thorax Cannon"
 		"live effect" "yellow spark trail" 840
 		"live effect" "yellow spark twinkle" 400
 		"hit effect" "finisher impact" 2
-		"hit effect" "spark" 10
+		"hit effect" "yellow spark" 10
 		"hit effect" "yellow spark fragment" 150
 		"inaccuracy" 0
 		"velocity" 15
 		"lifetime" 120
 		"reload" 120
-		#"turn" 15
 		"firing energy" 3815
 		"firing force" 1250
 		"firing heat" 1905
