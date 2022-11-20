@@ -678,11 +678,11 @@ ship Halite
 	outfits
 		"I70 Ameliorate Cell"
 		"SC-1 Plasma Engines"
-		"Talc Laser" 2
+
 	engine -11 42
 	engine 11 42
-	gun -18.5 -44.5 "Talc Laser"
-	gun 18.5 -44.5 "Talc Laser"
+	gun -18.5 -44.5
+	gun 18.5 -44.5
 	leak leak 60 50
 	explode "small explosion" 8
 	explode "tiny explosion" 10
@@ -841,16 +841,15 @@ ship Felsic
 			"hull damage" 650
 			"hit force" 690
 	outfits
-		"Astuit Battery" 2
+		"Astuit Battery" 3
 		"C17 Warzone Core"
-		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"SC-14 Plasma Steering"
 		"SC-14 Plasma Thruster"
 	engine -17 158
 	engine 17 158
-	turret 0 -87.5 "Guile Anti-Missile"
+	turret 0 -87.5 "Astuit Battery"
 	turret -43 85 "Astuit Battery"
 	turret 43 85 "Astuit Battery"
 	leak leak 60 50
@@ -968,8 +967,8 @@ ship Muscovite
 	outfits
 		"C7 Brawl Cell"
 		"C17 Warzone Core"
-		"Astuit Battery"
-		"Guile Anti-Missile" 2
+		"Astuit Battery 2"
+		"Acuit Artillery" 2
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
@@ -980,8 +979,8 @@ ship Muscovite
 	"reverse engine" 66 -155
 	"reverse engine" -66 -155
 	turret 0 -144.5 "Astuit Battery"
-	turret 0 -27 "Guile Anti-Missile"
-	turret 0 65 "Guile Anti-Missile"
+	turret 0 -27 "Astuit Battery"
+	turret 0 65 "Acuit Artillery"
 	bay Fighter 0 122
 		angle -180
 		under
