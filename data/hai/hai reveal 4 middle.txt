@@ -1334,7 +1334,7 @@ mission "Hai Reveal [A13] A New Elder"
 				`	(Drink with them.)`
 			`	As it turns out, Teeneep's speech is in Hai with no translation available. It's short and punchy, but restrained; or at least her delivery of it has that feeling. With nothing else to do, and it being well into the evening, you call it a night.`
 			`	The following morning Sayari finds you with Alondo, Remington, Xilin and Batu all having vending machine breakfasts in the cafeteria. It turns out Hai vending machines aren't half bad.`
-			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to as which do you want first?"`
+			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to ask which do you want first?"`
 			`	Alondo and Remington both groan, neither having pulled up particularly well this morning. Xilin has a great deal more composure but looks like he's not had a break from stress in well over a month... which is probably accurate. "Why don't you pick, <last>?" he says.`
 			choice
 				`	"Good news."`
