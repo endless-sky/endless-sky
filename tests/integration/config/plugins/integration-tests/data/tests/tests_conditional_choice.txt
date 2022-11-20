@@ -112,6 +112,7 @@ mission "%TEST%: NAME IN CONVERSATION"
 		conversation
 			name
 			`	So you are <first> <last>.`
+				accept
 
 
 test "Trigger Spaceport Mission"
@@ -122,6 +123,12 @@ test "Trigger Spaceport Mission"
 		call "Land On Ruin helper"
 		input
 			key p
+
+
+test "Skip Spaceport Mission"
+	status partial
+	description "Just skip a mission by pressing return twice."
+	sequence
 		# press accept (or decline, depending on if it is shown) and then skip the dialog once
 		input
 			key "Return"
@@ -138,6 +145,7 @@ test "Conditional Test"
 		apply
 			"%TEST%: CONDITIONAL CHOICE" = 1
 		call "Trigger Spaceport Mission"
+		call "Skip Spaceport Mission"
 		call "Depart"
 		assert
 			"succeed test" == 1
@@ -152,6 +160,7 @@ test "Conditional Test Goto"
 		apply
 			"%TEST%: CONDITIONAL CHOICE GOTO" = 1
 		call "Trigger Spaceport Mission"
+		call "Skip Spaceport Mission"
 		call "Depart"
 		assert
 			"succeed test" == 1
@@ -163,26 +172,34 @@ test "Enter Name in Conversation"
 	sequence
 		inject "conditional choice"
 		call "Load First Savegame"
+		assert
+			"name: Bobbi Bughunter" == 1
 		apply
 			"%TEST%: NAME IN CONVERSATION" = 1
 		call "Trigger Spaceport Mission"
 		input
-			key F
+			key a
 		input
 			key "Return"
 		input
-			key L
+			key b
 		input
 			key "Return"
 		input
 			key "Return"
 		call "Depart"
-		# use a test-data temporary variable for debugging in case of errors
+		# use test-data temporary variables for debugging in case of errors
 		apply
 			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
-			"test: <first>" = "<first>"
-			"test: <last>" = "<last>"
+			"test: name: Bobbi Bughunter" = "name: Bobbi Bughunter"
+			"test: name: a b" = "name: a b"
+			"test: name: a B" = "name: a B"
+			"test: name: A b" = "name: A b"
+			"test: name: A B" = "name: A B"
+			"test: name: b a" = "name: b a"
+			"test: name: B a" = "name: B a"
+			"test: name: b A" = "name: b A"
+			"test: name: B A" = "name: B A"
 		assert
 			"%TEST%: NAME IN CONVERSATION: offered" == 1
-			"<first>" == "F"
-			"<last>" == "L"
+			"name: a b" == 1
