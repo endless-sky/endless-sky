@@ -13,9 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "Playlist.h"
+
 #include "DataNode.h"
 #include "GameData.h"
-#include "Playlist.h"
 #include "PlayerInfo.h"
 #include "System.h"
 
@@ -98,7 +99,7 @@ const Track *Playlist::GetCurrentTrack() const
 		currentTrack = *it.base();
 		return tmpTrack;
 	}
-	else if (progressionStyle == "pick")
+	else if(progressionStyle == "pick")
 		return currentTrack;
 
 	// Asuming the progression style is "random".

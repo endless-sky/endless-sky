@@ -22,8 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "WeightedList.h"
 
 
-#include <string>
 #include <map>
+#include <string>
 #include <vector>
 
 class DataNode;

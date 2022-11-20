@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef TRACK_H
 #define TRACK_H
 
-#include <string>
 #include <map>
+#include <string>
 
 class DataNode;
 

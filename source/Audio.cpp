@@ -275,7 +275,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 
 	if(Preferences::Has("ingame music"))
 	{
-		// If the current playlists conditions are not marching anymore, search a new one.
+		// If the current playlists conditions are not matching anymore, search a new one.
 		bool currentPlaylistValid = currentPlaylist ?
 			currentPlaylist->MatchingConditions(player) : false;
 		// The track has to be updated if the current track is finished or the playlist is not matching
@@ -293,7 +293,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 						// Higher priorities always win.
 						if(playlist.second.Priority() == priority)
 							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
-						else if (playlist.second.Priority() > priority)
+						else if(playlist.second.Priority() > priority)
 						{
 							priority = playlist.second.Priority();
 							validPlaylists.clear();

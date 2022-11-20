@@ -459,7 +459,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		"ingame music",
+		"In-game music",
 		"Show status overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",

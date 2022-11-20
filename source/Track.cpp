@@ -13,8 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "DataNode.h"
 #include "Track.h"
+
+#include "DataNode.h"
 
 #include <iostream>
 
@@ -47,11 +48,11 @@ void Track::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "volume" && child.Size() >= 2)
 			volumeModifier = child.Value(1);
-		else if (child.Token(0) == "idle" && child.Size() >= 2)
+		else if(child.Token(0) == "idle" && child.Size() >= 2)
 			idleTitle = child.Token(1);
-		else if (child.Token(0) == "combat" && child.Size() >= 2)
+		else if(child.Token(0) == "combat" && child.Size() >= 2)
 			combatTitle = child.Token(1);
-		else if (child.Token(0) == "landed" && child.Size() >= 2)
+		else if(child.Token(0) == "landed" && child.Size() >= 2)
 			landedTitle = child.Token(1);
 	}
 	finishedLoading = true;
@@ -68,7 +69,8 @@ const std::string Track::Name() const
 
 const std::string Track::GetTitle(GameState state) const
 {
-	switch (state) {
+	switch(state)
+	{
 		case GameState::IDLE:
 			return idleTitle;
 			break;
