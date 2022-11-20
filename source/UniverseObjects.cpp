@@ -120,6 +120,9 @@ double UniverseObjects::GetProgress() const
 
 void UniverseObjects::FinishLoading()
 {
+	for(auto &&it : planets)
+		it.second.FinishLoading(wormholes);
+
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
 	// neighbor distances to be updated.
@@ -171,7 +174,7 @@ void UniverseObjects::Change(const DataNode &node)
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
-		planets.Get(node.Token(1))->Load(node);
+		planets.Get(node.Token(1))->Load(node, wormholes);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
@@ -184,6 +187,8 @@ void UniverseObjects::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "substitutions" && node.HasChildren())
 		substitutions.Load(node);
+	else if(node.Token(0) == "wormhole" && node.Size() >= 2)
+		wormholes.Get(node.Token(1))->Load(node);
 	else
 		node.PrintTrace("Error: Invalid \"event\" data:");
 }
@@ -200,6 +205,12 @@ void UniverseObjects::UpdateSystems()
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
 		it.second.UpdateSystem(systems, neighborDistances);
+
+		// If there were changes to a system there might have been a change to a legacy
+		// wormhole which we must handle.
+		for(const auto &object : it.second.Objects())
+			if(object.GetPlanet())
+				planets.Get(object.GetPlanet()->TrueName())->FinishLoading(wormholes);
 	}
 }
 
@@ -264,7 +275,7 @@ void UniverseObjects::CheckReferences()
 
 	// Outfit names are used by a number of classes.
 	for(auto &&it : outfits)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
@@ -297,6 +308,11 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : hazards)
 		if(!it.second.IsValid())
 			Warn("hazard", it.first);
+	// Wormholes are never serialized.
+	for(const auto &it : wormholes)
+		if(it.second.Name().empty())
+			Warn("wormhole", it.first);
+
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
 		if(it.second.Name().empty())
@@ -362,7 +378,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "phrase" && node.Size() >= 2)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
-			planets.Get(node.Token(1))->Load(node);
+			planets.Get(node.Token(1))->Load(node, wormholes);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.
@@ -465,6 +481,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node);
+		else if(key == "wormhole" && node.Size() >= 2)
+			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "disable" && node.Size() >= 2)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
