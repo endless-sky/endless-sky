@@ -121,8 +121,8 @@ namespace {
 		{"afterburner burn", 2},
 		{"afterburner slowing", 2},
 		{"afterburner disruption", 2},
-		{"afterburner duration", 0},
-		{"afterburner cooldown", 0},
+		{"afterburner duration", 6},
+		{"afterburner cooldown", 6},
 
 
 		{"reverse thrusting discharge", 2},
