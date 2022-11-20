@@ -1370,6 +1370,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(!flagship)
 		return false;
 
+	Audio::Play(Audio::Get("takeoff"));
+
 	// Move the flagship to the start of the list of ships and ensure that all
 	// escorts know which ship is acting as flagship.
 	SetFlagship(*flagship);
@@ -1377,6 +1379,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Special persons who appeared last time you left the planet, can appear again.
 	GameData::ResetPersons();
 
+	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 
 	// Recharge any ships that can be recharged, and load available cargo.

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "LocationFilter.h"
 
 #include <cstdint>
 #include <map>
@@ -89,8 +90,8 @@ private:
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 
-	const Planet *teleportPlanet = nullptr;
-	bool flagshipOnly = false;
+	LocationFilter relocateFilter;
+	bool relocateFlagshipOnly = false;
 
 	ConditionSet conditions;
 };

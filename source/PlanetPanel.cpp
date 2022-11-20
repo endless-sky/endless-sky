@@ -70,7 +70,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback, const Pl
 
 void PlanetPanel::Step()
 {
-	// If the player is teleporting, simulate a TakeOff followed
+	// If the player is relocating, simulate a TakeOff followed
 	// by a forced landing. No transition will be noticeable.
 	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::IN_PROGRESS)
 	{
