@@ -910,8 +910,8 @@
 				341645FAA25F7901221B8965 /* PrintData.cpp */,
 				CCE547DBB6C74E18E1B84D29 /* PrintData.h */,
 				A7F240B4AC219841424A387A /* Logger.cpp */,
-				AE57401AA43232EDEABFAE13 /* Logger.h */.
-        DD8442F0A30891AF732000B4 /* AfterburnerUsage.cpp */,
+				AE57401AA43232EDEABFAE13 /* Logger.h */,
+				DD8442F0A30891AF732000B4 /* AfterburnerUsage.cpp */,
 				0A604D929A70A6837546955E /* AfterburnerUsage.h */,
 				13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */,
 				FBFA4270B7EE3F1C61EA9A44 /* ShipJumpNavigation.h */,
