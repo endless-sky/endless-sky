@@ -447,7 +447,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.fail = fail;
 
-	result.relocationPlanet = relocationPlanet;
+	result.relocateFilter = relocateFilter;
 	result.relocateFlagshipOnly = relocateFlagshipOnly;
 
 	result.conditions = conditions;
