@@ -268,7 +268,7 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
 		out.Write("fail", name);
-	if(relocationPlanet)
+	if(relocateFilter.IsValid())
 	{
 		out.Write("relocate");
 		relocateFilter.Save(out);
