@@ -134,20 +134,15 @@ namespace {
 		bool parked = count(modifier.scopes.begin(), modifier.scopes.end(), "parked");
 		bool flagship = count(modifier.scopes.begin(), modifier.scopes.end(), "flagship");
 		bool sameSystem = count(modifier.scopes.begin(), modifier.scopes.end(), "system");
-		if(modifier.outfitTags.size() || modifier.outfitAttributes.size())
+		if(modifier.removeOutfits.IsValid())
 		{
 			if(flagship || !modifier.scopes.size())
 			{
 				Ship *flagshipPtr = player.Flagship();
-				for(const auto &outfit : flagshipPtr->Outfits())
-				{
-					for(const auto &tag : modifier.outfitTags)
-						if(outfit.first->HasTag(tag))
-							flagshipPtr->AddOutfit(outfit.first, flagshipPtr->OutfitCount(outfit.first));
-					for(const auto &attribute : modifier.outfitAttributes)
-						if(outfit.first->Get(attribute))
-							flagshipPtr->AddOutfit(outfit.first, flagshipPtr->OutfitCount(outfit.first));
-				}
+				std::vector<const Outfit *> matchingOutfits =
+					modifier.removeOutfits.MatchingOutfits(flagshipPtr);
+				for(const auto *outfit : matchingOutfits)
+					flagshipPtr->AddOutfit(outfit, -flagshipPtr->OutfitCount(outfit));
 			}
 			if(fleet)
 				for(const auto &ship : player.Ships())
@@ -156,15 +151,10 @@ namespace {
 						continue;
 					if(!parked && ship->IsParked())
 						continue;
-					for(const auto &outfit : ship->Outfits())
-					{
-						for(const auto &tag : modifier.outfitTags)
-							if(outfit.first->HasTag(tag))
-								ship->AddOutfit(outfit.first, ship->OutfitCount(outfit.first));
-						for(const auto &attribute : modifier.outfitAttributes)
-							if(outfit.first->Get(attribute))
-								ship->AddOutfit(outfit.first, ship->OutfitCount(outfit.first));
-					}
+					std::vector<const Outfit *> matchingOutfits =
+						modifier.removeOutfits.MatchingOutfits(ship.get());
+					for(const auto *outfit : matchingOutfits)
+						ship->AddOutfit(outfit, -ship->OutfitCount(outfit));
 				}
 		}
 	}
@@ -221,20 +211,13 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	else if(key == "modify ship")
 	{
 		shipModifiers.emplace_back();
-		for(const auto &token : child.Tokens())
-			shipModifiers.back().scopes.emplace_back(token);
+		for(int it = 1; it < child.Tokens().size(); ++it)
+			shipModifiers.back().scopes.emplace_back(child.Token(it));
 		for(const auto &grand : child)
 		{
 			if(grand.Token(0) == "take outfits")
-				for(const auto &greatGrand : child)
-				{
-					if(greatGrand.Token(0) == "attributes")
-						for(const auto &token : greatGrand.Tokens())
-							shipModifiers.back().outfitAttributes.emplace_back(token);
-					else if (greatGrand.Token(0) == "tags")
-						for(const auto &token : greatGrand.Tokens())
-							shipModifiers.back().outfitTags.emplace_back(token);
-				}
+				shipModifiers.back().removeOutfits.Load(grand);
+
 		}
 	}
 	else if(key == "payment")
@@ -317,26 +300,10 @@ void GameAction::Save(DataWriter &out) const
 		out.Write();
 		out.BeginChild();
 		{
-			if(it.outfitTags.size() || it.outfitAttributes.size())
+			if(it.removeOutfits.IsValid())
 			{
 				out.Write("take outfits");
-				out.BeginChild();
-				{
-					if(it.outfitTags.size())
-					{
-						out.WriteToken("tags");
-						for(const auto &tag : it.outfitTags)
-							out.WriteToken(tag);
-						out.Write();
-					}
-					if(it.outfitAttributes.size())
-					{
-						out.WriteToken("attributes");
-						for(const auto &attribute : it.outfitAttributes)
-							out.WriteToken(attribute);
-						out.Write();
-					}
-				}
+				it.removeOutfits.Save(out);
 			}
 		}
 		out.EndChild();
@@ -502,6 +469,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 
 	result.fail = fail;
+
+	result.shipModifiers = shipModifiers;
 
 	result.conditions = conditions;
 

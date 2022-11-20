@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "OutfitFilter.h"
 
 #include <cstdint>
 #include <map>
@@ -44,13 +45,12 @@ class UI;
 // Conversation.
 class GameAction {
 public:
-	class ShipModifier
-	{
+	class ShipModifier {
 	public:
-		ShipModifier() {}
+		ShipModifier() = default;
+
 		std::vector<std::string> scopes;
-		std::vector<std::string> outfitTags;
-		std::vector<std::string> outfitAttributes;
+		OutfitFilter removeOutfits;
 	};
 public:
 	GameAction() = default;
