@@ -1,5 +1,5 @@
-/* ByName.h
-Copyright (c) 2022 by Michael Zahniser
+/* JumpTypes.h
+Copyright (c) 2022 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,30 +13,18 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COMPARATORS_BY_NAME_H_
-#define COMPARATORS_BY_NAME_H_
+#ifndef JUMP_TYPES_H_
+#define JUMP_TYPES_H_
 
 
 
-template<class T>
-class ByName {
-public:
-	bool operator()(const T *a, const T *b) const
-	{
-		return a->Name() < b->Name();
-	}
+// All possible jump methods for a ship.
+enum class JumpType : int {
+	NONE,
+	HYPERDRIVE,
+	JUMP_DRIVE,
 };
 
 
-
-template<class T>
-class ByDisplayName {
-public:
-	bool operator()(const T *a, const T *b) const
-	{
-		return a->DisplayName() < b->DisplayName();
-	}
-};
 
 #endif
-
