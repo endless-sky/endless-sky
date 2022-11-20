@@ -258,12 +258,7 @@ test "Store Outfit On Take Off"
 				"outfit: D23-QP Shield Generator" == 1
 				"outfit (cargo): D23-QP Shield Generator" == 1
 				"outfit (storage): D23-QP Shield Generator" == 0
-		call "Depart"
-		# Check that the warning message has shown and the ship hasn't departed yet.
-		assert
-			"flagship planet: Prime" > 0
-		input
-			key "enter"
+		call "Depart and Ignore Warning Message"
 		# Re-check startup conditions.
 		assert
 			and
@@ -299,12 +294,7 @@ test "Sell Outfit On Take Off"
 				"outfit: D23-QP Shield Generator" == 1
 				"outfit (cargo): D23-QP Shield Generator" == 1
 				"outfit (storage): D23-QP Shield Generator" == 0
-		call "Depart"
-		# Check that the warning message has shown and the ship hasn't departed yet.
-		assert
-			"flagship planet: Winter" > 0
-		input
-			key "enter"
+		call "Depart and Ignore Warning Message"
 		# Re-check startup conditions.
 		assert
 			and

@@ -585,6 +585,37 @@ test "Depart"
 			"test: Depart: zoom_restore_counter" > 0
 
 
+test "Depart and Ignore Warning Message"
+	status partial
+	description "Helper function to depart from a planet when a message requiring acknowledgement via keyboard input is expected."
+	sequence
+		apply
+			"starting day" = "day"
+		input
+			key d
+		# Check we haven't taken off yet.
+		assert
+			"starting day" == "day"
+		# Dismiss the expected message
+		input
+			key "enter"
+		assert
+			"starting day" != "day"
+		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
+		# Using empty inputs to trigger those game loops.
+		input
+		input
+		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
+		apply
+			"test: Depart: zoom_restore_counter" = 55
+		label zoom_restore_loop
+		apply
+			"test: Depart: zoom_restore_counter" -= 1
+		input
+		branch zoom_restore_loop
+			"test: Depart: zoom_restore_counter" > 0
+
+
 test "Sell first ship"
 	status partial
 	description "Test procedure that handles selling of the first ship in the list."
