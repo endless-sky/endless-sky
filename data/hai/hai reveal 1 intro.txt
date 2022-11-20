@@ -666,7 +666,7 @@ mission "Hai Leaks Response 2A"
 			`	"I hope ordinary smugglers are at fault, but it may be something more sinister. The Hai government may be arming the pirates, hopefully just as tribute payments. In the south, we know how useful bounties and tributes are for dealing with pirates. From my time as a senator, I can tell you the Republic will not be so understanding.`
 			`	"You must find out if Hai government is arming the pirates, and if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it, and whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
 			choice
-				`	"That's worrying news, Katya. I'll look into it."`
+				`	"That's worrying news. I'll look into it."`
 				`	"Don't worry. I'll stop the Hai from arming pirates."`
 			`	After a few more goodbyes, you head to your ship and prepare to depart.`
 				accept
