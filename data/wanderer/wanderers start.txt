@@ -976,7 +976,7 @@ mission "Wanderers: Alpha Surveillance A"
 			`	You split the devices up into three groups to launch out your airlock in each of the three Unfettered systems. Hopefully the Unfettered will not notice what you are doing.`
 				accept
 			label steal
-			apply
+			action
 				set "stole a wanderer micro-sat"
 			`	You split the devices up into three piles, one for each of the Unfettered systems, and keep one of them for yourself, well hidden in a safe place on your ship.`
 				accept
@@ -1097,7 +1097,7 @@ mission "Wanderers: Alpha Surveillance C (Naughty)"
 			`	"I see," says Rek. You wish you were able to read Wanderer facial expressions; you are not sure if he believes you. You go into your ship, wait long enough to make it appear that you needed to search, then return and give the device back to him.`
 				goto carrier
 			label apologized
-			apply
+			action
 				clear "stole a wanderer micro-sat"
 			`	"I am glad you [admitted, confessed] that," says Rek. "Please be more [honest, obedient] in the future." You retrieve the hidden surveillance device and return it to him.`
 			label carrier
