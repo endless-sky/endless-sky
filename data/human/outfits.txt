@@ -214,7 +214,7 @@ outfit "Cargo Scanner"
 	"mass" 1
 	"outfit space" -1
 	"cargo scan power" 9
-	"cargo scan speed" 1
+	"cargo scan speed" 5
 	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
 outfit "Outfit Scanner"
@@ -224,7 +224,7 @@ outfit "Outfit Scanner"
 	"mass" 2
 	"outfit space" -2
 	"outfit scan power" 25
-	"outfit scan speed" 1
+	"outfit scan speed" 15
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
 outfit "Asteroid Scanner"
