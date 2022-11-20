@@ -36426,7 +36426,7 @@ wormhole "Wormhole Link"
 	mappable
 	link Statina Vaticanus
 	link Vaticanus Statina
-	
+
 planet "Wye Tzeou"
 	landscape land/snow14
 	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions in which no two look alike. These constructs are all extremely tall, and it seems the actual surface of the planet is far beneath a layer of them. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
