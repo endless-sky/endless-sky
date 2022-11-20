@@ -202,9 +202,9 @@ mission "Syndicate target practice [0]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -40000
+		fine 160000
 	on complete
-		payment 20000
+		payment 80000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -221,7 +221,7 @@ mission "Syndicate target practice [1]"
 	to offer
 		random < 20
 		"combat rating" > 50
-		"combat rating" < 200
+		"combat rating" < 250
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
@@ -238,9 +238,9 @@ mission "Syndicate target practice [1]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -80000
+		fine 300000
 	on complete
-		payment 40000
+		payment 150000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -256,7 +256,7 @@ mission "Syndicate target practice [2]"
 		government Syndicate
 	to offer
 		random < 20
-		"combat rating" > 150
+		"combat rating" > 200
 		"combat rating" < 1000
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
@@ -274,9 +274,9 @@ mission "Syndicate target practice [2]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -120000
+		fine 520000
 	on complete
-		payment 60000
+		payment 260000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -309,9 +309,9 @@ mission "Syndicate target practice [3]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -200000
+		fine 800000
 	on complete
-		payment 100000
+		payment 400000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 ship "Berserker" "Berserker Test Dummy"

@@ -884,8 +884,13 @@ event "wanderers: more systems lost"
 		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
 
 planet "The Eye"
-	description ""
 	spaceport ""
+	wormhole "The Eye"
+
+wormhole "The Eye"
+	mappable
+	link Sabriset Sko'karak
+	link Sko'karak Sabriset
 
 event "wanderers: the eye begins to open"
 	system Sko'karak
@@ -932,34 +937,11 @@ event "wanderers: the eye opens"
 	system Sko'karak
 		add fleet "Wanderer Drones" 400
 		add fleet "Wanderer Freight" 2000
-		object
-			sprite star/m0
-			period 10
-		object
-			sprite planet/rock8
-			distance 154.36
-			period 42.8831
-		object
-			sprite planet/rock18
-			distance 384.05
-			period 168.293
-		object
-			sprite planet/desert1
-			distance 617.3
-			period 342.948
-		object
-			sprite planet/gas4
-			distance 1227.46
-			period 961.603
-			object
-				sprite planet/callisto-b
-				distance 272
-				period 15.8216
-			object
-				sprite planet/rock3-b
-				distance 406
-				period 28.8527
-		object "The Eye"
+		remove object
+			sprite planet/wisp
+			distance 2331.95
+			period 2518.05
+		add object "The Eye"
 			sprite planet/wormhole
 			distance 2331.95
 			period 2518.05

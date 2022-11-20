@@ -2539,26 +2539,11 @@ event "bombed zenith"
 		bribe .04
 		"required reputation" 0
 	system "Alnilam"
-		object
-			sprite star/f5
-			period 10
-		object
-			sprite planet/desert1
-			distance 224.69
-			period 32.5314
-		object
-			sprite planet/gas7-b
-			distance 966.7
-			period 290.312
-			object
-				sprite planet/miranda-b
-				distance 220
-				period 10.5884
-			object
-				sprite planet/luna
-				distance 305
-				period 17.2841
-		object "Zenith"
+		remove object "Zenith"
+			sprite planet/ocean7
+			distance 1776.59
+			period 723.283
+		add object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
 			period 723.283
@@ -2566,49 +2551,14 @@ event "bombed zenith"
 				sprite planet/ice8
 				distance 136
 				period 16.5247
-		object
-			sprite planet/gas2
-			distance 2758.68
-			period 1399.52
-			object
-				sprite planet/dust1-b
-				distance 200
-				period 12.5708
-			object
-				sprite planet/lava0-b
-				distance 330
-				period 26.6433
-			object
-				sprite planet/dust7
-				distance 440
-				period 41.0201
-			object
-				sprite planet/desert4
-				distance 575
-				period 61.2801
 
 event "zenith cooling"
 	system "Alnilam"
-		object
-			sprite star/f5
-			period 10
-		object
-			sprite planet/desert1
-			distance 224.69
-			period 32.5314
-		object
-			sprite planet/gas7-b
-			distance 966.7
-			period 290.312
-			object
-				sprite planet/miranda-b
-				distance 220
-				period 10.5884
-			object
-				sprite planet/luna
-				distance 305
-				period 17.2841
-		object "Zenith"
+		remove object "Zenith"
+			sprite "planet/zenith hot"
+			distance 1776.59
+			period 723.283
+		add object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
 			period 723.283
@@ -2616,26 +2566,6 @@ event "zenith cooling"
 				sprite planet/ice8
 				distance 136
 				period 16.5247
-		object
-			sprite planet/gas2
-			distance 2758.68
-			period 1399.52
-			object
-				sprite planet/dust1-b
-				distance 200
-				period 12.5708
-			object
-				sprite planet/lava0-b
-				distance 330
-				period 26.6433
-			object
-				sprite planet/dust7
-				distance 440
-				period 41.0201
-			object
-				sprite planet/desert4
-				distance 575
-				period 61.2801
 
 mission "Wanderers: Sestor: Bomb Zenith 2"
 	landing

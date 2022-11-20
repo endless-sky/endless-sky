@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -63,6 +64,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
+#include "Wormhole.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -239,8 +241,8 @@ Engine::Engine(PlayerInfo &player)
 
 	// Add all neighboring systems that the player has seen to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
-	const set<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
-		player.GetSystem()->JumpNeighbors(flagship->JumpRange()) : player.GetSystem()->Links();
+	const set<const System *> &links = (flagship && flagship->JumpNavigation().HasJumpDrive()) ?
+		player.GetSystem()->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
 		if(player.HasSeen(*system))
 			radar[calcTickTock].AddPointer(
@@ -669,7 +671,7 @@ void Engine::Step(bool isActive)
 	{
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
-		// Otherwise, display a segment for every 100 fuel.
+		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
 			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
 		else
@@ -1240,7 +1242,7 @@ void Engine::EnterSystem()
 			// unless it was planned. For valid travel plans, the
 			// next system will be this system, or accessible.
 			const System *to = player.TravelPlan().back();
-			if(system != to && !flagship->JumpFuel(to))
+			if(system != to && !flagship->JumpNavigation().JumpFuel(to))
 				player.TravelPlan().clear();
 		}
 	}
@@ -1405,7 +1407,7 @@ void Engine::CalculateStep()
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
-						it.GetPlanet()->WormholeDestination(playerSystem) == flagship->GetSystem())
+						&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
@@ -1583,14 +1585,21 @@ void Engine::CalculateStep()
 // boarding events, fire weapons, and launch fighters.
 void Engine::MoveShip(const shared_ptr<Ship> &ship)
 {
+	// Various actions a ship could have taken last frame may have impacted its jump capabilities.
+	// Therefore, recalibrate its jump navigation information.
+	ship->RecalibrateJumpNavigation();
+
 	const Ship *flagship = player.Flagship();
 
 	bool isJump = ship->IsUsingJumpDrive();
 	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
+	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
 	ship->Move(newVisuals, newFlotsam);
+	if(ship->IsDisabled() && !wasDisabled)
+		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
@@ -1640,7 +1649,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
-	shared_ptr<Ship> victim = ship->Board(autoPlunder);
+	// The player should not become a docked passenger on some other ship, but AI ships may.
+	bool nonDocker = ship.get() == flagship;
+	shared_ptr<Ship> victim = ship->Board(autoPlunder, nonDocker);
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
 			ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
@@ -2178,12 +2189,12 @@ void Engine::DoCollection(Flotsam &flotsam)
 		const Outfit *outfit = flotsam.OutfitType();
 		if(outfit->Get("minable") > 0.)
 		{
-			commodity = outfit->Name();
+			commodity = outfit->DisplayName();
 			player.Harvest(outfit);
 		}
 		else
 			message = name + to_string(amount) + " "
-				+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
+				+ (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
 	}
 	else
 		commodity = flotsam.CommodityType();
@@ -2242,8 +2253,8 @@ void Engine::FillRadar()
 	if(flagship)
 	{
 		const System *targetSystem = flagship->GetTargetSystem();
-		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
-			playerSystem->JumpNeighbors(flagship->JumpRange()) : playerSystem->Links();
+		const set<const System *> &links = (flagship->JumpNavigation().HasJumpDrive()) ?
+			playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
 			if(player.HasSeen(*system))
 				radar[calcTickTock].AddPointer(
@@ -2429,11 +2440,11 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		if(ship->GetGovernment() == attacker && ship->GetTargetShip() == target)
 		{
 			++attackerCount;
-			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();
+			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Strength();
 		}
 
 	// Only ask for help if outmatched.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
+	double targetStrength = (target->Shields() + target->Hull()) * target->Strength();
 	if(attackerStrength <= targetStrength)
 		return;
 
