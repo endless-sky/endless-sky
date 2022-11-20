@@ -271,9 +271,9 @@ mission "Hai Reveal [B03] Contact Giti"
 			`	On your way out Sayari catches you and suggests meeting aboard Teeneep's ship to discuss some things.`
 			`	Once there she pulls up information on known or possible smuggling operations used to justify the <origin> operation. Her focus is on what they hadn't reconciled. "Unfortunately, while many matches were found there was nothing in the new data that conclusively linked to the mysterious symbol. No human escapees had been tested for mild cadmium poisoning, so that was a dead end too. I know it's been thrust into the background pretty heavily, but did you find anything yourself? We need to decide if we're setting this aside or not."`
 			choice
-				`	(Tell her about Giti.)`
+				`	"I've met a reseracher named Giti who has been quite informative."`
 					goto giti
-				`	(Tell her you need to leave the communication blackout to check.)`
+				`	"I need to leave the communication blackout to check."`
 			`	You explain that, aside from a short window, you realize that you've been behind a communications blackout for most of the recent events. You'll have to go outside the blockade to follow up on your possible lead.`
 				goto end
 			label giti
