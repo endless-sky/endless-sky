@@ -600,7 +600,9 @@ test "Depart and Ignore Warning Message"
 		input
 			key "enter"
 		assert
-			"starting day" != "day"
+			or
+				"starting day" > "day"
+				"starting day" < "day"
 		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
 		# Using empty inputs to trigger those game loops.
 		input
