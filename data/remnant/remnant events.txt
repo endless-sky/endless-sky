@@ -66,6 +66,14 @@ event "remnant: puffin"
 
 
 
+# Replaced by the "remnant: puffin" event but the listed here so older versions of the "Remnant: Void Sprites 3" mission in their save file when they update do not have issues with this event being undefined.
+# The actual content of the event is not strictly necessary, since a patch mission already exists that applies the new event if the condition for this event is present.
+# But the event still needs to be declared so it can be considered "defined" by the game, otherwise, it will disable the mission referring to it.
+# If we ever do something that makes save files from an older version of the game incompatible, this can be removed.
+event "remnant: gascraft"
+
+
+
 event "remnant: void sprite research"
 
 
@@ -126,6 +134,34 @@ event "korath hunting"
 		"attitude toward"
 			"Indigenous Lifeform" -.01
 			"Ember Waste" -.01
+
+
+
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
 
 
 
@@ -257,6 +293,16 @@ event "remnant: ssil vida inhabited"
 
 
 
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: cognizance peregrine"
 	outfitter "Remnant"
 		"Bellows-Class Afterburner"
@@ -286,7 +332,7 @@ event "remnant: remove hidden"
 
 
 
-event "remnant: ssil vida area unvisted"
+event "remnant: ssil vida area unvisited"
 	unvisit "Diespiter"
 	unvisit "Egeria"
 	unvisit "Prosa"
@@ -332,6 +378,7 @@ event "remnant: ssil vida activation"
 		trade Metal 272
 		trade Plastic 289
 		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
 		hazard "Ember Waste Base Heat" 100
@@ -497,6 +544,7 @@ event "remnant: ssil vida activation"
 		trade Metal 407
 		trade Plastic 222
 		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object

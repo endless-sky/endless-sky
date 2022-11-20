@@ -14,14 +14,13 @@
 mission "Hai Reveal [B01] Information Blackout"
 	landing
 	name "Information Blackout"
-	description "Meet the Syndicate Security Captain at the spaceport on <origin> when you're ready."
+	description "Meet the Syndicate Security Captain in the spaceport on <origin> when you're ready."
 	source "Sunracer"
 	clearance
 	to offer
 		has "Hai Reveal [A13] A New Elder: done"
 	to complete
-		has "Joint the Fleet and Invade Stormhold: offered"
-		not "Joint the Fleet and Invade Stormhold: active"
+		never
 	on offer
 		event "hai and human ships at wormhole"
 		conversation
@@ -87,11 +86,12 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 # THIS mission is designed to give you a spectacle. A little visual demonstration of what a real battle could potentially look and feel like with low stakes for you. It's a visual feast, not a challenge.
 mission "Hai Reveal [B02] Join the Fleet"
 	autosave
-	name "Joint the Fleet and Invade Stormhold"
-	description "The fleet will arrive in Moktar soon. Join it, and lead it to Stormhold."
+	name "Join the Fleet and Invade Stormhold"
+	description "The fleet will arrive in <waypoints> soon. Join it, and lead it to Stormhold."
 	deadline 9
 	# The minimum journey time is 7
 	source "Sunracer"
+	waypoint "Moktar"
 	destination "Stormhold"
 	clearance
 	to offer
@@ -105,7 +105,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 				`	"I'm ready now."`
 				`	"I need time to prepare."`
 					goto prepare
-			`	"Very good." So far she hasn't actually introduced herself but as she puts the pad away again her flight jacket moves aside enough to see 'Captain Valeria Estrada' printed on the jumpsuit underneath. "Now, to bring you up to speed: At least two pirate groups there have been positively identified as being involved in kidnappings or smuggling in the past. <planet> is a fortress of anonymity and discretion, as well as being a literal fortress for many of those that live there. As such an agreed upon force of overwhelming numbers has been prepared at Mountaintop. The objective will be to overwhelm the defenders we're expecting to encounter, prevent any escapes, and occupy the planet while they ferret out all the groups intelligence has flagged.`
+			`	"Very good." So far she hasn't actually introduced herself but as she puts the pad away again her flight jacket moves aside enough to see 'Captain Valeria Estrada' printed on the jumpsuit underneath. "Now, to bring you up to speed: At least two pirate groups there have been positively identified as being involved in smuggling or kidnappings in the past. <planet> is a fortress of anonymity and discretion, as well as being a literal fortress for many of those that live there. As such an agreed upon force of overwhelming numbers has been prepared at Mountaintop. The objective will be to overwhelm the defenders we're expecting to encounter, prevent any escapes, and occupy the planet while they ferret out all the groups intelligence has flagged.`
 			`	"The Navy, Unfettered, and Hai fleets will travel from Mountaintop to meet you. We must fly with all haste directly to Sumar to meet them where you will act as the central coordination vessel. My security force here will follow you there, but until we get to Sumar don't worry yourself about waiting for us. We'll handle ourselves. Once we're all together in Sumar, it'll be your job to make sure everyone moves as one for each jump from there to <system>."`
 			`	She lowers her voice even further, despite the privacy afforded the conversation already. "There will be two Navy Carrier groups, our full Syndicate Special Security Detachment, the Unfettered Expeditionary Fleet, and a full Hai Taskforce. I don't think I've ever heard of a fleet this large being in the one place, at least not since the Alpha Wars. This coordination role is not a joke. There's lots of scope for things to go wrong here. We will go in, clean up, and search for Hai. Parliament will reassess the scope of concern later depending on what we find down there. We follow your lead Captain <last>."`
 				accept
@@ -126,20 +126,20 @@ mission "Hai Reveal [B02] Join the Fleet"
 		# However, they haven't had the time to refit and test out new options for their Protectors or Vanguards.
 	# Fleets start at Rajak instead of Ultima Thule to ensure they
 	# have enough fuel to reach Stormhold.
-	npc
+	npc accompany
 		government "Republic"
 		system "Rajak"
-		personality escort heroic opportunistic
+		personality escort heroic opportunistic waiting
 		fleet "Human Wormhole Guards" 20
-	npc
+	npc accompany
 		government "Hai"
 		system "Rajak"
-		personality escort heroic opportunistic
+		personality escort heroic opportunistic waiting
 		fleet "Hai Wormhole Guards" 20
-	npc
+	npc accompany
 		government "Hai (Friendly Unfettered)"
 		system "Rajak"
-		personality escort heroic opportunistic vindictive
+		personality escort heroic opportunistic vindictive waiting
 		fleet "Large Friendly Unfettered" 7
 	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
 
@@ -155,14 +155,14 @@ mission "Hai Reveal [B02] Join the Fleet"
 		fleet "Marauder fleet X" 4
 	# IX is 4 decent ships each, X is 6 ships but 2 are weak each. Total Fleet Size is roughly 28 + some chaff (~8).
 	on fail
-		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential mission (ALL of one fleet has been wiped out). To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 	on accept
 		fail "Hai Reveal [B01] Information Blackout"
 		fail "Hai Reveal [A11-B] Permanent Fleets"
 	on enter "Moktar"
 		dialog `You have reached the rendezvous and various fleets are arriving. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone. You have never seen so many military vessels in one place.`
 	on enter "Oblate"
-		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of Stormhold have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
+		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of <planet> have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
 	on complete
 		event "stormhold suppressed"
 	on visit
@@ -320,7 +320,7 @@ mission "Hai Reveal [B05-short] The Road Not Taken"
 		has "event: knows about keystones and wormholes"
 	on offer
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
-		log `Agent Kopkow` `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
+		log "Minor People" "Agent Kopkow" `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
 		conversation "giti tripped an alert"
 	on fail
 		"reputation: Republic" <?= -100
