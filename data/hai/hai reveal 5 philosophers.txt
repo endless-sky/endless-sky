@@ -230,14 +230,14 @@ mission "Hai Reveal [B03] Contact Giti"
 					to display
 						has "Hai Reveal [B03] Contact Giti: label operation"
 						not "Hai Reveal [B03] Contact Giti: label squirrels"
-				`	"Good job. Proceed with your plans. I have another urgent matter to look into."`
-					goto done
+				`	"I'm honored to have served you as fleet commander."`
+					goto honored
 					to display
 						has "Hai Reveal [B03] Contact Giti: label operation"
 						has "Hai Reveal [B03] Contact Giti: label disinformation"
 						has "Hai Reveal [B03] Contact Giti: label squirrels"
 				`	"Excellent work, everyone! Carry on!"`
-					goto done
+					goto offended
 					to display
 						has "Hai Reveal [B03] Contact Giti: label operation"
 						has "Hai Reveal [B03] Contact Giti: label disinformation"
@@ -264,10 +264,14 @@ mission "Hai Reveal [B03] Contact Giti"
 			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
 				goto briefing
 
+			label offended
+			`	Everyone looks surprised or offended, as if you are the court jester who thought he was king. They're dismissive of your comment, as they begin to discuss your departure.`
+				goto done
+			label honored
+			`	The leaders all look pleased. Choot'k says, "You've surpassed my expectations, Captain <last>. I've never seen a fleet so large, but you led it to victory with the speed and skill of a veteran admiral." Danforth looks just as impressed.`
 			label done
 			action
-				set "Hai Reveal [B03] Contact Giti: label end"
-			`	"For now, all communication in and out of the area is blocked at the relay unless its to or from specific high-level Navy or Syndicate sources. Captain <last>, I'm afraid that also includes you. We don't have time or equipment to harden your systems against potential intrusion, but you do have the nearly exclusive freedom to pass through the blockade. You're a pilot, not a ground combat troop operator, so you should pursue other matters."`
+			`	Danforth explains, "For now, all communication in and out of the area is blocked at the relay unless its to or from specific high-level Navy or Syndicate sources. Captain <last>, I'm afraid that also includes you. We don't have time or equipment to harden your systems against potential intrusion, but you do have the nearly exclusive freedom to pass through the blockade. You're a pilot, not a ground combat troop operator, so you should pursue other matters."`
 			`	On your way out Sayari catches you and suggests meeting aboard Teeneep's ship to discuss some things.`
 			`	Once there she pulls up information on known or possible smuggling operations used to justify the <origin> operation. Her focus is on what they hadn't reconciled. "Unfortunately, while many matches were found there was nothing in the new data that conclusively linked to the mysterious symbol. No human escapees had been tested for mild cadmium poisoning, so that was a dead end too. I know it's been thrust into the background pretty heavily, but did you find anything yourself? We need to decide if we're setting this aside or not."`
 			choice
