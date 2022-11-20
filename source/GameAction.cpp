@@ -211,7 +211,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	else if(key == "modify ship")
 	{
 		shipModifiers.emplace_back();
-		for(int it = 1; it < child.Tokens().size(); ++it)
+		for(unsigned int it = 1; it < child.Tokens().size(); ++it)
 			shipModifiers.back().scopes.emplace_back(child.Token(it));
 		for(const auto &grand : child)
 		{

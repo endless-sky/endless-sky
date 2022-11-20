@@ -29,7 +29,6 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
-		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
@@ -232,6 +231,8 @@
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		0E5D4C02292ACDD200C7E0A2 /* OutfitFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OutfitFilter.cpp; sourceTree = "<group>"; };
 		0E5D4C03292ACDD200C7E0A2 /* OutfitFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutfitFilter.h; sourceTree = "<group>"; };
+		0E5D4C06292AE15200C7E0A2 /* OutfitFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OutfitFilter.h; path = source/OutfitFilter.h; sourceTree = "<group>"; };
+		0E5D4C07292AE15200C7E0A2 /* OutfitFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = OutfitFilter.cpp; path = source/OutfitFilter.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
 		13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipJumpNavigation.cpp; path = source/ShipJumpNavigation.cpp; sourceTree = "<group>"; };
@@ -595,6 +596,8 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				0E5D4C07292AE15200C7E0A2 /* OutfitFilter.cpp */,
+				0E5D4C06292AE15200C7E0A2 /* OutfitFilter.h */,
 				1578F880250B5F8A00D318FB /* InfoPanelState.cpp */,
 				1578F882250B5F8A00D318FB /* InfoPanelState.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
