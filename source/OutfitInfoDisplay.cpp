@@ -176,6 +176,7 @@ namespace {
 		{"fuel protection", 4},
 		{"heat protection", 4},
 		{"hull protection", 4},
+		{"inertia reduction", 4},
 		{"ion protection", 4},
 		{"leak protection", 4},
 		{"piercing protection", 4},
@@ -356,7 +357,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
-		attributeValues.emplace_back(outfit.Ammo()->Name());
+		attributeValues.emplace_back(outfit.Ammo()->DisplayName());
 		attributesHeight += 20;
 		if(outfit.AmmoUsage() != 1)
 		{
