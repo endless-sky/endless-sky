@@ -833,7 +833,7 @@ mission "Hai Reveal [A06a] The Calm"
 				`	"Why would they be doing that, don't they use them too?"`
 			label relays
 			`	Remington nods. "Yes, well, this deep end of space has never had relays. No one out here has needed them; and for a long time the marauders here have been using the communications darkness out this way to be able to get around and do their business with impunity. There are no worlds disconnected, so there's little benefit to them. The sole advantage is that ships out this way can call for help when they couldn't before. So the relays the Syndicate have been putting up have been getting destroyed, along with several of our security ships.`
-			`	"This one that you see in front of you is different though." He makes eye contact with Alondo and very deliberately emphases the word as he continues, "WE have been working with the Hai to make some relays that look like they're human-made, but utilize some more advanced Hai technology to baffle any scanners attempting to identify their location within a system. These should allow us to make the communication links without having marauders come through and destroy them."`
+			`	"This one that you see in front of you is different though." He makes eye contact with Alondo and very deliberately emphases the word as he continues, "We have been working with the Hai to make some relays that look like they're human-made, but utilize some more advanced Hai technology to baffle any scanners attempting to identify their location within a system. These should allow us to make the communication links without having marauders come through and destroy them."`
 			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered by someone human, trustworthy, and who's not likely to get blown up by a marauder. Which would be you."`
 			choice
 				`	"Sounds easy enough."`
@@ -1081,7 +1081,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 		payment 100000
 		conversation
 			`Teeneep makes a request on your approach and then goes to prepare. You are subsequently directed to a restricted landing zone near their government complex. When she reappears Teeneep has prepared to meet the Unfettered in a somewhat surprising manner; she's wearing what looks like a fencing outfit. There are two swords on her back and several balanced knives on her belt. She's wearing a headband with a medallion on it that looks like an athletic medal.`
-			`	She pays you for the trip and explains, "These blades are not ceremonial. Bring your gun with you, but it behind when we reach the chambers, or the Unfettered may think you're an assassin. Trust me, we'll be fine.`
+			`	She pays you for the trip and explains, "These blades are not ceremonial. Bring your gun with you, but hand it to them when we reach the chambers, or the Unfettered may think you're an assassin. Trust me, we'll be fine.`
 			`	"Let's go," she says.`
 			choice
 				`	"What's your plan?"`
@@ -1163,7 +1163,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	She scrolls down on her pad several times and begins to mutter, "Oh dear, oh no." She lapses into Hai for a moment before returning. "It hit the trending issues board, and triggered the safety policy alert response. People got direct notifications that this was an issue. There are over two billion supporting votes for an injunctive action and it's only been two hours... this is what you hoped would happen, isn't it?"`
 			`Teeneep places a gentle hand on Sayari's arm. "Better this than war."`
 			label alarm
-			`	Sayari's eyes are alive with thinly-veiled panic as she slams her hand down on the table. "Captain <last>, you must leave immediately. Get on your ship and fly to <planet> right now! The winds of change are afoot and we will have an election. They'll hit the threshold in maybe only twenty minutes, and it'll take maybe thirty more for the bureaucracy to act on it. The instant the election is announced formally, all non-essential ships will be grounded, all communication in or out of Hai space will be cut off, and the border will be sealed to everyone - not in the polite way either. If even one ship tries to cross the border to investigate... there's no telling what will happen.`
+			`	Sayari's eyes are alive with thinly-veiled panic as she slams her hand down on the table. "Captain <last>, you must leave immediately. Get on your ship and fly to <planet> right now! The winds of change are afoot and we will have an election. They'll hit the threshold in maybe only twenty minutes, and it'll take maybe thirty more for the bureaucracy to act on it. The instant the election is announced formally, all non-essential ships will be grounded, all communication in or out of Hai space will be cut off, and the border will be sealed to everyone - not in the polite way either. If even one ship tries to cross the border to investigate... there's no telling what will happen."`
 			`	"Go, go with all possible haste! I will tell the others, but right now you must go. Now!"`
 				launch
 	on enter "Waypoint"
@@ -1251,7 +1251,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 				`	(Interrupt him.)`
 					goto interrupt
 				`	(Wait.)`
-			`Sorry, you were presumably here on business, what's going on out there?"`
+			`	"Sorry, you were presumably here on business, what's going on out there?"`
 			label interrupt
 			choice
 				`	"The border is closed."`
@@ -1309,7 +1309,7 @@ mission "Hai Reveal [A13] A New Elder"
 				`	(Drink with them.)`
 			`	As it turns out, Teeneep's speech is in Hai with no translation available. It's short and punchy, but restrained; or at least her delivery of it has that feeling. With nothing else to do, and it being well into the evening, you call it a night.`
 			`	The following morning Sayari finds you with Alondo, Remington, Xilin and Batu all having vending machine breakfasts in the cafeteria. It turns out Hai vending machines aren't half bad.`
-			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to as which do you want first?"`
+			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to ask which do you want first?"`
 			`	Alondo and Remington both groan, neither having pulled up particularly well this morning. Xilin has a great deal more composure but looks like he's not had a break from stress in well over a month... which is probably accurate. "Why don't you pick, <last>?" he says.`
 			choice
 				`	"Good news."`
