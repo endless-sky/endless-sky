@@ -1526,17 +1526,9 @@ void Engine::CalculateStep()
 
 		// If this effect is disabled in the preferences, multiply the end product by 0.
 		double prefMul = Preferences::CameraAcceleration() == "on" ? 1.
-			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.)
+			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.);
 
 		offset = prefMul * flagship->Velocity() * .05 * zoom * smoothStep;
-
-		// If we are moving very fast, we may leave the screen. This will prevent that.
-		// TODO: actually calculate maximum allowed offset, rather than asserting it's 400 pixels.
-		// "maxOffset" should be equal to the minimum between the window's width and height.
-		double maxOffset = 400;
-		// TODO: if the maxOffset is ever 1, this will break. This is unlikely, but I believe
-		// there is a better way to do this which does not have this weakness.
-		offset = maxOffset - maxOffset * pow(1. - 1. / maxOffset, offset);
 
 		newCenter = !flagship->IsHyperspacing() ?
 			flagship->Position() + offset : flagship->Position();
