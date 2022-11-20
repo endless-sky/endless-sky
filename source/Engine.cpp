@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -64,6 +65,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Track.h"
 #include "Visual.h"
 #include "Weather.h"
+#include "Wormhole.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -240,8 +242,8 @@ Engine::Engine(PlayerInfo &player)
 
 	// Add all neighboring systems that the player has seen to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
-	const set<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
-		player.GetSystem()->JumpNeighbors(flagship->JumpRange()) : player.GetSystem()->Links();
+	const set<const System *> &links = (flagship && flagship->JumpNavigation().HasJumpDrive()) ?
+		player.GetSystem()->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
 		if(player.HasSeen(*system))
 			radar[calcTickTock].AddPointer(
@@ -1252,7 +1254,7 @@ void Engine::EnterSystem()
 			// unless it was planned. For valid travel plans, the
 			// next system will be this system, or accessible.
 			const System *to = player.TravelPlan().back();
-			if(system != to && !flagship->JumpFuel(to))
+			if(system != to && !flagship->JumpNavigation().JumpFuel(to))
 				player.TravelPlan().clear();
 		}
 	}
@@ -1417,7 +1419,7 @@ void Engine::CalculateStep()
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
-						it.GetPlanet()->WormholeDestination(playerSystem) == flagship->GetSystem())
+						&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
@@ -1595,6 +1597,10 @@ void Engine::CalculateStep()
 // boarding events, fire weapons, and launch fighters.
 void Engine::MoveShip(const shared_ptr<Ship> &ship)
 {
+	// Various actions a ship could have taken last frame may have impacted its jump capabilities.
+	// Therefore, recalibrate its jump navigation information.
+	ship->RecalibrateJumpNavigation();
+
 	const Ship *flagship = player.Flagship();
 
 	bool isJump = ship->IsUsingJumpDrive();
@@ -2195,12 +2201,12 @@ void Engine::DoCollection(Flotsam &flotsam)
 		const Outfit *outfit = flotsam.OutfitType();
 		if(outfit->Get("minable") > 0.)
 		{
-			commodity = outfit->Name();
+			commodity = outfit->DisplayName();
 			player.Harvest(outfit);
 		}
 		else
 			message = name + to_string(amount) + " "
-				+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
+				+ (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
 	}
 	else
 		commodity = flotsam.CommodityType();
@@ -2259,8 +2265,8 @@ void Engine::FillRadar()
 	if(flagship)
 	{
 		const System *targetSystem = flagship->GetTargetSystem();
-		const set<const System *> &links = (flagship->Attributes().Get("jump drive")) ?
-			playerSystem->JumpNeighbors(flagship->JumpRange()) : playerSystem->Links();
+		const set<const System *> &links = (flagship->JumpNavigation().HasJumpDrive()) ?
+			playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
 			if(player.HasSeen(*system))
 				radar[calcTickTock].AddPointer(

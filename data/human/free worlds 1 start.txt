@@ -366,7 +366,7 @@ mission "FW Syndicate Diplomacy 1B"
 			`	A much older man sitting next to him, Akihito, says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
 			`	"No," Remington says, surprising some of the other men at the table. "No markups necessary." None of the other men argue with Remington over this.`
 			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter within the Dirt Belt in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. In addition, Remington suggested that you might find some "extra goodies" among the Syndicate convoys heading to Tarazed specifically. You thank the Syndicate leaders, and begin the trip back to your ship.`
-			`	Alondo is silent. As you're about to leave the spaceport for the landing pads, you hear someone shout behind you. "No need to be a stranger, Gruyere. Can't stick around for a drink?" You turn to look at who it is, but Alondo keeps walking. You find Samuel Remington approaching, paying you no mind. "Are you still mad at me, Gruyere?" he asks`
+			`	Alondo is silent. As you're about to leave the spaceport for the landing pads, you hear someone shout behind you. "No need to be a stranger, Gruyere. Can't stick around for a drink?" You turn to look at who it is, but Alondo keeps walking. You find Samuel Remington approaching, paying you no mind. "Are you still mad at me, Gruyere?" he asks.`
 			choice
 				`	(Stand in Remington's way.)`
 					goto stand
@@ -640,7 +640,7 @@ mission "FW Hope Recon 1C"
 				`	(No, sounds risky.)`
 					decline
 			
-			apply
+			action
 				set "fw caught navy planting sensors"
 			`	You approach the location, flying low to avoid detection, and come upon a Navy Gunboat, landed on the planet. Some distance away from the ship, several figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the Gunboat is powered down.`
 			`	The moment your ship comes over the horizon, they start running back toward the Gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
@@ -663,7 +663,7 @@ mission "FW Hope Recon 1C"
 				launch
 			
 			label accept
-			apply
+			action
 				karma ++
 				set "fw accepted Susquehanna's word of honor"
 			`	Most ships are equipped with external speakers for exactly this sort of situation. You target the ship, and your scanners identify it as the <npc>.`
@@ -1102,19 +1102,19 @@ mission "FW Pirates 2"
 				`	"Occupying four pirate systems in perpetuity would be a huge drain on our resources. Why not try to negotiate with them, say by offering those worlds freedom from our interference as long as they stop supporting pirate fleets?"`
 					goto diplomacy
 			
-			apply
+			action
 				set "fw pirate suggestion: greenrock"
 			`	"That's definitely the fastest solution," he says, "although it would also be a difficult one. Defending an assault from the Navy was one thing, but subjugating the seat of pirate power in the region is another. It would be a great show of strength, though, not only to the pirates, but also to the Republic."`
 				goto next
 			
 			label antares
-			apply
+			action
 				set "fw pirate suggestion: antares"
 			`	"Sounds reasonable to me," he says. "We could probably do that with minimal loss of life. But the risk is that Greenrock would still refuse to surrender. Anyone could nip at the weakest member of the herd, but if we take down Greenrock first it would be a great show of strength, not only to the pirates, but also to the Republic."`
 				goto next
 			
 			label diplomacy
-			apply
+			action
 				set "fw pirate suggestion: diplomacy"
 			`	He frowns. "Negotiate with criminals?"`
 			`	"I'm told that only a small portion of the people on those worlds actually engage in piracy," you say, "and many of them are children pressed into service as crew members."`
@@ -2228,7 +2228,7 @@ mission "FW Rogue Elements"
 		conversation
 			`After you land, you notice that a sizeable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
 			`	"For generations we have been neglected by the Republic!" he shouts. "Our grievances were ignored! Our pain and suffering was ignored! Our needs were ignored! We cried out for help, and yet the Republic did nothing, allowing our planets to be ravaged by piracy while continuing to tax our credits for services we were not provided. And as the years have gone on the pirates have only become more and more emboldened.`
-			`	"We tried our best, even with the system stacked against us. Councillor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. On behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces!`
+			`	"We tried our best, even with the system stacked against us. Councilor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. On behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces!`
 			`	"And so we banded together. Friends and family locked in arms, doing that which the Republic would not. We looked out for each other, and raised our own defenses against the piracy that we so feared. And then we stood up together and told the Republic that we would take their neglect no longer. We shouted that the system does not work, and so we will create our own! We, with the sweat, blood, and tears of generations, birthed these Free Worlds!`
 			`	"And how does the Republic respond to this? They have finally given us the attention we've asked, but not in the form we desired. They have attacked us! Waged war on us! And in doing so, Katya has become a prisoner of war, held for crimes she did not commit by a system that did not listen to her despite her greatest attempts to be heard."`
 			choice
