@@ -1382,37 +1382,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 
-	// Recharge any ships that can be recharged, and load available cargo.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
-	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled())
-		{
-			if(ship->GetSystem() != system)
-			{
-				ship->Recharge(false);
-				continue;
-			}
-			else
-				ship->Recharge(hasSpaceport);
-
-			if(ship != flagship)
-			{
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(ship->Cargo());
-			}
-			else
-			{
-				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
-				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
-			}
-		}
-	// Load up your flagship last, so that it will have space free for any
-	// plunder that you happen to acquire.
-	cargo.TransferAll(flagship->Cargo());
-
 	if(cargo.Passengers())
 	{
 		int extra = min(cargo.Passengers(), flagship->Crew() - flagship->RequiredCrew());
@@ -1584,6 +1553,37 @@ bool PlayerInfo::LeavePlanet()
 	availableMissions.clear();
 	doneMissions.clear();
 	stock.clear();
+
+	// Recharge any ships that can be recharged, and load available cargo.
+	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && !ship->IsDisabled())
+		{
+			if(ship->GetSystem() != system)
+			{
+				ship->Recharge(false);
+				continue;
+			}
+			else
+				ship->Recharge(hasSpaceport);
+
+			if(ship != flagship)
+			{
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+				cargo.TransferAll(ship->Cargo());
+			}
+			else
+			{
+				// Your flagship takes first priority for passengers but last for cargo.
+				desiredCrew = ship->Crew();
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
+				for(const auto &it : cargo.PassengerList())
+					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
+			}
+		}
+	// Load up your flagship last, so that it will have space free for any
+	// plunder that you happen to acquire.
+	cargo.TransferAll(flagship->Cargo());
 
 	return true;
 }
