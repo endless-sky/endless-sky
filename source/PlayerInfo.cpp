@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -894,7 +895,8 @@ void PlayerInfo::SetFlagship(Ship &other)
 	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() &&
+			(!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
 		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 
@@ -1526,10 +1528,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 		else
 			for(const auto &outfit : cargo.Outfits())
 			{
-				// Compute the total value for each type of excess outfit.
+				// Transfer the outfits from cargo to the storage on this planet.
 				if(!outfit.second)
 					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage());
+				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
 			}
 	}
 	accounts.AddCredits(income);
