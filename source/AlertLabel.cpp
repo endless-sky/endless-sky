@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "GameData.h"
-#include "Projectile.h"
 #include "PointerShader.h"
+#include "Projectile.h"
 #include "RingShader.h"
 #include "Ship.h"
 
@@ -32,8 +32,9 @@ namespace {
 
 
 
-AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, const shared_ptr<Ship> &flagship, double zoom)
-		: position(position), zoom(zoom)
+AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, const shared_ptr<Ship> &flagship,
+		double zoom)
+	: position(position), zoom(zoom)
 {
 	isTargetingFlagship = projectile.TargetPtr() == flagship;
 	double maxHP = flagship->Attributes().Get("hull") + flagship->Attributes().Get("shield");
