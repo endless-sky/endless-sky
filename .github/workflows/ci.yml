@@ -330,21 +330,15 @@ jobs:
           - os: ubuntu-20.04
             opengl: desktop
             glew: libglew2.1
-            driver: x11
           - os: ubuntu-22.04
             opengl: desktop
             glew: libglew2.2
-            driver: x11
           - os: ubuntu-20.04
             opengl: gles
             glew: libgles2-mesa
-            driver: wayland
           - os: ubuntu-22.04
             opengl: gles
             glew: libgles2-mesa
-            driver: wayland
-    env:
-      SDL_VIDEODRIVER: ${{ matrix.driver }}
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
