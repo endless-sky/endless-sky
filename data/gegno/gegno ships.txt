@@ -967,8 +967,8 @@ ship Muscovite
 	outfits
 		"C7 Brawl Cell"
 		"C17 Warzone Core"
-		"Astuit Battery 2"
-		"Acuit Artillery" 2
+		"Astuit Battery" 2
+		"Acuit Artillery"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
