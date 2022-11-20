@@ -399,7 +399,7 @@ ship Eclogite
 	explode "small explosion" 20
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
-	description `The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another pounding.`
+	description `While the style of longer battleship-esq vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi war vessels. The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another pounding.`
 
 ship Diorite
 	sprite "ship/gegno diorite"
@@ -451,7 +451,7 @@ ship Diorite
 	explode "small explosion" 20
 	explode "tiny explosion" 17
 	"final explode" "final explosion medium"
-	description "Placeholder".
+	description "Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets to support them. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, sometimes smaller ones."
 
 ship Hornfel
 	sprite "ship/gegno hornfel a"
@@ -503,7 +503,7 @@ ship Hornfel
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Hornfels are the workhorse of the Gegno Vi's military. They're decently sized, decently fast, and more than decently armed in order to be able to fight on their own. Because the Gegno Vi always require more replacement supplies in war, they double as a secondary cargo transport as well, and are seen occasionally with cargo pods attached to the several racks lining the sides of the ship.`
+	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many cargo racks to support cargo pods, allowing them to provide a secondary cargo transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are occasionally found with adjustments to carry a larger payload rather than cargo load. This usage as a multi-role ship is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
 
 ship Hornfel "Hornfel Light Load"
 	sprite "ship/gegno hornfel b"
@@ -768,7 +768,7 @@ ship Coesite
 	explode "small explosion" 24
 	explode "tiny explosion" 18
 	"final explode" "final explosion small"
-	description `Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry two turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war.`
+	description `Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry two turret mounts which allow them to always be orbiting and firing on the move. Being a smaller design, these ships are relatively easy to manufacture, and are often fielded in groups so they may overtake vessels much larger than them.`
 
 ship Tridymite
 	sprite "ship/gegno tridymite"
@@ -998,70 +998,3 @@ ship Muscovite
 	"final explode" "final explosion large"
 	description `Muscovites are large independent research platforms with decently-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks eitehr help transport groups of Scin scientists to their project destinations, where they perform research or experiments, or allow for mobile on-board demonstrations and observations. Each Muscovite is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Muscovites can also be used as a secondary warship when needed.`
 	description `	Like other Gegno Scin ships, Muscovites themselves are an experimental test bed, and are built around the large engine system tested on Feldspars, making them notably fast for their size.`
-
-# Note: Not used at the start.
-ship Kyanite
-	sprite ship/kyanite
-	thumbnail thumbnail/kyanite
-	attributes
-		category "Utility"
-		licenses
-			"Gegno Civilian"
-			"Scin Architect"
-			"Scin Hoplologist"
-		cost 41780000
-		hull 16200
-		"required crew" 98
-		bunks 108
-		mass 1270
-		drag 17.2
-		"heat dissipation" 0.74
-		"fuel capacity" 400
-		"cargo space" 82
-		"outfit space" 340
-		"weapon capacity" 212
-		"engine capacity" 160
-		"energy capacity" 2400
-		"energy generation" 31.2
-		"heat generation" 99.4
-		weapon
-			"blast radius" 180
-			"shield damage" 1650
-			"hull damage" 1200
-			"hit force" 1000
-	outfits
-		"Acuit Blaster"
-		"Astuit Battery" 1
-		"Guile Anti-Missile" 2
-		Hyperdrive
-		"SC-14 Plasma Steering"
-		"SC-14 Plasma Thruster"
-
-	"steering engine" -90 -121
-		angle 59
-		right
-		scale 0.5
-		scale 0.5
-	"steering engine" 90 -121
-		angle -59
-		left
-	engine 22 148 0.6
-	engine -22 148 0.6
-	engine 32 177 0.6
-		over
-	engine -32 177 0.6
-		over
-	engine 0 157
-	turret -50.5 -121.5 "Guile Anti-Missile"
-	turret 50.5 -121.5 "Guile Anti-Missile"
-	turret 0 68 "Astuit Battery"
-	gun 0.5 -100 "Acuit Blaster"
-	leak leak 50 50
-	leak flame 80 140
-	explode "huge explosion" 18
-	explode "large explosion" 30
-	explode "medium explosion" 46
-	explode "small explosion" 50
-	explode "tiny explosion" 40
-	"final explode" "final explosion large"
-	description `Gegno Scin experimental test platform for weapons technology.`
