@@ -126,7 +126,7 @@ void Personality::Load(const DataNode &node)
 		}
 	}
 
-	isValid = true;
+	isDefined = true;
 }
 
 
@@ -146,9 +146,9 @@ void Personality::Save(DataWriter &out) const
 
 
 
-bool Personality::IsValid() const
+bool Personality::IsDefined() const
 {
-	return isValid;
+	return isDefined;
 }
 
 
