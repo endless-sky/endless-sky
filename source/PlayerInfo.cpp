@@ -896,7 +896,7 @@ void PlayerInfo::SetFlagship(Ship &other)
 	for(const shared_ptr<Ship> &ship : ships)
 	{
 		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() &&
-									 (!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
+									(!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
 		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 
