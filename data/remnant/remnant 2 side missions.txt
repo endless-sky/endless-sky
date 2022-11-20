@@ -65,7 +65,7 @@ mission "Remnant: Visit to Paradise 1"
 	on stopover
 		conversation
 			branch science
-				has "Research Laboratory"
+				has "outfit (flagship installed): Research Laboratory"
 			`As you approach, your navigation system picks up the beacons designating the approach path, and before long you are automatically guided to a landing pad on the outskirts of the main spaceport.`
 				goto vaillanding
 			label science

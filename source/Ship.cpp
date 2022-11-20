@@ -784,12 +784,9 @@ void Ship::FinishLoading(bool isNewInstance)
 		attributes.Set("drag", 100.);
 	}
 
-	// Only the player's ships make use of attraction and deterrence.
-	if(isYours)
-	{
-		attraction = CalculateAttraction();
-		deterrence = CalculateDeterrence();
-	}
+	// Calculate the values used to determine this ship's value and danger.
+	attraction = CalculateAttraction();
+	deterrence = CalculateDeterrence();
 
 	if(!warning.empty())
 	{

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Engine.h"
 
+#include "AlertLabel.h"
 #include "Audio.h"
 #include "CategoryTypes.h"
 #include "CoreStartData.h"
@@ -636,6 +637,17 @@ void Engine::Step(bool isActive)
 			}
 		}
 
+	// Create missile overlays.
+	missileLabels.clear();
+	if(Preferences::Has("Show missile overlays"))
+		for(const Projectile &projectile : projectiles)
+		{
+			Point pos = projectile.Position() - center;
+			if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
+					&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
+				missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
+		}
+
 	// Create the planet labels.
 	labels.clear();
 	if(currentSystem && Preferences::Has("Show planet labels"))
@@ -952,6 +964,10 @@ void Engine::Draw() const
 		if(it.disabled > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
 	}
+
+	// Draw labels on missiles
+	for(const AlertLabel &label : missileLabels)
+		label.Draw();
 
 	// Draw the flagship highlight, if any.
 	if(highlightSprite)
