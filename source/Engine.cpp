@@ -944,7 +944,7 @@ void Engine::Draw() const
 
 		if(Preferences::Has("Damage highlights"))
 		{
-			float shields = min(SHIELD_OUTLINE_MULT*static_cast<float>(sqrt(ship->RecentShieldDamage()/ship->Attributes().Get("shields"))), 1.f);
+			float shields = min(SHIELD_OUTLINE_MULT * static_cast<float>(sqrt(ship->RecentShieldDamage() / ship->Attributes().Get("shields"))), 1.f);
 			if(ship->RecentShieldDamage() > 4. && ship->GetSystem() == player.GetSystem())
 				OutlineShader::Draw(ship->GetSprite(), (ship->Position() - dCenter) * zoom, Point(ship->Width(), ship->Height()) * zoom,
 									Color(.61f * shields, .78f * shields, shields, shields), ship->Facing().Unit(), ship->GetFrame());
@@ -2349,7 +2349,7 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawCloaked = (cloak && ship.IsYours());
 	bool drawHeat = ship.Heat() > 0.9;
 	bool drawShield = ship.RecentShieldDamage() > 4.;
-	double shield = sqrt(ship.RecentShieldDamage()/ship.Attributes().Get("shields"));
+	double shield = sqrt(ship.RecentShieldDamage() / ship.Attributes().Get("shields"));
 	double heat = min((ship.Heat() - HEAT_THRESHHOLD) * HEAT_EFFECT_MULTIPLIER, 1.);
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, shield, heat, drawCloaked, drawShield, drawHeat, damageHighlight](const Body &body) -> void
@@ -2368,8 +2368,11 @@ void Engine::AddSprites(const Ship &ship)
 			if(drawShield)
 				itemsToDraw.AddSwizzled(body, 29, max(1-shield, 0.75));
 		}
-		else // We would have missed on this step if damageHighlight was disabled.
+		else
+		{
+			// We would have missed on this step if damageHighlight was disabled.
 			itemsToDraw.Add(body, cloak);
+		}
 	};
 
 	if(hasFighters)
