@@ -230,7 +230,13 @@ mission "Hai Reveal [B03] Contact Giti"
 					to display
 						has "Hai Reveal [B03] Contact Giti: label operation"
 						not "Hai Reveal [B03] Contact Giti: label squirrels"
-				`	"Proceed with your plans. I have another urgent matter to look into."`
+				`	"Good job. Proceed with your plans. I have another urgent matter to look into."`
+					goto done
+					to display
+						has "Hai Reveal [B03] Contact Giti: label operation"
+						has "Hai Reveal [B03] Contact Giti: label disinformation"
+						has "Hai Reveal [B03] Contact Giti: label squirrels"
+				`	"Excellent work, everyone! Carry on!"`
 					goto done
 					to display
 						has "Hai Reveal [B03] Contact Giti: label operation"
@@ -478,10 +484,10 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			`	You clarify that technically it's a lead on cases that match the same profile as his wife's, not strictly his wife's case. His expression falters momentarily and then he seems to find some internal resolve to draw upon. "Good enough for me... Thank you, for your honesty."`
 			label lab
 			`	After a short return trip, you reach what looks like a small private spaceport. From the extra equipment and unusual ship designs, you realize it must be one of Tarazed's research shipyards. Goraz's laboratory is an entire docking bay with a modified Blackbird. Despite its size, it is conspicuously absent any other personnel. He takes you on board and, noting your attention to your surroundings, explains that he has few assistants that are typically off-world most of the time as he walks you to the communications room.`
-			`	"Here, let me take a look at what you've brought me."`
+			`	Goraz says, "Here, let me take a look at what you've brought me." He's eyeing your pockets.`
 			choice
 				`	"It's all in this data stick."`
-				`	"I'm hoping this data can find the kidnapping victims."`
+				`	"I think this is what you've been looking for."`
 			`	Goraz takes the data stick you brought and plugs it into the communicator. After several minutes of mucking about with list formats and muttering incoherently to himself he pauses as a search result collates matches on his screen. You're not sure exactly what you're looking at, but when it finishes he lets out a long slow breath and comments to himself in a low voice. "Bastijn Biesterveld, you absolute legend. He was right - it's the interference."`
 			`	He turns back to you and explains. "Normally interference isn't something that's logged, but when you're in civilized space with hyperspace relays, your ship does a final handshake with the local relay station as it jumps." He pauses briefly, maybe to see if you understand him.`
 			`	You see a long technical explanation coming on.`
@@ -493,13 +499,13 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			`	He pauses, realizing he's been rambling. "Sorry, that was probably way more explanation than you needed. There's a small group of us comms people that have lost people, or know people who have, that the authorities can't help. We're scattered all over and we've been looking at this ourselves. Together we identified some ships we thought were suspicious, but we've not been able to pin down anything concrete. Bastijn was convinced there was a pattern of interference signatures from the logs; he made the analysis program, but it was never definitively distinct from the noise. This data set you've brought though, well, once you filter for the subset of ships in our data set, what you've given me matches so completely to the set of ships we've found with interference that it has to be a match! Ninety-eight point five percent confidence interval completely annihilates the idea that it could be random."`
 				goto wait
 			label skip
-			`	Goraz pauses for a moment, struggling to lower the content to layman's terms. "There's some ships that don't show up right on comms, which only a few experts like me can spot. Some of it could be random noise, but that's unlikely. We can filter out the subset of ships in our dataset. Hold on...`
+			`	Goraz pauses for a moment, struggling to lower the content to layman's terms. "There's some ships that don't show up right on comms, which only a few experts like me can spot. Some of it could be random noise, but that's unlikely. We can filter out the subset of ships in our dataset. Hold on..."`
 			`	After a few moments of fiddling with terminals, he continues. "What you've given me matches so completely to the set of ships we've found with interference that it has to be a match! Ninety-eight point five percent confidence interval completely annihilates the idea that it could be random."`
 			label wait
 			`	He casts around for a moment and then plugs a freshly unpacked data card into his console. "Give me a little time: I can do something for you now. I'll be back with you in ten minutes."`
 			choice
-				`	(Sit down.)`
-				`	(Stand around idly.)`
+				`	"Take your time."`
+				`	"I'll be here waiting."`
 			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one, now loaded up with whatever he was putting on it. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local relay when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work.`
 			choice
 				`	"That's some impressive work in such a short time."`
@@ -698,7 +704,7 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 			choice
 				`	"What is going on back in Hai space?"`
 				`	"How are the Hai recovering from the election?"`
-			`	"Certain people have noticed that you have had close interactions with Teeneep and I through this, and questions have indeed been asked as to whether you are responsible for the mess that was caused by Teeneep going public with the information you helped her find." Her expression is very serious. "We have not told them absolutely every detail, but we have made it clear to your diplomats that the issue was a matter which would have blocked any solution until it was resolved, regardless of if you helped or not. They understand that your involvement has helped move towards a solution, even if parts of it could be misconstrued when seen from the outside."`
+			`	"There's a bit of a problem. Certain people have noticed that you have had close interactions with Teeneep and I through this, and questions have indeed been asked as to whether you are responsible for the mess that was caused by Teeneep going public with the information you helped her find." Her expression is very serious. "We have not told them absolutely every detail, but we have made it clear to your diplomats that the issue was a matter which would have blocked any solution until it was resolved, regardless of if you helped or not. They understand that your involvement has helped move towards a solution, even if parts of it could be misconstrued when seen from the outside."`
 			`	You thank her for explaining. Now you definitely need to take the information to Giti. She may be able to use what you've found to predict what preparations should be made.`
 				accept
 
