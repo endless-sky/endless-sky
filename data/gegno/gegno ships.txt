@@ -676,13 +676,14 @@ ship Halite
 			"hull damage" 85
 			"hit force" 160
 	outfits
+		"Guile Pulse Laser" 2
 		"I70 Ameliorate Cell"
 		"SC-1 Plasma Engines"
 
 	engine -11 42
 	engine 11 42
-	gun -18.5 -44.5
-	gun 18.5 -44.5
+	gun -18.5 -44.5 "Guile Pulse Laser"
+	gun 18.5 -44.5 "Guile Pulse Laser"
 	leak leak 60 50
 	explode "small explosion" 8
 	explode "tiny explosion" 10
