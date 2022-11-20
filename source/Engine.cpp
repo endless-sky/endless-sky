@@ -1628,20 +1628,20 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				const Ship *shipToPlace = GameData::Ships().Get(ship->CoreShip());
 				if(shipToPlace->IsValid())
 				{
-					const shared_ptr<Ship> escapeShip = make_shared<Ship>(*shipToPlace);
-					escapeShip->Recharge();
-					escapeShip->SetName(ship->Name());
-					escapeShip->SetGovernment(ship->GetGovernment());
-					if(ship->CorePersonality().IsValid())
-						escapeShip->SetPersonality(ship->CorePersonality());
+					const shared_ptr<Ship> coreShip = make_shared<Ship>(*shipToPlace);
+					coreShip->Recharge();
+					coreShip->SetName(ship->Name());
+					coreShip->SetGovernment(ship->GetGovernment());
+					if(ship->CorePersonality().IsDefined())
+						coreShip->SetPersonality(ship->CorePersonality());
 					else
-						escapeShip->SetPersonality(ship->GetPersonality());
-					escapeShip->SetHail(*ship->GetHailPhrase());
-					escapeShip->SetSystem(ship->GetSystem());
-					if(ship->GetParent() && !escapeShip->GetPersonality()->IsCoward())
-						escapeShip->SetParent(ship->GetParent());
-					escapeShip->Place(ship->Position(), ship->Velocity(), ship->Facing());
-					newShips.push_back(escapeShip);
+						coreShip->SetPersonality(ship->GetPersonality());
+					coreShip->SetHail(*ship->GetHailPhrase());
+					coreShip->SetSystem(ship->GetSystem());
+					if(ship->GetParent() && !coreShip->GetPersonality().IsCoward())
+						coreShip->SetParent(ship->GetParent());
+					coreShip->Place(ship->Position(), ship->Velocity(), ship->Facing());
+					newShips.push_back(coreShip);
 					if(ship->IsYours())
 						player.AddShip(coreShip);
 					if(ship == player.FlagshipPtr())
