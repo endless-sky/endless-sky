@@ -181,7 +181,7 @@ void PrintData::Help()
 	cerr << "        --attributes: prints a list of all systems and their attributes." << endl;
 	cerr << "            --reverse: prints a list of all system attributes and which systems have them."
 			<< endl;
-	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in a text file."
+	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
 			<< endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;
 }
