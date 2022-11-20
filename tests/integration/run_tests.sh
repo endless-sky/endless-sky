@@ -72,7 +72,7 @@ function run_single_testrun () {
   #   - A warning that no audio was loaded
   if ! "$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST_NAME}" --config "${ES_CONFIG_PATH}" 2>&1 |\
     sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" -e "/^(SDL message.*$/d" -e "/^Unable to change VSync.*/d" \
-	    -e "/^Warning: audio could not.*$/d" | sed "s/^/#     /"
+	  -e "/^Warning: audio could not.*$/d" | sed "s/^/#     /"
   then
     echo "# Test \"${TEST_NAME}\" failed!"
     echo "#   temporary directory: ${ES_CONFIG_PATH}"
