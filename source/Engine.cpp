@@ -1491,19 +1491,37 @@ void Engine::CalculateStep()
 	{
 		// Code block to calculate the center of the viewport.
 		// If Camera Acceleration is enabled an offset calculated through the
-		// falgships velocity will be added to the center.
+		// flagship's velocity will be added to the center
+
+		// If the flagship isn't thrusting, because no drag is experienced,
+		// gently slide the flagship back to the center of the screen.
 		if(flagship->IsThrusting())
 			offsetMultiplier = offsetMultiplier >= 1. ? 1.
 				: offsetMultiplier + OFFSET_CHANGE;
 		else
 			offsetMultiplier = offsetMultiplier <= 0. ? 0.
 				: offsetMultiplier - OFFSET_CHANGE;
+
+		// This makes the sliding smooth and gentle.
 		double smoothStep = offsetMultiplier < 0.5 ? 4 * pow(offsetMultiplier, 3)
 			: 1 - pow((-2 * offsetMultiplier) + 2, 3) / 2;
-		offset = (flagship->Velocity() / flagship->MaxVelocity()) * 20. * zoom * smoothStep;
-		newCenter = Preferences::CameraAcceleration() == "on" && !flagship->IsHyperspacing() ?
-			flagship->Position() + offset : Preferences::CameraAcceleration() == "reversed" ?
-			flagship->Position() - offset : flagship->Position();
+
+		// If this effect is disabled in the preferences, multiply the end product by 0.
+		double prefMul = Preferences::CameraAcceleration() == "on" ? 1.
+			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.)
+
+		offset = prefMul * flagship->Velocity() * .05 * zoom * smoothStep;
+
+		// If we are moving very fast, we may leave the screen. This will prevent that.
+		// TODO: actually calculate maximum allowed offset, rather than asserting it's 400 pixels.
+		// "maxOffset" should be equal to the minimum between the window's width and height.
+		double maxOffset = 400;
+		// TODO: if the maxOffset is ever 1, this will break. This is unlikely, but I believe
+		// there is a better way to do this which does not have this weakness.
+		offset = maxOffset - maxOffset * pow(1. - 1. / maxOffset, offset);
+
+		newCenter = !flagship->IsHyperspacing() ?
+			flagship->Position() + offset : flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 	}
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
