@@ -1638,7 +1638,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 						escapeShip->SetPersonality(ship->GetPersonality());
 					escapeShip->SetHail(*ship->GetHailPhrase());
 					escapeShip->SetSystem(ship->GetSystem());
-					if(ship->GetParent())
+					if(ship->GetParent() && !escapeShip->GetPersonality()->IsCoward())
 						escapeShip->SetParent(ship->GetParent());
 					escapeShip->Place(ship->Position(), ship->Velocity(), ship->Facing());
 					newShips.push_back(escapeShip);
