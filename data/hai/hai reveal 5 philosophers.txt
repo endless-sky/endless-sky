@@ -214,7 +214,7 @@ mission "Hai Reveal [B03] Contact Giti"
 		conversation
 			`While you join the fleet that lands to occupy the spaceport, other assault ships pursue priority targets elsewhere on <origin>. This leads to a significant wait until the port is secure before everyone needed can reconvene to discuss the next steps.`
 			`	You eventually reach the secured command area set up in the spaceport as Choot'k and Danforth come in discussing tactical minutiae. They are trailed by Batu, and eventually joined by Sayari and Teeneep. One of Danforth's lieutenants brings up the rear and closes the door behind you all.`
-			`	Everyone is waiting for you to speak.`
+			`	Everyone is waiting for you to speak. It seems this is your final briefing as the commander of the forces before diplomats and military leaders take over.`
 			label briefing
 			choice
 				`	"What is the status of the <origin> operation?"`
