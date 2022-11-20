@@ -41,10 +41,10 @@ void OutfitFilter::Load(const DataNode &node)
 				for(int it = 2; it < child.Tokens().size(); ++it)
 					notOutfitTags.emplace_back(child.Token(it));
 		}
-		else if(child.Token(1) == "attribute")
+		else if(child.Token(1) == "attribute" && child.Size() >= 2)
 			for(int it = 2; it < child.Tokens().size(); ++it)
 				outfitAttributes.emplace_back(child.Token(it));
-		else if(child.Token(1) == "tag")
+		else if(child.Token(1) == "tag" && child.Size() >= 2)
 			for(int it = 2; it < child.Tokens().size(); ++it)
 				outfitTags.emplace_back(child.Token(it));
 	}
