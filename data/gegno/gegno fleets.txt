@@ -145,6 +145,26 @@ fleet "Vi Cargo"
 		Protolith
 		"Schist Heavy Load"
 
+fleet "Vi Small II"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		heroic vindictive opportunistic
+	variant 3
+		Eclogite
+	variant 2
+		Eclogite
+		Diorite
+	variant
+		Diorite
+	variant 
+		Diorite 2
+	variant
+		Eclogite 2
+		Diorite
+	
+
 fleet "Small Scin"
 	government "Gegno Scin"
 	names "gegno scin"
@@ -157,8 +177,7 @@ fleet "Small Scin"
 		Felsic
 		Coesite
 	variant 4
-		Coesite
-		Tridymite 2
+		Coesite 3
 	variant
 		Coesite 2
 	variant
@@ -171,21 +190,20 @@ fleet "Large Scin"
 	cargo 2
 	personality
 		vindictive opportunistic
-	variant 6
+	variant 8
 		Coesite 2
-	variant 3
-		Felsic
-		Tridymite
-	variant 2
-		Felsic
-		Coesite 2
-	variant 2
+	variant 4
 		Felsic
 		Coesite
-	variant 2
+	variant 3
+		Felsic
+		Coesite 2
+	variant 3
+		Coesite 3
+	variant 
 		Feldspar
 		Halite 6
-	variant 2
+	variant 
 		Feldspar
 		Halite 6
 		Coesite
@@ -193,7 +211,7 @@ fleet "Large Scin"
 		Feldspar
 		Halite 6
 		Felsic
-		Tridymite
+		Coesite
 
 fleet "Scin Transport"
 	government "Gegno Scin"
@@ -209,7 +227,7 @@ fleet "Scin Transport"
 	variant 2
 		Felsic
 		Mica
-		Tridymite
+		Coesite
 	variant 3
 		Mica 2
 	variant
@@ -219,6 +237,8 @@ fleet "Scin Transport"
 		Muscovite
 		Halite
 		Coesite
+	variant
+		Tridymite
 
 fleet "Scin Cargo"
 	government "Gegno Scin"
@@ -237,7 +257,7 @@ fleet "Scin Cargo"
 	variant 2
 		Felsic
 		Mica
-		Tridymite
+		Coesite
 	variant
 		Muscovite 2
 		Halite 2
@@ -253,14 +273,19 @@ fleet "Vi Warfleet"
 		heroic vindictive opportunistic
 	variant 8
 		Eclogite 2
-	variant 4
+	variant 5
 		Hornfel
 		Eclogite 2
+	variant 3
+		Eclogite 3
 	variant 2
+		Hornfel
+		"Hornfel Light Load"
+	variant
 		Gneiss
 		Eclogite
 		Hornfel 2
-	variant 2
+	variant
 		"Hornfel Heavy Weapons"
 	variant
 		Gneiss 2
@@ -274,26 +299,23 @@ fleet "Scin Warfleet"
 		vindictive opportunistic
 	variant 7
 		Coesite 2
-		Tridymite
 	variant 4
 		Felsic 2
-		Coesite
-		Tridymite
+		Coesite 2
 	variant 3
 		Feldspar
 		Halite 6
 		Coesite 2
-	variant 2
+	variant 4
 		Felsic
-		Coesite 2
-		Tridymite
+		Coesite 3
 	variant
 		Feldspar 2
 		Halite 12
-	variant
+	variant 2
 		Feldspar
 		Halite 6
-		Tridymite 2
+		Coesite 2
 
 fleet "Gegno Basic"
 	government Gegno

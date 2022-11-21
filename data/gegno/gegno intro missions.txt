@@ -262,13 +262,13 @@ mission "Gegno Genocide Defense"
 			names "gegno vi" "gegno scin"
 			variant 
 				Gneiss 3
-				Hornfel 4
+				Hornfel 2
+				"Hornfel Heavy Weapons" 2
 				Eclogite 5
 				Feldspar 3
 				Halite 18
 				Felsic 3
-				Coesite 4
-				Tridymite 3
+				Coesite 5
 	npc
 		government "Gegno"
 		system
@@ -281,9 +281,8 @@ mission "Gegno Genocide Defense"
 				Halite 12
 				Gneiss 4
 				Felsic 4
-				Coesite 3
+				Coesite 4
 				Eclogite 3
-				Tridymite 2
 	npc
 		government "Gegno"
 		system
@@ -295,8 +294,8 @@ mission "Gegno Genocide Defense"
 				Feldspar 4
 				Halite 24
 				Gneiss 2
-				Hornfel 4
-				Tridymite 2
+				Hornfel 3
+				"Hornfel Heavy Weapons"
 				Eclogite 3
 				Coesite 6
 	npc
