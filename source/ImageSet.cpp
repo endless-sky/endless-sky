@@ -185,6 +185,14 @@ const string &ImageSet::Name() const
 
 
 
+// Whether this image set is empty, i.e. has no images.
+bool ImageSet::IsEmpty() const
+{
+	return framePaths[0].empty() || framePaths[1].empty();
+}
+
+
+
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
 void ImageSet::Add(string path)
