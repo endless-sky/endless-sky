@@ -363,7 +363,7 @@ outfit "SC-15 Plasma Thrusters"
 		"Scin Hoplologist"
 		"Scin Architect"
 	cost 2312000
-	mass -112
+	mass 112
 	thumbnail outfit/largescplasma
 	"engine capacity" -112
 	"outfit space" -112

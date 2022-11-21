@@ -156,7 +156,7 @@ mission "Giaru Gegno: Quarg Contact"
 			choice
 				`	"The Gegno?"`
 					goto gegno
-				`	"Are the ships I’ve seen these Gegno?"`
+				`	"Do the ships I’ve seen belong to these Gegno?"`
 					goto ships
 			label gegno
 			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future."`
