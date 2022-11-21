@@ -280,7 +280,7 @@ event "remnant: ssil vida area unvisted"
 
 
 
-# Patch event to reset the state of the Postverta cluster systems to the state as defined in map.txt at the time of writing. Only to be used if the old versions of hte Ssil Vida activation and deactivation events were applied.
+# Patch event to reset the state of the Postverta cluster systems to the state as defined in map.txt at the time of writing. Only to be used if the old versions of the Ssil Vida activation and deactivation events were applied.
 # There are actually some differences to the initial map state:
 # Postverta is not hidden.
 # Postverta is linked to the neargy systems.
