@@ -66,6 +66,14 @@ event "remnant: puffin"
 
 
 
+# Replaced by the "remnant: puffin" event but the listed here so older versions of the "Remnant: Void Sprites 3" mission in their save file when they update do not have issues with this event being undefined.
+# The actual content of the event is not strictly necessary, since a patch mission already exists that applies the new event if the condition for this event is present.
+# But the event still needs to be declared so it can be considered "defined" by the game, otherwise, it will disable the mission referring to it.
+# If we ever do something that makes save files from an older version of the game incompatible, this can be removed.
+event "remnant: gascraft"
+
+
+
 event "remnant: void sprite research"
 
 
@@ -126,6 +134,34 @@ event "korath hunting"
 		"attitude toward"
 			"Indigenous Lifeform" -.01
 			"Ember Waste" -.01
+
+
+
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
 
 
 
@@ -258,6 +294,16 @@ event "remnant: ssil vida inhabited"
 
 
 
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: cognizance peregrine"
 	outfitter "Remnant"
 		"Bellows-Class Afterburner"
@@ -313,6 +359,7 @@ event "remnant: ssil vida reset patch"
 		trade Metal 272
 		trade Plastic 289
 		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
 		fleet Embershades 12000
@@ -472,6 +519,7 @@ event "remnant: ssil vida reset patch"
 		trade Metal 407
 		trade Plastic 222
 		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
@@ -736,8 +784,12 @@ event "remnant: ssil vida initial activation"
 
 
 
-event "remnant: ssil vida activation patched"
-	set "remnant: ssil vida patched active"
+# The default value of a system's "jump range" is 0. In this state, the global default will be used.
+# When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
+# the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
+# may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
+event "remnant: ssil vida deactivation"
+	clear "remnant: ssil vida active"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
@@ -926,18 +978,6 @@ event "remnant: ssil vida deactivation patched"
 				distance 202
 				period 21
 	system Prosa
-		asteroids "medium metal" 11 2
-		asteroids "large metal" 2 2
-		asteroids "small rock" 4 1
-		asteroids "medium rock" 16 1
-		asteroids "large rock" 16 1
-		minables copper 5 2
-		remove fleet
-		add object "Wormhole Barren Beta"
-			sprite planet/wormhole-red
-			distance 2313
-			period 389
-	system Statina
 		asteroids "large rock" 1 4
 		asteroids "small metal" 39 3
 		asteroids "medium metal" 72 3
