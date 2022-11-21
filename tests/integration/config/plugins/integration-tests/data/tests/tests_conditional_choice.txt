@@ -121,6 +121,8 @@ mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
 				decline
 	on accept
 		set "succeed test"
+	on decline
+		set "failed test"
 
 
 mission "%TEST%: NAME IN CONVERSATION"
@@ -199,9 +201,13 @@ test "Conditional Test Out of Bound"
 		# but if we can somehow access the condition below with the down key then its a problem.
 		input
 			key "Down"
-		input
 		call "Skip Spaceport Mission"
 		call "Depart"
+		apply
+			"test: succeed test" = "succeed test"
+			"test: %TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND: offered" = "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND: offered"
+			"test: flagship planet: Ruin" = "flagship planet: Ruin"
+			"test: failed test" = "failed test"
 		assert
 			"succeed test" == 1
 
