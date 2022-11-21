@@ -1006,6 +1006,9 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	on fail
 		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
+	# IMPORTANT: For story reasons, all non-Unfettered ships must have "save" to ensure
+	# the Unfettered get their jump drives back.
+
 	# The fleet on the way to elenchus
 	npc save accompany
 		government "Hai (Wormhole Access)"
