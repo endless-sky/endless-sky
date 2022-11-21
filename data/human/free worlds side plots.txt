@@ -714,6 +714,7 @@ mission "FW Stack Core 1C"
 			`You receive a message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
 				decline
 
+
 event "Greenrock at risk"
 
 mission "Pirate Invasion of Greenrock"
@@ -764,34 +765,36 @@ mission "Pirate Invasion of Greenrock"
 			`	The officer grins and tosses you a quick salute before jogging away to relay your response. You immediately fire up your engines, hoping against hope that you can make it in time...`
 				launch
 			label "refusal"
+			action
+				event "fw abandoned Greenrock" 5
 			`	The young officer seems about to say something else, but snaps to attention instead. "Understood, Captain <last>. I'll transmit your response immediately." As she hurries away, you can't help but wonder what will become of <planet> now.`
-				action
-					event "fw abandoned Greenrock" 5
-					decline
+				decline
 
 	# there is no one available to accompany you, only the remaining forces in the system, who will leave if things go badly
 	npc 
 		government "Militia"
 		personality staying merciful coward
+			confusion 10
 		system destination
 		fleet "Large Militia" 
-		confusion 10
+
 	npc
 		government "Militia"
 		personality staying merciful coward derelict 
+			confusion 10
 		system destination
 		fleet "Small Militia"
-		confusion 10
-	
+		
+
 	# the specific pirates are willing to flee, or let you flee, now that the system is retaken anyway
 	npc evade
 		government "Pirate"
 		personality staying target merciful plunders coward
+			confusion 20
 		system destination
 		fleet "Large Southern Pirates" 5
 		fleet "Small Southern Pirates" 3
-		confusion 20
-	
+
 	on enter "Lesath"
 		event "fw abandoned Greenrock" #this would be on enter Shaula, but it triggers after the system is loaded, so doesn't apply in time
 	on enter "Shaula"
@@ -814,11 +817,8 @@ mission "Pirate Invasion of Greenrock"
 		conversation
 			branch "event added"
 				has "event: fw abandoned Greenrock"
-			`Your ship's chronometer informs you that the deadline for stopping the pirate fleet from invading Greenrock has passed. Presumably, they've taken over by now.`
-				action
+			action
 					event "fw abandoned Greenrock"
-			` `
-				goto over
 			label "event added"
 			branch "you tried" 
 				has "attempted Greenrock rescue"
@@ -828,5 +828,5 @@ mission "Pirate Invasion of Greenrock"
 			`Considering the number of pirates you saw, it's not surprising that Greenrock fell back into anarchy... but it still stings your pride. At least you're alive to tell about it.`
 			label over
 			`It would have been nice to be the hero who saved Greenrock. But perhaps some things just aren't meant to be.`
-				action
-					event "Greenrock recovered" 180 
+			action
+				event "Greenrock recovered" 180 
