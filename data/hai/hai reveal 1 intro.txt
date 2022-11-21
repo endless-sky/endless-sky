@@ -39,8 +39,6 @@ mission "Hai Reveal: Reputation Reset"
 		"reputation: Syndicate that won't enter wormhole" = "reputation: Syndicate"
 
 		# Make sure the new governments start with appropriate rep:
-		"reputation: Human Alliance that won't enter wormhole" = 1000
-		"reputation: Human Alliance" = 1000
 		"reputation: Hai (Friendly Unfettered)" = 1000
 		"reputation: Bounty Hunter that Attacks Hai" = -1000
 		"reputation: Elenctic Commune" = 1000
@@ -58,7 +56,7 @@ mission "Event: Pug Media Coverage"
 		has "event: pug media coverage"
 	on offer
 		event "hai secret leaks" 10 15
-		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
+		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
 			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you also suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that led to the events precipitating the war would not be tolerated.`
@@ -82,7 +80,7 @@ conversation "hai reveal free worlds news"
 	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other, and fire weapons quite unlike anything produced in human space.`
 	`	You raise your eyebrows. Actual footage of an unknown alien conflict doesn't seem likely.`
 	`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is definitely rented - you couldn't imagine how a crewman would be able to afford a suit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the 'Hai'.`
-	`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing... You listen in to collect the relevant details for future reference.` # Add an option to listen for more information, to break it up.  
+	`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing... You listen in to collect the relevant details for future reference.`
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer.`
 		accept
 	label "hai knowledge"
@@ -470,11 +468,19 @@ mission "Hai Tour [5] Tour Ends"
 			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
 				goto "that's awful"
 			label "skipped tours"
-			`Soon after you land on <planet>, you notice a news broadcast on a nearby wall. "Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils. This unprecedented raid in broad daylight has the security forces scrambling to redistribute appropriate resources to handle the threat, and all security personnel on leave have been reactivated until better support can be provided."`
+			`Soon after you land on <origin>, you notice a news broadcast on a nearby wall. "Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils. This unprecedented raid in broad daylight has the security forces scrambling to redistribute appropriate resources to handle the threat, and all security personnel on leave have been reactivated until better support can be provided."`
 			label "that's awful"
-			`	At a table nearby you hear a Hai staff member exclaim, "Oh, that's awful!"`
+			choice
+				`	(Observe the reaction of the Hai in the room.)`
+				`	(Keep walking.)`
+					goto interrupted
+			`	At a table nearby, a Hai says, "Oh, that's awful!" and the human next to her responds, "Feels like being back on Solace."`
 			`	The rumors must be spreading further by the day. There's no doubt even more problems than this marauder will follow.`
 			`	No sooner has this thought crossed your mind than your solitude is interrupted by a small group of somewhat official-looking Hai.`
+				goto official
+			label interrupted
+			`	As you depart the room, a small group of somewhat official-looking Hai interrupt you.`
+			label official
 			`	"Are you Captain <last>?" one of them asks you. "Don't worry, you're not in trouble."`
 			`	You nod your affirmation.`
 			`	"Your reputation precedes you, Captain. As a person of note among humanity who we hear has now been traveling around Hai space, you are presently being treated as an Envoy."`
@@ -522,14 +528,29 @@ mission "Hai Leaks Response 1"
 			action
 				log `The Hai are very real, and human worlds seem poised to become aware of their existence. The Hai would like to avoid this. Agreed to assist by representing their interests where travel to human space is required. Their desire was for a human, yet somewhat neutral, party.`
 			`	You haven't really seen very much of the Hai so far, and you can't help but think the size of the detachment is rather militant of them. It's impossible to judge if it's for your safety or whether, given your status as a "war hero", it's for theirs.`
-			`	Word of your status in human space also seems to have spread ahead of you, perhaps because you are a significant human visitor in the current climate. A small crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
+			`	Word of your status in human space also seems to have spread ahead of you, perhaps because you are a significant human visitor in the current climate. A moderate crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
 			label resume
+			`	Several of the Hai guarding you usher you off to the left to avoid a gathering crowd.`
+			choice
+				`	(Follow their directions silently.)`
+					goto observe
+				`	"Why do I have such a large security detachment?"`
+			`	The Hai closest to you, who happens to have a very decorated uniform, turns to respond. "It's for crowd control. You've become the center of attention of politicians in a media circus."`
+			`	He looks back to the crowd for a moment. "Life in Hai space is complicated of late, and we want to make sure you are not stopped by crowds with endless questions before reaching your meeting. It would be... inefficient."`
+			choice
+				`	(Keep silent and observe.)`
+				`	"Thank you for your service."`
+					goto thank
+			label observe
 			branch karma
 				karma > 1
 			`	As you are making the walk you hear questions posed and rumors stated. Occasionally you hear words like "survivor" and "dangerous" thrown in amongst the babble.`
 				goto main
 			label karma
 			`	As you are making the walk you hear questions posed and rumors stated. Occasionally you hear words like "honorable" and "reasonable" thrown in amongst the babble.`
+				goto main
+			label thank
+			`	He nods to you, and returns to his duties: holding back one oncoming Hai journalist after another.`
 			label main
 			`	You arrive at a very comfortable office and are received by a mature-looking Hai with the appropriate regalia of a diplomat. She holds out a paw to greet you and says, "My name is Sayari. I was the envoy to the human government a century ago."`
 			`	The present media storm is all the evidence needed to make it clear that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them. If they're in on the secret, then they're probably still trying to work out a suppression strategy and have been too busy to send an envoy quicker than your own trip took.`
@@ -539,7 +560,7 @@ mission "Hai Leaks Response 1"
 			choice
 				`	"That seems practical."`
 				`	"I don't really have an option to refuse, do I?"`
-			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a dialog on how best to deal with this current scenario."`
+			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a liaison on how best to deal with this current scenario."`
 			`	She hands you an officially branded box containing a metallic badge. There is a symbol minutely engraved into the front that you remember seeing on your way into the complex, and must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.` 
 			choice
 				`	"Various? We only have two governments."`
@@ -634,7 +655,7 @@ mission "Hai Leaks Response 2A"
 			`	"Do we have time for a drink before we leave?" asks Alondo.`
 			`	You look around at the busy spaceport and see the workers haven't even noticed your ship waiting for refueling yet.`
 			`	"I think we can spare a short while, and you really should meet Mr. Yang."`
-			`	Mr. Yang had been studiously pretending he wasn't eavesdropping from a distance of a few meters but, before you could call him over, Alondo's slightly suggestive comment of, "Oh I should definitely meet Mr. Yang," had evidently been overheard.`
+			`	Mr. Yang had been studiously pretending he wasn't eavesdropping from a distance of a few meters but, before you could call him over, Alondo's slightly suggestive comment of, "Oh, I should definitely meet Mr. Yang," had evidently been overheard.`
 			`	Fortunately, after an hour and a couple of drinks, the embarrassment is long-forgotten when you return to your ship.`
 				decline
 	
@@ -664,17 +685,16 @@ mission "Hai Leaks Response 2C"
 				has "met remington"
 			action
 				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai.`
-			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may have not heard of me before but I've sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
+			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may have not heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
+			`	"Now, allow me to introduce you to Terry," Remington says while gesturing to the woman behind him.`
 				goto next
-			
 			label met
 			action
 				log "People" "Samuel Remington" `Remington is being sent as the representative of the Syndicate to help deal with the situation regarding the Hai.`
-			`	"Captain <last>, is it? It's been a good while since we last met," he says while shaking your hand, perhaps a little too firmly. "You do remember me, right? I don't want this to be an awkward situation where only I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
+			`	"Captain <last>, is it? It's been a good while since we last met," he says while shaking your hand, perhaps a little too firmly. He gestures to the woman behind him and says, "Let me introduce you to Terry."`
 			label next
-			`	"Now, allow me to introduce you to Terry," Remington says while gesturing to the woman behind him.`
 			`	"Terry Adrianopoulos. Pleasure to meet you," she says with a broad smile and a slight bow. The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She seems at once pleasant and approachable while at the same time being slightly off-putting and uncanny. It's an eerie feeling.`
-			`	"Terry will be accompanying me as... well, let's call her my secretary," Remington says with a sly smile. Terry seems none too pleased to hear that, but she doesn't correct him. "I have men who can hold the fort here while I'm gone, and I really do need to get some fresh air, so the two of us will be joining you. There is an internal political situation going on within the Syndicate that has been causing me quite the headache recently," he says. You think that he may have glanced at Terry as he said that, but you aren't sure if it was just incidental or indicative of something. "Nothing I can discuss in detail unfortunately, you know, with all the NDAs involved, but something I'll certainly enjoy taking a break from.`
+			`	"Terry will be accompanying me as... well, let's call her my secretary," Remington says with a sly smile. Terry seems none too pleased to hear that, but she doesn't correct him. "I have men who can hold the fort here while I'm gone, and I really do need to get some fresh air, so the two of us will be joining you. There is an internal political situation going on within the Syndicate that has been causing me quite the headache recently." His eyes momentarily flick to Terry as he says that, but Remington presses on immediately. "It's nothing I can discuss in detail, with all the NDAs involved, you know, but something I'll certainly enjoy taking a break from.`
 			`	"Now, let's be on our way," he says. "The Hai won't save themselves with us standing here."`
 				decline
 
@@ -693,16 +713,25 @@ mission "Hai Leaks Response 3"
 	on offer
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
-			`	You get down to business when Sayari inquires how your journey went.`
+			`	A functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. Everyone takes their seats at an semicircle-shaped table, and the functionary motions you to the middle seat. A massive holoprojector in front of the table turns on.`
 			choice
 				`	"I don't recall there being nearly so many pirates before."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`
 			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
 			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
 			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
-			`	Mr. Yang pulls out a datapad. "Well then, I'm afraid I may have some bad news. May I?"`
-			`	He gestures to a display and then takes control when indicated. "One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
-			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
+			choice
+				`	"Are the other Hai likely to be a problem here?"`
+				`	"How much longer can the Republic keep up the ruse?"`
+					goto badnews
+			`	Sayari shakes her head. "No problem remotely so severe as the one at hand. Now, I expect you have something for us, Mr. Yang?"`
+			`	"Well, I'm afraid I may have some bad news from our side." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
+				goto charts
+			label badnews
+			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
+			label charts
+			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
+			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
@@ -992,6 +1021,10 @@ mission "Hai Leaks Response 6"
 			`	Alondo gives you a quizzical look. "Of course you are, <last>."`
 			label about
 			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones.`
+			choice
+				`	"That sounds... interesting. Tell me more."`
+				`	"Never mind. It sounds like you have that under control. What's next?"`
+					goto next
 			`	"The production of the very first series was entirely funded through a government grants program though, as a cover for any accidental leaks about the Hai. Xilin tells me that since then it's pretty much run itself. The idea here is that since the last one was so successful, someone has decided that it's worth the risk to make a big budget movie production out of it and to potentially use that to kick off a sort of tourist trap type theme park destination. We've found a Seerwood producer who's willing to be all wounded on TV about the spoiling of his 'big surprise' release, and we're passing off the footage as leaked promotional material. For the sake of the cover, we've also decided that this project has a 'fan community' that have been hired on as a focus group to support the production for consistency and accuracy."`
 			`	He chuckles tiredly. "That's where the uh, furry, explanation came into things. It also probably can't hold up as a cover indefinitely. Still, things have been going very well while you've been away!`
 			label next
