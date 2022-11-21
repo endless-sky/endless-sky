@@ -617,7 +617,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
-	else if (removeBays)
+	else if(removeBays)
 		bays.clear();
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
