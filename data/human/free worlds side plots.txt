@@ -713,3 +713,29 @@ mission "FW Stack Core 1C"
 		conversation
 			`You receive a message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
 				decline
+
+mission "Greenrock Lost Announcement"
+	invisible
+	landing
+	source
+		government "Free Worlds"
+	to offer 
+		has "event: fw abandoned Greenrock"
+	on offer
+		conversation 
+			`As you go about your business, you hear an announcement coming from some unseen loudspeaker. "Attention! The Free Worlds have withdrawn our presence from Greenrock. Be advised that any further travel to the Shaula system may carry the risk of pirate attacks." The message cuts off abruptly, only to repeat a minute later.` 
+			branch attacked
+				has "FW Pirates: Attack 3: done"
+			`	It's a shame to hear that Greenrock is back under pirate control after so many lives were lost capturing it.`
+				goto ponder
+			label attacked 
+			`	You clench your fists in anger. All that work, all the risks you and Tomek took... for nothing.`
+			label ponder
+			choice
+				`	(Shake your head and move on.)`
+					decline
+				`	(Ask someone what happened.)`
+			`	You find a fellow Militia captain who looks at you sympathetically. "I guess it was bound to happen sooner or later, wasn't it? We just don't have the ships to fight the Navy and control a planet full of anarchists at the same time. The Senate even said so, right?"`
+			`	"Still, I wish things could have gone differently. With pirate raids coming from Greenrock again, it looks like we'll have our hands full for the foreseeable future."`
+			`	On that note, the two of you return to your duties.`
+				decline		
