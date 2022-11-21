@@ -332,3 +332,5 @@ mission "Efret: Quarg Rescue"
 			action
 				"reputation: Quarg" <?= -1
 	destination "Kuwaru Efreti"
+	to complete
+		never
