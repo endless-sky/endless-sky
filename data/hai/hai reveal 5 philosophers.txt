@@ -943,7 +943,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	on offer
 		conversation
 			`You arrive on Foundry to a little-used spaceport which usually sees only private, Syndicate executive vessels. Kopkow gives you a mildly apologetic smile as he greets you for the second time, and introduces you to Captain Anna Wallace. She expresses her satisfaction that some serious efforts are being made to stem the plague of slavery that pirate factions get away with. Apparently many officers like her disagree with the Navy's standard non-boarding policy. They want to rescue slaves whenever possible, regardless of risk or orders.`
-			`	Just Wallace speaking seems to make Kopkow nervous to move on though; in fact he appears very stressed at the present. Kopkow explains, "It's becoming increasingly difficult to cover up the existence of the Hai,"`
+			`	Just Wallace speaking seems to make Kopkow nervous to move on though; in fact he appears very stressed at the present. Kopkow explains, "It's becoming increasingly difficult to cover up the existence of the Hai."`
 			label kopkow
 			choice
 				`	"We only need to maintain the ruse a little longer."`
