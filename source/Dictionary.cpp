@@ -106,6 +106,28 @@ double &Dictionary::operator[](const string &key)
 
 
 
+double Dictionary::Get(const HashWrapper &hash_wr) const
+{
+	static Timing timing;
+	const auto start = high_resolution_clock::now();
+
+	pair<size_t, bool> pos = Search(stringAndHash(hash_wr), *this);
+
+	const auto stop = high_resolution_clock::now();
+
+	timing.AddSample(stop - start);
+
+	if(timing.GetNumSamples() >= 5000)
+	{
+		cout << "Search time (hashed) = " << timing.GetAverage().count() << '\n';
+		timing.Reset();
+	}
+
+	return (pos.second ? data()[pos.first].second : 0.);
+}
+
+
+
 double Dictionary::Get(const char *key) const
 {
 	static Timing timing;
