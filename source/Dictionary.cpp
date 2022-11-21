@@ -53,7 +53,7 @@ namespace {
 	// Perform a binary search on a sorted vector. Return the key's location (or
 	// proper insertion spot) in the first element of the pair, and "true" in
 	// the second element if the key is already in the vector.
-	pair<size_t, bool> Search(const char *key, const vector<pair<stringAndHash, double>> &v)
+	pair<size_t, bool> Search(stringAndHash key, const vector<pair<stringAndHash, double>> &v)
 	{
 		// At each step of the search, we know the key is in [low, high).
 		size_t low = 0;
@@ -62,11 +62,10 @@ namespace {
 		while(low != high)
 		{
 			size_t mid = (low + high) / 2;
-			int cmp = strcmp(key, v[mid].first.GetString());
-			if(!cmp)
+			if(key.GetHash() == v[mid].first.GetHash())
 				return make_pair(mid, true);
 
-			if(cmp < 0)
+			if(key.GetHash() < v[mid].first.GetHash())
 				high = mid;
 			else
 				low = mid + 1;
@@ -91,7 +90,7 @@ namespace {
 
 double &Dictionary::operator[](const char *key)
 {
-	pair<size_t, bool> pos = Search(key, *this);
+	pair<size_t, bool> pos = Search(stringAndHash(key), *this);
 	if(pos.second)
 		return data()[pos.first].second;
 
@@ -112,7 +111,7 @@ double Dictionary::Get(const char *key) const
 	static Timing timing;
 	const auto start = high_resolution_clock::now();
 
-	pair<size_t, bool> pos = Search(key, *this);
+	pair<size_t, bool> pos = Search(stringAndHash(key), *this);
 
 	const auto stop = high_resolution_clock::now();
 

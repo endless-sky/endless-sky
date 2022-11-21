@@ -68,13 +68,16 @@ class stringAndHash {
 public:
 	stringAndHash(const char *str)
 		: str(str)
+		, hash(hash_fnv::fnv1a<hash_fnv::def_type>::hash(str))
 	{}
 
 	const char *GetString() const { return str; }
+	const hash_fnv::def_type GetHash() const { return hash; }
 
 
 private:
 	const char *str;
+	hash_fnv::def_type hash;
 };
 
 // This class stores a mapping from character string keys to values, in a way
