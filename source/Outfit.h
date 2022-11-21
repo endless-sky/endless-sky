@@ -63,6 +63,7 @@ public:
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 
+	double Get(const HashWrapper &attribute) const;
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;

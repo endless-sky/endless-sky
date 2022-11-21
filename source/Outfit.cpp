@@ -312,11 +312,11 @@ void Outfit::Load(const DataNode &node)
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
-	if(attributes.Get("jump drive") && attributes.Get("jump range"))
-		GameData::AddJumpRange(attributes.Get("jump range"));
+	if(attributes.Get("jump drive"_fnv1a) && attributes.Get("jump range"_fnv1a))
+		GameData::AddJumpRange(attributes.Get("jump range"_fnv1a));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	if(IsWeapon() && attributes.Get("turret mounts"_fnv1a) && !TurretTurn() && !AntiMissile())
 	{
 		SetTurretTurn(4.);
 		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
@@ -415,6 +415,13 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
+double Outfit::Get(const HashWrapper &attribute) const
+{
+	return attributes.Get(attribute);
+}
+
+
+
 double Outfit::Get(const char *attribute) const
 {
 	return attributes.Get(attribute);
@@ -458,9 +465,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first.GetString(), "required crew"))
-			minimum = !attributes.Get("automaton");
+			minimum = !attributes.Get("automaton"_fnv1a);
 
-		double value = Get(at.first.GetString());
+		double value = Get(at.first.GetHash());
 		// Allow for rounding errors:
 		if(value + at.second * count < minimum - EPS)
 			count = (value - minimum) / -at.second + EPS;
