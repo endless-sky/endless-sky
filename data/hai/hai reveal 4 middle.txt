@@ -1213,7 +1213,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				`	"Of course, Teeneep. Let's go."`
 			`	"Teeneep, no! You cannot just commandeer the Captain to act as your chauffeur wherever you want to go," says Sayari. "<last> has an important role here, in this crisis."`
 			`	"And what would you have them do next then?" When Sayari seems at a loss to respond, Teeneep continues. "Exactly. Your crisis is mostly resolved behind closed doors, but this crisis requires transportation. The thing you seem to be missing is that they're the same crisis, Sayari. They can't be resolved separately."`
-			`	Sayari sits with a huff, for a moment looking as old as she says she is. Teeneep waits patiently while her friend spends a good thirty seconds seriously thinking about something. "She is right, <last>," says Sayari eventually. `
+			`	Sayari sits with a huff, for a moment looking as old as she says she is. Teeneep waits patiently while her friend spends a good thirty seconds seriously thinking about something. "She is right, <last>," says Sayari eventually. "This is worth trying. Please take her to the Unfettered if that is what she wishes; their government is on <destination>, but please, be careful."`
 			`	As you both get up to leave Teeneep walks over and places a hand gently on the old diplomat's shoulder. "They call themselves the True Hai, maybe it's time they demonstrated it."`
 				accept
 
