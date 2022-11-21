@@ -192,7 +192,7 @@ mission "Greenrock Lost Announcement"
 			`	You find a fellow Militia captain who looks at you sympathetically. "I guess it was bound to happen sooner or later, wasn't it? We just don't have the ships to fight the Navy and control a planet full of anarchists at the same time. The Senate even said so, right?"`
 			`	"Still, I wish things could have gone differently. With pirate raids coming from Greenrock again, it looks like we'll have our hands full for the foreseeable future."`
 			`	On that note, the two of you return to your duties.`
-		decline		
+				decline		
 
 
 mission "FW Southern Recon 1"
