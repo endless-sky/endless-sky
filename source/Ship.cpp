@@ -782,7 +782,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	if(attributes.Get("drag"_fnv1a) <= 0.)
 	{
-		warning += "Defaulting " + string(attributes.Get("drag"_fnv1a) ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
+		warning += "Defaulting " + string(attributes.Get("drag"_fnv1a) ? "invalid" : "missing")
+			+ " \"drag\" attribute to 100.0\n";
 		attributes.Set("drag", 100.);
 	}
 
@@ -1955,7 +1956,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(hull < cost)
 				thrustCommand *= hull / cost;
 
-			cost = attributes.Get((thrustCommand > 0.) ?	"thrusting fuel"_fnv1a : "reverse thrusting fuel"_fnv1a);
+			cost = attributes.Get((thrustCommand > 0.) ? "thrusting fuel"_fnv1a : "reverse thrusting fuel"_fnv1a);
 			if(fuel < cost)
 				thrustCommand *= fuel / cost;
 
@@ -1974,18 +1975,30 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				{
 					double scale = fabs(thrustCommand);
 
-					shields -= scale * attributes.Get(isThrusting ? "thrusting shields" : "reverse thrusting shields");
-					hull -= scale * attributes.Get(isThrusting ? "thrusting hull" : "reverse thrusting hull");
-					energy -= scale * attributes.Get(isThrusting ? "thrusting energy" : "reverse thrusting energy");
-					fuel -= scale * attributes.Get(isThrusting ? "thrusting fuel" : "reverse thrusting fuel");
-					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
-					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
-					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
-					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
-					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
-					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
-					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
-					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
+					shields -= scale * attributes.Get(isThrusting
+						? "thrusting shields"_fnv1a : "reverse thrusting shields"_fnv1a);
+					hull -= scale * attributes.Get(isThrusting
+						? "thrusting hull"_fnv1a : "reverse thrusting hull"_fnv1a);
+					energy -= scale * attributes.Get(isThrusting
+						? "thrusting energy"_fnv1a : "reverse thrusting energy"_fnv1a);
+					fuel -= scale * attributes.Get(isThrusting
+						? "thrusting fuel"_fnv1a : "reverse thrusting fuel"_fnv1a);
+					heat += scale * attributes.Get(isThrusting
+						? "thrusting heat"_fnv1a : "reverse thrusting heat"_fnv1a);
+					discharge += scale * attributes.Get(isThrusting
+						? "thrusting discharge"_fnv1a : "reverse thrusting discharge"_fnv1a);
+					corrosion += scale * attributes.Get(isThrusting
+						? "thrusting corrosion"_fnv1a : "reverse thrusting corrosion"_fnv1a);
+					ionization += scale * attributes.Get(isThrusting
+						? "thrusting ion"_fnv1a : "reverse thrusting ion"_fnv1a);
+					burning += scale * attributes.Get(isThrusting
+						? "thrusting burn"_fnv1a : "reverse thrusting burn"_fnv1a);
+					leakage += scale * attributes.Get(isThrusting
+						? "thrusting leakage"_fnv1a : "reverse thrusting leakage"_fnv1a);
+					slowness += scale * attributes.Get(isThrusting
+						? "thrusting slowing"_fnv1a : "reverse thrusting slowing"_fnv1a);
+					disruption += scale * attributes.Get(isThrusting
+						? "thrusting disruption"_fnv1a : "reverse thrusting disruption"_fnv1a);
 
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
@@ -1995,21 +2008,21 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				&& !CannotAct();
 		if(applyAfterburner)
 		{
-			thrust = attributes.Get("afterburner thrust");
-			double shieldCost = attributes.Get("afterburner shields");
-			double hullCost = attributes.Get("afterburner hull");
-			double energyCost = attributes.Get("afterburner energy");
-			double fuelCost = attributes.Get("afterburner fuel");
-			double heatCost = -attributes.Get("afterburner heat");
+			thrust = attributes.Get("afterburner thrust"_fnv1a);
+			double shieldCost = attributes.Get("afterburner shields"_fnv1a);
+			double hullCost = attributes.Get("afterburner hull"_fnv1a);
+			double energyCost = attributes.Get("afterburner energy"_fnv1a);
+			double fuelCost = attributes.Get("afterburner fuel"_fnv1a);
+			double heatCost = -attributes.Get("afterburner heat"_fnv1a);
 
-			double dischargeCost = attributes.Get("afterburner discharge");
-			double corrosionCost = attributes.Get("afterburner corrosion");
-			double ionCost = attributes.Get("afterburner ion");
-			double leakageCost = attributes.Get("afterburner leakage");
-			double burningCost = attributes.Get("afterburner burn");
+			double dischargeCost = attributes.Get("afterburner discharge"_fnv1a);
+			double corrosionCost = attributes.Get("afterburner corrosion"_fnv1a);
+			double ionCost = attributes.Get("afterburner ion"_fnv1a);
+			double leakageCost = attributes.Get("afterburner leakage"_fnv1a);
+			double burningCost = attributes.Get("afterburner burn"_fnv1a);
 
-			double slownessCost = attributes.Get("afterburner slowing");
-			double disruptionCost = attributes.Get("afterburner disruption");
+			double slownessCost = attributes.Get("afterburner slowing"_fnv1a);
+			double disruptionCost = attributes.Get("afterburner disruption"_fnv1a);
 
 			if(thrust && shields >= shieldCost && hull >= hullCost
 				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
@@ -2120,7 +2133,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				{
 					isBoarding = false;
 					bool isEnemy = government->IsEnemy(target->government);
-					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
+					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"_fnv1a))
 					{
 						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
@@ -2174,29 +2187,29 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		const double hullAvailable = attributes.Get("hull repair rate")
-			* (1. + attributes.Get("hull repair multiplier"));
-		const double hullEnergy = (attributes.Get("hull energy")
-			* (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
-		const double hullFuel = (attributes.Get("hull fuel")
-			* (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
-		const double hullHeat = (attributes.Get("hull heat")
-			* (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
+		const double hullAvailable = attributes.Get("hull repair rate"_fnv1a)
+			* (1. + attributes.Get("hull repair multiplier"_fnv1a));
+		const double hullEnergy = (attributes.Get("hull energy"_fnv1a)
+			* (1. + attributes.Get("hull energy multiplier"_fnv1a))) / hullAvailable;
+		const double hullFuel = (attributes.Get("hull fuel"_fnv1a)
+			* (1. + attributes.Get("hull fuel multiplier"_fnv1a))) / hullAvailable;
+		const double hullHeat = (attributes.Get("hull heat"_fnv1a)
+			* (1. + attributes.Get("hull heat multiplier"_fnv1a))) / hullAvailable;
 		double hullRemaining = hullAvailable;
 		if(!hullDelay)
-			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+			DoRepair(hull, hullRemaining, attributes.Get("hull"_fnv1a), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
-		const double shieldsAvailable = attributes.Get("shield generation")
-			* (1. + attributes.Get("shield generation multiplier"));
-		const double shieldsEnergy = (attributes.Get("shield energy")
-			* (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
-		const double shieldsFuel = (attributes.Get("shield fuel")
-			* (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
-		const double shieldsHeat = (attributes.Get("shield heat")
-			* (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
+		const double shieldsAvailable = attributes.Get("shield generation"_fnv1a)
+			* (1. + attributes.Get("shield generation multiplier"_fnv1a));
+		const double shieldsEnergy = (attributes.Get("shield energy"_fnv1a)
+			* (1. + attributes.Get("shield energy multiplier"_fnv1a))) / shieldsAvailable;
+		const double shieldsFuel = (attributes.Get("shield fuel"_fnv1a)
+			* (1. + attributes.Get("shield fuel multiplier"_fnv1a))) / shieldsAvailable;
+		const double shieldsHeat = (attributes.Get("shield heat"_fnv1a)
+			* (1. + attributes.Get("shield heat multiplier"_fnv1a))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		if(!shieldDelay)
-			DoRepair(shields, shieldsRemaining, attributes.Get("shields"),
+			DoRepair(shields, shieldsRemaining, attributes.Get("shields"_fnv1a),
 				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 
 		if(!bays.empty())
@@ -2221,24 +2234,24 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay)
-					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
+					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"_fnv1a),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
 				if(!shieldDelay)
-					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"),
+					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"_fnv1a),
 						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
-			double energyRemaining = energy - attributes.Get("energy capacity");
-			double fuelRemaining = fuel - attributes.Get("fuel capacity");
+			double energyRemaining = energy - attributes.Get("energy capacity"_fnv1a);
+			double fuelRemaining = fuel - attributes.Get("fuel capacity"_fnv1a);
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
 				if(energyRemaining > 0.)
-					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
+					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"_fnv1a));
 				if(fuelRemaining > 0.)
-					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
+					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"_fnv1a));
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -2256,70 +2269,70 @@ void Ship::DoGeneration()
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
-		double ionResistance = attributes.Get("ion resistance");
-		double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
-		double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
-		double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
+		double ionResistance = attributes.Get("ion resistance"_fnv1a);
+		double ionEnergy = attributes.Get("ion resistance energy"_fnv1a) / ionResistance;
+		double ionFuel = attributes.Get("ion resistance fuel"_fnv1a) / ionResistance;
+		double ionHeat = attributes.Get("ion resistance heat"_fnv1a) / ionResistance;
 		DoStatusEffect(isDisabled, ionization, ionResistance,
 			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 
 	if(disruption)
 	{
-		double disruptionResistance = attributes.Get("disruption resistance");
-		double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
-		double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
-		double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
+		double disruptionResistance = attributes.Get("disruption resistance"_fnv1a);
+		double disruptionEnergy = attributes.Get("disruption resistance energy"_fnv1a) / disruptionResistance;
+		double disruptionFuel = attributes.Get("disruption resistance fuel"_fnv1a) / disruptionResistance;
+		double disruptionHeat = attributes.Get("disruption resistance heat"_fnv1a) / disruptionResistance;
 		DoStatusEffect(isDisabled, disruption, disruptionResistance,
 			energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
 	}
 
 	if(slowness)
 	{
-		double slowingResistance = attributes.Get("slowing resistance");
-		double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
-		double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
-		double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
+		double slowingResistance = attributes.Get("slowing resistance"_fnv1a);
+		double slowingEnergy = attributes.Get("slowing resistance energy"_fnv1a) / slowingResistance;
+		double slowingFuel = attributes.Get("slowing resistance fuel"_fnv1a) / slowingResistance;
+		double slowingHeat = attributes.Get("slowing resistance heat"_fnv1a) / slowingResistance;
 		DoStatusEffect(isDisabled, slowness, slowingResistance,
 			energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
 	}
 
 	if(discharge)
 	{
-		double dischargeResistance = attributes.Get("discharge resistance");
-		double dischargeEnergy = attributes.Get("discharge resistance energy") / dischargeResistance;
-		double dischargeFuel = attributes.Get("discharge resistance fuel") / dischargeResistance;
-		double dischargeHeat = attributes.Get("discharge resistance heat") / dischargeResistance;
+		double dischargeResistance = attributes.Get("discharge resistance"_fnv1a);
+		double dischargeEnergy = attributes.Get("discharge resistance energy"_fnv1a) / dischargeResistance;
+		double dischargeFuel = attributes.Get("discharge resistance fuel"_fnv1a) / dischargeResistance;
+		double dischargeHeat = attributes.Get("discharge resistance heat"_fnv1a) / dischargeResistance;
 		DoStatusEffect(isDisabled, discharge, dischargeResistance,
 			energy, dischargeEnergy, fuel, dischargeFuel, heat, dischargeHeat);
 	}
 
 	if(corrosion)
 	{
-		double corrosionResistance = attributes.Get("corrosion resistance");
-		double corrosionEnergy = attributes.Get("corrosion resistance energy") / corrosionResistance;
-		double corrosionFuel = attributes.Get("corrosion resistance fuel") / corrosionResistance;
-		double corrosionHeat = attributes.Get("corrosion resistance heat") / corrosionResistance;
+		double corrosionResistance = attributes.Get("corrosion resistance"_fnv1a);
+		double corrosionEnergy = attributes.Get("corrosion resistance energy"_fnv1a) / corrosionResistance;
+		double corrosionFuel = attributes.Get("corrosion resistance fuel"_fnv1a) / corrosionResistance;
+		double corrosionHeat = attributes.Get("corrosion resistance heat"_fnv1a) / corrosionResistance;
 		DoStatusEffect(isDisabled, corrosion, corrosionResistance,
 			energy, corrosionEnergy, fuel, corrosionFuel, heat, corrosionHeat);
 	}
 
 	if(leakage)
 	{
-		double leakResistance = attributes.Get("leak resistance");
-		double leakEnergy = attributes.Get("leak resistance energy") / leakResistance;
-		double leakFuel = attributes.Get("leak resistance fuel") / leakResistance;
-		double leakHeat = attributes.Get("leak resistance heat") / leakResistance;
+		double leakResistance = attributes.Get("leak resistance"_fnv1a);
+		double leakEnergy = attributes.Get("leak resistance energy"_fnv1a) / leakResistance;
+		double leakFuel = attributes.Get("leak resistance fuel"_fnv1a) / leakResistance;
+		double leakHeat = attributes.Get("leak resistance heat"_fnv1a) / leakResistance;
 		DoStatusEffect(isDisabled, leakage, leakResistance,
 			energy, leakEnergy, fuel, leakFuel, heat, leakHeat);
 	}
 
 	if(burning)
 	{
-		double burnResistance = attributes.Get("burn resistance");
-		double burnEnergy = attributes.Get("burn resistance energy") / burnResistance;
-		double burnFuel = attributes.Get("burn resistance fuel") / burnResistance;
-		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
+		double burnResistance = attributes.Get("burn resistance"_fnv1a);
+		double burnEnergy = attributes.Get("burn resistance energy"_fnv1a) / burnResistance;
+		double burnFuel = attributes.Get("burn resistance fuel"_fnv1a) / burnResistance;
+		double burnHeat = attributes.Get("burn resistance heat"_fnv1a) / burnResistance;
 		DoStatusEffect(isDisabled, burning, burnResistance,
 			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
 	}
@@ -2328,23 +2341,23 @@ void Ship::DoGeneration()
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
-	energy = min(energy, attributes.Get("energy capacity"));
-	fuel = min(fuel, attributes.Get("fuel capacity"));
+	energy = min(energy, attributes.Get("energy capacity"_fnv1a));
+	fuel = min(fuel, attributes.Get("fuel capacity"_fnv1a));
 
 	heat -= heat * HeatDissipation();
 	if(heat > MaximumHeat())
 	{
 		isOverheated = true;
-		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
+		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"_fnv1a));
 		if(heatRatio > 1.)
-			hull -= attributes.Get("overheat damage rate") * heatRatio;
+			hull -= attributes.Get("overheat damage rate"_fnv1a) * heatRatio;
 	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	double maxShields = attributes.Get("shields");
+	double maxShields = attributes.Get("shields"_fnv1a);
 	shields = min(shields, maxShields);
-	double maxHull = attributes.Get("hull");
+	double maxHull = attributes.Get("hull"_fnv1a);
 	hull = min(hull, maxHull);
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
@@ -2366,35 +2379,35 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
+			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"_fnv1a));
 
 			double solarScaling = currentSystem->SolarPower() * scale;
-			energy += solarScaling * attributes.Get("solar collection");
-			heat += solarScaling * attributes.Get("solar heat");
+			energy += solarScaling * attributes.Get("solar collection"_fnv1a);
+			heat += solarScaling * attributes.Get("solar heat"_fnv1a);
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
-		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
-		fuel += attributes.Get("fuel generation");
-		heat += attributes.Get("heat generation");
-		heat -= coolingEfficiency * attributes.Get("cooling");
+		energy += attributes.Get("energy generation"_fnv1a) - attributes.Get("energy consumption"_fnv1a);
+		fuel += attributes.Get("fuel generation"_fnv1a);
+		heat += attributes.Get("heat generation"_fnv1a);
+		heat -= coolingEfficiency * attributes.Get("cooling"_fnv1a);
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
-		if(attributes.Get("fuel consumption") <= fuel)
+		if(attributes.Get("fuel consumption"_fnv1a) <= fuel)
 		{
-			fuel -= attributes.Get("fuel consumption");
-			energy += attributes.Get("fuel energy");
-			heat += attributes.Get("fuel heat");
+			fuel -= attributes.Get("fuel consumption"_fnv1a);
+			energy += attributes.Get("fuel energy"_fnv1a);
+			heat += attributes.Get("fuel heat"_fnv1a);
 		}
 
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
-		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+		double activeCooling = coolingEfficiency * attributes.Get("active cooling"_fnv1a);
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
 			// Although it's a misuse of this feature, handle the case where
 			// "active cooling" does not require any energy.
-			double coolingEnergy = attributes.Get("cooling energy");
+			double coolingEnergy = attributes.Get("cooling energy"_fnv1a);
 			if(coolingEnergy)
 			{
 				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
@@ -2427,7 +2440,8 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 	for(Bay &bay : bays)
 		if(bay.ship
-			&& ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
+			&& ((bay.ship->Commands().Has(Command::DEPLOY)
+			&& !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton"_fnv1a)))
 			|| (ejecting && !Random::Int(6))))
 		{
 			// Resupply any ships launching of their own accord.
@@ -2453,7 +2467,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 				// This ship will refuel naturally based on the carrier's fuel
 				// collection, but the carrier may have some reserves to spare.
-				double maxFuel = bay.ship->attributes.Get("fuel capacity");
+				double maxFuel = bay.ship->attributes.Get("fuel capacity"_fnv1a);
 				if(maxFuel)
 				{
 					double spareFuel = fuel - navigation.JumpFuel();
@@ -2521,7 +2535,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
+		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"_fnv1a));
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(victim->NeedsFuel() && CanRefuel(*victim))
