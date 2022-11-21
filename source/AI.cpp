@@ -2303,18 +2303,19 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 // energy strain, or undue thermal loads if almost overheated.
 bool AI::ShouldUseAfterburner(Ship &ship)
 {
-	if(!ship.Attributes().Get("afterburner thrust"_fnv1a))
+	const auto &attributes = ship.Attributes();
+	if(!attributes.Get("afterburner thrust"_fnv1a))
 		return false;
 
-	double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity"_fnv1a);
-	double neededFuel = ship.Attributes().Get("afterburner fuel"_fnv1a);
-	double energy = ship.Energy() * ship.Attributes().Get("energy capacity"_fnv1a);
-	double neededEnergy = ship.Attributes().Get("afterburner energy"_fnv1a);
+	double fuel = ship.Fuel() * attributes.Get("fuel capacity"_fnv1a);
+	double neededFuel = attributes.Get("afterburner fuel"_fnv1a);
+	double energy = ship.Energy() * attributes.Get("energy capacity"_fnv1a);
+	double neededEnergy = attributes.Get("afterburner energy"_fnv1a);
 	if(energy == 0.)
-		energy = ship.Attributes().Get("energy generation"_fnv1a)
-				+ 0.2 * ship.Attributes().Get("solar collection"_fnv1a)
-				- ship.Attributes().Get("energy consumption"_fnv1a);
-	double outputHeat = ship.Attributes().Get("afterburner heat"_fnv1a) / (100 * ship.Mass());
+		energy = attributes.Get("energy generation"_fnv1a)
+				+ 0.2 * attributes.Get("solar collection"_fnv1a)
+				- attributes.Get("energy consumption"_fnv1a);
+	double outputHeat = attributes.Get("afterburner heat"_fnv1a) / (100 * ship.Mass());
 	if((!neededFuel || fuel - neededFuel > ship.JumpNavigation().JumpFuel())
 			&& (!neededEnergy || neededEnergy / energy < 0.25)
 			&& (!outputHeat || ship.Heat() + outputHeat < .9))
