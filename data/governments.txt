@@ -883,6 +883,8 @@ government "Remnant (Research)"
 		board 1
 		capture 10
 		destroy 10
+	"use foreign penalties for"
+		"Remnant"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
 
