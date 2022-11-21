@@ -25,7 +25,7 @@ mission "FW Diplomacy 1"
 	
 	on offer
 		event "joined the free worlds"
-		event "fw abandoned Greenrock" 55
+		event "Greenrock at risk" 55
 		conversation
 			`As you are landing, you receive a message from JJ, on behalf of the Council. The message reads:`
 			branch suspended
