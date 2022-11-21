@@ -69,12 +69,13 @@ shipyard "Gegno Scin Ships"
 	Halite
 	Mica
 	Muscovite
+	Trydimite
 
 outfitter "Gegno Scin Outfits"
 	"Acuit Artillery"
-	"Acuit Blaster"
 	"Astuit Battery"
-	Hyperdrive
+	"Guile Pulse Laser"
+	"Hyperdrive"
 	"I70 Ameliorate Cell"
 	"Local Map"
 	"R01 Skirmish Battery"
@@ -87,5 +88,5 @@ outfitter "Gegno Scin Outfits"
 	"SC-14 Plasma Steering"
 	"SC-14 Plasma Thruster"
 	"SC-15 Plasma Thrusters"
-	"Guile Pulse Laser"
+
 
