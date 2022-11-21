@@ -49,7 +49,7 @@ on:
 
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
