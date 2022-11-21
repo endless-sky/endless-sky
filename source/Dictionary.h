@@ -33,49 +33,60 @@ namespace hash_fnv
 	template <> struct fnv_internal<def_type>
 	{
 		constexpr static def_type default_offset_basis = 0x811C9DC5;
-		constexpr static def_type prime				   = 0x01000193;
+		constexpr static def_type prime = 0x01000193;
 	};
 
 	template <> struct fnv1<def_type> : public fnv_internal<def_type>
 	{
-		constexpr static inline def_type hash(char const*const aString, const def_type val = default_offset_basis)
+		constexpr static inline def_type hash(char const *const aString, const def_type val = default_offset_basis)
 		{
-			return (aString[0] == '\0') ? val : hash( &aString[1], ( val * prime ) ^ def_type(aString[0]) );
+			return (aString[0] == '\0') ? val : hash(&aString[1], (val * prime) ^ def_type(aString[0]));
 		}
 	};
 
 	template <> struct fnv1a<def_type> : public fnv_internal<def_type>
 	{
-		constexpr static inline def_type hash(char const*const aString, const def_type val = default_offset_basis)
+		constexpr static inline def_type hash(char const *const aString, const def_type val = default_offset_basis)
 		{
-			return (aString[0] == '\0') ? val : hash( &aString[1], ( val ^ def_type(aString[0]) ) * prime);
+			return (aString[0] == '\0') ? val : hash(&aString[1], (val ^ def_type(aString[0])) * prime);
 		}
 	};
 } // namespace hash
 
+
+
+// A tiny wrapper to reduce and prevent risks of type mismatch
+// when passing an hash to 'Dictionary::Get' method
 class HashWrapper {
 public:
-	constexpr explicit HashWrapper(hash_fnv::def_type h) : hash(h) {}
+	constexpr explicit HashWrapper(hash_fnv::def_type h)
+		: hash(h)
+	{}
 	constexpr hash_fnv::def_type Get() const { return hash; }
 private:
 	hash_fnv::def_type hash;
 };
 
-inline constexpr HashWrapper operator "" _fnv1a (const char* aString, size_t aStrlen)
+
+inline constexpr HashWrapper operator "" _fnv1a (const char *aString, size_t aStrlen)
 {
 	return HashWrapper(hash_fnv::fnv1a<hash_fnv::def_type>::hash(aString));
 }
 
 
+
+// A(nother) tiny wrapper which is used as a key in the Dictionary class:
+// this allow using a fast hash for lookup without loosing the possibility
+// of getting the key as a string
 class stringAndHash {
 public:
 	stringAndHash(const char *str)
 		: str(str)
 		, hash(hash_fnv::fnv1a<hash_fnv::def_type>::hash(str))
 	{}
-	stringAndHash(const HashWrapper &h) :
-		str(nullptr),
-		hash(h)
+	stringAndHash(const HashWrapper &h)
+		: str(nullptr)
+		, hash(h)
 	{}
 
 	const char *GetString() const { return str; }
@@ -86,6 +97,8 @@ private:
 	const char *str;
 	HashWrapper hash;
 };
+
+
 
 // This class stores a mapping from character string keys to values, in a way
 // that prioritizes fast lookup time at the expense of longer construction time
