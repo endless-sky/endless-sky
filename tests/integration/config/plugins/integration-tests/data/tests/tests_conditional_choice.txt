@@ -103,6 +103,26 @@ mission "%TEST%: CONDITIONAL CHOICE GOTO"
 		set "succeed test"
 
 
+mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+	priority
+	source "Ruin"
+	to offer
+		has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+	on offer
+		conversation
+			`	"Don't you dare clicking on the hidden option!"`
+			choice
+				`	"Sure."`
+					accept
+				`	"I do what I want."`
+					to display
+						not "%TEST%: CONDITIONAL CHOICE"
+			`	"In that case... Test failed."`
+				decline
+	on accept
+		set "succeed test"
+
+
 mission "%TEST%: NAME IN CONVERSATION"
 	priority
 	source "Ruin"
@@ -160,6 +180,25 @@ test "Conditional Test Goto"
 		apply
 			"%TEST%: CONDITIONAL CHOICE GOTO" = 1
 		call "Trigger Spaceport Mission"
+		call "Skip Spaceport Mission"
+		call "Depart"
+		assert
+			"succeed test" == 1
+
+
+test "Conditional Test Goto"
+	status active
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	sequence
+		inject "conditional choice"
+		call "Load First Savegame"
+		apply
+			"%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
+		call "Trigger Spaceport Mission"
+		# If only one option is displayed this shouldn't do anything,
+		# but if we can somehow access the condition below with the down key then its a problem.
+		input
+			key "Down"
 		call "Skip Spaceport Mission"
 		call "Depart"
 		assert
