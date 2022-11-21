@@ -63,6 +63,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
+#include "Wormhole.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -669,7 +670,7 @@ void Engine::Step(bool isActive)
 	{
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
-		// Otherwise, display a segment for every 100 fuel.
+		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
 			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
 		else
@@ -1405,7 +1406,7 @@ void Engine::CalculateStep()
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
-						it.GetPlanet()->WormholeDestination(playerSystem) == flagship->GetSystem())
+						&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
@@ -2184,12 +2185,12 @@ void Engine::DoCollection(Flotsam &flotsam)
 		const Outfit *outfit = flotsam.OutfitType();
 		if(outfit->Get("minable") > 0.)
 		{
-			commodity = outfit->Name();
+			commodity = outfit->DisplayName();
 			player.Harvest(outfit);
 		}
 		else
 			message = name + to_string(amount) + " "
-				+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
+				+ (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
 	}
 	else
 		commodity = flotsam.CommodityType();
@@ -2435,11 +2436,11 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		if(ship->GetGovernment() == attacker && ship->GetTargetShip() == target)
 		{
 			++attackerCount;
-			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();
+			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Strength();
 		}
 
 	// Only ask for help if outmatched.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
+	double targetStrength = (target->Shields() + target->Hull()) * target->Strength();
 	if(attackerStrength <= targetStrength)
 		return;
 

@@ -163,6 +163,11 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
+	int64_t Strength() const;
+	// Get the attraction and deterrance of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double Attraction() const;
+	double Deterrence() const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
@@ -226,8 +231,10 @@ public:
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
 
-	// Get the system this ship is in.
+	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
+	// Get the system this ship is in. If being carried, gets the parent's system.
+	const System *GetActualSystem() const;
 	// If the ship is landed, get the planet it has landed on.
 	const Planet *GetPlanet() const;
 
@@ -239,6 +246,7 @@ public:
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
+	bool IsFleeing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if some condition is keeping this ship from acting. (That is, it is
@@ -283,8 +291,8 @@ public:
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
-	// Mark this ship as property of the given ship.
-	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
+	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
 
@@ -333,6 +341,8 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
+	// Calculate the ship's drag after accounting for drag reduction.
+	double Drag() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -346,6 +356,7 @@ public:
 
 	// Get this ship's movement characteristics.
 	double Mass() const;
+	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity() const;
@@ -423,6 +434,9 @@ public:
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 
+	// Mark this ship as fleeing.
+	void SetFleeing(bool fleeing = true);
+
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
@@ -456,6 +470,11 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+
+	// Calculate the attraction and deterrance of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double CalculateAttraction() const;
+	double CalculateDeterrence() const;
 
 
 private:
@@ -493,6 +512,7 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	bool isFleeing = false;
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
@@ -509,6 +529,9 @@ private:
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;
+
+	double attraction = 0.;
+	double deterrence = 0.;
 
 	Command commands;
 	FireCommand firingCommands;
