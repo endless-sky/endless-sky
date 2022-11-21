@@ -53,16 +53,19 @@ namespace hash_fnv
 	};
 } // namespace hash
 
+class HashWrapper {
+public:
+	constexpr explicit HashWrapper(hash_fnv::def_type h) : hash(h) {}
+	constexpr hash_fnv::def_type Get() const { return hash; }
+private:
+	hash_fnv::def_type hash;
+};
 
-inline constexpr hash_fnv::def_type operator "" _fnv1 (const char* aString, size_t aStrlen)
+inline constexpr HashWrapper operator "" _fnv1a (const char* aString, size_t aStrlen)
 {
-	return hash_fnv::fnv1<hash_fnv::def_type>::hash(aString);
+	return HashWrapper(hash_fnv::fnv1a<hash_fnv::def_type>::hash(aString));
 }
 
-inline constexpr hash_fnv::def_type operator "" _fnv1a (const char* aString, size_t aStrlen)
-{
-	return hash_fnv::fnv1a<hash_fnv::def_type>::hash(aString);
-}
 
 class stringAndHash {
 public:
@@ -72,12 +75,12 @@ public:
 	{}
 
 	const char *GetString() const { return str; }
-	const hash_fnv::def_type GetHash() const { return hash; }
+	const HashWrapper GetHash() const { return hash; }
 
 
 private:
 	const char *str;
-	hash_fnv::def_type hash;
+	HashWrapper hash;
 };
 
 // This class stores a mapping from character string keys to values, in a way

@@ -62,10 +62,10 @@ namespace {
 		while(low != high)
 		{
 			size_t mid = (low + high) / 2;
-			if(key.GetHash() == v[mid].first.GetHash())
+			if(key.GetHash().Get() == v[mid].first.GetHash().Get())
 				return make_pair(mid, true);
 
-			if(key.GetHash() < v[mid].first.GetHash())
+			if(key.GetHash().Get() < v[mid].first.GetHash().Get())
 				high = mid;
 			else
 				low = mid + 1;
