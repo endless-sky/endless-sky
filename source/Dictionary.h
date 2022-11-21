@@ -20,7 +20,49 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+// Code from:
+// https://gist.github.com/filsinger/1255697/1972eb676b47116838edaacf923e60b9173199c2
+namespace hash_fnv
+{
+	using def_type = uint32_t;
 
+	template <typename S> struct fnv_internal;
+	template <typename S> struct fnv1;
+	template <typename S> struct fnv1a;
+
+	template <> struct fnv_internal<def_type>
+	{
+		constexpr static def_type default_offset_basis = 0x811C9DC5;
+		constexpr static def_type prime				   = 0x01000193;
+	};
+
+	template <> struct fnv1<def_type> : public fnv_internal<def_type>
+	{
+		constexpr static inline def_type hash(char const*const aString, const def_type val = default_offset_basis)
+		{
+			return (aString[0] == '\0') ? val : hash( &aString[1], ( val * prime ) ^ def_type(aString[0]) );
+		}
+	};
+
+	template <> struct fnv1a<def_type> : public fnv_internal<def_type>
+	{
+		constexpr static inline def_type hash(char const*const aString, const def_type val = default_offset_basis)
+		{
+			return (aString[0] == '\0') ? val : hash( &aString[1], ( val ^ def_type(aString[0]) ) * prime);
+		}
+	};
+} // namespace hash
+
+
+inline constexpr hash_fnv::def_type operator "" _fnv1 (const char* aString, size_t aStrlen)
+{
+	return hash_fnv::fnv1<hash_fnv::def_type>::hash(aString);
+}
+
+inline constexpr hash_fnv::def_type operator "" _fnv1a (const char* aString, size_t aStrlen)
+{
+	return hash_fnv::fnv1a<hash_fnv::def_type>::hash(aString);
+}
 
 // This class stores a mapping from character string keys to values, in a way
 // that prioritizes fast lookup time at the expense of longer construction time
