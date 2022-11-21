@@ -69,7 +69,7 @@ shipyard "Gegno Scin Ships"
 	Halite
 	Mica
 	Muscovite
-	Trydimite
+	Tridymite
 
 outfitter "Gegno Scin Outfits"
 	"Acuit Artillery"
