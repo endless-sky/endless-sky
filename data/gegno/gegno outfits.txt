@@ -699,15 +699,15 @@ outfit "Guile Pulse Laser"
 		"hit effect" "heavy laser impact"
 		lifetime 1
 		velocity 150
-		reload 12
+		reload 6
 		"burst count" 3
 		"burst reload" 1
 		cluster
 		inaccuracy 0.2
-		"firing energy" 7.4
-		"firing heat" 20
-		"shield damage" 24.6
-		"hull damage" 40.4
+		"firing energy" 3.7
+		"firing heat" 10
+		"shield damage" 12.4
+		"hull damage" 20.2
 	description `The Guile Pulse Laser is a recent experimental advancement in Scin Plasma weapon technology. Rather than rapid firing plasma slugs, this weapon fires concentrated pulses of energy that only last for a brief moment. Each blast impacts the target ship almost instantaneously with a powerful hit, and a consistent amount of fire from Guile Lasers is extremely effective against slow moving targets.` 
 	description `	Guile pulse lasers have noticeable drawbacks as they quickly consume energy and generate notable heat per shot. Unlike a beam-type weapon, they are incapable of consistent output, and have a fairly short range.`
 

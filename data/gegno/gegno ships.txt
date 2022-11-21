@@ -176,7 +176,7 @@ ship Gypsum
 
 ship Augen
 	sprite ship/augen
-	thumbnail thumbnail/augen
+	thumbnail ship/augen
 	attributes
 		category "Superheavy"
 			"Gegno Civilian"
@@ -321,10 +321,10 @@ ship Schist
 		"R02 Battlezone Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
-	engine 0 154
-	gun -17.5 -160 "Irate Cannon"
-	gun 17.5 -160 "Irate Cannon"
-	turret 0 -95 "Irate Cannon Turret"
+	engine 0 153.5
+	gun -16.5 -181.5 "Irate Cannon"
+	gun 16.5 -181.5 "Irate Cannon"
+	turret 0 -139.5 "Irate Cannon Turret"
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 10
@@ -389,10 +389,10 @@ ship Eclogite
 		"RG18 Torch Thruster"
 	engine 0 82
 	gun 0 -98 "Chloeric Cannon"
-	gun -12.5 -51 "Irate Cannon"
-	gun 12.5 -51 "Irate Cannon"
-	gun -12.5 -68 "Irate Cannon"
-	gun 12.5 -68 "Irate Cannon"
+	gun -11.5 -53 "Irate Cannon"
+	gun 11.5 -53 "Irate Cannon"
+	gun -11.5 -29 "Irate Cannon"
+	gun 11.5 -29 "Irate Cannon"
 	leak leak 60 50
 	leak flame 50 80
 	explode "medium explosion" 10
@@ -437,13 +437,13 @@ ship Diorite
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
 
-	gun -8.5 -193
-	gun 8.5 -193
-	turret -24 -76.5
-	turret 24 -76.5 
-	engine -14.5 142
-	engine 0 138
-	engine 14.5 142
+	gun -7 -193
+	gun 7 -193
+	turret -24 -77
+	turret 24 -77 
+	engine -22.5 158
+	engine 0 164
+	engine 22.5 158
 	leak leak 30 50
 	leak flame 50 90
 	explode "large explosion" 9
@@ -488,14 +488,14 @@ ship Hornfel
 		"R03 Warforge Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
-	engine -16.5 206
-	engine 16.5 206
-	gun -13.5 -228 "Irate Cannon"
-	gun 13.5 -228 "Irate Cannon"
-	gun -22.5 -204 "Irate Cannon"
-	gun 22.5 -204 "Irate Cannon"
-	turret 0 -112 "Chloeric Cannon Turret"
-	turret 0 -41.5 "Chloeric Cannon Turret"
+	engine -20 205
+	engine 20 205
+	gun 20.5 -234.5 "Irate Cannon"
+	gun -20.5 -234.5 "Irate Cannon"
+	gun -26.5 -222.5 "Irate Cannon"
+	gun 26.5 -222.5 "Irate Cannon"
+	turret 0 -117.5 "Chloeric Cannon Turret"
+	turret 0 -44 "Chloeric Cannon Turret"
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 10
@@ -517,27 +517,35 @@ ship Hornfel "Hornfel Heavy Load"
 	sprite "ship/gegno hornfel c"
 	thumbnail "thumbnail/gegno hornfel c"
 	add attributes
-		mass 60
-		"cargo space" 60
+		mass 70
+		"cargo space" 80
 		drag 0.7
 
 ship Hornfel "Hornfel Heavy Weapons"
 	sprite "ship/gegno hornfel d"
 	thumbnail "thumbnail/gegno hornfel d"
 	add attributes
-		mass 80
-		"cargo space" 80
+		mass 60
+		"cargo space" -20
 		drag 1.1
 		"weapon capacity" 60
 	outfits
-		"Ballistic Cannon Turret"
 		"C17 Warzone Core"
-		"Chloeric Cannon Turret"
+		"Chloeric Cannon" 2
+		"Chloeric Cannon Turret" 2
 		Hyperdrive
 		"Irate Cannon" 2
+		"Irate Cannon Turret"
 		"R03 Warforge Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
+	gun 20.5 -234.5 "Chloeric Cannon"
+	gun -20.5 -234.5 "Chloeric Cannon"
+	gun -26.5 -222.5 "Irate Cannon"
+	gun 26.5 -222.5 "Irate Cannon"
+	turret 0 -117.5 "Chloeric Cannon Turret"
+	turret 0 -44 "Chloeric Cannon Turret"
+	turret 0 -185 "Irate Cannon Turret"
 
 ship Gneiss
 	plural "Gneiss"
@@ -575,14 +583,14 @@ ship Gneiss
 		"R04 Crusade Battery"
 		"RG3 Torch Steering"
 		"RG3 Torch Thruster"
-	engine 0 264
-	gun -17.4 -282 "Irate Cannon"
-	gun 17.4 -282 "Irate Cannon"
-	gun -24.5 -263 "Irate Cannon"
-	gun 24.5 -263 "Irate Cannon"
-	turret 0 -107 "Ballistic Cannon Turret"
-	turret 0 -30.5 "Ballistic Cannon Turret"
-	turret 0 42.5 "Ballistic Cannon Turret"
+	engine 0 270
+	gun -17 -286 "Irate Cannon"
+	gun 17 -286 "Irate Cannon"
+	gun -23 -270.5 "Irate Cannon"
+	gun 23 -270.5 "Irate Cannon"
+	turret 0 -97.5 "Ballistic Cannon Turret"
+	turret 0 -23 "Ballistic Cannon Turret"
+	turret 0 46 "Ballistic Cannon Turret"
 	leak leak 50 50
 	leak flame 80 140
 	explode "huge explosion" 18
@@ -631,12 +639,12 @@ ship Protolith
 		"RG3 Torch Steering"
 		"RG3 Torch Thruster"
 	engine 0 266
-	engine -39 260
-	engine 39 260
-	gun 43 -218 "Irate Cannon"
-	gun 53 -209 "Irate Cannon"
-	turret 0 -9.5 "Chloeric Cannon Turret"
-	turret -77.5 14 "Irate Cannon Turret"
+	engine -48 258
+	engine 48 258
+	gun 38 -222 "Irate Cannon"
+	gun 48 -214 "Irate Cannon"
+	turret 0 21 "Chloeric Cannon Turret"
+	turret -69.5 21 "Irate Cannon Turret"
 	leak leak 30 50
 	leak flame 30 80
 	leak "big leak" 50 30
@@ -848,11 +856,11 @@ ship Felsic
 		"R02 Battlezone Battery"
 		"SC-14 Plasma Steering"
 		"SC-14 Plasma Thruster"
-	engine -17 158
-	engine 17 158
+	engine -18.5 155.5
+	engine 18.5 155.5
 	turret 0 -87.5 "Astuit Battery"
-	turret -43 85 "Astuit Battery"
-	turret 43 85 "Astuit Battery"
+	turret -41.5 84.5 "Astuit Battery"
+	turret 41.5 84.5 "Astuit Battery"
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 7
@@ -896,31 +904,29 @@ ship Feldspar
 		"SC-12 Plasma Steering"
 		"SC-14 Plasma Steering"
 		"SC-15 Plasma Thrusters"
-	engine 31 198
-	engine -31 198
-	"reverse engine" -38 -188
+	engine 31 194
+	engine -31 194
+	"reverse engine" -36 -186
 		zoom 0.7
-		angle -360
-	"reverse engine" 38 -188
+	"reverse engine" 36 -186
 		zoom 0.7
-		angle -360
-	"steering engine" 108 33
+	"steering engine" 108 34
 		zoom 0.7
-		angle -63.001099
+		angle -58
 		left
-	"steering engine" -108 33
+	"steering engine" -108 34
 		zoom 0.7
-		angle 63.001099
+		angle 58
 		right
-	turret -72.5 17 "Acuit Artillery"
-	turret 72.5 17 "Acuit Artillery"
-	bay Fighter -71 -171.5
+	turret -74.5 13 "Acuit Artillery"
+	turret 74.5 13 "Acuit Artillery"
+	bay Fighter -73 -173.5
 		over
-	bay Fighter 71 -171.5
+	bay Fighter 73 -173.5
 		over
-	bay Fighter -69 -97
+	bay Fighter -70 -98
 		over
-	bay Fighter 69 -97
+	bay Fighter 70 -98
 		over
 	bay Fighter -65.5 120
 		angle -180
