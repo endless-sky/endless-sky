@@ -20,9 +20,36 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+#include <chrono>
+#include <iostream>
+
 using namespace std;
 
 namespace {
+
+	using chrono::high_resolution_clock;
+	using chrono::duration_cast;
+	using chrono::duration;
+	using chrono::microseconds;
+
+	class Timing {
+	public:
+		Timing() = default;
+		void AddSample(duration<double, micro> sample) {
+			samples++;
+			average += (sample - average) / samples;
+		};
+		duration<double, micro> GetAverage() const { return average; }
+		int GetNumSamples() const { return samples; }
+		void Reset() {
+			average = {};
+			samples = 0;
+		}
+	private:
+		duration<double, micro> average;
+		int samples;
+	};
+
 	// Perform a binary search on a sorted vector. Return the key's location (or
 	// proper insertion spot) in the first element of the pair, and "true" in
 	// the second element if the key is already in the vector.
@@ -82,7 +109,21 @@ double &Dictionary::operator[](const string &key)
 
 double Dictionary::Get(const char *key) const
 {
+	static Timing timing;
+	const auto start = high_resolution_clock::now();
+
 	pair<size_t, bool> pos = Search(key, *this);
+
+	const auto stop = high_resolution_clock::now();
+
+	timing.AddSample(stop - start);
+
+	if(timing.GetNumSamples() >= 5000)
+	{
+		cout << "Search time = " << timing.GetAverage().count() << '\n';
+		timing.Reset();
+	}
+
 	return (pos.second ? data()[pos.first].second : 0.);
 }
 
