@@ -199,6 +199,7 @@ test "Conditional Test Out of Bound"
 		# but if we can somehow access the condition below with the down key then its a problem.
 		input
 			key "Down"
+		input
 		call "Skip Spaceport Mission"
 		call "Depart"
 		assert
