@@ -186,7 +186,7 @@ test "Conditional Test Goto"
 			"succeed test" == 1
 
 
-test "Conditional Test Goto"
+test "Conditional Test Out of Bound"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
