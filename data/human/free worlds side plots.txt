@@ -713,3 +713,120 @@ mission "FW Stack Core 1C"
 		conversation
 			`You receive a message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
 				decline
+
+event "Greenrock at risk"
+
+mission "Pirate Invasion of Greenrock"
+	name `Pirates headed for <system>`
+	landing
+	autosave
+	description `A major pirate fleet is headed for <system>, and the Free Worlds forces on <planet> are desperate for help. Defeat the pirates before <day> and land on <planet> when done.`
+	deadline 3 1 #deliberately short, might even be impossible if fuel stops required
+	source
+		government "Free Worlds"
+		not planet "Greenrock"
+	destination "Greenrock"
+	to offer
+		has "event: Greenrock at risk" #definitely happens shortly after the beginning of the chapter
+	on offer
+		conversation
+			`As you're coming in for a landing, you notice a young Militia officer sprinting across the landing pad towards you. As soon as you open your hatch, she abruptly pulls you aside.`
+			`	"Captain <last>!" she says, with a note of panic. "I have an urgent message for you from JJ. He says that a massive pirate fleet is converging on <system>. The authorities there have been alerted, but most of our militia forces are spread thin in skirmishes with the Navy, and reinforcements won't arrive in time. If that fleet successfully occupies the system, we could lose control of <planet> permanently."`
+			choice
+				`	"Then there's no time to lose. Tell the Council I'm on my way."`
+					goto acceptance
+				`	"Why contact me personally? Isn't there anyone else who can help?"`
+					goto evasive
+				`	"Wait, who are you, anyway? How do I know you're telling the truth?"`
+			branch attacked
+				has "FW Pirates: Attack 3: done"
+			`	She reddens slightly, but doesn't look away. "I was with Tomek at Greenrock. I... thought we were doing the right thing. I don't want it all to be in vain."`
+				goto promise
+			label attacked
+			`	She scowls at you. "I was at Greenrock, too, you know. Not all of us got away with a 'suspension'. Some of us got demoted, and are stuck answering questions from people who waste our time. But I still care about what happens there."`
+			label promise
+			`	She sighs. "Look, I don't know what else to tell you. I promise I'm telling the truth. Greenrock needs you."`
+			choice
+				`	"All right, I was just asking. Tell the Council I'm on my way."`
+					goto acceptance
+				`	"Isn't there anyone else who can help?"`
+				`	"I'm sorry, I can't help you."`
+					goto refusal
+			label evasive
+			`	"Normally, we'd broadcast an alert to nearby systems - you've probably gotten them before. But this situation is far more dangerous than usual. And given that the Senate didn't authorize the occupation in the first place, we can't afford to lose any more civilians trying to maintain it. As for our own forces, we have a few ships there currently, but like I said, we're spread thin and we can't risk another massive battle, so JJ specifically instructed me not to tell anyone else but you."` 
+			`	She hesitates for a moment, and looks away. "He also said to make it clear that this mission is optional, and that you're to prioritize your own safety over maintaining the occupation if necessary." It's clear that she wants you to try, though.`
+			choice
+				`	"I understand. Tell him I'm on my way."`
+					goto acceptance
+				`	"If this fleet is as dangerous as you say, there's no way I can take it on by myself."`
+					goto refusal
+			label "acceptance"
+			`	The officer grins and tosses you a quick salute before jogging away to relay your response. You immediately fire up your engines, hoping against hope that you can make it in time...`
+				launch
+			label "refusal"
+			`	The young officer seems about to say something else, but snaps to attention instead. "Understood, Captain <last>. I'll transmit your response immediately." As she hurries away, you can't help but wonder what will become of <planet> now.`
+				action
+					event "fw abandoned Greenrock" 5
+					decline
+
+	# there is no one available to accompany you, only the remaining forces in the system, who will leave if things go badly
+	npc 
+		government "Militia"
+		personality staying merciful coward
+		system destination
+		fleet "Large Militia" 
+		confusion 10
+	npc
+		government "Militia"
+		personality staying merciful coward derelict 
+		system destination
+		fleet "Small Militia"
+		confusion 10
+	
+	# the specific pirates are willing to flee, or let you flee, now that the system is retaken anyway
+	npc evade
+		government "Pirate"
+		personality staying target merciful plunders coward
+		system destination
+		fleet "Large Southern Pirates" 5
+		fleet "Small Southern Pirates" 3
+		confusion 20
+	
+	on enter "Lesath"
+		event "fw abandoned Greenrock" #this would be on enter Shaula, but it triggers after the system is loaded, so doesn't apply in time
+	on enter "Shaula"
+		set "attempted Greenrock rescue"
+		dialog `By the time you get to <system>, the system is in chaos. It would seem that quite a few pirates have already arrived and disabled or destroyed many of the Militia ships that were stationed here. You have a bad feeling about this...`
+	on visit 
+		#end it here if they're that desperate
+		conversation `You have not defeated the pirates, but it hardly seems to matter at this point. The lack of any representatives of the Free Worlds to greet you as you land, combined with the fact that you had to pay a bribe to do so, confirms your worst fears: <planet> is already lost. There is nothing more you can do here.`
+			fail
+	on complete
+		conversation
+			`You feel like you've been fighting for hours, and you've certainly earned a hero's welcome. But as you finally land and step out of your ship, there are no cheering citizens to meet your exhausted gaze. It would seem that your victory came too late, and there is no government left here to reward your efforts.` 
+			`	In fact, there is an unmistakable sense of hostility from the few people you can see. You make a mental note to leave as quickly as possible.`
+		log `Defeated a huge fleet of pirates over Greenrock, but it was no use - the system is under Pirate control again.`
+		event "Greenrock recovered" 360 #this is slower than the fail condition so you made a tiny difference, go u
+	on fail
+		log `Couldn't defeat a huge fleet of pirates in time to stop them taking over Greenrock, so the Free Worlds no longer control the system.`
+		# structured this way to make sure the event doesn't happen twice - would prefer a simple IF outside the conversation if possible
+		# extra complicated b/c "triggered the event" might happen without "went to the system and saw the pirates"  so there are 3 failure states
+		conversation
+			branch "event added"
+				has "event: fw abandoned Greenrock"
+			`Your ship's chronometer informs you that the deadline for stopping the pirate fleet from invading Greenrock has passed. Presumably, they've taken over by now.`
+				action
+					event "fw abandoned Greenrock"
+			` `
+				goto over
+			label "event added"
+			branch "you tried" 
+				has "attempted Greenrock rescue"
+			`Your ship's chronometer informs you that the deadline for stopping the pirate fleet from invading Greenrock has passed. Presumably, they've taken over by now.`
+				goto over
+			label "you tried"
+			`Considering the number of pirates you saw, it's not surprising that Greenrock fell back into anarchy... but it still stings your pride. At least you're alive to tell about it.`
+			label over
+			`It would have been nice to be the hero who saved Greenrock. But perhaps some things just aren't meant to be.`
+				action
+					event "Greenrock recovered" 180 
