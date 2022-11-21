@@ -447,7 +447,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
 		double minimum = 0.;
-		auto it = MINIMUM_OVERRIDES.find(at.first);
+		auto it = MINIMUM_OVERRIDES.find(at.first.GetString());
 		if(it != MINIMUM_OVERRIDES.end())
 		{
 			minimum = it->second;
@@ -457,10 +457,10 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		}
 
 		// Only automatons may have a "required crew" of 0.
-		if(!strcmp(at.first, "required crew"))
+		if(!strcmp(at.first.GetString(), "required crew"))
 			minimum = !attributes.Get("automaton");
 
-		double value = Get(at.first);
+		double value = Get(at.first.GetString());
 		// Allow for rounding errors:
 		if(value + at.second * count < minimum - EPS)
 			count = (value - minimum) / -at.second + EPS;
@@ -479,9 +479,9 @@ void Outfit::Add(const Outfit &other, int count)
 	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{
-		attributes[at.first] += at.second * count;
-		if(fabs(attributes[at.first]) < EPS)
-			attributes[at.first] = 0.;
+		attributes[at.first.GetString()] += at.second * count;
+		if(fabs(attributes[at.first.GetString()]) < EPS)
+			attributes[at.first.GetString()] = 0.;
 	}
 
 	for(const auto &it : other.flareSprites)

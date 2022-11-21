@@ -53,7 +53,7 @@ namespace {
 	// Perform a binary search on a sorted vector. Return the key's location (or
 	// proper insertion spot) in the first element of the pair, and "true" in
 	// the second element if the key is already in the vector.
-	pair<size_t, bool> Search(const char *key, const vector<pair<const char *, double>> &v)
+	pair<size_t, bool> Search(const char *key, const vector<pair<stringAndHash, double>> &v)
 	{
 		// At each step of the search, we know the key is in [low, high).
 		size_t low = 0;
@@ -62,7 +62,7 @@ namespace {
 		while(low != high)
 		{
 			size_t mid = (low + high) / 2;
-			int cmp = strcmp(key, v[mid].first);
+			int cmp = strcmp(key, v[mid].first.GetString());
 			if(!cmp)
 				return make_pair(mid, true);
 
@@ -95,7 +95,7 @@ double &Dictionary::operator[](const char *key)
 	if(pos.second)
 		return data()[pos.first].second;
 
-	return insert(begin() + pos.first, make_pair(Intern(key), 0.))->second;
+	return insert(begin() + pos.first, make_pair(stringAndHash(Intern(key)), 0.))->second;
 }
 
 

@@ -64,11 +64,24 @@ inline constexpr hash_fnv::def_type operator "" _fnv1a (const char* aString, siz
 	return hash_fnv::fnv1a<hash_fnv::def_type>::hash(aString);
 }
 
+class stringAndHash {
+public:
+	stringAndHash(const char *str)
+		: str(str)
+	{}
+
+	const char *GetString() const { return str; }
+
+
+private:
+	const char *str;
+};
+
 // This class stores a mapping from character string keys to values, in a way
 // that prioritizes fast lookup time at the expense of longer construction time
 // compared to an STL map. That makes it suitable for ship attributes, which are
 // changed much less frequently than they are queried.
-class Dictionary : private std::vector<std::pair<const char *, double>> {
+class Dictionary : private std::vector<std::pair<stringAndHash, double>> {
 public:
 	// Access a key for modifying it:
 	double &operator[](const char *key);
@@ -78,9 +91,9 @@ public:
 	double Get(const std::string &key) const;
 
 	// Expose certain functions from the underlying vector:
-	using std::vector<std::pair<const char *, double>>::empty;
-	using std::vector<std::pair<const char *, double>>::begin;
-	using std::vector<std::pair<const char *, double>>::end;
+	using std::vector<std::pair<stringAndHash, double>>::empty;
+	using std::vector<std::pair<stringAndHash, double>>::begin;
+	using std::vector<std::pair<stringAndHash, double>>::end;
 };
 
 

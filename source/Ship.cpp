@@ -919,7 +919,7 @@ void Ship::Save(DataWriter &out) const
 					out.Write("hyperdrive out sound", it.first->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
-					out.Write(it.first, it.second);
+					out.Write(it.first.GetString(), it.second);
 		}
 		out.EndChild();
 
