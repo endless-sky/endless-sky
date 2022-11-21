@@ -526,9 +526,10 @@ ship Hornfel "Hornfel Heavy Weapons"
 	thumbnail "thumbnail/gegno hornfel d"
 	add attributes
 		mass 60
-		"cargo space" -20
+		"cargo space" -40
 		drag 1.1
-		"weapon capacity" 60
+		"weapon capacity" 70
+		"outfit space" 20
 	outfits
 		"C17 Warzone Core"
 		"Chloeric Cannon" 2
