@@ -48,6 +48,10 @@ on:
     - .codespell.exclude
 
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   # Figure out what changed, so other jobs in this file can conditionally execute.
   changed:
