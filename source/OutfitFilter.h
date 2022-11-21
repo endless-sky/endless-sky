@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Outfit.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class DataNode;
 class PlayerInfo;
