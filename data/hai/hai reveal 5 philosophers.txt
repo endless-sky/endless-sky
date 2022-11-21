@@ -889,16 +889,6 @@ mission "Hai Reveal [B11] Moving Together"
 		dialog `You've arrived on <planet>, but you've left one or more of your escorts behind.`
 
 
-
-
-#FIXME: DELETE
-#			`	"That's why we need you Captain," says Danforth. "I need someone to watch my back."`
-#			`	"And why we also need the Unfettered," says Khaine, looking over to where the Hai leaders are.`
-#			`	The Unfettered leader opens his mouth to speak, but Teeneep raises her hand to silence him and steps forward instead. Surprisingly, he stops without complaint.`
-#			`	"This is General Choot'k, supreme commander of the Unfettered Hai military."`
-#			`	Marshal Kaine responds, "Good to meet you."`
-
-
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
 ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump)"
 	outfits
