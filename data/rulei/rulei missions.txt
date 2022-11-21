@@ -19,11 +19,11 @@ mission "Relic of the Past"
 		system Kanguwa
 		ship "vyu-Ira" "Solemnity"
 
-##Future Conditions
-##	on enter Yranjiu
-##		log "Factions" "vyu-Rulei" `An ancient species that once inhabited the Gegno's planets.`
-##		conversation
-##			`Test: Conversation with the vyu-Ira`
-##			decline
+#Future Conditions
+#	on enter Yranjiu
+#		log "Factions" "vyu-Rulei" `An ancient species that once inhabited the Gegno's planets.`
+#		conversation
+#			`Test: Conversation with the vyu-Ira`
+#				decline
 
 
