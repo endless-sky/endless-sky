@@ -118,6 +118,8 @@ public:
 	using std::vector<std::pair<stringAndHash, double>>::empty;
 	using std::vector<std::pair<stringAndHash, double>>::begin;
 	using std::vector<std::pair<stringAndHash, double>>::end;
+
+	void CheckCollisions() const;
 };
 
 

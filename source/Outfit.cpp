@@ -343,6 +343,8 @@ void Outfit::Load(const DataNode &node)
 	};
 	convertScan("outfit");
 	convertScan("cargo");
+
+	attributes.CheckCollisions();
 }
 
 

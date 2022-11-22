@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dictionary.h"
 
+#include <algorithm>
 #include <cstring>
 #include <mutex>
 #include <set>
@@ -153,4 +154,18 @@ double Dictionary::Get(const char *key) const
 double Dictionary::Get(const string &key) const
 {
 	return Get(key.c_str());
+}
+
+
+
+void Dictionary::CheckCollisions() const
+{
+	using element_type = pair<stringAndHash, double>;
+
+	auto equal_found = adjacent_find((*this).begin(), (*this).end()
+			, [](const element_type &a, const element_type &b) {
+		return a.first.GetHash().Get() == b.first.GetHash().Get();
+	});
+	if(equal_found != (*this).end())
+		throw runtime_error { "Found an hash collision on '" + string((*equal_found).first.GetString()) + "'" };
 }
