@@ -69,23 +69,7 @@ public:
 
 public:
 	// Animation parameters exposed to Body
-	float frameRate = 2.f / 60.f;
-	float startFrame = 0.f;
-	float scale = 1.f;
-	float indicatePercentage = -1.0f;
-	int delay = 0;
-	int transitionDelay = 0;
-
-	bool startAtZero = false;
-	bool randomize = false;
-	bool randomizeStart = false;
-	bool repeat = true;
-	bool rewind = false;
-
-	// Defines what to do when a state transition is requested (eg. FLYING to LANDING)
-	bool transitionFinish = false;
-	bool transitionRewind = false;
-	bool indicateReady = false;
+	AnimationParameters exposed;
 
 private:
 	// Used to trigger different animations

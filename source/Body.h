@@ -138,22 +138,9 @@ private:
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 
-	mutable float frameRate = 2.f / 60.f;
-	mutable float startFrame = 0.f;
-	mutable int delay = 0;
-	// The chosen frame will be (step * frameRate) + frameOffset.
+	mutable AnimationParameters anim;
+
 	mutable float frameOffset = 0.f;
-	mutable bool startAtZero = false;
-	mutable bool randomize = false;
-	mutable bool randomizeStart = false;
-	mutable bool repeat = true;
-	mutable bool rewind = false;
-	// State based parameters
-	mutable bool transitionFinish = false;
-	mutable bool transitionRewind = false;
-	mutable int transitionDelay = 0;
-	mutable bool indicateReady = false;
-	mutable float indicatePercentage = -1.0f;
 	mutable int pause = 0;
 
 	// Record when this object is marked for removal from the game.

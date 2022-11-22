@@ -27,12 +27,15 @@ SpriteParameters::SpriteParameters(const Sprite *sprite)
 	AnimationParameters initDefault;
 	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, initDefault};
 	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*,AnimationParameters>>("default", tuple));
+	this->exposed = initDefault;
 }
 
 void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite, AnimationParameters params)
 {
 	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, params};
 	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, AnimationParameters>>(trigger, tuple));
+	if(trigger == "default")
+		this->exposed = params;
 }
 
 const Sprite *SpriteParameters::GetSprite() const
@@ -57,22 +60,7 @@ void SpriteParameters::SetTrigger(std::string trigger)
 
 	AnimationParameters toExpose = std::get<1>(use->second);
 
-	this->frameRate = toExpose.frameRate;
-	this->startFrame = toExpose.startFrame;
-	this->scale = toExpose.scale;
-	this->indicatePercentage = toExpose.indicatePercentage;
-	this->delay = toExpose.delay;
-	this->transitionDelay = toExpose.transitionDelay;
-
-	this->startAtZero = toExpose.startAtZero;
-	this->randomize = toExpose.randomize;
-	this->randomizeStart = toExpose.randomizeStart;
-	this->repeat = toExpose.repeat;
-	this->rewind = toExpose.rewind;
-
-	this->transitionFinish = toExpose.transitionFinish;
-	this->transitionRewind = toExpose.transitionRewind;
-	this->indicateReady = toExpose.indicateReady;
+	this->exposed = toExpose;
 }
 
 bool SpriteParameters::IsTrigger(std::string trigger) const

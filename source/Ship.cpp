@@ -2187,7 +2187,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		else
 		{
-
 			shared_ptr<Minable> target = this->GetTargetAsteroid();
 
 			if(!commands.Has(Command::JUMP) && !hasPrimary)
