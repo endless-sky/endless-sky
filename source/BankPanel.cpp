@@ -148,19 +148,19 @@ void BankPanel::Draw()
 		if(isLastRow && mergedMortgages)
 		{
 			table.Draw("Other");
-			table.Draw(otherPrincipal);
+			table.Draw(Format::Credits(otherPrincipal));
 			// Skip the interest and term, because this entry represents the
 			// combination of several different mortages.
 			table.Advance(2);
-			table.Draw(otherPayment);
+			table.Draw(Format::Credits(otherPayment));
 		}
 		else
 		{
 			table.Draw(mortgage.Type());
-			table.Draw(mortgage.Principal());
+			table.Draw(Format::Credits(mortgage.Principal()));
 			table.Draw(mortgage.Interest());
 			table.Draw(mortgage.Term());
-			table.Draw(mortgage.Payment());
+			table.Draw(Format::Credits(mortgage.Payment()));
 
 			// Keep track of how much out of the total principal and payment has
 			// not yet been included in one of the rows of the table.
@@ -191,7 +191,7 @@ void BankPanel::Draw()
 		}
 		else
 			table.Advance(3);
-		table.Draw(salaries);
+		table.Draw(Format::Credits(salaries));
 		table.Advance();
 	}
 	// Draw the maintenance costs, if necessary.
@@ -208,7 +208,7 @@ void BankPanel::Draw()
 		}
 		else
 			table.Advance(3);
-		table.Draw(b.maintenanceCosts);
+		table.Draw(Format::Credits(b.maintenanceCosts));
 		table.Advance();
 	}
 	if(income[0] || income[1] || b.assetsReturns)
@@ -223,14 +223,14 @@ void BankPanel::Draw()
 		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0) + 4 * (b.assetsReturns != 0)], incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
-		table.Draw(-(income[0] + income[1] + b.assetsReturns));
+		table.Draw(Format::Credits(-(income[0] + income[1] + b.assetsReturns)));
 		table.Advance();
 	}
 
 	// Draw the total daily payment.
 	table.Advance(3);
 	table.Draw("total:", selected);
-	table.Draw(totalPayment, unselected);
+	table.Draw(Format::Credits(totalPayment), unselected);
 	table.Advance();
 
 	// Draw the credit score.

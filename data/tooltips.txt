@@ -78,7 +78,7 @@ tip "cargo scan power:"
 	`The range of this cargo scanner is proportional to the square root of this value.`
 
 tip "cargo scan speed:"
-	`Determines how long it takes to perform a cargo scan. A total value of 1 means one second, and the time decreases in proportion to the square root of this value, e.g. 4 means half a second.`
+	`The maximum speed of this cargo scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger cargo hold will take longer to scan.`
 
 tip "cargo:"
 	`Cargo this ship is carrying right now, out of its maximum.`
@@ -157,6 +157,9 @@ tip "disruption resistance heat:"
 
 tip "drag:"
 	`Limits the maximum speed of a ship.`
+	
+tip "drag reduction:"
+	`Reduces drag. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in drag, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
@@ -277,6 +280,9 @@ tip "illegal:"
 
 tip "income:"
 	`Amount of credits you receive per day that you own this outfit, even if it is not in active use.`
+	
+tip "inertia reduction:"
+	`Reduces effective ship mass. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in inertia, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "ion protection:"
 	`Protection against weapons that do ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -301,6 +307,12 @@ tip "jump fuel:"
 
 tip "jump range:"
 	`How far you can jump between systems using this drive.`
+
+tip "jump mass cost:"
+	`How much fuel this drive consumes, per 100 tons of mass. Additive with jump fuel.`
+
+tip "jump base mass:"
+	`A modifier to the impact your ship's mass has on the jump mass cost. Ships below this mass will have a cheaper jump cost than the base jump fuel cost, while ships above this mass will have more expensive jumps.`
 
 tip "leak protection:"
 	`Protection against weapons that cause fuel leakage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -342,7 +354,7 @@ tip "outfit scan power:"
 	`The range of this outfit scanner is proportional to the square root of this value.`
 
 tip "outfit scan speed:"
-	`Determines how long it takes to perform an outfit scan. A total value of 1 means one second, and the time decreases in proportion to the square root of this value, e.g. 4 means half a second.`
+	`The maximum speed of this outfit scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger outfit capacity will take longer to scan.`
 
 tip "outfit space needed:"
 	`How much general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`
@@ -589,6 +601,12 @@ tip "weapon capacity needed:"
 
 tip "    weapon capacity:"
 	`How many tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfit space available.)`
+
+tip "scan brightness:"
+	`Modifies the likelihood of this illegal outfit appearing on a cargo scan. The higher the brightness, the more likely a scan will pick it up. A scan brightness of 5 has as much a chance of being scanned as an outfit that is 5 tons.`
+
+tip "scan concealment:"
+	`Hides an equivalent mass of illegal cargo from cargo scans, preventing you from being fined for having it. For example, if you had 10 scan concealment, then up to 10 tons of illegal cargo would not appear on cargo scans.`
 
 
 

@@ -87,6 +87,15 @@ void Bitset::Set(size_t index) noexcept
 
 
 
+// Resets all bits in the bitset.
+void Bitset::Reset() noexcept
+{
+	for(auto &it : bits)
+		it = uint64_t(0);
+}
+
+
+
 // Whether any bits are set.
 bool Bitset::Any() const noexcept
 {

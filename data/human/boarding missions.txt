@@ -484,7 +484,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 
 			label coward
 			`	"Yes, let's do that," replies Tarquin. However, his friendly attitude is gone, and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
-			apply
+			action
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				accept
@@ -525,7 +525,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 			`	The crew quarters have been fashioned into a brig with stout cell doors. There is no obvious way to open them, so you and your compatriots begin blasting them open.`
 			`	Suddenly, a warning klaxon cuts through the noise with a harsh staccato. The ship's self-destruct sequence has been activated! You race to the room where Tarquin was being held, and find that he has somehow escaped. In his place is an unconscious member of your crew with a savage slash across his face, evidently inflicted by an additional concealed weapon you didn't manage to find. A nearby panel indicates that an escape pod has been jettisoned.`
 			`	The ship will explode in less than 30 seconds. You realize bitterly that there is no chance you can release the prisoners in time, and trying anyway will just get everyone killed. You and your boarding party storm angrily back to your ship and release the docking clamps just in time for the <origin> to disintegrate into a cloud of space debris, cruelly ending the already unhappy lives of captain Tarquin's victims.`
-			apply
+			action
 				set "tarquin hates you"
 			`	You vow that it will be the last time you underestimate captain Tarquin, should your paths cross again.`
 				launch
@@ -540,7 +540,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 
 			label "blackmailing with a big boarding party"
 			`	Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he says coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
-			apply
+			action
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				decline
@@ -650,7 +650,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 
 			label coward
 			`	"Yes, let's do that," replies Tarquin. However, his friendly attitude is gone, and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
-			apply
+			action
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				accept
@@ -700,7 +700,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 
 			label "blackmailing with a big boarding party"
 			`	Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he said coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
-			apply
+			action
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
 				decline
@@ -732,7 +732,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 
 			label "rescue the crew with tarquin captured"
 			`	The ship's crew quarters have been fashioned into a brig with stout cell doors. Fortunately the unlocking device opens them all, and close to a dozen malnourished wretches stumble out, telling you the whole story: captain Tarquin has been keeping them as slaves for the past several months, locking them in their quarters when the ship makes berth, and with no food as a punishment when they complain. They are quite happy to hear that he has been taken into captivity.`
-			apply
+			action
 				set "captured tarquin"
 			`	You turn the <origin> over to them and return to your ship to figure out what to do with Tarquin.`
 			`	A quick check of the public data in the galactic criminal justice database doesn't reveal that he's wanted for any crimes. You decide to turn him to law enforcement authorities on the nearest planet.`
@@ -751,8 +751,7 @@ mission "Turn in Tarquin"
 		has "captured tarquin"
 	destination "Earth"
 	on offer
+		set "turned in tarquin"
 		conversation
-			apply
-				set "turned in tarquin"
 			"You haul captain Tarquin out of your brig and bring him to the portside police station, presenting evidence from your suit cameras and notarized witness statements compiled from your crew members attesting to his crimes of being involved in slavery. The officer on duty thanks you for the service you've rendered, and takes Tarquin into custody. He shoots one final black look at you that sends a shiver up your spine."
 				decline

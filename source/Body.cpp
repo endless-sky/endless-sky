@@ -603,9 +603,9 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 			if(!triggerSet[i])
 			{
 				SpriteParameters *toSet = &this->sprites[i];
-				if(toSet->IsTrigger(it.first->Name()))
+				if(toSet->IsTrigger(it.first->TrueName()))
 				{
-					toSet->SetTrigger(it.first->Name());
+					toSet->SetTrigger(it.first->TrueName());
 					triggerSet[i] = true;
 				}
 			}
