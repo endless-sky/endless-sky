@@ -22,9 +22,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sprite;
 
+
+
 // A node defining the parameters for a certain trigger sprite
-class AnimationParameters
-{
+class AnimationParameters {
 public:
 	// Act like a struct
 	// Animation parameters as found in Body.h
@@ -49,8 +50,7 @@ public:
 };
 
 // Class holding all of the animation parameters required to animate a sprite
-class SpriteParameters
-{
+class SpriteParameters {
 public:
 	SpriteParameters();
 	explicit SpriteParameters(const Sprite *sprite);
@@ -71,9 +71,11 @@ public:
 	// Used for saving the sprites.
 	const std::map<std::string, std::tuple<const Sprite *, AnimationParameters>> *GetAllSprites() const;
 
+
 public:
 	// Animation parameters exposed to Body
 	AnimationParameters exposed;
+
 
 private:
 	// Used to trigger different animations
@@ -82,5 +84,7 @@ private:
 	// Sprites to be animated
 	std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> sprites;
 };
+
+
 
 #endif

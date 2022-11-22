@@ -66,12 +66,14 @@ bool Body::HasSprite() const
 }
 
 
+
 // Check that this Body has a sprite for a specific BodyState
 bool Body::HasSpriteFor(BodyState state) const
 {
 	const Sprite *sprite = this->sprites[state].GetSprite();
 	return (sprite && sprite->Frames());
 }
+
 
 
 // Access the underlying Sprite object.
@@ -89,6 +91,8 @@ const Sprite *Body::GetSprite(BodyState state) const
 		return this->sprites[BodyState::FLYING].GetSprite();
 
 }
+
+
 
 BodyState Body::GetState() const
 {
@@ -317,6 +321,8 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
 
+
+
 void Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationParameters params)
 {
 	if(node.Size() < 2)
@@ -410,10 +416,9 @@ void Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 // Save the sprite specification, including all animation attributes.
 void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
-	std::string tags[BodyState::NUM_STATES] = {"temp", "sprite-firing",
+	const std::string tags[BodyState::NUM_STATES] = {allStates ? "sprite" : tag, "sprite-firing",
 												"sprite-launching", "sprite-landing",
 												"sprite-jumping", "sprite-disabled"};
-	tags[0] = allStates ? "sprite" : tag;
 
 	for(int i = 0; i < BodyState::NUM_STATES; i++)
 	{
@@ -432,7 +437,6 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 				auto map = spriteState->GetAllSprites();
 
 				for(auto it = map->begin(); it != map->end(); ++it)
-				{
 					if(it->first.compare("default") != 0)
 					{
 						const Sprite *triggerSprite = spriteState->GetSprite(it->first);
@@ -444,13 +448,13 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 						}
 						out.EndChild();
 					}
-				}
 			}
 			out.EndChild();
 			// Reset any applied triggers
 			spriteState->SetTrigger(currTrigger);
 		}
-		if(!allStates) return;
+		if(!allStates)
+			return;
 	}
 }
 
@@ -511,8 +515,8 @@ void Body::SetState(BodyState state)
 									this->transitionState == BodyState::LANDING ||
 									this->transitionState == BodyState::TRIGGER;
 	bool delayActiveCurrentStep = (state == BodyState::FLYING ||
-									state == BodyState::LAUNCHING ||
-									state == BodyState::FIRING) && delayed < anim.transitionDelay;
+									state == BodyState::LAUNCHING || state == BodyState::FIRING)
+									&& delayed < anim.transitionDelay;
 	if(state == this->currentState && this->transitionState != this->currentState)
 	{
 		// Cancel transition
@@ -557,6 +561,8 @@ void Body::SetSwizzle(int swizzle)
 {
 	this->swizzle = swizzle;
 }
+
+
 
 // Set the frame rate of the sprite. This is used for objects that just specify
 // a sprite instead of a full animation data structure.
@@ -647,7 +653,7 @@ void Body::FinishStateTransition() const
 		BodyState requestedTransitionState = this->transitionState == BodyState::TRIGGER ?
 									this->currentState : this->transitionState;
 		// Default to Flying sprite if requested sprite does not exist.
-		BodyState trueTransitionState = this->sprites[requestedTransitionState].GetSprite() != nullptr ?
+		BodyState trueTransitionState = this->sprites[requestedTransitionState].GetSprite() ?
 									requestedTransitionState : BodyState::FLYING;
 		SpriteParameters *transitionedState = &this->sprites[trueTransitionState];
 		// Update animation parameters.

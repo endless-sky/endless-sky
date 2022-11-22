@@ -1652,7 +1652,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
-
 		this->SetState(BodyState::JUMPING);
 		if(isUsingJumpDrive)
 			this->AssignStateTriggerOnUse(BodyState::JUMPING, "Jump Drive");
@@ -2123,7 +2122,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(!commands.Has(Command::JUMP) && !hasPrimary)
 			{
 				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange 
-									|| this->weaponRange == 0.0;
+									|| !this->weaponRange;
 
 				if(activeEnemyTarget && target->isInSystem && targetInRange)
 				{
@@ -2999,7 +2998,6 @@ bool Ship::IsUsingJumpDrive() const
 // Check if this ship is currently able to enter hyperspace to its target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
-
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
 	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT))
 			|| hyperspaceCount || !targetSystem || !currentSystem)

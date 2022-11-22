@@ -88,7 +88,6 @@ public:
 
 
 protected:
-
 	// Adjust the frame rate.
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
@@ -127,6 +126,7 @@ private:
 	// and GetFrame().
 	void SetStep(int step) const;
 
+
 private:
 	// Animation parameters.
 	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(),
@@ -156,4 +156,7 @@ private:
 	mutable float delayed = 0.f;
 	mutable bool stateReady = false;
 };
+
+
+
 #endif

@@ -19,8 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 SpriteParameters::SpriteParameters()
 {
-
 }
+
+
 
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
@@ -30,6 +31,8 @@ SpriteParameters::SpriteParameters(const Sprite *sprite)
 	this->exposed = initDefault;
 }
 
+
+
 void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite, AnimationParameters params)
 {
 	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, params};
@@ -38,11 +41,15 @@ void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite, Anim
 		this->exposed = params;
 }
 
+
+
 const Sprite *SpriteParameters::GetSprite() const
 {
 	auto it = this->sprites.find(this->trigger);
 	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
 }
+
+
 
 const Sprite *SpriteParameters::GetSprite(std::string trigger) const
 {
@@ -54,6 +61,8 @@ std::string SpriteParameters::GetTrigger() const
 {
 	return this->trigger;
 }
+
+
 
 void SpriteParameters::SetTrigger(std::string trigger)
 {
@@ -87,11 +96,15 @@ bool SpriteParameters::IsCurrentTrigger(std::string trigger) const
 	return this->trigger == trigger;
 }
 
+
+
 bool SpriteParameters::IsTrigger(std::string trigger) const
 {
 	auto it = this->sprites.find(trigger);
 	return it != this->sprites.end();
 }
+
+
 
 const std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> *SpriteParameters::GetAllSprites() const
 {
