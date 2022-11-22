@@ -1439,24 +1439,6 @@ mission "Hai Reveal [A14] A Time of Trouble"
 					goto navy
 					to display
 						not "Hai Reveal [A14] A Time of Trouble: label navy"
-				`	"Tell me again why we can't solve the kidnapping problem ourselves."`
-					goto concerns
-					to display
-						has "Hai Reveal [A14] A Time of Trouble: label concerns"
-						has "Hai Reveal [A14] A Time of Trouble: label navy"
-				`	"Tell me again why we can't just let the Hai through."`
-					goto through
-					to display
-						has "Hai Reveal [A14] A Time of Trouble: label through"
-						has "Hai Reveal [A14] A Time of Trouble: label navy"
-				`	"Tell me again who in the Cabinet is blocking progress."`
-					goto blocking2
-					to display
-						has "Hai Reveal [A14] A Time of Trouble: label blocking"
-				`	"Tell me again why the Navy can't really block the Hai."`
-					goto navy
-					to display
-						has "Hai Reveal [A14] A Time of Trouble: label navy"
 				`	"I'm ready to mediate. Let's assemble the heads of state."`
 					goto begin
 			label navy
@@ -1475,9 +1457,6 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			action
 				set "Hai Reveal [A14] A Time of Trouble: label concerns"
 			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. The Cabinet is in disagreement about what to do, so there is deadlock at the moment."`
-				goto questions
-			label blocking2
-			`	Turner reminds you, "Most of the names Xilin listed are people who listen to the Syndicate. I should know, I've had to negotiate with them as a bloc often enough for government contracts."`
 				goto questions
 			label blocking
 			action
