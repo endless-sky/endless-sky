@@ -23,7 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Sprite;
 
 // A node defining the parameters for a certain trigger sprite
-class AnimationParameters {
+class AnimationParameters
+{
 public:
 	// Act like a struct
 	// Animation parameters as found in Body.h
