@@ -154,8 +154,7 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
-	// Set with the ids of the governments for which we should use their penalties instead of our own
-	// when a shipEvent happens to them.
+	// Reputation changes to this government use the penalties of the offended government, if it is in this list.
 	std::set<unsigned> useForeignPenaltiesFor;
 };
 
