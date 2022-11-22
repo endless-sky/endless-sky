@@ -362,6 +362,9 @@ government "Hai (Unfettered)"
 		"Kor Efret" -.01
 		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
+		"Hai (Unfettered Challenger)" 1
+	#"use foreign penalties for"
+	#	"Hai (Unfettered Challenger)"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -388,6 +391,72 @@ government "Hai (Friendly Unfettered)"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
+
+government "Hai (Unfettered Challenger)"
+	"display name" "True Hai (Glory Seeker)"
+	swizzle 5
+	"crew attack" 1.4
+	"crew defense" 2.2
+
+	"player reputation" -1000
+	"bribe" .0001
+	"fine" 0
+
+	"friendly hail" "provocative unfettered challenger"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered challenger"
+	"hostile disabled hail" "defeated unfettered challenger"
+	"penalty for"
+		disable -0.5
+		board 0.1
+		capture 2.5
+		destroy 1
+
+# A government used to make unfettered challengers fight each others.
+government "Hai (Unfettered Blue Challenger)"
+	"display name" "Unfettered Challenged"
+	swizzle 1
+	"crew attack" 1.4
+	"crew defense" 2.2
+	
+	"attitude toward"
+		"Hai (Unfettered Red Challenger)" -.01
+	"bribe" 0
+	"fine" 0
+
+	"friendly hail" "unfettered duelling"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+	# These are always different, independent challengers.
+	"penalty for"
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+
+# A government used to make unfettered challengers fight each others.
+government "Hai (Unfettered Red Challenger)"
+	"display name" "Unfettered Challenged"
+	swizzle 9
+	"crew attack" 1.4
+	"crew defense" 2.2
+	
+	"attitude toward"
+		"Hai (Unfettered Blue Challenger)" -.01
+	"bribe" 0
+	"fine" 0
+
+	"friendly hail" "unfettered duelling"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+	# These are always different, independent challengers.
+	"penalty for"
+		disable 0
+		board 0
+		capture 0
+		destroy 0
 
 government "Heliarch"
 	swizzle 0

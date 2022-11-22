@@ -9852,6 +9852,8 @@ system "Ehma Ti"
 	trade Plastic 532
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
+	fleet "Sea Scorpion Challenger" 5000
+	fleet "Shield Beetle Challenger" 7500
 	fleet "Unfettered Raid" 2500
 	object
 		sprite star/k0
@@ -13650,6 +13652,8 @@ system "Hi Yahr"
 	trade Plastic 372
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
+	fleet "Sea Scorpion Challenger" 5000
+	fleet "Shield Beetle Challenger" 7500
 	object
 		sprite star/g5
 		period 10
@@ -27005,6 +27009,8 @@ system "Wah Yoot"
 	trade Plastic 472
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
+	fleet "Sea Scorpion Challenger" 7500
+	fleet "Shield Beetle Challenger" 10000
 	object
 		sprite star/g0
 		period 10
