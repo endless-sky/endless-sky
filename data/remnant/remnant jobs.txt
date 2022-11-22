@@ -659,3 +659,60 @@ mission "Remnant: Rescue 5"
 	on visit
 		dialog
 			`You have returned, but there is still no word from the missing ship.`
+
+
+
+mission "Remnant: Bounty Small Korath Drone"
+	job
+	repeat
+	name "Plundering Small Korath Drone Fleet Bounty"
+	description "A small Korath drone fleet is plundering through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "event: wanderers: exiles have drones"
+		has "Remnant: Cognizance 14: done"
+		random < 30
+	npc kill
+		government "Korath"
+		personality heroic vindictive target uninterested waiting marked
+		system
+			distance 1 2
+		fleet "Marauder Korath Drone I"
+		dialog "You have destroyed the Korath drones. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 300000
+		dialog "A Remnant military leader thanks you for hunting down the Korath Drone drones, and gives you the agreed-upon payment of <payment>."
+
+
+
+mission "Remnant: Bounty Large Korath Drone"
+	job
+	repeat
+	name "Pillaging Large Korath Drone Fleet Bounty"
+	description "A large Korath drone fleet is hunting down our miners in the Ember Wastes. Track it down, eliminate it, and then return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "event: wanderers: exiles have drones"
+		has "Remnant: Cognizance 29: done"
+		or
+			not "remnant: ssil vida active"
+			not "flagship planet: Ssil Vida"
+		random < 5
+	npc kill
+		government "Korath"
+		personality heroic vindictive target marked staying
+		system
+			attributes "ember waste"
+			not attributes "graveyard"
+			not attributes "inaccessible"
+		fleet "Marauder Korath Drone II"
+		dialog "You have destroyed the Korath drones. You can now return to <planet> to collect your payment."
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 800000
+		dialog "A Remnant military leader thanks you for hunting down the Korath drones, and gives you the agreed-upon payment of <payment>."

@@ -852,6 +852,82 @@ fleet "Kor Mereti Miners"
 	variant 1
 		"Model 8" 3
 
+fleet "Marauder Korath Drone I"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 5
+		"Met Par Tek 53"
+		"Model 8" 6
+	variant 5
+		"Met Par Tek 53"
+		"Model 32"
+		"Model 16" 2
+	variant 5
+		"Met Par Tek 53 (Sniper)"
+		"Model 32"
+		"Model 16" 2
+	variant 5
+		"Model 64"
+		"Model 16" 2
+	variant 5
+		"Model 64"
+		"Model 32"
+	variant 8
+		"Tek Far 71 - Lek"
+		"Far Lek 14" 10
+	variant 8
+		"Tek Far 71 - Lek (Close Quarters)"
+		"Far Lek 14" 10
+	variant 7
+		"Tek Far 78 - Osk"
+		"Far Osk 27" 9
+	variant 6
+		"Tek Far 78 - Osk (Close Quarters)"
+		"Far Osk 27" 9
+	variant 5
+		"Tek Far 109"
+		"Far Lek 14" 9
+		"Far Osk 27" 7
+	variant 5
+		"Model 128"
+
+fleet "Marauder Korath Drone II"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 5
+		"Kar Ik Vot 349"
+		"Model 256"
+		"Model 128" 2
+	variant 5
+		"Kar Ik Vot 349 (Offense)"
+		"Met Par Tek 53 (Sniper)" 2
+		"Model 256"
+	variant 5
+		"Kar Ik Vot 349 (Trapper)"
+		"Met Par Tek 53" 2
+		"Model 64" 4
+	variant 5
+		"Kar Ik Vot 349 (Defense)"
+		"Met Par Tek 53" 2
+		"Model 256"
+	variant 10
+		"Met Par Tek 53" 2
+		"Model 512"
+		"Model 64" 4
+	variant 10
+		"Model 512"
+		"Model 256" 2
+	variant 5
+		"Kar Ik Vot 349"
+		"Model 512"
 
 outfitter "Korath Basics"
 	"Piercer Missile Rack"
