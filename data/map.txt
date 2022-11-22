@@ -16391,7 +16391,7 @@ system Jied
 	fleet "Small Vi" 800
 	fleet "Large Vi" 1600
 	fleet "Vi Cargo" 2300
-	fleet "Vi Small II" 2600
+	fleet "Vi Small II" 3600
 	fleet "Gegno Miners" 1700
 	object
 		sprite star/k5
@@ -16420,7 +16420,7 @@ system Jyelio
 	minables copper 2 6.62
 	fleet "Large Vi" 1800
 	fleet "Large Scin" 2700
-	fleet "Vi Small II" 2800
+	fleet "Vi Small II" 3600
 	fleet "Small Scin" 3200
 	object
 		sprite star/g8
@@ -17348,7 +17348,7 @@ system Kiluit
 	fleet "Small Vi" 1300
 	fleet "Vi Cargo" 800
 	fleet "Vi Transport" 1100
-	fleet "Vi Small II" 1800
+	fleet "Vi Small II" 2200
 	object
 		sprite star/m4
 		distance 96.9
