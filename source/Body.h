@@ -98,7 +98,7 @@ protected:
 	bool ReadyForAction() const;
 	// Assign any outfit triggers for animations
 	void AssignStateTriggers(std::map<const Outfit *, int> &outfits);
-	bool AssignStateTrigger(BodyState state, std::string trigger);
+	bool AssignStateTriggerOnUse(BodyState state, std::string trigger);
 	// Finish transitioning between states
 	void FinishStateTransition() const;
 	// Mark this object to be removed from the game.

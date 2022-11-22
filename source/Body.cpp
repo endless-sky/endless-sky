@@ -331,8 +331,12 @@ void Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 		return;
 	}
 
+
 	SpriteParameters *spriteData = &this->sprites[state];
 	AnimationParameters spriteAnimationParameters = params;
+
+	if(node.Size() > 3 && node.Token(3) == "on use")
+		spriteAnimationParameters.triggerOnUse = true;
 
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
@@ -418,6 +422,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 
 		if(sprite)
 		{
+			std::string currTrigger = spriteState->GetTrigger();
 			spriteState->SetTrigger("default");
 			out.Write(tags[i], sprite->Name());
 			out.BeginChild();
@@ -442,6 +447,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 				}
 			}
 			out.EndChild();
+			// Reset any applied triggers
+			spriteState->SetTrigger(currTrigger);
 		}
 		if(!allStates) return;
 	}
@@ -496,8 +503,6 @@ void Body::SetSprite(const Sprite *sprite, BodyState state)
 // Set the state.
 void Body::SetState(BodyState state)
 {
-	// No need to transition if the body is already in the state
-	if(state == this->currentState) return;
 	// If the transition has a delay, ensure that rapid changes from transitions
 	// which ignore the delay to transitions that don't (ignore delays)
 	// keep smooth animations.
@@ -592,6 +597,9 @@ bool Body::ReadyForAction() const
 void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 {
 	bool triggerSet[BodyState::NUM_STATES];
+	for(int i = 0; i < BodyState::NUM_STATES; i++)
+		triggerSet[i] = false;
+
 	for(const auto it : outfits)
 		for(int i = 0; i < BodyState::NUM_STATES; i++)
 			if(!triggerSet[i])
@@ -612,23 +620,20 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 	}
 }
 
-bool Body::AssignStateTrigger(BodyState state, std::string trigger)
+bool Body::AssignStateTriggerOnUse(BodyState state, std::string trigger)
 {
+	bool triggerSet = false;
 	if(this->HasSpriteFor(state))
 	{
 		SpriteParameters *spriteState = &this->sprites[state];
-		if(trigger != "default" && spriteState->IsTrigger(trigger))
+		if(spriteState->IsTrigger(trigger) && !spriteState->IsCurrentTrigger(trigger)
+			&& spriteState->SetTriggerOnUse(trigger))
 		{
-			spriteState->SetTrigger(trigger);
 			this->SetState(BodyState::TRIGGER);
-			return true;
-		}
-		else
-		{
-			spriteState->SetTrigger("default");
+			triggerSet = true;
 		}
 	}
-	return false;
+	return triggerSet;
 }
 
 // Called when the body is ready to transition between states.
@@ -788,9 +793,8 @@ void Body::SetStep(int step) const
 				frame = max(0.f, rewindFrame * 2.f - frame);
 
 				if(frame == 0.f)
-				{
 					this->FinishStateTransition();
-				}
+
 			}
 			stateReady = false;
 		}

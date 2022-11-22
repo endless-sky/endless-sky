@@ -1654,8 +1654,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 
 		this->SetState(BodyState::JUMPING);
-		if(IsUsingJumpDrive())
-			this->AssignStateTrigger(BodyState::JUMPING, "jump drive");
+		if(isUsingJumpDrive)
+			this->AssignStateTriggerOnUse(BodyState::JUMPING, "Jump Drive");
+		else
+			this->AssignStateTriggerOnUse(BodyState::JUMPING, "default");
 		
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
@@ -1840,7 +1842,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			// Ship is moving upwards to space
-			if(zoom <= 0.f)
+			if(zoom <= zoomTriggerStart)
 			{
 				// Calculate all state triggers on launch
 				this->AssignStateTriggers(outfits);
@@ -2811,7 +2813,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				else if(firingCommands.HasFire(i))
 				{
 					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
-					if(!assigned && this->AssignStateTrigger(BodyState::FIRING, weaponName))
+					if(!assigned && this->AssignStateTriggerOnUse(BodyState::FIRING, weaponName))
 						assigned = true;
 					
 				}
@@ -2823,7 +2825,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	}
 
 	if(!assigned)
-		this->AssignStateTrigger(BodyState::FIRING, "default");
+		this->AssignStateTriggerOnUse(BodyState::FIRING, "default");
 
 	armament.Step(*this);
 

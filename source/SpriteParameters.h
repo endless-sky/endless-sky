@@ -45,6 +45,7 @@ public:
 	bool transitionFinish = false;
 	bool transitionRewind = false;
 	bool indicateReady = false;
+	bool triggerOnUse = false;
 };
 
 // Class holding all of the animation parameters required to animate a sprite
@@ -61,7 +62,10 @@ public:
 	const Sprite *GetSprite(std::string trigger) const;
 
 	// Set the current trigger
+	std::string GetTrigger() const;
 	void SetTrigger(std::string trigger);
+	bool SetTriggerOnUse(std::string trigger);
+	bool IsCurrentTrigger(std::string trigger) const;
 	bool IsTrigger(std::string trigger) const;
 
 	// Used for saving the sprites.

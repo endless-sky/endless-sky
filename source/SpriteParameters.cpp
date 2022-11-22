@@ -26,7 +26,7 @@ SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	AnimationParameters initDefault;
 	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, initDefault};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*,AnimationParameters>>("default", tuple));
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, AnimationParameters>>("default", tuple));
 	this->exposed = initDefault;
 }
 
@@ -50,17 +50,41 @@ const Sprite *SpriteParameters::GetSprite(std::string trigger) const
 	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
 }
 
+std::string SpriteParameters::GetTrigger() const
+{
+	return this->trigger;
+}
+
 void SpriteParameters::SetTrigger(std::string trigger)
 {
-	this->trigger = trigger;
-
 	auto it = this->sprites.find(trigger);
-	auto def = this->sprites.find("default");
-	auto use = it == this->sprites.end() ? def : it;
-
-	AnimationParameters toExpose = std::get<1>(use->second);
-
+	if(it == this->sprites.end())
+		return;
+	
+	AnimationParameters toExpose = std::get<1>(it->second);
+	this->trigger = trigger;
 	this->exposed = toExpose;
+}
+
+bool SpriteParameters::SetTriggerOnUse(std::string trigger)
+{
+	auto it = this->sprites.find(trigger);
+	if(it == this->sprites.end())
+		return false;
+	
+	AnimationParameters toExpose = std::get<1>(it->second);
+	if(toExpose.triggerOnUse || trigger == "default")
+	{
+		this->trigger = trigger;
+		this->exposed = toExpose;
+		return true;
+	}
+	return false;
+}
+
+bool SpriteParameters::IsCurrentTrigger(std::string trigger) const
+{
+	return this->trigger == trigger;
 }
 
 bool SpriteParameters::IsTrigger(std::string trigger) const
