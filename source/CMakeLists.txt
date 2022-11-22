@@ -50,6 +50,8 @@ target_sources(EndlessSkyLib PRIVATE
 	AI.h
 	Account.cpp
 	Account.h
+	AlertLabel.cpp
+	AlertLabel.h
 	Angle.cpp
 	Angle.h
 	Armament.cpp
@@ -289,6 +291,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipInfoDisplay.h
 	ShipInfoPanel.cpp
 	ShipInfoPanel.h
+	ShipJumpNavigation.cpp
+	ShipJumpNavigation.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
