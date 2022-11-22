@@ -1,0 +1,534 @@
+# Copyright (c) 2022 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+ship "Sea Scorpion" "Sea Scorpion (Shields)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile" 2
+		"Hai Diamond Regenerator" 4
+		"Hai Ravine Batteries"
+		"Hai Tracker" 224
+		"Hai Tracker Pod" 4
+		"Hai Williwaw Cooling"
+		Hyperdrive
+		"Outfits Expansion" 2
+		"Pulse Rifle" 15
+		"Value Detector"
+
+fleet "Sea Scorpion Challenger"
+	government "Hai (Unfettered Challenger)"
+	names "hai"
+	personality disables staying heroic target
+	variant 5
+		"Sea Scorpion (Pulse)"
+	variant 3
+		"Sea Scorpion (Shields)"
+	variant 5
+		"Sea Scorpion (Ion)"
+	variant
+		"Sea Scorpion (Ionic)"
+	variant 2
+		"Sea Scorpion (Shredder)"
+
+fleet "Shield Beetle Challenger"
+	government "Hai (Unfettered Challenger)"
+	names "hai"
+	personality disables staying heroic target
+	variant 5
+		"Shield Beetle (Pulse)"
+	variant 5
+		"Shield Beetle"
+	variant 5
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Ionic)"
+	variant
+		"Shield Beetle (Sunbeam)"
+	variant
+		"Shield Beetle (Thunderhead)"
+
+
+
+phrase "unfettered challenger defeated"
+	word
+		`You receive a message from the <npc>: `
+		`The captain of the <npc> hails you: `
+		`Now that they are disabled, the <npc> sends you a hail: `
+	word
+		`"Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here are the <payment>, but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
+		`"Raaaah... Well, you have beaten me fairly, so I'll pay up... Here are the <payment>, captain. Next time I will not underestimate you!"`
+		`"Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you. For now, here are the agreed <payment>, captain. Hopefully it allows you to improve your flagship before our next battle..."`
+		`"The fight is over! Stop shooting me or you'll blow holes into my ships! Here are the <payment>, let me be now!"`
+		`"I surrender. You have indeed lived up to your reputation. I did not stand a chance in this battle. Still, a challenge is a challenge. Here are your <payment>."`
+		`"Stop shooting me, you monkey, before my ship breaks apart! Here is your <payment>, now leave me alone."`
+		`"You seem to learn from our encounters well... next time it will be different. Of course we have delivered the agreed <payment> to you."`
+		`"Urgent message: we surrender. It is not our way to fight until death, because then there is nothing to be learned through it. Here, have your <payment>."`
+		`"Is your fleet not too big for this battle? Or do you use superior weaponry? You must have had an edge! Whatever the case, here are your <payment>, but don't expect to see us again anytime soon."`
+		`"Well done, I guess it is only fair that you be allowed to plunder a few of my outfits... But do not expect it will be tolerated every time, given you already received <payment> from winning this little skirmish."`
+
+substitutions
+	"<won duel>" "Winning the duel has increased your reputation with the Unfettered. Do keep in mind that you are in no way allowed to do any more than plundering the ship once, and destroying or capturing it may result in the Unfettered getting angry."
+
+
+mission "Unfettered Challenge [0]"
+	job
+	repeat
+	substitutions
+		<payment> "200,000 credits"
+	name `Defeat a young Unfettered captain`
+	description `A young Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+		random < 60
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables staying heroic target
+		fleet "Sea Scorpion Challenger"
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 200000
+				"reputation: Hai (Unfettered)" += 45
+				fail "Unfettered Challenge [0]"
+	on abort
+		# neutralize the rep loss when aborting it
+		"reputation: Hai (Unfettered)" += 85
+		"unfettered challenger defeated"++
+	on fail
+		"reputation: Hai (Unfettered)" -= 85
+		"unfettered challenger defeated"--
+
+mission "Unfettered Challenge [1A]"
+	job
+	repeat
+	substitutions
+		<payment> "500,000 credits"
+	name `Defeat an Unfettered captain`
+	description `An Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
+		random < 20
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables staying heroic target
+		fleet "Sea Scorpion Challenger" 2
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 500000
+				"reputation: Hai (Unfettered)" += 90
+				fail "Unfettered Challenge [1A]"
+	on abort
+		# both ships could have been killed or just one, no way to know
+		"reputation: Hai (Unfettered)" += 135
+		"unfettered challenger defeated"++
+	on fail
+		"reputation: Hai (Unfettered)" -= 135
+		"unfettered challenger defeated"--
+
+mission "Unfettered Challenge [1B]"
+	job
+	repeat
+	substitutions
+		<payment> "500,000 credits"
+	name `Defeat an Unfettered captain`
+	description `An Unfettered captain has challenged you into a duel. Disable his ship for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
+		random < 20
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables staying heroic target
+		fleet "Shield Beetle Challenger"
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 500000
+				"reputation: Hai (Unfettered)" += 90
+				fail "Unfettered Challenge [1B]"
+	on abort
+		"reputation: Hai (Unfettered)" += 170
+		"unfettered challenger defeated"++
+	on fail
+		"reputation: Hai (Unfettered)" -= 170
+		"unfettered challenger defeated"--
+
+mission "Unfettered Challenge [2]"
+	job
+	repeat
+	substitutions
+		<payment> "800,000 credits"
+	name `Defeat an old Unfettered captain`
+	description `An experienced Unfettered captain has challenged you into a duel with his escort. Disable his ships for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
+		random < 20
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables staying heroic target
+		fleet "Shield Beetle Challenger"
+		fleet "Sea Scorpion Challenger"
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 800000
+				"reputation: Hai (Unfettered)" += 140
+				fail "Unfettered Challenge [2]"
+	on abort
+		"reputation: Hai (Unfettered)" += 150
+		"unfettered challenger defeated"++
+	on fail
+		"reputation: Hai (Unfettered)" -= 150
+		"unfettered challenger defeated"--
+
+
+
+mission "Unfettered Space Challenge [0]"
+	landing
+	invisible
+	repeat
+	substitutions
+		<payment> "200,000 credits"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+		random < 30
+	on offer
+		fail "Unfettered Space Challenge [0]"
+		"reputation: Hai (Unfettered)" += 40
+	npc save disable
+		government "Hai (Unfettered Glory Seeker)"
+		personality disables staying heroic target
+		system
+			attributes "unfettered challenge"
+			distance 10
+		fleet "Sea Scorpion Challenger"
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 200000
+				"reputation: Hai (Unfettered)" += 5
+	on fail
+		"reputation: Hai (Unfettered)" -= 40
+		"unfettered challenger defeated"--
+
+mission "Unfettered Space Challenge [1A]"
+	landing
+	invisible
+	repeat
+	substitutions
+		<payment> "500,000 credits"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
+		random < 10
+	on offer
+		fail "Unfettered Space Challenge [1A]"
+		"reputation: Hai (Unfettered)" += 60
+	npc save disable
+		government "Hai (Unfettered Glory Seeker)"
+		personality disables staying heroic target
+		system
+			attributes "unfettered challenge"
+			distance 10
+		fleet "Sea Scorpion Challenger" 2
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 500000
+				"reputation: Hai (Unfettered)" += 10
+	on fail
+		"reputation: Hai (Unfettered)" -= 60
+		"unfettered challenger defeated"--
+
+mission "Unfettered Space Challenge [1B]"
+	landing
+	invisible
+	repeat
+	substitutions
+		<payment> "500,000 credits"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
+		random < 10
+	on offer
+		fail "Unfettered Space Challenge [1B]"
+		"reputation: Hai (Unfettered)" += 80
+	npc save disable
+		government "Hai (Unfettered Glory Seeker)"
+		personality disables staying heroic target
+		system
+			attributes "unfettered challenge"
+			distance 10
+		fleet "Shield Beetle Challenger"
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 500000
+				"reputation: Hai (Unfettered)" += 10
+	on fail
+		"reputation: Hai (Unfettered)" -= 80
+		"unfettered challenger defeated"--
+
+mission "Unfettered Space Challenge [2]"
+	landing
+	invisible
+	repeat
+	substitutions
+		<payment> "800,000 credits"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
+		random < 10
+	on offer
+		fail "Unfettered Space Challenge [2]"
+		"reputation: Hai (Unfettered)" += 100
+	npc save disable
+		government "Hai (Unfettered Glory Seeker)"
+		personality disables staying heroic target
+		system
+			attributes "unfettered challenge"
+			distance 10
+		fleet "Shield Beetle Challenger"
+		fleet "Sea Scorpion Challenger"
+		dialog phrase "unfettered challenger defeated"
+		conversation
+			"<won duel>"
+			action
+				"unfettered challenger defeated"++
+				payment 800000
+				"reputation: Hai (Unfettered)" += 20
+	on fail
+		"reputation: Hai (Unfettered)" -= 100
+		"unfettered challenger defeated"--
+
+
+conversation "interrupted duel"
+	branch toomuch
+		has "unfettered revenge fleet" > 1
+	action
+		"reputation: Hai (Unfettered)" -= 50
+		"unfettered revenge fleet"++
+	`The Unfettered authorities of the nearby planet hail you, "Whatever you had in mind you better stop right there if you have hope of maintaining good relations with us. Duels may not be interrupted, under any circumstances. I suggest you leave at once, and we may forgive you for this transgression."`
+		decline
+	label toomuch
+	action
+		"reputation: Hai (Unfettered)" <?= -1000
+		"unfettered revenge fleet"++
+	`The Unfettered authorities of the nearby planet hail you, "You have been warned. We have been patient enough with you, monkey! Now you shall pay."`
+
+mission "Death To Those Without Honor"
+	invisible
+	repeat
+	deadline 30
+	source
+		attributes "unfettered"
+	to offer
+		"unfettered revenge fleet" > 2
+	on offer
+		"unfettered revenge fleet"--
+	on enter
+		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships, "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, Kavakai!"` # Kavakai = one with no honor
+	npc kill
+		government "Hai (Unfettered)"
+		personality staying heroic nemesis unconstrained
+		fleet "Sea Scorpion Challenger"
+		fleet "Shield Beetle Challenger"
+		fleet "Large Unfettered" 2
+		fleet "Small Unfettered" 2
+
+mission "Unfettered Red Blue Sea Scorpion Duel"
+	landing
+	invisible
+	repeat
+	deadline
+	source
+		attributes "unfettered"
+	to offer
+		random < 5
+	to complete
+		never
+	npc provoke
+		government "Hai (Unfettered Blue Challenger)"
+		personality disables staying heroic uninterested
+		fleet "Sea Scorpion Challenger"
+		conversation "interrupted duel"
+	npc provoke
+		government "Hai (Unfettered Red Challenger)"
+		personality disables staying heroic uninterested
+		fleet "Sea Scorpion Challenger"
+		conversation "interrupted duel"
+
+mission "Unfettered Red Blue Shield Beetle Duel"
+	landing
+	invisible
+	repeat
+	deadline
+	source
+		attributes "unfettered"
+	to offer
+		random < 5
+	to complete
+		never
+	npc provoke
+		government "Hai (Unfettered Blue Challenger)"
+		personality disables staying heroic uninterested
+		fleet "Shield Beetle Challenger"
+		conversation "interrupted duel"
+	npc provoke
+		government "Hai (Unfettered Red Challenger)"
+		personality disables staying heroic uninterested
+		fleet "Shield Beetle Challenger"
+		conversation "interrupted duel"
+
+
+
+mission "Unfettered Clear Challenges"
+	minor
+	landing
+	to offer
+		has "Unfettered: Prove Your Strength 2: done"
+		has "unfettered challenger defeated"
+	on offer
+		clear "unfettered challenger defeated"
+
+
+mission "Unfettered Bring Fire"
+	job
+	name "Bring 2 Flamethrowers"
+	description "The captain you just duelled has seen what fire can do, and they want to learn the secrets behind it. Bring 2 Flamethrowers to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "outfit (installed): Flamethrower"
+		random < "unfettered challenger defeated" * 5
+	on complete
+		outfit "Flamethrower" -2
+		payment 1000000
+		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and give you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
+
+ship "Stag Beetle" "Stag Beetle (Flamer)"
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Korath Grab-Strike"
+		"Korath Banisher"
+		"Bullfrog Anti-Missile" 3
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
+		"Korath Repeater Rifle" 20
+		"Pulse Rifle" 60
+		"Dual Pulse Pistols" 10
+		"True Unfettered License"
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Korath Grab-Strike"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Korath Banisher"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
+
+
+mission "Unfettered Bring Carnage"
+	job
+	name "Bring 2 Ka'Het Ravager Beams"
+	description "The captain you just duelled has seen what the Ka'Het Ravager Beam can do to hull, and they want to learn the secrets behind it. Bring 2 Ka'Het Ravager Beam to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "outfit (installed): Ka'het Ravager Beam"
+		random < "unfettered challenger defeated" * 5
+	on complete
+		outfit "Ka'het Ravager Beam" -2
+		payment 2000000
+		dialog `You bring the Ravagers to the captain, and she seems really happy, "Now this is a weapon that does damage to the hull of a ship! The Wanderers have a lot of that, I am sure it will help me pludering! Our legends speak of this weapon... Oh, of course, here are your <payment>."`
+
+
+mission "Unfettered Bring Repeater"
+	job
+	name "Bring 2 Plasma Repeater"
+	description "The captain you just duelled is impressed by the raw amount of heat brought by the Plasma Repeater. Bring 2 Plasma Repeater to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "outfit (installed): Plasma Repeater"
+		random < "unfettered challenger defeated" * 5
+	on complete
+		outfit "Plasma Repeater" -2
+		payment 1500000
+		dialog `It does not take long to find the captain, you find him impatiently waiting for you and the Repeaters, "I love exotic weapons! Here are your <payment>, please bring me more variety if you can, I would reward it highly." He says, before heading hastily to his ship, probably to test these weapons.`
+
+
+mission "Unfettered Bring Particles"
+	job
+	name "Bring 2 Particle Cannons"
+	description "The captain you just is interested by the range and damage of the Particle Cannon. Bring 2 to them for <payment>."
+	source
+		attributes "unfettered"
+	to offer
+		has "outfit (installed): Particle Cannon"
+		random < "unfettered challenger defeated" * 5
+	on complete
+		outfit "Particle Cannon" -2
+		payment 1250000
+		dialog `The Unfettered captain greets you with a big smile on his face, "With these particle cannons and my ship's speed, nobody will be able to beat me now! You well deserve the <payment>."`
