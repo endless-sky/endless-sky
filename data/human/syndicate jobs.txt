@@ -20,6 +20,7 @@ mission "Transport executive to <planet>"
 	passengers 1
 	to offer
 		random < 20
+		"reputation: Syndicate" >= 0
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -43,6 +44,7 @@ mission "Corporate retreat from <origin>"
 	passengers 7 18
 	to offer
 		random < 20
+		"reputation: Syndicate" >= 0
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -94,6 +96,7 @@ mission "Document delivery to <planet>"
 	cargo "Confidential documents" 6 12
 	to offer
 		random < 10
+		"reputation: Syndicate" >= 0
 	source
 		government Syndicate
 	destination

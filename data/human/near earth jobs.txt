@@ -19,6 +19,7 @@ mission "Historical field trip to <planet>"
 	deadline
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "deep" "paradise"
 	destination
@@ -52,6 +53,7 @@ mission "To Earth Day celebration [0]"
 				random < 20
 				month == 4
 				day < 22
+		"reputation: Republic" >= 0
 	to fail
 		month * 100 + day >= 422
 	source
@@ -85,6 +87,7 @@ mission "To Earth Day celebration [1]"
 				random < 20
 				month == 4
 				day < 22
+		"reputation: Republic" >= 0
 	to fail
 		month * 100 + day >= 422
 	source
@@ -117,6 +120,7 @@ mission "From Earth Day celebration [0]"
 				random < 30
 				month == 6
 				day <= 22
+		"reputation: Republic" >= 0
 	source "Earth"
 	destination
 		distance 1 15
@@ -148,6 +152,7 @@ mission "From Earth Day celebration [1]"
 				random < 10
 				month == 6
 				day <= 22
+		"reputation: Republic" >= 0
 	source "Earth"
 	destination
 		distance 1 15
@@ -167,6 +172,7 @@ mission "Transport farmers to Mars"
 	passengers 2 2 .8
 	to offer
 		random < 50
+		"reputation: Republic" >= 0
 	source "Earth"
 	destination "Mars"
 	on visit
@@ -184,6 +190,7 @@ mission "Transport tourists to Luna"
 	passengers 2 2 .8
 	to offer
 		random < 50
+		"reputation: Republic" >= 0
 	source "Earth"
 	destination "Luna"
 	on visit
@@ -200,6 +207,7 @@ mission "Transport seasonal workers to Earth"
 	passengers 2 2 .8
 	to offer
 		random < 50
+		"reputation: Republic" >= 0
 	source "Mars"
 	destination "Earth"
 	on visit

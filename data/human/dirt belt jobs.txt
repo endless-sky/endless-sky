@@ -54,6 +54,7 @@ mission "To Remembrance Day celebration [0]"
 				random < 10
 				month == 2
 				day < 19
+		"reputation: Militia" >= 0
 	to fail
 		month == 2
 		day == 19
@@ -89,6 +90,7 @@ mission "To Remembrance Day celebration [1]"
 				random < 20
 				month == 2
 				day < 19
+		"reputation: Militia" >= 0
 	to fail
 		month == 2
 		day == 19
@@ -123,6 +125,7 @@ mission "To Remembrance Day celebration [2]"
 				random < 20
 				month == 2
 				day < 19
+		"reputation: Militia" >= 0
 	to fail
 		month == 2
 		day == 19
@@ -157,6 +160,7 @@ mission "From Remembrance Day celebration [0]"
 				random < 10
 				month == 4
 				day < 20
+		"reputation: Militia" >= 0
 	source
 		attributes "dirt belt"
 	destination
@@ -189,6 +193,7 @@ mission "From Remembrance Day celebration [1]"
 				random < 5
 				month == 4
 				day < 20
+		"reputation: Militia" >= 0
 	source
 		attributes "dirt belt"
 	destination
@@ -211,6 +216,7 @@ mission "Food Convoy [0]"
 	to offer
 		random < 30
 		"combat rating" > 30
+		"reputation: Militia" >= 0
 	source
 		attributes "dirt belt"
 	destination
@@ -264,6 +270,7 @@ mission "Food Convoy [1]"
 	to offer
 		random < 25
 		"combat rating" > 60
+		"reputation: Militia" >= 0
 	source
 		attributes "dirt belt"
 	destination
@@ -309,6 +316,7 @@ mission "Food Convoy [2]"
 	to offer
 		random < 15
 		"combat rating" > 90
+		"reputation: Militia" >= 0
 	source
 		attributes "dirt belt"
 	destination

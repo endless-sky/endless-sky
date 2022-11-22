@@ -25,6 +25,7 @@ mission "Paradise Job: Care Package"
 		attributes "paradise"
 	destination
 		distance 2 5
+		"reputation: Republic" >= 0
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "research" "rich"
 	on visit
@@ -48,6 +49,7 @@ mission "Paradise Job: Birthday Supplies"
 		attributes "paradise"
 	destination
 		distance 2 10
+		"reputation: Republic" >= 0
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "rich" "core" "near earth"
 	on visit
@@ -72,6 +74,7 @@ mission "Paradise Job: Art Delivery"
 		attributes "rich"
 	destination
 		distance 2 5
+		"reputation: Republic" >= 0
 		attributes "paradise"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -91,6 +94,7 @@ mission "Paradise Job: Newlyweds"
 	cargo "wedding gifts" 2 4
 	to offer
 		random < 10
+		"reputation: Republic" >= -5
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -115,6 +119,7 @@ mission "Paradise Job: Theater Props"
 	cargo "Luxury Goods" 9 15
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "rich" "urban"
@@ -138,6 +143,7 @@ mission "Paradise Job: Fine Food"
 	cargo "Food" 9 25
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "farming" "fishing"
@@ -186,6 +192,7 @@ mission "Transport partiers [2]"
 	cargo "snacks and school supplies" 2 4
 	to offer
 		random < 10
+		"reputation: Republic" >= -5
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -207,6 +214,7 @@ mission "Paradise Job: Food Donations"
 	cargo "Food" 7 2 .1
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	destination
@@ -227,6 +235,7 @@ mission "Paradise Job: Clothing Donations"
 	cargo "Clothing" 7 2 .1
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	destination
@@ -247,6 +256,7 @@ mission "Paradise Job: Medical Aid"
 	cargo "Medical" 7 2 .1
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	destination
@@ -267,6 +277,7 @@ mission "Paradise Job: Charity"
 	cargo "Luxury Goods" 7 2 .1
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	destination
@@ -288,6 +299,7 @@ mission "Paradise Job: Party Goods"
 	cargo "Luxury Goods" 10 2 .1
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	stopover
@@ -313,6 +325,7 @@ mission "Paradise Job: Estate Assets"
 	cargo "Luxury Goods" 18 2 .15
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	destination
@@ -334,6 +347,7 @@ mission "Paradise Jobs: Contract Laborers"
 	passengers 13 30
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	stopover
@@ -377,6 +391,7 @@ mission "Transport high-class tourists"
 	passengers 8 22
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -399,6 +414,7 @@ mission "Pleasure cruise security"
 	to offer
 		random < 10
 		"combat rating" > 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise" "rich"
 	stopover
@@ -484,6 +500,7 @@ mission "Paradise Job: Retirees"
 		random < 10
 		"passenger space" > 15
 		"cargo space" > 40
+		"reputation: Republic" >= 0
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -507,6 +524,7 @@ mission "Paradise Job: Wilderness Retreat"
 	to offer
 		random < 10
 		"passenger space" > 25
+		"reputation: Republic" >= 0
 	on offer
 		require "Luxury Accommodations"
 	source
