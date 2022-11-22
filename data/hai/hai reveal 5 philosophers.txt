@@ -960,7 +960,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`	 "Our ruse is getting preposterous. The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles you've just flown here have been explained away as experimental ship designs from the movie production being tested out. Still though, our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore."`
 				goto kopkow
 			label giveup
-			`	He blinks at you, "Wait, what?`
+			`	He blinks at you, "Wait, what?"`
 				goto explain
 			label maintain
 			`	"We've decided on an end point to this deception?"`
@@ -978,10 +978,27 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`	"It's more of a collaboration, really, but like I said: need-to-know basis." He nods to you and departs as everyone else assembles.`
 			label leave
 			`	After a large meeting about logistics, and an unsurmountable buffet, everyone disperses. General Choot'k finds you to discuss critical tactical matters.`
-			`	"You have handled yourself well throughout this. I want to see you prove yourself in battle before I open the entrance to <planet>. When we arrive at <planet>, we'll first fight the defense fleet waiting for us. I suspect we can handle it, but you are of course welcome to assist.`
-			`	"The main priority for you should be to make sure nobody pursues Elder Teeneep or Captain Wallace. However, these scum will likely keep a couple of ships in reserve. The scans you took suggest some are not totally fighting fit, or perhaps will be kept to use their weapons inside the spaceport as a backup defense.`
-			`	"To counter this, you'll need to draw them out by demanding tribute from the city. They'll keep sending defense fleets until they resign to their fate and pay you daily tribute. This is where we would like you to prove yourself. We won't help you fight the tribute defense fleets, but we'll fight the pirates waiting for our arrival and any other pirates that show up."`
-			`	He seems to admire your ship for a moment. "Tell the other humans not to help you either. If you succeed today you shall be Hai-friend, wherever you go."`
+			`	"There's a problem with the plan," he says, "which we found after more analysis of the scans. The bay where we need to land already has ships inside, and if we try to fly in there, they'll blow us to pieces. You have lure them out and kill them all."`
+			choice
+				`	"How do I lure them out?"`
+					goto how
+				`	"Can't we blow them up on the way down?"`
+			`	"Have you ever tried to land on a pile of blown-up space ships in the wreck of a spaceport a half kilometer underground? It ain't easy.`
+			label how
+			`	"I've spent a lot of time interrogating pirate leaders these past few weeks, and they all have one thing in common: narcissism. Threaten their precious egos, and they'll fight when they should hide. All you have to do is demand tribute from their planet and the fools will rush out and fight you.`
+			`	"The pirates won't believe it if we demand the tribute, but they will believe it if you demand it. Then their defense fleets will rush out. You have to defeat them on your own to maintain the ruse. Eventually they'll give up and pay tribute. That's when we know it's safe to land."`
+			choice
+				`	"Sounds good. I look forward to the tribute payments."`
+					goto done
+				`	"Why do I have to do that myself?"`
+			`	"In your culture, governments don't demand tribute from enemy planets." He shrugs. "The pirates will see it as an obvious trap if we do it. You, though? They'll see a pilot taking advantage of the situation. Just lure them out, and blow them up, while we hold off any incoming ships."`
+			choice
+				`	"Sounds good. I look forward to the tribute payments."`
+					goto done
+				`	"Why won't our fleet help me destroy the pirates coming from the planet?"`
+			`	"Ah, they could, but they won't. Consider it a test. I want to see you prove yourself in battle before I open the entrance to <planet>."`
+			label done
+			`	He seems to admire your ship for a moment. "If you succeed today you shall be Hai-friend, wherever you go."`
 				accept
 	on accept
 		event "Elenchus can be dominated"
