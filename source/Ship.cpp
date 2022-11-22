@@ -2799,10 +2799,10 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		std::string weaponName = hardpoints[i].GetOutfit()->TrueName();
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon)
 		{
+			std::string weaponName = hardpoints[i].GetOutfit()->TrueName();
 			bool isAntiMissile = weapon->AntiMissile();
 			if(CanFire(weapon))
 			{
