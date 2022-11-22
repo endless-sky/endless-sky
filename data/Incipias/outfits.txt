@@ -19,6 +19,7 @@ outfit "Plasma Discharger"
 		"shield damage" 22.5
 		"hull damage" 21
 		"minable damage" 35
+	description "The Incipias started to mine asteroids long before they started space travel due to the rings of their planet. Thats why their tool to mine seems to be more advanced than their generall technology. Still it is not comparable to the efficiency of human weapons."
 
 outfit "plasma particle"
 	weapon
@@ -39,6 +40,7 @@ outfit "Gas Class Shield"
 	shields 1000
 	"shield generation" .05
 	"shield energy" .06
+	description ""
 
 outfit "Liquid Class Shield"
 	category "Systems"
