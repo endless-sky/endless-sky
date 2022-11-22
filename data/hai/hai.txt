@@ -681,3 +681,118 @@ phrase "hostile disabled unfettered"
 	word
 		"!"
 		"."
+
+phrase "provocative unfettered challenger"
+	word
+		"Do you really think you can beat me?"
+		"Show your worth to me in battle now!"
+		"You pathethic monkey, you stand no chance against me! You better run from me now indeed!"
+		"The time has come to fight. The Gods are watching."
+		"I challenge you! Come and fight me now!"
+		"Surprise me! What shall be your first strike?"
+		"Because of your weakness, I will let you have the first strike."
+		"We will fight you together and as one, with my crew. Let's see if you can handle that!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Stop "
+		"Quit "
+	word
+		"shaming yourself"
+		"running away"
+		"thinking too much"
+		"recharging your shields"
+		"hiding in fear"
+	word
+		" and come "
+		" and come try and "
+	word
+		"defeat "
+		"fight "
+	word
+		"me."
+	word
+		" Now is the time to reveal ourselves in the glory of battle"
+		" Show me what you got"
+		" That's more like it"
+		" Time for a fair fight"
+	word
+		"."
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Now is not the time for talk"
+		"Yes! Fight me"
+		"Our battle will be sang in legends for years to come"
+		"Do not try to distract me with hails."
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Do you wish to end the fight?"
+		"I can see you are having difficulties. Feel free to call this off for another time..."
+		"Remember, you only need to give me a symbolic fee for this to stop."
+		"This is not a duel to the death, or else only one of us would be able learn."
+		"Do you wish to surrender?"
+		"I am reasonable, if you wish to surrender, we can come to terms."
+		"You are lucky that I have to accept any ceasefire if you ask... You would do well not to attempt anything."
+
+phrase "defeated unfettered challenger"
+	word
+		"You have "
+		"You succeeded in "
+		"You managed to have "
+		"Somehow, you have "
+		"I must admit you have "
+	word
+		"beaten "
+		"defeated "
+		"ashamed "
+		"disabled "
+		"revealed my weakness% "
+	word
+		"me in a% "
+	word
+		"glorious "
+		"pathethic "
+		"exceptional "
+		"grandiose "
+		"quick "
+		"strategic "
+	word
+		"battle"
+		"combat"
+		"duel"
+		"fight"
+		"challenge"
+	word
+		"."
+		"!"
+	word
+		" What more do you want from me?"
+		" Do not presume you may board me."
+		" Do not even think about capturing my ship."
+		" Now it is over, time to lay down your weapons."
+		" I accept my fate, take what is rightfully yours."
+		" Great stories will be told of our battle!"
+		" You have the right to plunder."
+		" It would seem you are as strong as some pretended, perhaps even more."
+		" Finish me! I would rather die than have to live with this insult."
+	replace
+		"% me" ""
+		"a% e" "an e"
+		"a%" "a"
+
+phrase "unfettered duelling"
+	word
+		"Do not presume to interrupt us"
+		"I am in the middle of a duel, there is no time for petty talk"
+		"This is an official challenge, do not intervene"
+		"Under no circumstances are you to interrupt us, or you will suffer the wratch of the Unfettered"
+		"Stop distracting me"
+		"If you try anything the whole fleet will be on you"
+		"Go away now, I need to focus on the duel"
+	word
+		"!"
