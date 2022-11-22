@@ -21,35 +21,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
-#include <chrono>
-#include <iostream>
-
 using namespace std;
 
 namespace {
-	using chrono::high_resolution_clock;
-	using chrono::duration_cast;
-	using chrono::duration;
-	using chrono::microseconds;
-
-	class Timing {
-	public:
-		Timing() = default;
-		void AddSample(duration<double, micro> sample) {
-			samples++;
-			average += (sample - average) / samples;
-		};
-		duration<double, micro> GetAverage() const { return average; }
-		int GetNumSamples() const { return samples; }
-		void Reset() {
-			average = {};
-			samples = 0;
-		}
-	private:
-		duration<double, micro> average;
-		int samples;
-	};
-
 	// String interning: return a pointer to a character string that matches the
 	// given string but has static storage duration.
 	const char *Intern(const char *key)
@@ -132,20 +106,7 @@ double &Dictionary::operator[](const string &key)
 
 double Dictionary::Get(HashWrapper hash_wr) const
 {
-	static Timing timing;
-	const auto start = high_resolution_clock::now();
-
 	pair<size_t, bool> pos = Search(hash_wr, *this);
-
-	const auto stop = high_resolution_clock::now();
-
-	timing.AddSample(stop - start);
-
-	if(timing.GetNumSamples() >= 5000)
-	{
-		cout << "Search time (hashed) = " << timing.GetAverage().count() << '\n';
-		timing.Reset();
-	}
 
 	return (pos.second ? data()[pos.first].second : 0.);
 }
@@ -154,20 +115,7 @@ double Dictionary::Get(HashWrapper hash_wr) const
 
 double Dictionary::Get(const char *key) const
 {
-	static Timing timing;
-	const auto start = high_resolution_clock::now();
-
 	pair<size_t, bool> pos = Search(key, *this);
-
-	const auto stop = high_resolution_clock::now();
-
-	timing.AddSample(stop - start);
-
-	if(timing.GetNumSamples() >= 5000)
-	{
-		cout << "Search time = " << timing.GetAverage().count() << '\n';
-		timing.Reset();
-	}
 
 	return (pos.second ? data()[pos.first].second : 0.);
 }
