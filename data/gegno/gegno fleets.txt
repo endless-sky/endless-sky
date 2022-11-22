@@ -298,7 +298,7 @@ fleet "Scin Warfleet"
 	personality
 		vindictive opportunistic
 	variant 7
-		Coesite 2
+		Coesite 3
 	variant 4
 		Felsic 2
 		Coesite 2
@@ -309,13 +309,14 @@ fleet "Scin Warfleet"
 	variant 4
 		Felsic
 		Coesite 3
-	variant
+	variant 3
 		Feldspar 2
 		Halite 12
 	variant 2
 		Feldspar
 		Halite 6
 		Coesite 2
+		Felsic
 
 fleet "Gegno Basic"
 	government Gegno
