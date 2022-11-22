@@ -1774,11 +1774,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 				zoom = 0.f;
 			}
+			// Ship should be small enough to not notice any sprite changes
 			else if(zoom <= zoomTriggerStart)
-			{
-				// Ship should be small enough to not notice any sprite changes
 				this->ShowDefaultSprite(true);
-			}
 		}
 		// Only refuel if this planet has a spaceport.
 		else if(fuel >= attributes.Get("fuel capacity")
@@ -1793,9 +1791,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				this->FinishStateTransition();
 			}
 			else if(zoom >= zoomTriggerStart)
-			{
 				this->ShowDefaultSprite(false);
-			}
 			this->SetState(BodyState::LAUNCHING);
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
@@ -2073,16 +2069,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				{
 					this->SetState(BodyState::FIRING);
 				}
+				// Target is not an enemy
 				else
-				{
-					// Target is not an enemy
 					this->SetState(BodyState::FLYING);
-				}
 			}
 			else if(hasPrimary)
-			{
 				this->SetState(BodyState::FIRING);
-			}
 
 			if(isBoarding && !CanBeCarried())
 			{
@@ -2148,20 +2140,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 										|| this->weaponRange == 0.0;
 					// If in range, or the weapon range hasn't been calculated yet.
 					if(targetInRange)
-					{
 						this->SetState(BodyState::FIRING);
-					}
 				}
+				// No target but still flying around and doesn't want to jump
 				else
-				{
-					// No target but still flying around and doesn't want to jump
 					this->SetState(BodyState::FLYING);
-				}
 			}
 			else if(hasPrimary)
-			{
 				this->SetState(BodyState::FIRING);
-			}
 		}
 	}
 
@@ -2447,9 +2433,7 @@ void Ship::DoGeneration()
 		}
 	}
 	else if(!this->HasSpriteFor(BodyState::DISABLED))
-	{
 		this->PauseAnimation();
-	}
 
 	// Don't allow any levels to drop below zero.
 	shields = max(0., shields);

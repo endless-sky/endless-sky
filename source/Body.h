@@ -165,7 +165,7 @@ private:
 	mutable float rewindFrame = 0.f;
 	mutable float randomFrame = 0.f;
 	mutable float framePercentage = 0.f;
-	mutable float delayed = 0;
+	mutable float delayed = 0.f;
 	mutable bool stateReady = false;
 };
 #endif
