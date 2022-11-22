@@ -65,6 +65,8 @@
 		<Unit filename="source/AI.h" />
 		<Unit filename="source/Account.cpp" />
 		<Unit filename="source/Account.h" />
+		<Unit filename="source/AlertLabel.cpp" />
+		<Unit filename="source/AlertLabel.h" />
 		<Unit filename="source/Angle.cpp" />
 		<Unit filename="source/Angle.h" />
 		<Unit filename="source/Armament.cpp" />
