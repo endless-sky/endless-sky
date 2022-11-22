@@ -21,11 +21,11 @@ mission "Paradise Job: Care Package"
 	cargo "Food" 1
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	destination
 		distance 2 5
-		"reputation: Republic" >= 0
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "research" "rich"
 	on visit
@@ -45,11 +45,11 @@ mission "Paradise Job: Birthday Supplies"
 	cargo "Luxury Goods" 1 3
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		attributes "paradise"
 	destination
 		distance 2 10
-		"reputation: Republic" >= 0
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "rich" "core" "near earth"
 	on visit
@@ -69,12 +69,12 @@ mission "Paradise Job: Art Delivery"
 	cargo "Luxury Goods" 3 8
 	to offer
 		random < 10
+		"reputation: Republic" >= 0
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 		attributes "rich"
 	destination
 		distance 2 5
-		"reputation: Republic" >= 0
 		attributes "paradise"
 	on visit
 		dialog phrase "generic cargo on visit"
