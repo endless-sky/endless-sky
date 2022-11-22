@@ -31,8 +31,8 @@ outfit "Locust Blaster"
 		"reload" 3
 		"firing energy" 6
 		"firing heat" 4
-		"shield damage" 6
-		"hull damage" 5
+		"shield damage" 5
+		"hull damage" 4
 	description "The Locust Blaster might look small, but its destructive potential for its size is nothing to scoff at. A single blaster is capable of sustaining 1,200 rounds per minute. While each individual projectile from the blaster deals rather insignificant damage, the sheer deluge of projectiles can rip even the largest of ships to shreds in due time."
 
 outfit "Locust Turret"
@@ -57,15 +57,15 @@ outfit "Locust Turret"
 		"reload" 1
 		"firing energy" 5
 		"firing heat" 3
-		"shield damage" 6
-		"hull damage" 5
+		"shield damage" 5
+		"hull damage" 4
 	description "Although Bunrodean ships typically rely on the power of their forward facing guns and fill any turret mounts with anti-missile systems, they have developed a turret mount for the Locust Blaster. This turret carries three Locust Blasters that all fire at once, resulting in an astonishing 3,600 projectiles per minute being thrown at the target."
 
 
 
 outfit "Mandible Cannon"
 	category "Guns"
-	cost 1670000
+	cost 1170000
 	thumbnail "outfit/mandible cannon"
 	"mass" 29
 	"outfit space" -29
@@ -87,8 +87,8 @@ outfit "Mandible Cannon"
 		"firing force" 20
 		"firing heat" 40
 		"hit force" 140
-		"shield damage" 179
-		"hull damage" 115
+		"shield damage" 152
+		"hull damage" 98
 	description "The Mandible Cannon is a significant part of the Bunrodean arsenal due to its versatility. Its range exceeds that of smaller weapons, and its size allows it to be used in numbers on most Bunrodean ships. However, the energy draw required to fire is rather significant, particularly for Bunrodean ships that rely on solar cells."
 
 
@@ -181,7 +181,7 @@ outfit "Swarm Clip"
 
 outfit "Swarm Missile"
 	category "Ammunition"
-	cost 1500
+	cost 500
 	thumbnail "outfit/swarm missile"
 	"mass" 0.05
 	"swarm capacity" -1
@@ -189,7 +189,7 @@ outfit "Swarm Missile"
 
 outfit "Swarm Pod"
 	category "Secondary Weapons"
-	cost 617000
+	cost 363000
 	thumbnail "outfit/swarm pod"
 	"mass" 6
 	"outfit space" -21
@@ -217,8 +217,8 @@ outfit "Swarm Pod"
 		"homing" 2
 		"radar tracking" 0.5
 		"optical tracking" 0.5
-		"shield damage" 88
-		"hull damage" 55
+		"shield damage" 66
+		"hull damage" 41
 		"missile strength" 8
 		"stream"
 	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
