@@ -336,9 +336,11 @@ jobs:
           - os: ubuntu-20.04
             opengl: gles
             glew: libgles2-mesa
-          - os: ubuntu-22.04
-            opengl: gles
-            glew: libgles2-mesa
+          # Ubuntu 22 has a pretty severe performance regression using OpenGL ES.
+          # Disable it for now.
+          # - os: ubuntu-22.04
+          #   opengl: gles
+          #   glew: libgles2-mesa
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
@@ -347,7 +349,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
     - name: Install xvfb runtime dependencies
-      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils libegl1-mesa # TODO: ALSA mocking?
+      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils # TODO: ALSA mocking?
     - name: Download artifact
       uses: actions/download-artifact@v1.0.0
       with:
