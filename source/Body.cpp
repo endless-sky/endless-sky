@@ -505,7 +505,8 @@ void Body::SetState(BodyState state)
 	// which ignore the delay to transitions that don't keep smooth animations.
 	bool delayIgnoredPreviousStep = this->transitionState == BodyState::JUMPING ||
 									this->transitionState == BodyState::DISABLED ||
-									this->transitionState == BodyState::LANDING;
+									this->transitionState == BodyState::LANDING ||
+									this->transitionState == BodyState::TRIGGER;
 	bool delayActiveCurrentStep = (state == BodyState::FLYING ||
 									state == BodyState::LAUNCHING ||
 									state == BodyState::FIRING) && delayed < transitionDelay;
@@ -619,6 +620,24 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 	}
 }
 
+bool Body::AssignStateTrigger(BodyState state, std::string trigger)
+{
+	if(this->HasSpriteFor(state))
+	{
+		SpriteParameters *spriteState = &this->sprites[state];
+		if(spriteState->IsTrigger(trigger))
+		{
+			spriteState->SetTrigger(trigger);
+			return true;
+		}
+		else
+		{
+			spriteState->SetTrigger("default");
+		}
+	}
+	return false;
+}
+
 // Called when the body is ready to transition between states.
 void Body::FinishStateTransition() const
 {
@@ -627,9 +646,11 @@ void Body::FinishStateTransition() const
 		frameOffset = 0.0f;
 		pause = 0;
 
+		BodyState trueTransitionState = this->transitionState == BodyState::TRIGGER ? this->currentState : this->transitionState;
+
 		// Default to Flying sprite if requested sprite does not exist.
-		SpriteParameters *transitionedState = this->sprites[this->transitionState].GetSprite() != nullptr ?
-										&this->sprites[this->transitionState] : &this->sprites[BodyState::FLYING];
+		SpriteParameters *transitionedState = this->sprites[trueTransitionState].GetSprite() != nullptr ?
+										&this->sprites[trueTransitionState] : &this->sprites[BodyState::FLYING];
 
 		// Update animation parameters.
 		this->frameRate = transitionedState->frameRate;
@@ -647,7 +668,7 @@ void Body::FinishStateTransition() const
 		this->transitionRewind = transitionedState->transitionRewind;
 		this->transitionDelay = transitionedState->transitionDelay;
 
-		this->currentState = this->transitionState;
+		this->currentState = trueTransitionState;
 		// No longer need to change states
 		this->stateTransitionRequested = false;
 	}

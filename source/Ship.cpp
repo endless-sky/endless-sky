@@ -1601,6 +1601,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 
 		this->SetState(BodyState::JUMPING);
+		if(IsUsingJumpDrive())
+			this->AssignStateTrigger(BodyState::JUMPING, "jump drive");
+		
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 
@@ -2735,8 +2738,11 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
+	bool assigned = false;
+
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
+		std::string weaponName = hardpoints[i].GetOutfit()->Name();
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon)
 		{
@@ -2746,13 +2752,21 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				if(isAntiMissile)
 					antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 				else if(firingCommands.HasFire(i))
+				{
 					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+					if(!assigned && this->AssignStateTrigger(BodyState::FIRING, weaponName))
+						assigned = true;
+					
+				}
 			}
 			// Calculate max range of firable weapons
 			if(!isAntiMissile)
 				weaponRange = max(weaponRange, weapon->Range());
 		}
 	}
+
+	if(!assigned)
+		this->AssignStateTrigger(BodyState::FIRING, "default");
 
 	armament.Step(*this);
 

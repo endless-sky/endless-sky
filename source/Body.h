@@ -31,7 +31,7 @@ class Mask;
 class Outfit;
 class Sprite;
 
-enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT};
+enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT, TRIGGER};
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
@@ -98,6 +98,7 @@ protected:
 	bool ReadyForAction() const;
 	// Assign any outfit triggers for animations
 	void AssignStateTriggers(std::map<const Outfit *, int> &outfits);
+	bool AssignStateTrigger(BodyState state, std::string trigger);
 	// Finish transitioning between states
 	void FinishStateTransition() const;
 	// Mark this object to be removed from the game.
