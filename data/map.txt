@@ -17348,6 +17348,7 @@ system Kiluit
 	fleet "Small Vi" 1300
 	fleet "Vi Cargo" 800
 	fleet "Vi Transport" 1100
+	fleet "Vi Small II" 1800
 	object
 		sprite star/m4
 		distance 96.9
