@@ -878,9 +878,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 				foundFlagship = true;
 			}
 			else
-			{
 				it->SetIsPlayerFlagship(false);
-			}
 	}
 
 	static const shared_ptr<Ship> empty;

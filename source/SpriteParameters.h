@@ -65,7 +65,7 @@ public:
 	bool IsTrigger(std::string trigger) const;
 
 	// Used for saving the sprites.
-	const std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> *GetAllSprites() const;
+	const std::map<std::string, std::tuple<const Sprite *, AnimationParameters>> *GetAllSprites() const;
 
 public:
 	// Animation parameters exposed to Body

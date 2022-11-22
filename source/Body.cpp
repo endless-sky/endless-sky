@@ -82,13 +82,9 @@ const Sprite *Body::GetSprite(BodyState state) const
 
 	// Return flying sprite if the requested state's sprite does not exist.
 	if(spriteState != nullptr && spriteState->GetSprite() != nullptr && !returnDefaultSprite)
-	{
 		return spriteState->GetSprite();
-	}
 	else
-	{
 		return this->sprites[BodyState::FLYING].GetSprite();
-	}
 
 }
 
@@ -137,7 +133,7 @@ float Body::GetFrame(int step) const
 {
 	if(step >= 0)
 		SetStep(step);
-	// Select between frame and random frame based on the randomize parameter
+	// Choose between frame and random frame based on the randomize parameter
 	return !this->randomize || stateTransitionRequested ? frame : randomFrame;
 }
 
@@ -273,9 +269,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 			spriteAnimationParameters.indicatePercentage = static_cast<float>(child.Value(1));
 		}
 		else if(child.Token(0) == "no indicate")
-		{
 			spriteAnimationParameters.indicateReady = false;
-		}
 		else if(child.Token(0) == "indicate")
 		{
 			spriteAnimationParameters.indicateReady = true;
@@ -367,9 +361,7 @@ void Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 			spriteAnimationParameters.indicatePercentage = static_cast<float>(child.Value(1));
 		}
 		else if(child.Token(0) == "no indicate")
-		{
 			spriteAnimationParameters.indicateReady = false;
-		}
 		else if(child.Token(0) == "indicate")
 		{
 			spriteAnimationParameters.indicateReady = true;
@@ -545,9 +537,7 @@ void Body::SetState(BodyState state)
 
 	// If state transition has no animation needed, then immediately transition.
 	if(!this->transitionFinish && !this->transitionRewind && stateTransitionRequested)
-	{
 		this->FinishStateTransition();
-	}
 }
 
 
@@ -597,9 +587,7 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 {
 	bool triggerSet[BodyState::NUM_STATES];
 	for(const auto it : outfits)
-	{
 		for(int i = 0; i < BodyState::NUM_STATES; i++)
-		{
 			if(!triggerSet[i])
 			{
 				SpriteParameters *toSet = &this->sprites[i];
@@ -609,8 +597,6 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 					triggerSet[i] = true;
 				}
 			}
-		}
-	}
 	// Switch back to default sprite if the outfit is no longer found
 	for(int i = 0; i < BodyState::NUM_STATES; i++)
 	{
@@ -714,7 +700,6 @@ void Body::SetStep(int step) const
 		return;
 	}
 	float lastFrame = frames - 1.f;
-
 	// This is the number of frames per full cycle. If rewinding, a full cycle
 	// includes the first and last frames once and every other frame twice.
 	float cycle = (rewind ? 2.f * lastFrame : frames) + delay;
@@ -747,9 +732,7 @@ void Body::SetStep(int step) const
 
 		// If repeating, wrap the frame index by the total cycle time.
 		if(repeat)
-		{
 			frame = fmod(frame, cycle);
-		}
 
 		if(!rewind)
 		{
@@ -760,13 +743,9 @@ void Body::SetStep(int step) const
 				frame = min(frame, lastFrame);
 				framePercentage = (frame + 1) / frames;
 				if(framePercentage >= indicatePercentage)
-				{
 					stateReady = this->indicateReady;
-				}
 				else
-				{
 					stateReady = false;
-				}
 			}
 			else if(frame >= frames)
 			{
@@ -803,13 +782,11 @@ void Body::SetStep(int step) const
 		{
 			if(transitionFinish && !transitionRewind)
 			{
-				// Finish the ongoing state's animation then transition
+				// Finish the ongoing state's animation, then transition
 				frame = min(frame, lastFrame);
 
 				if(frame >= lastFrame)
-				{
 					this->FinishStateTransition();
-				}
 			}
 			else if(!transitionFinish && transitionRewind)
 			{
