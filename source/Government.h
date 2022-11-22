@@ -154,7 +154,9 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
-	// Reputation changes to this government use the penalties of the offended government, if it is in this list.
+	// If a government appears in this set, and the reputation with this government is affected by actions,
+	// and events performed against that government,
+	// use the penalties that government applies for the action instead of this governments own penalties.
 	std::set<unsigned> useForeignPenaltiesFor;
 };
 
