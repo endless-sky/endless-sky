@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -153,7 +154,9 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
-	std::vector<const Government *> useForeignPenaltiesFor;
+	// Set with the ids of the governments for which we should use their penalties instead of our own
+	// when a shipEvent happens to them.
+	std::set<unsigned> useForeignPenaltiesFor;
 };
 
 

@@ -191,7 +191,7 @@ void Government::Load(const DataNode &node)
 			provokedOnScan = true;
 		else if(key == "use foreign penalties for")
 			for(const DataNode &grand : child)
-				useForeignPenaltiesFor.emplace_back(GameData::Governments().Get(grand.Token(0)));
+				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -520,8 +520,5 @@ bool Government::IsProvokedOnScan() const
 
 bool Government::IsUsingForeignPenaltiesFor(const Government *government) const
 {
-	auto it = find(useForeignPenaltiesFor.begin(), useForeignPenaltiesFor.end(), government);
-	if(it != useForeignPenaltiesFor.end())
-		return true;
-	return false;
+	return useForeignPenaltiesFor.count(government->id);
 }
