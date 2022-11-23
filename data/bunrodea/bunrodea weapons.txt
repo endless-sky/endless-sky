@@ -174,16 +174,16 @@ outfit "Swarm Clip"
 	category "Ammunition"
 	cost 24000
 	thumbnail "outfit/swarm storage"
-	"mass" 2.5
+	"mass" 2
 	"outfit space" -10
-	"swarm capacity" 150
+	"swarm capacity" 200
 	description "Swarm Clips provide a sizeable increase in ammo capacity for Swarm Pods, holding a respectable 150 missiles able to be swiftly loaded into a launcher after its current clip is empty."
 
 outfit "Swarm Missile"
 	category "Ammunition"
-	cost 500
+	cost 250
 	thumbnail "outfit/swarm missile"
-	"mass" 0.05
+	"mass" 0.04
 	"swarm capacity" -1
 	description "Swarm missiles are small, fast moving munitions for the Swarm Pod."
 
@@ -191,11 +191,11 @@ outfit "Swarm Pod"
 	category "Secondary Weapons"
 	cost 363000
 	thumbnail "outfit/swarm pod"
-	"mass" 6
+	"mass" 5
 	"outfit space" -21
 	"weapon capacity" -21
 	"gun ports" -1
-	"swarm capacity" 300
+	"swarm capacity" 400
 	weapon
 		sprite "effect/swarm"
 			"frame rate" .01
@@ -217,8 +217,8 @@ outfit "Swarm Pod"
 		"homing" 2
 		"radar tracking" 0.5
 		"optical tracking" 0.5
-		"shield damage" 66
-		"hull damage" 41
+		"shield damage" 44
+		"hull damage" 22
 		"missile strength" 8
 		"stream"
 	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
