@@ -662,3 +662,113 @@ void Files::LogErrorToFile(const string &message)
 
 	SDL_RWwrite(errorLog, (message + '\n').c_str(), 1, message.size() + 1);
 }
+
+
+
+bool Files::MakeDir(const std::string &path)
+{
+	// SDL doesn't expose a file system api for creating directories. we will
+	// need to use O/S primitives here.
+#ifndef _WIN32
+	size_t next = path.find_first_of("/\\");
+	size_t pos = 0;
+	std::string built_path;
+   if (!path.empty() && path.front() != '/')
+   {
+      built_path = '.';
+   }
+	std::vector<std::string> to_create;
+	for(;;)
+	{
+		std::string component = (next == path.npos) ? path.substr(pos)
+		                                            : path.substr(pos, next - pos);
+
+		if (!component.empty() && component != ".")
+		{
+			if (component == "..")
+			{
+				return false; // not doing this
+			}
+			built_path += "/" + component;
+			struct stat buf;
+			if (stat(built_path.c_str(), &buf) == 0)
+			{
+				if (!S_ISDIR(buf.st_mode))
+				{
+					// it exists, and its not a directory. can't continue
+					return false;
+				}
+			}
+			else
+			{
+				// doesn't exist. add it
+				to_create.push_back(built_path);
+			}
+		}
+		if (next == std::string::npos)
+		{
+			break;
+		}
+		pos = next + 1; //discard slash
+	   next = path.find_first_of("/\\", pos);
+	}
+	for (const std::string& component: to_create)
+	{
+		if (mkdir(component.c_str(), 0700) != 0)
+		{
+			return false;
+		}
+	}
+	return true;
+
+#else
+	return false;
+#endif
+}
+
+
+
+bool Files::RmDir(const std::string &path)
+{
+	// SDL doesn't expose a file system api for deleting directories. We need to
+	// use operating system primitives here.
+#ifndef _WIN32
+	// TODO: some sort of safety?
+	DIR *dir = opendir(path.c_str());
+	if(dir)
+	{
+		dirent* ent = nullptr;
+		errno = 0;
+		while((ent = readdir(dir)))
+		{
+			// Skip "." and ".."
+			if(!strcmp(ent->d_name, ".") || !strcmp(ent->d_name, ".."))
+				continue;
+
+			string name = path + "/" + ent->d_name;
+			struct stat st;
+			stat(name.c_str(), &st);
+			bool isRegularFile = S_ISREG(st.st_mode);
+			bool isDirectory = S_ISDIR(st.st_mode);
+
+			if(isRegularFile)
+			{
+				unlink(name.c_str());
+			}
+			else if(isDirectory)
+			{
+				RmDir(name);
+			}
+		}
+		closedir(dir);
+		rmdir(path.c_str());
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+#else
+	return false;
+#endif
+}

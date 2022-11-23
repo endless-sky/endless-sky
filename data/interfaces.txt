@@ -419,6 +419,17 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+	visible if "plugin import"
+	sprite "ui/dialog cancel"
+		center -220 210
+	button i "_Import"
+		center -220 210
+		dimensions 120 30
+	sprite "ui/dialog cancel"
+		center -140 210
+	button r "_Remove"
+		center -140 210
+		dimensions 120 30
 
 
 

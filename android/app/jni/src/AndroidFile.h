@@ -61,17 +61,19 @@ public:
 	/// Prompt the user for a file, and then return its contents. If the user
 	/// cancels or something, the returned string will be empty. Any errors will
 	/// be displayed to the user in the java code.
-	std::string GetFile(const std::string& prompt)
+	std::string GetFile(const std::string& prompt, const std::string& mime_type="text/plain")
 	{
 		jobject context = (jobject)SDL_AndroidGetActivity();
       // void getFile(java.lang.String, java.lang.String)
       jmethodID getFile = m_env->GetMethodID(m_env->GetObjectClass(context),
-					"getFile", "(Ljava/lang/String;)[B");
+					"getFile", "(Ljava/lang/String;Ljava/lang/String;)[B");
 
 		// This method is blocking while the user selects or cancels the file.
-		jstring str = m_env->NewStringUTF(prompt.c_str());
-		jbyteArray data = (jbyteArray)m_env->CallObjectMethod(context, getFile, str);
-		m_env->DeleteLocalRef(str);
+		jstring prompt_str = m_env->NewStringUTF(prompt.c_str());
+		jstring mime_type_str = m_env->NewStringUTF(mime_type.c_str());
+		jbyteArray data = (jbyteArray)m_env->CallObjectMethod(context, getFile, prompt_str, mime_type_str);
+		m_env->DeleteLocalRef(prompt_str);
+		m_env->DeleteLocalRef(mime_type_str);
 
 		if (m_env->IsSameObject(data, NULL))
 		{

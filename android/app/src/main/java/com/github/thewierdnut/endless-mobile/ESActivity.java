@@ -9,6 +9,7 @@ import android.net.Uri;
 import java.io.IOException;
 import android.app.Activity;
 import android.widget.Toast;
+import java.io.ByteArrayOutputStream;
 
 /**
     SDL Activity.
@@ -43,11 +44,11 @@ public class ESActivity extends SDLActivity
     }
 
     // Call to request a file using an intent
-    protected byte[] getFile(String prompt)
+    protected byte[] getFile(String prompt, String mime_type)
     {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/plain");
+        intent.setType(mime_type);
         loaded_file_content = null;
         synchronized(load_file_lock)
         {
@@ -100,15 +101,14 @@ public class ESActivity extends SDLActivity
                 try
                 {
                     InputStream input = getContext().getContentResolver().openInputStream(uri);
-                    StringBuffer content = new StringBuffer("");
+                    ByteArrayOutputStream bs = new ByteArrayOutputStream();
                     byte[] buffer = new byte[4096];
                     int n = 0;
                     while ((n = input.read(buffer)) != -1)
                     {
-                        content.append(new String(buffer, 0, n));
+                        bs.write(buffer, 0, n);
                     }
-
-                    loaded_file_content = content.toString().getBytes();
+                    loaded_file_content = bs.toByteArray();
                     input.close();
                 }
                 catch(IOException e)
