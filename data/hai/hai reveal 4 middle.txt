@@ -1105,7 +1105,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			label arrived
 			`	"Unfortunate!" Teeneep very nearly shrieks the word. "They've been doing this for decades! Decades, Sayari! Tracking down and ultimately paying off pirates with our technology to leave us alone, even when they've hurt, killed, kidnapped, and enslaved our people!`
 			`	"You knew! This whole time, for a half century, you knew, and you did nothing!"`
-			`	Teeneep closes her eyes and uses a deep breathing technique to calm herself down. It looks like she's practiced this many times.`
+			`	Teeneep closes her eyes and breathes deeply until she has calmed herself down. It looks like this is a technique she's practiced many times.`
 			`	The three of you sit down once Teeneep looks ready to talk.`
 				goto questions
 			label friends
