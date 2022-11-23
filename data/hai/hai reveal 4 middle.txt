@@ -332,7 +332,7 @@ mission "Hai Reveal: Pirate Troubles [1]"
 		"reputation: Hai Merchant (Human)" += 20
 		"reputation: Hai Merchant (Sympathizers)" += 20
 		conversation
-			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai in uniform approaches you. "We have heard from several people here that you are considered a seasoned fighter among your people, and learned of your current status assisting our government on other matters. May you lend your combat prowess to us to resolve this issue?"`
+			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai in uniform approaches you. "We have heard from several people here that you are considered a seasoned fighter among your people and learned of your current status assisting our government on other matters. Would you lend your combat prowess to us to resolve this issue?"`
 			choice
 				`	"I'd be glad to help. What can I do?"`
 					goto explain
@@ -1309,7 +1309,7 @@ mission "Hai Reveal [A13] A New Elder"
 				`	(Drink with them.)`
 			`	As it turns out, Teeneep's speech is in Hai with no translation available. It's short and punchy, but restrained; or at least her delivery of it has that feeling. With nothing else to do, and it being well into the evening, you call it a night.`
 			`	The following morning Sayari finds you with Alondo, Remington, Xilin and Batu all having vending machine breakfasts in the cafeteria. It turns out Hai vending machines aren't half bad.`
-			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to as which do you want first?"`
+			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to ask which do you want first?"`
 			`	Alondo and Remington both groan, neither having pulled up particularly well this morning. Xilin has a great deal more composure but looks like he's not had a break from stress in well over a month... which is probably accurate. "Why don't you pick, <last>?" he says.`
 			choice
 				`	"Good news."`

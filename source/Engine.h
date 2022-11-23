@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
@@ -197,6 +198,7 @@ private:
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
+	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
