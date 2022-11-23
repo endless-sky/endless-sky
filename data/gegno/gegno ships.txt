@@ -169,16 +169,15 @@ ship Gypsum
 	explode "small explosion" 26
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `To fuel their increasing need for materials, the Gegno designing a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
-	description `	Because of the Gegno's limited technology, the Gypsum is much more sluggish than similarly sized ships elsewhere in the galaxy, making it too slow to chase faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
+	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
+	description `	Because of the Gegno's limited technology, the Gypsum is much more sluggish than similarly sized ships elsewhere in the galaxy, making it too slow to chase faster asteroids. For those asteroids it can catch up to, the powerful Excavator Drill is able to grind materials out with ease.`
 
 # Gegno Vi:
 
 ship Augen
 	sprite ship/augen
-	thumbnail ship/augen
 	attributes
-		category "Superheavy"
+		category "Heavy Warship"
 			"Gegno Civilian"
 			"Vi Evocati"
 			"Vi Centurion"
@@ -333,7 +332,7 @@ ship Schist
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Gegno Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
-	description `	Although is it lightly armed compared to other Vi ships, Schists are still mounted a pair of cannons and a turret so it can bring some type of weaponry to a possible engagement.`
+	description `	Although is it lightly armed compared to other Vi ships, Schists still have mounted with a pair of cannons and a turret so they can bring some type of weaponry to any possible engagement.`
 
 ship Schist "Schist Light Load"
 	sprite "ship/gegno schist b"
@@ -399,7 +398,7 @@ ship Eclogite
 	explode "small explosion" 20
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
-	description `While the style of longer battleship-esq vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi war vessels. The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another pounding.`
+	description `While the style of longer battleship-esque vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi war vessels. The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another pounding.`
 
 ship Diorite
 	sprite "ship/gegno diorite"
@@ -451,7 +450,7 @@ ship Diorite
 	explode "small explosion" 20
 	explode "tiny explosion" 17
 	"final explode" "final explosion medium"
-	description "Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets to support them. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, sometimes smaller ones."
+	description "Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets to support them. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, and sometimes smaller ones as well."
 
 ship Hornfel
 	sprite "ship/gegno hornfel a"
@@ -600,7 +599,7 @@ ship Gneiss
 	explode "small explosion" 40
 	explode "tiny explosion" 80
 	"final explode" "final explosion large"
-	description `Gneiss Battleships are the Gegno Vi's true sword & shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing 3 huge mounts dedicated to holding enormous Ballistic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
+	description `Gneiss Battleships are the Gegno Vi's true sword and shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing 3 huge mounts dedicated to holding enormous Ballistic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
 	description `	Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer.`
 
 ship Protolith

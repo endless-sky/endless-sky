@@ -32249,7 +32249,7 @@ planet "Aresepru Nat"
 planet Arroharg
 	landscape land/canyon12
 	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Large organic-looking machines seem to be dispalcing particular mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-accustomed and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become, and there's no telling how deep into the moon they go, as they become restricted after a certain depth.`
-	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although sometimes hard to decifer, as it seems they aren't used to outside visitors here and don't speak your language.` 
+	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although this is sometimes hard to decifer. It seems they aren't used to outside visitors here and don't speak your language.` 
 	government Quarg
 	bribe 0
 	security 0.9
@@ -32936,7 +32936,7 @@ planet "Diligent Hand"
 
 planet "Dlia Jzaur"
 	landscape land/mountain2
-	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center where beautiful eclipses can be captured weekly. The much smaller secondary star is believed to be a rogue star captured by the larger star, but is slowly fading out. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandoned due to increasing warfare in nearby systems.`
+	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center where beautiful eclipses can be seen weekly. The much smaller secondary star is believed to be a rogue star captured by the larger star, but is slowly fading out. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandoned due to increasing warfare in nearby systems.`
 	description `Oddly enough, Dlia Jzaur has many unnatural formations on the surface that seem to reach up to the sky in areas eclipses often occur. The formations are mysteriously hollow underneath, but show no signs of Gegno involvement.`
 	government Uninhabited
 
@@ -33062,7 +33062,7 @@ planet Eldergrasp
 
 planet "Ef Aourtdye"
 	landscape land/lava10
-	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a large portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
+	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a major portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
 	description `A majority of mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials, quickly prepared to be put into service and continue the harvest.`
 	spaceport `The Gegno here are much too busy to pay any attention to you as it seems this spaceport is part of a larger refinery site. The largest Gegno heave around large metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see large rugged vehicles leaving or entering the site on paths that branch out to several more factories in the distance.`
 	government Gegno
@@ -33210,7 +33210,7 @@ planet Essime
 
 planet Esstch
 	landscape land/badlands2
-	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno, however, due to the proximity of the system's central star, is too hot to be colonized.`
+	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's central star, it is too hot to be colonized.`
 	government Uninhabited
 
 planet Everhope
@@ -33983,7 +33983,7 @@ planet Icelake
 
 planet "Iemn Eitch"
 	landscape land/desert2
-	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architectures are scattered about the surface that look significantly different to those found on Dueyu Eitch, perhaps due to the nature of construction in a much different environment. A few decently large shipyard-esq platforms continue to service a few still active Gegno colony vessels from times past, presumably at a much slower pace than during their space age.` 
+	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architectures are scattered about the surface that look significantly different to those found on Dueyu Eitch, perhaps due to the nature of construction in a much different environment. A few decently large shipyard-esque platforms continue to service a few still active Gegno colony vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.` 
 	government Gegno
 	"required reputation" 1
 	security 0
@@ -36471,13 +36471,13 @@ planet "Yniu Eiu"
 	landscape land/canyon0
 	music "ambient/rulei planet"
 	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more important visual are patches of purple-red cellular lakes flowing to and through other cells, canyons, and valleys. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
-	description `The red-purple lakes and rivers have an odd shimmer to them to suggest they are alive to some capacity. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
+	description `The red-purple lakes and rivers have an odd shimmer to them to suggest they are somehow alive. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
 	government Uninhabited
 
 planet "Yniu Ena"
 	landscape land/canyon03
 	music "ambient/rulei planet"
-	description `Like its parent planet below, Yniu Eiu has an thick purple-reddish web of unnatural material spread across its surface. Some patches are much larger than others, with a very few being hundreds of times larger, as if they're scars on the planet.`
+	description `Like its parent planet below, Yniu Eiu has a thick purple-reddish web of unnatural material spread across its surface. Some patches are much larger than others, with a very few being hundreds of times larger, as if they're scars on the planet.`
 	government Uninhabited
 
 planet Zenith

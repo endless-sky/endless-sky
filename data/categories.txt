@@ -22,7 +22,6 @@ category "ship"
 	"Light Warship"
 	"Medium Warship"
 	"Heavy Warship"
-	"Superheavy"
 	"Fighter"
 	"Drone"
 
