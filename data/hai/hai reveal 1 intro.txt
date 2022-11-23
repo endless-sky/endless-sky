@@ -841,7 +841,7 @@ mission "00 Hai Leaks Response 4B"
 	landing
 	source "Allhome"
 	to offer
-		has "outfit (installed): Failed Control System"
+		has "ship model (all): Geodesic Geocoris"
 	on offer
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris. This ship has been modified in ways that aren't of Hai origin, and which don't appear to be fully functional.`
 		event "returned geocoris" 365
