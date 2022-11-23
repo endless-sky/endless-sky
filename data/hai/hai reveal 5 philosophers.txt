@@ -407,10 +407,10 @@ conversation "giti tripped an alert"
 	`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow", nods very firmly and gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The three agents remain standing.`
 	`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly mean it's beholden to the interests of Parliament.`
 	choice
-		`	"What's the problem, agent?"`
+		`	"What's the problem?"`
 			goto uncomplaining
 		`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
-	`	The agents smile and Kopkow says, "We don't respond well to threats."`
+	`	Uncannily, the agents all smirk at you at the same time. Kopkow responds flatly, "We don't respond well to threats."`
 	label uncomplaining
 	`	"Now Captain, your friend Giti here has tripped a flag in our systems that marks what you're looking into as an item of particular interest to Syndicate Internal Affairs. In fact, it is an interest which they have exclusive and sole jurisdiction over, even over and above us." He looks at you meaningfully. "That requires an Act of Parliament in a closed session, which has not occurred for a significant length of time, if you catch my drift."`
 	`	He clears his throat, "While you were making your way here we have accessed your ship's logs with a full warrant to search through your activity since your last contact with Giti. It is all perfectly legal and you'd be wise not to object. Since we have determined that you have found... something, and that it is meaningful, we must send you to Hephaestus. We request that you take Giti, any information or equipment you were planning to take, and go immediately and directly. Do you understand?"`
