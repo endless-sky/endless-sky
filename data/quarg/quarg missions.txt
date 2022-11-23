@@ -269,7 +269,7 @@ mission "Quarg Pug Arfecta Warning"
 		has "flagship model: Pug Arfecta"
 	source
 		attributes "quarg"
-		attributes "station"
+		attributes "ringworld"
 	on offer
 		conversation
 			`As soon as you step off your ship a rather imposing Quarg blocks your exit while staring piercingly at your ship.`
