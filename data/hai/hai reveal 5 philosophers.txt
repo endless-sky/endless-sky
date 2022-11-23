@@ -260,7 +260,7 @@ mission "Hai Reveal [B03] Contact Giti"
 			action
 				set "Hai Reveal [B03] Contact Giti: label squirrels"
 			`	"Our place is here, Captain <last>," says Teeneep, definitively.`
-			`	Danforth looks between them. "Perhaps, Elder, you and the Ambassador would find it more comfortable to return to Mountaintop? There will be little diplomacy here, and scarcely more safety, and it would seem to me that even with Batu here as the deputy minister's eyes on the ground, it would be easier to conduct your responsibilities directly."`
+			`	Danforth looks between them. "Perhaps, Elder, you and the Ambassador would find it more comfortable to return to Mountaintop? There will be little diplomacy here, and scarcely more safety, and it would seem to me that, even with Batu here as the Deputy Minister's eyes on the ground, it would be easier to conduct your responsibilities directly."`
 			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
 				goto briefing
 
