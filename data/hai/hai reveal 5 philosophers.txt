@@ -491,7 +491,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			label lead
 			`	You clarify that technically it's a lead on cases that match the same profile as his wife's, not strictly his wife's case. His expression falters momentarily and then he seems to find some internal resolve to draw upon. "Good enough for me... Thank you, for your honesty."`
 			label lab
-			`	After a short return trip, you reach what looks like a small private spaceport. From the extra equipment and unusual ship designs, you realize it is a Tarazed research shipyard. Goraz's laboratory is an entire docking bay with a modified Blackbird, but despite its size, it is conspicuously absent any other personnel. He takes you on board and noting your attention to your surroundings, explains that he has a few assistants, but they are off-world most of the time.`
+			`	After a short return trip, you reach what looks like a small private spaceport. From the extra equipment and unusual ship designs, it must be a Tarazed Corporation research shipyard. Goraz's laboratory is an entire docking bay with a modified Blackbird, but despite its size, it is conspicuously absent any other personnel. He takes you on board and, noting your attention to your surroundings, explains that he has a few assistants who are off-world most of the time.`
 			`	Goraz says, "Here, let me take a look at what you've brought me." He's eyeing your pockets.`
 			choice
 				`	"It's all in this data stick."`
