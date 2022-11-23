@@ -36,30 +36,30 @@ outfit "plasma particle"
 outfit "Gas Class Shield"
 	category "Systems"
 	thumbnail "outfit/gas class shield"
-	mass 20
-	"outfit space" -20
-	shields 1000
-	"shield generation" .05
-	"shield energy" .06
+	mass 60
+	"outfit space" -60
+	"shield generation" .1
+	"energy generation" 2.2
+	"heat generation" 5.
 	description "The shield technology is one of the most recent technologies of the Incipias. While the shield appears similiar to a human shield device it works on a completly different base. In its core hydrogen is burned that provides energy for regeneration. But because scientist saw a more efficient use of this burning technology, they also made it the main power source of all of their ships."
 
 outfit "Liquid Class Shield"
 	category "Systems"
 	thumbnail "outfit/liquid class shield"
-	mass 30
-	"outfit space" -30
-	shields 1250
-	"shield generation" .1
-	"shield energy" .11
+	mass 80
+	"outfit space" -80
+	"shield generation" .25
+	"energy generation" 3.8 
+	"heat generation" 6.
 	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency by a lot but also requires some extra structures which make this outfit only popular on larger ships."
 
 outfit "Solid Class Shield"
 	category "Systems"
-	mass 40
-	"outfit space" -40
-	shields 1500
-	"shield generation" .3
-	"shield energy" .31
+	mass 100
+	"outfit space" -100
+	"shield generation" .45
+	"energy generation" 6.
+	"heat generation" 8.
 	description "This shield generator is efficiency pure. It burns it input in stages from solid in the center to gas state in the outer hull. Sadly this efficiency requires a lot of adjusting system to stabalize the process. Only the most heavy warships are using this genereator therefore."
 
 outfit "Liquid Hydrogen Cell"

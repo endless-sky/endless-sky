@@ -4,7 +4,7 @@ ship "Nimbus"
 	"thumbnail" thumbnail/nimbus
 	"swizzle" 0
 	attributes
-		"category" "Transport"
+		"category" "Medium Warship"
 		"cost" 500000
 		"hull" 2500
 		"required crew" 20
@@ -17,11 +17,8 @@ ship "Nimbus"
 		"engine capacity" 150
 		"weapon capacity" 50 
 		"gaslining" 1
-		"solar collection" 400
 		"fuel capacity" 200
 
-		"steering flare sprite" "effect/incipias flare/flare"
-			"frame rate" 6
 		"steering flare sound" "plasma huge"
 		"turn" 453
 		"turning energy" 2.5
