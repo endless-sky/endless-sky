@@ -176,6 +176,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Interface.h
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
+	JumpTypes.h
 	Logger.cpp
 	Logger.h
 	LineShader.cpp
