@@ -259,3 +259,44 @@ mission "Ask Quarg About Coalition Early"
 			label end
 			`	Before you can ask it anything else, the Quarg bids you farewell, and walks away.`
 				decline
+
+
+
+mission "Quarg Pug Arfecta Warning"
+	landing
+	to offer
+		has "First Contact: Quarg: offered"
+		has "flagship model: Pug Arfecta"
+	source
+		attributes "quarg"
+		attributes "station"
+	on offer
+		conversation
+			`As soon as you step off your ship a rather imposing Quarg blocks your exit ramp while stairing piercingly at your ship.`
+			`"It is as though a baby in swaddling has killed a dragon, and taken its treasure for its own..." it says with a mix of amusement and disgusted.`
+			choice
+				`	"It's a long story..."`
+					goto evasive
+				`	"I prefer to frame it as David and Goliath myself."`
+					goto righteous
+				`	"The Pug fancy themselves gods, but God is dead, soo..."`
+					goto anarchy
+				`	"I saw something I liked, so I made it mine."`
+					goto greedy
+			label evasive
+			`	"It matters not how it happened."`
+				goto end
+			label righteous
+			`	"Did not your Jesus compare himself to this David also?" the Quarg says with what you assume is a sarcastic tone.`
+				goto end
+			label anarchy
+			`	"And you believe yourself in a position to judge?" the Quarg says irritated.`
+				goto end
+			label greedy
+			`	"A baby in swaddling as I said before."`
+				goto end
+			label end
+			`	"We give you a warning. You know not what you have child, the weapon you wield."`
+			`	"We have seen its power. We have felt its power. Be careful that you are this ship's captain, not its thrall."`
+			`	The Quarg then curtly motions farewell and leaves you to your business.`
+				decline
