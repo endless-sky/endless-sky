@@ -106,7 +106,7 @@
       "inherits": "base",
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "x64-windows",
-        "CMAKE_CXX_COMPILER": "clang-cl"
+        "CMAKE_CXX_COMPILER": "clang-cl.exe"
       },
       "condition": {
         "type": "equals",
@@ -223,7 +223,7 @@
       "inherits": "ci",
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "x64-windows-release",
-        "CMAKE_CXX_COMPILER": "clang-cl"
+        "CMAKE_CXX_COMPILER": "clang-cl.exe"
       }
     },
     {
