@@ -804,7 +804,7 @@ event "waypoint pirates vanquished"
 		remove fleet "Large Core Pirates"
 
 event "hai ladybug available"
-	shipyard "Mon Ki i'Hiya Export"
+	shipyard "Mon Ki i'Hiya Basics"
 		add "Ladybug"
 
 

@@ -11,18 +11,22 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# For Hai shipyards their "Advanced" ships are restricted to the planets where the ships are actually manufactured.
+# In the case of "Intermediate" shipyards being required, those should be restricted to planets with substantial industrial bases.
+# The basics are those which can (but might not) be exported and sold pretty much anywhere that could provide reasonable maintenance services.
+
 # Imo Loo Mer Corp shipyards:
-shipyard "Imo Loo Mer Showroom"
+shipyard "Imo Loo Mer Advanced"
 	"Centipede"
 	"Geocoris"
 
-shipyard "Imo Loo Mer Export"
+shipyard "Imo Loo Mer Basics"
 	"Scarab"
 	"Lightning Bug"
 
 
 # Mon Ki o'Uden Splinter (unfettered) shipyards:
-shipyard "Mon Ki o'Uden Showroom"
+shipyard "Mon Ki o'Uden Advanced"
 	"Aphid"
 	"Lightning Bug"	#Stolen
 	"Sea Scorpion"
@@ -32,21 +36,21 @@ shipyard "Mon Ki o'Uden Showroom"
 
 
 # Mon Ki i'Hiya Consortium (loyalist) shipyards:
-shipyard "Mon Ki i'Hiya Showroom"
+shipyard "Mon Ki i'Hiya Advanced"
 	"Shield Beetle"
 	# Has "Pond Strider" added by event.
 
-shipyard "Mon Ki i'Hiya Export"
+shipyard "Mon Ki i'Hiya Basics"
 	"Aphid"
 	# Has "Ladybug" & "Flea" added by event.
 
 
 # Yeer e Ki Cooperative shipyards:
-shipyard "Yeer e Ki Showroom"
+shipyard "Yeer e Ki Advanced"
 	"Water Bug"
 	"Cicada"
 
-shipyard "Yeer e Ki Export"
+shipyard "Yeer e Ki Basics"
 	"Aphid"
 	"Grasshopper"
 
