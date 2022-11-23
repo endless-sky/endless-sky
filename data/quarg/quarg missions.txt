@@ -285,7 +285,7 @@ mission "Quarg Pug Arfecta Warning"
 				`	"I saw something I liked, so I made it mine."`
 					goto greedy
 			label evasive
-			`	"It matters not how it happened."`
+			`	It scoffs, "It matters not how it happened."`
 				goto end
 			label righteous
 			`	“You fancy yourself a savior or a revolutionary then?” the Quarg says with what you assume is a sarcastic tone.`
