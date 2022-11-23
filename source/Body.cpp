@@ -258,7 +258,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 			spriteAnimationParameters.frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			spriteAnimationParameters.delay = child.Value(1);
-		else if(child.Token(0) == "transition delay" && child.Size() >= 2 && child.Value(1) > 0.)
+		else if(child.Token(0) == "transition delay" && child.Size() >= 2 && child.Value(1) >= 0.)
 			spriteAnimationParameters.transitionDelay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
 			spriteAnimationParameters.scale = static_cast<float>(child.Value(1));
@@ -317,6 +317,16 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 	}
 	
 	spriteAnimationParameters.triggerOnUse = defaultTriggerOnUse;
+	
+	if(defaultTriggerOnUse && spriteAnimationParameters.indicateReady)
+	{
+		node.PrintTrace("Default animation will not indicate if trigger animation triggers on use!");
+		spriteAnimationParameters.repeat = false;
+		spriteAnimationParameters.startAtZero = true;
+		spriteAnimationParameters.indicateReady = false;
+		spriteAnimationParameters.indicatePercentage = -1.0f;
+	}
+	
 	spriteData->SetSprite("default", sprite, spriteAnimationParameters);
 
 	if(scale != 1.f)
@@ -339,7 +349,6 @@ bool Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 		return false;
 	}
 
-
 	SpriteParameters *spriteData = &this->sprites[state];
 	AnimationParameters spriteAnimationParameters = params;
 
@@ -358,7 +367,7 @@ bool Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 			spriteAnimationParameters.frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			spriteAnimationParameters.delay = child.Value(1);
-		else if(child.Token(0) == "transition delay" && child.Size() >= 2 && child.Value(1) > 0.)
+		else if(child.Token(0) == "transition delay" && child.Size() >= 2 && child.Value(1) >= 0.)
 			spriteAnimationParameters.transitionDelay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
 			spriteAnimationParameters.scale = static_cast<float>(child.Value(1));
@@ -410,7 +419,16 @@ bool Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-
+	
+	if(spriteAnimationParameters.triggerOnUse && spriteAnimationParameters.indicateReady)
+	{
+		node.PrintTrace("Trigger animation will not indicate if trigger is on use!");
+		spriteAnimationParameters.repeat = false;
+		spriteAnimationParameters.startAtZero = true;
+		spriteAnimationParameters.indicateReady = false;
+		spriteAnimationParameters.indicatePercentage = -1.0f;
+	}
+	
 	spriteData->SetSprite(trigger, sprite, spriteAnimationParameters);
 
 	if(scale != 1.f)
@@ -522,15 +540,13 @@ void Body::SetState(BodyState state)
 	// keep smooth animations.
 	bool delayIgnoredPreviousStep = this->transitionState == BodyState::JUMPING ||
 									this->transitionState == BodyState::DISABLED ||
-									this->transitionState == BodyState::LANDING ||
-									this->transitionState == BodyState::TRIGGER;
+									this->transitionState == BodyState::LANDING;
 	bool delayActiveCurrentStep = (state == BodyState::FLYING ||
 									state == BodyState::LAUNCHING || state == BodyState::FIRING)
 									&& delayed < anim.transitionDelay;
 	if(state == this->currentState && this->transitionState != this->currentState
 			&& this->transitionState != BodyState::TRIGGER)
 	{
-		printf("State Transition Canceled %d\n", this->transitionState);
 		// Cancel transition
 		stateTransitionRequested = false;
 
@@ -541,7 +557,6 @@ void Body::SetState(BodyState state)
 	}
 	else if(delayIgnoredPreviousStep && delayActiveCurrentStep && stateTransitionRequested)
 	{
-		printf("State Transition Delayed\n");
 		// Start replaying animation from current frame
 		frameOffset = -currentStep * anim.frameRate;
 		frameOffset += frame;
@@ -612,7 +627,7 @@ void Body::ShowDefaultSprite(bool defaultSprite)
 bool Body::ReadyForAction() const
 {
 	// Never ready for action if transitioning between states
-	return this->anim.indicateReady ? this->stateReady : !this->stateTransitionRequested;
+	return this->anim.indicateReady ? this->stateReady : (!this->stateTransitionRequested || this->transitionState == BodyState::TRIGGER);
 }
 
 
@@ -630,10 +645,7 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 			{
 				SpriteParameters *toSet = &this->sprites[i];
 				if(toSet->IsTrigger(it.first->TrueName()))
-				{
-					toSet->RequestTriggerOnUse(it.first->TrueName(), false);
-					triggerSet[i] = true;
-				}
+					triggerSet[i] = toSet->RequestTriggerOnUse(it.first->TrueName(), false);
 			}
 	// Switch back to default sprite if the outfit is no longer found
 	for(int i = 0; i < BodyState::NUM_STATES; i++)
@@ -653,7 +665,8 @@ bool Body::AssignStateTriggerOnUse(BodyState state, std::string trigger)
 		SpriteParameters *spriteState = &this->sprites[state];
 		if(spriteState->IsTrigger(trigger) && !spriteState->IsCurrentTrigger(trigger))
 		{
-			if(spriteState->RequestTriggerOnUse(trigger, true))
+			if(spriteState->RequestTriggerOnUse(trigger, true) && this->anim.triggerOnUse
+					&& state == this->currentState)
 				this->SetState(BodyState::TRIGGER);
 			triggerSet = true;
 		}

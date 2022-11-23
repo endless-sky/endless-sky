@@ -276,7 +276,7 @@
 		86D9414E818561143BD298BC /* TextReplacements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextReplacements.h; path = source/TextReplacements.h; sourceTree = "<group>"; };
 		8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuAnimationPanel.h; path = source/MenuAnimationPanel.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
-		93524946292DCAD200BED055 /* SpriteParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpriteParameters.h; path = source/SpriteParameters.h; sourceTree = "<group>"; };
+		93524946292DCAD200BED055 /* SpriteParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteParameters.h; path = source/SpriteParameters.h; sourceTree = "<group>"; };
 		938E07E0235970CE00DC2C2B /* FormationPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPattern.cpp; path = source/FormationPattern.cpp; sourceTree = "<group>"; };
 		938E07E1235970CE00DC2C2B /* FormationPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPattern.h; path = source/FormationPattern.h; sourceTree = "<group>"; };
 		950742538F8CECF5D4168FBC /* EsUuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EsUuid.cpp; path = source/EsUuid.cpp; sourceTree = "<group>"; };

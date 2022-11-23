@@ -80,9 +80,6 @@ bool SpriteParameters::RequestTrigger(std::string trigger)
 
 bool SpriteParameters::RequestTriggerOnUse(std::string trigger, bool use)
 {
-	if(this->requestedTrigger == trigger)
-		return false;
-
 	auto it = this->sprites.find(trigger);
 	if(it == this->sprites.end())
 		return false;

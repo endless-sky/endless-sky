@@ -1662,11 +1662,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
 		this->SetState(BodyState::JUMPING);
-		if(isUsingJumpDrive)
-			this->AssignStateTriggerOnUse(BodyState::JUMPING, "Jump Drive");
-		else
-			this->AssignStateTriggerOnUse(BodyState::JUMPING, "default");
-		
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 
@@ -1884,6 +1879,15 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
+		if(targetSystem){
+			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
+			bool isJump = (jumpUsed.first == JumpType::JUMP_DRIVE);
+			if(isJump)
+				this->AssignStateTriggerOnUse(BodyState::JUMPING, "Jump Drive");
+			else
+				this->AssignStateTriggerOnUse(BodyState::JUMPING, "default");
+		}
+		
 		this->SetState(BodyState::JUMPING);
 		if(IsReadyToJump())
 		{
@@ -3021,7 +3025,6 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	Point direction = targetSystem->Position() - currentSystem->Position();
 	bool isJump = (jumpUsed.first == JumpType::JUMP_DRIVE);
 	double scramThreshold = attributes.Get("scram drive");
-
 	// If the system has a departure distance the ship is only allowed to leave the system
 	// if it is beyond this distance.
 	double departure = isJump ?
