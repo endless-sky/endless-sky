@@ -1211,7 +1211,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			choice
 				`	"What's wrong, Sayari?"`
 			`	She says frantically, "Captain <last>, you must leave immediately!`
-			`	"Get on your ship and fly to <planet> right now! The winds of change are afoot and we will have an election. They'll hit the threshold in maybe only twenty minutes, and it'll take maybe thirty more for the bureaucracy to act on it. The instant the election is announced formally, all non-essential ships will be grounded, all communication in or out of Hai space will be cut off, and the border will be sealed to everyone - not in the polite way either. If even one ship tries to cross the border to investigate... there's no telling what will happen.`
+			`	"Get on your ship and fly to <planet> right now! The winds of change are afoot, and we will have an election. They'll hit the threshold in maybe only twenty minutes, and it'll take maybe thirty more for the bureaucracy to act on it. The instant the election is announced formally, all non-essential ships will be grounded, all communication in or out of Hai space will be cut off, and the border will be sealed to everyone - not in the polite way either. If even one ship tries to cross the border to investigate... there's no telling what will happen.`
 			`	"Go, go with all possible haste! I will tell the others, but right now you must go. Now!"`
 				launch
 	on enter "Waypoint"
