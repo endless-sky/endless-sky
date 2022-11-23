@@ -435,7 +435,7 @@ const Dictionary &Outfit::Attributes() const
 
 
 
-bool Outfit::IsAfterburner() const
+bool Outfit::HasAfterburner() const
 {
 	return attributes.Get("afterburner thrust");
 }

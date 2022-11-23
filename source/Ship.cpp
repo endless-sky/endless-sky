@@ -667,7 +667,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
 		// yet installed to the ship's armament.
-		if(it.first->IsAfterburner())
+		if(it.first->HasAfterburner())
 			afterburnerUsages.emplace_back(*it.first);
 		if(it.first->IsWeapon())
 		{
@@ -3832,7 +3832,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				deterrence = CalculateDeterrence();
 		}
-		if(outfit->IsAfterburner())
+		if(outfit->HasAfterburner())
 			afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
 
 		if(outfit->Get("cargo space"))
