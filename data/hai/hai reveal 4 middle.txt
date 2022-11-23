@@ -1036,7 +1036,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			choice
 				`	(Politely wait for her to finish.)`
 					goto disappointed
-				`	"I have a hunch you're going to tell it's a form of writing."`
+				`	"I have a hunch you're going to tell me it's a form of writing."`
 			`	She looks impressed and says, "Very good! I underestimated you, Captain <last>.`
 				goto archaic
 			label disappointed
