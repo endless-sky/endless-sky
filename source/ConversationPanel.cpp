@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
+#include <SDL2/SDL_keyboard.h>
 
 #if defined _WIN32
 #include "Files.h"
@@ -161,6 +162,13 @@ void ConversationPanel::Draw()
 					this->ClickName(side); });
 				continue;
 			}
+			else
+			{
+				// If they click in the field that *is* selected, pop up the
+				// keyboard
+				AddZone(Rectangle(center, fieldSize), [](){
+					SDL_StartTextInput(); });
+			}
 
 			// Fill in whichever entry box is active right now.
 			FillShader::Fill(center, fieldSize, selectionColor);
@@ -265,7 +273,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
+		{
+			// One of the fields is blank. pop up the keyboard, and try again
 			choice = !choice;
+			SDL_StartTextInput();
+		}
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
 		{
 			// Display the name the player entered.
@@ -277,6 +289,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			subs["<last>"] = player.LastName();
 
 			Goto(node + 1);
+			SDL_StopTextInput(); // Hide the keyboard, if it is still there.
 		}
 		else
 			return false;

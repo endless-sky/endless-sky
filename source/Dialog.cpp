@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "UI.h"
 
+#include <SDL2/SDL_keyboard.h>
 #include <cmath>
 
 using namespace std;
@@ -261,11 +262,21 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			if(!isOkDisabled)
 			{
 				DoCallback();
+				if (intFun || stringFun)
+				{
+					SDL_StopTextInput();
+				}
 				GetUI()->Pop(this);
 			}
 		}
 		else
+		{
+			if (intFun || stringFun)
+			{
+				SDL_StopTextInput();
+			}
 			GetUI()->Pop(this);
+		}
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));
