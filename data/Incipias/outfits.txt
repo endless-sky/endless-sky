@@ -20,6 +20,7 @@ outfit "Plasma Discharger"
 		"hull damage" 21
 		"minable damage" 35
 	description "The Incipias started to mine asteroids long before they started space travel due to the rings of their planet. Thats why their tool to mine seems to be more advanced than their generall technology. Still it is not comparable to the efficiency of human weapons."
+	description "The weapon itself shoots bolts of high density plasma that split up into small particles after some time. Because of the plasma infuser the fire rate is exceptional, but the energy usage is horrible.."
 
 outfit "plasma particle"
 	weapon
@@ -40,7 +41,7 @@ outfit "Gas Class Shield"
 	shields 1000
 	"shield generation" .05
 	"shield energy" .06
-	description ""
+	description "The shield technology is one of the most recent technologies of the Incipias. While the shield appears similiar to a human shield device it works on a completly different base. In its core hydrogen is burned that provides energy for regeneration. But because scientist saw a more efficient use of this burning technology, they also made it the main power source of all of their ships."
 
 outfit "Liquid Class Shield"
 	category "Systems"
@@ -50,6 +51,7 @@ outfit "Liquid Class Shield"
 	shields 1250
 	"shield generation" .1
 	"shield energy" .11
+	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency by a lot but also requires some extra structures which make this outfit only popular on larger ships."
 
 outfit "Solid Class Shield"
 	category "Systems"
@@ -58,6 +60,7 @@ outfit "Solid Class Shield"
 	shields 1500
 	"shield generation" .3
 	"shield energy" .31
+	description "This shield generator is efficiency pure. It burns it input in stages from solid in the center to gas state in the outer hull. Sadly this efficiency requires a lot of adjusting system to stabalize the process. Only the most heavy warships are using this genereator therefore."
 
 outfit "Liquid Hydrogen Cell"
 	category "Power"
@@ -65,4 +68,4 @@ outfit "Liquid Hydrogen Cell"
 	mass 20
 	"outfit space" -20
 	"energy capacity" 2000
-	description "This form of energy storage was discovered early by the Incipias because of the great amount of Hydrogen on their homeworld."
+	description "This form of energy storage was discovered early by the Incipias because of the great amount of Hydrogen on their homeworld. Because the Incipias mostly access the energy at the time it is produced only a small storage is needed. That is why most of their ship have only one cell installed."
