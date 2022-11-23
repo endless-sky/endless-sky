@@ -652,7 +652,7 @@ mission "Hai Leaks Response 2A"
 		has "Hai Reveal [A08] Symbol Identification: done"
 	on offer
 		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic corps for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free Worlds' interests as a diplomat to the Hai.`
-		log `Katya says the Free Worlds has found pirates with Hai weapons, including a warehouse full of them. She is worried that the Hai government may be giving weapons to pirates as tribute, and warns of an "explosive diplomatic incident" if the Republic finds out.`
+		log `Katya says the Free Worlds has found pirates with Hai weapons, including a warehouse full of them. She is worried that the Hai government may be giving weapons to pirates as tribute and warns of an "explosive diplomatic incident" if the Republic finds out.`
 		conversation
 			`When you land on Deep, Katya is there waiting for you along with Alondo. "<first>! It's so good to see you again! When the Republic briefed the new Chancellor and his Cabinet on the Hai, he brought us in for advice. We thought to try and reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
 			`	You hug them both in turn and return the greeting. "I thought it seemed odd when they said I was meeting you for this, Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
