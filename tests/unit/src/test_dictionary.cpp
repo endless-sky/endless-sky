@@ -64,7 +64,7 @@ TEST_CASE( "Benchmark Dictionary::Get", "[!benchmark][dictionary]" ) {
 	for(int i = 0; i < SIZE; ++i)
 	{
 		auto str = std::to_string(i);
-		const auto size = str.size();
+		const int size = str.size();
 		for(int j = 0; j < AVERAGE_ATTRIBUTE_LENGTH / size; ++j)
 			str += str;
 
