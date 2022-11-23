@@ -278,7 +278,7 @@ mission "Quarg Pug Arfecta Warning"
 			choice
 				`	"It's a long story..."`
 					goto evasive
-				`	"I prefer to frame it as an act of righteous defiance."`
+				`	"It was an act of righteous defiance."`
 					goto righteous
 				`	"The Pug fancy themselves gods, but God is dead, soo..."`
 					goto anarchy
