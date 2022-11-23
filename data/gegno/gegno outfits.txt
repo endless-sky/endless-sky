@@ -64,7 +64,7 @@ outfit "R04 Crusade Battery"
 	thumbnail outfit/gbatterylarge
 	"energy capacity" 8885
 	"outfit space" -83
-	description `As the largest battery mounted on Gegno ships, the Crusade Battery holds a large amount of energy, more that it would take a small generator a decent amount of time to produce in order to support the energy hungry warships of both the Scin and the Vi. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options.`
+	description `As the largest battery mounted on Gegno ships, the Crusade Battery holds a large amount of energy, more than it would take a small generator a decent amount of time to produce in order to support the energy hungry warships of both the Scin and the Vi. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options.`
 
 
 outfit "C3 Scrap Cell"
