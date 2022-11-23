@@ -3073,7 +3073,7 @@ mission "Wanderers: Sestor: Factory 1"
 				`	(Return to your ship.)`
 					goto end
 			`	Tele'ek gestures towards Rek who says, "I raised a similar concern, but in this case, I [recognize, accept] that the benefit outweighs possible risks."`
-			`	She looks at Tele'ek who explains, "If they view these weapons as signs of [aggression?] against themselves, there is little I can do for them. Their ships are not as [durable, well-armored] as the Kor Sestor automata, our other technologies would already be [effective, damaging] enough if used against them. If they are [rational, intelligent], they will value the added protection on this [journey, endeavor]."`
+			`	Tele'ek explains, "If they view these weapons as signs of [aggression?] against themselves, there is little I can do for them. Their ships are not as [durable, well-armored] as the Kor Sestor automata, so our other technologies would already be [effective, damaging] enough if used against them. If they are [rational, intelligent], they will value the added protection on this [journey, endeavor]."`
 				goto end
 			label buy
 			`	"We have not yet produced many, but they will be [available, present] in our outfitters soon."`
