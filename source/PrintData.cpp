@@ -15,7 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PrintData.h"
 
+#include "DataFile.h"
+#include "DataNode.h"
 #include "GameData.h"
+#include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "Ship.h"
@@ -116,9 +119,10 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons" ||
-				arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines" ||
-				arg == "--power" || arg == "--planets" || arg == "--systems")
+		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons"
+				|| arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines"
+				|| arg == "--power" || arg == "--planets" || arg == "--systems"
+				|| arg == "--matches")
 			return true;
 	}
 	return false;
@@ -145,6 +149,8 @@ void PrintData::Print(const char *const *argv)
 			Planets(argv);
 		else if(arg == "--systems")
 			Systems(argv);
+		else if(arg == "--matches")
+			LocationFilterMatches(argv);
 	}
 	cout.flush();
 }
@@ -175,6 +181,9 @@ void PrintData::Help()
 	cerr << "        --attributes: prints a list of all systems and their attributes." << endl;
 	cerr << "            --reverse: prints a list of all system attributes and which systems have them."
 			<< endl;
+	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
+			<< endl;
+	cerr << "        The first node of the location filter should be `location`." << endl;
 }
 
 
@@ -481,7 +490,8 @@ void PrintData::PrintEngineStats()
 		<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
 		<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
 		<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
-		<< "reverse heat/s" << '\n';
+		<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
+		<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
 		// Skip non-engines.
@@ -502,7 +512,11 @@ void PrintData::PrintEngineStats()
 		cout << outfit.Get("turning heat") * 60. << ',';
 		cout << outfit.Get("reverse thrust") * 3600. << ',';
 		cout << outfit.Get("reverse thrusting energy") * 60. << ',';
-		cout << outfit.Get("reverse thrusting heat") * 60. << '\n';
+		cout << outfit.Get("reverse thrusting heat") * 60. << ',';
+		cout << outfit.Get("afterburner thrust") * 3600. << ',';
+		cout << outfit.Get("afterburner energy") * 60. << ',';
+		cout << outfit.Get("afterburner heat") * 60. << ',';
+		cout << outfit.Get("afterburner fuel") * 60. << '\n';
 	}
 	cout.flush();
 }
@@ -644,4 +658,27 @@ void PrintData::Systems(const char *const *argv)
 		PrintObjectAttributes(GameData::Systems(), "system");
 	else
 		PrintObjectList(GameData::Systems(), false, "system");
+}
+
+
+
+void PrintData::LocationFilterMatches(const char *const *argv)
+{
+	DataFile file(cin);
+	LocationFilter filter;
+	for(const DataNode &node : file)
+		if(node.Token(0) == "location")
+		{
+			filter.Load(node);
+			break;
+		}
+
+	cout << "Systems matching provided location filter:\n";
+	for(const auto &it : GameData::Systems())
+		if(filter.Matches(&it.second))
+			cout << it.first << '\n';
+	cout << "Planets matching provided location filter:\n";
+	for(const auto &it : GameData::Planets())
+		if(filter.Matches(&it.second))
+			cout << it.first << '\n';
 }
