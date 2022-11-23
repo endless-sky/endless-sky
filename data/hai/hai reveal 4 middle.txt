@@ -1181,7 +1181,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Sayari explains, "There's a multi-step voting process, which takes into account dissent between Elders. After each stage of voting, there's discussions between strategically chosen groups of Elders, and afterwards the dissent is usually lower. They iterate until they come to a consensus, unless it takes too long; then they'll use the majority vote."`
 				goto results
 			label teeneep
-			`	Teeneep responds, "They'll vote to do nothing. It's all this council knows how to do." Sayari sighs loudly at this, but doesn't contradict Teeneep.`
+			`	Teeneep responds, "They'll vote to do nothing. It's all this council knows how to do." Sayari sighs loudly at this but doesn't contradict Teeneep.`
 			label results
 			`	After a few more minutes of private discussions, the Elders vote "no" on both counts. Your words may not have swayed the vote, but perhaps they'll resonate in the Hai psyche long enough to have an effect.`
 			`	Teeneep is allowed to respond, and says ominously, "You know what will happen next."`
