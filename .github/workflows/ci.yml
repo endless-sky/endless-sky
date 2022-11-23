@@ -336,9 +336,11 @@ jobs:
           - os: ubuntu-20.04
             opengl: gles
             glew: libgles2-mesa
-          - os: ubuntu-22.04
-            opengl: gles
-            glew: libgles2-mesa
+          # Ubuntu 22 has a pretty severe performance regression using OpenGL ES.
+          # Disable it for now.
+          # - os: ubuntu-22.04
+          #   opengl: gles
+          #   glew: libgles2-mesa
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
