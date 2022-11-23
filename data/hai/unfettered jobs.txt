@@ -596,7 +596,7 @@ mission "Unfettered Bring True Hai"
 		attributes "unfettered"
 	to offer
 		random < 75
-		has "Unfettered: The Word Has Spread: done"
+		has "Unfettered: Jump Drive 3: offered"
 	on stopover
 		dialog `You have picked up all <bunks> Hai. Now all that is left is to bring them to <destination>.`
 	on visit
@@ -623,7 +623,7 @@ mission "Unfettered Darkcloak Ship Materials"
 	to offer
 		random < 50
 		has "Unfettered Jump Drive 3: done"
-		has "Unfettered: The War Has Started"
+		has "Unfettered: Ready For The War"
 	on stopover
 		dialog `After some searching, you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. You prepare to head back to <origin> and deliver them.`
 	on visit
