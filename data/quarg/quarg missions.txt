@@ -273,7 +273,7 @@ mission "Quarg Pug Arfecta Warning"
 	on offer
 		conversation
 			`As soon as you land your ship a crowd of visibly irritated Quarg start to gather, and as you go to disembark you find a rather imposing Quarg blocks your exit while staring piercingly at your ship.`
-			`"It is as though a baby in swaddling has tamed a dragon and now rides it through the sky spewing fire with reckless abandon." it says with a mix of amusement and disgust.`
+			`"It is as though a baby in swaddling has tamed a dragon and now rides it through the sky spewing fire with reckless abandon," it says with a mix of amusement and disgust.`
 			choice
 				`	"It's a long story..."`
 					goto evasive
