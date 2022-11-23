@@ -277,7 +277,7 @@ mission "Quarg Pug Arfecta Warning"
 			choice
 				`	"It's a long story..."`
 					goto evasive
-				`	"I prefer to frame it as David and Goliath myself."`
+				`	"I prefer to frame it as an act of righteous defiance."`
 					goto righteous
 				`	"The Pug fancy themselves gods, but God is dead, soo..."`
 					goto anarchy
@@ -287,7 +287,7 @@ mission "Quarg Pug Arfecta Warning"
 			`	"It matters not how it happened."`
 				goto end
 			label righteous
-			`	“You fancy yourself a savior or a prophet then?” the Quarg says with what you assume is a sarcastic tone.`
+			`	“You fancy yourself a savior or a revolutionary then?” the Quarg says with what you assume is a sarcastic tone.`
 				goto end
 			label anarchy
 			`	"So you took it upon yourself to prove them wrong?" the Quarg says with an amused, incredulous smile.`
