@@ -1145,7 +1145,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				goto questions
 			label go
 			`	Sayari nods at you and looks toward Teeneep. "Look, the Elders are pretty much permanently on call at the moment. None of them are leaving <origin>, and they're in session as we speak. Let me put a priority audience request into the system, and you can probably see them this afternoon. In the meantime, why don't I order some food here? You can use my spare desk over there to prepare what you need to say."`
-			`	Teeneep takes a deep breath and accepts the plan with sudden and surprising grace. She gathers her pads and sets up where indicated. "Alright, just get me some comfort food while I work on this."`
+			`	Teeneep takes a deep breath and accepts the plan with sudden and surprising grace. She gathers her pads, then sets up where indicated. "Alright, just get me some comfort food while I work on this."`
 			`	Sayari asks you, "Her favorite foods are acorn curry and nutmeg pie. Which should we order?"`
 			choice
 				`	"Acorn curry sounds... good?"`
