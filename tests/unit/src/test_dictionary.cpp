@@ -53,26 +53,21 @@ SCENARIO( "A Dictionary instance is being used", "[dictionary]") {
 	}
 }
 
-// Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
-// WHEN, and THEN macros. (There will be cases where the more traditional TEST_CASE and SECTION macros
-// are better suited to declaration of the public API.)
-
-// When writing assertions, prefer the CHECK and CHECK_FALSE macros when probing the scenario, and prefer
-// the REQUIRE / REQUIRE_FALSE macros for fundamental / "validity" assertions. If a CHECK fails, the rest
-// of the block's statements will still be evaluated, but a REQUIRE failure will exit the current block.
-
-// #endregion unit tests
-
 // #region benchmarks
 #ifdef CATCH_CONFIG_ENABLE_BENCHMARKING
 TEST_CASE( "Benchmark Dictionary::Get", "[!benchmark][dictionary]" ) {
 	constexpr int SIZE = 100;
+	constexpr int AVERAGE_ATTRIBUTE_LENGTH = 20;
 
 	Dictionary dict;
 	std::vector<std::string> strings;
 	for(int i = 0; i < SIZE; ++i)
 	{
 		auto str = std::to_string(i);
+		const auto size = str.size();
+		for(int j = 0; j < AVERAGE_ATTRIBUTE_LENGTH / size; ++j)
+			str += str;
+
 		dict[str] = i;
 		strings.emplace_back(std::move(str));
 	}
