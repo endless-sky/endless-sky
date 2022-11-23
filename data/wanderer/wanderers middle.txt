@@ -3063,14 +3063,14 @@ mission "Wanderers: Sestor: Factory 1"
 			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you." He gestures with a wing towards a number of Wanderer vessels being loaded with supplies and prepared for battle. You notice a type of weapon you don't recognize mounted on some of them.`
 			choice
 				`	"Are those ships carrying a new type of weapon?"`
-				`	(Say nothing.)`
+				`	"Sounds like a good plan. Let's get going!"`
 					goto end
 			`	Tele'ek seems pleased that you noticed. "Indeed. They are more [useful, effective] against hull armor than shields, [perfect, appropriate] for use against the Kor Sestor vessels alongside our [existing, previous] armaments." He pauses before continuing. "[Hopefully, If this goes well], they will not get much use, but will see you [safely, successfully] through this [mission, task] to finally end this [blight, menace]. However, we will have them [ready, prepared] if the need does [arise, return]."`
 			choice
 				`	"Can I get some for my own ship?"`
 					goto buy
 				`	"Is it a good idea to show off these new weapons to the Korath Exiles when making overtures of friendship?"`
-				`	(Return to your ship.)`
+				`	"I look forward to seeing them in action. I should get my ship ready for to go."`
 					goto end
 			`	Tele'ek gestures towards Rek who says, "I raised a similar concern, but in this case, I [recognize, accept] that the benefit outweighs possible risks."`
 			`	Tele'ek explains, "If they view these weapons as signs of [aggression?] against themselves, there is little I can do for them. Their ships are not as [durable, well-armored] as the Kor Sestor automata, so our other technologies would already be [effective, damaging] enough if used against them. If they are [rational, intelligent], they will value the added protection on this [journey, endeavor]."`
@@ -3078,7 +3078,7 @@ mission "Wanderers: Sestor: Factory 1"
 			label buy
 			`	"We have not yet produced many, but they will be [available, present] in our outfitters soon."`
 			label end
-			`	You return to your ship, and get ready for the trip to <planet>.`
+			`	You and Rek say goodbye to Tele'ek before returning to your ship, and preparing it for the trip to <planet>.`
 				accept
 	npc accompany save
 		government "Korath"
@@ -3373,6 +3373,7 @@ mission "Wanderers: Sestor: Final: Patched"
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
 
+# This patch mission is necessary for people who got the older version of hte "Sestor: Final" mission without the patches integrated.
 mission "Wanderers: Sestor: Combined Patch 1"
 	landing
 	invisible
