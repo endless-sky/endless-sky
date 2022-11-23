@@ -1189,7 +1189,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Sayari leads you to a private meeting room.`
 			`	Teeneep explains her ominous words. "Our democracy allows a Petition of No Confidence against the Elders. If there are enough petitioners, it forces an election. Activists in the organization I founded have led a grassroots movement pushing a petition for weeks.`
 			`	"It was obvious what the Elder Council's response would be," and with a bit of sarcasm she adds, "and I knew I would only come back alive if the Unfettered agreed to help. So, my supporters arranged in advance for the petition to be promoted along with a widespread broadcast of these proceedings."`
-			`	Sayari assures you, "These petitions take time, and rarely succeed. It is more of a warning to the Elders than anything else. Still, we should watch the situation.`
+			`	Sayari assures you, "These petitions take time and rarely succeed. It is more of a warning to the Elders than anything else. Still, we should watch the situation.`
 			`	"For now," she says, "we're all in need of some lunch."`
 			choice
 				`	"I've heard good things about acorn pizza."`
