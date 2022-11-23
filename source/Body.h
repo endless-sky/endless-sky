@@ -77,7 +77,7 @@ public:
 
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node, BodyState state = BodyState::FLYING);
-	void LoadTriggerSprite(const DataNode &node, BodyState state, AnimationParameters params);
+	bool LoadTriggerSprite(const DataNode &node, BodyState state, AnimationParameters params);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
 	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const;
 	// Set the sprite.
@@ -134,6 +134,7 @@ private:
 																SpriteParameters(), SpriteParameters()};
 	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
+	mutable bool postTriggerTransition = false;
 	bool returnDefaultSprite = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;

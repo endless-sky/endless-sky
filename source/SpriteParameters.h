@@ -63,10 +63,12 @@ public:
 
 	// Set the current trigger
 	std::string GetTrigger() const;
-	void SetTrigger(std::string trigger);
-	bool SetTriggerOnUse(std::string trigger);
+	bool RequestTrigger(std::string trigger);
+	bool RequestTriggerOnUse(std::string trigger, bool use);
 	bool IsCurrentTrigger(std::string trigger) const;
 	bool IsTrigger(std::string trigger) const;
+
+	void CompleteTriggerRequest();
 
 	// Used for saving the sprites.
 	const std::map<std::string, std::tuple<const Sprite *, AnimationParameters>> *GetAllSprites() const;
@@ -79,7 +81,7 @@ public:
 
 private:
 	// Used to trigger different animations
-	std::string trigger = "default";
+	std::string trigger = "default", requestedTrigger = "default";
 
 	// Sprites to be animated
 	std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> sprites;

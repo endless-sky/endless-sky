@@ -28,7 +28,6 @@
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		666B4194B480CFD364FB3524 /* SpriteParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB4DD8AB0F69AC91F13542 /* SpriteParameters.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
-		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
@@ -277,6 +276,7 @@
 		86D9414E818561143BD298BC /* TextReplacements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextReplacements.h; path = source/TextReplacements.h; sourceTree = "<group>"; };
 		8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuAnimationPanel.h; path = source/MenuAnimationPanel.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
+		93524946292DCAD200BED055 /* SpriteParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpriteParameters.h; path = source/SpriteParameters.h; sourceTree = "<group>"; };
 		938E07E0235970CE00DC2C2B /* FormationPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPattern.cpp; path = source/FormationPattern.cpp; sourceTree = "<group>"; };
 		938E07E1235970CE00DC2C2B /* FormationPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPattern.h; path = source/FormationPattern.h; sourceTree = "<group>"; };
 		950742538F8CECF5D4168FBC /* EsUuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EsUuid.cpp; path = source/EsUuid.cpp; sourceTree = "<group>"; };
@@ -593,6 +593,7 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				93524946292DCAD200BED055 /* SpriteParameters.h */,
 				1578F880250B5F8A00D318FB /* InfoPanelState.cpp */,
 				1578F882250B5F8A00D318FB /* InfoPanelState.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
@@ -914,7 +915,6 @@
 				A7F240B4AC219841424A387A /* Logger.cpp */,
 				AE57401AA43232EDEABFAE13 /* Logger.h */,
 				1EFB4DD8AB0F69AC91F13542 /* SpriteParameters.cpp */,
-				7FF44BB89D528B53A3D083D2 /* SpriteParameters.h */,
 				6B7242769DEFC88E71359DEB /* AlertLabel.cpp */,
 				864B48C89992966088767671 /* AlertLabel.h */,
 				13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */,

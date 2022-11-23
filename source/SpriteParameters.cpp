@@ -57,6 +57,8 @@ const Sprite *SpriteParameters::GetSprite(std::string trigger) const
 	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
 }
 
+
+
 std::string SpriteParameters::GetTrigger() const
 {
 	return this->trigger;
@@ -64,32 +66,48 @@ std::string SpriteParameters::GetTrigger() const
 
 
 
-void SpriteParameters::SetTrigger(std::string trigger)
-{
-	auto it = this->sprites.find(trigger);
-	if(it == this->sprites.end())
-		return;
-	
-	AnimationParameters toExpose = std::get<1>(it->second);
-	this->trigger = trigger;
-	this->exposed = toExpose;
-}
-
-bool SpriteParameters::SetTriggerOnUse(std::string trigger)
+bool SpriteParameters::RequestTrigger(std::string trigger)
 {
 	auto it = this->sprites.find(trigger);
 	if(it == this->sprites.end())
 		return false;
 	
+	this->requestedTrigger = trigger;
+	return true;
+}
+
+
+
+bool SpriteParameters::RequestTriggerOnUse(std::string trigger, bool use)
+{
+	if(this->requestedTrigger == trigger)
+		return false;
+
+	auto it = this->sprites.find(trigger);
+	if(it == this->sprites.end())
+		return false;
+	
 	AnimationParameters toExpose = std::get<1>(it->second);
-	if(toExpose.triggerOnUse || trigger == "default")
+	if(toExpose.triggerOnUse == use)
 	{
-		this->trigger = trigger;
-		this->exposed = toExpose;
+		this->requestedTrigger = trigger;
 		return true;
 	}
+
 	return false;
 }
+
+
+
+void SpriteParameters::CompleteTriggerRequest()
+{
+	auto it = this->sprites.find(this->requestedTrigger);
+	
+	this->trigger = this->requestedTrigger;
+	this->exposed = std::get<1>(it->second);
+}
+
+
 
 bool SpriteParameters::IsCurrentTrigger(std::string trigger) const
 {
