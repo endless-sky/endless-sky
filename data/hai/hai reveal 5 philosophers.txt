@@ -413,7 +413,7 @@ conversation "giti tripped an alert"
 	`	Uncannily, the agents all smirk at you at the same time. Kopkow responds flatly, "We don't respond well to threats."`
 	label uncomplaining
 	`	"Now, Captain <last>, your friend Giti here has tripped a flag in our systems that marks what you're looking into as an item of particular interest to Syndicate Internal Affairs. In fact, it is an interest which they have exclusive and sole jurisdiction over, even over and above us." He looks at you meaningfully. "That requires an Act of Parliament in a closed session, which has not occurred for a significant length of time, if you catch my drift."`
-	`	He clears his throat, "While you were making your way here we have accessed your ship's logs with a full warrant to search through your activity since your last contact with Giti. It is all perfectly legal and you'd be wise not to object. Since we have determined that you have found... something, and that it is meaningful, we must send you to Hephaestus. We request that you take Giti, any information or equipment you were planning to take, and go immediately and directly. Do you understand?"`
+	`	He clears his throat. "While you were making your way here, we have accessed your ship's logs with a full warrant to search through your activity since your last contact with Giti. It is all perfectly legal and you'd be wise not to object. Since we have determined that you have found... something, and that it is meaningful, we must send you to Hephaestus. We request that you take Giti, any information or equipment you were planning to take, and go immediately and directly. Do you understand?"`
 	choice
 		`	"Yes"`
 			accept
