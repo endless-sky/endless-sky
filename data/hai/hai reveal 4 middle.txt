@@ -82,7 +82,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 				`	"It sounds like something I can help with, but there's something I need from you first."`
 					goto infotrade
 			label infotrade
-			`	She sounds familiar with the information trade, as she says, "What do you need?"`
+			`	She seems quite familiar with the practice of trading information, as she simply says, "What do you need?"`
 				goto tribute
 			label direct
 			`	Teeneep and the other Hai seem shocked. After a surprised exclamation in Hai, she says, "What!?"`
