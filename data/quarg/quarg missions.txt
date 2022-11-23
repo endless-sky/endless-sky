@@ -272,7 +272,7 @@ mission "Quarg Pug Arfecta Warning"
 		attributes "ringworld"
 	on offer
 		conversation
-			`As soon as you step off your ship a rather imposing Quarg blocks your exit while staring piercingly at your ship.`
+			`As soon as you land your ship a crowd of visibly irritated Quarg start to gather, and as you go to disembark you find a rather imposing Quarg blocks your exit while staring piercingly at your ship.`
 			`"It is as though a baby in swaddling has tamed a dragon, and now rides it through the sky spewing fire with reckless abandon." it says with a mix of amusement and disgust.`
 			choice
 				`	"It's a long story..."`
@@ -299,5 +299,5 @@ mission "Quarg Pug Arfecta Warning"
 			`	"We give you a warning. You know not what you have child, the weapon you wield."`
 			`	"We have seen its power. We have felt its power. We have learned from its power. But you and your kind know nothing of this power and its burdens and dangers. Be careful that you direct this power, and not it you."`
 			`	"And be careful to remember that we have learned to overcome it."`
-			`	The Quarg then curtly motions farewell and leaves you to your business.`
+			`	The Quarg then curtly motions farewell and leaves you to your business. As you go you feel the crowd's glare follow you.`
 				decline
