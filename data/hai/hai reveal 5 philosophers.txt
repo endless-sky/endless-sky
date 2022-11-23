@@ -330,7 +330,7 @@ mission "Hai Reveal [B04] The Road Not Taken"
 			label giveup
 			`	She picks up a bag and starts putting some items from her desk into it.`
 			label end
-			`	"In any event, I really must go. Check out those coordinates, and then come see me. Fly safe Captain!"`
+			`	"In any event, I really must go. Check out those coordinates, and then come see me. Fly safe, Captain!"`
 				accept
 
 event "reveal devil-run"
