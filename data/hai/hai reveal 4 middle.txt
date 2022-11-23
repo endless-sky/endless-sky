@@ -1164,7 +1164,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "told hai to accept unfettered help"
 			`	One Elder rises and says, "The Unfettered only know how to make war. Once they are in human space, there's no telling what they'll do." Many in the room nod in agreement.`
-			`	Teeneep responds, "They are clever strategists and dedicated in our protection. Never would they take such unnecessary risks. I am certain they would accept an overseer among us to advise them on limits to their actions."`
+			`	Teeneep responds, "They are clever strategists and dedicated in our protection. Never would they take such unnecessary risks. I am certain they would accept an overseer, from among us, to advise them on limits to their actions."`
 				goto "the elders vote"
 			label "turn back unfettered"
 			action
