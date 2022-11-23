@@ -1151,7 +1151,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				`	"Acorn curry sounds... good?"`
 					goto curry
 				`	"I'd love some nutmeg pie."`
-			`	The pie tastes and feels like a meaty shepherd's pie, even though it's all nuts and vegetables. The subtle taste of nutmeg really brings it all together, and accents the acorns quite well.`
+			`	The pie tastes and feels like a meaty shepherd's pie, even though it's all nuts and vegetables. The subtle taste of nutmeg really brings it all together, accenting the acorns quite well.`
 				goto meeting
 			label curry
 			`	You eat the most delicious curry you've ever tasted, with a perfect combination of acorns and the best Indian spices. It's amazing what Hai can do with nuts; no wonder Teeneep considers this a comfort food.`
