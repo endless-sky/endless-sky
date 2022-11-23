@@ -509,7 +509,7 @@ void Ship::Load(const DataNode &node)
 			if(child.Token(1) == "bays")
 				removeBays = true;
 			else
-				child.PrintTrace("Skipping unsupported 'remove':");
+				child.PrintTrace("Skipping unsupported \"remove\":");
 		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
