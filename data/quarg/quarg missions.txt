@@ -290,7 +290,7 @@ mission "Quarg Pug Arfecta Warning"
 			`	“You fancy yourself a savior or a prophet then?” the Quarg says with what you assume is a sarcastic tone.`
 				goto end
 			label anarchy
-			`	"So you took it upon yourself to prove them wrong?" the Quarg says with an amused incredulous smile.`
+			`	"So you took it upon yourself to prove them wrong?" the Quarg says with an amused, incredulous smile.`
 				goto end
 			label greedy
 			`	"A baby in swaddling, as I said before."`
