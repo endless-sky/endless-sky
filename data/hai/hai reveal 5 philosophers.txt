@@ -320,7 +320,7 @@ mission "Hai Reveal [B05-short] The Road Not Taken"
 		has "event: knows about keystones and wormholes"
 	on offer
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
-		log `Agent Kopkow` `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
+		log "Minor People" "Agent Kopkow" `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
 		conversation "giti tripped an alert"
 	on fail
 		"reputation: Republic" <?= -100

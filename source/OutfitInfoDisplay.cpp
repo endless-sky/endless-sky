@@ -35,7 +35,7 @@ namespace {
 		make_pair(60. * 100., ""),
 		make_pair(100., "%"),
 		make_pair(100., ""),
-		make_pair(1. / 60., "")
+		make_pair(1. / 60., "s")
 	};
 
 	const map<string, int> SCALE = {
@@ -357,7 +357,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
-		attributeValues.emplace_back(outfit.Ammo()->Name());
+		attributeValues.emplace_back(outfit.Ammo()->DisplayName());
 		attributesHeight += 20;
 		if(outfit.AmmoUsage() != 1)
 		{
