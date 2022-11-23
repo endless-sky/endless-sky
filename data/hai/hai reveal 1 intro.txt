@@ -1091,9 +1091,37 @@ mission "Hai Leaks Response 6"
 
 event "secret mountaintop"
 	# Ensure Mountaintop exists so the next mission can trigger
+	# The system is redefined from scratch here to insulate against map file changes messing with later events (see issue #7605 which this fixes)
 	system "Ultima Thule"
 		government "Uninhabited"
-		add object
+		object
+			sprite star/f0
+			period 10
+		object
+			sprite planet/desert5
+			distance 200
+			period 22.3606
+		object
+			sprite planet/europa-b
+			distance 403.41
+			period 64.0560
+		object
+			sprite planet/desert7-b
+			distance 824.9
+			period 187.301
+		object
+			sprite planet/gas1
+			distance 1706.99
+			period 557.553
+			object
+				sprite planet/ice8-b
+				distance 216
+				period 11.1964
+		object "Wormhole Alpha"
+			sprite planet/wormhole
+			distance 4208.63
+			period 2158.5
+		object
 			distance 4208.63
 			period 2158.5
 			object Mountaintop
