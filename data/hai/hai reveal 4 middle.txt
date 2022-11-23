@@ -89,7 +89,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			label tribute
 			`	You explain about pirates having Hai weapons, and about a "trusted source" that told you about an entire warehouse of them.`
 			`	"That's... worrying, but the Elders are pacifists to a fault, so I can't imagine them doing it. It is more likely that smugglers took it there, or ordinary pilots sold their used Hai gear. Do you have more evidence?"`
-			`	After you describe what Sayari said about Hai pirate deals, Teeneep shakes her head and says, "Sayari would put a stop to any weapon deals. I'm sure it's something innocuous, like cash, or basic supplies for their anarchist worlds.`
+			`	After you describe what Sayari said about Hai pirate deals, Teeneep shakes her head and says, "Sayari would put a stop to any weapon deals. I'm sure it's something innocuous, like cash or basic supplies for their anarchist worlds.`
 			`	"If you find solid proof that our government is arming pirates, I can, and will, stop them. There are extreme legal maneuvers civilians can use to force the Elder Council to change their mind.`
 			`	"In the meantime, can you help me?"`
 			label questions
