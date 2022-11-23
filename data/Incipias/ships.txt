@@ -50,4 +50,5 @@ ship "Nimbus"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Nimbus is the largest ship of Incipias. It was one of their first designs."
+	description "The Nimbus is the first spaceship that was really able to navigate through a system built by the Incipias. Since it was first published it is loved among wealthier captains and a dream of captains who just started."
+	description "Although th Nimbus is labeled as a heavy warship it is a multi purpose ship. Whether one uses it for mining, passengers or cargo it will fullfill its job in the most pleasent way. Seldomly it is used in combat because the Incipias are not fighting open wars."
