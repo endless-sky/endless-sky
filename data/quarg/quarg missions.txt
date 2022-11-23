@@ -287,7 +287,7 @@ mission "Quarg Pug Arfecta Warning"
 			`	"It matters not how it happened."`
 				goto end
 			label righteous
-			`	"Did not your Jesus compare himself to this David also?" the Quarg says with what you assume is a sarcastic tone.`
+			`	“You fancy yourself a savior or a prophet then?” the Quarg says with what you assume is a sarcastic tone.`
 				goto end
 			label anarchy
 			`	"And you believe yourself in a position to judge?" the Quarg says irritated.`
