@@ -32248,7 +32248,7 @@ planet "Aresepru Nat"
 	
 planet Arroharg
 	landscape land/canyon12
-	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Large organic-looking machines seem to be dispalcing particular mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-accustomed and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become, and there's no telling how deep into the moon they go, as they become restricted after a certain depth.`
+	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Large organic-looking machines seem to be displacing particular mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-like and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become. There's no telling how deep into the moon they go, as they are restricted to anyone but the Quarg.`
 	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although this is sometimes hard to decifer. It seems they aren't used to outside visitors here and don't speak your language.` 
 	government Quarg
 	bribe 0
