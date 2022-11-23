@@ -254,7 +254,7 @@ mission "Unfettered Jump Drive 3"
 				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
 					goto job
-			apply
+			action
 				set "unfettered know of wanderers"
 			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
 			branch know
