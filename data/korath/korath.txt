@@ -410,6 +410,18 @@ fleet "Korath Ember Waste Large Raid"
 		"Palavret (Ember Shunt)"
 		"Palavret (Ember Blaze)" 2
 		"'olofez" 9
+	variant 1
+		"Lor'kas Ik 582 (Ember)"
+		"Palavret (Ember Shunt)"
+		"Palavret (Ember Blaze)"
+		"Rano'erek (Heaver)"
+		"'olofez" 10
+	variant 1
+		"Lor'kas Ik 582 (Ember)"
+		"Palavret (Ember)"
+		"Palavret (Ember Blaze)"
+		"Rano'erek"
+		"'olofez" 11
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
