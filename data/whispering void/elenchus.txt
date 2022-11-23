@@ -100,28 +100,30 @@ fleet "Devil-Run Warships"
 	cargo 0
 	personality
 		heroic plunders harvests
-	variant 1
+	variant 3
 		"Leviathan"
-	variant 1
+	variant 3
 		"Leviathan (Laser)"
-	variant 1
+	variant 3
 		"Leviathan (Heavy)"
-	variant 5
+	variant 6
 		"Bactrian"
 		"Dagger" 3
-	variant 1
+	variant 2
 		"Vanguard (Particle)"
 	variant 1
 		"Vanguard (Missile)"
 	variant 1
 		"Vanguard"
 	variant 1
-		"Protector (Laser)"
+		"Firebird"
 	variant 1
+		"Protector (Laser)"
+	variant 2
 		"Protector (Proton)"
 	variant 1
 		"Protector"
-	variant 2
+	variant 3
 		"Falcon"
 	variant 3
 		"Falcon (Laser)"
