@@ -492,7 +492,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	"It's all in this data stick."`
 				`	"I think this is what you've been looking for."`
-			`	Goraz takes the data stick you brought and plugs it into the communicator. After several minutes of mucking about with list formats and muttering incoherently to himself he pauses as a search result collates matches on his screen. You're not sure exactly what you're looking at, but when it finishes he lets out a long slow breath and comments to himself in a low voice. "Bastijn Biesterveld, you absolute legend. He was right - it's the interference."`
+			`	Goraz takes the data stick you brought and plugs it into the communicator. After several minutes of mucking about with list formats and muttering incoherently to himself, a search result collates matches on his screen and he pauses. You're not sure exactly what you're looking at, but when it finishes he lets out a long slow breath and comments to himself in a low voice. "Bastijn Biesterveld, you absolute legend. He was right - it's the interference."`
 			`	He turns back to you and explains. "Normally interference isn't something that's logged, but when you're in civilized space with hyperspace relays, your ship does a final handshake with the local relay station as it jumps." He pauses briefly, maybe to see if you understand him.`
 			`	You see a long technical explanation coming on.`
 			choice
