@@ -1089,7 +1089,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			label listen
 			action
 				set "Hai Reveal [A09] History of Appeasement: label listen"
-			`	The conversation is entirely in Hai, and you struggle to understand. At first, Teeneep is annoyed, maybe saying words like: pirate, victim, orchestra, and betrayal. Sayari's responses revolve around: necessity, an angry child, guilt, and eggs. Something sets off Teeneep, and she keeps screaming "tweezers." Sayari puts a paw gently on Teeneep's shoulders and says in a soothing maternal tone, "green the moon blue." At this point, you realize you don't speak Hai, and have no idea what the two women are discussing.`
+			`	It is difficult to hear precisely without making yourself known, so you struggle to understand. At first, Teeneep is annoyed, maybe saying words like: pirate, victim, orchestra, and betrayal. Sayari's responses revolve around: necessity, an angry child, guilt, and eggs. Something sets off Teeneep, and she keeps screaming "tweezers." Sayari puts a paw gently on Teeneep's shoulders and says in a soothing maternal tone, "green the moon blue." At this point, you realize the conversation is entirely in Hai, which you don't speak, and you have no idea what the two women are actually discussing.`
 				goto questions
 			label childish
 			action
