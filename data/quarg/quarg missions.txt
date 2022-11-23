@@ -263,6 +263,7 @@ mission "Ask Quarg About Coalition Early"
 
 
 mission "Quarg Pug Arfecta Warning"
+	minor
 	landing
 	to offer
 		has "First Contact: Quarg: offered"
