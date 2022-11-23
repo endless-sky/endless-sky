@@ -212,7 +212,7 @@ mission "Hai Reveal [B03] Contact Giti"
 		has "Hai Reveal [B02] Join the Fleet: done"
 	on offer
 		conversation
-			`While you join the fleet that lands to occupy the spaceport, other assault ships pursue priority targets elsewhere on <origin>. This leads to a significant wait until the port is secure before everyone needed can reconvene to discuss the next steps.`
+			`While you join the fleet that lands to occupy the spaceport, other assault ships pursue priority targets elsewhere on <origin>. There's a significant wait to ensure that ground troops have secured the port before everyone can reconvene to discuss the next steps.`
 			`	You eventually reach the secured command area set up in the spaceport as Choot'k and Danforth come in discussing tactical minutiae. They are trailed by Batu, and eventually joined by Sayari and Teeneep. One of Danforth's lieutenants brings up the rear and closes the door behind you all.`
 			`	Everyone is waiting for you to speak. It seems this is your final briefing as the commander of the forces before diplomats and military leaders take over.`
 			label briefing
@@ -272,19 +272,23 @@ mission "Hai Reveal [B03] Contact Giti"
 			label done
 			action
 			`	Danforth explains, "For now, all communication in and out of the area is blocked at the relay unless it is to or from specific high-level Navy or Syndicate sources. Captain <last>, I'm afraid that also includes you. We don't have time or equipment to harden your systems against potential intrusion, but you do have the nearly exclusive freedom to pass through the blockade. You're a pilot, not a ground combat troop operator, so you should pursue other matters."`
-			`	On your way out Sayari catches you and suggests meeting aboard Teeneep's ship to discuss some things.`
+			`	On your way out Sayari catches you. "Let's meet aboard Teeneep's ship. We have sensitive matters to discuss." You follow her to the ship.`
+			choice
+				`	"What is it, Sayari?"`
+				`	"Do you have more leads on the smuggling operation?"`
 			`	Once there she pulls up information on known or possible smuggling operations used to justify the <origin> operation. Her focus is on what they hadn't reconciled. "Unfortunately, while many matches were found, there was nothing in the new data that conclusively linked to the mysterious symbol. No human escapees had been tested for mild cadmium poisoning, so that was a dead end too. I know it's been thrust into the background pretty heavily, but did you find anything yourself? We need to decide if we're setting this aside or not."`
 			choice
 				`	"I've met a reseracher named Giti who has been quite informative."`
 					goto giti
 				`	"I need to leave the communication blackout to check."`
-			`	You explain that, aside from a short window, you realize that you've been behind a communications blackout for most of the recent events. You'll have to go outside the blockade to follow up on your possible lead.`
+			`	Sayari responds. "Yes, of course.`
 				goto end
 			label giti
-			`	You tell her about Giti and note that you haven't heard anything from her. She may have tried to contact you and been unable to.`
+			`	You relate to her your meetings with Giti and the evidence she gathered.`
+			`	"If you haven't heard from her in a while," Sayari says, "then perhaps she has more information by now?`
 			label end
-			`	Sayari nods. "Then please, while we have some time. Follow up that thread and then return. At this point if it proves to be a fruitless search then so be it, but I insist on having no loose ends we haven't tried our best to follow to conclusion. If you come back and that's the end, I'll bring Teeneep around."`
-			`	To get in contact with Giti the nearest place is <planet>; just one system over.`
+			`	"Please, while we have some time. Follow up that thread and then return. At this point if it proves to be a fruitless search then so be it, but I insist on having no loose ends we haven't tried our best to follow to conclusion. If you come back and that's the end, I'll bring Teeneep around."`
+			`	Recalling the star charts, you remember that <destination> is the nearest planet outside the communications blackout zone.`
 				accept
 
 
@@ -319,7 +323,7 @@ mission "Hai Reveal [B04] The Road Not Taken"
 				`	"What is Elenchus?"`
 				`	"I've never seen this system on a star map. What do you expect to find there?"`
 			`	Giti ignores your question and continues. "What I've just send you is the modern representation of coordinates in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are direct from the notation, they indicate a system in Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
-			`	She shrugs. "Of course, I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. Not sure if it'll reveal anything, but we can look into it if you don't find anything. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
+			`	She shrugs. "Of course, I have no idea how they'd have a Jump Drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
 			choice
 				`	"How do you know I have a Jump Drive?"`
 				`	"Can you tell me more about the victim support group?"`
@@ -487,7 +491,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			label lead
 			`	You clarify that technically it's a lead on cases that match the same profile as his wife's, not strictly his wife's case. His expression falters momentarily and then he seems to find some internal resolve to draw upon. "Good enough for me... Thank you, for your honesty."`
 			label lab
-			`	After a short return trip, you reach what looks like a small private spaceport. From the extra equipment and unusual ship designs, you realize it must be one of Tarazed's research shipyards. Goraz's laboratory is an entire docking bay with a modified Blackbird. Despite its size, it is conspicuously absent any other personnel. He takes you on board and, noting your attention to your surroundings, explains that he has few assistants that are typically off-world most of the time as he walks you to the communications room.`
+			`	After a short return trip, you reach what looks like a small private spaceport. From the extra equipment and unusual ship designs, you realize it is a Tarazed research shipyard. Goraz's laboratory is an entire docking bay with a modified Blackbird, but despite its size, it is conspicuously absent any other personnel. He takes you on board and noting your attention to your surroundings, explains that he has a few assistants, but they are off-world most of the time.`
 			`	Goraz says, "Here, let me take a look at what you've brought me." He's eyeing your pockets.`
 			choice
 				`	"It's all in this data stick."`
@@ -498,9 +502,9 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	"Skip the technical bits, please. Can you tell me what I need to do?"`
 					goto skip
-				`	"I've had helped with hyperspace relay issues recently, and I'm excited to learn more."`
-			`	He continues, "Right. So, the local relay station your ship contacts sends that handshake signature to the destination station so it knows exactly who you are to be able to reconnect communications at the other end. It's a fully automatic process, and it's independent of ship IDs. It's just buried in there as a check from back in the days when hyperdrives would occasionally explode and we'd need to work out who went missing. It gets logged and automatically overwritten every couple days, and someone would probably have gotten rid of it if it wasn't so deeply baked into the way the system works. If you know when a ship jumped and where it jumped to, you can use it to confirm it didn't blow up; and if there's something wrong with the communications equipment you can use the log info to identify if a specific ship is the same ship talking to you later, but neither of those are particularly useful since the same information can be acquired more easily and in much higher quality through other means."`
-			`	He pauses, realizing he's been rambling. "Sorry, that was probably way more explanation than you needed. There's a small group of us comms people that have lost people, or know people who have, that the authorities can't help. We're scattered all over and we've been looking at this ourselves. Together we identified some ships we thought were suspicious, but we've not been able to pin down anything concrete. Bastijn was convinced there was a pattern of interference signatures from the logs; he made the analysis program, but it was never definitively distinct from the noise. This data set you've brought, though. Well, once you filter for the subset of ships in our data set, what you've given me matches so completely to the set of ships we've found with interference that it has to be a match! Ninety-eight point five percent confidence interval completely annihilates the idea that it could be random."`
+				`	"I've helped with hyperspace relays recently, and I can never get enough lectures about hyperspace network issues. Please don't spare any details."`
+			`	He nods and begins his lecture. "The local relay station your ship contacts sends that handshake signature to the destination station so it knows exactly who you are to be able to reconnect communications at the other end. It's a fully automatic process, and it's independent of ship IDs. It's just buried in there as a check from back in the days when hyperdrives would occasionally explode and we'd need to work out who went missing. It gets logged and automatically overwritten every couple days, and someone would probably have gotten rid of it if it wasn't so deeply baked into the way the system works. If you know when a ship jumped and where it jumped to, you can use it to confirm it didn't blow up; and if there's something wrong with the communications equipment you can use the log info to identify if a specific ship is the same ship talking to you later, but neither of those are particularly useful since the same information can be acquired more easily and in much higher quality through other means.`
+			`	"There's a small group of us comms geeks that have lost people, or know people who have, that the authorities can't help. We're scattered all over and we've been looking at this ourselves. Together we identified some ships we thought were suspicious, but we've not been able to pin down anything concrete. Bastijn was convinced there was a pattern of interference signatures from the logs; he made the analysis program, but it was never definitively distinct from the noise. This data set you've brought, though. Well, once you filter for the subset of ships in our data set, what you've given me matches so completely to the set of ships we've found with interference that it has to be a match! Ninety-eight point five percent confidence interval completely annihilates the idea that it could be random."`
 				goto wait
 			label skip
 			`	Goraz pauses for a moment, struggling to lower the content to layman's terms. "There's some ships that don't show up right on comms, which only a few experts like me can spot. Some of it could be random noise, but that's unlikely. We can filter out the subset of ships in our dataset. Hold on..."`
@@ -510,7 +514,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	"Take your time."`
 				`	"I'll be here waiting."`
-			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one, now loaded up with whatever he was putting on it. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local relay when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work.`
+			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local relay when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work.`
 			choice
 				`	"That's some impressive work in such a short time."`
 				`	"Thank you for the help."`
