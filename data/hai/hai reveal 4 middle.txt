@@ -1136,7 +1136,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				set "Hai Reveal [A09] History of Appeasement: label fix"
 			`	Sayari explains. "The grievance is against the Elders. There's a process to seek redress of grievances with the Elders. Teeneep needs to at least attempt to follow that process, and if she does not go through with normal resolution channels, she will be censured from public life. She must confront the Elders directly."`
 			`	Teeneep makes the effort to give a final, defiant snarl of disgust. "She's right," she grates out. "I hate it, but she's right. Especially because several of those reports indicate that the Navy knew of Hai on some ships and stood by while they were taken away. Which makes it your business, too."`
-			`	Thinking back to your meeting with Katya, you realize this is step closer to a "hostile diplomatic incident."`
+			`	Thinking back to your meeting with Katya, you realize this is probably a step closer to a "hostile diplomatic incident."`
 				goto questions
 			label media
 			action
