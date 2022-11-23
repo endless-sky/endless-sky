@@ -109,11 +109,11 @@ outfit "Large Nanite Fabricator"
 
 outfit "Solar Battery"
 	category "Power"
-	cost 95000
+	cost 49000
 	thumbnail "outfit/solar battery"
 	"mass" 7
 	"outfit space" -7
-	"energy capacity" 1500
+	"energy capacity" 6000
 	"solar cell" 36
 	description "Bunrodean solar batteries are required for the installation of solar cells, but solar batteries are perfectly capable of going without solar cells. Many captains will install batteries to store energy gained from normal reactors without ever installing solar cells."
 
@@ -123,8 +123,8 @@ outfit "Solar Cell"
 	thumbnail "outfit/solar cell"
 	"mass" 1
 	"outfit space" -1
-	"solar collection" 0.18
-	"solar heat" 0.09
+	"solar collection" 0.145
+	"solar heat" 0.07
 	"solar cell" -1
 	description "Bunrodean solar panels are extremely efficient, even being capable of powering smaller or less powerful warships. But be warned: while these solar cells can provide significant energy, that is not without the drawback of also generating waste heat that scales with the energy generated, which can be especially hazardous when near bright stars."
 	description "	These cells must be installed on the mounting platform that comes with a solar battery to be used."
@@ -138,7 +138,7 @@ outfit "Reactor Overclocker"
 	"mass" 4
 	"outfit space" -4
 	"energy generation" 0.8
-	"heat generation" 1.2
+	"heat generation" 2.4
 	"reactor upgrades" -3
 	description "The reactor overclocker is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Overclockers increase the strength of the energy generation of a reactor, but at the cost of reduced heat efficiency."
 
@@ -149,13 +149,13 @@ outfit "Reactor Limiter"
 	"mass" 2
 	"outfit space" -2
 	"energy generation" -0.1
-	"heat generation" -0.5
+	"heat generation" -1.2
 	"reactor upgrades" -2
 	description "The reactor limiter is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Limiters increase the heat efficiency of a reactor, but at the cost of reducing the strength of its energy generation."
 
 outfit "Quark Reactor"
 	category "Power"
-	cost 4810000
+	cost 3367000
 	thumbnail "outfit/quark reactor"
 	"mass" 61
 	"outfit space" -61
@@ -167,7 +167,7 @@ outfit "Quark Reactor"
 
 outfit "Electroweak Reactor"
 	category "Power"
-	cost 11990000
+	cost 8393000
 	thumbnail "outfit/electroweak reactor"
 	"mass" 106
 	"outfit space" -106
@@ -179,7 +179,7 @@ outfit "Electroweak Reactor"
 
 outfit "Dark Reactor"
 	category "Power"
-	cost 21460000
+	cost 15022000
 	thumbnail "outfit/dark reactor"
 	"mass" 142
 	"outfit space" -142
