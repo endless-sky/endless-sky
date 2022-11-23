@@ -176,6 +176,9 @@ if(MINGW)
 				add_custom_command(TARGET EndlessSky POST_BUILD
 					COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FILE_PATH} $<TARGET_FILE_DIR:EndlessSky>
 					COMMAND_EXPAND_LISTS)
+				add_custom_command(TARGET EndlessSkyTests POST_BUILD
+					COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FILE_PATH} $<TARGET_FILE_DIR:EndlessSkyTests>
+					COMMAND_EXPAND_LISTS)
 
 				# Add an install rule for this DLLs, so that it is also included when installing.
 				install(FILES ${FILE_PATH} DESTINATION .)
