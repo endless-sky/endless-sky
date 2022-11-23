@@ -37,8 +37,8 @@ using namespace std;
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
 	: position(position), velocity(velocity), angle(facing), zoom(zoom)
 {
-	SpriteParameters *spriteState = &this->sprites[BodyState::FLYING];
-	AnimationParameters spriteAnimationParameters;
+	SpriteParameters *spriteState = &this->sprites[Body::BodyState::FLYING];
+	SpriteParameters::AnimationParameters spriteAnimationParameters;
 	spriteAnimationParameters.randomizeStart = true;
 	spriteState->SetSprite("default", sprite, spriteAnimationParameters);
 	anim.randomize = true;
@@ -68,7 +68,7 @@ bool Body::HasSprite() const
 
 
 // Check that this Body has a sprite for a specific BodyState
-bool Body::HasSpriteFor(BodyState state) const
+bool Body::HasSpriteFor(Body::BodyState state) const
 {
 	const Sprite *sprite = this->sprites[state].GetSprite();
 	return (sprite && sprite->Frames());
@@ -77,9 +77,9 @@ bool Body::HasSpriteFor(BodyState state) const
 
 
 // Access the underlying Sprite object.
-const Sprite *Body::GetSprite(BodyState state) const
+const Sprite *Body::GetSprite(Body::BodyState state) const
 {
-	BodyState selected = state != BodyState::CURRENT ? state : this->currentState;
+	Body::BodyState selected = state != Body::BodyState::CURRENT ? state : this->currentState;
 
 	SpriteParameters *spriteState = &this->sprites[selected];
 
@@ -88,13 +88,13 @@ const Sprite *Body::GetSprite(BodyState state) const
 	if(sprite != nullptr && !returnDefaultSprite)
 		return sprite;
 	else
-		return this->sprites[BodyState::FLYING].GetSprite();
+		return this->sprites[Body::BodyState::FLYING].GetSprite();
 
 }
 
 
 
-BodyState Body::GetState() const
+Body::BodyState Body::GetState() const
 {
 	return this->currentState;
 }
@@ -230,14 +230,14 @@ const Government *Body::GetGovernment() const
 
 
 // Load the sprite specification, including all animation attributes.
-void Body::LoadSprite(const DataNode &node, BodyState state)
+void Body::LoadSprite(const DataNode &node, Body::BodyState state)
 {
 	if(node.Size() < 2)
 		return;
 
 	const Sprite *sprite = SpriteSet::Get(node.Token(1));
 	SpriteParameters *spriteData = &this->sprites[state];
-	AnimationParameters spriteAnimationParameters;
+	SpriteParameters::AnimationParameters spriteAnimationParameters;
 	std::vector<DataNode> triggerSpriteDefer;
 
 	// The only time the animation does not start on a specific frame is if no
@@ -335,7 +335,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 
 
 // Returns whether the trigger sprite is based on the outfit being used
-bool Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationParameters params)
+bool Body::LoadTriggerSprite(const DataNode &node, Body::BodyState state, SpriteParameters::AnimationParameters params)
 {
 	if(node.Size() < 2)
 		return false;
@@ -350,7 +350,7 @@ bool Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 	}
 
 	SpriteParameters *spriteData = &this->sprites[state];
-	AnimationParameters spriteAnimationParameters = params;
+	SpriteParameters::AnimationParameters spriteAnimationParameters = params;
 
 	if(node.Size() > 3 && node.Token(3) == "on use")
 		spriteAnimationParameters.triggerOnUse = true;
@@ -441,11 +441,11 @@ bool Body::LoadTriggerSprite(const DataNode &node, BodyState state, AnimationPar
 // Save the sprite specification, including all animation attributes.
 void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
-	const std::string tags[BodyState::NUM_STATES] = {allStates ? "sprite" : tag, "sprite-firing",
+	const std::string tags[Body::BodyState::NUM_STATES] = {allStates ? "sprite" : tag, "sprite-firing",
 												"sprite-launching", "sprite-landing",
 												"sprite-jumping", "sprite-disabled"};
 
-	for(int i = 0; i < BodyState::NUM_STATES; i++)
+	for(int i = 0; i < Body::BodyState::NUM_STATES; i++)
 	{
 		SpriteParameters *spriteState = &this->sprites[i];
 		const Sprite *sprite = spriteState->GetSprite("default");
@@ -488,7 +488,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 
 void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const
 {
-	AnimationParameters *exposed = &(state->exposed);
+	SpriteParameters::AnimationParameters *exposed = &(state->exposed);
 	if(exposed->frameRate != static_cast<float>(2. / 60.))
 		out.Write("frame rate", exposed->frameRate * 60.);
 	if(exposed->delay)
@@ -525,27 +525,27 @@ void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const
 
 
 // Set the sprite.
-void Body::SetSprite(const Sprite *sprite, BodyState state)
+void Body::SetSprite(const Sprite *sprite, Body::BodyState state)
 {
-	AnimationParameters init;
+	SpriteParameters::AnimationParameters init;
 	this->sprites[state].SetSprite("default", sprite, init);
 	currentStep = -1;
 }
 
 // Set the state.
-void Body::SetState(BodyState state)
+void Body::SetState(Body::BodyState state)
 {
 	// If the transition has a delay, ensure that rapid changes from transitions
 	// which ignore the delay to transitions that don't (ignore delays)
 	// keep smooth animations.
-	bool delayIgnoredPreviousStep = this->transitionState == BodyState::JUMPING ||
-									this->transitionState == BodyState::DISABLED ||
-									this->transitionState == BodyState::LANDING;
-	bool delayActiveCurrentStep = (state == BodyState::FLYING ||
-									state == BodyState::LAUNCHING || state == BodyState::FIRING)
+	bool delayIgnoredPreviousStep = this->transitionState == Body::BodyState::JUMPING ||
+									this->transitionState == Body::BodyState::DISABLED ||
+									this->transitionState == Body::BodyState::LANDING;
+	bool delayActiveCurrentStep = (state == Body::BodyState::FLYING ||
+									state == Body::BodyState::LAUNCHING || state == Body::BodyState::FIRING)
 									&& delayed < anim.transitionDelay;
 	if(state == this->currentState && this->transitionState != this->currentState
-			&& this->transitionState != BodyState::TRIGGER)
+			&& this->transitionState != Body::BodyState::TRIGGER)
 	{
 		// Cancel transition
 		stateTransitionRequested = false;
@@ -579,7 +579,7 @@ void Body::SetState(BodyState state)
 		}
 	}
 
-	this->transitionState = this->transitionState != BodyState::TRIGGER ? state : BodyState::TRIGGER;
+	this->transitionState = this->transitionState != Body::BodyState::TRIGGER ? state : Body::BodyState::TRIGGER;
 
 	// If state transition has no animation needed, then immediately transition.
 	if(!this->anim.transitionFinish && !this->anim.transitionRewind && stateTransitionRequested)
@@ -627,7 +627,7 @@ void Body::ShowDefaultSprite(bool defaultSprite)
 bool Body::ReadyForAction() const
 {
 	// Never ready for action if transitioning between states
-	return this->anim.indicateReady ? this->stateReady : (!this->stateTransitionRequested || this->transitionState == BodyState::TRIGGER);
+	return this->anim.indicateReady ? this->stateReady : (!this->stateTransitionRequested || this->transitionState == Body::BodyState::TRIGGER);
 }
 
 
@@ -635,12 +635,12 @@ bool Body::ReadyForAction() const
 // Used to assign triggers for all states according to the outfits present
 void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 {
-	bool triggerSet[BodyState::NUM_STATES];
-	for(int i = 0; i < BodyState::NUM_STATES; i++)
+	bool triggerSet[Body::BodyState::NUM_STATES];
+	for(int i = 0; i < Body::BodyState::NUM_STATES; i++)
 		triggerSet[i] = false;
 
 	for(const auto it : outfits)
-		for(int i = 0; i < BodyState::NUM_STATES; i++)
+		for(int i = 0; i < Body::BodyState::NUM_STATES; i++)
 			if(!triggerSet[i])
 			{
 				SpriteParameters *toSet = &this->sprites[i];
@@ -648,7 +648,7 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 					triggerSet[i] = toSet->RequestTriggerOnUse(it.first->TrueName(), false);
 			}
 	// Switch back to default sprite if the outfit is no longer found
-	for(int i = 0; i < BodyState::NUM_STATES; i++)
+	for(int i = 0; i < Body::BodyState::NUM_STATES; i++)
 	{
 		SpriteParameters *toSet = &this->sprites[i];
 		if(!triggerSet[i])
@@ -657,7 +657,7 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 	}
 }
 
-bool Body::AssignStateTriggerOnUse(BodyState state, std::string trigger)
+bool Body::AssignStateTriggerOnUse(Body::BodyState state, std::string trigger)
 {
 	bool triggerSet = false;
 	if(this->HasSpriteFor(state))
@@ -667,7 +667,7 @@ bool Body::AssignStateTriggerOnUse(BodyState state, std::string trigger)
 		{
 			if(spriteState->RequestTriggerOnUse(trigger, true) && this->anim.triggerOnUse
 					&& state == this->currentState)
-				this->SetState(BodyState::TRIGGER);
+				this->SetState(Body::BodyState::TRIGGER);
 			triggerSet = true;
 		}
 	}
@@ -682,11 +682,11 @@ void Body::FinishStateTransition() const
 		frameOffset = 0.0f;
 		pause = 0;
 
-		BodyState requestedTransitionState = this->transitionState == BodyState::TRIGGER ?
+		Body::BodyState requestedTransitionState = this->transitionState == Body::BodyState::TRIGGER ?
 									this->currentState : this->transitionState;
 		// Default to Flying sprite if requested sprite does not exist.
-		BodyState trueTransitionState = this->sprites[requestedTransitionState].GetSprite() ?
-									requestedTransitionState : BodyState::FLYING;
+		Body::BodyState trueTransitionState = this->sprites[requestedTransitionState].GetSprite() ?
+									requestedTransitionState : Body::BodyState::FLYING;
 		SpriteParameters *transitionedState = &this->sprites[trueTransitionState],
 						*currentState = &this->sprites[this->currentState];
 		// Handle hanging trigger requests
@@ -697,7 +697,7 @@ void Body::FinishStateTransition() const
 			this->postTriggerTransition = false;
 		}
 		
-		if(this->transitionState == BodyState::TRIGGER)
+		if(this->transitionState == Body::BodyState::TRIGGER)
 		{
 			transitionedState->CompleteTriggerRequest();
 			this->postTriggerTransition = true;
@@ -825,10 +825,10 @@ void Body::SetStep(int step) const
 	else
 	{
 		// Override any delay if the ship wants to jump, become disabled, or land
-		bool ignoreDelay = this->transitionState == BodyState::JUMPING ||
-							this->transitionState == BodyState::DISABLED ||
-							this->transitionState == BodyState::LANDING ||
-							this->transitionState == BodyState::TRIGGER;
+		bool ignoreDelay = this->transitionState == Body::BodyState::JUMPING ||
+							this->transitionState == Body::BodyState::DISABLED ||
+							this->transitionState == Body::BodyState::LANDING ||
+							this->transitionState == Body::BodyState::TRIGGER;
 
 		if(delayed >= this->anim.transitionDelay || ignoreDelay)
 		{

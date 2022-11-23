@@ -26,17 +26,17 @@ SpriteParameters::SpriteParameters()
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	AnimationParameters initDefault;
-	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, initDefault};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, AnimationParameters>>("default", tuple));
+	auto tuple = std::tuple<const Sprite*, SpriteParameters::AnimationParameters>{sprite, initDefault};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, SpriteParameters::AnimationParameters>>("default", tuple));
 	this->exposed = initDefault;
 }
 
 
 
-void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite, AnimationParameters params)
+void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite, SpriteParameters::AnimationParameters params)
 {
-	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, params};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, AnimationParameters>>(trigger, tuple));
+	auto tuple = std::tuple<const Sprite*, SpriteParameters::AnimationParameters>{sprite, params};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, SpriteParameters::AnimationParameters>>(trigger, tuple));
 	if(trigger == "default")
 		this->exposed = params;
 }
@@ -84,7 +84,7 @@ bool SpriteParameters::RequestTriggerOnUse(std::string trigger, bool use)
 	if(it == this->sprites.end())
 		return false;
 	
-	AnimationParameters toExpose = std::get<1>(it->second);
+	SpriteParameters::AnimationParameters toExpose = std::get<1>(it->second);
 	if(toExpose.triggerOnUse == use)
 	{
 		this->requestedTrigger = trigger;
@@ -121,7 +121,7 @@ bool SpriteParameters::IsTrigger(std::string trigger) const
 
 
 
-const std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> *SpriteParameters::GetAllSprites() const
+const std::map<std::string, std::tuple<const Sprite*, SpriteParameters::AnimationParameters>> *SpriteParameters::GetAllSprites() const
 {
 	return &this->sprites;
 }

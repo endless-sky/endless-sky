@@ -236,17 +236,17 @@ void Ship::Load(const DataNode &node)
 			continue;
 		}
 		if(key == "sprite" || key == "sprite-flying")
-			LoadSprite(child, BodyState::FLYING);
+			LoadSprite(child, Body::BodyState::FLYING);
 		else if(key == "sprite-firing")
-			LoadSprite(child, BodyState::FIRING);
+			LoadSprite(child, Body::BodyState::FIRING);
 		else if(key == "sprite-landing")
-			LoadSprite(child, BodyState::LANDING);
+			LoadSprite(child, Body::BodyState::LANDING);
 		else if(key == "sprite-launching")
-			LoadSprite(child, BodyState::LAUNCHING);
+			LoadSprite(child, Body::BodyState::LAUNCHING);
 		else if(key == "sprite-jumping")
-			LoadSprite(child, BodyState::JUMPING);
+			LoadSprite(child, Body::BodyState::JUMPING);
 		else if(key == "sprite-disabled")
-			LoadSprite(child, BodyState::DISABLED);
+			LoadSprite(child, Body::BodyState::DISABLED);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
@@ -1661,7 +1661,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
-		this->SetState(BodyState::JUMPING);
+		this->SetState(Body::BodyState::JUMPING);
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 
@@ -1808,7 +1808,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// just slowly refuel.
 		if(landingPlanet && zoom)
 		{
-			this->SetState(BodyState::LANDING);
+			this->SetState(Body::BodyState::LANDING);
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
@@ -1854,7 +1854,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			}
 			else if(zoom >= zoomTriggerStart)
 				this->ShowDefaultSprite(false);
-			this->SetState(BodyState::LAUNCHING);
+			this->SetState(Body::BodyState::LAUNCHING);
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
@@ -1873,7 +1873,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(isDisabled)
 	{
 		// If you're disabled, you can't initiate landing or jumping.
-		this->SetState(BodyState::DISABLED);
+		this->SetState(Body::BodyState::DISABLED);
 	}
 	else if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetStellar()->GetPlanet();
@@ -1883,12 +1883,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
 			bool isJump = (jumpUsed.first == JumpType::JUMP_DRIVE);
 			if(isJump)
-				this->AssignStateTriggerOnUse(BodyState::JUMPING, "Jump Drive");
+				this->AssignStateTriggerOnUse(Body::BodyState::JUMPING, "Jump Drive");
 			else
-				this->AssignStateTriggerOnUse(BodyState::JUMPING, "default");
+				this->AssignStateTriggerOnUse(Body::BodyState::JUMPING, "default");
 		}
 		
-		this->SetState(BodyState::JUMPING);
+		this->SetState(Body::BodyState::JUMPING);
 		if(IsReadyToJump())
 		{
 			hyperspaceSystem = GetTargetSystem();
@@ -2139,14 +2139,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 				if(activeEnemyTarget && target->isInSystem && targetInRange)
 				{
-					this->SetState(BodyState::FIRING);
+					this->SetState(Body::BodyState::FIRING);
 				}
 				// Target is not an enemy
 				else
-					this->SetState(BodyState::FLYING);
+					this->SetState(Body::BodyState::FLYING);
 			}
 			else if(hasPrimary)
-				this->SetState(BodyState::FIRING);
+				this->SetState(Body::BodyState::FIRING);
 
 			if(isBoarding && !CanBeCarried())
 			{
@@ -2211,14 +2211,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 										|| this->weaponRange == 0.0;
 					// If in range, or the weapon range hasn't been calculated yet.
 					if(targetInRange)
-						this->SetState(BodyState::FIRING);
+						this->SetState(Body::BodyState::FIRING);
 				}
 				// No target but still flying around and doesn't want to jump
 				else
-					this->SetState(BodyState::FLYING);
+					this->SetState(Body::BodyState::FLYING);
 			}
 			else if(hasPrimary)
-				this->SetState(BodyState::FIRING);
+				this->SetState(Body::BodyState::FIRING);
 		}
 	}
 
@@ -2502,7 +2502,7 @@ void Ship::DoGeneration()
 				heat -= activeCooling;
 		}
 	}
-	else if(!this->HasSpriteFor(BodyState::DISABLED))
+	else if(!this->HasSpriteFor(Body::BodyState::DISABLED))
 		this->PauseAnimation();
 
 	// Don't allow any levels to drop below zero.
@@ -2825,7 +2825,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				else if(firingCommands.HasFire(i))
 				{
 					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
-					if(!assigned && this->AssignStateTriggerOnUse(BodyState::FIRING, weaponName))
+					if(!assigned && this->AssignStateTriggerOnUse(Body::BodyState::FIRING, weaponName))
 						assigned = true;
 					
 				}
@@ -2837,7 +2837,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	}
 
 	if(!assigned)
-		this->AssignStateTriggerOnUse(BodyState::FIRING, "default");
+		this->AssignStateTriggerOnUse(Body::BodyState::FIRING, "default");
 
 	armament.Step(*this);
 
@@ -3057,7 +3057,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	}
 	// For any ship that is not the player flagship,
 	// jumps should not be restricted by animation if they are not in the system
-	return (this->GetState() == BodyState::JUMPING && this->ReadyForAction()) || !(this->isPlayerFlagship || isInSystem);
+	return (this->GetState() == Body::BodyState::JUMPING && this->ReadyForAction()) || !(this->isPlayerFlagship || isInSystem);
 }
 
 

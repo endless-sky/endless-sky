@@ -31,12 +31,11 @@ class Mask;
 class Outfit;
 class Sprite;
 
-enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT, TRIGGER};
-
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
 class Body {
 public:
+	enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT, TRIGGER};
 	// Constructors.
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
@@ -47,8 +46,8 @@ public:
 	bool HasSpriteFor(BodyState state) const;
 
 	// Access the underlying Sprite object.
-	const Sprite *GetSprite(BodyState state = BodyState::CURRENT) const;
-	BodyState GetState() const;
+	const Sprite *GetSprite(Body::BodyState state = Body::BodyState::CURRENT) const;
+	Body::BodyState GetState() const;
 	// Get the dimensions of the sprite.
 	double Width() const;
 	double Height() const;
@@ -76,13 +75,13 @@ public:
 	const Government *GetGovernment() const;
 
 	// Sprite serialization.
-	void LoadSprite(const DataNode &node, BodyState state = BodyState::FLYING);
-	bool LoadTriggerSprite(const DataNode &node, BodyState state, AnimationParameters params);
+	void LoadSprite(const DataNode &node, Body::BodyState state = Body::BodyState::FLYING);
+	bool LoadTriggerSprite(const DataNode &node, Body::BodyState state, SpriteParameters::AnimationParameters params);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
 	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const;
 	// Set the sprite.
-	void SetSprite(const Sprite *sprite, BodyState state = BodyState::FLYING);
-	void SetState(BodyState state);
+	void SetSprite(const Sprite *sprite, Body::BodyState state = BodyState::FLYING);
+	void SetState(Body::BodyState state);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
@@ -97,7 +96,7 @@ protected:
 	bool ReadyForAction() const;
 	// Assign any outfit triggers for animations
 	void AssignStateTriggers(std::map<const Outfit *, int> &outfits);
-	bool AssignStateTriggerOnUse(BodyState state, std::string trigger);
+	bool AssignStateTriggerOnUse(Body::BodyState state, std::string trigger);
 	// Finish transitioning between states
 	void FinishStateTransition() const;
 	// Mark this object to be removed from the game.
@@ -129,17 +128,18 @@ private:
 
 private:
 	// Animation parameters.
-	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(),
+	mutable SpriteParameters sprites[Body::BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(),
 																SpriteParameters(), SpriteParameters(),
 																SpriteParameters(), SpriteParameters()};
-	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::FLYING;
+	mutable Body::BodyState currentState = Body::BodyState::FLYING,
+							transitionState = Body::BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
 	mutable bool postTriggerTransition = false;
 	bool returnDefaultSprite = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 
-	mutable AnimationParameters anim;
+	mutable SpriteParameters::AnimationParameters anim;
 
 	mutable float frameOffset = 0.f;
 	mutable int pause = 0;
