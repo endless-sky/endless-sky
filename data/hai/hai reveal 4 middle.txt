@@ -1185,7 +1185,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label results
 			`	After a few more minutes of private discussions, the Elders vote "no" on both counts. Your words may not have swayed the vote, but perhaps they'll resonate in the Hai psyche long enough to have an effect.`
 			`	Teeneep is allowed to respond and says ominously, "You know what will happen next."`
-			`	An angry Elder replies, "You wouldn't dare!" to which Teeneep yells back, "It is already scheduled to happen unless I actively stop it!" She smiles, a little self indulgently, and withdraws from the room. Sayari follows, motioning for you to do so as well.`
+			`	An angry Elder replies, "You wouldn't dare!" Teeneep yells back, "It is already scheduled to happen unless I actively stop it!" She smiles, a little self indulgently, and withdraws from the room. Sayari follows, motioning for you to do so as well.`
 			`	Sayari leads you to a private meeting room.`
 			`	Teeneep explains her ominous words. "Our democracy allows a Petition of No Confidence against the Elders. If there are enough petitioners, it forces an election. Activists in the organization I founded have led a grassroots movement pushing a petition for weeks.`
 			`	"It was obvious what the Elder Council's response would be," and with a bit of sarcasm she adds, "and I knew I would only come back alive if the Unfettered agreed to help. So, my supporters arranged in advance for the petition to be promoted along with a widespread broadcast of these proceedings."`
