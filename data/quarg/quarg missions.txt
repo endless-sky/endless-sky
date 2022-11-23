@@ -293,7 +293,7 @@ mission "Quarg Pug Arfecta Warning"
 			`	"And you believe yourself in a position to judge?" the Quarg says irritated.`
 				goto end
 			label greedy
-			`	"A baby in swaddling as I said before."`
+			`	"A baby in swaddling, as I said before."`
 				goto end
 			label end
 			`	"We give you a warning. You know not what you have child, the weapon you wield."`
