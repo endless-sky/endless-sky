@@ -1178,7 +1178,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"What's going to happen, Teeneep?"`
 					goto teeneep
 				`	"Sayari, what happens next?"`
-			`	Sayari explains, "There's a multi-step voting process, which takes into account dissent between Elders. After each stage of voting, there's discussions between strategically chosen groups of Elders and the dissent is usually lower. They iterate until they come to a consensus, unless it takes too long; then they'll use the majority vote."`
+			`	Sayari explains, "There's a multi-step voting process, which takes into account dissent between Elders. After each stage of voting, there's discussions between strategically chosen groups of Elders, and afterwards the dissent is usually lower. They iterate until they come to a consensus, unless it takes too long; then they'll use the majority vote."`
 				goto results
 			label teeneep
 			`	Teeneep responds, "They'll vote to do nothing. It's all this council knows how to do." Sayari sighs loudly at this, but doesn't contradict Teeneep.`
