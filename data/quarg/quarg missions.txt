@@ -273,7 +273,7 @@ mission "Quarg Pug Arfecta Warning"
 	on offer
 		conversation
 			`As soon as you step off your ship a rather imposing Quarg blocks your exit while staring piercingly at your ship.`
-			`"It is as though a baby in swaddling has killed a dragon, and taken its treasure for its own..." it says with a mix of amusement and disgusted.`
+			`"It is as though a baby in swaddling has killed a dragon, and taken its treasure for its own..." it says with a mix of amusement and disgust.`
 			choice
 				`	"It's a long story..."`
 					goto evasive
