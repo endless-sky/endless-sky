@@ -3373,18 +3373,7 @@ mission "Wanderers: Sestor: Final: Patched"
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
 
-mission "Wanderers: Sestor: Patch"
-	landing
-	invisible
-	to offer
-		has "event: wanderers: sestor eliminated"
-	to fail
-		has "Wanderers: Sestor: Final: Patched: offered"
-	on offer
-		event "wanderers: sestor planets unrestricted"
-		fail
-
-mission "Wanderers: Sestor: Patch 2"
+mission "Wanderers: Sestor: Combined Patch 1"
 	landing
 	invisible
 	to offer
@@ -3392,7 +3381,9 @@ mission "Wanderers: Sestor: Patch 2"
 	to fail
 		has "Wanderers: Sestor: Final: Patched: offered"
 	on offer
+		event "wanderers: sestor planets unrestricted" 40
 		event "wanderers taking jobs from kor efreti" 5
+		event "wanderers: moonbeam mass production" 5
 		fail
 
 event "wanderers: sestor planets unrestricted"
@@ -3434,14 +3425,3 @@ event "wanderers taking jobs from kor efreti"
 		add fleet "Wanderer Kor Efret Traders" 1500
 	system "Solifar"
 		add fleet "Wanderer Kor Efret Traders" 1500
-
-mission "Wanderers: Moonbeam Patch"
-	landing
-	invisible
-	to offer
-		has "Wanderers: Sestor: Final: done"
-	to fail
-		has "Wanderers: Sestor: Final: Patched: offered"
-	on offer
-		event "wanderers: moonbeam mass production" 5
-		fail
