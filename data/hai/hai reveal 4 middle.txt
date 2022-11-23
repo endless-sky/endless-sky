@@ -1034,7 +1034,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 		log `A group of Hai Elders agreed to change their approach to the problem of pirates if the situation deteriorates further. Unfortunately, they refused to even discuss the disappearances.`
 		"reputation: Hai (Unfettered)" >?= 10
 		conversation
-			`Upon landing, you give Batu directions to Xilin, and arrange meetings with diplomats in the evening. To pass the time, you search for Teeneep and Sayari, hoping to swap information with the two. You find yourself at Sayari's office only to be met by Teeneep and Sayari arguing. Teeneep is shouting angrily at Sayari who is trying to calm her. Their argument is so intense that they don't hear you approaching.`
+			`As you return, you give Batu directions to find Xilin and then arrange evening meetings with the other diplomats. To pass the time, you search for Teeneep and Sayari, hoping to swap information with the two. You find yourself at Sayari's office, only to be met by the sight of Teeneep and Sayari arguing. Teeneep is shouting angrily at Sayari, who is trying to calm her. Their argument is so intense that they don't hear you approaching.`
 			label questions
 			choice
 				# First phase of conversation: listen in or interrupt.
