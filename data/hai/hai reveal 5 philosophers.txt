@@ -698,7 +698,7 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 		has "Hai Reveal [B06-long] Boarded Smuggler: done"
 	on offer
 		conversation
-			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gang's hideouts; those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
+			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gang's hideouts, those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
 			`	Fortunately this makes it easy to find Sayari, who has comparatively little to do at the moment and is mostly just helping to keep everyone communicating effectively. When you tell her of the system you found and the message from the Hai on the smuggler ship, she winces. "What a terrible fate, but it does confirm what we suspected. We'll have to see what more we can find out in the meantime while we're still bogged down here."`
 			choice
 				`	"What does the Hai's message mean?"`
