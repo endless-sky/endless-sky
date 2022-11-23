@@ -21,7 +21,7 @@ mission "Gegno Vi: First Contact"
 				has "Gegno Vi: First Contact: deferred"
 				
 			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide to keep your ship a few thousand meters above the surface. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
-			`	Suddenly, your radar systems pick up a larger signature on the horizon, and you see an odd bulky rock-like structure. Once you get close enough, the structure begins to resemble ships you've seen flying around the nearby systems, although it is half sunken into the sand.`
+			`	Suddenly, your radar systems pick up a larger signature on the horizon, and you see an odd bulky rock-like structure. Once you get close enough, the structure begins to resemble ships you've seen flying around in the nearby systems, although it is half sunken into the sand.`
 			choice
 				`	(Land near the ship and investigate.)`
 					goto land
