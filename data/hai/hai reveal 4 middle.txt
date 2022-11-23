@@ -1207,7 +1207,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label frantic
 			`	Not half way through her food, Sayari's data pad beeps frantically. She looks at it and mutters, "Oh dear, oh no." She lapses into Hai for a moment before returning. "The petition! It hit the trending issues board and triggered the safety policy alert response. People got direct notifications that this was an issue. There are over two billion supporting votes for an injunctive action, and it's only been an hour... this is what you hoped would happen, isn't it?"`
 			`	Teeneep places a gentle hand on Sayari's arm. "Better this than war."`
-			`	Sayari's eyes are alive with thinly-veiled panic as she slams her hand down on the table. Teeneep seems shocked, as if she had never seen Sayari so emotional.`
+			`	Sayari's eyes are alive with thinly-veiled panic as she slams her paw down on the table. Teeneep seems shocked, as if she had never seen Sayari so emotional.`
 			choice
 				`	"What's wrong, Sayari?"`
 			`	She says frantically, "Captain <last>, you must leave immediately!`
