@@ -22,7 +22,7 @@ outfit "R01 Skirmish Battery"
 	thumbnail outfit/gbatterytiny
 	"energy capacity" 1121
 	"outfit space" -12
-	description `Skirmish batteries are very common among ships across Gegno space. They can be either a cheaper and more convenient storage of battery power in place of upgrading to larger Gegno generators, or a nice addition alongside them where more energy may be needed.`
+	description `Skirmish Batteries are very common among ships across Gegno space. They can be either a cheaper and more convenient storage of battery power in place of upgrading to larger Gegno generators, or a nice addition alongside them where more energy may be needed.`
 
 
 outfit "R02 Battlezone Battery"
@@ -35,7 +35,7 @@ outfit "R02 Battlezone Battery"
 	thumbnail outfit/gbatterysmall
 	"energy capacity" 2237
 	"outfit space" -23
-	description `Battlezone batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long lasting engagements. They also fit nicely on larger vessels as a buffer to power their larger systems.`
+	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long lasting engagements. They also fit nicely on larger vessels as a buffer to power their larger systems.`
 
 
 outfit "R03 Warforge Battery"
@@ -48,7 +48,7 @@ outfit "R03 Warforge Battery"
 	thumbnail outfit/gbatterymed
 	"energy capacity" 4469
 	"outfit space" -41
-	description `Warforge batteries have proved their usefulness over the years as large, sturdy battery packs. They support the equally large volleys that are fired from Gegno ships, and help maintain an excess of power for engine usage.`
+	description `Warforge Batteries have proved their usefulness over the years as large, sturdy battery packs. They support the equally large volleys that are fired from Gegno ships, and help maintain an excess of power for engine usage.`
 
 
 outfit "R04 Crusade Battery"
@@ -119,7 +119,7 @@ outfit "C27 Campaign Core"
 	"energy generation" 22.3
 	"heat generation" 62.9
 	"outfit space" -145
-	description `In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during their colony ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it still raises concerns.`
+	description `In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during their colony ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it raises safety concerns.`
 
 
 outfit "I70 Ameliorate Cell"
@@ -548,7 +548,7 @@ outfit "Ballistic Cannon"
 		"shield damage" 145
 		"hull damage" 776
 		"hit force" 360
-	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber. Each cannon round is as powerful as a small rocket and can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload and travel speed, and are often dogeable by faster or smaller craft, but if able to be equipped in numbers, leave a deadly field of rain in their sight.`
+	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber. Each cannon round is as powerful as a small rocket and can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload and travel speed. As such they are often dodgeable by faster or smaller craft, but if able to be equipped in numbers,they  leave a deadly field of rain in their sight.`
 
 
 outfit "Ballistic Cannon Turret"
@@ -583,7 +583,7 @@ outfit "Ballistic Cannon Turret"
 		"shield damage" 145
 		"hull damage" 776
 		"hit force" 360
-	description `As the largest calibler cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballisic Cannon turrets are the deadlist weapons of Vi warships.`
+	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballisic Cannon turrets are the deadliest weapons of Vi warships.`
 
 effect "ballistic fire"
 	sprite effect/balfire
@@ -732,7 +732,7 @@ outfit Excavator
 		"hit force" -4
 		"firing energy" 4
 		"firing heat" 100
-	description `Excavator drills are large drills designed the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require a lot of framework done to be functional.`
+	description `Excavator Drills are large drills designed the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial existing infrastructure to be functional.`
 
 effect drilling
 	sprite effect/smoke
