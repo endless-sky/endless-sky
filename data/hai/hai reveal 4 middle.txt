@@ -1184,7 +1184,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				goto diplomats
 			label "Katya warning"
 			`	The Elder on the right disagrees. "At this point the Republic is to weakened to be a threat. I'm confident they will see reason, for now."`
-			`	Fortunately, the middle Elder contradicts him. "We don't want to risk larger problems with humanity. If the situation continues to worsen, then we'll change our approach." The three find that argument convincing and nod.`
+			`	Fortunately, the middle Elder contradicts him. "We don't want to risk larger problems with humanity. If the situation continues to worsen, then we'll change our approach." The other two find that argument convincing and nod.`
 			label diplomats
 			`	An Elder concludes the meeting. "We have a plan of action on the pirate deals. However, I've heard enough of the 'kidnapping' conspiracy theory, so that ends this meeting." Teeneep is visibly furious, but remains silent as the three exit.`
 			choice
