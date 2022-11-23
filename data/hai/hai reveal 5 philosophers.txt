@@ -440,8 +440,8 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 		not "event: knows about keystones and wormholes"
 	on offer
 		conversation
-			`At length you return again to tell Giti about the system with the unstable wormhole in it. You aren't required to land elsewhere on the planet this time so it's a shorter, if equally crowded, journey to her office.`
-			`	After the both of you spend some time pouring over things for a while she concludes that they must have some sort of special feature they're using to access it, as it makes too much sense for them to be using it for any other explanation to seem logical. "It just doesn't make sense that there'd be a system there, that they have coordinates to, that they're not using. Especially when we can't find them anywhere else."`
+			`At length you return again to tell Giti about the system with the unstable wormhole in it. You aren't required to land elsewhere on the planet this time, so it's a shorter, if equally crowded, journey to her office.`
+			`	After the both of you spend some time pouring over things for a while, she concludes that they must have some sort of special feature they're using to access it. "It just doesn't make sense that there'd be a system there, that they have coordinates to, that they're not using. Especially when we can't find them anywhere else."`
 			choice
 				`	"Do you have any other leads I can follow?"`
 				`	"Even if I've found them, I don't know what they're doing or how. Any ideas?"`
