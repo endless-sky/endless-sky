@@ -755,7 +755,7 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 			`You find Chilia with a relieved look on his face when you land.`
 			`	"The prisoner swap wasn't my idea. I was about ready to fill out the paperwork for the official bounty when one our scouts came to my office to make a personal appeal."`
 			`	"She explained that on her last cloaked fly by scanning run of the 618 she noticed what looked like large group of Korath children playing some type of ball game on the thermal scan."`
-			`	"When she landed she went and looked at the biometric scan data and realized the scan showed around 800 uniq bio signatures, but with only about 7/8th the expected bio mass. Meaning 1/4th of the ships passengers could be children."`
+			`	"When she landed she went and looked at the biometric scan data and realized the scan showed around 800 unique bio signatures, but with only about 7/8th the expected bio mass. Meaning 1/4th of the ships passengers could be children."`
 			`	"I figured you where those children's best chance. I am glad I was not wrong." he says with a content smile on his face.`
 			`	"I worry in our ignorance of Korath society we may have unnecessarily destroyed other ships like this one..."`
 			`	"Expect more missions like this in the future." Chilia then walks away invigorated with new purpose.`
