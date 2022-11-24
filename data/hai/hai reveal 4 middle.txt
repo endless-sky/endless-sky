@@ -1219,7 +1219,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			# Scene change: the meeting with the Elders begins.
 			label meeting
 			`	After a short hour of frantic work, Teeneep leads you to a room within the government complex. Sayari explains, "This is a Special Adjunctive Triad: three Elders with diverse views, specialized knowledge, and the power to take limited immediate actions."` 
-			`	The three Hai Elders are sat behind a table, and the Elder in the center gestures for all of you to sit down in those strange chairs. After a small, calm exchange in Hai between Sayari and the central Elder, he motions for you to speak.`
+			`	The three Hai Elders are sat behind a table, and the Elder in the center gestures for all of you to sit down in those strange Hai chairs. After a small, calm exchange in Hai between Sayari and the central Elder, he motions for you to speak.`
 			`	Instead, Teeneep begins. "Respected Elders, I have extensive evidence of a sustained kidnapping campaign in Hai space, facilitated by pirates you've been arm-"`
 			`	"Enough," says an Elder, raising his hand. "We know about your views, the 'five thousand missing Hai,' and your organization's media connections. You're already risking larger issues with your current actions. We are here to speak to your witness. Captain <last>," he says, turning to you, "tell us your views on these matters."`
 			`	You think carefully of Katya's warning as you prepare to respond.`
