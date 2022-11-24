@@ -510,7 +510,7 @@ ship "Ikatila'ej"
 	sprite "ship/ikatila-ej"
 	thumbnail "thumbnail/ikatila-ej"
 	attributes
-		category "Utility"
+		category "Superheavy"
 		"cost" 109375000
 		"shields" 72700
 		"hull" 93000
