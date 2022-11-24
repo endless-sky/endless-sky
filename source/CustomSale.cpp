@@ -325,10 +325,10 @@ bool CustomSale::Has(const Outfit &item) const
 		if(it.first == &item)
 			return true;
 	for(auto &&sale : relativePrices)
-		if(it.first->Has(&item))
+		if(sale.first->Has(&item))
 			return true;
 	for(auto &&sale : relativeOffsets)
-		if(it.first->Has(&item))
+		if(sale.first->Has(&item))
 			return true;
 	return false;
 }
