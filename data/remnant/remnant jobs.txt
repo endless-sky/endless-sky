@@ -664,7 +664,7 @@ mission "Remnant: Rescue 5"
 mission "Remnant: Disable 1"
 	job
 	repeat
-	name "Destroy Ground Assault Bounty"
+	name "Disable Damaged Korath World Ship"
 	description "A damaged Korath world ship is stuck in the Ember Waste sectors boarding Korath space. It has a large civilian population so we ask you to only disable it to avoid an atrocity. After this return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
