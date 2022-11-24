@@ -284,7 +284,7 @@ namespace {
 		ship.SetTargetStellar(nullptr);
 	}
 
-	const double MAX_DISTANCE_FROM_CENTER = 10000.;
+	double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
