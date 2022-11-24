@@ -3504,7 +3504,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					fillBoardable(*enemy);
 				// The current target is not considered by GetShipsList.
 				if(target)
-					fillBoardable(target.get());
+					fillBoardable(*target.get());
 
 				if(boardable.empty())
 				{
@@ -3537,7 +3537,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 				// If there is no valid target, pick a new one (it could be exploding).
 				if(!target || !CanBoard(ship, *target))
-					ship.SetTargetShip((boardable.back().first->shared_from_this()));
+					ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
 				{
@@ -3551,9 +3551,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					if(boardingTarget != boardable.end())
 					{
 						if(boardingTarget == boardable.begin())
-							ship.SetTargetShip(boardable.back().first->shared_from_this());
+							ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
 						else
-							ship.SetTargetShip((--boardingTarget)->first->shared_from_this());
+							ship.SetTargetShip((const_cast<Ship *>((--boardingTarget)->first)->shared_from_this()));
 					}
 				}
 			}
