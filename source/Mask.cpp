@@ -279,22 +279,36 @@ namespace {
 		return sqrt(radius);
 	}
 
+
+	Point nearestPointOfSegmentToOrigin(Point start, Point end)
+	{
+		double ret = start.Dot(start - end) / start.DistanceSquared(end);
+
+		if (ret < 0.) return start;
+		if (ret > 1.) return end;
+
+		return start * (1. - ret) + end * ret;
+	}
+
 	class Measure {
 	public:
 		Measure()
 			: m_runs(0)
 			, m_contain(0)
+			, m_nearest(0)
 			, m_touch(0)
 			, m_intersect(0)
 		{}
 		void AnotherRun() { m_runs++; }
 		void AnotherContains() { m_contain++; }
 		void AnotherNotTouching() { m_touch++; }
+		void AnotherNearest() { m_nearest++; }
 		void AnotherInstersection() { m_intersect++; }
 
 
 		int m_runs;
 		int m_contain;
+		int m_nearest;
 		int m_touch;
 		int m_intersect;
 	};
@@ -348,9 +362,10 @@ bool Mask::IsLoaded() const
 double Mask::Collide(Point sA, Point vA, Angle facing) const
 {
 	static Measure measure;
-	if (measure.m_runs > 5000) {
+	if (measure.m_runs >= 5000) {
 		cout << "Mask::Collide results:\n"
 			<< "  NotTouching   = " << measure.m_touch << '\n'
+			<< "  Nearest out   = " << measure.m_nearest << '\n'
 			<< "  Contains      = " << measure.m_contain << '\n'
 			<< "  Intersections = " << measure.m_touch << '\n';
 		measure = {};
@@ -364,6 +379,14 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 		measure.AnotherNotTouching();
 		return 1.;
 	}
+
+	// Bail out even if segment doesn't touch a circle of 'radius'
+	if(nearestPointOfSegmentToOrigin(sA, sA + vA).Length() > radius)
+	{
+		measure.AnotherNearest();
+		return 1.;
+	}
+
 
 	// Rotate into the mask's frame of reference.
 	sA = (-facing).Rotate(sA);
