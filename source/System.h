@@ -236,7 +236,7 @@ private:
 	std::set<std::string> attributes;
 
 	// The "invisible fence" radius for this system.
-	int invisibleFenceRadius = 10000;
+	double invisibleFenceRadius = 10000;
 };
 
 
