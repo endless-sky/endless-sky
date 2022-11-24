@@ -28,9 +28,6 @@ ship "Kaiken"
 		"outfit space" 120
 		"weapon capacity" 38
 		"engine capacity" 45
-		"cloak" .01
-		"cloaking energy" 5
-		"cloaking fuel" .0135
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -181,7 +178,7 @@ ship "Ararebo"
 	sprite "ship/ararebo"
 	thumbnail "thumbnail/ararebo"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		"cost" 17565000
 		"shields" 50300
 		"hull" 13600

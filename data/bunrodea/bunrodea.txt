@@ -26,11 +26,14 @@ fleet "Bunrodea Megasa Freight"
 		"Tekkan"
 	variant 2
 		"Ararebo"
+		"Kaiken" 8
 	variant 1
 		"Ararebo"
+		"Kaiken" 8
 		"Kunai"
 	variant 1
 		"Ararebo" 2
+		"Kaiken" 16
 
 fleet "Bunrodea Erabu Freight"
 	government "Bunrodea"
@@ -47,11 +50,14 @@ fleet "Bunrodea Erabu Freight"
 		"Tekkan"
 	variant 2
 		"Ararebo"
+		"Kaiken" 8
 	variant 1
 		"Ararebo"
+		"Kaiken" 8
 		"Kunai"
 	variant 1
 		"Ararebo" 2
+		"Kaiken" 16
 
 fleet "Bunrodea Defense"
 	government "Bunrodea"
@@ -105,6 +111,7 @@ fleet "Bunrodea Royalty"
 		timid vindictive unconstrained mute
 	variant 20
 		"Sasumata"
+		"Kaiken" 4
 	variant 10
 		"Sasumata"
 		"Kaiken" 4
