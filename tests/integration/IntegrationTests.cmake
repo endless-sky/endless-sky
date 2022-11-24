@@ -6,7 +6,7 @@ execute_process(
 	OUTPUT_VARIABLE INTEGRATION_TESTS
 )
 
-string(REPLACE "\n" ";" INTEGRATION_TESTS_LIST ${INTEGRATION_TESTS})
+string(REPLACE "\n" ";" INTEGRATION_TESTS_LIST "${INTEGRATION_TESTS}")
 
 # Empty the temp config directory.
 set(TEST_CONFIGS "${BINARY_PATH}/integration_configs")
