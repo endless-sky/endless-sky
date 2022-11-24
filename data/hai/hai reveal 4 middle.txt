@@ -1040,7 +1040,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	She looks impressed and says, "Very good! I underestimated you, Captain <last>.`
 				goto archaic
 			label disappointed
-			`	After a couple seconds, Giti looks slightly disappointed, as if you failed an intelligence test.`
+			`	After a couple seconds, Giti looks slightly disappointed but makes no comment on the matter.`
 			label archaic
 			`	"This is an archaic written shorthand notation used for ship's logs, back when they were considering data storage requirements for the thousands of people on board the slow ships they sent to Alpha Centauri. You'd be amazed how much space just logs and diaries can take up when the journey takes as long as theirs did." She smiles at you, "As it happens I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!"`
 			`	She frowns at it for a long moment, "There's quite a lot of notation here actually and... well, gosh, it's been twenty-eight years since I did that thesis. I can't just translate this on the fly. It'll take me some time to dig up my resources and work on it. Am I allowed to keep these pictures?"`
