@@ -16,62 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DICTIONARY_H_
 #define DICTIONARY_H_
 
+#include "fnv1a.h"
+
 #include <string>
 #include <utility>
 #include <vector>
-
-// Code from:
-// https://gist.github.com/filsinger/1255697/1972eb676b47116838edaacf923e60b9173199c2
-namespace hash_fnv
-{
-	using def_type = uint32_t;
-
-	template <typename S> struct fnv_internal;
-	template <typename S> struct fnv1;
-	template <typename S> struct fnv1a;
-
-	template <> struct fnv_internal<def_type>
-	{
-		constexpr static def_type default_offset_basis = 0x811C9DC5;
-		constexpr static def_type prime = 0x01000193;
-	};
-
-	template <> struct fnv1<def_type> : public fnv_internal<def_type>
-	{
-		constexpr static inline def_type hash(char const *const aString, const def_type val = default_offset_basis)
-		{
-			return (aString[0] == '\0') ? val : hash(&aString[1], (val * prime) ^ def_type(aString[0]));
-		}
-	};
-
-	template <> struct fnv1a<def_type> : public fnv_internal<def_type>
-	{
-		constexpr static inline def_type hash(char const *const aString, const def_type val = default_offset_basis)
-		{
-			return (aString[0] == '\0') ? val : hash(&aString[1], (val ^ def_type(aString[0])) * prime);
-		}
-	};
-} // namespace hash
-
-
-
-// A tiny wrapper to reduce and prevent risks of type mismatch
-// when passing an hash to 'Dictionary::Get' method
-class HashWrapper {
-public:
-	constexpr explicit HashWrapper(hash_fnv::def_type h)
-		: hash(h)
-	{}
-	constexpr hash_fnv::def_type Get() const { return hash; }
-private:
-	hash_fnv::def_type hash;
-};
-
-
-inline constexpr HashWrapper operator "" _fnv1a (const char *aString, size_t aStrlen)
-{
-	return HashWrapper(hash_fnv::fnv1a<hash_fnv::def_type>::hash(aString));
-}
 
 
 
@@ -82,7 +31,7 @@ class stringAndHash {
 public:
 	stringAndHash(const char *str)
 		: str(str)
-		, hash(hash_fnv::fnv1a<hash_fnv::def_type>::hash(str))
+		, hash(hash_fnv1a::fnv1a<hash_fnv1a::def_type>::hash(str))
 	{}
 	stringAndHash(HashWrapper h)
 		: str(nullptr)
