@@ -490,7 +490,8 @@ void PrintData::PrintEngineStats()
 		<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
 		<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
 		<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
-		<< "reverse heat/s" << '\n';
+		<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
+		<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
 		// Skip non-engines.
@@ -511,7 +512,11 @@ void PrintData::PrintEngineStats()
 		cout << outfit.Get("turning heat") * 60. << ',';
 		cout << outfit.Get("reverse thrust") * 3600. << ',';
 		cout << outfit.Get("reverse thrusting energy") * 60. << ',';
-		cout << outfit.Get("reverse thrusting heat") * 60. << '\n';
+		cout << outfit.Get("reverse thrusting heat") * 60. << ',';
+		cout << outfit.Get("afterburner thrust") * 3600. << ',';
+		cout << outfit.Get("afterburner energy") * 60. << ',';
+		cout << outfit.Get("afterburner heat") * 60. << ',';
+		cout << outfit.Get("afterburner fuel") * 60. << '\n';
 	}
 	cout.flush();
 }
