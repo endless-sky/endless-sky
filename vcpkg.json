@@ -33,11 +33,6 @@
           "platform": "linux"
         }
       ]
-    },
-    "test-libs": {
-      "description": "Libraries needed for the testing infrastructure.",
-      "dependencies": [
-      ]
     }
   }
 }

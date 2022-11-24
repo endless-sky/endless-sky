@@ -41,12 +41,6 @@ else()
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 endif()
 
-# Build the libraries needed for the testing infrastructure, if needed.
-option(BUILD_TESTING "Build the testing tree." ON)
-if(BUILD_TESTING)
-	list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
-endif()
-
 # Various helpful options for IDEs.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
