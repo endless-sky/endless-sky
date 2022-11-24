@@ -1094,7 +1094,7 @@ mission "Hai Reveal [B13] Freedom"
 			action
 				set "Hai Reveal [B13] Freedom: label home"
 			`	The three leaders laugh. The Hai answers, "We are home. Most of us were born here, or have lived most of our adult lives here. This is a place of learning, where three races join as one to progress together. Even some of the more recent arrivals, several had few connections back in Hai space and have viewed this place as a grand new novelty. An adventure without compare. Some recent kidnapping victims wish to leave of course, and we will help you find them and send them home."`
-			`	The Korath speaks next, and the Hai translates. "Where my people came from, everyone was starving, barely subsisting. We had to raid for supplies, or slave away in bleak factory stations. This is a much better place for us."`
+			`	The Korath speaks next. "Where my people came from, everyone was starving, barely subsisting. We had to raid for supplies, or slave away in bleak factory stations. This is a much better place for us."`
 			`	The human leader concludes, "Most of the humans in this city have been here for several generations. This has always been home to us."`
 				goto questions
 			label place
