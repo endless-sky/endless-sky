@@ -659,3 +659,27 @@ mission "Remnant: Rescue 5"
 	on visit
 		dialog
 			`You have returned, but there is still no word from the missing ship.`
+
+
+mission "Remnant: Disable 1"
+	job
+	repeat
+	name "Destroy Ground Assault Bounty"
+	description "A damaged Korath world ship is stuck in the Ember Waste sectors boarding Korath space. It has a large civilian population so we ask you to only disable it to avoid an atrocity. After this return to <planet> to receive your payment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Wont Someone Please Think Of The Children: done"
+		random < 5
+	npc disable save
+		government "Korath"
+		personality heroic vindictive target marked staying
+		system 
+			near "Parca" 1
+		ship "Ra'gru Ik 618 (Crippled)" "Flumgorkor"
+		dialog "You have disabled the Korath world ship. You can now return to <planet> to collect your payment."
+	on visit
+		dialog "You've landed on <planet>, but the stuck Korath world ship has not been disabled yet. Hunt it down and disable it before returning."
+	on complete
+		payment 2000000
+		dialog "A Remnant military leader thanks you for disabling down the Korath world ship <npc>, and gives you the agreed-upon payment of <payment>."

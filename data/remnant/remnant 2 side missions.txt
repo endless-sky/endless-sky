@@ -715,3 +715,46 @@ mission "Remnant: Scent of Rain 1"
 			`	He shakes his head. "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
 			label scanningpayment
 			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
+
+mission "Remnant: Wont Someone Please Think Of The Children"
+	name "Sympathy For The Korath"
+	description "Travel to the <waypoints> system to fight and disable a stranded Ra'gru Ik 618. Do not destroy or capture the ship. Our intel says the world ship has a large civilian population."
+	source
+		government "Remnant"
+		not attributes "station"
+	waypoint "Parca"
+	to offer
+		"Remnant: Cognizance 39: done"
+		"combat rating" > 20000
+	on offer
+		conversation
+			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first> I have a difficult request of you."`
+			`	"Our scouts are reporting a stranded Korath worldship in Parca, a Ra'gru Ik 618 to be precise. Normally we would request you track down this ship and eliminate, but our scouts also reported that this appears to be home to a large civilian population."`
+			`	"Would you be up for disabling this Korath worldship, so the threat is eliminated while preserving the lives of the innocents on board? After you have done so we can arranged for a prisoner swap with the Korath."`
+			choice
+				`	"Happy to help those in need, even the Korath."`
+				`	"I have intention of risking my neck for some Korath."`
+					goto rathernot
+			`	"I am grateful for your understanding and willingness to help here. Lets make sure everyone gets home safely."`
+				accept
+			label rathernot
+			`	He nods in acknowledgment. "I feared my ask was too much. I more than understand the sentiment. Maybe I was being naive to think such an outcome was possible."`
+				decline
+	npc disable save
+		government "Korath"
+		personality heroic vindictive target marked staying
+		system "Parca"
+		ship "Ra'gru Ik 618 (Crippled)" "Flumgorkor"
+	on enter "Parca"
+		dialog
+			`As you enter the sector your scanners pick the target ship. Your nerves are acting up at the thought of having to take on such a powerful ship, but you remind yourself to think of the children.`
+	on complete
+		payment 2500000
+		conversation
+			`You find Chilia with a relieved look on his face when you land.`
+			`	"The prisoner swap wasn't my idea. I was about ready to fill out the paperwork for the official bounty when one our scouts came to my office to make a personal appeal."`
+			`	"She explained that on her last cloaked fly by scanning run of the 618 she noticed what looked like large group of Korath children playing some type of ball game on the thermal scan."`
+			`	"When she landed she went and looked at the biometric scan data and realized the scan showed around 800 uniq bio signatures, but with only about 7/8th the expected bio mass. Meaning 1/4th of the ships passengers could be children."`
+			`	"I figured you where those children's best chance. I am glad I was not wrong." he says with a content smile on his face.`
+			`	"I worry in our ignorance of Korath society we may have unnecessarily destroyed other ships like this one..."`
+			`	"Expect more missions like this in the future." Chilia then walks away invigorated with new purpose.`
