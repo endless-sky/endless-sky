@@ -727,8 +727,11 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 		not attributes "station"
 	waypoint "Parca"
 	to offer
-		has "event: remnant: cognizance calm"
-		"combat rating" > 8103
+		or
+			and
+				has "Remnant: Cognizance 25: done"
+				not "flagship planet: Ssil Vida"
+			has "event: remnant: cognizance calm"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first> I have a difficult request for you."`
@@ -755,9 +758,5 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 		payment 2500000
 		conversation
 			`You find Chilia with a relieved look on his face when you land.`
-			`	"The prisoner swap wasn't my idea. I was about ready to fill out the paperwork for the official bounty when one our scouts came to my office to make a personal appeal."`
-			`	"She explained that on her last cloaked fly by scanning run of the 618 she noticed what looked like large group of Korath children playing some type of ball game on the thermal scan."`
-			`	"When she landed she went and looked at the biometric scan data and realized the scan showed around 800 unique bio signatures, but with only about 7/8th the expected bio mass. Meaning 1/4th of the ships passengers could be children."`
-			`	"I figured you where those children's best chance. I am glad I was not wrong." he says with a content smile on his face.`
-			`	"I worry in our ignorance of Korath society we may have unnecessarily destroyed other ships like this one..."`
-			`	"Expect more missions like this in the future." Chilia then walks away invigorated with new purpose.`
+			`	"This mission wasn't my idea. Taking on the larger Korath vessels is a sensitive matter. You may frequently find large groups of Korath children. I must admit I was worried you wouldn't be those children's best chance, but our fleet was too tied up to take this one at the moment. I am glad I was not wrong." he says with a content smile on his face.`
+			`	"We must be careful not to let ignorance of Korath society result in the unnecessary destruction of similar ships. Now that you have shown you can handle these bounties with the proper restraint, expect more missions like this in the future." Chilia then walks away invigorated with new purpose.`
