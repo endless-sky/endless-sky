@@ -739,7 +739,7 @@ mission "ZZ Hai Reveal [A04] Report to Teeneep"
 mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	landing
 	name "Return to Hai-home"
-	description `Take Teeneep to Hai-home.`
+	description `Take Teeneep to Hai-home so she can investigate the Elders arming pirates with Hai weapons.`
 	source Darkwaste
 	destination Hai-home
 	passengers 1
@@ -815,11 +815,22 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 				goto conclusion
 			
 			label conclusion
-			`	"You must take me to <planet> immediately. My people here can analyze any sensor logs or other data you have on Scar's Legion. It doesn't sound like they're connected to our mystery, but we can do our due diligence. I must personally investigate these new concerns and I cannot do that from here. I also cannot fly my own ship there, right now, without becoming snarled in bureaucracy, but, if I come with you, I can catch up with our mutual friend easily from the secure spaceport. I have sufficient privileges to be there, even if I have no existing clearance for landing my ship."`
+			`	"You must take me to <planet> immediately so I can do my due diligence and investigate this personally. I cannot land my own ship there for now because of... bureaucratic reasons. My people here can analyze any sensor logs or other data you have on Scar's Legion. You've found solid proof of the Elders arming pirates, though, I doubt this is a lead on the kidnappings. At <planet>, I can catch up with our mutual friend from the secure spaceport. I have sufficient privileges to be there, even if I have no clearance for landing my ship."`
 			`	She waves over Wayou towards you. "Please, give Wayou any relevant data files while I pack for departure. I suspect that I have kept you away from <planet> far too long as it is. According to my sources, people there await your return."`
 			`	You've barely had time to load your logs onto a data stick and hand them to Wayou before Teeneep is packed and waiting to depart. It would seem your course is set.`
 				accept
 
+
+mission "Pirates with Hai Weapons 2: Await Teeneep's Research"
+	landing
+	name "Pirates with Hai Weapons"
+	description "Wait for Teeneep and her organization to finish researching past weapons transfers."
+	source Hai-home
+	destination Hai-home
+	to offer
+		has "Hai Reveal [A05] Take Teeneep to Hai-home: done"
+	to complete
+		has "Hai Reveal [A08] Symbol Identification: done"
 
 
 # Eventually needs a whole conversation variant for each main campaign. This time with similar goals. (To be a, b and c versions.)

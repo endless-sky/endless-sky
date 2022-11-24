@@ -432,7 +432,7 @@ event "role-play station active"
 
 
 # This begins with a P instead of an H so it will happen after the other Hai Reveal mission's dialog.
-mission "Pirates with Hai Weapons"
+mission "Pirates with Hai Weapons 1: Katya's Message"
 	landing
 	name "Pirates with Hai Weapons"
 	description "Katya wants you to find out if the Hai government is arming pirates, and if they are, stop them. Don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
@@ -441,7 +441,7 @@ mission "Pirates with Hai Weapons"
 	to offer
 		has "Hai Building Mountaintop [1b] Return: done"
 	to complete
-		has "Hai Reveal [A08] Symbol Identification: done"
+		has "Hai Reveal [A05] Take Teeneep to Hai-home: done"
 	on offer
 		conversation
 			`Before you leave, Alondo finds you in a hallway. "Captain <last>, come with me. We need to have a quick conference." You follow him to an unusual room with strange padding on all sides. He types for a few seconds on a wall-mounted monitor. Soon after, you see the familiar face of Katya.`
