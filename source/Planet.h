@@ -168,9 +168,6 @@ private:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
 
-	// Used to check if the player conditions changed, and keep the old visible customSale in cache if they didn't.
-	//mutable ConditionsStore lastConditions;
-
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;

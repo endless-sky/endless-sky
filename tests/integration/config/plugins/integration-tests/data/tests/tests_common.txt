@@ -637,9 +637,9 @@ test "FailBuy first outfit"
 			key "b"
 		# Skip the error Messages
 		input
-			key "Enter"
+			key "return"
 		input
-			key "Return"
+			key "return"
 		# Go back to the planet menu.
 		input
 			key "l"

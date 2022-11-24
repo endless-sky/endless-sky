@@ -412,30 +412,13 @@ const Sale<Outfit> &Planet::Outfitter() const
 // Get the local price of this outfit.
 double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const
 {
+	customSale.Clear();
 	// We need to know the availability of the outfit so we only consider CustomSales of that availability.
 	CustomSale::SellType sellType = GetAvailability(outfit, conditions);
-	double priceChange = 1.;
-	bool canUseCache = false;//conditions == lastConditions;
-	// Check if we need to udpate the cache of visibleCustomSale.
-	if(sellType == CustomSale::SellType::VISIBLE && !canUseCache)
-	{
-		//lastConditions = conditions;
-		visibleCustomSale.Clear();
-		for(const auto &sale : GameData::CustomSales())
-			if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
-				visibleCustomSale.Add(sale.second);
-	}
-	else if(!canUseCache)
-	{
-		CustomSale customSale;
-		for(const auto &sale : GameData::CustomSales())
-			if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
-				customSale.Add(sale.second);
-		priceChange = customSale.GetRelativeCost(outfit);
-	}
-
-	if(sellType == CustomSale::SellType::VISIBLE)
-		priceChange = visibleCustomSale.GetRelativeCost(outfit);
+	for(const auto& sale : GameData::CustomSales())
+		if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
+			customSale.Add(sale.second);
+	double priceChange = customSale.GetRelativeCost(outfit);
 	return priceChange >= 0. ? priceChange : 1.;
 }
 
