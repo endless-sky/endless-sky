@@ -1893,19 +1893,179 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	if(isClose && speed < slow)
 		return true;
 
-	bool shouldReverse = false;
-	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
+	Point sp, face;
+	double t;
+	sp = targetPosition - StoppingPoint(ship, targetVelocity, false, t, face);
 
-	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
-	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
-	if(isFacing)
-		command |= Command::FORWARD;
-	else if(shouldReverse)
+	Point rsp, rface;
+	double rt = 1e9;
+	if(ship.Attributes().Get("reverse thrust"))
+		rsp = targetPosition - StoppingPoint(ship, targetVelocity, true, rt, rface);
+
+
+	if (ship.Name() == "debug")
+		fprintf(stderr, "MoveTo(%s): plan t: %f  rt: %f   sp: %f   rsp: %f\n", ship.Name().c_str(), t, rt, sp.Length(), rsp.Length());
+
+	Point toFace;
+	bool forwardIfAligned = false;
+	bool reverseIfAligned = false;
+
+	string debugPlan;
+	Point debugArrow;
+
+
+	// In the below set of conditions we try to decide on a good plan to approach
+	// the target. This code is executed regularly during the approach, so any
+	// small mistakes will be automatically corrected further on.
+	//
+	// A downside is that we must take care to use fairly stable conditions, or
+	// we risk rapidly switching between contradictory plans.
+	// (E.g., switching between turning away from the target to use forward thrusters vs
+	// switching towards the target to use reverse thrusters.)
+	//
+	// For this reason there is currently no proper plan where we start by
+	// using reverse thrusters, but this could probably be considered.
+	// This could currently lead to very suboptimal plans when a ship has powerful
+	// reverse thrusters and weak forward thrusters for example.
+
+
+
+
+	// To investigate:
+	// Potentially it could be good to iteratively improve approach? Needs
+	// testing if this is necessary or useful. We could try to estimate
+	// ship's velocity and facing when getting near the currently desired
+	// stopping point and pass those to stoppingPoint to improve estimate.
+	//
+	// The current approach will do that "on the fly" (literally) by adjusting
+	// the stopping point regularly.
+
+
+	if (!ship.Acceleration()) {
+		// No forward thrusters, so must do everything with reverse thrusters.
+
+		if (rsp.Length() > .5 * radius) {
+			// plan: reverse towards, flip
+
+			debugPlan = "full-reverse";
+			debugArrow = rsp;
+
+			toFace = -rsp;
+			reverseIfAligned = true;
+		} else {
+			debugPlan = "full-reverse-stop";
+			debugArrow = rface * 50;
+
+			toFace = rface;
+			reverseIfAligned = true;
+		}
+
+	} else if (ship.Attributes().Get("reverse thrust")
+			&& dp.Unit().Dot(angle.Unit()) < -0.75                           // facing away, and
+			&& velocity.Cross(dp.Unit()) < (0.0001 + 0.01*velocity.Length()) // velocity collinear with dp, and
+			&& dp.Length() < 5 * radius                                      // relatively close to target, and
+			&& sp.Length() > .8 * radius)                                    // not close to stopping point
+			                                                                 // (to avoid this interfering with
+			                                                                 //  a "normal" plan execution)
 	{
-		command.SetTurn(TurnToward(ship, velocity));
-		command |= Command::BACK;
+		// TODO: Turn these constants into things depending on turn rate and max speed?
+
+		// Very special case: ship has both forward and reverse thrusters,
+		// and can easily reach target a by small turn and reversing.
+		//
+		// This is mainly to smooth the case where the (flag)ship has just launched from
+		// a planet and is commanded to land again.
+		//
+		// TODO:
+		// This might cause a slightly weird plan when flying at high speed past a planet
+		// and issuing a land command just after passing the planet. It will reverse first,
+		// until inertia moves the ship beyond the 5*radius threshold, and then
+		// switch to a accel-to-reverse plan
+
+		debugPlan = "simple-reverse";
+		debugArrow = sp;
+
+		toFace = -sp;
+		reverseIfAligned = true;
+
+	} else if (t < rt) {
+		// If our estimate of the forward stopping time is smaller than our estimate of
+		// reverse stopping time, we plan to stop by flipping.
+
+		if (sp.Length() > .5 * radius) {
+			// "normal" plan: accelerate towards, then flip
+
+			debugPlan = "normal";
+			debugArrow = sp;
+
+			toFace = sp;
+			forwardIfAligned = true;
+
+			// CHECKME: If we have reverse thrusters and we're still facing mostly away from the target vector,
+			// we might as well fire reverse thrusters for a while? (Maybe?)
+			if(ship.Attributes().Get("reverse thrust") && sp.Unit().Dot(angle.Unit()) < -0.75)
+				command |= Command::BACK;
+		} else {
+			// if sp is small, we are on the final approach (turn if necessary, decel)
+
+			// plan: flip and stop
+
+			debugPlan = "stop";
+			debugArrow = face * 50;
+
+			toFace = face;
+			forwardIfAligned = true;
+		}
+
+	} else {
+		// We plan to accelerate towards the target, and then use reverse thrusters to stop.
+
+		if (rsp.Length() > .5 * radius) {
+			// plan: accel towards, then reverse
+
+			debugPlan = "accel-to-reverse";
+			debugArrow = rsp;
+
+			toFace = rsp;
+			if (rsp.Length() > .8 * radius) {
+				// Small hack:
+				// Make this rsp threshold slightly larger, to avoid hitting the accelerator
+				// too much when even slightly underestimating the breaking acceleration
+				forwardIfAligned = true;
+			}
+
+			// CHECKME: If we have reverse thrusters and we're still facing mostly away from the target vector,
+			// we might as well fire reverse thrusters for a while? (Maybe?)
+			if(ship.Attributes().Get("reverse thrust") && rsp.Unit().Dot(angle.Unit()) < -0.75)
+				command |= Command::BACK;
+		} else {
+			// if rsp is small, we are on the final approach (turn if necessary, decel)
+
+			// plan: reverse
+
+			debugPlan = "reverse-stop";
+			debugArrow = rface * 50;
+
+			toFace = rface;
+			reverseIfAligned = true;
+		}
+
 	}
+
+	if (ship.Name() == "debug")
+		fprintf(stderr, "MoveTo(%s): plan %s\n", ship.Name().c_str(), debugPlan.c_str());
+
+	ship.SetDebugArrow(debugArrow, Color{0.0, 1.0, 0.0});
+	ship.SetDebugLabel(debugPlan, Color{0.5, 0.0, 0.5});
+
+
+	double alignment = toFace.Unit().Dot(angle.Unit());
+	if(alignment < (isClose ? .95 : .9999 ))
+		command.SetTurn(TurnToward(ship, toFace));
+	if(reverseIfAligned && alignment > .95)
+		command |= Command::BACK;
+	if(forwardIfAligned && alignment > .95)
+		command |= Command::FORWARD;
 
 	return false;
 }
@@ -2759,56 +2919,104 @@ void AI::DoScatter(Ship &ship, Command &command)
 
 
 // Instead of coming to a full stop, adjust to a target velocity vector
-Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
+Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reverse, double &timeToStop, Point &toFace)
 {
 	Point position = ship.Position();
-	Point velocity = ship.Velocity() - targetVelocity;
+	Point velocity = ship.Velocity();
 	Angle angle = ship.Facing();
-	double acceleration = ship.Acceleration();
+	double acceleration;
+	if (!reverse)
+		acceleration = ship.Acceleration();
+	else
+		acceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
+
 	double turnRate = ship.TurnRate();
-	shouldReverse = false;
 
 	// If I were to turn around and stop now the relative movement, where would that put me?
-	double v = velocity.Length();
-	if(!v)
+
+	double v = (velocity - targetVelocity).Length();
+	if(v < 1e-6) {
+		timeToStop = 0.;
+		toFace = angle.Unit();
 		return position;
-	// It makes no sense to calculate a stopping point for a ship entering hyperspace.
+	}
+
+	double jumpTime = 0.;
 	if(ship.IsHyperspacing())
 	{
-		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
+		// It makes no sense to calculate a stopping point for a ship entering hyperspace.
+		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace()) {
+			timeToStop = 0.;
+			toFace = angle.Unit();
 			return position;
-
-		double maxVelocity = ship.MaxVelocity();
-		double jumpTime = (v - maxVelocity) / 2.;
-		position += velocity.Unit() * (jumpTime * (v + maxVelocity) * .5);
-		v = maxVelocity;
-	}
-
-	// This assumes you're facing exactly the wrong way.
-	double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
-	double stopDistance = v * (degreesToTurn / turnRate);
-	// Sum of: v + (v - a) + (v - 2a) + ... + 0.
-	// The number of terms will be v / a.
-	// The average term's value will be v / 2. So:
-	stopDistance += .5 * v * v / acceleration;
-
-	if(ship.Attributes().Get("reverse thrust"))
-	{
-		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
-		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
-		reverseDistance += .5 * v * v / reverseAcceleration;
-
-		if(reverseDistance < stopDistance)
-		{
-			shouldReverse = true;
-			stopDistance = reverseDistance;
 		}
+
+		// We need to slow down to MaxVelocity before doing anything else
+		double maxVelocity = ship.MaxVelocity();
+		jumpTime = (v - maxVelocity) / 2.;
+		position += velocity.Unit() * (jumpTime * (v + maxVelocity) * .5);
+		velocity = velocity.Unit() * maxVelocity;
 	}
 
-	return position + stopDistance * velocity.Unit();
-}
+	// Velocities reachable by accelerating from v by accel are on the line segment defined by
+	// t * v + (1 - t) * accel / drag
+	// (assuming continuous movement rather than discrete movement)
 
+	// We need to intersect the circle with radius acceleration / drag with the line through
+	// velocity and targetVelocity, so that targetVelocity ends up on the resulting line segment.
+	// There may be no such intersection if targetVelocity is faster than this ship's max velocity.
+
+	Point p = velocity;
+	Point r = targetVelocity - p;
+
+	double A = r.LengthSquared();
+	double B = 2 * r.Dot(p);
+	double C = p.LengthSquared() - (acceleration * ship.InertialMass() / ship.Drag()) * (acceleration * ship.InertialMass() / ship.Drag());
+	double D = B * B - 4 * A * C;
+	Point accel;
+	double s = 0.;
+	if (D >= 0) {
+		s = (-B + sqrt(D)) / (2 * A);
+		accel = (p + s * r) * ship.Drag() / ship.InertialMass();
+	}
+
+	if (s <= 1. + 1e-6) {
+		// This case should only happen if the targetVelocity is faster than maxVelocity.
+
+		// We try to return something semi-sensible
+		timeToStop = 10000. / ship.MaxVelocity();
+		Point sp = position + timeToStop * targetVelocity.Unit();
+		toFace = (sp - ship.Position()).Unit();
+		return position + timeToStop * targetVelocity.Unit();
+	}
+
+	double t = 1 - 1. / s;
+	// t = exp(-c*d*T)
+	double d = ship.Drag() / ship.InertialMass();
+	Point dragAcceleration = accel - velocity * d;
+	double c = 0.5 * (accel.Unit().Dot(dragAcceleration.Unit()) + 1.);
+	double T = -log(t) / (c * d);
+
+	// integral of velocity over time
+	Point dist = (accel * c * d * T + (d * velocity - accel) * (1. - t)) / (c * d * d);
+
+	if (!reverse)
+		toFace = accel.Unit();
+	else
+		toFace = -accel.Unit();
+
+	double degreesToTurn = TO_DEG * acos(min(1., max(-1., toFace.Dot(angle.Unit()))));
+	Point stopDistance = velocity * (degreesToTurn / turnRate);
+
+	if (ship.Name() == "debug") {
+		fprintf(stderr, "drag stoppingPoint (%s) v: %f,%f  tv: %f,%f    a: %f,%f  T: %f   dist: %f,%f   drag: %f\n", ship.Name().c_str(), velocity.X(), velocity.Y(), targetVelocity.X(), targetVelocity.Y(), accel.X(), accel.Y(), T, dist.X(), dist.Y(), d);
+	}
+
+	timeToStop = T + jumpTime + degreesToTurn / turnRate;
+
+	// distance travelled while accelerating, plus distance travelled while turning, minus distance target moved
+	return position + dist + stopDistance - targetVelocity * timeToStop;
+}
 
 
 // Get a vector giving the direction this ship should aim in in order to do
@@ -4020,10 +4228,11 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			}
 			else if(existing.type == Orders::HOLD_POSITION)
 			{
-				bool shouldReverse = false;
+				double t;
+				Point f;
 				// Set the point this ship will "guard," so it can return
 				// to it if knocked away by projectiles / explosions.
-				existing.point = StoppingPoint(*ship, Point(), shouldReverse);
+				existing.point = StoppingPoint(*ship, Point(), false, t, f);
 			}
 		}
 		if(!gaveOrder)

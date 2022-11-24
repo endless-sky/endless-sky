@@ -120,7 +120,7 @@ private:
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 
-	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
+	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reverse, double &timeToStop, Point &toFace);
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damage to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
