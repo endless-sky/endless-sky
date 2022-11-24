@@ -1201,7 +1201,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			label media
 			action
 				set "Hai Reveal [A09] History of Appeasement: label media"
-			`	Sayari gives you a quizzical look, "Of course they do, though Tee has access to more efficient options. That's not the point, though."`
+			`	Sayari gives you a quizzical look. "Of course they do, though Tee has access to more efficient options. That's not the point, though."`
 				goto questions
 			label go
 			`	Sayari nods at you and looks toward Teeneep. "Look, the Elders are pretty much permanently on call at the moment. None of them are leaving <origin>, and they're in session as we speak. Let me put a priority audience request into the system, and you can probably see them this afternoon. In the meantime, why don't I order some food here? You can use my spare desk over there to prepare what you need to say."`
