@@ -724,7 +724,7 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 		not attributes "station"
 	waypoint "Parca"
 	to offer
-		"Remnant: Cognizance 39: done"
+		has "Remnant: Cognizance 39: done"
 		"combat rating" > 20000
 	on offer
 		conversation
