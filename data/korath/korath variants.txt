@@ -943,39 +943,6 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 
 
 
-ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Ember)"
-	outfits
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 2
-		"Shunt-Strike Turret" 2
-		"Fire-Lance" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Systems Core (Small)"
-		"Liquid Sodium Cooler"
-		"Fuel Processor" 3
-		"Brig"
-		"Microbot Defense Station" 6
-		"Thermal Repeater Rifle" 1492
-		
-		"Reverser (Lunar Class)"
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
-		Hyperdrive
-		"Jump Drive"
-	
-	gun -45 -253 "Fire-Lance"
-	gun 45 -253 "Fire-Lance"
-	turret -77 -116.5 "Shunt-Strike Turret"
-	turret 77 -116.5 "Shunt-Strike Turret"
-	turret -87 -83 "Warder Anti-Missile"
-	turret 87 -83 "Banisher Grav-Turret"
-	turret -51 276.5 "Banisher Grav-Turret"
-	turret 51 276.5 "Warder Anti-Missile"
-
-
-
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 	outfits
 		"Digger Mining Beam" 3
