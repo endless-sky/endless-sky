@@ -47,7 +47,7 @@ public:
 	// Check if any records have been loaded.
 	bool IsLoaded() const;
 	// If no records have been loaded, initialize with an entire fleet, with the player.
-	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day, const PlayerInfo &player);
+	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day, PlayerInfo &player);
 
 	// Add a ship, and all its outfits, to the depreciation record.
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr);
@@ -85,7 +85,7 @@ private:
 	// Check if any data has been loaded.
 	bool isLoaded = false;
 
-	const PlayerInfo *player;
+	PlayerInfo *player = nullptr;
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };

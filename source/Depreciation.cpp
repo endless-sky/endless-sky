@@ -132,7 +132,7 @@ bool Depreciation::IsLoaded() const
 
 
 // If no records have been loaded, initialize with an entire fleet.
-void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day, const PlayerInfo &player)
+void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day, PlayerInfo &player)
 {
 	// If this is called, this is a player's fleet, not a planet's stock.
 	isStock = false;
