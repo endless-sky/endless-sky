@@ -300,5 +300,6 @@ mission "Quarg Pug Arfecta Warning"
 			`	"We give you a warning. You know not what you have child, the weapon you wield."`
 			`	"We have seen its power. We have felt its power. We have learned from its power. But you and your kind know nothing of this power and its burdens and dangers. Be careful that you direct this power, and not it you."`
 			`	"And be careful to remember that we have learned to overcome it."`
-			`	The Quarg then curtly motions farewell and leaves you to your business. As you go you feel the crowd's glare follow you.`
+			`	The Quarg curtly motions farewell then takes one last long look at your ship before leaving you to your business. The crowd too starts to disperse, with a few staying behind to gawk at your ship.`
+			`	As you make your way through the ring you notice all the Quarg onboard glaring at you with disgust.`
 				decline
