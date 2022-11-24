@@ -4065,3 +4065,9 @@ void AI::UpdateOrders(const Ship &ship)
 		order.targetSystem = ship.GetSystem();
 	}
 }
+
+
+void AI::SetInvisibleFenceRadius(double radius)
+{
+	MAX_DISTANCE_FROM_CENTER = radius;
+}
