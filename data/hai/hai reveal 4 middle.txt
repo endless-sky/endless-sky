@@ -1179,7 +1179,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			label deals
 			action
 				set "Hai Reveal [A09] History of Appeasement: label deals"
-			`	Sayari says, "The Elders have been making deals with pirates for a long time, in return for secrecy or ceasing mischief. We give them credits, supplies for their colonies, or weapons. I'm not privy to the details, but I've know for quite a while."`
+			`	Sayari says, "The Elders have been making deals with your pirates for a long time, in return for secrecy or ceasing mischief. We give them credits, supplies for their colonies, or weapons. I'm not privy to the details, but I've known for quite a while."`
 			`	An enraged Teeneep counters. "They give them our weapons so that they can more efficiently go and enslave other people, rather than just dealing with them properly the way they should have! One hundred and seventy three reports, Sayari. That's how many times they've done this, or something like it, and those are just the ones that came up in the sweep. There's no telling how many others might be filed improperly, missing key words, or just outside of my search range.`
 			`	"I thought you were a model of morality, Sayari. Now I know you're no better than they are. No better than... than..."`
 			`	Sayari finishes Teeneep's thought. "No better than you? The curse of power is to sacrifice your morals for protection of people under your care. I think you know that well, Teeneep. Perhaps better than I?" Teeneep looks briefly ashamed when Sayari says that.`
