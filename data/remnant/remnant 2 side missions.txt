@@ -734,7 +734,7 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 			`	"Would you be up for disabling this Korath worldship, so the threat is eliminated while preserving the lives of the innocents on board? After you have done so we can arranged for a prisoner swap with the Korath."`
 			choice
 				`	"Happy to help those in need, even the Korath."`
-				`	"I have intention of risking my neck for some Korath."`
+				`	"I have no intentions of risking my neck for some Korath."`
 					goto rathernot
 			`	"I am grateful for your understanding and willingness to help here. Lets make sure everyone gets home safely."`
 				accept
