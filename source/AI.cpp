@@ -3454,14 +3454,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				Point current = ship.Position();
 				switch(boardingPriority)
 				{
-					case Preferences::BoardingPriority::value:
+					case Preferences::BoardingPriority::VALUE:
 						return [this, &ship](Ship &other) noexcept -> double
 						{
 							// Use the exact cost if the ship was scanned, otherwise use an estimation.
 							return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
 						};
-					case Preferences::BoardingPriority::mixed:
+					case Preferences::BoardingPriority::MIXED:
 						return [this, &ship, current](Ship &other) noexcept -> double
 						{
 							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
@@ -3472,7 +3472,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						};
 					// Default to distance priorities (the default setting).
 					default:
-					case Preferences::BoardingPriority::proximity:
+					case Preferences::BoardingPriority::PROXIMITY:
 						return [current](Ship &other) noexcept -> double
 						{
 							return current.DistanceSquared(other.Position());
@@ -3526,11 +3526,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
-						if(boardingPriority == Preferences::BoardingPriority::value && lhs.second == rhs.second)
+						if(boardingPriority == Preferences::BoardingPriority::VALUE && lhs.second == rhs.second)
 							return lhs.first->Position().DistanceSquared(ship.Position()) >
 								rhs.first->Position().DistanceSquared(ship.Position());
 						else
-							return boardingPriority == Preferences::BoardingPriority::proximity ?
+							return boardingPriority == Preferences::BoardingPriority::PROXIMITY ?
 								lhs.second > rhs.second : lhs.second < rhs.second;
 					}
 				);
