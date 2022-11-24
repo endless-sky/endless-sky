@@ -240,7 +240,6 @@ event "role-play station after construction"
 		description `This station is made of eight Geocoris ships dismantled and reassembled into a spherical structure with external storage and landing platforms. Hai workers are shuffling about the station, installing human amenities and vast holographic projection systems. Presently it looks much like a construction site, but it is rapidly approaching completion.`
 
 
-
 mission "Hai Building Mountaintop [2] Recruits"
 	name "Encourage recruits for Mountaintop"
 	description "Now that the station is going ahead, the Hai need to recruit people to be actors in this movie production. Someone needs to sell it to them, and apparently that someone is you."
@@ -429,4 +428,39 @@ event "role-play station active"
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad, carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 0.7
 		"required reputation" -10
-	
+
+
+
+mission "Pirates with Hai Weapons"
+	landing
+	name "Pirates with Hai Weapons"
+	description "Katya wants you to find out if the Hai government is arming pirates, and if they are, stop them. Don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
+	source Hai-home
+	destination Hai-home
+	to offer
+		has "Hai Building Mountaintop [1b] Return: done"
+	to complete
+		has "Hai Reveal [A08] Symbol Identification: done"
+	on offer
+		conversation
+			`Before you leave, Alondo finds you in a hallway. "Captain <last>, come with me. We need to have a quick conference." You follow him to an unusual room with strange padding on all sides. He types for a few seconds on a wall-mounted monitor. Soon after, you see the familiar face of Katya.`
+			`	"The transmission is secure," Alondo says. "This room has good soundproofing and some signal dampening. You can talk freely."`
+			choice
+				`	"What is it Katya?"`
+					goto whaizzit
+				`	"You've taken a lot of precautions for this call."`
+			`	"Yes," she says. "This is a sensitive matter.`
+			label whaizzit
+			`	"There's a problem I need you to solve... discretely. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
+				to display
+					not "FW Bounty 3: done"
+			`	"There's a problem I need you to solve... discretely. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world.`
+				to display
+					has "FW Bounty 3: done"
+			`	"Such a vast supply could not be from individual smugglers, so this is definitely a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a senator, I can tell you the Republic will not be so understanding.`
+			`	"You must find out if the Hai government is arming the pirates and, if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it and, whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
+			choice
+				`	"That's worrying news. I'll look into it."`
+				`	"Don't worry. I'll stop the Hai from arming pirates."`
+			`	After a few goodbyes, you head out to search for answers.`
+				accept
