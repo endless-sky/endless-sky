@@ -431,6 +431,7 @@ event "role-play station active"
 
 
 
+# This begins with a P instead of an H so it will happen after the other Hai Reveal mission's dialog.
 mission "Pirates with Hai Weapons"
 	landing
 	name "Pirates with Hai Weapons"
