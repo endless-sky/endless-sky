@@ -22,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 
+#include <iostream>
+
 using namespace std;
 
 namespace {
@@ -276,6 +278,26 @@ namespace {
 			radius = max(radius, p.LengthSquared());
 		return sqrt(radius);
 	}
+
+	class Measure {
+	public:
+		Measure()
+			: m_runs(0)
+			, m_contain(0)
+			, m_touch(0)
+			, m_intersect(0)
+		{}
+		void AnotherRun() { m_runs++; }
+		void AnotherContains() { m_contain++; }
+		void AnotherNotTouching() { m_touch++; }
+		void AnotherInstersection() { m_intersect++; }
+
+
+		int m_runs;
+		int m_contain;
+		int m_touch;
+		int m_intersect;
+	};
 }
 
 
@@ -325,10 +347,23 @@ bool Mask::IsLoaded() const
 // is no collision, the return value is 1.
 double Mask::Collide(Point sA, Point vA, Angle facing) const
 {
+	static Measure measure;
+	if (measure.m_runs > 5000) {
+		cout << "Mask::Collide results:\n"
+			<< "  NotTouching   = " << measure.m_touch << '\n'
+			<< "  Contains      = " << measure.m_contain << '\n'
+			<< "  Intersections = " << measure.m_touch << '\n';
+		measure = {};
+	}
+	measure.AnotherRun();
+
 	// Bail out if we're too far away to possibly be touching.
 	double distance = sA.Length();
 	if(!IsLoaded() || distance > radius + vA.Length())
+	{
+		measure.AnotherNotTouching();
 		return 1.;
+	}
 
 	// Rotate into the mask's frame of reference.
 	sA = (-facing).Rotate(sA);
@@ -342,8 +377,12 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 	// For simplicity, use a ray pointing straight downwards. A segment then
 	// intersects only if its x coordinates span the point's coordinates.
 	if(distance <= radius && Contains(sA))
+	{
+		measure.AnotherContains();
 		return 0.;
+	}
 
+	measure.AnotherInstersection();
 	return Intersection(sA, vA);
 }
 
