@@ -447,7 +447,7 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			`Before you leave, Alondo finds you in a hallway. "Captain <last>, come with me. We need to have a quick conference." You follow him to an unusual room with strange padding on all sides. He types for a few seconds on a wall-mounted monitor. Soon after, you see the familiar face of Katya.`
 			`	"The transmission is secure," Alondo says. "This room has good soundproofing and some signal dampening. You can talk freely."`
 			choice
-				`	"What is it Katya?"`
+				`	"What is it, Katya?"`
 					goto whaizzit
 				`	"You've taken a lot of precautions for this call."`
 			`	"Yes," she says. "This is a sensitive matter.`
