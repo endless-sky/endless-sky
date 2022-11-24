@@ -153,7 +153,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	const Outfit &attributes = ship.Attributes();
 
 	int64_t fullCost = ship.LocalCost(player->GetPlanet(), player->Conditions());
-	int64_t depreciated = depreciation.Value(ship, day, player);
+	int64_t depreciated = depreciation.Value(ship, day);
 	if(depreciated == fullCost)
 		attributeLabels.push_back("cost:");
 	else
@@ -401,7 +401,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 	}
 
 
-	int64_t totalCost = depreciation.Value(ship, day, GetPlayer());
+	int64_t totalCost = depreciation.Value(ship, day);
 	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.ModelName()), day);
 	saleLabels.clear();
 	saleValues.clear();

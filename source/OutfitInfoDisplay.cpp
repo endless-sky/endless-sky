@@ -248,8 +248,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
 	int day = player->GetDate().DaysSinceEpoch();
 	double scale = player->GetPlanet() ? player->GetPlanet()->GetLocalRelativePrice(outfit, player->Conditions()) : 1.0;
 	int64_t cost = outfit.Cost() * scale;
-	int64_t buyValue = player->StockDepreciation().Value(&outfit, day, player);
-	int64_t sellValue = player->FleetDepreciation().Value(&outfit, day, player);
+	int64_t buyValue = player->StockDepreciation().Value(&outfit, day);
+	int64_t sellValue = player->FleetDepreciation().Value(&outfit, day);
 
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");

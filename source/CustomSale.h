@@ -39,6 +39,7 @@ public:
 	// visible is the default one in the game,
 	// import means you can only sell it but not buy it (and it is shown still)
 	// hidden means it will not be shown except if you have the outfit (and it will have a custom price still).
+	// The numbers correspond to the priority, hidden will override import which will override visible.
 	enum class SellType {
 		NONE = 0,
 		VISIBLE = 1,

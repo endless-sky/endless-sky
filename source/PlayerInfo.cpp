@@ -125,7 +125,7 @@ void PlayerInfo::New(const StartConditions &start)
 	GameData::SetDate(date);
 	// Make sure the fleet depreciation object knows it is tracking the player's
 	// fleet, not the planet's stock.
-	depreciation.Init(ships, date.DaysSinceEpoch());
+	depreciation.Init(ships, date.DaysSinceEpoch(), *this);
 
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
@@ -392,7 +392,7 @@ void PlayerInfo::Load(const string &path)
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
-		depreciation.Init(ships, date.DaysSinceEpoch());
+		depreciation.Init(ships, date.DaysSinceEpoch(), *this);
 }
 
 
@@ -679,7 +679,7 @@ void PlayerInfo::IncrementDate()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch(), this);
+	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
 	for(const shared_ptr<Ship> &ship : ships)
 		assets += ship->Cargo().Value(system);
 
@@ -1014,7 +1014,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 		return;
 
 	int day = date.DaysSinceEpoch();
-	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day, this);
+	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
 		// Copy the model instance into a new instance.
@@ -1048,7 +1048,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day, this);
+			int64_t cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation);
@@ -1535,7 +1535,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 				// Compute the total value for each type of excess outfit.
 				if(!outfit.second)
 					continue;
-				int64_t cost = depreciation.Value(outfit.first, day, this, outfit.second);
+				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
 				for(int i = 0; i < outfit.second; ++i)
 					stockDepreciation.Buy(outfit.first, day, &depreciation);
 				income += cost;

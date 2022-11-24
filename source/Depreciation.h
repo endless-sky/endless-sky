@@ -46,8 +46,8 @@ public:
 	void Save(DataWriter &out, int day) const;
 	// Check if any records have been loaded.
 	bool IsLoaded() const;
-	// If no records have been loaded, initialize with an entire fleet.
-	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day);
+	// If no records have been loaded, initialize with an entire fleet, with the player.
+	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day, const PlayerInfo &player);
 
 	// Add a ship, and all its outfits, to the depreciation record.
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr);
@@ -55,13 +55,13 @@ public:
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
 
 	// Get the value of an entire fleet.
-	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, const PlayerInfo *player) const;
+	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day) const;
 	// Get the value of a ship, along with all its outfits.
-	int64_t Value(const Ship &ship, int day, const PlayerInfo *player) const;
+	int64_t Value(const Ship &ship, int day) const;
 	// Get the value just of the chassis of a ship.
 	int64_t Value(const Ship *ship, int day, int count = 1) const;
 	// Get the value of an outfit.
-	int64_t Value(const Outfit *outfit, int day, const PlayerInfo *player, int count = 1) const;
+	int64_t Value(const Outfit *outfit, int day, int count = 1) const;
 
 
 private:
@@ -85,6 +85,7 @@ private:
 	// Check if any data has been loaded.
 	bool isLoaded = false;
 
+	PlayerInfo *player = nullptr;
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };

@@ -132,7 +132,7 @@ bool Depreciation::IsLoaded() const
 
 
 // If no records have been loaded, initialize with an entire fleet.
-void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
+void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day, const PlayerInfo &player)
 {
 	// If this is called, this is a player's fleet, not a planet's stock.
 	isStock = false;
@@ -145,6 +145,7 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 		for(const auto &it : ship->Outfits())
 			outfits[it.first][day] += it.second;
 	}
+	this->player = &player;
 }
 
 
@@ -214,7 +215,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 // Get the value of an entire fleet.
-int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, const PlayerInfo *player) const
+int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) const
 {
 	map<const Ship *, int> shipCount;
 	map<const Outfit *, int> outfitCount;
@@ -240,7 +241,7 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, cons
 
 
 // Get the value of a ship, along with all its outfits.
-int64_t Depreciation::Value(const Ship &ship, int day, const PlayerInfo *player) const
+int64_t Depreciation::Value(const Ship &ship, int day) const
 {
 	int64_t value = Value(&ship, day);
 	for(const auto &it : ship.Outfits())
@@ -266,7 +267,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 
 
 // Get the value of an outfit.
-int64_t Depreciation::Value(const Outfit *outfit, int day, const PlayerInfo *player, int count) const
+int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
 	int64_t cost = outfit->Cost() * ((player && player->GetPlanet())
 			? player->GetPlanet()->GetLocalRelativePrice(*outfit, player->Conditions()) : 1);
