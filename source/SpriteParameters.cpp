@@ -26,17 +26,18 @@ SpriteParameters::SpriteParameters()
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	AnimationParameters initDefault;
-	auto tuple = std::tuple<const Sprite*, SpriteParameters::AnimationParameters>{sprite, initDefault};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, SpriteParameters::AnimationParameters>>("default", tuple));
+	auto tuple = SpriteParameters::SpriteDetails{sprite, initDefault};
+	this->sprites.insert(std::pair<std::string, SpriteParameters::SpriteDetails>("default", tuple));
 	this->exposed = initDefault;
 }
 
 
 
-void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite, SpriteParameters::AnimationParameters params)
+void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite,
+								 SpriteParameters::AnimationParameters params)
 {
-	auto tuple = std::tuple<const Sprite*, SpriteParameters::AnimationParameters>{sprite, params};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, SpriteParameters::AnimationParameters>>(trigger, tuple));
+	auto tuple = SpriteParameters::SpriteDetails{sprite, params};
+	this->sprites.insert(std::pair<std::string, SpriteParameters::SpriteDetails>(trigger, tuple));
 	if(trigger == "default")
 		this->exposed = params;
 }
@@ -121,7 +122,7 @@ bool SpriteParameters::IsTrigger(std::string trigger) const
 
 
 
-const std::map<std::string, std::tuple<const Sprite*, SpriteParameters::AnimationParameters>> *SpriteParameters::GetAllSprites() const
+const SpriteParameters::SpriteMap *SpriteParameters::GetAllSprites() const
 {
 	return &this->sprites;
 }

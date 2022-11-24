@@ -1879,7 +1879,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
-		if(targetSystem){
+		if(targetSystem)
+		{
 			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
 			bool isJump = (jumpUsed.first == JumpType::JUMP_DRIVE);
 			if(isJump)
@@ -3057,7 +3058,8 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	}
 	// For any ship that is not the player flagship,
 	// jumps should not be restricted by animation if they are not in the system
-	return (this->GetState() == Body::BodyState::JUMPING && this->ReadyForAction()) || !(this->isPlayerFlagship || isInSystem);
+	return (this->GetState() == Body::BodyState::JUMPING && this->ReadyForAction()) ||
+			!(this->isPlayerFlagship || isInSystem);
 }
 
 

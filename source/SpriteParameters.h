@@ -80,13 +80,16 @@ public:
 	// Animation parameters exposed to Body
 	SpriteParameters::AnimationParameters exposed;
 
+private:
+	typedef std::tuple<const Sprite*, SpriteParameters::AnimationParameters> SpriteDetails;
+	typedef std::map<std::string, SpriteParameters::SpriteDetails> SpriteMap;
 
 private:
 	// Used to trigger different animations
 	std::string trigger = "default", requestedTrigger = "default";
 
 	// Sprites to be animated
-	std::map<std::string, std::tuple<const Sprite*, SpriteParameters::AnimationParameters>> sprites;
+	SpriteParameters::SpriteMap sprites;
 };
 
 

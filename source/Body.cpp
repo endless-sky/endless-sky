@@ -84,7 +84,7 @@ const Sprite *Body::GetSprite(Body::BodyState state) const
 	SpriteParameters *spriteState = &this->sprites[selected];
 
 	// Return flying sprite if the requested state's sprite does not exist.
-	const Sprite* sprite = spriteState->GetSprite();
+	const Sprite *sprite = spriteState->GetSprite();
 	if(sprite != nullptr && !returnDefaultSprite)
 		return sprite;
 	else
@@ -659,7 +659,8 @@ void Body::ShowDefaultSprite(bool defaultSprite)
 bool Body::ReadyForAction() const
 {
 	// Never ready for action if transitioning between states
-	return this->anim.indicateReady ? this->stateReady : (!this->stateTransitionRequested || this->transitionState == Body::BodyState::TRIGGER);
+	return this->anim.indicateReady ? this->stateReady : (!this->stateTransitionRequested ||
+														  this->transitionState == Body::BodyState::TRIGGER);
 }
 
 
