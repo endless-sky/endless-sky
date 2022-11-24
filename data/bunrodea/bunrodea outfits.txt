@@ -17,8 +17,8 @@ outfit "Shield Relay Booster"
 	thumbnail "outfit/shield booster"
 	"mass" 2
 	"outfit space" -2
-	"shield generation" 0.15
-	"shield energy" 0.21
+	"shield generation" 0.4
+	"shield energy" 1.2
 	"relay upgrades" -1
 	description "The shield relay booster is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Boosters increase the shield generation strength of a relay, but at the cost of reduced energy efficiency."
 
@@ -28,31 +28,31 @@ outfit "Shield Relay Limiter"
 	thumbnail "outfit/shield limiter"
 	"mass" 1
 	"outfit space" -1
-	"shield generation" -0.01
-	"shield energy" -0.07
+	"shield generation" -0.02
+	"shield energy" -0.1
 	"relay upgrades" -1
 	description "The shield relay limiter is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Limiters increase the energy efficiency of a relay, but at the cost of reducing the strength of its shield generation."
 
 outfit "Small Shield Relay"
 	category "Systems"
-	cost 343000
+	cost 172000
 	thumbnail "outfit/small shield relay"
 	"mass" 21
 	"outfit space" -21
-	"shield generation" 0.9
-	"shield energy" 0.55
+	"shield generation" 0.65
+	"shield energy" 0.6
 	"relay upgrades" 6
 	description "Bunrodean shield relays are impressively efficient; while a similarly sized shield generator from another faction might be capable of providing more shield generation, Bunrodean shield relays provide a modest amount of shield generation for only a small amount of energy."
 	description "	Shield relays are able to be upgraded by installing shield boosters or limiters, which alter the performance of the shield relay. Each relay only has a limited number of slots for these upgrades, though."
 
 outfit "Large Shield Relay"
 	category "Systems"
-	cost 1078000
+	cost 593000
 	thumbnail "outfit/large shield relay"
 	"mass" 56
 	"outfit space" -56
-	"shield generation" 2.75
-	"shield energy" 1.4
+	"shield generation" 2
+	"shield energy" 1.6
 	"relay upgrades" 16
 	description "Some Bunrodean military captains argued that trading shield generation for energy efficiency is a foolish trade, while merchant captains looking to get the most out of their reactors argued that they could be more energy efficient. As such, shield relays are able to be customized to the owner's liking using external components."
 	description "	Shield relays are able to be upgraded by installing shield boosters or limiters, which alter the performance of the shield relay. Each relay only has a limited number of slots for these upgrades, though."
@@ -76,8 +76,8 @@ outfit "Nanite Limiter"
 	thumbnail "outfit/nanite limiter"
 	"mass" 2
 	"outfit space" -2
-	"hull repair rate" -0.02
-	"hull energy" -0.17
+	"hull repair rate" -0.025
+	"hull energy" -0.2
 	"nanite upgrades" -1
 	description "The nanite limiter is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
 
@@ -87,8 +87,8 @@ outfit "Small Nanite Fabricator"
 	thumbnail "outfit/small nanite fabricator"
 	"mass" 23
 	"outfit space" -23
-	"hull repair rate" 0.9
-	"hull energy" 1.5
+	"hull repair rate" 0.72
+	"hull energy" 1.08
 	"nanite upgrades" 4
 	description "Although Bunrodea ships tend to rely on their shields for defense, some pilots will opt to install a nanite fabricator. These fabricators produce a steady stream of nanites that travel across the hull of the ship and repair any damage that they find."
 	description "	Nanite fabricators are able to be upgraded by installing nanite enhancers or limiters, which alter the performance of the fabricator. Each fabricator only has a limited number of slots for these upgrades, though."
@@ -99,8 +99,8 @@ outfit "Large Nanite Fabricator"
 	thumbnail "outfit/large nanite fabricator"
 	"mass" 58
 	"outfit space" -58
-	"hull repair rate" 2.65
-	"hull energy" 4.4
+	"hull repair rate" 2.12
+	"hull energy" 3.18
 	"nanite upgrades" 10
 	description "The creation of nanite fabricators was spurred on by early contact between the Bunrodea and Korath. The hull-walking microbots of Korath System Cores allowed Korath ships to make repairs without the need of a spaceport, a trait that the Bunrodea favored for use in their scout vessesl."
 	description "	Nanite fabricators are able to be upgraded by installing nanite enhancers or limiters, which alter the performance of the fabricator. Each fabricator only has a limited number of slots for these upgrades, however."
@@ -137,19 +137,19 @@ outfit "Reactor Overclocker"
 	thumbnail "outfit/reactor overclocker"
 	"mass" 4
 	"outfit space" -4
-	"energy generation" 0.8
-	"heat generation" 2.4
+	"energy generation" 0.9
+	"heat generation" 3.15
 	"reactor upgrades" -3
 	description "The reactor overclocker is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Overclockers increase the strength of the energy generation of a reactor, but at the cost of reduced heat efficiency."
 
 outfit "Reactor Limiter"
 	category "Power"
-	cost 59000
+	cost 26000
 	thumbnail "outfit/reactor limiter"
 	"mass" 2
 	"outfit space" -2
-	"energy generation" -0.1
-	"heat generation" -1.2
+	"energy generation" -0.55
+	"heat generation" -6.6
 	"reactor upgrades" -2
 	description "The reactor limiter is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Limiters increase the heat efficiency of a reactor, but at the cost of reducing the strength of its energy generation."
 
@@ -159,7 +159,7 @@ outfit "Quark Reactor"
 	thumbnail "outfit/quark reactor"
 	"mass" 61
 	"outfit space" -61
-	"energy generation" 8.75
+	"energy generation" 8.35
 	"heat generation" 10.9
 	"reactor upgrades" 6
 	description "Bunrodean reactors appear to be named after types of exotic stars that either once were or still are considered theoretical to humanity. A quark star was first discovered by humanity near the Shangri-La system during the 28th century, a star with core temperatures and pressures so extreme that quark matter is produced."
@@ -171,7 +171,7 @@ outfit "Electroweak Reactor"
 	thumbnail "outfit/electroweak reactor"
 	"mass" 106
 	"outfit space" -106
-	"energy generation" 17.8
+	"energy generation" 17.25
 	"heat generation" 20.5
 	"reactor upgrades" 18
 	description "The existence of the exotic stars that this Bunrodean reactor bears the name of is still unknown to humanity. An electroweak star is an exotic star that would be prevented from collapsing by the electroweak force as quarks are converted to leptons in the star's core."
@@ -183,7 +183,7 @@ outfit "Dark Reactor"
 	thumbnail "outfit/dark reactor"
 	"mass" 142
 	"outfit space" -142
-	"energy generation" 26
+	"energy generation" 24.7
 	"heat generation" 28.6
 	"reactor upgrades" 30
 	description "Whether Bunrodean reactors are actually powered by the theoretical forces that their names refer to or the Bunrodeans have simply discovered that these star types do exist and have only named their reactors after them is unknown. If the former is the case, then this reactor may be powered by the fusion of dark matter itself."
