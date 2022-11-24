@@ -107,7 +107,7 @@ double &Dictionary::operator[](const string &key)
 
 
 
-double Dictionary::Get(const HashWrapper &hash_wr) const
+double Dictionary::Get(HashWrapper hash_wr) const
 {
 	static Timing timing;
 	const auto start = high_resolution_clock::now();

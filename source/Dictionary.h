@@ -84,9 +84,9 @@ public:
 		: str(str)
 		, hash(hash_fnv::fnv1a<hash_fnv::def_type>::hash(str))
 	{}
-	stringAndHash(const HashWrapper &h)
+	stringAndHash(HashWrapper h)
 		: str(nullptr)
-		, hash(h)
+		, hash(std::move(h))
 	{}
 
 	const char *GetString() const { return str; }
@@ -110,7 +110,7 @@ public:
 	double &operator[](const char *key);
 	double &operator[](const std::string &key);
 	// Get the value of a key, or 0 if it does not exist:
-	double Get(const HashWrapper &hash_wr) const;
+	double Get(const HashWrapper hash_wr) const;
 	double Get(const char *key) const;
 	double Get(const std::string &key) const;
 
