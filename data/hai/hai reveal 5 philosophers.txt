@@ -1080,7 +1080,7 @@ mission "Hai Reveal [B13] Freedom"
 			label "translation services"
 			action
 				set "Hai Reveal [B13] Freedom: label translation services"
-			`	The Korath leader hisses and replies while the Hai translates. "No, we cannot. Few among the Korath know your language, and we must remain here in secret. Perhaps in time there will be a way, but not yet."`
+			`	The Korath leader hisses. "No, we cannot. We must remain here in secret. Perhaps in time there will be a way, but not yet."`
 				goto questions
 			label "cadmium"
 			action
