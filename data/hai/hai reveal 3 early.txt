@@ -435,7 +435,7 @@ event "role-play station active"
 mission "Pirates with Hai Weapons 1: Katya's Message"
 	landing
 	name "Pirates with Hai Weapons"
-	description "Katya wants you to find out if the Hai government is arming pirates, and if they are, stop them. Don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
+	description "Katya wants you to find out if the Hai government is arming pirates, and if they are, to stop them. Don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
 	source Hai-home
 	destination Hai-home
 	to offer
