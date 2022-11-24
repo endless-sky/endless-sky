@@ -1257,7 +1257,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			choice
 				`	"What can we do to solve this, Sayari?"`
 				`	"Teeneep, I think we need quick action. You mentioned something back in the cave."`
-			`	Before she can respond, Xilin arrives with Batu in tow. They consult Sayari and occasionally Teeneep who convey a long dialog about the Navy knowing of the pirate troubles and willfully not intervening. Xilin sympathizes and suggests the Hai ask the Navy to rescue those captured.`
+			`	Before she can respond, Xilin arrives with Batu in tow. They consult Sayari, and occasionally Teeneep, who convey a long dialog about the Navy knowing of the pirate troubles and willfully not intervening. Xilin sympathizes and suggests the Hai ask the Navy to rescue those captured.`
 			`	Batu cuts in. "I'm sorry, deputy minister, I have not had time to fully brief you. The Navy already considered this and said 'not under any circumstances' will they 'clean up the Hai's mess'. It's possible that five thousand missing civilians was not one of the things they considered when they said that."`
 			`	Xilin frowns. "We should definitely present that case. They'll have to do another whole round of private briefings, and then no doubt a large debate. Even if we started today, Parliament won't be able to act for months. I'll kick things off, but you'll have to be patient."`
 			`	When Teeneep makes a noise as if to speak, Sayari silences her with a gentle touch and thanks Xilin in the formal capacity. He briefly thanks you for delivering Batu safely and then the two excuse themselves to see if they can get a hold of someone before their day ended.`
