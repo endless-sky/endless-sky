@@ -58,22 +58,24 @@ target_link_libraries(EndlessSkyTests PRIVATE EndlessSkyLib)
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)
 set_tests_properties(unit PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" LABELS unit)
-add_test(NAME benchmark COMMAND $<TARGET_FILE:EndlessSkyTests> [!benchmark])
+add_test(NAME benchmark COMMAND "$<TARGET_FILE:EndlessSkyTests>" [!benchmark])
 set_tests_properties(benchmark PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" LABELS benchmark)
 
 # Integration tests.
 if(UNIX AND NOT APPLE)
 	add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
 		COMMENT "Discover every integration test"
-		COMMAND ${CMAKE_COMMAND} -DES=$<TARGET_FILE:EndlessSky>
+		COMMAND "${CMAKE_COMMAND}" -DES="$<TARGET_FILE:EndlessSky>"
 			-DBINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}"
-			-P ${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake
+			-P "${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
 		DEPENDS EndlessSky ${INTEGRATION_TESTS}
-			${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake
-		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+			"${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
+		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+		VERBATIM)
 	set_property(DIRECTORY APPEND PROPERTY TEST_INCLUDE_FILES "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake")
 	add_custom_target(IntegrationTests ALL
 		DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
+		VERBATIM
 	)
 
 	# If the target is not run, simply don't provide any integration tests instead of erroring out.
@@ -84,7 +86,7 @@ endif()
 if(MINGW AND WIN32)
 	foreach(FILE ${MINGW_RUNTIME})
 		add_custom_command(TARGET EndlessSkyTests POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FILE_PATH} $<TARGET_FILE_DIR:EndlessSkyTests>
-			COMMAND_EXPAND_LISTS)
+			COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${FILE_PATH}" "$<TARGET_FILE_DIR:EndlessSkyTests>"
+			COMMAND_EXPAND_LISTS VERBATIM)
 	endforeach()
 endif()

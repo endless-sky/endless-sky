@@ -71,7 +71,7 @@ if(NOT OpenAL_FOUND)
 	find_library(OPENAL openal REQUIRED)
 	add_library(OpenAL UNKNOWN IMPORTED)
 	add_library(OpenAL::OpenAL ALIAS OpenAL)
-	set_target_properties(OpenAL PROPERTIES IMPORTED_LOCATION ${OPENAL})
+	set_target_properties(OpenAL PROPERTIES IMPORTED_LOCATION "${OPENAL}")
 endif()
 
 # libmad doesn't provide native cmake support.
@@ -84,8 +84,8 @@ if(MINGW AND WIN32)
 	# On Windows copy the MinGW runtime DLLs to the output folder as well.
 	# This is to avoid the situation where a user has other MinGW runtime DLLs
 	# in their PATH that are incompatible with the MinGW used to compile ES.
-	get_filename_component(PARENT_DIR ${CMAKE_CXX_COMPILER} DIRECTORY)
-	get_filename_component(MINGW_RUNTIME_DIR ${PARENT_DIR} DIRECTORY)
+	get_filename_component(PARENT_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
+	get_filename_component(MINGW_RUNTIME_DIR "${PARENT_DIR}" DIRECTORY)
 
 	# MinGW doesn't have seh exceptions support for 32-bit Windows unfortunately,
 	# and requires libgcc_s_dw2-1.dll instead of libgcc_s_seh-1.dll. There's no
@@ -94,7 +94,7 @@ if(MINGW AND WIN32)
 	foreach(lib "stdc++-6" "winpthread-1" "gcc_s_seh-1" "gcc_s_dw2-1")
 		file(GLOB_RECURSE FILE_PATH "${MINGW_RUNTIME_DIR}/lib${lib}.dll")
 		if(FILE_PATH)
-			list(APPEND MINGW_RUNTIME ${FILE_PATH})
+			list(APPEND MINGW_RUNTIME "${FILE_PATH}")
 		endif()
 	endforeach()
 endif()
@@ -115,29 +115,29 @@ if(APPLE)
 	# creating the executable.
 	foreach(folder "data" "images" "sounds")
 		file(GLOB_RECURSE RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${folder}/*")
-		target_sources(EndlessSky PRIVATE ${RESOURCES})
+		target_sources(EndlessSky PRIVATE "${RESOURCES}")
 
-		foreach(FILE ${RESOURCES})
+		foreach(FILE "${RESOURCES}")
 			# Get the relative path from the root folder to the current file.
-			file(RELATIVE_PATH NEW_FILE "${CMAKE_CURRENT_SOURCE_DIR}" ${FILE})
+			file(RELATIVE_PATH NEW_FILE "${CMAKE_CURRENT_SOURCE_DIR}" "${FILE}")
 			# Get the parent directory for the new location.
-			get_filename_component(FILE_PATH ${NEW_FILE} DIRECTORY)
+			get_filename_component(FILE_PATH "${NEW_FILE}" DIRECTORY)
 
 			# Resources belong under Resources/.
-			set_source_files_properties(${FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${FILE_PATH}")
+			set_source_files_properties("${FILE}" PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${FILE_PATH}")
 		endforeach()
 	endforeach()
 
 	# Create the icns file, required for the bundle icon.
 	add_custom_command(
-		OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/icons/endless-sky.icns
+		OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/icons/endless-sky.icns"
 		COMMAND iconutil -c icns -o icons/endless-sky.icns icons/endless-sky.iconset
 		DEPENDS icons/endless-sky.iconset/icon_16x16.png icons/endless-sky.iconset/icon_16x16@2x.png
 			icons/endless-sky.iconset/icon_32x32.png icons/endless-sky.iconset/icon_32x32@2x.png
 			icons/endless-sky.iconset/icon_128x128.png icons/endless-sky.iconset/icon_128x128@2x.png
 			icons/endless-sky.iconset/icon_256x256.png icons/endless-sky.iconset/icon_256x256@2x.png
 			icons/endless-sky.iconset/icon_512x512.png icons/endless-sky.iconset/icon_512x512@2x.png
-		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" VERBATIM)
 
 	# Now do the same to standone files.
 	foreach(file "license.txt" "keys.txt" "credits.txt" "copyright" "changelog" "icons/endless-sky.icns")
@@ -147,7 +147,7 @@ if(APPLE)
 
 	# Add plist to bundle.
 	set_target_properties(EndlessSky PROPERTIES
-		MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_LIST_DIR}/XCode/EndlessSky-Info.plist
+		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/XCode/EndlessSky-Info.plist"
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
 elseif(WIN32)
 	add_executable(EndlessSky WIN32 source/main.cpp)
@@ -182,8 +182,8 @@ endif()
 if(MINGW AND WIN32)
 	foreach(FILE ${MINGW_RUNTIME})
 		add_custom_command(TARGET EndlessSky POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FILE_PATH} $<TARGET_FILE_DIR:EndlessSky>
-			COMMAND_EXPAND_LISTS)
+			COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${FILE_PATH}" "$<TARGET_FILE_DIR:EndlessSky>"
+			COMMAND_EXPAND_LISTS VERBATIM)
 
 		# Add an install rule for this DLLs, so that it is also included when installing.
 		install(FILES ${FILE_PATH} DESTINATION .)
@@ -229,7 +229,8 @@ elseif(UNIX)
 		OUTPUT endless-sky.6.gz
 		COMMAND gzip -c endless-sky.6 > ${CMAKE_CURRENT_BINARY_DIR}/endless-sky.6.gz
 		DEPENDS endless-sky.6
-		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+		VERBATIM)
 	target_sources(EndlessSky PRIVATE endless-sky.6.gz)
 	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/endless-sky.6.gz DESTINATION share/man/man6)
 

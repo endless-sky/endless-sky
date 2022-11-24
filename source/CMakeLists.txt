@@ -1,7 +1,7 @@
 add_library(EndlessSkyLib STATIC EXCLUDE_FROM_ALL)
 
 # Set the appropriate compiler flags.
-target_include_directories(EndlessSkyLib PUBLIC ${LIBMAD_INCLUDE_DIR})
+target_include_directories(EndlessSkyLib PUBLIC "${LIBMAD_INCLUDE_DIR}")
 target_compile_definitions(EndlessSkyLib PUBLIC ES_CMAKE)
 if(MSVC)
 	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
@@ -18,7 +18,7 @@ endif()
 
 # Link with the general libraries.
 target_link_libraries(EndlessSkyLib PUBLIC SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
-	$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>)
+	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
@@ -32,11 +32,11 @@ if(UNIX)
 	if(APPLE)
 		find_library(UUID_LIB NAMES System PATHS /lib /usr/lib /usr/local/lib)
 		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
-		target_link_libraries(EndlessSkyLib PUBLIC ${UUID_LIB})
-		target_include_directories(EndlessSkyLib PUBLIC ${UUID_INCLUDE})
+		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
+		target_include_directories(EndlessSkyLib PUBLIC "${UUID_INCLUDE}")
 	elseif(ES_USE_SYSTEM_LIBRARIES)
 		find_library(UUID_LIB uuid)
-		target_link_libraries(EndlessSkyLib PUBLIC ${UUID_LIB})
+		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
 	else()
 		find_package(unofficial-libuuid CONFIG REQUIRED)
 		target_link_libraries(EndlessSkyLib PUBLIC unofficial::UUID::uuid)
