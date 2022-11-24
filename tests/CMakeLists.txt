@@ -84,7 +84,7 @@ endif()
 
 # Copy the MinGW runtime DLLs if necessary.
 if(MINGW AND WIN32)
-	foreach(FILE ${MINGW_RUNTIME})
+	foreach(FILE_PATH ${MINGW_RUNTIME})
 		add_custom_command(TARGET EndlessSkyTests POST_BUILD
 			COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${FILE_PATH}" "$<TARGET_FILE_DIR:EndlessSkyTests>"
 			COMMAND_EXPAND_LISTS VERBATIM)
