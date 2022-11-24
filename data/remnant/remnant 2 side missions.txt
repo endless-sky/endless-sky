@@ -721,7 +721,7 @@ mission "Remnant: Scent of Rain 1"
 mission "Remnant: Wont Someone Please Think Of The Children"
 	landing
 	name "Sympathy For The Korath"
-	description "Travel to the <waypoints> system to fight and disable a stranded Ra'gru Ik 618. Do not destroy or capture the ship. Our intel says the world ship has a large civilian population."
+	description "Travel to the <waypoints> system to fight and disable a stranded Kas'lor Ik 582. Do not destroy or capture the ship, as it likely has a large civilian population."
 	source
 		government "Remnant"
 		not attributes "station"
