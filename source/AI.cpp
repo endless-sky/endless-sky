@@ -3449,20 +3449,20 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			bool foundEnemy = false;
 			const auto boardingPriority = Preferences::GetBoardingPriority();
 
-			auto strategy = [&]() noexcept -> function<double(Ship &)>
+			auto strategy = [&]() noexcept -> function<double(const Ship &)>
 			{
 				Point current = ship.Position();
 				switch(boardingPriority)
 				{
 					case Preferences::BoardingPriority::VALUE:
-						return [this, &ship](Ship &other) noexcept -> double
+						return [this, &ship](const Ship &other) noexcept -> double
 						{
 							// Use the exact cost if the ship was scanned, otherwise use an estimation.
 							return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
 						};
 					case Preferences::BoardingPriority::MIXED:
-						return [this, &ship, current](Ship &other) noexcept -> double
+						return [this, &ship, current](const Ship &other) noexcept -> double
 						{
 							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
@@ -3473,17 +3473,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					// Default to distance priorities (the default setting).
 					default:
 					case Preferences::BoardingPriority::PROXIMITY:
-						return [current](Ship &other) noexcept -> double
+						return [current](const Ship &other) noexcept -> double
 						{
 							return current.DistanceSquared(other.Position());
 						};
 				}
 			}();
 
-			using ShipValue = pair<Ship *, double>;
+			using ShipValue = pair<const Ship *, double>;
 			auto boardable = vector<ShipValue>{};
 
-			auto fillBoardable = [&ship, &foundEnemy, &boardable, &strategy](Ship &other) noexcept
+			auto fillBoardable = [&ship, &foundEnemy, &boardable, &strategy](const Ship &other) noexcept
 			{
 				if(CanBoard(ship, other))
 					boardable.emplace_back(&other, strategy(other));
@@ -3491,7 +3491,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 			if(shift)
 			{
-				for(Ship *escort : governmentRosters[ship.GetGovernment()])
+				for(const Ship *escort : governmentRosters[ship.GetGovernment()])
 					if(escort->GetSystem() == ship.GetSystem())
 						fillBoardable(*escort);
 			}
@@ -3500,18 +3500,18 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				auto ships = GetShipsList(ship, true);
 				boardable.reserve(ships.size());
 				// First check if we can board enemy ships, then allies.
-				for(Ship *enemy : ships)
+				for(const Ship *enemy : ships)
 					fillBoardable(*enemy);
 				// The current target is not considered by GetShipsList.
 				if(target)
-					fillBoardable(*const_cast<Ship *>(target.get()));
+					fillBoardable(target.get());
 
 				if(boardable.empty())
 				{
 					ships = GetShipsList(ship, false);
 					if(ships.size() > boardable.capacity())
 						boardable.reserve(ships.size());
-					for(Ship *ally : ships)
+					for(const Ship *ally : ships)
 						fillBoardable(*ally);
 				}
 			}
