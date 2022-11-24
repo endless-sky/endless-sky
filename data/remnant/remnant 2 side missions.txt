@@ -716,6 +716,8 @@ mission "Remnant: Scent of Rain 1"
 			label scanningpayment
 			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
 
+
+
 mission "Remnant: Wont Someone Please Think Of The Children"
 	landing
 	name "Sympathy For The Korath"
