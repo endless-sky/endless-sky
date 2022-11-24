@@ -35,7 +35,11 @@ class Sprite;
 // facing direction and usually also has a sprite.
 class Body {
 public:
+	// States for animation purposes
 	enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT, TRIGGER};
+	// Minimum/Default frame rate of animations
+	static constexpr float MIN_FRAME_RATE = 2. / 60.;
+public:
 	// Constructors.
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
@@ -141,7 +145,6 @@ private:
 
 	mutable SpriteParameters::AnimationParameters anim;
 
-	mutable float frameOffset = 0.f;
 	mutable int pause = 0;
 
 	// Record when this object is marked for removal from the game.
@@ -150,7 +153,11 @@ private:
 	// Cache the frame calculation so it doesn't have to be repeated if given
 	// the same step over and over again.
 	mutable int currentStep = -1;
+	mutable float frameRate = 0.f;
 	mutable float frame = 0.f;
+	mutable float integratedFrame = 0.f;
+	
+	mutable float reversedFrame = 0.f;
 	mutable float rewindFrame = 0.f;
 	mutable float randomFrame = 0.f;
 	mutable float framePercentage = 0.f;

@@ -139,8 +139,13 @@ float Body::GetFrame(int step) const
 {
 	if(step >= 0)
 		SetStep(step);
-	// Choose between frame and random frame based on the randomize parameter
-	return !this->anim.randomize || stateTransitionRequested ? frame : randomFrame;
+	// Choose between frame, random frame and reversedFrame, based on the corresponding parameters
+	if(this->anim.randomize)
+		return randomFrame;
+	else if(this->anim.reverse)
+		return reversedFrame;
+	else
+		return frame;
 }
 
 
@@ -267,6 +272,19 @@ void Body::LoadSprite(const DataNode &node, Body::BodyState state)
 			spriteAnimationParameters.startFrame = static_cast<float>(child.Value(1));
 			spriteAnimationParameters.startAtZero = true;
 		}
+		else if(child.Token(0) == "ramp" && child.Size() >= 2)
+		{
+			if(child.Size() == 2)
+			{
+				spriteAnimationParameters.rampUpRate = child.Value(1) / 3600.;
+				spriteAnimationParameters.rampDownRate = child.Value(1) / 3600.;
+			}
+			else if(child.Size() == 3)
+			{
+				spriteAnimationParameters.rampUpRate = child.Value(1) / 3600.;
+				spriteAnimationParameters.rampDownRate = child.Value(2) / 3600.;
+			}
+		}
 		else if(child.Token(0) == "indicate percentage" && child.Size() >= 2 && child.Value(1) > 0. && child.Value(1) < 1.)
 		{
 			spriteAnimationParameters.indicateReady = true;
@@ -304,6 +322,8 @@ void Body::LoadSprite(const DataNode &node, Body::BodyState state)
 		}
 		else if(child.Token(0) == "rewind")
 			spriteAnimationParameters.rewind = true;
+		else if(child.Token(0) == "reverse")
+			spriteAnimationParameters.reverse = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -376,6 +396,19 @@ bool Body::LoadTriggerSprite(const DataNode &node, Body::BodyState state, Sprite
 			spriteAnimationParameters.startFrame = static_cast<float>(child.Value(1));
 			spriteAnimationParameters.startAtZero = true;
 		}
+		else if(child.Token(0) == "ramp" && child.Size() >= 2)
+		{
+			if(child.Size() == 2)
+			{
+				spriteAnimationParameters.rampUpRate = child.Value(1) / 3600.;
+				spriteAnimationParameters.rampDownRate = child.Value(1) / 3600.;
+			}
+			else if(child.Size() == 3)
+			{
+				spriteAnimationParameters.rampUpRate = child.Value(1) / 3600.;
+				spriteAnimationParameters.rampDownRate = child.Value(2) / 3600.;
+			}
+		}
 		else if(child.Token(0) == "indicate percentage" && child.Size() >= 2 && child.Value(1) > 0. && child.Value(1) < 1.)
 		{
 			spriteAnimationParameters.indicateReady = true;
@@ -416,6 +449,8 @@ bool Body::LoadTriggerSprite(const DataNode &node, Body::BodyState state, Sprite
 		}
 		else if(child.Token(0) == "rewind")
 			spriteAnimationParameters.rewind = true;
+		else if(child.Token(0) == "reverse")
+			spriteAnimationParameters.reverse = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -489,7 +524,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const
 {
 	SpriteParameters::AnimationParameters *exposed = &(state->exposed);
-	if(exposed->frameRate != static_cast<float>(2. / 60.))
+	if(exposed->frameRate != static_cast<float>(Body::MIN_FRAME_RATE))
 		out.Write("frame rate", exposed->frameRate * 60.);
 	if(exposed->delay)
 		out.Write("delay", exposed->delay);
@@ -503,6 +538,10 @@ void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const
 		out.Write("no repeat");
 	if(exposed->rewind)
 		out.Write("rewind");
+	if(exposed->reverse)
+		out.Write("reverse");
+	if(exposed->rampUpRate != 0.0f || exposed->rampDownRate != 0.0f)
+		out.Write("ramp", exposed->rampUpRate * 3600., exposed->rampDownRate * 3600.);
 	if(exposed->indicateReady)
 	{
 		if(exposed->indicatePercentage == 1.0f)
@@ -549,18 +588,13 @@ void Body::SetState(Body::BodyState state)
 	{
 		// Cancel transition
 		stateTransitionRequested = false;
-
 		// Start replaying animation from current frame
-		frameOffset = -currentStep * anim.frameRate;
-		frameOffset += frame;
-
+		integratedFrame = frame;
 	}
 	else if(delayIgnoredPreviousStep && delayActiveCurrentStep && stateTransitionRequested)
 	{
 		// Start replaying animation from current frame
-		frameOffset = -currentStep * anim.frameRate;
-		frameOffset += frame;
-
+		integratedFrame = frame;
 	}
 	else if(state != this->currentState)
 	{
@@ -570,10 +604,8 @@ void Body::SetState(Body::BodyState state)
 			if(anim.transitionRewind)
 			{
 				rewindFrame = frame;
-				
 				// Ensures that rewinding starts from correct frame.
-				frameOffset = -currentStep * anim.frameRate;
-				frameOffset += rewindFrame;
+				integratedFrame = rewindFrame;
 			}
 			stateTransitionRequested = true;
 		}
@@ -599,7 +631,7 @@ void Body::SetSwizzle(int swizzle)
 // a sprite instead of a full animation data structure.
 void Body::SetFrameRate(float framesPerSecond)
 {
-	anim.frameRate = framesPerSecond / 60.f;
+	frameRate = framesPerSecond / 60.f;
 }
 
 
@@ -607,7 +639,7 @@ void Body::SetFrameRate(float framesPerSecond)
 // Add the given amount to the frame rate.
 void Body::AddFrameRate(float framesPerSecond)
 {
-	anim.frameRate += framesPerSecond / 60.f;
+	frameRate += framesPerSecond / 60.f;
 }
 
 
@@ -683,7 +715,7 @@ void Body::FinishStateTransition() const
 {
 	if(this->stateTransitionRequested)
 	{
-		frameOffset = 0.0f;
+		integratedFrame = 0.0f;
 		pause = 0;
 		// Current transition due to trigger
 		bool triggerTransition = this->transitionState == Body::BodyState::TRIGGER;
@@ -707,12 +739,18 @@ void Body::FinishStateTransition() const
 			transitionedState->CompleteTriggerRequest();
 			this->postTriggerTransition = true;
 		}
+		
 		// Update animation parameters.
 		this->anim = transitionedState->exposed;
+		if(this->anim.rampUpRate > 0.0)
+			this->frameRate = Body::MIN_FRAME_RATE;
+		else
+			this->frameRate = this->anim.frameRate;
 		this->currentState = requestedTransitionState;
 		// No longer need to change states
 		this->stateTransitionRequested = false;
 		this->transitionState = this->currentState;
+		
 	}
 }
 
@@ -766,30 +804,46 @@ void Body::SetStep(int step) const
 	{
 		this->anim.randomizeStart = false;
 		// The random offset can be a fractional frame.
-		frameOffset += static_cast<float>(Random::Real()) * cycle;
+		integratedFrame = static_cast<float>(Random::Real()) * cycle;
 	}
 	else if(this->anim.startAtZero)
 	{
 		this->anim.startAtZero = false;
-		// Adjust frameOffset so that this step's frame is exactly 0 (no fade).
-		frameOffset = -this->anim.frameRate * step;
-		frameOffset += this->anim.startFrame;
+		// Adjust integrated frame to start at preferred start frame
+		integratedFrame = this->anim.startFrame;
 	}
-
+	
+	// Clamp frameRate from previous calculations
+	if(this->frameRate < Body::MIN_FRAME_RATE)
+		this->frameRate = Body::MIN_FRAME_RATE;
+	
+	if(this->frameRate > this->anim.frameRate)
+		this->frameRate = this->anim.frameRate;
+	
 	// Figure out what fraction of the way in between frames we are. Avoid any
 	// possible floating-point glitches that might result in a negative frame.
 	int prevFrame = static_cast<int>(frame), nextFrame = -1;
-	frame = max(0.f, this->anim.frameRate * step + frameOffset);
-
+	// Integrate rampRate in order to determine frame
+	integratedFrame += this->frameRate * (step - currentStep);
+	frame = max(0.f, integratedFrame);
+	
 	if(!stateTransitionRequested)
 	{
+		// Handle any frameRate changes in the animation
+		if(this->anim.rampUpRate != 0.0)
+		{
+			if(this->frameRate >= Body::MIN_FRAME_RATE && this->frameRate <= this->anim.frameRate)
+				this->frameRate += this->anim.rampUpRate;
+		}
+		else
+			this->frameRate = this->anim.frameRate;
 		// For when it needs to be applied to transition
 		delayed = 0.f;
-
+		
 		// If repeating, wrap the frame index by the total cycle time.
 		if(this->anim.repeat)
 			frame = fmod(frame, cycle);
-
+		
 		if(!this->anim.rewind)
 		{
 			// If not repeating, frame should never go higher than the index of the
@@ -815,12 +869,12 @@ void Body::SetStep(int step) const
 			// In rewind mode, once you get to the last frame, count backwards.
 			// Regardless of whether we're repeating, if the frame count gets to
 			// be less than 0, clamp it to 0.
-
+			
 			frame = max(0.f, lastFrame * 2.f - frame);
-
+			
 			stateReady = false;
 		}
-
+		
 		nextFrame = static_cast<int>(frame);
 		if(nextFrame != prevFrame)
 			randomFrame = static_cast<int>(static_cast<float>(Random::Real()) * frames);
@@ -837,6 +891,14 @@ void Body::SetStep(int step) const
 
 		if(delayed >= this->anim.transitionDelay || ignoreDelay)
 		{
+			if(this->anim.rampDownRate != 0.0)
+			{
+				if(this->frameRate >= Body::MIN_FRAME_RATE && this->frameRate <= this->anim.frameRate)
+					this->frameRate -= this->anim.rampDownRate;
+			}
+			else
+				this->frameRate = this->anim.frameRate;
+			// Handle transitions
 			if(this->anim.transitionFinish && !this->anim.transitionRewind)
 			{
 				// Finish the ongoing state's animation, then transition
@@ -860,14 +922,14 @@ void Body::SetStep(int step) const
 		{
 			delayed += (step - currentStep) * this->anim.frameRate;
 			// Maintain last frame of animation in delay
-			if(frame >= lastFrame)
-				frameOffset -= (step - currentStep) * this->anim.frameRate;
 			frame = min(frame, lastFrame);
+			integratedFrame = frame;
 			// Rewind frame needs to be set since transition state can change during delay period.
 			rewindFrame = frame;
 		}
 		// Prevent any flickers from transitioning into states with randomized frames.
 		randomFrame = frame;
 	}
+	reversedFrame = frames - frame;
 	currentStep = step;
 }

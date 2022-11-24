@@ -30,7 +30,9 @@ public:
 	public:
 		// Act like a struct
 		// Animation parameters as found in Body.h
-		float frameRate = 2.f / 60.f;
+		float frameRate = 2. / 60.;
+		float rampUpRate = 0.0f;
+		float rampDownRate = 0.0f;
 		float startFrame = 0.f;
 		float scale = 1.f;
 		float indicatePercentage = -1.0f;
@@ -42,6 +44,7 @@ public:
 		bool randomizeStart = false;
 		bool repeat = true;
 		bool rewind = false;
+		bool reverse = false;
 
 		// Defines what to do when a state transition is requested (eg. FLYING to LANDING)
 		bool transitionFinish = false;
