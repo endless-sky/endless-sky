@@ -280,7 +280,7 @@ mission "Quarg Pug Arfecta Warning"
 					goto evasive
 				`	"It was an act of righteous defiance."`
 					goto righteous
-				`	"The Pug fancy themselves gods, but God is dead, soo..."`
+				`	"The Pug fancy themselves gods, but since God is dead..."`
 					goto anarchy
 				`	"I saw something I liked, so I made it mine."`
 					goto greedy
