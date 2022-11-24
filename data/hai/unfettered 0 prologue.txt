@@ -322,7 +322,15 @@ mission "Unfettered Jump Drive Trading"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We will show you the weapon once you arrive. For now you will only be allowed to access one of them, but if you continue to prove of great assistance to us we may give you access to the others."`
+			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We will show you the weapon once you arrive. For now you will only be allowed to access one of them, but if you continue to prove of great assistance to us we may give you access to the others." They are not even asking you if you be interested in weapons.`
+			choice
+				`	(Say nothing.)`
+					goto next
+				`	"Wait, I am not really interested in Hai weapons..."`
+				`	(Leave and come back another time.)`
+					defer
+			`	"These are not standard Hai weapons, captain, trust me. Also, it would be ill-advised to judge before seeing them, would it not?"`
+			label next
 			`	They lead you through the usual outfitter but then go to an area you never noticed before, probably because you were not meant to. As you are about to pass through what you assumed to be a security check, an Unfettered throws a blade at your face!`
 			choice
 				`	(Try to grab it.)`
