@@ -1021,6 +1021,8 @@ mission "Hai Reveal [B13] Freedom"
 					goto leadon
 				`	"Are you calling me a coward? If I had more time, I'd challenge you to a duel for that."`
 			`	"Heh heh," he laughs in a low voice. "Maybe soon."`
+			action
+				set "Hai Reveal [B13] Freedom: threatened Choot'k"
 			label leadon
 			`	Scanners show the room is a vast cavern, some sort of public space suitable for ten thousand people or more. It's pitch black when you enter, but as the last of you files in, a second blast door closes behind you. High roof lights snap on making the room as bright as day in the blink of an eye.`
 			`	You see before you a couple hundred pirates, held captive by a large crowd of heavily-armed civilians - all of which are hesitantly pointing guns at the operatives. It seems the citizens arranged a violent rebellion to coincide with the Republic's attack. Three unarmed civilians wearing distinctive hooded robes walk towards the operatives: one Hai, one human, and to your surprise one lizard-like Korath. The leader of the Syndicate operatives exits her suit and approaches them.`
@@ -1071,8 +1073,8 @@ mission "Hai Reveal [B13] Freedom"
 			label korath
 			action
 				set "Hai Reveal [B13] Freedom: label korath"
-			`	The Korath leader speaks, with the Hai translating. "Several generations ago, three of our raiding ships jumped to the Alcyone system. Numerous pirate vessels left Stormhold and disabled our ships. A large human ship boarded our flagship while crews on the other two vessels listened over communicators. All we heard was screaming. The pirates used deadly gas - what you call 'nerve gas' - to kill the entire crew. The death is excruciatingly painful to Korath. Not wanting that fate, most of the raiders on the other Korath ships mutinied and surrendered. We worked as slaves for the pirate gangs, but now we're here, safe, and free. We are not specialists or their descendants like the others here, but we help as we can.`
-			`	"The pirates must defend this planet against a space-based lifeform that attacks in flocks. Our ships gave them a significant advantage. Fortunately, we have one more left defend against any threats." The Korath eyes the Republic operatives as he waits for the translator to catch up.`
+			`	The Korath leader speaks, with the Hai translating. "Several generations ago, three of our raiding ships jumped to the Alcyone system. Numerous pirate vessels left Stormhold and disabled our ships. A large human ship boarded our flagship, and used what you call 'nerve gas' to kill the entire crew. The death is excruciatingly painful to Korath. The pirates broadcast the footage over to us, so we could see the screaming. Not wanting that fate, the other Korath ships surrendered. We worked as slaves for the pirate gangs, but now we're here, safe, and free. We are not specialists or their descendants like the others here, but we have other talents.`
+			`	"The pirates must defend this planet against a space-based lifeform that attacks in flocks. Our ships gave them a significant advantage. Fortunately, we have one more left to defend against any threats." The Korath eyes the Republic operatives as he waits for the translator to catch up.`
 			`	"I must ask you keep the presence of Korath here a secret. If the Archons or other Exiles hear of this place, they may attack to retrieve us, or the Exiles may simply pillage. We will remain here in hiding unless the Exiles finally learn to settle on their planet."`
 				goto questions
 			label "translation services"
