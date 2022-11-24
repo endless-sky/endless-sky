@@ -677,7 +677,6 @@ mission "Remnant: Disable 1"
 		system 
 			near "Parca" 1
 		ship "Ra'gru Ik 618 (Crippled)" "Flumgorkor"
-		dialog "You have disabled the Korath world ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog "You've landed on <planet>, but the stuck Korath world ship has not been disabled yet. Hunt it down and disable it before returning."
 	on complete
