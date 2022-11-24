@@ -1187,7 +1187,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			label types
 			action
 				set "Hai Reveal [A09] History of Appeasement: label types"
-			`	Teeneep says, "In the cases I found, a third of the deals included hostile technology: shield regenerators, guns, turrets, or anti-missile systems. Most of the deals included something else too, like money, non-hostile technology, or supplies for anarchist worlds. For the past five years though, nearly every deal included weapons in the trade." She looks irate at Sayari for a second.`
+			`	Teeneep says, "In the cases I found, a third of the deals included hostile technology: shield regenerators, guns, turrets, or anti-missile systems. Most of the deals included something else too, like money, non-hostile technology, or supplies for anarchist worlds. For the past five years, though, nearly every deal involved exchanging Hai weaponry." She looks irate at Sayari for a second.`
 				goto questions
 
 			# Third phase of the conversation: decide to fix the problem.
