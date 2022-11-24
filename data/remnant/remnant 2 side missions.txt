@@ -748,7 +748,7 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 		ship "Ra'gru Ik 618 (Crippled)" "Flumgorkor"
 	on enter "Parca"
 		dialog
-			`As you enter the sector your scanners pick the target ship. Your nerves are acting up at the thought of having to take on such a powerful ship, but you remind yourself to think of the children.`
+			`As you enter the system your scanners pick the target ship. Your nerves are acting up at the thought of having to take on such a powerful ship, but you remind yourself to think of civilians on board, possibly even children.`
 	on complete
 		payment 2500000
 		conversation
