@@ -529,6 +529,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
 	for(const auto &it : ships)
 	{
+		// Clear debug info
+		it->SetDebugArrow(Point(), Color());
+		it->SetDebugLabel("", Color());
+
 		// Skip any carried fighters or drones that are somehow in the list.
 		if(!it->GetSystem())
 			continue;

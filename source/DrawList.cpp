@@ -16,11 +16,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 
 #include "Body.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "LineShader.h"
+#include "Color.h"
 
 #include <cmath>
 
@@ -32,6 +36,8 @@ using namespace std;
 void DrawList::Clear(int step, double zoom)
 {
 	items.clear();
+	arrows.clear();
+	labels.clear();
 	this->step = step;
 	this->zoom = zoom;
 	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
@@ -93,6 +99,29 @@ bool DrawList::AddSwizzled(const Body &body, int swizzle)
 }
 
 
+bool DrawList::AddArrow(const Body &body, const Point &toRel, const Color &color)
+{
+	DebugArrow arrow;
+	arrow.from = (body.Position() - center) * zoom;
+	arrow.to = arrow.from + toRel * zoom;
+	arrow.color = color;
+
+	arrows.push_back(arrow);
+	return true;
+}
+
+bool DrawList::AddLabel(const Body &body, const string &text, const Color &color)
+{
+	DebugLabel label;
+	label.pos = (body.Position() - center) * zoom;
+	label.text = text;
+	label.color = color;
+
+	labels.push_back(label);
+	return true;
+}
+
+
 
 // Draw all the items in this list.
 void DrawList::Draw() const
@@ -104,6 +133,24 @@ void DrawList::Draw() const
 		SpriteShader::Add(item, withBlur);
 
 	SpriteShader::Unbind();
+
+	for(const DebugArrow &arrow : arrows) {
+		LineShader::Draw(arrow.from, arrow.to, 2.0, arrow.color);
+		Angle t135(135.);
+		Angle t225(225.);
+		Point a = (arrow.to - arrow.from).Unit() * 15;
+		LineShader::Draw(arrow.to, arrow.to + t135.Rotate(a), 2.0, arrow.color);
+		LineShader::Draw(arrow.to, arrow.to + t225.Rotate(a), 2.0, arrow.color);
+		
+	}
+
+	if(!labels.empty()) {
+		const Font &font = FontSet::Get(18);
+
+		for(const DebugLabel &label : labels) {
+			font.DrawAliased(label.text, label.pos.X(), label.pos.Y(), label.color);
+		}
+	}
 }
 
 

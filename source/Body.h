@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define BODY_H_
 
 #include "Angle.h"
+#include "Color.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -62,6 +63,11 @@ public:
 	double Zoom() const;
 	double Scale() const;
 
+	const Point &DebugArrow() const;
+	const Color &DebugArrowColor() const;
+	const std::string &DebugLabel() const;
+	const Color &DebugLabelColor() const;
+
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
 
@@ -77,6 +83,8 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
+	void SetDebugArrow(const Point &arrow, const Color &color);
+	void SetDebugLabel(const std::string &label, const Color &color);
 
 protected:
 	// Adjust the frame rate.
@@ -98,6 +106,11 @@ protected:
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
 	float scale = 1.f;
+
+	Point debugArrow;
+	Color debugArrowColor;
+	std::string debugLabel;
+	Color debugLabelColor;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
