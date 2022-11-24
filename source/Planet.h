@@ -161,7 +161,7 @@ private:
 
 	std::set<const Sale<Ship> *> shipSales;
 	std::set<const Sale<Outfit> *> outfitSales;
-	// This list is used as a cache, to be reused if the conditions do not change.
+
 	mutable CustomSale customSale;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:

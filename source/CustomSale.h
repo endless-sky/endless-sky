@@ -16,17 +16,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef CustomSale_H_
 #define CustomSale_H_
 
+#include "ConditionSet.h"
 #include "Outfit.h"
+#include "LocationFilter.h"
 #include "Sale.h"
 #include "Set.h"
 
 #include <map>
 #include <set>
 
-class ConditionSet;
 class ConditionsStore;
 class DataNode;
-class LocationFilter;
 class Planet;
 
 
@@ -44,7 +44,8 @@ public:
 
 
 public:
-	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits, const std::string &mode);
+	void Load(const DataNode &node, const Set<Sale<Outfit>> &items,
+		const Set<Outfit> &outfits, const std::string &mode);
 
 	// Adds another CustomSale of the same sellType to this one, or to any type if this one is empty.
 	bool Add(const CustomSale &other);

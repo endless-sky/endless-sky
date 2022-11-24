@@ -15,11 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CustomSale.h"
 
-#include "ConditionSet.h"
 #include "ConditionsStore.h"
 #include "DataNode.h"
 #include "GameData.h"
-#include "LocationFilter.h"
 #include "Planet.h"
 #include "Set.h"
 
