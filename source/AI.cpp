@@ -529,10 +529,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
 	for(const auto &it : ships)
 	{
-		// Clear debug info
-		it->SetDebugArrow(Point(), Color());
-		it->SetDebugLabel("", Color());
-
 		// Skip any carried fighters or drones that are somehow in the list.
 		if(!it->GetSystem())
 			continue;
@@ -1902,17 +1898,9 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	if(ship.Attributes().Get("reverse thrust"))
 		rsp = targetPosition - StoppingPoint(ship, targetVelocity, true, rt, rface);
 
-
-	if (ship.Name() == "debug")
-		fprintf(stderr, "MoveTo(%s): plan t: %f  rt: %f   sp: %f   rsp: %f\n", ship.Name().c_str(), t, rt, sp.Length(), rsp.Length());
-
 	Point toFace;
 	bool forwardIfAligned = false;
 	bool reverseIfAligned = false;
-
-	string debugPlan;
-	Point debugArrow;
-
 
 	// In the below set of conditions we try to decide on a good plan to approach
 	// the target. This code is executed regularly during the approach, so any
@@ -1947,15 +1935,9 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		if (rsp.Length() > .5 * radius) {
 			// plan: reverse towards, flip
 
-			debugPlan = "full-reverse";
-			debugArrow = rsp;
-
 			toFace = -rsp;
 			reverseIfAligned = true;
 		} else {
-			debugPlan = "full-reverse-stop";
-			debugArrow = rface * 50;
-
 			toFace = rface;
 			reverseIfAligned = true;
 		}
@@ -1982,9 +1964,6 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		// until inertia moves the ship beyond the 5*radius threshold, and then
 		// switch to a accel-to-reverse plan
 
-		debugPlan = "simple-reverse";
-		debugArrow = sp;
-
 		toFace = -sp;
 		reverseIfAligned = true;
 
@@ -1994,9 +1973,6 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 		if (sp.Length() > .5 * radius) {
 			// "normal" plan: accelerate towards, then flip
-
-			debugPlan = "normal";
-			debugArrow = sp;
 
 			toFace = sp;
 			forwardIfAligned = true;
@@ -2010,9 +1986,6 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 			// plan: flip and stop
 
-			debugPlan = "stop";
-			debugArrow = face * 50;
-
 			toFace = face;
 			forwardIfAligned = true;
 		}
@@ -2022,9 +1995,6 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 		if (rsp.Length() > .5 * radius) {
 			// plan: accel towards, then reverse
-
-			debugPlan = "accel-to-reverse";
-			debugArrow = rsp;
 
 			toFace = rsp;
 			if (rsp.Length() > .8 * radius) {
@@ -2043,21 +2013,11 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 			// plan: reverse
 
-			debugPlan = "reverse-stop";
-			debugArrow = rface * 50;
-
 			toFace = rface;
 			reverseIfAligned = true;
 		}
 
 	}
-
-	if (ship.Name() == "debug")
-		fprintf(stderr, "MoveTo(%s): plan %s\n", ship.Name().c_str(), debugPlan.c_str());
-
-	ship.SetDebugArrow(debugArrow, Color{0.0, 1.0, 0.0});
-	ship.SetDebugLabel(debugPlan, Color{0.5, 0.0, 0.5});
-
 
 	double alignment = toFace.Unit().Dot(angle.Unit());
 	if(alignment < (isClose ? .95 : .9999 ))
@@ -3007,10 +2967,6 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 
 	double degreesToTurn = TO_DEG * acos(min(1., max(-1., toFace.Dot(angle.Unit()))));
 	Point stopDistance = velocity * (degreesToTurn / turnRate);
-
-	if (ship.Name() == "debug") {
-		fprintf(stderr, "drag stoppingPoint (%s) v: %f,%f  tv: %f,%f    a: %f,%f  T: %f   dist: %f,%f   drag: %f\n", ship.Name().c_str(), velocity.X(), velocity.Y(), targetVelocity.X(), targetVelocity.Y(), accel.X(), accel.Y(), T, dist.X(), dist.Y(), d);
-	}
 
 	timeToStop = T + jumpTime + degreesToTurn / turnRate;
 

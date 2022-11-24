@@ -17,12 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define DRAW_LIST_H_
 
 #include "Point.h"
-#include "Color.h"
 #include "SpriteShader.h"
 
 #include <cstdint>
 #include <vector>
-#include <string>
 
 class Body;
 class Sprite;
@@ -50,13 +48,6 @@ public:
 	// Add an object using a specific swizzle (rather than its own).
 	bool AddSwizzled(const Body &body, int swizzle);
 
-	// Add a debugging arrow from a Body
-	bool AddArrow(const Body &body, const Point &toRel, const Color &color);
-
-	// Add a debugging label for a Body
-	bool AddLabel(const Body &body, const std::string &label, const Color &color);
-
-
 	// Draw all the items in this list.
 	void Draw() const;
 
@@ -73,20 +64,6 @@ private:
 	double zoom = 1.;
 	bool isHighDPI = false;
 	std::vector<SpriteShader::Item> items;
-
-	struct DebugArrow {
-		Point from;
-		Point to;
-		Color color;
-	};
-	std::vector<DebugArrow> arrows;
-
-	struct DebugLabel {
-		Point pos;
-		std::string text;
-		Color color;
-	};
-	std::vector<DebugLabel> labels;
 
 	Point center;
 	Point centerVelocity;

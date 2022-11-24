@@ -154,43 +154,6 @@ const Angle &Body::Facing() const
 	return angle;
 }
 
-// Arrow for debugging purposes
-const Point &Body::DebugArrow() const
-{
-	return debugArrow;
-}
-// Arrow for debugging purposes
-const Color &Body::DebugArrowColor() const
-{
-	return debugArrowColor;
-}
-
-void Body::SetDebugArrow(const Point &arrow, const Color &color)
-{
-	debugArrow = arrow;
-	debugArrowColor = color;
-}
-
-
-void Body::SetDebugLabel(const string &label, const Color &color)
-{
-	debugLabel = label;
-	debugLabelColor = color;
-}
-
-// Label for debugging purposes
-const string &Body::DebugLabel() const
-{
-	return debugLabel;
-}
-// Arrow for debugging purposes
-const Color &Body::DebugLabelColor() const
-{
-	return debugLabelColor;
-}
-
-
-
 
 
 // Unit vector in the direction this body is facing. This represents the scale

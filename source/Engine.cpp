@@ -2406,16 +2406,6 @@ void Engine::AddSprites(const Ship &ship)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::OVER && bay.ship)
 				drawObject(*bay.ship);
-
-	if(ship.Name() == "debug") {
-		itemsToDraw.AddArrow(ship, ship.Facing().Unit() * 50. , Color{1.0, 1.0, 1.0});
-		itemsToDraw.AddArrow(ship, ship.Velocity() * 60 , Color{1.0, 0.0, 0.0});
-		if (ship.DebugArrow().Length() > 0.)
-			itemsToDraw.AddArrow(ship, ship.DebugArrow(), ship.DebugArrowColor());
-
-		if (!ship.DebugLabel().empty())
-			itemsToDraw.AddLabel(ship, ship.DebugLabel(), ship.DebugLabelColor());
-	}
 }
 
 
