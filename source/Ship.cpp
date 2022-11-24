@@ -505,6 +505,13 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "remove" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "bays")
+				removeBays = true;
+			else
+				child.PrintTrace("Skipping unsupported \"remove\":");
+		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -553,7 +560,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
-		if(bays.empty() && !base->bays.empty())
+		if(bays.empty() && !base->bays.empty() && !removeBays)
 			bays = base->bays;
 		if(enginePoints.empty())
 			enginePoints = base->enginePoints;
@@ -611,6 +618,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
+	else if(removeBays)
+		bays.clear();
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
@@ -777,12 +786,9 @@ void Ship::FinishLoading(bool isNewInstance)
 		attributes.Set("drag", 100.);
 	}
 
-	// Only the player's ships make use of attraction and deterrence.
-	if(isYours)
-	{
-		attraction = CalculateAttraction();
-		deterrence = CalculateDeterrence();
-	}
+	// Calculate the values used to determine this ship's value and danger.
+	attraction = CalculateAttraction();
+	deterrence = CalculateDeterrence();
 
 	if(!warning.empty())
 	{
