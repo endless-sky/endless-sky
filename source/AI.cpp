@@ -1929,27 +1929,32 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	// the stopping point regularly.
 
 
-	if (!ship.Acceleration()) {
+	if(!ship.Acceleration())
+	{
 		// No forward thrusters, so must do everything with reverse thrusters.
 
-		if (rsp.Length() > .5 * radius) {
+		if(rsp.Length() > .5 * radius)
+		{
 			// plan: reverse towards, flip
 
 			toFace = -rsp;
 			reverseIfAligned = true;
-		} else {
+		}
+		else
+		{
 			toFace = rface;
 			reverseIfAligned = true;
 		}
-
-	} else if (ship.Attributes().Get("reverse thrust")
+	}
+	else if(ship.Attributes().Get("reverse thrust")
 			&& dp.Unit().Dot(angle.Unit()) < -0.75                           // facing away, and
 			&& velocity.Cross(dp.Unit()) < (0.0001 + 0.01*velocity.Length()) // velocity collinear with dp, and
 			&& dp.Length() < 5 * radius                                      // relatively close to target, and
 			&& sp.Length() > .8 * radius)                                    // not close to stopping point
-			                                                                 // (to avoid this interfering with
-			                                                                 //  a "normal" plan execution)
 	{
+		// NB: The check that we're not close to the stopping point is to avoid this from interfering
+		// with a "normal" plan execution)
+
 		// TODO: Turn these constants into things depending on turn rate and max speed?
 
 		// Very special case: ship has both forward and reverse thrusters,
@@ -1967,11 +1972,14 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		toFace = -sp;
 		reverseIfAligned = true;
 
-	} else if (t < rt) {
+	}
+	else if(t < rt)
+	{
 		// If our estimate of the forward stopping time is smaller than our estimate of
 		// reverse stopping time, we plan to stop by flipping.
 
-		if (sp.Length() > .5 * radius) {
+		if(sp.Length() > .5 * radius)
+		{
 			// "normal" plan: accelerate towards, then flip
 
 			toFace = sp;
@@ -1981,7 +1989,9 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 			// we might as well fire reverse thrusters for a while? (Maybe?)
 			if(ship.Attributes().Get("reverse thrust") && sp.Unit().Dot(angle.Unit()) < -0.75)
 				command |= Command::BACK;
-		} else {
+		}
+		else
+		{
 			// if sp is small, we are on the final approach (turn if necessary, decel)
 
 			// plan: flip and stop
@@ -1989,15 +1999,18 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 			toFace = face;
 			forwardIfAligned = true;
 		}
-
-	} else {
+	}
+	else
+	{
 		// We plan to accelerate towards the target, and then use reverse thrusters to stop.
 
-		if (rsp.Length() > .5 * radius) {
+		if(rsp.Length() > .5 * radius)
+		{
 			// plan: accel towards, then reverse
 
 			toFace = rsp;
-			if (rsp.Length() > .8 * radius) {
+			if(rsp.Length() > .8 * radius)
+			{
 				// Small hack:
 				// Make this rsp threshold slightly larger, to avoid hitting the accelerator
 				// too much when even slightly underestimating the breaking acceleration
@@ -2008,7 +2021,9 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 			// we might as well fire reverse thrusters for a while? (Maybe?)
 			if(ship.Attributes().Get("reverse thrust") && rsp.Unit().Dot(angle.Unit()) < -0.75)
 				command |= Command::BACK;
-		} else {
+		}
+		else
+		{
 			// if rsp is small, we are on the final approach (turn if necessary, decel)
 
 			// plan: reverse
@@ -2016,11 +2031,10 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 			toFace = rface;
 			reverseIfAligned = true;
 		}
-
 	}
 
 	double alignment = toFace.Unit().Dot(angle.Unit());
-	if(alignment < (isClose ? .95 : .9999 ))
+	if(alignment < (isClose ? .95 : .9999))
 		command.SetTurn(TurnToward(ship, toFace));
 	if(reverseIfAligned && alignment > .95)
 		command |= Command::BACK;
@@ -2885,7 +2899,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	Point velocity = ship.Velocity();
 	Angle angle = ship.Facing();
 	double acceleration;
-	if (!reverse)
+	if(!reverse)
 		acceleration = ship.Acceleration();
 	else
 		acceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
@@ -2895,7 +2909,8 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	// If I were to turn around and stop now the relative movement, where would that put me?
 
 	double v = (velocity - targetVelocity).Length();
-	if(v < 1e-6) {
+	if(v < 1e-6)
+	{
 		timeToStop = 0.;
 		toFace = angle.Unit();
 		return position;
@@ -2905,7 +2920,8 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	if(ship.IsHyperspacing())
 	{
 		// It makes no sense to calculate a stopping point for a ship entering hyperspace.
-		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace()) {
+		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
+		{
 			timeToStop = 0.;
 			toFace = angle.Unit();
 			return position;
@@ -2931,16 +2947,19 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 
 	double A = r.LengthSquared();
 	double B = 2 * r.Dot(p);
-	double C = p.LengthSquared() - (acceleration * ship.InertialMass() / ship.Drag()) * (acceleration * ship.InertialMass() / ship.Drag());
+	double C = p.LengthSquared() -
+		(acceleration * ship.InertialMass() / ship.Drag()) * (acceleration * ship.InertialMass() / ship.Drag());
 	double D = B * B - 4 * A * C;
 	Point accel;
 	double s = 0.;
-	if (D >= 0) {
+	if(D >= 0)
+	{
 		s = (-B + sqrt(D)) / (2 * A);
 		accel = (p + s * r) * ship.Drag() / ship.InertialMass();
 	}
 
-	if (s <= 1. + 1e-6) {
+	if(s <= 1. + 1e-6)
+	{
 		// This case should only happen if the targetVelocity is faster than maxVelocity.
 
 		// We try to return something semi-sensible
@@ -2960,7 +2979,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	// integral of velocity over time
 	Point dist = (accel * c * d * T + (d * velocity - accel) * (1. - t)) / (c * d * d);
 
-	if (!reverse)
+	if(!reverse)
 		toFace = accel.Unit();
 	else
 		toFace = -accel.Unit();
