@@ -418,8 +418,7 @@ double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore
 	for(const auto &sale : GameData::CustomSales())
 		if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
 			customSale.Add(sale.second);
-	double priceChange = customSale.GetRelativeCost(outfit);
-	return priceChange >= 0. ? priceChange : 1.;
+	return customSale.GetRelativeCost(outfit);
 }
 
 

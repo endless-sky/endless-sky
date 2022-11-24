@@ -35,6 +35,10 @@ class Planet;
 // linked by outfit or by group of outfits.
 class CustomSale {
 public:
+	// Sell types: none is meant to be default, signifying this is empty,
+	// visible is the default one in the game,
+	// import means you can only sell it but not buy it (and it is shown still)
+	// hidden means it will not be shown except if you have the outfit (and it will have a custom price still).
 	enum class SellType {
 		NONE = 0,
 		VISIBLE = 1,
@@ -58,6 +62,7 @@ public:
 	// Convert the given sellType into a string.
 	static const std::string &GetShown(SellType sellType);
 
+	// Return all outfits that are affected by this CustomSale.
 	const Sale<Outfit> GetOutfits() const;
 
 	bool Has(const Outfit &item) const;

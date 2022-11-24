@@ -203,12 +203,16 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 
 bool CustomSale::Add(const CustomSale &other)
 {
-	// sellType::NONE means a new CustomSale created with no data and default sellType
+	// sellType::NONE means an empty CustomSale.
 	if(this->sellType == SellType::NONE)
 		this->sellType = other.sellType;
+	// Adding custom sales of different selling types is not supported (or needed).
 	else if(other.sellType != this->sellType)
 		return false;
 
+	// The same logic applies for the relative prices or offsets, be they for  whole outfitters or outfits.
+
+	// For prices, take the highest one.
 	for(const auto &it : other.relativePrices)
 	{
 		auto ours = relativePrices.find(it.first);
@@ -217,6 +221,7 @@ bool CustomSale::Add(const CustomSale &other)
 		else if(ours->second < it.second)
 			ours->second = it.second;
 	}
+	// For offsets, add them to each others.
 	for(const auto &it : other.relativeOffsets)
 	{
 		auto ours = relativeOffsets.find(it.first);
@@ -225,6 +230,7 @@ bool CustomSale::Add(const CustomSale &other)
 		else
 			ours->second += it.second;
 	}
+	// Same thing for the outfits.
 	for(const auto &it : other.relativeOutfitPrices)
 	{
 		auto ours = relativeOutfitPrices.find(it.first);
@@ -248,7 +254,8 @@ bool CustomSale::Add(const CustomSale &other)
 
 double CustomSale::GetRelativeCost(const Outfit &item) const
 {
-	// First look if it is in the outfits, then in the outfitters.
+	// Outfit prices have priority over outfitter prices, so consider them first,
+	// and only consider the outfitter prices if the outfits have no set price.
 	const auto &baseRelative = relativeOutfitPrices.find(&item);
 	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : DEFAULT);
 	if(baseRelativePrice == DEFAULT)
@@ -267,13 +274,14 @@ double CustomSale::GetRelativeCost(const Outfit &item) const
 				baseOffsetPrice = 0.;
 			baseOffsetPrice += it.second;
 		}
-	// Apply the relative offset on top of the relative price.
+	// Apply the relative offset on top of each others, the result being applied on top of the relative price.
+	// This means that an outfit can be affected by an outfitter offset, a custom outfit price, and outfit prices.
 	if(baseRelativePrice != DEFAULT)
 		return baseRelativePrice + (baseOffsetPrice != DEFAULT ? baseRelativePrice * baseOffsetPrice : 0.);
 	else if(baseOffsetPrice != DEFAULT)
 		return 1. + baseOffsetPrice;
 	else
-		return -1.;
+		return 1.;
 }
 
 
@@ -310,7 +318,7 @@ const Sale<Outfit> CustomSale::GetOutfits() const
 
 bool CustomSale::Has(const Outfit &item) const
 {
-	return GetRelativeCost(item) != -1.;
+	return GetOutfits().Has(item);
 }
 
 
