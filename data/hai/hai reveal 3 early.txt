@@ -458,7 +458,7 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			`	"There's a problem I need you to solve... discretely. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world.`
 				to display
 					has "FW Bounty 3: done"
-			`	"Such a vast supply could not be from individual smugglers, so this is definitely a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a senator, I can tell you the Republic will not be so understanding.`
+			`	"Such a vast supply could not come from individual smugglers, so this is definitely a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a councilor, I can tell you the Republic will not be so understanding.`
 			`	"You must find out if the Hai government is arming the pirates and, if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it and, whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
 			choice
 				`	"That's worrying news. I'll look into it."`
