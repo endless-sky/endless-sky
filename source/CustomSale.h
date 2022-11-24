@@ -16,8 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef CustomSale_H_
 #define CustomSale_H_
 
-#include "ConditionSet.h"
-#include "LocationFilter.h"
 #include "Outfit.h"
 #include "Sale.h"
 #include "Set.h"
@@ -25,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <set>
 
+class ConditionSet;
 class ConditionsStore;
 class DataNode;
 class LocationFilter;
