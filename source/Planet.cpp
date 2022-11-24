@@ -415,7 +415,7 @@ double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore
 	customSale.Clear();
 	// We need to know the availability of the outfit so we only consider CustomSales of that availability.
 	CustomSale::SellType sellType = GetAvailability(outfit, conditions);
-	for(const auto& sale : GameData::CustomSales())
+	for(const auto &sale : GameData::CustomSales())
 		if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
 			customSale.Add(sale.second);
 	double priceChange = customSale.GetRelativeCost(outfit);

@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLANET_H_
 #define PLANET_H_
 
-#include "CustomSale.h"
 #include "ConditionsStore.h"
+#include "CustomSale.h"
 #include "Sale.h"
 
 #include <list>
