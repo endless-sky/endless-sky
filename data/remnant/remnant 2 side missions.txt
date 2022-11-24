@@ -732,7 +732,7 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first> I have a difficult request for you."`
-			`	"Our scouts are reporting a stranded Korath worldship in Parca, a Ra'gru Ik 618 to be precise. Normally we would request you track down this ship and eliminate, but our scouts also reported that this appears to be home to a large civilian population."`
+			`	"Our scouts are reporting a stranded Korath worldship in Parca, a Kas'lor Ik 582 to be precise. Normally we would request you track down this ship and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector."`
 			`	"Would you be up for disabling this Korath worldship, so the threat is eliminated while preserving the lives of the innocents on board? After you have done so we can arranged for a prisoner swap with the Korath."`
 			choice
 				`	"Happy to help those in need, even the Korath."`
