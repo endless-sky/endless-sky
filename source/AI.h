@@ -71,7 +71,7 @@ template <class Type>
 	void Step(const PlayerInfo &player, Command &activeCommands);
 
 	// Set the invisible fence radius.
-	void AI::SetInvisibleFenceRadius(double radius);
+	void SetInvisibleFenceRadius(double radius);
 
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
