@@ -234,6 +234,9 @@ private:
 
 	// Attributes, for use in location filters.
 	std::set<std::string> attributes;
+
+	// The "invisible fence" radius for this system.
+	int invisibleFenceRadius = 10000;
 };
 
 
