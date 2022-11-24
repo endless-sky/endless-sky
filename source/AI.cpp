@@ -1947,10 +1947,10 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		}
 	}
 	else if(ship.Attributes().Get("reverse thrust")
-			&& dp.Unit().Dot(angle.Unit()) < -0.75                           // facing away, and
-			&& velocity.Cross(dp.Unit()) < (0.0001 + 0.01*velocity.Length()) // velocity collinear with dp, and
-			&& dp.Length() < 5 * radius                                      // relatively close to target, and
-			&& sp.Length() > .8 * radius)                                    // not close to stopping point
+			&& dp.Unit().Dot(angle.Unit()) < -0.75                             // facing away, and
+			&& velocity.Cross(dp.Unit()) < (0.0001 + 0.01 * velocity.Length()) // velocity collinear with dp, and
+			&& dp.Length() < 5 * radius                                        // relatively close to target, and
+			&& sp.Length() > .8 * radius)                                      // not close to stopping point
 	{
 		// NB: The check that we're not close to the stopping point is to avoid this from interfering
 		// with a "normal" plan execution)
