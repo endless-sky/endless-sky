@@ -663,12 +663,16 @@ bool Body::AssignStateTriggerOnUse(Body::BodyState state, std::string trigger)
 	if(this->HasSpriteFor(state))
 	{
 		SpriteParameters *spriteState = &this->sprites[state];
-		if(spriteState->IsTrigger(trigger) && !spriteState->IsCurrentTrigger(trigger))
+		if(spriteState->IsTrigger(trigger) && !spriteState->IsCurrentTrigger(trigger)
+				&& spriteState->RequestTriggerOnUse(trigger, true) && spriteState->exposed.triggerOnUse)
 		{
-			if(spriteState->RequestTriggerOnUse(trigger, true) && this->anim.triggerOnUse
-					&& state == this->currentState)
-				this->SetState(Body::BodyState::TRIGGER);
 			triggerSet = true;
+			// Trigger only if in the trigger state and the current animation is on use
+			if(state == this->currentState)
+				this->SetState(Body::BodyState::TRIGGER);
+			// Not in state, no need to wait to complete request
+			else
+				spriteState->CompleteTriggerRequest();
 		}
 	}
 	return triggerSet;
@@ -681,23 +685,24 @@ void Body::FinishStateTransition() const
 	{
 		frameOffset = 0.0f;
 		pause = 0;
-
-		Body::BodyState requestedTransitionState = this->transitionState == Body::BodyState::TRIGGER ?
+		// Current transition due to trigger
+		bool triggerTransition = this->transitionState == Body::BodyState::TRIGGER;
+		Body::BodyState requestedTransitionState = triggerTransition ?
 									this->currentState : this->transitionState;
 		// Default to Flying sprite if requested sprite does not exist.
 		Body::BodyState trueTransitionState = this->sprites[requestedTransitionState].GetSprite() ?
 									requestedTransitionState : Body::BodyState::FLYING;
 		SpriteParameters *transitionedState = &this->sprites[trueTransitionState],
 						*currentState = &this->sprites[this->currentState];
-		// Handle hanging trigger requests
-		if(this->postTriggerTransition)
+		// Handle hanging trigger requests, ensuring that no ongoing trigger transitions are occurring
+		if(this->postTriggerTransition && !triggerTransition && this->anim.triggerOnUse)
 		{
 			currentState->RequestTrigger("default");
 			currentState->CompleteTriggerRequest();
 			this->postTriggerTransition = false;
 		}
 		
-		if(this->transitionState == Body::BodyState::TRIGGER)
+		if(triggerTransition)
 		{
 			transitionedState->CompleteTriggerRequest();
 			this->postTriggerTransition = true;
