@@ -233,8 +233,9 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 	for(const auto &it : shipCount)
 		value += Value(it.first, day, it.second);
 	for(const auto &it : outfitCount)
-		// Only use the values of the local outfitter if the player has actually landed.
-		value += Value(it.first, day, (player && player->GetPlanet()) ? player : nullptr, it.second);
+		// This will only use the values of the local outfitter if the player has actually landed.
+		// Best to change this in another PR as to avoid any potential issues with it.
+		value += Value(it.first, day, it.second);
 	return value;
 }
 
@@ -245,7 +246,7 @@ int64_t Depreciation::Value(const Ship &ship, int day) const
 {
 	int64_t value = Value(&ship, day);
 	for(const auto &it : ship.Outfits())
-		value += Value(it.first, day, player, it.second);
+		value += Value(it.first, day, it.second);
 	return value;
 }
 
