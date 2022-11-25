@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 
 using namespace std;
