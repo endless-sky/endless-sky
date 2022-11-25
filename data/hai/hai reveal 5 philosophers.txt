@@ -843,7 +843,7 @@ mission "Hai Reveal [B11] Moving Together"
 				`	"What pressure is making this so urgent?"`
 				`	"Yes, clearly we need a quick resolution."`
 					goto briefing
-			`	Khaine sighs, as if he expected something else of you, and responds. "The thing about governments is that all crises are either to be solved, delayed, or weathered. This crisis cannot be delayed, and so they must choose to weather or resolve. There are enough representatives who feel that their positions are too fragile to weather it, and so they have pushed to resolve. The timeline is set by their perception of the urgency." He looks to the Hai. "And obviously, there are also those who value our historic relationship with the Hai and seek to resolve it for those reasons too. Those are only the first two reasons on a long list. At the end of the day, it's politics."`
+			`	Khaine sighs, and responds. "The thing about governments is that all crises are either to be solved, delayed, or weathered. This crisis cannot be delayed, and so they must choose to weather or resolve. There are enough representatives who feel that their positions are too fragile to weather it, and so they have pushed to resolve. The timeline is set by their perception of the urgency." He looks to the Hai. "And obviously, there are also those who value our historic relationship with the Hai and seek to resolve it for those reasons too. Those are only the first two reasons on a long list. At the end of the day, it's politics."`
 				goto briefing
 
 			label penetration
