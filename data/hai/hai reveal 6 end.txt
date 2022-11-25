@@ -60,7 +60,7 @@ mission "Hai Reveal [C01] Cleanup"
 			`	Sayari rolls her eyes and says, "Maybe so, but there is one more minor disaster to be averted." You follow her to a private meeting room.`
 				goto whut
 			label need2talk
-			`	"We need to talk," says Xilin`
+			`	"Trouble. We need to talk," says Xilin.`
 			`	You feel the deepest of sighs settle into your bones, but at this point you just follow them to a private meeting room. It would have been too easy if it was all over, wouldn't it?`
 			label whut
 			`	Xilin begins. "It seems that somewhere along the way, a shipload of kidnapped Hai didn't make it to a processing area. The Hai were left on Sunracer, and the ship appears to have disappeared."`
