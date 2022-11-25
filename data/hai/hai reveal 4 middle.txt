@@ -831,6 +831,8 @@ mission "Pirates with Hai Weapons 2: Await Teeneep's Research"
 		has "Hai Reveal [A05] Take Teeneep to Hai-home: done"
 	to complete
 		has "Hai Reveal [A08] Symbol Identification: done"
+	on offer
+		log `Took Teeneep to Hai-home so she can research other deals between the Elders and pirates.`
 
 
 # Eventually needs a whole conversation variant for each main campaign. This time with similar goals. (To be a, b and c versions.)
