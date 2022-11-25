@@ -41,6 +41,10 @@ namespace {
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
+	// Default to fullscreen.
+	int screenModeIndex = 1;
+	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
+
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
@@ -85,6 +89,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "fullscreen")
+			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -182,6 +188,35 @@ bool Preferences::ZoomViewOut()
 
 	--zoomIndex;
 	return true;
+}
+
+
+
+double Preferences::MinViewZoom()
+{
+	return ZOOMS[0];
+}
+
+
+
+double Preferences::MaxViewZoom()
+{
+	return ZOOMS[ZOOMS.size() - 1];
+}
+
+
+
+void Preferences::ToggleScreenMode()
+{
+	GameWindow::ToggleFullscreen();
+	screenModeIndex = GameWindow::IsFullscreen();
+}
+
+
+
+const string &Preferences::ScreenModeSetting()
+{
+	return SCREEN_MODE_SETTINGS[screenModeIndex];
 }
 
 
