@@ -303,7 +303,7 @@ mission "Hai Reveal [C05] Cleanup"
 				`	"Who are you?"`
 				`	"How do you know Terry?"`
 				`	"What is this place?"`
-			`	Before you can think to respond, he's dashed away.`
+			`	Before you can respond, he's dashed away.`
 			`	When you get out to the bluff, there is a single individual standing on a level section with scrubby grass tufting between bare rock. The city is obscured from here, and you could believe you were isolated from all of civilization. As you approach, it becomes clear the individual is indeed Terry. The wind whips her hair around her constantly, and there is a chill here that is only partly the fault of the wind. Could this one young woman really have been behind all of this trouble, all of this death and suffering, everything that was risked between the Hai and humanity?`
 			`	As you approach, she turns, and you can see she has been crying. "You know you ruined everything," she says. "We were so close." The wind almost steals her last word and you unconsciously step closer to hear her better, causing her to tense.`
 			choice
