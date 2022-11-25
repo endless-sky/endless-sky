@@ -32,7 +32,7 @@ class Planet;
 
 
 // Class used to stock Outfits and their local changes, being prices and sell types,
-// linked by outfit or by group of outfits.
+// linked by outfit or by group of outfits (aka outfitters).
 class CustomSale {
 public:
 	// Sell types: none is meant to be default, signifying this is empty,
@@ -73,7 +73,7 @@ public:
 
 	void Clear();
 
-	void CheckIsEmpty();
+	void CheckIfEmpty();
 
 
 private:

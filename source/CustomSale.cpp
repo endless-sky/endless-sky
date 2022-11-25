@@ -33,7 +33,8 @@ namespace
 		{CustomSale::SellType::IMPORT, "import"},
 		{CustomSale::SellType::HIDDEN, "hidden"},
 	};
-	const double DEFAULT = -100000.;
+	// Default value, that should not conflict with actual values.
+	const double DEFAULT = numeric_limits<double>::infinity();
 }
 
 
@@ -41,17 +42,35 @@ namespace
 void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 	const Set<Outfit> &outfits, const string &mode)
 {
+	bool isAdd = false;
+	const Outfit *outfit = nullptr;
+	auto parseValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
+		// Default is 1, because we can just have an outfit defined here just to have a custom sellType.
+		if(isAdd)
+			amount += line.Size() > 2 ? line.Value(2) : 1.;
+		else
+			amount = line.Size() > 1 ? line.Value(1) : 1;
+		// % means it already is a relative price.
+		// Otherwise it is a normal price but we since we store them as relative we must divide it.
+		// NOTE: this means that the offset is handled as relative to the existing modified price,
+		// and not the default price (which is intended)!
+		// Outfitter changes always are to be defined as relative in the data.
+		if((mode != "outfitters" && (line.Size() < (2 + isAdd) || line.Token(2 + isAdd) != "%")))
+			amount /= outfit->Cost();
+	};
+
 	for(const DataNode &child : node)
 	{
 		const string &token = child.Token(0);
 		bool isValue = (child.Token(0) == "value");
 		bool isOffset = (child.Token(0) == "offset");
-		if((token == "clear" || token == "remove"))
+		if(token == "remove")
 		{
 			if(child.Size() == 1)
 				Clear();
 			else if(child.Token(1) == "outfit")
 			{
+				// If an outfit is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
 				{
 					const Outfit *outfit = outfits.Get(child.Token(2));
@@ -66,6 +85,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 			}
 			else if(child.Token(1) == "outfitter")
 			{
+				// If an outfitter is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
 				{
 					const Sale<Outfit> *outfitter = items.Get(child.Token(2));
@@ -102,6 +122,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 			sellType = SellType::VISIBLE;
 		else if(token == "location")
 		{
+			// Either just a planet or a whole filter.
 			if(child.Size() == 1)
 			{
 				location = nullptr;
@@ -120,35 +141,24 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 		}
 		else if(token == "conditions")
 		{
+			// Override existing conditions and replace them.
 			conditions = ConditionSet{};
 			conditions.Load(child);
 		}
+		// CustomSales are separated between outfits and outfitters in the data files.
+		// mode could apply to other things like shipyards and ships, later on.
 		else if(mode == "outfits")
 		{
-			bool isAdd = false;
-			const Outfit *outfit = nullptr;
-			auto parseValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
-				if(isAdd)
-					amount += line.Size() > 2 ? line.Value(2) : 1.;
-				else
-					amount = line.Size() > 1 ? line.Value(1) : 1;
-				// If there is a third element it means a relative % and not a raw value is specified.
-				if(line.Size() == 2 + isAdd)
-					amount /= outfit->Cost();
-			};
 			if(isValue || isOffset)
-				for(const DataNode &kid : child)
+				for(const DataNode &grandChild : child)
 				{
-					isAdd = (kid.Token(0) == "add");
-					outfit = outfits.Get(kid.Token(isAdd));
-
-					if(kid.Size() < 1 + isAdd)
-						continue;
+					isAdd = (grandChild.Token(0) == "add");
+					outfit = outfits.Get(grandChild.Token(isAdd));
 
 					if(isValue)
-						parseValueOrOffset(relativeOutfitPrices[outfit], kid);
+						parseValueOrOffset(relativeOutfitPrices[outfit], grandChild);
 					else if(isOffset)
-						parseValueOrOffset(relativeOutfitOffsets[outfit], kid);
+						parseValueOrOffset(relativeOutfitOffsets[outfit], grandChild);
 				}
 			// Default behavior assumes value.
 			else if(child.Size() >= 1)
@@ -163,26 +173,15 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 		else if(mode == "outfitters")
 		{
 			if(isValue || isOffset)
-				for(const DataNode &kid : child)
+				for(const DataNode &grandChild : child)
 				{
-					bool isAdd = (kid.Token(0) == "add");
-					const Sale<Outfit> *outfitter = items.Get(kid.Token(isAdd));
-
-					if(kid.Size() < 1 + isAdd)
-						continue;
-
-					auto parseValueOrOffset = [isAdd, outfitter](double &amount, const DataNode &line) {
-						// Only % may be specified using outfitter modification.
-						if(isAdd)
-							amount += line.Size() > 1 ? line.Value(2) : 1.;
-						else
-							amount = line.Size() > 1 ? line.Value(1) : 1;
-					};
+					isAdd = (grandChild.Token(0) == "add");
+					const Sale<Outfit> *outfitter = items.Get(grandChild.Token(isAdd));
 
 					if(isValue)
-						parseValueOrOffset(relativePrices[outfitter], kid);
+						parseValueOrOffset(relativePrices[outfitter], grandChild);
 					else if(isOffset)
-						parseValueOrOffset(relativeOffsets[outfitter], kid);
+						parseValueOrOffset(relativeOffsets[outfitter], grandChild);
 				}
 			// Default behavior assumes value.
 			else if(child.Size() >= 2)
@@ -196,7 +195,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	CheckIsEmpty();
+	CheckIfEmpty();
 }
 
 
@@ -213,6 +212,8 @@ bool CustomSale::Add(const CustomSale &other)
 	// The same logic applies for the relative prices or offsets, be they for  whole outfitters or outfits.
 
 	// For prices, take the highest one.
+	auto addToValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
+	};
 	for(const auto &it : other.relativePrices)
 	{
 		auto ours = relativePrices.find(it.first);
@@ -350,10 +351,10 @@ void CustomSale::Clear()
 
 
 
-void CustomSale::CheckIsEmpty()
+void CustomSale::CheckIfEmpty()
 {
 	if(relativeOffsets.empty() && relativePrices.empty() &&
-		relativeOutfitOffsets.empty() && relativeOutfitPrices.empty())
+			relativeOutfitOffsets.empty() && relativeOutfitPrices.empty())
 		sellType = SellType::NONE;
 	else if(sellType == SellType::NONE)
 		sellType = SellType::VISIBLE;
