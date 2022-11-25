@@ -664,8 +664,8 @@ mission "Remnant: Rescue 5"
 mission "Remnant: Disable 1"
 	job
 	repeat
-	name "Disable Damaged Korath World Ship"
-	description "A damaged Korath world ship is stuck in the Ember Waste sectors boarding Korath space. It has a large civilian population so we ask you to only disable it to avoid an atrocity. After this return to <planet> to receive your payment of <payment>."
+	name "Disable Damaged Kas'lor Ik 582"
+	description "A damaged Kas'lor Ik 582 is stuck in the Ember Waste sectors boarding Korath space. It has a large civilian population so we ask you to only disable it to avoid an atrocity. After this return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -679,7 +679,7 @@ mission "Remnant: Disable 1"
 		fleet
 			names "korath"
 			variant
-				"Ra'gru Ik 618 (Crippled)"
+				"Kas'lor Ik 582 (Crippled)"
 	on visit
 		dialog "You've landed on <planet>, but the stuck Korath world ship has not been disabled yet. Hunt it down and disable it before returning."
 	on complete
