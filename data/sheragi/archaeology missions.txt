@@ -1306,7 +1306,12 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
 	
 	on offer
-		require "Jump Drive" 2
+		or
+			require "Jump Drive" 2
+			require "Korath Jump Drive" 2
+			and
+				require "Jump Drive"
+				require "Korath Jump Drive"
 		conversation
 			`You have a spare jump drive in your possession. Would you like to give it to Albert's crew?`
 			choice
@@ -1320,7 +1325,16 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	
 	on accept
 		fail "Sheragi Archaeology: The Emerald Sword 2"
+		branch korath
+			has "outfit: Korath Jump Drive"
+			
 		outfit "Jump Drive" -1
+		goto end
+
+		label korath
+		outfit "Korath Jump Drive" -1
+
+		label end
 		event "zubenelhakrabi discovered"
 		"reputation: Sheragi" = 1
 

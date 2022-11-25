@@ -183,7 +183,16 @@ mission "Unfettered Jump Drive 1"
 				accept
 	
 	on accept
+		branch korath
+			has "outfit: Korath Jump Drive"
+			
 		outfit "Jump Drive" -1
+		goto hyperdrive
+
+		label korath
+		outfit "Korath Jump Drive" -1
+
+		label hyperdrive
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
@@ -225,7 +234,16 @@ mission "Unfettered Jump Drive 2"
 				accept
 	
 	on accept
+		branch korath
+			has "outfit: Korath Jump Drive"
+			
 		outfit "Jump Drive" -1
+		goto hyperdrive
+
+		label korath
+		outfit "Korath Jump Drive" -1
+
+		label hyperdrive
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 20
@@ -288,7 +306,16 @@ mission "Unfettered Jump Drive 3"
 				accept
 	
 	on accept
+		branch korath
+			has "outfit: Korath Jump Drive"
+			
 		outfit "Jump Drive" -1
+		goto hyperdrive
+
+		label korath
+		outfit "Korath Jump Drive" -1
+
+		label hyperdrive
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30

@@ -160,6 +160,7 @@ mission "lost in coalition"
 		has "Coalition: Contributor: done"
 	on offer
 		require "Jump Drive" 0
+		require "Korath Jump Drive" 0
 		event "lost in coalition" 14
 		fail
 
@@ -878,7 +879,9 @@ mission "Kimek Gift"
 	source "Second Cerulean"
 	destination "Cold Horizon"
 	on offer
-		require "Jump Drive"
+		or
+			require "Jump Drive"
+			require "Korath Jump Drive"
 		conversation
 			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package with some papers attached.`
 			`	As soon as she spots you, she quickly approaches you and says, "Human! The visitor I've heard about, you are! From the outside! A jump drive you have, if our space you've reached, yes?"`
@@ -1256,7 +1259,9 @@ mission "Longcow Antibiotics 1"
 	stopover "New Finding"
 	destination "Corral of Meblumem"
 	on offer
-		require "Jump Drive"
+		or
+			require "Jump Drive"
+			require "Korath Jump Drive"
 		conversation
 			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
 			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
@@ -2353,7 +2358,9 @@ mission "Coalition: Expeditions Past 1"
 		government "Coalition"
 	destination "Ring of Friendship"
 	on offer
-		require "Jump Drive"
+		or
+			require "Jump Drive"
+			require "Korath Jump Drive"
 		conversation
 			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
 			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`

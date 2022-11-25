@@ -157,6 +157,7 @@ mission "Remnant: Lost in Ember Waste: Trigger"
 		require "Quantum Keystone" 0
 		require "Quantum Key Stone" 0
 		require "Jump Drive" 0
+		require "Korath Jump Drive" 0
 		event "remnant: lost in ember waste" 14
 		fail
 
@@ -174,6 +175,7 @@ mission "Remnant: Lost in Ember Waste"
 		require "Quantum Keystone" 0
 		require "Quantum Key Stone" 0
 		require "Jump Drive" 0
+		require "Korath Jump Drive" 0
 		outfit "Quantum Key Stone" 1
 		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
@@ -3624,7 +3626,9 @@ mission "Remnant: Expanded Horizons Astral 2"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"
 	on offer
-		require "Jump Drive"
+		or
+			require "Jump Drive"
+			require "Korath Jump Drive"
 		require "Research Laboratory"
 		conversation
 			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
