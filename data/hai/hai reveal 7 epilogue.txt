@@ -268,7 +268,7 @@ mission "Hai Reveal [D04] Escort Republic Outfitters"
 				`	"Yeah, it was fairly chill."`
 					goto fantastic
 				`	"It was very close out there. There were some losses."`
-			`	Hiyamaharu is inscrutable, but Xilin adopts a sombre expression. "Unfortunately, there was always a risk of that in such an endeavor."`
+			`	Hiyamaharu is inscrutable, but Xilin adopts a somber expression. "Unfortunately, there was always a risk of that in such an endeavor."`
 			`	"Still," says Hiyamaharu, turning to Xilin.`
 			label fantastic
 			`	"A great success all round," replies Xilin. "The Republic and Hai governments have approved a reward of <payment> by the way, as thanks for your considerable assistance here.`
