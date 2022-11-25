@@ -843,6 +843,15 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
 		"Jump Drive"
 		Hyperdrive
 
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
 
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
