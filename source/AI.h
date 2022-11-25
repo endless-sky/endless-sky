@@ -72,6 +72,7 @@ template <class Type>
 
 	// Set the invisible fence radius.
 	void SetInvisibleFenceRadius(double radius);
+	double GetInvisibleFenceRadius() const;
 
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
@@ -194,6 +195,9 @@ private:
 	// The current step count for the AI, ranging from 0 to 30. Its value
 	// helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
+
+	// Invisible fence radius.
+	double invisibleFenceRadius = 10000.;
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
