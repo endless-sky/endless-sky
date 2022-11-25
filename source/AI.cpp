@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "Government.h"
 #include "Hardpoint.h"
+#include "JumpTypes.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
@@ -32,9 +33,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Weapon.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
@@ -103,7 +106,7 @@ namespace {
 				continue;
 			if(!escort->IsDisabled() && !escort->CanBeCarried()
 					&& escort->GetSystem() == ship.GetSystem()
-					&& escort->JumpFuel() && !escort->IsReadyToJump(true))
+					&& escort->JumpNavigation().JumpFuel() && !escort->IsReadyToJump(true))
 				return false;
 		}
 		return true;
@@ -201,7 +204,7 @@ namespace {
 		// If there is no fuel capacity in this ship, no fuel in this
 		// system, if it is fully fueled, or its drive doesn't require
 		// fuel, then it should not refuel before traveling.
-		if(!systemHasFuel || ship.Fuel() == 1. || !ship.JumpFuel())
+		if(!systemHasFuel || ship.Fuel() == 1. || !ship.JumpNavigation().JumpFuel())
 			return false;
 
 		// Calculate the fuel needed to reach the next system with fuel.
@@ -261,7 +264,8 @@ namespace {
 					continue;
 
 				const Planet &planet = *object.GetPlanet();
-				if(planet.IsWormhole() && planet.IsAccessible(&ship) && planet.WormholeDestination(from) == to)
+				if(planet.IsWormhole() && planet.IsAccessible(&ship)
+						&& &planet.GetWormhole()->WormholeDestination(*from) == to)
 				{
 					ship.SetTargetStellar(&object);
 					ship.SetTargetSystem(nullptr);
@@ -287,6 +291,9 @@ namespace {
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
+
+	// An offset to prevent the ship from being not quite over the point to departure.
+	const double SAFETY_OFFSET = 1.;
 }
 
 
@@ -649,7 +656,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		{
 			// Make sure the ship has somewhere to flee to.
 			const System *system = it->GetSystem();
-			if(it->JumpsRemaining() && (!system->Links().empty() || it->Attributes().Get("jump drive")))
+			if(it->JumpsRemaining() && (!system->Links().empty() || it->JumpNavigation().HasJumpDrive()))
 				target.reset();
 			else
 				for(const StellarObject &object : system->Objects())
@@ -803,7 +810,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
 			if(findNewParent && parentHasSpace && it->IsYours())
 				parentHasSpace = parent->CanCarry(*it);
-			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && findNewParent))
+			if(!hasParent || (!inParentSystem && !it->JumpNavigation().JumpFuel()) || (!parentHasSpace && findNewParent))
 			{
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
@@ -1485,8 +1492,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 		vector<int> systemWeights;
 		int totalWeight = 0;
-		const set<const System *> &links = ship.Attributes().Get("jump drive")
-			? origin->JumpNeighbors(ship.JumpRange()) : origin->Links();
+		const set<const System *> &links = ship.JumpNavigation().HasJumpDrive()
+			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
 			for(const System *link : links)
@@ -1613,7 +1620,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		}
 
 		// If the ship has no destination or the destination is unreachable, route to the parent's system.
-		if(!ship.GetTargetStellar() && (!ship.GetTargetSystem() || !ship.JumpFuel(ship.GetTargetSystem())))
+		if(!ship.GetTargetStellar() && (!ship.GetTargetSystem() || !ship.JumpNavigation().JumpFuel(ship.GetTargetSystem())))
 		{
 			// Route to the parent ship's system and check whether
 			// the ship should land (refuel or wormhole) or jump.
@@ -1683,7 +1690,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		}
 		else if(parentPlanet->IsWormhole())
 		{
-			SelectRoute(ship, parentPlanet->WormholeDestination(currentSystem));
+			const auto *wormhole = parentPlanet->GetWormhole();
+			SelectRoute(ship, &wormhole->WormholeDestination(*currentSystem));
 
 			if(ship.GetTargetSystem())
 			{
@@ -1805,7 +1813,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
 	double maxFuel = ship.Attributes().Get("fuel capacity");
-	if(maxFuel && ship.Fuel() < .005 && parent.JumpFuel() < parent.Fuel() *
+	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel() < parent.Fuel() *
 			parent.Attributes().Get("fuel capacity") - maxFuel)
 		return true;
 
@@ -1931,7 +1939,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 		forwardTime += stopTime;
 
 		// Figure out your reverse thruster stopping time:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
 		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
 		reverseTime += speed / reverseAcceleration;
 
@@ -1969,16 +1977,25 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 
 void AI::PrepareForHyperspace(Ship &ship, Command &command)
 {
-	bool hasHyperdrive = ship.Attributes().Get("hyperdrive");
+	bool hasHyperdrive = ship.JumpNavigation().HasHyperdrive();
 	double scramThreshold = ship.Attributes().Get("scram drive");
-	bool hasJumpDrive = ship.Attributes().Get("jump drive");
+	bool hasJumpDrive = ship.JumpNavigation().HasJumpDrive();
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 
-	bool isJump = (ship.GetCheapestJumpType(ship.GetTargetSystem()).first == Ship::JumpType::JumpDrive);
+	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetTargetSystem()).first == JumpType::JUMP_DRIVE);
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	if(!isJump && scramThreshold)
+	double departure = isJump ?
+		ship.GetSystem()->JumpDepartureDistance() :
+		ship.GetSystem()->HyperDepartureDistance();
+	double squaredDeparture = departure * departure + SAFETY_OFFSET;
+	if(ship.Position().LengthSquared() < squaredDeparture)
+	{
+		Point closestDeparturePoint = ship.Position().Unit() * (departure + SAFETY_OFFSET);
+		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
+	}
+	else if(!isJump && scramThreshold)
 	{
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
@@ -2064,7 +2081,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 	double maxV = ship.MaxVelocity();
 	double accel = ship.Acceleration();
 	double turn = ship.TurnRate();
-	double mass = ship.Mass();
+	double mass = ship.InertialMass();
 	Point unit = ship.Facing().Unit();
 	double currentAngle = ship.Facing().Degrees();
 	// This is where we want to be relative to where we are now:
@@ -2124,7 +2141,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 		command.SetTurn(targetAngle);
 
 	// Determine whether to apply thrust.
-	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
+	Point drag = ship.Velocity() * ship.Drag() / mass;
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Don't take drag into account when reverse thrusting, because this
@@ -2292,7 +2309,7 @@ bool AI::ShouldUseAfterburner(Ship &ship)
 				+ 0.2 * ship.Attributes().Get("solar collection")
 				- ship.Attributes().Get("energy consumption");
 	double outputHeat = ship.Attributes().Get("afterburner heat") / (100 * ship.Mass());
-	if((!neededFuel || fuel - neededFuel > ship.JumpFuel())
+	if((!neededFuel || fuel - neededFuel > ship.JumpNavigation().JumpFuel())
 			&& (!neededEnergy || neededEnergy / energy < 0.25)
 			&& (!outputHeat || ship.Heat() + outputHeat < .9))
 		return true;
@@ -2381,6 +2398,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
 {
+	const bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
 	// ship has a target, that target is guaranteed to be targetable.
 	if(target && (target->GetSystem() != ship.GetSystem() || target->IsEnteringHyperspace()))
@@ -2400,8 +2418,11 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 	if(ship.GetTargetSystem())
 	{
 		// Unload surveillance drones in this system before leaving.
-		PrepareForHyperspace(ship, command);
-		command |= Command::JUMP;
+		if(!isStaying)
+		{
+			PrepareForHyperspace(ship, command);
+			command |= Command::JUMP;
+		}
 		if(ship.HasBays())
 		{
 			command |= Command::DEPLOY;
@@ -2416,7 +2437,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
 			ship.SetTargetStellar(nullptr);
-		else
+		else if(!isStaying)
 			command |= Command::LAND;
 	}
 	else if(target)
@@ -2474,7 +2495,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		// TODO: These ships cannot travel through wormholes?
 		if(ship.JumpsRemaining(false))
 		{
-			const auto &links = ship.Attributes().Get("jump drive") ? system->JumpNeighbors(ship.JumpRange()) : system->Links();
+			const auto &links = ship.JumpNavigation().HasJumpDrive() ?
+				system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
 			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
 		}
 
@@ -2631,7 +2653,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 			// Only cloak if you will be able to fully cloak and also maintain it
 			// for as long as it will take you to reach full cloak.
 			fuel -= fuelCost * (1 + 2 * steps);
-			if(fuel < ship.JumpFuel())
+			if(fuel < ship.JumpNavigation().JumpFuel())
 				return false;
 		}
 
@@ -2769,7 +2791,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
 		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
 		reverseDistance += .5 * v * v / reverseAcceleration;
 
@@ -3073,7 +3095,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
 			bool isStaying = person.IsStaying();
-			if(!secondary || fuel < (isStaying ? 0. : ship.JumpFuel()))
+			if(!secondary || fuel < (isStaying ? 0. : ship.JumpNavigation().JumpFuel()))
 				continue;
 		}
 		// Figure out where this weapon will fire from, but add some randomness
@@ -3255,10 +3277,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Determine if the player is jumping to their target system or landing on a wormhole.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.HasSprite() && object.HasValidPlanet()
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 				&& object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(*object.GetPlanet())
-				&& object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system && player.HasVisited(*system))
+				&& player.HasVisited(*system))
 			{
+				const auto *wormhole = object.GetPlanet()->GetWormhole();
+				if(&wormhole->WormholeDestination(*ship.GetSystem()) != system)
+					continue;
+
 				isWormhole = true;
 				if(!ship.GetTargetStellar() || autoPilot.Has(Command::JUMP))
 					ship.SetTargetStellar(&object);
@@ -3560,8 +3586,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(!ship.GetTargetSystem() && !isWormhole)
 		{
 			double bestMatch = -2.;
-			const auto &links = (ship.Attributes().Get("jump drive") ?
-				ship.GetSystem()->JumpNeighbors(ship.JumpRange()) : ship.GetSystem()->Links());
+			const auto &links = (ship.JumpNavigation().HasJumpDrive() ?
+				ship.GetSystem()->JumpNeighbors(ship.JumpNavigation().JumpRange()) : ship.GetSystem()->Links());
 			for(const System *link : links)
 			{
 				// Not all systems in range are necessarily visible. Don't allow
@@ -3707,13 +3733,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP))
 	{
-		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
+		if(!ship.JumpNavigation().HasHyperdrive() && !ship.JumpNavigation().HasJumpDrive())
 		{
 			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::Highest);
 			autoPilot.Clear();
 			Audio::Play(Audio::Get("fail"));
 		}
-		else if(!ship.JumpFuel(ship.GetTargetSystem()))
+		else if(!ship.JumpNavigation().JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.", Messages::Importance::Highest);
 			autoPilot.Clear();

@@ -3060,8 +3060,25 @@ mission "Wanderers: Sestor: Factory 1"
 				`	"Are you sure that they really want peace? They aren't trying to trick you?"`
 			`	Rek says, "It is hard to be sure. Their culture is very different from the Kor Efret; even some of their language and gestures are new to me. But they have behaved peacefully toward us so far; we must hope that their peacefulness continues."`
 			label next
-			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you."`
-			`	You return to your ship, and get ready for the trip to <planet>.`
+			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you." He gestures with a wing towards a number of Wanderer vessels being loaded with supplies and prepared for battle. You notice a type of weapon you don't recognize mounted on some of them.`
+			choice
+				`	"Are those ships carrying a new type of weapon?"`
+				`	"Sounds like a good plan. Let's get going!"`
+					goto end
+			`	Tele'ek seems pleased that you noticed. "Indeed. They are more [useful, effective] against hull armor than shields, [perfect, appropriate] for use against the Kor Sestor vessels alongside our [existing, previous] armaments." He pauses before continuing. "[Hopefully, If this goes well], they will not get much use, but will see you [safely, successfully] through this [mission, task] to finally end this [blight, menace]. However, we will have them [ready, prepared] if the need does [arise, return]."`
+			choice
+				`	"Can I get some for my own ship?"`
+					goto buy
+				`	"Is it a good idea to show off these new weapons to the Korath Exiles when making overtures of friendship?"`
+				`	"I look forward to seeing them in action. I should get my ship ready for to go."`
+					goto end
+			`	Tele'ek gestures towards Rek who says, "I raised a similar concern, but in this case, I [recognize, accept] that the benefit outweighs possible risks."`
+			`	Tele'ek explains, "If they view these weapons as signs of [aggression?] against themselves, there is little I can do for them. Their ships are not as [durable, well-armored] as the Kor Sestor automata, so our other technologies would already be [effective, damaging] enough if used against them. If they are [rational, intelligent], they will value the added protection on this [journey, endeavor]."`
+				goto end
+			label buy
+			`	"We have not yet produced many, but they will be [available, present] in our outfitters soon."`
+			label end
+			`	You and Rek say goodbye to Tele'ek before returning to your ship, and preparing it for the trip to <planet>.`
 				accept
 	npc accompany save
 		government "Korath"
@@ -3087,9 +3104,11 @@ mission "Wanderers: Sestor: Factory Escorts"
 			names "wanderer"
 			variant
 				"Hurricane (Tough)"
+				"Hurricane (Moonbeam)"
 				"Derecho"
-				"Derecho (Turret)"
-				"Tempest (Heavy)" 2
+				"Derecho (Moonbeam)" 2
+				"Tempest (Heavy)"
+				"Tempest (Moonbeam)" 2
 				"Tempest"
 
 
@@ -3302,13 +3321,16 @@ event "wanderers: sabira eseskrai colony"
 		description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year. The Wanderers, working together with the Kor Efreti, have founded a settlement here and begun working to accelerate the process of rejuvenating the wastelands.`
 		spaceport `This small settlement is populated by a roughly equal number of Korath and Wanderer settlers. Since most of them do not speak each other's language, the two groups do not mingle much, and communicate mostly via gestures and drawings. It's not much, but it's at least a start for the two species to begin learning from each other.`
 
-mission "Wanderers: Sestor: Final"
+mission "Wanderers: Sestor: Final: Patched"
 	landing
 	name "Investigate the exiles"
 	description "Visit the Korath exile territory to look for any signs that they plan to start constructing war drones of their own."
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Sestor: Factory 3: done"
+		not "Wanderers: Sestor: Final: offered"
+	to fail
+		has "Wanderers: Sestor: Final: offered"
 	waypoint "Kor Fel'tar"
 	on enter "Kor Fel'tar"
 		dialog `There are several Kor Mereti and Kor Sestor drones in this system, and they don't look friendly. You should report to the Wanderers that the exiles have begun manufacturing drones of their own.`
@@ -3343,27 +3365,26 @@ mission "Wanderers: Sestor: Final"
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
+		event "wanderers: sestor planets unrestricted" 40
+		event "wanderers taking jobs from kor efreti" 5
+		event "wanderers: moonbeam mass production" 5
 		conversation
 			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
 
-mission "Wanderers: Sestor: Patch"
-	landing
-	invisible
-	to offer
-		has "event: wanderers: sestor eliminated"
-	on offer
-		event "wanderers: sestor planets unrestricted"
-		fail
-
-mission "Wanderers: Sestor: Patch 2"
+# This patch mission is necessary for people who got the older version of the "Sestor: Final" mission without the patches integrated.
+mission "Wanderers: Sestor: Combined Patch 1"
 	landing
 	invisible
 	to offer
 		has "Wanderers: Sestor: Final: done"
+	to fail
+		has "Wanderers: Sestor: Final: Patched: offered"
 	on offer
+		event "wanderers: sestor planets unrestricted" 40
 		event "wanderers taking jobs from kor efreti" 5
+		event "wanderers: moonbeam mass production" 5
 		fail
 
 event "wanderers: sestor planets unrestricted"
