@@ -231,17 +231,17 @@ mission "Unfettered Space Challenge"
 
 
 conversation "interrupted duel"
+	action
+		"unfettered revenge fleet"++
 	branch toomuch
-		has "unfettered revenge fleet" > 2
+		has "unfettered revenge fleet" > 3
 	action
 		"reputation: Hai (Unfettered)" -= 50
-		"unfettered revenge fleet"++
 	`The Unfettered authorities of the nearby planet hail you, "Whatever you had in mind you better stop right there if you have hope of maintaining good relations with us. Duels may not be interrupted, under any circumstances. I suggest you leave at once, and we may forgive you for this transgression."`
 		decline
 	label toomuch
 	action
 		"reputation: Hai (Unfettered)" <?= -1000
-		"unfettered revenge fleet"++
 	`The Unfettered authorities of the nearby planet hail you, "You have been warned. We have been patient enough with you, monkey! Now you shall pay."`
 	# one can just sell them a JD to get forgiven.
 
@@ -322,6 +322,7 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 
 
 
+# They ask you to sell the weapons you used to defeat them, the chance increases the more duels you win.
 mission "Unfettered Bring Fire"
 	job
 	repeat
