@@ -363,8 +363,10 @@ government "Hai (Unfettered)"
 		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
 		"Hai (Unfettered Challenger)" 1
-	#"use foreign penalties for"
-	#	"Hai (Unfettered Challenger)"
+		"Hai (Unfettered Blue Challenger)" 1
+		"Hai (Unfettered Red Challenger)" 1
+	"use foreign penalties for"
+		"Hai (Unfettered Challenger)"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -408,9 +410,9 @@ government "Hai (Unfettered Challenger)"
 	"hostile disabled hail" "defeated unfettered challenger"
 	"penalty for"
 		disable -0.5
-		board 0.1
-		capture 2.5
-		destroy 1
+		board 0.25
+		capture 3
+		destroy 1.5
 
 # A government used to make unfettered challengers fight each others.
 government "Hai (Unfettered Blue Challenger)"
