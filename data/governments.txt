@@ -864,7 +864,6 @@ government "Republic Intelligence"
 	"crew attack" 1.2
 	"crew defense" 2.2
 	"attitude toward"
-		"Syndicate" -.1
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
 		"Smuggler (Hai Trafficker)" -.3
