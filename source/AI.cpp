@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "Weapon.h"
 #include "Wormhole.h"
-#include "AI/ShipAICache.h"
+#include "ai/ShipAICache.h"
 
 #include <algorithm>
 #include <cmath>
@@ -2262,8 +2262,10 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	if(ship.Facing().Unit().Dot(distanceFromTarget.Unit()) < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
 	// This isn't perfect, but it works well enough.
-	else if((ship.Facing().Unit().Dot(distanceFromTarget) >= 0. && distanceFromTarget.Length() > max(200., ship.GetAICache().TurningRadius()))
-			|| (ship.Velocity().Dot(distanceFromTarget) < 0. && ship.Facing().Unit().Dot(distanceFromTarget.Unit()) >= .9))
+	else if((ship.Facing().Unit().Dot(distanceFromTarget) >= 0. &&
+			distanceFromTarget.Length() > max(200., ship.GetAICache().TurningRadius()))
+			|| (ship.Velocity().Dot(distanceFromTarget) < 0. &&
+				ship.Facing().Unit().Dot(distanceFromTarget.Unit()) >= .9))
 		command |= Command::FORWARD;
 
 	// Use an equipped afterburner if possible.

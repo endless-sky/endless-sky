@@ -12,8 +12,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 #include "ShipAICache.h"
 
-#include "../Ship.h"
 #include "../pi.h"
+#include "../Ship.h"
 
 #include <algorithm>
 #include <cmath>
