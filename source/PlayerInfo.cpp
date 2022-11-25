@@ -395,6 +395,7 @@ void PlayerInfo::Load(const string &path)
 		depreciation.Init(ships, date.DaysSinceEpoch(), *this);
 	else
 		depreciation.Init(*this);
+	stockDepreciation.Init(*this);
 }
 
 
