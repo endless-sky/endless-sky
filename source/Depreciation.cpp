@@ -152,7 +152,7 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day, PlayerIn
 
 void Depreciation::Init(PlayerInfo &player)
 {
-	this->player = player;
+	this->player = &player;
 }
 
 
@@ -277,8 +277,10 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
-	int64_t cost = outfit->Cost() * (player.GetPlanet()
-			? player.GetPlanet()->GetLocalRelativePrice(*outfit, player.Conditions()) : 1);
+	// Check this was initiated properly.
+	assert(player);
+	int64_t cost = outfit->Cost() * (player->GetPlanet()
+			? player->GetPlanet()->GetLocalRelativePrice(*outfit, player->Conditions()) : 1);
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 
