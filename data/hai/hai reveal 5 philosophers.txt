@@ -680,9 +680,9 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			`	He shrugs off your remark. "Now I understand you have found some things, that are also of historic interest to us. For this reason I am doubly invested; so now I need to know what you know."`
 			`	It would seem that this is the opportunity to hasten a desirable outcome most swiftly, though maybe the Syndicate doesn't need to know about the Hai's theories of cadmium poisoning from alien technology being used.`
 			choice
-				`	"I don't know about cadmium poisoning, but here's some case location data on kidnapping victims." (Share only case location data.)`
+				`	"Here's some case location data on kidnapping victims." (Share only case location data, and don't mention the cadmium poisoning.)`
 					goto mission
-				`	"I don't know about cadmium poisoning, but I have a lot of data I'd like you to analyze." (Share all data except the cadmium poisoning.)`
+				`	"I have a lot of data I'd like you to analyze." (Share all data except the cadmium poisoning.)`
 			action
 				set "syndicate learns of alien tech anyway"
 			`	Director Moray looks through some of the data you share while you summarize the key points. "Thank you very much, we will have our experts go over this promptly."`
