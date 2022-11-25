@@ -987,6 +987,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				`	"Can't we blow them up on the way down?"`
 			`	"Have you ever tried to land on a pile of blown-up space ships in the wreck of a spaceport a half kilometer underground? It ain't easy."`
 			`	Choot'k looks amused by your surprise at his pointed use of a colloquialism. Maybe one day you should investigate how and why the Unfettered learn your language. In the meantime, not blowing up your landing site is a sufficient lesson.`
+			action
+				set "Choot'k: ain't"
 			label how
 			`	"I've spent a lot of time interrogating pirate leaders these past few weeks, and they all have one thing in common: narcissism. Threaten their precious egos, and they'll fight when they should hide. All you have to do is demand tribute from their planet and the fools will rush out and fight you.`
 			`	"The pirates won't believe it if we demand the tribute, but they will believe it if you demand it. Then their defense fleets will rush out. You have to defeat them on your own to maintain the ruse. Eventually they'll give up and pay tribute. That's when we know it's safe to land."`
