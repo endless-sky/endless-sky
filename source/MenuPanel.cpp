@@ -97,7 +97,7 @@ void MenuPanel::Step()
 			string name = source.substr(pos, source.length() - 1 - pos);
 			credits.clear();
 			if(Files::Exists(GameData::Sources()[creditIndex] + "credits.txt"))
-				credits = Format::Split("Credits from: " + name + "\n\n\n" + Files::Read(source + "credits.txt"), "\n");
+				credits = Format::Split(Files::Read(source + "credits.txt"), "\n");
 		}
 	}
 }
