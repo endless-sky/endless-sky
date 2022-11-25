@@ -45,17 +45,19 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 	bool isAdd = false;
 	const Outfit *outfit = nullptr;
 	auto parseValueOrOffset = [&isAdd, &outfit, &mode](double &amount, const DataNode &line) {
+		int size = line.Size();
 		// Default is 1, because we can just have an outfit defined here just to have a custom sellType.
 		if(isAdd)
-			amount += line.Size() > 2 ? line.Value(2) : 1.;
+			amount += size > 2 ? line.Value(2) : 1.;
 		else
-			amount = line.Size() > 1 ? line.Value(1) : 1;
+			amount = size > 1 ? line.Value(1) : 1.;
 		// % means it already is a relative price.
-		// Otherwise it is a normal price but we since we store them as relative we must divide it.
+		// Otherwise it is a normal price that we must divide since they are stored as relative.
 		// NOTE: this means that the offset is handled as relative to the existing modified price,
 		// and not the default price (which is intended)!
 		// Outfitter changes always are to be defined as relative in the data.
-		if((mode != "outfitters" && (line.Size() <= (2 + isAdd) || line.Token(3 + isAdd) != "%")))
+		if((mode != "outfitters" && (size == (2 + isAdd) ||
+				(size > 2 && line.Token(2 + isAdd) != "%"))))
 			amount /= outfit->Cost();
 	};
 

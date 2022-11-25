@@ -743,7 +743,7 @@ test-data "Custom Sale Price Priorities 1"
 
 test "CustomSale 7 Outfit Conflicting Types"
 	status "active"
-	description "Test trying to buy the first outfit, which had its price modified, as it was part of the specified outfitter."
+	description "Test trying to buy the first outfit, which had its price modified, as it was part of the specified outfitter, and cannot be bought."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "Custom Sale Price Priorities 1"
