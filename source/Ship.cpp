@@ -1888,7 +1888,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			else
 				this->AssignStateTriggerOnUse(Body::BodyState::JUMPING, "default");
 		}
-		
+
 		this->SetState(Body::BodyState::JUMPING);
 		if(IsReadyToJump())
 		{
@@ -2135,7 +2135,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			if(!commands.Has(Command::JUMP) && !hasPrimary)
 			{
-				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange 
+				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange
 									|| !this->weaponRange;
 
 				if(activeEnemyTarget && target->isInSystem && targetInRange)
@@ -2208,7 +2208,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			{
 				if(target && !isDisabled)
 				{
-					bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange 
+					bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange
 										|| this->weaponRange == 0.0;
 					// If in range, or the weapon range hasn't been calculated yet.
 					if(targetInRange)
@@ -2828,7 +2828,6 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 					if(!assigned && this->AssignStateTriggerOnUse(Body::BodyState::FIRING, weaponName))
 						assigned = true;
-					
 				}
 			}
 			// Calculate max range of firable weapons

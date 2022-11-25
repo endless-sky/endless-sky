@@ -52,7 +52,8 @@ public:
 		bool indicateReady = false;
 		bool triggerOnUse = false;
 	};
-	
+
+
 public:
 	SpriteParameters();
 	explicit SpriteParameters(const Sprite *sprite);

@@ -327,7 +327,7 @@ void Body::LoadSprite(const DataNode &node, Body::BodyState state)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	bool defaultTriggerOnUse = false;
 	// Now load the trigger sprites.
 	for(int val = 0; val < static_cast<int>(triggerSpriteDefer.size()); ++val)
@@ -335,9 +335,9 @@ void Body::LoadSprite(const DataNode &node, Body::BodyState state)
 		DataNode node = triggerSpriteDefer.at(val);
 		defaultTriggerOnUse |= this->LoadTriggerSprite(node, state, spriteAnimationParameters);
 	}
-	
+
 	spriteAnimationParameters.triggerOnUse = defaultTriggerOnUse;
-	
+
 	if(defaultTriggerOnUse && spriteAnimationParameters.indicateReady)
 	{
 		node.PrintTrace("Default animation will not indicate if trigger animation triggers on use!");
@@ -346,7 +346,7 @@ void Body::LoadSprite(const DataNode &node, Body::BodyState state)
 		spriteAnimationParameters.indicateReady = false;
 		spriteAnimationParameters.indicatePercentage = -1.0f;
 	}
-	
+
 	spriteData->SetSprite("default", sprite, spriteAnimationParameters);
 
 	if(scale != 1.f)
@@ -454,7 +454,7 @@ bool Body::LoadTriggerSprite(const DataNode &node, Body::BodyState state, Sprite
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	if(spriteAnimationParameters.triggerOnUse && spriteAnimationParameters.indicateReady)
 	{
 		node.PrintTrace("Trigger animation will not indicate if trigger is on use!");
@@ -463,12 +463,12 @@ bool Body::LoadTriggerSprite(const DataNode &node, Body::BodyState state, Sprite
 		spriteAnimationParameters.indicateReady = false;
 		spriteAnimationParameters.indicatePercentage = -1.0f;
 	}
-	
+
 	spriteData->SetSprite(trigger, sprite, spriteAnimationParameters);
 
 	if(scale != 1.f)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
-	
+
 	return spriteAnimationParameters.triggerOnUse;
 }
 
@@ -660,7 +660,7 @@ bool Body::ReadyForAction() const
 {
 	// Never ready for action if transitioning between states
 	return this->anim.indicateReady ? this->stateReady : (!this->stateTransitionRequested ||
-														  this->transitionState == Body::BodyState::TRIGGER);
+														this->transitionState == Body::BodyState::TRIGGER);
 }
 
 
@@ -734,13 +734,13 @@ void Body::FinishStateTransition() const
 			currentState->CompleteTriggerRequest();
 			this->postTriggerTransition = false;
 		}
-		
+
 		if(triggerTransition)
 		{
 			transitionedState->CompleteTriggerRequest();
 			this->postTriggerTransition = true;
 		}
-		
+
 		// Update animation parameters.
 		this->anim = transitionedState->exposed;
 		if(this->anim.rampUpRate > 0.0)
@@ -751,7 +751,6 @@ void Body::FinishStateTransition() const
 		// No longer need to change states
 		this->stateTransitionRequested = false;
 		this->transitionState = this->currentState;
-		
 	}
 }
 
@@ -813,21 +812,21 @@ void Body::SetStep(int step) const
 		// Adjust integrated frame to start at preferred start frame
 		integratedFrame = this->anim.startFrame;
 	}
-	
+
 	// Clamp frameRate from previous calculations
 	if(this->frameRate < Body::MIN_FRAME_RATE)
 		this->frameRate = Body::MIN_FRAME_RATE;
-	
+
 	if(this->frameRate > this->anim.frameRate)
 		this->frameRate = this->anim.frameRate;
-	
+
 	// Figure out what fraction of the way in between frames we are. Avoid any
 	// possible floating-point glitches that might result in a negative frame.
 	int prevFrame = static_cast<int>(frame), nextFrame = -1;
 	// Integrate rampRate in order to determine frame
 	integratedFrame += this->frameRate * (step - currentStep);
 	frame = max(0.f, integratedFrame);
-	
+
 	if(!stateTransitionRequested)
 	{
 		// Handle any frameRate changes in the animation
@@ -840,11 +839,11 @@ void Body::SetStep(int step) const
 			this->frameRate = this->anim.frameRate;
 		// For when it needs to be applied to transition
 		delayed = 0.f;
-		
+
 		// If repeating, wrap the frame index by the total cycle time.
 		if(this->anim.repeat)
 			frame = fmod(frame, cycle);
-		
+
 		if(!this->anim.rewind)
 		{
 			// If not repeating, frame should never go higher than the index of the
@@ -870,12 +869,9 @@ void Body::SetStep(int step) const
 			// In rewind mode, once you get to the last frame, count backwards.
 			// Regardless of whether we're repeating, if the frame count gets to
 			// be less than 0, clamp it to 0.
-			
 			frame = max(0.f, lastFrame * 2.f - frame);
-			
 			stateReady = false;
 		}
-		
 		nextFrame = static_cast<int>(frame);
 		if(nextFrame != prevFrame)
 			randomFrame = static_cast<int>(static_cast<float>(Random::Real()) * frames);
@@ -915,7 +911,6 @@ void Body::SetStep(int step) const
 
 				if(frame == 0.f)
 					this->FinishStateTransition();
-
 			}
 			stateReady = false;
 		}

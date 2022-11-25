@@ -156,7 +156,6 @@ private:
 	mutable float frameRate = 0.f;
 	mutable float frame = 0.f;
 	mutable float integratedFrame = 0.f;
-	
 	mutable float reversedFrame = 0.f;
 	mutable float rewindFrame = 0.f;
 	mutable float randomFrame = 0.f;

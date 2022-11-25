@@ -34,7 +34,7 @@ SpriteParameters::SpriteParameters(const Sprite *sprite)
 
 
 void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite,
-								 SpriteParameters::AnimationParameters params)
+									SpriteParameters::AnimationParameters params)
 {
 	auto tuple = SpriteParameters::SpriteDetails{sprite, params};
 	this->sprites.insert(std::pair<std::string, SpriteParameters::SpriteDetails>(trigger, tuple));
@@ -72,7 +72,7 @@ bool SpriteParameters::RequestTrigger(std::string trigger)
 	auto it = this->sprites.find(trigger);
 	if(it == this->sprites.end())
 		return false;
-	
+
 	this->requestedTrigger = trigger;
 	return true;
 }
@@ -84,7 +84,7 @@ bool SpriteParameters::RequestTriggerOnUse(std::string trigger, bool use)
 	auto it = this->sprites.find(trigger);
 	if(it == this->sprites.end())
 		return false;
-	
+
 	SpriteParameters::AnimationParameters toExpose = std::get<1>(it->second);
 	if(toExpose.triggerOnUse == use)
 	{
@@ -100,7 +100,6 @@ bool SpriteParameters::RequestTriggerOnUse(std::string trigger, bool use)
 void SpriteParameters::CompleteTriggerRequest()
 {
 	auto it = this->sprites.find(this->requestedTrigger);
-	
 	this->trigger = this->requestedTrigger;
 	this->exposed = std::get<1>(it->second);
 }
