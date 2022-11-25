@@ -812,6 +812,9 @@ mission "Unfettered: Prove Your Strength 2"
 			action
 				event "hydra revealed"
 			label leave
+			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, I wonder what happened to him."`
+				to display
+					has "first name: Jack"
 			`	Then he raises his fist towards you, presumably some form of salute. The act takes you by surprise, but before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he kept going on about.`
 
 
