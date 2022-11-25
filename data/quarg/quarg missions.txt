@@ -269,7 +269,7 @@ mission "Quarg Pug Arfecta Warning"
 		has "First Contact: Quarg: offered"
 		has "flagship model: Pug Arfecta"
 	source
-		attributes "quarg"
+		government "Quarg"
 		attributes "ringworld"
 	on offer
 		conversation
