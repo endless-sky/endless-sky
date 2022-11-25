@@ -46,8 +46,10 @@ public:
 	void Save(DataWriter &out, int day) const;
 	// Check if any records have been loaded.
 	bool IsLoaded() const;
-	// If no records have been loaded, initialize with an entire fleet, with the player.
+	// If no records have been loaded, initialize with an entire fleet, and the player.
 	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day, PlayerInfo &player);
+	// We need to have a player defined for the selling prices to work.
+	void Init(PlayerInfo &player);
 
 	// Add a ship, and all its outfits, to the depreciation record.
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr);

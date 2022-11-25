@@ -393,6 +393,8 @@ void PlayerInfo::Load(const string &path)
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
 		depreciation.Init(ships, date.DaysSinceEpoch(), *this);
+	else
+		depreciation.Init(*this);
 }
 
 

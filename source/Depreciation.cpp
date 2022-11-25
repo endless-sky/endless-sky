@@ -145,6 +145,13 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day, PlayerIn
 		for(const auto &it : ship->Outfits())
 			outfits[it.first][day] += it.second;
 	}
+	Init(player);
+}
+
+
+
+void Depreciation::Init(PlayerInfo &player)
+{
 	this->player = &player;
 }
 
