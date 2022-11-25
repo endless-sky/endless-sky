@@ -1606,8 +1606,6 @@ Files:
  images/ship/modified?dromedary?wreck*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
- sound/drill*
- sound/korath?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
@@ -1639,12 +1637,16 @@ Files:
  images/thumbnail/squall*
  images/thumbnail/sunder*
  images/thumbnail/swan*
+ sounds/moonbeam*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- sounds/remnant?afterburner*
+ sound/drill*
+ sound/ion?rain*
+ sound/korath?afterburner*
+ sound/remnant?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
@@ -1693,6 +1695,7 @@ Files:
  images/ship/-nra-ret*
  images/ship/ikatila-ej*
  images/ship/korsmanath?a-awoj*
+ images/ship/modified?ladybug*
  images/ship/rai-alorej*
  images/thumbnail/-nra-ret*
  images/thumbnail/ikatila-ej*
@@ -1848,6 +1851,15 @@ Files:
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+
+Files:
+ images/land/city19*
+ images/land/city20*
+ images/land/city21*
+ images/land/city22*
+Copyright: Various
+License: CC0
+Comment: Taken from unsplash.com and cropped.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

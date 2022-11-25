@@ -43,6 +43,8 @@ private:
 	static void PrintPlanetDescriptions();
 
 	static void Systems(const char *const *argv);
+
+	static void LocationFilterMatches(const char *const *argv);
 };
 
 #endif

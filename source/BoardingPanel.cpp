@@ -373,7 +373,17 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
-				victim->WasCaptured(you);
+				int crewTransferred = victim->WasCaptured(you);
+				if(crewTransferred > 0)
+				{
+					string transferMessage = Format::Number(crewTransferred) + " crew member";
+					if(crewTransferred == 1)
+						transferMessage += " has";
+					else
+						transferMessage += "s have";
+					transferMessage += " been transferred.";
+					messages.push_back(transferMessage);
+				}
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
@@ -535,7 +545,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count),
+	: name(outfit->DisplayName()), outfit(outfit), count(count),
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	UpdateStrings();
