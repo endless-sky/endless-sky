@@ -825,8 +825,8 @@ mission "Hai Reveal [B11] Moving Together"
 			`	Remington responds. "Good point. I don't think everyone here knows everyone yet."`
 			`	You look around the room as Remington does introductions for the benefit of the new people, and counts off Teeneep, Sayari, Choot'k, Batu, Danforth, Adurath Khaine - a Marshal for the Navy, which is an ex-service political appointment - Alondo, and himself.`
 			`	Remington clearly did not need to be introduced, but doing so gives him a disarming charm, and you see for a moment some of the charisma that he must utilize as head of PR.`
-			`	Marshal Kaine introduces himself to you directly. "I'm the Marshal of the Third Armada, the guards of the Far North and the uninhabited regions near it. I know you've met my admiral Danforth, and I'm here because occasionally the Navy needs a politician, and the politicians need someone from the service that understands politicians."`
-			`	Batu jumps in. "The Marshal has been very effective in helping to develop some solutions with Hiyamaharu and has just arrived here to make sure everything is set in order."`
+			`	Marshal Kaine introduces himself to you directly. "I'm the Marshal of the Third Armada, the guards of the Far North and the uninhabited regions near it. I know you've worked with my admiral William Danforth in the past, and he has spoken highly of your work. I'm here because occasionally the Navy needs a politician, and the politicians need someone from the service that understands politicians."`
+			`	Batu jumps in. "The Marshal has been very effective in helping to develop some solutions with Hiyamaharu, and has just arrived here to make sure everything is set in order."`
 				goto briefing
 			label secret
 			action
@@ -837,7 +837,7 @@ mission "Hai Reveal [B11] Moving Together"
 			label elenchus
 			action
 				set "Hai Reveal [B11] Moving Together: label elenchus"
-			`	Admiral Kaine explains. "Reaching Elenchus would seem to be a problem. The Unfettered are willing to loan us a few jump drives. Additionally, the base on Elenchus appears to be a hardened target. It will need specialized and suitably equipped shock troops to be sure of taking it. In our assessment so far we have determined that the Syndicate have suitable troopers they can mobilize quickly, but no way of getting them there, and our suitable shock troops are largely pre-occupied either being needed here on <origin>, or are at least a week away from being available. We need a resolution sooner than that."`
+			`	Marshal Kaine explains, "Reaching Elenchus would seem to be a problem, because it is behind systems we cannot reach with our hyperdrives. However, the Unfettered are willing to loan us a few jump drives. Additionally, the base on Elenchus appears to be a hardened target. It will need specialized and suitably equipped shock troops to be sure of taking it. In our assessment so far we have determined that the Syndicate have suitable troopers they can mobilize quickly, but no way of getting them there, and our suitable shock troops are largely pre-occupied; either being needed here on <origin>, or are at least a week away from being available. We need a resolution sooner than that."`
 			choice
 				`	"Is it really so urgent?"`
 				`	"What's the rush?"`
