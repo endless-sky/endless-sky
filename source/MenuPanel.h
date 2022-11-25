@@ -54,6 +54,8 @@ private:
 
 	const Interface *mainMenuUi;
 
+	int creditIndex = 0;
+	bool hasCredits = true;
 	std::vector<std::string> credits;
 	unsigned scroll = 0U;
 	bool scrollingPaused = false;

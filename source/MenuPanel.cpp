@@ -89,7 +89,16 @@ void MenuPanel::Step()
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
+		{
+			creditIndex = (creditIndex + 1) % GameData::Sources().size();
 			scroll = 0;
+			string source = GameData::Sources()[creditIndex];
+			size_t pos = source.rfind('/', source.length() - 2) + 1;
+			string name = source.substr(pos, source.length() - 1 - pos);
+			credits.clear();
+			if(Files::Exists(GameData::Sources()[creditIndex] + "credits.txt"))
+				credits = Format::Split("Credits from: " + name + "\n\n\n" + Files::Read(source + "credits.txt"), "\n");
+		}
 	}
 }
 
