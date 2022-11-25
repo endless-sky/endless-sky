@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Preferences.h"
 #include "Random.h"
+#include "ship/ShipAICache.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
@@ -38,7 +39,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "Weapon.h"
 #include "Wormhole.h"
-#include "ship/ShipAICache.h"
 
 #include <algorithm>
 #include <cmath>

@@ -27,8 +27,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
-#include "ShipJumpNavigation.h"
 #include "ship/ShipAICache.h"
+#include "ShipJumpNavigation.h"
 
 #include <list>
 #include <map>
