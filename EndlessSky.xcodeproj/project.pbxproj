@@ -306,8 +306,8 @@
 		A966A5AA1B964E6300DFF69C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = source/Person.h; sourceTree = "<group>"; };
 		A96862CD1AE6FD0A004FE1FE /* Account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Account.cpp; path = source/Account.cpp; sourceTree = "<group>"; };
 		A96862CE1AE6FD0A004FE1FE /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account.h; path = source/Account.h; sourceTree = "<group>"; };
-		A96862CF1AE6FD0A004FE1FE /* AI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AI.cpp; path = source/ship.cpp; sourceTree = "<group>"; };
-		A96862D01AE6FD0A004FE1FE /* AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AI.h; path = source/ship.h; sourceTree = "<group>"; };
+		A96862CF1AE6FD0A004FE1FE /* AI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AI.cpp; path = source/AI.cpp; sourceTree = "<group>"; };
+		A96862D01AE6FD0A004FE1FE /* AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AI.h; path = source/AI.h; sourceTree = "<group>"; };
 		A96862D11AE6FD0A004FE1FE /* Angle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Angle.cpp; path = source/Angle.cpp; sourceTree = "<group>"; };
 		A96862D21AE6FD0A004FE1FE /* Angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Angle.h; path = source/Angle.h; sourceTree = "<group>"; };
 		A96862D51AE6FD0A004FE1FE /* Armament.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Armament.cpp; path = source/Armament.cpp; sourceTree = "<group>"; };
