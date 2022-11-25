@@ -333,7 +333,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 	}
 
-	// Only when the weapon is not safe and has a blast radius is minSafeDistance needed, except if it is already overridden.
+	// Only when the weapon is not safe and has a blast radius is minSafeDistance needed,
+	// except if it is already overridden.
 	if(!isSafe && blastRadius > 0 && !safeRangeOverriden)
 		minSafeDistance = (blastRadius + triggerRadius);
 }

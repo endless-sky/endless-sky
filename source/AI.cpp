@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "Weapon.h"
 #include "Wormhole.h"
-#include "ai/ShipAICache.h"
+#include "ship/ShipAICache.h"
 
 #include <algorithm>
 #include <cmath>
