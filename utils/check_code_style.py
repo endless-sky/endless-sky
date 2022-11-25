@@ -209,7 +209,7 @@ def sanitize(lines, skip_checks=False):
 		segments = []
 		is_escaped = False
 		# Checking for preprocessor text, except includes
-		if line.lstrip().startswith("#") and not line.lstrip().startswith("#include"):
+		if not is_string and not is_multiline_comment and not is_char and line.lstrip().startswith("#") and not line.lstrip().startswith("#include"):
 			line_segments.append(segments)
 			continue
 		# Start index is the beginning of the sequence to be tested
@@ -534,7 +534,7 @@ def check_include(sanitized_lines, original_lines, file):
 	if file.endswith(".cpp") and name[0].isupper():
 		if len(groups) == 0:
 			warnings.append(Warning("", 0, "missing include statement for own header file"))
-			return
+			return errors, warnings
 		elif original_lines[groups[0][0]] != "#include \"" + name + "\"":
 			warnings.append(Warning(original_lines[groups[0][0]], groups[0][0],
 									"missing include for own header file"))
