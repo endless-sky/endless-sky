@@ -127,7 +127,7 @@ protected:
 private:
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
-	void SetStep(int step) const;
+	bool SetStep(int step) const;
 
 
 private:

@@ -137,15 +137,21 @@ int Body::GetSwizzle() const
 // will return the frame from the most recently given step.
 float Body::GetFrame(int step) const
 {
+	bool finishStateTransition = false;
 	if(step >= 0)
-		SetStep(step);
-	// Choose between frame, random frame and reversedFrame, based on the corresponding parameters
+		finishStateTransition = SetStep(step);
+	// Choose between frame, random frame and reversed frame, based on the corresponding parameters
+	float returnFrame = 0.0;
 	if(this->anim.randomize)
-		return randomFrame;
+		returnFrame = randomFrame;
 	else if(this->anim.reverse)
-		return reversedFrame;
+		returnFrame = reversedFrame;
 	else
-		return frame;
+		returnFrame = frame;
+	// Handle finishing transition after frame selection
+	if(finishStateTransition)
+		this->FinishStateTransition();
+	return returnFrame;
 }
 
 
@@ -157,7 +163,7 @@ const Mask &Body::GetMask(int step) const
 	const Sprite *sprite = this->GetSprite();
 
 	static const Mask EMPTY;
-	int current = round(frame);
+	int current = round(this->GetFrame());
 	if(!sprite || current < 0)
 		return EMPTY;
 
@@ -742,12 +748,12 @@ void Body::FinishStateTransition() const
 		}
 
 		// Update animation parameters.
+		this->currentState = requestedTransitionState;
 		this->anim = transitionedState->exposed;
 		if(this->anim.rampUpRate > 0.0)
 			this->frameRate = Body::MIN_FRAME_RATE;
 		else
 			this->frameRate = this->anim.frameRate;
-		this->currentState = requestedTransitionState;
 		// No longer need to change states
 		this->stateTransitionRequested = false;
 		this->transitionState = this->currentState;
@@ -772,7 +778,7 @@ void Body::UnmarkForRemoval()
 
 
 // Set the current time step.
-void Body::SetStep(int step) const
+bool Body::SetStep(int step) const
 {
 	const Sprite *sprite = this->GetSprite();
 
@@ -784,14 +790,14 @@ void Body::SetStep(int step) const
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.
 	if(step == currentStep || step < 0 || !sprite || !sprite->Frames())
-		return;
+		return false;
 
 	// If the sprite only has one frame, no need to animate anything.
 	float frames = sprite->Frames();
 	if(frames <= 1.f)
 	{
 		frame = 0.f;
-		return;
+		return false;
 	}
 	float lastFrame = frames - 1.f;
 	// This is the number of frames per full cycle. If rewinding, a full cycle
@@ -826,7 +832,8 @@ void Body::SetStep(int step) const
 	// Integrate rampRate in order to determine frame
 	integratedFrame += this->frameRate * (step - currentStep);
 	frame = max(0.f, integratedFrame);
-
+	// Flagged for if a state transition has been completed this step
+	bool stateTransitionCompleted = false;
 	if(!stateTransitionRequested)
 	{
 		// Handle any frameRate changes in the animation
@@ -902,7 +909,7 @@ void Body::SetStep(int step) const
 				frame = min(frame, lastFrame);
 
 				if(frame >= lastFrame)
-					this->FinishStateTransition();
+					stateTransitionCompleted = true;
 			}
 			else if(!this->anim.transitionFinish && this->anim.transitionRewind)
 			{
@@ -910,7 +917,7 @@ void Body::SetStep(int step) const
 				frame = max(0.f, rewindFrame * 2.f - frame);
 
 				if(frame == 0.f)
-					this->FinishStateTransition();
+					stateTransitionCompleted = true;
 			}
 			stateReady = false;
 		}
@@ -926,6 +933,7 @@ void Body::SetStep(int step) const
 		// Prevent any flickers from transitioning into states with randomized frames.
 		randomFrame = frame;
 	}
-	reversedFrame = frames - frame;
+	reversedFrame = lastFrame - frame;
 	currentStep = step;
+	return stateTransitionCompleted;
 }
