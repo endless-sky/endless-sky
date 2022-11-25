@@ -269,8 +269,7 @@ mission "Quarg Pug Arfecta Warning"
 		has "First Contact: Quarg: offered"
 		has "flagship model: Pug Arfecta"
 	source
-		government "Quarg"
-		attributes "ringworld"
+		attributes "quarg" "ringworld"
 	on offer
 		conversation
 			`As soon as you land your ship a crowd of visibly irritated Quarg start to gather around. As you go to disembark, you find a rather imposing Quarg blocking the exit while staring piercingly at you.`
