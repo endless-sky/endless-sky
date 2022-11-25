@@ -367,7 +367,7 @@ test "CustomSale 3 Selling Conditions"
 		# Create/inject the savegame and load it.
 		inject "Custom Sale Conditions"
 		call "Load First Savegame"
-		call "Buy first outfit"
+		call "FailBuy first outfit"
 		call "Depart"
 		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
 		apply

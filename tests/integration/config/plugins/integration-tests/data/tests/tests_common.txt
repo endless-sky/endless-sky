@@ -624,7 +624,7 @@ test "Sell first outfit"
 
 test "FailBuy first outfit"
 	status partial
-	description "Try to buy the first outfit, but fail."
+	description "Try to buy the first outfit and handle the case where it fails with an error dialog."
 	sequence
 		# Goto outfitter
 		input
@@ -643,24 +643,3 @@ test "FailBuy first outfit"
 		# Go back to the planet menu.
 		input
 			key "l"
-
-
-test "Buy first outfit"
-	status partial
-	description "Try to buy the first outfit, but fail."
-	sequence
-		# Goto outfitter
-		input
-			key "o"
-		# Select the first item
-		input
-			key "Down"
-		# Buy the first item
-		input
-			key "b"
-		input
-			key "Return"
-		# Go back to the planet menu.
-		input
-			key "l"
-
