@@ -682,7 +682,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			choice
 				`	"Here's some case location data on kidnapping victims." (Share only case location data, and don't mention the cadmium poisoning.)`
 					goto mission
-				`	"I have a lot of data I'd like you to analyze." (Share all data except the cadmium poisoning.)`
+				`	"I have a lot of data I'd like you to analyze." (Don't mention the cadmium poisoning, but share all other data.)`
 			action
 				set "syndicate learns of alien tech anyway"
 			`	Director Moray looks through some of the data you share while you summarize the key points. "Thank you very much, we will have our experts go over this promptly."`
