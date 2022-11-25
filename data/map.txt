@@ -30470,7 +30470,7 @@ planet "Deep Water"
 planet "Deli Kasi"
 	attributes bunrodea farming
 	landscape land/fields3
-	description `Deli Kasi is a world of vast oceans and mountainous continents. At many locations across the planet, the tall mountain ranges trap moist air from the oceans, causing large amounts of rainfall in concentrated areas. This, combined withs now melt from the mountains, creates large fertile plains across much of the habitable land area, which has led to Deli Kasi being a major farming world.`
+	description `Deli Kasi is a world of vast oceans and mountainous continents. At many locations across the planet, the tall mountain ranges trap moist air from the oceans, causing large amounts of rainfall in concentrated areas. This, combined with snow melt from the mountains, creates large fertile plains across much of the habitable land area, which has led to Deli Kasi being a major farming world.`
 	spaceport `In addition to the usual services you would expect, the spaceport of Deli Kasi is also home to a number of genetic engineering labs geared toward the creation of more bountiful plant seeds. It's unsurprising that the Bunrodeans would genetically modify their food, but for as much as the Bunrodeans are capable of, nothing beats the usefulness of fertile farm land like can be found on this planet.`
 	"required reputation" 10
 	bribe 0
@@ -30719,7 +30719,7 @@ planet Erabuthro
 planet Eragarthro
 	attributes bunrodea guild academy moon
 	landscape land/sea5
-	description `Eragarthro is a large ocean moon of a moderately sized gas giant in the system of Eragaru Le. Although orbiting a gas giant means that the moon is often cast in shadow for multiple days at a day, the gas giant that the moon orbits is also firmly in the nearby star's habitable zone, making it a not too unpleasent place to live.`
+	description `Eragarthro is a large ocean moon of a moderately sized gas giant in the system of Eragaru Le. Although orbiting a gas giant means that the moon is often cast in shadow for multiple days at a day, the gas giant that the moon orbits is also firmly in the nearby star's habitable zone, making it a not too unpleasant place to live.`
 	description `	This moon is also home to the Bunrodea's most prestigious academies, include the Royal University of Dogen and Military Academy of Fuhtiiski.`
 	spaceport `Being the major hub of education in this region, the population of the spaceport on this planet is bustling with young Bunrodeans. You note how very few of the Bunrodeans here appear to have any visible cybernetics. It must be the case that Bunrodeans only receive their cybernetics after reaching a certain age. Or it could be a matter of whose parents are able to afford the cybernetics for them.`
 	shipyard "Bunrodea Basic"
@@ -31963,7 +31963,7 @@ planet Melenci
 	attributes bunrodea medical moon
 	landscape land/badlands8
 	description `While the southern world of Jentu Le is where genetic research is mainly done, the small moon of Melenci here in the north is where much of that research is put to practice. The moon has only one settlement where Bunrodeans come to receive modifications to their genome. Although, the Bunrodeans ensure that any modifications that are done will effect only the individual they are being done to, and will not be passed down to any offspring.`
-	spaceport `The spaceport of Melenci has a variety of what you would assume to be advertisments for genetic operations. One displays a graphic of two animated Bunrodeans in a mine. One is injected with a needled and then become much bulkier. The mine then collapses in on the two, and the Bunrodean who was genetically modified is shown coming out of the rubble unscathed, while the other is pulled out with bent limbs and placed on a stretcher.`
+	spaceport `The spaceport of Melenci has a variety of what you would assume to be advertisements for genetic operations. One displays a graphic of two animated Bunrodeans in a mine. One is injected with a needled and then become much bulkier. The mine then collapses in on the two, and the Bunrodean who was genetically modified is shown coming out of the rubble unscathed, while the other is pulled out with bent limbs and placed on a stretcher.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
 	"required reputation" 50
@@ -32485,7 +32485,7 @@ planet Okoity
 	attributes bunrodea urban
 	landscape land/fog2
 	description `Okoity has the highest population of any Bunrodean world, with a staggering 24 billion people. All but the most inhospitable regions of the planet have been settled in some shape or form.`
-	description `	The planet saw a large influx of people with the destruction of Olohoa's atmosphere in the nearby system of Sera Natta, massive even relative to the already preexisting population. Although this occured about a century ago, the planet still seems to be struggling with this increased population.`
+	description `	The planet saw a large influx of people with the destruction of Olohoa's atmosphere in the nearby system of Sera Natta, massive even relative to the already preexisting population. Although this occurred about a century ago, the planet still seems to be struggling with this increased population.`
 	spaceport `The spaceport of Okoity is completely packed with Bunrodeans. You have little room to maneuver as you explore the spaceport while trying to not bump into anyone. Many of the Bunrodeans here show the signs of being genetically engineered, from Bunrodeans with extra limbs to one that you see up high climbing on walls and jumping from building to building to avoid the crowd below.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
@@ -32496,7 +32496,7 @@ planet Okoity
 planet Olohoa
 	attributes bunrodea uninhabited
 	landscape land/sky3
-	description `From afar, Olohoa looks like it might be a pleasant place to live, with clear oceans not too disimilar to what you might find on a Paradise World. But your ship's sensors tell you a different story, one of a planet with immense amounts of ultraviolet radiation bombarding its surface. Nothing short of an extremophile could survice on the surface here, and any life in the oceans is likely deep down where no radiation can reach.`
+	description `From afar, Olohoa looks like it might be a pleasant place to live, with clear oceans not too disimilar to what you might find on a Paradise World. But your ship's sensors tell you a different story, one of a planet with immense amounts of ultraviolet radiation bombarding its surface. Nothing short of an extremophile could survive on the surface here, and any life in the oceans is likely deep down where no radiation can reach.`
 	description `	As you explore, you begin to find occasional signs of civilization in the form of small cities with landing pads for ships, but these areas are just as lifeless as the rest of the planet.`
 
 planet "Ogmur's Siphon"
@@ -32947,7 +32947,7 @@ planet Schisathro
 	landscape land/canyon5
 	description `Schisathro is a major mining world, and also home to the largest shipyards in Bunrodean space. Larger shipyards than the ones found here only exist on the capital world of Erabuthro.`
 	description `	The planet's success as a mining world can be owed to its many deep canyons found across most of the planet's above water surface, which allow for easier access to mineral rich deposits in the crust. The major shipyards developed alongside these mines, allowed for easy transportation of material directly to the shipyards instead of requiring lengthy journeys through space.`
-	spaceport `The main spaceport of Schisathro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportion of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked inbetween two large shipyards near the edge of the spacport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
+	spaceport `The main spaceport of Schisathro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportion of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked in between two large shipyards near the edge of the spacport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	outfitter "Bunrodea Basic"
@@ -33505,7 +33505,7 @@ planet Thshybothro
 	landscape land/mountain0
 	description `Thshybothro is a small, mountainous world that is home to the Bunrodea's largest cybernetics research facilities. Various labs and factories are scattered within the world's many valleys, within which the Bunrodea work to develop new cybernetics, or improve their old ones.`
 	description `	Although this planet is where new modifications are developed, the mass production and installation of cybernetics is typically done elsewhere.`
-	spaceport `The planet's spaceport is rather small, as typically any vistors to the planet travel directly to the research facitilites that they're interested in. As such, the spaceport's primary focus is simply to refuel any ships that stop by the planet and who don't have authorization to land at one of the research facitlites.`
+	spaceport `The planet's spaceport is rather small, as typically any visitors to the planet travel directly to the research facitilites that they're interested in. As such, the spaceport's primary focus is simply to refuel any ships that stop by the planet and who don't have authorization to land at one of the research facitlites.`
 	spaceport `	The spaceport dock workers have more cybernetic enhancements than you're used to from Bunrodeans elsewhere in their space. The worker who refuels your ship in particular is a mass of cybernetic "enhancements" ranging from powerful legs to aide in lifting crates to a vacuum cleaner attachment for dealing with spills and accidents.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 50
