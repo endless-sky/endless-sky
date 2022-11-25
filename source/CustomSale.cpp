@@ -44,7 +44,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 {
 	bool isAdd = false;
 	const Outfit *outfit = nullptr;
-	auto parseValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
+	auto parseValueOrOffset = [&isAdd, &outfit, &mode](double &amount, const DataNode &line) {
 		// Default is 1, because we can just have an outfit defined here just to have a custom sellType.
 		if(isAdd)
 			amount += line.Size() > 2 ? line.Value(2) : 1.;
@@ -212,8 +212,6 @@ bool CustomSale::Add(const CustomSale &other)
 	// The same logic applies for the relative prices or offsets, be they for  whole outfitters or outfits.
 
 	// For prices, take the highest one.
-	auto addToValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
-	};
 	for(const auto &it : other.relativePrices)
 	{
 		auto ours = relativePrices.find(it.first);
