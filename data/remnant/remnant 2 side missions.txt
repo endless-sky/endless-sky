@@ -727,16 +727,18 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 		not attributes "station"
 	waypoint "Parca"
 	to offer
-		or
-			and
-				has "Remnant: Cognizance 25: done"
-				not "flagship planet: Ssil Vida"
-			has "event: remnant: cognizance calm"
+		and
+			"remnant: broken jump drive count" >= 10
+			or
+				and
+					has "Remnant: Cognizance 25: done"
+					not "flagship planet: Ssil Vida"
+				has "event: remnant: cognizance calm"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first> I have a difficult request for you."`
 			`	"Our scouts are reporting a stranded Korath worldship in Parca, a Kas'lor Ik 582 to be precise. Normally we would request you track down this ship and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector."`
-			`	"Would you be up for disabling this Korath worldship, so the threat is eliminated while preserving the lives of the innocents on board? After you have done so we can arranged for a prisoner swap with the Korath."`
+			`	"Would you be up for disabling this Korath worldship, so the threat is eliminated while preserving the lives of the innocents on board? After you have done so we can disarm the ship and fix their jump drive and hope they decide to head back home."`
 			choice
 				`	"Happy to help those in need, even the Korath."`
 				`	"I have no intentions of risking my neck for some Korath."`
