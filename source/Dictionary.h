@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "fnv1a.h"
 
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -67,10 +68,31 @@ public:
 	using std::vector<std::pair<stringAndHash, double>>::empty;
 	using std::vector<std::pair<stringAndHash, double>>::begin;
 	using std::vector<std::pair<stringAndHash, double>>::end;
-
-	void CheckCollisions() const;
 };
 
 
+
+// This class find hash collisions between handed dictionaries.
+// If a collision is found 'AddKeysWhileChecking' throw a 'runtime_error'.
+class DictionaryCollisionChecker {
+public:
+	DictionaryCollisionChecker() = default;
+
+	// Add the keys from the given Dictionary and
+	// ensure there aren't collisions, or throw
+	void AddKeysWhileChecking(const Dictionary &dict);
+
+
+private:
+	class hash_comparator {
+	public:
+		bool operator()(const stringAndHash &a, const stringAndHash &b)
+		{
+			return a.GetHash().Get() < b.GetHash().Get();
+		}
+	};
+
+	std::set<stringAndHash, hash_comparator> collected_keys;
+};
 
 #endif

@@ -273,10 +273,16 @@ void UniverseObjects::CheckReferences()
 
 	// News are never serialized or named, except by events (which would then define them).
 
-	// Outfit names are used by a number of classes.
-	for(auto &&it : outfits)
-		if(it.second.TrueName().empty())
-			NameAndWarn("outfit", it);
+	{
+		DictionaryCollisionChecker dcc;
+		// Outfit names are used by a number of classes.
+		for(auto &&it : outfits)
+		{
+			dcc.AddKeysWhileChecking(it.second.Attributes());
+			if(it.second.TrueName().empty())
+				NameAndWarn("outfit", it);
+		}
+	}
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
 		if(it.second.empty() && !deferred["outfitter"].count(it.first))

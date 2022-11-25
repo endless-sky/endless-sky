@@ -158,14 +158,27 @@ double Dictionary::Get(const string &key) const
 
 
 
-void Dictionary::CheckCollisions() const
+void DictionaryCollisionChecker::AddKeysWhileChecking(const Dictionary &dict)
 {
-	using element_type = pair<stringAndHash, double>;
-
-	auto equal_found = adjacent_find((*this).begin(), (*this).end()
-			, [](const element_type &a, const element_type &b) {
-		return a.first.GetHash().Get() == b.first.GetHash().Get();
-	});
-	if(equal_found != (*this).end())
-		throw runtime_error { "Found an hash collision on '" + string((*equal_found).first.GetString()) + "'" };
+	// Collect all the keys from the handed Dictionary
+	for(const auto &element : dict)
+	{
+		set<stringAndHash, hash_comparator>::iterator it;
+		bool inserted;
+		tie(it, inserted) = collected_keys.insert(element.first);
+		if(!inserted)
+		{
+			// The element can't be inserted into the set because the
+			// hashes are equal, verify strings are different or there's
+			// a collision
+			if((*it).GetString() != element.first.GetString())
+			{
+				// ...there's a collision:
+				throw runtime_error { "Found an hash collision of '"
+					+ string((*it).GetString())
+					+ "' with '" + string(element.first.GetString()) + "'\n"
+					+ "Please try a different key or contact developers"};
+			}
+		}
+	}
 }
