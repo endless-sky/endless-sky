@@ -357,12 +357,16 @@ mission "Hai Reveal [C05] Cleanup"
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
 			action
 				set "spared terry"
+				log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Allowed her to live, but nevertheless this loose end is thoroughly tied up.`
+				log "People" "Terry Adrianopoulos" `During the Hai-human crisis, Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and rebuilding the government to be less corrupt, but she condoned kidnapping and exploitation to achieve it. With her life in ruins, she continues to live on the world of Aspiration, far from civilization.`
 			`	The holster clicks as you put the weapon away.`
 				goto return
 			label end
 			`	You draw your weapon and point it at her, your thumb on the safety. Some prices are too high to pay for a better future.`
 			action
 				set "ended terry"
+				log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Chose to end her life. This loose end is thoroughly tied up.`
+				log "People" "Terry Adrianopoulos" `During the Hai-human crisis, Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and rebuilding the government to be less corrupt, but she condoned kidnapping and exploitation to achieve it. Her story ended on the bluffs of Aspiration, though no one may ever know it.`
 			`	The retort of the weapon is taken away on the wind.`
 				goto return
 			label judge
@@ -396,36 +400,6 @@ event "Vara K'chrai is accessible"
 		"required reputation" 0
 
 event "wandering nightmare map"
-
-mission "Hai Reveal [C05A] Spare Terry"
-	landing
-	invisible
-	source "Aspiration"
-	destination "Mountaintop"
-	to offer
-		has "Hai Reveal [C04] Cleanup: done"
-	to fail
-		has "ended terry"
-	to complete
-		not "spared terry"
-	on complete
-		log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Allowed her to live, but nevertheless this loose end is thoroughly tied up.`
-		log "People" "Terry Adrianopolous" `During the Hai-human crisis, Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and rebuilding the government to be less corrupt, but she condoned kidnapping and exploitation to achieve it. With her life in ruins, she continues to live on the world of Aspiration, far from civilization.`
-	
-mission "Hai Reveal [C05B] End Terry"
-	landing
-	invisible
-	source "Aspiration"
-	destination "Mountaintop"
-	to offer
-		has "Hai Reveal [C04] Cleanup: done"
-	to fail
-		has "spared terry"
-	to complete
-		not "ended terry"
-	on complete
-		log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Chose to end her life. This loose end is thoroughly tied up.`
-		log "People" "Terry Adrianopolous" `During the Hai-human crisis, Terry was arrested when it seemed like war might break out, but was released when the threat of conflict ended. She immediately vanished and was later identified in association with some lingering kidnappers. It is unclear what happened to them, but it is implied that she dealt with them in some way. It turned out that she had been a lone operative infiltrating the Syndicate for many years, with the goal of seizing control and rebuilding the government to be less corrupt, but she condoned kidnapping and exploitation to achieve it. Her story ended on the bluffs of Aspiration, though no one may ever know it.`
 
 #TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
 mission "Hai Reveal [C05C] Cleanup Check"
