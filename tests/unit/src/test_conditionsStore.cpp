@@ -228,7 +228,8 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( 0 == store.Get("hi world") );
 				REQUIRE( primarySize(store) == 2 );
-				// Check that requesting a non-given condition twice also doesn't result in bad results (for example due to caching).
+				// Check that requesting a non-given condition twice also doesn't result in bad results
+				// (for example due to caching).
 				REQUIRE( 0 == store.Get("hi world") );
 				REQUIRE( primarySize(store) == 2 );
 			}
