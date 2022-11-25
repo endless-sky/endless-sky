@@ -967,7 +967,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			label maintain
 			`	"We've decided on an end point to this deception?"`
 			label explain
-			`	You explain how they're just trying to keep things going long enough to resolve this mission and it is like a load has been lifted off the man, though he takes it in stride fairly professionally..`
+			`	You explain how they're just trying to keep things going long enough to resolve this mission. It is like a load has been lifted off the man, although he takes it in his stride fairly professionally.`
 			`	"Of course, nobody tells me anything in a timely manner..."`
 			`	"Anyway, I've organized the Syndicate's 'hostile urban insertion security operatives' to be loaded onto the Auxiliary. They look like intelligence operatives, if you ask me, so that'll be a conversation for me to follow up on later, but for now they're specially trained for attacking pirate strongholds and equipped with state of the art equipment that... is on a need-to-know basis. As long as we can protect the Auxiliary we'll be fine. The intel you brought back doesn't suggest particularly strong resistance. Wallace, good luck."`
 			choice
