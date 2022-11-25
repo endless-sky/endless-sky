@@ -178,7 +178,7 @@ private:
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
-	// Minimum and maximum color ranges used by mapColor.
+	// Minimum and maximum color ranges used by mapColor for the custom outfitter prices.
 	double minColor = 1.;
 	double maxColor = 1.;
 

@@ -891,6 +891,7 @@ void MapPanel::UpdateCache()
 						minColor = value;
 				}
 
+				// Use the map colors if this is for custom outfit prices legend.
 				if(colorSystem)
 					color = (commodity >= 0 ? CommodityColor(value) : MapColor(value));
 			}

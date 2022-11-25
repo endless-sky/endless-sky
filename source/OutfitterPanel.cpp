@@ -214,6 +214,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	// if it is not something that you can buy.
 	int stock = 0;
 	const CustomSale::SellType sellType = player.GetPlanet()->GetAvailability(*outfit, player.Conditions());
+	// Visible means it is sold normally.
 	if(sellType != CustomSale::SellType::VISIBLE && outfit->Get("installable") >= 0.)
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
@@ -995,7 +996,7 @@ void OutfitterPanel::CheckRefill()
 		for(const Outfit *outfit : toRefill)
 		{
 			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
-			if(amount > 0 && (outfitter.count(outfit) || player.Stock(outfit) > 0 || player.Cargo().Get(outfit)))
+			if(amount > 0 && (outfitter.Has(outfit) || player.Stock(outfit) > 0 || player.Cargo().Get(outfit)))
 				needed[outfit] += amount;
 		}
 	}
@@ -1005,7 +1006,7 @@ void OutfitterPanel::CheckRefill()
 	{
 		// Don't count cost of anything installed from cargo.
 		it.second = max(0, it.second - player.Cargo().Get(it.first));
-		if(!outfitter.count(it.first))
+		if(!outfitter.Has(it.first))
 			it.second = min(it.second, max(0, player.Stock(it.first)));
 		cost += player.StockDepreciation().Value(it.first, day, it.second);
 	}
@@ -1039,7 +1040,7 @@ void OutfitterPanel::Refill()
 				int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
 				neededAmmo -= fromCargo;
 				// Then, buy at reduced (or full) price.
-				int available = outfitter.count(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
+				int available = outfitter.Has(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
 				if(neededAmmo && available > 0)
 				{
 					int64_t price = player.StockDepreciation().Value(outfit, day, available);

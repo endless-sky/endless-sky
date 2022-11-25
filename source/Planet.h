@@ -93,7 +93,7 @@ public:
 	const Sale<Ship> &Shipyard() const;
 	// Check if this planet has an outfitter.
 	bool HasOutfitter() const;
-	// Get the list of outfits available from the outfitter with their custom elements.
+	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
 	// Get the local price of this outfit.
 	double GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const;

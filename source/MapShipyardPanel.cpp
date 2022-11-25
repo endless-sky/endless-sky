@@ -149,6 +149,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 			const auto &shipyard = object.GetPlanet()->Shipyard();
 			if(shipyard.Has(selected))
 				return selected->LocalCost(object.GetPlanet(), player.Conditions()) / baseCost;
+			// Return a negative value to signify this is different from a cost of 0.
 			if(!shipyard.empty())
 				value = -.1;
 		}

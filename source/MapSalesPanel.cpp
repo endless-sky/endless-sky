@@ -238,13 +238,16 @@ void MapSalesPanel::DrawKey() const
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		if(onlyShowSoldHere && i == 2)
+		{
 			// If we're filtering out items not sold here, draw a pointer.
 			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
+		}
 		pos.Y() += 20.;
 	}
 
 	double maxColor = MaxColor();
 	double minColor = MinColor();
+	// Draw the custom prices legend if there is a min or max color different from default.
 	if(maxColor > 1. || minColor < 1.)
 	{
 		const Color &medium = *GameData::Colors().Get("medium");
