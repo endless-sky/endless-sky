@@ -33,6 +33,7 @@ outfit "Jje Propulsion Organ"
 	"thrust" 8
 	"turn" 60
 	"flare sound" "ambient/jje"
+	"steering flare sound" "ambient/jje"
 	description `A strange organ Jje use to manipualte gravity to travel around in space.`
 	
 outfit "Ayym Propulsion Organ"
@@ -43,6 +44,7 @@ outfit "Ayym Propulsion Organ"
 	"thrust" 14
 	"turn" 80
 	"flare sound" "ambient/ayym"
+	"steering flare sound" "ambient/ayym"
 	description `A strange organ Ayym use to manipualte gravity to travel around in space.`
 	
 ship "Jje"
