@@ -14,18 +14,18 @@
 
 
 mission "FW Convoy to Zug"
-	minor
 	name "Convoy to Zug"
 	source
 		government "Free Worlds"
 		near Zubeneschamali 2 6
+		attributes factory
 	destination "Zug"
 	to offer
 		has "FW Katya 7C: done"
 		not "main story completed"
 	on offer
 		conversation
-			`While returning from a walk around the spaceport town of <planet>, you see the quartermaster of the spaceport inspecting your ship. He notices your arrival, and comes up to greet you.`
+			`While returning from a walk around the spaceport town of <planet>, you see the quartermaster of the spaceport inspecting your <ship>. He notices your arrival, and comes up to greet you.`
 			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <destination>." He points towards five Hauler IIIs on the landing pads opposite to your ship.`
 			`	"Many of our militia officers mentioned you when I asked for someone suitable to escort these ships. This is for quite a significant project, so you will be paid <payment>."`
 			choice
