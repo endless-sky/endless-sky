@@ -3485,9 +3485,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 			if(shift)
 			{
-				for(const Ship *escort : governmentRosters[ship.GetGovernment()])
-					if(escort->GetSystem() == ship.GetSystem())
-						fillBoardable(*escort);
+				const auto &owned = governmentRosters[ship.GetGovernment()];
+				boardable.reserve(owned.size());
+				for(auto &&escort : owned)
+					fillBoardable(*escort);
 			}
 			else
 			{
@@ -3503,8 +3504,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				if(boardable.empty())
 				{
 					ships = GetShipsList(ship, false);
-					if(ships.size() > boardable.capacity())
-						boardable.reserve(ships.size());
+					boardable.reserve(ships.size());
 					for(const Ship *ally : ships)
 						fillBoardable(*ally);
 				}
@@ -3514,10 +3514,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				activeCommands.Clear(Command::BOARD);
 			else
 			{
+				// Sort the list of options in increasing order of desirability.
 				sort(boardable.begin(), boardable.end(),
-					[&ship, boardingPriority](
-						const ShipValue &lhs, const ShipValue &rhs
-					)
+					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
 					{
 						// If their cost is the same, prefer the closest ship.
 						if(boardingPriority == Preferences::BoardingPriority::VALUE && lhs.second == rhs.second)
