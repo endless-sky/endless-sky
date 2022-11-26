@@ -125,7 +125,7 @@ outfit "Thorax Cannon"
 		"hit force" 2500
 		"shield damage" 2870
 		"hull damage" 3430
-	description "The Thorax Cannon is a massive, slow firing weapon that few ships can even support, not only because of its size but also because of the energy needed to fire it. It is also a particularly hot weapon, at least by Bunrodean standards, so it comes with its own cooling system in order to help alleviate the heat produced when fired."
+	description "The Thorax Cannon is a massive, slow-firing weapon that few ships can even support, not only because of its size but also because of the energy needed to fire it. It is also a particularly hot weapon, at least by Bunrodean standards, so it comes with its own cooling system in order to help alleviate the heat produced when fired."
 
 effect "yellow spark"
 	sprite "effect/yellow spark"

@@ -29798,7 +29798,7 @@ planet Amazon
 planet Angko
 	attributes bunrodea factory manufacturing
 	landscape land/water6
-	description `Angko is a massive industrial world, with most cities on its surface supporting vast industrial sectors or factories and warehouses. The level of industrial progress has not gone without its environmental impacts, though. At some time in the planet's past, the ice caps melted, causing sea levels to rise globally. The Bunrodeans have since moved to less environmentally negative practices, but the damage was already done, and the planet hasn't been the same since.`
+	description `Angko is a massive industrial world, with most cities on its surface supporting vast manufacturing sectors, factories, and warehouses. The level of industrial progress has not gone without its environmental impacts, however. At some time in the planet's past, the ice caps melted, causing sea levels to rise globally. The Bunrodeans have since moved to less environmentally negative practices, but the damage was already done, and the planet hasn't been the same since.`
 	spaceport `The main spaceport of Angko is in a precarious situation: established ages ago on a coastline, the oceans of the planet have risen significantly enough that the entire spaceport would be submerged in water were it not for the massive sea walls that enclose the city. Even with the flooding of the spaceport being a constant concern should the sea walls fail, the Bunrodeans have determined that it's still easier to keep maintaining the main spaceport rather than move the spaceport to high ground.`
 	outfitter "Bunrodea Basic"
 	"required reputation" 10
@@ -30470,8 +30470,8 @@ planet "Deep Water"
 planet "Deli Kasi"
 	attributes bunrodea farming
 	landscape land/fields3
-	description `Deli Kasi is a world of vast oceans and mountainous continents. At many locations across the planet, the tall mountain ranges trap moist air from the oceans, causing large amounts of rainfall in concentrated areas. This, combined with snow melt from the mountains, creates large fertile plains across much of the habitable land area, which has led to Deli Kasi being a major farming world.`
-	spaceport `In addition to the usual services you would expect, the spaceport of Deli Kasi is also home to a number of genetic engineering labs geared toward the creation of more bountiful plant seeds. It's unsurprising that the Bunrodeans would genetically modify their food, but for as much as the Bunrodeans are capable of, nothing beats the usefulness of fertile farm land like can be found on this planet.`
+	description `Deli Kasi is a world of vast oceans and mountainous continents. At many locations across the planet, the tall mountain ranges trap moist air from the oceans, causing large amounts of rainfall in concentrated areas. This, combined with snow melt from the mountains, creates large fertile plains across much of the habitable land area, which has led to Deli Kasi becoming a major farming world.`
+	spaceport `In addition to the usual services you would expect, the spaceport of Deli Kasi is also home to a number of genetic engineering labs geared toward the creation of more bountiful plant seeds. It's unsurprising that the Bunrodeans would genetically modify their food, but for as much as the Bunrodeans are capable of, nothing beats the usefulness of fertile farm land like what can be found on this planet.`
 	"required reputation" 10
 	bribe 0
 	security 0
@@ -30479,7 +30479,7 @@ planet "Deli Kasi"
 planet "Deli Kat"
 	attributes bunrodea farming
 	landscape land/fields0
-	description `Deli Kat orbits the dimmest star out of any of the inhabited systems in this region of space, a star not too disimilar to Sol. Although the planet orbits farther from its host star than Earth does, its slightly thicker atmosphere seems to balance that out, resulting in a mostly Earth-like climate. The planet's many vast plains and river systems additionally help to make Deli Kat a fertile farming world.`
+	description `Deli Kat orbits the dimmest star out of any of the inhabited systems in this region of space, a star not too dissimilar to Sol. Although the planet orbits farther from its host star than Earth does, its slightly thicker atmosphere seems to balance that out, resulting in a mostly Earth-like climate. The planet's many vast plains and river systems additionally help to make Deli Kat a fertile farming world.`
 	spaceport `The spaceport of Deli Kat is in a remote location where the coming and going of spaceships is unlikely to disturb any livestock. Goods are brought into the spaceport via high speed train-like vehicles, except without the need to travel on rails thanks to the use of technology that looks similar to the repulsor engines on human ships. Deli Kat's flat terrain makes it easy for these amphibious vehicles to bullet across the surface, picking up supplies from farms and beinging them to the spaceport for transportation off-world.`
 	"required reputation" 10
 	bribe 0
@@ -30719,8 +30719,8 @@ planet Erabuthro
 planet Eragarthro
 	attributes bunrodea guild academy moon
 	landscape land/sea5
-	description `Eragarthro is a large ocean moon of a moderately sized gas giant in the system of Eragaru Le. Although orbiting a gas giant means that the moon is often cast in shadow for multiple days at a day, the gas giant that the moon orbits is also firmly in the nearby star's habitable zone, making it a not too unpleasant place to live.`
-	description `	This moon is also home to the Bunrodea's most prestigious academies, include the Royal University of Dogen and Military Academy of Fuhtiiski.`
+	description `Eragarthro is a large ocean moon of a moderately sized gas giant in the system of Eragaru Le. Although orbiting a gas giant means that the moon is often cast in shadow for multiple days at a day, the planet that the moon orbits is also firmly in the nearby star's habitable zone, making it a not too unpleasant place to live.`
+	description `	This moon is also home to the Bunrodea's most prestigious academies, including the Royal University of Dogen and Military Academy of Fuhtiiski.`
 	spaceport `Being the major hub of education in this region, the population of the spaceport on this planet is bustling with young Bunrodeans. You note how very few of the Bunrodeans here appear to have any visible cybernetics. It must be the case that Bunrodeans only receive their cybernetics after reaching a certain age. Or it could be a matter of whose parents are able to afford the cybernetics for them.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
@@ -31962,8 +31962,8 @@ planet "Mebla's Portion"
 planet Melenci
 	attributes bunrodea medical moon
 	landscape land/badlands8
-	description `While the southern world of Jentu Le is where genetic research is mainly done, the small moon of Melenci here in the north is where much of that research is put to practice. The moon has only one settlement where Bunrodeans come to receive modifications to their genome. Although, the Bunrodeans ensure that any modifications that are done will effect only the individual they are being done to, and will not be passed down to any offspring.`
-	spaceport `The spaceport of Melenci has a variety of what you would assume to be advertisements for genetic operations. One displays a graphic of two animated Bunrodeans in a mine. One is injected with a needled and then become much bulkier. The mine then collapses in on the two, and the Bunrodean who was genetically modified is shown coming out of the rubble unscathed, while the other is pulled out with bent limbs and placed on a stretcher.`
+	description `While the southern world of Jentu Le is where genetic research is mainly done, the small moon of Melenci here in the north is where much of that research is put to practice. The moon has only one settlement where Bunrodeans come to receive modifications to their genome. However, the Bunrodeans ensure that any modifications that are done will affect only the individual they are being done to, and will not be passed down to any offspring.`
+	spaceport `The spaceport of Melenci has a variety of what you would assume to be advertisements for genetic operations. One displays a graphic of two animated Bunrodeans in a mine. One is injected with a needle and then become much bulkier. The mine then collapses in on the two, and the Bunrodean who was genetically modified is shown coming out of the rubble unscathed, while the other is pulled out with bent limbs and placed on a stretcher.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
 	"required reputation" 50
@@ -32916,7 +32916,7 @@ planet Sardva
 	landscape land/fields6
 	description `The planet of Sardva is used by the Bunrodea as a vault for genetic material of all origins, from the seeds of plants that the Bunrodea have encountered to genetic material of animals and even material from past generations of Bunrodeans. This material is stored in many of the planet's cave systems, which, with some slight modification, have amazingly stable climates that are perfect for the long term storage of genetic material.`
 	description `	The decentralized and redundant nature of the vaults also ensures that if anything happens on one part of the planet that may compromise the vaults there, locations elsewhere on the planet will still keep the material safe.`
-	spaceport `Sardva has no single major spaceport, with each vault location supporting its own small spaceport for receiving shipments and refueling the freighters. You eventually find a vault that is willingly to let you land so that you may refuel, but they don't seem too happy about your presence, and seem like they're only refueling you so that you stop asking every vault you come across.`
+	spaceport `Sardva has no single major spaceport, with each vault location supporting its own small spaceport for receiving shipments and refueling the freighters. You eventually find a vault that is willing to let you land so that you may refuel, but they don't seem too happy about your presence, and seem like they're only refueling you so that you stop asking every vault you come across.`
 	"required reputation" 200
 	bribe 0
 	security 0
@@ -32946,7 +32946,7 @@ planet Schisathro
 	attributes bunrodea guild manufacturing mining
 	landscape land/canyon5
 	description `Schisathro is a major mining world, and also home to the largest shipyards in Bunrodean space. Larger shipyards than the ones found here only exist on the capital world of Erabuthro.`
-	description `	The planet's success as a mining world can be owed to its many deep canyons found across most of the planet's above water surface, which allow for easier access to mineral rich deposits in the crust. The major shipyards developed alongside these mines, allowed for easy transportation of material directly to the shipyards instead of requiring lengthy journeys through space.`
+	description `	The planet's success as a mining world can be owed to its many deep canyons found across most of the planet's above water surface, which allow for easier access to mineral rich deposits in the crust. The major shipyards developed alongside these mines allowed for easy transportation of material directly to the shipyards instead of requiring lengthy journeys through space.`
 	spaceport `The main spaceport of Schisathro is almost entirely taken up by shipyards. That area which isn't dedicated to the shipyards is dedicated to the transportion of materials to them. This leaves very little space left over for the usual amenities that you would expect of a spaceport. There is only one single small outfitter tucked in between two large shipyards near the edge of the spacport; the shipyards must receive direct shipments of the more advanced outfits that they need.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
@@ -33304,9 +33304,9 @@ planet "Sopi Lefarkata"
 planet Sopoyra
 	attributes bunrodea manufacturing shipping
 	landscape land/industrial0-iridium
-	description `Sopoyra is a major manufacturing planet, as well as the chokepoint between the Megasa systems of the north and the Erabu systems of the south. Given that royal permission is required to enter the Erabu region, this world also acts as the focal point for trade between the the two regions. Goods are dropped off from other Megasa worlds, then transported to the Erabu worlds by freighters with royal permission.`
-	spaceport `Sopoyra is not a very hospitibale world to life, so there are few settlements outside of the main spaceport, which is almost entirely dedicated to factories and warehouses.`
-	spaceport `	There are freighters that will come from the north to drop off goods here, only for them to be immediately picked up by another freighter that brings the good down south. It seems somewhat inefficient to do things this way, but must be done to be in keeping with royal decrees.`
+	description `Sopoyra is a major manufacturing planet, as well as the chokepoint between the Megasa systems of the north and the Erabu systems of the south. Given that royal permission is required to enter the Erabu region, this world also acts as the focal point for trade between the two regions. Goods are dropped off from other Megasa worlds, then transported to the Erabu worlds by freighters with royal permission.`
+	spaceport `Sopoyra is not a very hospitable world. There are few settlements outside of the main spaceport, which is almost entirely dedicated to factories and warehouses.`
+	spaceport `	There are freighters that will come from the north to drop off goods here, only for them to be immediately picked up by another freighter that brings the goods down south. It seems somewhat inefficient to do things this way, but must be done to be in keeping with royal decrees.`
 	shipyard "Bunrodea Basic"
 	outfitter "Bunrodea Basic"
 	"required reputation" 10

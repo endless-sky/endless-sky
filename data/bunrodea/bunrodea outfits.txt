@@ -20,7 +20,7 @@ outfit "Shield Relay Booster"
 	"shield generation" 0.4
 	"shield energy" 1.2
 	"relay upgrades" -1
-	description "The shield relay booster is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Boosters increase the shield generation strength of a relay, but at the cost of reduced energy efficiency."
+	description "The Shield Relay Booster is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Boosters increase the shield generation strength of a relay, but at the cost of reduced energy efficiency."
 
 outfit "Shield Relay Limiter"
 	category "Systems"
@@ -31,7 +31,7 @@ outfit "Shield Relay Limiter"
 	"shield generation" -0.02
 	"shield energy" -0.1
 	"relay upgrades" -1
-	description "The shield relay limiter is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Limiters increase the energy efficiency of a relay, but at the cost of reducing the strength of its shield generation."
+	description "The Shield Relay Limiter is a component that can be installed into a Bunrodean shield relay in order to modify its effectiveness. Limiters increase the energy efficiency of a relay, but at the cost of reducing the strength of its shield generation."
 
 outfit "Small Shield Relay"
 	category "Systems"
@@ -68,7 +68,7 @@ outfit "Nanite Enhancer"
 	"hull repair rate" 0.25
 	"hull energy" 0.75
 	"nanite upgrades" -2
-	description "The nanite enhancer is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Enhancers increase the strength of the hull repair of an fabricator, but at the cost of reduced energy efficiency."
+	description "The Nanite Enhancer is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Enhancers increase the strength of the hull repair of an fabricator, but at the cost of reduced energy efficiency."
 
 outfit "Nanite Limiter"
 	category "Systems"
@@ -79,7 +79,7 @@ outfit "Nanite Limiter"
 	"hull repair rate" -0.025
 	"hull energy" -0.2
 	"nanite upgrades" -1
-	description "The nanite limiter is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
+	description "The Nanite Limiter is a component that can be installed into a Bunrodean Nanite Fabricator in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
 
 outfit "Small Nanite Fabricator"
 	category "Systems"
@@ -140,7 +140,7 @@ outfit "Reactor Overclocker"
 	"energy generation" 0.9
 	"heat generation" 3.15
 	"reactor upgrades" -3
-	description "The reactor overclocker is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Overclockers increase the strength of the energy generation of a reactor, but at the cost of reduced heat efficiency."
+	description "The Reactor Overclocker is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Overclockers increase the strength of the energy generation of a reactor, but at the cost of reduced heat efficiency."
 
 outfit "Reactor Limiter"
 	category "Power"
@@ -151,7 +151,7 @@ outfit "Reactor Limiter"
 	"energy generation" -0.55
 	"heat generation" -6.6
 	"reactor upgrades" -2
-	description "The reactor limiter is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Limiters increase the heat efficiency of a reactor, but at the cost of reducing the strength of its energy generation."
+	description "The Reactor Limiter is a component that can be installed into a Bunrodea reactor in order to modify its effectiveness. Limiters increase the heat efficiency of a reactor, but at the cost of reducing the strength of its energy generation."
 
 outfit "Quark Reactor"
 	category "Power"
@@ -163,7 +163,7 @@ outfit "Quark Reactor"
 	"heat generation" 10.9
 	"reactor upgrades" 6
 	description "Bunrodean reactors appear to be named after types of exotic stars that either once were or still are considered theoretical to humanity. A quark star was first discovered by humanity near the Shangri-La system during the 28th century, a star with core temperatures and pressures so extreme that quark matter is produced."
-	description "	Bunrodean reactors are able to be upgraded by installing reactor overclockers or limiters, which alter the performance of the reactor. Each reactor only has a limited number of slots for these upgrades, though."
+	description "	Bunrodean reactors are able to be upgraded by installing Reactor Overclockers or Limiters, which alter the performance of the reactor. Each reactor only has a limited number of slots for these upgrades, though."
 
 outfit "Electroweak Reactor"
 	category "Power"
@@ -175,7 +175,7 @@ outfit "Electroweak Reactor"
 	"heat generation" 20.5
 	"reactor upgrades" 18
 	description "The existence of the exotic stars that this Bunrodean reactor bears the name of is still unknown to humanity. An electroweak star is an exotic star that would be prevented from collapsing by the electroweak force as quarks are converted to leptons in the star's core."
-	description "	Bunrodean reactors are able to be upgraded by installing reactor overclockers or limiters, which alter the performance of the reactor. Each reactor only has a limited number of slots for these upgrades, though."
+	description "	Bunrodean reactors are able to be upgraded by installing Reactor Overclockers or Limiters, which alter the performance of the reactor. Each reactor only has a limited number of slots for these upgrades, though."
 
 outfit "Dark Reactor"
 	category "Power"
@@ -187,7 +187,7 @@ outfit "Dark Reactor"
 	"heat generation" 28.6
 	"reactor upgrades" 30
 	description "Whether Bunrodean reactors are actually powered by the theoretical forces that their names refer to or the Bunrodeans have simply discovered that these star types do exist and have only named their reactors after them is unknown. If the former is the case, then this reactor may be powered by the fusion of dark matter itself."
-	description "	Bunrodean reactors are able to be upgraded by installing reactor overclockers or limiters, which alter the performance of the reactor. Each reactor only has a limited number of slots for these upgrades, though."
+	description "	Bunrodean reactors are able to be upgraded by installing Reactor Overclockers or Limiters, which alter the performance of the reactor. Each reactor only has a limited number of slots for these upgrades, though."
 
 
 
