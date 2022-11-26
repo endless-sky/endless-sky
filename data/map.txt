@@ -8979,7 +8979,7 @@ system "Devil-Hide"
 	trade Medical 784
 	trade Metal 345
 	trade Plastic 481
-	fleet "Devil-Run Warships" 400
+	fleet "Devil-Run Warships" 450
 	fleet "Devil-Run Miners" 5000
 	object "Devil-Eye"
 		sprite "planet/rogue-radiating"
