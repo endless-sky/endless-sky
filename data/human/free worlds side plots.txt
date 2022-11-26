@@ -23,33 +23,34 @@ mission "FW Convoy to Zug"
 	destination "Zug"
 	to offer
 		has "FW Katya 7C: done"
+		not "main story completed"
 	on offer
 		conversation
-			`While returning from a walk around <source>'s spaceport town, the quartermaster of the spaceport comes up to greet you.`
-			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <destination>." He points towards five Haulers III on the opposite berths to your ship.`
-			`	"Our local militia chief recommended you to help us. This is for quite a significant project, so you will be paid <payment>."`
+			`While returning from a walk around the spaceport town of <planet>, you see the quartermaster of the spaceport inspecting your ship. He notices you, and comes up to greet you.`
+			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <destination>." He points towards five Hauler IIIs on the opposite berths to your ship.`
+			`	"Many in our militia mentioned you when I asked for someone suitable to escort these ships. This is for quite a significant project, so you will be paid <payment>."`
 			choice
 				`	"What's the project for?"`
 				`	"That's a lot of freighters. Are you expecting any resistance?"
-					goto pirates
+				goto "pirates"
 				`	"Sorry, I'm not planning on going that way."`
 					decline
-			`	"The ships are carrying the construction materials to start the extension of <destination>'s New Port, which has been a long time coming. From what I've heard, they still haven't finalised a name for the extension yet."`
-			goto meet
-			label pirates
+			`	"The ships are carrying the construction materials to start the extension of Zug's New Port, which has been a long time coming. It would greatly help our efforts. From what I've heard, they still haven't finalised a name for the extension yet."`
+			goto "meet"
+			label "pirates"
 			`	"We do not expect the pirates to be much of a nuisance, but I recommend avoiding combat when possible. The loss of these ships would be... not ideal."`
-			label meet
-				`	"Well, will you help us escort these ships?"`
-				choice
-					`	"Of course, I'll see to it that they'll get to <destination> safely."`
-					`	"No, I won't be able to, sorry."`
-						decline
-				`	"Great! These ships are critical, and I expect that they will benefit the Free Worlds immensely."`
-				`	With that, he leaves you to meet with the captains of the freighters.`
-					accept
+			label "meet"
+			`	"Well, will you help us escort these ships?"`
+			choice
+				`	"Of course, I'll see to it that they'll get to <destination> safely."`
+				`	"No, I won't be able to, sorry."`
+					decline
+			`	"Great! These ships are critical, and I expect that they will benefit the Free Worlds immensely."`
+			`	With that, he leaves you to meet with the captains of the freighters.`
+				accept
 	npc accompany save
-		personality escort timid
 		government "Free Worlds"
+		personality escort timid
 		ship "Hauler III" "F.S. Pohutukawa"
 		ship "Hauler III" "F.S. Totara"
 		ship "Hauler III" "F.S. Kauri"
@@ -85,7 +86,7 @@ mission "FW Convoy to Zug"
 	on complete
 		payment 750000
 		event "fw zug expansion underway"
-		dialog `The five Haulers III have all arrived safely in Zug's New Port. The land set aside for the expansion is being broken, but nobody can still tell you what it's called.`
+		dialog `The five Hauler IIIs have all arrived safely in Zug's spaceport. The land set aside for the expansion is being broken, but still, nobody can tell you what it's called.`
 
 
 
