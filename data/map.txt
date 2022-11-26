@@ -31539,10 +31539,6 @@ planet Solace
 	spaceport `Solace's spaceport is located in a satellite town of one of its major cities. Surrounding the spaceport is an extensive industrial park that stretches out for some distance, until the warehouses and factories abruptly give way to valleys and farmlands.` 
 	spaceport `	The spaceport serves not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
 	spaceport `	At the heart of the spaceport are a few bars, plus restaurants representing nearly every style of cuisine that you are familiar with. All the buildings are well maintained; this strikes you as a quite prosperous world, for this section of the galaxy.`
-	shipyard "Basic Ships"
-	shipyard "Southbound Basics"
-	shipyard "Tarazed Basics"
-	shipyard "Tarazed Advanced"
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Basics"
 	outfitter "Common Outfits"
