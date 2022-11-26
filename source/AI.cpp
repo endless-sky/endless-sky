@@ -1598,7 +1598,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const System *currentSystem = ship.GetSystem();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
 	bool needsFuel = ship.NeedsFuel();
-	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity || needsFuel;
+	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
