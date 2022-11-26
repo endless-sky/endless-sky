@@ -15,7 +15,7 @@
 outfit "Jump Organ"
 	category Systems
 	cost 0
-	mass 0
+	mass 2
 	thumbnail "outfit/unknown"
 	"jump fuel" 100
 	"jump speed" .2
@@ -24,7 +24,26 @@ outfit "Jump Organ"
 	"hyperdrive out sound" "organ drive out"
 	"hyperdrive in sound" "organ drive in"
 	description "A jump organ allows an Iije lifeform to traverse a hyperspace lane, though how it does is a mystery."
-
+	
+outfit "Jje Propulsion Organ"
+	category "Engines"
+	"cost" 0
+	thumbnail "unknown"
+	"mass" 1
+	"thrust" 8
+	"turn" 60
+	"flare sound" "ambient/jje"
+	description `A strange organ Ayyms use to manipualte gravity to travel around in space.`
+	
+outfit "Ayym Propulsion Organ"
+	category "Engines"
+	"cost" 0
+	thumbnail "unknown"
+	"mass" 1
+	"thrust" 14
+	"turn" 80
+	"flare sound" "ambient/ayym"
+	description `A strange organ Ayyms use to manipualte gravity to travel around in space.`
 	
 ship "Jje"
 	noun "creature"
@@ -40,8 +59,6 @@ ship "Jje"
 		"bunks" 2
 		"mass" 100
 		"drag" 10
-		"thrust" 8
-		"turn" 60
 		"atmosphere scan" 10
 		"heat dissipation" 20
 		"energy capacity" 400
@@ -68,6 +85,7 @@ ship "Jje"
 			"hull damage" 10
 			"hit force" 30
 	outfits
+		"Jje Propulsion Organ"
 
 	engine 0 0
 	"steering engine" 0 0
@@ -119,6 +137,7 @@ ship "Ayym"
 			"hull damage" 10
 			"hit force" 30
 	outfits
+		"Ayym Propulsion Organ"
 		"Jump Organ"
 
 	engine 0 0
