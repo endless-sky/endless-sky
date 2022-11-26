@@ -3480,18 +3480,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			using ShipValue = pair<Ship *, double>;
 			auto boardable = vector<ShipValue>{};
 
-			auto fillBoardable = [&ship, &boardable, &strategy](Ship &other) noexcept
-			{
-				if(CanBoard(ship, other))
-					boardable.emplace_back(&other, strategy(other));
-			};
-
 			if(shift)
 			{
 				const auto &owned = governmentRosters[ship.GetGovernment()];
 				boardable.reserve(owned.size());
 				for(auto &&escort : owned)
-					fillBoardable(*escort);
+					if(CanBoard(ship, *escort))
+						boardable.emplace_back(escort, strategy(*escort));
 			}
 			else
 			{
@@ -3503,14 +3498,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 				// First check if we can board enemy ships, then allies.
 				for(auto &&enemy : ships)
-					fillBoardable(*enemy);
-
+					if(CanBoard(ship, *enemy))
+						boardable.emplace_back(enemy, strategy(*enemy));
 				if(boardable.empty())
 				{
 					ships = GetShipsList(ship, false);
 					boardable.reserve(ships.size());
 					for(auto &&ally : ships)
-						fillBoardable(*ally);
+						if(CanBoard(ship, *ally))
+							boardable.emplace_back(ally, strategy(*ally));
 				}
 			}
 
