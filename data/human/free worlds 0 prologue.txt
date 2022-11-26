@@ -2016,6 +2016,82 @@ mission "FW Katya 7C"
 
 
 
+mission "Free Worlds Convoy to Zug"
+	minor
+	name "Convoy to Zug"
+	source
+		government "Free Worlds"
+		near Zubeneschamali 2 6
+	destination "Zug"
+	to offer
+		has "FW Katya 7C: done"
+	on offer
+		conversation
+			`While returning from a walk around <source>'s spaceport town, the quartermaster of the spaceport comes up to greet you.`
+			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <destination>." He points towards five Haulers III on the opposite berths to your ship.`
+			`	"Our local militia chief recommended you to help us. This is for quite a significant project, so you will be paid <payment>."`
+			choice
+				`	"What's the project for?"`
+				`	"That's a lot of freighters. Are you expecting any resistance?"
+					goto pirates
+				`	"Sorry, I'm not planning on going that way."`
+					decline
+			`	"The ships are carrying the construction materials to start the extension of <destination>'s New Port, which has been a long time coming. From what I've heard, they still haven't finalised a name for the extension yet."`
+			goto meet
+			label pirates
+			`	"We do not expect the pirates to be much of a nuisance, but I recommend avoiding combat when possible. The loss of these ships would be... not ideal."`
+			label meet
+				`	"Well, will you help us escort these ships?"`
+				choice
+					`	"Of course, I'll see to it that they'll get to <destination> safely."`
+					`	"No, I won't be able to, sorry."`
+						decline
+				`	"Great! These ships are critical, and I expect that they will benefit the Free Worlds immensely."`
+				`	With that, he leaves you to meet with the captains of the freighters.`
+					accept
+	npc accompany save
+		personality escort timid
+		government "Free Worlds"
+		ship "Hauler III" "F.S. Pohutukawa"
+		ship "Hauler III" "F.S. Totara"
+		ship "Hauler III" "F.S. Kauri"
+		ship "Hauler III" "F.S. Rimu"
+		ship "Hauler III" "F.S. Kanuka"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Zubenelgenubi"
+		fleet "Small Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Sabik"
+		fleet "Small Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Hadar"
+		fleet "Small Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Zeta Centauri"
+		fleet "Small Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Izar"
+		fleet "Small Southern Pirates"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
+	on complete
+		payment 750000
+		"assisted free worlds" ++
+		event "fw zug expansion underway"
+		dialog `The five Haulers III have all arrived safely in Zug's New Port. The land set aside for the expansion is being broken, but nobody can still tell you what it's called.`
+
+
+
 mission "FW Commitment"
 	minor
 	landing
