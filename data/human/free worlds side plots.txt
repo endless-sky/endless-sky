@@ -31,21 +31,21 @@ mission "FW Convoy to Zug"
 			`	"Many of our militia officers mentioned you when I asked for someone suitable to escort these ships. It seems you are quite experienced here. This is for quite a significant project, so you will be paid <payment>."`
 			choice
 				`	"What's the project for?"`
-				`	"That's a lot of freighters. Are you expecting any resistance?"
-					goto "pirates"
+				`	"That's a lot of freighters. Are you expecting any resistance?"`
+					goto pirates
 				`	"Sorry, I'm not planning on going that way."`
 					decline
 			`	"The ships are carrying construction materials to start the extension of Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. From what I've heard, the port authority still hasn't finalised a name for the extension yet."`
-				goto "meet"
-			label "pirates"
+				goto meet
+			label pirates
 			`	"I do not expect the pirates to be too much of a nuisance, but I'd recommend avoiding combat when possible. The loss of these ships would be... not ideal."`
-			label "meet"
+			label meet
 			`	"Well, will you help us escort these ships?"`
 			choice
 				`	"Of course, I'll see to it that they'll get to Zug safely."`
 				`	"No, I won't be able to, sorry."`
 					decline
-			`	"Great! These ships are critical, and I expect that they will benefit the Free Worlds immensely."`
+			`	"Wonderful! These ships are critical, and I expect that they will benefit the Free Worlds immensely."`
 			`	With that, he leaves you to meet with the captains of the freighters.`
 				accept
 	npc accompany save
