@@ -510,7 +510,7 @@ ship "Ikatila'ej"
 	sprite "ship/ikatila-ej"
 	thumbnail "thumbnail/ikatila-ej"
 	attributes
-		category "Utility"
+		category "Superheavy"
 		"cost" 109375000
 		"shields" 72700
 		"hull" 93000
@@ -1030,7 +1030,7 @@ ship "Korsmanath A'awoj"
 	thumbnail "thumbnail/korsmanath a-awoj"
 	"uncapturable"
 	attributes
-		category "Utility"
+		category "Superheavy"
 		cost 276900000
 		shields 196420
 		hull 320690
