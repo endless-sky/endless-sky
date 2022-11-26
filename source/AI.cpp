@@ -3437,7 +3437,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		// Determine the player's boarding target based on their selected preference. They may press BOARD repeatedly
 		// to cycle between ships, and may also press SHIFT to prioritize repairing their owned escorts.
-		shared_ptr<const Ship> target = ship.GetTargetShip();
+		shared_ptr<Ship> target = ship.GetTargetShip();
 		if(!target || activeCommands.Has(Command::WAIT) || (shift && !target->IsYours()) || !CanBoard(ship, *target))
 		{
 			if(shift)
@@ -3477,10 +3477,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				}
 			}();
 
-			using ShipValue = pair<const Ship *, double>;
+			using ShipValue = pair<Ship *, double>;
 			auto boardable = vector<ShipValue>{};
 
-			auto fillBoardable = [&ship, &boardable, &strategy](const Ship &other) noexcept
+			auto fillBoardable = [&ship, &boardable, &strategy](Ship &other) noexcept
 			{
 				if(CanBoard(ship, other))
 					boardable.emplace_back(&other, strategy(other));
@@ -3502,14 +3502,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					boardable.emplace_back(target.get(), strategy(*target));
 
 				// First check if we can board enemy ships, then allies.
-				for(const Ship *enemy : ships)
+				for(auto &&enemy : ships)
 					fillBoardable(*enemy);
 
 				if(boardable.empty())
 				{
 					ships = GetShipsList(ship, false);
 					boardable.reserve(ships.size());
-					for(const Ship *ally : ships)
+					for(auto &&ally : ships)
 						fillBoardable(*ally);
 				}
 			}
@@ -3534,23 +3534,20 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 				// If there is no valid target, pick a new one.
 				if(!target)
-					ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
+					ship.SetTargetShip(boardable.back().first->shared_from_this());
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
 				{
-					auto boardingTarget = find_if(boardable.begin(), boardable.end(),
-						[&target](const ShipValue &lhs)
-						{
-							return lhs.first == target.get();
-						}
+					auto it = find_if(boardable.begin(), boardable.end(),
+						[&target](const ShipValue &lhs) { return lhs.first == target.get(); }
 					);
 
-					if(boardingTarget != boardable.end())
+					if(it != boardable.end())
 					{
-						if(boardingTarget == boardable.begin())
-							ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
+						if(it == boardable.begin())
+							ship.SetTargetShip(boardable.back().first->shared_from_this());
 						else
-							ship.SetTargetShip((const_cast<Ship *>((--boardingTarget)->first)->shared_from_this()));
+							ship.SetTargetShip((--it)->first->shared_from_this());
 					}
 				}
 			}
