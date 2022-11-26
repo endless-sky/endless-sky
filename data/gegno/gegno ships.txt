@@ -304,7 +304,7 @@ ship Schist
 		"fuel capacity" 500
 		"cargo space" 140
 		"outfit space" 298
-		"weapon capacity" 106
+		"weapon capacity" 148
 		"engine capacity" 106
 		"weapon capacity" 58
 		weapon
@@ -427,7 +427,7 @@ ship Diorite
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 548
-		"weapon capacity" 288
+		"weapon capacity" 322
 		"engine capacity" 124
 		"weapon capacity" 251
 		weapon
@@ -557,7 +557,7 @@ ship Hornfel "Hornfel Heavy Weapons"
 		"Chloeric Cannon" 2
 		"Chloeric Cannon Turret" 2
 		Hyperdrive
-		"Irate Cannon" 2
+		"Irate Cannon" 10
 		"Irate Cannon Turret"
 		"R03 Warforge Battery"
 		"RG18 Torch Steering"
