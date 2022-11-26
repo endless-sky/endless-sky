@@ -3435,13 +3435,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(activeCommands.Has(Command::BOARD))
 	{
-		// Depending on the preference, board the (nearest/most expensive/mix of both) disabled ship.
-		// Pressing the board key multiple times cycles between eligible targets.
-		// It will be focusing on hostiles before allies. Holding `Shift`
-		// results in boarding only player-owned escorts in need of assistance.
+		// Determine the player's boarding target based on their selected preference. They may press BOARD repeatedly
+		// to cycle between ships, and may also press SHIFT to prioritize repairing their owned escorts.
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || (target && activeCommands.Has(Command::WAIT)) || !CanBoard(ship, *target)
-				|| (shift && !target->IsYours()))
+		if(!target || activeCommands.Has(Command::WAIT) || (shift && !target->IsYours()) || !CanBoard(ship, *target))
 		{
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
@@ -3470,9 +3467,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 							// and we should definitely board that one then.
 							return cost * cost / (current.DistanceSquared(other.Position()) + 0.1);
 						};
-					// Default to distance priorities (the default setting).
-					default:
 					case Preferences::BoardingPriority::PROXIMITY:
+					default:
 						return [current](const Ship &other) noexcept -> double
 						{
 							return current.DistanceSquared(other.Position());
