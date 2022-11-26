@@ -86,7 +86,7 @@ mission "FW Convoy to Zug"
 		payment 600000
 		event "fw zug expansion underway"
 		event "fw zug expansion complete" 2
-		dialog `The five Hauler IIIs have all arrived safely, and you are told to land them beside an area of land set aside for Zug's long-awaited New Port expansion. It seems that bringing so many Hauler IIIs were justified, because the expansion also includes a considerable extension to the shipbuilding and shipyard facilities, to make them capable of building heavy warships like Falcons. Not long after, you are sent <payment> credits by the port authority.`
+		dialog `The five Hauler IIIs have all arrived safely, and you are told to land them beside an area of land set aside for Zug's long-awaited New Port expansion. It seems that bringing so many Hauler IIIs were justified, because the expansion also includes a considerable extension to the shipbuilding and shipyard facilities, to make them capable of building heavy warships like Falcons. Not long after, you are sent <payment> by the port authority.`
 
 
 
