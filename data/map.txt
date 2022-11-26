@@ -805,11 +805,11 @@ system Cotpoxi
 	minables silver 7 4.35
 	minables copper 8 5.73
 	object
-		sprite star/a-supergiant
+		sprite star/f5
 		distance 378
 		period 367.4
 	object
-		sprite star/f-supergiant
+		sprite star/f8
 		distance 378
 		period 367.4
 		offset 180
