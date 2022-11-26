@@ -3141,7 +3141,8 @@ fleet "Hired Guns"
 # The Navy forces which blockade the wormhole during the Hai crisis.
 fleet "Human Wormhole Guards"
 	government "Republic that won't enter wormhole"
-	names civilian
+	names "republic capital"
+	fighters "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
