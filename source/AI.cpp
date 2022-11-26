@@ -3518,13 +3518,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				sort(boardable.begin(), boardable.end(),
 					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
 					{
+						if(boardingPriority == Preferences::BoardingPriority::PROXIMITY)
+							return lhs.second > rhs.second;
+
 						// If their cost is the same, prefer the closest ship.
-						if(boardingPriority == Preferences::BoardingPriority::VALUE && lhs.second == rhs.second)
-							return lhs.first->Position().DistanceSquared(ship.Position()) >
-								rhs.first->Position().DistanceSquared(ship.Position());
-						else
-							return boardingPriority == Preferences::BoardingPriority::PROXIMITY ?
-								lhs.second > rhs.second : lhs.second < rhs.second;
+						return (boardingPriority == Preferences::BoardingPriority::VALUE && lhs.second == rhs.second)
+							? lhs.first->Position().DistanceSquared(ship.Position()) >
+								rhs.first->Position().DistanceSquared(ship.Position())
+							: lhs.second < rhs.second;
 					}
 				);
 
