@@ -791,7 +791,6 @@ system Cotpoxi
 	government Uninhabited
 	habitable 2560
 	belt 1607
-	"jump range" 50
 	haze _menu/haze
 	link Mnashyu
 	link Yerser
@@ -834,7 +833,7 @@ system Mnashyu
 	pos 823.6 -307.1
 	government Gegno
 	habitable 1616.2
-	"jump range" 70
+	"jump range" 80
 	belt 1163
 	haze _menu/haze
 	link Cotpoxi
@@ -891,13 +890,12 @@ system Mnashyu
 		period 12918.4
 
 system Nnatai
-	pos 520.7 -470.3
+	pos 513.2 -470.3
 	government Uninhabited
 	habitable 1539.2
 	belt 1478
-	"jump range" 70
 	haze _menu/haze-67
-	link "Aksek Jmi"
+	link "Aksek"
 	asteroids "small rock" 4 2.6
 	asteroids "large rock" 7 3
 	asteroids "small metal" 9 3
@@ -930,9 +928,8 @@ system "Aik Kamgatake"
 	government Uninhabited
 	habitable 2725
 	belt 1920
-	"jump range" 80
 	haze _menu/haze-133
-	link "Aksek Jmi"
+	link "Aksek"
 	asteroids "small rock" 28 1.9
 	asteroids "medium rock" 23 2
 	asteroids "large rock" 27 1.72
@@ -973,13 +970,12 @@ system "Aik Kamgatake"
 		sprite star/k5
 
 system Iise
-	pos 474.82 -460.6
+	pos 468.376 -446.156
 	government Uninhabited
 	habitable 26.45
-	"jump range" 70
 	belt 1734
 	haze _menu/haze
-	link "Aksek Jmi"
+	link "Aksek"
 	asteroids "small rock" 1 1.9
 	asteroids "medium rock" 8 1.78
 	asteroids "large rock" 1 2.57
@@ -1224,12 +1220,11 @@ system "3 Spring Rising"
 			distance 571
 			period 48.1229
 
-system "Aksek Jmi"
-	pos 468 -418.4
+system "Aksek"
+	pos 477.944 -401.011
 	government Uninhabited
 	habitable 28275.2
 	belt 1795
-	"jump range" 60
 	haze _menu/haze
 	link Nnatai
 	link "Aik Kamgatake"
@@ -1531,11 +1526,10 @@ system "4 Winter Rising"
 			period 62.7773
 
 system "Uwo Seija"
-	pos 420 -433
+	pos 420.667 -429
 	government Uninhabited
 	habitable 1907.2
 	belt 1222
-	"jump range" 80
 	haze _menu/haze
 	link "Aksek Jmi"
 	asteroids "small rock" 85 2.1
@@ -2368,7 +2362,6 @@ system Acnanjo
 	pos 516.8 -544.7
 	government Uninhabited
 	habitable 6195.2
-	"jump range" 80
 	belt 1944
 	haze _menu/haze
 	link Ptobeh
@@ -2481,11 +2474,11 @@ system Acrux
 			period 44.703
 
 system Actannka
-	pos 1016.4 -683.2
+	pos 1016.733 -706.867
 	government Quarg
 	habitable 1480
 	belt 1228
-	"jump range" 50
+	"jump range" 70
 	haze _menu/haze-133
 	link Aleit
 	link Elifennka
@@ -2655,7 +2648,7 @@ system Aescolanus
 		period 2870.08
 
 system Aierena
-	pos 1045.1 -353.4
+	pos 1048.063 -348.956
 	government Uninhabited
 	habitable 500
 	belt 1856
@@ -3191,11 +3184,10 @@ system Aldhibain
 			period 13.622
 
 system Aleit
-	pos 960.4 -704.5
+	pos 967.9 -692.5
 	government Quarg
 	habitable 7405
 	belt 1864
-	"jump range" 50
 	haze _menu/haze-blackbody
 	link Actannka
 	link Elifennka
@@ -4807,7 +4799,6 @@ system Anbrim
 	pos 725.7 -376.2
 	government Uninhabited
 	habitable 450180
-	"jump range" 80
 	belt 1101
 	haze _menu/haze-33
 	link Huud
@@ -5553,7 +5544,6 @@ system Asio
 	pos 807 -629.8
 	government Gegno
 	habitable 1276.5
-	"jump range" 80
 	belt 1478
 	haze _menu/haze-133
 	link Heutesl
@@ -8237,10 +8227,9 @@ system "Cor Caroli"
 		period 1104.91
 
 system Cshudlye
-	pos 587.14 -474.8
+	pos 595.14 -477.911
 	government Uninhabited
 	habitable 819.2
-	"jump range" 50
 	belt 1675
 	haze _menu/haze-67
 	link Uhebe
@@ -10393,7 +10382,6 @@ system E-9182
 	pos 1167.2 -629
 	government Uninhabited
 	habitable 3276.8
-	"jump range" 80
 	belt 1387
 	haze _menu/haze-none
 	link O-3184
@@ -10633,7 +10621,6 @@ system Eebu
 	pos 825.7 -487.48
 	government Uninhabited
 	habitable 2405
-	"jump range" 60
 	belt 1384
 	haze _menu/haze-67
 	link Evrae
@@ -11051,11 +11038,10 @@ system Ekuarik
 		offset 312
 
 system Elifennka
-	pos 983 -717.7
+	pos 990.5 -728.2
 	government Uninhabited
 	habitable 583.2
 	belt 1533
-	"jump range" 50
 	haze _menu/haze-133
 	link Actannka
 	link Aleit
@@ -11217,7 +11203,7 @@ system Eltanin
 		period 1900.78
 
 system Empeles
-	pos 666.84 -409.9
+	pos 669.507 -405.233
 	government "Gegno Vi"
 	habitable 405
 	belt 1416
@@ -11529,10 +11515,10 @@ system "Epsilon Leonis"
 			period 37.9234
 
 system "Erba Yle"
-	pos 1009.19 -497.05
+	pos 1001.69 -488.05
 	government "Gegno Scin"
 	habitable 296.45
-	"jump range" 60
+	"jump range" 90
 	belt 1204
 	haze _menu/haze-33
 	link Auhru
@@ -11854,7 +11840,6 @@ system Evrae
 	pos 884.49 -475.35
 	government Gegno
 	habitable 4420
-	"jump range" 70
 	belt 1985
 	haze _menu/haze-67
 	link Eebu
@@ -13327,7 +13312,7 @@ system Furmeliki
 			period 75.4354
 
 system G-3191
-	pos 1041.9 -403
+	pos 1039.233 -395
 	government Uninhabited
 	habitable 28275.2
 	belt 1341
@@ -13342,6 +13327,11 @@ system G-3191
 		sprite star/f-supergiant
 		distance 2214.65
 		period 10
+	object
+		sprite star/a-supergiant
+		distance 2214.65
+		period 10
+		offset 180
 	object
 		sprite planet/gas16-b
 		distance 9905
@@ -13396,7 +13386,6 @@ system G-719
 	government Uninhabited
 	habitable 828.2
 	belt 1870
-	"jump range" 50
 	haze _menu/haze-coal
 	link W-3197
 	asteroids "large metal" 1 2.22
@@ -13446,10 +13435,10 @@ system G-719
 			period 147.7
 
 system G-819
-	pos 1173.8667 -479.54
+	pos 1186.978 -477.17
 	government Uninhabited
 	habitable 9650
-	"jump range" 50
+	"jump range" 60
 	belt 1333
 	haze _menu/haze-coal
 	link H-9187
@@ -13683,11 +13672,11 @@ system "Gamma Corvi"
 		period 2076.63
 
 system Gaungu
-	pos 1095.8 -299.38
+	pos 1097.726 -321.899
 	government Uninhabited
 	habitable 374.05
 	belt 1072
-	"jump range" 60
+	"jump range" 80
 	haze _menu/haze-none
 	link Yranjiu
 	asteroids "small rock" 13 4.35
@@ -13790,11 +13779,10 @@ system Gerenus
 			period 15.5606
 
 system Ghhil
-	pos 923.9 -711
+	pos 922.4 -714
 	government Quarg
 	habitable 500
 	belt 1760
-	"jump range" 50
 	haze _menu/haze-133
 	link Aleit
 	asteroids "small rock" 4 2.17
@@ -14385,7 +14373,6 @@ system Gualetri
 	pos 909.9 -529.18
 	government Uninhabited
 	habitable 26.45
-	"jump range" 60
 	belt 1734
 	haze _menu/haze-blackbody
 	link Eogho
@@ -14474,11 +14461,10 @@ system Gupta
 		period 1077.08
 
 system H-8188
-	pos 1202.1 -508
+	pos 1206.6 -506.5
 	government Uninhabited
 	habitable 627.2
 	belt 1254
-	"jump range" 50
 	haze _menu/haze-none
 	link H-9187
 	asteroids "small rock" 1 1.32
@@ -14511,10 +14497,10 @@ system H-8188
 		period 30315.6
 
 system H-9187
-	pos 1127.88 -472.47
+	pos 1130.88 -455.97
 	government Uninhabited
 	habitable 583.2
-	"jump range" 40
+	"jump range" 60
 	belt 1102
 	haze _menu/haze-coal
 	link G-819
@@ -15587,7 +15573,7 @@ system Huud
 		period 8751.4
 
 system Iigen
-	pos 933.4 -617.7
+	pos 928.4 -615.7
 	government Uninhabited
 	habitable 259.2
 	"jump range" 60
@@ -15636,7 +15622,7 @@ system Iinjma
 	pos 986.29 -410.7
 	government Uninhabited
 	habitable 614.45
-	"jump range" 60
+	"jump range" 65
 	belt 1861
 	haze _menu/haze-33
 	link Zeinar
@@ -15797,10 +15783,9 @@ system Ildaria
 		period 799.338
 
 system Iliniza
-	pos 930.7 -444.1
+	pos 932.2 -435.1
 	government "Gegno Scin"
 	habitable 538.45
-	"jump range" 60
 	belt 1624
 	haze _menu/haze-33
 	link Evrae
@@ -15860,10 +15845,9 @@ system Iliniza
 			period 521.19
 
 system Ilirco
-	pos 886.79 -414.6
+	pos 889.457 -404.6
 	government Uninhabited
 	habitable 3380
-	"jump range" 50
 	belt 1655
 	haze _menu/haze
 	link Evrae
@@ -16410,7 +16394,6 @@ system Jyelio
 	pos 772.8 -465.9
 	government Uninhabited
 	habitable 369.8
-	"jump range" 60
 	belt 1779
 	haze _menu/haze-67
 	link Eebu
@@ -16653,11 +16636,11 @@ system Kaliptari
 			period 29.5684
 
 system Kanguwa
-	pos 983.47 -319.9
+	pos 990.137 -331.456
 	government Uninhabited
 	habitable 336.2
 	belt 1866
-	"jump range" 50
+	"jump range" 70
 	music ambient/rulei
 	haze _menu/haze-blackbody
 	link Lloloi
@@ -16760,11 +16743,10 @@ system "Kappa Centauri"
 			period 28.1328
 
 system Karhio
-	pos 531.5 -425.4
+	pos 535.278 -421.4
 	government Uninhabited
 	habitable 2560
 	belt 1163
-	"jump range" 50
 	haze _menu/haze-67
 	link Pukako
 	asteroids "small rock" 6 5.2
@@ -17284,10 +17266,9 @@ system "Ki War Ek"
 		offset 250
 
 system Kilema
-	pos 1052.5 -476.58
+	pos 1043.5 -472.08
 	government Uninhabited
 	habitable 28.8
-	"jump range" 50
 	belt 1612
 	haze _menu/haze-33
 	link "Erba Yle"
@@ -17517,7 +17498,6 @@ system Kneirc
 	pos 856.6 -511.36
 	government "Gegno Scin"
 	habitable 1616.2
-	"jump range" 80
 	belt 1163
 	haze _menu/haze-67
 	link Eebu
@@ -18435,7 +18415,6 @@ system L-118
 	pos 1085.78 -416.75
 	government Uninhabited
 	habitable 500
-	"jump range" 50
 	belt 1724
 	haze _menu/haze-coal
 	link H-9187
@@ -18831,11 +18810,11 @@ system Lire
 			period 36
 
 system Lloloi
-	pos 894.8 -354.7
+	pos 907.022 -251.144
 	government Uninhabited
 	habitable 1843.2
 	belt 1338
-	"jump range" 50
+	"jump range" 90
 	haze _menu/haze-full
 	link Kanguwa
 	link Vanguwo
@@ -19199,11 +19178,11 @@ system Lurata
 		period 1774.16
 
 system M-1188
-	pos 1116 -616.4
+	pos 1124.667 -607.233
 	government Uninhabited
 	habitable 31.25
 	belt 1676
-	"jump range" 50
+	"jump range" 80
 	haze _menu/haze-coal
 	link E-4183
 	link G-6183
@@ -19315,7 +19294,7 @@ system Makferuti
 			period 54.4696
 
 system Maoni
-	pos 603.46 -390.48
+	pos 607.46 -389.147
 	government Uninhabited
 	habitable 26.45
 	belt 1734
@@ -19557,7 +19536,7 @@ system MC-42
 	government Uninhabited
 	habitable 387.2
 	belt 1290
-	"jump range" 40
+	"jump range" 60
 	haze _menu/haze-coal
 	link H-9187
 	minables platinum 7 4.2
@@ -21140,10 +21119,10 @@ system Moktar
 		period 1540.20
 
 system Mohuwo
-	pos 957.95 -538.26
+	pos 956.45 -544.26
 	government Uninhabited
 	habitable 1907.2
-	"jump range" 60
+	"jump range" 70
 	belt 1213
 	haze _menu/haze-67
 	link Auhru
@@ -21252,12 +21231,12 @@ system Mora
 			period 24.168
 
 system MS-219
-	pos 1075.3 -590.5
+	pos 1075.133 -568.167
 	government Uninhabited
 	habitable 65
 	belt 1404
 	haze _menu/haze-coal
-	"jump range" 40
+	"jump range" 70
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
@@ -21295,11 +21274,10 @@ system MS-219
 		period 92203.4
 
 system Msalbit
-	pos 966.57 -282.1
+	pos 978.348 -274.767
 	government Uninhabited
 	habitable 3276.8
 	belt 1333
-	"jump range" 50
 	haze _menu/haze-133
 	link Kanguwa
 	link Yranjiu
@@ -21724,7 +21702,6 @@ system Nssryos
 	pos 771.9 -529.6
 	government Uninhabited
 	habitable 3699.2
-	"jump range" 60
 	belt 1175
 	haze _menu/haze-blackbody
 	link Jied
@@ -21773,7 +21750,7 @@ system Nssryos
 		period 12873.4
 
 system Nnaug
-	pos 712.89 -599.51
+	pos 718.89 -592.01
 	government "Gegno Vi"
 	habitable 1232.2
 	belt 1901
@@ -22027,11 +22004,11 @@ system Nunki
 			period 66.2404
 
 system O-3184
-	pos 1095.74 -647.38
+	pos 1100.407 -646.047
 	government Uninhabited
 	habitable 259.2
 	belt 1119
-	"jump range" 40
+	"jump range" 70
 	haze _menu/haze-coal
 	link E-9182
 	link U-5188
@@ -22130,10 +22107,9 @@ system Oblate
 		period 2449.85
 
 system Oihaug
-	pos 781 -582.14
+	pos 773.5 -573.14
 	government Uninhabited
 	habitable 204.8
-	"jump range" 80
 	belt 1756
 	haze _menu/haze-133
 	link Eogho
@@ -22177,7 +22153,7 @@ system Oihaug
 		period 47328.71
 
 system Ookmya
-	pos 639.6 -607.17
+	pos 633.6 -610.17
 	government "Gegno Vi"
 	habitable 3699.2
 	belt 1144
@@ -22240,7 +22216,6 @@ system Oosuoro
 	pos 839 -592.67
 	government Gegno
 	habitable 10525
-	"jump range" 80
 	belt 828
 	haze _menu/haze-33
 	link Asio
@@ -22773,7 +22748,7 @@ system Patir
 			period 17.525
 
 system Pbelnep
-	pos 945.6 -504.2
+	pos 945.6 -505.7
 	government "Gegno Scin"
 	habitable 413.65
 	belt 1803
@@ -24165,10 +24140,9 @@ system Ptetubo
 			period 188.61
 
 system Ptobeh
-	pos 550.2 -529.3
+	pos 553.2 -526.3
 	government Uninhabited
 	habitable 3276.8
-	"jump range" 70
 	belt 1440
 	haze _menu/haze-133
 	link Acnanjo
@@ -24251,7 +24225,6 @@ system Pukako
 	government Uninhabited
 	habitable 361.25
 	belt 1154
-	"jump range" 50
 	haze _menu/haze-133
 	link Empeles
 	link Karhio
@@ -25390,11 +25363,12 @@ system Ritilas
 			period 26.1475
 
 system Rouseu
-	pos 560.7 -408.8
+	pos 566.7 -404.133
 	government Uninhabited
 	habitable 1780
 	belt 1648
 	haze _menu/haze-133
+	"jump range" 70
 	link Maoni
 	asteroids "small rock" 132 1.34
 	asteroids "medium rock" 42 2.32
@@ -26325,7 +26299,7 @@ system Schedar
 			period 25.3563
 
 system Scija
-	pos 657.5 -571
+	pos 651.5 -586
 	government "Gegno Vi"
 	habitable 2439.2
 	belt 1431
@@ -29283,11 +29257,11 @@ system Turais
 		period 4109.01
 
 system U-5188
-	pos 1071 -677.29
+	pos 1084 -665.623
 	government Uninhabited
 	habitable 361.25
 	belt 1330
-	"jump range" 40
+	"jump range" 70
 	haze _menu/haze-none
 	link O-3184
 	link V-2189
@@ -29386,7 +29360,6 @@ system Uhebe
 	pos 647.4 -496.3
 	government "Gegno Vi"
 	habitable 1843.2
-	"jump range" 70
 	belt 1771
 	haze _menu/haze
 	link Cshudlye
@@ -29891,10 +29864,9 @@ system "Uwa Fahn"
 		period 5060.21
 
 system V-2189
-	pos 1135.9 -709
+	pos 1135.9 -711.667
 	government Uninhabited
 	habitable 1907.2
-	"jump range" 80
 	belt 1985
 	haze _menu/haze-none
 	link U-5188
@@ -29984,10 +29956,9 @@ system Vaiov
 			period 6.5
 
 system Vanguwo
-	pos 901.3 -318.13
+	pos 978.189 -237.686
 	government Uninhabited
 	habitable 11530
-	"jump range" 50
 	belt 1964
 	haze _menu/haze-67
 	link Lloloi
@@ -30140,7 +30111,6 @@ system Vesvii
 	pos 792.58 -432.88
 	government Uninhabited
 	habitable 2560
-	"jump range" 60
 	belt 976
 	haze _menu/haze-33
 	link Huud
@@ -30192,7 +30162,6 @@ system Vilacira
 	pos 805.1 -350.2
 	government Gegno
 	habitable 28.8
-	"jump range" 70
 	belt 1157
 	haze _menu/haze-33
 	link Cotpoxi
@@ -30346,10 +30315,9 @@ system Volax
 		period 2872.94
 
 system Vorsuke
-	pos 690.1 -520.3
+	pos 693.1 -518.3
 	government Uninhabited
 	habitable 1316.45
-	"jump range" 50
 	belt 1177
 	haze _menu/haze-none
 	asteroids "small rock" 13 4.23
@@ -30387,11 +30355,10 @@ system Vorsuke
 			period 65
 
 system Vulcuja
-	pos 1049.2 -272.1
+	pos 1071.756 -263.767
 	government Uninhabited
 	habitable 208080
 	belt 1972
-	"jump range" 50
 	haze _menu/haze-coal
 	link Yranjiu
 	asteroids "large rock" 1 1
@@ -30414,11 +30381,10 @@ system Vulcuja
 		period 534
 
 system W-3197
-	pos 1200 -404.5
+	pos 1204.5 -400
 	government Uninhabited
 	habitable 924.8
 	belt 1887
-	"jump range" 50
 	haze _menu/haze-coal
 	link G-719
 	link G-819
@@ -31306,7 +31272,7 @@ system Yerser
 			period 30
 
 system Yli
-	pos 730.7 -504.8
+	pos 737.7 -496.467
 	government Uninhabited
 	habitable 369.7
 	"jump range" 70
@@ -31352,10 +31318,10 @@ system Yli
 		period 6188.4
 
 system Yllke
-	pos 950.2 -638.2
+	pos 947.7 -648.2
 	government Gegno
 	habitable 924.8
-	"jump range" 60
+	"jump range" 80
 	belt 1925
 	haze _menu/haze-67
 	link Aleit
@@ -31403,11 +31369,11 @@ system Yllke
 			period 242.1
 
 system Yranjiu
-	pos 1056.5 -308.72
+	pos 1054.278 -298.942
 	government Uninhabited
 	habitable 2000
 	belt 1478
-	"jump range" 50
+	"jump range" 30
 	haze _menu/haze-none
 	link Aierena
 	link Gaungu
@@ -31512,7 +31478,7 @@ system Zeinar
 	government "Gegno Scin"
 	belt 1960
 	habitable 425
-	"jump range" 50
+	"jump range" 70
 	haze _menu/haze-33
 	link "Erba Yle"
 	link Iinjma
@@ -31696,10 +31662,10 @@ system "Zeta Centauri"
 		period 12226.1
 
 system Zolpulti
-	pos 928.6 -376.2
+	pos 920.989 -294.2
 	government Uninhabited
 	habitable 810
-	"jump range" 50
+	"jump range" 90
 	belt 1159
 	haze _menu/haze-blackbody
 	link Lloloi

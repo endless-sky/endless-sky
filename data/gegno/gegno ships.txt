@@ -177,7 +177,7 @@ ship Gypsum
 ship Augen
 	sprite ship/augen
 	attributes
-		category "Heavy Warship"
+		category "Superheavy"
 			"Gegno Civilian"
 			"Vi Evocati"
 			"Vi Centurion"
