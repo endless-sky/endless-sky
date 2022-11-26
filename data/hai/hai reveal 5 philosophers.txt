@@ -214,10 +214,8 @@ mission "Hai Reveal [B02-S] Republic Intelligence Stalkers"
 		government "Republic Intelligence"
 		system "Alcyone"
 		personality launching mute marked
-		fleet
-			names "republic small"
-			variant
-				"Cruiser (Republic Intelligence)"
+		ship "Cruiser (Republic Intelligence)" "R.I.S. Adrasteia"
+
 
 mission "Hai Reveal [B03] Contact Giti"
 	landing
