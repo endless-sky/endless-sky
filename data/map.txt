@@ -1531,7 +1531,7 @@ system "Uwo Seija"
 	habitable 1907.2
 	belt 1222
 	haze _menu/haze
-	link "Aksek Jmi"
+	link "Aksek"
 	asteroids "small rock" 85 2.1
 	asteroids "medium rock" 8 2.3
 	asteroids "large rock" 14 1.65
