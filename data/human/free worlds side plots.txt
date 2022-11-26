@@ -64,22 +64,22 @@ mission "FW Convoy to Zug"
 		government "Pirate"
 		personality plunders staying
 		system "Sabik"
-		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates" 2
 	npc
 		government "Pirate"
 		personality plunders staying
 		system "Hadar"
-		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates" 2
 	npc
 		government "Pirate"
 		personality plunders staying
 		system "Zeta Centauri"
-		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
 	npc
 		government "Pirate"
 		personality plunders staying
 		system "Izar"
-		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
 	on visit
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
