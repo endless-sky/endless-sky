@@ -13325,11 +13325,11 @@ system G-3191
 	asteroids "large metal" 1 1.8
 	object
 		sprite star/f-supergiant
-		distance 2214.65
+		distance 600.65
 		period 10
 	object
 		sprite star/a-supergiant
-		distance 2214.65
+		distance 600.65
 		period 10
 		offset 180
 	object
