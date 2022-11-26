@@ -86,6 +86,7 @@ mission "FW Convoy to Zug"
 	on complete
 		payment 750000
 		event "fw zug expansion underway"
+		event "fw zug expansion complete" 120
 		dialog `The five Hauler IIIs have all arrived safely in Zug's spaceport. The land set aside for the expansion is being broken, but still, nobody can tell you what it's called.`
 
 
