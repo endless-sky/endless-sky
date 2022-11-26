@@ -21,6 +21,8 @@ if 'CXX' in os.environ:
 	env['CXX'] = os.environ['CXX']
 if 'CXXFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CXXFLAGS'])
+if 'CPPFLAGS' in os.environ:
+	env.Append(CCFLAGS = os.environ['CPPFLAGS'])
 if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
 if 'AR' in os.environ:
