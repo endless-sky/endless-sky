@@ -4077,5 +4077,5 @@ void AI::SetInvisibleFenceRadius(double radius)
 
 double AI::GetInvisibleFenceRadius() const
 {
-	return this->invisibleFenceRadius;
+	return invisibleFenceRadius;
 }
