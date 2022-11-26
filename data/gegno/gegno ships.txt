@@ -447,7 +447,8 @@ ship Diorite
 
 	gun -7 -193 "Ballistic Cannon"
 	gun 7 -193 "Ballistic Cannon"
-	gun 143 0 "Chloeric Cannon"
+	gun 0 143 "Chloeric Cannon"
+		angle 180
 	turret -24 -77 "Irate Cannon Turret"
 	turret 24 -77 "Irate Cannon Turret"
 	engine -22.5 158
