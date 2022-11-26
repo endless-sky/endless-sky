@@ -775,7 +775,7 @@ outfit "Pulse Rifle"
 outfit "Shield Beetle Pendant"
 	category "Unique"
 	thumbnail "outfit/crystal pendant"
-	"fuel generation" 0.018
+	"inertia reduction" 0.05
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
 
 
