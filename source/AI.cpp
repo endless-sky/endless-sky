@@ -3443,9 +3443,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
 
-			bool foundEnemy = false;
 			const auto boardingPriority = Preferences::GetBoardingPriority();
-
 			auto strategy = [&]() noexcept -> function<double(const Ship &)>
 			{
 				Point current = ship.Position();
@@ -3479,7 +3477,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			using ShipValue = pair<const Ship *, double>;
 			auto boardable = vector<ShipValue>{};
 
-			auto fillBoardable = [&ship, &foundEnemy, &boardable, &strategy](const Ship &other) noexcept
+			auto fillBoardable = [&ship, &boardable, &strategy](const Ship &other) noexcept
 			{
 				if(CanBoard(ship, other))
 					boardable.emplace_back(&other, strategy(other));
