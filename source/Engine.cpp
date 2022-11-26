@@ -1852,33 +1852,34 @@ void Engine::HandleKeyboardInputs()
 	Command keyDown = keyHeld.AndNot(oldHeld);
 
 	// Certain commands are always sent when the corresponding key is depressed.
-	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
+	static const Command maneuveringCommands = Command::AFTERBURNER | Command::BACK |
 		Command::FORWARD | Command::LEFT | Command::RIGHT;
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		manueveringCommands | Command::SHIFT);
+		maneuveringCommands | Command::SHIFT);
 
-	// Issuing LAND or BOARD again within the cooldown period signals a change of landing or boarding target.
+	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
+	// navigable destinations in the system.
+	static const Command debouncedCommands = Command::LAND | Command::BOARD;
 	constexpr int keyCooldown = 60;
 	++keyInterval;
-	if(oldHeld.Has(Command::LAND) || oldHeld.Has(Command::BOARD))
+	if(oldHeld.Has(debouncedCommands))
 		keyInterval = 0;
 
 	// If all previously-held maneuvering keys have been released,
 	// restore any autopilot commands still being requested.
-	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
+	if(!keyHeld.Has(maneuveringCommands) && oldHeld.Has(maneuveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | debouncedCommands);
 
-		// Do not switch landing or boarding targets when restoring autopilot.
+		// Do not switch debounced targets when restoring autopilot.
 		keyInterval = keyCooldown;
 	}
 
-	// If holding JUMP or toggling LAND or BOARD, also send WAIT. This prevents the jump from
-	// starting (e.g. while escorts are aligning), or switches the landing or boarding target.
-	if(keyHeld.Has(Command::JUMP) || ((keyHeld.Has(Command::LAND) || keyHeld.Has(Command::BOARD))
-			&& keyInterval < keyCooldown))
+	// If holding JUMP or toggling a debounced command, also send WAIT. This prevents the jump from
+	// starting (e.g. while escorts are aligning), or switches the associated debounced target.
+	if(keyHeld.Has(Command::JUMP) || (keyInterval < keyCooldown && keyHeld.Has(debouncedCommands)))
 		activeCommands |= Command::WAIT;
 
 	// Transfer all newly pressed, unhandled keys to active commands.
