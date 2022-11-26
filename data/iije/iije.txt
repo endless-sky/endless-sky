@@ -33,7 +33,7 @@ outfit "Jje Propulsion Organ"
 	"thrust" 8
 	"turn" 60
 	"flare sound" "ambient/jje"
-	description `A strange organ Ayyms use to manipualte gravity to travel around in space.`
+	description `A strange organ Jje use to manipualte gravity to travel around in space.`
 	
 outfit "Ayym Propulsion Organ"
 	category "Engines"
@@ -43,9 +43,10 @@ outfit "Ayym Propulsion Organ"
 	"thrust" 14
 	"turn" 80
 	"flare sound" "ambient/ayym"
-	description `A strange organ Ayyms use to manipualte gravity to travel around in space.`
+	description `A strange organ Ayym use to manipualte gravity to travel around in space.`
 	
 ship "Jje"
+	plural "Jje"
 	noun "creature"
 	swizzle 0
 	"sprite" ship/jje/jje
@@ -89,19 +90,19 @@ ship "Jje"
 
 	engine 0 0
 	"steering engine" 0 0
-	leak blood 10 5
-	explode blood
-	"final explode" blood
+	leak blood 20 10
+	"final explode" "jje boom"
 	description "This is an adolescent form of the Iije, having recently consumed quanities of stellar dust, matter, and energy. They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
 
 ship "Ayym"
+	plural "Ayym"
 	noun "creature"
 	swizzle 0
 	"sprite" ship/ayym/ayym
 		"frame rate" 8
 	"never disabled"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		"cost" 0
 		"hull" 6000
 		"required crew" 4
@@ -169,10 +170,34 @@ ship "Ayym"
 	bay "Fighter" -36 40
 		over
 		angle -53
-	leak blood 10 5
-	explode blood
-	"final explode" blood
+	leak blood 40 20
+	"final explode" "ayym boom"
 	description "This is an adult form of the Iije, having grown enormous from consuming stellar matter over hundreds of thousands of years. They can be seen carrying the smaller Jje around the Umbral Reach, but the exact purpose of this activity is unknown."
+
+# Effects:
+
+effect "jje boom"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion jje"
+	"lifetime" 32
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 4
+	"random velocity" .8
+	"velocity scale" .4
+
+effect "ayym boom"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion ayym"
+	"lifetime" 15
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .4
 
 # Fleets:
 
