@@ -19,14 +19,13 @@ ship "Kaiken"
 		"cost" 1199000
 		"shields" 3200
 		"hull" 800
-		"required crew" 2
-		"bunks" 2
+		"required crew" 1
+		"bunks" 1
 		"mass" 50
 		"drag" 1
 		"heat dissipation" 0.95
-		"fuel capacity" 50
-		"outfit space" 120
-		"weapon capacity" 38
+		"outfit space" 121
+		"weapon capacity" 35
 		"engine capacity" 45
 		weapon
 			"blast radius" 40
@@ -36,10 +35,10 @@ ship "Kaiken"
 	outfits
 		"Locust Blaster" 3
 		
-		"Solar Battery" 2
-		"Solar Cell" 17
-		"Small Shield Relay"
-		"Shield Relay Booster" 4
+		"Solar Battery"
+		"Solar Cell" 27
+		"Small Shield Relay" 
+		"Shield Relay Limiter" 6
 		
 		"Chiisana Rift Thruster" 2
 		"Chiisana Rift Steering"
@@ -72,7 +71,7 @@ ship "Sasumata"
 		"fuel capacity" 700
 		"cargo space" 32
 		"outfit space" 397
-		"weapon capacity" 142
+		"weapon capacity" 122
 		"engine capacity" 126
 		"cloak" .05
 		"cloaking energy" 10
@@ -84,16 +83,16 @@ ship "Sasumata"
 			"hit force" 1350
 	outfits
 		"Swarm Pod" 2
-		"Swarm Missile" 600
+		"Swarm Missile" 1000
+		"Swarm Clip"
 		"Buzzer Anti-Missile" 2
 		
 		"Quark Reactor"
 		"Reactor Overclocker" 2
-		"Solar Battery" 3
-		"Solar Cell" 10
+		"Solar Battery" 2
+		"Solar Cell" 30
 		"Large Shield Relay"
-		"Small Nanite Fabricator"
-		"Nanite Enhancer" 2
+		"Shield Relay Limiter" 10
 		
 		"Subarashii Rift Thruster"
 		"Ookii Rift Steering"
@@ -146,14 +145,13 @@ ship "Tanto"
 	outfits
 		"Buzzer Anti-Missile" 2
 		
-		"Solar Battery"
-		"Solar Cell" 37
+		"Solar Battery" 2
+		"Solar Cell" 42
 		"Small Shield Relay"
-		"Shield Relay Limiter" 6
 		
 		"Ookii Rift Thruster"
 		"Ookii Rift Steering"
-		"Chiisana Rift Steering"
+		"Chiisana Rift Thruster"
 		"Hyperdrive"
 		
 	engine -20.5 139.5
@@ -161,8 +159,8 @@ ship "Tanto"
 	engine 0 149
 	gun -16.5 -135
 	gun 16.5 -135
-	turret 0 108
 	turret 0 -74.5
+	turret 0 108
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 80 30
@@ -189,9 +187,9 @@ ship "Ararebo"
 		"heat dissipation" 0.85
 		"fuel capacity" 700
 		"cargo space" 414
-		"outfit space" 381
-		"weapon capacity" 119
-		"engine capacity" 149
+		"outfit space" 594
+		"weapon capacity" 112
+		"engine capacity" 108
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
@@ -201,13 +199,15 @@ ship "Ararebo"
 		"Locust Turret" 2
 		"Buzzer Anti-Missile" 2
 		
-		"Electroweak Reactor"
-		"Reactor Overclocker" 4
+		"Dark Reactor"
+		"Reactor Overclocker" 8
+		"Reactor Limiter" 3
 		"Solar Battery"
-		"Small Shield Relay"
-		"Shield Relay Booster" 4
-		"Shield Relay Limiter"
-		"Small Nanite Fabricator"
+		"Solar Cell" 36
+		"Large Shield Relay"
+		"Shield Relay Booster" 16
+		"Large Nanite Fabricator"
+		"Nanite Enhancer" 5
 		
 		"Ookii Rift Thruster"
 		"Ookii Rift Steering"
@@ -256,7 +256,7 @@ ship "Tekkan"
 		"cargo space" 21
 		"outfit space" 321
 		"weapon capacity" 100
-		"engine capacity" 98
+		"engine capacity" 85
 		weapon
 			"blast radius" 140
 			"shield damage" 1400
@@ -268,14 +268,13 @@ ship "Tekkan"
 		"Buzzer Anti-Missile" 2
 		
 		"Quark Reactor"
-		"Reactor Overclocker" 2
-		"Solar Battery"
+		"Solar Battery" 36
 		"Small Shield Relay"
-		"Shield Relay Booster" 3
+		"Shield Relay Booster" 5
 		"Small Nanite Fabricator"
 		
 		"Ookii Rift Thruster"
-		"Ookii Rift Steering"
+		"Nami Rift Steering"
 		"Hyperdrive"
 	
 	engine -11.5 66.5
@@ -312,8 +311,8 @@ ship "Kunai"
 		"fuel capacity" 700
 		"cargo space" 28
 		"outfit space" 407
-		"weapon capacity" 154
-		"engine capacity" 117
+		"weapon capacity" 158
+		"engine capacity" 102
 		weapon
 			"blast radius" 210
 			"shield damage" 2100
@@ -323,14 +322,16 @@ ship "Kunai"
 		"Mandible Cannon" 4
 		"Locust Blaster" 2
 		
-		"Electroweak Reactor"
-		"Solar Battery"
-		"Solar Cell" 12
-		"Large Shield Relay"
-		"Shield Relay Booster" 2
+		"Quark Reactor"
+		"Solar Battery" 2
+		"Solar Cell" 28
+		"Small Shield Relay"
+		"Shield Relay Booster" 4
+		"Small Nanite Fabricator"
 		
-		"Nami Rift Thruster"
+		"Ookii Rift Thruster"
 		"Ookii Rift Steering"
+		"Chiisana Rift Steering"
 		"Hyperdrive"
 	
 	engine -8 49
@@ -376,21 +377,17 @@ ship "Kama"
 			"hull damage" 1750
 			"hit force" 5250
 	outfits
-		"Locust Blaster" 2
 		"Mandible Cannon" 4
-		"Swarm Pod" 4
-		"Swarm Missile" 1200
-		"Buzzer Anti-Missile"
+		"Swarm Pod" 6
+		"Swarm Missile" 2400
 		
 		"Electroweak Reactor"
 		"Reactor Overclocker" 2
 		"Solar Battery"
-		"Solar Cell" 8
+		"Solar Cell" 36
 		"Large Shield Relay"
-		"Shield Relay Booster" 3
-		"Small Nanite Fabricator"
-		"Nanite Enhancer"
-		"Outfits Expansion"
+		"Shield Relay Booster" 6
+		"Outfits Expansion" 2
 		
 		"Ookii Rift Thruster"
 		"Ookii Rift Steering"
@@ -399,12 +396,12 @@ ship "Kama"
 		
 	engine -11.5 132.5
 	engine 11.5 132.5
-	gun -5 -114 "Locust Blaster"
-	gun 5 -114 "Locust Blaster"
+	gun -5 -114 "Mandible Cannon"
+	gun 5 -114 "Mandible Cannon"
 	gun -14 -105.5 "Mandible Cannon"
 	gun 14 -105.5 "Mandible Cannon"
-	gun -24.5 -129 "Mandible Cannon"
-	gun 24.5 -129 "Mandible Cannon"
+	gun -24.5 -129 "Swarm Pod"
+	gun 24.5 -129 "Swarm Pod"
 	gun -54.5 -20 "Swarm Pod"
 	gun 54.5 -20 "Swarm Pod"
 	gun -62.5 -9.5 "Swarm Pod"
@@ -440,7 +437,7 @@ ship "Chigiriki"
 		"cargo space" 102
 		"outfit space" 747
 		"weapon capacity" 504
-		"engine capacity" 163
+		"engine capacity" 145
 		weapon
 			"blast radius" 410
 			"shield damage" 4100
@@ -450,15 +447,15 @@ ship "Chigiriki"
 		"Thorax Cannon"
 		"Locust Blaster" 6
 		"Swarm Pod" 10
-		"Swarm Missile" 3000
+		"Swarm Missile" 4000
 		
 		"Dark Reactor"
-		"Reactor Overclocker" 6
+		"Reactor Limiter" 3
 		"Solar Battery" 3
+		"Solar Cell" 19
 		"Large Shield Relay"
-		"Shield Relay Booster" 6
-		"Small Nanite Fabricator"
-		"Outfits Expansion" 2
+		"Shield Relay Booster" 16
+		"Outfits Expansion" 4
 		
 		"Ookii Rift Thruster"
 		"Subarashii Rift Steering"
