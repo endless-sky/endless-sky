@@ -27,22 +27,22 @@ mission "FW Convoy to Zug"
 	on offer
 		conversation
 			`While returning from a walk around the spaceport town of <planet>, you see the quartermaster of the spaceport inspecting your ship. He notices you, and comes up to greet you.`
-			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <destination>." He points towards five Hauler IIIs on the opposite berths to your ship.`
-			`	"Many in our militia mentioned you when I asked for someone suitable to escort these ships. This is for quite a significant project, so you will be paid <payment>."`
+			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <destination>." He points towards five Hauler IIIs on the landing pads opposite to your ship.`
+			`	"Many of our militia officers mentioned you when I asked for someone suitable to escort these ships. It seems you are quite experienced here. This is for quite a significant project, so you will be paid <payment>."`
 			choice
 				`	"What's the project for?"`
 				`	"That's a lot of freighters. Are you expecting any resistance?"
-				goto "pirates"
+					goto "pirates"
 				`	"Sorry, I'm not planning on going that way."`
 					decline
-			`	"The ships are carrying the construction materials to start the extension of Zug's New Port, which has been a long time coming. It would greatly help our efforts. From what I've heard, they still haven't finalised a name for the extension yet."`
-			goto "meet"
+			`	"The ships are carrying construction materials to start the extension of Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. From what I've heard, the port authority still hasn't finalised a name for the extension yet."`
+				goto "meet"
 			label "pirates"
-			`	"We do not expect the pirates to be much of a nuisance, but I recommend avoiding combat when possible. The loss of these ships would be... not ideal."`
+			`	"I do not expect the pirates to be too much of a nuisance, but I'd recommend avoiding combat when possible. The loss of these ships would be... not ideal."`
 			label "meet"
 			`	"Well, will you help us escort these ships?"`
 			choice
-				`	"Of course, I'll see to it that they'll get to <destination> safely."`
+				`	"Of course, I'll see to it that they'll get to Zug safely."`
 				`	"No, I won't be able to, sorry."`
 					decline
 			`	"Great! These ships are critical, and I expect that they will benefit the Free Worlds immensely."`
@@ -60,34 +60,34 @@ mission "FW Convoy to Zug"
 		government "Pirate"
 		personality plunders staying
 		system "Zubenelgenubi"
-		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
 	npc
 		government "Pirate"
 		personality plunders staying
 		system "Sabik"
-		fleet "Small Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Hadar"
 		fleet "Small Southern Pirates" 2
 	npc
 		government "Pirate"
 		personality plunders staying
+		system "Hadar"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
 		system "Zeta Centauri"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	npc
 		government "Pirate"
 		personality plunders staying
 		system "Izar"
-		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates" 2
 	on visit
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 750000
 		event "fw zug expansion underway"
-		event "fw zug expansion complete" 120
-		dialog `The five Hauler IIIs have all arrived safely in Zug's spaceport. The land set aside for the expansion is being broken, but still, nobody can tell you what it's called.`
+		event "fw zug expansion complete" 2
+		dialog `The five Hauler IIIs have all arrived safely in Zug's spaceport. The land set aside for the expansion is currently being broken for construction, but still, nobody can tell you what it's called.`
 
 
 
