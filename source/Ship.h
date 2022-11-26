@@ -321,7 +321,7 @@ public:
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
 	bool NeedsFuel(bool followParent = true) const;
-	// Get the amount of fuel missing for the next jump (smart refuelling)
+	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
