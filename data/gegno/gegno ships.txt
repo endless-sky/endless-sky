@@ -303,8 +303,8 @@ ship Schist
 		"heat dissipation" 0.7
 		"fuel capacity" 500
 		"cargo space" 140
-		"outfit space" 250
-		"weapon capacity" 58
+		"outfit space" 298
+		"weapon capacity" 106
 		"engine capacity" 106
 		"weapon capacity" 58
 		weapon
@@ -315,7 +315,7 @@ ship Schist
 	outfits
 		"C7 Brawl Cell"
 		Hyperdrive
-		"Irate Cannon" 2
+		"Irate Cannon" 6
 		"Irate Cannon Turret"
 		"R02 Battlezone Battery"
 		"RG18 Torch Steering"
@@ -323,6 +323,14 @@ ship Schist
 	engine 0 153.5
 	gun -16.5 -181.5 "Irate Cannon"
 	gun 16.5 -181.5 "Irate Cannon"
+	gun 44.5 -81 "Irate Cannon"
+		angle 80
+	gun -44.5 -81 "Irate Cannon"
+		angle -80
+	gun 56.5 30.5 "Irate Cannon"
+		angle 112
+	gun -56.5 30.5 "Irate Cannon"
+		angle -112
 	turret 0 -139.5 "Irate Cannon Turret"
 	leak leak 60 50
 	leak flame 60 80
@@ -418,8 +426,8 @@ ship Diorite
 		"heat dissipation" 0.5
 		"fuel capacity" 500
 		"cargo space" 40
-		"outfit space" 511
-		"weapon capacity" 251
+		"outfit space" 548
+		"weapon capacity" 288
 		"engine capacity" 124
 		"weapon capacity" 251
 		weapon
@@ -430,16 +438,18 @@ ship Diorite
 	outfits
 		"C17 Warzone Core"
 		"Ballistic Cannon" 2
+		"Chloeric Cannon"
 		Hyperdrive
 		"Irate Cannon Turret" 2
 		"R03 Warforge Battery"
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
 
-	gun -7 -193
-	gun 7 -193
-	turret -24 -77
-	turret 24 -77 
+	gun -7 -193 "Ballistic Cannon"
+	gun 7 -193 "Ballistic Cannon"
+	gun 143 0 "Chloeric Cannon"
+	turret -24 -77 "Irate Cannon Turret"
+	turret 24 -77 "Irate Cannon Turret"
 	engine -22.5 158
 	engine 0 164
 	engine 22.5 158
@@ -471,8 +481,8 @@ ship Hornfel
 		"heat dissipation" 0.6
 		"fuel capacity" 400
 		"cargo space" 120
-		"outfit space" 428
-		"weapon capacity" 140
+		"outfit space" 548
+		"weapon capacity" 260
 		"engine capacity" 94
 		weapon
 			"blast radius" 90
@@ -483,7 +493,7 @@ ship Hornfel
 		"C17 Warzone Core"
 		"Chloeric Cannon Turret" 2
 		Hyperdrive
-		"Irate Cannon" 4
+		"Irate Cannon" 10
 		"R03 Warforge Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
@@ -493,6 +503,18 @@ ship Hornfel
 	gun -20.5 -234.5 "Irate Cannon"
 	gun -26.5 -222.5 "Irate Cannon"
 	gun 26.5 -222.5 "Irate Cannon"
+	gun 32.5 -129 "Irate Cannon"
+		angle 60
+	gun -30.5 -114 "Irate Cannon"
+		angle -60		
+	gun -41.5 -2 "Irate Cannon"
+		angle -90
+	gun 42.5 31 "Irate Cannon"
+		angle 90
+	gun -33 150.5 "Irate Cannon"
+		angle 135
+	gun 32 160.5 "Irate Cannon"
+		angle -135
 	turret 0 -117.5 "Chloeric Cannon Turret"
 	turret 0 -44 "Chloeric Cannon Turret"
 	leak leak 60 50
@@ -525,8 +547,8 @@ ship Hornfel "Hornfel Heavy Weapons"
 	thumbnail "thumbnail/gegno hornfel d"
 	add attributes
 		mass 60
-		"cargo space" -40
-		drag 1.1
+		"cargo space" -70
+		drag 1.3
 		"weapon capacity" 70
 		"outfit space" 20
 	outfits
@@ -543,6 +565,18 @@ ship Hornfel "Hornfel Heavy Weapons"
 	gun -20.5 -234.5 "Chloeric Cannon"
 	gun -26.5 -222.5 "Irate Cannon"
 	gun 26.5 -222.5 "Irate Cannon"
+	gun 32.5 -129 "Irate Cannon"
+		angle 60
+	gun -30.5 -114 "Irate Cannon"
+		angle -60		
+	gun -41.5 -2 "Irate Cannon"
+		angle -90
+	gun 42.5 31 "Irate Cannon"
+		angle 90
+	gun -33 150.5 "Irate Cannon"
+		angle 135
+	gun 32 160.5 "Irate Cannon"
+		angle -135
 	turret 0 -117.5 "Chloeric Cannon Turret"
 	turret 0 -44 "Chloeric Cannon Turret"
 	turret 0 -185 "Irate Cannon Turret"
@@ -567,8 +601,8 @@ ship Gneiss
 		"heat dissipation" 0.4
 		"fuel capacity" 500
 		"cargo space" 95
-		"outfit space" 765
-		"weapon capacity" 412
+		"outfit space" 841
+		"weapon capacity" 504
 		"engine capacity" 150
 		weapon
 			"blast radius" 150
@@ -579,7 +613,7 @@ ship Gneiss
 		"Ballistic Cannon Turret" 3
 		"C17 Warzone Core"
 		Hyperdrive
-		"Irate Cannon" 4
+		"Irate Cannon" 12
 		"R04 Crusade Battery"
 		"RG3 Torch Steering"
 		"RG3 Torch Thruster"
@@ -588,6 +622,22 @@ ship Gneiss
 	gun 17 -286 "Irate Cannon"
 	gun -23 -270.5 "Irate Cannon"
 	gun 23 -270.5 "Irate Cannon"
+	gun -38.5 -192.5 "Irate Cannon"
+		angle -60
+	gun 39 -185 "Irate Cannon"
+		angle 60
+	gun 46.5 -66.5 "Irate Cannon"
+		angle 90
+	gun -58 -14 "Irate Cannon"
+		angle -40
+	gun -69.5 5.5 "Irate Cannon"
+		angle -95
+	gun 65.5 9.5 "Irate Cannon"
+		angle 45
+	gun 66 87 "Irate Cannon"
+		angle 135
+	gun -55.5 133.5 "Irate Cannon"
+		angle -135
 	turret 0 -97.5 "Ballistic Cannon Turret"
 	turret 0 -23 "Ballistic Cannon Turret"
 	turret 0 46 "Ballistic Cannon Turret"
@@ -621,8 +671,8 @@ ship Protolith
 		"heat dissipation" 0.4
 		"fuel capacity" 700
 		"cargo space" 530
-		"outfit space" 468
-		"weapon capacity" 130
+		"outfit space" 576
+		"weapon capacity" 238
 		"engine capacity" 176
 		weapon
 			"blast radius" 280
@@ -634,15 +684,33 @@ ship Protolith
 		"Irate Cannon Turret"
 		"Chloeric Cannon Turret"
 		Hyperdrive
-		"Irate Cannon" 2
+		"Irate Cannon" 11
 		"R02 Battlezone Battery"
 		"RG3 Torch Steering"
 		"RG3 Torch Thruster"
 	engine 0 266
 	engine -48 258
 	engine 48 258
-	gun 38 -222 "Irate Cannon"
-	gun 48 -214 "Irate Cannon"
+	gun -22.5 -269 "Irate Cannon"
+	gun 22.5 -269 "Irate Cannon"
+	gun 62.5 -186.5 "Irate Cannon"
+		angle 45
+	gun -74 -165 "Irate Cannon"
+		angle -90
+	gun 93 -27.5 "Irate Cannon"
+		angle 100
+	gun -86.5 -60 "Irate Cannon"
+		angle -50
+	gun 107 -11.5 "Irate Cannon"
+		angle 35
+	gun -124.5 103.5 "Irate Cannon"
+		angle -90
+	gun 105 142 "Irate Cannon"
+		angle 95
+	gun -101 194.5 "Irate Cannon"
+		angle -125
+	gun 94.5 211 "Irate Cannon"
+		angle 150
 	turret 0 21 "Chloeric Cannon Turret"
 	turret -69.5 21 "Irate Cannon Turret"
 	leak leak 30 50
@@ -667,7 +735,7 @@ ship Halite
 			"Scin Hoplologist"
 			"Scin Architect"
 		cost 129000
-		shields 210
+		shields 240
 		hull 780
 		"required crew" 1
 		bunks 1
@@ -889,7 +957,7 @@ ship Feldspar
 		"fuel capacity" 600
 		"cargo space" 82
 		"outfit space" 566
-		"weapon capacity" 194
+		"weapon capacity" 234
 		"engine capacity" 172
 		weapon
 			"blast radius" 180

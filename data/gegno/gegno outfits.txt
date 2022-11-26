@@ -628,8 +628,8 @@ outfit "Astuit Battery"
 		"turret turn" 2.2
 		"firing energy" 13.2
 		"firing heat" 34
-		"shield damage" 8.4
-		"hull damage" 8.8
+		"shield damage" 8.8
+		"hull damage" 9.4
 	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
 	description `	Although each shot does not hit very hard, consistent fire adds up - but so does energy usage.`
 
@@ -668,8 +668,8 @@ outfit "Acuit Artillery"
 		"turret turn" 1.3
 		"firing energy" 130
 		"firing heat" 204
-		"shield damage" 162
-		"hull damage" 280
+		"shield damage" 170
+		"hull damage" 290
 		"hit force" 40
 	description `With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno Vi's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon from afar.`
 
