@@ -81,16 +81,15 @@ ship "Jje"
 		"discharge protection" 2
 
 		weapon
-			"blast radius" 100
-			"shield damage" 20
-			"hull damage" 10
-			"hit force" 30
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"Jje Propulsion Organ"
 
 	engine 0 0
 	"steering engine" 0 0
-	leak blood 20 10
 	"final explode" "jje boom"
 	description "This is an adolescent form of the Iije, having recently consumed quanities of stellar dust, matter, and energy. They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
 
@@ -133,10 +132,10 @@ ship "Ayym"
 		"energy protection" 3
 		"discharge protection" 3
 		weapon
-			"blast radius" 100
-			"shield damage" 20
-			"hull damage" 10
-			"hit force" 30
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
 	outfits
 		"Ayym Propulsion Organ"
 		"Jump Organ"
@@ -170,7 +169,6 @@ ship "Ayym"
 	bay "Fighter" -36 40
 		over
 		angle -53
-	leak blood 40 20
 	"final explode" "ayym boom"
 	description "This is an adult form of the Iije, having grown enormous from consuming stellar matter over hundreds of thousands of years. They can be seen carrying the smaller Jje around the Umbral Reach, but the exact purpose of this activity is unknown."
 
