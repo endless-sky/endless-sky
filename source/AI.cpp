@@ -1400,7 +1400,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
-	double invisibleFenceRadius = GetInvisibleFenceRadius();
+	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
 
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	// NPCs should not be beyond the "fence" unless their target is
@@ -4065,17 +4065,4 @@ void AI::UpdateOrders(const Ship &ship)
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}
-}
-
-
-void AI::SetInvisibleFenceRadius(double radius)
-{
-	this->invisibleFenceRadius = radius;
-}
-
-
-
-double AI::GetInvisibleFenceRadius() const
-{
-	return invisibleFenceRadius;
 }
