@@ -155,15 +155,15 @@ outfit "Abyssal Composer"
 		"hardpoint offset" 20
 		"firing energy" 60
 		"firing heat" 20
-		"shield damage" 260
+		"shield damage" 180
 		"slowing damage" 10
 		"energy damage" 100
 		"hull damage" 180
 		"piercing" 0.3
 		"firing force" 25
 		"hit force" -125
-		"firing shields" -50
-		"firing hull" -10
+		"firing shields" -30
+		"firing hull" -7
 		"safe"
 	description `This is an extremely dangerous weapon that uses graviton technology to pull a target's mass and energy apart, and then feeds it to the firing ship's systems.`
 
