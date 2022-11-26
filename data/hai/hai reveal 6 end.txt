@@ -56,6 +56,8 @@ mission "Hai Reveal [C01] Cleanup"
 			`	"Trouble. We need to talk," says Xilin. You follow them to a private meeting room.`
 			choice
 				`	"What's wrong?"`
+					goto whut
+				`	"Really? I thought we had figured everything out."`
 					goto need2talk
 				`	"Hey, don't worry. Whatever it is, I'm sure we've been through worse."`
 			`	Sayari rolls her eyes and says, "Don't relax yet, Captain <last>. There is one more minor disaster to be averted."`
