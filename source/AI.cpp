@@ -3435,16 +3435,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(activeCommands.Has(Command::BOARD))
 	{
-		// Determine the player's boarding target based on their selected preference. They may press BOARD repeatedly
-		// to cycle between ships, and may also press SHIFT to prioritize repairing their owned escorts.
+		// Determine the player's boarding target based on their current target and their boarding preference. They may
+		// press BOARD repeatedly to cycle between ships, or use SHIFT to prioritize repairing their owned escorts.
 		shared_ptr<Ship> target = ship.GetTargetShip();
-		if(!target || activeCommands.Has(Command::WAIT) || (shift && !target->IsYours()) || !CanBoard(ship, *target))
+		if(target && !CanBoard(ship, *target))
+			target.reset();
+		if(!target || activeCommands.Has(Command::WAIT) || (shift && !target->IsYours()))
 		{
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
-			// Only retain the current target ship reference if it can be boarded (it may be exploding).
-			if(target && !CanBoard(ship, *target))
-				target.reset();
 
 			const auto boardingPriority = Preferences::GetBoardingPriority();
 			auto strategy = [&]() noexcept -> function<double(const Ship &)>
@@ -3478,44 +3477,43 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			}();
 
 			using ShipValue = pair<Ship *, double>;
-			auto boardable = vector<ShipValue>{};
-
+			auto options = vector<ShipValue>{};
 			if(shift)
 			{
 				const auto &owned = governmentRosters[ship.GetGovernment()];
-				boardable.reserve(owned.size());
+				options.reserve(owned.size());
 				for(auto &&escort : owned)
 					if(CanBoard(ship, *escort))
-						boardable.emplace_back(escort, strategy(*escort));
+						options.emplace_back(escort, strategy(*escort));
 			}
 			else
 			{
 				auto ships = GetShipsList(ship, true);
-				boardable.reserve(ships.size());
+				options.reserve(ships.size());
 				// The current target is not considered by GetShipsList.
 				if(target)
-					boardable.emplace_back(target.get(), strategy(*target));
+					options.emplace_back(target.get(), strategy(*target));
 
 				// First check if we can board enemy ships, then allies.
 				for(auto &&enemy : ships)
 					if(CanBoard(ship, *enemy))
-						boardable.emplace_back(enemy, strategy(*enemy));
-				if(boardable.empty())
+						options.emplace_back(enemy, strategy(*enemy));
+				if(options.empty())
 				{
 					ships = GetShipsList(ship, false);
-					boardable.reserve(ships.size());
+					options.reserve(ships.size());
 					for(auto &&ally : ships)
 						if(CanBoard(ship, *ally))
-							boardable.emplace_back(ally, strategy(*ally));
+							options.emplace_back(ally, strategy(*ally));
 				}
 			}
 
-			if(boardable.empty())
+			if(options.empty())
 				activeCommands.Clear(Command::BOARD);
 			else
 			{
 				// Sort the list of options in increasing order of desirability.
-				sort(boardable.begin(), boardable.end(),
+				sort(options.begin(), options.end(),
 					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
 					{
 						if(boardingPriority == Preferences::BoardingPriority::PROXIMITY)
@@ -3529,24 +3527,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					}
 				);
 
-				// If there is no valid target, pick a new one.
-				if(!target)
-					ship.SetTargetShip(boardable.back().first->shared_from_this());
-				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
-				else if(activeCommands.Has(Command::WAIT))
-				{
-					auto it = find_if(boardable.begin(), boardable.end(),
-						[&target](const ShipValue &lhs) { return lhs.first == target.get(); }
-					);
-
-					if(it != boardable.end())
-					{
-						if(it == boardable.begin())
-							ship.SetTargetShip(boardable.back().first->shared_from_this());
-						else
-							ship.SetTargetShip((--it)->first->shared_from_this());
-					}
-				}
+				// Pick the (next) most desirable option.
+				auto it = !target ? options.end() : find_if(options.begin(), options.end(),
+					[&target](const ShipValue &lhs) noexcept -> bool { return lhs.first == target.get(); });
+				if(it == options.begin())
+					it = options.end();
+				ship.SetTargetShip((--it)->first->shared_from_this());
 			}
 		}
 	}
