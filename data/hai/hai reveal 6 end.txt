@@ -57,10 +57,10 @@ mission "Hai Reveal [C01] Cleanup"
 				`	"What's wrong?"`
 					goto need2talk
 				`	"Hey, don't worry. Whatever it is, I'm sure we've been through worse."`
-			`	Sayari rolls her eyes and says, "Maybe so, but there is one more minor disaster to be averted." You follow her to a private meeting room.`
+			`	Sayari rolls her eyes and says, "Don't relax yet, Captain <last>. There is one more minor disaster to be averted."`
 				goto whut
 			label need2talk
-			`	You feel the deepest of sighs settle into your bones. It would have been too easy if it was all over, wouldn't it?`
+			`	Sayari says, "It would have been too easy if it was all over. We have one more minor disaster to avert first."`
 			label whut
 			`	Xilin begins. "It seems that somewhere along the way, a shipload of kidnapped Hai didn't make it to a processing area. The Hai were left on Sunracer, and the ship appears to have disappeared."`
 			`	"For the moment," says Sayari, "We're the only ones who know about it. The Hai are in hiding but have tapped into a communication grid. I intercepted their transmission as it was routed through this station directly."`
