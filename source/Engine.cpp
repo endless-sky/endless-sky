@@ -1885,17 +1885,20 @@ void Engine::HandleKeyboardInputs()
 	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
 
-	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
-	// Translation is done here to allow the autopilot (which will execute the STOP-command) to
-	// act on a single STOP command instead of the shift+BACK modifier).
-	if(keyHeld.Has(Command::BACK) && keyHeld.Has(Command::SHIFT))
+	// Some commands are activated by combining SHIFT with a different key.
+	if(keyHeld.Has(Command::SHIFT))
 	{
-		activeCommands |= Command::STOP;
-		activeCommands.Clear(Command::BACK);
+		// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
+		// Translation is done here to allow the autopilot (which will execute the STOP-command) to
+		// act on a single STOP command instead of the shift+BACK modifier).
+		if(keyHeld.Has(Command::BACK))
+		{
+			activeCommands |= Command::STOP;
+			activeCommands.Clear(Command::BACK);
+		}
+		else if(keyHeld.Has(Command::JUMP))
+			activeCommands |= Command::FLEET_JUMP;
 	}
-	// Translate shift+JUMP to FLEET_JUMP.
-	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
-		activeCommands |= Command::FLEET_JUMP;
 }
 
 
