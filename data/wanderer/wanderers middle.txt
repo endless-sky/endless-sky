@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Wanderers: Pre-Colony"
 	landing
@@ -759,18 +762,18 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Kor Efret"
 		personality heroic
 		fleet
 			names "korath"
 			variant
-				"Korath World-Ship"
-				"Korath World-Ship B"
-				"Korath World-Ship C"
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Quarg"
 		personality heroic staying entering
@@ -1400,7 +1403,7 @@ mission "Wanderers: Tour 2"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1429,7 +1432,7 @@ mission "Wanderers: Tour 3"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1451,7 +1454,7 @@ mission "Wanderers: Tour 4"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1480,7 +1483,7 @@ mission "Wanderers: Tour 5"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 	npc
 		system "Ap'arak"
 		government "Hai (Unfettered)"
@@ -1509,7 +1512,7 @@ mission "Wanderers: Tour 6"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Korath World-Ship" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -2536,26 +2539,11 @@ event "bombed zenith"
 		bribe .04
 		"required reputation" 0
 	system "Alnilam"
-		object
-			sprite star/f5
-			period 10
-		object
-			sprite planet/desert1
-			distance 224.69
-			period 32.5314
-		object
-			sprite planet/gas7-b
-			distance 966.7
-			period 290.312
-			object
-				sprite planet/miranda-b
-				distance 220
-				period 10.5884
-			object
-				sprite planet/luna
-				distance 305
-				period 17.2841
-		object "Zenith"
+		remove object "Zenith"
+			sprite planet/ocean7
+			distance 1776.59
+			period 723.283
+		add object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
 			period 723.283
@@ -2563,49 +2551,14 @@ event "bombed zenith"
 				sprite planet/ice8
 				distance 136
 				period 16.5247
-		object
-			sprite planet/gas2
-			distance 2758.68
-			period 1399.52
-			object
-				sprite planet/dust1-b
-				distance 200
-				period 12.5708
-			object
-				sprite planet/lava0-b
-				distance 330
-				period 26.6433
-			object
-				sprite planet/dust7
-				distance 440
-				period 41.0201
-			object
-				sprite planet/desert4
-				distance 575
-				period 61.2801
 
 event "zenith cooling"
 	system "Alnilam"
-		object
-			sprite star/f5
-			period 10
-		object
-			sprite planet/desert1
-			distance 224.69
-			period 32.5314
-		object
-			sprite planet/gas7-b
-			distance 966.7
-			period 290.312
-			object
-				sprite planet/miranda-b
-				distance 220
-				period 10.5884
-			object
-				sprite planet/luna
-				distance 305
-				period 17.2841
-		object "Zenith"
+		remove object "Zenith"
+			sprite "planet/zenith hot"
+			distance 1776.59
+			period 723.283
+		add object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
 			period 723.283
@@ -2613,26 +2566,6 @@ event "zenith cooling"
 				sprite planet/ice8
 				distance 136
 				period 16.5247
-		object
-			sprite planet/gas2
-			distance 2758.68
-			period 1399.52
-			object
-				sprite planet/dust1-b
-				distance 200
-				period 12.5708
-			object
-				sprite planet/lava0-b
-				distance 330
-				period 26.6433
-			object
-				sprite planet/dust7
-				distance 440
-				period 41.0201
-			object
-				sprite planet/desert4
-				distance 575
-				period 61.2801
 
 mission "Wanderers: Sestor: Bomb Zenith 2"
 	landing
@@ -3065,6 +2998,7 @@ mission "Wanderers: Sestor: Exiles 2"
 
 event "wanderers: exiles peaceful"
 	"reputation: Korath" >?= 1
+	"reputation: Korath (Civilian)" >?= 1
 
 mission "Wanderers: Sestor: Exiles 3"
 	landing
@@ -3098,9 +3032,9 @@ mission "Wanderers: Sestor: Exiles 3"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -3126,15 +3060,32 @@ mission "Wanderers: Sestor: Factory 1"
 				`	"Are you sure that they really want peace? They aren't trying to trick you?"`
 			`	Rek says, "It is hard to be sure. Their culture is very different from the Kor Efret; even some of their language and gestures are new to me. But they have behaved peacefully toward us so far; we must hope that their peacefulness continues."`
 			label next
-			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you."`
-			`	You return to your ship, and get ready for the trip to <planet>.`
+			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you." He gestures with a wing towards a number of Wanderer vessels being loaded with supplies and prepared for battle. You notice a type of weapon you don't recognize mounted on some of them.`
+			choice
+				`	"Are those ships carrying a new type of weapon?"`
+				`	"Sounds like a good plan. Let's get going!"`
+					goto end
+			`	Tele'ek seems pleased that you noticed. "Indeed. They are more [useful, effective] against hull armor than shields, [perfect, appropriate] for use against the Kor Sestor vessels alongside our [existing, previous] armaments." He pauses before continuing. "[Hopefully, If this goes well], they will not get much use, but will see you [safely, successfully] through this [mission, task] to finally end this [blight, menace]. However, we will have them [ready, prepared] if the need does [arise, return]."`
+			choice
+				`	"Can I get some for my own ship?"`
+					goto buy
+				`	"Is it a good idea to show off these new weapons to the Korath Exiles when making overtures of friendship?"`
+				`	"I look forward to seeing them in action. I should get my ship ready for to go."`
+					goto end
+			`	Tele'ek gestures towards Rek who says, "I raised a similar concern, but in this case, I [recognize, accept] that the benefit outweighs possible risks."`
+			`	Tele'ek explains, "If they view these weapons as signs of [aggression?] against themselves, there is little I can do for them. Their ships are not as [durable, well-armored] as the Kor Sestor automata, so our other technologies would already be [effective, damaging] enough if used against them. If they are [rational, intelligent], they will value the added protection on this [journey, endeavor]."`
+				goto end
+			label buy
+			`	"We have not yet produced many, but they will be [available, present] in our outfitters soon."`
+			label end
+			`	You and Rek say goodbye to Tele'ek before returning to your ship, and preparing it for the trip to <planet>.`
 				accept
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath World-Ship A (Jump)" "Seskerat Pratka"
-		ship "Korath World-Ship B (Jump)" "Eskretakfakta"
-		ship "Korath World-Ship C (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -3153,9 +3104,11 @@ mission "Wanderers: Sestor: Factory Escorts"
 			names "wanderer"
 			variant
 				"Hurricane (Tough)"
+				"Hurricane (Moonbeam)"
 				"Derecho"
-				"Derecho (Turret)"
-				"Tempest (Heavy)" 2
+				"Derecho (Moonbeam)" 2
+				"Tempest (Heavy)"
+				"Tempest (Moonbeam)" 2
 				"Tempest"
 
 
@@ -3179,7 +3132,7 @@ mission "Wanderers: Sestor: Factory 2"
 	on offer
 		event "wanderers: asikafarnut battle"
 		conversation
-			`The drones stop firing on the Korath world-ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
+			`The drones stop firing on the Korath ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
 			`	You fire up your engines and blast off for one last battle against the Kor Sestor...`
 				launch
 	npc evade
@@ -3368,13 +3321,16 @@ event "wanderers: sabira eseskrai colony"
 		description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year. The Wanderers, working together with the Kor Efreti, have founded a settlement here and begun working to accelerate the process of rejuvenating the wastelands.`
 		spaceport `This small settlement is populated by a roughly equal number of Korath and Wanderer settlers. Since most of them do not speak each other's language, the two groups do not mingle much, and communicate mostly via gestures and drawings. It's not much, but it's at least a start for the two species to begin learning from each other.`
 
-mission "Wanderers: Sestor: Final"
+mission "Wanderers: Sestor: Final: Patched"
 	landing
 	name "Investigate the exiles"
 	description "Visit the Korath exile territory to look for any signs that they plan to start constructing war drones of their own."
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Sestor: Factory 3: done"
+		not "Wanderers: Sestor: Final: offered"
+	to fail
+		has "Wanderers: Sestor: Final: offered"
 	waypoint "Kor Fel'tar"
 	on enter "Kor Fel'tar"
 		dialog `There are several Kor Mereti and Kor Sestor drones in this system, and they don't look friendly. You should report to the Wanderers that the exiles have begun manufacturing drones of their own.`
@@ -3409,27 +3365,26 @@ mission "Wanderers: Sestor: Final"
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
+		event "wanderers: sestor planets unrestricted" 40
+		event "wanderers taking jobs from kor efreti" 5
+		event "wanderers: moonbeam mass production" 5
 		conversation
 			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
 			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
 
-mission "Wanderers: Sestor: Patch"
-	landing
-	invisible
-	to offer
-		has "event: wanderers: sestor eliminated"
-	on offer
-		event "wanderers: sestor planets unrestricted"
-		fail
-
-mission "Wanderers: Sestor: Patch 2"
+# This patch mission is necessary for people who got the older version of the "Sestor: Final" mission without the patches integrated.
+mission "Wanderers: Sestor: Combined Patch 1"
 	landing
 	invisible
 	to offer
 		has "Wanderers: Sestor: Final: done"
+	to fail
+		has "Wanderers: Sestor: Final: Patched: offered"
 	on offer
+		event "wanderers: sestor planets unrestricted" 40
 		event "wanderers taking jobs from kor efreti" 5
+		event "wanderers: moonbeam mass production" 5
 		fail
 
 event "wanderers: sestor planets unrestricted"

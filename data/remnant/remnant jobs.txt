@@ -8,12 +8,15 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Crippled Raider Bounty"
+	name "Crippled Palavret Bounty"
 	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -31,8 +34,9 @@ mission "Remnant: Bounty"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Korath Raider (Crippled)"
+				"Palavret (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -45,7 +49,7 @@ mission "Remnant: Bounty"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Troublesome Raider Bounty"
+	name "Troublesome Palavret Bounty"
 	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -63,8 +67,9 @@ mission "Remnant: Bounty 2"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Korath Raider (Hyperdrive)"
+				"Palavret (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -130,7 +135,7 @@ mission "Remnant: Expanded Horizons Astral job"
 mission "Remnant: Bounty 3"
 	job
 	repeat
-	name "Damaged Dredger Bounty"
+	name "Damaged Rano'erek Bounty"
 	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -149,8 +154,9 @@ mission "Remnant: Bounty 3"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Korath Dredger (Crippled)"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -163,7 +169,7 @@ mission "Remnant: Bounty 3"
 mission "Remnant: Bounty 4"
 	job
 	repeat
-	name "Marauding Dredger Bounty"
+	name "Marauding Rano'erek Bounty"
 	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -178,8 +184,9 @@ mission "Remnant: Bounty 4"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Korath Dredger (Hyperdrive)"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -204,7 +211,7 @@ mission "Remnant: Bounty 5"
 		random < 5
 	npc kill
 		government "Korath"
-		personality heroic vindictive uninterested target marked
+		personality heroic vindictive target marked staying
 		system
 			attributes "ember waste"
 			not attributes "graveyard"
@@ -212,9 +219,10 @@ mission "Remnant: Bounty 5"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Korath Dredger (Ground Assault)"
-				"Korath Chaser" 4
+				"Rano'erek (Ground Assault)"
+				"'olofez" 4
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -347,9 +355,7 @@ mission "Remnant: Rescue"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -371,7 +377,7 @@ mission "Remnant: Rescue"
 
 # The Rescue Dummy is meant to commit suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
-	#sprite "ship/behemoth"
+	# sprite "ship/behemoth"
 	attributes
 		"heat dissipation" 1
 		"hull" 1
@@ -416,9 +422,7 @@ mission "Remnant: Rescue 1B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -455,9 +459,7 @@ mission "Remnant: Rescue 2"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -496,9 +498,7 @@ mission "Remnant: Rescue 2B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -535,9 +535,7 @@ mission "Remnant: Rescue 3"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -574,9 +572,7 @@ mission "Remnant: Rescue 3B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -612,9 +608,7 @@ mission "Remnant: Rescue 4"
 			attributes "graveyard"
 			not attributes "inaccessible"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not system "Patir"
 			not system "Aki'il"
 		personality escort derelict heroic plunders
 		government "Remnant"
@@ -628,7 +622,7 @@ mission "Remnant: Rescue 4"
 		"remnant: rescue missions" ++
 		payment 500000
 		dialog
-			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you." `
+			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you."`
 			`	Soon after, your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog

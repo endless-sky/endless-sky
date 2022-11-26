@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "BoardingPanel.h"
@@ -284,7 +287,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI()->Pop(this);
-			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship. They appear to have set off their self-destruct sequence..."));
+			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
+				" They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
 		isCapturing = true;
@@ -369,7 +373,17 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
-				victim->WasCaptured(you);
+				int crewTransferred = victim->WasCaptured(you);
+				if(crewTransferred > 0)
+				{
+					string transferMessage = Format::Number(crewTransferred) + " crew member";
+					if(crewTransferred == 1)
+						transferMessage += " has";
+					else
+						transferMessage += "s have";
+					transferMessage += " been transferred.";
+					messages.push_back(transferMessage);
+				}
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
 				player.AddShip(victim);
@@ -531,7 +545,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count),
+	: name(outfit->DisplayName()), outfit(outfit), count(count),
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	UpdateStrings();

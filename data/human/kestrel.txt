@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Kestrel Testing"
 	name "Warship Testing"
@@ -66,11 +69,11 @@ mission "Kestrel Testing"
 					goto no
 			
 			label yes
-			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label no
-			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label changes
@@ -83,19 +86,19 @@ mission "Kestrel Testing"
 					goto shields
 			
 			label weapons
-			apply
+			action
 				set "kestrel: more weapons"
 			`	"Very well," he says, "we'll see if we can expand the weapon capacity so that even the biggest weapons will fit."`
 				goto name
 			
 			label engines
-			apply
+			action
 				set "kestrel: more engines"
 			`	"Very well," he says, "we'll see if we can expand the engine capacity enough that even the biggest engines will fit."`
 				goto name
 			
 			label shields
-			apply
+			action
 				set "kestrel: more shields"
 			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
 				goto name
