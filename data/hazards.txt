@@ -67,3 +67,35 @@ hazard "Black Hole Gravity"
 		"hit force" -25
 		"damage dropoff" 150 2500
 		"dropoff modifier" 0
+
+
+
+hazard "Small Black Hole Accretion Disk"
+	"constant strength"
+	"range" 50
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 50 200
+		"dropoff modifier" 0
+		"relative shield damage" .0009
+		"fuel damage" -0.2
+
+hazard "Small Black Hole Event Horizon"
+	"constant strength"
+	"range" 20
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 50
+		"dropoff modifier" 0
+		"relative hull damage" .0004
+		"piercing" 10
+
+hazard "Small Black Hole Gravity"
+	"constant strength"
+	"range" 1500
+	weapon
+		"gravitational"
+		"hit force" -17
+		"damage dropoff" 120 1700
+		"dropoff modifier" 0
+
