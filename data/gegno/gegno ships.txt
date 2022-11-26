@@ -304,9 +304,8 @@ ship Schist
 		"fuel capacity" 500
 		"cargo space" 140
 		"outfit space" 298
-		"weapon capacity" 190
 		"engine capacity" 106
-		"weapon capacity" 58
+		"weapon capacity" 100
 		weapon
 			"blast radius" 71
 			"shield damage" 310
@@ -427,9 +426,8 @@ ship Diorite
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 548
-		"weapon capacity" 356
 		"engine capacity" 124
-		"weapon capacity" 251
+		"weapon capacity" 285
 		weapon
 			"blast radius" 90
 			"shield damage" 540
