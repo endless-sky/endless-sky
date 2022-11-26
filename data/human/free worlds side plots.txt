@@ -25,7 +25,7 @@ mission "FW Convoy to Zug"
 		not "main story completed"
 	on offer
 		conversation
-			`While returning from a walk around the spaceport town of <planet>, you see the quartermaster of the spaceport inspecting your ship. He notices you, and comes up to greet you.`
+			`While returning from a walk around the spaceport town of <planet>, you see the quartermaster of the spaceport inspecting your ship. He notices your arrival, and comes up to greet you.`
 			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <destination>." He points towards five Hauler IIIs on the landing pads opposite to your ship.`
 			`	"Many of our militia officers mentioned you when I asked for someone suitable to escort these ships. This is for quite a significant project, so you will be paid <payment>."`
 			choice
@@ -41,7 +41,7 @@ mission "FW Convoy to Zug"
 			label meet
 			`	"Well, will you help us escort these ships?"`
 			choice
-				`	"Of course, I'll see to it that they'll get to Zug safely."`
+				`	"Of course, I'll get these freighters to Zug safely."`
 				`	"No, I won't be able to, sorry."`
 					decline
 			`	"Wonderful! The ships and their cargo are critical, and I expect that they will benefit the Free Worlds immensely."`
@@ -86,7 +86,7 @@ mission "FW Convoy to Zug"
 		payment 600000
 		event "fw zug expansion underway"
 		event "fw zug expansion complete" 2
-		dialog `The five Hauler IIIs have all arrived safely, and you are told to land them beside an area of land set aside for Zug's long-awaited New Port expansion. It seems that bringing so many Hauler IIIs were justified, because the expansion also includes a considerable extension to the shipbuilding and shipyard facilities, to make them capable of building heavy warships like Falcons. You are given <payment> by the port authority.`
+		dialog `The five Hauler IIIs have all arrived safely, and you are told to land them beside an area of land set aside for Zug's long-awaited New Port expansion. It seems that bringing so many Hauler IIIs were justified, because the expansion also includes a considerable extension to the shipbuilding and shipyard facilities, to make them capable of building heavy warships like Falcons. Not long after, you are sent <payment> credits by the port authority.`
 
 
 
