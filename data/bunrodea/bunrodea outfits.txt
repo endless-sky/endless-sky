@@ -209,8 +209,8 @@ outfit "Chiisana Rift Thruster"
 	"outfit space" -11
 	"engine capacity" -11
 	"thrust" 6.25
-	"thrusting energy" 0.85
-	"thrusting heat" 0.61
+	"thrusting energy" 1.15
+	"thrusting heat" 0.65
 	"flare sprite" "effect/bunrodea flare/large"
 		"frame rate" 1
 		"rewind"
@@ -226,8 +226,8 @@ outfit "Nami Rift Thruster"
 	"outfit space" -19
 	"engine capacity" -19
 	"thrust" 12.1
-	"thrusting energy" 1.6
-	"thrusting heat" 1.2
+	"thrusting energy" 2.3
+	"thrusting heat" 1.3
 	"flare sprite" "effect/bunrodea flare/large"
 		"frame rate" 1
 		"rewind"
@@ -242,9 +242,9 @@ outfit "Ookii Rift Thruster"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"thrust" 22.7
-	"thrusting energy" 2.9
-	"thrusting heat" 2.2
+	"thrust" 22.9
+	"thrusting energy" 4.4
+	"thrusting heat" 2.5
 	"flare sprite" "effect/bunrodea flare/large"
 		"frame rate" 1
 		"rewind"
@@ -259,9 +259,9 @@ outfit "Subarashii Rift Thruster"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"thrust" 42.8
-	"thrusting energy" 5.3
-	"thrusting heat" 4.1
+	"thrust" 46.5
+	"thrusting energy" 8.6
+	"thrusting heat" 4.9
 	"flare sprite" "effect/bunrodea flare/large"
 		"frame rate" 1
 		"rewind"
@@ -270,38 +270,38 @@ outfit "Subarashii Rift Thruster"
 
 outfit "Chiisana Rift Steering"
 	category "Engines"
-	cost 194000
+	cost 201000
 	thumbnail "outfit/chiisana rift steering"
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
-	"turn" 326.5
-	"turning energy" 1.1
-	"turning heat" 0.6
+	"turn" 539
+	"turning energy" 3.1
+	"turning heat" 1
 	description "Given that Bunrodean ships are typically focused on making heavy use of their forward facing guns, the Bunrodea favor high turn rates much more than high speeds. As such, Rift steering systems are larger than the respective thruster systems of the same size category."
 
 outfit "Nami Rift Steering"
 	category "Engines"
-	cost 425000
+	cost 442000
 	thumbnail "outfit/nami rift steering"
 	"mass" 31
 	"outfit space" -31
 	"engine capacity" -31
-	"turn" 688.9
-	"turning energy" 2.1
-	"turning heat" 1.2
+	"turn" 1137
+	"turning energy" 6.2
+	"turning heat" 2.1
 	description "As with many Bunrodean systems, Rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, be they defensive or offensive."
 
 outfit "Ookii Rift Steering"
 	category "Engines"
-	cost 816000
+	cost 940000
 	thumbnail "outfit/ookii rift steering"
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
-	"turn" 1272
-	"turning energy" 3.8
-	"turning heat" 2.3
+	"turn" 2099
+	"turning energy" 10.8
+	"turning heat" 3.65
 	description "Although the focus on steering over thrust makes Bunrodean ships easy targets to track, the power of their weapons systems would leave anyone foolish to believe that they are sitting ducks."
 
 outfit "Subarashii Rift Steering"
@@ -311,7 +311,7 @@ outfit "Subarashii Rift Steering"
 	"mass" 90
 	"outfit space" -90
 	"engine capacity" -90
-	"turn" 2363.5
-	"turning energy" 6.8
-	"turning heat" 4.2
+	"turn" 3900
+	"turning energy" 20.1
+	"turning heat" 6.5
 	description "The largest of the Rift steering systems, these engines are what allow the Bunrodea's heavy gunships to bear their many guns toward their unfortunate target."
