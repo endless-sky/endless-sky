@@ -268,13 +268,13 @@ ship "Tekkan"
 		"Buzzer Anti-Missile" 2
 		
 		"Quark Reactor"
-		"Solar Battery" 36
+		"Solar Battery"
+		"Solar Cell" 36
 		"Small Shield Relay"
 		"Shield Relay Booster" 5
-		"Small Nanite Fabricator"
 		
 		"Ookii Rift Thruster"
-		"Nami Rift Steering"
+		"Ookii Rift Steering"
 		"Hyperdrive"
 	
 	engine -11.5 66.5
