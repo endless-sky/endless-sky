@@ -3442,6 +3442,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
+			// Only retain the current target ship reference if it can be boarded (it may be exploding).
+			if(target && !CanBoard(ship, *target))
+				target.reset();
 
 			const auto boardingPriority = Preferences::GetBoardingPriority();
 			auto strategy = [&]() noexcept -> function<double(const Ship &)>
@@ -3494,12 +3497,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			{
 				auto ships = GetShipsList(ship, true);
 				boardable.reserve(ships.size());
+				// The current target is not considered by GetShipsList.
+				if(target)
+					boardable.emplace_back(target.get(), strategy(*target));
+
 				// First check if we can board enemy ships, then allies.
 				for(const Ship *enemy : ships)
 					fillBoardable(*enemy);
-				// The current target is not considered by GetShipsList.
-				if(target)
-					fillBoardable(*target.get());
 
 				if(boardable.empty())
 				{
@@ -3528,8 +3532,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					}
 				);
 
-				// If there is no valid target, pick a new one (it could be exploding).
-				if(!target || !CanBoard(ship, *target))
+				// If there is no valid target, pick a new one.
+				if(!target)
 					ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
