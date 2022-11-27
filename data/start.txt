@@ -70,8 +70,8 @@ conversation "hai intro"
 	`	You know it is the same world, but you've never been to the shipyard before, and it feels like traveling already. You wonder if you are ready to take the big leap... You've seen pictures of ships before, but seeing them for real is something else entirely. You are stunned by how new and shiny they look, even though you know a lot of those ships have been in service for long years.`
 	`	This "Aphid" could suit your needs. Fast, and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
-	`	That is, except if you want to get adventurous and try out the impetious Lightning Bug. The ship may be able to beat human medium warships if a competent pilot is at the helm...`
-	scene "thumbnail/hai lightning bug"
+	`	That is, except if you want to get adventurous and try out the impetious Grasshopper. Surely the interceptor would be able to beat human small warships prodided a competent pilot is at the helm...`
+	scene "thumbnail/hai grasshopper"
 	`	You have heard tales of pirates and quick money... Indeed, north of here there are even Hai pirates, that call themselves the 'Unfettered'. Maybe they could come to like you, if you were to show them strength...`
 	choice
 		`	(Go to the bank.)`
@@ -117,6 +117,7 @@ mission "Hai Start"
 		set "chosen sides"
 		set "main plot completed"
 		set "Hai Secret Leaker Begins: offered"
+		set "First Contact: Hai: offered"
 		event "not from boston"
 		event "grew up on greenwater"
 		# make these available
