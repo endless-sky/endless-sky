@@ -683,7 +683,7 @@ mission "Remnant: Disable 1"
 		dialog `You have disabled the Kas'lor Ik 582, time to report back to <planet>.`
 	on visit
 		dialog "You've landed on <planet>, but the stuck Kas'lor Ik 582 has not been disabled yet. Hunt it down and disable it before returning."
-	on aborted
+	on abort
 		"reputation: Remnant" += 250
 	on fail
 		"reputation: Remnant" += -250
