@@ -63,34 +63,43 @@ start "advanced"
 	set "license: Pilot's"
 	set "Intro [0]: offered"
 	set "event: war begins: offered"
+	set "oathkeepers founded: offered"
+	set "Geminus Rebuilt: offered"
 	set "chosen sides"
 	set "main plot completed"
 	set "Hai Secret Leaker Begins: offered"
-	# make these available too
-	event "flamethrower available"
-	event "dreadnoughts for sale"
-	event "dreadnought deployment"
-	event "catalytic ramscoop available"
-	event "deep sky tech available"
-	event "stack core for sale"
-	event "syndicate tech available"
-	
-	event "bloodsea joins free worlds"
-	event "bloodsea spaceport completed"
-	event "albatross joins free worlds"
-	event "Greenrock recovered"
-	event "liberation of Poisonwood"
-	event "fwc southern liberation"
-	event "fwc capture cebalrai"
-	event "fwc defended cebalrai"
-	event "navy out of rastaban"
-	event "fw tarazed joins"
-	event "fwc capture kaus borealis"
-	event "fwc liberation of rasalhague"
-	event "fwc pug defeated"
-	event "geminus rebuilt"
-	
-	event "pirates investigate leaks"
+	set "advanced start"
+
+mission "Advanced Start"
+	landing
+	to offer
+		has "advanced start"
+	on offer
+		# make these available
+		event "flamethrower available"
+		event "dreadnoughts for sale"
+		event "dreadnought deployment"
+		event "catalytic ramscoop available"
+		event "deep sky tech available"
+		event "stack core for sale"
+		# FW map changes
+		event "oathkeepers founded"
+		event "bloodsea joins free worlds"
+		event "bloodsea spaceport completed"
+		event "albatross joins free worlds"
+		event "Greenrock recovered"
+		event "liberation of Poisonwood"
+		event "fwc southern liberation"
+		event "fwc capture cebalrai"
+		event "fwc defended cebalrai"
+		event "navy out of rastaban"
+		event "fw tarazed joins"
+		event "fwc capture kaus borealis"
+		event "fwc liberation of rasalhague"
+		event "fwc pug defeated"
+		event "geminus rebuilt"
+		# HR start
+		event "pirates investigate leaks"
 	
 
 

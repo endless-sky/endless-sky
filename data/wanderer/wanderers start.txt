@@ -517,6 +517,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				"reputation: Hai" > 100
 			branch war
 				has "main plot completed"
+				not "advanced start"
 			`	"Ambassador Sayari mentioned humans do many [jobs, hobbies] in their space. Or are we mistaken?"`
 			choice
 				`	"Indeed we do."`
