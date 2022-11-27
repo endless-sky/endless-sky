@@ -1,6 +1,6 @@
 // fragment sprite shader
 precision mediump float;
-//precision mediump sampler2DArray;
+precision mediump sampler2DArray;
 uniform sampler2DArray tex;
 uniform float frame;
 uniform float frameCount;

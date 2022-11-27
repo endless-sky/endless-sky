@@ -46,7 +46,7 @@ void main()
         color += scale * texture(tex, vec3(coord, first));
     }
   }
-  switch (swizzler) 
+  switch (swizzler)
   {
     case 0:
       color = color.rgba;
