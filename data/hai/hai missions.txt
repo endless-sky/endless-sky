@@ -182,6 +182,41 @@ mission "Ask the Hai about the Unfettered"
 
 
 
+mission "Hai Intro"
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		has "advanced start"
+		# to only offer the first day if you did not buy the Aphid
+		day == 18
+		month == 6
+		year == 3020
+		credits > 1400000
+	on offer
+		conversation
+			`You go find the captain that offers to sell the Grasshopper, and thankfully they did not yet sell it.`
+			`	"Hello, good fellow! I assume you come for the Grasshopper."`
+			choice
+				`	"Yes indeed."`
+				`	"How did you know?"`
+				`	"Sorry, not interested."`
+					decline
+			`	"I can see the will to explore in your eyes. I would be delighted to have you fly the 'Pristine Jewel'!" They say, taking you to the ship. It is not brand new, but it still looks in surprisingly good condition.`
+			scene "thumbnail/hai grasshopper"
+			`	Because I like you I'll give you a friendly price, what do you say about 1.4 millions for this wonderful ship?"`
+			choice
+				`	"Sold!"`
+				`	"I am not sure. I may come back later for it."`
+					defer
+			`	They take the time to explain why the ship is so marvelous but you are not listening because of how excited you are to get into that ship.`
+				accept
+	on accept
+		give ship Grasshopper
+		payment -1400000
+
+
+
 mission "Returning Home"
 	description "Bring Elliot home to his family on <destination>. Elliot ran away from his family as a teenager and hasn't seen them in almost six years."
 	minor
