@@ -25,7 +25,6 @@ mission "FW Convoy to Zug"
 		"combat rating" > 200
 		or
 			not "chosen sides"
-			event "joined the free worlds"
 		not "main story completed"
 	on offer
 		conversation
@@ -41,7 +40,7 @@ mission "FW Convoy to Zug"
 			`	"The ships are carrying construction materials and specialized shipbuilding equipment for the extension of Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. I suppose that is why there have been pirates trying to pounce on these freighters, the equipment would be a rich prize for them."`
 				goto meet
 			label pirates
-			`	"Yes, I would expect more pirate contact, because the movement of so many large freighters would be a tempting target for them, and moreover, they are carrying valuable equipment for warship manufacturing. I'd recommend avoiding combat when possible. In these trying times, the loss of these ships would be... not ideal."`
+			`	"Yes, I would expect more pirate contact, because the movement of so many large freighters would be a tempting target for them, and moreover, they are carrying valuable equipment for warship manufacturing. I'd certainly recommend avoiding combat when possible. In these trying times, the loss of these ships would be... not ideal."`
 			label meet
 			`	"Well, will you help us escort these ships?"`
 			choice
