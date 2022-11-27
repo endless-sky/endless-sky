@@ -760,7 +760,7 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 	on abort
 		"reputation: Remnant" += 250
 	on fail
-		"reputation: Remnant" += -250
+		"reputation: Remnant" -= 250
 		dialog
 			`You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
 	on complete
