@@ -991,7 +991,15 @@ event "syndicate assistance"
 	planet "Zug"
 		outfitter "Syndicate Assistance"
 
-
+event "tarazed assistance"
+	planet "Glaze"
+		shipyard "Tarazed Basics"
+	planet "Rust"
+		shipyard "Tarazed Basics"
+	planet "Solace"
+		shipyard "Tarazed Basics"
+	planet "Zug"
+		shipyard "Tarazed Basics"
 
 # TODO: Expand this event to other Dirt Belt systems.
 # TODO: Create Republic fleets neutral to FW patrols.
