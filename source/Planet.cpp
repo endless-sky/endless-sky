@@ -413,7 +413,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const
 {
 	// refresh every second. What would be best is if the UI would notify all planets of the need to change the cache.
-	if(refreshCache++ >= 60)
+	if(refreshCacheTime++ >= 60)
 	{
 		visibleCustomSale.Clear();
 		customSale.Clear();
@@ -422,7 +422,7 @@ double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore
 	CustomSale::SellType sellType = GetAvailability(outfit, conditions);
 	if(sellType == CustomSale::SellType::VISIBLE && !visibleCustomSale.IsEmpty())
 		return visibleCustomSale.GetRelativeCost(outfit);
-	else if(customSale.SellType() != sellType)
+	else if(customSale.GetSellType() != sellType)
 	{
 		customSale.Clear();
 		for(const auto &sale : GameData::CustomSales())
