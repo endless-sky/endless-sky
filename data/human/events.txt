@@ -991,6 +991,8 @@ event "syndicate assistance"
 	planet "Zug"
 		outfitter "Syndicate Assistance"
 
+
+
 event "tarazed assistance"
 	planet "Glaze"
 		shipyard "Tarazed Basics"
