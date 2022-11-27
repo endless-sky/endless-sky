@@ -115,7 +115,7 @@ if env["opengl"] == "gles":
 		print("OpenGL ES builds are not supported on Windows")
 		Exit(1)
 	env.Append(LIBS = [
-		"GLESv2",
+		"OpenGL",
 	])
 	env.Append(CCFLAGS = ["-DES_GLES"])
 elif is_windows_host:
@@ -123,14 +123,9 @@ elif is_windows_host:
 		"glew32.dll",
 		"opengl32",
 	])
-elif 'steamrt_scout' in chroot_name:
-	env.Append(LIBS = [
-		"GL",
-		"GLEW",
-	])
 else:
 	env.Append(LIBS = [
-		"OpenGL",
+		"GL" if 'steamrt_scout' in chroot_name else "OpenGL",
 		"GLEW",
 	])
 
