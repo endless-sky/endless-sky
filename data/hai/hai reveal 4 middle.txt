@@ -1014,8 +1014,35 @@ mission "Hai Reveal [A08] Symbol Identification"
 		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organization. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
 		
 		conversation
-			`After landing, you search up the way to the adjunct research library at the Navy Intelligence Observatory in Moscow. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours. For someone of your background there are parts of this trip that seem dizzyingly unreal. As well traveled as you now are, actually navigating the urban environments of <origin> away from any particular spaceport is an experience not quite like any other. Once you reach the building in question you take a moment at the reception desk to interpret 'room number: 3017A19' - the 301st floor, section 7A, room 19 - and get directions. It's amazing how large Earth's megabuildings have become. Some planets have smaller populations than the building you are standing in right now, and it is but one of hundreds you've seen on your short journey.`
+			`You land at Ulaanbaatar's spaceport and receive a message that Batu has to finalize some arrangements and will arrive in the evening. That leaves plenty of time for you to see to your other business about the symbol.`
+			`	At an information desk, you inquire about the route to Moscow and are given two options. You can take a very expensive private taxi service, which you could bill to Alondo, or you can take the long route and see the sights. Either way, you'll have plenty of time before Batu arrives.`
+			`	The attendant at the information desk asks you, "Would you like to contact the direct taxi service, or take the slow route and see the sights?"`
+			choice
+				`	"I'm in a hurry. I should take the direct route."`
+					goto "take the direct route"
+				`	"The slow route sounds more scenic. I'll try that."`
+			`	Moscow is thousands of kilometers away, so you travel most of the route on shuttlecraft. It seems some new pilots took an option you never considered: planet-side travel in an exclusive contract with local transit authorities who pay half the mortgage. Certainly a safe career, but it would be too dull to be restrained to just one planet.`
+			`	You fly past mountain ranges and lakes, and over bare tundras and steppes. The gray cities of Earth stand out when you pass them; packed in their ancient locations and their new ones. Even from far above, the cities' vast megabuildings are an imposing sight. There's still some farmland on this route, even now that farming has largely moved off-world, but not enough for the twenty billion people living on Earth.`
+			`	After three shuttle trips, you land in the city of Nizhny and board a two-story train that hovers in a tunnel of superconducting magnets. Such a complex system would be unprofitable anywhere else in human space, but the population is so high here that these village-sized trains run non-stop at full capacity. You must look lost as you disembark in the vast station in Moscow, and a passerby asks if you need directions.`
+			choice
+				`	"How do I get to the surface?"`
+				`	"I'm looking for this address."`
+			`	You follow his directions and, while strolling through Moscow to your destination, pass many historic sites. An unmistakable sight catches your eye: the Museum of Cosmonautics, one of the largest museums of spaceflight on Earth. It is most famous for having the first hyperspace-capable human-made ship on display, painstakingly preserved for hundreds of years. The museum extends into the three megabuildings surrounding it, containing all manner of spaceflight firsts.`
+			`	At length you arrive at the building you seek and pass through its main doors into a room as big as a football field, filled with in-building trains, moving walkways, and hover-platform elevators. It's amazing how large Earth's megabuildings have become; some planets have smaller populations than the building you are standing in right now, and it is but one of hundreds you've seen on your short journey.`
+			`	You find an information desk, and inquire about the meaning of 'room number: 3017A19' - the 301st floor, section 7A, room 19 - and get directions. They point you to what looks like a cross between a train and an elevator. A robotic voice asks your destination.`
+			choice
+				`	"Please take me to the 301st floor, section 7A, room 19."`
+				`	"Room 3017A19, please."`
 			`	Reaching the room in question you knock on the door which has a nameplate that reads, 'Giti Gilani' with the title 'Research Librarian' in small print underneath. You are swiftly greeted by a short, energetic looking lady. She looks you up and down and nods. "Captain <last>, you're not as tall as I thought you'd be in person. Please, please come in."`
+				goto "converse with giti"
+			label "take the direct route"
+			`	You're ushered into a luxury taxi, complete with a built-in bar and the latest forms of entertainment. The taxi enters a ballistic trajectory into space and back down into the atmosphere, reaching your destination in under an hour. It links its aft exit port to a hover vehicle access port about half the way up the side of the building. The well-dressed driver leads you into the building and, after briefly consulting a directory, escorts you to your destination.`
+			`	"Floor 301, section 7A, room 19, sir," he says. "This is the office of research librarian Giti Giliani."`
+			choice
+				`	"Thank you for the smooth trip."`
+			`	The friendly taxi driver bows slightly and returns to his taxi. As he leaves, you knock on the door.`
+			`	The door opens and you are swiftly greeted by a short, energetic looking lady. She looks you up and down and nods. "Captain <last>, you're not as tall as I thought you'd be in person. Please, please come in."`
+			label "converse with giti"
 			`	Clearly someone took the liberty of informing Giti of at least the basic information about what was being searched for, and that it was you doing so. Once the door is shut and locked, though, it becomes clear she is quite excited about this search. She gestures to a seat near her work desk and briefly tidies some of the more egregiously scattered research items. "Would you like a drink? Tea, coffee, vodka? I already have some notes on the cat symbol but I need to discuss some things with you. Do you have any more images?"`
 			choice
 				`	"Tea please."`
@@ -1031,7 +1058,11 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	"Oh excellent," she says, quickly pouring herself a coffee from the pot and practically skipping over to take her seat.`
 			label explain
 			`	"Well, you'll probably be disappointed with what I have so far," she begins, "but I'll start with what I have found and then you can show me any new pictures you have and we can see what I can do." She waits for you to indicate your understanding before she continues.`
-			`	"So, this cat symbol was originally used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
+			`	"This cat symbol was used a century ago by a clandestine organization called 'Base Principles' that worked within the Syndicate.`
+			choice
+				`	"Who were 'Base Principles?'"`
+				`	"Wait. What were they doing in the Syndicate?"`
+			`	She explains, "Base Principles were anarcho-syndicalists infiltrating the Syndicate from within, gaining clout through research findings gleaned from alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
 			`	"These others didn't cover their tracks well enough; the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs quickly put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
 			`	"Officially, the Syndicate maintains that they wiped Base Principles out to the last individual, but evidence never proved it had been conclusively terminated."`
 			choice
@@ -1044,9 +1075,22 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	She frowns at you. "No. Somewhat more recently, only a few decades back in fact, the same symbol came up again in conjunction with a smuggling ring that was kidnapping gifted children. It seems that a minor error resulted in a crate being misplaced by the smugglers, complete with a child inside and the symbol surreptitiously stamped on the corner plate. The ship the crate was meant to be on self-destructed when it was caught, and any potential affiliates went to ground. A handful of ships and individuals were identified retrospectively to have been involved, but none of them were ever seen again. The kidnappings stopped."`
 			label newpictures
 			`	She waves a hand dismissively at her screen. "Of course, I only received the one image to refer to, and the older records are not necessarily very good quality or captured with future research librarians in mind. So, please, show me what else you have."`
+			choice
+				`	"I have some pictures to show you."`
+				`	"Can you glean more from this?"`
 			`	You pull out your datapad and hand it to her with the folder of relevant pictures, some carefully redacted of Hai paraphernalia, for her to look at. As she begins flicking through them she makes some comments.`
-			`	"You know, there's quite a lot more of these than I expected. All quite recent too judging by the file quality and also by that crate design. They really are exactly the same as the original. Someone clearly has made a deliberate decision to reuse the exact symbol, no re-imagining or stylistic alterations whatsoever. If you ask me that sounds like a group that has set itself to having the same goals, which means the Syndicate would probably be very interested in this. Though I suppose you'd have the connections there if... Oh!" She pauses. "Now this is interesting."`
-			`	She turns the datapad to you and shows you what looks like an amulet or maybe a jewelry charm. The scale in the image isn't very clear. "Do you see this patterning around the outside of the symbol on this? I'm quite sure nearly everyone in the galaxy would simply pass that off as decorative, but it's not. This is an archaic written shorthand notation used for ship's logs, back when they were considering data storage requirements for the thousands of people on board the slow ships they sent to Alpha Centauri. You'd be amazed how much space just logs and diaries can take up when the journey takes as long as theirs did." She smiles at you, "As it happens I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!"`
+			`	"You know, there's quite a lot more of these than I expected. All quite recent too, judging by the file quality and that crate design. They are exactly the same as the original. Someone clearly has made a deliberate decision to reuse the exact symbol, with no re-imagining or stylistic alterations whatsoever. If you ask me, that sounds like a group that has set itself to having the same goals, which means the Syndicate would probably be very interested in this. Though I suppose you'd have the connections there if... Oh!" She pauses. "Now this is interesting."`
+			`	She turns the datapad to you and shows you what looks like an amulet or maybe a jewelry charm. The scale in the image isn't very clear. "Do you see this patterning around the outside of the symbol on this? I'm quite sure nearly everyone in the galaxy would simply pass that off as decorative, but it's not." She pauses for a moment, perhaps expecting a response.`
+			choice
+				`	(Politely wait for her to finish.)`
+					goto disappointed
+				`	"I have a hunch you're going to tell me it's a form of writing."`
+			`	She looks impressed and says, "Very good! I underestimated you, Captain <last>.`
+				goto archaic
+			label disappointed
+			`	After a couple seconds, Giti looks slightly disappointed but makes no comment on the matter.`
+			label archaic
+			`	"This is an archaic written shorthand notation used for ship's logs, back when they were considering data storage requirements for the thousands of people on board the slow ships they sent to Alpha Centauri. You'd be amazed how much space just logs and diaries can take up when the journey takes as long as theirs did." She smiles at you, "As it happens I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!"`
 			`	She frowns at it for a long moment, "There's quite a lot of notation here actually and... well, gosh, it's been twenty-eight years since I did that thesis. I can't just translate this on the fly. It'll take me some time to dig up my resources and work on it. Am I allowed to keep these pictures?"`
 			choice
 				`	"Absolutely, I'll send you the folder."`
