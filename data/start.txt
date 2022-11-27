@@ -106,21 +106,28 @@ conversation "hai intro"
 		give ship Grasshopper
 		payment -1400000
 
-mission "Hai Start"
+mission "Greenwater start"
 	landing
 	invisible
 	to offer
 		has "hai start"
 	on offer
+		event "not from boston"
+		event "grew up on greenwater"
 		set "Intro [0]: offered"
+
+mission "FW completed"
+	landing
+	invisible
+	to offer
+		has "hai start"
+	on offer
 		set "event: war begins: offered"
 		set "oathkeepers founded: offered"
 		set "Geminus Rebuilt: offered"
 		set "chosen sides"
 		set "main plot completed"
 		set "Hai Secret Leaker Begins: offered"
-		event "not from boston"
-		event "grew up on greenwater"
 		# make these available
 		event "flamethrower available"
 		event "dreadnoughts for sale"
@@ -144,7 +151,13 @@ mission "Hai Start"
 		event "fwc liberation of rasalhague"
 		event "fwc pug defeated"
 		event "geminus rebuilt"
-		# HR
+
+mission "HR completed"
+	landing
+	invisible
+	to offer
+		has "hai start"
+	on offer
 		event "hai ladybug available"
 		event "role-play station active"
 		event "battle against scar's legion over"
