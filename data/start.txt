@@ -75,7 +75,7 @@ conversation "advanced intro"
 		`	(Go to the bank.)`
 	scene "scene/lobby"
 	`	You head to the bank's lobby, hoping to get enough money to be able to buy one of these pristine ships.`
-	`	However, after looking at the prices it is clear the only ship you can get is an Aphid. You loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. The contract stipulates you give all of your credits to the bank, as a garantee in order to get enough of a loan. You will probably have to sell some part of the default ship in order to be able to afford flying it!`
+	`	However, after looking at the prices it is clear the only ship you can get is an Aphid. You loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. The contract stipulates you give all of your credits to the bank, as a guarantee in order to get enough of a loan. You will probably have to sell some part of the default ship in order to be able to afford flying it!`
 	`	The bank employee sums it up to you, with a hesitant smile. "This will put you in a debt of 1431 thousand credits, due in the course of 2 years, with interest rate of 0.3% per day. Please sign here." You did not head all the way into Hai space to have doubts now.`
 	name
 	`	You head out of the bank, preparing yourself to buy the Aphid, but you see a notice in the shipyard. A retiring captain of this Hai specie offers to sell some of his ships at an interesting price, including a Grasshopper... You could always go to the spaceport to see what he can offer you, or you could buy the Aphid now. The choice is yours.`

@@ -179,7 +179,7 @@ mission "Ask the Hai about the Unfettered"
 			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
 			`	You thank him for taking time to speak with you, and say goodbye.`
 				decline
-		
+
 
 
 mission "Returning Home"
