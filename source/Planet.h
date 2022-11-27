@@ -96,7 +96,7 @@ public:
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
 	// Get the local price of this outfit.
-	double GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const;
+	double GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions);
 	// Get the availability of this outfit.
 	CustomSale::SellType GetAvailability(const Outfit &outfit, const ConditionsStore &conditions) const;
 
