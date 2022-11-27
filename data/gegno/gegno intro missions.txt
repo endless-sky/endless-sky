@@ -21,6 +21,9 @@ mission "Gegno Vi: First Contact"
 		"<Alien>" "Alien"
 		"<Alien>" "Gegno"
 			has "Giaru Gegno: Quarg Contact: offered"
+		"<aliens>" "aliens"
+		"<aliens>" "Gegno"
+			has "Giaru Gegno: Quarg Contact: offered"
 	source "Var Oti"
 	destination "Dueyu Eitch"
 	clearance
@@ -140,6 +143,45 @@ mission "Gegno Vi: First Contact"
 					
 	on defer
 		set "Gegno Vi: First Contact: deferred"
+		
+				
+mission "Visit Quarg in Gegno space"
+	landing
+	name `Travel to <designated system>`
+	description `Travel to the <designated system> as instructed.`
+	substitutions
+		"<alien>" "alien"
+		"<alien>" "Gegno"
+			has "Giaru Gegno: Quarg Contact: offered"
+		"<Alien>" "Alien"
+		"<Alien>" "Gegno"
+			has "Giaru Gegno: Quarg Contact: offered"
+		"<aliens>" "aliens"
+		"<aliens>" "Gegno"
+			has "Giaru Gegno: Quarg Contact: offered"
+		"<designated system>" "designated system"
+		"<designated system>" "Quarg Ringworld"
+			has "Giaru Gegno: Quarg Contact: offered"
+	source "Dueyu Eitch"
+	destination "Giaru Gegno"
+	to offer
+		has "Gegno Vi: First Contact: done"
+	on offer
+		conversation
+			`Your trip here was full of a lot of tension and anything but pleasant. Rather than find a seat normally, the <alien> stood close behind you in your cockpit with their arms crossed during most of the ride, almost as if they were an immovable boulder. Occasionally, you made attempts to communicate with them again to break the pressure, but the most they would give you is a slight glance or low grunt.`
+			`	As you descend, you watch as layers of dark smong quickly reveal massive cities glittered with various lights towering into the sky. The ships here of different shades than the ones you previously saw, being more tan-ish than dark brown, and are in a much larger quantity. The intensity of traffic, combined with the overwhelming mass of infrastructure, suggests that this is the homeworld of the <alien>. Before getting lost in the fantastical sight in front you, the <alien> marches up next to you and raises one arm, jesturing to an enormous factory-like structure in the distance that stands out from other towers. You carefully guide your ship to the building and with the help of the <alien> find a suitable docking port to land on.`
+			`	After you touch down, several <aliens> that are of a similar appearance to the one next to you begin to line up in a formation towards your ship, all carrying various types of staff-like weaponry. However, they don't show any signs of aggression and simply hold their position in a very coordinated display of might. The <alien> beside you grabs their compass device once again.`
+			choice
+				`	(Hand them the device.)`
+				
+			branch "has met quarg"			
+				has "Giaru Gegno: Quarg Contact: offered"	
+			`	After fiddling with it, marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These <aliens> look decently shorter and thinner than the others, and wear more leather-like garments than heavy metal ones, however their demenaor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
+				launch
+
+			label "has met quarg"
+			`	After fiddling with it, marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. You look at the location and notice that it's the Quarg Ringworld you previously visted. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These <aliens> look decently shorter and thinner than the others, and wear more leather-like garments than heavy metal ones, however their demenaor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
+				launch
 
 
 mission "Giaru Gegno: Quarg Contact"
@@ -151,12 +193,6 @@ mission "Giaru Gegno: Quarg Contact"
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them is a complacent civilian population.`
 		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
 		conversation
-			branch "pre gegno encounter"
-			#branch "during gegno encounter"
-				has "Gegno Vi: First Contact: accepted"
-			#branch "post gegno encounter"
-				has "Gegno Vi: First Contact: done"
-
 			"After jumping through several systems of many alien ships, a Quarg ring world is a sight of relief to you. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting to your eye is that some other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval-style human clothing."
 			`	The mood here is eerie as the Quarg here move in a more quiet manner than what you're used to. They are almost dismissive of the other species walking about, who are equally as dismissive of you. The unusual atmosphere around you is finally broken when a few Quarg start to advance towards you, moving much quicker than the rest. After a moment of unidentifiable discussion and gestures between themselves, one of them motions you to follow them.`
 			`	You walk with the Quarg, occasionally having trouble keeping pace with their silent yet brisk steps, as you head towards an area that appears devoid of the other aliens. Eventually, you are led to a smaller room with two more Quarg in waiting, silently sitting at the end of it. They talk, but this time you can hear a few familiar sounding terms, one being "Humani". Despite speaking to each other for several minutes, the Quarg still look at each other in what you assume is something like bewilderment.`
@@ -215,9 +251,6 @@ mission "Giaru Gegno: Quarg Contact"
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
 				
-			#label "during gegno encounter"
-			
-			#label "post gegno encounter"
 
 mission "Stationed Augen"
 	invisible
