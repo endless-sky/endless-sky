@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
+#include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
@@ -43,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestData.h"
 #include "TextReplacements.h"
 #include "Trade.h"
+#include "Wormhole.h"
 
 #include <future>
 #include <map>
@@ -98,6 +100,7 @@ private:
 	Set<Effect> effects;
 	Set<GameEvent> events;
 	Set<Fleet> fleets;
+	Set<FormationPattern> formations;
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
 	Set<Hazard> hazards;
@@ -115,6 +118,7 @@ private:
 	Set<TestData> testDataSets;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
+	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 
 	TextReplacements substitutions;

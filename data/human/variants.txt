@@ -101,6 +101,7 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 	plural "Auxiliaries"
 	sprite "ship/auxiliaryt"
 	thumbnail "thumbnail/auxiliaryt"
+	"crew" 362
 	add attributes
 		"bunks" 112
 		"cargo space" -200
@@ -109,19 +110,19 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
-		"Fusion Reactor"
-		"LP288a Battery Pack"
-		"D94-YV Shield Generator"
-		"D67-TM Shield Generator"
-		"Water Coolant System"
-		"Large Radar Jammer"
-		"Ramscoop"
-		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
-		"X5200 Ion Steering"
 		"Jump Drive"
-		"Fuel Pod"
+		"Catalytic Ramscoop"
+		"Liquid Helium Cooler"
+		"Cooling Ducts"
+		"Outfits Expansion" 2
+		"S-970 Regenerator" 5
 		"Quantum Keystone"
+		"Armageddon Core"
+		"LP288a Battery Pack"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Laser Rifle" 362
+		"Fragmentation Grenades" 500
 	gun -12 -186
 	gun 12.5 -186
 	turret 0 -74 "Heavy Anti-Missile Turret"
@@ -761,6 +762,16 @@ ship "Clipper" "Clipper (Hai Trafficker)"
 
 
 
+ship "Combat Drone" "Combat Drone (Sidewinder Missiles)"
+	outfits
+		"Sidewinder Missile" 50
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile Rack" 2
+		"X1050 Ion Engines"
+		"nGVF-AA Fuel Cell"
+
+
+
 ship "Container Transport" "Container Transport (Blaster)"
 	outfits
 		"Quad Blaster Turret" 5
@@ -1091,7 +1102,7 @@ ship "Cruiser" "Cruiser (Mark II)"
 	turret "Heavy Anti-Missile Turret"
 
 
-# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment.
+# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment, intended against the Hai.
 ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 	outfits
 		"Heavy Anti-Missile Turret" 3
@@ -1111,25 +1122,31 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 		"LP144a Battery Pack"
 
 
-# Danforth's personal ship in HR.
+# Danforth's personal ship in HR. Outfitted against the Hai and then modified to fight devil hide.
 ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
+	crew 136
 	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		"Catalytic Ramscoop"
-		"Jump Drive"
-		Afterburner
-		"Outfits Expansion" 2
 		"Plasma Cannon" 6
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Fragmentation Grenades" 20
-		"Fission Reactor"
-		"Laser Rifle" 20
-		"LP144a Battery Pack"
+		"Plasma Turret"
+		"Heavy Anti-Missile Turret" 2
+		
+		"Catalytic Ramscoop"
+		"Fuel Pod" 3
+		"Jump Drive"
 		"Quantum Keystone"
+		"S-970 Regenerator" 3
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 2
+		
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		Afterburner
+		
+		"Stack Core"
+		"LP144a Battery Pack"
+		"Supercapacitor" 2
+		"Laser Rifle" 82
+		"Fragmentation Grenades" 60
 
 
 
@@ -1183,23 +1200,22 @@ ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
 	outfits
 		"Heavy Anti-Missile Turret" 3
 		"Armageddon Core"
-		"S-970 Regenerator"
+		"S-970 Regenerator" 2
 		"Liquid Helium Cooler" 2
+		"Cooling Ducts"
 		"Jump Drive"
 		"Volcano Afterburner"
-		Supercapacitor
 		"Outfits Expansion" 2
 		"Plasma Cannon" 4
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-		"Breeder Reactor"
+		"Fission Reactor"
 		"Quad Blaster Turret" 2
 		"Laser Rifle" 25
-		"Water Coolant System"
-		"S-270 Regenerator" 2
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"Quantum Keystone"
-
+		"Fuel Pod" 2
+		"Catalytic Ramscoop"
 
 
 ship "Falcon" "Falcon (Heavy)"
