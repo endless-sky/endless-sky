@@ -82,6 +82,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 					goto direct
 				`	"It sounds like something I can help with, but there's something I need from you first."`
 					goto infotrade
+				# TODO: Allow the player to NOT provide information here, and investigate some other way in the future.
 			label infotrade
 			`	She seems quite familiar with the practice of trading information, as she simply says, "What do you need?"`
 				goto tribute
