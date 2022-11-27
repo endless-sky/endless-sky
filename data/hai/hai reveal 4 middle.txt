@@ -86,6 +86,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 				goto tribute
 			label direct
 			`	Teeneep and the other Hai seem shocked. After a surprised exclamation in Hai, she says, "What!?"`
+			`	The Hai laugh for a while until they notice your face. "Oh, you're not joking," says Teeneep.`
 			label tribute
 			`	You explain about pirates having Hai weapons, and about a "trusted source" that told you about an entire warehouse of them.`
 			`	"That's... worrying, but the Elders are pacifists to a fault, so I can't imagine them doing it. It is more likely that smugglers took it there, or ordinary pilots sold their used Hai gear. Do you have more evidence?"`
