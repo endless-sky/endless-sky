@@ -21,13 +21,17 @@ mission "FW Convoy to Zug"
 		near Zubeneschamali 2 4
 	destination "Zug"
 	to offer
-		has "FW Katya 7C: done"
+		has "event: war begins"
+		"combat rating" > 200
+		or
+			not "chosen sides"
+			event "joined the free worlds"
 		not "main story completed"
 	on offer
 		conversation
 			`While returning from a walk around the spaceport town of <origin>, you see the quartermaster of the spaceport inspecting the <ship>. He notices your arrival, and comes up to greet you.`
 			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <planet>." He points towards five Haulers of varying sizes in Free Worlds colors, some of which have considerable hull damage and are being repaired on the landing pads opposite to your ship.`
-			`	"Their last escort was just taken out by pirates, and we need someone who is experienced enough to fend off or evade them. You must be well known here, because many of our militia officers here recommended you. This is for quite a significant project on <planet>, so you will be paid <payment>."`
+			`	"Their last escort was just taken out by pirates, and we need someone who is experienced enough to fend off or evade them. You must have a reputation, since some of our militia captains recognized you. This is for quite a significant project on <planet>, so you will be paid <payment>."`
 			choice
 				`	"What's the project? It seems to be a big enterprise."`
 				`	"That's a fair few freighters, should I be expecting any more pirates?"`
@@ -86,6 +90,7 @@ mission "FW Convoy to Zug"
 		payment 600000
 		event "fw zug expansion underway"
 		event "fw zug expansion complete" 120
+		"assisted free worlds" ++
 		dialog `The five Haulers have all arrived intact, and you are told to land them beside an area of land set aside for Zug's long-awaited New Port expansion. It seems that bringing so many freighters were justified, because the expansion also includes a considerable extension to the shipbuilding and shipyard facilities, to make them capable of building heavy warships like Falcons. Not long after, you are sent <payment> by Zug's port authority.`
 
 
