@@ -996,8 +996,6 @@ event "tarazed assistance"
 		shipyard "Tarazed Basics"
 	planet "Rust"
 		shipyard "Tarazed Basics"
-	planet "Solace"
-		shipyard "Tarazed Basics"
 	planet "Zug"
 		shipyard "Tarazed Basics"
 
