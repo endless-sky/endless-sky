@@ -1036,7 +1036,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	Reaching the room in question you knock on the door which has a nameplate that reads, 'Giti Gilani' with the title 'Research Librarian' in small print underneath. You are swiftly greeted by a short, energetic looking lady. She looks you up and down and nods. "Captain <last>, you're not as tall as I thought you'd be in person. Please, please come in."`
 				goto "converse with giti"
 			label "take the direct route"
-			`	You're ushered into a luxury taxi, complete with a built-in bar and the latest forms of entertainment. The taxi enters a ballistic trajectory into space and back down, reaching your destination in under an hour. It links its aft exit port to a hover vehicle access port about half the way up the side of the building. The well-dressed driver leads you into the building and, after briefly consulting a directory, escorts you to your destination.`
+			`	You're ushered into a luxury taxi, complete with a built-in bar and the latest forms of entertainment. The taxi enters a ballistic trajectory into space and back down into the atmosphere, reaching your destination in under an hour. It links its aft exit port to a hover vehicle access port about half the way up the side of the building. The well-dressed driver leads you into the building and, after briefly consulting a directory, escorts you to your destination.`
 			`	"Floor 301, section 7A, room 19, sir," he says. "This is the office of research librarian Giti Giliani."`
 			choice
 				`	"Thank you for the smooth trip."`
@@ -1079,7 +1079,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 				`	"I have some pictures to show you."`
 				`	"Can you glean more from this?"`
 			`	You pull out your datapad and hand it to her with the folder of relevant pictures, some carefully redacted of Hai paraphernalia, for her to look at. As she begins flicking through them she makes some comments.`
-			`	"You know, there's quite a lot more of these than I expected. All quite recent too judging by the file quality and that crate design. They are exactly the same as the original. Someone clearly has made a deliberate decision to reuse the exact symbol, no re-imagining or stylistic alterations whatsoever. If you ask me, that sounds like a group that has set itself to having the same goals, which means the Syndicate would probably be very interested in this. Though I suppose you'd have the connections there if... Oh!" She pauses. "Now this is interesting."`
+			`	"You know, there's quite a lot more of these than I expected. All quite recent too, judging by the file quality and that crate design. They are exactly the same as the original. Someone clearly has made a deliberate decision to reuse the exact symbol, with no re-imagining or stylistic alterations whatsoever. If you ask me, that sounds like a group that has set itself to having the same goals, which means the Syndicate would probably be very interested in this. Though I suppose you'd have the connections there if... Oh!" She pauses. "Now this is interesting."`
 			`	She turns the datapad to you and shows you what looks like an amulet or maybe a jewelry charm. The scale in the image isn't very clear. "Do you see this patterning around the outside of the symbol on this? I'm quite sure nearly everyone in the galaxy would simply pass that off as decorative, but it's not." She pauses for a moment, perhaps expecting a response.`
 			choice
 				`	(Politely wait for her to finish.)`
