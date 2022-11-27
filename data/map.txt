@@ -16641,7 +16641,6 @@ system Kanguwa
 	habitable 336.2
 	belt 1866
 	"jump range" 70
-	music ambient/rulei
 	haze _menu/haze-blackbody
 	link Lloloi
 	link Msalbit
@@ -36452,14 +36451,12 @@ planet Yedikule
 
 planet "Yniu Eiu"
 	landscape land/canyon0
-	music "ambient/rulei planet"
 	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more important visual are patches of purple-red cellular lakes flowing to and through other cells, canyons, and valleys. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
 	description `The red-purple lakes and rivers have an odd shimmer to them to suggest they are somehow alive. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
 	government Uninhabited
 
 planet "Yniu Ena"
 	landscape land/canyon03
-	music "ambient/rulei planet"
 	description `Like its parent planet below, Yniu Eiu has a thick purple-reddish web of unnatural material spread across its surface. Some patches are much larger than others, with a very few being hundreds of times larger, as if they're scars on the planet.`
 	government Uninhabited
 
