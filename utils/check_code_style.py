@@ -14,6 +14,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 import glob
+import sys
 
 import regex as re
 
@@ -564,7 +565,6 @@ def check_include(sanitized_lines, original_lines, file):
 
 
 if __name__ == '__main__':
-	import sys
 	errors = 0
 	warnings = 0
 
