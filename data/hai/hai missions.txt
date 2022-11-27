@@ -179,42 +179,7 @@ mission "Ask the Hai about the Unfettered"
 			`	He thinks about the question for a while, then says, "Sometimes we make a fire for cooking food. The fire consumes much wood, and the flames are tall, too wild and hot to cook food well. Then the wood becomes coals that burn slowly with no flames or smoke, and when you gather them they are good for roasting meat or even baking bread. Perhaps each species must consume many worlds and many resources before learning to burn slowly, and the wisdom of the Drak is to allow them to do so. But when they find balance, as we did, they no longer need so much space."`
 			`	You thank him for taking time to speak with you, and say goodbye.`
 				decline
-
-
-
-mission "Hai Intro"
-	source
-		government "Hai"
-		not attributes "station"
-	to offer
-		has "advanced start"
-		# to only offer the first day if you did not buy the Aphid
-		day == 18
-		month == 6
-		year == 3020
-		credits > 1400000
-	on offer
-		conversation
-			`You go find the captain that offers to sell the Grasshopper, and thankfully they did not yet sell it.`
-			`	"Hello, good fellow! I assume you come for the Grasshopper."`
-			choice
-				`	"Yes indeed."`
-				`	"How did you know?"`
-				`	"Sorry, not interested."`
-					decline
-			`	"I can see the will to explore in your eyes. I would be delighted to have you fly the 'Pristine Jewel'!" They say, taking you to the ship. It is not brand new, but it still looks in surprisingly good condition.`
-			scene "thumbnail/hai grasshopper"
-			`	Because I like you I'll give you a friendly price, what do you say about 1.4 millions for this wonderful ship?"`
-			choice
-				`	"Sold!"`
-				`	"I am not sure. I may come back later for it."`
-					defer
-			`	They take the time to explain why the ship is so marvelous but you are not listening because of how excited you are to get into that ship.`
-				accept
-	on accept
-		give ship Grasshopper
-		payment -1400000
-
+		
 
 
 mission "Returning Home"
@@ -384,7 +349,7 @@ mission "Expanding Business [1]"
 			`	"Captain <last>, fantastic to see you again! I noticed you right away when I laid my eyes upon you and I must say, I'd like to thank you again for what you've done."`
 			`	The man is David Turner, who was involved in the movie production during the Hai crisis. Almost reflexively he goes to grab a business card from his pocket but then seems to remember and puts it back away. Seems to be exactly the same card as last time though.`
 			label advanced
-			`	"Hello, captain. I come to you with a business opportunity you would do well to listen to." He grabs his business card to show it to you, and presents himself. "My name is David Turner, you may know me for my involvment with the Hai cover movie? I come to you because you seem to have quite a bit of combat experience, which would be of great help for this business venture." He then adds something, in a low tone, "Also, you are not a pirate saying that they redeemed themselves..."`
+			`	"Hello, captain. I come to you with a business opportunity you would do well to listen to." He grabs his business card to show it to you, and presents himself. "My name is David Turner, you may know me for my involvement with the Hai cover movie? I come to you because you seem to have quite a bit of combat experience, which would be of great help for this business venture." He then adds something, in a low tone, "Also, you are not a pirate saying that they redeemed themselves..."`
 				to display
 					has "advanced start"
 			`	"Now Captain, if you have a moment, I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war ended, but most stayed, and I see a massive market opportunity in that."`
