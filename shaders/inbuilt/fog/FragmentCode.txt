@@ -1,5 +1,7 @@
 // fragment fog shader
-// precision mediump sampler2D;
+#ifdef ES_GLES
+precision mediump sampler2D;
+#endif
 precision mediump float;
 uniform sampler2D tex;
 
