@@ -51,6 +51,8 @@ namespace {
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
+	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
+	int boardingIndex = 0;
 }
 
 
@@ -87,6 +89,8 @@ void Preferences::Load()
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
+		else if(node.Token(0) == "boarding target")
+			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
@@ -110,6 +114,7 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
+	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
 	out.Write("Automatic aiming", autoAimIndex);
@@ -273,6 +278,16 @@ const string &Preferences::AutoAimSetting()
 
 
 
+void Preferences::ToggleBoarding()
+{
+	int targetIndex = boardingIndex + 1;
+	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
+		targetIndex = 0;
+	boardingIndex = targetIndex;
+}
+
+
+
 int Preferences::AutoAimIndex()
 {
 	return autoAimIndex;
@@ -280,7 +295,21 @@ int Preferences::AutoAimIndex()
 
 
 
+Preferences::BoardingPriority Preferences::GetBoardingPriority()
+{
+	return static_cast<BoardingPriority>(boardingIndex);
+}
+
+
+
 void Preferences::ToggleAutoAim()
 {
 	autoAimIndex = (autoAimIndex + 1) % 3;
+}
+
+
+
+const string &Preferences::BoardingSetting()
+{
+	return BOARDING_SETTINGS[boardingIndex];
 }

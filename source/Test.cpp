@@ -85,6 +85,8 @@ namespace {
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		if(event.key.keysym.sym == SDLK_UNKNOWN)
+			return false;
 		event.key.keysym.mod = modKeys;
 		return SDL_PushEvent(&event);
 	}
@@ -488,7 +490,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					// TODO: combine keys with mouse-inputs
 					for(const string &key : stepToRun.inputKeys)
 						if(!KeyInputToEvent(key.c_str(), stepToRun.modKeys))
-							Fail(context, player, "key input towards SDL eventqueue failed");
+							Fail(context, player, "key \"" + key + + "\" input towards SDL eventqueue failed");
 				}
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
@@ -587,7 +589,8 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	else
 		Logger::LogError("No test conditions were set at the moment of failure.");
 
-	// If this test was expected to fail, then return a success exitcode from the program because the test did what it was expected to do.
+	// If this test was expected to fail, then return a success exitcode from the program
+	// because the test did what it was expected to do.
 	if(status >= Status::KNOWN_FAILURE)
 		throw known_failure_tag{};
 
