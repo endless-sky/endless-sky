@@ -50,7 +50,7 @@ namespace {
 
 
 
-	bool Readcache(string path, GLuint program)
+	bool ReadCache(string path, GLuint program)
 	{
 		FILE *bin;
 		bin = fopen(path.c_str(), "rb");
@@ -148,7 +148,7 @@ void Shader::MakeShader(const string name, bool isInBuilt, bool useShaderSwizzle
 	{
 		string path = Files::Shaders() + (isInBuilt ? "inbuilt/" : "") + name + "/" + name + ".cache";
 		// Get the binary file from the cache.
-		cached = Readcache(path, program);
+		cached = ReadCache(path, program);
 		if(GameData::DebugMode())
 			Logger::LogError("Shader: Loaded " + name + " shader from cache.");
 	}

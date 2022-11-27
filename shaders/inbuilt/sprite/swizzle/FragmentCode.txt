@@ -1,8 +1,8 @@
 // fragment sprite shader
 precision mediump float;
-//#ifdef ES_GLES
+#ifdef ES_GLES
 precision mediump sampler2DArray;
-//#endif
+#endif
 uniform sampler2DArray tex;
 uniform float frame;
 uniform float frameCount;
