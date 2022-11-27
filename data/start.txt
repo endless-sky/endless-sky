@@ -116,6 +116,8 @@ mission "Hai Start"
 		set "chosen sides"
 		set "main plot completed"
 		set "Hai Secret Leaker Begins: offered"
+		event "not from boston"
+		event "grew up on greenwater"
 		# make these available
 		event "flamethrower available"
 		event "dreadnoughts for sale"
@@ -152,3 +154,13 @@ mission "Hai Start"
 		event "mooncreek main outfitters"
 		event "mooncreek fw outfitters"
 		event "mooncreek realized"
+
+
+event "not from boston"
+	planet "New Boston"
+		remove description
+		description `Most of the land here is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
+
+event "grew up on greenwater"
+	planet "Greenwater"
+		add description `It feels good to be home.`
