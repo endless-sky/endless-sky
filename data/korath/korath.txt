@@ -279,7 +279,7 @@ fleet "Korath Home"
 	cargo 3
 	personality
 		timid opportunistic
-	variant 90
+	variant 30
 		"Lor'kas Ik 577"
 		"'olofez" 3
 	variant 30
