@@ -49,7 +49,7 @@ start "hai"
 	description `You grew up on Greenwater, a world with a very rich culture, mostly thanks to space travel. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age. You worked in a texture farm there, making human quite clothing that surprisingly sold very well.`
 	description `	Here, there is no need for licenses in order to buy or fly your ship.`
 	description `	A lot has happened whilst you were on the planet, and you feel like it is finally time for you to play your part.`
-	thumbnail "land/station36"
+	thumbnail "land/station20"
 	date 18 6 3020
 	system "Fah Soom"
 	planet "Greenwater"
@@ -66,7 +66,7 @@ start "hai"
 
 
 conversation "hai intro"
-	scene "land/fog0"
+	scene "land/station35"
 	`	You know it is the same world, but you've never been to the shipyard before, and it feels like traveling already. You wonder if you are ready to take the big leap... You've seen pictures of ships before, but seeing them for real is something else entirely. You are stunned by how new and shiny they look, even though you know a lot of those ships have been in service for long years.`
 	`	This "Aphid" could suit your needs. Fast, and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
@@ -75,7 +75,7 @@ conversation "hai intro"
 	`	You have heard tales of pirates and quick money... Indeed, north of here there are even Hai pirates, that call themselves the 'Unfettered'. Maybe they could come to like you, if you were to show them strength...`
 	choice
 		`	(Go to the bank.)`
-	scene "scene/lobby"
+	scene "land/station24"
 	`	You head to the bank's lobby, hoping to get enough money to be able to buy one of these pristine ships.`
 	`	To your disapointment the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. You will probably have to sell some part of the ship in order to be able to afford flying it!`
 	`	The bank employee sums it up to you, with a hesitant smile. "This will put you in a debt of 1 million 431 thousand credits, due in the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
