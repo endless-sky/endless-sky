@@ -140,10 +140,6 @@ void Shader::MakeShader(const string name, bool isInBuilt, bool useShaderSwizzle
 {
 	const string vertexPath = Shader::ShaderPath(name, false, isInBuilt, useShaderSwizzle);
 	const string fragmentPath = Shader::ShaderPath(name, true, isInBuilt, useShaderSwizzle);
-	if(vertexCode.empty())
-		throw runtime_error("Vertex Shader cannot be found at " + vertexPath);
-	if(fragmentCode.empty())
-		throw runtime_error("Fragment Shader cannot be found at " + fragmentPath);
 
 	program = glCreateProgram();
 	bool cached = false;
@@ -161,6 +157,10 @@ void Shader::MakeShader(const string name, bool isInBuilt, bool useShaderSwizzle
 	{
 		const string vertexCode = Files::Read(vertexPath);
 		const string fragmentCode = Files::Read(fragmentPath);
+		if(vertexCode.empty())
+			throw runtime_error("Vertex Shader cannot be found at " + vertexPath);
+		if(fragmentCode.empty())
+			throw runtime_error("Fragment Shader cannot be found at " + fragmentPath);
 		GLuint vertexShader = Compile(vertexCode.c_str(), GL_VERTEX_SHADER);
 		GLuint fragmentShader = Compile(fragmentCode.c_str(), GL_FRAGMENT_SHADER);
 		glAttachShader(program, vertexShader);
