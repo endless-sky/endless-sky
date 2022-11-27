@@ -11,6 +11,7 @@ on:
       - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
+      - 'tests/unit/**'
       - 'utils/check_*.sh'
   pull_request:
     types: [opened, synchronize]
@@ -20,6 +21,7 @@ on:
       - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
+      - 'tests/unit/**'
       - 'utils/check_*.sh'
 
 concurrency:
