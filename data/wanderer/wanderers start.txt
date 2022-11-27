@@ -1311,6 +1311,8 @@ mission "Wanderers: Alpha Surveillance E"
 			choice
 				`	"Are you sure we can trust them? The Alphas were in a Navy ship, after all."`
 				`	"We could go to Admiral Danforth. He's a Navy officer who I trust to be on the right side."`
+					to display
+						not "advanced start"
 					goto danforth
 			`	"Can you think of any other option?" he says.`
 			`	"There's a branch of the Navy called the 'Oathkeepers,'" you tell him, "led by Admiral Danforth. If there is anyone in the Navy whom we can trust, it's them."`
@@ -1323,7 +1325,13 @@ mission "Wanderers: Alpha Surveillance E"
 		dialog `You've landed on <planet>, but you realize that Elias is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive before meeting with Admiral Danforth.`
 	on complete
 		conversation
-			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come. When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
+			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come.`
+				to display
+					not "advanced start"
+			`Admiral Danforth is curious as to why you came to him. You explain that you heard of him and the oathkeepers when you were still on your homeworld, during the events of the war. He is very pleased that you choose to trust him, but his mood darkens the more you detail why you came here.`
+				to display
+					has "advanced start"
+			`	When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
 
 
 
@@ -1408,11 +1416,15 @@ mission "Wanderers: Alpha Surveillance G"
 	on complete
 		conversation
 			`You and Elias return to Danforth's private office to debrief, but a few minutes after you arrive there is a knock on the door. Danforth pulls up a video monitor to check who it is, swears, takes a brief glance around the room as if to check that he hasn't left anything incriminating out in plain sight, then opens the door. An officer in an unmarked uniform walks in along with several armed guards. "Admiral Danforth," says the officer, "I trust your expedition went well?"`
-			`	Danforth mumbles something in reply. "And you, Captain <last>," says the officer, "Always in the thick of things, eh?"`
+			`	Danforth mumbles something in reply.`
+			branch advanced
+				has "advanced start"
+			`	"And you, Captain <last>," says the officer, "Always in the thick of things, eh?"`
 			choice
 				`	"I suppose so."`
 				`	"Only when the galaxy needs saving."`
 				`	"Just trying to do what's right."`
+			label advanced
 			`	The officer turns to Elias. "And Mister Hanover," he says, "I want to thank you personally for assisting us in the fight against the Alphas, once again."`
 			`	"You're welcome," says Hanover, warily.`
 			`	"You're very camera shy," says the officer. "You didn't stick around long enough to receive our thanks after helping to liberate those worlds in the Dirt Belt back in 2894 AD. Of course, you went by 'Jeremy Hanover' back then." He hands Hanover a photo of some Navy officers talking with a man who looks very much like Hanover himself.`
@@ -1520,6 +1532,8 @@ mission "Wanderers: Alpha Surveillance I"
 				`	"Yes, in fact now they're trying to get us to work together with them against the Alphas."`
 				`	"Yes, and they think Elias can help them against the Alphas."`
 			`	"I see," says Danforth. "I wish I could tell you that they can be trusted. I wish I could tell you that there is no safer place for an enemy of the Alphas than here with me."`
+			branch advanced
+				has "advanced start"
 			branch know
 				has "event: death of nguyen"
 			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a man you do not recognize, but Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
@@ -1527,6 +1541,7 @@ mission "Wanderers: Alpha Surveillance I"
 			label know
 			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a photo of Commander Nguyen, and to your surprise Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
 				goto leave
+			label advanced
 			label leave
 			`	You agree that you will take Elias back to Alta Hai. Whatever Elias is, whoever might wish him harm, you can only hope that a Quarg ringworld is the safest place for him right now.`
 				accept
