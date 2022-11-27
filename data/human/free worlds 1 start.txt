@@ -548,6 +548,7 @@ mission "FW Syndicate Diplomacy 1D"
 		payment 200000
 		event "fw dirt belt patrols"
 		event "syndicate assistance" 30
+		event "tarazed assistance" 60
 		event "unofficial ceasefire" 120
 		conversation
 			`You meet Tomek, Freya, and JJ at the spaceport, and the entire Council quickly convenes. Given that you were Alondo's transportation during his mission, you are included in the meeting. Alondo outlines the results of the diplomatic mission, which he believes has been a success. Upon hearing about the extra supplies heading to Tarazed, Tomek suggests increasing patrols in the Dirt Belt to the east to help defend Syndicate convoys while also moving supplies from Tarazed to various Free planets.`
