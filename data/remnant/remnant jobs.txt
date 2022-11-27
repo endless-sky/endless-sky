@@ -680,6 +680,7 @@ mission "Remnant: Disable 1"
 			names "korath"
 			variant
 				"Kas'lor Ik 582 (Crippled)"
+		dialog `You have disabled the Kas'lor Ik 582, time to report back to <planet>.`
 	on visit
 		dialog "You've landed on <planet>, but the stuck Kas'lor Ik 582 has not been disabled yet. Hunt it down and disable it before returning."
 	on fail
@@ -687,5 +688,6 @@ mission "Remnant: Disable 1"
 		dialog
 			`You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
 	on complete
+		"remnant: disable and save count" ++
 		payment 2000000
 		dialog "A Remnant military leader thanks you for disabling down the Kas'lor Ik 582 <npc>, and gives you the agreed-upon payment of <payment>."
