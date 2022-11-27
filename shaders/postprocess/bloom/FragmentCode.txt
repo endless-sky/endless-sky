@@ -1,0 +1,41 @@
+// fragment fill shader
+precision mediump float;
+
+uniform sampler2D bufferTexture;
+uniform float iTime;
+
+in vec2 fragTexCoord;
+
+out vec4 finalColor;
+
+float getIntensity(vec2 pixel)
+{
+	float dist = 1.0/length(fragTexCoord-pixel);
+	dist *= 0.1;
+	dist = pow(dist, 0.8);
+	return dist;
+}
+
+void main() {
+	const float blurSize = 2.0/512.0;
+	const float intensity = 0.2;
+	const int its = 6;
+	const float rots = 6.28/its;
+	const int ist2 = 4;
+	
+	float bae = 1.f + iTime;
+	vec4 color = vec4(0.);
+	for(int rot = 0; rot < its; rot++)
+	{
+		for(int steps = 1; steps < ist2 + 1; steps++)
+		{
+			vec2 coord = fragTexCoord + vec2(sin(rots * rot), cos(rots * rot)) * blurSize * steps;
+			color += texture(bufferTexture, coord) * (getIntensity(coord));
+		}
+	}
+	color /= its * ist2;
+	color *= intensity;
+	color = 1.0 - exp(-color);
+	
+	finalColor = texture(bufferTexture, fragTexCoord) + color;
+}
