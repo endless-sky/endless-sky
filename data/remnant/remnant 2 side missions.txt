@@ -725,7 +725,7 @@ mission "Remnant: Wont Someone Please Think Of The Children"
 	source
 		government "Remnant"
 		not attributes "station"
-	waypoint "Parca"
+	waypoint "Antevorta"
 	to offer
 		and
 			"remnant: broken jump drive count" >= 10
