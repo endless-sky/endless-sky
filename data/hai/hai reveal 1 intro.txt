@@ -138,7 +138,7 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 	`	She nods and forces a little bit of false cheer into her voice, "This is why we're all wearing pink, just a little show of local solidarity.`
 		goto main
 	label pink
-	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris, and kidnapped a number of Hai, probably into slavery. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but everyone is a bit shaken up so us locals are wearing pink in solidarity... and so we're not mistaken for a security risk.`
+	`	A sad smile crosses her face and her expression goes somber as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris, and kidnapped a number of Hai, probably into slavery. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but everyone is a bit shaken up so us locals are wearing pink in solidarity... and so we're not mistaken for a security risk.`
 	label main
 	`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered. So far they've only been able to recall those on leave and up their vigilance."`
 	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
@@ -1079,9 +1079,37 @@ mission "Hai Leaks Response 6"
 
 event "secret mountaintop"
 	# Ensure Mountaintop exists so the next mission can trigger
+	# The system is redefined from scratch here to insulate against map file changes messing with later events (see issue #7605 which this fixes)
 	system "Ultima Thule"
 		government "Uninhabited"
-		add object
+		object
+			sprite star/f0
+			period 10
+		object
+			sprite planet/desert5
+			distance 200
+			period 22.3606
+		object
+			sprite planet/europa-b
+			distance 403.41
+			period 64.0560
+		object
+			sprite planet/desert7-b
+			distance 824.9
+			period 187.301
+		object
+			sprite planet/gas1
+			distance 1706.99
+			period 557.553
+			object
+				sprite planet/ice8-b
+				distance 216
+				period 11.1964
+		object "Wormhole Alpha"
+			sprite planet/wormhole
+			distance 4208.63
+			period 2158.5
+		object
 			distance 4208.63
 			period 2158.5
 			object Mountaintop
