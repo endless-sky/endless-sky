@@ -50,6 +50,7 @@ namespace {
 			required.emplace_hint(required.cend(), attribute.substr(PREFIX.length()));
 		});
 	}
+	int refreshCacheTime = 0;
 }
 
 
@@ -410,7 +411,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 
 
 // Get the local price of this outfit.
-double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions)
+double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const
 {
 	// refresh every second. What would be best is if the UI would notify all planets of the need to change the cache.
 	if(refreshCacheTime++ >= 60)

@@ -96,7 +96,7 @@ public:
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
 	// Get the local price of this outfit.
-	double GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions);
+	double GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const;
 	// Get the availability of this outfit.
 	CustomSale::SellType GetAvailability(const Outfit &outfit, const ConditionsStore &conditions) const;
 
@@ -163,7 +163,6 @@ private:
 
 	mutable CustomSale customSale;
 	mutable CustomSale visibleCustomSale;
-	int refreshCacheTime = 0;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;
