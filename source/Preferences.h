@@ -66,11 +66,11 @@ public:
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
 
-  // Auto aim setting, either "off", "always on", or "when firing".
+	// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
 	static int AutoAimIndex();
 	static const std::string &AutoAimSetting();
-  
+
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
 	static Preferences::BoardingPriority GetBoardingPriority();
