@@ -206,9 +206,9 @@ fleet "Iije"
 	cargo 0
 	personality
 		timid unconstrained uninterested
-	variant 5000
+	variant 6000
 		"Jje"
-	variant 100
+	variant 200
 		"Jje" 2
 	variant 20
 		"Jje" 3
@@ -247,9 +247,9 @@ fleet "Iije II"
 	cargo 0
 	personality
 		timid unconstrained swarming
-	variant 5000
+	variant 6000
 		"Jje"
-	variant 100
+	variant 200
 		"Jje" 2
 	variant 20
 		"Jje" 3
@@ -288,9 +288,9 @@ fleet "Iije III"
 	cargo 0
 	personality
 		timid unconstrained surveillance
-	variant 5000
+	variant 6000
 		"Jje"
-	variant 100
+	variant 200
 		"Jje" 2
 	variant 20
 		"Jje" 3
