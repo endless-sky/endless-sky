@@ -76,6 +76,8 @@ mission "%TEST%: CONDITIONAL CHOICE"
 					decline
 	on accept
 		set "succeed test"
+	on decline
+		set "failed test"
 
 mission "%TEST%: CONDITIONAL CHOICE GOTO"
 	priority
@@ -101,6 +103,30 @@ mission "%TEST%: CONDITIONAL CHOICE GOTO"
 				accept
 	on accept
 		set "succeed test"
+	on decline
+		set "failed test"
+
+
+mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+	priority
+	source "Ruin"
+	to offer
+		has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+	on offer
+		conversation
+			`	"Don't you dare clicking on the hidden option!"`
+			choice
+				`	"Sure."`
+					accept
+				`	"I do what I want."`
+					to display
+						not "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+			`	"In that case... Test failed."`
+				decline
+	on accept
+		set "succeed test"
+	on decline
+		set "failed test"
 
 
 mission "%TEST%: NAME IN CONVERSATION"
@@ -113,6 +139,12 @@ mission "%TEST%: NAME IN CONVERSATION"
 			name
 			`	So you are <first> <last>.`
 				accept
+			``
+				decline
+	on accept
+		set "succeed test"
+	on decline
+		set "failed test"
 
 
 test "Trigger Spaceport Mission"
@@ -136,6 +168,18 @@ test "Skip Spaceport Mission"
 			key "Return"
 
 
+test "Test Conditions"
+	status partial
+	description "Set a few conditions so they are displayed on errors, clarifying things up."
+	sequence
+		apply
+			# test accepted/failed. If neither it wasnt offered.
+			"test: succeed test" = "succeed test"
+			"test: failed test" = "failed test"
+			# if we launched
+			"test: flagship planet: Ruin" = "flagship planet: Ruin"
+
+
 test "Conditional Test"
 	status active
 	description "Test if a conversation option shows up when the given condition is set."
@@ -147,6 +191,7 @@ test "Conditional Test"
 		call "Trigger Spaceport Mission"
 		call "Skip Spaceport Mission"
 		call "Depart"
+		call "Test Conditions"
 		assert
 			"succeed test" == 1
 
@@ -162,6 +207,27 @@ test "Conditional Test Goto"
 		call "Trigger Spaceport Mission"
 		call "Skip Spaceport Mission"
 		call "Depart"
+		call "Test Conditions"
+		assert
+			"succeed test" == 1
+
+
+test "Conditional Test Out of Bound"
+	status active
+	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	sequence
+		inject "conditional choice"
+		call "Load First Savegame"
+		apply
+			"%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
+		call "Trigger Spaceport Mission"
+		# If only one option is displayed this shouldn't do anything,
+		# but if we can somehow access the condition below with the down key then its a problem.
+		input
+			key "Down"
+		call "Skip Spaceport Mission"
+		call "Depart"
+		call "Test Conditions"
 		assert
 			"succeed test" == 1
 
@@ -188,6 +254,7 @@ test "Enter Name in Conversation"
 		input
 			key "Return"
 		call "Depart"
+		call "Test Conditions"
 		# use test-data temporary variables for debugging in case of errors
 		apply
 			"test: %TEST%: NAME IN CONVERSATION: offered" = "%TEST%: NAME IN CONVERSATION: offered"
