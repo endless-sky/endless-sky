@@ -274,7 +274,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		}
 		version += '\n';
 #ifdef ES_GLES
-		version += "#define ES_GLES\n"
+		version += "#define ES_GLES\n";
 #endif // ES_GLES
 	}
 	size_t length = strlen(str);
