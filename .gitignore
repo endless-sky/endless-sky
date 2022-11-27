@@ -5,6 +5,7 @@ libendless-sky.a
 *.exe
 *.lnk
 *.AppImage
+*.cache
 
 # dlls needed to run the binary
 *.dll
@@ -63,4 +64,6 @@ ipch/
 CMakeLists.txt
 compile_commands.json
 /.gitmodules
-*.cache
+
+# static code analysis
+/.scannerwork
