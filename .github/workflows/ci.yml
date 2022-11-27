@@ -385,7 +385,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime liglvnd-dev
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime libglvnd-dev
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
