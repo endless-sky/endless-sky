@@ -75,7 +75,7 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
-	// Handle command-line arguments.
+	// Handle command-line arguments
 #ifdef _WIN32
 	if(argc > 1)
 		InitConsole();
