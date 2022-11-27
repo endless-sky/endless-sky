@@ -22,7 +22,13 @@ mission "remembrance day"
 		government "Republic"
 		attributes "spaceport"
 	to offer
-		has "event: remembrance day"
+		or
+			and
+				has "event: remembrance day"
+				not "advanced start"
+			and
+				day > 19
+				month == 2
 	on offer
 		log "Factions" "Alphas" `The Alphas were designed hundreds of years ago as genetically engineered super-soldiers, with no compassion or empathy. They escaped from their masters, enslaved entire planets, and commanded massive fleets of ships. Eventually they were defeated, and were either killed or went into hiding. They can be recognized by their green, photosynthetic skin.`
 			`Alphas can live for centuries, and it is likely that many of them have survived, hiding out on anarchist worlds or somewhere beyond human space. Fortunately, they reproduce much more slowly than ordinary humans do.`
