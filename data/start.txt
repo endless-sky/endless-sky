@@ -48,7 +48,8 @@ start "hai"
 	name "Later Start"
 	description `You grew up on Greenwater, a world with a very rich culture, mostly thanks to space travel. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age. You worked in a texture farm there, making human quite clothing that surprisingly sold very well.`
 	description `	Here, there is no need for licenses in order to buy or fly your ship.`
-	thumbnail "planet/cloud1"
+	description `	A lot has happened whilst you were on the planet, and you feel like it is finally time for you to play your part.`
+	thumbnail "land/station36"
 	date 18 6 3020
 	system "Fah Soom"
 	planet "Greenwater"
