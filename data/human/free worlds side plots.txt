@@ -25,6 +25,7 @@ mission "FW Convoy to Zug"
 		"combat rating" > 200
 		or
 			not "chosen sides"
+			has "event: joined the free worlds"
 		not "main story completed"
 	on offer
 		conversation
