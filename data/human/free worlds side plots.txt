@@ -27,7 +27,7 @@ mission "FW Convoy to Zug"
 		conversation
 			`While returning from a walk around the spaceport town of <origin>, you see the quartermaster of the spaceport inspecting the <ship>. He notices your arrival, and comes up to greet you.`
 			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <planet>." He points towards five Haulers of varying sizes in Free Worlds colors, some of which have considerable hull damage and are being repaired on the landing pads opposite to your ship.`
-			`	"Their last escort was just taken out by pirates, and we need someone who is experienced enough to fend off or evade them. You must be well known here, because many of our militia officers here recommended you when I asked for someone suitable to escort these ships. This is for quite a significant project on <planet>, so you will be paid <payment>."`
+			`	"Their last escort was just taken out by pirates, and we need someone who is experienced enough to fend off or evade them. You must be well known here, because many of our militia officers here recommended you. This is for quite a significant project on <planet>, so you will be paid <payment>."`
 			choice
 				`	"What's the project? It seems to be a big enterprise."`
 				`	"That's a fair few freighters, should I be expecting any more pirates?"`
