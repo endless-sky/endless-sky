@@ -34,6 +34,7 @@ class DataWriter;
 class Date;
 class Effect;
 class Fleet;
+class FormationPattern;
 class Galaxy;
 class GameEvent;
 class Government;
@@ -58,6 +59,7 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
+class Wormhole;
 
 
 
@@ -113,6 +115,7 @@ public:
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();
+	static const Set<FormationPattern> &Formations();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
 	static const Set<Hazard> &Hazards();
@@ -130,6 +133,7 @@ public:
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
+	static const Set<Wormhole> &Wormholes();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

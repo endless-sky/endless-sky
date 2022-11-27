@@ -1709,7 +1709,7 @@ mission "FW Albatross 1"
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
 			label metoo
-			apply
+			action
 				set "gay"
 			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`
 				accept
@@ -1765,7 +1765,7 @@ mission "FW Albatross 2A"
 		conversation
 			branch meeting
 				not "gay"
-			apply
+			action
 				clear "gay"
 			`JJ puts a hand on your shoulder before leaving the ship. "Freya let me know. For safety reasons only, of course. You can stay here if you aren't comfortable."`
 			choice
@@ -2020,6 +2020,18 @@ event "end battle of alioth"
 
 
 
+government "Syndicate (Hostile)"
+	swizzle 4
+	color 0 .41 .71
+	"display name" "Syndicate"
+	"player reputation" -1000
+	"attitude toward"
+		"Free Worlds" -.3
+		"Pirate" -.01
+		"Korath" -.01
+	"friendly hail" "friendly syndicate"
+	"hostile hail" "hostile syndicate"
+
 mission "FW Defend New Tibet"
 	landing
 	name "The Defector"
@@ -2075,7 +2087,7 @@ mission "FW Defend New Tibet"
 					goto "definitely rescue"
 			
 			label "definitely surrender"
-			apply
+			action
 				set "fw did not rescue defector"
 			`	"Very well," says JJ. "In that case, we'll need to meet with the fleet captains and figure out how to take on the Navy. Let's meet in the spaceport bar in an hour."`
 				decline
@@ -2093,7 +2105,7 @@ mission "FW Defend New Tibet"
 		dialog "You spot the Syndicate fleet orbiting above New Tibet when you enter the system, but to your surprise they begin targeting your ship. They don't seem very interested in answering any questions about the defector."
 	
 	npc evade
-		government Syndicate
+		government "Syndicate (Hostile)"
 		personality heroic staying
 		system Alioth
 		fleet
