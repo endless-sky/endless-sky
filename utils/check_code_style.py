@@ -564,10 +564,16 @@ def check_include(sanitized_lines, original_lines, file):
 
 
 if __name__ == '__main__':
+	import sys
 	errors = 0
 	warnings = 0
 
-	files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
+	files = []
+	if len(sys.argv[1:]) > 0:
+		for pattern in sys.argv[1:]:
+			files += glob.glob(pattern, recursive=True)
+	else:
+		files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
 	files.sort()
 
 	for file in files:
