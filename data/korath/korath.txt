@@ -282,7 +282,7 @@ fleet "Korath Home"
 	variant 30
 		"Lor'kas Ik 577"
 		"'olofez" 3
-	variant 30
+	variant 10
 		"Kas'lor Ik 582"
 		"'olofez" 3
 	variant 10
