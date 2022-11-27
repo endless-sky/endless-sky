@@ -25,7 +25,7 @@ mission "remembrance day"
 		or
 			and
 				has "event: remembrance day"
-				not "advanced start"
+				not "hai start"
 			and
 				day > 19
 				month == 2

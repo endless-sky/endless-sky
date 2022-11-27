@@ -44,15 +44,15 @@ conversation "default intro"
 
 
 
-start "advanced"
-	name "Advanced Start"
+start "hai"
+	name "Later Start"
 	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age.`
 	description `	You were just about to buy your first ship, after obtaining the license, when you heard a most unbelievable tale. Wanting to check it out, you took the first transport available, and headed for the unknown. You are now finally arriving on Heartvalley.`
 	thumbnail "planet/rock16"
 	date 18 6 3020
 	system "Io Lowe"
 	planet "Heartvalley"
-	conversation "advanced intro"
+	conversation "hai intro"
 	account
 		credits 1431000
 		score 400
@@ -61,12 +61,12 @@ start "advanced"
 			interest 0.003
 			term 730
 	set "license: Pilot's"
-	set "advanced start"
+	set "hai start"
 
 
 
-conversation "advanced intro"
-	`The Hai captain that had been on vacation in human space and was nice enough to get you a ride until here directs you to the local spaceport, before wishing you adventures.`
+conversation "hai intro"
+	`The Hai captain that had been on vacation in human space and was nice enough to get you a ride until here directs you to the local spaceport. Before leaving, he says a final goodbye, "I wish you adventures!" He says. You thank him for the ride, before parting ways.`
 	scene "land/fog0"
 	`	This world is like nothing you have ever seen before, so much so in fact that you wonder if you are ready...`
 	`	You head for the shipyard, excited to see what ships they have in store. This "Aphid" could suit your needs.`
@@ -103,11 +103,11 @@ conversation "advanced intro"
 		give ship Grasshopper
 		payment -1400000
 
-mission "Advanced Start"
+mission "Hai Start"
 	landing
 	invisible
 	to offer
-		has "advanced start"
+		has "hai start"
 	on offer
 		set "Intro [0]: offered"
 		set "event: war begins: offered"
