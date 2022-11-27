@@ -3132,21 +3132,17 @@ void PlayerInfo::Save(const string &path) const
 	startData.Save(out);
 
 	// Write plugins to player's save file for debugging.
-	if(!GameData::PluginAboutText().empty())
+	out.Write();
+	out.WriteComment("Installed plugins:");
+	out.Write("plugins");
+	out.BeginChild();
+	for(const auto &it : Plugins::Get())
 	{
-		out.Write();
-		out.WriteComment("Installed plugins:");
-		out.Write("plugins");
-		out.BeginChild();
-		for(const auto &plugin : GameData::PluginAboutText())
-		{
-			if(Plugins::IsEnabled(plugin.first))
-				out.Write(plugin.first, "(enabled)");
-			else
-				out.Write(plugin.first, "(disabled)");
-		}
-		out.EndChild();
+		const auto &plugin = it.second;
+		if(plugin.IsValid() && plugin.enabled)
+			out.Write(plugin.name);
 	}
+	out.EndChild();
 }
 
 
