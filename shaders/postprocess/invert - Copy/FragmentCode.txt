@@ -1,0 +1,15 @@
+// fragment fill shader
+precision mediump float;
+
+uniform sampler2D bufferTexture;
+uniform float iTime;
+
+in vec2 fragTexCoord;
+
+out vec4 finalColor;
+
+void main() {
+	float bae = 1.f + iTime;
+	
+	finalColor = vec4(vec3(1) - texture(bufferTexture, fragTexCoord).rgb, 1);
+}

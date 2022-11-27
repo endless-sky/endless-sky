@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+#include <string>
+
 
 
 // Class representing a shader, i.e. a compiled GLSL program that the GPU uses
@@ -27,11 +29,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Shader {
 public:
 	Shader() noexcept = default;
-	Shader(const char *vertex, const char *fragment);
+	void MakeShader(const std::string name, bool isInBuilt = false, bool useShaderSwizzle = false);
+	Shader(const char *name, bool isInBuilt = false);
+	Shader(const std::string name, bool isInBuilt = false, bool useShaderSwizzle = false);
 
 	GLuint Object() const noexcept;
 	GLint Attrib(const char *name) const;
 	GLint Uniform(const char *name) const;
+
+	static std::string ShaderPath(std::string shader, bool isFragment, bool isInBuilt, bool useShaderSwizzle = false);
 
 
 private:

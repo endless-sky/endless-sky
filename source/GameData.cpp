@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
+#include "FrameTimer.h"
 #include "FogShader.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
@@ -37,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "Logger.h"
 #include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -67,6 +69,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <iostream>
 #include <utility>
 #include <vector>
+#include <unordered_set>
 
 using namespace std;
 
@@ -90,6 +93,8 @@ namespace {
 	SpriteQueue spriteQueue;
 
 	vector<string> sources;
+
+
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
@@ -97,12 +102,22 @@ namespace {
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
+
+	bool debug = false;
+}
+
+
+
+bool GameData::DebugMode()
+{
+	return debug;
 }
 
 
 
 future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 {
+	debug = debugMode;
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
 
@@ -166,6 +181,7 @@ void GameData::CheckReferences()
 
 void GameData::LoadShaders(bool useShaderSwizzle)
 {
+	FrameTimer timer;
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
 
@@ -182,7 +198,10 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	SpriteShader::Init(useShaderSwizzle);
 	BatchShader::Init();
 
+
 	background.Init(16384, 4096);
+	if(debug)
+	 Logger::LogError("Shader: Finished Loading after " + to_string(timer.Time()) + " seconds.");
 }
 
 

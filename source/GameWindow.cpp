@@ -205,6 +205,14 @@ bool GameWindow::Init()
 		return false;
 	}
 
+	if(*glVersion < '4')
+	{
+		Logger::LogError("Endless Sky recommends OpenGL version 4.1 or higher.");
+		Logger::LogError(glVersion);
+		Logger::LogError(glslVersion);
+		Logger::LogError("Please update your graphics drivers.");
+	}
+
 	// OpenGL settings
 	glClearColor(0.f, 0.f, 0.0f, 1.f);
 	glEnable(GL_BLEND);

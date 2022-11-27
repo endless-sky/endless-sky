@@ -44,51 +44,7 @@ namespace {
 
 void RingShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex ring shader\n"
-		"precision mediump float;\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 position;\n"
-		"uniform float radius;\n"
-		"uniform float width;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 coord;\n"
-
-		"void main() {\n"
-		"  coord = (radius + width) * vert;\n"
-		"  gl_Position = vec4((coord + position) * scale, 0.f, 1.f);\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment ring shader\n"
-		"precision mediump float;\n"
-		"uniform vec4 color;\n"
-		"uniform float radius;\n"
-		"uniform float width;\n"
-		"uniform float angle;\n"
-		"uniform float startAngle;\n"
-		"uniform float dash;\n"
-		"const float pi = 3.1415926535897932384626433832795;\n"
-
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  float arc = mod(atan(coord.x, coord.y) + pi + startAngle, 2.f * pi);\n"
-		"  float arcFalloff = 1.f - min(2.f * pi - arc, arc - angle) * radius;\n"
-		"  if(dash != 0.f)\n"
-		"  {\n"
-		"    arc = mod(arc, dash);\n"
-		"    arcFalloff = min(arcFalloff, min(arc, dash - arc) * radius);\n"
-		"  }\n"
-		"  float len = length(coord);\n"
-		"  float lenFalloff = width - abs(len - radius);\n"
-		"  float alpha = clamp(min(arcFalloff, lenFalloff), 0.f, 1.f);\n"
-		"  finalColor = color * alpha;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
+	shader = Shader("ring", true);
 	scaleI = shader.Uniform("scale");
 	positionI = shader.Uniform("position");
 	radiusI = shader.Uniform("radius");

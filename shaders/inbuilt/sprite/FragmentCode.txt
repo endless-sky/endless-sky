@@ -1,0 +1,47 @@
+// fragment sprite shader
+precision mediump float;
+precision mediump sampler2DArray;
+uniform sampler2DArray tex;
+uniform float frame;
+uniform float frameCount;
+uniform vec2 blur;
+uniform float alpha;
+const int range = 5;
+
+in vec2 fragTexCoord;
+
+out vec4 finalColor;
+
+void main() {
+  float first = floor(frame);
+  float second = mod(ceil(frame), frameCount);
+  float fade = frame - first;
+  vec4 color;
+  if(blur.x == 0.f && blur.y == 0.f)
+  {
+    if(fade != 0.f)
+      color = mix(
+        texture(tex, vec3(fragTexCoord, first)),
+        texture(tex, vec3(fragTexCoord, second)), fade);
+    else
+      color = texture(tex, vec3(fragTexCoord, first));
+  }
+  else
+  {
+    color = vec4(0., 0., 0., 0.);
+    const float divisor = float(range * (range + 2) + 1);
+    for(int i = -range; i <= range; ++i)
+    {
+      float scale = float(range + 1 - abs(i)) / divisor;
+      vec2 coord = fragTexCoord + (blur * float(i)) / float(range);
+      if(fade != 0.f)
+        color += scale * mix(
+          texture(tex, vec3(coord, first)),
+          texture(tex, vec3(coord, second)), fade);
+      else
+        color += scale * texture(tex, vec3(coord, first));
+    }
+  };
+
+  finalColor = color * alpha;
+};

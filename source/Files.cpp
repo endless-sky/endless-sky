@@ -48,6 +48,7 @@ namespace {
 	string dataPath;
 	string imagePath;
 	string soundPath;
+	string shaderPath;
 	string savePath;
 	string testPath;
 
@@ -141,6 +142,7 @@ void Files::Init(const char * const *argv)
 	dataPath = resources + "data/";
 	imagePath = resources + "images/";
 	soundPath = resources + "sounds/";
+	shaderPath = resources + "shaders/";
 
 	if(config.empty())
 	{
@@ -178,7 +180,7 @@ void Files::Init(const char * const *argv)
 	}
 
 	// Check that all the directories exist.
-	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
+	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath) || !Exists(shaderPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
 		throw runtime_error("Unable to create config directory!");
@@ -217,6 +219,13 @@ const string &Files::Images()
 const string &Files::Sounds()
 {
 	return soundPath;
+}
+
+
+
+const string &Files::Shaders()
+{
+	return shaderPath;
 }
 
 

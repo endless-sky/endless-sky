@@ -1,0 +1,27 @@
+// fragment fill shader
+precision mediump float;
+
+uniform sampler2D bufferTexture;
+uniform float iTime;
+uniform float intensity;
+uniform vec2 center;
+uniform vec2 source;
+uniform vec2 screenSize;
+
+in vec2 fragTexCoord;
+
+out vec4 finalColor;
+
+void main() {
+	
+    vec2 place = source - center;
+    const float intensity = 1.f;
+
+    vec2 coord = fragTexCoord;
+  	vec2 offset = (place/screenSize);
+    offset = mix(coord, offset, 1.0 - length(offset-coord));
+
+	vec4 color = texture(bufferTexture, fragTexCoord + offset * intensity);
+	
+	finalColor = color;
+}
