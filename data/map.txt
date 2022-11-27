@@ -8979,7 +8979,7 @@ system "Devil-Hide"
 	trade Medical 784
 	trade Metal 345
 	trade Plastic 481
-	fleet "Devil-Run Warships" 400
+	fleet "Devil-Run Warships" 450
 	fleet "Devil-Run Miners" 5000
 	object "Devil-Eye"
 		sprite "planet/rogue-radiating"
@@ -28535,7 +28535,7 @@ planet "Bright Echo"
 planet "Buccaneer Bay"
 	attributes core "core pirate" frontier pirate
 	landscape land/beach0
-	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed.`
+	description `Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's greatest pirate fleets sailed.`
 	description `	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards.`
 	spaceport `This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prostheses. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around.`
 	shipyard "Core Pirates"
@@ -28958,8 +28958,13 @@ planet Devil-Eye
 
 planet "Devil-Run Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Devil-Run Wormhole"
+
+wormhole "Devil-Run Wormhole"
+	mappable
+	link "Deep Space 7C" "Devil-Run"
+	link "Devil-Run" "Deep Space 7C"
 
 planet "Devru Kaska"
 	attributes korath station
@@ -29081,21 +29086,43 @@ planet "Elek Kartanu"
 
 planet "Ember Graveyard"
 	attributes "requires: quantum keystone"
-	description ""
+	wormhole "Ember Graveyard"
+
+wormhole "Ember Graveyard"
+	mappable
+	link Polerius Ossipago
+	link Ossipago Polerius
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Ember Reaches"
+
+wormhole "Ember Reaches"
+	mappable
+	link Coluber Convector
+	link Convector Coluber
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
-	description ""
+	wormhole "Ember Threshold"
+
+wormhole "Ember Threshold"
+	mappable
+	link Cardea Terminus
+	link Terminus Cardea
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Ember Wormhole"
+
+wormhole "Ember Wormhole"
+	mappable
+	link Aescolanus Cardea
+	link Cardea Insitor
+	link Insitor Segesta
+	link Segesta Aescolanus
 
 planet Eminonu
 	attributes uninhabited
@@ -29544,11 +29571,21 @@ planet Grakhord
 	security 0.9
 
 planet "Graveyard Wormhole (Stable)"
-	description ``
+	wormhole "Graveyard Wormhole (Stable)"
+
+wormhole "Graveyard Wormhole (Stable)"
+	mappable
+	link Ritilas Fearis
+	link Fearis Ritilas
 
 planet "Graveyard Wormhole (Unstable)"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Graveyard Wormhole (Unstable)"
+
+wormhole "Graveyard Wormhole (Unstable)"
+	mappable
+	link Esix Relifer
+	link Relifer Esix
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -30110,8 +30147,8 @@ planet Longjump
 	landscape land/city9
 	description `Longjump is a mostly industrial world, with lower than normal gravity that makes it relatively easy to operate and transport heavy equipment. Hang-gliding is also a popular sport here, although for safety reasons it is prohibited anywhere near the spaceport.`
 	description `	Longjump was the first planet discovered in the region of space known today as the Rim. Every year in the month of August, the Rim celebrates Han Sizer month, a whole month of activities commemorating the first explorer of the region. Wealthier citizens of the Rim celebrate by visiting as many Rim worlds as they can in the month, paralleling Han Sizer's month-long exploration of the region.`
-	spaceport `You can recognize the natives immediately because they are almost all taller than you, a result of growing up in a low-gravity environment.`
-	spaceport `	The spaceport consists of four large towers, connected by bridges, with openings for hangars in the sides. The upper stories are for landing ships; business takes place down below, at street level.`
+	spaceport `The spaceport consists of four large towers connected by bridges, with openings for hangars in the sides. The upper stories are for landing ships; business takes place down below, at street level.`
+	spaceport `	You can recognize the natives immediately because they are almost all taller than you, a result of growing up in a low-gravity environment.`
 	outfitter "Basic Outfits"
 	outfitter "Delta V Basics"
 	outfitter "Ammo South"
@@ -30341,9 +30378,9 @@ planet Millrace
 	landscape land/mfield1
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
-	spaceport `This spaceport is ugly.`
-	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase in immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
-	spaceport `	Most of the restaurants are of the greasy spoon variety.`
+	spaceport `This spaceport is ugly. It was designed not for the pleasure of sight, but for processing as many people through it as possible, without collapsing onto itself.`
+	spaceport `	As the population of Millrace has grown, the spaceport has been continually expanded to support the increase in immigration; you can recognize the different sections because in the newer ones the bare concrete walls are lighter and have accumulated less soot and grime. Most of the restaurants are of the greasy spoon variety.`
+	spaceport `	Beyond the spaceport, you can see endless rows of apartment buildings receding into the horizon. Any variation in design or color from one to the next is well-hidden by the layers of filth.`
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
@@ -30941,6 +30978,10 @@ planet Prime
 
 planet "Pug Wormhole"
 
+wormhole "Pug Wormhole"
+	link "Over the Rainbow" Deneb
+	link Deneb "Over the Rainbow"
+
 planet Pugglemug
 	landscape land/myrabella5
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
@@ -31025,8 +31066,13 @@ planet Relic
 
 planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
-	description ""
 	spaceport ""
+	wormhole "Remnant Wormhole"
+
+wormhole "Remnant Wormhole"
+	mappable
+	link Peragenor Edusa
+	link Edusa Peragenor
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -31513,7 +31559,8 @@ planet Solace
 	landscape land/valley6
 	description `Solace is a fertile world that was already home to Earth-like vegetation and animals even before the first settlers arrived. It has now been inhabited for nearly half a millennium, and sprawling cities cover much of its surface.`
 	description `	In addition to being one of the major metropolitan centers of the galactic South, Solace is best known as the home of Delta V Corporation, makers of plasma engines and rockets of various sorts.`
-	spaceport `The spaceport on Solace serves not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
+	spaceport `Solace's spaceport is located in a satellite town of one of its major cities. Surrounding the spaceport is an extensive industrial park that stretches out for some distance, until the warehouses and factories abruptly give way to valleys and farmlands.` 
+	spaceport `	The spaceport serves not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
 	spaceport `	At the heart of the spaceport are a few bars, plus restaurants representing nearly every style of cuisine that you are familiar with. All the buildings are well maintained; this strikes you as a quite prosperous world, for this section of the galaxy.`
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Basics"
@@ -32155,7 +32202,7 @@ planet Wayfarer
 	landscape land/nasa1
 	description `Wayfarer was initially settled by a team of scientists and diplomats seeking to build a relationship with the Quarg worlds to the galactic southeast of here. Partly through the aid of the Quarg and partly through a desire to emulate them, it has grown into a very technologically advanced world.`
 	description `	The Tarazed Corporation, a maker of alien-inspired ships and outfits, is one of the largest industries on Wayfarer, and they draw raw materials from throughout this region of space.`
-	spaceport `The spaceport is clearly the artifact of an architect who was as familiar with alien architecture as with human. Instead of square angles it has many curved walls and domes. The landing pads jut out from the building at various heights. Some of the landing pads are designed with docking tubes specifically for Quarg visitors, and the ceilings are unusually high to accommodate the Quarg, several of whom are walking around and mingling with the humans here.`
+	spaceport `The spaceport is clearly the artifact of an architect who was as familiar with alien architecture as with human. Instead of square angles, it has many curved walls and domes. The landing pads jut out from the building at various heights. Some of the landing pads are designed with docking tubes specifically for Quarg visitors, and the ceilings are unusually high to accommodate the Quarg, several of whom are walking around and mingling with the humans here.`
 	shipyard "Basic Ships"
 	shipyard "Tarazed Basics"
 	shipyard "Tarazed Advanced"
@@ -32206,21 +32253,41 @@ planet Winter
 		fleet "Large Militia" 5
 
 planet "Wormhole Alpha"
-	description ""
 	spaceport ""
 	government "Wormhole Alpha"
+	wormhole "Wormhole Alpha"
+
+wormhole "Wormhole Alpha"
+	mappable
+	link "Ultima Thule" Waypoint
+	link Waypoint "Ultima Thule"
 
 planet "Wormhole Barren Alpha"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Wormhole Barren Alpha"
+
+wormhole "Wormhole Barren Alpha"
+	mappable
+	link Egeria Levana
+	link Levana Egeria
 
 planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Wormhole Barren Beta"
+
+wormhole "Wormhole Barren Beta"
+	mappable
+	link Caeculus Prosa
+	link Prosa Caeculus
 
 planet "Wormhole Link"
 	attributes "requires: quantum keystone"
-	description ``
+	wormhole "Wormhole Link"
+
+wormhole "Wormhole Link"
+	mappable
+	link Statina Vaticanus
+	link Vaticanus Statina
 
 planet "Wyvern Station"
 	attributes rim station
@@ -32281,4 +32348,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-

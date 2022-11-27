@@ -50,6 +50,8 @@ public:
 
 	// Get the name of the sprite for this image set.
 	const std::string &Name() const;
+	// Whether this image set is empty, i.e. has no images.
+	bool IsEmpty() const;
 	// Add a single image to this set. Assume the name of the image has already
 	// been checked to make sure it belongs in this set.
 	void Add(std::string path);

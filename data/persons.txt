@@ -1698,3 +1698,132 @@ effect "fusion cannon cloud"
 	"random angle" 360
 	"random velocity" 10
 	"velocity scale" .2
+
+
+
+person "MasterOfGrey"
+	government "Author"
+	frequency 1000
+	personality
+		heroic plunders opportunistic
+	system
+		government "Hai"
+	phrase
+		word
+			"Oh dear."
+			"Ah yes."
+			"Lovely."
+			"Suffering."
+			"Why is everything Alphas?"
+			"You're only a terrorist if the people experience terror."
+			"Have you finished the Free Worlds storyline yet?"
+			"Things don’t have to mimic an Earth creature to be not very alien."
+			"I have questions. Questions that do not yet need answers."
+			"There are no bugs in my code, only Xapleaux precursors."
+			"If I were green I would photosynthesize."
+			`"Trust the process" isn't a joke for no reason.`
+			"Have you reviewed Hai Reveal yet?"
+			"I gotta go get ready for work. Play nice and don’t @ me."
+			"I don’t even like yellow."
+			"I really enjoy the backstory for the Marauders."
+			"Falling into the Ember Waste and emerging into absolute silence for the first time in dozens of gameplay hours was profoundly moving."
+			"Planet descriptions will be the death of me."
+			"Have you tried Quyykk's editor for map work?"
+			"Did systems get made big yet?"
+			"Heat lasers and hull lasers are different metas and shouldn't be combined."
+			"<placeholder text>"
+	ship "Modified Ladybug" "Revealer of Hai"
+		"never disabled"
+
+ship "Modified Ladybug"
+	sprite "ship/modified ladybug"
+	thumbnail "ship/modified ladybug"
+	attributes
+		category "Medium Warship"
+		"cost" 8950000
+		
+		# Shaming the Solifuge
+		"shields" 38000
+		"hull" 20000
+		
+		"required crew" 16
+		"bunks" 33
+		"mass" 280
+		"drag" 5.4
+		"heat dissipation" .85
+		"fuel capacity" 900
+		"cargo space" 91
+		"outfit space" 647
+		"weapon capacity" 206
+		"engine capacity" 153
+
+		# Features from original Ladybug:
+		"ramscoop" 0.5
+		"cargo scan power" 5
+		"cargo scan speed" 1
+		"outfit scan power" 17
+		"outfit scan speed" 1
+		"tactical scan power" 25
+		"atmosphere scan" 100
+		"asteroid scan power" 30
+		
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		# Offensive turrets will be replaced with better pulse turrets in the future.
+		"Bombardment Turret"
+		"Thermal Repeater Turret" 2
+		"Point Defense Turret"
+		"Warder Anti-Missile"
+
+		"Systems Core (Medium)"
+		"S-970 Regenerator"
+		"Crystal Capacitor"
+		"Double Plasma Core"
+		"Small Heat Shunt" 2
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Quantum Keystone"
+		"Thermal Repeater Rifle" 16
+		
+		`"Biroo" Reverse Thruster`
+		`"Bondir" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Hyperdrive"
+		"Jump Drive"
+
+	turret 0 -47.5 "Bombardment Turret"
+	turret 35 -25 "Thermal Repeater Turret"
+	turret -35 -29 "Thermal Repeater Turret"
+	turret 39.5 5 "Warder Anti-Missile"
+	turret -39.5 5 "Point Defense Turret"
+	"reverse engine" 10.5 -64 0.7
+	"reverse engine" -10.5 -64 0.7 
+	"reverse engine" 7.5 -64 0.7 
+	"reverse engine" -7.5 -64 0.7 
+	"reverse engine" 4.5 -64 0.7 
+	"reverse engine" -4.5 -64 0.7 
+	"reverse engine" 1.5 -64 0.7 
+	"reverse engine" -1.5 -64 0.7 
+	engine 10.5 56.5 
+	engine -10.5 56.5 
+	engine 40.5 57 
+	engine -40.5 57 
+	engine 16 57.5 
+	engine -16 57.5 
+	engine 35 58 
+	engine -35 58 
+	engine 22.5 58.5 
+	engine -22.5 58.5 
+	engine 29.5 59 
+	engine -29.5 59 
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells - two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy.`

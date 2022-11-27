@@ -22,6 +22,10 @@ on:
       - 'source/**'
       - 'utils/check_*.sh'
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 jobs:
   changed:
     uses: ./.github/workflows/compute-changes.yml
@@ -60,7 +64,7 @@ jobs:
 
   validate-copyright:
     needs: changed
-    if: ${{ needs.changed.outputs.copyright }}
+    if: ${{ needs.changed.outputs.copyright == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
