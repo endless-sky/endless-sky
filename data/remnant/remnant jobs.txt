@@ -685,7 +685,7 @@ mission "Remnant: Disable 1"
 	on fail
 		"reputation: Remnant" += -10
 		dialog
-			`You where unable to disable the Kas'lor Ik 582 without destorying it... The Remnant will not be pleased...`
+			`You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
 	on complete
 		payment 2000000
 		dialog "A Remnant military leader thanks you for disabling down the Kas'lor Ik 582 <npc>, and gives you the agreed-upon payment of <payment>."
