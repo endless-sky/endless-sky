@@ -140,8 +140,6 @@ void Shader::MakeShader(const string name, bool isInBuilt, bool useShaderSwizzle
 {
 	const string vertexPath = Shader::ShaderPath(name, false, isInBuilt, useShaderSwizzle);
 	const string fragmentPath = Shader::ShaderPath(name, true, isInBuilt, useShaderSwizzle);
-	const string vertexCode = Files::Read(vertexPath);
-	const string fragmentCode = Files::Read(fragmentPath);
 	if(vertexCode.empty())
 		throw runtime_error("Vertex Shader cannot be found at " + vertexPath);
 	if(fragmentCode.empty())
@@ -161,6 +159,8 @@ void Shader::MakeShader(const string name, bool isInBuilt, bool useShaderSwizzle
 
 	if(!cached)
 	{
+		const string vertexCode = Files::Read(vertexPath);
+		const string fragmentCode = Files::Read(fragmentPath);
 		GLuint vertexShader = Compile(vertexCode.c_str(), GL_VERTEX_SHADER);
 		GLuint fragmentShader = Compile(fragmentCode.c_str(), GL_FRAGMENT_SHADER);
 		glAttachShader(program, vertexShader);
@@ -273,6 +273,9 @@ GLuint Shader::Compile(const char *str, GLenum type)
 			version += " es";
 		}
 		version += '\n';
+#ifdef ES_GLES
+		version += "#define ES_GLES\n"
+#endif // ES_GLES
 	}
 	size_t length = strlen(str);
 	vector<GLchar> text(version.length() + length + 1);
