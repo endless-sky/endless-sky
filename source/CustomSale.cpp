@@ -359,3 +359,10 @@ void CustomSale::CheckIfEmpty()
 	else if(sellType == SellType::NONE)
 		sellType = SellType::VISIBLE;
 }
+
+
+
+bool CustomSale::IsEmpty()
+{
+	return sellType != SellType::NONE;
+}

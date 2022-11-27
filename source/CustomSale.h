@@ -75,6 +75,8 @@ public:
 
 	void CheckIfEmpty();
 
+	bool IsEmpty();
+
 
 private:
 	LocationFilter locationFilter;

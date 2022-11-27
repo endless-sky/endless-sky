@@ -162,6 +162,8 @@ private:
 	std::set<const Sale<Outfit> *> outfitSales;
 
 	mutable CustomSale customSale;
+	mutable CustomSale visibleCustomSale;
+	int refreshCacheTime = 0;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;
