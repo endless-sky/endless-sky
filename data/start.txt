@@ -46,12 +46,12 @@ conversation "default intro"
 
 start "hai"
 	name "Later Start"
-	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age.`
-	description `	You were just about to buy your first ship, after obtaining the license, when you heard a most unbelievable tale. Wanting to check it out, you took the first transport available, and headed for the unknown. You are now finally arriving on Heartvalley.`
-	thumbnail "planet/rock16"
+	description `You grew up on Greenwater, a world with a very rich culture, mostly thanks to space travel. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age. You worked in a texture farm there, making human quite clothing that surprisingly sold very well.`
+	description `	Here, there is no need for licenses in order to buy or fly your ship.`
+	thumbnail "planet/cloud1"
 	date 18 6 3020
-	system "Io Lowe"
-	planet "Heartvalley"
+	system "Fah Soom"
+	planet "Greenwater"
 	conversation "hai intro"
 	account
 		credits 1431000
@@ -60,32 +60,32 @@ start "hai"
 			principal 1431000
 			interest 0.003
 			term 730
-	set "license: Pilot's"
 	set "hai start"
 
 
 
 conversation "hai intro"
-	`The Hai captain that had been on vacation in human space and was nice enough to get you a ride until here directs you to the local spaceport. Before leaving, he says a final goodbye, "I wish you adventures!" He says. You thank him for the ride, before parting ways.`
 	scene "land/fog0"
-	`	This world is like nothing you have ever seen before, so much so in fact that you wonder if you are ready...`
-	`	You head for the shipyard, excited to see what ships they have in store. This "Aphid" could suit your needs.`
+	`	You know it is the same world, but you've never been to the shipyard before, and it feels like traveling already. You wonder if you are ready to take the big leap... You've seen pictures of ships before, but seeing them for real is something else entirely. You are stunned by how new and shiny they look, even though you know a lot of those ships have been in service for long years.`
+	`	This "Aphid" could suit your needs. Fast, and able to carry a respectable amount of cargo.`
+	scene "thumbnail/hai aphid"
 	`	That is, except if you want to get adventurous and try out the impetious Lightning Bug. The ship may be able to beat human medium warships if a competent pilot is at the helm...`
-	`	Pirates are not far from here, after all, may as well be safe... No way to know how soon you could find yourself in a fight with them...`
+	scene "thumbnail/hai lightning bug"
+	`	You have heard tales of pirates and quick money... Indeed, north of here there are even Hai pirates, that call themselves the 'Unfettered'. Maybe they could come to like you, if you were to show them strength...`
 	choice
 		`	(Go to the bank.)`
 	scene "scene/lobby"
 	`	You head to the bank's lobby, hoping to get enough money to be able to buy one of these pristine ships.`
-	`	To your disapointment the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. The contract stipulates that you give all of your credits to the bank in order to get a higher loan. You will probably have to sell some part of the default ship in order to be able to afford flying it!`
+	`	To your disapointment the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. You will probably have to sell some part of the ship in order to be able to afford flying it!`
 	`	The bank employee sums it up to you, with a hesitant smile. "This will put you in a debt of 1 million 431 thousand credits, due in the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
-	`	You head out of the bank, preparing yourself to buy the Aphid, but on the way you see a notice. A retiring captain of this Hai specie offers to sell some of his ships at an interesting price, including a Grasshopper...`
+	`	You head out of the bank, preparing yourself to buy the Aphid, but on the way you see a notice. A retiring captain of this Hai specie offers to sell some of his ships at an interesting price, including a Grasshopper... Maybe they could sell it to you for a fair price.`
 	choice
 		`	(Go to the shipyard.)`
 			decline
 		`	(Go see what the captain has to offer first.)`
-	`	You go find the captain that offers to sell the Grasshopper, and thankfully they did not yet sell it.`
-	`	"Hello, good fellow! I assume you come for the Grasshopper."`
+	`	You head to the spaceport and easily the captain that offers to sell the Grasshopper. Thankfully they did not yet sell it, now is your chance.`
+	`	They see you arrive and greet you in Hai. You somehow never really learned the language, even after spending quite a bit of time with them, probably due to the fact they all speak yours. Seeing you do not understand they switch to your language. "Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
 	choice
 		`	"Yes indeed."`
 		`	"How did you know?"`
@@ -93,7 +93,7 @@ conversation "hai intro"
 			decline
 	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel' !" They say, taking you to the ship. It is not brand new, but it still looks in surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
-	`	Because I like you I'll give you a friendly price, what do you say about 1.4 millions for this wonderful ship? That's about half of the price you would have to pay if you were to buy it in a shipyard."`
+	`	"Because I like you I'll give you a friendly price, what do you say about 1.4 millions for this wonderful ship? That's about half of the price you would have to pay if you were to buy it in a shipyard."`
 	choice
 		`	"Sold!"`
 		`	"Sorry, not interested."`
