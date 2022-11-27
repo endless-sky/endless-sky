@@ -41,6 +41,7 @@ public:
 	static const std::string &Data();
 	static const std::string &Images();
 	static const std::string &Sounds();
+	static const std::string &Shaders();
 	static const std::string &Saves();
 	static const std::string &Tests();
 

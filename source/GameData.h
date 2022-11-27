@@ -71,6 +71,7 @@ class Wormhole;
 // universe.
 class GameData {
 public:
+	static bool DebugMode();
 	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
@@ -88,6 +89,8 @@ public:
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
+
+	static const std::vector<std::pair<std::string, bool>> &Shaders();
 
 	// Revert any changes that have been made to the universe.
 	static void Revert();

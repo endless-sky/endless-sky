@@ -37,30 +37,7 @@ namespace {
 
 void FillShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex fill shader\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 center;\n"
-		"uniform vec2 size;\n"
-
-		"in vec2 vert;\n"
-
-		"void main() {\n"
-		"  gl_Position = vec4((center + vert * size) * scale, 0, 1);\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment fill shader\n"
-		"precision mediump float;\n"
-		"uniform vec4 color;\n"
-
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  finalColor = color;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
+	shader = Shader("fill", true);
 	scaleI = shader.Uniform("scale");
 	centerI = shader.Uniform("center");
 	sizeI = shader.Uniform("size");

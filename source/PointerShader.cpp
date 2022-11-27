@@ -41,44 +41,7 @@ namespace {
 
 void PointerShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex pointer shader\n"
-		"precision mediump float;\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 center;\n"
-		"uniform vec2 angle;\n"
-		"uniform vec2 size;\n"
-		"uniform float offset;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 coord;\n"
-
-		"void main() {\n"
-		"  coord = vert * size.x;\n"
-		"  vec2 base = center + angle * (offset - size.y * (vert.x + vert.y));\n"
-		"  vec2 wing = vec2(angle.y, -angle.x) * (size.x * .5 * (vert.x - vert.y));\n"
-		"  gl_Position = vec4((base + wing) * scale, 0, 1);\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment pointer shader\n"
-		"precision mediump float;\n"
-		"uniform vec4 color;\n"
-		"uniform vec2 size;\n"
-
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  float height = (coord.x + coord.y) / size.x;\n"
-		"  float taper = height * height * height;\n"
-		"  taper *= taper * .5 * size.x;\n"
-		"  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0.f, 1.f);\n"
-		"  alpha *= clamp(1.8 * (1. - height), 0.f, 1.f);\n"
-		"  finalColor = color * alpha;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
+	shader = Shader("pointer", true);
 	scaleI = shader.Uniform("scale");
 	centerI = shader.Uniform("center");
 	angleI = shader.Uniform("angle");

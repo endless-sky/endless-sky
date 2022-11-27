@@ -39,43 +39,8 @@ namespace {
 // Initialize the shaders.
 void BatchShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex batch shader\n"
-		"uniform vec2 scale;\n"
-		"in vec2 vert;\n"
-		"in vec3 texCoord;\n"
-
-		"out vec3 fragTexCoord;\n"
-
-		"void main() {\n"
-		"  gl_Position = vec4(vert * scale, 0, 1);\n"
-		"  fragTexCoord = texCoord;\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment batch shader\n"
-		"precision mediump float;\n"
-#ifdef ES_GLES
-		"precision mediump sampler2DArray;\n"
-#endif
-		"uniform sampler2DArray tex;\n"
-		"uniform float frameCount;\n"
-
-		"in vec3 fragTexCoord;\n"
-
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  float first = floor(fragTexCoord.z);\n"
-		"  float second = mod(ceil(fragTexCoord.z), frameCount);\n"
-		"  float fade = fragTexCoord.z - first;\n"
-		"  finalColor = mix(\n"
-		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
-		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
-		"}\n";
-
 	// Compile the shaders.
-	shader = Shader(vertexCode, fragmentCode);
+	shader = Shader("batch", true);
 	// Get the indices of the uniforms and attributes.
 	scaleI = shader.Uniform("scale");
 	frameCountI = shader.Uniform("frameCount");
