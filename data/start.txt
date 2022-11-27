@@ -46,8 +46,8 @@ conversation "default intro"
 
 start "advanced"
 	name "Advanced Start"
-	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age. You have been warned multiple times of how expensive the bank is, and choose to wait to have a small amount of money before taking your first loan.`
-	description `	You were just about to buy your first ship, after buying the license, when you heard a most unbelievable tale. Wanting to check it out, you took the first transport available, and headed for the unknown.`
+	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age. You have been warned multiple times of how expensive the bank is, and choose to wait to have a reasonable amount of credits before taking your first loan.`
+	description `	You were just about to buy your first ship, after obtaining the license, when you heard a most unbelievable tale. Wanting to check it out, you took the first transport available, and headed for the unknown.`
 	thumbnail "scene/lobby"
 	date 18 6 3020
 	system "Io Lowe"
@@ -69,18 +69,16 @@ conversation "advanced intro"
 	scene "planet/rock16"
 	`This world is like nothing you have ever seen before, so much so in fact that you wonder if you are ready...`
 	`	You head for the shipyard, excited to see what ships they have in store, and decide that this "Aphid" would suit your needs.`
-	`	That is, except if you decide to get adventurous and try out the impetious Grasshopper. The ship may be able to beat human medium warships if a competent pilot is at the helm...`
+	`	That is, except if you decide to get adventurous and try out the impetious Lightning Bug. The ship may be able to beat human medium warships if a competent pilot is at the helm...`
 	`	Pirates are not far from here, after all, may as well be safe... No way to know how soon you could find yourself in a fight with them...`
 	choice
 		`	(Go to the bank.)`
 	scene "scene/lobby"
 	`	You head to the bank's lobby, hoping to get enough money to be able to buy one of these pristine ships.`
-	`	Looking at the prices of the ships it is clear the only ship you can get is the Aphid. You loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. The contracts plans you giving them most of your possessions in order to get enough of a loan, and you hope it is worth it.`
+	`	However, looking at the prices it is clear the only ship you can get is an Aphid. You loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. The contract stipulates you give almost all of your credits, only keeping a few thousands in order to get enough of a loan.`
 	`	The bank employee sums it up to you, with a hesitant smile. "This will put you in a debt of 1431 thousand credits, due in the course of 2 years, with interest rate of 0.2% per day. Please sign here." You did not head all the way into Hai space to have doubts now.`
 	name
 	`	You head out of the bank, preparing yourself to buy the Aphid, but you see a notice in the shipyard. A retiring captain of this Hai specie offers to sell some of his ships at an interesting price, including a Grasshopper... You could always go to the spaceport to see what he can offer you, or you could buy the Aphid now. The choice is yours.`
-	# alternative: once TP action is in, go to the new human shipyard, by transport.
-
 
 
 mission "Advanced Start"
