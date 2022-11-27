@@ -41,3 +41,69 @@ conversation "default intro"
 	name
 	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
 	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
+
+
+
+start "advanced"
+	name "Advanced Start"
+	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age. You have been warned multiple times of how expensive the bank is, and choose to wait to have a small amount of money before taking your first loan.`
+	description `	You were just about to buy your first ship, after buying the license, when you heard a most unbelievable tale. Wanting to check it out, you took the first transport available, and headed for the unknown.`
+	thumbnail "scene/lobby"
+	date 18 6 3020
+	system "Io Lowe"
+	planet "Heartvalley"
+	conversation "advanced intro"
+	account
+		credits 1500000
+		score 400
+		mortgage Mortgage
+			principal 1431000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	set "Intro [0]: offered"
+	set "event: war begins: offered"
+	set "chosen sides"
+	set "main plot completed"
+	set "Hai Secret Leaker Begins: offered"
+	# make these available too
+	event "flamethrower available"
+	event "dreadnoughts for sale"
+	event "dreadnought deployment"
+	event "catalytic ramscoop available"
+	event "deep sky tech available"
+	event "stack core for sale"
+	event "syndicate tech available"
+	
+	event "bloodsea joins free worlds"
+	event "bloodsea spaceport completed"
+	event "albatross joins free worlds"
+	event "Greenrock recovered"
+	event "liberation of Poisonwood"
+	event "fwc southern liberation"
+	event "fwc capture cebalrai"
+	event "fwc defended cebalrai"
+	event "navy out of rastaban"
+	event "fw tarazed joins"
+	event "fwc capture kaus borealis"
+	event "fwc liberation of rasalhague"
+	event "fwc pug defeated"
+	event "geminus rebuilt"
+	
+	event "pirates investigate leaks"
+	
+
+
+conversation "advanced intro"
+	`This world is like nothing you have ever seen before, so much so in fact that you wonder if you are ready... It is still time to head back.`
+	`	You head for the shipyard, excited to see what ships they have in store, and decide that this "Aphid" would suit your needs.`
+	scene "thumbnail/aphid"
+	`	That is, except if you decide to get adventurous and try out the impetious Grasshopper. The ship may be able to beat human medium warships if a competent pilot is at the helm...`
+	`	And Pirates are not far from here, after all, may as well be safe... No way to know how soon you could find yourself in a fight with them...`
+	scene "thumbnail/grasshopper"
+	`	You head to the lobby to try and buy one of these pristine ships, when you realize you should probably head to the bank first!`
+	`	Arriving at the bank you ask to loan as much money as you need in order to buy that Aphid, in what is probably the first serious unwise act of your life. You had to give them all the money you had in order to get enough of a loan, and you hope it is worth it. You keep 69 thousand credits, as a surety.`
+	`	The bank employee warns you, with a hesitant smile. "This will put you in a debt of 1431 thousand credits. Are you sure?" You did not head all the way into Hai space to have doubts now.`
+	name
+	`	You were about to buy the Aphid, but heading out of the bank you see a notice. A retiring captain of this Hai specie offers to sell some of his ships at an interesting price, including a Grasshopper... You could always go to the spaceport to see what he can offer you, or you could buy the Aphid now. The choice is yours.`
+	# alternative: once TP action is in, go to the new human shipyard, by transport.
