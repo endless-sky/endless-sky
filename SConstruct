@@ -17,6 +17,13 @@ env.EnsurePythonVersion(3, 5)
 # Make sure the current SCons version is at least v3.1.0; newer versions are allowed.
 env.EnsureSConsVersion(3, 1, 0)
 
+try:
+    env.Tool('compilation_db')
+    env.Default(env.CompilationDatabase())
+# scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
+except SConsEnvironmentError:
+    pass
+
 if 'CXX' in os.environ:
 	env['CXX'] = os.environ['CXX']
 if 'CXXFLAGS' in os.environ:
@@ -145,13 +152,6 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 	matches += env.Glob(pathjoin(str(dir_name), pattern))
 	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
-
-try:
-    env.Tool('compilation_db')
-    env.Default(env.CompilationDatabase())
-# scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
-except SConsEnvironmentError:
-    pass
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
