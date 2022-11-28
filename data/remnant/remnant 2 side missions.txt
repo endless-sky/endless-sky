@@ -757,7 +757,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		dialog `You have disabled the Kas'lor Ik 582, time to report back to <planet>.`
 	on enter "Antevorta"
 		dialog
-			`As you enter the system your scanners pick the target ship. Your nerves are acting up at the thought of having to take on such a powerful ship, but you remind yourself to think of civilians on board, possibly even children.`
+			`As you enter the system your scanners pick the target ship, and reveal an impressive amount of weaponry and military hardware. The environmental data reveals a small city's worth of people, many whose size indicates they are probably children.`
 	on abort
 		"reputation: Remnant" += 250
 	on fail
