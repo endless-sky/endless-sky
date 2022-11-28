@@ -753,7 +753,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		government "Korath"
 		personality heroic vindictive target marked staying
 		system "Antevorta"
-		ship "Kas'lor Ik 582 (Crippled)" "Flumgorkor"
+		ship "Kas'lor Ik 582 (Crippled)" "Fligrookor"
 		dialog `You have disabled the Kas'lor Ik 582, time to report back to <planet>.`
 	on enter "Antevorta"
 		dialog
