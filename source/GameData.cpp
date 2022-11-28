@@ -630,7 +630,7 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
-ConditionsStore &GlobalConditions()
+ConditionsStore &GameData::GlobalConditions()
 {
 	return globalConditions;
 }
