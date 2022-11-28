@@ -507,7 +507,6 @@ outfit "Pug Peacekeeping Staff"
 
 
 
-
 ship "Pug Zibruka"
 	sprite "ship/pug zibruka"
 	thumbnail "thumbnail/pug zibruka"
@@ -556,8 +555,6 @@ ship "Pug Zibruka"
 	explode "pug large explosion" 10
 	"final explode" "final explosion small"
 	description `The Zibruka is the smallest Pug warship. Despite having only two gun ports, its advanced guns combined with fast and efficient engine systems make it a fearsome ship to face off against, especially in swarms.`
-
-
 
 
 ship "Pug Enfolta"
@@ -615,8 +612,6 @@ ship "Pug Enfolta"
 	description `The Enfolta is a medium-sized Pug warship. It has a powerful arnament of advanced weaponry supported by powerful integrated energy generation. A single Enfolta can take on a fleet of smaller human ships.`
 
 
-
-
 ship "Pug Maboro"
 	sprite "ship/pug maboro"
 	thumbnail "thumbnail/pug maboro"
@@ -672,8 +667,6 @@ ship "Pug Maboro"
 	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
 	description `The Maboro appears to be the Pug's capital warship. Its shield matrix and hull are much weaker than human capital ships, however it is able to regenrate its shields quickly. Its powerful weapory and advanced anti-missile systems make it a ship that only the strongest human capital ships are able to oppose.`
-
-
 
 
 ship "Pug Arfecta"
