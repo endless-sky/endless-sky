@@ -61,6 +61,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string BOARDING_PRIORITY = "Boarding target priority";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 1;
@@ -130,6 +131,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
 		page = key;
+	else if(key == 'o' && page == 'p')
+		Files::OpenUserPluginFolder();
 	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
 		++currentSettingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
@@ -182,6 +185,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			else if(zone.Value() == BOARDING_PRIORITY)
+				Preferences::ToggleBoarding();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -460,6 +465,7 @@ void PreferencesPanel::DrawSettings()
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
 		"Show status overlays",
+		"Show missile overlays",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		"Show planet labels",
@@ -469,6 +475,7 @@ void PreferencesPanel::DrawSettings()
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
+		BOARDING_PRIORITY,
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
@@ -577,6 +584,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == BOARDING_PRIORITY)
+		{
+			isOn = true;
+			text = Preferences::BoardingSetting();
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
