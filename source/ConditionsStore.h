@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <string>
 
+class DataFile;
 class DataNode;
 class DataWriter;
 
@@ -153,6 +154,7 @@ public:
 
 	// Serialization support for this class.
 	void Load(const DataNode &node);
+	void Load(const DataFile &file);
 	void Save(DataWriter &out) const;
 
 	// Retrieve a "condition" flag from this store (directly or from the

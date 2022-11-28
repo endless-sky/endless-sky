@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -96,6 +97,8 @@ namespace {
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
+
+	ConditionsStore globalConditions;
 }
 
 
@@ -620,6 +623,13 @@ const Set<Test> &GameData::Tests()
 const Set<TestData> &GameData::TestDataSets()
 {
 	return objects.testDataSets;
+}
+
+
+
+ConditionsStore &GlobalConditions()
+{
+	return globalConditions;
 }
 
 

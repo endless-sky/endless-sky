@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionsStore.h"
 
+#include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Logger.h"
@@ -243,6 +244,14 @@ void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+}
+
+
+
+void ConditionsStore::Load(const DataFile &file)
+{
+	for(const DataNode &node : file)
+		Set(node.Token(0), (node.Size() >= 2) ? node.Value(1) : 1);
 }
 
 
