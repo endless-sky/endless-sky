@@ -13,7 +13,7 @@
 
 
 
-ship "Sea Scorpion" "Sea Scorpion (Shields)"
+ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`
@@ -32,11 +32,11 @@ ship "Sea Scorpion" "Sea Scorpion (Shields)"
 fleet "Sea Scorpion Challenger"
 	government "Hai (Unfettered Challenger)"
 	names "hai"
-	personality disables staying heroic target
+	personality disables plunders staying heroic target
 	variant 5
 		"Sea Scorpion (Pulse)"
 	variant 3
-		"Sea Scorpion (Shields)"
+		"Sea Scorpion (Shields, Trackers)"
 	variant 5
 		"Sea Scorpion (Ion)"
 	variant
@@ -47,7 +47,7 @@ fleet "Sea Scorpion Challenger"
 fleet "Shield Beetle Challenger"
 	government "Hai (Unfettered Challenger)"
 	names "hai"
-	personality disables staying heroic target
+	personality disables plunders staying heroic target
 	variant 5
 		"Shield Beetle (Pulse)"
 	variant 5
@@ -115,7 +115,7 @@ mission "Unfettered Challenge [0]"
 		random < 60
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables staying heroic target
+		personality disables plunders staying heroic target
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
 	on complete
@@ -137,7 +137,7 @@ mission "Unfettered Challenge [1A]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables staying heroic target
+		personality disables plunders staying heroic target
 		fleet "Sea Scorpion Challenger" 2
 		dialog phrase "unfettered challenger defeated"
 	on complete
@@ -159,7 +159,7 @@ mission "Unfettered Challenge [1B]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables staying heroic target
+		personality disables plunders staying heroic target
 		fleet "Shield Beetle Challenger"
 		dialog phrase "unfettered challenger defeated"
 	on complete
@@ -181,7 +181,7 @@ mission "Unfettered Challenge [2]"
 		random < 20
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables staying heroic target
+		personality disables plunders staying heroic target
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"
 		dialog phrase "unfettered challenger defeated"
@@ -191,6 +191,7 @@ mission "Unfettered Challenge [2]"
 
 
 
+# when you board the generic challengers
 mission "Unfettered Space Challenge"
 	minor
 	boarding
@@ -245,6 +246,7 @@ conversation "interrupted duel"
 	`The Unfettered authorities of the nearby planet hail you, "You have been warned. We have been patient enough with you, monkey! Now you shall pay."`
 	# one can just sell them a JD to get forgiven.
 
+
 # Kavakai = one with no honor
 mission "Death To The Kavakai"
 	invisible
@@ -257,17 +259,18 @@ mission "Death To The Kavakai"
 	on offer
 		"unfettered revenge fleet"--
 	on enter
-		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships, "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, Kavakai!"`
+		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships. "Not only do you dare interrupt a duel, but you dare land on our worlds? We shall teach you respect, Kavakai!"`
 	npc kill
 		government "Hai (Unfettered)"
-		personality staying heroic nemesis unconstrained
+		# marked so Hai don't attack them.
+		personality staying heroic nemesis unconstrained vindictive marked
 		fleet "Sea Scorpion Challenger"
 		fleet "Shield Beetle Challenger"
 		fleet "Large Unfettered" 2
 		fleet "Small Unfettered" 2
 	npc kill
 		government "Hai (Unfettered)"
-		personality staying heroic nemesis unconstrained
+		personality staying heroic nemesis unconstrained vindictive marked
 		to spawn
 			"unfettered revenge fleet" > 3
 		fleet "Large Unfettered" 4
@@ -283,17 +286,17 @@ mission "Unfettered Red Blue Sea Scorpion Duel"
 	source
 		attributes "unfettered"
 	to offer
-		random < 5
+		random < 8
 	to complete
 		never
 	npc provoke
 		government "Hai (Unfettered Blue Challenger)"
-		personality disables staying heroic uninterested
+		personality disables merciful plunders staying heroic uninterested
 		fleet "Sea Scorpion Challenger"
 		conversation "interrupted duel"
 	npc provoke
 		government "Hai (Unfettered Red Challenger)"
-		personality disables staying heroic uninterested
+		personality disables merciful plunders staying heroic uninterested
 		fleet "Sea Scorpion Challenger"
 		conversation "interrupted duel"
 
@@ -306,17 +309,17 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 	source
 		attributes "unfettered"
 	to offer
-		random < 5
+		random < 4
 	to complete
 		never
 	npc provoke
 		government "Hai (Unfettered Blue Challenger)"
-		personality disables staying heroic uninterested
+		personality disables merciful plunders staying heroic uninterested
 		fleet "Shield Beetle Challenger"
 		conversation "interrupted duel"
 	npc provoke
 		government "Hai (Unfettered Red Challenger)"
-		personality disables staying heroic uninterested
+		personality disables merciful plunders staying heroic uninterested
 		fleet "Shield Beetle Challenger"
 		conversation "interrupted duel"
 
