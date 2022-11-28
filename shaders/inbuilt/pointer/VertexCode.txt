@@ -11,8 +11,8 @@ out vec2 coord;
 
 void main()
 {
-  coord = vert * size.x;
-  vec2 base = center + angle * (offset - size.y * (vert.x + vert.y));
-  vec2 wing = vec2(angle.y, -angle.x) * (size.x * .5 * (vert.x - vert.y));
-  gl_Position = vec4((base + wing) * scale, 0, 1);
+	coord = vert * size.x;
+	vec2 base = center + angle * (offset - size.y * (vert.x + vert.y));
+	vec2 wing = vec2(angle.y, -angle.x) * (size.x * .5 * (vert.x - vert.y));
+	gl_Position = vec4((base + wing) * scale, 0, 1);
 }

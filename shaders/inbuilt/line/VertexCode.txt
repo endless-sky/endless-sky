@@ -10,7 +10,7 @@ out float tscale;
 
 void main()
 {
-  tpos = vert;
-  tscale = length(len);
-  gl_Position = vec4((start + vert.x * len + vert.y * width) * scale, 0, 1);
+	tpos = vert;
+	tscale = length(len);
+	gl_Position = vec4((start + vert.x * len + vert.y * width) * scale, 0, 1);
 }

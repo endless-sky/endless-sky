@@ -12,10 +12,10 @@ out vec4 finalColor;
 
 void main()
 {
-  float first = floor(fragTexCoord.z);
-  float second = mod(ceil(fragTexCoord.z), frameCount);
-  float fade = fragTexCoord.z - first;
-  finalColor = mix(
-    texture(tex, vec3(fragTexCoord.xy, first)),
-    texture(tex, vec3(fragTexCoord.xy, second)), fade);
+	float first = floor(fragTexCoord.z);
+	float second = mod(ceil(fragTexCoord.z), frameCount);
+	float fade = fragTexCoord.z - first;
+	finalColor = mix(
+		texture(tex, vec3(fragTexCoord.xy, first)),
+		texture(tex, vec3(fragTexCoord.xy, second)), fade);
 }

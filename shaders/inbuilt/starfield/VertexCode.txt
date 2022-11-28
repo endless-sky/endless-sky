@@ -13,8 +13,8 @@ out vec2 coord;
 
 void main()
 {
-  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;
-  coord = vec2(sin(corner), cos(corner));
-  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));
-  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);
+	fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;
+	coord = vec2(sin(corner), cos(corner));
+	vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));
+	gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);
 }
