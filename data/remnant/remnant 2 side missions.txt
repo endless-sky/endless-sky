@@ -747,7 +747,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 			`	"I am grateful for your understanding and willingness to help here. Together we can ensure everyone gets home safely."`
 				accept
 			label rathernot
-			`	He nods in acknowledgment. "I feared my ask was too much. I more than understand the sentiment. Maybe I was being naive to think such an outcome was possible."`
+			`	He nods in acknowledgement and his gestures take on a staccato phrasing. "I feared my ask was too much. I understand the sentiment. Perhaps I was naive to think such an outcome was possible."`
 				decline
 	npc disable save
 		government "Korath"
