@@ -29,9 +29,39 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+#include <chrono>
+#include <iostream>
+
 using namespace std;
 
 namespace {
+
+	using chrono::high_resolution_clock;
+	using chrono::duration_cast;
+	using chrono::duration;
+	using chrono::microseconds;
+
+	class Timing {
+	public:
+		Timing() = default;
+		void AddSample(duration<double, micro> sample, size_t size = 0) {
+			max_size = max(max_size, size);
+			if (size == 0) return;
+			samples++;
+			average += (sample - average) / samples;
+		};
+		duration<double, micro> GetAverage() const { return average; }
+		int GetNumSamples() const { return samples; }
+		void Reset() {
+			average = {};
+			samples = 0;
+		}
+	private:
+		duration<double, micro> average;
+		int samples;
+		size_t max_size;
+	};
+
 	// Maximum allowed projectile velocity.
 	constexpr int MAX_VELOCITY = 450000;
 	// Velocity used for any projectiles with v > MAX_VELOCITY
@@ -180,6 +210,16 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		const Government *pGov, const Body *target) const
 {
+	static Timing timing;
+
+	if(timing.GetNumSamples() >= 5000)
+	{
+		cout << "CollisionSet::Line() time = " << timing.GetAverage().count() << '\n';
+		timing.Reset();
+	}
+
+	const auto start = high_resolution_clock::now();
+
 	const int x = from.X();
 	const int y = from.Y();
 	const int endX = to.X();
@@ -223,6 +263,10 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		if(closer_result.GetClosestDistance() < 1. && closestHit)
 			*closestHit = closer_result.GetClosestDistance();
 
+		const auto stop = high_resolution_clock::now();
+
+		timing.AddSample(stop - start);
+
 		return closer_result.GetClosestBody();
 	}
 
@@ -236,6 +280,11 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			warned = true;
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
+
+		const auto stop = high_resolution_clock::now();
+
+		timing.AddSample(stop - start);
+
 		return Line(from, newEnd, closestHit, pGov, target);
 	}
 
@@ -331,6 +380,10 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 
 	if(closer_result.GetClosestDistance() < 1. && closestHit)
 		*closestHit = closer_result.GetClosestDistance();
+
+	const auto stop = high_resolution_clock::now();
+
+	timing.AddSample(stop - start, seen.size());
 
 	return closer_result.GetClosestBody();
 }
