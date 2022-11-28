@@ -439,7 +439,8 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 	const int maxY = static_cast<int>(center.Y() + outer) >> SHIFT;
 
 	// Keep track of which objects we've already considered.
-	set<const Body *> seen;
+	vector<const Body *> seen;
+	seen.reserve(16);
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
 	{
@@ -458,9 +459,12 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 				if(it->x != x || it->y != y)
 					continue;
 
-				if(seen.count(it->body))
+				bool present = any_of(seen.begin(), seen.end(), [it](const Body *el) {
+					return el == it->body;
+				});
+				if(present)
 					continue;
-				seen.insert(it->body);
+				seen.push_back(it->body);
 
 				const Mask &mask = it->body->GetMask(step);
 				Point offset = center - it->body->Position();
