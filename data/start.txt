@@ -64,6 +64,9 @@ start "hai"
 	set "hai start"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
+	set "Intro [0]: offered"
+	set "skip FW"
+	set "skip HR"
 
 
 
@@ -114,20 +117,18 @@ mission "Greenwater start"
 	on offer
 		event "not from boston"
 		event "grew up on greenwater"
-		set "Intro [0]: offered"
 
 mission "FW completed"
 	landing
 	invisible
 	to offer
-		has "hai start"
+		has "skip FW"
 	on offer
 		set "event: war begins: offered"
-		set "oathkeepers founded: offered"
 		set "Geminus Rebuilt: offered"
 		set "chosen sides"
+		set "oathkeepers founded: offered"
 		set "main plot completed"
-		set "Hai Secret Leaker Begins: offered"
 		# make these available
 		event "flamethrower available"
 		event "dreadnoughts for sale"
@@ -156,8 +157,9 @@ mission "HR completed"
 	landing
 	invisible
 	to offer
-		has "hai start"
+		has "skip HR"
 	on offer
+		set "Hai Secret Leaker Begins: offered"
 		event "hai ladybug available"
 		event "role-play station active"
 		event "battle against scar's legion over"
