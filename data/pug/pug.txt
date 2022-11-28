@@ -667,7 +667,7 @@ ship "Pug Maboro"
 	explode "pug large explosion" 20
 	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
-	description "This is the largest Pug "tier one" warship, used for combat against species on par with humans. Its powerful intergrated power plants allow it to sustain weapon fire much longer than most human ships. Its shields and hull are much weaker than human capital ships, however it is able to regenrate extrordinarily fast, and therefore requires a considerable amount of concentrated firepower to destroy. It is much faster than most human capital ships, and its powerful weapory make it a ship that few human ships are able to oppose."
+	description "This is the largest Pug "tier one" warship, intended for use in combat against species on par with humans. Its powerful intergrated power plants allow it to sustain weapon fire much longer than most human ships. Its shields and hull are much weaker than human capital ships, however it is able to regenrate extrordinarily fast, and therefore requires a considerable amount of concentrated firepower to destroy. It is much faster than most human capital ships, and its powerful weapory make it a ship that few human ships are able to oppose."
 
 
 ship "Pug Arfecta"
