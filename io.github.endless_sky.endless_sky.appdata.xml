@@ -47,12 +47,12 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.16.1" date="2022-10-18">
+    <release version="0.9.16.1" date="2022-10-18" urgency="high">
       <description>
-        <p>This is a hotfix release, reverting a breaking change made in the last release that inadvertantly inroduced a bug.</p>
+        <p>This is a hotfix release, reverting a breaking change made in the last release that inadvertently introduced a bug.</p>
         <p>Breaking changes:</p>
         <ul>
-          <li>The change made to the accompany mission npc objective has been reverted to the behaviour before 0.9.16.</li>
+          <li>The change made to the "accompany" mission npc objective has been reverted to the behavior before 0.9.16.</li>
         </ul>
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.9.16.1/changelog</url>
@@ -63,7 +63,7 @@
         <p>New changes include the following:</p>
         <p>Breaking changes:</p>
         <ul>
-          <li>The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live.</li>
+          <li>The "accompany" objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live.</li>
         </ul>
         <p>Bug fixes:</p>
         <ul>
@@ -82,7 +82,7 @@
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.9.16/changelog</url>
     </release>
-    <release version="0.9.15" date="2022-04-10">
+    <release version="0.9.15" date="2022-04-10" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
         <p>Major new changes include:</p>
