@@ -769,5 +769,5 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		payment 2500000
 		conversation
 			`You find Chilia with a relieved look on his face when you land.`
-			`	"This mission wasn't my idea. Taking on the larger Korath vessels is a sensitive matter. You may frequently find large groups of Korath children. I must admit I was worried you wouldn't be those children's best chance, but our fleet was too tied up to take this one at the moment. I am glad I was not wrong." he says with a content smile on his face.`
+			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matte. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you." he sings with a content smile on his face.`
 			`	"We must be careful not to let ignorance of Korath society result in the unnecessary destruction of similar ships. Now that you have shown you can handle these bounties with the proper restraint, expect more missions like this in the future." Chilia then walks away invigorated with new purpose.`
