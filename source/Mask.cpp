@@ -282,12 +282,12 @@ namespace {
 
 	Point nearestPointOfSegmentToOrigin(Point start, Point end)
 	{
-		if ((start - end).Length() < EPS) return start;
+		if((start - end).Length() < EPS) return start;
 
 		double ret = start.Dot(start - end) / start.DistanceSquared(end);
 
-		if (ret < 0.) return start;
-		if (ret > 1.) return end;
+		if(ret < 0.) return start;
+		if(ret > 1.) return end;
 
 		return start * (1. - ret) + end * ret;
 	}
