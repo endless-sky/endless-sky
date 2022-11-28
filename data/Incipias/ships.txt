@@ -35,14 +35,14 @@ ship "Nimbus"
 		"Liquid Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 4
-	engine -24 82
-	engine 1 82
-	engine 1 82
-	engine 25 82.5
-	gun -18 -79.5
-	gun 0.5 -80.5
-	gun 0.5 -80.5
-	gun 20 -80
+	engine 0 120
+	engine 0 120
+	engine -30.5 120
+	engine 30.5 120
+	gun -15 -117
+	gun 15 -117
+	gun 0 -117
+	gun 0 -117
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10
