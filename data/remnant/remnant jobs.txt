@@ -692,4 +692,4 @@ mission "Remnant: Disable 1"
 	on complete
 		"remnant: disable and save count" ++
 		payment 2000000
-		dialog "A Remnant military leader thanks you for disabling down the Kas'lor Ik 582 <npc>, and gives you the agreed-upon payment of <payment>."
+		dialog "A Remnant military prefect thanks you for disabling down the Kas'lor Ik 582 <npc>, and gives you the agreed-upon logistics adjustment of <payment>."
