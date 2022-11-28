@@ -554,7 +554,7 @@ ship "Pug Zibruka"
 	explode "pug medium explosion" 20
 	explode "pug large explosion" 10
 	"final explode" "final explosion small"
-	description `The Zibruka is the smallest Pug "tier one" warship, intended for use in combat against a species on par with humans. Despite having weaker shields and hull than many human light warships, its incredibly fast shield regeneration coupled with its advanced weaponry make it a fearsome ship to face off against, especially in swarms.`
+	description `The Zibruka is the smallest Pug. Despite having only two gun ports, its advanced guns combined with fast and effecient engine systems make it a fearsome ship to face off against, especially in swarms.`
 
 
 
@@ -611,7 +611,7 @@ ship "Pug Enfolta"
 	explode "pug medium explosion" 25
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
-	description `The Enfolta is a medium-sized Pug "tier one" warship, intended for use in combat against species on par with humans. It has a powerful arnament of advanced weaponry, and despite having a weak hull and shield matrix, its fast shield regeneration makes it hard to destroy without concentrated weapon fire. A single Enfolta can take on a fleet of smaller human ships.`
+	description `The Enfolta is a medium-sized Pug warship. It has a powerful arnament of advanced weaponry supported by powerful integrated energy generation. A single Enfolta can take on a fleet of smaller human ships.`
 
 
 ship "Pug Maboro"
@@ -668,7 +668,7 @@ ship "Pug Maboro"
 	explode "pug large explosion" 20
 	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
-	description `The Maboro is the largest Pug "tier one" warship, intended for use in combat against species on par with humans. Its shield matrix and hull are much weaker than human capital ships, however it is able to regenrate its shields quickly. Its powerful weapory and advanced anti-missile systems make it a ship that only the strongest human capital ships are able to oppose.`
+	description `The Maboro appears to e the Pug's capital warship. Its shield matrix and hull are much weaker than human capital ships, however it is able to regenrate its shields quickly. Its powerful weapory and advanced anti-missile systems make it a ship that only the strongest human capital ships are able to oppose.`
 
 
 
