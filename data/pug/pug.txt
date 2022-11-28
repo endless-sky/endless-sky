@@ -554,7 +554,8 @@ ship "Pug Zibruka"
 	explode "pug medium explosion" 20
 	explode "pug large explosion" 10
 	"final explode" "final explosion small"
-	description "The Zibruka is the smallest Pug ship that you know of."
+	description "The Zibruka is the smallest Pug "tier one" warship, intended for use in combat against a species on par with humans. Despite having weaker shields and hull than many human light warships and only two gun ports, its incredibly fast shield regeneration coupled with its advanced weaponry make it a fearsome ship to face off against for even the most powerful of human light warships. Its intergrated power plants ensures that it can endure combat for long periods of time,and its powerful engines ensure most ships cannot outrun it. Zibrukas are especially fearsome in swarms."
+
 
 
 ship "Pug Enfolta"
@@ -609,7 +610,7 @@ ship "Pug Enfolta"
 	explode "pug medium explosion" 25
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
-	description "This is a medium-sized Pug warship."
+	description "The Enfolta is a medium-sized Pug "tier one" warship, intended for use in combat against species on par with humans. It is a strange ship, looking like a cross between an arrow and a frigat mixed with alien curves and arches. It has a powerful arnament of advanced weaponry, and despite having weak hull and shields, it is able to regenerate very quickly. It intergrated power plants, meaning it can endure combat for much longer than most human ships, plus powerful engine systems it can use to catch outspeed most other human warships."
 
 
 ship "Pug Maboro"
@@ -666,7 +667,7 @@ ship "Pug Maboro"
 	explode "pug large explosion" 20
 	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
-	description "This is the largest Pug warship."
+	description "This is the largest Pug "tier one" warship, used for combat against species on par with humans. Its powerful intergrated power plants allow it to sustain weapon fire much longer than most human ships. Its shields and hull are much weaker than human capital ships, however it is able to regenrate extrordinarily fast, and therefore requires a considerable amount of concentrated firepower to destroy. It is much faster than most human capital ships, and its powerful weapory make it a ship that few human ships are able to oppose."
 
 
 ship "Pug Arfecta"
