@@ -924,17 +924,6 @@ mission "Unfettered: Special Cargo"
 
 
 
-mission "Unfettered: Cargo on Mirrorlake"
-	landing
-	invisible
-	source "Mirrorlake"
-	to offer
-		has "Unfettered: Special Cargo 2: active"
-	on offer
-		outfit "Mystery Cube" -1
-		conversation
-			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
-
 mission "Unfettered: Special Cargo 2"
 	landing
 	name `Mystery Gathering`
@@ -986,18 +975,26 @@ mission "Unfettered: Special Cargo 2"
 			`	"You have earned the right to know, considering it is you who brought it to us. It's a very [complex, advanced] surveillance device, which should record everything that happens on the world as well as in [the system, space]."`
 			choice
 				`	"Why this particular world?"`
-				`	"I'll do it."`
-					accept
 			`	"All important Hai ships are built on our homeworld. That would be a perfect place to put this cube, but we don't want to bring too much [heat, attention] onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet [movements, activities], in order to be able to react in time should the worst arrive. Of course, we need something [unpredicted, discreet] to do it, else our operatives could get caught."`
 			choice
 				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
-				`	"I'll do it."`
-					accept
 			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
 			choice
+				`	"Won't the Hai see this as a sign of mistrust? I don't think we should do this."`
 				`	"I'll do it."`
 					accept
 				`	"I was almost caught last time. I'm not trying again."`
+					decline
+			`	"You're right actually... This would be a sign of mistrust, showing that we even dare to suspect they could attack us... You don't have to do this, we can always keep the cube in reserve."`
+			choice
+				`	"I say we should trust the Hai indeed. They could have swarmed you ages ago if they really wanted to."`
+				`	"Damn the Hai, I still want to do it."`
+					accept
+			action
+				outfit "Mystery Cube" -1
+				set "unfettered: mystery cube"
+			`	This seems to anger his pride a bit, but he knows full well that statement to be true. You give him the cube so it could be used later.`
+				decline
 	to complete
 		has "Unfettered: Cargo on Mirrorlake: offered"
 	on visit
@@ -1145,7 +1142,7 @@ mission "Unfettered: Ready For The War"
 	to offer
 		has "event: unfettered: shield beetle mass production"
 		has "event: unfettered: new cooling system"
-		has "Unfettered: Special Cargo 2: done"
+		has "Unfettered: Special Cargo: done"
 		has "language: Wanderer"
 		has "Unfettered: Earn Your Prize: done"
 	on offer

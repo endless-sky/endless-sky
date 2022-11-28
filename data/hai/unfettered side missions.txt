@@ -772,6 +772,19 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 
 
 
+mission "Unfettered: Cargo on Mirrorlake"
+	landing
+	invisible
+	source "Mirrorlake"
+	to offer
+		has "Unfettered: Special Cargo 2: active"
+	on offer
+		outfit "Mystery Cube" -1
+		conversation
+			"You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
+
+
+
 mission "Unfettered: Non Lethal Weapons"
 	invisible
 	source
