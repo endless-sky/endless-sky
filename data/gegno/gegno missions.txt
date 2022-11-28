@@ -250,7 +250,11 @@ mission "Giaru Gegno: Quarg Contact"
 			`	The Quarg stands up, darting its gaze off to the side. The energy it exhibited earlier is gone. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses, then gestures you to stand up as well. "Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
-				
+
+
+
+
+# Gegno Superheavy	
 
 mission "Stationed Augen"
 	invisible
@@ -289,6 +293,9 @@ mission "Active Augen"
 		ship Augen "Vytii Yrrlausei"
 
 event "Vesvii War"
+
+
+
 
 # Gegno Defense trigger
 
@@ -380,3 +387,33 @@ event "gegno: unified defense"
 	system "Scija"
 		add fleet "Vi Warfleet" 600
 
+
+
+mission "Gegno Vi Duels"
+	landing
+	invisible
+	repeat
+	deadline 9
+	source
+		near "Ookmya" 100
+	to offer
+		random < 60
+	npc provoke
+		system "Ookmya"
+		government "Gegno Vi (Duelist A)"
+		personality heroic uninterested
+		fleet "Gegno Vi Duelist A"
+		conversation "interfered with duel"
+	npc provoke
+		system "Ookmya"
+		government "Gegno Vi (Duelist B)"
+		personality heroic uninterested
+		fleet "Gegno Vi Duelist B"
+		conversation "interfered with duel"
+
+conversation "interfered with duel"
+	action
+		"reputation: Gegno Vi" -= 1
+		"reputation: Gegno Vi (Duelist A)" -= 0.1
+		"reputation: Gegno Vi (Duelist B)" -= 0.1
+	`You begin to receive numerous hails from Gegno Vi ships that are very aggrivated in tone. It seems you've interrupted a tradition rather important to them, considering their ships are now appearing hostile on your scanners.`

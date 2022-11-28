@@ -300,7 +300,7 @@ government "Gegno Vi (Duelist A)"
 		Gegno 1
 		"Gegno Scin" -0.01
 		"Gegno Vi" 1
-		"Gegno Vi (Duelist B)" -0.1
+		"Gegno Vi (Duelist B)" -0.01
 	"penalty for"
 		assist 0
 	"friendly hail" "gegno uncontacted"
@@ -316,7 +316,7 @@ government "Gegno Vi (Duelist B)"
 		Gegno 1
 		"Gegno Scin" -0.01
 		"Gegno Vi" 1
-		"Gegno Vi (Duelist A)" -0.1
+		"Gegno Vi (Duelist A)" -0.01
 	"penalty for"
 		assist 0
 	"friendly hail" "gegno uncontacted"

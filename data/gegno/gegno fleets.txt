@@ -354,7 +354,7 @@ fleet "Gegno Vi Duelist A"
 	government "Gegno Vi (Duelist A)"
 	names "gegno vi"
 	personality
-		heroic timid unconstrained
+		heroic unconstrained
 	variant
 		Dunite
 
@@ -362,7 +362,7 @@ fleet "Gegno Vi Duelist B"
 	government "Gegno Vi (Duelist B)"
 	names "gegno vi"
 	personality
-		heroic timid unconstrained
+		heroic unconstrained
 	variant
 		Dunite
 

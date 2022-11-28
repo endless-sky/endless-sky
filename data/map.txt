@@ -22179,8 +22179,6 @@ system Ookmya
 	fleet "Vi Cargo" 1600
 	fleet "Gegno Miners" 2600
 	fleet "Gegno Basic" 4600
-	fleet "Gegno Vi Duelist A" 2400
-	fleet "Gegno Vi Duelist B" 2400
 	object
 		sprite star/a-giant
 		period 10
