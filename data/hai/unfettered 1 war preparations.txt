@@ -548,6 +548,24 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	name `Primitive Cooling Technology`
 	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 300 tons of nitrogen human cooling.`
 	source "Firelode"
+	substitutions
+		# translation to the Sestor language
+		<we, us> "'Tek'"
+		<not> "'Ak'"
+		<one> "'Mer'" # it refers to the player
+		<transform> "'Mah'"
+		<make> "'Mahem'"
+		<be over> "'Fel'"
+		<surprised> "'Terah'"
+		<technology> "'Mesuk'" # science, invention
+		<debt> "'Noc'" # could also be oath
+		<settled> "'Nocem'"
+		<strong> "'Akeh'"
+		<consume> "'Keh'"
+		<bad> "'Eta'"
+		<young> "'Sorobeh'"
+		<younglings> "'Rem' <young>"
+		<be forgotten> "'Tema'" # forgiven in some contexts
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: done"
 	on offer
@@ -568,24 +586,26 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 				goto objective
 			label other
 			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it's the crude translator you found with them. It probably just translated everything you said, but it often repeats words you said in your own language. This translator is definitely incomplete.`
-			`	They speak very quickly, and the translator can barely follow. They don't seem to pause when speaking, and are gesturing around, almost as if they were doing a performance. "'Ter' will 'Ak' speak about it to 'Mer' which 'Ter' do 'Ak' trust insist and 'Ter' will 'Mah' you into nutrigel 'Ter' 'Me' only the brood master could 'Mahem.'" When speaking, the Korath was very quickly pointing around, showing themselves and you, after which they showed the ground and sat down, quietly. It seems like you have saddened them by speaking of this, and you probably cannot get any more information out of them for now. The moment of calm is already over, and they start speaking together even faster than before, so fast that the translator cannot make any sense out of it. They may be in disagreement over something, and this ends with a long "Hsssssss" that they murmur, looking at each others in the eyes.`
+			`	They speak very quickly, and the translator can barely follow. They don't seem to pause when speaking, and are gesturing around, almost as if they were doing a performance. "<we, us> will <not> speak about it to <one> which <we, us> do <not> trust insist and <we, us> will <transform> you into nutrigel only the brood master could <make>."`
+			`	When speaking, the Korath was rapidly pointing around, showing themselves and you, after which they showed the ground and sat down, quietly. It seems like you have saddened them by speaking of this, and you probably cannot get any more information out of them for now. The moment of calm is already over, and they start speaking together even faster than before, so fast that the translator cannot make any sense out of it. They may be in disagreement over something, and this ends with a long "Hsssssss" that they murmur, looking at each others in the eyes.`
 				goto objective
 			label wait
 			`	The Korath eventually notice you and begin staring at you. They move around in a decisive manner but never stop staring. You begin to feel intense pressure as they are scrutening you, learning every details, and probably guessing why you arrived. Or maybe they just wonder if you're the breakfast.`
-			`	Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the 'Mer' who saved 'Ter' why is it 'Terah' to see 'Ter' did it expect 'Ter' would all 'Fel'?" Whilst speaking the Korath almost did a performance, getting down and moving around before joining together. You notice they pronounce some sounds longer, maybe in the hope of letting the translator make sense out of it, although most sounds are very short. You realize they've probably noticed you're surprised to see them here.`
+			`	Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the <one> who saved <we, us> why is it <surprised> to see <we, us> did it expect <we, us> would all <be over>?" Whilst speaking the Korath almost did a performance, getting down and moving around before joining together. You notice they pronounce some sounds longer, maybe in the hope of letting the translator make sense out of it, although most sounds are very short. You realize they've probably noticed you're surprised to see them here.`
 			choice
 				`	"I didn't expect you to be back to working so soon."`
 					goto working
 				`	"I didn't think you would be trusted enough to have access to Hai technology already."`
 				`	"I wasn't sure you would help the Hai at all."`
 					goto help
-			`	They make a weird sound that's probably laughter. "You call this 'Mesuk,'" he says, showing you the cooler. "Even our 'Rem' 'Sorobeh' can do something so primitive but to speak 'Ter' tongue there are some interesting 'Estar' here 'Erma' not made by 'Unkor' races like you and the Hai like the 'E Shema' cooler they stole from 'Ter' 'Unkor' will never 'Tema'." They say, showing the coolers and most technology around them, and almost breaking it with their fist, probably showing how poorly resilient the materials are. Mera looks frustrated when they do that, but she seems to be accepting it, for the most part. The appreciation of these Korath is probably more valuable to her eyes than this technology...`
+			`	They make a weird sound that's probably laughter. "You call this <technology>," he says, showing you the cooler. "Even our <younglings> can do something so primitive but to speak <we, us> tongue there are some interesting <technology> here not made by <young> races like you and the Hai like the heat shunts they stole from <we, us> will never <be forgotten>."`
+			`	They say, showing the coolers and most technology around them, and almost breaking it with their fist, probably showing how poorly resilient the materials are. Mera looks frustrated when they do that, but she seems to be accepting it, for the most part. The appreciation of these Korath is probably more valuable to her eyes than this technology...`
 				goto objective
 			label help
-			`	You seem to have hit a nerve. "'Ter'... Have a 'Noc' toward the Unfettered but needs to be 'Terma' else 'Ter' cannot be free then they will have a 'Noc' with 'Ter.'" When speaking they show their muscles, and you are quite impressed by the amount of raw strength they must possess, even after having been captive for a while by the Alphas.`
+			`	You seem to have hit a nerve. "<we, us>... Have a <debt> toward the Unfettered that needs to be <settled> else <we, us> cannot be free then they will have a <debt> with <we, us>." When speaking they show their muscles, and you are quite impressed by the amount of raw strength they must possess, even after having been captive for a while by the Alphas.`
 				goto objective
 			label working
-			`	"Unlike it 'Ter' are 'Akeh' 'Ter' always stay 'Akeh' even when having to 'Keh' what you call foood it is 'Eta' nutrigel." When saying this the Korath intentionally drops a plate to the ground, which until now you assumed to contain electronics but must have been food.`
+			`	"Unlike <one>, <we, us> are <strong> <we, us> always stay <strong> even when having to <consume> this 'foood' it is <bad> nutrigel." When saying this the Korath intentionally drops a plate to the ground, which until now you assumed to contain electronics but must have been food.`
 			choice
 				`	"I see why the Hai allowed you to access their technology .You think in a similar way."`
 				`	"Oh, is that why you got captured by the Alphas?"`
