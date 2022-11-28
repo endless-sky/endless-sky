@@ -14,6 +14,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 import glob
+import sys
 
 import regex as re
 
@@ -567,7 +568,12 @@ if __name__ == '__main__':
 	errors = 0
 	warnings = 0
 
-	files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
+	files = []
+	if len(sys.argv[1:]) > 0:
+		for pattern in sys.argv[1:]:
+			files += glob.glob(pattern, recursive=True)
+	else:
+		files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
 	files.sort()
 
 	for file in files:
