@@ -744,7 +744,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 				`	"Happy to help those in need, even the Korath."`
 				`	"I have no intentions of risking my neck for some Korath."`
 					goto rathernot
-			`	"I am grateful for your understanding and willingness to help here. Let's make sure everyone gets home safely."`
+			`	"I am grateful for your understanding and willingness to help here. Together we can ensure everyone gets home safely."`
 				accept
 			label rathernot
 			`	He nods in acknowledgment. "I feared my ask was too much. I more than understand the sentiment. Maybe I was being naive to think such an outcome was possible."`
