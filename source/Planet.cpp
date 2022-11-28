@@ -444,7 +444,7 @@ CustomSale::SellType Planet::GetAvailability(const Outfit &outfit, const Conditi
 		CustomSale::SellType::VISIBLE : CustomSale::SellType::NONE;
 	// There are different sell type priorities, with only the highest one being kept.
 	for(const auto &sale : GameData::CustomSales())
-		if(sale.second.GetSellType() > sellType && sale.second.Matches(*this, conditions) && sale.second.Has(outfit))
+		if(sale.second.GetSellType() > sellType && sale.second.Has(outfit) && sale.second.Matches(*this, conditions))
 			sellType = sale.second.GetSellType();
 	return sellType;
 }
