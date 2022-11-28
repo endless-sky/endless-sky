@@ -753,8 +753,8 @@ outfit "Savagery Bludgeon"
 	"gun ports" -1
 	"outfit space" -10
 	"weapon capacity" -10
+	"unplunderable" 1
 	weapon
-		"unplunderable" 1
 		"hit effect" "bludgeon impact"
 		lifetime 1
 		velocity 30
