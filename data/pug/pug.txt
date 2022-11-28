@@ -507,6 +507,7 @@ outfit "Pug Peacekeeping Staff"
 
 
 
+
 ship "Pug Zibruka"
 	sprite "ship/pug zibruka"
 	thumbnail "thumbnail/pug zibruka"
@@ -612,6 +613,8 @@ ship "Pug Enfolta"
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description `The Enfolta is a medium-sized Pug warship. It has a powerful arnament of advanced weaponry supported by powerful integrated energy generation. A single Enfolta can take on a fleet of smaller human ships.`
+
+
 
 
 ship "Pug Maboro"
