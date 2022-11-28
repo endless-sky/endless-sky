@@ -665,7 +665,7 @@ mission "Remnant: Disable 1"
 	job
 	repeat
 	name "Disable Damaged Kas'lor Ik 582"
-	description "A damaged Kas'lor Ik 582 is stuck in the Ember Waste sectors boarding Korath space. It has a large civilian population so we ask you to only disable it to avoid an atrocity. After this return to <planet> to receive your payment of <payment>."
+	description "A damaged Kas'lor Ik 582 is stuck in the Ember Waste sectors bordering Korath space. It has a large civilian population so we ask you to only disable it to avoid an atrocity. Once you return to <planet> you will receive a logistics adjustment of <payment>."
 	source
 		government "Remnant"
 	to offer
