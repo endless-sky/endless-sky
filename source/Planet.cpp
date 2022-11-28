@@ -50,7 +50,6 @@ namespace {
 			required.emplace_hint(required.cend(), attribute.substr(PREFIX.length()));
 		});
 	}
-	int refreshCacheTime = 0;
 }
 
 
@@ -413,11 +412,12 @@ const Sale<Outfit> &Planet::Outfitter() const
 // Get the local price of this outfit.
 double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const
 {
-	// refresh every second. What would be best is if the UI would notify all planets of the need to change the cache.
-	if(refreshCacheTime++ >= 60)
+	int days = conditions.Get("year") + conditions.Get("month") + conditions.Get("day");
+	if(cachedDays != days)
 	{
-		visibleCustomSale.Clear();
+		cachedDays = days;
 		customSale.Clear();
+		visibleCustomSale.Clear();
 	}
 	// Only consider CustomSales of the same availability, since they are incompatible with each others.
 	CustomSale::SellType sellType = GetAvailability(outfit, conditions);

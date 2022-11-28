@@ -301,12 +301,12 @@ const string &CustomSale::GetShown(CustomSale::SellType sellType)
 
 
 
-const Sale<Outfit> CustomSale::GetOutfits() const
+const Sale<Outfit &> CustomSale::GetOutfits() const
 {
-	Sale<Outfit> seen;
-	for(auto it : relativeOutfitPrices)
+	Sale<Outfit &> seen;
+	for(auto &it : relativeOutfitPrices)
 		seen.insert(it.first);
-	for(auto it : relativeOutfitOffsets)
+	for(auto &it : relativeOutfitOffsets)
 		seen.insert(it.first);
 	for(auto &&sale : relativePrices)
 		seen.Add(*sale.first);
@@ -319,16 +319,16 @@ const Sale<Outfit> CustomSale::GetOutfits() const
 
 bool CustomSale::Has(const Outfit &item) const
 {
-	for(auto it : relativeOutfitPrices)
+	for(const auto &it : relativeOutfitPrices)
 		if(it.first == &item)
 			return true;
-	for(auto it : relativeOutfitOffsets)
+	for(const auto &it : relativeOutfitOffsets)
 		if(it.first == &item)
 			return true;
-	for(auto &&sale : relativePrices)
+	for(const auto &&sale : relativePrices)
 		if(sale.first->Has(&item))
 			return true;
-	for(auto &&sale : relativeOffsets)
+	for(const auto &&sale : relativeOffsets)
 		if(sale.first->Has(&item))
 			return true;
 	return false;
