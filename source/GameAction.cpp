@@ -409,8 +409,6 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.fail = fail;
 
-	result.globalCondtions = globalCondtions;
-
 	result.conditions = conditions;
 
 	return result;

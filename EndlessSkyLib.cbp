@@ -169,8 +169,6 @@
 		<Unit filename="source/GameWindow.h" />
 		<Unit filename="source/Government.cpp" />
 		<Unit filename="source/Government.h" />
-		<Unit filename="source/GlobalConditions.cpp" />
-		<Unit filename="source/GlobalConditions.h" />
 		<Unit filename="source/HailPanel.cpp" />
 		<Unit filename="source/HailPanel.h" />
 		<Unit filename="source/Hardpoint.cpp" />
