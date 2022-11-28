@@ -133,6 +133,7 @@ namespace {
 }
 
 
+
 // Initialize a collision set. The cell size and cell count should both be
 // powers of two; otherwise, they are rounded down to a power of two.
 CollisionSet::CollisionSet(unsigned cellSize, unsigned cellCount)
@@ -335,9 +336,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	if(stepY > 0)
 		ry = fullScale - ry;
 
-	// Keep track of which objects we've already considered.
-	vector<const Body *> seen;
-	seen.reserve(16);
+	seen.clear();
 	while(true)
 	{
 		// Examine all objects in the current grid cell.
@@ -438,9 +437,8 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 	const int maxX = static_cast<int>(center.X() + outer) >> SHIFT;
 	const int maxY = static_cast<int>(center.Y() + outer) >> SHIFT;
 
-	// Keep track of which objects we've already considered.
-	vector<const Body *> seen;
-	seen.reserve(16);
+	seen.clear();
+
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
 	{
