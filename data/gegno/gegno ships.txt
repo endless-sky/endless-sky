@@ -210,7 +210,7 @@ ship Dunite
 	explode "small explosion" 4
 	explode "tiny explosion" 8
 	description `Dunites are unique vessels designed by the Gegno Vi entirely for the purpose of dueling. It is a hodgepodge of parts, simply being an engine, power system, cockpit and Irate Cannon mashed together without any regard to structural integrity. The most notable feature is a long mace-like protrusion next to the Irate Cannon which is used for jousting and ramming other duelists.`
-	dsecription `Being a mangled mess of machinery designed for only a single purpose, Dunites do not have nor have room for Hyperdrives, and are purely system-based craft.`
+	description `	Being a mangled mess of machinery designed for only a single purpose, Dunites do not have nor have room for Hyperdrives, and are purely system-based craft.`
 
 
 ship Augen
