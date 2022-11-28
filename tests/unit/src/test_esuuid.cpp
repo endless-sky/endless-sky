@@ -60,8 +60,8 @@ struct InstantiableContainer : public Identifiable {
 	InstantiableContainer() noexcept = default;
 	InstantiableContainer(const InstantiableContainer &) noexcept = default;
 	InstantiableContainer &operator=(const InstantiableContainer &) noexcept = default;
-	InstantiableContainer(InstantiableContainer &&other) noexcept = default;
-	InstantiableContainer &operator=(InstantiableContainer &&other) noexcept = default;
+	InstantiableContainer(InstantiableContainer &&) noexcept = default;
+	InstantiableContainer &operator=(InstantiableContainer &&) noexcept = default;
 
 	std::vector<std::string> GetIds() const {
 		auto result = std::vector<std::string>{
