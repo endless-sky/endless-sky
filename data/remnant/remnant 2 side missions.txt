@@ -728,13 +728,13 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		not attributes "station"
 	waypoint "Antevorta"
 	to offer
-		and
-			"remnant: broken jump drive count" >= 10
-			or
-				and
-					has "Remnant: Cognizance 25: done"
-					not "flagship planet: Ssil Vida"
-				has "event: remnant: cognizance calm"
+		random < 30
+		"remnant: broken jump drive count" >= 10
+		or
+			and
+				has "Remnant: Cognizance 25: done"
+				not "flagship planet: Ssil Vida"
+			has "event: remnant: cognizance calm"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first> I have a difficult request for you."`
