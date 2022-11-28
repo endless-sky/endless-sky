@@ -227,8 +227,8 @@ private:
 	Command activeCommands;
 	// Keyboard commands that were active in the previous step.
 	Command keyHeld;
-	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
-	int landKeyInterval = 0;
+	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
+	int keyInterval = 0;
 
 	// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;
