@@ -349,4 +349,20 @@ fleet "Gegno Miners"
 		Gypsum
 	variant
 		Gypsum 2
+		
+fleet "Gegno Vi Duelist A"
+	government "Gegno Vi (Duelist A)"
+	names "gegno vi"
+	personality
+		heroic timid unconstrained
+	variant
+		Dunite
+
+fleet "Gegno Vi Duelist B"
+	government "Gegno Vi (Duelist B)"
+	names "gegno vi"
+	personality
+		heroic timid unconstrained
+	variant
+		Dunite
 

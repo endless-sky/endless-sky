@@ -205,7 +205,7 @@ fleet "Iije"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid unconstrained uninterested
+		timid unconstrained uninterested mute
 	variant 6000
 		"Jje"
 	variant 200
@@ -246,7 +246,7 @@ fleet "Iije II"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid unconstrained swarming
+		timid unconstrained swarming mute
 	variant 6000
 		"Jje"
 	variant 200
@@ -287,7 +287,7 @@ fleet "Iije III"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid unconstrained surveillance
+		timid unconstrained surveillance mute
 	variant 6000
 		"Jje"
 	variant 200

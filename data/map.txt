@@ -22174,11 +22174,13 @@ system Ookmya
 	trade Metal 482
 	trade Plastic 437
 	fleet "Small Vi" 900
-	fleet "Large Vi" 1400
-	fleet "Vi Transport" 700
-	fleet "Vi Cargo" 1000
-	fleet "Gegno Miners" 2500
-	fleet "Gegno Basic" 4000
+	fleet "Large Vi" 1600
+	fleet "Vi Transport" 1000
+	fleet "Vi Cargo" 1600
+	fleet "Gegno Miners" 2600
+	fleet "Gegno Basic" 4600
+	fleet "Gegno Vi Duelist A" 2400
+	fleet "Gegno Vi Duelist B" 2400
 	object
 		sprite star/a-giant
 		period 10
@@ -35540,7 +35542,6 @@ planet Siedi
 planet "Sies Upi"
 	landscape land/hills1
 	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions."
-	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Although there are no active hostilities between the two, the Vi remain alert and ready at all times."
 	spaceport "This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-personnel civilians here, and it feels somewhat claustrophobic with all of the guards standing around."
 	government "Gegno Vi"
 	"required reputation" 1

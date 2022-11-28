@@ -174,13 +174,50 @@ ship Gypsum
 
 # Gegno Vi:
 
+ship Dunite
+	sprite "ship/gegno dunite"
+	thumbnail "thumbnail/gegno dunite"
+	attributes
+		category Interceptor
+		licenses
+			"Vi Evocati"
+		hull 460
+		"required crew" 1
+		bunks 1
+		mass 98
+		drag 0.6
+		"heat dissipation" 0.9
+		"fuel capacity" 1
+		"outfit space" 115
+		"weapon capacity" 22
+		"engine capacity" 56
+		weapon
+			"blast radius" 10
+			"shield damage" 20
+			"hull damage" 100
+			"hit force" 100
+	outfits
+		"Irate Cannon"
+		"Savagery Bludgeon"
+		"C3 Scrap Cell"
+		"R01 Skirmish Battery"
+		"RG15 Torch Steering"
+		"RG15 Torch Thruster"
+	engine 0 40
+	gun -3 -80 "Savagery Bludgeon"
+	gun 4.5 -60 "Irate Cannon"
+	leak leak 40 20
+	explode "small explosion" 4
+	explode "tiny explosion" 8
+	description `Dunites are unique vessels designed by the Gegno Vi entirely for the purpose of dueling. It is a hodgepodge of parts, simply being an engine, power system, cockpit and Irate Cannon mashed together without any regard to structural integrity. The most notable feature is a long mace-like protrusion next to the Irate Cannon which is used for jousting and ramming other duelists.`
+	dsecription `Being a mangled mess of machinery designed for only a single purpose, Dunites do not have nor have room for Hyperdrives, and are purely system-based craft.`
+
+
 ship Augen
 	sprite ship/augen
 	attributes
 		category "Superheavy"
-			"Gegno Civilian"
-			"Vi Evocati"
-			"Vi Centurion"
+		licenses
 			"Vi Lord"
 		cost 58800000
 		hull 67000
@@ -257,9 +294,9 @@ ship Slate
 	attributes
 		category Transport
 		licenses
-			"Gegno Civilian"
 			"Vi Evocati"
-		cost 825
+		cost 302000
+		hull 825
 		"required crew" 1
 		bunks 7
 		mass 121
@@ -292,7 +329,6 @@ ship Schist
 	attributes
 		category "Light Freighter"
 		licenses
-			"Gegno Civilian"
 			"Vi Evocati"
 		cost 1932000
 		hull 12375
@@ -364,8 +400,6 @@ ship Eclogite
 	attributes
 		category "Light Warship"
 		licenses
-			"Gegno Civilian"
-			"Vi Evocati"
 			"Vi Centurion"
 		cost 2500000
 		hull 6900
@@ -413,8 +447,6 @@ ship Diorite
 	attributes
 		category "Medium Warship"
 		licenses
-			"Gegno Civilian"
-			"Vi Evocati"
 			"Vi Centurion"
 		cost 6980000
 		hull 11600
@@ -467,8 +499,6 @@ ship Hornfel
 	attributes
 		category "Medium Warship"
 		licenses
-			"Gegno Civilian"
-			"Vi Evocati"
 			"Vi Centurion"
 		cost 7630000
 		
@@ -587,9 +617,6 @@ ship Gneiss
 	attributes
 		category "Heavy Warship"
 		licenses
-			"Gegno Civilian"
-			"Vi Evocati"
-			"Vi Centurion"
 			"Vi Lord"
 		cost 15690000
 		hull 22275
@@ -657,9 +684,6 @@ ship Protolith
 	attributes
 		category "Heavy Freighter"
 		licenses
-			"Gegno Civilian"
-			"Vi Evocati"
-			"Vi Centurion"
 			"Vi Lord"
 		cost 17600000
 		hull 19575
@@ -730,7 +754,6 @@ ship Halite
 	attributes
 		category Fighter
 		licenses
-			"Gegno Civilian"
 			"Scin Hoplologist"
 			"Scin Architect"
 		cost 129000
@@ -771,7 +794,6 @@ ship Mica
 	attributes
 		category Transport
 		licenses
-			"Gegno Civilian"
 			"Scin Adjutant"
 		cost 358000
 		hull 700
@@ -807,7 +829,6 @@ ship Coesite
 	attributes
 		category "Light Warship"
 		licenses
-			"Gegno Civilian"
 			"Scin Adjutant"
 		cost 3120000
 		hull 6450
@@ -852,7 +873,6 @@ ship Tridymite
 	attributes
 		category "Transport"
 		licenses
-			"Gegno Civilian"
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 1960000
@@ -896,7 +916,6 @@ ship Felsic
 	attributes
 		category "Light Freighter"
 		licenses
-			"Gegno Civilian"
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 2342000
@@ -943,7 +962,6 @@ ship Feldspar
 	attributes
 		category "Heavy Warship"
 		licenses
-			"Gegno Civilian"
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 14760000
@@ -1018,7 +1036,6 @@ ship Muscovite
 	attributes
 		category "Utility"
 		licenses
-			"Gegno Civilian"
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 16460000

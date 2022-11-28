@@ -288,6 +288,39 @@ government "Gegno Vi"
 		assist 0
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
+	
+# Gegno Vi governments used for dueling
+government "Gegno Vi (Duelist A)"
+	"display name" "Gegno Vi"
+	color 0.68 0.4 0.4
+	"player reputation" 0
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		Gegno 1
+		"Gegno Scin" -0.01
+		"Gegno Vi" 1
+		"Gegno Vi (Duelist B)" -0.1
+	"penalty for"
+		assist 0
+	"friendly hail" "gegno uncontacted"
+	"hostile hail" "hostile gegno uncontacted"
+
+government "Gegno Vi (Duelist B)"
+	"display name" "Gegno Vi"
+	color 0.68 0.4 0.4
+	"player reputation" 0
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		Gegno 1
+		"Gegno Scin" -0.01
+		"Gegno Vi" 1
+		"Gegno Vi (Duelist A)" -0.1
+	"penalty for"
+		assist 0
+	"friendly hail" "gegno uncontacted"
+	"hostile hail" "hostile gegno uncontacted"
 
 government "Hai"
 	swizzle 0

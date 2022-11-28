@@ -746,6 +746,29 @@ effect drilling
 	"random frame rate" 5
 
 
+outfit "Savagery Bludgeon"
+	category Guns
+	mass 10
+	"thumbnail" "outfit/mouthparts"
+	"gun ports" -1
+	"outfit space" -10
+	"weapon capacity" -10
+	"unplunderable"
+	weapon
+		"hit effect" "bludgeon impact"
+		lifetime 1
+		velocity 30
+		inaccuracy 360
+		"reload" 1
+		"shield damage" 8
+		"hull damage" 40
+		"hit force" 140
+	description `A Savagery Bludgeon is a mace-like weapon found jammed into the Gegno Vi's Dunite duelist ships. They are used as melee weapons for close-quarter rams and jousts during duels. However, they barely have any use of a weapon outside of this as they merely scratch larger ship's hulls and barely put a dent into anything shielded.`
+	
+effect "bludgeon impact"
+	sound "bludgeon impact"
+
+
 # Special Outfits
 
 outfit "Gegno Civilian License"
