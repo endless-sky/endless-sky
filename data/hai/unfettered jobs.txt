@@ -125,6 +125,7 @@ mission "Unfettered Jump Drive 4"
 			`	The two Shredders are loaded onto your ship, in exchange for your jump drive.`
 
 			label trade
+			action
 				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
 				"reputation: Hai (Unfettered)" >?= 40
