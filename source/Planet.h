@@ -163,7 +163,7 @@ private:
 
 	mutable CustomSale customSale;
 	mutable CustomSale visibleCustomSale;
-	int cachedDays = -1;
+	mutable int cachedDays = -1;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;
