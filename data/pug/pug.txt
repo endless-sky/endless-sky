@@ -554,7 +554,7 @@ ship "Pug Zibruka"
 	explode "pug medium explosion" 20
 	explode "pug large explosion" 10
 	"final explode" "final explosion small"
-	description `The Zibruka is the smallest Pug. Despite having only two gun ports, its advanced guns combined with fast and efficient engine systems make it a fearsome ship to face off against, especially in swarms.`
+	description `The Zibruka is the smallest Pug warship. Despite having only two gun ports, its advanced guns combined with fast and efficient engine systems make it a fearsome ship to face off against, especially in swarms.`
 
 
 
@@ -668,7 +668,7 @@ ship "Pug Maboro"
 	explode "pug large explosion" 20
 	explode "pug huge explosion" 5
 	"final explode" "final explosion large"
-	description `The Maboro appears to e the Pug's capital warship. Its shield matrix and hull are much weaker than human capital ships, however it is able to regenrate its shields quickly. Its powerful weapory and advanced anti-missile systems make it a ship that only the strongest human capital ships are able to oppose.`
+	description `The Maboro appears to be the Pug's capital warship. Its shield matrix and hull are much weaker than human capital ships, however it is able to regenrate its shields quickly. Its powerful weapory and advanced anti-missile systems make it a ship that only the strongest human capital ships are able to oppose.`
 
 
 
