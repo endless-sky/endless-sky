@@ -749,7 +749,7 @@ effect drilling
 outfit "Savagery Bludgeon"
 	category Guns
 	mass 10
-	"thumbnail" "outfit/mouthparts"
+	"thumbnail" "outfit/unknown"
 	"gun ports" -1
 	"outfit space" -10
 	"weapon capacity" -10
