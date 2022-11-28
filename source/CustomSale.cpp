@@ -319,16 +319,16 @@ const Sale<Outfit> CustomSale::GetOutfits() const
 
 bool CustomSale::Has(const Outfit &item) const
 {
-	for(const auto it : relativeOutfitPrices)
+	for(auto it : relativeOutfitPrices)
 		if(it.first == &item)
 			return true;
-	for(const auto it : relativeOutfitOffsets)
+	for(auto it : relativeOutfitOffsets)
 		if(it.first == &item)
 			return true;
-	for(const auto &&sale : relativePrices)
+	for(auto &&sale : relativePrices)
 		if(sale.first->Has(&item))
 			return true;
-	for(const auto &&sale : relativeOffsets)
+	for(auto &&sale : relativeOffsets)
 		if(sale.first->Has(&item))
 			return true;
 	return false;
