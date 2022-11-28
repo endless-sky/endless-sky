@@ -25,6 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const double EPS = 0.0000000001;
+
 	// Trace out outlines from an image frame.
 	void Trace(const ImageBuffer &image, int frame, vector<vector<Point>> &raw)
 	{
@@ -280,6 +282,8 @@ namespace {
 
 	Point nearestPointOfSegmentToOrigin(Point start, Point end)
 	{
+		if ((start - end).Length() < EPS) return start;
+
 		double ret = start.Dot(start - end) / start.DistanceSquared(end);
 
 		if (ret < 0.) return start;
