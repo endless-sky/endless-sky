@@ -675,7 +675,7 @@ mission "Remnant: Disable 1"
 		government "Korath"
 		personality heroic vindictive target marked staying
 		system 
-			near "Antevorta" 1
+			near "Vaticanus" 1
 		fleet
 			names "korath"
 			variant
