@@ -26,7 +26,7 @@ mission "FW Convoy to Zug"
 		or
 			not "chosen sides"
 			has "event: joined the free worlds"
-		not "main story completed"
+		not "fw bloodsea done"
 	on offer
 		conversation
 			`While returning from a walk around the spaceport town of <origin>, you see the quartermaster of the spaceport inspecting the <ship>. He notices your arrival, and comes up to greet you.`
