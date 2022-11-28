@@ -336,7 +336,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		ry = fullScale - ry;
 
 	// Keep track of which objects we've already considered.
-	set<const Body *> seen;
+	vector<const Body *> seen;
+	seen.reserve(16);
 	while(true)
 	{
 		// Examine all objects in the current grid cell.
@@ -350,9 +351,12 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			if(it->x != gx || it->y != gy)
 				continue;
 
-			if(seen.count(it->body))
+			bool present = any_of(seen.begin(), seen.end(), [it](const Body *el) {
+				return el == it->body;
+			});
+			if(present)
 				continue;
-			seen.insert(it->body);
+			seen.push_back(it->body);
 
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
