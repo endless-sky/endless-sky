@@ -390,6 +390,7 @@ event "gegno: unified defense"
 
 
 mission "Gegno Vi Duels"
+	minor
 	landing
 	invisible
 	repeat
