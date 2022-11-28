@@ -550,12 +550,12 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	source "Firelode"
 	substitutions
 		# translation to the Sestor language
-		<we, us> "'Tek'"
+		<"we, us"> "'Tek'"
 		<not> "'Ak'"
 		<one> "'Mer'" # it refers to the player
 		<transform> "'Mah'"
 		<make> "'Mahem'"
-		<be over> "'Fel'"
+		<"be over"> "'Fel'"
 		<surprised> "'Terah'"
 		<technology> "'Mesuk'" # science, invention
 		<debt> "'Noc'" # could also be oath
@@ -565,7 +565,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 		<bad> "'Eta'"
 		<young> "'Sorobeh'"
 		<younglings> "'Rem' <young>"
-		<be forgotten> "'Tema'" # forgiven in some contexts
+		<"be forgotten"> "'Tema'" # forgiven in some contexts
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: done"
 	on offer
