@@ -164,7 +164,7 @@ void MissionAction::Save(DataWriter &out) const
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->TrueName(), it.second);
 		for(const auto &it : requiredShips)
-			out.Write("owns", it.first->VariantName(), it.second.TrueName(), it.second.Count(),
+			out.Write("owns", it.first->VariantName(), it.second.Name(), it.second.Count(),
 					it.second.Unconstrained() ? "unconstrained" : "constrained");
 
 		action.Save(out);
@@ -201,7 +201,7 @@ string MissionAction::Validate() const
 			return "required outfit \"" + outfit.first->TrueName() + "\"";
 	for(auto &&ship : requiredShips)
 		if(!ship.first->IsValid())
-			return "ship \"" + ship.first->VariantName() + "\"" + " \"" + ship.second.TrueName() + "\"";
+			return "ship \"" + ship.first->VariantName() + "\"" + " \"" + ship.second.Name() + "\"";
 
 	return action.Validate();
 }
