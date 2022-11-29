@@ -1150,65 +1150,65 @@ mission "Hai Reveal [A09] History of Appeasement"
 				`	(Listen in on the conversation.)`
 					goto listen
 					to display
-						not "Hai Reveal [A09] History of Appeasement: label listen"
-						not "Hai Reveal [A09] History of Appeasement: interrupted"
+						not "Hai Reveal [A09] History of Appeasement: listened in"
+						not "Hai Reveal [A09] History of Appeasement: interrupted argument"
 				`	"Am I interrupting something, Sayari?"`
 					goto interrupt
 					to display
-						not "Hai Reveal [A09] History of Appeasement: interrupted"
+						not "Hai Reveal [A09] History of Appeasement: interrupted argument"
 				`	"Teeneep, stop acting like a child!"`
 					goto childish
 					to display
-						not "Hai Reveal [A09] History of Appeasement: interrupted"
+						not "Hai Reveal [A09] History of Appeasement: interrupted argument"
 				# The critical questions from the second and third phases of the discussion:
 				`	"What kinds of deals are the Elders making with pirates?"`
 					goto deals
 					to display
-						has "Hai Reveal [A09] History of Appeasement: interrupted"
-						not "Hai Reveal [A09] History of Appeasement: label deals"
+						has "Hai Reveal [A09] History of Appeasement: interrupted argument"
+						not "Hai Reveal [A09] History of Appeasement: kinds of deals?"
 				`	"Now that we know the situation, how do we fix it?"`
 					goto fix
 					to display
-						has "Hai Reveal [A09] History of Appeasement: label deals"
-						not "Hai Reveal [A09] History of Appeasement: label fix"
+						has "Hai Reveal [A09] History of Appeasement: kinds of deals?"
+						not "Hai Reveal [A09] History of Appeasement: get to work"
 				# Optional follow-up questions are next, so you'll get the critical
 				# information first.
 				`	"Are the two of you usually this argumentative?"`
 					goto friends
 					to display
-						has "Hai Reveal [A09] History of Appeasement: interrupted"
-						not "Hai Reveal [A09] History of Appeasement: label friends"
+						has "Hai Reveal [A09] History of Appeasement: interrupted argument"
+						not "Hai Reveal [A09] History of Appeasement: so argumentative?"
 				`	"Did all of the deals involve arming pirates?"`
 					goto types
 					to display
-						has "Hai Reveal [A09] History of Appeasement: label deals"
-						not "Hai Reveal [A09] History of Appeasement: label types"
+						has "Hai Reveal [A09] History of Appeasement: kinds of deals?"
+						not "Hai Reveal [A09] History of Appeasement: always armed pirates?"
 				`	"Does Hai media not deal with this sort of thing?"`
 					goto media
 					to display
-						has "Hai Reveal [A09] History of Appeasement: label fix"
-						not "Hai Reveal [A09] History of Appeasement: label media"
+						has "Hai Reveal [A09] History of Appeasement: get to work"
+						not "Hai Reveal [A09] History of Appeasement: Hai media do it?"
 				# End discussion.
 				`	"We've discussed enough. Let's get to work."`
 					goto go
 					to display
-						has "Hai Reveal [A09] History of Appeasement: label fix"
+						has "Hai Reveal [A09] History of Appeasement: get to work"
 
 			# First phase of conversation: listen in or interrupt.
 			label listen
 			action
-				set "Hai Reveal [A09] History of Appeasement: label listen"
+				set "Hai Reveal [A09] History of Appeasement: listened in"
 			`	It is difficult to hear precisely without making yourself known, so you struggle to understand. At first, Teeneep is annoyed, maybe saying words like: pirate, victim, orchestra, and betrayal. Sayari's responses revolve around: necessity, an angry child, guilt, and eggs. Something sets off Teeneep, and she keeps screaming "tweezers." Sayari puts a paw gently on Teeneep's shoulder and says in a soothing maternal tone, "green the moon blue." At this point, it becomes clear that the conversation is entirely in Hai, which you don't speak, and you have no idea what the two women are actually discussing.`
 				goto questions
 			label childish
 			action
-				set "Hai Reveal [A09] History of Appeasement: interrupted"
+				set "Hai Reveal [A09] History of Appeasement: interrupted argument"
 			`	As the pair turn towards you, Teeneep looks mortified. "Captain <last>, I... I'm sorry you had to see me like this. I just... Sayari?"`
 			`	"Welcome back, Captain <last>. I must apologize for my friend's state. She's just discovered some rather unfortunate information."`
 				goto arrived
 			label interrupt
 			action
-				set "Hai Reveal [A09] History of Appeasement: interrupted"
+				set "Hai Reveal [A09] History of Appeasement: interrupted argument"
 			`	Realizing that you've arrived, Sayari tilts her head slightly to one side to indicate she's speaking to you, while not taking her eyes off Teeneep. "Welcome back, Captain <last>. I must apologize for my friend's state. She's just discovered some rather unfortunate information."`
 				goto arrived
 			label arrived
@@ -1219,7 +1219,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				goto questions
 			label friends
 			action
-				set "Hai Reveal [A09] History of Appeasement: label friends"
+				set "Hai Reveal [A09] History of Appeasement: so argumentative?"
 			`	Sayari looks at you apologetically. "She's always been quite a spark, but we usually get along very well."`
 			`	Teeneep adds, "Sayari has been my mentor and ultimately a close friend since I was a head shorter than her."`
 				goto questions
@@ -1227,7 +1227,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			# Second phase of conversation: find out about the pirates.
 			label deals
 			action
-				set "Hai Reveal [A09] History of Appeasement: label deals"
+				set "Hai Reveal [A09] History of Appeasement: kinds of deals?"
 			`	Sayari says, "The Elders have been making deals with your pirates for a long time, in return for secrecy or ceasing mischief. We give them credits, supplies for their colonies, or weapons. I'm not privy to the details, but I've known for quite a while."`
 			`	An enraged Teeneep counters. "They give them our weapons so that they can more efficiently go and enslave other people, rather than just dealing with them properly the way they should have! One hundred and seventy three reports, Sayari. That's how many times they've done this, or something like it, and those are just the ones that came up in the sweep. There's no telling how many others might be filed improperly, missing key words, or just outside of my search range.`
 			`	"I thought you were a model of morality, Sayari. Now I know you're no better than they are. No better than... than..."`
@@ -1235,21 +1235,21 @@ mission "Hai Reveal [A09] History of Appeasement"
 				goto questions
 			label types
 			action
-				set "Hai Reveal [A09] History of Appeasement: label types"
+				set "Hai Reveal [A09] History of Appeasement: always armed pirates?"
 			`	Teeneep says, "In the cases I found, a third of the deals included hostile technology: shield regenerators, guns, turrets, or anti-missile systems. Most of the deals included something else too, like money, non-hostile technology, or supplies for anarchist worlds. For the past five years, though, nearly every deal involved exchanging Hai weaponry." She looks irate at Sayari for a second.`
 				goto questions
 
 			# Third phase of the conversation: decide to fix the problem.
 			label fix
 			action
-				set "Hai Reveal [A09] History of Appeasement: label fix"
+				set "Hai Reveal [A09] History of Appeasement: get to work"
 			`	Sayari explains. "The grievance is against the Elders. There's a process to seek redress of grievances with the Elders. Teeneep needs to at least attempt to follow that process, and if she does not go through with normal resolution channels, she will be censured from public life. She must confront the Elders directly."`
 			`	Teeneep makes the effort to give a final, defiant snarl of disgust. "She's right," she grates out. "I hate it, but she's right. Especially because several of those reports indicate that the Navy knew of Hai on some ships and stood by while they were taken away. Which makes it your business, too."`
 			`	Thinking back to your meeting with Katya, you realize this is probably a step closer to a "hostile diplomatic incident."`
 				goto questions
 			label media
 			action
-				set "Hai Reveal [A09] History of Appeasement: label media"
+				set "Hai Reveal [A09] History of Appeasement: Hai media do it?"
 			`	Sayari gives you a quizzical look. "Of course they do, though Tee has access to more efficient options. That's not the point, though."`
 				goto questions
 			label go
