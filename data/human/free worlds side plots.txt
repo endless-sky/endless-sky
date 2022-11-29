@@ -15,7 +15,7 @@
 
 mission "FW Convoy to Zug"
 	name "Convoy to Zug"
-	description "Escort these Haulers to Zug for an important project. Expect pirate raids."
+	description "Escort these Freighters to Zug for an important project. Expect pirate raids."
 	source
 		government "Free Worlds"
 		near Zubeneschamali 2 4
@@ -30,35 +30,35 @@ mission "FW Convoy to Zug"
 	on offer
 		conversation
 			`While returning from a walk around the spaceport town of <origin>, you see the quartermaster of the spaceport inspecting the <ship>. He notices your arrival, and comes up to greet you.`
-			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <planet>." He points towards five Haulers of varying sizes in Free Worlds colors, some of which have considerable hull damage and are being repaired on the landing pads opposite to your ship.`
+			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <planet>." He points towards five Freighters in Free Worlds colors, some of which have considerable hull damage and are being repaired on the landing pads opposite to your ship.`
 			`	"Their last escort was just taken out by pirates, and we need someone who is experienced enough to fend off or evade them. You must have a reputation, since some of our militia captains recognized you. This is for quite a significant project on <planet>, so you will be paid <payment>."`
 			choice
-				`	"What's the project? It seems to be a big enterprise."`
-				`	"That's a fair few freighters, should I be expecting any more pirates?"`
+				`	"What is the project? It seems to be a big enterprise."`
+				`	"That's a fair few Freighters, should I be expecting any more pirates?"`
 					goto pirates
 				`	"Sorry, I'm not planning on going that way."`
 					decline
-			`	"The ships are carrying construction materials and specialized shipbuilding equipment for the extension of Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. I suppose that is why there have been pirates trying to pounce on these freighters, the equipment would be a rich prize for them."`
+			`	"The Freighters are carrying construction materials and specialized shipbuilding equipment for the extension of Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. I suppose that is why there have been pirates trying to pounce on these ships, the equipment would be a rich prize for them."`
 				goto meet
 			label pirates
-			`	"Yes, I would expect more pirate contact, because the movement of so many large freighters would be a tempting target for them, and moreover, they are carrying valuable equipment for warship manufacturing. I'd certainly recommend avoiding combat when possible. In these trying times, the loss of these ships would be... not ideal."`
+			`	"Yes, I would expect more pirate contact, because the movement of so many Freighters would be a tempting target for them, and moreover, they are carrying valuable equipment for warship manufacturing. I'd certainly recommend avoiding combat when possible. In these trying times, the loss of these ships would be... not ideal."`
 			label meet
 			`	"Well, will you help us escort these ships?"`
 			choice
-				`	"Of course, I'll get these freighters to <planet> safely."`
+				`	"Of course, I'll get these Freighters to <planet> safely."`
 				`	"No, I won't be able to, sorry."`
 					decline
 			`	"Wonderful! I expect that these ships will benefit the Free Worlds immensely."`
-			`	With that, he leaves you to meet with the captains of the freighters.`
+			`	With that, he leaves you to meet with the captains of the Freighters.`
 				accept
 	npc accompany save
 		government "Free Worlds"
 		personality escort timid
-		ship "Hauler II" "F.S. Pohutukawa"
-		ship "Hauler II" "F.S. Totara"
-		ship "Hauler II" "F.S. Kauri"
-		ship "Hauler III" "F.S. Rimu"
-		ship "Hauler III" "F.S. Kanuka"
+		ship "Freighter" "F.S. Pohutukawa"
+		ship "Freighter" "F.S. Totara"
+		ship "Freighter" "F.S. Kauri"
+		ship "Freighter" "F.S. Rimu"
+		ship "Freighter" "F.S. Kanuka"
 	npc
 		government "Pirate"
 		personality plunders staying
@@ -91,7 +91,9 @@ mission "FW Convoy to Zug"
 		event "fw zug expansion underway"
 		event "fw zug expansion complete" 120
 		"assisted free worlds" ++
-		dialog `The five Haulers have all arrived intact, and you are told to land them beside an area of land set aside for Zug's long-awaited New Port expansion. It seems that bringing so many freighters were justified, because the expansion also includes a considerable extension to the shipbuilding and shipyard facilities, to make them capable of building heavy warships like Falcons. Not long after, you are sent <payment> by Zug's port authority.`
+		conversation 
+			`The five Freighters have all arrived intact, and you are told to land them beside a large area of land set aside for Zug's long-awaited New Port expansion. Not long after, you are sent <payment> by Zug's port authority.`
+			`	It seems that bringing so many Freighters was justified, because the expansion also includes a considerable extension to Southbound's shipbuilding facilities, to make them capable of building heavy warships like Tarazed Falcons. However, by the looks of it, all this equipment would be more than enough to build a Navy Cruiser.`
 
 
 
