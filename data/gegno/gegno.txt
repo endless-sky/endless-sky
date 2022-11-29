@@ -105,36 +105,8 @@ phrase "gegno uncontacted"
 		"(A deep disgruntled voice says something in a language you cannot understand.)"
 		"(A low ominous voice speaks in a manner you have not heard before.)"
 
-phrase "gegno uncontacted leave"
-	word
-		"L Eif"
-		"Dy Purit"
-		Gou
-		"Eeb Goumn"
-	word
-		...
-		.
-		!
-
-phrase "hostile gegno uncontacted" .
+phrase "hostile gegno uncontacted"
 	word
 		"(A loud enraged voice says something in a language you cannot decipher.)"
 		"(You hear loud chants and shouts in a language you do not know.)"
-
-phrase "friendly gegno"
-	word
-		"Schuyua Oo"
-		"Dei Ynit Eeb Piebm"
-		"Gou Iisef"
-		Tsiefl
-		"Dei Gno Echmn"
-	word
-		.
-
-phrase "hostile gegno"
-	word
-		"Eysyp Ttheid"
-		Tthei
-	word
-		!
 

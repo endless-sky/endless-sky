@@ -247,7 +247,9 @@ government "Free Worlds that won't enter wormhole"
 
 government Gegno
 	swizzle 0
+	language "gegno tongue"
 	color 0.56 0.44 0.2
+
 	"player reputation" 0
 	"crew attack" 1.1
 	"crew defense" 1.2
@@ -263,7 +265,9 @@ government Gegno
 
 government "Gegno Scin"
 	swizzle 18
+	language "gegno tongue"
 	color 0.5 0.55 0.33
+
 	"player reputation" 0
 	"crew attack" 1.2
 	"crew defense" 1.4
@@ -277,7 +281,9 @@ government "Gegno Scin"
 
 government "Gegno Vi"
 	swizzle 0
+	language "gegno tongue"
 	color 0.68 0.4 0.4
+
 	"player reputation" 0
 	"crew attack" 1.3
 	"crew defense" 1.5
@@ -292,7 +298,9 @@ government "Gegno Vi"
 # Gegno Vi governments used for dueling
 government "Gegno Vi (Duelist A)"
 	"display name" "Gegno Vi"
+	language "gegno tongue"
 	color 0.68 0.4 0.4
+
 	"player reputation" 0
 	"crew attack" 1.3
 	"crew defense" 1.5
@@ -308,7 +316,9 @@ government "Gegno Vi (Duelist A)"
 
 government "Gegno Vi (Duelist B)"
 	"display name" "Gegno Vi"
+	language "gegno tongue"
 	color 0.68 0.4 0.4
+
 	"player reputation" 0
 	"crew attack" 1.3
 	"crew defense" 1.5
