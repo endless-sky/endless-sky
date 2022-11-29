@@ -22,7 +22,7 @@ foreach(test ${INTEGRATION_TESTS_LIST})
 
 	set(ADD_TEST
 "add_test([==[${test}]==]
-	$ENV{ES_INTEGRATION_PREFIX} xvfb-run --auto-servernum \"--server-args=+extension GLX +render -noreset\" \"${ES}\" --config \"${TEST_CONFIG}\" --test \"${test}\")")
+	$ENV{ES_INTEGRATION_PREFIX} \"${ES}\" --config \"${TEST_CONFIG}\" --test \"${test}\")")
 	set(SET_TEST_PROPS
 "set_tests_properties([==[${test}]==] PROPERTIES
 	WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\"
@@ -30,4 +30,4 @@ foreach(test ${INTEGRATION_TESTS_LIST})
 	set(TEST_SCRIPT ${TEST_SCRIPT}${COPY_CONFIG}\n${RENAME_CONFIG}\n${ADD_TEST}\n${SET_TEST_PROPS}\n)
 endforeach()
 
-file(WRITE "${BINARY_PATH}/IntegrationTests_tests.cmake" "${TEST_SCRIPT}")
+file(WRITE "${BINARY_PATH}/IntegrationTests_tests.cmake" "set(ENV{SDL_VIDEODRIVER} offscreen)\n${TEST_SCRIPT}")
