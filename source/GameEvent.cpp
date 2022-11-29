@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Logger.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "System.h"
