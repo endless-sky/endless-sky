@@ -170,8 +170,8 @@ int main(int argc, char *argv[])
 		Preferences::Load();
 
 		// Load global Conditions:
-		DataFile globCons(Files::Config() + "globalConditions.txt");
-		GameData::GlobalConditions().Load(globCons);
+		DataFile globCons(Files::Config() + "global conditions.txt");
+		GameData::GlobalConditions().Load(globCons, "global conditions");
 
 		if(!GameWindow::Init())
 			return 1;
@@ -203,10 +203,6 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
-
-	// Load global Conditions:
-	DataWriter globCons(Files::Config() + "globalConditions.txt");
-	GameData::GlobalConditions().Save(globCons);
 
 	Audio::Quit();
 	GameWindow::Quit();

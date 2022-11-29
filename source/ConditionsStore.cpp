@@ -248,19 +248,21 @@ void ConditionsStore::Load(const DataNode &node)
 
 
 
-void ConditionsStore::Load(const DataFile &file)
+void ConditionsStore::Load(const DataFile &file, string conditionToken)
 {
 	for(const DataNode &node : file)
-		Set(node.Token(0), (node.Size() >= 2) ? node.Value(1) : 1);
+		if(node.Token(0) == conditionToken)
+			for(const DataNode &child : node)
+				Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
 }
 
 
 
-void ConditionsStore::Save(DataWriter &out) const
+void ConditionsStore::Save(DataWriter &out, string conditionToken) const
 {
 	if(PrimariesBegin() != PrimariesEnd())
 	{
-		out.Write("conditions");
+		out.Write(conditionToken);
 		out.BeginChild();
 		{
 			for(auto it = PrimariesBegin(); it != PrimariesEnd(); ++it)
