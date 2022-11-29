@@ -6,6 +6,10 @@ on:
       - master
       - releases/v[0-9]+.[0-9]+.[0-9]+
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 jobs:
   changed:
     uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
