@@ -15,7 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PrintData.h"
 
+#include "DataFile.h"
+#include "DataNode.h"
 #include "GameData.h"
+#include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "Ship.h"
@@ -27,6 +30,88 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	template <class Type>
+	string ObjectName(const Type &object) = delete;
+
+	template <>
+	string ObjectName(const Ship &object) { return object.ModelName(); }
+
+	template <>
+	string ObjectName(const Outfit &object) { return object.TrueName(); }
+
+	template <class Type>
+	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales,
+		const string &name, const string &saleName)
+	{
+		cout << name << ',' << saleName << '\n';
+		map<string, set<string>> itemSales;
+		for(auto &it : sales)
+			for(auto &it2 : it.second)
+				itemSales[ObjectName(*it2)].insert(it.first);
+		for(auto &it : objects)
+		{
+			if(it.first != ObjectName(it.second))
+				continue;
+			cout << it.first;
+			for(auto &it2 : itemSales[it.first])
+				cout << ',' << it2;
+			cout << '\n';
+		}
+	}
+
+	template <class Type>
+	void PrintObjectList(const Set<Type> &objects, bool withQuotes, const string &name)
+	{
+		cout << name << '\n';
+		const string start = withQuotes ? "\"" : "";
+		const string end = withQuotes ? "\"\n" : "\n";
+		for(const auto &it : objects)
+			cout << start << it.first << end;
+	}
+
+	template <class Type>
+	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
+	{
+		cout << name << ',' << "attributes" << '\n';
+		for(auto &it : objects)
+		{
+			cout << it.first;
+			const Type &object = it.second;
+			int index = 0;
+			for(const string &attribute : object.Attributes())
+				cout << (index++ ? ';' : ',') << attribute;
+			cout << '\n';
+		}
+	}
+
+	template <class Type>
+	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
+	{
+		cout << "attribute" << ',' << name << '\n';
+		set<string> attributes;
+		for(auto &it : objects)
+		{
+			const Type &object = it.second;
+			for(const string &attribute : object.Attributes())
+				attributes.insert(attribute);
+		}
+		for(const string &attribute : attributes)
+		{
+			cout << attribute;
+			int index = 0;
+			for(auto &it : objects)
+			{
+				const Type &object = it.second;
+				if(object.Attributes().count(attribute))
+					cout << (index++ ? ';' : ',') << it.first;
+			}
+			cout << '\n';
+		}
+	}
+
+}
+
 
 
 bool PrintData::IsPrintDataArgument(const char *const *argv)
@@ -34,9 +119,10 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons" ||
-				arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines" ||
-				arg == "--power" || arg == "--planets" || arg == "--systems")
+		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons"
+				|| arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines"
+				|| arg == "--power" || arg == "--planets" || arg == "--systems"
+				|| arg == "--matches")
 			return true;
 	}
 	return false;
@@ -63,6 +149,8 @@ void PrintData::Print(const char *const *argv)
 			Planets(argv);
 		else if(arg == "--systems")
 			Systems(argv);
+		else if(arg == "--matches")
+			LocationFilterMatches(argv);
 	}
 	cout.flush();
 }
@@ -93,6 +181,9 @@ void PrintData::Help()
 	cerr << "        --attributes: prints a list of all systems and their attributes." << endl;
 	cerr << "            --reverse: prints a list of all system attributes and which systems have them."
 			<< endl;
+	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
+			<< endl;
+	cerr << "        The first node of the location filter should be `location`." << endl;
 }
 
 
@@ -118,7 +209,7 @@ void PrintData::Ships(const char *const *argv)
 	}
 
 	if(sales)
-		PrintShipShipyards();
+		PrintObjectSales(GameData::Ships(), GameData::Shipyards(), "ship", "shipyards");
 	else if(loaded)
 		PrintLoadedShipStats(variants);
 	else if(list)
@@ -179,32 +270,6 @@ void PrintData::PrintBaseShipStats()
 		int numFighters = ship.BaysTotal("Fighter");
 		int numDrones = ship.BaysTotal("Drone");
 		cout << numFighters << ',' << numDrones << '\n';
-	}
-}
-
-
-
-void PrintData::PrintShipShipyards()
-{
-	cout << "ship" << ',' << "shipyards" << '\n';
-	map<string, set<string>> ships;
-	for(auto &it : GameData::Shipyards())
-	{
-		for(auto &it2 : it.second)
-		{
-			ships[it2->ModelName()].insert(it.first);
-		}
-	}
-	for(auto &it : GameData::Ships())
-	{
-		if(it.first != it.second.ModelName())
-			continue;
-		cout << it.first;
-		for(auto &it2 : ships[it.first])
-		{
-			cout << ',' << it2;
-		}
-		cout << '\n';
 	}
 }
 
@@ -421,11 +486,12 @@ void PrintData::PrintWeaponStats()
 
 void PrintData::PrintEngineStats()
 {
-	cout << "name" << '\t' << "cost" << '\t' << "mass" << '\t' << "outfit space" << '\t'
-		<< "engine capacity" << '\t' << "thrust/s" << '\t' << "thrust energy/s" << '\t'
-		<< "thrust heat/s" << '\t' << "turn/s" << '\t' << "turn energy/s" << '\t'
-		<< "turn heat/s" << '\t' << "reverse thrust/s" << '\t' << "reverse energy/s" << '\t'
-		<< "reverse heat/s" << '\n';
+	cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
+		<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
+		<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
+		<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
+		<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
+		<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
 		// Skip non-engines.
@@ -446,7 +512,11 @@ void PrintData::PrintEngineStats()
 		cout << outfit.Get("turning heat") * 60. << ',';
 		cout << outfit.Get("reverse thrust") * 3600. << ',';
 		cout << outfit.Get("reverse thrusting energy") * 60. << ',';
-		cout << outfit.Get("reverse thrusting heat") * 60. << '\n';
+		cout << outfit.Get("reverse thrusting heat") * 60. << ',';
+		cout << outfit.Get("afterburner thrust") * 3600. << ',';
+		cout << outfit.Get("afterburner energy") * 60. << ',';
+		cout << outfit.Get("afterburner heat") * 60. << ',';
+		cout << outfit.Get("afterburner fuel") * 60. << '\n';
 	}
 	cout.flush();
 }
@@ -492,43 +562,11 @@ void PrintData::Outfits(const char *const *argv)
 	}
 
 	if(sales)
-		PrintOutfitOutfitters();
+		PrintObjectSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
 	else if(all)
 		PrintOutfitsAllStats();
 	else
-		PrintOutfitsList();
-}
-
-
-
-void PrintData::PrintOutfitsList()
-{
-	for(auto &it : GameData::Outfits())
-		cout << "\"" << it.first << "\"\n";
-}
-
-
-
-void PrintData::PrintOutfitOutfitters()
-{
-	cout << "outfits" << ',' << "outfitters" << '\n';
-	map<string, set<string>> outfits;
-	for(auto &it : GameData::Outfitters())
-	{
-		for(auto &it2 : it.second)
-		{
-			outfits[it2->Name()].insert(it.first);
-		}
-	}
-	for(auto &it : GameData::Outfits())
-	{
-		cout << it.first;
-		for(auto &it2 : outfits[it.first])
-		{
-			cout << ',' << it2;
-		}
-		cout << '\n';
-	}
+		PrintObjectList(GameData::Outfits(), true, "outfit");
 }
 
 
@@ -549,7 +587,7 @@ void PrintData::PrintOutfitsAllStats()
 	for(auto &it : GameData::Outfits())
 	{
 		const Outfit &outfit = it.second;
-		cout << outfit.Name() << ',' << outfit.Category() << ','
+		cout << outfit.TrueName() << ',' << outfit.Category() << ','
 			<< outfit.Cost() << ',' << outfit.Mass();
 		for(const auto &attribute : attributes)
 			cout << ',' << outfit.Attributes().Get(attribute);
@@ -578,20 +616,11 @@ void PrintData::Planets(const char *const *argv)
 	if(descriptions)
 		PrintPlanetDescriptions();
 	if(attributes && byAttribute)
-		PrintPlanetsByAttribute();
+		PrintObjectsByAttribute(GameData::Planets(), "planets");
 	else if(attributes)
-		PrintPlanetAttributes();
+		PrintObjectAttributes(GameData::Planets(), "planet");
 	if(!(descriptions || attributes))
-		PrintPlanetsList();
-}
-
-
-
-void PrintData::PrintPlanetsList()
-{
-	cout << "planet" << '\n';
-	for(auto &it : GameData::Planets())
-		cout << it.first << '\n';
+		PrintObjectList(GameData::Planets(), false, "planet");
 }
 
 
@@ -605,46 +634,6 @@ void PrintData::PrintPlanetDescriptions()
 		const Planet &planet = it.second;
 		cout << planet.Description() << "::";
 		cout << planet.SpaceportDescription() << "\n";
-	}
-}
-
-
-
-void PrintData::PrintPlanetAttributes()
-{
-	cout << "planet" << ',' << "attributes" << '\n';
-	for(auto &it : GameData::Planets())
-	{
-		cout << it.first;
-		const Planet &planet = it.second;
-		for(const string &attribute : planet.Attributes())
-			cout << ',' << attribute;
-		cout << '\n';
-	}
-}
-
-
-
-void PrintData::PrintPlanetsByAttribute()
-{
-	cout << "attribute" << ',' << "planets" << '\n';
-	set<string> attributes;
-	for(auto &it : GameData::Planets())
-	{
-		const Planet &planet = it.second;
-		for(const string &attribute : planet.Attributes())
-			attributes.insert(attribute);
-	}
-	for(const string &attribute : attributes)
-	{
-		cout << attribute;
-		for(auto &it : GameData::Planets())
-		{
-			const Planet &planet = it.second;
-			if(planet.Attributes().count(attribute))
-				cout << ',' << it.first;
-		}
-		cout << '\n';
 	}
 }
 
@@ -664,61 +653,32 @@ void PrintData::Systems(const char *const *argv)
 			byAttribute = true;
 	}
 	if(attributes && byAttribute)
-		PrintSystemsByAttribute();
+		PrintObjectsByAttribute(GameData::Systems(), "systems");
 	else if(attributes)
-		PrintSystemAttributes();
+		PrintObjectAttributes(GameData::Systems(), "system");
 	else
-		PrintSystemsList();
+		PrintObjectList(GameData::Systems(), false, "system");
 }
 
 
 
-void PrintData::PrintSystemsList()
+void PrintData::LocationFilterMatches(const char *const *argv)
 {
-	cout << "system" << '\n';
-	for(auto &it : GameData::Systems())
-		cout << it.first << '\n';
-}
-
-
-
-void PrintData::PrintSystemAttributes()
-{
-	cout << "system" << ',' << "attributes" << '\n';
-	for(auto &it : GameData::Systems())
-	{
-		cout << it.first;
-		const System &system = it.second;
-		for(const string &attribute : system.Attributes())
-			cout << ',' << attribute;
-		cout << '\n';
-	}
-}
-
-
-
-void PrintData::PrintSystemsByAttribute()
-{
-	cout << "attribute" << ',' << "systems" << '\n';
-	set<string> attributes;
-	for(auto &it : GameData::Systems())
-	{
-		const System &system = it.second;
-		for(const string &attribute : system.Attributes())
-			attributes.insert(attribute);
-	}
-	for(const string &attribute : attributes)
-	{
-		cout << attribute;
-		for(auto &it : GameData::Systems())
+	DataFile file(cin);
+	LocationFilter filter;
+	for(const DataNode &node : file)
+		if(node.Token(0) == "location")
 		{
-			const System &system = it.second;
-			if(system.Attributes().count(attribute))
-				cout << ',' << it.first;
+			filter.Load(node);
+			break;
 		}
-		cout << '\n';
-	}
+
+	cout << "Systems matching provided location filter:\n";
+	for(const auto &it : GameData::Systems())
+		if(filter.Matches(&it.second))
+			cout << it.first << '\n';
+	cout << "Planets matching provided location filter:\n";
+	for(const auto &it : GameData::Planets())
+		if(filter.Matches(&it.second))
+			cout << it.first << '\n';
 }
-
-
-
