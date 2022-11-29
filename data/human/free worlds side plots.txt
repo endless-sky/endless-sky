@@ -22,10 +22,7 @@ mission "FW Convoy to Zug"
 	destination "Zug"
 	to offer
 		has "event: war begins"
-		"combat rating" > 200
-		or
-			not "chosen sides"
-			has "event: joined the free worlds"
+		has "FW Syndicate Diplomacy 1D: done"
 		not "fw bloodsea done"
 	on offer
 		conversation
@@ -43,7 +40,7 @@ mission "FW Convoy to Zug"
 			label pirates
 			`	"Yes, I would expect more pirate contact, because the movement of so many Freighters would be a tempting target for them, and moreover, they are carrying valuable equipment for warship manufacturing. I'd certainly recommend avoiding combat when possible. In these trying times, the loss of these ships would be... not ideal."`
 			label meet
-			`	"Well, will you help us escort these ships?"`
+			`	"Well, will you help us escort these Freighters?"`
 			choice
 				`	"Of course, I'll get these Freighters to <planet> safely."`
 				`	"No, I won't be able to, sorry."`
