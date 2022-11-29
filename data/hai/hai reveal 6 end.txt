@@ -135,7 +135,7 @@ mission "Hai Reveal [C02] Cleanup"
 			action
 				set "Hai Reveal [C02] Cleanup: label kidnappers"
 			`	"We were en route to somewhere after the ship left Hai space. We don't really know what happened, but they received some kind of message that left them very concerned. They said something about hiding somewhere safe and landed here."`
-			`	At this point, he frowns in the way Hai do. "We were set down here for days and days. Our kidnappers couldn't seem to work out what they should do. Eventually, a woman landed next to us in this ship here," he explains, gesturing at the Star Barge. "She had them ferry us and all our stuff out to this ship, and then she took charge and flew off with them. That was when we sent the message. We were partly afraid it was some kind of elaborate trap when we saw that we could communicate to a Hai address directly. We never used to be able to communicate between human space and ours like that. I guess we were lucky this time."`
+			`	At this point, he frowns. "We were set down here for days and days. Our kidnappers couldn't seem to work out what they should do. Eventually, a woman landed next to us in this ship here," he explains, gesturing at the Star Barge. "She had them ferry us and all our stuff out to this ship, and then she took charge and flew off with them. That was when we sent the message. We were partly afraid it was some kind of elaborate trap when we saw that we could communicate to a Hai address directly. We never used to be able to communicate between human space and ours like that. I guess we were lucky this time."`
 			choice
 				`	"Do you know where they went?"`
 				`	"What did this woman look like?"`
