@@ -509,7 +509,7 @@ fleet "Smuggler (Hai Traffickers)"
 	government "Smuggler (Hai Trafficker)"
 	names "civilian"
 	cargo 0
-	personality timid
+	personality timid target
 	variant 3
 		"Blackbird (Hai Trafficker)"
 	variant 2
