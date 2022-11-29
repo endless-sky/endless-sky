@@ -659,3 +659,78 @@ mission "Remnant: Rescue 5"
 	on visit
 		dialog
 			`You have returned, but there is still no word from the missing ship.`
+
+
+
+# 200 Void Orchids at a premium of 50%
+mission "Remnant: Void Orchid 200"
+	landing
+	name "Void Orchid Delivery."
+	description "Void Orchid have proved to a treasure trove of scientific discoveries. Remnant scientists on <planet> have requested that you procure them 200 and deliver them to their colleagues on <destination>."
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		not attributes "requires: gaslining"
+		not distance 0
+	destination "Ssil Vida"
+	to offer
+		has "Remnant: Void Orchid Mania: complete"
+		random < 4
+	on visit
+		dialog `You arrived at <destination>, but you don't have the 200 requested Void Orchids.`
+	on complete
+		outfit "Void Orchid" -200
+		payment 4500000
+		conversation
+			`On <destination> you deliver the 200 Void orchids. "Here is your BLAH BLAH BLAH" Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
+
+
+
+# 100 Void Orchids at a premium of 25%
+mission "Remnant: Void Orchid 100"
+	landing
+	name "Void Orchid Delivery."
+	description "Void Orchid have proved to a treasure trove of scientific discoveries. Remnant scientists on <planet> have requested that you procure them 100 and deliver them to their colleagues on <destination>."
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		not attributes "requires: gaslining"
+		not distance 0
+	destination "Ssil Vida"
+	to offer
+		has "Remnant: Void Orchid Mania: complete"
+		random < 8
+	on visit
+		dialog `You arrived at <destination>, but you don't have the 100 requested Void Orchids.`
+	on complete
+		outfit "Void Orchid" -100
+		payment 1875000
+		conversation
+			`On <destination> you deliver the 100 Void orchids. "Here is your BLAH BLAH BLAH" Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
+
+
+
+# 50 Void Orchids at a premium of 10%
+mission "Remnant: Void Orchid 50"
+	landing
+	name "Void Orchid Delivery."
+	description "Void Orchid have proved to a treasure trove of scientific discoveries. Remnant scientists on <planet> have requested that you procure them 50 and deliver them to their colleagues on <destination>."
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		not attributes "requires: gaslining"
+		not distance 0
+	destination "Ssil Vida"
+	to offer
+		has "Remnant: Void Orchid Mania: complete"
+		random < 12
+	on visit
+		dialog `You arrived at <destination>, but you don't have the 50 requested Void Orchids.`
+	on complete
+		outfit "Void Orchid" -50
+		payment 825000
+		conversation
+			`On <destination> you deliver the 50 Void orchids. "Here is your BLAH BLAH BLAH" Lorem ipsum dolor sit amet, consectetur adipiscing elit.`

@@ -715,3 +715,37 @@ mission "Remnant: Scent of Rain 1"
 			`	He shakes his head. "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
 			label scanningpayment
 			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
+
+
+
+mission "Remnant: Void Orchid Mania"
+	landing
+	name "Void Orchid Mania."
+	description "Void Orchid have proved to a treasure trove of scientific discoveries. Dusk has requested that you procure him 200."
+	source "Ssil Vida"
+	destination "Ssil Vida"
+	to offer
+		or
+			and
+				has "Remnant: Cognizance 25: done"
+				not "flagship planet: Ssil Vida"
+			has "event: remnant: cognizance calm"
+	on offer
+		conversation
+			`Dusk asks you to go and mine him 200 units of Void Orchid. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
+			choice
+				`	"Sure"`
+				`	"No Thanks"`
+					goto rathernot
+			`	Dusk says thank you for helping him.`
+				accept
+			label rathernot
+			`	I understand.`
+				defer
+	on visit
+		dialog `You have returned to <planet>, but you don't have the 200 requested Void Orchids.`
+	on complete
+		outfit "Void Orchid" -200
+		payment 4500000
+		conversation
+			`On <planet> you deliver the 200 Void orchids. "Here is your BLAH BLAH BLAH" Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
