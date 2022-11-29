@@ -1288,15 +1288,17 @@ mission "Hai Reveal [A09] History of Appeasement"
 			`	The left Elder says, "Secrecy, mostly, to prevent a refugee crisis if the Hai become common knowledge. The bulk of the resources go to a few large pirate groups that control the anarchist worlds. We fund the development and protection of their planets, in return for them ensuring the wrong people don't find us."`
 			`	Another Elder adds, "Most of the deals are much smaller, though: when a pirate gang causes mischief, we pay them to stop. Hostages, theft, raids, and the like. Usually, the same gang never bothers us again." Teeneep perks up at the word "hostages," but doesn't speak.`
 				goto "elder questions"
+			# End conversation by pointing out impending failure of this approach:
 			label "elders secret"
 			`	The middle Elder counters, "We cannot be certain that the pirate activity will continue. With the proper trades, we may be able to return to the status quo."`
 			`	"That is a best-case scenario," says the right Elder, "but if matters continue to worsen, we'll change our approach." The other two nod in agreement.`
 				goto diplomats
+			# End conversation by passing on Katya's warning:
 			label "Katya warning"
 			`	The Elder on the right disagrees. "At this point, the Republic is too weakened to be a threat. I'm confident they will see reason, for now."`
 			`	Fortunately, the middle Elder contradicts him. "We don't want to risk larger problems with humanity. If the situation continues to worsen, then we'll change our approach." The other two find that argument convincing and nod.`
 			label diplomats
-			`	An Elder concludes the meeting. "We have a plan of action on the pirate deals. However, I've heard enough of this 'kidnapping' conspiracy theory. Our meeting is adjourned." Teeneep's fury is palpable, but she remains silent as the three exit.`
+			`	An Elder concludes the meeting. "The Elder Council asked us to take charge of the pirate situation, and we now have a plan of action on the pirate deals. However, I've heard enough of this 'kidnapping' conspiracy theory. Our meeting is adjourned." Teeneep's fury is palpable, but she remains silent as the three exit.`
 			choice
 				`	"That could have gone better."`
 				`	"It sounds like we've made some progress!"`
@@ -1306,7 +1308,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			choice
 				`	"What can we do to solve this, Sayari?"`
 				`	"Teeneep, I think we need quick action. You mentioned something back in the cave."`
-			`	Before she can respond, Xilin arrives with Batu in tow. They consult Sayari, and occasionally Teeneep, in a long discussion about the Navy knowing of the pirate troubles and willfully not intervening. Xilin sympathizes and suggests the Hai ask the Navy to rescue those captured.`
+			`	The three of you head back to the diplomatic quarter and where Xilin and Batu lead you to a conference room. They consult Sayari, and occasionally Teeneep, in a long discussion about the Navy knowing of the pirate troubles and willfully not intervening. Xilin sympathizes and suggests the Hai ask the Navy to rescue those captured.`
 			`	Batu cuts in. "I'm sorry, deputy minister, I have not had time to fully brief you. The Navy already considered this and said 'not under any circumstances' will they 'clean up the Hai's mess'." In the slightly stunned pause following his words he draws breath and adds somewhat less intensely, "It's, uh, possible that five thousand missing civilians was not one of the things they considered when they said that."`
 			`	Xilin frowns. "We should definitely present that case. They'll have to do another whole round of private briefings, and then no doubt a large debate. Even if we started today, Parliament won't be able to act for months. I'll kick things off, but you'll have to be patient."`
 			`	When Teeneep makes a noise as if to speak, Sayari silences her with a gentle touch and thanks Xilin in the formal capacity. He briefly thanks you for delivering Batu safely and then the two excuse themselves to see if they can get a hold of someone before their day ended.`
@@ -1324,7 +1326,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				`	"Of course, Teeneep. Let's go."`
 			`	"Teeneep, no! You cannot just commandeer the Captain to act as your chauffeur wherever you want to go," says Sayari. "<last> has an important role here in this crisis."`
 			`	"And what would you have them do next then?" When Sayari seems at a loss to respond, Teeneep continues. "Exactly. Your crisis is mostly resolved behind closed doors, but this crisis requires transportation. The thing you seem to be missing is that they're the same crisis, Sayari. They can't be resolved separately."`
-			`	Sayari sits with a huff, for a moment looking as old as she says she is. Teeneep waits patiently while her friend spends a good thirty seconds seriously thinking about something. "She is right, <last>," says Sayari eventually. "This is worth trying. Please take her to the Unfettered if that is what she wishes; their government is on <destination>, but please, be careful."`
+			`	Sayari slumps back in her chair with a huff, for a moment looking as old as she says she is. Teeneep waits patiently while her friend spends a good thirty seconds seriously thinking about something. "She is right, <last>," says Sayari eventually. "This is worth trying. Please take her to the Unfettered if that is what she wishes; their government is on <destination>, but please, be careful."`
 			`	As you both get up to leave Teeneep walks over and places a hand gently on the old diplomat's shoulder. "They call themselves the True Hai, maybe it's time they demonstrated it."`
 				accept
 
