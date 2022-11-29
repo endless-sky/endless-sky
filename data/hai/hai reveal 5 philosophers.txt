@@ -467,7 +467,7 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 				`	"Do you have any other leads I can follow?"`
 				`	"Even if I've found them, I don't know what they're doing or how. Any ideas?"`
 			`	She looks at the many tabs displaying the information you've brought or she's found. "You remember that online community on unexplained kidnappings? I came across a man who might, just maybe, know something useful. He claims to have found something odd related to cases in the set in your data, and one of the cases in your set is the disappearance of his wife, which is where his motivation comes from.`
-			`	"His theory is... well it's a bit crackpot for the local authorities. I wouldn't have believed it either were it not for the vastly superior swathe of information we now have at our disposal, but it might be what you need. I think you should go seek him out on <planet>."`
+			`	"His theory is... well, it's a bit crackpot for the local authorities. I wouldn't have believed it either, were it not for the vastly superior swathe of information we now have at our disposal, but it might be what you need. I think you should go seek him out on <planet>."`
 			`	She rummages around and then presents you with a data stick. "This has the information he gave me to follow him up. I convinced him to trust me, so hopefully he's receptive to you. It also has all the data that explicitly identifies all the ship IDs that are associated with our suspicious cases. That's the best I've got for you, though. If this doesn't pan out we'll need to go a different way."`
 				accept
 
