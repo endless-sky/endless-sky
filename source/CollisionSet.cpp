@@ -38,6 +38,34 @@ namespace {
 	constexpr int USED_MAX_VELOCITY = MAX_VELOCITY - 1;
 	// Warn the user only once about too-large projectile velocities.
 	bool warned = false;
+
+
+	// Keep track of the closest collision found so far. If an external "closest
+	// hit" value was given, there is no need to check collisions farther out
+	// than that.
+	class Closest {
+	public:
+		Closest(double closestHit)
+			: closest_dist(closestHit)
+			, closest_body(nullptr)
+		{}
+
+		void TryNearer(double new_closest, Body *new_body)
+		{
+			if(new_closest < closest_dist)
+			{
+				closest_dist = new_closest;
+				closest_body = new_body;
+			}
+		}
+
+		double GetClosestDistance() const { return closest_dist; }
+		Body *GetClosestBody() const { return closest_body; }
+
+	private:
+		double closest_dist;
+		Body *closest_body;
+	};
 }
 
 
@@ -163,11 +191,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	int endGX = endX >> SHIFT;
 	int endGY = endY >> SHIFT;
 
-	// Keep track of the closest collision found so far. If an external "closest
-	// hit" value was given, there is no need to check collisions farther out
-	// than that.
-	double closest = closestHit ? *closestHit : 1.;
-	Body *result = nullptr;
+	Closest closer_result(closestHit ? *closestHit : 1.);
 
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -194,15 +218,12 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			Point offset = from - it->body->Position();
 			double range = mask.Collide(offset, to - from, it->body->Facing());
 
-			if(range < closest)
-			{
-				closest = range;
-				result = it->body;
-			}
+			closer_result.TryNearer(range, it->body);
 		}
-		if(closest < 1. && closestHit)
-			*closestHit = closest;
-		return result;
+		if(closer_result.GetClosestDistance() < 1. && closestHit)
+			*closestHit = closer_result.GetClosestDistance();
+
+		return closer_result.GetClosestBody();
 	}
 
 	Point pVelocity = (to - from);
@@ -268,15 +289,11 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			Point offset = from - it->body->Position();
 			double range = mask.Collide(offset, to - from, it->body->Facing());
 
-			if(range < closest)
-			{
-				closest = range;
-				result = it->body;
-			}
+			closer_result.TryNearer(range, it->body);
 		}
 
 		// Check if we've found a collision or reached the final grid cell.
-		if(result || (gx == endGX && gy == endGY))
+		if(closer_result.GetClosestBody() || (gx == endGX && gy == endGY))
 			break;
 		// If not, move to the next one. Check whether rx / mx < ry / my.
 		int64_t diff = rx * my - ry * mx;
@@ -312,9 +329,10 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		}
 	}
 
-	if(closest < 1. && closestHit)
-		*closestHit = closest;
-	return result;
+	if(closer_result.GetClosestDistance() < 1. && closestHit)
+		*closestHit = closer_result.GetClosestDistance();
+
+	return closer_result.GetClosestBody();
 }
 
 
