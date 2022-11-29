@@ -1221,7 +1221,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			action
 				set "Hai Reveal [A09] History of Appeasement: so argumentative?"
 			`	Sayari looks at you apologetically. "She's always been quite a spark, but we usually get along very well."`
-			`	Teeneep adds, "Sayari has been my mentor and ultimately a close friend since I was a head shorter than her."`
+			`	Teeneep adds, "Sayari has been my mentor since I was a head shorter than her."`
 				goto questions
 
 			# Second phase of conversation: find out about the pirates.
