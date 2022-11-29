@@ -152,7 +152,7 @@ mission "Hai Reveal [C02A] Cleanup"
 	to offer
 		has "Hai Reveal [C02] Cleanup: active"
 	on enter Mirfak
-		dialog "A message from Alastair Korban pops up before you can depart Mirfak. 'Hey, Captain. It seems Terry has gone missing; if you see her, let her know she will lose her position if she doesn't return to her duties soon.'"
+		dialog "A message from Syndicate Corporate Headquarters pops up before you can depart Mirfak. 'Captain <last>, one of our executives, Terry Adrianopoulos, has gone missing; if you see her, let her know she will lose her position if she doesn't return to her duties soon.'"
 		fail
 
 
