@@ -356,7 +356,7 @@ mission "Hai Reveal [C05] Cleanup"
 					to display
 						has "Hai Reveal [C05] Cleanup: label judge"
 			label spare
-			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you think maybe the future is worth the sacrifice made in the attempt.`
+			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself, though, you think: "Maybe the future is worth the sacrifice made in the attempt."`
 			action
 				set "spared terry"
 				log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Allowed her to live, but nevertheless this loose end is thoroughly tied up.`
