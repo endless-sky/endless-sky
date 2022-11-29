@@ -269,7 +269,7 @@ mission "Hai Reveal [B03] Contact Giti"
 			label disinformation
 			action
 				set "Hai Reveal [B03] Contact Giti: label disinformation"
-			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry Captain <last> and Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is lost. Even if we could convince all factions to keep the secret, the blockade has drawn enough attention so all that remains is to resolve issues before the Hai become irretrievably common knowledge."`
+			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is lost. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve our common issues before the Hai become irretrievably common knowledge."`
 			`	Teeneep responds, "We all knew that day would come soon. Be glad we're here together to usher it in peacefully and with strength."`
 				goto briefing
 			label squirrels
@@ -338,7 +338,7 @@ mission "Hai Reveal [B04] The Road Not Taken"
 			choice
 				`	"What is Elenchus?"`
 				`	"I've never seen this system on a star map. What do you expect to find there?"`
-			`	Giti ignores your question and continues. "What I've just send you is the modern representation of coordinates in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are direct from the notation, they indicate a system in Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
+			`	Giti ignores your question and continues. "What I've just sent you is the modern representation of coordinates in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are direct from the notation, they indicate a system in Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
 			`	She shrugs. "Of course, I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
 			choice
 				`	"Can you tell me more about the victim support group?"`
@@ -648,7 +648,7 @@ mission "Hai Reveal [B06-long] Boarded Smuggler"
 				`	"There should be an access panel above you! Maybe you can short-circuit the door?"`
 			`	The Hai says, "This door is jammed, they're locking down the ship and going to blow it up!" In the background you hear a booming sound. "They're using the keystones, tell them they're using the keystones!"`
 			`	Inside your ship you hear alarms blare into full volume and you have just enough time to nod an acknowledgment to the doomed Hai before the airlock's automatic safeties shut it. A moment later, you hear an explosion and the sound of tearing metal as the docking tube is shredded and your ship is forced away from the expanding debris of the smuggler ship. When you return to the controls it seems the smugglers signaled for help before the ship exploded. An escape pod is rapidly escaping and pirates are on a swift approach. Apparently the smugglers care more about not being caught than about finishing their mission.`
-			`	You need to relay this to Giti, but the keystones are a Hai thing and that message didn't really explain much; you'll have to contact Sayari or Teeneep first which means crossing the blockade again. You begin to set a course for <planet>, but your scanners report multiple new contacts; hostile ships entering the system. You prepare for battle.`
+			`	You need to relay this to Giti, but the keystones are a Hai thing and that message didn't really explain much; you'll have to contact Sayari or Teeneep first, which means crossing the blockade again. You begin to set a course for <planet>, but your scanners report multiple new contacts; hostile ships entering the system. You prepare for battle.`
 				launch
 	npc
 		government "Pirate"
@@ -719,7 +719,7 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 		has "Hai Reveal [B06-long] Boarded Smuggler: done"
 	on offer
 		conversation
-			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gang's hideouts, those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
+			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gangs' hideouts, those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
 			`	Fortunately this makes it easy to find Sayari, who has comparatively little to do at the moment and is mostly just helping to keep everyone communicating effectively. When you tell her of the system you found and the message from the Hai on the smuggler ship, she winces. "What a terrible fate, but it does confirm what we suspected. We'll have to see what more we can find out in the meantime while we're still bogged down here."`
 			choice
 				`	"What does the Hai's message mean?"`
