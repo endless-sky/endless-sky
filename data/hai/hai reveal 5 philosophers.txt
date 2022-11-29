@@ -312,7 +312,7 @@ mission "Hai Reveal [B03] Contact Giti"
 mission "Hai Reveal [B04] The Road Not Taken"
 	landing
 	name "Investigate Coordinates"
-	description "Investigate the coordinates Giti found via Jump Drive"
+	description "Investigate the coordinates Giti found via jump drive"
 	source "Canyon"
 	waypoint "Devil-Run"
 	destination "Earth"
@@ -339,10 +339,10 @@ mission "Hai Reveal [B04] The Road Not Taken"
 				`	"What is Elenchus?"`
 				`	"I've never seen this system on a star map. What do you expect to find there?"`
 			`	Giti ignores your question and continues. "What I've just send you is the modern representation of coordinates in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are direct from the notation, they indicate a system in Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
-			`	She shrugs. "Of course, I have no idea how they'd have a Jump Drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
+			`	She shrugs. "Of course, I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
 			choice
-				`	"How do you know I have a Jump Drive?"`
 				`	"Can you tell me more about the victim support group?"`
+				`	"How do you know I have a jump drive?"`
 				`	(Give up on getting any more information out of her.)`
 					goto giveup
 			`	She seems rushed and ignores you, picking up a bag and putting some items from her desk into it.`
@@ -917,7 +917,7 @@ mission "Hai Reveal [B11] Moving Together"
 ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump)"
 	outfits
 		"Large Heat Shunt" 2
-		"Jump Drive"
+		"jump drive"
 		"Systems Core (Large)"
 		"Quantum Keystone"
 		"Outfits Expansion" 3
@@ -937,7 +937,7 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 		"required crew" 50
 	outfits
 		"Catalytic Ramscoop"
-		"Jump Drive"
+		"jump drive"
 		"Chameleon Anti-Missile" 3
 		"Quantum Keystone"
 		"Outfits Expansion"
@@ -1263,7 +1263,7 @@ mission "Hai Reveal [B13] Freedom"
 #		"required crew" 43
 #	outfits
 #		"Large Heat Shunt" 2
-#		"Jump Drive"
+#		"jump drive"
 #		"Systems Core (Large)"
 #		"Quantum Keystone"
 #		"Outfits Expansion" 3
@@ -1315,7 +1315,7 @@ mission "Hai Reveal [B14] Journey to Peace"
 		conversation
 			`Your arrival on <origin> is met with much fanfare. In your absence the remaining staging ground here was eventually found and purged, and an agreement of sorts has been made between the Republic authorities and the remaining major players here - or at least those whose lists of possible crimes aren't so long and well-evidenced as to be arrested for appearing. The hope is that after such a thorough purge, <origin> will manage to be less of a source of problems for a while, but the expectation is merely that people smuggling will no longer be an industry that is widely tolerated by the local powers that be.`
 			`	The Unfettered are treated as heroes by both their comrades and the other Hai crews as they return to the fold. This causes some, like Remington and Alondo, to share some concerned looks among each other and have a number of surreptitious chats with Danforth and Marshal Khaine, but the distinction between the two groups remains pronounced throughout.`
-			`	Once people have had a chance to get sorted Teeneep approaches you again. "There will be much work in the future, but for now it is time to return to <planet>. I have been too long away, and there are obligations to be discharged. I have returned the borrowed Jump Drive, so we should pick up the Deputy Minister from Mountaintop on the way."`
+			`	Once people have had a chance to get sorted Teeneep approaches you again. "There will be much work in the future, but for now it is time to return to <planet>. I have been too long away, and there are obligations to be discharged. I have returned the borrowed jump drive, so we should pick up the Deputy Minister from Mountaintop on the way."`
 				accept
 	npc save accompany
 		government "Hai (Wormhole Access)"
