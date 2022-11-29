@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Graveyard Label"
 	landing
@@ -96,7 +99,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			`	You find Taely inside one of the outer hangars of the shipyard, apparently teaching a small group of people how to make basic repairs on an Albatross. You sit on a bench waiting for her to finish her lesson, after which she walks over to you. "Hello, <first>!" she says. "Is there something I can help you with?" `
+			`	You find Taely inside one of the outer hangars of the shipyard, apparently teaching a small group of people how to make basic repairs on an Albatross. You sit on a bench waiting for her to finish her lesson, after which she walks over to you. "Hello, <first>!" she says. "Is there something I can help you with?"`
 			`	"I'm here because I need to ask you a few questions," you reply.`
 			`	As she sits near you, you start explaining to her the area you reached, including the weird alien ships that attacked you with weapons similar to the ones the Remnant possess, although this doesn't seem to be news for her. "We know of the existence of the Ka'het, the aliens you encountered, since we first reached the Ember Wastes. We found many of their shells within our planets, crashed there thousands, perhaps even tens of thousands of years before our arrival, but some of their outfits survived long enough for us to reverse engineer these advanced technologies."`
 			`	"Then," she continues, "a few hundred years ago, a scout fleet arrived in a system where some Ka'het were still alive. They attacked our fleet instantly with EMP Torpedoes that quickly disabled two Starlings. The Starlings couldn't recover quickly enough to survive, and the only remaining ship could do nothing but flee as soon as possible."`
@@ -251,7 +254,7 @@ mission "Ringworld Debris: Quarg"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			apply
+			action
 				clear "ringworld debris"
 			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You show it the piece of debris, and ask what it knows about it. It is momentarily stunned when you show the dark piece of technology, calmly taking it into its own hands after recovering. "A fragment of our ships, is what it is. A remnant of part of our equipment. Thank you for returning it to us."`
 			`	You continue by telling it about your travels in the section of the galaxy where you found the debris, and asking what it knows of the place and the hostiles that inhabit it.`
@@ -408,7 +411,7 @@ mission "Ka'het: Patir Mystery 1"
 					goto kahet
 				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
 					goto jumpdrive
-				`	"Why aren’t they in other systems?"`
+				`	"Why aren't they in other systems?"`
 					goto jumpdrive
 			label kasei
 			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could be potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
@@ -417,7 +420,7 @@ mission "Ka'het: Patir Mystery 1"
 					goto kahet
 				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
 					goto jumpdrive
-				`	"Why aren’t they in other systems?"`
+				`	"Why aren't they in other systems?"`
 					goto jumpdrive
 			label kahet
 			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
@@ -426,7 +429,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
 					goto kasei
 				`	"If they were able to get here, does this suggest they have Jump Drives?"`
-				`	"Why aren’t they in other systems?"`
+				`	"Why aren't they in other systems?"`
 			label jumpdrive
 			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
 			choice
@@ -437,7 +440,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"I know someone who will want to see all this. Meet me in the spaceport when you have the chance."`
 				decline
 			label busy
-			apply
+			action
 				set "ka'het: dusk was busy"
 			`	"I know someone who will want to see all this. You have met Dusk, correct?"`
 			`	You nod. "I have, but I believe he's busy at the moment."`
@@ -490,7 +493,7 @@ mission "Ka'het: Patir Mystery 2"
 					goto greet
 				`	"Has Taely told you about what we found?"`
 			`	"Yes, a new system has appeared in the Graveyard. How exciting! Taely sent me the data as soon as she could.`
-					goto greet
+				goto greet
 			
 			label greet
 			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something consistent about almost every path: once in a while, every ship spends a few minutes on a single asteroid - one of the biggest in the entire asteroid belt.`
@@ -553,7 +556,7 @@ mission "Ka'het: Patir Mystery 3"
 			`	The data that Dusk's scanners will gather will not be perfect, but it is better than having to risk getting close to something you know so little about. After a few minutes, the scan completes, and you are ready to return to <planet>.`
 				accept
 			label near
-			apply
+			action
 				"exploration interest" ++
 			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to <planet> unmolested.`
 				accept
@@ -687,7 +690,7 @@ mission "Ka'het: Patir Mystery 5"
 			label expel
 			`	Soon after, the frontal door recedes. You two run out of the airlock as fast as possible. Behind you, you hear the roar of metal melting as a rush of air passes you by. You start running back to your ship with Dusk, hoping that the Ka'sei will not get out of the building before you are safe.`
 			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier and turns it on. "Phew. I was afraid it had broken down when we had to run away, but maybe we can still get the data we need."`
-			apply
+			action
 				set "atmospheric scan intact"
 			
 			label attack
@@ -724,7 +727,7 @@ mission "Ka'het: Patir Mystery 5"
 				decline
 			
 			label attacked
-			apply
+			action
 				set "ka'het: attacked ka'sei"
 			`You disembark from your ship with Dusk, who is visible angry that you destroyed one of the Ka'sei. "I told you not to attack them! I told you of their importance!" he signs harshly while pacing back and forth. "Oh my, oh my, we can only hope that this does not close any doors for us. Perhaps we can attempt to communicate with them? Tell them it was an accident?" He looks to you as if searching for some reassurance, but you have none to give. "Forget it. I will study what we have gathered, but I am afraid that it will be all that we will ever gather from that system." Dusk storms off without saying goodbye, typing away on his touchpad as he goes.`
 
