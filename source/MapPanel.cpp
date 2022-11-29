@@ -150,6 +150,7 @@ const float MapPanel::LINK_WIDTH = 1.2f;
 const float MapPanel::LINK_OFFSET = 7.f;
 
 
+
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	: player(player), distance(player),
 	playerSystem(*player.GetSystem()),
