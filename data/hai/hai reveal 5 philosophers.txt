@@ -392,7 +392,7 @@ mission "Hai Reveal [B05-short] The Road Not Taken"
 	autosave
 	landing
 	name "Syndicate Internal Affairs"
-	description "Go directly to <planet>. Do not pass Go. Do not collect $200."
+	description "Go directly to <planet> or you will become a fugitive in Republic space."
 	deadline
 	source "Earth"
 	destination "Hephaestus"
