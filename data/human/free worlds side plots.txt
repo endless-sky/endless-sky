@@ -26,8 +26,8 @@ mission "FW Convoy to Zug"
 		not "fw bloodsea done"
 	on offer
 		conversation
-			`While returning from a walk around the spaceport town of <origin>, you see the quartermaster of the spaceport inspecting the <ship>. He notices your arrival, and comes up to greet you.`
-			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <planet>." He points towards five Freighters in Free Worlds colors, some of which have considerable hull damage and are being repaired on the landing pads opposite to your ship.`
+			`While returning from a walk around the spaceport town of <origin>, you see the quartermaster of the spaceport inspecting the <ship>. He notices your arrival and comes up to greet you.`
+			`	"You're Captain <first> <last>, yes? We're looking for a good ship that can escort these freighters to <planet>." He points towards five Freighters in Free Worlds colors on the landing pads opposite to your ship, some of which have considerable hull damage and actively being repaired.`
 			`	"Their last escort was just taken out by pirates, and we need someone who is experienced enough to fend off or evade them. You must have a reputation, since some of our militia captains recognized you. This is for quite a significant project on <planet>, so you will be paid <payment>."`
 			choice
 				`	"What is the project? It seems to be a big enterprise."`
@@ -35,7 +35,7 @@ mission "FW Convoy to Zug"
 					goto pirates
 				`	"Sorry, I'm not planning on going that way."`
 					decline
-			`	"The Freighters are carrying construction materials and specialized shipbuilding equipment for the extension of Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. I suppose that is why there have been pirates trying to pounce on these ships, the equipment would be a rich prize for them."`
+			`	"The Freighters are carrying construction materials and specialized shipbuilding equipment for the extension of Zug's New Port, which has been a long time coming. It would greatly help the Free Worlds' efforts. I suppose that is why there have been pirates trying to pounce on these ships; the equipment would be a rich prize for them."`
 				goto meet
 			label pirates
 			`	"Yes, I would expect more pirate contact, because the movement of so many Freighters would be a tempting target for them, and moreover, they are carrying valuable equipment for warship manufacturing. I'd certainly recommend avoiding combat when possible. In these trying times, the loss of these ships would be... not ideal."`
@@ -90,7 +90,7 @@ mission "FW Convoy to Zug"
 		"assisted free worlds" ++
 		conversation 
 			`The five Freighters have all arrived intact, and you are told to land them beside a large area of land set aside for Zug's long-awaited New Port expansion. Not long after, you are sent <payment> by Zug's port authority.`
-			`	It seems that bringing so many Freighters was justified, because the expansion also includes a considerable extension to Southbound's shipbuilding facilities, to make them capable of building heavy warships like Tarazed Falcons. However, by the looks of it, all this equipment would be more than enough to build a Navy Cruiser.`
+			`	It seems that bringing so many Freighters was justified, because the expansion also includes a considerable extension to Southbound's shipbuilding facilities to make them capable of building heavy warships like Tarazed Falcons. However, by the looks of it, all this equipment would be more than enough to build a Navy Cruiser.`
 
 
 
