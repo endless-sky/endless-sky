@@ -664,7 +664,8 @@ mission "Remnant: Rescue 5"
 
 # 200 Void Orchids at a premium of 50%
 mission "Remnant: Void Orchid 200"
-	landing
+	job
+	repeat
 	name "Void Orchid Delivery."
 	description "Void Orchid have proved to a treasure trove of scientific discoveries. Remnant scientists on <planet> have requested that you procure them 200 and deliver them to their colleagues on <destination>."
 	source
@@ -689,7 +690,8 @@ mission "Remnant: Void Orchid 200"
 
 # 100 Void Orchids at a premium of 25%
 mission "Remnant: Void Orchid 100"
-	landing
+	job
+	repeat
 	name "Void Orchid Delivery."
 	description "Void Orchid have proved to a treasure trove of scientific discoveries. Remnant scientists on <planet> have requested that you procure them 100 and deliver them to their colleagues on <destination>."
 	source
@@ -714,7 +716,8 @@ mission "Remnant: Void Orchid 100"
 
 # 50 Void Orchids at a premium of 10%
 mission "Remnant: Void Orchid 50"
-	landing
+	job
+	repeat
 	name "Void Orchid Delivery."
 	description "Void Orchid have proved to a treasure trove of scientific discoveries. Remnant scientists on <planet> have requested that you procure them 50 and deliver them to their colleagues on <destination>."
 	source
