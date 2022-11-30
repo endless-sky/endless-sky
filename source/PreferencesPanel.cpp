@@ -65,7 +65,7 @@ namespace {
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -473,7 +473,7 @@ void PreferencesPanel::DrawSettings()
 		"Show planet labels",
 		"Show mini-map",
 		"Always underline shortcuts",
-		"",
+		"\t",
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
@@ -483,7 +483,7 @@ void PreferencesPanel::DrawSettings()
 		TURRET_TRACKING,
 		"Fighters transfer cargo",
 		TARGET_ASTEROIDS_BASED_ON,
-		"\t",
+		"\n",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -493,7 +493,7 @@ void PreferencesPanel::DrawSettings()
 		"Parallax background",
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
-		"",
+		"\t",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
