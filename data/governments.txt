@@ -840,15 +840,21 @@ government "Korath"
 	color "governments: Korath Exiles"
 	"crew attack" 1.4
 	"crew defense" 2.6
-	language "Korath"
+	language "Exile"
 	
 	"attitude toward"
+		"Kor Alahi" .01
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
 		"Humanika (Ship)" .1
+	"penalty for"
+		assist -0.25
+		disable 0.26
+		capture 5
 	
 	"player reputation" -10
+	"bribe" .1
 
 government "Korath (Civilian)"
 	"display name" "Korath"
@@ -856,31 +862,59 @@ government "Korath (Civilian)"
 	color "governments: Korath Exiles"
 	"crew attack" 1.1
 	"crew defense" 2.1
-	language "Korath"
+	language "Exile"
 
 	"attitude toward"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Korath" .01
 		"Humanika (Ship)" .2
+	"penalty for"
+		assist -0.25
+		disable 0.26
+		board 1
+		capture 10
 
 	"player reputation" 1
+	"bribe" .2
 
-government "Korath (Greedy)"
+government "Korath (Station)"
+	"display name" "Korath"
+	color .8 .5 .1
+	language "Exile"
+
+	"attitude toward"
+		"Wanderer" -.01
+		"Remnant" -.01
+		"Remnant (Research)" -.01
+		"Korath" 1
+		"Korath (Civilian)" 1
+
+	"player reputation" -10
+	"bribe" 0
+
+government "Kor Alahi"
 	"display name" "Korath"
 	swizzle 21
 	color .8 .5 .1
 	"crew attack" 1.4
 	"crew defense" 2.1
-	language "Korath"
+	language "Exile"
 
 	"attitude toward"
 		"Korath (Civilian)" .01
 		"Korath" .01
 		"Remnant" -1
 		"Indigenous Lifeform" -.01
+	"penalty for"
+		disable 0.25
+		capture 5
+		scan 0.1
+	"provoked on scan"
 
-	"player reputation" -10
+	"player reputation" -100
+	"bribe" 0
+	"raid" "Kor Alahi Raid"
 
 government "Korath Nanobots"
 	"player reputation" -1000
@@ -921,8 +955,8 @@ government "Kor Mereti (Hostile)"
 
 government "Kor Sestor"
 	swizzle 0
-	color 1 .36 .49
-	language "Korath"
+	color .75 .27 .37
+	language "Sestor"
 	
 	"attitude toward"
 		"Kor Mereti" -.01
@@ -1156,6 +1190,7 @@ government "Remnant"
 	"attitude toward"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
+		"Kor Alahi" -.1
 		"Alpha" -.05
 		"Remnant (Research)" 1
 		"Korath (Civilian)" 0.02
