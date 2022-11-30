@@ -140,12 +140,12 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Assist the alien in defeating the creature.)`
 					goto help
-					
+		
 	on defer
 		set "First Contact: Gegno Vi: deferred"
 		
 				
-mission "Visit Quarg in Gegno space"
+mission "Visit Quarg in Gegno Space"
 	landing
 	name `Travel to <designated system>`
 	description `Travel to the <designated system> as instructed.`
@@ -180,8 +180,29 @@ mission "Visit Quarg in Gegno space"
 				launch
 
 			label "has met quarg"
-			`	After fiddling with it, marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. You look at the location and notice that it's the Quarg Ringworld you previously visited. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These <aliens> look decently shorter and thinner than the others, and wear more leather-like garments than heavy metal ones, however their demenaor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
+			`	After fiddling with it, marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. You look at the location and notice that it's the Quarg Ringworld you've previously visited. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These <aliens> look decently shorter and thinner than the others, and wear more leather-like garments than heavy metal ones, however their demenaor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
 				launch
+		
+	npc
+		government "Gegno Vi (neutral)"
+		personality entering staying
+		system "Heutesl"
+		fleet "Vi Warfleet"
+	npc
+		government "Gegno Scin (neutral)"
+		personality entering staying
+		system "Heutesl"
+		fleet "Scin Warfleet"
+	npc
+		government "Gegno Vi (neutral)"
+		personality staying
+		system "Heutesl"
+		fleet "Vi Warfleet"
+	npc
+		government "Gegno Scin (neutral)"
+		personality staying	
+		system "Heutesl"
+		fleet "Scin Warfleet"
 
 
 mission "Giaru Gegno: Quarg Contact"
@@ -193,7 +214,6 @@ mission "Giaru Gegno: Quarg Contact"
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them is a complacent civilian population.`
 		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
 		conversation
-		
 			branch "has met gegno"
 				has "Visit Quarg in Gegno Space: offered"
 				
@@ -202,14 +222,14 @@ mission "Giaru Gegno: Quarg Contact"
 				goto "walking"
 	
 			label "has met gegno"
-			`	The visual of a complete Quarg Ringworld is drastically different than the Gegno homeworld you were on before. Such a pristine, advanced structure is quite the opposite of the unorderly industry of Gegno civilisation. The population of Quarg here must be at least around the trillions, many times more than the population of the Gegno homeworld. What's even more interesting is there are other aliens of the kind you met before here on the ring too. The Quarg must have some kind of relations with them, perhaps trade, maintenance, or other services. Despite them being present, the Quarg seem to be very dismissiv of them. However, a few of the aliens occasionally glance over at you briefly with hints of interest.`
+			`	The visual of a complete Quarg Ringworld is drastically different than the Gegno homeworld you were on before. Such a pristine, advanced structure is quite the opposite of the unorderly industry of Gegno civilisation. The population of Quarg here must be at least around the trillions, many times more than the population of the Gegno homeworld. What's even more interesting is there are other aliens of the kind you met before here on the ring too. The Quarg must have some kind of relations with them, perhaps trade, maintenance, or other services. Despite them being present, the Quarg seem to be very dismissive of them. However, a few of the aliens occasionally glance over at you briefly with hints of interest.`
 			`	Soon enough, a few Quarg start to rush towards you much faster than the others are walking and begin a conversation between themselves. You aren't sure what language they are speaking, but judging by the tones and pronunciations, it sounds similar to the one you've heart the aliens speaking before. After a moment or so, one of them motions you to follow them.`
 			
 			label "walking"
 			`	You walk with the Quarg, occasionally having trouble keeping pace with their silent yet brisk steps, as you head towards an area that appears devoid of the other aliens. Eventually, you are led to a smaller room with two more Quarg in waiting, silently sitting at the end of it. They talk, but this time you can hear a few familiar sounding terms, one being "Humani". Despite speaking to each other for several minutes, the Quarg still look at each other in what you assume is something like bewilderment.`
 			`	One of the Quarg waiting in the room finally turns towards you and motions you to take a seat. Their look of confusion disappears when they turn their gaze back upon you. Meanwhile, the other Quarg that was seated has left the room, along with the ones that first brought you here.`
 			choice
-				`	"Is it a problem that I'm here?"`
+				`	"...Is there a problem?"`
 			`	The Quarg continues to look at you and bows its head slightly in an apologetic manner, as it seems neither they, nor any other Quarg on this ringworld, can speak your language. You continue to patiently wait in the uneasy silence, withholding your curiosities as almost half an hour goes by.`
 			`	Finally, the silence is broken when the second Quarg from earlier enters the room again. This time, they glare at you much more energetically, and you begin to wonder if your presence really is an issue.`
 			
@@ -248,11 +268,11 @@ mission "Giaru Gegno: Quarg Contact"
 			`	"The Gegno believe it to be necessary to sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery, will the Gegno prosper."`
 			label next
 			choice
-				`"The Vi are right, the strength to survive is more important than anything else." `
+				`	"The Vi are right, the strength to survive is more important than anything else." `
 					goto vi
-				`"The Scin are right, technological advancement opens up so many possibilities."`
+				`	"The Scin are right, technological advancement opens up so many possibilities."`
 					goto scin
-				`"Why do they not combine their efforts to better their future together?"`
+				`	"Why do they not combine their efforts to better their future together?"`
 					goto together
 			label vi
 			`	"While it is characteristic, such a tremendous proposition is rather dull for a marvelously growing species. Be that as it may, you humans follow this harsh doctrine, though to a much lesser degree than that of the Vi."`
@@ -270,11 +290,11 @@ mission "Giaru Gegno: Quarg Contact"
 			branch "interacted with outsider"
 				has "Visit Quarg in Gegno Space: offered"
 
-			`"	Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
+			`	"Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
 				goto end
 			
 			label "interacted with outsider"
-			`	"However, it is still quite staggering that the Gegno interacted with an audacious outsider such as yourself. Unfortunately, we cannot advocate virtuous pleasantries between you and them. Only a brief history of them can we tell. Although, you are appreciably welcome at this ring should you find yourself here again."`
+			`	"However, it is still quite staggering that the Gegno interacted with an audacious outsider such as yourself." They pause for a moment, and take longer breath than usual. "Please do be distinctly cautious in chance encounters with the Gegno. Unfortunately, we cannot advocate virtuous pleasantries between you and them. Only a brief history of them can we tell. Although, you are appreciably welcome at this ring should you find yourself here again."`
 			
 			label end
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
@@ -298,6 +318,33 @@ mission "Gegno Quarg Direction to Ringworld"
 			`	You introduce yourself to the Quarg and then explain that you don't understand their language. They lift themselves back up slowly, seemingly pondering the situation before turning back to the others. After a few more exchanged words, one of the other Quarg walk off and fetch some sort of device, bringing it back to you. It appears to be some type of holographic map, and the Quarg gestures to a system nearby, which then reveals a hologram of a Quarg Ringworld. "Ehsveet Duebyuarr Giaru, Aechman," they say, and then bow before you.`
 			`	You should probably go pay the ringworld a visit.`
 				accept
+				
+
+mission "Giaru Gegno: Revisit"
+	name `Visit Giaru Gegno`
+	description `Pay the Quarg at Giaru Gegno a visit at the request of the Vi Soldier.`
+	landing
+	source
+		"Dueyu Eitch"
+	destination "Giargu Gegno"
+	to offer
+		has "First Contact: Quarg: offered"
+		has "Giaru Gegno: Quarg Contact: offered"
+		has "Visit Quarg in Gegno Space: offered"
+	on complete
+		conversation
+			`	You arrive once more at Giaru Gegno, hoping to find another Quarg that speaks your language. This time, however, you notice that a few of the Gegno on this ringworld occasionally give you a glare of interest as they walk by. Only a minute or so goes by of this, at which a pair of Quarg then approach you, motioning you to follow them. Lead back to the familiar room from before, the Quarg you previously spoke with is already calmly sitting at the other end of the table`.
+			
+			`	"You have astonishingly achieved a wonderous feat, brave traverser," the Quarg says, placing its hands together. The statement alludes to the idea that the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to the looks of interest you received earlier, it would seem that the word got spread pretty quickly. "Not significantly often it is the mighty Gegno interact with daring outsiders."`
+			choice
+			`	It was a coincidence.`
+			`	They seemed in trouble when I found them, so I helped them.`
+				goto "trouble"
+			`	"Indeed yes, strange coincidences do curiously happen. Many coincidences are as mere fleeting moments of subtle peculiarity." The Quarg then displays a soft grimace. "Sometimes, one may be grand and powerful, in addition to potent consequences. The Gegno have learned this a great number of times." 
+			label "trouble"
+			`	"Quite a brave one you indeed are. Most would think to not leap into the daunting face of uncertainty as you have." The Quarg momentarily meditates on their next thought. "Though, as the Gegno have throughout their history, some may make monumentous jumps undeterred by any amount of hesitance."`
+			`	The Quarg raises from their seat, and you act in accordance. "Please do be distinctly cautious in your encounters with the Gegno. Always feel gracious to visit here once more, should you mindfully chose to do so." As you are directed out of the room, you turn back to see the Quarg bowing. You can't help but wonder what was on their mind during the conversation, but it might be for the best you are more careful from now on.`
+				decline
 
 
 # Gegno Superheavy	
@@ -324,10 +371,12 @@ mission "Augen Destruction"
 		fail
 
 mission Intermediary
+	invisible
 	on complete
 		event "Vesvii War"
 
 mission "Active Augen"
+	invisible
 	to offer
 		has "Intermediary: done"
 		has "Stationed Augen: failed"
