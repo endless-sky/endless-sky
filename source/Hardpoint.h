@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #include <list>
+#include <memory>
 #include <vector>
 
 class Outfit;
