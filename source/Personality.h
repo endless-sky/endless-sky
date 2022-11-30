@@ -51,6 +51,7 @@ public:
 	bool IsCoward() const;
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
+	bool IsMerciful() const;
 
 	// Mission NPC states:
 	bool IsStaying() const;
