@@ -270,7 +270,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	if(selectedOutfit)
 	{
 		outfitInfo.Update(*selectedOutfit, player, CanSell());
-		selectedItem = selectedOutfit->Name();
+		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
 		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
@@ -362,7 +362,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 	if(cost > player.Accounts().Credits() && !isAlreadyOwned)
 		return false;
 
-	if(HasLicense(selectedOutfit->Name()))
+	if(HasLicense(selectedOutfit->TrueName()))
 		return false;
 
 	if(!playerShip)
@@ -409,9 +409,9 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		}
 
 		// Special case: licenses.
-		if(IsLicense(selectedOutfit->Name()))
+		if(IsLicense(selectedOutfit->TrueName()))
 		{
-			auto &entry = playerConditions[LicenseName(selectedOutfit->Name())];
+			auto &entry = player.Conditions()[LicenseName(selectedOutfit->TrueName())];
 			if(entry <= 0)
 			{
 				entry = true;
@@ -522,7 +522,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(HasLicense(selectedOutfit->Name()))
+	if(HasLicense(selectedOutfit->TrueName()))
 	{
 		GetUI()->Push(new Dialog("You already have one of these licenses, "
 			"so there is no reason to buy another."));
@@ -741,7 +741,7 @@ void OutfitterPanel::FailSell(bool toStorage) const
 		return;
 	else if(selectedOutfit->Get("map"))
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
-	else if(HasLicense(selectedOutfit->Name()))
+	else if(HasLicense(selectedOutfit->TrueName()))
 		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
@@ -768,7 +768,7 @@ void OutfitterPanel::FailSell(bool toStorage) const
 									"because that would cause your ship's \"" + it.first +
 									"\" value to be reduced to less than zero. "
 									"To " + verb + " this outfit, you must " + verb + " the " +
-									sit.first->Name() + " outfit first."));
+									sit.first->DisplayName() + " outfit first."));
 								return;
 							}
 						GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
@@ -831,7 +831,7 @@ void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
 
-	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -845,7 +845,7 @@ void OutfitterPanel::ToggleStorage()
 {
 	showStorage = !showStorage;
 
-	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -859,7 +859,7 @@ void OutfitterPanel::ToggleCargo()
 {
 	showCargo = !showCargo;
 
-	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -918,7 +918,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	SpriteShader::Draw(thumbnail, center);
 
 	// Draw the outfit name.
-	const string &name = outfit.Name();
+	const string &name = outfit.DisplayName();
 	const Font &font = FontSet::Get(14);
 	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
