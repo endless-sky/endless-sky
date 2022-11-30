@@ -3790,7 +3790,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 
 	const auto stop = chrono::high_resolution_clock::now();
-	fprintf(stderr, "Saved in %ld us\n", chrono::duration_cast<chrono::microseconds>(stop - start).count());
+	fprintf(stderr, "Saved in %lld us\n", chrono::duration_cast<chrono::duration<long long int, std::micro>>(stop - start).count());
 }
 
 
