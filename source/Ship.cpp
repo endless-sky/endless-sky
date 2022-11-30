@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
@@ -2347,10 +2348,14 @@ void Ship::DoGeneration()
 	else
 	{
 		// Ramscoops work much better when close to the system center.
+		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
+			// If the universal ramscoop gamerule is true, then even if it ship has no ramscoop,
+			// it can harvest a tiny bit of fuel by flying close to the star.
+			double universal = 0.5 * scale * GameData::GetGamerules().UniversalRamscoopActive();
+			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + universal);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			// Overheated ships produce half as much energy from solar collection.
