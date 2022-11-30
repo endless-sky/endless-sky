@@ -28233,7 +28233,7 @@ planet Alfheim
 planet Alix
 	attributes ka'het uninhabited
 	landscape land/canyon13
-	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While settlements on the moon have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated facilities are still functioning and see a constant flow of cargo drones that stop by the moon to gather raw materials before quickly bringing them to the nearby station’s reserves.`
+	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While settlements on the moon have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated facilities are still functioning and see a constant flow of cargo drones that stop by the moon to gather raw materials before quickly bringing them to the nearby station's reserves.`
 
 planet Allhome
 	attributes farming hai "human tourism" urban
@@ -30794,12 +30794,12 @@ planet "Ogmur's Siphon"
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/fields15
-	description `An Earth-like planet with high biodiversity, at first glance Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered across large areas, and scans reveal many underground bunkers, partly destroyed and filled with water.`
+	description `An Earth-like planet with high biodiversity, at first glance Osaeli appears to be an idyllic world where no lifeform ever became the predominant one, but, looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered across large areas, and scans reveal many underground bunkers, partly destroyed and filled with water.`
 
 planet Palarei
 	attributes ka'het uninhabited
 	landscape land/valley5
-	description `While its short distance from Gerenus makes it seem only barely capable of supporting life, Palarei’s surface is full of thickets of a small spiky bush native of this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapon fire; most facilities are covered in meters of dust and sand, but other than that appear to be quite operative.`
+	description `While its short distance from Gerenus makes it seem only barely capable of supporting life, Palarei's surface is full of thickets of a small spiky bush native to this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapon fire; most facilities are covered in meters of dust and sand but, other than that, appear to be quite operative.`
 
 planet Palatine
 	attributes "gas giant" "requires: gaslining" uninhabited
@@ -31063,7 +31063,7 @@ planet "Remote Blue"
 planet Retilie
 	attributes ka'het uninhabited
 	landscape land/sea19
-	description `Retilie is an oceanic world where more than 95% of the planet’s surface is covered by oceans kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can’t reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
+	description `Retilie is an oceanic world; more than 95% of the planet's surface is covered by kilometers deep oceans. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can’t reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
 
 planet Reunion
 	attributes factory "near earth" urban
@@ -31462,7 +31462,7 @@ planet Sinter
 planet Siteria
 	attributes ka'het uninhabited
 	landscape land/water0
-	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are remains of sizable villages, some of which still haven’t been completely covered by vegetation even today. A few cities even have tall buildings still partially held together, a testament to how durable the constructions of the planet’s original inhabitants were.`
+	description `An Earth-like planet, Siteria is notable for the large number of settlements on it: every few kilometers there are remains of sizable villages, some of which still haven't been completely covered by vegetation even today. A few cities even have tall buildings still partially held together, a testament to how durable the constructions of the planet's original inhabitants were.`
 
 planet Skillet
 	attributes farming frontier mining north
