@@ -40,7 +40,7 @@ DataWriter::DataWriter(const string &path)
 // Destructor, which saves the file all in one block.
 DataWriter::~DataWriter()
 {
-	if (!path.empty())
+	if(!path.empty())
 		SaveToPath(path);
 }
 

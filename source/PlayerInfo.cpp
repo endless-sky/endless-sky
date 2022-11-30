@@ -3470,7 +3470,7 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const std::string &filePath) const
 {
-	if (transactionSnapshot)
+	if(transactionSnapshot)
 	{
 		fprintf(stderr, "====Saving transaction snapshot====\n");
 		transactionSnapshot->SaveToPath(filePath);
