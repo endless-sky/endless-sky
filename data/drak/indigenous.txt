@@ -70,7 +70,7 @@ ship "Void Sprite"
 		"hull" 9600
 		"required crew" 4
 		"bunks" 4
-		"mass" 480
+		"mass" 460
 		"drag" 8.2
 		"heat dissipation" .8
 		"cargo space" 40
@@ -125,7 +125,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"hull" 2800
 		"required crew" 2
 		"bunks" 2
-		"mass" 200
+		"mass" 190
 		"drag" 5.4
 		"heat dissipation" .9
 		"cargo space" 20
