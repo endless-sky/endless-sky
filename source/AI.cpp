@@ -3100,7 +3100,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 		}
 
 		// Weapons that shoot ships are always reaching the target:
-		if(!weapon->ShipToShoot().empty())
+		if(!weapon->ShipToShoot().empty() && !enemies.empty())
 		{
 			command.SetFire(index);
 			continue;
