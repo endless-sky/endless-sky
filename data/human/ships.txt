@@ -802,7 +802,7 @@ ship "Bulk Freighter"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "The Bulk Freighter is the ultimate cargo ship, able to carry as much cargo as four ordinary Syndicate Freighters. Its on-board gearing allows it to service even the most primitive colonies, though dock workers in busier spaceports often joke that it would be simpler to carry smaller freighters within its gigantic holds."
-	description "	It is also an incredibly slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+	description "	It is also an incredibly slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of Bulk Freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
 
 
 
@@ -1117,7 +1117,7 @@ ship "Container Transport"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "The Container Transport is a newer, more popular configuration of the Bulk Freighter that replaces the outboard loose cargo holds with intermodal containers for more efficient turnaround in larger, better-equipped ports."
-	description "	As with its geared cousin, however, it remains a slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of bulk freighters just to avoid the hassle of constantly having to wait for the Bulk Freighter to properly align itself for hyperspace travel."
+	description "	As with its geared cousin, however, it remains a slow and difficult to maneuver ship, especially when loaded down with cargo. Some freight caravans use ordinary freighters instead of Container Transports just to avoid the hassle of constantly having to wait for the Container Transport to properly align itself for hyperspace travel."
 
 
 
