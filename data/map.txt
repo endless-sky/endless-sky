@@ -16393,7 +16393,7 @@ system Jied
 system "Jyeg Pvu"
 	pos 904.75 -426.028
 	government Uninhabited
-	habitable 3696.701
+	habitable 3696
 	belt 1522 6
 	haze _menu/haze-blackbody
 	asteroids "small rock" 13 4.2
@@ -16431,6 +16431,7 @@ system "Jyeg Pvu"
 		sprite planet/gas9-b
 		distance 3020
 		period 1091.85
+		offset 160
 		object
 			sprite planet/dust0
 			distance 244
@@ -33516,6 +33517,7 @@ planet Furnace
 planet "Gara Pvu"
 	landscape land/sky3
 	description `Beautiful landscapes cover this planet, and unlike nearby systems, the climate is more than welcoming to a human being. Most remarkably, there are small selections of elegant curviliear structures and overpasses spread out in patches along the surface. While they are fantastical in appearance, they are unmistakably not part of the land itsef, and must have been left long ago by some other species that also somehow left the natural beauty of this planet intact.`
+	government Uninhabited
 
 planet "Garden Empyreal"
 	attributes "coalition station" kimek shipping tourism wealthy
