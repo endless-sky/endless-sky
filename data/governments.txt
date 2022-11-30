@@ -914,8 +914,18 @@ government "Quarg"
 		"Gegno" 1
 		"Gegno Vi" .01
 		"Gegno Scin" .01
+	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
+	atrocities
+		"Nanotech Battery"
+		"Antimatter Core"
+		"Quarg Skylance"
+		"Quarg Anti-Missile"
+		"Intrusion Countermeasures"
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Quantum Shield Generator"
 
 government "Remnant"
 	swizzle 0
