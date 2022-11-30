@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Wormhole.h"
 
 using namespace std;
 
@@ -171,12 +173,12 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
-		hyperspaceFuel = ship->HyperdriveFuel();
-		jumpFuel = ship->JumpDriveFuel();
-		jumpRange = ship->JumpRange();
-		// If hyperjumps and non-hyper jumps cost the same amount, there is no
-		// need to check hyperjump paths at all.
-		if(hyperspaceFuel == jumpFuel)
+		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
+		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
+		jumpRange = ship->JumpNavigation().JumpRange();
+		// If hyperjumps and non-hyper jumps cost the same amount, or non-hyper jumps are always cheaper,
+		// there is no need to check hyperjump paths at all.
+		if(jumpFuel && hyperspaceFuel >= jumpFuel)
 			hyperspaceFuel = 0.;
 
 		// If this ship has no mode of hyperspace travel, and no local
@@ -225,8 +227,8 @@ void DistanceMap::Init(const Ship *ship)
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
 					const System &link = source ?
-						*object.GetPlanet()->WormholeSource(top.next) :
-						*object.GetPlanet()->WormholeDestination(top.next);
+						object.GetPlanet()->GetWormhole()->WormholeSource(*top.next) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*top.next);
 					if(HasBetter(link, top))
 						continue;
 
