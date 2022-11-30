@@ -18,10 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Body.h"
+#include "Personality.h"
 #include "Point.h"
 
 #include <cstddef>
 #include <map>
+#include <string>
 #include <utility>
 #include <vector>
 
@@ -73,6 +75,9 @@ public:
 	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::vector<Submunition> &Submunitions() const;
+
+	const std::string &ShipToShoot() const;
+	const Personality &ShipToShootPersonality() const;
 
 	// Accessor functions for various attributes.
 	int Lifetime() const;
@@ -216,6 +221,9 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+
+	std::string shipToShoot;
+	Personality shipToShootPersonality;
 
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;

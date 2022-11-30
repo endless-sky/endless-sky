@@ -112,6 +112,13 @@ void Weapon::LoadWeapon(const DataNode &node)
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
+		else if(key == "ship")
+		{
+			shipToShoot = child.Token(1);
+			for(const auto &grand : child)
+				if(grand.Token(0) == "personality")
+					shipToShootPersonality.Load(grand);
+		}
 		else
 		{
 			double value = child.Value(1);
@@ -426,6 +433,20 @@ const map<const Effect *, int> &Weapon::DieEffects() const
 const vector<Weapon::Submunition> &Weapon::Submunitions() const
 {
 	return submunitions;
+}
+
+
+
+const string &Weapon::ShipToShoot() const
+{
+	return shipToShoot;
+}
+
+
+
+const Personality &Weapon::ShipToShootPersonality() const
+{
+	return shipToShootPersonality;
 }
 
 
