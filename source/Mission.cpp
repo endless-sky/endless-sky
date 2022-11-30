@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Mission.h"
@@ -16,10 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -97,6 +100,8 @@ namespace {
 				return "on visit";
 			case Mission::Trigger::WAYPOINT:
 				return "on waypoint";
+			case Mission::Trigger::DAILY:
+				return "on daily";
 			default:
 				return "unknown trigger";
 		}
@@ -168,7 +173,8 @@ void Mission::Load(const DataNode &node)
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
 				else
-					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\". They are now mission-level properties:");
+					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
+						" They are now mission-level properties:");
 			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
@@ -179,6 +185,8 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
 		}
+		else if(child.Token(0) == "apparent payment" && child.Size() >= 2)
+			paymentApparent = child.Value(1);
 		else if(ParseContraband(child))
 		{
 			// This was an "illegal" or "stealth" entry. It has already been
@@ -282,7 +290,8 @@ void Mission::Load(const DataNode &node)
 				{"defer", DEFER},
 				{"visit", VISIT},
 				{"stopover", STOPOVER},
-				{"waypoint", WAYPOINT}
+				{"waypoint", WAYPOINT},
+				{"daily", DAILY},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -321,6 +330,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
 			out.Write("passengers", passengers);
+		if(paymentApparent)
+			out.Write("apparent payment", paymentApparent);
 		if(illegalCargoFine)
 			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
 		if(failIfDiscovered)
@@ -605,6 +616,20 @@ int Mission::Passengers() const
 
 
 
+int64_t Mission::DisplayedPayment() const
+{
+	return paymentApparent ? paymentApparent : GetAction(Mission::Trigger::COMPLETE).Payment();
+}
+
+
+
+const int Mission::ExpectedJumps() const
+{
+	return expectedJumps;
+}
+
+
+
 // The mission must be completed by this deadline (if there is a deadline).
 const Date &Mission::Deadline() const
 {
@@ -684,12 +709,8 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 
-	if(repeat)
-	{
-		auto cit = playerConditions.find(name + ": offered");
-		if(cit != playerConditions.end() && cit->second >= repeat)
-			return false;
-	}
+	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
+		return false;
 
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
@@ -1131,17 +1152,17 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.name = name;
 	result.waypoints = waypoints;
 	// Handle waypoint systems that are chosen randomly.
-	const System * const source = player.GetSystem();
+	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
-		const System *system = filter.PickSystem(source);
+		const System *system = filter.PickSystem(sourceSystem);
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.erase(source))
-		result.visitedWaypoints.insert(source);
+	if(result.waypoints.erase(sourceSystem))
+		result.visitedWaypoints.insert(sourceSystem);
 
 	// Copy the template's stopovers, and add planets that match the template's filters.
 	result.stopovers = stopovers;
@@ -1156,7 +1177,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(source, !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1169,7 +1190,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(source, !clearance.empty());
+		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -1189,7 +1210,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	{
 		const Trade::Commodity *commodity = nullptr;
 		if(cargo == "random")
-			commodity = PickCommodity(*source, *result.destination->GetSystem());
+			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
@@ -1230,37 +1251,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		else
 			result.passengers = passengers;
 	}
+	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
 	result.illegalCargoMessage = illegalCargoMessage;
 	result.failIfDiscovered = failIfDiscovered;
 
-	// Estimate how far the player will have to travel to visit all the waypoints
-	// and stopovers and then to land on the destination planet. Rather than a
-	// full traveling salesman path, just calculate a greedy approximation.
-	const System *path = source;
-	list<const System *> destinations;
-	for(const System *system : result.waypoints)
-		destinations.push_back(system);
-	for(const Planet *planet : result.stopovers)
-		destinations.push_back(planet->GetSystem());
+	int jumps = result.CalculateJumps(sourceSystem);
 
-	int jumps = 0;
-	while(!destinations.empty())
-	{
-		// Find the closest destination to this location.
-		DistanceMap distance(path);
-		auto it = destinations.begin();
-		auto bestIt = it;
-		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
-				bestIt = it;
-
-		path = *bestIt;
-		jumps += distance.Days(*bestIt);
-		destinations.erase(bestIt);
-	}
-	DistanceMap distance(path);
-	jumps += distance.Days(result.destination->GetSystem());
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
 
 	// Set the deadline, if requested.
@@ -1329,12 +1326,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = n.Validate(true);
 	if(!reason.empty())
 	{
-		Files::LogError("Instantiation Error: NPC template in mission \""
+		Logger::LogError("Instantiation Error: NPC template in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1347,12 +1344,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(ait != actions.end())
 	{
-		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto oit = onEnter.begin();
 	for( ; oit != onEnter.end(); ++oit)
@@ -1363,12 +1360,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
 	for( ; eit != genericOnEnter.end(); ++eit)
@@ -1379,12 +1376,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(eit != genericOnEnter.end())
 	{
-		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
+		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
@@ -1396,6 +1393,41 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	result.hasFailed = false;
 	return result;
+}
+
+
+
+int Mission::CalculateJumps(const System *sourceSystem)
+{
+	expectedJumps = 0;
+
+	// Estimate how far the player will have to travel to visit all the waypoints
+	// and stopovers and then to land on the destination planet. Rather than a
+	// full traveling salesman path, just calculate a greedy approximation.
+	list<const System *> destinations;
+	for(const System *system : waypoints)
+		destinations.push_back(system);
+	for(const Planet *planet : stopovers)
+		destinations.push_back(planet->GetSystem());
+
+	while(!destinations.empty())
+	{
+		// Find the closest destination to this location.
+		DistanceMap distance(sourceSystem);
+		auto it = destinations.begin();
+		auto bestIt = it;
+		for(++it; it != destinations.end(); ++it)
+			if(distance.Days(*it) < distance.Days(*bestIt))
+				bestIt = it;
+
+		sourceSystem = *bestIt;
+		expectedJumps += distance.Days(*bestIt);
+		destinations.erase(bestIt);
+	}
+	DistanceMap distance(sourceSystem);
+	expectedJumps += distance.Days(destination->GetSystem());
+
+	return expectedJumps;
 }
 
 

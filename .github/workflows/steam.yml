@@ -6,6 +6,10 @@ on:
       - master
       - releases/v[0-9]+.[0-9]+.[0-9]+
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 jobs:
   changed:
     uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
@@ -68,24 +72,24 @@ jobs:
           --mount type=bind,ro,src=$(pwd)/get-pip.py,dst=/endless-sky/get-pip.py \
           -e SCHROOT_CHROOT_NAME=steamrt_scout_${{ matrix.platform }} \
           -e LTO_PLUGIN_PATH=/usr/lib/gcc/${{ matrix.arch }}-linux-gnu/5/liblto_plugin.so \
-          -w /endless-sky s_rt /bin/bash -c \
-          'sudo dpkg --clear-avail \
-            && echo "deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list \
-            && echo "deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse" >> /etc/apt/sources.list \
-            && echo "deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list \
-            && sudo apt-get update -q \
-            && sudo apt-get install -yq --no-install-recommends libmad0-dev \
-            && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 101 \
-            && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 101 \
-            && update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-5 101 \
-            && update-alternatives --auto gcc \
-            && update-alternatives --auto g++ \
-            && update-alternatives --auto cpp-bin \
-            && python3.5 get-pip.py \
-            && python3.5 -m pip install SCons==4.2.0 \
-            && python3.5 $(which scons) -Qj $(nproc) endless-sky test \
-            && mv ./endless-sky build/ \
-            && ./build/endless-sky -v \
+          -w /endless-sky s_rt /bin/bash -o pipefail -exc \
+          'sudo dpkg --clear-avail; \
+            echo "deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list; \
+            echo "deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse" >> /etc/apt/sources.list; \
+            echo "deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list; \
+            sudo apt-get update -q; \
+            sudo apt-get install -yq --no-install-recommends libmad0-dev; \
+            update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 101; \
+            update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 101; \
+            update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-5 101; \
+            update-alternatives --auto gcc; \
+            update-alternatives --auto g++; \
+            update-alternatives --auto cpp-bin; \
+            python3.5 get-pip.py; \
+            python3.5 -m pip install SCons==4.2.0; \
+            python3.5 $(which scons) -Qj $(nproc) endless-sky test; \
+            mv ./endless-sky build/; \
+            ./build/endless-sky -v; \
           '
     - name: Prepare binary
       run: mv build/endless-sky .
@@ -100,7 +104,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-latest]
+        os: [ubuntu-20.04, ubuntu-latest]
     env:
       snapshot: latest-steam-client-general-availability
       tarball: steam-runtime.tar.xz
@@ -134,10 +138,7 @@ jobs:
     - run: steam-runtime/run.sh ./endless-sky -v
     - name: Execute data parsing test
       run: steam-runtime/run.sh ./utils/test_parse.sh ./endless-sky
-    # NOTE: As with the non-Steam integration tests, on Ubuntu 18.04 the call to SDL_GL_CreateContext fails
-    # with SDL error "Could not create GL Context: BadValue (integer parameter out of range for operation)"
     - name: Execute integration tests
-      if: matrix.os != 'ubuntu-18.04'
       env:
           PRINT_GLXINFO: true
       run: steam-runtime/run.sh tests/integration/run_tests_headless.sh

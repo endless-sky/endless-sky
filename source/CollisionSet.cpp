@@ -7,14 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "CollisionSet.h"
 
 #include "Body.h"
-#include "Files.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "Point.h"
 #include "Projectile.h"
@@ -208,7 +211,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		// Cap projectile velocity to prevent integer overflows.
 		if(!warned)
 		{
-			Files::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
+			Logger::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
 			warned = true;
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;

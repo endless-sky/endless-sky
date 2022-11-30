@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ES_FILES_H_
@@ -66,7 +69,13 @@ public:
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(FILE *file, const std::string &data);
 
-	static void LogError(const std::string &message);
+	// Open this user's plugins directory in their native file explorer.
+	static void OpenUserPluginFolder();
+
+	// Logging to the error-log. Actual calls should be done through Logger
+	// and not directly here to ensure that other logging actions also
+	// happen (and to ensure thread safety on the logging).
+	static void LogErrorToFile(const std::string &message);
 };
 
 

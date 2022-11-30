@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Small Collector Module"
 	category "Power"
@@ -209,7 +212,7 @@ outfit "Fuel Module"
 	"fuel capacity" 400
 	"fuel protection" .25
 	description "In their early days of space exploration, the Saryds developed the fuel module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
-	description "	Nowadays, nearly every system in the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
+	description "	Nowadays, nearly every system in the Coalition has refueling facilities, but some captains still find use in the extra jumps these modules offer."
 
 outfit "Scanning Module"
 	category "Systems"
@@ -220,9 +223,9 @@ outfit "Scanning Module"
 	"mass" 3
 	"outfit space" -3
 	"outfit scan power" 25
-	"outfit scan speed" 1
+	"outfit scan speed" 18
 	"cargo scan power" 25
-	"cargo scan speed" 1
+	"cargo scan speed" 18
 	"tactical scan power" 25
 	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
 
@@ -364,6 +367,6 @@ outfit "Enforcer Riot Staff"
 	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
 
 outfit "Coalition License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/coalition license"
 	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."

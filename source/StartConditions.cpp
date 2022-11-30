@@ -7,15 +7,18 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "StartConditions.h"
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Files.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -147,7 +150,7 @@ void StartConditions::FinishLoading()
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
-		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
+		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
 			+ GetDisplayName() + "\") has an invalid starting conversation."
 			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
