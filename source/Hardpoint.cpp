@@ -252,7 +252,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles,
 			shotShip->SetSystem(ship.GetSystem());
 			if(ship.GetParent() && !shotShip->GetPersonality().IsCoward())
 				shotShip->SetParent(ship.GetParent());
-			shotShip->Place(start, ship.Velocity(), aim);
+			shotShip->Place(start, ship.Velocity() * outfit->Velocity(), aim);
 			newShips.push_back(shotShip);
 			if(ship.IsYours())
 				player.AddShip(shotShip);
