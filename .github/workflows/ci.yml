@@ -48,10 +48,15 @@ on:
     - .codespell.exclude
 
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 jobs:
   # Figure out what changed, so other jobs in this file can conditionally execute.
   changed:
     uses: ./.github/workflows/compute-changes.yml
+
 
   build_ubuntu:
     needs: changed
@@ -59,7 +64,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04, ubuntu-22.04]
         opengl: [desktop, gles]
     env:
         CCACHE_DIR: ./ccache/
@@ -108,13 +113,14 @@ jobs:
         name: binary-${{ matrix.os }}-${{ matrix.opengl }}
         path: ${{ env.ARTIFACT }}
 
+
   test_ubuntu-unit:
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.linux == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04, ubuntu-22.04]
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
@@ -212,6 +218,7 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
+
 
   test_windows-unit:
     needs: [build_windows, changed]
@@ -316,9 +323,6 @@ jobs:
         path: ${{ env.ARTIFACT }}
 
 
-  # This section is for tests on ubuntu 16 (and on ubuntu 20).
-  # The tests with Xvfb in this section work fine on ubuntu 16 and on Ubuntu 20, but they don't work on Ubuntu 18.
-  # (Both 18.04 & 20.04 have the same Open GL extension support, but the SDL library fails to initialize for 18.04)
   test_ubuntu-integration:
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.integration_tests == 'true' }}
@@ -330,13 +334,15 @@ jobs:
           - os: ubuntu-20.04
             opengl: desktop
             glew: libglew2.1
-          # - os: ubuntu-18.04
-          #   opengl: desktop
-          #   glew: libglew2.0
+          - os: ubuntu-22.04
+            opengl: desktop
+            glew: libglew2.2
           - os: ubuntu-20.04
             opengl: gles
             glew: libgles2-mesa
-          # - os: ubuntu-18.04
+          # Ubuntu 22 has a pretty severe performance regression using OpenGL ES.
+          # Disable it for now.
+          # - os: ubuntu-22.04
           #   opengl: gles
           #   glew: libgles2-mesa
     steps:
@@ -345,7 +351,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime libglvnd-dev
     - name: Install xvfb runtime dependencies
       run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils # TODO: ALSA mocking?
     - name: Download artifact
@@ -371,15 +377,15 @@ jobs:
         include:
           - os: ubuntu-20.04
             glew: libglew2.1
-          - os: ubuntu-18.04
-            glew: libglew2.0
+          - os: ubuntu-22.04
+            glew: libglew2.2
     steps:
     - uses: actions/checkout@v2
     - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime libglvnd-dev
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
@@ -477,7 +483,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind uuid-runtime
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind uuid-runtime libglvnd-dev
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
@@ -490,7 +496,6 @@ jobs:
       # In a perfect world we would run a debug build, but since this will run on PRs, we can limit our search of "what caused the bug" to only the code
       # added by that PR, which means debugging symbols aren't as necessary. (We can ignore the still-reachable cin, cout, cerr inherited file descriptors.)
       run: valgrind --tool=memcheck --leak-check=full --track-origins=yes --track-fds=yes --error-exitcode=1 ./endless-sky -p
-
 
 
   spellcheck:
@@ -508,10 +513,27 @@ jobs:
         exclude_file: .codespell.exclude
 
 
-
   style-check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: editorconfig-checker/action-editorconfig-checker@main
     - run: editorconfig-checker
+
+
+  check-coding-style:
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: set up python environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: install python packages
+      run: pip install regex
+    - name: Execute style checker
+      run: python ./utils/check_code_style.py
+

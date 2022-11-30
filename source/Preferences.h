@@ -28,6 +28,12 @@ public:
 		adaptive,
 	};
 
+	enum class BoardingPriority : int {
+		PROXIMITY = 0,
+		VALUE,
+		MIXED
+	};
+
 
 public:
 	static void Load();
@@ -49,11 +55,21 @@ public:
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
+	static double MinViewZoom();
+	static double MaxViewZoom();
+
+	static void ToggleScreenMode();
+	static const std::string &ScreenModeSetting();
 
 	// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Boarding target setting, either "proximity", "value" or "mixed".
+	static void ToggleBoarding();
+	static Preferences::BoardingPriority GetBoardingPriority();
+	static const std::string &BoardingSetting();
 };
 
 

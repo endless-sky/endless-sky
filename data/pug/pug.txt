@@ -546,7 +546,7 @@ ship "Pug Zibruka"
 		"Jump Drive"
 		
 	engine -8.5 43
-	engine -8.5 43
+	engine 8.5 43
 	gun -19 -54 "Pug Zapper"
 	gun 19 -54 "Pug Zapper"
 	explode "pug tiny explosion" 10
@@ -598,7 +598,7 @@ ship "Pug Enfolta"
 		"Jump Drive"
 		
 	engine -10 63.5
-	engine -10 63.5
+	engine 10 63.5
 	gun -12.5 -94 "Pug Zapper"
 	gun 12.5 -94 "Pug Zapper"
 	gun -12.5 -94 "Pug Seeker"
@@ -653,7 +653,7 @@ ship "Pug Maboro"
 		"Jump Drive"
 		
 	engine -21 134.5
-	engine -21 134.5
+	engine 21 134.5
 	gun -33.5 -142.5 "Pug Seeker"
 	gun 33.5 -142.5 "Pug Seeker"
 	gun -24.5 -165 "Pug Seeker"
