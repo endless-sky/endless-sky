@@ -64,7 +64,7 @@ namespace {
 	const string BOARDING_PRIORITY = "Boarding target priority";
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -471,7 +471,7 @@ void PreferencesPanel::DrawSettings()
 		"Show planet labels",
 		"Show mini-map",
 		"Always underline shortcuts",
-		"",
+		"\t",
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
@@ -480,7 +480,7 @@ void PreferencesPanel::DrawSettings()
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
 		"Fighter fleet logistics",
-		"\t",
+		"\n",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -490,7 +490,7 @@ void PreferencesPanel::DrawSettings()
 		"Parallax background",
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
-		"",
+		"\t",
 		"Other",
 		"Clickable radar display",
 		"Hide unexplored map regions",
