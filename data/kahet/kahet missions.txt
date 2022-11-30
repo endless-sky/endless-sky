@@ -141,7 +141,7 @@ event "graveyard insights"
 	planet Celeatis
 		add description `	This planet appears to have been home to one of the largest Builder research centers, which focused on studying the anomaly in the system. Had they found out how to stabilize it and use it as a wormhole, perhaps their species would have survived and spread to the rest of the Ember Waste.`
 	planet Ceilia'sei
-		add description `	Ceilia’sei’s main purpose was to act as some sort of anti-missile platform, but when the Ka’het invaded a second time, the station had no way to defend against the Ka’het’s deadly Ravager Beams, and the station's defense systems were subsequently lost forever.`
+		add description `	Ceilia’sei’s main purpose was to act as some sort of anti-missile platform, but when the Ka’het invaded a second time, the station had no way to defend against their deadly Ravager Beams, and the station's defense systems were subsequently lost forever.`
 	planet Eavine
 		add description `	This moon was also home for the second Ka'het wave, which, same as the first, refused to obey their creators. It had been terraformed to make it a more appealing place to live, but after their civilization collapsed the moon began to return to its natural state. When it reverted to its original sub-zero temperatures, the facilities stopped working, and the Ka'het production in this site came to an end.`
 	planet "Letis'sei"
