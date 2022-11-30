@@ -1598,7 +1598,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	const System *currentSystem = ship.GetSystem();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
 	bool needsFuel = ship.NeedsFuel();
-	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity || needsFuel;
+	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
 	// Check if the parent has a target planet that is in the parent's system.
 	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
@@ -3435,35 +3435,105 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(activeCommands.Has(Command::BOARD))
 	{
-		// Board the nearest disabled ship, focusing on hostiles before allies. Holding
-		// `Shift` results in boarding only player-owned escorts in need of assistance.
-		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !CanBoard(ship, *target) || (shift && !target->IsYours()))
+		// Determine the player's boarding target based on their current target and their boarding preference. They may
+		// press BOARD repeatedly to cycle between ships, or use SHIFT to prioritize repairing their owned escorts.
+		shared_ptr<Ship> target = ship.GetTargetShip();
+		if(target && !CanBoard(ship, *target))
+			target.reset();
+		if(!target || activeCommands.Has(Command::WAIT) || (shift && !target->IsYours()))
 		{
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
 
-			double closest = numeric_limits<double>::infinity();
-			bool foundEnemy = false;
-			bool foundAnything = false;
-			for(const shared_ptr<Ship> &other : ships)
-				if(CanBoard(ship, *other))
+			const auto boardingPriority = Preferences::GetBoardingPriority();
+			auto strategy = [&]() noexcept -> function<double(const Ship &)>
+			{
+				Point current = ship.Position();
+				switch(boardingPriority)
 				{
-					if(shift && !other->IsYours())
-						continue;
-
-					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
-					double d = other->Position().Distance(ship.Position());
-					if((isEnemy && !foundEnemy) || (d < closest && isEnemy == foundEnemy))
-					{
-						closest = d;
-						foundEnemy = isEnemy;
-						foundAnything = true;
-						ship.SetTargetShip(other);
-					}
+					case Preferences::BoardingPriority::VALUE:
+						return [this, &ship](const Ship &other) noexcept -> double
+						{
+							// Use the exact cost if the ship was scanned, otherwise use an estimation.
+							return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+								other.Cost() : (other.ChassisCost() * 2.);
+						};
+					case Preferences::BoardingPriority::MIXED:
+						return [this, &ship, current](const Ship &other) noexcept -> double
+						{
+							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+								other.Cost() : (other.ChassisCost() * 2.);
+							// Even if we divide by 0, doubles can contain and handle infinity,
+							// and we should definitely board that one then.
+							return cost * cost / (current.DistanceSquared(other.Position()) + 0.1);
+						};
+					case Preferences::BoardingPriority::PROXIMITY:
+					default:
+						return [current](const Ship &other) noexcept -> double
+						{
+							return current.DistanceSquared(other.Position());
+						};
 				}
-			if(!foundAnything)
+			}();
+
+			using ShipValue = pair<Ship *, double>;
+			auto options = vector<ShipValue>{};
+			if(shift)
+			{
+				const auto &owned = governmentRosters[ship.GetGovernment()];
+				options.reserve(owned.size());
+				for(auto &&escort : owned)
+					if(CanBoard(ship, *escort))
+						options.emplace_back(escort, strategy(*escort));
+			}
+			else
+			{
+				auto ships = GetShipsList(ship, true);
+				options.reserve(ships.size());
+				// The current target is not considered by GetShipsList.
+				if(target)
+					options.emplace_back(target.get(), strategy(*target));
+
+				// First check if we can board enemy ships, then allies.
+				for(auto &&enemy : ships)
+					if(CanBoard(ship, *enemy))
+						options.emplace_back(enemy, strategy(*enemy));
+				if(options.empty())
+				{
+					ships = GetShipsList(ship, false);
+					options.reserve(ships.size());
+					for(auto &&ally : ships)
+						if(CanBoard(ship, *ally))
+							options.emplace_back(ally, strategy(*ally));
+				}
+			}
+
+			if(options.empty())
 				activeCommands.Clear(Command::BOARD);
+			else
+			{
+				// Sort the list of options in increasing order of desirability.
+				sort(options.begin(), options.end(),
+					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
+					{
+						if(boardingPriority == Preferences::BoardingPriority::PROXIMITY)
+							return lhs.second > rhs.second;
+
+						// If their cost is the same, prefer the closest ship.
+						return (boardingPriority == Preferences::BoardingPriority::VALUE && lhs.second == rhs.second)
+							? lhs.first->Position().DistanceSquared(ship.Position()) >
+								rhs.first->Position().DistanceSquared(ship.Position())
+							: lhs.second < rhs.second;
+					}
+				);
+
+				// Pick the (next) most desirable option.
+				auto it = !target ? options.end() : find_if(options.begin(), options.end(),
+					[&target](const ShipValue &lhs) noexcept -> bool { return lhs.first == target.get(); });
+				if(it == options.begin())
+					it = options.end();
+				ship.SetTargetShip((--it)->first->shared_from_this());
+			}
 		}
 	}
 	// Player cannot attempt to land while departing from a planet.

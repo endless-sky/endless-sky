@@ -351,7 +351,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime libglvnd-dev
     - name: Install xvfb runtime dependencies
       run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils # TODO: ALSA mocking?
     - name: Download artifact
@@ -385,7 +385,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime libglvnd-dev
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
@@ -483,7 +483,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind uuid-runtime
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind uuid-runtime libglvnd-dev
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
@@ -531,7 +531,7 @@ jobs:
     - name: set up python environment
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10.6'
+        python-version: '3.x'
     - name: install python packages
       run: pip install regex
     - name: Execute style checker

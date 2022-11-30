@@ -32,6 +32,12 @@ public:
 		dmy = 0,
 		mdy,
 		ymd
+  };
+
+	enum class BoardingPriority : int {
+		PROXIMITY = 0,
+		VALUE,
+		MIXED
 	};
 
 
@@ -69,6 +75,11 @@ public:
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Boarding target setting, either "proximity", "value" or "mixed".
+	static void ToggleBoarding();
+	static Preferences::BoardingPriority GetBoardingPriority();
+	static const std::string &BoardingSetting();
 };
 
 
