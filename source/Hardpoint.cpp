@@ -215,7 +215,7 @@ void Hardpoint::Aim(double amount)
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
 void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles,
-					 list<shared_ptr<Ship>> &newShips, vector<Visual> &visuals, PlayerInfo &player)
+					list<shared_ptr<Ship>> &newShips, vector<Visual> &visuals, PlayerInfo &player)
 {
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.

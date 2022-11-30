@@ -74,7 +74,7 @@ public:
 	// the given ship's target. If the weapon requires ammunition, it will
 	// be subtracted from the given ship.
 	void Fire(Ship &ship, std::vector<Projectile> &projectiles,
-			  std::list<std::shared_ptr<Ship>> &newShips, std::vector<Visual> &visuals, PlayerInfo &player);
+			std::list<std::shared_ptr<Ship>> &newShips, std::vector<Visual> &visuals, PlayerInfo &player);
 	// Fire an anti-missile. Returns true if the missile should be killed.
 	bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
 	// This weapon jammed. Increase its reload counters, but don't fire.
