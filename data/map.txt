@@ -16394,7 +16394,7 @@ system "Jyeg Pvu"
 	pos 904.75 -426.028
 	government Uninhabited
 	habitable 3696
-	belt 1522 6
+	belt 1522
 	haze _menu/haze-blackbody
 	asteroids "small rock" 13 4.2
 	asteroids "medium rock" 6 2.9
@@ -16422,7 +16422,7 @@ system "Jyeg Pvu"
 	object "Gara Pvu"
 		sprite planet/rock1
 		distance 1102
-		period 240.672
+		period 240
 	object
 		sprite planet/gas7
 		distance 1627
@@ -33516,7 +33516,7 @@ planet Furnace
 
 planet "Gara Pvu"
 	landscape land/sky3
-	description `Beautiful landscapes cover this planet, and unlike nearby systems, the climate is more than welcoming to a human being. Most remarkably, there are small selections of elegant curviliear structures and overpasses spread out in patches along the surface. While they are fantastical in appearance, they are unmistakably not part of the land itsef, and must have been left long ago by some other species that also somehow left the natural beauty of this planet intact.`
+	description `Beautiful landscapes cover this planet, and unlike nearby systems, the climate is more than welcoming to a human being. Most remarkably, there are small selections of elegant curviliear structures and overpasses spread out in patches along the surface. While they are fantastical in appearance, they are unmistakably not part of the land itself, and must have been left long ago by some other species that also somehow left the natural beauty of this planet intact.`
 	government Uninhabited
 
 planet "Garden Empyreal"
