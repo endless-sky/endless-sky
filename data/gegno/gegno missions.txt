@@ -292,7 +292,7 @@ mission "Gegno Quarg Direction to Ringworld"
 		not "Giaru Gegno: Quarg Contact: offered"
 	on offer
 		conversation
-			`As soon as you land on this Quarg world, a few Quarg swiftly make their way to your ship. One of them stands in front of the rest and beckons you over while the others quietly speak to themselves in a language you've not heard before. The Quarg bows down slighty to speak to you, and judging by the look in their eyes, they seem rather perplexed. "Sdii veebyi keies Gegnion?" they ask, which seems to be the language the others were speaking in. Afterwords, they patiently wait for your response.`
+			`As soon as you land on this Quarg world, a few Quarg swiftly make their way to your ship. One of them stands in front of the rest and beckons you over while the others quietly speak to themselves in a language you've not heard before. The Quarg bows down slightly to speak to you, and judging by the look in their eyes, they seem rather perplexed. "Sdii veebyi keies Gegnion?" they ask, which seems to be the language the others were speaking in. Afterwords, they patiently wait for your response.`
 			choice
 				`	(Try to speak to the Quarg.)`
 			`	You introduce yourself to the Quarg and then explain that you don't understand their language. They lift themselves back up slowly, seemingly pondering the situation before turning back to the others. After a few more exchanged words, one of the other Quarg walk off and fetch some sort of device, bringing it back to you. It appears to be some type of holographic map, and the Quarg gestures to a system nearby, which then reveals a hologram of a Quarg Ringworld. "Ehsveet Duebyuarr Giaru, Aechman," they say, and then bow before you.`
