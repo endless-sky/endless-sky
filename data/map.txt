@@ -830,7 +830,7 @@ system Cotpoxi
 		period 9429
 
 system Mnashyu
-	pos 823.6 -307.1
+	pos 824.044 -309.322
 	government Gegno
 	habitable 1616.2
 	"jump range" 80
@@ -3184,7 +3184,7 @@ system Aldhibain
 			period 13.622
 
 system Aleit
-	pos 967.9 -692.5
+	pos 967.604 -690.722
 	government Quarg
 	habitable 7405
 	belt 1864
@@ -5764,7 +5764,7 @@ system Atria
 		period 3306.89
 
 system Auhru
-	pos 1005.19 -524.9
+	pos 1007.412 -524.011
 	government "Gegno Scin"
 	habitable 1411.2
 	"jump range" 60
@@ -11203,7 +11203,7 @@ system Eltanin
 		period 1900.78
 
 system Empeles
-	pos 669.507 -405.233
+	pos 668.174 -400.789
 	government "Gegno Vi"
 	habitable 405
 	belt 1416
@@ -11403,7 +11403,7 @@ system Enif
 		offset 100
 
 system Eogho
-	pos 811.69 -538.88
+	pos 812.579 -541.547
 	government Uninhabited
 	habitable 1280
 	"jump range" 80
@@ -15783,7 +15783,7 @@ system Ildaria
 		period 799.338
 
 system Iliniza
-	pos 932.2 -435.1
+	pos 931.904 -441.026
 	government "Gegno Scin"
 	habitable 538.45
 	belt 1624
@@ -15845,7 +15845,7 @@ system Iliniza
 			period 521.19
 
 system Ilirco
-	pos 889.457 -404.6
+	pos 894.124 -395.267
 	government Uninhabited
 	habitable 3380
 	belt 1655
@@ -16389,6 +16389,56 @@ system Jied
 		sprite planet/gas7
 		distance 2836
 		period 1716.2
+
+system "Jyeg Pvu"
+	pos 904.75 -426.028
+	government Uninhabited
+	habitable 3696.701
+	belt 1522 6
+	haze _menu/haze-blackbody
+	asteroids "small rock" 13 4.2
+	asteroids "medium rock" 6 2.9
+	asteroids "large rock" 21 2.9
+	asteroids "medium metal" 1 4
+	asteroids "large metal" 2 2.26
+	minables silver 1 2.73
+	object
+		sprite star/a8
+		distance 157.48
+		period 68.707
+		offset 180
+	object
+		sprite star/g0-old
+		distance 61.51
+		period 68.7
+	object
+		sprite planet/cloud1
+		distance 535
+		period 81.41
+		object
+			sprite planet/oberon-b
+			distance 197
+			period 7
+	object "Gara Pvu"
+		sprite planet/rock1
+		distance 1102
+		period 240.672
+	object
+		sprite planet/gas7
+		distance 1627
+		period 431.75
+	object
+		sprite planet/gas9-b
+		distance 3020
+		period 1091.85
+		object
+			sprite planet/dust0
+			distance 244
+			period 36
+		object
+			sprite planet/rock3-b
+			distance 376
+			period 66
 
 system Jyelio
 	pos 772.8 -465.9
@@ -21698,7 +21748,7 @@ system Nihal
 			period 23.3833
 
 system Nssryos
-	pos 771.9 -529.6
+	pos 770.122 -524.267
 	government Uninhabited
 	habitable 3699.2
 	belt 1175
@@ -30314,7 +30364,7 @@ system Volax
 		period 2872.94
 
 system Vorsuke
-	pos 693.1 -518.3
+	pos 678.952 -513.115
 	government Uninhabited
 	habitable 1316.45
 	belt 1177
@@ -31233,7 +31283,7 @@ system "Yed Prior"
 			period 10.8785
 
 system Yerser
-	pos 832.8 -420.54
+	pos 827.319 -412.984
 	government Uninhabited
 	habitable 1347.2
 	"jump range" 70
@@ -31271,7 +31321,7 @@ system Yerser
 			period 30
 
 system Yli
-	pos 737.7 -496.467
+	pos 737.404 -492.911
 	government Uninhabited
 	habitable 369.7
 	"jump range" 70
@@ -31473,7 +31523,7 @@ system Zaurak
 		period 2461.86
 
 system Zeinar
-	pos 982.5 -451.5
+	pos 984.87 -452.389
 	government "Gegno Scin"
 	belt 1960
 	habitable 425
@@ -33462,6 +33512,10 @@ planet Furnace
 	tribute 1200
 		threshold 3500
 		fleet "Large Syndicate" 7
+
+planet "Gara Pvu"
+	landscape land/sky3
+	description `Beautiful landscapes cover this planet, and unlike nearby systems, the climate is more than welcoming to a human being. Most remarkably, there are small selections of elegant curviliear structures and overpasses spread out in patches along the surface. While they are fantastical in appearance, they are unmistakably not part of the land itsef, and must have been left long ago by some other species that also somehow left the natural beauty of this planet intact.`
 
 planet "Garden Empyreal"
 	attributes "coalition station" kimek shipping tourism wealthy
