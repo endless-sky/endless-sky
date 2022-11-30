@@ -89,6 +89,7 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	// Minimum and maximum color ranges used by mapColor for the legend of the custom outfitter prices.
 	double MinColor() const;
 	double MaxColor() const;
 
