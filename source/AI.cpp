@@ -438,7 +438,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 		if(event.Actor())
 		{
 			if(event.Type() & ShipEvent::STOPPED_SCANNING)
-				actions[event.Actor()][target] &= ~ShipEvent::SCANNING;
+				actions[event.Actor()][target] &= ~ShipEvent::SCANNING + 1;
 			actions[event.Actor()][target] |= event.Type();
 			if(event.TargetGovernment())
 				notoriety[event.Actor()][event.TargetGovernment()] |= event.Type();
@@ -448,7 +448,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 		if(actorGovernment)
 		{
 			if(event.Type() & ShipEvent::STOPPED_SCANNING)
-				governmentActions[actorGovernment][target] &= ~ShipEvent::SCANNING;
+				governmentActions[actorGovernment][target] &= ~ShipEvent::SCANNING + 1;
 			governmentActions[actorGovernment][target] |= event.Type();
 
 			if(actorGovernment->IsPlayer() && event.TargetGovernment())
