@@ -561,9 +561,9 @@ mission "FW Syndicate Diplomacy 1D"
 			`	"No need," says JJ. "We have plenty of captains who are already assigned to escort duty. We may need you elsewhere."`
 				goto end
 			label deals
-			`	"Prior to when things went hot," says Tomek, "I saw to it that we could secure a supply line for new warships outside of our borders. Southbound may be a fine shipyard, but they alone can't supply us the warships we need, especially when the largest warship they build is the Bastion. Unfortunately, the Navy attacked before things could be finalized, and the outbreak of war as slowed things down, but Tarazed has assured us the deal is moving forward."`
+			`	"Prior to when things went hot," says Tomek, "I saw to it that we could secure a supply line for new warships outside of our borders. Southbound may be a fine shipyard, but they alone can't supply us the warships we need, especially when the largest warship they build is the Bastion. Unfortunately, the Navy attacked before things could be finalized, and the outbreak of war has slowed things down, but Tarazed has assured us the deal is moving forward."`
 			`	"Don't forget that Tarazed is also our only supplier of fighters for Southbound's Type F Haulers," Freya adds. "Unless you count the Boxwing, but those don't help much in a fight."`
-			`	"There are a lot of moving parts at play in this conflict, Captain," says JJ. "All we ask is that you stay focused on where we aim you, and you let us handle the finer details."`
+			`	"There are a lot of moving parts at play in this conflict, Captain <last>," says JJ. "All we ask is that you stay focused on where we aim you, and you let us handle the finer details."`
 			label end
 			`	After further discussion on the matter, the Council approves the increased patrols, although JJ remains somewhat apprehensive.`
 			`	"There is one other thing," Alondo says. "The Syndicate informed us that the Republic has Katya in custody, accused of terrorism."`
