@@ -32098,7 +32098,7 @@ planet Vatican
 planet Veliante
 	attributes ka'het uninhabited
 	landscape land/fog9
-	description `Veliante may have been habitable once, but no longer. Part of its southern hemisphere is filled with deadly levels of radiation, but even elsewhere on the planet, it isn’t safe to remain on the surface without adequate protection for too long. While animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in colorful patches of massive dimensions.`
+	description `Veliante may have been habitable once, but no longer. Part of its southern hemisphere is filled with deadly levels of radiation, but even elsewhere on the planet, it isn’t safe to remain on the surface without adequate protection for too long. While animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in vast, colorful patches of flora.`
 
 planet "Vibrant Water"
 	attributes farming saryd
