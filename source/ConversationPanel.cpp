@@ -76,6 +76,10 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
 
+	// Start a PlayerInfo transaction to prevent saves during the conversation
+	// from recording partial results.
+	player.StartTransaction();
+
 	// Begin at the start of the conversation.
 	Goto(0);
 }
@@ -415,6 +419,9 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 // Exit this panel and do whatever needs to happen next.
 void ConversationPanel::Exit()
 {
+	// Finish the PlayerInfo transaction so any changes get saved again.
+	player.FinishTransaction();
+
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC

@@ -44,6 +44,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <chrono>
+#include <cassert>
 #include <cmath>
 #include <ctime>
 #include <functional>
@@ -89,6 +91,9 @@ void PlayerInfo::Clear()
 	Messages::Reset();
 
 	conditions.Clear();
+
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -460,6 +465,26 @@ string PlayerInfo::Identifier() const
 {
 	string name = Files::Name(filePath);
 	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+}
+
+
+
+void PlayerInfo::StartTransaction()
+{
+	fprintf(stderr, "====Starting PlayerInfo transaction====\n");
+	assert(!transactionSnapshot);
+	transactionSnapshot = new DataWriter("");
+	Save(*transactionSnapshot);
+}
+
+
+
+void PlayerInfo::FinishTransaction()
+{
+	fprintf(stderr, "====Finishing PlayerInfo transaction====\n");
+	assert(transactionSnapshot);
+	delete transactionSnapshot;
+	transactionSnapshot = nullptr;
 }
 
 
@@ -3443,10 +3468,25 @@ void PlayerInfo::Autosave() const
 
 
 
-void PlayerInfo::Save(const string &path) const
+void PlayerInfo::Save(const std::string &filePath) const
 {
-	DataWriter out(path);
+	if (transactionSnapshot)
+	{
+		fprintf(stderr, "====Saving transaction snapshot====\n");
+		transactionSnapshot->SaveToPath(filePath);
+	}
+	else
+	{
+		fprintf(stderr, "====Saving====\n");
+		DataWriter out(filePath);
+		Save(out);
+	}
+}
 
+
+void PlayerInfo::Save(DataWriter &out) const
+{
+	const auto start = chrono::high_resolution_clock::now();
 
 	// Basic player information and persistent UI settings:
 
@@ -3748,6 +3788,9 @@ void PlayerInfo::Save(const string &path) const
 			out.Write(plugin.first);
 		out.EndChild();
 	}
+
+	const auto stop = chrono::high_resolution_clock::now();
+	fprintf(stderr, "Saved in %ld us\n", chrono::duration_cast<chrono::microseconds>(stop - start).count());
 }
 
 

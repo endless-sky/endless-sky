@@ -34,6 +34,7 @@ class DataNode;
 class DataWriter {
 public:
 	// Constructor, specifying the file to write.
+	// An empty path will create a DataWriter that will not save its contents.
 	explicit DataWriter(const std::string &path);
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
@@ -42,6 +43,8 @@ public:
 	// The file is not actually saved until the destructor is called. This makes
 	// it possible to write the whole file in a single chunk.
 	~DataWriter();
+
+	void SaveToPath(const std::string &path);
 
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
@@ -72,7 +75,7 @@ public:
 
 
 private:
-	// Save path (in UTF-8).
+	// Save path (in UTF-8). Empty string for in-memory DataWriter.
 	std::string path;
 	// Current indentation level.
 	std::string indent;

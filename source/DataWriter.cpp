@@ -40,9 +40,15 @@ DataWriter::DataWriter(const string &path)
 // Destructor, which saves the file all in one block.
 DataWriter::~DataWriter()
 {
-	Files::Write(path, out.str());
+	if (!path.empty())
+		SaveToPath(path);
 }
 
+
+void DataWriter::SaveToPath(const std::string &filepath)
+{
+	Files::Write(filepath, out.str());
+}
 
 
 // Write a DataNode with all its children.
