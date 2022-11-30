@@ -194,6 +194,7 @@ public:
 	// object is given the government's default will be used.
 	void SetHail(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
+	const Phrase *GetHailPhrase() const;
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -221,7 +222,8 @@ public:
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
 	// collision detection finds a missile in range.
-	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	bool Fire(std::vector<Projectile> &projectiles, std::list<std::shared_ptr<Ship>> &newShips,
+			std::vector<Visual> &visuals, PlayerInfo &player);
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
 

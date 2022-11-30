@@ -1425,6 +1425,13 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
+const Phrase *Ship::GetHailPhrase() const
+{
+	return hail;
+}
+
+
+
 // Set the commands for this ship to follow this timestep.
 void Ship::SetCommands(const Command &command)
 {
@@ -2684,7 +2691,8 @@ double Ship::OutfitScanFraction() const
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.
-bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+bool Ship::Fire(vector<Projectile> &projectiles, list<shared_ptr<Ship>> &newShips,
+				vector<Visual> &visuals, PlayerInfo &player)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2710,7 +2718,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
-				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+				armament.Fire(i, *this, projectiles, newShips, visuals, Random::Real() < jamChance, player);
 		}
 	}
 

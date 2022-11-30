@@ -17,8 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "Effect.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "pi.h"
+#include "PlayerInfo.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Ship.h"
@@ -212,7 +214,8 @@ void Hardpoint::Aim(double amount)
 // Fire this weapon. If it is a turret, it automatically points toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
-void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles,
+					 list<shared_ptr<Ship>> &newShips, vector<Visual> &visuals, PlayerInfo &player)
 {
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
@@ -227,10 +230,34 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	// to share the same inaccuracy as the projectile.
 	aim += Projectile::Inaccuracy(outfit->Inaccuracy());
 
-	// Create a new projectile, originating from this hardpoint.
-	// In order to get projectiles to start at the right position they are drawn
-	// at an offset of (.5 * velocity). See BatchDrawList.cpp for more details.
-	projectiles.emplace_back(ship, start - .5 * ship.Velocity(), aim, outfit);
+	if(outfit->ShipToShoot().empty())
+		// Create a new projectile, originating from this hardpoint.
+		// In order to get projectiles to start at the right position they are drawn
+		// at an offset of (.5 * velocity). See BatchDrawList.cpp for more details.
+		projectiles.emplace_back(ship, start - .5 * ship.Velocity(), aim, outfit);
+	else
+	{
+		const Ship *shipToPlace = GameData::Ships().Get(outfit->ShipToShoot());
+		if(shipToPlace->IsValid())
+		{
+			const shared_ptr<Ship> shotShip = make_shared<Ship>(*shipToPlace);
+			shotShip->Recharge();
+			shotShip->SetName(ship.Name());
+			shotShip->SetGovernment(ship.GetGovernment());
+			if(outfit->ShipToShootPersonality().IsDefined())
+				shotShip->SetPersonality(outfit->ShipToShootPersonality());
+			else
+				shotShip->SetPersonality(ship.GetPersonality());
+			shotShip->SetHail(*ship.GetHailPhrase());
+			shotShip->SetSystem(ship.GetSystem());
+			if(ship.GetParent() && !shotShip->GetPersonality().IsCoward())
+				shotShip->SetParent(ship.GetParent());
+			shotShip->Place(start, ship.Velocity(), aim);
+			newShips.push_back(shotShip);
+			if(ship.IsYours())
+				player.AddShip(shotShip);
+		}
+	}
 
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
