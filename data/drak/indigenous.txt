@@ -74,6 +74,7 @@ ship "Void Sprite"
 		"drag" 8.2
 		"heat dissipation" .8
 		"cargo space" 40
+		"outfit space" 20
 		"thrust" 20
 		"turn" 900
 		"hull repair rate" 3
@@ -85,6 +86,7 @@ ship "Void Sprite"
 		"gaslining" 1
 	outfits
 		Mouthparts? 2
+		"Void Sprite Parts" 20
 	gun 0 -156
 	gun 0 -156
 	leak "blood" 40 40
@@ -127,6 +129,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"drag" 5.4
 		"heat dissipation" .9
 		"cargo space" 20
+		"outfit space" 10
 		"thrust" 18
 		"turn" 450
 		"hull repair rate" 1
@@ -138,6 +141,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"gaslining" 1
 	outfits
 		Mouthparts?
+		"Void Sprite Parts" 10
 	gun 4 -41
 	leak "blood" 60 50
 	explode "blood" 25
