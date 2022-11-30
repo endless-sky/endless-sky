@@ -36088,7 +36088,7 @@ planet "Valley of the Damned"
 
 planet "Var Oti"
 	landscape land/desert0
-	description `Vort (to be expanded).`
+	description `This rocky is world covered with vast ranges of sand in various quantities. While some places have plateus of rugged rock formations, others have articulate valleys of sand. When it comes to less distinct locations, it is hard to tell at first glance whether or not they are simply a formation of rocks resting on a deep layer of sand, or a thin layer of sand resting on a great foundation of rock. In addition, common dust storms constantly reshape the terrain, and together with the harsh dry conditions, Var Oti is a dangerous world to those who aren't prepared when visiting.`
 	government Uninhabited
 
 planet "Var' Kar'i'i"
