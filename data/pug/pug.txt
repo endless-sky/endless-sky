@@ -554,7 +554,7 @@ ship "Pug Zibruka"
 	explode "pug medium explosion" 20
 	explode "pug large explosion" 10
 	"final explode" "final explosion small"
-	description `The Zibruka is the smallest Pug warship that you know of. Despite having only two gun ports, its advanced guns combined with fast and efficient engine systems make it a fearsome ship to face off against, especially in swarms.`
+	description `The Zibruka is the smallest Pug warship that you know of. Despite having only two gun ports, its two advanced weapons combined with its fast and efficient engine systems make it a fearsome ship to face off against, especially in swarms.`
 
 
 ship "Pug Enfolta"
