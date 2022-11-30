@@ -28634,7 +28634,7 @@ planet Ceilia'sei
 planet Celeatis
 	attributes ka'het uninhabited
 	landscape land/canyon14
-	description `Celeatis is a barren planet with mountains covering most of its surface.. Even in the few flat highlands, the terrain is too sterile for any kind of vegetation to grow naturally. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
+	description `Celeatis is a barren planet with mountains covering most of its surface. Even in the few flat highlands, the terrain is too sterile for any kind of vegetation to grow naturally. On some slopes, the outline of an outpost can still be recognized, but they are all uninhabited: some of the villages have been partially destroyed, and large amounts of dust cover the remains to the point that the original color can't be recognized anymore.`
 
 planet "Celestial Third"
 	attributes factory farming folklore kimek urban
