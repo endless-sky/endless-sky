@@ -437,6 +437,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 
 		if(event.Actor())
 		{
+			// This removes the SCANNING ship event.
 			if(event.Type() & ShipEvent::STOPPED_SCANNING)
 				actions[event.Actor()][target] &= ~ShipEvent::SCANNING + 1;
 			actions[event.Actor()][target] |= event.Type();
@@ -447,6 +448,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 		const auto &actorGovernment = event.ActorGovernment();
 		if(actorGovernment)
 		{
+			// This removes the SCANNING ship event.
 			if(event.Type() & ShipEvent::STOPPED_SCANNING)
 				governmentActions[actorGovernment][target] &= ~ShipEvent::SCANNING + 1;
 			governmentActions[actorGovernment][target] |= event.Type();
