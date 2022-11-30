@@ -1509,7 +1509,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 		log `The Hai have threatened the Republic if suitable action isn't taken. Required to escort civilians out of the possible danger zone.`
 		conversation
 			`Upon docking at <origin>, now bereft of civilians, you and Sayari are kept out of things for a little while, as some business occurs behind a Navy security barricade in the direction of where Teeneep's ship docked. Neither Terry nor Turner are allowed through either, as Navy personnel progressively establish operations and set secure areas on the station. Eventually Batu is sent out to get all of you and escort you in.`
-			`	As you reach Xilin and the other diplomats, who is also joined by Danforth, Sayari is intercepted by a Hai functionary and led away. Xilin looks at you all with a grave face, and begins. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. We're at a political impasse now, as the Cabinet is blocking any progress.`
+			`	As you reach Xilin, who is also joined by other diplomats and even Danforth, Sayari is intercepted by a Hai functionary and led away. Xilin looks at you all with a grave face and begins. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. We're at a political impasse now, as the Cabinet is blocking any progress.`
 			`	"The Hai have demanded we cut through the red tape by having the heads of state meet." He turns to you briefly. "They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed, and we've gathered to prepare you for the meeting."`
 			label questions
 			choice
@@ -1579,7 +1579,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 				`	"With respect, Chancellor, what you propose would take years to resolve a problem of immediate concern. How does the Hai representative respond?"`
 					goto calm
 				`	"Is this an acceptable proposal, Teeneep?"`
-			`	Teeneep looks perturbed, and has to make an effort to hold back her anger and resentment. The other heads of state don't seem to notice; perhaps you're more sensitive to Hai facial expressions after the time you spent with the Hai. "Of course not," she says.`
+			`	Teeneep looks perturbed, and has to make an effort to hold back her anger and resentment. The other heads of state don't seem to notice; perhaps you're more sensitive to Hai facial expressions after the time you have spent with them. "Of course not," she says.`
 			label calm
 			`	Teeneep responds plainly, "We are a peaceful people by nature, but these pirate attacks have gone too far. We support a solution that benefits the innocent inhabitants of the pirate worlds. However, there must be immediate action, not years of delay."`
 			choice
