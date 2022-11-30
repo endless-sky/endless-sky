@@ -1282,11 +1282,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			for(const auto &it : allies)
 				if(it->GetGovernment() != gov)
 				{
-					auto ptr = it->shared_from_this();
+					auto ally_ship = it->shared_from_this();
 					// Scan friendly ships that are as-yet unscanned by this ship's government,
 					// and are not in the process of being scanned, except if this is the ship doing it.
-					if(((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
-							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
+					if(((!cargoScan || Has(gov, ally_ship, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(gov, ally_ship, ShipEvent::SCAN_OUTFITS)))
 							|| (Has(gov, target, ShipEvent::SCANNING) && !Has(ship, target, ShipEvent::SCANNING)))
 						continue;
 
@@ -1294,7 +1294,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					if(range < closest)
 					{
 						closest = range;
-						target = std::move(ptr);
+						target = std::move(ally_ship);
 					}
 				}
 		}
