@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestData.h"
 #include "TextReplacements.h"
 #include "Trade.h"
+#include "Wormhole.h"
 
 #include <future>
 #include <map>
@@ -117,6 +118,7 @@ private:
 	Set<TestData> testDataSets;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
+	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 
 	TextReplacements substitutions;

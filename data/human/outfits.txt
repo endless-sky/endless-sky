@@ -152,7 +152,7 @@ outfit "Ramscoop"
 	"outfit space" -10
 	"ramscoop" 1
 	description "In the early days of space exploration, when ships could travel through half a dozen systems before encountering an established colony where they could refuel, ramscoops were an essential piece of equipment, harvesting plasma from the solar wind to refill your hyperspace fuel tanks. Although you can install more than one ramscoop, additional ramscoops on a single ship are not as effective as the first."
-	description "	(As a safety measure, all ships are able to harvest tiny amounts of fuel by flying close to a star, but this outfit allows you to accumulate fuel much more quickly. The closer you are to the star, the faster fuel will accumulate.)"
+	description "	Different kinds of stars will generate varying levels of fuel in the solar wind, but in all cases the closer you are to the star, the faster fuel will accumulate."
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
@@ -214,7 +214,7 @@ outfit "Cargo Scanner"
 	"mass" 1
 	"outfit space" -1
 	"cargo scan power" 9
-	"cargo scan speed" 1
+	"cargo scan speed" 5
 	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
 outfit "Outfit Scanner"
@@ -224,7 +224,7 @@ outfit "Outfit Scanner"
 	"mass" 2
 	"outfit space" -2
 	"outfit scan power" 25
-	"outfit scan speed" 1
+	"outfit scan speed" 15
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
 outfit "Asteroid Scanner"
