@@ -848,6 +848,7 @@ government "Korath"
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
 		"Humanika (Ship)" .1
+		"Pug (Wanderer)" -.01
 	"penalty for"
 		assist -0.25
 		disable 0.26
@@ -865,10 +866,9 @@ government "Korath (Civilian)"
 	language "Exile"
 
 	"attitude toward"
-		"Kor Mereti" -.01
-		"Kor Sestor" -.01
 		"Korath" .01
 		"Humanika (Ship)" .2
+		"Pug (Wanderer)" -.01
 	"penalty for"
 		assist -0.25
 		disable 0.26
@@ -886,6 +886,7 @@ government "Korath (Station)"
 	"attitude toward"
 		"Wanderer" -.01
 		"Remnant" -.01
+		"Pug (Wanderer)" -.01
 		"Remnant (Research)" -.01
 		"Korath" 1
 		"Korath (Civilian)" 1
@@ -906,6 +907,7 @@ government "Kor Alahi"
 		"Korath" .01
 		"Remnant" -1
 		"Indigenous Lifeform" -.01
+		"Ember Waste" -.01
 	"penalty for"
 		disable 0.25
 		capture 5

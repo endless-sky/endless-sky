@@ -242,6 +242,32 @@ fleet "Korath Ember Waste Raid"
 		"Rano'erek (Shunt)"
 		"'olofez" 4
 
+fleet "Kor Alahi Raid"
+	government "Kor Alahi"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations"
+	personality
+		disables plunders opportunistic harvests
+	variant 12
+		"Palavret (Ember)"
+		"'olofez" 2
+	variant 3
+		"Palavret (Ember Blaze)"
+		"'olofez" 2
+	variant 6
+		"Palavret (Ember Shunt)"
+		"'olofez" 2
+	variant 1
+		"Rano'erek"
+		"'olofez" 4
+	variant 3
+		"Rano'erek (Shunt)"
+		"'olofez" 4
+
+
 fleet "Korath Miners"
 	government "Korath"
 	names "korath"

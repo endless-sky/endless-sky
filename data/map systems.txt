@@ -5587,7 +5587,8 @@ system Arculus
 	fleet "Small Remnant" 2200
 	fleet "Remnant Transport" 2200
 	fleet "Remnant Home Guard" 2000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Ember Waste Raid" 120000
+	fleet "Kor Alahi Raid" 60000
 	fleet "Korath Rescue" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
@@ -7518,7 +7519,8 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
-	fleet "Korath Ember Waste Raid" 20000
+	fleet "Kor Alahi Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
@@ -8438,7 +8440,8 @@ system Cinxia
 	fleet "Small Remnant" 1800
 	fleet "Remnant Transport" 1800
 	fleet "Remnant Home Guard" 1600
-	fleet "Korath Ember Waste Raid" 30000
+	fleet "Kor Alahi Raid" 45000
+	fleet "Korath Ember Waste Raid" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -8500,7 +8503,8 @@ system Coluber
 	trade Medical 798
 	trade Metal 475
 	trade Plastic 362
-	fleet "Korath Ember Waste Raid" 10000
+	fleet "Kor Alahi Raid" 20000
+	fleet "Korath Ember Waste Raid" 15000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -11152,7 +11156,8 @@ system Edusa
 	fleet "Large Remnant" 3200
 	fleet "Small Remnant" 2400
 	fleet "Remnant Transport" 2400
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Alahi Raid" 60000
+	fleet "Korath Ember Waste Raid" 120000
 	fleet "Korath Rescue" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -13287,7 +13292,8 @@ system Farinus
 	fleet "Large Remnant" 14000
 	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Alahi Raid" 60000
+	fleet "Korath Ember Waste Raid" 120000
 	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -19804,7 +19810,8 @@ system "Kor Nor'peli"
 	trade Plastic 423
 	fleet "Korath Defense" 1700
 	fleet "Korath Large Raid" 16000
-	fleet "Korath Ember Waste Raid" 1350
+	fleet "Kor Alahi Raid" 5400
+	fleet "Korath Ember Waste Raid" 1800
 	fleet "Korath Ember Waste Large Raid" 20000
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
@@ -19881,7 +19888,8 @@ system "Kor Tar'bei"
 	fleet "Korath Home" 1000
 	fleet "Korath Civilian Large" 1000
 	fleet "Korath Defense" 2600
-	fleet "Korath Ember Waste Raid" 3050
+	fleet "Kor Alahi Raid" 12200
+	fleet "Korath Ember Waste Raid" 4070
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
 	fleet "Korsmanath A'awojs" 900
@@ -20547,7 +20555,8 @@ system Levana
 	trade Medical 736
 	trade Metal 407
 	trade Plastic 222
-	fleet "Korath Ember Waste Raid" 10000
+	fleet "Kor Alahi Raid" 30000
+	fleet "Korath Ember Waste Raid" 15000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -20987,7 +20996,8 @@ system Lucina
 	trade Medical 863
 	trade Metal 524
 	trade Plastic 410
-	fleet "Korath Ember Waste Raid" 20000
+	fleet "Kor Alahi Raid" 60000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -24811,7 +24821,8 @@ system Pantica
 	fleet "Small Remnant" 1400
 	fleet "Remnant Transport" 1400
 	fleet "Remnant Home Guard" 1300
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Alahi Raid" 60000
+	fleet "Korath Ember Waste Raid" 120000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -24869,7 +24880,8 @@ system Parca
 	trade Medical 872
 	trade Metal 531
 	trade Plastic 445
-	fleet "Korath Ember Waste Raid" 10000
+	fleet "Kor Alahi Raid" 20000
+	fleet "Korath Ember Waste Raid" 15000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -25296,6 +25308,7 @@ system Peragenor
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
+	fleet "Kor Alahi Raid" 40000
 	fleet "Korath Ember Waste Raid" 40000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 8000
@@ -25417,7 +25430,8 @@ system Perfica
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7500
 	fleet "Remnant Transport" 7500
-	fleet "Korath Ember Waste Raid" 30000
+	fleet "Kor Alahi Raid" 45000
+	fleet "Korath Ember Waste Raid" 90000
 	fleet "Korath Rescue" 45000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -28877,7 +28891,8 @@ system Segesta
 	trade Plastic 295
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Ember Waste Raid" 80000
+	fleet "Kor Alahi Raid" 80000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 15000
 	hazard "Ember Waste Base Heat" 100
@@ -30858,7 +30873,8 @@ system Stercutus
 	trade Medical 536
 	trade Metal 299
 	trade Plastic 294
-	fleet "Korath Ember Waste Raid" 20000
+	fleet "Kor Alahi Raid" 40000
+	fleet "Korath Ember Waste Raid" 40000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
