@@ -582,7 +582,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		else if(Preferences::Has("Fighter fleet logistics") && !Random::Int(10) && it && flagship && (it->IsYours() || it->GetPersonality().IsEscort()) && it->MayRequestHelp() && it->GetSystem() == flagship->GetSystem() && !it->CanBeCarried())
+		else if(Preferences::Has("Fighter fleet logistics") && !Random::Int(10)
+				&& it && flagship && (it->IsYours() || it->GetPersonality().IsEscort())
+				&& it->MayRequestHelp() && it->GetSystem() == flagship->GetSystem() &&
+				!it->CanBeCarried())
 			AskForHelp(*it, isStranded, flagship);
 
 		// Paralyzed ships are effectively disabled, and cannot fire, cloak, etc.
@@ -1107,7 +1110,8 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 					continue;
 
 				// Tanker carriers should not request support until fleet logistics have been handled.
-				if(Preferences::Has("Fighter fleet logistics") && ship.IsYours() && ship.IsTankerCarrier() && !ship.IsEscortsFullOfFuel())
+				if(Preferences::Has("Fighter fleet logistics") && ship.IsYours()
+						&& ship.IsTankerCarrier() && !ship.IsEscortsFullOfFuel())
 					continue;
 			}
 
@@ -1157,7 +1161,8 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	if(!shipIsDisabled)
 	{
 		// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
-		if((needsFuel || ((ship.IsYours() || ship.GetPersonality().IsEscort()) && helper.IsYours())) && !helper.CanRefuel(ship) && !helper.IsEnergyLow())
+		if((needsFuel || ((ship.IsYours() || ship.GetPersonality().IsEscort()) && helper.IsYours()))
+				&& !helper.CanRefuel(ship) && !helper.IsEnergyLow())
 			return false;
 
 		// There is another helper with more fuel within the fleet.
@@ -4074,7 +4079,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		for(const shared_ptr<Ship> &it : player.Ships())
 			if(it.get() != player.Flagship() && !it->IsParked())
 			{
-				bool antiMissileDefender = (newOrders.type == Orders::ATTACK || newOrders.type == Orders::FINISH_OFF) && it->CanBeCarried() && !it->IsArmed() && it->IsArmed(true);
+				bool antiMissileDefender = (newOrders.type == Orders::ATTACK || newOrders.type == Orders::FINISH_OFF)
+						&& it->CanBeCarried() && !it->IsArmed() && it->IsArmed(true);
 				if(!antiMissileDefender)
 					ships.push_back(it.get());
 			}
@@ -4085,7 +4091,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			bool antiMissileDefender = (newOrders.type == Orders::ATTACK || newOrders.type == Orders::FINISH_OFF) && ship && ship->CanBeCarried() && !ship->IsArmed() && ship->IsArmed(true);
+			bool antiMissileDefender = (newOrders.type == Orders::ATTACK || newOrders.type == Orders::FINISH_OFF)
+					&& ship && ship->CanBeCarried() && !ship->IsArmed() && ship->IsArmed(true);
 			if(ship && !antiMissileDefender)
 				ships.push_back(ship.get());
 		}

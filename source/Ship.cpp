@@ -3352,7 +3352,8 @@ void Ship::Recharge(bool atSpaceport)
 bool Ship::CanRefuel(const Ship &other) const
 {
 	// Can't refuel if current ship has zero fuel capacity or other is full of fuel.
-	if(attributes.Get("fuel capacity") < 1 || GetSystem() != other.GetSystem() || IsEnemyInEscortSystem() || other.Fuel() == 1.)
+	if(attributes.Get("fuel capacity") < 1 || GetSystem() != other.GetSystem()
+			|| IsEnemyInEscortSystem() || other.Fuel() == 1.)
 		return false;
 	if(CanBeCarried())
 	{
@@ -3376,7 +3377,8 @@ bool Ship::CanRefuel(const Ship &other) const
 	}
 	else if(other.CanBeCarried() && other.GetParent() == shared_from_this())
 		return fuel - navigation.JumpFuel(targetSystem) > other.Attributes().Get("fuel capacity") - other.fuel;
-	return (!IsYours() || other.JumpFuelMissing() || other.GetParent() == this->shared_from_this()) && (fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
+	return (!IsYours() || other.JumpFuelMissing() || other.GetParent() == this->shared_from_this())
+			&& (fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
@@ -4848,7 +4850,7 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 	if(other != shared_from_this())
 	{
 		other->isEscortsFullOfFuel = isEscortsFullOfFuel;
-		other->isEnemyInEscortSystem =	isEnemyInEscortSystem;
+		other->isEnemyInEscortSystem = isEnemyInEscortSystem;
 		other->escortsHaveOneJump = escortsHaveOneJump;
 		other->refuelMissionNpcEscort = refuelMissionNpcEscort;
 	}
