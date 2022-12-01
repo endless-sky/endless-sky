@@ -44,7 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
-#include <chrono>
 #include <cassert>
 #include <cmath>
 #include <ctime>
@@ -471,8 +470,9 @@ string PlayerInfo::Identifier() const
 
 void PlayerInfo::StartTransaction()
 {
-	fprintf(stderr, "====Starting PlayerInfo transaction====\n");
-	assert(!transactionSnapshot);
+	assert(!transactionSnapshot && "Starting PlayerInfo transaction while one is already active");
+
+	// Create in-memory DataWriter and save to it.
 	transactionSnapshot = new DataWriter();
 	Save(*transactionSnapshot);
 }
@@ -481,8 +481,7 @@ void PlayerInfo::StartTransaction()
 
 void PlayerInfo::FinishTransaction()
 {
-	fprintf(stderr, "====Finishing PlayerInfo transaction====\n");
-	assert(transactionSnapshot);
+	assert(transactionSnapshot && "Finishing PlayerInfo while one hasn't been started");
 	delete transactionSnapshot;
 	transactionSnapshot = nullptr;
 }
@@ -3472,12 +3471,10 @@ void PlayerInfo::Save(const std::string &filePath) const
 {
 	if(transactionSnapshot)
 	{
-		fprintf(stderr, "====Saving transaction snapshot====\n");
 		transactionSnapshot->SaveToPath(filePath);
 	}
 	else
 	{
-		fprintf(stderr, "====Saving====\n");
 		DataWriter out(filePath);
 		Save(out);
 	}
@@ -3486,8 +3483,6 @@ void PlayerInfo::Save(const std::string &filePath) const
 
 void PlayerInfo::Save(DataWriter &out) const
 {
-	const auto start = chrono::high_resolution_clock::now();
-
 	// Basic player information and persistent UI settings:
 
 	// Pilot information:
@@ -3788,10 +3783,6 @@ void PlayerInfo::Save(DataWriter &out) const
 			out.Write(plugin.first);
 		out.EndChild();
 	}
-
-	const auto stop = chrono::high_resolution_clock::now();
-	fprintf(stderr, "Saved in %lld us\n",
-		chrono::duration_cast<chrono::duration<long long int, std::micro>>(stop - start).count());
 }
 
 
