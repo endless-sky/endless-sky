@@ -670,6 +670,8 @@ mission "Remnant: Disable 1"
 		government "Remnant"
 	to offer
 		has "Remnant: Will Not Someone Please Think Of The Children: done"
+		not "Remnant: Disable 1: aborted"
+		not "Remnant: Disable 1: failed"
 		random < 5
 	npc disable save
 		government "Korath"
