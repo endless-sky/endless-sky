@@ -34,8 +34,9 @@ class DataNode;
 class DataWriter {
 public:
 	// Constructor, specifying the file to write.
-	// An empty path will create a DataWriter that will not save its contents.
 	explicit DataWriter(const std::string &path);
+	// Constructor for a DataWriter that will not save its contents automatically
+	DataWriter();
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
@@ -44,6 +45,7 @@ public:
 	// it possible to write the whole file in a single chunk.
 	~DataWriter();
 
+	// Save the contents to a file.
 	void SaveToPath(const std::string &path);
 
 	// The Write() function can take any number of arguments. Each argument is

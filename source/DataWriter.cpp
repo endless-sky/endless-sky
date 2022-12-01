@@ -30,7 +30,16 @@ const string DataWriter::space = " ";
 
 // Constructor, specifying the file to save.
 DataWriter::DataWriter(const string &path)
-	: path(path), before(&indent)
+	: DataWriter()
+{
+	this->path = path;
+}
+
+
+
+// Constructor for a DataWriter that will not save its contents automatically
+DataWriter::DataWriter()
+	: before(&indent)
 {
 	out.precision(8);
 }
@@ -46,6 +55,7 @@ DataWriter::~DataWriter()
 
 
 
+// Save the contents to a file.
 void DataWriter::SaveToPath(const std::string &filepath)
 {
 	Files::Write(filepath, out.str());

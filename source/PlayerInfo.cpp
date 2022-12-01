@@ -473,7 +473,7 @@ void PlayerInfo::StartTransaction()
 {
 	fprintf(stderr, "====Starting PlayerInfo transaction====\n");
 	assert(!transactionSnapshot);
-	transactionSnapshot = new DataWriter("");
+	transactionSnapshot = new DataWriter();
 	Save(*transactionSnapshot);
 }
 
