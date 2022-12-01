@@ -49,15 +49,15 @@ void Gamerules::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		const string &token = child.Token(1);
 
-		if(key == "person spawnrate")
-			personSpawnrate = max<int>(1, child.Value(1));
-		else if(key == "universal ramscoop")
+		if(key == "universal ramscoop")
 		{
 			if(ValidBool(token))
 				universalRamscoop = BoolVal(token);
 			else
 				child.PrintTrace("Skipping invalid boolean value:");
 		}
+		else if(key == "person spawnrate")
+			personSpawnrate = max<int>(1, child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -65,14 +65,14 @@ void Gamerules::Load(const DataNode &node)
 
 
 
-int Gamerules::PersonSpawnrate() const
+bool Gamerules::UniversalRamscoopActive() const
 {
-	return personSpawnrate;
+	return universalRamscoop;
 }
 
 
 
-bool Gamerules::UniversalRamscoopActive() const
+int Gamerules::PersonSpawnrate() const
 {
-	return universalRamscoop;
+	return personSpawnrate;
 }

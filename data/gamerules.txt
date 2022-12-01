@@ -19,5 +19,6 @@ gamerules
 	# to the system center twice, meaning it falls off much more quickly than a normal ramscoop.
 	"universal ramscoop" true
 	
-	# A person ship spawns on average every this many frames. The default is once every ten minutes.
+	# A person ship spawns on average every this many frames.
+	# The default is once every 36000 frames (ten minutes).
 	"person spawnrate" 36000

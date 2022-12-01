@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 
 
+
 // Gamerules contains a list of constants and booleans that define game behavior,
 // for example, the spawnrate of person ships or whether universal ramscoops are active.
 class Gamerules {
@@ -28,8 +29,8 @@ public:
 	// Load a gamerules node.
 	void Load(const DataNode &node);
 
-	int PersonSpawnrate() const;
 	bool UniversalRamscoopActive() const;
+	int PersonSpawnrate() const;
 
 
 private:
