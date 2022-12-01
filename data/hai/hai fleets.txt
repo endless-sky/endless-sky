@@ -221,6 +221,9 @@ fleet "Small Hai Merchant"
 	variant 3
 		"Lightning Bug" 2
 		"Aphid (Armed)" 3
+	variant 3
+		"Lightning Bug" 2
+		"Scarab" 3
 	variant 1
 		"Lightning Bug"
 		"Aphid (Armed)" 5
@@ -235,6 +238,9 @@ fleet "Small Hai Merchant"
 	variant 3
 		"Aphid (Armed)" 3
 		"Centipede"
+	variant 3
+		"Scarab" 2
+		"Geocoris"
 	variant 1
 		"Centipede" 2
 		"Centipede (Pulse)" 3
@@ -259,6 +265,21 @@ fleet "Small Hai Merchant"
 	variant 1
 		"Grasshopper"
 		"Centipede" 2
+	variant 1
+		"Grasshopper"
+		"Scarab" 2
+	variant 1
+		"Scarab" 3
+	variant 1
+		"Scarab" 2
+		"Aphid (Armed)"
+	variant 1
+		"Scarab"
+		"Aphid (Armed)" 2
+	variant 1
+		"Scarab"
+	variant 1
+		"Cicada"
 
 fleet "Large Hai Merchant"
 	government "Hai"
@@ -273,9 +294,20 @@ fleet "Large Hai Merchant"
 	variant 1
 		"Shield Beetle (Tracker)"
 		"Centipede" 3
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Cicada" 2
+		"Centipede" 1
 	variant 2
 		"Water Bug" 3
 		"Centipede" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada"
+		"Centipede" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
@@ -287,6 +319,10 @@ fleet "Large Hai Merchant"
 		"Aphid (Armed)" 2
 		"Lightning Bug"
 		"Centipede"
+	variant 2
+		"Aphid (Armed)" 2
+		"Lightning Bug"
+		"Cicada"
 	variant 1
 		"Geocoris (Tracker)"
 		"Shield Beetle"
@@ -296,6 +332,11 @@ fleet "Large Hai Merchant"
 		"Centipede"
 		"Geocoris (Tracker)"
 		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Cicada" 2
+		"Geocoris (Tracker)"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
@@ -323,6 +364,9 @@ fleet "Small Hai Merchant (Sympathizers)"
 	variant 3
 		"Lightning Bug" 2
 		"Aphid (Armed)" 3
+	variant 3
+		"Lightning Bug" 2
+		"Scarab" 3
 	variant 1
 		"Lightning Bug"
 		"Aphid (Armed)" 5
@@ -375,9 +419,20 @@ fleet "Large Hai Merchant (Sympathizers)"
 	variant 1
 		"Shield Beetle (Tracker)"
 		"Centipede" 3
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Cicada" 2
+		"Centipede" 1
 	variant 2
 		"Water Bug" 3
 		"Centipede" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada"
+		"Centipede" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
@@ -389,6 +444,10 @@ fleet "Large Hai Merchant (Sympathizers)"
 		"Aphid (Armed)" 2
 		"Lightning Bug"
 		"Centipede"
+	variant 2
+		"Aphid (Armed)" 2
+		"Lightning Bug"
+		"Cicada"
 	variant 1
 		"Geocoris (Tracker)"
 		"Shield Beetle"
@@ -398,6 +457,11 @@ fleet "Large Hai Merchant (Sympathizers)"
 		"Centipede"
 		"Geocoris (Tracker)"
 		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Cicada" 2
+		"Geocoris (Tracker)"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
@@ -411,18 +475,31 @@ fleet "Small Hai Merchant (Human)"
 		timid frugal appeasing
 	variant 10
 		"Freighter (Hai)"
+	variant 10
+		"Freighter (Hai)"
+		"Scarab"
 	variant 6
 		"Freighter (Hai)"
 		"Grasshopper"
 	variant 5
 		"Freighter (Hai)"
 		"Aphid" 4
+	variant 5
+		"Freighter (Hai)"
+		"Aphid" 2
+		"Scarab" 2
 	variant 3
 		"Mule (Hai Engines)"
 		"Grasshopper"
 	variant 3
 		"Mule (Hai Weapons)"
 		"Grasshopper"
+	variant 3
+		"Mule (Hai Engines)"
+		"Scarab"
+	variant 3
+		"Mule (Hai Weapons)"
+		"Scarab"
 	variant 2
 		"Bounder (Hai)"
 	variant 2
@@ -438,6 +515,9 @@ fleet "Small Hai Merchant (Human)"
 	variant 1
 		"Star Barge"
 		"Aphid"
+	variant 1
+		"Scarab"
+		"Star Barge"
 
 fleet "Large Hai Merchant (Human)"
 	government "Hai Merchant (Human)"
@@ -555,6 +635,54 @@ fleet "Large Hai Merchant (Human)"
 		"Container Transport (Hai)"
 		"Headhunter (Hai)" 2
 
+
+fleet "Unfettered Logistics"
+	government "Hai (Friendly Unfettered)"
+	names "hai"
+	cargo 1
+	commodities "Food" "Heavy Metals" "Medical"
+	personality
+		confusion 25
+		timid frugal appeasing
+	variant 3
+		"Aphid" 2
+		"Lightning Bug (Pulse)"
+	variant 3
+		"Aphid" 3
+		"Lightning Bug (Pulse)"
+	variant 3
+		"Aphid" 2
+		"Lightning Bug"
+	variant
+		"Aphid" 3
+		"Lightning Bug"
+	variant 2
+		"Aphid" 3
+		"Sea Scorpion"
+	variant 2
+		"Aphid" 3
+		"Sea Scorpion (Ion)"
+	variant
+		"Aphid" 3
+		"Sea Scorpion (Pulse)"
+	variant 2
+		"Aphid" 4
+		"Sea Scorpion"
+	variant 2
+		"Aphid" 4
+		"Sea Scorpion (Ion)"
+	variant
+		"Aphid" 4
+		"Sea Scorpion (Pulse)"
+	variant 2
+		"Aphid" 5
+		"Sea Scorpion"
+	variant 2
+		"Aphid" 5
+		"Sea Scorpion (Ion)"
+	variant
+		"Aphid" 5
+		"Sea Scorpion (Pulse)"
 
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"

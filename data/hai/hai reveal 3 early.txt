@@ -390,6 +390,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 		dialog `You have the furnishings the Hai ordered. It's time to return them to <planet>.`
 	on complete
 		event "role-play station active" 12
+		event "ladybug surveillance" 32 42
 		event "news: hai video clip debunked"
 		log `Of all the hilariously mundane things that could trip up a deception, it turned out to be Hai-made furniture. Acquired a large shipment of human-made furniture from Prime in order to complete the station.`
 		conversation
@@ -429,4 +430,37 @@ event "role-play station active"
 		spaceport `The spaceport is a spacious docking assembly sheltered under broad, carapace-like structures which are arrayed around the lower decks like petals. It is designed to look impressive and still has that shiny look and freshly oiled smell of a newly minted construction, though it has only basic facilities and services.`
 		security 0.7
 		"required reputation" -10
-	
+
+
+# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.	
+event "ladybug surveillance"
+	fleet "Hai Surveillance"
+		add variant 10
+			"Shield Beetle (Police)"
+			"Ladybug"
+		add variant 5
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 2
+			"Ladybug"
+		add variant 5
+			"Lightning Bug (Surveillance)" 1
+			"Ladybug" 2
+		add variant 3
+			"Grasshopper (Surveillance)" 2
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 3
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 4
+			"Ladybug"
+		add variant 3
+			"Grasshopper (Surveillance)" 2
+			"Ladybug" 2
+		add variant 3
+			"Grasshopper (Surveillance)" 3
+			"Ladybug" 2
