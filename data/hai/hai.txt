@@ -16,13 +16,13 @@
 # The basics are those which can (but might not) be exported and sold pretty much anywhere that could provide reasonable maintenance services.
 
 # Imo Loo Mer Corp shipyards:
-shipyard "Imo Loo Mer Advanced"
-	"Centipede"
-	"Geocoris"
-
 shipyard "Imo Loo Mer Basics"
 	"Scarab"
 	"Lightning Bug"
+
+shipyard "Imo Loo Mer Advanced"
+	"Centipede"
+	"Geocoris"
 
 
 # Mon Ki o'Uden Splinter (unfettered) shipyards:
@@ -36,23 +36,23 @@ shipyard "Mon Ki o'Uden Advanced"
 
 
 # Mon Ki i'Hiya Consortium (loyalist) shipyards:
-shipyard "Mon Ki i'Hiya Advanced"
-	"Shield Beetle"
-	# Has "Pond Strider" added by event.
-
 shipyard "Mon Ki i'Hiya Basics"
 	"Aphid"
 	# Has "Ladybug" & "Flea" added by event.
 
+shipyard "Mon Ki i'Hiya Advanced"
+	"Shield Beetle"
+	# Has "Pond Strider" added by event.
+
 
 # Yeer e Ki Cooperative shipyards:
-shipyard "Yeer e Ki Advanced"
-	"Water Bug"
-	"Cicada"
-
 shipyard "Yeer e Ki Basics"
 	"Aphid"
 	"Grasshopper"
+
+shipyard "Yeer e Ki Advanced"
+	"Water Bug"
+	"Cicada"
 
 
 outfitter "Hai Basics"

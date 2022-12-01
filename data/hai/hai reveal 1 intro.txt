@@ -797,6 +797,7 @@ mission "Hai Leaks Response 4"
 		payment 1000000
 		event "waypoint pirates vanquished"
 		event "hai ladybug available"
+		event "humans adopt ladybugs" 20 30
 		log `Defeated the "Black Lich". They had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. Rewarded well.`
 		conversation
 			`When you return, the Hai Captain thanks you profusely. "The Allhome government has authorized a reward of <payment> for helping to route the pirate problem," he explains while handing you the credits.`
@@ -966,15 +967,6 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 
 
 # The spike in interest leads to ladybugs appearing in the Hai Merchant (Human) fleets.	
-mission "Hai Leaks Response 4C"
-	landing
-	invisible
-	to offer
-		has "event: hai ladybug available"
-	on offer
-		event "humans adopt ladybugs" 20 30
-		fail
-
 event "humans adopt ladybugs"
 	fleet "Small Hai Merchant (Human)"
 		add variant 6

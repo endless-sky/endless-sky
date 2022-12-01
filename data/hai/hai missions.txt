@@ -1441,7 +1441,7 @@ mission "Strider: Coalition 2"
 # For compatibility
 event "pond strider mass production"
 
-# The spike in interest leads to ladybugs appearing in the Hai Merchant (Human) fleets.	
+# The mission to ensure the Pond Strider is properly added to the new Hai shipyards.	
 mission "Pond Strider Patch for v2"
 	landing
 	invisible
