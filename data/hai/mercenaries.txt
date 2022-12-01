@@ -463,6 +463,52 @@ mission "Mercenaries: Bar Selling 2"
 
 
 
+event "friendly mercenaries"
+	"reputation: Mercenaries" >?= 0
+event "end of deal"
+	"reputation: Mercenaries" = -1000
+
+# SPOILERS: the tracker is not on the ship, it's on you so that's why the Hai don't find it, and this communication can happen.
+mission "Feed Them To The Wolves"
+	landing
+	invisible
+	source "Greenbloom"
+	destination "Warfeed"
+	to offer
+		has "Mercenaries: Duel Squared: done"
+		has "Unfettered: Escort Hai Fleet: active"
+	on offer
+		dialog `You were alone in your quarters, waiting for the Hai admiral's arrival when you hear a mysterious voice. "She of the Void requests that you bring those ships to <waypoint>. Do so and you will be richly rewarded. Do not worry about the supplies, we will bring them to the Unfettered, we are only acting in their best interest, after all." Do you accept?`
+	on accept
+		event "friendly mercenaries"
+		event "end of deal" 15
+	waypoint "Waypoint"
+	on waypoint
+		conversation
+			`One of the unindentified ships hail you. "Thank you, Captain. Here is part of your reward: 1 million credits. Now, whatever you do, do not fire on the Hai ships. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
+			`	Right after that, the governor's ship hails you. "What have you done?"`
+		payment 1000000
+	npc
+		government "Mercenaries"
+		system "Waypoint"
+		personality disables plunders staying harvests
+		fleet "Large Northern Pirates" 3
+	to complete
+		has "Unfettered: Escort Hai Fleet: failed"
+		not "Unfettered: Escort Hai Fleet: aborted"
+	on complete
+		clear "unfettered: stopped on Greenbloom"
+		log `I was supposed to escort a Hai fleet carying supplies and passengers into Unfettered space but I fed them to the wolves instead.`
+		# still gets lost because they're busy shipping all of these supplies to Unfettered space.
+		event "unfettered: shipment lost" 20
+		set "unfettered: hunger"
+		# make the hunger last a bit longer
+		"unfettered: hunger stops" = -100
+		payment 5000000
+		dialog `As before, a voice addresses you once you are alone in your quarters. "We have transfered 5 million credits to your account, and made sure the elder will not bother you. Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place."`
+
+
+
 mission "Mercenaries: Duel Squared"
 	landing
 	source "New Tortuga"

@@ -915,6 +915,8 @@ mission "Unfettered: Jump Drive Retrieval"
 
 
 
+# SPOILERS: the tsunami was caused by the Alphas as a warning to listen to their demands	(and also because the Unfettered allowed you to see them)
+# this also is to increase tensions and to make Unfettered attack Wanderers faster.
 mission "Unfettered: Escort Hai Fleet"
 	landing
 	name `Escort a Hai convoy`
@@ -1000,7 +1002,7 @@ mission "Unfettered: Escort Hai Fleet"
 			has "unfettered: stopped on Greenbloom"
 		system "Ya Hai"
 		personality disables plunders vindictive
-		fleet "Large Northern Pirates" 3
+		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates" 4
 	on complete
 		clear "unfettered: stopped on Greenbloom"
@@ -1027,7 +1029,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances jobs are available to bring more food than ever, for a price corresponding to the seriousness of the situation."`
 			label introduce
 			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
-		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put himself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
+		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put herself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
 mission "Unfettered: Taking Off With Hai Fleet"
 	landing
@@ -1240,7 +1242,7 @@ mission "Unfettered: Materials Intercepted"
 				`	"Nevermind, I'll let you be on your way."`
 					goto leaving
 			action
-				set "unfettered: accepted duel"
+				set "mercenaries: accepted duel"
 			branch cleanupdone
 				has "unfettered: cleaned up hydra"
 			`	"First we need to finish off all Hydra pirates remaining, do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
@@ -1312,7 +1314,7 @@ mission "Unfettered: Cavalry Arrives"
 				decline
 			label boardedship
 			branch noduel
-				not "unfettered: accepted duel"
+				not "mercenaries: accepted duel"
 			"All pirate reinforcements have been taken care of, and the Sea Dragons signal you they are ready to start the duel whenever you will take off again."
 			label noduel
 			"All pirate reinforcements have been taken care of, all that is left to do is to bring back the cargo."
