@@ -396,31 +396,46 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of these ships," he says.`
 			choice
 				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
-				`	"Just curious: Why do you call me monkey? Have I not earned your respect yet?"`
-					goto curious
+				`	"Why do you call me monkey? Have I not earned your respect yet?"`
+					goto monkey
 			`	"Not at all. They're something much more powerful, something so strong it would [contend with, beat] even your Carriers. We were producing Shield Beetles here for quite some time already, long before your pitiful [existence, coming here]." He actually seems to be believing what he just said, but it's a bit difficult to imagine something that much stronger than a Carrier developed by the Unfettered.`
 			choice
-				`	"Why can't I buy Shield Beetles here then?"`
+				`	"Why can't I even buy advanced Hai outfits here then?"`
 				`	"Nothing's better than a Carrier."`
 					goto brag
-			`	"We haven't allowed you to purchase our [biggest, strongest] ships because we didn't have the [capacity, resources] to build enough of them at the same time. But you may help us with that, actually."`
+			`	"We haven't allowed you to purchase our best outfits because we didn't have the [capacity, resources] to build enough of them at the same time. But you may help us with that, actually."`
 				goto mighty
 			label brag
 			`	"[Stupid, Young] monkey, thinks it knows everything... There are higher powers in this galaxy, and even then size isn't the only thing. Even if it is big and impressive, we have made something more advanced."`
 				goto mighty
-			label curious
+			label monkey
+			action
+				set "unfettered: monke"
 			`	He was about to say something, but instead ignores your question.`
 			label mighty
-			`	"If you want to [help, assist] us and get access to our mighty Shield Beetles and more, go to <destination>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass produce them."`
+			`	"If you want to [help, assist] us and get access to advanced Hai outfits and eventually more, go to <destination>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass produce them. Intel on how they manage to make Geocoris which such ease will be of use, too."`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
 			`	"Why would you need a [permission, authorization]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you have had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
 			choice
+				`	"Sure, let's do it."`
+					goto stupid
 				`	"I have a better idea: I'll tell them I come to collect your usual tribute."`
 				`	"This seems like it could easily go wrong. I'm not interested."`
 					decline
 			`	He seems genuinely impressed. "That is a [brilliant, mature] idea! Well what are you waiting for? Go on then."`
 				accept
+			label stupid
+			action
+				set "unfettered: stupid monkey"
+			`	"unfettered: stupid monkey! It was a test, let us hope that you will [shine more, be more impressive] by strength than by your cunning. That was not a good plan, to be [true, independent] you must learn think by yourself, not do all I tell you to."`
+			`	"This is why I call you monkey, you do not think enough before going into action."`
+				to display
+					has "unfettered: monke"
+			action
+				clear "unfettered: monke"
+			`	"You will pretend to bring this tribute of food, and use that as a pretext to wander around the ships with an alibi."`
+				accept			
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -438,6 +453,9 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			action
 				payment 1000000
 			`	"You had to pay a ship? Clever way to remove [suspicion, attention]. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more [detailed, refined] that what I even asked for."`
+			`	"It seems like you have some cunning after all."`
+				to display
+					has "unfettered: stupid monkey"
 			label noboughtship
 			choice
 				`	"Does this mean I can buy Shield Beetles now?"`
@@ -449,9 +467,13 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 					decline
 				`	"What about my pay, for the tribute?"`
 			label tribute
+			branch monkey
+				has "unfettered: stupid monkey"
 			action
-				payment 250000
+				payment 400000
 			`	He seems a bit surprised. "Oh, right. I had forgotten about that. Here: <payment>."`
+			label monkey
+			`	"You expect a pay? If you want money I am sure you can find jobs in the spaceport, but you have not proven yourself worthy of a pay."`
 
 
 
@@ -668,27 +690,21 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	on offer
 		conversation
 			`You see the He-Yi near the shipyard. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
-			branch "has access to hai SB"
-				"reputation: Hai" >= 100
 			choice
-				`	(Sure, I want my Shield Beetles!)`
-					goto gosee
+				`	(He promised some big ships eventually...)`
 				`	(Later.)`
 					defer
-			label "has access to hai SB"
-			choice
-				`	(I don't care much for Shield Beetles, but he promised some better ships too.)`
-				`	(I can already buy Shield Beetles from the Hai, why bother? I do not need any special ships, or outfits from here.)`
-					decline
-				`	(Later.)`
-					defer
-			label gosee
 			`	He does not seem very surprised to see you. "Coming for more [big, strong] ships?" You feel like him asking this is just a formality. He already knows your answer.`
 			choice
 				`	"Yeah. Just tell me what to do to help."`
 					goto help
 				`	"Why do you say that?"`
-			`	"I know that your species loves big things. I guess that makes two of us. Since you are here, you can help us anyway."`
+			`	"I know that monkeys love [big, strong] things. I guess they are not the only ones. Since you are here, you can help us anyway."`
+				to display
+					has "unfettered: stupid monkey"
+			`	"I know that your species loves [big, strong] things. I guess that makes two of us. Since you are here, you can help us anyway."`
+				to display
+					not "unfettered: stupid monkey"
 			label help
 			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial [materials, supplies] to build the new sections, and a lot of them. We already have some on the way, but more would help speed things up [significantly, reasonably], especially given that your jump drives can make it there faster than pirates. Hopefully that also results in less risk to [the cargo, your ship]."`
 			choice
@@ -707,11 +723,11 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
-		event "unfettered: shield beetle mass production" 30
+		event "unfettered: darkcloak outfitter upgrade" 30
 		conversation
 			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find an Herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward. Go to Firelode, Mera has a very peculiar gift for you, if you prove worthy of it. He-Yi also wants you to know you should check the job board for more jobs as this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided." As soon as they delivered their message, the Herald leave without giving you a chance to ask more questions.`
 
-event "unfettered: shield beetle mass production"
+event "unfettered: darkcloak outfitter upgrade"
 	planet "Darkcloak"
 		add outfitter "Unfettered"
 
@@ -720,7 +736,7 @@ mission "Unfettered: Improved Production"
 	source
 		attributes "unfettered"
 	to offer
-		has "event: unfettered: shield beetle mass production"
+		has "event: unfettered: darkcloak outfitter upgrade"
 	on offer
 		conversation
 			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
@@ -1131,8 +1147,6 @@ ship "Stag Beetle"
 	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
 
 conversation "unfettered war ready"
-	action
-		event "shield beetles accessible"
 	`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
 	choice
 		`	"You were overconfident, and that's what let you down."`
@@ -1149,7 +1163,7 @@ conversation "unfettered war ready"
 	`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
 	`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
 	label train
-	`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
+	`	"The war will start soon, but there is still some time to train. Use that time well, Captain."`
 
 mission "Unfettered: Ready For The War"
 	name `Strength of a Leader`
@@ -1161,7 +1175,7 @@ mission "Unfettered: Ready For The War"
 		<question> "Why is your hull black?"
 			has "Unfettered: Cloaking Interest: done"
 	to offer
-		has "event: unfettered: shield beetle mass production"
+		has "event: unfettered: darkcloak outfitter upgrade"
 		has "event: unfettered: new cooling system"
 		has "Unfettered: Special Cargo: done"
 		has "language: Wanderer"
@@ -1285,7 +1299,3 @@ mission "Unfettered: Ready For The War"
 event "joined the unfettered"
 	government "Escort"
 		swizzle 4
-
-event "shield beetles accessible"
-	planet "Darkcloak"
-		add shipyard "Unfettered"

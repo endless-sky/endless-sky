@@ -30,11 +30,9 @@ shipyard "Mon Ki o'Uden Advanced"
 	"Aphid"
 	"Lightning Bug"	#Stolen
 	"Sea Scorpion"
+	"Shield Beetle"
 	# Has "Solifuge" and "Violin Spider" added by event.
 	# Technically has the specs for the "Ladybug" but not the resources or interest to build it.
-
-shipyard "Mon Ki o'Uden Restricted"
-	"Shield Beetle"
 
 # Mon Ki i'Hiya Consortium (loyalist) shipyards:
 shipyard "Mon Ki i'Hiya Basics"
