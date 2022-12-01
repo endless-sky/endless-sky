@@ -38,7 +38,7 @@ public:
       // plus up to 64k comment. Read the last 64k + 22 bytes, and scan
       // backwards for the signature.
       uint8_t buffer[65536 + 22];
-      uint64_t buffer_size = std::min(65536ul + 22, m_file_size);
+      uint64_t buffer_size = std::min((uint64_t)(65558 + 22), m_file_size);
       in.seekg(-buffer_size, std::ios::end);
       in.read((char*)buffer, buffer_size);
       uint64_t eocd_pos = 0;

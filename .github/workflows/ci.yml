@@ -74,7 +74,7 @@ jobs:
     - name: Upload apks
       uses: actions/upload-artifact@v2
       with:
-        name: debug-arm64-v8a
+        name: endless-mobile-debug-latest.apk
         path: android/app/build/outputs/apk/debug/app-debug.apk
     - name: Install github-release
       run: |
