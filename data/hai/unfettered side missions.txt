@@ -12,8 +12,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-
-
 mission "Unfettered returning home"
 	minor
 	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
@@ -580,198 +578,6 @@ mission "Unfettered: Alpha Leaving With Supplies"
 
 
 
-outfit "Loot"
-	category "Special"
-	thumbnail "outfits/unknown"
-	cost 1000
-	"mass" 1
-	description "You're not sure what this is, but you feel your hair go up when you're near the cargo... Probably best not to touch it."
-
-ship "Behemoth" "Behemoth (Mammoth)"
-	outfits
-		"Boulder Reactor"
-		"Chameleon Anti-Missile"
-		"Fuel Pod"
-		"Hai Diamond Regenerator"
-		"Hai Fissure Batteries"
-		"Hai Tracker" 112
-		"Hai Tracker Pod" 2
-		"Pulse Turret" 5
-		"Scram Drive"
-		"Small Radar Jammer"
-		"X3200 Ion Steering"
-		"X3700 Ion Thruster"
-	cargo
-		outfits
-			"Loot" 400
-
-ship "Marauder Firebird" "Marauder Firebird (Bars)"
-	cargo
-		outfits
-			"Gold Bars" 15
-
-mission "Unfettered: Loot: Ion Cannon Materials"
-	name `Loot cargo ship`
-	description `There is an undefended cargo ship near <waypoints>. Find it and bring its cargo back!`
-	source "Darkcloak"
-	to offer
-		has "Unfettered: Solifuge 5: Materials For Ships: done"
-		or
-			not "unfettered: offered loot"
-			random < 30
-	on defer
-		set "unfettered: offered loot"
-	on offer
-		conversation
-			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you, although they are doing more than drinking and chatting, judging by the smell...`
-			choice
-				`	(Join him.)`
-				`	(I don't have time for this now.)`
-					defer
-			`	The bar almost feels familiar. There are of course weird beverages, and the general architecture of it is simple to say the least, like all Unfettered buildings. But, in a way, it looks similar to pirate bars. Maybe some things are common between alien species...`
-			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks, or consumed too much of whatever that weird smell comes from. When he sees you, he starts shouting. "This is my friend, Captain <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
-			choice
-				`	"Old ship? You don't have it any more?"`
-					goto ship
-				`	"To be fair, you did ask for it."`
-			`	"True... true... I even provoked ya, didn't I?" He's probably not angry about it, but he really seems agitated - so much so that he spills some of the purple liquid from his drink onto the floor.`
-			choice
-				`	"So, what happened to your ship?"`
-			label ship
-			`	Nostalgia fills his eyes. "My beauty, the Intrepid! Pretty she was! Well... we made quite a large sum of money last time, and I thought I just needed a wee bit more to get a new ship. I sold the old one and took out a loan at the bank. But when I got to the shipyard, they told me the ship I wanted was another million credits more than I thought. Now I've got plenty of credits, but not enough for a ship."`
-			choice
-				`	"I've noticed you lost your... accent?"`
-			`	At first he does not seem to understand, and then starts laughing uncontrollably for a while. "Matey, it's just branding! After doing a lot of business with human pirates, I was led to believe humans all spoke this way. What a laugh they must have had thinking of me, unsuspecting the prank! But I noticed that it helps to get the business going to speak this way. It helps intimidating some, and attracting others. It shows part of a clan... So I spoke like that with you at first as well. Now it's not of any use anymore though, so I'll stop."`
-			choice
-				`	"Can I help you in any way?"`
-				`	"Do you happen to have any jobs like the one last time?"`
-			`	"Well, now that you ask... I do have an idea, but I don't think I'm quite fit for it. There's a defenseless cargo ship moving through space, almost asking to be taken. Maybe we should remove that burden from its owner, if you know what I mean." This doesn't seem like a very legal proposition.`
-			choice
-				`	"I know what you mean."`
-					goto tellmore
-				`	"Be more specific."`
-				`	"You mean attack a defenseless ship?"`
-					goto alternative
-			`	He seems to get a bit angry. "There's a ship with precious cargo that we want. Specific enough for you?" It's probably best not to push him too far, especially considering the state he's in right now. The Hai seem to have a different reaction to alcohol, or maybe this wasn't even alcohol at all...`
-			choice
-				`	"Tell me more about it."`
-				`	"That's still not too clear, but I'll manage."`
-			label tellmore
-			`	"It would probably be a good idea to be around <waypoints> very soon, monkey. But I still want my cut for giving you this information. You'll get 75% of the cut. But be sure to bring back at least 400 tons of cargo, or there's no deal!" The Alpha Auxiliary you managed to capture not long ago seems perfect for this task, but maybe it's not as easy as he presents it.`
-			choice
-				`	"I'll go before the trail gets cold."`
-					accept
-				`	"Is there an alternative to attacking a defenseless ship?"`
-					goto alternative
-				`	"I'll do it for 80%."`
-			`	"It's 75%, leave it or take it. And don't even think about selling the cargo. Trust is something very important to us Hai, Unfettered or not!"`
-			choice
-				`	"Okay, whatever."`
-					accept
-			label alternative
-			`	"There is another way, but it's no fun. I could just pay that cargo, instead of paying you to get it... But the captain asked for a stupid amount of money for it. So in that case, I want a compensation of 500 000 credits from you."`
-			choice
-				`	"A small amount to pay to avoid needless bloodshed."`
-				`	"I'd prefer to hunt it down, in that case."`
-					goto tellmore
-			action
-				fine 500000
-			`	He doesn't seem too convinced about that, but agrees on the deal. He really seems disappointed about it, and you suspect he may even pay someone else to do it instead of you.`
-				decline
-	waypoint "Rajak"
-	on waypoint
-		dialog `You can't find the ship here, but you find a bit of abandoned cargo. There may have been a fight... Maybe the ship has ran away to a nearby system.`
-	on enter "Sumar"
-		conversation
-			`Multiple pirate ships have already disabled the ship and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
-			`	"This is our loot, maggot! We've already done most of the work, you won't be stealing the bounty now, especially since the boss asked for this fat ship to be taken down, and no other. Get out of here right now, and we'll pretend we didn't see your ugly ship!" They aren't in the mood for negotiations.`
-			choice
-				`	"I'll be taking that cargo, like it or not."`
-					goto words
-				`	"Can I just take the cargo and leave you with the ship?"`
-					goto loot
-				`	"I don't want any trouble. I'll leave immediately."`
-			`	"I'm feeling very generous today, mate! We'll help you find your way out, fast!"`
-				accept
-			label loot
-			`	"It's all or nothing mate, and we've got the all. If you want it, come try and take it."`
-				decline
-			label words
-			`	"Those will be your last words, scum. Should've chosen better ones!"`
-
-	npc board
-		government "Hydra"
-		system "Sumar"
-		personality derelict staying target
-		ship "Behemoth (Mammoth)" "Mammoth"
-	npc evade
-		government "Mercenaries"
-		personality disables staying
-		system "Sumar"
-		fleet "Small Northern Pirates" 6
-		ship "Marauder Firebird (Bars)" "Valkiry"
-
-	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
-		# you may decline this mission but if you accept it, you need to finish it
-	on visit
-		dialog `You have landed on <origin> but you do not have the spoils yet, or the escorts carrying them haven't arrived in the system yet.`
-	on complete
-		clear "unfettered: offered loot"
-		log `Found some "defenseless" cargo in space, and brought it back to the Unfettered.`
-		outfit "Loot" -400
-		payment 2000000
-		conversation
-			`You arrive back at the bar and find Si-Ra speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs, games, and fun, friends! Here is your share: <payment>. Now we can forget about our problems and celebrate victory!" He raises his drink and then moves it to the right, soon followed by all others. This is probably a Hai custom of some kind - or at least an Unfettered one.`
-			choice
-				`	(Rejoice with them.)`
-				`	(Go.)`
-					decline
-			`	You continue the celebration with them, and before long Si-Ra is drunk again. You figure the pirates from earlier probably knew about the Behemoth because of his lack of discretion.`
-			choice
-				`	"You should be more careful. I was almost beaten to the chase by pirates."`
-				`	"What was this loot about anyway?"`
-					goto loot
-				`	(Just celebrate.)`
-					goto celebrate
-			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
-			label loot
-			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like the outcome."`
-			choice
-				`	"Outcome?"`
-				`	(Leave.)`
-					decline
-			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds."`
-			choice
-				`	(Celebrate.)`
-					goto celebrate
-				`	"We really did the Alphas a nasty one by stealing their jump drives earlier, right?" (Pretend you know who the drives belonged to.)`
-				`	"Those pirates did not see the stealing of their jump drives on Freedom, am I right?" (Pretend you know who the drives belonged to.)`
-					goto pirates
-			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? Well, whatever, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
-				goto celebrate
-			label pirates
-			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah! I see I am not the only one then..." His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
-			label celebrate
-			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sookootow was taking when you first came here, now he has a purple one.`
-			choice
-				`	(The purple one.)`
-				`	(The green one.)`
-					goto green
-				`	(Neither.)`
-					goto none
-			`	The purple beverage seems to make you dizzy, but you manage it well enough.`
-				goto continue
-			label green
-			`	The green beverage is very exciting, and keeps you invigorated for hours.`
-			label continue
-			`	You continue the party late into the night. There won't be any way to get information out of Si-Ra now - he's heavily inebriated. After several hours, you leave with a slight headache. These Unfettered drinks are stronger than you thought, but you don't feel drunk in the way human drinks would make you.`
-				decline
-			label none
-			`	Even without a drink you can celebrate! You continue the party until late, even though some Unfettered do not seem to appreciate that you drink very little, if at all. You leave after several hours and get a good night's rest.`
-
-
-
 mission "Unfettered: Cargo on Mirrorlake"
 	landing
 	invisible
@@ -827,7 +633,7 @@ mission "Unfettered: Wanderer Homeworld"
 	destination "Vara K'chrai"
 	clearance "You manage to make the aliens understand you are here to talk, and they allow you to land."
 	to offer
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "Unfettered: Solifuge 9: Bigger Ships: done"
 		not "language: Wanderer"
 	to fail
 		has "Unfettered: Speak Hai: failed"
@@ -840,7 +646,7 @@ mission "Unfettered: Speak Hai"
 	source "Firelode"
 	stopover "Warfeed"
 	to offer
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "Unfettered: Solifuge 9: Bigger Ships: done"
 		not "language: Wanderer"
 	on offer
 		conversation
@@ -937,7 +743,7 @@ mission "Unfettered: Weird Aliens Spotted"
 	destination "Warfeed"
 	to offer
 		has "Unfettered: Know Your Enemy: offered"
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "Unfettered: Solifuge 9: Bigger Ships: done"
 	on enter "Pug Iyik"
 		dialog `These aliens do not look like the rest of the Wanderers at all! You should probably warn the Unfettered about it, on <destination>.`
 	on complete
@@ -979,7 +785,7 @@ mission "Unfettered: Know Your Enemy"
 	destination "Warfeed"
 	to offer
 		has "language: Wanderer"
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "Unfettered: Solifuge 9: Bigger Ships: done"
 		not "Unfettered: Speak Hai: active"
 	on offer
 		log "Minor People" "Mysterious Unfettered Herald" "A herald of He-Yi that does not want to reveal his true identity. He seems to have a lot of culture, and stays calm in most situations."
@@ -1341,8 +1147,8 @@ mission "Unfettered: Close Quarter"
 	source "Warfeed"
 	to offer
 		or
-			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
-			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: declined"
+			has "Unfettered: Solifuge 9: Bigger Ships: done"
+			has "Unfettered: Solifuge 9: Bigger Ships: declined"
 		or
 			not "unfettered: offered close quarter"
 			random < 30

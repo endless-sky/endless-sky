@@ -11,8 +11,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-
-
+# SPOILER: concept: these contain fuel that comes from ancient space behemoths that have since almost all migrated
+# it is going to be used to power the dimentional eraser, a misused Pug engine that got distrupted by the gases emanating from the leviathan
+# the mercenaries would do anything to make sure they are safe.
 outfit "Gold Bars"
 	category "Special"
 	plural "Gold Bars"
@@ -274,17 +275,18 @@ phrase "mercenaries defeated"
 	word
 		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
 
+# attacks to get the bars back, in Hai and human space; as they have more influence in human space they are more numerous there
 mission "Mercenaries: Nemo Me Impune Lacessit"
 	minor
 	landing
 	invisible
 	repeat
 	source
-		near "Ya Hai" 10
-	to offer
 		or
-			has "outfit (installed): Gold Bars"
-			has "outfit (cargo): Gold Bars"
+			near "Ya Hai" 10
+			near Sol 100
+	to offer
+		has "outfit: Gold Bars"
 		not "mercenaries: sold bars"
 		not "mercenaries: took out leader"
 		random < 3
@@ -297,7 +299,7 @@ mission "Mercenaries: Nemo Me Impune Lacessit"
 	to fail
 		or
 			has "mercenaries: took out leader"
-			"outfit (installed): Gold Bars" + "outfit (cargo): Gold Bars" == 0
+			not "outfit: Gold Bars"
 
 mission "Mercenaries: Nemo Me Impune Lacessit 2"
 	minor
@@ -307,7 +309,7 @@ mission "Mercenaries: Nemo Me Impune Lacessit 2"
 	source
 		near Sol 100
 	to offer
-		"outfit (installed): Gold Bars" + "outfit (cargo): Gold Bars" > 15
+		"outfit: Gold Bars" > 15
 		not "mercenaries: sold bars"
 		not "mercenaries: took out leader"
 		random < 1
@@ -320,10 +322,12 @@ mission "Mercenaries: Nemo Me Impune Lacessit 2"
 	to fail
 		or
 			has "mercenaries: took out leader"
-			"outfit (installed): Gold Bars" + "outfit (cargo): Gold Bars" == 0
+			not "outfit: Gold Bars"
 
 
 
+# SPOILER: mercenaries sometimes save pirates from slavery, in exchange for a life debt.
+# Some of your crew may be part of that, or maybe it is just any pirate from this world that tries to get them, attracted by the huge reward.
 mission "Mercenaries: Betrayal For The Bars"
 	landing
 	invisible
@@ -432,6 +436,7 @@ mission "Mercenaries: Betrayal For The Bars"
 	on accept
 		fail "Mercenaries: Betrayal For The Bars"
 
+# sells the bars if you agreed to the deal, 1 million a piece.
 mission "Mercenaries: Bar Selling"
 	minor
 	landing
@@ -463,10 +468,12 @@ mission "Mercenaries: Bar Selling 2"
 
 
 
+# they'll help you take out the governor's escort if you agree to the deal
 event "friendly mercenaries"
 	"reputation: Mercenaries" >?= 0
+
 event "end of deal"
-	"reputation: Mercenaries" = -1000
+	"reputation: Mercenaries" <?= -1000
 
 # SPOILERS: the tracker is not on the ship, it's on you so that's why the Hai don't find it, and this communication can happen.
 # the mercenaries want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
@@ -574,6 +581,8 @@ event "mercenaries: joined"
 	government "Escort"
 		swizzle 9
 
+# they get mad when you kill the twins, striking at you after they had time to muster their strength.
+# the Hai did not dare to contest them
 mission "Mercenaries: Daemons Unleashed"
 	landing
 	invisible
@@ -646,6 +655,7 @@ ship "Corvette" "Corvette (Harpy)"
 
 
 
+# happens when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
 mission "Unfettered: Special Cargo 1B"
 	landing
 	invisible

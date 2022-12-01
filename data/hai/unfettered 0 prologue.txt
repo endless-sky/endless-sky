@@ -12,8 +12,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-
-
 mission "First Contact: Unfettered"
 	landing
 	source
@@ -388,7 +386,7 @@ mission "Unfettered: Bring Hai"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		has "reputation: Hai" >= 0
-		# garanteed to offer the first time and then 20% chance
+		# guaranteed to offer the first time and then 20% chance
 		or
 			not "unfettered: offered bring hai"
 			random < 20
@@ -608,6 +606,7 @@ mission "Unfettered: Bring Medical Supplies"
 
 
 # SPOILER: he tests your military aptitudes before asking you to take him to pirate space.
+# gameplay wise if you win this mission you should be able to do the following ones, it tests your strength is high enough.
 mission "Unfettered: Prove Your Strength"
 	name `Defeat the captain`
 	description `A young Unfettered captain has provoked you in a duel. Disable his ship.`

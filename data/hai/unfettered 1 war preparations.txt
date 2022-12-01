@@ -11,8 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-
-
 mission "Unfettered: Alphas: Find The Auxiliary"
 	name `Find the Auxiliary`
 	description `Go to <destination> to learn where you can find the Alpha ship.`
@@ -66,11 +64,6 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			`	Whatever it was that emitted the message your sensors did not manage to detect it, and you assume neither did the Unfettered's. This message was meant for your ears alone.`
 
 
-
-
-ship "Far Osk 27" "Far Osk 27 (Hacked)"
-	add attributes
-		"self destruct" -.6
 
 mission "Unfettered: Alphas 2: Prove Yourself"
 	landing
@@ -136,7 +129,6 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		dialog `There are traces here indeed. You spot one system with no hyperspace links north-east of here. It seems like a logical place for the Alphas to go, considering the drones do not appear to have jump drives.`
 	on enter "Host"
 		dialog `You arrive in the system expecting to find a vault and the ship repairing, but it's a trap! The Auxiliary from earlier is indeed here, but it's not damaged at all, and it looks like it's waiting for you with quite a few drones. Whatever the case, it probably has the jump drives on board or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. Strangely, you do not find a single trace of the particles in this system.`
-	
 	npc capture
 		government "Alpha"
 		system "Host"
@@ -148,23 +140,23 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying
-		ship "Far Osk 27 (Hacked)" "Prancer"
-		ship "Far Osk 27 (Hacked)" "Comet"
-		ship "Far Osk 27 (Hacked)" "Dagger"
-		ship "Far Osk 27 (Hacked)" "Oren"
-		ship "Far Lek 14" "Mert"
-		ship "Far Lek 14" "Dart"
+		ship "Far Osk 27" "Prancer"
+		ship "Far Osk 27" "Comet"
+		ship "Far Osk 27" "Dagger"
+		ship "Far Osk 27" "Oren"
+		ship "Far Osk 27" "Mert"
+		ship "Far Osk 27" "Dart"
+	# additional fighters if the Alphas were uncontested by the mercenaries. one can use these to fill their Auxiliary with fighters ;)
 	npc
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying
 		to spawn
 			has "mercenaries: thorn talon death"
-		ship "Far Lek 14" "Vengeance"
-		ship "Far Lek 14" "Greed"
-		ship "Far Lek 14" "Darcy"
-		ship "Far Lek 14" "Karen"
-
+		ship "Far Osk 27" "Vengeance"
+		ship "Far Osk 27" "Greed"
+		ship "Far Osk 27" "Darcy"
+		ship "Far Osk 27" "Karen"
 	to fail
 		has "Wanderers: Defend Vara Ke'sok: done"
 	on fail
@@ -247,10 +239,6 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 
 
 
-phrase "unfettered warning before leaving"
-	word
-		"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back if they are on escorts, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
-
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	landing
 	name "Time for questions"
@@ -268,28 +256,28 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 			choice
 				`	(Explore the Auxiliary.)`
 				`	(Leave the planet.)`
-					decline
+					goto warning
 			`	As you explore the Auxiliary, you find out more about their flight patterns. It seems the Alphas had big plans for these prisoners, as you see the lizard head symbol from earlier on many log entries, but the details are so well-encrypted that there is no hope learning more any time soon. You do find their captain's most recent log: apparently, they had indeed been waiting here to ambush you on arrival. You must have really scared them by scanning them in the Unfettered system to warrant such extreme response... Or maybe it's more than that.`
 			choice
 				`	(Look for reports of the leak.)`
 				`	(Better not dig too deep.)`
-					decline
+					goto warning
 			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Indeed the instructions to lay those weird traces were explained to these mercenaries in detail. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Mera really think it was a jump drive malfunction?`
 			`	You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 				accept
+			label warning
+			"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back if they are on escorts, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
 		outfit "Jump Drive" 10
 		clear "unfettered: capped auxiliary"
-	
-	on decline
-		dialog phrase "unfettered warning before leaving"
 	on enter "Host"
-		dialog phrase "unfettered warning before leaving"
+		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back if they are on escorts, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system, using the Wanderer ramscoop."
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
 		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 
 
 
+# SPOILER: they say it's for ships but they actually have plenty of those built. In truth this is mostly to build habitations.
 mission "Unfettered: Solifuge 5: Materials For Ships"
 	name `Gather materials from asteroids`
 	description `Mine 100 tons of silicon from the asteroid field in Wah Yoot and 15 tons of silver from the asteroid field in <waypoints> and then bring them back to <destination> for <payment>.`
@@ -428,7 +416,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			label stupid
 			action
 				set "unfettered: stupid monkey"
-			`	"unfettered: stupid monkey! It was a test, let us hope that you will [shine more, be more impressive] by strength than by your cunning. That was not a good plan, to be [true, independent] you must learn think by yourself, not do all I tell you to."`
+			`	"Stupid monkey! It was a test, let us hope that you will [shine more, be more impressive] by strength than by your cunning. That was not a good plan, to be [true, independent] you must learn think by yourself, not do all I tell you to."`
 			`	"This is why I call you monkey, you do not think enough before going into action."`
 				to display
 					has "unfettered: monke"
@@ -458,10 +446,10 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 					has "unfettered: stupid monkey"
 			label noboughtship
 			choice
-				`	"Does this mean I can buy Shield Beetles now?"`
+				`	"Does this mean I can buy the new ships now?"`
 				`	"What about my pay, for the tribute?"`
 					goto tribute
-			`	He seems amused. "For that, you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to Shield Beetles.`
+			`	He seems amused. "They are not completed building and for that you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to Shield Beetles.`
 			choice
 				`	(Go.)`
 					decline
@@ -477,6 +465,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 
 
 
+# linked to the previous mission, it's what happens when you land to get intel
 mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 	landing
 	invisible
@@ -565,6 +554,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 
 
 
+# this is how the Koraths gain some trust of the Unfettered (who expect results)
 mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	landing
 	name `Primitive Cooling Technology`
@@ -673,7 +663,200 @@ mission "Unfettered: New Cooling Available"
 
 
 
-mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
+outfit "Loot"
+	category "Special"
+	thumbnail "outfits/unknown"
+	cost 1000
+	"mass" 1
+	description "You're not sure what this is, but you feel your hair go up when you're near the cargo... Probably best not to touch it."
+
+ship "Behemoth" "Behemoth (Mammoth)"
+	outfits
+		"Boulder Reactor"
+		"Chameleon Anti-Missile"
+		"Fuel Pod"
+		"Hai Diamond Regenerator"
+		"Hai Fissure Batteries"
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Pulse Turret" 5
+		"Scram Drive"
+		"Small Radar Jammer"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+	cargo
+		outfits
+			"Loot" 400
+
+ship "Marauder Firebird" "Marauder Firebird (Bars)"
+	cargo
+		outfits
+			"Gold Bars" 15
+
+# SPOILER: he payed some mercenaries to do it as well, best one gets the loot. You can also decline this and they go uncontested.
+# ionic materials (probably stolen from Hai tech in part) used to make the prototype weaponry for your Modified Beetle.
+mission "Unfettered: Loot: Ion Cannon Materials"
+	name `Loot cargo ship`
+	description `There is an undefended cargo ship near <waypoints>. Find it and bring its cargo back!`
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+		or
+			not "unfettered: offered loot"
+			random < 30
+	on defer
+		set "unfettered: offered loot"
+	on offer
+		conversation
+			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you, although they are doing more than drinking and chatting, judging by the smell...`
+			choice
+				`	(Join him.)`
+				`	(I don't have time for this now.)`
+					defer
+			`	The bar almost feels familiar. There are of course weird beverages, and the general architecture of it is simple to say the least, like all Unfettered buildings. But, in a way, it looks similar to pirate bars. Maybe some things are common between alien species...`
+			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks, or consumed too much of whatever that weird smell comes from. When he sees you, he starts shouting. "This is my friend, Captain <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
+			choice
+				`	"Old ship? You don't have it any more?"`
+					goto ship
+				`	"To be fair, you did ask for it."`
+			`	"True... true... I even provoked ya, didn't I?" He's probably not angry about it, but he really seems agitated - so much so that he spills some of the purple liquid from his drink onto the floor.`
+			choice
+				`	"So, what happened to your ship?"`
+			label ship
+			`	Nostalgia fills his eyes. "My beauty, the Intrepid! Pretty she was! Well... we made quite a large sum of money last time, and I thought I just needed a wee bit more to get a new ship. I sold the old one and took out a loan at the bank. But when I got to the shipyard, they told me the ship I wanted was another million credits more than I thought. Now I've got plenty of credits, but not enough for a ship."`
+			choice
+				`	"I've noticed you lost your... accent?"`
+			`	At first he does not seem to understand, and then starts laughing uncontrollably for a while. "Matey, it's just branding! After doing a lot of business with human pirates, I was led to believe humans all spoke this way. What a laugh they must have had thinking of me, unsuspecting the prank! But I noticed that it helps to get the business going to speak this way. It helps intimidating some, and attracting others. It shows part of a clan... So I spoke like that with you at first as well. Now it's not of any use anymore though, so I'll stop."`
+			choice
+				`	"Can I help you in any way?"`
+				`	"Do you happen to have any jobs like the one last time?"`
+			`	"Well, now that you ask... I do have an idea, but I don't think I'm quite fit for it. There's a defenseless cargo ship moving through space, almost asking to be taken. Maybe we should remove that burden from its owner, if you know what I mean." This doesn't seem like a very legal proposition.`
+			choice
+				`	"I know what you mean."`
+					goto tellmore
+				`	"Be more specific."`
+				`	"You mean attack a defenseless ship?"`
+					goto alternative
+			`	He seems to get a bit angry. "There's a ship with precious cargo that we want. Specific enough for you?" It's probably best not to push him too far, especially considering the state he's in right now. The Hai seem to have a different reaction to alcohol, or maybe this wasn't even alcohol at all...`
+			choice
+				`	"Tell me more about it."`
+				`	"That's still not too clear, but I'll manage."`
+			label tellmore
+			`	"It would probably be a good idea to be around <waypoints> very soon, monkey. But I still want my cut for giving you this information. You'll get 75% of the cut. But be sure to bring back at least 400 tons of cargo, or there's no deal!" The Alpha Auxiliary you managed to capture not long ago seems perfect for this task, but maybe it's not as easy as he presents it.`
+			choice
+				`	"I'll go before the trail gets cold."`
+					accept
+				`	"Is there an alternative to attacking a defenseless ship?"`
+					goto alternative
+				`	"I'll do it for 80%."`
+			`	"It's 75%, leave it or take it. And don't even think about selling the cargo. Trust is something very important to us Hai, Unfettered or not!"`
+			choice
+				`	"Okay, whatever."`
+					accept
+			label alternative
+			`	"There is another way, but it's no fun. I could just pay that cargo, instead of paying you to get it... But the captain asked for a stupid amount of money for it. So in that case, I want a compensation of 500 000 credits from you."`
+			choice
+				`	"A small amount to pay to avoid needless bloodshed."`
+				`	"I'd prefer to hunt it down, in that case."`
+					goto tellmore
+			action
+				fine 500000
+			`	He doesn't seem too convinced about that, but agrees on the deal. He really seems disappointed about it, and you suspect he may even pay someone else to do it instead of you.`
+				decline
+	waypoint "Rajak"
+	on waypoint
+		dialog `You can't find the ship here, but you find a bit of abandoned cargo. There may have been a fight... Maybe the ship has ran away to a nearby system.`
+	on enter "Sumar"
+		conversation
+			`Multiple pirate ships have already disabled the ship and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
+			`	"This is our loot, maggot! We've already done most of the work, you won't be stealing the bounty now, especially since the boss asked for this fat ship to be taken down, and no other. Get out of here right now, and we'll pretend we didn't see your ugly ship!" They aren't in the mood for negotiations.`
+			choice
+				`	"I'll be taking that cargo, like it or not."`
+					goto words
+				`	"Can I just take the cargo and leave you with the ship?"`
+					goto loot
+				`	"I don't want any trouble. I'll leave immediately."`
+			`	"I'm feeling very generous today, mate! We'll help you find your way out, fast!"`
+				accept
+			label loot
+			`	"It's all or nothing mate, and we've got the all. If you want it, come try and take it."`
+				decline
+			label words
+			`	"Those will be your last words, scum. Should've chosen better ones!"`
+	npc board
+		government "Hydra"
+		system "Sumar"
+		personality derelict staying target
+		ship "Behemoth (Mammoth)" "Mammoth"
+	npc evade
+		government "Mercenaries"
+		personality disables staying
+		system "Sumar"
+		fleet "Small Northern Pirates" 6
+		ship "Marauder Firebird (Bars)" "Valkiry"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+		# you may decline this mission but if you accept it, you need to finish it
+	on visit
+		dialog `You have landed on <origin> but you do not have the spoils yet, or the escorts carrying them haven't arrived in the system yet.`
+	on complete
+		clear "unfettered: offered loot"
+		log `Found some "defenseless" cargo in space, and brought it back to the Unfettered.`
+		outfit "Loot" -400
+		payment 2000000
+		conversation
+			`You arrive back at the bar and find Si-Ra speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs, games, and fun, friends! Here is your share: <payment>. Now we can forget about our problems and celebrate victory!" He raises his drink and then moves it to the right, soon followed by all others. This is probably a Hai custom of some kind - or at least an Unfettered one.`
+			choice
+				`	(Rejoice with them.)`
+				`	(Go.)`
+					decline
+			`	You continue the celebration with them, and before long Si-Ra is drunk again. You figure the pirates from earlier probably knew about the Behemoth because of his lack of discretion.`
+			choice
+				`	"You should be more careful. I was almost beaten to the chase by pirates."`
+				`	"What was this loot about anyway?"`
+					goto loot
+				`	(Just celebrate.)`
+					goto celebrate
+			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
+			label loot
+			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like the outcome."`
+			choice
+				`	"Outcome?"`
+				`	(Leave.)`
+					decline
+			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds."`
+			choice
+				`	(Celebrate.)`
+					goto celebrate
+				`	"We really did the Alphas a nasty one by stealing their jump drives earlier, right?" (Pretend you know who the drives belonged to.)`
+				`	"Those pirates did not see the stealing of their jump drives on Freedom, am I right?" (Pretend you know who the drives belonged to.)`
+					goto pirates
+			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? Well, whatever, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
+				goto celebrate
+			label pirates
+			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah! I see I am not the only one then..." His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
+			label celebrate
+			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sookootow was taking when you first came here, now he has a purple one.`
+			choice
+				`	(The purple one.)`
+				`	(The green one.)`
+					goto green
+				`	(Neither.)`
+					goto none
+			`	The purple beverage seems to make you dizzy, but you manage it well enough.`
+				goto continue
+			label green
+			`	The green beverage is very exciting, and keeps you invigorated for hours.`
+			label continue
+			`	You continue the party late into the night. There won't be any way to get information out of Si-Ra now - he's heavily inebriated. After several hours, you leave with a slight headache. These Unfettered drinks are stronger than you thought, but you don't feel drunk in the way human drinks would make you.`
+				decline
+			label none
+			`	Even without a drink you can celebrate! You continue the party until late, even though some Unfettered do not seem to appreciate that you drink very little, if at all. You leave after several hours and get a good night's rest.`
+
+
+
+# Materials used to finalize your Modified Beetle.
+mission "Unfettered: Solifuge 9: Bigger Ships"
 	name `Bring industrials materials`
 	description `Go to <stopovers> and load up <cargo>`
 	source "Darkcloak"
@@ -743,6 +926,7 @@ mission "Unfettered: Improved Production"
 
 
 
+# You have to bring all materials (or pay for them) and tech and then you gotta fight them for it. This one really is deserved!
 mission "Unfettered: Earn Your Prize"
 	landing
 	name "Earn your prize"
@@ -750,7 +934,7 @@ mission "Unfettered: Earn Your Prize"
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "Unfettered: Solifuge 9: Bigger Ships: done"
 	on offer
 		conversation
 			"Do you want to go see Mera now to collect your prize, as He-Yi's Herald suggested?"
@@ -860,7 +1044,6 @@ mission "Unfettered: Earn Your Prize"
 			label delay
 			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect the preparations to last more than a week or two. It is not so much a matter of finding what you asked for, but of getting the permission to equip it on this ship. Once the ship is ready, it will be waiting for you on Darkcloak, since that is where I will make the necessary modifications."`
 				decline
-
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -868,7 +1051,7 @@ mission "Unfettered: Earn Your Prize"
 	to complete
 		has "unfettered: defeated Mera"
 	on complete
-		# prize in Side Missions
+		# prizes granted in Side Missions depending on your choice
 		clear "unfettered: defeated Mera"
 
 
@@ -908,7 +1091,7 @@ mission "Unfettered: Special Cargo"
 	name `Mystery item`
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
 	to offer
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "Unfettered: Solifuge 9: Bigger Ships: done"
 		has "reputation: Hai" >= 0 # required for the mission after this one
 	source "Darkcloak"
 	waypoint "Alcyone"
@@ -962,6 +1145,7 @@ mission "Unfettered: Special Cargo"
 
 
 
+# you may refuse to set it up to not spread mistrust with the Hai.
 mission "Unfettered: Special Cargo 2"
 	landing
 	name `Mystery Gathering`
@@ -1044,6 +1228,7 @@ mission "Unfettered: Special Cargo 2"
 
 
 
+# Sa-Ri's Beetle, the ultimate shredder.
 ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 	add attributes
 		"outfit space" 2
@@ -1062,7 +1247,7 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
-# He Yi's Beetle (has flamethrower variant defined in the side missions)
+# He Yi's Beetle (has flamethrower variant defined in the side missions, provided you sell flamers)
 ship "Stag Beetle"
 	sprite "ship/hai stag beetle"
 	thumbnail "thumbnail/hai stag beetle"
@@ -1165,6 +1350,7 @@ conversation "unfettered war ready"
 	label train
 	`	"The war will start soon, but there is still some time to train. Use that time well, Captain."`
 
+# This mission partly is intended as a test to make sure you are strong enough for the following part of the campaign, but they also give you your license and salary, with official colors.
 mission "Unfettered: Ready For The War"
 	name `Strength of a Leader`
 	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
@@ -1253,48 +1439,73 @@ mission "Unfettered: Ready For The War"
 				"unfettered: questions" > 3
 			choice
 				`	"What does this sword do?"`
+					to display
+						not "unfettered: sword choice"
 				`	"Why is your ship named Tejolis?"`
+					to display
+						not "unfettered: name choice"
 					goto tejolis
 				`	"Why is your ship hull so strong?"`
+					to display
+						not "unfettered: hull choice"
 					goto hull
 				`	"<question>"`
+					to display
+						not "unfettered: cloak choice"
 					goto cloak
 				`	"What kind of weapons are you using?"`
+					to display
+						not "unfettered: weapon choice"
 					goto weapon
 				`	"I am honoured, but I don't have any more questions."`
-					accept
+					goto clearconditions
+			action
+				set "unfettered: sword choice"
 			`	"You are aware of what our keystones are, right? They aren't believed to give [luck, fame] for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a [gun, simple weapon] for boarding. It was given to me by the council many years ago, matching my [responsibility, task] as well as my character."`
 				goto questions
 			label tejolis
+			action
+				set "unfettered: name choice"
 			`	"Tejolis is the [deity, ancient, revered elder] of [strategy, apt thinking, intelligence]." He sees that your translator has troubles translating this, and explains further, "It is the aptitude to make good judgments based on context. For instance, if you have time to choose, a quick decision does not make sense, and a wrong decision is hard to [justify, forgive]. Likewise, when time is of the essence, one must learn to [act, react] quickly or be overwhelmed by the actions of others. I named this ship in her honor and I have a statue of her in my war room because I follow her [teachings, legacy]. All warlord ships are named in reference to specific [deity, ancient, revered elder], and relate to their [intended, innate] functions."`
 				goto questions
 			label hull
+			action
+				set "unfettered: hull choice"
 			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath [raider, warship]. Those materials are more sturdy than normal Hai ones, which is why this ship is so [impervious, resilient] to hull damage. However, it comes at the cost of cooling efficiency."`
 				goto questions
 			label cloak
+			action
+				set "unfettered: cloak choice"
 			`	"Many years ago, when the Korath attacked us, they used a [ghost, fantom] ship. It would attack the [convoys, defenceless], and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depart it returned, always [harassing, plundering] us. The ghost managed to take on countless of convoys and escorts without issue, using its superior [technology, weaponry] and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was [not there anymore, gone]."`
 			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it [disappeared, cloaked], they stopped shooting like usual and acted in distress, making the ghost [arrogant, overconfident]. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its [escape, cloaking]. The ghost ship disappeared, but it was too late. One of the convoy ships nearby [rammed, crashed] into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of [shooting it down, damaging it]. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never [disappeared, cloaked] for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the [damaged, incomplete] cloaking device remained installed."`
-			branch "gave cloak"
-				has "Unfettered: Cloaking Interest: done"
+			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully [replace, overwrite] the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know [almost nothing, little] about."`
+				to display
+					has "Unfettered: Cloaking Interest: done"
 			``
 				goto questions
-			label "gave cloak"
-			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully [replace, overwrite] the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know [almost nothing, little] about."`
-				goto questions
 			label weapon
-			branch helped
-				has "Unfettered: Bring Detainer: done"
+			action
+				set "unfettered: weapon choice"
 			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the [automated, soulless] killing machines to the east, I went looking for such weapons under the [assurance, safety] of my cloak. I expected to battle for it, but the killing machines are fighting other killing machines. I just watched them battle from a distance and then swiftly looted a ship... Except it [self destructed, exploded] in my face. So I looked for another one, and that one did not explode. I took the weapon and came home, [proud, victorious]. I had barely enough space in my cargo hold for it."`
-				goto otherweapons
-			label helped
+				to display
+					not "Unfettered: Bring Detainer: done"
 			`	"Well, as you know, you brought the Detainer to me in exchange for the translation device."`
+				to display
+					has "Unfettered: Bring Detainer: done"
 			label otherweapons
 			`	"For the other weapons, it was loot [taken, collected] during the Korath raids that we have held onto. The Sunbeams are the most recent addition to the ship, which were looted from ships in the north. And then of course, our anti-missile systems are cheap and effective at countering large volumes. Last, I'm sure you know plenty about flamethrowers. They are crude, but [effective, powerful]."`
+			`	"Most of us prefer not to use weapons of [aliens, untrue] because they think it means those are [more refined than, superior to] ours. I just recognize their [advantages, utility] in some scenarios."`
 				goto questions
 			label enough
 			`	"I have answered enough of your questions. Some things should remain a mystery. Knowledge is power, after all."`
+			label clearconditions
 			action
 				clear "unfettered: questions"
+				clear "unfettered: sword choice"
+				clear "unfettered: name choice"
+				clear "unfettered: hull choice"
+				clear "unfettered: cloak choice"
+				clear "unfettered: weapon choice"
 
 event "joined the unfettered"
 	government "Escort"
