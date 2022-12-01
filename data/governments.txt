@@ -514,7 +514,7 @@ government "Korath"
 	color .8 .5 .1
 	"crew attack" 1.4
 	"crew defense" 2.6
-	language "Exile"
+	language "Korath"
 	
 	"attitude toward"
 		"Kor Alaji" .01
@@ -536,7 +536,7 @@ government "Korath (Civilian)"
 	color .8 .5 .1
 	"crew attack" 1.1
 	"crew defense" 2.1
-	language "Exile"
+	language "Korath"
 
 	"attitude toward"
 		"Korath" .01
@@ -553,7 +553,7 @@ government "Korath (Civilian)"
 government "Korath (Station)"
 	"display name" "Korath"
 	color .8 .5 .1
-	language "Exile"
+	language "Korath"
 	
 	"attitude toward"
 		"Wanderer" -.01
@@ -572,7 +572,7 @@ government "Kor Alaji"
 	color .8 .5 .1
 	"crew attack" 1.4
 	"crew defense" 2.1
-	language "Exile"
+	language "Korath"
 
 	"attitude toward"
 		"Korath (Civilian)" .01
@@ -598,7 +598,7 @@ government "Korath Nanobots"
 government "Kor Efret"
 	swizzle 4
 	color .49 .33 .69
-	language "Korath"
+	language "Efret"
 	
 	"attitude toward"
 		"Kor Mereti" -.01
@@ -609,7 +609,7 @@ government "Kor Efret"
 government "Kor Mereti"
 	swizzle 5
 	color .32 .36 .65
-	language "Korath"
+	language "Mereti"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
@@ -621,7 +621,7 @@ government "Kor Mereti"
 government "Kor Mereti (Hostile)"
 	"display name" "Kor Mereti"
 	swizzle 5
-	language "Korath"
+	language "Mereti"
 	"attitude toward"
 		"Wanderer" -.01
 		"Kor Mereti" -.01
