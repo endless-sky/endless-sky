@@ -509,6 +509,8 @@ mission "Feed Them To The Wolves"
 
 
 
+# secret mission
+# happens if you accept a duel in "Unfettered: Materials Intercepted" (offered if your fleet is smaller than 2 heavy warships)
 mission "Mercenaries: Duel Squared"
 	landing
 	source "New Tortuga"
@@ -518,70 +520,51 @@ mission "Mercenaries: Duel Squared"
 		has "mercenaries: accepted duel"
 		has "Unfettered: Cavalry Arrives: done"
 	on offer
-		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off..."`
+		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... At a cost."`
+		fine 10000000
 	on accept
-		"mercenaries: duel startdays" = day + month * 30 + year * 365
+		"mercenaries: duel startday" = day
 	npc disable save
-		system "Misam"
 		government "Hai (Unfettered Challenger)"
 		to despawn
-			has "mercenaries: stop the duel"
-		personality waiting heroic uninterested staying disables
+			"mercenaries: duel startday" != day
+		personality waiting heroic unconstrained staying disables
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
-		dialog `Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture. We will be leaving once you land."`
-	on abort
-		set "mercenaries: just aborted"
-	on fail
 		conversation
-			branch justaborted
-				has "mercenaries: just aborted"
-			"You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered will not offer you any missions anymore, for having killed legends, and mostly for disrespecting the rules of the duel."
+			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture. We will be leaving once you land. Oh, and here are your 10 million credits back."`
 			action
-				set "mercenaries: thorn talon death"
-				set "mercenaries: thorn talon murdered"
-				event "mercenaries: thorn talon vengeance" 180
-			label justaborted
-			"You concede the duel and lose the bet of 10 million credits."
-			action
-				log "Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. I had to pay up 10 million credits."
-				fine 10000000
-				clear "mercenaries: just aborted"
+				set "mercenaries: won the duel"
+				log "Won a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. They allowed me to plunder their ships."
+				payment 10000000
+	on abort
+		dialog `You decide to abort the duel. They hail you, "We have no idea why you decided to cancel the duel, but our prize of 10 millions is still due."`
+		log "Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. I had to pay up 10 million credits."
+	on fail
+		dialog "You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered may not offer you any missions anymore, for disrespecting the sacred rules of the duel."
+		set "mercenaries: thorn talon death"
+		set "mercenaries: thorn talon murdered"
+		event "mercenaries: thorn talon vengeance" 180
+		log "Killed the mysterious ships that serve the 'Sadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act."
 	on complete
 		conversation
-			branch "won"
-				not "mercenaries: stop the duel"
-			action
-				log "Lost a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. I had to pay up 10 million credits."
-				fine 10000000
-				clear "mercenaries: stop the duel"
-			``
-				decline
-			label won
-			action
-				log "Won a duel against 2 mysterious ships that serve the 'Shadow of Mintaka', whatever that means. They allowed me to plunder their ships."
+			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
+				to display
+					not "mercenaries: won the duel"
+			`Shortly after you land the ships disappear from your radar. They must have somehow repaired themselves.`
+				to display
+					has "mercenaries: won the duel"
 
+# vengeance will come
 event "mercenaries: thorn talon vengeance"
 	"reputation: Shadow" <?= -1000
+	# super high bribe for when they attack you
 	government "Mercenaries"
 		bribe 2
+	# can't rep farm anymore
 	government "Shadow"
 		"attitude toward"
 			"Hydra" -.01
-
-mission "Mercenaries: Stop The Duel"
-	landing
-	to offer
-		has "Mercenaries: Duel Squared: active"
-		# to not stop it the day it starts
-		"mercenaries: duel startdays" < day + month * 30 + year * 365
-	on offer
-		set "mercenaries: stop the duel"
-		clear "mercenaries: duel startdays"
-		fine 10000000
-		conversation
-			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
-				decline
 
 
 
