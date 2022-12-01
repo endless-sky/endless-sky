@@ -42,6 +42,7 @@ jobs:
     env:
         ANDROID_SDK_ROOT: /path/to/sdk
         ARTIFACT: endless-mobile
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
 
