@@ -192,11 +192,12 @@ mission "Unfettered Challenge [2]"
 
 
 # when you board the generic challengers
-mission "Unfettered Space Challenge"
+mission "Unfettered Space Challenge Small"
 	minor
 	boarding
 	repeat
-	invisible
+	name "Collect your payment on <destination>"
+	description "An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it."
 	substitutions
 		<payment> 200000
 		"<boarding message>" "	Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
@@ -205,17 +206,16 @@ mission "Unfettered Space Challenge"
 		not category "Heavy Warship"
 	on offer
 		dialog phrase "unfettered challenger defeated"
-	destination
-		system
-			distance 0
+	destination "Darkcloak"
 	on complete
 		payment 200000
 
-mission "Unfettered Space Challenge"
+mission "Unfettered Space Challenge Big"
 	minor
 	boarding
 	repeat
-	invisible
+	name "Collect your payment on <destination>"
+	description "An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it."
 	substitutions
 		<payment> 500000
 		"<boarding message>" "Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
@@ -223,9 +223,7 @@ mission "Unfettered Space Challenge"
 		government "Hai (Unfettered Challenger)"
 	on offer
 		dialog phrase "unfettered challenger defeated"
-	destination
-		system
-			distance 0
+	destination "Darkcloak"
 	on complete
 		payment 500000
 
@@ -325,6 +323,50 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 
 
 
+# unlocked if you do the mission below
+ship "Stag Beetle" "Stag Beetle (Flamer)"
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Korath Grab-Strike"
+		"Korath Banisher"
+		"Bullfrog Anti-Missile" 3
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
+		"Korath Repeater Rifle" 20
+		"Pulse Rifle" 60
+		"Dual Pulse Pistols" 10
+		"True Unfettered License"
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Korath Grab-Strike"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Korath Banisher"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
+
+
+
 # They ask you to sell the weapons you used to defeat them, the chance increases the more duels you win.
 mission "Unfettered Bring Fire"
 	job
@@ -343,6 +385,7 @@ mission "Unfettered Bring Fire"
 		payment 1000000
 		dialog `The Unfettered captain is delighted that you were able to give him these 2 Flamethrowers, and give you <payment>. "I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
 
+
 mission "Unfettered Bring Carnage"
 	job
 	repeat
@@ -360,6 +403,7 @@ mission "Unfettered Bring Carnage"
 		payment 2000000
 		dialog `You bring the Ravagers to the captain, and she seems really happy, "Now this is a weapon that does damage to the hull of a ship! The Wanderers have a lot of that, I am sure it will help me pludering! Our legends speak of this weapon... Oh, of course, here are your <payment>."`
 
+
 mission "Unfettered Bring Repeater"
 	job
 	repeat
@@ -376,6 +420,7 @@ mission "Unfettered Bring Repeater"
 		outfit "Plasma Repeater" -2
 		payment 1500000
 		dialog `It does not take long to find the captain, you find him impatiently waiting for you and the Repeaters, "I love exotic weapons! Here are your <payment>, please bring me more variety if you can, I would reward it highly." He says, before heading hastily to his ship, probably to test these weapons.`
+
 
 mission "Unfettered Bring Particles"
 	job
