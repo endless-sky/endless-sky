@@ -324,7 +324,7 @@ void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &targe
 void AI::IssueAsteroidTarget(const PlayerInfo &player, const shared_ptr<Minable> &targetAsteroid)
 {
 	Orders newOrders;
-	newOrders.type = Orders::MINING;
+	newOrders.type = Orders::MINE;
 	newOrders.targetAsteroid = targetAsteroid;
 	IssueOrders(player, newOrders, "focusing fire on " + targetAsteroid->Name() + " asteroid.");
 }
@@ -418,7 +418,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
-		if(it->second.type == Orders::MINING && it->first->Cargo().Free() && it->second.targetAsteroid.expired())
+		if(it->second.type == Orders::MINE && it->first->Cargo().Free() && it->second.targetAsteroid.expired())
 			it->second.type = Orders::HARVEST;
 		else if(it->second.type & Orders::REQUIRES_TARGET)
 		{
@@ -1102,7 +1102,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(foundOrders != orders.end())
 			{
 				int helperOrders = foundOrders->second.type;
-				if(helper->IsYours() && ship.IsYours() && helperOrders != Orders::MINING && helperOrders != Orders::HARVEST)
+				if(helper->IsYours() && ship.IsYours() && helperOrders != Orders::MINE && helperOrders != Orders::HARVEST)
 					continue;
 			}
 
@@ -1420,7 +1420,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
-	else if(type == Orders::MINING && targetAsteroid)
+	else if(type == Orders::MINE && targetAsteroid)
 	{
 		ship.SetTargetAsteroid(targetAsteroid);
 		// escorts should chase the player-targeted asteroid
