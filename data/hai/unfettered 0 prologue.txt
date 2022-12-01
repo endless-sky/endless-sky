@@ -1080,7 +1080,7 @@ event "unfettered: shipment lost"
 
 outfit "Materials"
 	category "Special"
-	thumbnail "outfits/unknown"
+	thumbnail "outfit/unknown"
 	cost 1000
 	plural "Materials"
 	"mass" 1

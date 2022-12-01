@@ -665,7 +665,7 @@ mission "Unfettered: New Cooling Available"
 
 outfit "Loot"
 	category "Special"
-	thumbnail "outfits/unknown"
+	thumbnail "outfit/unknown"
 	cost 1000
 	"mass" 1
 	description "You're not sure what this is, but you feel your hair go up when you're near the cargo... Probably best not to touch it."
