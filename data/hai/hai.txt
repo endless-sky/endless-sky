@@ -743,7 +743,7 @@ phrase "hostile unfettered challenger"
 	word
 		"Now is not the time for talk"
 		"Yes! Fight me"
-		"Our battle will be told in legends for years to come"
+		"Our battle will be sang in legends for years to come"
 		"Do not try to distract me with hails."
 	word
 		"!"
@@ -812,6 +812,10 @@ phrase "unfettered duelling"
 		"Under no circumstances are you to interrupt us, or you will suffer the wratch of the Unfettered"
 		"Stop distracting me"
 		"If you try anything the whole fleet will be on you"
+	word
+		"!"
+	word
+		"Go away now, I need to focus on the duel"
 	word
 		"!"
 		"."
