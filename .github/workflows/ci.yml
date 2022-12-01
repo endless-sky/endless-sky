@@ -40,11 +40,11 @@ jobs:
     # TODO: only build if source changed. otherwise, d/l latest continuous
     runs-on: ubuntu-latest
     env:
-        ANDROID_SDK_ROOT: /path/to/sdk 
+        ANDROID_SDK_ROOT: /path/to/sdk
         ARTIFACT: endless-mobile
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Install development dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -75,23 +75,3 @@ jobs:
       with:
         name: debug-arm64-v8a
         path: android/app/build/outputs/apk/debug/app-debug.apk
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_number }}
-        release_name: ${{ github.run_number }}
-        prerelease: true
-        body: This is an auto-generated prerelease of the latest ci build. Dont expect it to work reliably.
-    - name: Upload Release Assets
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: android/app/build/outputs/apk/debug/app-debug.apk
-        asset_name: endless-mobile-debug-v${{ github.run_number }}.apk
-        asset_content_type: application/vnd.android.package-archive
-  
