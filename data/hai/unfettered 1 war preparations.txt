@@ -1132,7 +1132,6 @@ ship "Stag Beetle"
 
 conversation "unfettered war ready"
 	action
-		"reputation: Hai (Unfettered)" += 100
 		event "shield beetles accessible"
 	`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
 	choice
