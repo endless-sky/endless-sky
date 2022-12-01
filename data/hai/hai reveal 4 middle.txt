@@ -1470,7 +1470,7 @@ mission "Hai Reveal [A13-A] Unfettered Pickup"
 		government "Hai (Friendly Unfettered)"
 		system "Bote Asu"
 		personality escort heroic opportunistic
-		fleet "Large Friendly Unfettered" 7
+		fleet "Large Unfettered" 7
 
 
 # Ambassadorial Centipede designed to fly deep into hostile space if necessary:
