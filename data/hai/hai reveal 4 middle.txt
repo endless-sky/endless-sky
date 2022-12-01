@@ -93,7 +93,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	You explain about pirates having Hai weapons, and about a "trusted source" that told you about an entire warehouse of them.`
 			`	"That's... worrying, but the Elders are pacifists to a fault, so I can't imagine them doing it. It is more likely that smugglers took it there, or ordinary pilots sold their used Hai gear. Do you have more evidence?"`
 			`	After you describe what Sayari said about Hai pirate deals, Teeneep shakes her head and says, "Sayari would put a stop to any weapon deals. I'm sure it's something innocuous, like cash or basic supplies for their anarchist worlds.`
-			`	"If you find solid proof that our government is arming pirates, I can, and will, stop them. There are extreme legal maneuvers civilians can use to force the Elder Council to change their mind.`
+			`	"If you find solid proof that our government is arming pirates, I can, and will, stop them. There are extreme legal maneuvers civilians can use to force the Elder Council to change their minds.`
 			`	"In the meantime, can you help me?"`
 			label questions
 			choice
@@ -818,7 +818,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 				goto conclusion
 			
 			label conclusion
-			`	"You must take me to <planet> immediately. This is something I should investigate this personally if I hope to find the truth of things and I cannot land my own ship there right now thanks to... bureaucratic reasons. My people here can analyze any sensor logs or other data you have on Scar's Legion. You've found solid proof of the Elders arming pirates, though I doubt this is a lead on the kidnappings. At <planet>, I will catch up with our mutual friend from the secure spaceport. I have sufficient privileges to be there, even if I have no clearance for landing my ship."`
+			`	"You must take me to <planet> immediately. This is something I should investigate this personally if I hope to find the truth of things, but I cannot land my own ship there right now because of... bureaucratic reasons. My people here can analyze any sensor logs or other data you have on Scar's Legion. You've found solid proof of the Elders arming pirates, though I doubt this is a lead on the kidnappings. At <planet>, I will catch up with our mutual friend from the secure spaceport. I have sufficient privileges to be there, even if I have no clearance for landing my ship."`
 			`	She waves over Wayou towards you. "Please, give Wayou any relevant data files while I pack for departure. I suspect that I have kept you away from <planet> far too long as it is. According to my sources, people there await your return."`
 			`	You've barely had time to load your logs onto a data stick and hand them to Wayou before Teeneep is packed and waiting to depart. It would seem your course is set.`
 				accept
@@ -1326,7 +1326,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 					goto "other ideas"
 			`	Teeneep sighs in exasperation. "We can't wait for your parliament to spend months deliberating. Sayari, you have a crisis of your own here, and I cannot accept a resolution without an avenue to rescue our people and put a stop to this for good. I would hope you cannot either..."`
 			label "other ideas"
-			`	Teeneep says with certainty, "I must go to the Unfettered. If they can be swayed then the Elders may be pressured into acting."`
+			`	Teeneep says with certainty, "I must go to the Unfettered. If they can be swayed, then the Elders may be pressured into acting."`
 			`	"Captain <last>," she says, giving you a calculating look. "I would very much appreciate it if you'd be so kind as to take me."`
 # TODO: These options should be revisited at some point based on how much you've had to do with the Unfettered, despite being only flavor.
 			choice
