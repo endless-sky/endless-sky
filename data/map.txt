@@ -30794,7 +30794,7 @@ planet "Ogmur's Siphon"
 planet Osaeli
 	attributes ka'het uninhabited
 	landscape land/fields15
-	description `An Earth-like planet with high biodiversity, at first glance Osaeli appears to be an idyllic world where no lifeform ever became the predominant one, but, looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered across large areas, and scans reveal many underground bunkers, partly destroyed and filled with water.`
+	description `An Earth-like planet with high biodiversity, at first glance Osaeli appears to be an idyllic world where no lifeform ever became predominant; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered across large areas, and scans reveal many underground bunkers, partly destroyed and filled with water.`
 
 planet Palarei
 	attributes ka'het uninhabited
