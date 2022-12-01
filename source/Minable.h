@@ -49,6 +49,9 @@ public:
 
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);
+	// Call this once all of the game data finishes loading.  Asteroids and
+	// associated payloads have been loaded.
+	void FinishLoading();
 	const std::string &Name() const;
 
 	// Place a minable object with up to the given energy level, on a random
