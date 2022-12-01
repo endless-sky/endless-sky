@@ -242,8 +242,8 @@ fleet "Korath Ember Waste Raid"
 		"Rano'erek (Shunt)"
 		"'olofez" 4
 
-fleet "Kor Alahi Raid"
-	government "Kor Alahi"
+fleet "Kor Alaji Raid"
+	government "Kor Alaji"
 	names "korath"
 	fighters "korath"
 	cargo 1
