@@ -39,12 +39,12 @@ event "remnant: defense timer"
 event "remnant: surveillance begin"
 	system "Parca"
 		remove fleet "Korath Ember Waste Raid"
-		remove fleet "Kor Alahi Raid"
+		remove fleet "Kor Alaji Raid"
 
 
 event "remnant: surveillance end"
 	system "Parca"
-		add fleet "Kor Alahi Raid" 20000
+		add fleet "Kor Alaji Raid" 20000
 		add fleet "Korath Ember Waste Raid" 15000
 
 
@@ -370,7 +370,7 @@ event "remnant: ssil vida activation"
 		trade Medical 508
 		trade Metal 272
 		trade Plastic 289
-		fleet "Kor Alahi Raid" 40000
+		fleet "Kor Alaji Raid" 40000
 		fleet "Korath Ember Waste Raid" 40000
 		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
@@ -539,7 +539,7 @@ event "remnant: ssil vida activation"
 		trade Medical 736
 		trade Metal 407
 		trade Plastic 222
-		fleet "Kor Alahi Raid" 30000
+		fleet "Kor Alaji Raid" 30000
 		fleet "Korath Ember Waste Raid" 15000
 		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
@@ -1250,7 +1250,7 @@ event "remnant: tubfalet appearance"
 		add variant 3
 			"Tubfalet" 2
 			"'olofez" 6
-	fleet "Kor Alahi Raid"
+	fleet "Kor Alaji Raid"
 		add variant 3
 			"Tubfalet"
 			"'olofez" 3

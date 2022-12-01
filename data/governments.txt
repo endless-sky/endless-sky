@@ -843,7 +843,7 @@ government "Korath"
 	language "Exile"
 	
 	"attitude toward"
-		"Kor Alahi" .01
+		"Kor Alaji" .01
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
@@ -894,7 +894,7 @@ government "Korath (Station)"
 	"player reputation" -10
 	"bribe" 0
 
-government "Kor Alahi"
+government "Kor Alaji"
 	"display name" "Korath"
 	swizzle 21
 	color .8 .5 .1
@@ -916,7 +916,7 @@ government "Kor Alahi"
 
 	"player reputation" -100
 	"bribe" 0
-	"raid" "Kor Alahi Raid"
+	"raid" "Kor Alaji Raid"
 
 government "Korath Nanobots"
 	"player reputation" -1000
@@ -1192,7 +1192,7 @@ government "Remnant"
 	"attitude toward"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
-		"Kor Alahi" -.1
+		"Kor Alaji" -.1
 		"Alpha" -.05
 		"Remnant (Research)" 1
 		"Korath (Civilian)" 0.02
