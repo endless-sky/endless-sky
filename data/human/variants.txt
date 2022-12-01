@@ -1111,7 +1111,7 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 		"Liquid Helium Cooler" 2
 		"Catalytic Ramscoop"
 		Hyperdrive
-		Afterburner
+		"Volcano Afterburner"
 		"Outfits Expansion" 2
 		"Plasma Cannon" 6
 		"A520 Atomic Thruster"
@@ -1140,7 +1140,7 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
-		Afterburner
+		"Volcano Afterburner"
 		
 		"Stack Core"
 		"LP144a Battery Pack"
@@ -1181,7 +1181,7 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler" 2
 		Hyperdrive
-		Afterburner
+		"Volcano Afterburner"
 		Supercapacitor
 		"Outfits Expansion" 2
 		"Plasma Cannon" 4
@@ -2335,7 +2335,7 @@ ship "Osprey" "Osprey (Particle Anti-Missile)"
 		"S-970 Regenerator"
 		Hyperdrive
 		"LP072a Battery Pack"
-		Afterburner
+		"Volcano Afterburner"
 		"Outfits Expansion" 2
 		"Liquid Nitrogen Cooler"
 		"Particle Cannon" 4
