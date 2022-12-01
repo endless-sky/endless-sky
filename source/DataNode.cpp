@@ -232,7 +232,7 @@ bool DataNode::BoolValue(int index) const
 	else if(!IsBool(tokens[index]))
 		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a boolean:");
 	else
-		return token == "true";
+		return tokens[index] == "true";
 
 	return 0.;
 }
