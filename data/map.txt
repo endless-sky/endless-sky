@@ -31063,7 +31063,7 @@ planet "Remote Blue"
 planet Retilie
 	attributes ka'het uninhabited
 	landscape land/sea19
-	description `Retilie is an oceanic world; more than 95% of the planet's surface is covered by kilometers deep oceans. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can’t reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
+	description `Retilie is an oceanic world; more than 95% of the planet's surface is covered by oceans kilometers deep. Few traces of coastal villages are still visible, mostly composed of ancient metallic formations standing some kilometers from the seaside, where the occasional high waves can’t reach them. A few small cities on the mainland are in a better state, but without anyone to maintain them, vegetation has grown to completely cover many of the surviving buildings.`
 
 planet Reunion
 	attributes factory "near earth" urban
