@@ -45,10 +45,12 @@ DataWriter::~DataWriter()
 }
 
 
+
 void DataWriter::SaveToPath(const std::string &filepath)
 {
 	Files::Write(filepath, out.str());
 }
+
 
 
 // Write a DataNode with all its children.
