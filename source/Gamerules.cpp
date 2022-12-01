@@ -35,10 +35,9 @@ void Gamerules::Load(const DataNode &node)
 		}
 
 		const string &key = child.Token(0);
-		const string &token = child.Token(1);
 
 		if(key == "universal ramscoop")
-			universamRamscoop = child.BoolValue(1);
+			universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawnrate")
 			personSpawnrate = max<int>(1, child.Value(1));
 		else
