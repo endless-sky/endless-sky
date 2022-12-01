@@ -469,6 +469,8 @@ event "end of deal"
 	"reputation: Mercenaries" = -1000
 
 # SPOILERS: the tracker is not on the ship, it's on you so that's why the Hai don't find it, and this communication can happen.
+# the mercenaries want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
+# They will only take her hostage here, she may come back later.
 mission "Feed Them To The Wolves"
 	landing
 	invisible
@@ -485,7 +487,7 @@ mission "Feed Them To The Wolves"
 	waypoint "Waypoint"
 	on waypoint
 		conversation
-			`One of the unindentified ships hail you. "Thank you, Captain. Here is part of your reward: 1 million credits. Now, whatever you do, do not fire on the Hai ships. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
+			`One of the unindentified ships hail you. "Thank you, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you, and think this was an unfortunate pirate attack. When this is done, go to Warfeed for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
 			`	Right after that, the governor's ship hails you. "What have you done?"`
 		payment 1000000
 	npc
@@ -500,7 +502,7 @@ mission "Feed Them To The Wolves"
 		clear "unfettered: stopped on Greenbloom"
 		log `I was supposed to escort a Hai fleet carying supplies and passengers into Unfettered space but I fed them to the wolves instead.`
 		# still gets lost because they're busy shipping all of these supplies to Unfettered space.
-		event "unfettered: shipment lost" 20
+		event "unfettered: shipment lost" 30
 		set "unfettered: hunger"
 		# make the hunger last a bit longer
 		"unfettered: hunger stops" = -100

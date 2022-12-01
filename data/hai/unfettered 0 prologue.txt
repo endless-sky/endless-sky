@@ -388,13 +388,15 @@ mission "Unfettered: Bring Hai"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		has "reputation: Hai" >= 0
+		# garanteed to offer the first time and then 20% chance
 		or
 			not "unfettered: offered bring hai"
 			random < 20
 	on defer
 		set "unfettered: offered bring hai"
 	substitutions
-		#They're speaking Hai, but so are the Wanderers.
+		# They're speaking Hai, but so are the Wanderers.
+		# Translate it if you have a translator, otherwise someone will offer to do it for you.
 		<firstgroup> "but because it is in Hai you cannot make sense of the words. Even from afar you can see how malnurished the children are."
 			not "language: Wanderer"
 		<firstgroup> `and you connect your translation device to understand what they say. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; nothing grows on them anymore!"`
@@ -605,6 +607,7 @@ mission "Unfettered: Bring Medical Supplies"
 
 
 
+# SPOILER: he tests your military aptitudes before asking you to take him to pirate space.
 mission "Unfettered: Prove Your Strength"
 	name `Defeat the captain`
 	description `A young Unfettered captain has provoked you in a duel. Disable his ship.`
@@ -669,7 +672,7 @@ mission "Unfettered: Prove Your Strength"
 				accept
 			label "too many ships"
 			`	"Ye cannot run a rig on me, monkey. First ye must park some of those ships! I will not be facing your whole armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
-			``
+			`	`
 			`The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship or a small group of lighter vessels.)`
 				accept
 	npc save disable
@@ -726,6 +729,7 @@ event "hydra revealed"
 	government "Hydra"
 		remove "display name"
 
+# SPOILER: stealing JD from the Alpha's servants: Hydra
 mission "Unfettered: Prove Your Strength 2"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover jump drives from a vault.`
@@ -906,6 +910,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				launch
 	on accept
 		"outfit" "Jump Drive" 4
+	# a side mission will spawn additional ships if you brought a JD with you before the start of this mission.
 	npc evade
 		government "Hydra"
 		personality disables plunders vindictive
@@ -953,6 +958,11 @@ mission "Unfettered: Escort Hai Fleet"
 				goto choose
 			label busy
 			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance that it does not without any trouble."`
+			`	He asks something to his advisor, and gets a positive answer. "Do not worry about the logs, the rush was only for scanning them, but you have all the time you need to bring them back now."`
+				to display
+					or
+						has "Unfettered: Solifuge 3: Auxiliary Design Logs: active"
+						has "unfettered: logs worry"
 			label choose
 			`	"A situation arose: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to repair what can be of the buildings, and build emergency shelters for these people, and quick!"`
 			choice
@@ -1007,7 +1017,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
-		event "unfettered: shipment lost" 20
+		event "unfettered: shipment lost" 30
 		set "unfettered: hunger"
 		# if there already was a hunger situation make it last longer
 		clear "unfettered: hunger stops"
@@ -1031,6 +1041,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt. May the leaves keep on flowing your way, and I hope we see each others again."`
 		log "Minor People" "Vai'chi" `A Hai governor that is not scared to put herself in danger in order to muster Hai and Unfettered supporters alike. She seems to understand the Unfettered well, and to honestly want to help them.`
 
+# need to make you land to make the fleets spawn, because they can't be waiting for you in this system until you arrive.
 mission "Unfettered: Taking Off With Hai Fleet"
 	landing
 	invisible
@@ -1076,11 +1087,12 @@ outfit "Materials"
 	"mass" 1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
+# this is a Marauder version with small buffs and disabled faster so it doesn't blow as often to Koraths<
 ship "Bactrian" "Bactrian (Hydra)"
 	add attributes
 		"threshold percentage" .4
 		"outfit space" 17
-		"weapon capacity" 20 # this is a Marauder version
+		"weapon capacity" 20
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
@@ -1117,12 +1129,14 @@ mission "Unfettered: Materials Intercepted Job Board Notification"
 		has "event: unfettered: shipment lost"
 		not "Unfettered: Materials Intercepted: active"
 		not "Unfettered: Materials Intercepted: done"
-		random < 20
+		random < 10
 	on offer
 		conversation
 			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Sookootow, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`
 				decline
 
+# SPOILER: Hydras or the Mercenaries bring cargo to the Unfettered. Hydras were on the way, but the Mercenaries hired Scar's legion to sneakily take it and bring it to them.
+# only that Hydras were on their tail, and just took down the ship and it's cargo when you arrive. Time to steal it back back back
 mission "Unfettered: Materials Intercepted"
 	job
 	name `Looking for stolen cargo`
@@ -1134,7 +1148,7 @@ mission "Unfettered: Materials Intercepted"
 	on offer
 		conversation
 			`	You go to see He-Yi in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
-			`	"<last>. I am still sadened by what happened to that governor you had to escort... She used to say that all Hai are together, by heart. I will continue to honour her memories."`
+			`	"<last>. I am still sadened by what happened to that governor you had to escort... She used to say that all Hai are together, by heart. I will continue to honor her memories."`
 				to display
 					has "Unfettered: Escort Hai Fleet: failed"
 			`	"<last>! I was hoping to find you here."`
@@ -1330,18 +1344,19 @@ mission "Unfettered: Cavalry Arrives"
 				not "Unfettered: Materials Intercepted: active"
 			branch murdered
 				has "reputation: Shadow" < 0
-			"One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka."
 			action
 				set "mercenaries: thorn talon death"
-			``
-				goto nevercompleted
+			"One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka."
+				decline
 			label murdered
-			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 			action
 				set "mercenaries: thorn talon murdered"
 				set "mercenaries: thorn talon death"
-				event "mercenaries: thorn talon vengeance" 180
+				event "mercenaries: thorn talon vengeance" 360
+			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
+				decline
 			label nevercompleted
+			`You gave up fixing the Unfettered cargo situation, and the mysterious ships leave pursuing Hydra ships that are left.`
 
 
 
@@ -1444,6 +1459,7 @@ mission "Unfettered: Geocoris Arriving"
 
 
 
+# SPOILER: this mission is what sets up the Alphas against you, because they can't afford to let you know they operate here, thinking you could be Navy.
 mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`
 	description `Scan the outfits of the human ship in <waypoint> by <date>, and then come back to <origin> with the logs.`
@@ -1474,7 +1490,6 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 					accept
 				`	"That seems too dangerous to me. Sorry, but I will not be helping you anymore."`
 					decline
-
 	waypoint "Hi Yahr"
 	on waypoint
 		dialog `As you enter the system, you see the ship and identify it as a Navy Auxiliary. Whatever happens, the Unfettered asked you not to destroy it and only scan it - at least for now.`
@@ -1509,10 +1524,12 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
+		set "unfettered: logs worry"
 		dialog `You are offered some surprisingly high-quality beverages to keep you waiting, even by your standards. They probably know of your mission. After a while, the Alpha ship goes away, and you can now go back to <origin> with the scanner logs.`
 
 
 
+# the mission is divided in two so that you have time to bring the logs back but not to scan in the first place.
 mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	landing
 	name `Bring back the scanner logs`
@@ -1521,6 +1538,8 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 	destination "Firelode"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+	on offer
+		clear "unfettered: logs worry"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
