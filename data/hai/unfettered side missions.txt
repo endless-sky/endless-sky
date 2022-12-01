@@ -1294,3 +1294,10 @@ mission "Unfettered: Close Quarter"
 			`	"That shield beetle may be strong, but it is only [a prototype, an experience]. It has its weaknesses."`
 			label train
 			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
+
+
+
+#mission "Unfettered: Speak Sestor"
+#	name "Speak Sestor"
+#	description "Go to <destination> to acquire the records of Sestor language."
+#	CHOOTK asks to go take a ride there to get the records so you can learn language

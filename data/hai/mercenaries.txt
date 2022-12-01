@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # SPOILER: concept: these contain fuel that comes from ancient space behemoths that have since almost all migrated
-# it is going to be used to power the dimentional eraser, a misused Pug engine that got distrupted by the gases emanating from the leviathan
+# it is going to be used to power the dimensional eraser, a misused Pug engine that got distrupted by the gases emanating from the leviathan
 # the mercenaries would do anything to make sure they are safe.
 outfit "Gold Bars"
 	category "Special"
@@ -282,9 +282,7 @@ mission "Mercenaries: Nemo Me Impune Lacessit"
 	invisible
 	repeat
 	source
-		or
-			near "Ya Hai" 10
-			near Sol 100
+		near "Ya Hai" 10
 	to offer
 		has "outfit: Gold Bars"
 		not "mercenaries: sold bars"
