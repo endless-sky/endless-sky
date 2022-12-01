@@ -21,18 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	// Returns true if "token" is a valid boolean.
-	bool ValidBool(const string &token) {
-		return token == "true" || token == "false";
-	}
-
-	// Returns the token as a boolean.
-	bool BoolVal(const string &token) {
-		return token == "true";
-	}
-}
-
 
 
 // Load a gamerules node.
@@ -50,12 +38,7 @@ void Gamerules::Load(const DataNode &node)
 		const string &token = child.Token(1);
 
 		if(key == "universal ramscoop")
-		{
-			if(ValidBool(token))
-				universalRamscoop = BoolVal(token);
-			else
-				child.PrintTrace("Skipping invalid boolean value:");
-		}
+			universamRamscoop = child.BoolValue(1);
 		else if(key == "person spawnrate")
 			personSpawnrate = max<int>(1, child.Value(1));
 		else
