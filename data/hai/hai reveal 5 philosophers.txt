@@ -1132,7 +1132,7 @@ mission "Hai Reveal [B13] Freedom"
 			`	"I tell you all this because I suspect you must seek out this one leader who is unaccounted for, and you should do so with all the knowledge at your disposal. The one leader who is not here was the last major player from the new 'Base Principles'. I do not know where your loyalties lie, so I ask you: why do you wish to know?"`
 				goto reason
 			label impatient
-			`	They sigh. "The one leader who is not here was the last major player from the new 'Base Principles'. I do not know where your loyalties lie, so I ask you do you wish to know?"`
+			`	They sigh. "The one leader who is not here was the last major player from the new 'Base Principles'. I do not know where your loyalties lie, so I ask you: why do you wish to know?"`
 			label reason
 			choice
 				`	"I do not, but I must, out of duty."`
