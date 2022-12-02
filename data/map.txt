@@ -32283,7 +32283,7 @@ planet Arroharg
 	attributes "gegno quarg"
 	landscape land/canyon12
 	description `Arroharg is a low-gravity moon that the Quarg have converted to some sort of harvesting grounds. Large organic-looking machines seem to be displacing particular mountainous formations while smaller ones collect from the zones left behind. Most of the architecture here is Quarg-like and is not designed in a way that welcomes visitors very comfortably. The lower levels of the outpost seem to dig deeper into the surface of the moon, but the farther they go down the more complex they become. There's no telling how deep into the moon they go, as they are restricted to anyone but the Quarg.`
-	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although this is sometimes hard to decifer. It seems they aren't used to outside visitors here and don't speak your language.` 
+	spaceport `A few Quarg greet you with astonished expressions but kindly assist you in anything you have trouble with due to the spaceport being designed around their architecture. They communicate mostly in gestures and facial expressions, although this is sometimes hard to decipher. It seems they aren't used to outside visitors here and don't speak your language.` 
 	government Quarg
 	bribe 0
 	security 0.9
@@ -32970,7 +32970,7 @@ planet "Diligent Hand"
 
 planet "Dlia Jzaur"
 	landscape land/mountain2
-	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center where beautiful eclipses can be seen weekly. The much smaller secondary star is believed to be a rogue star captured by the larger star, but is slowly fading out. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandoned due to increasing warfare in nearby systems.`
+	description `Dlia Jzaur has a few hotter seasons than normal due to the binary stars at the system's center, where beautiful eclipses can be seen weekly. The much smaller secondary star is believed to be a rogue star captured by the larger star, but is slowly fading out. There seems to be evidence of recent colonization efforts by the Gegno, but they appear to have been abandoned due to increasing warfare in nearby systems.`
 	description `Oddly enough, Dlia Jzaur has many unnatural formations on the surface that seem to reach up to the sky in areas eclipses often occur. The formations are mysteriously hollow underneath, but show no signs of Gegno involvement.`
 	government Uninhabited
 
@@ -33097,7 +33097,7 @@ planet Eldergrasp
 planet "Ef Aourtdye"
 	landscape land/lava10
 	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a major portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
-	description `A majority of mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials, quickly prepared to be put into service and continue the harvest.`
+	description `A majority of mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials and quickly prepared to be put into service.`
 	spaceport `The Gegno here are much too busy to pay any attention to you as it seems this spaceport is part of a larger refinery site. The largest Gegno heave around large metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see large rugged vehicles leaving or entering the site on paths that branch out to several more factories in the distance.`
 	government Gegno
 	"required reputation" 1
@@ -34932,7 +34932,7 @@ planet Osaeli
 planet "Oup Je"
 	landscape land/canyon4
 	description "The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes."
-	spaceport "The Scin here have different gear than those leaving and entering the spaceport, suggesting they have a particular place on the surface to be, most likely in the mines. They seem quite interested in you compared to other Gegno being that a majority of their days involve seeing mostly materials and machinery."
+	spaceport "The Scin here have different gear than those leaving and entering the spaceport, suggesting they have a particular place on the surface to be - most likely in the mines. They seem quite interested in you compared to other Gegno being that a majority of their days involve seeing mostly materials and machinery."
 	government "Gegno Scin"
 	"required reputation" 1
 	bribe 0
@@ -35264,7 +35264,7 @@ planet Ruelogakk
 	attributes "gegno quarg"
 	landscape land/station5
 	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for toursists, though very few docking bays are in use. A hauntingly low amount of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
-	spaceport `Only a few small Gegno transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the Gegno's presence here seems to be kept at an extreme minimum, at most one or two seen passing by occasionally.`
+	spaceport `Only a few small Gegno transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the Gegno's presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
 	government Quarg
 	bribe 0
 	security 0.9
@@ -35584,7 +35584,7 @@ planet Shroud
 planet Siedi
 	landscape land/forest5
 	description "The gravitational pull of the nearby gas giant resulted in the large, bulky, mountainous surface of this planet. Tectonic shifts are very common, and the surface is marked with the wear and tear of massive tremors. Beneath the cracks, however, lies a rich source of materials that the Vi quickly capitalized on for their nearby worlds."
-	spaceport "The spaceport is haphazardly build inside the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below. You're not sure if it is beneath you or somewhere off in the distance. The area around the spaceport continues to be under construction, but it is more likely because the Vi are mining for materials here rather than making improvements to the structure itself."
+	spaceport "The spaceport is haphazardly built inside the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below. You're not sure if it is beneath you or somewhere off in the distance. The area around the spaceport continues to be under construction, but it is more likely because the Vi are mining for materials here rather than making improvements to the structure itself."
 	government "Gegno Vi"
 	"required reputation" 1
 	bribe 0
@@ -36045,7 +36045,7 @@ planet Trove
 planet Truklar
 	attributes "gegno quarg"
 	landscape land/mars2
-	description `This Quarg world has noticeably lower gravity, as with other quarg worlds, that they more more accustomed to living on. Several decently sized extravagant villages are found nested deep within an oddly shaped glass structure, and is a beautiful sight to behold. Many different smaller biomes also contain wonderous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the Gegno, who find it hard navigating through the narrow hallways.`
+	description `This world, like others the Quarg live on, has noticeably lower gravity that the Quarg are more accustomed to. Several medium-sized extravagant villages are found nested deep within an oddly shaped glass structure, and it is a beautiful sight to behold. Many different, smaller biomes also contain wondrous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the Gegno, who find it hard navigating through the narrow hallways.`
 	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.` 
 	government Quarg
 	bribe 0
@@ -36144,7 +36144,7 @@ planet "Valley of the Damned"
 
 planet "Var Oti"
 	landscape land/desert0
-	description `This rocky is world covered with vast ranges of sand in various quantities. While some places have plateus of rugged rock formations, others have articulate valleys of sand. When it comes to less distinct locations, it is hard to tell at first glance whether or not they are simply a formation of rocks resting on a deep layer of sand, or a thin layer of sand resting on a great foundation of rock. In addition, common dust storms constantly reshape the terrain, and together with the harsh dry conditions, Var Oti is a dangerous world to those who aren't prepared when visiting.`
+	description `This rocky is world covered with vast ranges of desert. While some places have plateaus of rugged rock formations, others have articulate valleys of sand. When it comes to less distinct locations, it is hard to tell at first glance whether or not they are simply a formation of rocks resting on a deep layer of sand, or a thin layer of sand resting on a great foundation of rock. In addition, common dust storms constantly reshape the terrain, and together with the harsh, dry conditions, Var Oti is a dangerous world to those who aren't prepared when visiting.`
 	government Uninhabited
 
 planet "Var' Kar'i'i"
@@ -36471,7 +36471,7 @@ wormhole "Wormhole Link"
 
 planet "Wye Tzeou"
 	landscape land/snow14
-	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions in which no two look alike. These constructs are all extremely tall, and it seems the actual surface of the planet is far beneath a layer of them. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
+	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions. These constructs are all extremely tall, and no two look alike; it seems the actual surface of the planet is far beneath a layer of them. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
 	description `Deep scans reveal even more odd pellucid compositions below, showing pockets in the depths of the glass forest that look like giant empty gem-like gaps between each pillar.`
 	government Uninhabited
 
