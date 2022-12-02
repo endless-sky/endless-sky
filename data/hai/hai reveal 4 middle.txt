@@ -1738,22 +1738,16 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	There is a long, expectant pause as Remington looks to Terry and they engage in some kind of silent exchange before he replies. "You know, I don't think we'd connected those two specific dots just yet." He looks at Terry. "We need to make some calls."`
 				goto questions
 			label begin
-			`	A few hours later, they manage to set up a clear channel dedicated to the meeting in a room with large wall-mounted displays. You knew it was coming, and yet you're still a little surprised to see before you the President of the Republic and the Chancellor of the Free Worlds in remarkable clarity and surprisingly low latency. The windows behind the Chancellor suggest they were awoken in the middle of the night for this, but you wouldn't guess it from looking at them.`
+			`	A few hours later, they manage to set up a clear channel dedicated to the meeting in a room with large wall-mounted displays. Xilin and Alondo are standing near you, slightly off camera. Alondo explains, "We've arranged a high-reliability feed directly to the President of the Republic and the Chancellor of the Free Worlds. You'll see them here soon, along with Teeneep and Sayari from another room in the station."`
+			`	Soon after, the leaders all appear. You knew the moment was coming but you're still a little surprised to see the President and Chancellor in remarkable clarity and surprisingly low latency. The windows behind the Chancellor suggest they were awoken in the middle of the night for this, but you wouldn't guess it from looking at them.`
 			`	After a few seconds, you realize that three galactic leaders are waiting for you to begin the proceedings. As you've never been a galactic negotiator, you improvise the best you can.`
 			choice
 				`	"The tragedy we see around us can become a future of peace. Would the Hai representative please present us the problem we must solve together?"`
 					goto formality
 				`	"Teeneep, please explain the problem to the human leaders. I'm sure we can come to a compromise that will suit everyone."`
 			`	Teeneep responds, "Thank you for mediating these proceedings, Captain <last>."`
-			`	Both human leaders seem put off by the level of familiarity you just expressed, but Teeneep looks as if you took a world of stress off her shoulders.`
 			label formality
 			`	Teeneep explains, "I speak as the voice of the Hai and with the full authority of the Elder Council. Thousands of our people have been kidnapped over the past few decades, and they still largely reside under the servitude of various pirate factions that the Republic allows to continue. Even worse, your authorities have allowed numerous Hai to be slipped past on slaver ships, without attempting rescue because of the no boarding policy your forces employ, even on disabled and potentially doomed ships. We demand the return of our people and an immediate end to the policy of letting slaves die or escape without attempting boarding and rescue."`
-			choice
-				`	"Thank you, Hai representative. It is unfortunate that your people have suffered in that way, and I'm sure your esteemed colleagues from the other side of the wormhole can help you solve this problem. President? Chancellor?"`
-					goto formality2
-				`	"Thank you, Teeneep. President, Chancellor, please explain the piracy situation from the human point of view."`
-			`	The President seems surprised by the informal tone of your question, as if you just made a faux pas. The Chancellor looks more at ease than before, and perhaps a little amused.`
-			label formality2
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
 			`	The Chancellor states, "However, the Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
 			choice
@@ -1764,16 +1758,16 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			label calm
 			`	Teeneep responds plainly, "We are a peaceful people by nature, but these pirate attacks have gone too far. We support a solution that benefits the innocent inhabitants of the pirate worlds. However, there must be immediate action, not years of delay."`
 			choice
-				`	"Surely a group of enlightened human leaders can propose an alternative?"`
 				`	"Are there any counter-proposals?"`
 					goto happypres
+				`	"Surely a group of enlightened human leaders can propose an alternative?"`
 			`	The President presents a stony mask at being patronized, but the Chancellor smirks. You get a furry little smile from Teeneep.`
 			label happypres
 			`	"We have a counter-proposal," the President says. "We cannot afford to change our policy in totality, it would cost too many lives. However, we propose the following: the Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`
 			`	"The Free Worlds will also extend our protection, of course," the Chancellor adds.`
 			`	Teeneep looks relieved by this suggestion.`
 			choice
-				`	"Would that be acceptable Elder Teeneep?"`
+				`	"Would that be acceptable, Elder Teeneep?"`
 				`	"Teeneep, will that satisfy the Hai?"`
 			`	Teeneep takes a moment to respond. "That sounds like an acceptable future state... but I cannot sign any treaty yet. The Hai will not be satisfied until our kidnapped brethren are returned."`
 			`	The President replies, "The Minister for Foreign Affairs has been keeping the Cabinet apprised of the major details and proposals reported back by Deputy Minister Yang. Under the circumstances we believe it would be appropriate for us to attempt a joint effort to address your concerns. We agree to making this effort against one target, and to reassessing the situation afterwards depending upon what is discovered in that process. The Republic representatives there with you now will work with you to identify that target and plan the action accordingly."`
@@ -1783,15 +1777,10 @@ mission "Hai Reveal [A14] A Time of Trouble"
 				`	"Thank you, President, Chancellor, and Hai representative, for a successful resolution."`
 				`	"All of us should remember this day: the day three nations came together to form a lasting peace."`
 					goto peace
-				`	"Well, I guess I saved the galaxy yet again. Captain <last>, signing out!"`
-					goto appalled
 			`	The President and Chancellor nod mechanically while Teeneep looks proud.`
 				goto end
 			label peace
 			`	The President and Chancellor both look quite relieved, while Teeneep seems proud, and Sayari nods with approval.`
-				goto end
-			label appalled
-			`	The President of the Republic looks appalled, while the Chancellor of the Free Worlds frowns with disapproval. Teeneep is annoyed, as if you ruined the moment. You can see Sayari in the background, shaking her head. A functionary near you gasps and drops her tablet, and it shatters audibly when it hits the ground.`
 				goto end
 			label end
 			`	After the screens go off, a number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations, as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
