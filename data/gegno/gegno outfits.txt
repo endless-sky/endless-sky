@@ -156,7 +156,7 @@ outfit "RG15 Torch Thruster"
 	"flare sprite" "effect/ion torch/small"
 		"frame rate" 2.5
 	"flare sound" "ion torch small"
-	description `The RG15 Ion Torch Thruster is the Gegno Vi's smallest torch thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size, but it uses slightly less energy.`
+	description `The RG15 Ion Torch Thruster is the Gegno Vi's smallest torch thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size, but it also uses slightly less energy.`
 
 
 outfit "RG15 Torch Steering"
