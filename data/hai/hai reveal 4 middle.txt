@@ -1559,7 +1559,7 @@ mission "Hai Reveal [A13] A New Elder"
 	on offer
 #		log ``
 		conversation
-			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day and the developing gloom as Ya Hai sinks behind the buildings of the capital underscores the mood when you enter the diplomatic wing of the government complex. The place appears nearly deserted.`
+			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day when you enter the diplomatic wing of the government complex. The developing gloom as Ya Hai sinks behind the buildings of the capital underscores the mood; the place appears nearly deserted.`
 			`	Fortunately though, you swiftly discover Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey. When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
 			choice
 				`	"Are you all ok?"`
@@ -1586,7 +1586,7 @@ mission "Hai Reveal [A13] A New Elder"
 			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
 				goto "walk or drink"
 			label "who won"
-			`	Remington answers your question, "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
+			`	Remington answers your question. "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
 			label "walk or drink"
 			`	Alondo wobbles over to the bar and says, "I'll get you a drink, <last>. What'll you have?"`
 			choice
