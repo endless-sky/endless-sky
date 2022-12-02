@@ -9850,9 +9850,12 @@ system "Ehma Ti"
 	trade Medical 915
 	trade Metal 188
 	trade Plastic 532
+	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 500
+	fleet "Large Unfettered" 750
 	fleet "Unfettered Raid" 2500
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 4800
 	object
 		sprite star/k0
 		period 10
@@ -13648,8 +13651,11 @@ system "Hi Yahr"
 	trade Medical 825
 	trade Metal 308
 	trade Plastic 372
+	fleet "Unfettered Logistics" 450
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 500
+	fleet "Large Unfettered" 1000
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 4800
 	object
 		sprite star/g5
 		period 10
@@ -27003,8 +27009,11 @@ system "Wah Yoot"
 	trade Medical 925
 	trade Metal 248
 	trade Plastic 472
+	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
+	fleet "Small Hai Merchant (Sympathizers)" 1200
+	fleet "Large Hai Merchant (Sympathizers)" 2400
 	object
 		sprite star/g0
 		period 10
@@ -28731,7 +28740,8 @@ planet Cloudfire
 	landscape land/sea11-sfiera
 	description `Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
 	spaceport `The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
-	shipyard "Hai Basics"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Mon Ki i'Hiya Basics"
 	outfitter "Hai Intermediate"
 	security 0.9
 
@@ -28829,7 +28839,7 @@ planet Darkcloak
 	description `	Although the Hai tend to be an easygoing and nonviolent species, there are always a few in each generation that yearn for excitement, warfare, and conquest. These "Unfettered" Hai have built a major military base here, and they launch raids from here on convoys traveling through the nearby systems.`
 	spaceport `The occupants of this spaceport are not visibly different from the Hai you have encountered elsewhere, but they seem much more tense, angry, and hostile. As the only human here, you are being watched very closely, but no one threatens you directly.`
 	spaceport `	It is likely that most of the goods available for trade here were stolen from one of the nearby Hai systems.`
-	shipyard "Unfettered Basics"
+	shipyard "Mon Ki o'Uden Advanced"
 	outfitter "Unfettered Basics"
 
 planet Darkmetal
@@ -29496,7 +29506,9 @@ planet Giverstone
 	landscape land/mountain19-harro
 	description `On this mining world, the Hai are using boring machines to drill tunnels straight into the hearts of the mountains. Each tunnel twists and turns to intersect the regions of rock with the highest concentrations of valuable ore. Most of the tunnels also join up with other tunnels that have been dug through the same mountains, so that there are multiple exits from any given point in the mines.`
 	spaceport `The spaceport is in the center of one of the large cities that are built high up in the mountains where the air is cooler. It consists mostly of open-air landing pads: enormous slabs of metal embedded into the mountainside at different levels, with winding roads connecting them to the main marketplace and warehouse district. Several old mine entrances, well reinforced with metal struts, have been converted into hangar bays or warehouse space.`
-	shipyard "Hai Intermediate"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Mon Ki i'Hiya Basics"
+	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Intermediate"
 	security 0.2
 
@@ -29619,7 +29631,9 @@ planet Greenwater
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
-	shipyard "Hai Basics"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Mon Ki i'Hiya Basics"
+	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Basics"
 	security 0.4
 
@@ -29654,7 +29668,11 @@ planet Hai-home
 	landscape land/valley2
 	description `This is the home world of the Hai. Well over half the planet's surface is oceans. The land is mostly covered by sprawling cities, except for some mountain ranges too high or too snowy to build on. Despite its population of nearly eight billion, Hai-home is relatively free of pollution or overcrowding.`
 	spaceport `The spaceport in the capital city of Haimat is massive, with towers well over a kilometer high and hangars large enough to park an entire fleet of capital ships in. Although the port is bustling, with ships taking off and landing almost every minute, nearly three quarters of the landing pads and hangars are empty, and whole sections of the spaceport appear to be unused. Clearly, this port was designed to handle far more traffic than this.`
-	shipyard "Hai Advanced"
+	shipyard "Mon Ki i'Hiya Advanced"
+	shipyard "Mon Ki i'Hiya Basics"
+	shipyard "Imo Loo Mer Advanced"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Advanced"
 	"required reputation" 100
 	bribe 0
@@ -29734,7 +29752,8 @@ planet Heartvalley
 	landscape land/fog0
 	description `An extreme amount of tectonic activity in its distant past has left Heartvalley with mountain ranges five to ten kilometers high in some places. Most of the Hai settlements here are in the valleys closer to sea level, where the air is dense enough for them to breathe comfortably. The tectonic activity has left many ancient sea-beds exposed, providing access to bountiful supplies of oil. To the Hai, oil is too precious a resource to be used for fuel; instead they process it into plastic and use the byproducts in other chemical processes.`
 	spaceport `The spaceport is built halfway up the slope of one of the most heavily settled valleys. Farther down the valley, the tallest buildings of the city seem tiny compared to the mountains that surround them. On the outskirts of the city sit strange engines the size of a spacecraft, with pipes snaking out from them in all directions and sinking deep into the ground.`
-	shipyard "Hai Basics"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Mon Ki i'Hiya Basics"
 	outfitter "Hai Basics"
 	security 0.1
 
@@ -29890,7 +29909,9 @@ planet Icelake
 	landscape land/sky4
 	description `Icelake is the second most populous Hai planet. Since its oil and natural gas reserves have long since been depleted, the large cities and factories here rely heavily on geothermal and wind energy. One fortunate side effect of that is that the air here is almost as pristine as on a non-industrial world.`
 	spaceport `The largest hangars in the spaceport are built of metal beams more than a meter wide, with thick glass panels between them to let in the sunlight. Even the smaller and newer warehouses on the outskirts of the port seem as solid and permanent as the mountains themselves. Thousands of Hai are walking back and forth between the buildings, and many of them regard you with curiosity; there are very few human visitors here.`
-	shipyard "Hai Intermediate"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Mon Ki i'Hiya Basics"
+	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Advanced"
 	security 0.3
 
@@ -30216,7 +30237,10 @@ planet Makerplace
 	landscape land/lava12
 	description `Makerplace has an unusual degree of volcanic activity due to high concentrations of radioactive elements in the planet's mantle. Although it is warm by Hai standards, the abundance of geothermal energy, combined with plentiful solar energy and wind power, has made it an ideal world for manufacturing. Several cities in the temperate regions have populations of over a hundred million Hai, and the factories surrounding the cities spread out for dozens of kilometers in all directions. Near the equator, much of the land is desert or volcanic wasteland.`
 	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
-	shipyard "Hai Intermediate"
+	shipyard "Yeer e Ki Advanced"
+	shipyard "Yeer e Ki Basics"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Mon Ki i'Hiya Basics"
 	outfitter "Hai Advanced"
 	security 0.2
 
@@ -31623,7 +31647,10 @@ planet Stonebreak
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
 	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular gray color. The corners of each building are slightly beveled instead of meeting at right angles.`
 	spaceport `	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
-	shipyard "Hai Intermediate"
+	shipyard "Imo Loo Mer Advanced"
+	shipyard "Imo Loo Mer Basics"
+	shipyard "Mon Ki i'Hiya Basics"
+	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Intermediate"
 	security 0.3
 
@@ -32171,7 +32198,7 @@ planet Watcher
 	description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it is occasionally visited by biologists interested in studying low-gravity life forms. There are forests here where the trees grow over two hundred meters tall.`
 
 planet Wayfarer
-	attributes factory south
+	attributes factory research south
 	landscape land/nasa1
 	description `Wayfarer was initially settled by a team of scientists and diplomats seeking to build a relationship with the Quarg worlds to the galactic southeast of here. Partly through the aid of the Quarg and partly through a desire to emulate them, it has grown into a very technologically advanced world.`
 	description `	The Tarazed Corporation, a maker of alien-inspired ships and outfits, is one of the largest industries on Wayfarer, and they draw raw materials from throughout this region of space.`
