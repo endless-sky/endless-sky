@@ -1563,6 +1563,31 @@ ship "Freighter" "Freighter (Hai Trafficker)"
 		"Security Station" 2
 
 
+ship "Frigate" "Frigate (Republic Intelligence)"
+	outfits
+		"A370 Atomic Thruster"
+		"Blaster Turret" 2
+		Brig
+		"Cargo Scanner"
+		"Catalytic Ramscoop"
+		"Electron Beam" 2
+		"Fission Reactor"
+		"Fuel Pod"
+		"Heavy Anti-Missile Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP144a Battery Pack"
+		"Laser Rifle" 15
+		"Fragmentation Grenades" 15
+		"Outfit Scanner"
+		"Outfits Expansion"
+		"S-270 Regenerator"
+		"Sidewinder Missile" 45
+		"Sidewinder Missile Launcher"
+		Torpedo 30
+		"Torpedo Launcher"
+		"Water Coolant System"
+
 
 ship "Frigate" "Frigate (Mark II)"
 	outfits
