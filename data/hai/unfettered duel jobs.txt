@@ -59,7 +59,7 @@ fleet "Shield Beetle Challenger"
 	variant
 		"Shield Beetle (Thunderhead)"
 
-event "challengers arrive"
+event "unfettered: challengers arrive"
 	system "Wah Yoot"
 		add fleet "Shield Beetle Challenger" 5000
 		add fleet "Sea Scorpion Challenger" 7500
@@ -69,7 +69,7 @@ event "challengers arrive"
 	system "Hi Yahr"
 		add fleet "Sea Scorpion Challenger" 5000
 
-event "challengers leave"
+event "unfettered: challengers leave"
 	system "Wah Yoot"
 		remove fleet "Shield Beetle Challenger"
 		remove fleet "Sea Scorpion Challenger"
@@ -90,7 +90,7 @@ mission "Unfettered: Challengers Arrive"
 	on offer
 		dialog `The Captain meets you in the starport now that his crew done patching up his ship. "She'll fly again, alright. Now that ye know how a duel rolls, many Unfettered may want to challenge you, depending on your fame. If you agree, they won't think twice about engaging you once you get too close, and will be marked on your map, because that's how they want ye to see them! In that case, be carreful not to run around with too big of a fleet, or there may be some unwanted casualties, and we wouldn't want that now, would we? Do you feel ready for the challenge? If ye refuse, do know ye can always mark yerself as ready for action from the job board, only from here on Darkcloak. The opposite holds true too, if ye do not feel like fighting ye can mark yerself not ready! So, what do you say?"`
 	on accept
-		event "challengers arrive"
+		event "unfettered: challengers arrive"
 
 mission "Unfettered: Trigger The Challengers"
 	job
@@ -102,24 +102,24 @@ mission "Unfettered: Trigger The Challengers"
 	to fail
 		has "Unfettered: Trigger The Challengers: active"
 	on accept
-		clear "event: challengers arrive"
-		event "challengers arrive"
+		clear "event: unfettered: challengers arrive"
+		event "unfettered: challengers arrive"
 		dialog "Even more challengers will come, hopefully you are ready for them!"
 
-mission "Unfettered: Trigger The Challengers"
+mission "Unfettered: Remove The Challengers"
 	job
 	name "No more challenges"
 	description "Mark yourself as no longer wanting to do challenges in any Unfettered systems."
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
-		has "event: challengers arrive"
+		has "event: unfettered: challengers arrive"
 	to fail
-		has "Unfettered: Trigger The Challengers: active"
+		has "Unfettered: Remove The Challengers: active"
 	on accept
-		clear "event: challengers arrive"
-		clear "event: challengers leave"
-		event "challengers leave"
+		clear "event: unfettered: challengers arrive"
+		clear "event: unfettered: challengers leave"
+		event "unfettered: challengers leave"
 		dialog "No more challengers will come by themselves in space. You can still change your mind by accepting the other job, or any specific duelling job."
 
 
