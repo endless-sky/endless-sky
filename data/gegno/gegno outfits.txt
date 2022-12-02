@@ -35,7 +35,7 @@ outfit "R02 Battlezone Battery"
 	thumbnail outfit/gbatterysmall
 	"energy capacity" 2237
 	"outfit space" -23
-	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long lasting engagements. They also fit nicely on larger vessels as a buffer to power their larger systems.`
+	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long-lasting engagements. They also fit nicely on larger vessels as a buffer to power their larger systems.`
 
 
 outfit "R03 Warforge Battery"
@@ -64,7 +64,7 @@ outfit "R04 Crusade Battery"
 	thumbnail outfit/gbatterylarge
 	"energy capacity" 8885
 	"outfit space" -83
-	description `As the largest battery mounted on Gegno ships, the Crusade Battery holds a large amount of energy, more than it would take a small generator a decent amount of time to produce in order to support the energy hungry warships of both the Scin and the Vi. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options.`
+	description `As the largest battery mounted on energy-hungry Gegno ships, the Crusade Battery holds a large amount of power, more than it would take a small generator a decent amount of time to produce. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options.`
 
 
 outfit "C3 Scrap Cell"
@@ -90,7 +90,7 @@ outfit "C7 Brawl Cell"
 	"energy generation" 2.5
 	"heat generation" 3.9
 	"outfit space" -39
-	description `Unlike other C-class cores, C7 Brawl Cells are mounted horizontally. This design, however, still serves the Gegno well, though it will likely be phased out in favor of larger generators becoming more compact and efficient in the future.`
+	description `Unlike other C-class cores, C7 Brawl Cells are mounted horizontally. This design still serves the Gegno well, though it will likely be phased out in favor of larger generators as they become more compact and efficient.`
 
 
 outfit "C17 Warzone Core"
@@ -276,7 +276,7 @@ outfit "SC-1 Plasma Engines"
 	"flare sprite" effect/scplasma/tiny
 		"frame rate" 0.6
 	"flare sound" "scplasma tiny"
-	description `In order to power the small Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's larger, more sluggish Ion Engines, which would never be compact or light enough to run on a fighter.`
+	description `In order to power the tiny Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's bigger, more sluggish Ion Engines, which would never be compact or light enough to run on a fighter.`
 
 
 outfit "SC-12 Plasma Thruster"
@@ -440,7 +440,7 @@ outfit "Irate Cannon Turret"
 		"shield damage" 6
 		"hull damage" 16
 		"hit force" 40
-	description `While initially opted out as a weapon for Vi ships due to the production of larger calliber turreted cannons, the Irate Cannon Turret is used as a lighter option on Vi ships that do not have a sizeable weapon capacity. Despite the lack in raw firepower, the key feature of an Irate cannon's rate of fire is doubled with two of these mounted together on an assisting rotating platform.`
+	description `While initially opted out as a weapon for Vi ships due to the production of larger calliber turreted cannons, the Irate Cannon Turret is used as a lighter option on Vi ships that do not have a sizeable weapon capacity. Despite the lack of raw firepower, the key feature of an Irate cannon's rate of fire is doubled with two of these mounted together on an assisting rotating platform.`
 
 effect "irate fire"
 	sprite effect/irfire
@@ -476,7 +476,7 @@ outfit "Chloeric Cannon"
 		"shield damage" 95
 		"hull damage" 280
 		"hit force" 180
-	description `A caliber higher than the Irate Cannon, Chloeric cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon, it is, along with other Gegno weaponry, very ineffective against any sort of shielding.`
+	description `A caliber higher than the Irate Cannon, Chloeric Cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon, it is, along with other Gegno weaponry, very ineffective against any sort of shielding.`
 
 
 outfit "Chloeric Cannon Turret"
@@ -548,7 +548,7 @@ outfit "Ballistic Cannon"
 		"shield damage" 145
 		"hull damage" 776
 		"hit force" 360
-	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber. Each cannon round is as powerful as a small rocket and can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can leave a deadly field of rain in their sight.`
+	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber. Each cannon round is as powerful as a small rocket and can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can leave a deadly field in their sight.`
 
 
 outfit "Ballistic Cannon Turret"
@@ -708,7 +708,7 @@ outfit "Guile Pulse Laser"
 		"firing heat" 10
 		"shield damage" 12.4
 		"hull damage" 20.2
-	description `The Guile Pulse Laser is a recent experimental advancement in Scin Plasma weapon technology. Rather than rapid firing plasma slugs, this weapon fires concentrated pulses of energy that only last for a brief moment. Each blast impacts the target ship almost instantaneously with a powerful hit, and a consistent amount of fire from Guile Lasers is extremely effective against slow moving targets.` 
+	description `The Guile Pulse Laser is a recent experimental advancement in Scin plasma weapon technology. Rather than rapid firing plasma slugs, this weapon fires concentrated pulses of energy that only last for a brief moment. Each blast impacts the target ship almost instantaneously with a powerful hit, and a consistent amount of fire from Guile Lasers is extremely effective against slow moving targets.` 
 	description `	Guile Pulse Lasers have noticeable drawbacks as they quickly consume energy and generate notable heat per shot. Unlike a beam-type weapon, they are incapable of consistent output, and have a fairly short range.`
 
 
