@@ -180,16 +180,16 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		const Government *pGov, const Body *target) const
 {
-	int x = from.X();
-	int y = from.Y();
-	int endX = to.X();
-	int endY = to.Y();
+	const int x = from.X();
+	const int y = from.Y();
+	const int endX = to.X();
+	const int endY = to.Y();
 
 	// Figure out which grid cell the line starts and ends in.
 	int gx = x >> SHIFT;
 	int gy = y >> SHIFT;
-	int endGX = endX >> SHIFT;
-	int endGY = endY >> SHIFT;
+	const int endGX = endX >> SHIFT;
+	const int endGY = endY >> SHIFT;
 
 	Closest closer_result(closestHit ? *closestHit : 1.);
 
@@ -198,9 +198,9 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	if(gx == endGX && gy == endGY)
 	{
 		// Examine all objects in the current grid cell.
-		auto i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
-		vector<Entry>::const_iterator it = sorted.begin() + counts[i];
-		vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
+		const auto index = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
+		vector<Entry>::const_iterator it = sorted.begin() + counts[index];
+		vector<Entry>::const_iterator end = sorted.begin() + counts[index + 1];
 		for( ; it != end; ++it)
 		{
 			// Skip objects that were put in this same grid cell only because
@@ -216,7 +216,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
-			double range = mask.Collide(offset, to - from, it->body->Facing());
+			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
 			closer_result.TryNearer(range, it->body);
 		}
@@ -226,7 +226,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		return closer_result.GetClosestBody();
 	}
 
-	Point pVelocity = (to - from);
+	const Point pVelocity = (to - from);
 	if(pVelocity.Length() > MAX_VELOCITY)
 	{
 		// Cap projectile velocity to prevent integer overflows.
@@ -240,8 +240,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	}
 
 	// When stepping from one grid cell to the next, we'll go in this direction.
-	int stepX = (x <= endX ? 1 : -1);
-	int stepY = (y <= endY ? 1 : -1);
+	const int stepX = (x <= endX ? 1 : -1);
+	const int stepY = (y <= endY ? 1 : -1);
 	// Calculate the slope of the line, shifted so it is positive in both axes.
 	const uint64_t mx = abs(endX - x);
 	const uint64_t my = abs(endY - y);
@@ -287,7 +287,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
-			double range = mask.Collide(offset, to - from, it->body->Facing());
+			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
 			closer_result.TryNearer(range, it->body);
 		}
@@ -296,7 +296,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		if(closer_result.GetClosestBody() || (gx == endGX && gy == endGY))
 			break;
 		// If not, move to the next one. Check whether rx / mx < ry / my.
-		int64_t diff = rx * my - ry * mx;
+		const int64_t diff = rx * my - ry * mx;
 		if(!diff)
 		{
 			// The line is exactly intersecting a corner.
@@ -350,23 +350,23 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double outer) const
 {
 	// Calculate the range of (x, y) grid coordinates this ring covers.
-	int minX = static_cast<int>(center.X() - outer) >> SHIFT;
-	int minY = static_cast<int>(center.Y() - outer) >> SHIFT;
-	int maxX = static_cast<int>(center.X() + outer) >> SHIFT;
-	int maxY = static_cast<int>(center.Y() + outer) >> SHIFT;
+	const int minX = static_cast<int>(center.X() - outer) >> SHIFT;
+	const int minY = static_cast<int>(center.Y() - outer) >> SHIFT;
+	const int maxX = static_cast<int>(center.X() + outer) >> SHIFT;
+	const int maxY = static_cast<int>(center.Y() + outer) >> SHIFT;
 
 	// Keep track of which objects we've already considered.
 	set<const Body *> seen;
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
 	{
-		auto gy = y & WRAP_MASK;
+		const auto gy = y & WRAP_MASK;
 		for(int x = minX; x <= maxX; ++x)
 		{
-			auto gx = x & WRAP_MASK;
-			auto i = gy * CELLS + gx;
-			vector<Entry>::const_iterator it = sorted.begin() + counts[i];
-			vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
+			const auto gx = x & WRAP_MASK;
+			const auto index = gy * CELLS + gx;
+			vector<Entry>::const_iterator it = sorted.begin() + counts[index];
+			vector<Entry>::const_iterator end = sorted.begin() + counts[index + 1];
 
 			for( ; it != end; ++it)
 			{
@@ -381,7 +381,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 
 				const Mask &mask = it->body->GetMask(step);
 				Point offset = center - it->body->Position();
-				double length = offset.Length();
+				const double length = offset.Length();
 				if((length <= outer && length >= inner)
 					|| mask.WithinRing(offset, it->body->Facing(), inner, outer))
 					result.push_back(it->body);
