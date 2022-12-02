@@ -505,6 +505,13 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "remove" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "bays")
+				removeBays = true;
+			else
+				child.PrintTrace("Skipping unsupported \"remove\":");
+		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -553,7 +560,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
-		if(bays.empty() && !base->bays.empty())
+		if(bays.empty() && !base->bays.empty() && !removeBays)
 			bays = base->bays;
 		if(enginePoints.empty())
 			enginePoints = base->enginePoints;
@@ -611,6 +618,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament = merged;
 		}
 	}
+	else if(removeBays)
+		bays.clear();
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
@@ -2337,13 +2346,11 @@ void Ship::DoGeneration()
 		PauseAnimation();
 	else
 	{
-		// Ramscoops work much better when close to the system center. Even if a
-		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
-		// close to the star. Carried fighters can't collect fuel or energy this way.
+		// Ramscoops work much better when close to the system center.
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			// Overheated ships produce half as much energy from solar collection.
