@@ -1698,7 +1698,8 @@ fleet "Large Syndicate"
 		"Splinter"
 		"Quicksilver" 3
 	variant 2
-		"Splinter (Laser)" 2
+		"Splinter (Laser)"
+		"Quicksilver (Proton)" 3
 	variant 2
 		"Splinter (Proton)"
 		"Quicksilver" 3
