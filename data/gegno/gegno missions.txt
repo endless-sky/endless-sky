@@ -355,9 +355,9 @@ mission "Stationed Augen"
 		government "Gegno Vi"
 		personality heroic vindictive staying
 		system Kiluit
-		ship Augen "Vytii Yrrlausei"
+		ship "Augen" "Vytii Yrrlausei"
 	to fail
-		has "Intermediate: done"
+		has "Intermediary: done"
 
 mission "Augen Destruction"
 	landing

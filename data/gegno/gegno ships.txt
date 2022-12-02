@@ -214,7 +214,8 @@ ship Dunite
 
 
 ship Augen
-	sprite ship/augen
+	sprite "ship/gegno augen"
+	thumbnail "thumbnail/gegno augen"
 	attributes
 		category "Superheavy"
 		licenses
