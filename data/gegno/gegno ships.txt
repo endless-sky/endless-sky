@@ -45,7 +45,7 @@ ship Shale
 	leak leak 50 60
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description `As the Gegno began splitting up and colonizing new worlds, they needed a smaller ship to transport smaller payloads, instead of using their enormous (and expensive) City-Ships. The Shale is the Gegno's equivalent of a shuttle: a small and compact transport. Whether it be cargo, trade goods, travellers, or recruits, Shales are the foundation of the Gegno interstellar civilization.`
+	description `As the Gegno began splitting up and colonizing new worlds, they needed a smaller ship to transport smaller payloads in place of their enormous (and expensive) City-Ships. The Shale is the Gegno's equivalent of a shuttle: a small and compact transport. Whether it be cargo, trade goods, travellers, or recruits, Shales are the foundation of the Gegno interstellar civilization.`
 
 ship Dolomite
 	sprite "ship/gegno dolomite"
@@ -416,7 +416,7 @@ ship Schist
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Gegno Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
-	description `	Although is it lightly armed compared to other Vi ships, Schists still have mounted with a pair of cannons and a turret so they can bring some type of weaponry to any possible engagement.`
+	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of cannons and a turret so they can bring some type of weaponry to any possible engagement.`
 
 ship Schist "Schist Light Load"
 	sprite "ship/gegno schist b"
@@ -532,7 +532,7 @@ ship Diorite
 	explode "small explosion" 20
 	explode "tiny explosion" 17
 	"final explode" "final explosion medium"
-	description "Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets to support them. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, and sometimes smaller ones as well."
+	description "Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, and sometimes smaller ones as well."
 
 ship Hornfel
 	sprite "ship/gegno hornfel a"
@@ -594,7 +594,7 @@ ship Hornfel
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many cargo racks to support cargo pods, allowing them to provide a secondary cargo transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are occasionally found with adjustments to carry a larger payload rather than cargo load. This usage as a multi-role ship is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
+	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many racks to support cargo pods, allowing them to provide a secondary transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are occasionally found with adjustments to carry a larger payload rather than cargo load. This usage as a multi-role ship is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
 
 ship Hornfel "Hornfel Light Load"
 	sprite "ship/gegno hornfel b"
@@ -826,7 +826,7 @@ ship Halite
 	leak leak 60 50
 	explode "small explosion" 8
 	explode "tiny explosion" 10
-	description `Halites are a successful experimental test platform designed by the Gegno Scin. They are the Gegno's first fighter-based craft, and the first to equip both early-stage beam weapon and shield technology; almost half the hull is dedicated to it.`
+	description `Halites are a successful experimental test platform designed by the Gegno Scin. They are the Gegno's first fighter-based craft, and the first to equip both early-stage beam weapon and shield technology; almost half the hull is dedicated to these new developments.`
 	description `	Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft.`
 
 ship Mica
@@ -949,7 +949,7 @@ ship Tridymite
 	explode "small explosion" 19
 	explode "tiny explosion" 14
 	"final explode" "final explosion small"
-	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be found used by the military as scout craft.`
+	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be found in the military, used as scout craft.`
 
 ship Felsic
 	sprite "ship/gegno felsic"
@@ -995,7 +995,7 @@ ship Felsic
 	explode "small explosion" 28
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
-	description `Felsics are based on Schists, but offer many upgrades in exchange for less durability and space for engines. The Scin have opted for three turret mounts, as well as expanded capacity for outfits and weapons. All this allows these ships to perform logistical duties well as well as doubling as a secondary combat vessel, making up for the lack of a dedicated Scin warship.`
+	description `Felsics are based on Schists, but offer many upgrades in exchange for less durability and space for engines. The Scin have opted for three turret mounts, as well as expanded capacity for outfits and weapons. All this allows these ships to perform logistical duties as well as doubling as a secondary combat vessel, making up for the lack of a dedicated Scin warship.`
 
 ship Feldspar
 	sprite "ship/gegno feldspar"
@@ -1127,5 +1127,5 @@ ship Muscovite
 	explode "medium explosion" 42
 	explode "small explosion" 38
 	"final explode" "final explosion large"
-	description `Muscovites are large independent research platforms with decently-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks eitehr help transport groups of Scin scientists to their project destinations, where they perform research or experiments, or allow for mobile on-board demonstrations and observations. Each Muscovite is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Muscovites can also be used as a secondary warship when needed.`
-	description `	Like other Gegno Scin ships, Muscovites themselves are an experimental test bed, and are built around the large engine system tested on Feldspars, making them notably fast for their size.`
+	description `Muscovites are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, where they perform research or experiments, or allow for mobile on-board demonstrations and observations. Each Muscovite is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Muscovites can also be used as a secondary warship when needed.`
+	description `	Like other Gegno Scin ships, Muscovites themselves are an experimental test bed; they are built around the large engine system tested on Feldspars, making them notably fast for their size.`
