@@ -140,7 +140,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 		government "Hai (Friendly Unfettered)"
 		system "Rajak"
 		personality escort heroic opportunistic vindictive waiting
-		fleet "Large Friendly Unfettered" 7
+		fleet "Large Unfettered" 7
 	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
 
 	npc kill
