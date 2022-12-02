@@ -1588,7 +1588,7 @@ mission "Hai Reveal [A13] A New Elder"
 			label "who won"
 			`	Remington answers your question, "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
 			label "walk or drink"
-			`	Alondo walks over to the bar and says, "I'll get you a drink, <last>. What'll you have?"`
+			`	Alondo wobbles over to the bar and says, "I'll get you a drink, <last>. What'll you have?"`
 			choice
 				`	"Just a water for me, thanks."`
 					goto watch
