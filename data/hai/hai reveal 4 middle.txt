@@ -1576,7 +1576,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
 			`	The Chancellor states, "However, the Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
 			choice
-				`	"With respect, Chancellor, what you propose would take years to resolve a problem of immediate concern. How does the Hai representative respond?"`
+				`	"With respect, Chancellor, this is a problem of immediate concern. I'm sure the Hai representative would like to respond to that before we continue."`
 					goto calm
 				`	"Is this an acceptable proposal, Teeneep?"`
 			`	Teeneep looks perturbed, and has to make an effort to hold back her anger and resentment. The other heads of state don't seem to notice; perhaps you're more sensitive to Hai facial expressions after the time you have spent with them. "Of course not," she says.`
