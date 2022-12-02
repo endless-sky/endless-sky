@@ -1307,7 +1307,7 @@ mission "Unfettered: Speak Sestor"
 	source "Darkcloak"
 	stopover "Hai-home"
 	to offer
-		has "Unfettered: Alphas 2: Prove Yourself: done"
+		has "salary: Unfettered"
 		has "Hai Reveal [C01] Cleanup: done"
 		or
 			has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
