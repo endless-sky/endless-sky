@@ -1331,28 +1331,45 @@ mission "Unfettered: Speak Sestor"
 			`	"I am sure you have already noticed that communication with the Koraths can be... difficult, since you met them."`
 				to display
 					has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+			label choice
 			choice
 				`	"Let's go then."`
 					accept
 				`	"Would they just give that information to you?"`
-			`	"Of course they would, that is information accessible by all Hai, it simply is only stored on the homeworld, for convenience. I will also give them information on our translator in exchange."`
-			choice
-				`	"I'll take you there."`
-					accept
+					to display
+						not "unfettered: why give info"
+				`	"How would they even have such data, I thought you were at war with the Korath?"`
+					to display
+						not "unfettered: how got info"
+					goto war
 				`	"I don't have the time right now, but I'll come back once I do."`
 					defer
+			action
+				set "unfettered: why give info"
+			`	"Of course they would, that is information accessible by all Hai, it simply is only stored on the homeworld, for convenience. I will also give them all data collected from our translator in exchange."`
+				goto choice
+			label war
+			action
+				set "unfettered: how got info"
+			`	"We Hai have not always been in conflict with the Korath. At some point we were even friendly with the Sestors, before they started raiding us, that is. We refused to go to war, so war came to us."`
+				goto choice
 	on stopover
 		dialog `The Hai are more happy to give you this data in exchange for data on the translator itself.`
 		set "unfettered: stopped on hai-home"
 	npc evade
 		government "Hydra"
-		personality waiting disables plunders vindictive
+		personality waiting nemesis disables plunders vindictive
 		to spawn
 			has "unfettered: stopped on hai-home"
 		fleet "Large Northern Pirates" 3
 		fleet "Small Northern Pirates" 3
+	on fail
+		dialog `Choot'k managed to get out from the ship before it exploded, by heading to an escape hatch when it started getting messy. His suit protected him from space long enough for a Hai ship to pick him off. However, he will probably not attempt something like this again...`
 	on complete
+		log `I went to Hai-home with Choot'k to gather some data on the Sestor language from before the raids started. We got attacked by Hydra, they were probably after him.`
 		clear "unfettered: stopped on hai-home"
+		clear "unfettered: why give info"
+		clear "unfettered: how got info"
 		event "unfettered: better sestor translator" 45
 		dialog "<veteran> thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
 
@@ -1367,5 +1384,5 @@ mission "Unfettered: Ambush"
 	to offer
 		has "Unfettered: Speak Sestor: active"
 	on enter
-		# SPOILER: he doesnt want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
+		# SPOILER: he doesn't want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
 		dialog `Upon entering the system you see multiple Hydra ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`
