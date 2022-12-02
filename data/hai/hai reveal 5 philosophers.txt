@@ -727,7 +727,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			`	There is a pregnant pause for a moment and then she suddenly gasps. "Captain, this must be Elenchus!"`
 				goto scan
 			label leave
-			`	As you say this, you notice on your regular sensors that there are some ships heading your way and, more horrifyingly, some ground-based turrets coming online.`
+			`	As you say this, you notice on your regular sensors that there are some ships heading your way and, more horrifyingly, some ground-based turrets coming online. It's time to go.`
 	on complete
 		payment 775000
 	npc
