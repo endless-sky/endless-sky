@@ -711,17 +711,6 @@ phrase "hostile disabled unfettered"
 		"!"
 		"."
 
-phrase "provocative unfettered challenger"
-	word
-		"Do you really think you can beat me?"
-		"Show your worth to me in battle now!"
-		"You pathethic monkey, you stand no chance against me! You better run from me now indeed!"
-		"The time has come to fight. The Gods are watching."
-		"I challenge you! Come and fight me now!"
-		"Surprise me! What shall be your first strike?"
-		"Because of your weakness, I will let you have the first strike."
-		"We will fight you together and as one, with my crew. Let's see if you can handle that!"
-
 phrase "hostile unfettered challenger"
 	word
 		"Stop "
@@ -823,7 +812,7 @@ phrase "unfettered duelling"
 		"Stop distracting me"
 		"If you try anything the whole fleet will be on you"
 	word
-		"!"
+		"! "
 	word
 		"Go away now, I need to focus on the duel"
 	word

@@ -69,6 +69,70 @@ event "challengers arrive"
 	system "Hi Yahr"
 		add fleet "Sea Scorpion Challenger" 5000
 
+event "challengers leave"
+	system "Wah Yoot"
+		remove fleet "Shield Beetle Challenger"
+		remove fleet "Sea Scorpion Challenger"
+	system "Ehma Ti"
+		remove fleet "Sea Scorpion Challenger"
+		remove fleet "Shield Beetle Challenger"
+	system "Hi Yahr"
+		remove fleet "Sea Scorpion Challenger"
+
+
+
+mission "Unfettered: Challengers Arrive"
+	landing
+	invisible
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+	on offer
+		dialog `The Captain meets you in the starport now that his crew done patching up his ship. "She'll fly again, alright. Now that ye know how a duel rolls, many Unfettered may want to challenge you, depending on your fame. If you agree, they won't think twice about engaging you once you get too close, and will be marked on your map, because that's how they want ye to see them! In that case, be carreful not to run around with too big of a fleet, or there may be some unwanted casualties, and we wouldn't want that now, would we? Do you feel ready for the challenge? If ye refuse, do know ye can always mark yerself as ready for action from the job board, only from here on Darkcloak. The opposite holds true too, if ye do not feel like fighting ye can mark yerself not ready! So, what do you say?"`
+	on accept
+		event "challengers arrive"
+
+mission "Unfettered: Trigger The Challengers"
+	job
+	name "Ready for more challengers"
+	description "Mark yourself as ready for more challengers to come in all Unfettered systems."
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+	to fail
+		has "Unfettered: Trigger The Challengers: active"
+	on accept
+		clear "event: challengers arrive"
+		event "challengers arrive"
+		dialog "Even more challengers will come, hopefully you are ready for them!"
+
+mission "Unfettered: Trigger The Challengers"
+	job
+	name "No more challenges"
+	description "Mark yourself as no longer wanting to do challenges in any Unfettered systems."
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Prove Your Strength: done"
+		has "event: challengers arrive"
+	to fail
+		has "Unfettered: Trigger The Challengers: active"
+	on accept
+		clear "event: challengers arrive"
+		clear "event: challengers leave"
+		event "challengers leave"
+		dialog "No more challengers will come by themselves in space. You can still change your mind by accepting the other job, or any specific duelling job."
+
+
+
+# to make sure you are always hostile to the challengers, otherwise shooting them means provoke meaning it will agro Unfettered
+mission "Hostile Challengers"
+	landing
+	invisible
+	to offer
+		has "reputation: Hai (Unfettered Challenger)" > -100
+	on offer
+		"reputation: Hai (Unfettered Challenger)" <?= -10000
+
 
 
 phrase "unfettered challenger defeated"
@@ -103,7 +167,6 @@ phrase "unfettered challenger defeated"
 		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> upon landing. If this was a fair fight, you may have gained my respect."`
 	word
 		"<boarding message>"
-
 
 substitutions
 	"<boarding message>" "(Winning the duel has increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"

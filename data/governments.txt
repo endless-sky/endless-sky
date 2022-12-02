@@ -413,12 +413,10 @@ government "Hai (Unfettered Challenger)"
 	"crew attack" 1.4
 	"crew defense" 2.2
 
-	"player reputation" -1000
+	"player reputation" -10000
 	"bribe" .0001
 	"fine" 0
 
-	"friendly hail" "provocative unfettered challenger"
-	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered challenger"
 	"hostile disabled hail" "defeated unfettered challenger"
 	"penalty for"

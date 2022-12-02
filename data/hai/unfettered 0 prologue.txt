@@ -722,8 +722,6 @@ mission "Unfettered: Prove Your Strength"
 		has "unfettered: beaten the captain"
 	on complete
 		clear "unfettered: beaten the captain"
-		event "challengers arrive"
-		dialog `The Captain meets you in the starport once his crew is done patching up his ship. "She'll fly again, alright. Fair warning, laddie, now that ye know how a duel rolls, many Unfettered may challenge you. They won't think twice about engaging you once you get too close, and will be marked on your map, because that's how they want ye to see them! Be carreful not to run around with too big of a fleet, or there may be some unwanted casualties, and we wouldn't want that now, would we?"`
 
 
 
