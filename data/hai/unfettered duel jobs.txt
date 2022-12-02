@@ -30,7 +30,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
 fleet "Sea Scorpion Challenger"
 	government "Hai (Unfettered Challenger)"
 	names "hai"
-	personality disables plunders staying heroic target
+	personality disables plunders staying timid target
 	variant 5
 		"Sea Scorpion (Pulse)"
 	variant 3
@@ -45,7 +45,7 @@ fleet "Sea Scorpion Challenger"
 fleet "Shield Beetle Challenger"
 	government "Hai (Unfettered Challenger)"
 	names "hai"
-	personality disables plunders staying heroic target
+	personality disables plunders staying timid target
 	variant 5
 		"Shield Beetle (Pulse)"
 	variant 5
@@ -58,6 +58,16 @@ fleet "Shield Beetle Challenger"
 		"Shield Beetle (Sunbeam)"
 	variant
 		"Shield Beetle (Thunderhead)"
+
+event "challengers arrive"
+	system "Wah Yoot"
+		fleet "Shield Beetle Challenger" 7500
+		fleet "Sea Scorpion Challenger" 12500
+	system "Ehma Ti"
+		fleet "Sea Scorpion Challenger" 10000
+		fleet "Shield Beetle Challenger" 10000
+	system "Hi Yahr"
+		fleet "Sea Scorpion Challenger" 75000
 
 
 

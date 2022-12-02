@@ -683,17 +683,18 @@ mission "Unfettered: Prove Your Strength"
 		to despawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 		conversation
-			branch "canceled wanderer"
-				has "Wanderers: Defend Vara Ke'sok: failed"
-			`Now that you have disabled the <npc>, its captain hails you. "It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
-				goto choose
-			label "canceled wanderer"
-			branch noJD
-				not "Unfettered Jump Drive 1: offered"
+			`Now that you have disabled the <npc>, its captain hails you. "It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
+				to display
+					not "Wanderers: Defend Vara Ke'sok: failed"
 			`Now that you have disabled the <npc>, its captain hails you. "Well captain, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
-				goto choose
-			label noJD
-			`Now that you have disabled the <npc>, its captain hails you. "Well captain, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today. However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..." he says this with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
+				to display
+					has "Wanderers: Defend Vara Ke'sok: failed"
+					has "Unfettered Jump Drive 1: offered"
+			`Now that you have disabled the <npc>, its captain hails you. "Well captain, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today. However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..." he says this with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
+				to display
+					has "Wanderers: Defend Vara Ke'sok: failed"
+					not "Unfettered Jump Drive 1: offered"
+			`	In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
 			label choose
 			choice
 				`	"Be careful with provoking me. You may have gotten killed. Do not count on me to repair your ship."`
@@ -721,6 +722,8 @@ mission "Unfettered: Prove Your Strength"
 		has "unfettered: beaten the captain"
 	on complete
 		clear "unfettered: beaten the captain"
+		event "challengers arrive"
+		dialog `The Captain meets you in the starport once his crew is done patching up his ship. "She'll fly again, alright. Fair warning, laddie, now that ye know how a duel rolls, many Unfettered may challenge you. They won't think twice about engaging you once you get too close, and will be marked on your map, because that's how they want ye to see them! Be carreful not to run around with too big of a fleet, or there may be some unwanted casualties, and we wouldn't want that now, would we?"`
 
 
 

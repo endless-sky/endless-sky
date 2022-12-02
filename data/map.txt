@@ -9828,7 +9828,6 @@ system Egeria
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
-	attributes "unfettered challenge"
 	arrival 500
 	habitable 490
 	belt 1094
@@ -9854,8 +9853,6 @@ system "Ehma Ti"
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 750
-	fleet "Sea Scorpion Challenger" 5000
-	fleet "Shield Beetle Challenger" 7500
 	fleet "Unfettered Raid" 2500
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
@@ -13632,7 +13629,6 @@ system "Hevru Hai"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
-	attributes "unfettered challenge"
 	arrival 625
 	habitable 625
 	belt 1655
@@ -13658,8 +13654,6 @@ system "Hi Yahr"
 	fleet "Unfettered Logistics" 450
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 1000
-	fleet "Sea Scorpion Challenger" 5000
-	fleet "Shield Beetle Challenger" 7500
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
 	object
@@ -26991,7 +26985,6 @@ system "Wah Oh"
 system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
-	attributes "unfettered challenge"
 	arrival 1080
 	habitable 1080
 	belt 1222
@@ -27019,8 +27012,6 @@ system "Wah Yoot"
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
-	fleet "Sea Scorpion Challenger" 7500
-	fleet "Shield Beetle Challenger" 10000
 	fleet "Small Hai Merchant (Sympathizers)" 1200
 	fleet "Large Hai Merchant (Sympathizers)" 2400
 	object
