@@ -1780,7 +1780,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			choice
 				`	"That ends these proceedings."`
 				`	"Thank you, President, Chancellor, and Hai representative."`
-			`	The President and Chancellor nod mechanically while Teeneep twists her ears and eyes in a way that usually signals pride.`
+			`	The President and Chancellor nod mechanically while Teeneep perks her ears and tilts her in a motion that usually signals pride.`
 			`	After the screens go off, a number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations, as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
 			`	When you finally emerge Terry and Turner are waiting for you. Terry addresses you. "Captain <last>. We have a little problem. The many civilians that have been living under this cover or being serviced by it have been kept in the dark, and are very nervous about the massed Navy ships. They've been so far sold a story about a 'pirate menace,' and now we need them out of here."`
 			`	Turner smiles, "And I think it would be appropriate if you, as the famous war hero, were the one to escort them to safety and keep everyone's eyes away from what's happening here."`
