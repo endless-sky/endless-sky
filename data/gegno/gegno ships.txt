@@ -221,7 +221,7 @@ ship Augen
 		licenses
 			"Vi Lord"
 		cost 58800000
-		hull 67000
+		hull 167000
 		"required crew" 280
 		bunks 360
 		mass 5000
@@ -229,8 +229,8 @@ ship Augen
 		"heat dissipation" 0.4
 		"fuel capacity" 500
 		"cargo space" 84
-		"outfit space" 1800
-		"weapon capacity" 900
+		"outfit space" 1868
+		"weapon capacity" 1073
 		"engine capacity" 460
 		weapon
 			"blast radius" 450
@@ -239,45 +239,85 @@ ship Augen
 			"hit force" 2100
 	outfits
 		"Ballistic Cannon Turret" 6
+		"Chloeric Cannon Turret" 2
+		"Irate Cannon Turret"
+		"Chloeric Cannon"
+		"Irate Cannon" 17
 		"C17 Warzone Core"
 		"C27 Campaign Core"
-		"Chloeric Cannon" 2
 		Hyperdrive
-		"Irate Cannon" 3
 		"R04 Crusade Battery"
 		"RG3 Torch Steering" 2
 		"RG3 Torch Thruster" 4
-	engine 94 297
-	engine 55.5 373.5
-	engine -22.5 373.5
-	engine -52 297
-	"steering engine" 131 54.5
-		angle -60
-		zoom 0.5
+	engine 94 302
+	engine 60 372
+	engine -80 206
+	engine -40 268
+	"steering engine" 94 302
 		left
-	"steering engine" 128.5 116
-		zoom 0.5
-		angle -60
+	"steering engine" 60 372
 		left
-	"steering engine" -107 161.5
-		zoom 0.5
-		angle 60
+	"steering engine" -80 206
 		right
-	"steering engine" -121 97
-		zoom 0.5
-		angle 60
+	"steering engine" -40 268
 		right
-	turret 14 -304.5 "Ballistic Cannon Turret"
-	turret 13.5 -219 "Ballistic Cannon Turret"
-	turret 27.5 -129 "Ballistic Cannon Turret"
-	turret 27 134 "Ballistic Cannon Turret"
-	turret 17.5 221.5 "Ballistic Cannon Turret"
-	turret 18.5 301.5 "Ballistic Cannon Turret"
-	gun 57.5 -385 "Chloeric Cannon"
-	gun 57.5 -385 "Chloeric Cannon"
-	gun -37 -372.5 "Irate Cannon"
-	gun -41 -368 "Irate Cannon"
-	gun -45 -362 "Irate Cannon"
+	"steering engine" 132 95
+		angle -60
+		zoom 0.3
+		right
+	"steering engine" 131 125
+		zoom 0.3
+		angle -60
+		right
+	"steering engine" -126 103
+		zoom 0.3
+		angle 65
+		left
+	"steering engine" -125 131
+		zoom 0.3
+		angle 65
+		left
+	turret 13 -297.5 "Ballistic Cannon Turret"
+	turret 13 -212 "Ballistic Cannon Turret"
+	turret 27 -122.5 "Ballistic Cannon Turret"
+	turret 27 140.5 "Ballistic Cannon Turret"
+	turret 17.5 229 "Ballistic Cannon Turret"
+	turret 17.5 317 "Ballistic Cannon Turret"
+	turret 92 -208 "Chloeric Cannon Turret"
+	turret -81.5 -25.5 "Irate Cannon Turret"
+	turret -81.5 100 "Chloeric Cannon Turret"
+	gun 58 -385 "Chloeric Cannon"
+	gun -29 -378.5 "Irate Cannon"
+	gun -35.5 -373.5 "Irate Cannon"
+	gun -42.5 -367.5 "Irate Cannon"
+	gun 100.5 -309 "Irate Cannon"
+		angle 40
+	gun -85.5 -309.5 "Irate Cannon"
+		angle -43
+	gun 116.5 -200.5 "Irate Cannon"
+		angle 90
+	gun 116.5 -195.5 "Irate Cannon"
+		angle 90
+	gun -121.5 -115.5 "Irate Cannon"
+		angle -90
+	gun -121 -109.5 "Irate Cannon"
+		angle -90
+	gun 127 -37.5 "Irate Cannon"
+		angle 85
+	gun -134.5 33.5 "Irate Cannon"
+		angle -90
+	gun -134.5 39 "Irate Cannon"
+		angle -90
+	gun -119 140.5 "Irate Cannon"
+		angle -115
+	gun 114 186.5 "Irate Cannon"
+		angle 90
+	gun 114 192 "Irate Cannon"
+		angle 90
+	gun -58.5 256 "Irate Cannon"
+		angle -150
+	gun 88.5 334 "Irate Cannon"
+		angle 155
 	leak leak 50 50
 	leak flame 80 140
 	explode "huge explosion" 36

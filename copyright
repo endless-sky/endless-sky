@@ -1623,8 +1623,8 @@ Files:
  images/projectile/firestorm?torpedo*
  images/projectile/guile?pulse?laser*
  images/projectile/irate*
- images/ship/augen*
  images/ship/*ayym*
+ images/ship/gegno?augen*
  images/ship/gegno?coesite*
  images/ship/gegno?conglomerate*
  images/ship/gegno?dolomite*
@@ -1646,7 +1646,7 @@ Files:
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/ship/*vyuira*
- images/thumbnail/augen*
+ images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
  images/thumbnail/gegno?conglomerate*
  images/thumbnail/gegno?dolomite*
