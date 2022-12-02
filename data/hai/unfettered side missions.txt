@@ -1297,7 +1297,75 @@ mission "Unfettered: Close Quarter"
 
 
 
-#mission "Unfettered: Speak Sestor"
-#	name "Speak Sestor"
-#	description "Go to <destination> to acquire the records of Sestor language."
-#	CHOOTK asks to go take a ride there to get the records so you can learn language
+event "unfettered: better sestor translator"
+
+# no blocked dialog because 1 bunk, and it's a side mission anyway
+mission "Unfettered: Speak Sestor"
+	minor
+	name "Speak Sestor"
+	description "Go to <stopovers> to acquire the records of Sestor language."
+	source "Darkcloak"
+	stopover "Hai-home"
+	to offer
+		has "Unfettered: Alphas 2: Prove Yourself: done"
+		has "Hai Reveal [C01] Cleanup: done"
+		or
+			has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+			random < 15
+	on offer
+		conversation
+			`Do you want to go see Choot'k, to talk with him of the past and maybe see if you could do something for him?`
+				to display
+					not "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+			`Do you want to go see if Choot'k can do something to improve the translator, as Mera suggested?`
+				to display
+					has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+				`	(Never.)`
+					decline
+			`	You head to his throne room to see him, and this time the Unfettered gards have no issue with letting you pass. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his hand heading for his blade. For a few seconds you can feel some tension, but then he laughes.`
+			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
+			`	"I am sure you have already noticed that communication with the Koraths can be... difficult, since you met them."`
+				to display
+					has "Unfettered: Solifuge 8: Useful Korath Scientists: offered"
+			choice
+				`	"Let's go then."`
+					accept
+				`	"Would they just give that information to you?"`
+			`	"Of course they would, that is information accessible by all Hai, it simply is only stored on the homeworld, for convenience. I will also give them information on our translator in exchange."`
+			choice
+				`	"I'll take you there."`
+					accept
+				`	"I don't have the time right now, but I'll come back once I do."`
+					defer
+	on stopover
+		dialog `The Hai are more happy to give you this data in exchange for data on the translator itself.`
+		set "unfettered: stopped on hai-home"
+	npc evade
+		government "Hydra"
+		personality waiting disables plunders vindictive
+		to spawn
+			has "unfettered: stopped on hai-home"
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 3
+	on complete
+		clear "unfettered: stopped on hai-home"
+		event "unfettered: better sestor translator" 45
+		dialog "<veteran> thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
+
+
+
+# SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestors...
+mission "Unfettered: Ambush"
+	landing
+	invisible
+	source "Hai-home"
+	destination "Darkcloak"
+	to offer
+		has "Unfettered: Speak Sestor: active"
+	on enter
+		# SPOILER: he doesnt want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
+		dialog `Upon entering the system you see multiple Hydra ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`

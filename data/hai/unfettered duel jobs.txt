@@ -61,13 +61,13 @@ fleet "Shield Beetle Challenger"
 
 event "challengers arrive"
 	system "Wah Yoot"
-		fleet "Shield Beetle Challenger" 7500
-		fleet "Sea Scorpion Challenger" 12500
+		fleet "Shield Beetle Challenger" 5000
+		fleet "Sea Scorpion Challenger" 7500
 	system "Ehma Ti"
-		fleet "Sea Scorpion Challenger" 10000
-		fleet "Shield Beetle Challenger" 10000
+		fleet "Sea Scorpion Challenger" 7500
+		fleet "Shield Beetle Challenger" 7500
 	system "Hi Yahr"
-		fleet "Sea Scorpion Challenger" 75000
+		fleet "Sea Scorpion Challenger" 5000
 
 
 

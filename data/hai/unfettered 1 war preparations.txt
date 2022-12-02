@@ -563,7 +563,11 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	substitutions
 		# translation to the Sestor language
 		"<we, us>" "'Tek'"
+		"<we, us>" "'Tek'"
+			has "event: unfettered: better sestor translators"
 		<not> "'Ak'"
+		<not> "not"
+			has "event: unfettered: better sestor translators"
 		<one> "'Mer'" # it refers to the player
 		<transform> "'Mah'"
 		<make> "'Mahem'"
@@ -573,9 +577,13 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 		<debt> "'Noc'" # could also be oath
 		<settled> "'Nocem'"
 		<strong> "'Akeh'"
+		<strong> "strong"
+			has "event: unfettered: better sestor translators"
 		<consume> "'Keh'"
 		<bad> "'Eta'"
 		<young> "'Sorobeh'"
+		<young> "young"
+			has "event: unfettered: better sestor translators"
 		<younglings> "'Rem' <young>"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: done"
@@ -622,7 +630,18 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 				`	"Oh, is that why you got captured by the Alphas?"`
 			`	They seem to grumble a bit about what you just said, but the translator cannot decipher any meaning. Considering what they could be saying, it's probably for the best. Still, they look at you menacingly, making themselves tall, much taller than humans would be. After that they suddenly move your way, covering 5 meters in the blink of an eye, close to the ground, running trough equipement without disturbing it... Seeing you step back and almost fall on your back in fear, they seem satisfied, and go back to where they were. You realize they must be used to crowded spaces like this.`
 			label objective
-			`	Mera stops whatever it is that she was doing on the cooler and comes to speak to you. Seeing this, the Koraths make a show of what you assume to be disdain before getting back to work, putting what they just designed to the test of a small flame. Mera watches closely before addressing you, "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains.`
+			`	Mera stops whatever it is that she was doing on the cooler and comes to speak to you. Seeing this, the Koraths make a show of what you assume to be disdain before getting back to work, putting what they just designed to the test of a small flame.`
+			`	Mera watches closely before addressing you, "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains.`
+			`	"I managed to combine the new records you got from Hai-home with the existing translator to improve its performances. However, in order for that to work I have to leave it constantly connected to the records, which is not very practical, although it does serve us well in this context."`
+				to display
+					has "event: unfettered: better sestor translators"
+			`	"I did not manage to integrate the new records yet, I may end up having to connect them permanently to the translator. However, I am sure it will help, eventually."`
+				to display
+					not "event: unfettered: better sestor translators"
+					has "Unfettered: Speak Sestor: done"
+			`	"I really wish we could improve the translator, somehow. Maybe there is someone of importance in the council that would have interest for this?"`
+				to display
+					not "Unfettered: Speak Sestor"
 			choice
 				`	"That can't be hard. I'll go look for human coolers then."`
 					goto quantity
