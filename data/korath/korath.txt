@@ -279,14 +279,17 @@ fleet "Korath Home"
 	cargo 3
 	personality
 		timid opportunistic
-	variant 3
+	variant 30
 		"Lor'kas Ik 577"
 		"'olofez" 3
-	variant 1
+	variant 10
 		"Kas'lor Ik 582"
 		"'olofez" 3
-	variant 1
+	variant 10
 		"Lor'nag Ik 590 (Grab)"
+		"'olofez" 3
+	variant 1
+		"Lor'kas Ik 577 (Jump)"
 		"'olofez" 3
 
 fleet "Korath Defense"
@@ -406,10 +409,11 @@ fleet "Korath Ember Waste Large Raid"
 		"Palavret (Ember)" 3
 		"'olofez" 19
 	variant 1
-		"Lor'kas Ik 577 (Ember)"
-		"Palavret (Ember Shunt)"
-		"Palavret (Ember Blaze)" 2
-		"'olofez" 9
+		"Kas'lor Ik 582 (Ember)"
+		"Palavret (Ember)"
+		"Palavret (Ember Blaze)"
+		"Rano'erek"
+		"'olofez" 11
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
