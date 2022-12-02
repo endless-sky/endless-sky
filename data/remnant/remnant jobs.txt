@@ -675,7 +675,7 @@ mission "Remnant: Disable 1"
 		random < 5
 	npc disable save
 		government "Korath"
-		personality heroic vindictive target marked staying
+		personality heroic target marked staying disables plunders
 		system 
 			near "Vaticanus" 1
 		fleet

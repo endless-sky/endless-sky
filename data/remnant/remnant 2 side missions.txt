@@ -750,10 +750,19 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 				decline
 	npc disable save
 		government "Korath"
-		personality heroic vindictive target marked staying
+		personality heroic target marked staying disables plunders
 		system "Vaticanus"
 		ship "Kas'lor Ik 582 (Stranded)" "Fligrookor"
-		dialog `You have disabled the Kas'lor Ik 582, time to report back to <planet>.`
+				crew 551
+		dialog `You have disabled the Fligrookor, time to report back to <planet>.`
+	npc
+		government "Korath"
+		personality timid disables plunders swarming
+		system "Vaticanus"
+		fleet
+			names "korath"
+			variant
+				"'olofez (Digger)" 3
 	on enter "Vaticanus"
 		dialog `As you enter the system you spot the target ship. You imagine the small town's worth of people inside, many of which are probably children.`
 	on abort
