@@ -58,7 +58,7 @@ mission "Event: Pug Media Coverage"
 		event "hai secret leaks" 10 15
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
-			`As you leave your ship, you see two captains ranting about a video playing on a datapad. The walkway forces you to past close to them.`
+			`As you leave your ship, you see two captains ranting about a video playing on a datapad. The walkway forces you to pass close to them.`
 			choice
 				`	"Hey! What's this video about?"`
 				`	(Leave them be.)`
@@ -68,7 +68,7 @@ mission "Event: Pug Media Coverage"
 			`	In disbelief, the right twin responds, "It's just a propaganda exercise to boost Syndicate sales. Even if these elusive 'Pug' existed, we won't hear the end of it as long as the story boosts public opinion of the Syndicate."`
 			choice
 				`	"The past few months have brought some of the biggest changes in recent history. Of course people are going to keep talking about it."`
-				`	"Don't you see this is what we need? The Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict."`
+				`	"Don't you see this is what we need? The Pug invasion was a ploy to cause humanity to band together and learn to resolve differences without conflict."`
 				`	"Oh, the Pug were real alright. I met some and fought them."`
 					goto nobody
 				`	"I think you both need to shave."`
