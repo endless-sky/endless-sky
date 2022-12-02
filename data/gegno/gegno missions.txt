@@ -187,12 +187,21 @@ mission "Visit Quarg in Gegno Space"
 		government "Gegno Vi (neutral)"
 		personality entering staying
 		system "Heutesl"
-		fleet "Vi Warfleet"
+		fleet
+			variant
+				"Eclogite" 3
+				"Hornfel" 2
+				"Gneiss" 2
 	npc
 		government "Gegno Scin (neutral)"
 		personality entering staying
 		system "Heutesl"
-		fleet "Scin Warfleet"
+		fleet
+			variant
+				"Coesite" 3
+				"Felsic" 2
+				"Feldspar"
+				"Halite" 6
 	npc
 		government "Gegno Vi (neutral)"
 		personality staying
@@ -404,6 +413,7 @@ mission "Gegno Genocide Defense"
 			"reputation: Gegno Vi" < -100
 			"reputation: Gegno Scin" < -100
 	on offer
+		fail "Stationed Augen"
 		"reputation: Gegno" = -100
 		"reputation: Gegno Vi" = -100
 		"reputation: Gegno Scin" = -100
@@ -411,9 +421,9 @@ mission "Gegno Genocide Defense"
 
 	npc
 		government "Gegno"
-		system
-			government "Gegno" "Gegno Vi" "Gegno Scin"
 		personality nemesis heroic vindictive
+		system
+			government "Gegno"
 		fleet
 			names "gegno vi" "gegno scin"
 			variant 
@@ -427,9 +437,9 @@ mission "Gegno Genocide Defense"
 				Coesite 5
 	npc
 		government "Gegno"
-		system
-			government "Gegno" "Gegno Vi" "Gegno Scin"
 		personality nemesis heroic vindictive
+		system
+			government "Gegno"
 		fleet
 			names "gegno vi" "gegno scin"
 			variant
@@ -441,9 +451,9 @@ mission "Gegno Genocide Defense"
 				Eclogite 3
 	npc
 		government "Gegno"
-		system
-			government "Gegno" "Gegno Vi" "Gegno Scin"
 		personality nemesis heroic vindictive
+		system
+			government "Gegno"
 		fleet
 			names "gegno vi" "gegno scin"
 			variant
@@ -457,29 +467,40 @@ mission "Gegno Genocide Defense"
 	npc
 		government "Gegno Vi"
 		personality heroic vindictive staying
-		system Heutesl
+		system "Heutesl"
 		ship Augen "Vytii Yrrlausei"
 
 
 event "gegno: unified defense"
 	government "Gegno Vi"
-		attitude toward
+		"attitude toward"
 			"Gegno Scin" 1
 	government "Gegno Scin"
-		attitude toward
-			"Gengno Vi" 1
+		"attitude toward"
+			"Gegno Vi" 1
 	government "Gegno"
-		attitude toward
+		"attitude toward"
 			"Gegno Scin" 1
 			"Gegno Vi" 1
+	government "Quarg"
+		"attitude toward"
+			"Gegno" 1
+			"Gegno Vi" 1
+			"Gegno Scin" 1
 	system "Vesvii"
 		remove fleet "Vi Warfleet"
 		remove fleet "Scin Warfleet"
 		add fleet "Gegno Miners" 1000
 	system "Zeinar"
 		add fleet "Scin Warfleet" 600
+		add fleet "Quarg" 1000
 	system "Scija"
 		add fleet "Vi Warfleet" 600
+		add fleet "Quarg" 1000
+	system "Heutesl"
+		add fleet "Scin Warfleet" 600
+		add fleet "Vi Warfleet" 600
+		add fleet "Quarg Large" 600
 
 
 
