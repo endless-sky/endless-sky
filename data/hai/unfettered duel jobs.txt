@@ -88,14 +88,23 @@ mission "Unfettered: Challengers Arrive"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
 	on offer
-		dialog `The Captain meets you in the starport now that his crew done patching up his ship. "She'll fly again, alright. Now that ye know how a duel rolls, many Unfettered may want to challenge you, depending on your fame. If you agree, they won't think twice about engaging you once you get too close, and will be marked on your map, because that's how they want ye to see them! In that case, be carreful not to run around with too big of a fleet, or there may be some unwanted casualties, and we wouldn't want that now, would we? Do you feel ready for the challenge? If ye refuse, do know ye can always mark yerself as ready for action from the job board, only from here on Darkcloak. The opposite holds true too, if ye do not feel like fighting ye can mark yerself not ready! So, what do you say?"`
+		conversation
+			`The Captain meets you in the starport now that his crew done patching up his ship. "She'll fly again, alright."`
+			`	"Now that ye know how a duel rolls, many Unfettered may want to challenge you, depending on your fame. If you agree, they won't think twice about engaging you once you get too close, and will be marked on your map, because that's how they want ye to see them! In that case, be carreful not to run around with too big of a fleet, or there may be some unwanted casualties, and we wouldn't want that now, would we? Do you feel ready for the challenge?"`
+			`	"If ye refuse, do know ye can always mark yerself ready for action from the job board, only from here on Darkcloak. The opposite holds true too, if ye do not feel like fighting ye can mark yerself not ready!`
+			`	"Finally, and that part is very important, you need to board the ships in order to claim your reward. In improvised duels such as those you are expected to choose between looting and a booty. So, what do you say? Are ye ready for action?"`
+			choice
+				`	"I was born ready."`
+					accept
+				`	"Maybe later, from the job board."`
+					decline
 	on accept
 		event "unfettered: challengers arrive"
 
 mission "Unfettered: Trigger The Challengers"
 	job
-	name "Ready for more challengers"
-	description "Mark yourself as ready for more challengers to come in all Unfettered systems."
+	name "Ready for more spontaneous challengers"
+	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems."
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
@@ -104,12 +113,12 @@ mission "Unfettered: Trigger The Challengers"
 	on accept
 		clear "event: unfettered: challengers arrive"
 		event "unfettered: challengers arrive"
-		dialog "Even more challengers will come, hopefully you are ready for them!"
+		dialog "Even more spontaneous challengers will come, hopefully you are ready for them! Do remember you need to board them to claim your reward, and in no circumstances are you allowed to destroy or capture their ships."
 
 mission "Unfettered: Remove The Challengers"
 	job
-	name "No more challenges"
-	description "Mark yourself as no longer wanting to do challenges in any Unfettered systems."
+	name "No more spontaneous challengers"
+	description "Mark yourself as no longer wanting to do spontaneous challenges in any Unfettered systems."
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength: done"
@@ -120,7 +129,7 @@ mission "Unfettered: Remove The Challengers"
 		clear "event: unfettered: challengers arrive"
 		clear "event: unfettered: challengers leave"
 		event "unfettered: challengers leave"
-		dialog "No more challengers will come by themselves in space. You can still change your mind by accepting the other job, or any specific duelling job."
+		dialog "No more spontaneous challengers will come by themselves in space, no matter how many there were. You can still change your mind by accepting the other job, or any specific duelling job."
 
 
 
