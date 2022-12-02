@@ -58,14 +58,14 @@ mission "Event: Pug Media Coverage"
 		event "hai secret leaks" 10 15
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
-			`As you leave your ship, you see two captains ranting about a video running on a datapad. The walkway forces you to walk past them.`
+			`As you leave your ship, you see two captains ranting about a video playing on a datapad. The walkway forces you to past close to them.`
 			choice
-				`	"Hey! What's this video about?`
-				`	(Walk past them.)`
+				`	"Hey! What's this video about?"`
+				`	(Leave them be.)`
 					decline
-			`	You're startled when the captains turn to you, both with preposterous sideburns and strange mustaches. It's impossible to tell if they're smiling or frowning, as the pair live squarely in the middle of the uncanny valley. They appear to be twins, as are their well-armed Headhunters.`
+			`	You're startled when the captains turn to you, both with preposterous sideburns and rat-like mustaches. It's impossible to tell if they're smiling or frowning, as the pair live squarely in the middle of the uncanny valley. They appear to be twins, as are their well-armed Headhunters.`
 			`	The left twin asks, "Can you believe this? It's been weeks and everyone's still obsessing over the Pug invasion. The news was all experts and officials at first, but now we just see talking heads and conspiracy theorists."`
-			`	In disbelief, the right twin responds, "It's just a propaganda exercise to boost Syndicate sales. Even if the 'Pug' existed, we won't hear the end of it as long as the story boosts public opinion of the Syndicate."`
+			`	In disbelief, the right twin responds, "It's just a propaganda exercise to boost Syndicate sales. Even if these elusive 'Pug' existed, we won't hear the end of it as long as the story boosts public opinion of the Syndicate."`
 			choice
 				`	"The past few months have brought some of the biggest changes in recent history. Of course people are going to keep talking about it."`
 				`	"Don't you see this is what we need? The Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict."`
@@ -74,12 +74,10 @@ mission "Event: Pug Media Coverage"
 				`	"I think you both need to shave."`
 					goto scowl
 			`	The right twin rolls his eyes while the left twitches his mustache awkwardly and responds. "Look at this bozo! Bounty's Councilor Maduena Kabiru keeps ranting about defending against unknown dangers at the fringes of human space. Non-stop! Don't we have enough immediate problems without imagining new horrors?"`
-			`	"Like megacorporations bombing us," says the right twin.`
+			`	"Like terrorists nuking us," says the right twin.`
 			choice
 				`	"No, don't worry about that. I ended the bomb threat."`
-					goto nobody
 				`	"There's a lot of dangers out there, but don't worry. I'll be there to fight them off."`
-					goto nobody
 				`	"Maybe you're right."`
 					goto shrug
 				`	"All we can do is get on with our lives, right?"`
@@ -89,12 +87,14 @@ mission "Event: Pug Media Coverage"
 			label nobody
 			`	The right twin says, "Who are you, Admiral Danforth?" The left one laughs and adds, "Did the Navy fire you or are you here on holiday?" Both of them laugh for a few seconds before you can respond.`
 			choice
-				`	"No. I'm Captain <first> <last>. Haven't you heard of me?"`
+				`	"No. I'm the famous Captain <first> <last>!"`
+				`	"You don't recognize me?"`
+					goto shrug
 				`	"Never mind."`
 					goto shrug
 				`	"At least I don't have a disheveled hamster stuck to my upper lip."`
 					goto scowl
-			`	Both twins say in unison, "Who?" They walk away laughing, leaving you to wonder whether your doings are hidden in a cloud of government-enforced secrecy, or if some people have already forgotten about you.`
+			`	Both twins look confused and say in unison, "Who?" They shrug and walk away, leaving you to wonder whether your doings are hidden in a cloud of government-enforced secrecy, or if some people have already forgotten about you.`
 				decline
 			label shrug
 			`	Both twins shrug and leave for their ships.`
