@@ -1588,11 +1588,11 @@ mission "Hai Reveal [A13] A New Elder"
 			label "who won"
 			`	Remington answers your question, "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
 			label "walk or drink"
-			`	"Grab yourself a drink and join us." You notice a bartender off to your left.`
+			`	Alondo walks over to the bar and says, "I'll get you a drink, <last>. What'll you have?"`
 			choice
 				`	"Just a water for me, thanks."`
 					goto watch
-				`	"It's time for some celebratory beer. Barkeep! Get me your best ale!"`
+				`	"It's time for some celebratory beer. I'll have the best ale!"`
 				`	"I'll need some 'medicine' to get through this horror. Anything at least 80 proof should do."`
 			`	After a few more drinks, Teeneep's speech comes on. Either it's all in Hai, or you drank more than you thought. The speech is short and punchy, but restrained; or at least her delivery of it has that feeling. With nothing else to do, and it being well into the evening, you call it a night.`
 				goto morning
