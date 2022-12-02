@@ -709,7 +709,7 @@ outfit "Guile Pulse Laser"
 		"shield damage" 12.4
 		"hull damage" 20.2
 	description `The Guile Pulse Laser is a recent experimental advancement in Scin Plasma weapon technology. Rather than rapid firing plasma slugs, this weapon fires concentrated pulses of energy that only last for a brief moment. Each blast impacts the target ship almost instantaneously with a powerful hit, and a consistent amount of fire from Guile Lasers is extremely effective against slow moving targets.` 
-	description `	Guile pulse lasers have noticeable drawbacks as they quickly consume energy and generate notable heat per shot. Unlike a beam-type weapon, they are incapable of consistent output, and have a fairly short range.`
+	description `	Guile Pulse Lasers have noticeable drawbacks as they quickly consume energy and generate notable heat per shot. Unlike a beam-type weapon, they are incapable of consistent output, and have a fairly short range.`
 
 
 outfit Excavator
