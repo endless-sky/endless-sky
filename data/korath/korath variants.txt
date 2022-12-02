@@ -833,7 +833,7 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
 		"Systems Core (Large)"
 		"Liquid Sodium Cooler"
 		"Fuel Processor" 6
-		"Microbot Defense Station" 13
+		"Microbot Defense Station" 10
 		"Thermal Repeater Rifle" 351
 		
 		"Steering (Lunar Class)"
