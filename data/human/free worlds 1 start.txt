@@ -444,7 +444,7 @@ mission "FW Syndicate Diplomacy 1C"
 		conversation
 			`When you arrive at <origin>, you find that there are already some Syndicate ships here unloading cargo that must have been sent ahead of you. You catch a glimpse of some of the crates and see large amounts of ship materials, as well as crates of blasters, proton guns, and other Syndicate products.`
 			`	Upon contacting the Tarazed Corporation, you and Alondo are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously misogynistic Syndicate, Tarazed is currently run by a female CEO, Emily Lane.`
-			`	"I'm pleased to welcome you here," says Emily. "Many of us are sympathetic to your cause."`
+			`	"I'm pleased to welcome you here," says Emily. "It's nice to finally speak with you directly, Alondo. Many of us are sympathetic to your cause."`
 			`	"Thank you," says Alondo, "although for the time being the best way to support us may be for you to remain neutral in this conflict." He explains the negotiations with the Syndicate and the idea of Tarazed being a go-between for Syndicate supplies.`
 			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
 			choice
@@ -548,11 +548,24 @@ mission "FW Syndicate Diplomacy 1D"
 		payment 200000
 		event "fw dirt belt patrols"
 		event "syndicate assistance" 30
+		event "tarazed assistance" 60
 		event "unofficial ceasefire" 120
 		conversation
 			`You meet Tomek, Freya, and JJ at the spaceport, and the entire Council quickly convenes. Given that you were Alondo's transportation during his mission, you are included in the meeting. Alondo outlines the results of the diplomatic mission, which he believes has been a success. Upon hearing about the extra supplies heading to Tarazed, Tomek suggests increasing patrols in the Dirt Belt to the east to help defend Syndicate convoys while also moving supplies from Tarazed to various Free planets.`
 			`	"We're still healing from the last set of battles," says JJ. "An increased Free Worlds presence outside of our declared territory could be seen as a provocation."`
-			`	"No doubt it will, but we need to uphold our end of the bargain with the Syndicate if we want to keep them as a tentative ally," Tomek responds. After further discussion on the matter, the Council approves the increased patrols, although JJ remains somewhat apprehensive.`
+			`	"No doubt it will, but we need to uphold our end of the bargain with the Syndicate if we want to keep them as a tentative ally," Tomek responds. "We also have our deal with Tarazed for them to begin selling some of their ships within our territory. Those ships won't do us much good if they're getting blasted to pieces by pirates before they even get here."`
+			choice
+				`	"A deal with Tarazed for new ships? When did you make that?"`
+					goto deals
+				`	"I'm willing to volunteer for escort duty."`
+			`	"No need," says JJ. "We have plenty of captains who are already assigned to escort duty. We may need you elsewhere."`
+				goto end
+			label deals
+			`	"Prior to when things went hot," says Tomek, "I saw to it that we could secure a supply line for new warships outside of our borders. Southbound may be a fine shipyard, but they alone can't supply us the warships we need, especially when the largest warship they build is the Bastion. Unfortunately, the Navy attacked before things could be finalized, and the outbreak of war has slowed things down, but Tarazed has assured us the deal is moving forward."`
+			`	"Don't forget that Tarazed is also our only supplier of fighters for Southbound's Type F Haulers," Freya adds. "Unless you count the Boxwing, but those don't help much in a fight."`
+			`	"There are a lot of moving parts at play in this conflict, Captain <last>," says JJ. "All we ask is that you stay focused on where we aim you, and you let us handle the finer details."`
+			label end
+			`	After further discussion on the matter, the Council approves the increased patrols, although JJ remains somewhat apprehensive.`
 			`	"There is one other thing," Alondo says. "The Syndicate informed us that the Republic has Katya in custody, accused of terrorism."`
 			`	The news is a shock to everyone. "I had begun to worry that was the case," says Freya.`
 			`	"My contacts within the Navy have heard rumors, but I suppose this confirms it," says JJ.`
