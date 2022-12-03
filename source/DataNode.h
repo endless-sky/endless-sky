@@ -58,7 +58,7 @@ public:
 	// and prints an error if the index is out of range or the token cannot
 	// be interpreted as a number.
 	bool BoolValue(int index) const;
-	// Check if the token at the given index is a boolean, i.e. "true" or "false"
+	// Check if the token at the given index is a boolean, i.e. "true"/"1" or "false"/"0"
 	// as a string.
 	bool IsBool(int index) const;
 	static bool IsBool(const std::string &token);

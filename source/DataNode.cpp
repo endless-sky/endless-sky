@@ -232,7 +232,10 @@ bool DataNode::BoolValue(int index) const
 	else if(!IsBool(tokens[index]))
 		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a boolean:");
 	else
-		return tokens[index] == "true";
+	{
+		const string &token = tokens[index];
+		return token == "true" || token == "1";
+	}
 
 	return 0.;
 }
@@ -252,9 +255,9 @@ bool DataNode::IsBool(int index) const
 
 
 
-bool DataNode::IsBool(const std::string &token)
+bool DataNode::IsBool(const string &token)
 {
-	return token == "true" || token == "false";
+	return token == "true" || token == "1" || token == "false" || token == "0";
 }
 
 
