@@ -184,7 +184,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 				int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
 				int first = 6 * tileIndex[index];
 				int count = 6 * tileIndex[index + 1] - first;
-				glDrawArrays(GL_TRIANGLES, first, count / layers * layers);
+				glDrawArrays(GL_TRIANGLES, first, count / (layers * layers));
 			}
 
 		}
