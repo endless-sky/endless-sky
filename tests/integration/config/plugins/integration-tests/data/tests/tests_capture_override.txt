@@ -47,54 +47,35 @@ test-data "quarg capture"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
-			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
-			priority
-			to offer
-				"%TEST%: ILLEGAL CAPTURE" != 0
-			destination Ruin
-			npc
-				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
-				succeed 1
-				government Quarg
-				personality derelict target
-				ship "Quarg Wardragon"
-					"uncapturable"
-					name Scanner
-					sprite ship/wardragon
-					thumbnail thumbnail/wardragon
-					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
-					attributes
-						category "Heavy Warship"
-						cost 5900000
-						mass 360
-						automaton 1
-						drag 9.3
-						"heat dissipation" 0.5
-						hull 50000
-						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
-						"energy generation" 10
-						shields 160000
-					fuel 0
-					shields 0
-					hull 1000
-					position 0 0
-					explode "huge explosion" 1
-					system "Terra Incognita"
-			on offer
-				conversation
-					label 0
-					"You must be scanned or be killed."
-						accept
+		changes
+			system "Ruin"
+				add fleet "derelicts" 5
 		conditions
 			"%TEST%: ILLEGAL CAPTURE"
 			"Ruin: Landing: offered"
 
+ship "Quarg Wardragon" "%TEST%: automated WarDragon"
+	uncapturable
+	attributes
+		category "Heavy Warship"
+		cost 5900000
+		mass 360
+		automaton 1
+		drag 9.3
+		"heat dissipation" 0.5
+		hull 50000
+		"energy generation" 10
+		shields 160000
+
+fleet "%TEST%: derelicts"
+	personality derelict
+	government "Quarg"
+	variant
+		"%TEST%: automated WarDragon"
 
 mission "%TEST%: Capture That Quarg!"
-	boarding "capture override"
+	boarding
+		"override capture"
 	to offer
 		has "%TEST%: ILLEGAL CAPTURE"
 	on offer

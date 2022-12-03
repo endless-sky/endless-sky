@@ -209,7 +209,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "boarding")
 		{
 			location = BOARDING;
-			if(child.Size() > 1 && child.Token(1) == "capture override")
+			if(child.HasChildren() > 1 && child.begin()->Token(0) == "override capture")
 				overridesCapture = true;
 		}
 		else if(child.Token(0) == "repeat")
@@ -357,7 +357,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			if(!overridesCapture)
 				out.Write("boarding");
 			else
-				out.Write("boarding", "capture override");
+				out.Write("boarding", "override capture");
 		}
 		if(location == JOB)
 			out.Write("job");
