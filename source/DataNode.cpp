@@ -242,7 +242,7 @@ bool DataNode::BoolValue(int index) const
 
 
 
-// Check if the token at the given index is a boolean, i.e. "true" or "false"
+// Check if the token at the given index is a boolean, i.e. "true"/"1" or "false"/"0"
 // as a string.
 bool DataNode::IsBool(int index) const
 {
