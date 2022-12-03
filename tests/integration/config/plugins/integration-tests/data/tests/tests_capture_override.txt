@@ -106,6 +106,7 @@ test "Capture Uncapturable With Capturable Override"
 		label "floating"
 		# empty input to make time pass
 		input
+			key return
 		branch "floating"
 			not "%TEST%: Capture That Quarg!: offered"
 		# skip dialog
@@ -117,7 +118,7 @@ test "Capture Uncapturable With Capturable Override"
 		input
 			key a
 		input
-			key "return"
+			key d
 		call "Land On Ruin helper"
 		# to refresh the conditions, not sure if needed
 		call "Depart"
