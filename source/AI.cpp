@@ -783,19 +783,20 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 			// Fighters and drones should assist their parent's mining operation if they cannot
 			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
-			const shared_ptr<Minable> &minable = parent ? parent->GetTargetAsteroid() : nullptr;
-			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
-					&& minable->Position().Distance(parent->Position()) < 600.)
+			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601)
 			{
-				it->SetTargetAsteroid(minable);
-				MoveToAttack(*it, command, *minable);
-				AutoFire(*it, firingCommands, *minable);
-				it->SetCommands(command);
-				it->SetCommands(firingCommands);
-				continue;
+				const shared_ptr<Minable> &minable = parent->GetTargetAsteroid();
+				if (minable && minable->Position().Distance(parent->Position()) < 600.)
+				{
+					it->SetTargetAsteroid(minable);
+					MoveToAttack(*it, command, *minable);
+					AutoFire(*it, firingCommands, *minable);
+					it->SetCommands(command);
+					it->SetCommands(firingCommands);
+					continue;
+				}
 			}
-			else
-				it->SetTargetAsteroid(nullptr);
+			it->SetTargetAsteroid(nullptr);
 		}
 
 		// Handle carried ships:
