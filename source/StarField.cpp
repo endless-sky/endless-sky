@@ -132,13 +132,14 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
 	{
+	glUseProgram(shader.Object());
+	glBindVertexArray(vao);
+
 	for(float pass = 0; pass <= layers; pass++)
 	{
 		// Modify zoom for the first parallax layer.
 		if(Preferences::Has("Parallax background"))
 			zoom = baseZoom * STAR_ZOOM * pass / layers;
-		glUseProgram(shader.Object());
-		glBindVertexArray(vao);
 
 		float length = vel.Length();
 		Point unit = length ? vel.Unit() : Point(1., 0.);
@@ -186,10 +187,11 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 				glDrawArrays(GL_TRIANGLES, first, count / pow(layers, 2.));
 			}
 
+		}
 		glBindVertexArray(0);
 		glUseProgram(0);
-		}
 	}
+
 	// Draw the background haze unless it is disabled in the preferences.
 	if(!Preferences::Has("Draw background haze"))
 		return;
