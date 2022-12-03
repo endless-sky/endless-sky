@@ -786,7 +786,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601)
 			{
 				const shared_ptr<Minable> &minable = parent->GetTargetAsteroid();
-				if (minable && minable->Position().Distance(parent->Position()) < 600.)
+				if(minable && minable->Position().Distance(parent->Position()) < 600.)
 				{
 					it->SetTargetAsteroid(minable);
 					MoveToAttack(*it, command, *minable);
