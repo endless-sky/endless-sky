@@ -2352,7 +2352,7 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			// If the universal ramscoop gamerule is true, then even if it ship has no ramscoop,
+			// If the universal ramscoop gamerule is true, then even if a ship has no ramscoop,
 			// it can harvest a tiny bit of fuel by flying close to the star.
 			double universal = 0.05 * scale * GameData::GetGamerules().UniversalRamscoopActive();
 			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + universal);
