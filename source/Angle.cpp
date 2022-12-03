@@ -121,6 +121,10 @@ Angle Angle::operator-() const
 // Get a unit vector in the direction of this angle.
 Point Angle::Unit() const
 {
+	// The graphics use the usual screen coordinate system, meaning that
+	// positive Y is down rather than up. Angles are clock angles, i.e.
+	// 0 is 12:00 and angles increase in the clockwise direction. So, an
+	// angle of 0 degrees is pointing in the direction (0, -1).
 	return Point(sin(angle * STEP_TO_RAD), -cos(angle * STEP_TO_RAD));
 }
 
