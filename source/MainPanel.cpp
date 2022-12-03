@@ -201,6 +201,34 @@ void MainPanel::Draw()
 			{
 				info.SetCondition("can hail");
 			}
+
+			bool hasFighters = false;
+			bool hasReservedFighters = false;
+			for (auto &ship: player.Ships())
+			{
+				if (ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed())
+				{
+					hasFighters = true;
+
+					if (!(ship->HasDeployOrder()))
+					{
+						hasReservedFighters = true;
+						break; // found the reserve, no need to look further
+					}
+				}
+			}
+			if (hasFighters)
+			{
+				if (hasReservedFighters)
+				{
+					info.SetCondition("can deploy");
+				}
+				else
+				{
+					info.SetCondition("can recall");
+				}
+			}
+
 			if (player.Flagship()->GetTargetShip())
 			{
 				info.SetCondition("can hail");
@@ -316,6 +344,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		show.Set(Command::HAIL);
 	else if(key == SDLK_a) // synthetic keypress via UI button, not keyboard
 		Command::Inject(Command::FIGHT);
+	else if(key == SDLK_d) // synthetic keypress via UI button, not keyboard
+		Command::Inject(Command::DEPLOY);
 	else if(key == SDLK_c)
 		Command::Inject(Command::CLOAK);
 	else if(key == SDLK_w)

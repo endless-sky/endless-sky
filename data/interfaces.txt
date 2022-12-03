@@ -1270,6 +1270,17 @@ interface "main buttons" bottom right
 	button j "_Jump"
 		from -160 -40 to -90 -10
 
+	visible if "can deploy"
+	sprite "ui/dialog cancel"
+		from -170 -80 to -80 -130
+	button d "_Deploy"
+		from -160 -70 to -90 -140
+
+	visible if "can recall"
+	sprite "ui/dialog cancel"
+		from -170 -80 to -80 -130
+	button d "_Recall"
+		from -160 -70 to -90 -140
 
 	visible if "has secondary"
 	active if "secondary selected"
