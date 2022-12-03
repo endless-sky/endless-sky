@@ -245,6 +245,30 @@ SCENARIO( "Determining if a token is numeric", "[IsNumber][Parsing][DataNode]" )
 		}
 	}
 }
+
+SCENARIO( "Determining if a token is a boolean", "[Boolean][Parsing][DataNode]" ) {
+	GIVEN( "A string that is \"true\" or \"false\"" ) {
+		THEN( "IsBool returns true" ) {
+			CHECK( DataNode::IsBool("true") );
+			CHECK( DataNode::IsBool("false") );
+		}
+	}
+	GIVEN( "A string that is not \"true\" or \"false\"" ) {
+		THEN( "IsBool returns false" ) {
+			CHECK_FALSE( DataNode::IsBool("monkey") );
+			CHECK_FALSE( DataNode::IsBool("banana") );
+		}
+	}
+	GIVEN( "A DataNode with a boolean token" ) {
+		DataNode root = AsDataNode("root\n\ttrue\n\t\tfalse");
+		const DataNode &trueVal = *root.begin();
+		const DataNode &falseVal = *trueVal.begin();
+		THEN( "BoolValue returns expected contents" ) {
+			CHECK( trueVal.BoolValue(0) );
+			CHECK_FALSE( falseVal.BoolValue(0) );
+		}
+	}
+}
 // #endregion unit tests
 
 
