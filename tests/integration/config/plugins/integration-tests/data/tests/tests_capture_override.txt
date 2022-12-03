@@ -60,12 +60,12 @@ test-data "quarg capture"
 				government Quarg
 				personality derelict target
 				ship "Quarg Wardragon"
+					"uncapturable"
 					name Scanner
 					sprite ship/wardragon
 					thumbnail thumbnail/wardragon
 					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
 					attributes
-						"uncapturable"
 						category "Heavy Warship"
 						cost 5900000
 						mass 360
