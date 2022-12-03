@@ -528,7 +528,11 @@ void MainPanel::StepEvents(bool &isActive)
 			auto boardedShip = event.Target();
 			Mission *mission = player.BoardingMission(boardedShip);
 			if(mission && mission->HasSpace(*flagship))
+			{
+				if(mission->OverridesCapture())
+					boardedShip->OverrideCapture();
 				mission->Do(Mission::OFFER, player, GetUI(), boardedShip);
+			}
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
 						? Mission::BOARDING : Mission::ASSISTING, GetUI());

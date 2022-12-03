@@ -207,7 +207,11 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "assisting")
 			location = ASSISTING;
 		else if(child.Token(0) == "boarding")
+		{
 			location = BOARDING;
+			if(child.Size() > 1 && child.Token(1) == "capture override")
+				overridesCapture = true;
+		}
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -349,7 +353,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(location == ASSISTING)
 			out.Write("assisting");
 		if(location == BOARDING)
-			out.Write("boarding");
+		{
+			if(!overridesCapture)
+				out.Write("boarding");
+			else
+				out.Write("boarding", "capture override");
+		}
 		if(location == JOB)
 			out.Write("job");
 		if(!clearance.empty())
@@ -837,6 +846,13 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 bool Mission::IsFailed() const
 {
 	return hasFailed;
+}
+
+
+
+bool Mission::OverridesCapture() const
+{
+	return overridesCapture;
 }
 
 

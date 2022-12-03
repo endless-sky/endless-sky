@@ -132,6 +132,7 @@ public:
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
 	bool IsFailed() const;
+	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered
@@ -200,6 +201,7 @@ private:
 	bool hasPriority = false;
 	bool isMinor = false;
 	bool autosave = false;
+	bool overridesCapture = false;
 	Date deadline;
 	int expectedJumps = 0;
 	int deadlineBase = 0;

@@ -2768,6 +2768,13 @@ const Planet *Ship::GetPlanet() const
 
 
 
+void Ship::OverrideCapture()
+{
+	isCapturable = true;
+}
+
+
+
 bool Ship::IsCapturable() const
 {
 	return isCapturable;
