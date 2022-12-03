@@ -127,7 +127,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
 	double baseZoom = zoom;
-	int layers = Preferences::Has("Parallax background") ? 3 : 1;
+	int layers = Preferences::Has("Parallax background") ? 5 : 1;
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
@@ -135,7 +135,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
 
-		for(float pass = 0; pass <= layers; pass++)
+		for(int pass = 0; pass < layers; pass++)
 		{
 			// Modify zoom for the first parallax layer.
 			if(Preferences::Has("Parallax background"))
