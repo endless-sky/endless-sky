@@ -125,6 +125,7 @@ test "Capture Uncapturable With Capturable Override"
 		label "floating"
 		# empty input to make time pass
 		input
+			key return
 		branch "floating"
 			not "%TEST%: Capture That Quarg!: offered"
 		# skip dialog
