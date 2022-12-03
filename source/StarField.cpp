@@ -130,7 +130,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	int j = 1;
 
 	if(Preferences::Has("Parallax background"))
-		j = 5;
+		j = 4;
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
