@@ -137,7 +137,7 @@ test "Capture Uncapturable With Capturable Override"
 		input
 			key a
 		input
-			key "return"
+			key d
 		call "Land On Ruin helper"
 		# to refresh the conditions, not sure if needed
 		call "Depart"
