@@ -63,10 +63,9 @@ private:
 
 
 private:
-	// The angle is stored as an integer value between 0 and 2^16 - 1. This is
-	// so that any angle can be mapped to a unit vector (a very common operation)
-	// with just a single array lookup. It also means that "wrapping" angles
-	// to the range of 0 to 360 degrees can be done via a bit mask.
+	// The angle is stored as an integer value between 0 and 2^16 - 1.
+	// It means that "wrapping" angles to the range of 0 to 360 degrees can be
+	// done via a bit mask.
 	int32_t angle = 0;
 };
 

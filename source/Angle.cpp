@@ -121,22 +121,7 @@ Angle Angle::operator-() const
 // Get a unit vector in the direction of this angle.
 Point Angle::Unit() const
 {
-	// The very first time this is called, create a lookup table of unit vectors.
-	static std::vector<Point> cache;
-	if(cache.empty())
-	{
-		cache.reserve(STEPS);
-		for(int i = 0; i < STEPS; ++i)
-		{
-			double radians = i * STEP_TO_RAD;
-			// The graphics use the usual screen coordinate system, meaning that
-			// positive Y is down rather than up. Angles are clock angles, i.e.
-			// 0 is 12:00 and angles increase in the clockwise direction. So, an
-			// angle of 0 degrees is pointing in the direction (0, -1).
-			cache.emplace_back(sin(radians), -cos(radians));
-		}
-	}
-	return cache[angle];
+	return Point(sin(angle * STEP_TO_RAD), -cos(angle * STEP_TO_RAD));
 }
 
 
