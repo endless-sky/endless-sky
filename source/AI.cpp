@@ -783,7 +783,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 			// Fighters and drones should assist their parent's mining operation if they cannot
 			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
-			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601)
+			if(it->CanBeCarried() && parent && miningTime[parent.get()] < 3601)
 			{
 				const shared_ptr<Minable> &minable = parent->GetTargetAsteroid();
 				if(minable && minable->Position().Distance(parent->Position()) < 600.)
