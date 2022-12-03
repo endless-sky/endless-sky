@@ -127,19 +127,16 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 {
 	double baseZoom = zoom;
-	int j = 1;
-
-	if(Preferences::Has("Parallax background"))
-		j = 4;
+	int layers = Preferences::Has("Parallax background") ? 3 : 1;
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
 	{
-	for(float i = 0; i < j; i++)
+	for(float pass = 0; pass <= layers; pass++)
 	{
 		// Modify zoom for the first parallax layer.
 		if(Preferences::Has("Parallax background"))
-			zoom = baseZoom * STAR_ZOOM * i / 4.;
+			zoom = baseZoom * STAR_ZOOM * pass / layers;
 
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
@@ -160,7 +157,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		glUniformMatrix2fv(rotateI, 1, false, rotate);
 
 		glUniform1f(elongationI, length * zoom);
-		glUniform1f(brightnessI, min(1., pow(zoom, .5)));
+		glUniform1f(brightnessI, min(1., pow(zoom, .5) * pass));
 
 		// Stars this far beyond the border may still overlap the screen.
 		double borderX = fabs(vel.X()) + 1.;
@@ -187,9 +184,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 				int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
 				int first = 6 * tileIndex[index];
 				int count = 6 * tileIndex[index + 1] - first;
-				glDrawArrays(GL_TRIANGLES, first, count / pow(j, 2.));
+				glDrawArrays(GL_TRIANGLES, first, count / pow(layers, 2.));
 			}
-
 		glBindVertexArray(0);
 		glUseProgram(0);
 		}
