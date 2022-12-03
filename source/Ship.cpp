@@ -2768,7 +2768,7 @@ const Planet *Ship::GetPlanet() const
 
 
 
-void Ship::Capturable(bool capturable)
+void Ship::SetCapturable(bool capturable)
 {
 	isCapturable = capturable;
 }
