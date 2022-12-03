@@ -89,10 +89,11 @@ mission "Unfettered: Challengers Arrive"
 		has "Unfettered: Prove Your Strength: done"
 	on offer
 		conversation
-			`The Captain meets you in the starport now that his crew done patching up his ship. "She'll fly again, alright."`
-			`	"Now that ye know how a duel rolls, many Unfettered may want to challenge you, depending on your fame. If you agree, they won't think twice about engaging you once you get too close, and will be marked on your map, because that's how they want ye to see them! In that case, be carreful not to run around with too big of a fleet, or there may be some unwanted casualties, and we wouldn't want that now, would we? Do you feel ready for the challenge?"`
-			`	"If ye refuse, do know ye can always mark yerself ready for action from the job board, only from here on Darkcloak. The opposite holds true too, if ye do not feel like fighting ye can mark yerself not ready!`
-			`	"Finally, and that part is very important, you need to board the ships in order to claim your reward. In improvised duels such as those you are expected to choose between looting and a booty. So, what do you say? Are ye ready for action?"`
+			`The Captain meets you in the starport now that his crew is done patching up his ship. "She be space worthy again, alright."`
+			`	"Now that ye savvy how a duel rolls, many Unfettered may want to challenge you, depending on your fame. If ye agree, they won't think twice about engaging you once you get too close and will be marked on yer map, because they be wanting ta make sure ye see them! But best be careful not to run around with too big an armada while taking challenges, or yer hearties may wind up feeding the fishes for carrying yer flag. We wouldn't want that now, would we?`
+			`	"If ye be still too much a scallywag to face the challenge now, ye can always mark yerself ready for action from the job board later but only in port here on Darkcloak. The opposite holds true too, if ye lose the stomach for fighting a while, ye can mark yerself as not ready for such challenge!`
+			`	"Finally, and this part is very important, you need to board the ships in order to claim yer boonty. In these improvised duels ye be expected to choose between plundering those you defeat or claiming a bounty for their loss.`
+			`	"So, what say ye? Be ye ready for action? Be ye ready for the challenge?"`
 			choice
 				`	"I was born ready."`
 					accept
