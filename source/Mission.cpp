@@ -209,7 +209,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "boarding")
 		{
 			location = BOARDING;
-			if(child.HasChildren() > 1 && child.begin()->Token(0) == "override capture")
+			if(child.HasChildren() && child.begin()->Token(0) == "override capture")
 				overridesCapture = true;
 		}
 		else if(child.Token(0) == "repeat")
