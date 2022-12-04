@@ -189,7 +189,7 @@ void CollisionSet::Add(Body &body)
 		for(int x = minX; x <= maxX; ++x)
 		{
 			auto gx = x & WRAP_MASK;
-			added.emplace_back(&body, x, y);
+			added.emplace_back(&body, all.size(), x, y);
 			++counts[gy * CELLS + gx + 2];
 		}
 	}
@@ -219,8 +219,11 @@ void CollisionSet::Finish()
 
 		sorted[counts[index]++] = entry;
 	}
-
 	// Now, counts[index] is where a certain bin begins.
+
+	seen.clear();
+	seen.resize(all.size());
+	seenEpoch = 0;
 }
 
 
@@ -336,7 +339,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	if(stepY > 0)
 		ry = fullScale - ry;
 
-	seen.clear();
+	++seenEpoch;
+
 	while(true)
 	{
 		// Examine all objects in the current grid cell.
@@ -350,12 +354,9 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			if(it->x != gx || it->y != gy)
 				continue;
 
-			bool present = any_of(seen.begin(), seen.end(), [it](const Body *el) {
-				return el == it->body;
-			});
-			if(present)
+			if(seen[it->seenIndex] == seenEpoch)
 				continue;
-			seen.push_back(it->body);
+			seen[it->seenIndex] = seenEpoch;
 
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
@@ -437,7 +438,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 	const int maxX = static_cast<int>(center.X() + outer) >> SHIFT;
 	const int maxY = static_cast<int>(center.Y() + outer) >> SHIFT;
 
-	seen.clear();
+	++seenEpoch;
 
 	result.clear();
 	for(int y = minY; y <= maxY; ++y)
@@ -457,12 +458,9 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 				if(it->x != x || it->y != y)
 					continue;
 
-				bool present = any_of(seen.begin(), seen.end(), [it](const Body *el) {
-					return el == it->body;
-				});
-				if(present)
+				if(seen[it->seenIndex] == seenEpoch)
 					continue;
-				seen.push_back(it->body);
+				seen[it->seenIndex] = seenEpoch;
 
 				const Mask &mask = it->body->GetMask(step);
 				Point offset = center - it->body->Position();
