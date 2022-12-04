@@ -354,10 +354,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("assisting");
 		if(location == BOARDING)
 		{
-			if(!overridesCapture)
-				out.Write("boarding");
-			else
-				out.Write("boarding", "override capture");
+			out.Write("boarding");
+			if(overridesCapture)
+			{
+				out.BeginChild();
+				{
+					out.Write("override capture");
+				}
+				out.EndChild();
+			}
 		}
 		if(location == JOB)
 			out.Write("job");
