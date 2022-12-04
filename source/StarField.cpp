@@ -142,7 +142,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		{
 			// Modify zoom for the first parallax layer.
 			if(Preferences::Has("Parallax background"))
-				zoom = baseZoom * STAR_ZOOM * pow(pass, 0.25);
+				zoom = baseZoom * STAR_ZOOM * pow(pass, 0.2);
 
 			float length = vel.Length();
 			Point unit = length ? vel.Unit() : Point(1., 0.);
