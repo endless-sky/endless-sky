@@ -153,11 +153,11 @@ mission "Remnant: Lost in Ember Waste: Trigger"
 	to offer
 		has "remnant: blood test pure"
 		not "license: Remnant"
+		not "outfit: Quantum Keystone"
+		not "outfit: Quantum Key Stone"
+		not "outfit: Jump Drive"
+		not "outfit: Shield Beetle Pendant"
 	on offer
-		require "Quantum Keystone" 0
-		require "Quantum Key Stone" 0
-		require "Jump Drive" 0
-		require "Shield Beetle Pendant" 0
 		event "remnant: lost in ember waste" 14
 		fail
 
@@ -171,11 +171,11 @@ mission "Remnant: Lost in Ember Waste"
 	to offer
 		has "event: remnant: lost in ember waste"
 		not "license: Remnant"
+		not "outfit: Quantum Keystone"
+		not "outfit: Quantum Key Stone"
+		not "outfit: Jump Drive"
+		not "outfit: Shield Beetle Pendant"
 	on offer
-		require "Quantum Keystone" 0
-		require "Quantum Key Stone" 0
-		require "Jump Drive" 0
-		require "Shield Beetle Pendant" 0
 		outfit "Quantum Key Stone" 1
 		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
