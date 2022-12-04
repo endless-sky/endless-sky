@@ -45,46 +45,6 @@ test-data "quarg rescue"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
-			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
-			priority
-			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
-			destination Ruin
-			npc
-				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
-				succeed 1
-				government Quarg
-				personality derelict target
-				ship "Quarg Wardragon"
-					name Scanner
-					sprite ship/wardragon
-					thumbnail thumbnail/wardragon
-					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
-					attributes
-						category "Heavy Warship"
-						cost 5900000
-						mass 360
-						automaton 1
-						drag 9.3
-						"heat dissipation" 0.5
-						hull 50000
-						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
-						"energy generation" 10
-						shields 160000
-					fuel 0
-					shields 0
-					hull 1000
-					position 0 0
-					explode "huge explosion" 1
-					system "Terra Incognita"
-			on offer
-				conversation
-					label 0
-					"You must be scanned or be killed."
-						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
 			"Ruin: Landing: offered"
@@ -146,46 +106,6 @@ test-data "quarg scanning"
 				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
-			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
-			priority
-			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
-			destination Ruin
-			npc
-				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
-				succeed 1
-				government Quarg
-				personality derelict surveillance target
-				ship "Quarg Wardragon"
-					name Scanner
-					sprite ship/wardragon
-					thumbnail thumbnail/wardragon
-					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
-					attributes
-						category "Heavy Warship"
-						cost 5900000
-						mass 360
-						automaton 1
-						drag 9.3
-						"heat dissipation" 0.5
-						hull 50000
-						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
-						"energy generation" 10
-						shields 160000
-					fuel 0
-					shields 0
-					hull 1000
-					position 0 0
-					explode "huge explosion" 1
-					system "Terra Incognita"
-			on offer
-				conversation
-					label 0
-					"You must be scanned or be killed."
-						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
 			"Ruin: Landing: offered"
@@ -246,52 +166,43 @@ test-data "quarg atrocity"
 				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
-			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
-			priority
-			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
-			destination Ruin
-			npc
-				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
-				succeed 1
-				government Quarg
-				personality derelict surveillance target
-				ship "Quarg Wardragon"
-					name Scanner
-					sprite ship/wardragon
-					thumbnail thumbnail/wardragon
-					uuid 7cc5c522-858d-419c-88a7-f240fc5799d7
-					attributes
-						category "Heavy Warship"
-						cost 5900000
-						mass 360
-						automaton 1
-						drag 9.3
-						"heat dissipation" 0.5
-						hull 50000
-						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
-						"energy generation" 10
-						shields 160000
-					fuel 0
-					shields 0
-					hull 1000
-					position 0 0
-					explode "huge explosion" 1
-					system "Terra Incognita"
-			on offer
-				conversation
-					label 0
-					"You must be scanned or be killed."
-						accept
 		conditions
 			"%TEST%: SCANNING ILLEGALS"
 			"Ruin: Landing: offered"
 
+
+
+ship"%TEST%: outfitless wardragon scanner"
+	sprite ship/wardragon
+	thumbnail thumbnail/wardragon
+	attributes
+		category "Heavy Warship"
+		cost 5900000
+		mass 360
+		automaton 1
+		drag 9.3
+		"heat dissipation" 0.5
+		hull 50000
+		"outfit scan power" 1e+09
+		"outfit scan speed" 1e+09
+		"energy generation" 10
+		shields 160000
+
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
+	priority
+	landing
+	cargo "illegal" 1
+	illegal 1
+	stealth
+	to offer
+		has "%TEST%: SCANNING ILLEGALS"
+	npc assist
+		government "Quarg"
+		personality derelict surveillance
+		ship "%TEST%: outfitless wardragon scanner"
+
+
 
 test "Land On Ruin helper"
 	status partial
@@ -310,24 +221,19 @@ test "Launch Quarg Scanning Mission And Board"
 	description "Starts the mission, accepts it and then boards the quarg ship to repair it."
 	sequence
 		# launch and accept the mission
-		input
-			key p
-		input
-			key d
+		call "Depart"
+		call "Land On Ruin helper"
 		call "Depart"
 		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
-		# wait for 5 seconds so it should be repaired and have scanned us
-		apply
-			"test: steps to wait" = 10 * 30
+		# wait until it scanned us and failed the mission
 		label "floating"
 		# empty input to make time pass
 		input
-		apply
-			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
-			"test: steps to wait" > 0
+			not "%TEST%: Wardragon Scanning You!: failed"
+		# skip dialog
 		input
 			key "return"
 
@@ -339,16 +245,14 @@ test "Boarding Test - Repair Friendly Ship"
 		call "Load First Savegame"
 		watchdog 4000
 		call "Launch Quarg Scanning Mission And Board"
+		call "Land On Ruin helper"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
 		apply
 			"test: %TEST%: Wardragon Scanning You!: active" = "%TEST%: Wardragon Scanning You!: active"
-		assert
-			"%TEST%: Wardragon Scanning You!: active" == 1
-		call "Land On Ruin helper"
-		apply
 			"test: %TEST%: Wardragon Scanning You!: done" = "%TEST%: Wardragon Scanning You!: done"
+			"test: %TEST%: Wardragon Scanning You!: failed" = "%TEST%: Wardragon Scanning You!: failed"
 		assert
-			"%TEST%: Wardragon Scanning You!: done" == 1
+			"%TEST%: Wardragon Scanning You!: failed" == 1
 
 test "Illegal Test - Ignore and New Illegal"
 	status active
@@ -366,7 +270,7 @@ test "Illegal Test - Ignore and New Illegal"
 		apply
 			"test: unpaid fines" = "unpaid fines"
 		assert
-			"unpaid fines" == 1
+			"unpaid fines" == 2
 
 test "Atrocity Test - New Atrocity"
 	status active
