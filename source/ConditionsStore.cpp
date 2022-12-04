@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionsStore.h"
 
-#include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Logger.h"
