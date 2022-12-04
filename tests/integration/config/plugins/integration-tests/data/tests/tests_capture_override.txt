@@ -48,8 +48,8 @@ test-data "quarg capture"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		changes
-			system "Ruin"
-				add fleet "%TEST%: derelicts" 5
+			system Ruin
+				fleet "%TEST%: derelicts" 5
 		conditions
 			"%TEST%: ILLEGAL CAPTURE"
 			"Ruin: Landing: offered"
@@ -83,7 +83,7 @@ mission "%TEST%: Capture That Quarg!"
 		has "%TEST%: ILLEGAL CAPTURE"
 	on offer
 		conversation
-			`skip this and get your own Quarg automaton!`
+			`Skip this and get your own Quarg automaton, today!`
 				decline
 	destination "Earth"
 
