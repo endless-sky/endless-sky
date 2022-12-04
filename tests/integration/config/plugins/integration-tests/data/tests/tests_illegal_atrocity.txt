@@ -339,13 +339,12 @@ test "Launch Quarg Scanning Mission And Board"
 		# wait for 0.5 seconds so it should have scanned us
 		apply
 			"test: steps to wait" = 30
-		# wait until we boarded it and got scanned (it'll fail the stealth mission)
-		label "floating"
+		label waiting
 		# empty input to make time pass
 		input
 		apply
 			"test: steps to wait" = "test: steps to wait" - 1
-		branch "floating"
+		branch waiting
 			"test: steps to wait" > 0
 		input
 			key "return"
