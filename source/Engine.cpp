@@ -1445,7 +1445,7 @@ void Engine::CalculateStep()
 
 	// Move the projectiles.
 	for(Projectile &projectile : projectiles)
-		projectile.Move(newVisuals, newProjectiles);
+		projectile.Move(newVisuals, newProjectiles, newShips, player);
 	Prune(projectiles);
 
 	// Step the weather.

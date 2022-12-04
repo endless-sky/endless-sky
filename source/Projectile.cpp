@@ -16,7 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 
 #include "Effect.h"
+#include "GameData.h"
 #include "pi.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
 #include "Visual.h"
@@ -24,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -48,10 +51,11 @@ Angle Projectile::Inaccuracy(double value)
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
+Projectile::Projectile(Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
+	parentShip = &parent;
 	government = parent.GetGovernment();
 
 	// If you are boarding your target, do not fire on it.
@@ -77,6 +81,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
+	parentShip = parent.parentShip;
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
 
@@ -106,7 +111,8 @@ Projectile::Projectile(Point position, const Weapon *weapon)
 
 
 // This returns false if it is time to delete this projectile.
-void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
+void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles,
+					list<shared_ptr<Ship>> ships, PlayerInfo &player)
 {
 	if(--lifetime <= 0)
 	{
@@ -121,6 +127,31 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
 					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy()), it.weapon);
+
+			if(!weapon->ShipToShoot().empty())
+			{
+				cout<<"Hi"<<endl;
+				const Ship *shipToPlace = GameData::Ships().Get(weapon->ShipToShoot());
+				if(shipToPlace->IsValid())
+				{
+					const shared_ptr<Ship> shotShip = make_shared<Ship>(*shipToPlace);
+					shotShip->Recharge();
+					shotShip->SetName(parentShip->Name());
+					shotShip->SetGovernment(parentShip->GetGovernment());
+					if(weapon->ShipToShootPersonality().IsDefined())
+						shotShip->SetPersonality(weapon->ShipToShootPersonality());
+					else
+						shotShip->SetPersonality(parentShip->GetPersonality());
+					shotShip->SetHail(*parentShip->GetHailPhrase());
+					shotShip->SetSystem(parentShip->GetSystem());
+					if(parentShip->GetParent() && !shotShip->GetPersonality().IsCoward())
+						shotShip->SetParent(parentShip->GetParent());
+					shotShip->Place(position, velocity, angle);
+					ships.push_back(shotShip);
+					if(parentShip->IsYours())
+						player.AddShip(shotShip);
+				}
+			}
 		}
 		MarkForRemoval();
 		return;

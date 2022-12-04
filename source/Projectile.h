@@ -21,10 +21,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
+#include <list>
 #include <memory>
 #include <vector>
 
 class Government;
+class PlayerInfo;
 class Ship;
 class Visual;
 class Weapon;
@@ -55,7 +57,7 @@ public:
 
 
 public:
-	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
+	Projectile(Ship &parent, Point position, Angle angle, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
@@ -69,7 +71,8 @@ public:
 	// const Government *GetGovernment() const;
 
 	// Move the projectile. It may create effects or submunitions.
-	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles);
+	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles,
+			std::list<std::shared_ptr<Ship>> ships, PlayerInfo &player);
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
 	void Explode(std::vector<Visual> &visuals, double intersection, Point hitVelocity = Point());
@@ -111,6 +114,8 @@ private:
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
+
+	const Ship *parentShip;
 
 	// The change in velocity of all stages of this projectile
 	// relative to the firing ship.
