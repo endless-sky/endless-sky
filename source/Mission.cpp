@@ -213,7 +213,7 @@ void Mission::Load(const DataNode &node)
 				if(grand.Token(0) == "override capture")
 					overridesCapture = true;
 				else
-					grand.PrintTrace("Skipping unrecognized attribute:")
+					grand.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
