@@ -143,9 +143,11 @@ if(APPLE)
 	set_target_properties(EndlessSky PROPERTIES
 		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/XCode/EndlessSky-Info.plist"
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
+	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
 elseif(WIN32)
 	add_executable(EndlessSky WIN32 source/main.cpp)
 	target_sources(EndlessSky PRIVATE source/WinApp.rc)
+	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
 else()
 	add_executable(EndlessSky source/main.cpp)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "endless-sky")
