@@ -48,7 +48,7 @@ test-data "quarg capture"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		changes
-			system Ruin
+			system "Terra Incognita"
 				fleet "%TEST%: derelicts" 5
 		conditions
 			"%TEST%: ILLEGAL CAPTURE"
