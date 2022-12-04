@@ -30204,7 +30204,7 @@ system Vesvii
 			distance 289.5
 			period 948.3
 	object
-		sprite planet/gas-vr
+		sprite planet/vesvi
 		distance 1017.4
 		period 2200
 		offset 300
