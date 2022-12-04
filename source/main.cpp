@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
 		// Load global Conditions:
 		DataFile globalConditions(Files::Config() + "global conditions.txt");
 		for(const DataNode &node : globalConditions)
-			if(node.Token(0) == "global conditions")
+			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
 
 		if(!GameWindow::Init())

@@ -154,8 +154,7 @@ public:
 
 	// Serialization support for this class.
 	void Load(const DataNode &node);
-	void Load(const DataFile &file, std::string conditionToken = "conditions");
-	void Save(DataWriter &out, std::string conditionToken = "conditions") const;
+	void Save(DataWriter &out) const;
 
 	// Retrieve a "condition" flag from this store (directly or from the
 	// connected provider).
