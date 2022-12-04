@@ -130,7 +130,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	double density = (system == nullptr) ? 1. : system->StarfieldDensity();
 
 	double baseZoom = zoom;
-	int layers = Preferences::Has("Parallax background") ? 4 : 2;
+	int layers = Preferences::Has("Parallax background") ? 3 : 1;
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
@@ -138,7 +138,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		glUseProgram(shader.Object());
 		glBindVertexArray(vao);
 
-		for(int pass = 1; pass < layers; pass++)
+		for(int pass = 1; pass <= layers; pass++)
 		{
 			// Modify zoom for the first parallax layer.
 			if(Preferences::Has("Parallax background"))
@@ -176,7 +176,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 			for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			{
-				float shove = 100. * pow(-1., pass);
+				float shove = pow(-8., pass);
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
 					Point off = Point(gx + shove, gy + shove) - pos;
