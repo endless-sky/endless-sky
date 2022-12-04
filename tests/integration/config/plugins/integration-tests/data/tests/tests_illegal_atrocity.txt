@@ -12,7 +12,7 @@ test-data "quarg rescue"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -80,10 +80,6 @@ test-data "quarg rescue"
 					position 0 0
 					explode "huge explosion" 1
 					system "Terra Incognita"
-				conversation
-					label 0
-					action
-						set "%TEST%: boarded"
 			on offer
 				conversation
 					label 0
@@ -108,7 +104,7 @@ test-data "quarg scanning"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -185,10 +181,6 @@ test-data "quarg scanning"
 					position 0 0
 					explode "huge explosion" 1
 					system "Terra Incognita"
-				conversation
-					label 0
-					action
-						set "%TEST%: boarded"
 			on offer
 				conversation
 					label 0
@@ -215,7 +207,7 @@ test-data "quarg atrocity"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -289,10 +281,6 @@ test-data "quarg atrocity"
 					position 0 0
 					explode "huge explosion" 1
 					system "Terra Incognita"
-				conversation
-					label 0
-					action
-						set "%TEST%: boarded"
 			on offer
 				conversation
 					label 0
@@ -330,21 +318,15 @@ test "Launch Quarg Scanning Mission And Board"
 		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
-		# wait until we boarded it and got scanned (it'll fail the stealth mission)
-		label "floating"
-		# empty input to make time pass
-		input
-		branch "floating"
-			not "boarded"
-		# wait for 0.5 seconds so it should have scanned us
+		# wait for 5 seconds so it should be repaired and have scanned us
 		apply
-			"test: steps to wait" = 30
-		label waiting
+			"test: steps to wait" = 10 * 30
+		label "floating"
 		# empty input to make time pass
 		input
 		apply
 			"test: steps to wait" = "test: steps to wait" - 1
-		branch waiting
+		branch "floating"
 			"test: steps to wait" > 0
 		input
 			key "return"
@@ -355,7 +337,7 @@ test "Boarding Test - Repair Friendly Ship"
 	sequence
 		inject "quarg rescue"
 		call "Load First Savegame"
-		watchdog 3000
+		watchdog 4000
 		call "Launch Quarg Scanning Mission And Board"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
 		apply
@@ -363,6 +345,10 @@ test "Boarding Test - Repair Friendly Ship"
 		assert
 			"%TEST%: Wardragon Scanning You!: active" == 1
 		call "Land On Ruin helper"
+		apply
+			"test: %TEST%: Wardragon Scanning You!: done" = "%TEST%: Wardragon Scanning You!: done"
+		assert
+			"%TEST%: Wardragon Scanning You!: done" == 1
 
 test "Illegal Test - Ignore and New Illegal"
 	status active
@@ -370,7 +356,7 @@ test "Illegal Test - Ignore and New Illegal"
 	sequence
 		inject "quarg scanning"
 		call "Load First Savegame"
-		watchdog 3000
+		watchdog 4000
 		assert
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
@@ -388,7 +374,7 @@ test "Atrocity Test - New Atrocity"
 	sequence
 		inject "quarg atrocity"
 		call "Load First Savegame"
-		watchdog 3000
+		watchdog 4000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
