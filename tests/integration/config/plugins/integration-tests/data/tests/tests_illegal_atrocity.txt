@@ -183,18 +183,20 @@ ship "%TEST%: outfitless wardragon scanner"
 		drag 9.3
 		"heat dissipation" 0.5
 		hull 50000
-		"outfit scan power" 1e+09
-		"outfit scan speed" 1e+09
+		"outfit scan power" 1e+10
+		"outfit scan speed" 1e+10
+		"cargo scan power" 1e+09
+		"cargo scan speed" 1e+09
 		"energy generation" 10
 		shields 160000
 
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
-	priority
 	landing
 	cargo "illegal" 1
 	illegal 1
 	stealth
+	source "Ruin"
 	to offer
 		has "%TEST%: SCANNING ILLEGALS"
 	npc assist
@@ -233,7 +235,9 @@ test "Launch Quarg Scanning Mission And Board"
 		input
 		branch "floating"
 			not "%TEST%: Wardragon Scanning You!: failed"
-		# skip dialog
+		# skip dialogs
+		input
+			key "return"
 		input
 			key "return"
 
