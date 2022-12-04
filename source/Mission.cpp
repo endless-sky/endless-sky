@@ -209,8 +209,11 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "boarding")
 		{
 			location = BOARDING;
-			if(child.HasChildren() && child.begin()->Token(0) == "override capture")
-				overridesCapture = true;
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "override capture")
+					overridesCapture = true;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:")
 		}
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
