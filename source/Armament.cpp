@@ -233,8 +233,7 @@ void Armament::Aim(const FireCommand &command)
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles,
-					list<shared_ptr<Ship>> &newShips, vector<Visual> &visuals, bool jammed, PlayerInfo &player)
+void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return;
@@ -253,7 +252,7 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles,
 	if(jammed)
 		hardpoints[index].Jam();
 	else
-		hardpoints[index].Fire(ship, projectiles, newShips, visuals, player);
+		hardpoints[index].Fire(ship, projectiles, visuals);
 }
 
 

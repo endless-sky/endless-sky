@@ -1682,7 +1682,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	// Fire weapons. If this returns true the ship has at least one anti-missile
 	// system ready to fire.
-	if(ship->Fire(newProjectiles, newShips, newVisuals, player))
+	if(ship->Fire(newProjectiles, newVisuals))
 		hasAntiMissile.push_back(ship.get());
 }
 
