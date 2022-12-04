@@ -3099,13 +3099,6 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 				continue;
 		}
 
-		// Weapons that shoot ships are always reaching the target:
-		if(!weapon->ShipToShoot().empty() && !enemies.empty())
-		{
-			command.SetFire(index);
-			continue;
-		}
-
 		// Figure out where this weapon will fire from, but add some randomness
 		// depending on how accurate this ship's pilot is.
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
