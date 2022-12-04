@@ -19,12 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
-#include <list>
-#include <memory>
 #include <vector>
 
 class Outfit;
-class PlayerInfo;
 class Projectile;
 class Ship;
 class Visual;

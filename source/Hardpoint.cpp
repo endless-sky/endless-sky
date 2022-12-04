@@ -17,10 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "Effect.h"
-#include "GameData.h"
 #include "Outfit.h"
 #include "pi.h"
-#include "PlayerInfo.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Ship.h"

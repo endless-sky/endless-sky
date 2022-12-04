@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hardpoint.h"
 
 #include <map>
-#include <memory>
 #include <set>
 #include <vector>
 
