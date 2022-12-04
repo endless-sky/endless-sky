@@ -1169,6 +1169,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isMinor = isMinor;
 	result.autosave = autosave;
 	result.location = location;
+	result.overridesCapture = overridesCapture;
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
