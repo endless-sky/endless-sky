@@ -68,6 +68,7 @@ if(UNIX AND NOT APPLE)
 		COMMENT "Discover every integration test"
 		COMMAND "${CMAKE_COMMAND}" -DES="$<TARGET_FILE:EndlessSky>"
 			-DBINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}"
+			-DES_USE_OFFSCREEN=${ES_USE_OFFSCREEN}
 			-P "${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
 		DEPENDS EndlessSky ${INTEGRATION_TESTS}
 			"${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"

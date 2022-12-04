@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.16..3.25)
 include(CMakeDependentOption)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
+cmake_dependent_option(ES_USE_OFFSCREEN
+	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
