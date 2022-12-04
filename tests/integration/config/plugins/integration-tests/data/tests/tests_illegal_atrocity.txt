@@ -172,7 +172,9 @@ test-data "quarg atrocity"
 
 
 
-ship "Quarg Wardragon" "%TEST%: outfitless wardragon scanner"
+ship "%TEST%: outfitless wardragon scanner"
+	sprite "ship/wardragon"
+	thumbnail "thumbnail/wardragon"
 	attributes
 		category "Heavy Warship"
 		cost 5900000
