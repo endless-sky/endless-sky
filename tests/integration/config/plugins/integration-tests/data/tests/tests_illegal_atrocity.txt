@@ -175,6 +175,7 @@ test-data "quarg atrocity"
 ship "%TEST%: outfitless wardragon scanner"
 	sprite "ship/wardragon"
 	thumbnail "thumbnail/wardragon"
+	uncapturable
 	attributes
 		category "Heavy Warship"
 		cost 5900000
@@ -185,8 +186,6 @@ ship "%TEST%: outfitless wardragon scanner"
 		hull 50000
 		"outfit scan power" 1e+10
 		"outfit scan speed" 1e+10
-		"cargo scan power" 1e+09
-		"cargo scan speed" 1e+09
 		"energy generation" 10
 		shields 160000
 
