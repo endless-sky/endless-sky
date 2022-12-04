@@ -54,8 +54,10 @@ test-data "quarg capture"
 			"%TEST%: ILLEGAL CAPTURE"
 			"Ruin: Landing: offered"
 
-ship "Quarg Wardragon" "%TEST%: automated WarDragon"
+ship "%TEST%: outfitless wardragon scanner uncapturable"
 	uncapturable
+	sprite "ship/wardragon"
+	thumbnail "thumbnail/wardragon"
 	attributes
 		category "Heavy Warship"
 		cost 5900000
@@ -64,17 +66,18 @@ ship "Quarg Wardragon" "%TEST%: automated WarDragon"
 		drag 9.3
 		"heat dissipation" 0.5
 		hull 50000
+		"outfit scan power" 1e+10
+		"outfit scan speed" 1e+10
+		"cargo scan power" 1e+09
+		"cargo scan speed" 1e+09
 		"energy generation" 10
 		shields 160000
-		"engine capacity" 1000
-		"weapon capacity" 500
-		"outfit space" 1000
 
 fleet "%TEST%: derelicts"
 	personality derelict
 	government "Quarg"
 	variant
-		"%TEST%: automated WarDragon"
+		"%TEST%: outfitless wardragon scanner uncapturable"
 
 mission "%TEST%: Capture That Quarg!"
 	boarding
