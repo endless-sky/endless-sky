@@ -537,8 +537,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		const Hardpoint *hardpoint = weaponList[weaponIndex];
 		string name = "[empty]";
 
-		if(hardpoint.GetOutfit())
-			name = hardpoint.GetOutfit()->DisplayName();
+		if(hardpoint->GetOutfit())
+			name = hardpoint->GetOutfit()->DisplayName();
 
 		bool isTurret = hardpoint->IsTurret();
 
