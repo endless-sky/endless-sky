@@ -138,7 +138,7 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 	`	She nods and forces a little bit of false cheer into her voice, "This is why we're all wearing pink, just a little show of local solidarity.`
 		goto main
 	label pink
-	`	A sad smile crosses her face and her expression goes sombre as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris, and kidnapped a number of Hai, probably into slavery. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but everyone is a bit shaken up so us locals are wearing pink in solidarity... and so we're not mistaken for a security risk.`
+	`	A sad smile crosses her face and her expression goes somber as she explains, "A pirate marauder snuck down onto the planet recently, stole a Geocoris, and kidnapped a number of Hai, probably into slavery. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but everyone is a bit shaken up so us locals are wearing pink in solidarity... and so we're not mistaken for a security risk.`
 	label main
 	`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered. So far they've only been able to recall those on leave and up their vigilance."`
 	`	Your conversation is interrupted suddenly by a small group of somewhat official-looking Hai.`
@@ -797,6 +797,7 @@ mission "Hai Leaks Response 4"
 		payment 1000000
 		event "waypoint pirates vanquished"
 		event "hai ladybug available"
+		event "humans adopt ladybugs" 20 30
 		log `Defeated the "Black Lich". They had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. Rewarded well.`
 		conversation
 			`When you return, the Hai Captain thanks you profusely. "The Allhome government has authorized a reward of <payment> for helping to route the pirate problem," he explains while handing you the credits.`
@@ -833,10 +834,8 @@ event "waypoint pirates vanquished"
 		remove fleet "Large Core Pirates"
 
 event "hai ladybug available"
-	shipyard "Hai Intermediate"
-		"Ladybug"
-	shipyard "Hai Advanced"
-		"Ladybug"
+	shipyard "Mon Ki i'Hiya Basics"
+		add "Ladybug"
 
 
 # It is impossible to implement a "capture and return npc" mission. 
@@ -967,6 +966,60 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	description "This modified Geocoris has identical cargo capacity, but is the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings, and some kind of integrated system core which seems to have something of a life of its own. As such, some systems are built-in and unable to be removed. Nevertheless it is significantly more survivable than a traditional Geocoris and at least as useful."
 
 
+# The spike in interest leads to ladybugs appearing in the Hai Merchant (Human) fleets.	
+event "humans adopt ladybugs"
+	fleet "Small Hai Merchant (Human)"
+		add variant 6
+			"Freighter (Hai)"
+			"Ladybug (Pulse)"
+		add variant 6
+			"Freighter (Hai)"
+			"Ladybug (Three Ion)"
+		add variant 3
+			"Mule (Hai Engines)"
+			"Ladybug (Pulse)"
+		add variant 3
+			"Mule (Hai Engines)"
+			"Ladybug (Three Ion)"
+	fleet "Large Hai Merchant (Human)"
+		add variant 20
+			"Water Bug" 2
+			"Ladybug (Pulse)"
+		add variant 20
+			"Water Bug" 2
+			"Ladybug (Three Ion)"
+		add variant 3
+			"Freighter (Hai)" 2
+			"Ladybug"
+		add variant 10
+			"Freighter (Hai)" 2
+			"Ladybug (Pulse)"
+		add variant 10
+			"Freighter (Hai)" 3
+			"Ladybug (Pulse)"
+		add variant 4
+			"Behemoth (Hai)"
+			"Ladybug (Pulse)" 2
+		add variant 4
+			"Behemoth (Hai)"
+			"Ladybug (Pulse)" 
+			"Ladybug (Three Ion)"
+		add variant 4
+			"Behemoth (Hai)"
+			"Ladybug (Three Ion)" 2
+		add variant 4
+			"Hauler III (Hai)"
+			"Water Bug"
+			"Headhunter (Hai)" 1
+			"Ladybug (Three Ion)"
+		add variant 2
+			"Container Transport (Hai)"
+			"Grasshopper"
+			"Ladybug (Pulse)"
+		add variant 1
+			"Container Transport (Hai)"
+			"Ladybug (Pulse)" 2
+
 
 mission "Hai Leaks Response 5"
 	landing
@@ -1079,9 +1132,37 @@ mission "Hai Leaks Response 6"
 
 event "secret mountaintop"
 	# Ensure Mountaintop exists so the next mission can trigger
+	# The system is redefined from scratch here to insulate against map file changes messing with later events (see issue #7605 which this fixes)
 	system "Ultima Thule"
 		government "Uninhabited"
-		add object
+		object
+			sprite star/f0
+			period 10
+		object
+			sprite planet/desert5
+			distance 200
+			period 22.3606
+		object
+			sprite planet/europa-b
+			distance 403.41
+			period 64.0560
+		object
+			sprite planet/desert7-b
+			distance 824.9
+			period 187.301
+		object
+			sprite planet/gas1
+			distance 1706.99
+			period 557.553
+			object
+				sprite planet/ice8-b
+				distance 216
+				period 11.1964
+		object "Wormhole Alpha"
+			sprite planet/wormhole
+			distance 4208.63
+			period 2158.5
+		object
 			distance 4208.63
 			period 2158.5
 			object Mountaintop

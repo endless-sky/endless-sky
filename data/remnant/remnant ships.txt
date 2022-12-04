@@ -632,7 +632,7 @@ ship "Gull" "Gull (Bunks)"
 ship "Heron"
 	sprite "ship/heron"
 	attributes
-		category "Utility"
+		category "Superheavy"
 		licenses
 			"Remnant Capital"
 		"cost" 256375000
