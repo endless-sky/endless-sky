@@ -26,7 +26,7 @@ test-data "Wormhole Navigation"
 				"required crew" 1000
 				"bunks" 3000
 				"mass" 1
-				"drag" 25
+				"drag" .1
 				"heat dissipation" .80
 				"fuel capacity" 2500
 				"ramscoop" 10
@@ -142,7 +142,7 @@ test-data "Ember Wastes Navigation"
 				"required crew" 1000
 				"bunks" 3000
 				"mass" 1
-				"drag" 25
+				"drag" .1
 				"heat dissipation" .80
 				"fuel capacity" 2500
 				"ramscoop" 10

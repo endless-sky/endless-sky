@@ -22,7 +22,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
 				mass 1
 				bunks 3
 				"cargo space" 15
-				drag 0.9
+				drag .1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"gun ports" 2
@@ -74,7 +74,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
 				mass 1
 				bunks 6
 				"cargo space" 20
-				drag 1.7
+				drag .1
 				"engine capacity" 60
 				"fuel capacity" 400
 				"gun ports" 1
@@ -145,7 +145,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Winter"
 				mass 1
 				bunks 3
 				"cargo space" 15
-				drag 0.9
+				drag .1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"gun ports" 2
@@ -197,7 +197,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Winter"
 				mass 1
 				bunks 6
 				"cargo space" 20
-				drag 1.7
+				drag .1
 				"engine capacity" 60
 				"fuel capacity" 400
 				"gun ports" 1

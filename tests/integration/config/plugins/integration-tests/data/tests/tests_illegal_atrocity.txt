@@ -15,7 +15,7 @@ test-data "quarg rescue"
 				mass 70
 				bunks 3
 				"cargo space" 50
-				drag 2.1
+				drag .1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -67,7 +67,7 @@ test-data "quarg scanning"
 				mass 70
 				bunks 3
 				"cargo space" 50
-				drag 2.1
+				drag .1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -130,7 +130,7 @@ test-data "quarg atrocity"
 				mass 70
 				bunks 3
 				"cargo space" 50
-				drag 2.1
+				drag .1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -231,8 +231,9 @@ test "Launch Quarg Scanning Mission And Board"
 			command board
 		# wait until it scanned us and failed the mission
 		label "floating"
-		# empty input to make time pass
+		# input to make time pass
 		input
+			key "return"
 		branch "floating"
 			not "%TEST%: Wardragon Scanning You!: failed"
 		# skip dialogs

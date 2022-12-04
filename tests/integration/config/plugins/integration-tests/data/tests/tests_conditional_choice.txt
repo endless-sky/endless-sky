@@ -15,7 +15,7 @@ test-data "conditional choice"
 				mass 1
 				bunks 3
 				"cargo space" 50
-				drag 1
+				drag .1
 				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8

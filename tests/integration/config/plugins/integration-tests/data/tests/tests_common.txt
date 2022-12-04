@@ -21,7 +21,7 @@ test-data "Three Earthly Barges"
 				mass 1
 				bunks 3
 				"cargo space" 50
-				drag 2.1
+				drag .1
 				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -60,7 +60,7 @@ test-data "Three Earthly Barges"
 				mass 1
 				bunks 3
 				"cargo space" 50
-				drag 2.1
+				drag .1
 				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -99,7 +99,7 @@ test-data "Three Earthly Barges"
 				mass 1
 				bunks 3
 				"cargo space" 50
-				drag 2.1
+				drag .1
 				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -167,7 +167,7 @@ test-data "Fighters and Carriers and Escorts"
 				cost 126000
 				mass 1
 				bunks 1
-				drag 0.83
+				drag .1
 				"engine capacity" 400
 				"gun ports" 2
 				"heat dissipation" 0.85
@@ -218,7 +218,7 @@ test-data "Fighters and Carriers and Escorts"
 				cost 126000
 				mass 1
 				bunks 1
-				drag 0.83
+				drag .1
 				"engine capacity" 400
 				"gun ports" 2
 				"heat dissipation" 0.85
@@ -272,7 +272,7 @@ test-data "Fighters and Carriers and Escorts"
 				mass 1
 				bunks 245
 				"cargo space" 530
-				drag 16.1
+				drag .1
 				"engine capacity" 1800
 				"fuel capacity" 700
 				"gun ports" 4
@@ -360,7 +360,7 @@ test-data "Fighters and Carriers and Escorts"
 				"required crew" 10
 				"bunks" 28
 				"mass" 1
-				"drag" 4.1
+				"drag" .1
 				"heat dissipation" .7
 				"fuel capacity" 500
 				"cargo space" 50
@@ -423,7 +423,7 @@ test-data "Fighters and Carriers and Escorts"
 				mass 1
 				bunks 2
 				"cargo space" 15
-				drag 0.9
+				drag .1
 				"engine capacity" 400
 				"fuel capacity" 300
 				"gun ports" 2
@@ -473,7 +473,7 @@ test-data "Fighters and Carriers and Escorts"
 				mass 1
 				bunks 2
 				"cargo space" 15
-				drag 0.9
+				drag .1
 				"engine capacity" 400
 				"fuel capacity" 3000
 				"gun ports" 2
