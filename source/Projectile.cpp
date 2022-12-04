@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 
@@ -130,7 +129,6 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles,
 
 			if(!weapon->ShipToShoot().empty())
 			{
-				cout<<"Hi"<<endl;
 				const Ship *shipToPlace = GameData::Ships().Get(weapon->ShipToShoot());
 				if(shipToPlace->IsValid())
 				{
