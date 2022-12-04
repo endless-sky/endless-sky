@@ -555,8 +555,6 @@ jobs:
         sudo apt install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
-      with:
-        vcpkgJsonGlob: 'vcpkg.json'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'linux-ci'
@@ -580,7 +578,6 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
-        vcpkgJsonGlob: 'vcpkg.json'
         prependedCacheKey: mingw-x64
     - uses: lukka/run-cmake@v10
       with:
@@ -603,8 +600,6 @@ jobs:
         submodules: true
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
-      with:
-        vcpkgJsonGlob: 'vcpkg.json'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'
@@ -627,7 +622,6 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
-        vcpkgJsonGlob: 'vcpkg.json'
         prependedCacheKey: vs-x64
     - uses: lukka/run-cmake@v10
       with:
