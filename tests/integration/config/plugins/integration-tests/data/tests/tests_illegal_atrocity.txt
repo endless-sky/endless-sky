@@ -49,7 +49,6 @@ test-data "quarg rescue"
 			name "%TEST%: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
-			stealth
 			to offer
 				"%TEST%: SCANNING ILLEGALS" != 0
 			destination Ruin
@@ -81,6 +80,10 @@ test-data "quarg rescue"
 					position 0 0
 					explode "huge explosion" 1
 					system "Terra Incognita"
+				conversation
+					label 0
+					action
+						set "%TEST%: boarded"
 			on offer
 				conversation
 					label 0
@@ -151,7 +154,6 @@ test-data "quarg scanning"
 			name "%TEST%: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
-			stealth
 			to offer
 				"%TEST%: SCANNING ILLEGALS" != 0
 			destination Ruin
@@ -183,6 +185,10 @@ test-data "quarg scanning"
 					position 0 0
 					explode "huge explosion" 1
 					system "Terra Incognita"
+				conversation
+					label 0
+					action
+						set "%TEST%: boarded"
 			on offer
 				conversation
 					label 0
@@ -252,7 +258,6 @@ test-data "quarg atrocity"
 			name "%TEST%: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
-			stealth
 			to offer
 				"%TEST%: SCANNING ILLEGALS" != 0
 			destination Ruin
@@ -284,6 +289,10 @@ test-data "quarg atrocity"
 					position 0 0
 					explode "huge explosion" 1
 					system "Terra Incognita"
+				conversation
+					label 0
+					action
+						set "%TEST%: boarded"
 			on offer
 				conversation
 					label 0
@@ -326,7 +335,7 @@ test "Launch Quarg Scanning Mission And Board"
 		# empty input to make time pass
 		input
 		branch "floating"
-			not "%TEST%: Wardragon Scanning You!: failed"
+			not "boarded"
 		input
 			key "return"
 
