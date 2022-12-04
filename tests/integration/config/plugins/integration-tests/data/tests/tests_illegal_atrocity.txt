@@ -235,7 +235,7 @@ test "Launch Quarg Scanning Mission And Board"
 		input
 			key "return"
 		branch "floating"
-			not "%TEST%: Wardragon Scanning You!: failed"
+			"%TEST%: Wardragon Scanning You!: failed" == 0
 		# skip dialogs
 		input
 			key "return"
