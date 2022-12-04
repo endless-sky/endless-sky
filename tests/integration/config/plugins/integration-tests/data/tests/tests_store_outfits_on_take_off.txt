@@ -19,7 +19,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
 			attributes
 				category Interceptor
 				cost 225000
-				mass 50
+				mass 1
 				bunks 3
 				"cargo space" 15
 				drag 0.9
@@ -71,7 +71,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
 			attributes
 				category Transport
 				cost 180000
-				mass 70
+				mass 1
 				bunks 6
 				"cargo space" 20
 				drag 1.7
@@ -142,7 +142,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Winter"
 			attributes
 				category Interceptor
 				cost 225000
-				mass 50
+				mass 1
 				bunks 3
 				"cargo space" 15
 				drag 0.9
@@ -194,7 +194,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Winter"
 			attributes
 				category Transport
 				cost 180000
-				mass 70
+				mass 1
 				bunks 6
 				"cargo space" 20
 				drag 1.7

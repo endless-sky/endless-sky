@@ -19,7 +19,7 @@ test-data "Owned Drone"
 				"cost" 50000
 				"hull" 300
 				"automaton" 1
-				"mass" 15
+				"mass" 1
 				"drag" .53
 				"heat dissipation" .9
 				"outfit space" 530
@@ -66,7 +66,7 @@ test-data "Owned Remote"
 			attributes
 				category Interceptor
 				cost 225000
-				mass 50
+				mass 1
 				bunks 2
 				"cargo space" 15
 				drag 0.9

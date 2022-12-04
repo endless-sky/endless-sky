@@ -12,7 +12,7 @@ test-data "conditional choice"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 10
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 1

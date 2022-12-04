@@ -12,7 +12,7 @@ test-data "burning flyers"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 70
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -50,7 +50,7 @@ test-data "burning flyers"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 70
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -99,9 +99,9 @@ test "Afterburner-flight - Simple depart land"
 			"flagship planet: Ruin" == 1
 		watchdog 12000
 		call "Depart"
-		# Wait for 10 seconds to drift away from the planet.
+		# Wait for 5 seconds to drift away from the planet.
 		apply
-			"test: steps to wait" = 10 * 60
+			"test: steps to wait" = 5 * 60
 		label "floating"
 		# empty input to make time pass
 		input

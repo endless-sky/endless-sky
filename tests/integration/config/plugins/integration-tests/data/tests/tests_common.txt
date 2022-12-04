@@ -18,7 +18,7 @@ test-data "Three Earthly Barges"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 70
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -57,7 +57,7 @@ test-data "Three Earthly Barges"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 70
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -96,7 +96,7 @@ test-data "Three Earthly Barges"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 70
+				mass 1
 				bunks 3
 				"cargo space" 50
 				drag 2.1
@@ -165,7 +165,7 @@ test-data "Fighters and Carriers and Escorts"
 			attributes
 				category Fighter
 				cost 126000
-				mass 40
+				mass 1
 				bunks 1
 				drag 0.83
 				"engine capacity" 400
@@ -216,7 +216,7 @@ test-data "Fighters and Carriers and Escorts"
 			attributes
 				category Fighter
 				cost 126000
-				mass 40
+				mass 1
 				bunks 1
 				drag 0.83
 				"engine capacity" 400
@@ -269,7 +269,7 @@ test-data "Fighters and Carriers and Escorts"
 			attributes
 				category "Heavy Warship"
 				cost 17600000
-				mass 940
+				mass 1
 				bunks 245
 				"cargo space" 530
 				drag 16.1
@@ -359,7 +359,7 @@ test-data "Fighters and Carriers and Escorts"
 				"hull" 1900
 				"required crew" 10
 				"bunks" 28
-				"mass" 130
+				"mass" 1
 				"drag" 4.1
 				"heat dissipation" .7
 				"fuel capacity" 500
@@ -420,7 +420,7 @@ test-data "Fighters and Carriers and Escorts"
 			attributes
 				category Interceptor
 				cost 225000
-				mass 50
+				mass 1
 				bunks 2
 				"cargo space" 15
 				drag 0.9
@@ -470,7 +470,7 @@ test-data "Fighters and Carriers and Escorts"
 			attributes
 				category Interceptor
 				cost 225000
-				mass 50
+				mass 1
 				bunks 2
 				"cargo space" 15
 				drag 0.9
