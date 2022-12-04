@@ -560,6 +560,8 @@ jobs:
         configurePreset: 'linux-ci'
         buildPreset: 'linux-ci'
         testPreset: 'linux-ci'
+    - name: Run Benchmarks
+      run: ctest --preset linux-ci-benchmark
     - name: Prevent saving cache on failure
       run: |
         echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
@@ -584,6 +586,8 @@ jobs:
         configurePreset: 'mingw-ci'
         buildPreset: 'mingw-ci'
         testPreset: 'mingw-ci'
+    - name: Run Benchmarks
+      run: ctest --preset mingw-ci-benchmark
     - name: Prevent saving cache on failure
       run: |
         echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
@@ -605,6 +609,8 @@ jobs:
         configurePreset: 'macos-ci'
         buildPreset: 'macos-ci'
         testPreset: 'macos-ci'
+    - name: Run Benchmarks
+      run: ctest --preset macos-ci-benchmark
     - name: Prevent saving cache on failure
       run: |
         echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
@@ -628,6 +634,8 @@ jobs:
         configurePreset: 'clang-cl-ci'
         buildPreset: 'clang-cl-ci'
         testPreset: 'clang-cl-ci'
+    - name: Run Benchmarks
+      run: ctest --preset clang-cl-ci-benchmark
     - name: Prevent saving cache on failure
       run: |
         echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV

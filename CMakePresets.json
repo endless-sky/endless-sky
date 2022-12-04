@@ -466,13 +466,12 @@
       "hidden": true,
       "configuration": "Release",
       "output": {
-        "verbosity": "verbose",
         "shortProgress": true,
         "outputOnFailure": true
       },
       "filter": {
-        "exclude": {
-          "label": "integration"
+        "include": {
+          "label": "unit"
         }
       },
       "condition": {
@@ -482,13 +481,31 @@
       }
     },
     {
-      "name": "ci-integration",
+      "name": "ci-benchmark",
       "hidden": true,
       "configuration": "Release",
       "output": {
         "verbosity": "verbose",
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "benchmark"
+        }
+      }
+    },
+    {
+      "name": "ci-integration",
+      "hidden": true,
+      "configuration": "Release",
+      "output": {
         "shortProgress": true,
         "outputOnFailure": true
+      },
+      "filter": {
+        "exclude": {
+          "label": "benchmark"
+        }
       },
       "condition": {
         "type": "equals",
@@ -623,10 +640,10 @@
       "inherits": "ci-integration"
     },
     {
-      "name": "linux-cd",
-      "displayName": "Linux CD Tests",
+      "name": "linux-ci-benchmark",
+      "displayName": "Linux CI Benchmarks",
       "configurePreset": "linux-ci",
-      "inherits": "test"
+      "inherits": "ci-benchmark"
     },
     {
       "name": "linux-gles-ci",
@@ -635,16 +652,22 @@
       "inherits": "ci-integration"
     },
     {
+      "name": "linux-gles-ci-benchmark",
+      "displayName": "Linux GLES CI Benchmarks",
+      "configurePreset": "linux-gles-ci",
+      "inherits": "ci-benchmark"
+    },
+    {
       "name": "macos-ci",
       "displayName": "MacOS CI Tests",
       "configurePreset": "macos-ci",
       "inherits": "ci"
     },
     {
-      "name": "macos-cd",
-      "displayName": "MacOS CD Tests",
+      "name": "macos-ci-benchmark",
+      "displayName": "MacOS CI Benchmarks",
       "configurePreset": "macos-ci",
-      "inherits": "test"
+      "inherits": "ci-benchmark"
     },
     {
       "name": "clang-cl-ci",
@@ -653,22 +676,22 @@
       "inherits": "ci"
     },
     {
+      "name": "clang-cl-ci-benchmark",
+      "displayName": "VS CI Benchmarks",
+      "configurePreset": "clang-cl-ci",
+      "inherits": "ci-benchmark"
+    },
+    {
       "name": "mingw-ci",
       "displayName": "Mingw CI Tests",
       "configurePreset": "mingw-ci",
       "inherits": "ci"
     },
     {
-      "name": "mingw32-cd",
-      "displayName": "Mingw32 CD Tests",
-      "configurePreset": "mingw32-ci",
-      "inherits": "test"
-    },
-    {
-      "name": "mingw-cd",
-      "displayName": "Mingw CD Tests",
+      "name": "mingw-ci-benchmark",
+      "displayName": "Mingw CI Benchmarks",
       "configurePreset": "mingw-ci",
-      "inherits": "test"
+      "inherits": "ci-benchmark"
     }
   ]
 }
