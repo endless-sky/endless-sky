@@ -170,8 +170,10 @@ int main(int argc, char *argv[])
 		Preferences::Load();
 
 		// Load global Conditions:
-		DataFile globCons(Files::Config() + "global conditions.txt");
-		GameData::GlobalConditions().Load(globCons, "global conditions");
+		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		for(const DataNode &node : globalConditions)
+			if(node.Token(0) == "global conditions")
+				GameData::GlobalConditions().Load(node);
 
 		if(!GameWindow::Init())
 			return 1;
