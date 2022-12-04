@@ -142,7 +142,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		{
 			// Modify zoom for the first parallax layer.
 			if(Preferences::Has("Parallax background"))
-				zoom = baseZoom * STAR_ZOOM * pow(pass, .5);
+				zoom = baseZoom * STAR_ZOOM * pow(pass, 0.25);
 
 			float length = vel.Length();
 			Point unit = length ? vel.Unit() : Point(1., 0.);
@@ -175,9 +175,11 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			minY &= ~(TILE_SIZE - 1l);
 
 			for(int gy = minY; gy < maxY; gy += TILE_SIZE)
+			{
+				float shove = 100. * pow(-1., pass);
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
-					Point off = Point(gx, gy) - pos;
+					Point off = Point(gx + shove, gy + shove) - pos;
 					GLfloat translate[2] = {
 						static_cast<float>(off.X()),
 						static_cast<float>(off.Y())
@@ -189,7 +191,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 					int count = 6 * tileIndex[index + 1] - first;
 					glDrawArrays(GL_TRIANGLES, first, density * count /  (pass * layers));
 				}
-
+			}
 		}
 		glBindVertexArray(0);
 		glUseProgram(0);
