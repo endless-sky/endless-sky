@@ -95,7 +95,7 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 
 
-void OutfitterPanel::Step()
+void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	if(GetUI()->IsTop(this))
