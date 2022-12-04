@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Body.h"
 #include "DrawList.h"
+#include "Engine.h"
 #include "pi.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -124,8 +125,10 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
+void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system) const
 {
+	double density = (system == nullptr) ? 1. : system->StarfieldDensity();
+
 	double baseZoom = zoom;
 	int layers = Preferences::Has("Parallax background") ? 4 : 2;
 
@@ -184,7 +187,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 					int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
 					int first = 6 * tileIndex[index];
 					int count = 6 * tileIndex[index + 1] - first;
-					glDrawArrays(GL_TRIANGLES, first, count / (pass * layers));
+					glDrawArrays(GL_TRIANGLES, first, density * count /  (pass * layers));
 				}
 
 		}
