@@ -193,9 +193,6 @@ ship "%TEST%: outfitless wardragon scanner"
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
 	landing
-	cargo "illegal" 1
-	illegal 1
-	stealth
 	source "Ruin"
 	to offer
 		has "%TEST%: SCANNING ILLEGALS"
@@ -203,6 +200,9 @@ mission "%TEST%: Wardragon Scanning You!"
 		government "Quarg"
 		personality derelict surveillance
 		ship "%TEST%: outfitless wardragon scanner"
+		conversation
+			action
+				set "assisted"
 
 
 
@@ -235,7 +235,7 @@ test "Launch Quarg Scanning Mission And Board"
 		input
 			key "return"
 		branch "floating"
-			"%TEST%: Wardragon Scanning You!: failed" == 0
+			"assisted" == 0
 		# skip dialogs
 		input
 			key "return"
@@ -257,7 +257,7 @@ test "Boarding Test - Repair Friendly Ship"
 			"test: %TEST%: Wardragon Scanning You!: done" = "%TEST%: Wardragon Scanning You!: done"
 			"test: %TEST%: Wardragon Scanning You!: failed" = "%TEST%: Wardragon Scanning You!: failed"
 		assert
-			"%TEST%: Wardragon Scanning You!: failed" == 1
+			"%TEST%: Wardragon Scanning You!: done" == 1
 
 test "Illegal Test - Ignore and New Illegal"
 	status active
@@ -275,7 +275,7 @@ test "Illegal Test - Ignore and New Illegal"
 		apply
 			"test: unpaid fines" = "unpaid fines"
 		assert
-			"unpaid fines" == 2
+			"unpaid fines" == 1
 
 test "Atrocity Test - New Atrocity"
 	status active
