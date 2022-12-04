@@ -1502,7 +1502,7 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 	landing
 	source
 		government "Hai"
-		not "Hai-home"
+		not planet "Hai-home"
 		attributes "spaceport"
 	to offer
 		has "Hai Reveal [A11] Sound the Alarm: offered"
