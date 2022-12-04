@@ -54,7 +54,7 @@ test-data "quarg capture"
 			"%TEST%: ILLEGAL CAPTURE"
 			"Ruin: Landing: offered"
 
-ship "%TEST%: outfitless wardragon scanner uncapturable"
+ship "%TEST%: outfitless wardragon"
 	uncapturable
 	sprite "ship/wardragon"
 	thumbnail "thumbnail/wardragon"
@@ -134,6 +134,6 @@ test "Capture Uncapturable With Capturable Override"
 			"test: %TEST%: Wardragon Scanning You!: offered" = "%TEST%: Wardragon Scanning You!: offered"
 			"test: %TEST%: Capture That Quarg!: offered" = "%TEST%: Capture That Quarg!: offered"
 			"test: %TEST%: Wardragon Scanning You!: failed" = "%TEST%: Wardragon Scanning You!: failed"
-			"test: ship model: Quarg Wardragon" = "ship model: Quarg Wardragon"
+			"test: ship model: %TEST%: outfitless wardragon" = "ship model: %TEST%: outfitless wardragon"
 		assert
-			"ship model: Quarg Wardragon" == 1
+			"ship model: %TEST%: outfitless wardragon"== 1
