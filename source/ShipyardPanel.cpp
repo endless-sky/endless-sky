@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -90,6 +91,25 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
+}
+
+
+
+void OutfitterPanel::Step()
+{
+	ShopPanel::Step();
+	if(GetUI()->IsTop(this))
+	{
+		Mission *mission = player.MissionToOffer(Mission::SHIPYARD);
+		// Special case: if the player somehow got to the shipyard before all
+		// landing missions were offered, they can still be offered here:
+		if(!mission)
+			mission = player.MissionToOffer(Mission::LANDING);
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedMissions(Mission::SHIPYARD, GetUI());
+	}
 }
 
 

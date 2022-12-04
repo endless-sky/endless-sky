@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Hardpoint.h"
 #include "text/layout.hpp"
+#include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -106,6 +107,18 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
+	if(GetUI()->IsTop(this))
+	{
+		Mission *mission = player.MissionToOffer(Mission::OUTFITTER);
+		// Special case: if the player somehow got to the outfitter before all
+		// landing missions were offered, they can still be offered here:
+		if(!mission)
+			mission = player.MissionToOffer(Mission::LANDING);
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedMissions(Mission::OUTFITTER, GetUI());
+	}
 	if(GetUI()->IsTop(this) && !checkedHelp)
 		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
