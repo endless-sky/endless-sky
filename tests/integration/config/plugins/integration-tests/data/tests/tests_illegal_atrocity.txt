@@ -206,11 +206,10 @@ test "Land On Ruin helper"
 	status partial
 	description "Helper for landing on Ruin."
 	sequence
+		label "landing"
+		# input to make time pass
 		input
 			command land
-		label "landing"
-		# empty input to make time pass
-		input
 		branch "landing"
 			"flagship planet: Ruin" == 0
 
