@@ -650,6 +650,7 @@ government "Navy (Oathkeeper)"
 		"Kor Sestor" -.01
 		"Kor Mereti" -.01
 		"Navy Intelligence" 1
+		"Republic Intelligence" 1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
@@ -861,11 +862,21 @@ government "Republic"
 		"Republic that won't enter wormhole" 1
 		"Smuggler (Hai Trafficker)" -.3
 		"Navy Intelligence" 1
+		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
+
+government "Republic Intelligence"
+	swizzle 0
+	"crew attack" 1.2
+	"crew defense" 2.2
+	"attitude toward"
+		"Pirate" -.3
+		"Pirate (Devil-Run Gang)" -.3
+		"Smuggler (Hai Trafficker)" -.3
 
 government "Republic that won't enter wormhole"
 	"display name" Republic
@@ -884,6 +895,7 @@ government "Republic that won't enter wormhole"
 		"Republic" 1
 		"Smuggler (Hai Trafficker)" -.3
 		"Navy Intelligence" 1
+		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
 	"friendly hail" "friendly navy"
@@ -903,6 +915,7 @@ government "Republic (Friendly)"
 		"Militia" .01
 		"Pirate" -.01
 		"Navy Intelligence" .01
+		"Republic Intelligence" .01
 		"Navy (Oathkeeper)" .01
 		"Neutral" .01
 	"friendly hail" "friendly navy"
