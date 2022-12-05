@@ -56,8 +56,6 @@ ship "Jje"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Jje Propulsion Organ"
-
 	engine 0 0
 	"steering engine" 0 0
 	"final explode" "jje boom"
@@ -117,8 +115,6 @@ ship "Ayym"
 			"hull damage" 1500
 			"hit force" 4500
 	outfits
-		"Ayym Propulsion Organ"
-		"Jump Organ"
 	engine 0 0
 	"steering engine" 0 0
 	bay "Fighter" -36 40

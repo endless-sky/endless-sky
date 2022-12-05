@@ -429,7 +429,7 @@ mission "Gegno Genocide Defense"
 			variant 
 				Gneiss 3
 				Hornfel 2
-				"Hornfel Heavy Weapons" 2
+				"Hornfel (Heavy Weapons)" 2
 				Eclogite 5
 				Feldspar 3
 				Halite 18

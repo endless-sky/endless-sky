@@ -257,11 +257,9 @@ government "Gegno"
 		"Gegno Scin" 0.01
 		"Gegno Vi" 0.01
 		"Quarg" 0.02
-	penalty for
+	"penalty for"
 		assist 0
 		provoke 10
-	"friendly hail" "gegno uncontacted"
-	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Scin"
 	swizzle 18
@@ -274,10 +272,8 @@ government "Gegno Scin"
 	"attitude toward"
 		"Gegno" 1
 		"Gegno Vi" -0.01
-	penalty for
+	"penalty for"
 		assist 0
-	"friendly hail" "gegno uncontacted"
-	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Vi"
 	swizzle 0
@@ -290,10 +286,8 @@ government "Gegno Vi"
 	"attitude toward"
 		"Gegno" 1
 		"Gegno Scin" -0.01
-	penalty for
+	"penalty for"
 		assist 0
-	"friendly hail" "gegno uncontacted"
-	"hostile hail" "hostile gegno uncontacted"
 
 
 # Gegno Scin and Vi governments that do not fight each other.
@@ -308,10 +302,8 @@ government "Gegno Scin (Neutral)"
 	"crew defense" 1.4
 	"attitude toward"
 		"Gegno" 1
-	penalty for
+	"penalty for"
 		assist 0
-	"friendly hail" "gegno uncontacted"
-	"hostile hail" "hostile gegno uncontacted"
 	
 government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
@@ -324,10 +316,8 @@ government "Gegno Vi (Neutral)"
 	"crew defense" 1.5
 	"attitude toward"
 		"Gegno" 1
-	penalty for
+	"penalty for"
 		assist 0
-	"friendly hail" "gegno uncontacted"
-	"hostile hail" "hostile gegno uncontacted"
 	
 	
 # Gegno Vi governments used for dueling.
@@ -345,10 +335,8 @@ government "Gegno Vi (Duelist A)"
 		"Gegno Scin" -0.01
 		"Gegno Vi" 1
 		"Gegno Vi (Duelist B)" -0.01
-	penalty for
+	"penalty for"
 		assist 0
-	"friendly hail" "gegno uncontacted"
-	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Vi (Duelist B)"
 	swizzle 0
@@ -364,10 +352,8 @@ government "Gegno Vi (Duelist B)"
 		"Gegno Scin" -0.01
 		"Gegno Vi" 1
 		"Gegno Vi (Duelist A)" -0.01
-	penalty for
+	"penalty for"
 		assist 0
-	"friendly hail" "gegno uncontacted"
-	"hostile hail" "hostile gegno uncontacted"
 
 government "Hai"
 	swizzle 0
