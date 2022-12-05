@@ -1405,7 +1405,14 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
-void Ship::SetHail(const Phrase &phrase)
+const Phrase *Ship::GetHailPhrase() const
+{
+	return hail;
+}
+
+
+
+void Ship::SetHailPhrase(const Phrase &phrase)
 {
 	hail = &phrase;
 }
@@ -2331,7 +2338,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Whenever not actively scanning, the amount of
 	// scan information the ship has "decays" over time.
@@ -2353,26 +2360,18 @@ void Ship::DoGeneration()
 			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
 
 			double solarScaling = currentSystem->SolarPower() * scale;
-			// Overheated ships produce half as much energy from solar collection.
-			energy += solarScaling * attributes.Get("solar collection") * (isOverheated ? 0.5 : 1.);
+			energy += solarScaling * attributes.Get("solar collection");
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
-		// Overheated ships disable their reactors, which typically have both energy and
-		// heat generation.
-		if(!isOverheated)
-		{
-			energy += attributes.Get("energy generation");
-			heat += attributes.Get("heat generation");
-		}
-		energy -= attributes.Get("energy consumption");
+		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
+		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 
-		// Convert fuel into energy and heat only when the required amount of fuel is available
-		// and the ship is not overheated.
-		if(!isOverheated && attributes.Get("fuel consumption") <= fuel)
+		// Convert fuel into energy and heat only when the required amount of fuel is available.
+		if(attributes.Get("fuel consumption") <= fuel)
 		{
 			fuel -= attributes.Get("fuel consumption");
 			energy += attributes.Get("fuel energy");
@@ -2785,14 +2784,6 @@ bool Ship::IsTargetable() const
 bool Ship::IsOverheated() const
 {
 	return isOverheated;
-}
-
-
-
-// A paralyzed ship is one that is overheated and has no energy left.
-bool Ship::IsParalyzed() const
-{
-	return isOverheated && !energy;
 }
 
 
@@ -3536,8 +3527,12 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
+	{
 		isOverheated = true;
+		isDisabled = true;
+	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
