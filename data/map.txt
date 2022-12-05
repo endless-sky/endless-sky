@@ -11406,7 +11406,6 @@ system Eogho
 	pos 812.579 -541.547
 	government Uninhabited
 	habitable 1280
-	"jump range" 80
 	belt 1960
 	haze _menu/haze-67
 	link Gualetri
@@ -13209,7 +13208,6 @@ system Fscher
 	pos 725.47 -418.2
 	government Gegno
 	habitable 924.8
-	"jump range" 60
 	belt 1048
 	haze _menu/haze-67
 	link Empeles
@@ -22293,7 +22291,7 @@ system Oosuoro
 	fleet "Gegno Basic" 500
 	fleet "Gegno Miners" 2150
 	object
-		sprite star/nova-core
+		sprite star/g3
 		period 10
 	object
 		sprite planet/gas2-b
@@ -25419,7 +25417,6 @@ system Rouseu
 	habitable 1780
 	belt 1648
 	haze _menu/haze-133
-	"jump range" 70
 	link Maoni
 	asteroids "small rock" 132 1.34
 	asteroids "medium rock" 42 2.32
@@ -31326,7 +31323,6 @@ system Yli
 	pos 737.404 -492.911
 	government Uninhabited
 	habitable 369.7
-	"jump range" 70
 	belt 1529
 	haze _menu/haze-133
 	link Jied
@@ -36472,7 +36468,7 @@ wormhole "Wormhole Link"
 
 planet "Wye Tzeou"
 	landscape land/snow14
-	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions. These constructs are all extremely tall, and no two look alike; it seems the actual surface of the planet is far beneath a layer of them. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
+	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions. These constructs are all extremely tall, and no two look alike. It seems the actual surface of the planet is far beneath a layer of these mysterous pillars. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
 	description `Deep scans reveal even more odd pellucid compositions below, showing pockets in the depths of the glass forest that look like giant empty gem-like gaps between each pillar.`
 	government Uninhabited
 
