@@ -1714,27 +1714,99 @@ mission "Hai Reveal [A14] A Time of Trouble"
 	on offer
 		log `The Hai have threatened the Republic if suitable action isn't taken. Required to escort civilians out of the possible danger zone.`
 		conversation
-			`Upon docking at <planet>, now bereft of civilians, you and Sayari are kept out of things for a little while, as some business occurs behind a Navy security barricade in the direction of where Teeneep's ship docked. Neither Terry nor Turner are are allowed through either, as Navy personnel progressively establish operations and set secure areas on the station. Eventually Batu is sent out to get all of you and escort you in.`
-			`	Sayari is intercepted by a Hai functionary and led away as you reach Xilin and the other diplomats, also joined by Danforth. Xilin looks at you all. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. The Navy has blockaded the wormhole to the best of its ability, but the reality is that the Navy is already heavily committed, and barely look to be a match for the Hai fleet numbers. The Hai, on the other hand, do not yet appear to be committed heavily." He looks at Alondo briefly. "We had the unstated privilege of observing the Hai security fleet left behind on Everhope in addition to what we saw beyond the wormhole on our way in."`
+			`Upon docking at <origin>, now bereft of civilians, you and Sayari are kept out of things for a little while, as some business occurs behind a Navy security barricade in the direction of where Teeneep's ship docked. Neither Terry nor Turner are allowed through either, as Navy personnel progressively establish operations and set secure areas on the station. Eventually Batu is sent out to get all of you and escort you in.`
+			`	As you reach Xilin, who is also joined by other diplomats and even Danforth, Sayari is intercepted by a Hai functionary and led away. Xilin looks at you all with a grave face and begins. "So. The Hai have broadcast the threat that if the Republic does not treat with them seriously, the united Hai will move in without Republic approval to search for their people. We're at a political impasse now, as the Cabinet is blocking any progress.`
+			`	"The Hai have demanded we cut through the red tape by having the heads of state meet." He turns to you briefly. "They insist on you as a mediator. I think behind-the-scenes discussions have reached the point where we can proceed, and we've gathered to prepare you for the meeting."`
+			label questions
+			choice
+				`	"What if we solve the kidnapping problem instead of the Hai doing it?"`
+					goto concerns
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label concerns"
+						has "Hai Reveal [A14] A Time of Trouble: label navy"
+				`	"What if we let them through, to attack the pirate planets?"`
+					goto through
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label through"
+						has "Hai Reveal [A14] A Time of Trouble: label navy"
+				`	"Who in the Cabinet is blocking progress?"`
+					goto blocking
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label blocking"
+				`	"Can the Hai really pass through, with the Republic Navy blocking their way?"`
+					goto navy
+					to display
+						not "Hai Reveal [A14] A Time of Trouble: label navy"
+				`	"I'm ready to mediate. Let's assemble the heads of state."`
+					goto begin
+			label navy
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label navy"
+			`	Xilin responds, "The Navy has blockaded the wormhole to the best of its ability, but the reality is that the Navy is already heavily committed, and barely look to be a match for the Hai fleet numbers. The Hai, on the other hand, do not yet appear to be committed heavily." He looks at Alondo briefly. "We had the unstated privilege of observing the Hai security fleet left behind on Everhope in addition to what we saw beyond the wormhole on our way in."`
 			`	Danforth interjects, "In short, we doubt we can stop them while we're stretched out here... and if the reality is that they're only going to go after pirate worlds... well, we'd be under orders to disengage. The political crisis would be more tolerable than the probable military defeat."`
-			`	Xilin nods grimly. "However, that would be a drastic failure of foreign policy. It would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood The Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
-			`	"They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. Enough people in the Cabinet disagree, that we're sort of at an impasse, for the moment."`
-			`	"Who in the Cabinet is blocking it?" The speaker is Turner, and everyone turns to look at him with a mixture of irritation or surprise.`
-			`	Xilin proceeds to list off a number of names, but after a few Turner cuts in again. "Remington, I know you're the PR guy, and you keep your nose out of sales, so I apologize if it's presumptuous for me to assume you haven't considered this, but, most of those names are people who listen to the Syndicate. I should know, I've had to negotiate with them as a bloc often enough for government contracts. Has anyone on your side reported back to the Syndicate Board and suggested that perhaps, if we can influence them to support a solution that we propose, even if we don't have that solution defined yet, the Hai could be a very large and very profitable market for Syndicate goods?"`
+			`	Xilin nods grimly. "However, that would be a drastic failure of foreign policy."`
+				goto questions
+			label through
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label through"
+			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
+				goto questions
+			label concerns
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label concerns"
+			`	Xilin says, "They haven't outright said it... but they've implied that the Navy could end up killing the Hai involved in the process by not understanding the capabilities of the Hai, or by placing too great an emphasis on preserving Navy lives. The Cabinet is in disagreement about what to do, so there is deadlock at the moment."`
+				goto questions
+			label blocking
+			action
+				set "Hai Reveal [A14] A Time of Trouble: label blocking"
+			`	Xilin proceeds to list off a number of names, but to everyone's irritation and surprise, Turner cuts in. "Remington, I know you're the PR guy, and you keep your nose out of sales, so I apologize if it's presumptuous for me to assume you haven't considered this, but most of those names are people who listen to the Syndicate. I should know, I've had to negotiate with them as a bloc often enough for government contracts. Has anyone on your side reported back to the Syndicate Board and suggested that, perhaps, if we can influence them to support a solution that we propose; even if we don't have that solution defined yet; the Hai could be a very large and very profitable market for Syndicate goods?"`
 			`	There is a long, expectant pause as Remington looks to Terry and they engage in some kind of silent exchange before he replies. "You know, I don't think we'd connected those two specific dots just yet." He looks at Terry. "We need to make some calls."`
-			# If absolutely necessary you could break this conversation here and have a short mission. Anything more than a couple days strains believability though.
-			`	The next several hours pass slowly as they do their work, support in the Cabinet is gained, and the data sets collected are assessed for potentially viable priorities. Towards the end of it, you're not really in the loop anymore. The mechanisms of government simply don't include you, but after a while Batu comes to find you. "Come on, there's a meeting between the President and the Elders. You should come and join the witnesses."`
-			`	It takes a short while, but after some doing they manage to set up a clear channel dedicated to this particular call and you are all gathered into a room with large wall-mounted displays. You knew it was coming, and yet you're still a little surprised to see before you the President of the Republic and the Chancellor of the Free Worlds in remarkable clarity and surprisingly low latency. The windows behind the Chancellor suggest they were awoken in the middle of the night for this, but you wouldn't guess it from looking at them.`
-			`	Teeneep begins, "I speak as the voice of the Hai and with the full authority of the Elder Council. Thousands of our people have been kidnapped over the past few decades, and they still largely reside under the servitude of various pirate factions that the Republic allows to continue. Even worse, your authorities have allowed numerous Hai to be slipped past on slaver ships, without attempting rescue because of the no boarding policy your forces employ, even on disabled and potentially doomed ships. We demand the return of our people and an immediate end to the policy of letting slaves die or escape without attempting boarding and rescue."`
+				goto questions
+			label begin
+			`	A few hours later, they manage to set up a clear channel dedicated to the meeting in a room with large wall-mounted displays. Xilin and Alondo are standing near you, slightly off camera. Alondo explains, "We've arranged a high-reliability feed directly to the President of the Republic and the Chancellor of the Free Worlds. You'll see them here soon, along with Teeneep and Sayari from another room in the station."`
+			`	Soon after, the leaders all appear. You knew the moment was coming but you're still a little surprised to see the President and Chancellor in remarkable clarity and surprisingly low latency. The windows behind the Chancellor suggest they were awoken in the middle of the night for this, but you wouldn't guess it from looking at them.`
+			`	Xilin whispers to you, "Teeneep wants you to mediate, so you need to begin the proceedings. Ask her to present the problem."`
+			choice
+				`	"Would the Hai representative please present us the problem we must solve together?"`
+					goto formality
+				`	"Teeneep, please explain the problem to the human leaders. I'm sure we can come to a compromise that will suit everyone."`
+			`	Teeneep responds, "Thank you for mediating these proceedings, Captain <last>."`
+			label formality
+			`	Teeneep explains, "I speak as the voice of the Hai and with the full authority of the Elder Council. Thousands of our people have been kidnapped over the past few decades, and they still largely reside under the servitude of various pirate factions that the Republic allows to continue. Even worse, your authorities have allowed numerous Hai to be slipped past on slaver ships, without attempting rescue because of the no boarding policy your forces employ, even on disabled and potentially doomed ships. We demand the return of our people and an immediate end to the policy of letting slaves die or escape without attempting boarding and rescue."`
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
-			`	The Chancellor continues, "The Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
-			`	"We have a counter-proposal," the President says. "We cannot afford to change that policy in totality, it would cost too many lives. However, we propose the following: The Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`
+			`	The Chancellor states, "However, the Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
+			`	Xilin whispers to you again, "The problem is of immediate concern, and the Hai will not view this as an acceptable proposal. They need to respond."`
+			choice
+				`	"Is this an acceptable proposal, Teeneep?"`
+				`	"With respect, Chancellor, this is a problem of immediate concern. I'm sure the Hai representative would like to respond to that before we continue."`
+					goto calm
+			`	Teeneep looks perturbed, and has to make an effort to hold back her anger and resentment. The other heads of state don't seem to notice; perhaps you're more sensitive to Hai facial expressions after the time you have spent with them. "Of course not," she says.`
+			label calm
+			`	Teeneep responds plainly, "We are a peaceful people by nature, but these pirate attacks have gone too far. We support a solution that benefits the innocent inhabitants of the pirate worlds. However, there must be immediate action, not years of delay."`
+			`	Xilin whispers to you, "Ask politely for a counter-proposal."`
+			choice
+				`	"Are there any counter-proposals?"`
+					goto happypres
+				`	"Surely a group of enlightened human leaders can propose an alternative?"`
+			`	The President presents a stony mask at being patronized, but the Chancellor smirks. You get a furry little smile from Teeneep.`
+			label happypres
+			`	"We have a counter-proposal," the President says. "We cannot afford to change our policy in totality, it would cost too many lives. However, we propose the following: the Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`
 			`	"The Free Worlds will also extend our protection, of course," the Chancellor adds.`
-			`	Teeneep takes a moment to respond, "That sounds like an acceptable future state... but I cannot sign any treaty yet. The Hai will not be satisfied until our kidnapped brethren are returned."`
-			`	The President replies, "The Minister for Foreign Affairs has been keeping Cabinet apprised of the major details and proposals reported back by Deputy Minister Yang. Under the circumstances we believe it would be appropriate for us to attempt a joint effort to address your concerns. We agree to making this effort against one target, and to reassessing the situation afterwards depending upon what is discovered in that process. The Republic representatives there with you now will work with you to identify that target and plan the action accordingly."`
+			`	Teeneep looks relieved by this suggestion.`
+			`	Xilin whispers to you, "This is the solution everyone already discussed behind the scenes on the human side. You need to confirm the Hai will accept it."`
+			choice
+				`	"Would that be acceptable, Elder Teeneep?"`
+				`	"Teeneep, will that satisfy the Hai?"`
+			`	Teeneep takes a moment to respond. "That sounds like an acceptable future state... but I cannot sign any treaty yet. The Hai will not be satisfied until our kidnapped brethren are returned."`
+			`	The President replies, "The Minister for Foreign Affairs has been keeping the Cabinet apprised of the major details and proposals reported back by Deputy Minister Yang. Under the circumstances we believe it would be appropriate for us to attempt a joint effort to address your concerns. We agree to making this effort against one target, and to reassessing the situation afterwards depending upon what is discovered in that process. The Republic representatives there with you now will work with you to identify that target and plan the action accordingly."`
 			`	The smoothness with which this goes down gives you the sense that the main points of this were all provisionally agreed to already, with only a little wiggle room left to be settled in this conversation.`
 			`	Sayari steps up and whispers something to Teeneep who then seems to think for a moment before returning to the screens. "This pathway is acceptable."`
-			`	A number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
+			`	Xilin whispers to you, "The functionaries are waiting for your signal to end the call so we can implement the decision. And, of course, so the Chancellor can get some sleep."`
+			choice
+				`	"That ends these proceedings."`
+				`	"Thank you, President, Chancellor, and Hai representative."`
+			`	The President and Chancellor nod mechanically while Teeneep perks her ears and tilts her head in a motion that usually signals pride.`
+			`	After the screens go off, a number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations, as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
 			`	When you finally emerge Terry and Turner are waiting for you. Terry addresses you. "Captain <last>. We have a little problem. The many civilians that have been living under this cover or being serviced by it have been kept in the dark, and are very nervous about the massed Navy ships. They've been so far sold a story about a 'pirate menace,' and now we need them out of here."`
 			`	Turner smiles, "And I think it would be appropriate if you, as the famous war hero, were the one to escort them to safety and keep everyone's eyes away from what's happening here."`
 			`	The two of them look at each other for a second before Terry says,  "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
