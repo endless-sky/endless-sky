@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
 
 		Preferences::Load();
 
-		// Load global Conditions:
+		// Load global conditions:
 		DataFile globalConditions(Files::Config() + "global conditions.txt");
 		for(const DataNode &node : globalConditions)
 			if(node.Token(0) == "conditions")
