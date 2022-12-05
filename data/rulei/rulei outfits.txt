@@ -49,13 +49,12 @@ outfit "Fate Sealer"
 		velocity 0
 		acceleration 0.01
 		cluster
-		"burst reload" 2
 		"velocity override" 70
 		"safe"
 		"firing energy" 800
 		"firing heat" 400
 		"submunition" "Fate Sealer Activated"
-	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pulls the target closer to the origin of the blast.`
+	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the explosion pulls the target closer to the origin of the blast.`
 
 outfit "Fate Sealer Activated"
 	weapon
@@ -90,13 +89,12 @@ outfit "Fate Divider"
 		velocity 0
 		acceleration 0.01
 		cluster
-		"burst reload" 2
 		"velocity override" 10
 		"firing energy" 800
 		"firing heat" 400
 		"safe"
 		"submunition" "Fate Divider Activated"
-	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pushes the target farther from the origin of the blast.`
+	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the explosion pushes the target farther from the origin of the blast.`
 
 outfit "Fate Divider Activated"
 	weapon
@@ -134,8 +132,7 @@ effect "fusion blast"
 
 outfit "Abyssal Composer"
 	category "Guns"
-	thumbnail "unknown"
-	cost 170000
+	cost 170000000
 	thumbnail "outfit/unknown"
 	"mass" 21
 	"outfit space" -21
@@ -149,7 +146,7 @@ outfit "Abyssal Composer"
 		"velocity" 660
 		"lifetime" 1
 		"range override" 600
-		"reload" 0
+		"reload" 1
 		"ammo" "Impulse Engine" 0
 		"hardpoint offset" 20
 		"firing energy" 60

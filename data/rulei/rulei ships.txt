@@ -11,26 +11,29 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "vyu-Ira"
-	noun entity
+	noun "entity"
 	sprite "ship/vyuira/vyuira"
 		"frame rate" 4
 	thumbnail "thumbnail/vyuira"
 	swizzle 0
+	"never disabled"
 	attributes
 		category "Heavy Warship"
 		cost 77777777
-		bunks 100
-		"cargo space" 0
-		drag 20
-		"engine capacity" 1000
-		"fuel capacity" 1000
-		"heat dissipation" 10
-		hull 49000
-		hyperdrive 1
-		"outfit space" 1000
-		"required crew" 1
 		shields 68000
+		hull 49000
+		"required crew" 1	
+		bunks 100
+		drag 20
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"cargo space" 1000
+		"outfit space" 1000
 		"weapon capacity" 1000
+		"engine capacity" 1000
+		"energy capacity" 60000
+		"energy generation" 80
+		"heat generation" 20
 		"disruption protection" 2
 		"ion protection" 2
 		"energy protection" 2
