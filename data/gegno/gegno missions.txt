@@ -461,7 +461,7 @@ mission "Gegno Genocide Defense"
 				Halite 24
 				Gneiss 2
 				Hornfel 3
-				"Hornfel Heavy Weapons"
+				"Hornfel (Heavy Weapons)"
 				Eclogite 3
 				Coesite 6
 	npc
