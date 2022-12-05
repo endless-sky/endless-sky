@@ -1508,7 +1508,7 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 		has "Hai Reveal [A11] Sound the Alarm: offered"
 	on offer
 		conversation
-			`The spaceport appears to be operating on a skeleton staff with an increased security presence. Plenty of ships are still coming and going, but they seem to be conducting strictly business affairs. The usual milling of tourists, haggling of merchants, and perusal of jobs all appear to have been suspended in favor of efficient boarding and disembarking of Hai with places to go and good with places to be. The displays in the main thoroughfare have been switched over to wall-to-wall election coverage and the rest of non-essential sections of the spaceport have been closed.`
+			`The spaceport appears to be operating on a skeleton staff with an increased security presence. Plenty of ships are still coming and going, but they seem to be here strictly on business. The usual milling of tourists, haggling of merchants, and perusal of jobs all appear to have been suspended in favor of efficient boarding and disembarking of Hai with places to go and goods with places to be. The displays in the main thoroughfare have been switched over to wall-to-wall election coverage and the rest of the non-essential sections of the spaceport have been closed.`
 			`	Some of the restaurants that are currently closed have set up temporary stands near the displays with the most standing room in the vicinity and are serving food to those who have no choice but to be here for some duration of time.`
 			choice
 				`	(Get some food.)`
