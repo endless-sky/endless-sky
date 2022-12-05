@@ -11,32 +11,35 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 shipyard "Gegno Ships"
-	Conglomerate
-	Dolomite
-	Shale
-	Gypsum
+	"Conglomerate"
+	"Dolomite"
+	"Shale"
+	"Gypsum"
 
 outfitter "Gegno Outfits"
 	"C3 Scrap Cell"
 	"C7 Brawl Cell"
-	Hyperdrive
+	"Hyperdrive"
 	"Local Map"
 	"R01 Skirmish Battery"
 	"RG15 Torch Steering"
 	"RG15 Torch Thruster"
 
 shipyard "Gegno Vi Ships"
-	Eclogite
-	Gneiss
-	Hornfel
-	"Hornfel Heavy Weapons"
-	"Hornfel Light Load"
-	"Hornfel Heavy Load"
-	Protolith
-	Schist
-	"Schist Light Load"
-	"Schist Heavy Load"
-	Slate
+	"Diorite"
+	"Dunite"
+	"Eclogite"
+	"Gneiss"
+	"Hornfel"
+	"Hornfel (Heavy Weapons)"
+	"Hornfel (Light Load)"
+	"Hornfel (Heavy Load)"
+	"Protolith"
+	"Schist"
+	"Schist (Light Load)"
+	"Schist (Heavy Load)"
+	"Slate"
+	
 
 outfitter "Gegno Vi Outfits"
 	"Ballistic Cannon"
@@ -47,7 +50,7 @@ outfitter "Gegno Vi Outfits"
 	"C7 Brawl Cell"
 	"Chloeric Cannon"
 	"Chloeric Cannon Turret"
-	Hyperdrive
+	"Hyperdrive"
 	"Irate Cannon"
 	"Irate Cannon Turret"
 	"Local Map"
@@ -63,13 +66,13 @@ outfitter "Gegno Vi Outfits"
 	"RG3 Torch Thruster"
 
 shipyard "Gegno Scin Ships"
-	Coesite
-	Feldspar
-	Felsic
-	Halite
-	Mica
-	Muscovite
-	Tridymite
+	"Coesite"
+	"Feldspar"
+	"Felsic"
+	"Halite"
+	"Mica"
+	"Muscovite"
+	"Tridymite"
 
 outfitter "Gegno Scin Outfits"
 	"Acuit Artillery"
