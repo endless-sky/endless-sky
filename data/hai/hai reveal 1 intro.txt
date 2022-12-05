@@ -67,8 +67,8 @@ mission "Event: Pug Media Coverage"
 			`	The left twin asks, "Can you believe this? It's been weeks and everyone's still obsessing over the Pug invasion. The news was all experts and officials at first, but now we just see talking heads and conspiracy theorists."`
 			`	In disbelief, the right twin responds, "It's just a propaganda exercise to boost Syndicate sales. Even if these elusive 'Pug' existed, we won't hear the end of it as long as the story boosts public opinion of the Syndicate."`
 			choice
-				`	"The past few months have brought some of the biggest changes in recent history. Of course people are going to keep talking about it."`
-				`	"Don't you see this is what we need? The Pug invasion was a ploy to cause humanity to band together and learn to resolve differences without conflict."`
+				`	"It was possibly the biggest event this century. Of course people are going to keep talking about it."`
+				`	"Don't you see it was what we needed? The Pug caused us to set aside our pride and resolve our issues directly without continuing the conflict."`
 				`	"Oh, the Pug were real alright. I met some and fought them."`
 					goto nobody
 				`	"I think you both need to shave."`
