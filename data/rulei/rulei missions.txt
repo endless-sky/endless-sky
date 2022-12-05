@@ -13,17 +13,8 @@
 mission "Relic of the Past"
 	invisible
 	landing
-	npc kill
+	npc save
 		government "vyu-Rulei"
 		personality heroic vindictive staying mute
 		system Kanguwa
 		ship "vyu-Ira" "Solemnity"
-
-#Future Conditions
-#	on enter Yranjiu
-#		log "Factions" "vyu-Rulei" `An ancient species that once inhabited the Gegno's planets.`
-#		conversation
-#			`Test: Conversation with the vyu-Ira`
-#				decline
-
-

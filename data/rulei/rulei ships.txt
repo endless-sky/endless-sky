@@ -31,26 +31,25 @@ ship "vyu-Ira"
 		"required crew" 1
 		shields 68000
 		"weapon capacity" 1000
-
 		"disruption protection" 2
 		"ion protection" 2
 		"energy protection" 2
 		"force protection" 1
 		"slowing protection" 1
-
 		weapon
 			"blast radius" 200
 			"shield damage" 20000
 			"hull damage" 10000
 			"hit force" 30000
 	outfits
+		"Abyssal Composer"
 		"Fate Sealer" 2
 		"Fate Divider" 2
-		"Abyssal Composer"
+		
 		"Nanotech Battery"
 		"Antimatter Core"
-		"Impulse Engine"
 
+		"Impulse Engine"
 	engine 0 200
 	"steering engine" 0 200
 	"reverse engine" 0 200
@@ -65,5 +64,5 @@ ship "vyu-Ira"
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description `The vyu-Ira is an ancient ship of the Vyu, one of several chambers of the Rulei. It is not known whether or not this was their final ship-class, or one of many, but the technology found on it may represent the height of the Rulei's advancements, as well as the cause of their fall.`
+	description `The vyu-Ira is an ancient ship of the Vyu, one of several chambers of the Rulei. It is not known whether or not this was their final ship-class, or one of many, but the technology found on it may represent the height of the Rulei's advancements, as well as the cause of their downfall.`
 

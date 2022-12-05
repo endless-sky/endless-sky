@@ -28,7 +28,7 @@ outfit "Impulse Engine"
 	"flare sound" "impulse engine"
 	"steering flare sound" "impulse engine"
 	"reverse flare sound" "impulse engine"
-	description `A mysterious propulsion device the vyu'Ira use to move.`
+	description `A mysterious propulsion device the vyu-Ira use to move.`
 
 outfit "Fate Sealer"
 	category Guns
@@ -55,7 +55,7 @@ outfit "Fate Sealer"
 		"firing energy" 800
 		"firing heat" 400
 		"submunition" "Fate Sealer Activated"
-	description `A quantum-energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pulls the target closer to the origin of the blast.`
+	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pulls the target closer to the origin of the blast.`
 
 outfit "Fate Sealer Activated"
 	weapon
@@ -96,7 +96,7 @@ outfit "Fate Divider"
 		"firing heat" 400
 		"safe"
 		"submunition" "Fate Divider Activated"
-	description `A quantum-energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pushes the target farther from the origin of the blast.`
+	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the exposion pushes the target farther from the origin of the blast.`
 
 outfit "Fate Divider Activated"
 	weapon
@@ -120,7 +120,6 @@ effect "fate fire"
 	lifetime 30
 	"random angle" 360
 
-#placeholder
 effect "fusion blast"
 	sprite "effect/explosion/pug/huge"
 		"no repeat"
