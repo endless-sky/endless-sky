@@ -104,29 +104,44 @@ fleet "Devil-Run Warships"
 		"Firebird"
 	variant 1
 		"Firebird (Hai Shields)"
+	variant 1
+		"Modified Argosy (Heavy)"
 	variant 2
+		"Marauder Firebird (Engines)"
+	variant 2
+		"Marauder Raven (Weapons)"
+	variant 2
+		"Splinter (Laser)"
+	variant 3
+		"Bastion (Heavy)"
+	variant 3
+		"Bastion (Laser)"
+	variant 3
+		"Mule (Hai Weapons)"
+		"Dagger"
+	variant 3
 		"Vanguard (Missile)"
-	variant 2
+	variant 3
 		"Vanguard (Plasma Slow)"
-	variant 3
+	variant 4
 		"Vanguard (Particle)"
-	variant 2
-		"Protector (Quad Blaster)"
-	variant 2
-		"Protector"
 	variant 3
-		"Protector (Proton)"
-	variant 4
-		"Leviathan"
-	variant 4
-		"Leviathan (Hai Engines)"
-	variant 4
-		"Leviathan (Hai Weapons)"
-	variant 4
-		"Falcon"
+		"Protector (Quad Blaster)"
+	variant 3
+		"Protector"
 	variant 5
-		"Marauder Falcon (Weapons)"
+		"Protector (Proton)"
+	variant 5
+		"Leviathan"
+	variant 5
+		"Leviathan (Hai Engines)"
+	variant 5
+		"Leviathan (Hai Weapons)"
+	variant 5
+		"Falcon"
 	variant 6
+		"Marauder Falcon (Weapons)"
+	variant 7
 		"Bactrian (Hai Weapons)"
 		"Dagger (miner)" 3
 
