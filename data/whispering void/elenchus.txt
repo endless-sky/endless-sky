@@ -134,7 +134,7 @@ fleet "Devil-Run Warships"
 	variant 5
 		"Leviathan"
 	variant 6
-		"Marauder Leviathan (Engines)"
+		"Marauder Leviathan (Weapons)"
 
 fleet "Elenctic Commune Miners"
 	government "Elenctic Commune"
