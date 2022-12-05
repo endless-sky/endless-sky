@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -442,6 +443,8 @@ void PlayerInfo::Save() const
 			for(int i = 0; i < 3; ++i)
 				if(Files::Exists(files[i + 1]))
 					Files::Move(files[i + 1], files[i]);
+			if(planet->HasSpaceport())
+				Save(root + "~~previous-spaceport.txt");
 		}
 	}
 
@@ -894,7 +897,8 @@ void PlayerInfo::SetFlagship(Ship &other)
 	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() &&
+			(!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
 		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 
@@ -1527,16 +1531,25 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-		for(const auto &outfit : cargo.Outfits())
-		{
-			// Compute the total value for each type of excess outfit.
-			if(!outfit.second)
-				continue;
-			int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
-			for(int i = 0; i < outfit.second; ++i)
-				stockDepreciation.Buy(outfit.first, day, &depreciation);
-			income += cost;
-		}
+		if(!planet->HasOutfitter())
+			for(const auto &outfit : cargo.Outfits())
+			{
+				// Compute the total value for each type of excess outfit.
+				if(!outfit.second)
+					continue;
+				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+				for(int i = 0; i < outfit.second; ++i)
+					stockDepreciation.Buy(outfit.first, day, &depreciation);
+				income += cost;
+			}
+		else
+			for(const auto &outfit : cargo.Outfits())
+			{
+				// Transfer the outfits from cargo to the storage on this planet.
+				if(!outfit.second)
+					continue;
+				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+			}
 	}
 	accounts.AddCredits(income);
 	cargo.Clear();
@@ -3551,11 +3564,11 @@ void PlayerInfo::Save(const string &path) const
 			using StockElement = pair<const Outfit *const, int>;
 			WriteSorted(stock,
 				[](const StockElement *lhs, const StockElement *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const StockElement &it)
 				{
 					if(it.second)
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.first->TrueName(), it.second);
 				});
 		}
 		out.EndChild();
@@ -3681,11 +3694,11 @@ void PlayerInfo::Save(const string &path) const
 					if(lhs->first != rhs->first)
 						return lhs->first->Name() < rhs->first->Name();
 					else
-						return lhs->second->Name() < rhs->second->Name();
+						return lhs->second->TrueName() < rhs->second->TrueName();
 				},
 				[&out](const HarvestLog &it)
 				{
-					out.Write(it.first->Name(), it.second->Name());
+					out.Write(it.first->Name(), it.second->TrueName());
 				});
 		}
 		out.EndChild();

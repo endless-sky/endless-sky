@@ -251,7 +251,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine();
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -282,8 +282,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
-					int64_t fine = it.first->Get("illegal");
-					if(it.first->Get("atrocity") > 0.)
+					int fine = gov->Fines(it.first);
+					if(gov->Condemns(it.first))
 						fine = -1;
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{

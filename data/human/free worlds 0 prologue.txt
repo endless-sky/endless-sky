@@ -998,7 +998,7 @@ mission "FW Escort Second Chance"
 				`	"I will. Thank you for giving me a second chance, sir."`
 				`	"I'll try my best."`
 			`	He shakes your hand and leaves, without ordering anything to drink. You get the feeling that he still does not think very highly of you.`
-			apply
+			action
 				"assisted free worlds" ++
 
 

@@ -63,3 +63,6 @@ ipch/
 CMakeLists.txt
 compile_commands.json
 /.gitmodules
+
+# static code analysis
+/.scannerwork
