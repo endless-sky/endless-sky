@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -167,6 +168,12 @@ int main(int argc, char *argv[])
 #endif
 
 		Preferences::Load();
+
+		// Load global conditions:
+		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		for(const DataNode &node : globalConditions)
+			if(node.Token(0) == "conditions")
+				GameData::GlobalConditions().Load(node);
 
 		if(!GameWindow::Init())
 			return 1;
