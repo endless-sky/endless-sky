@@ -199,9 +199,6 @@ mission "%TEST%: Wardragon Scanning You!"
 		government "Quarg"
 		personality derelict surveillance
 		ship "%TEST%: outfitless wardragon scanner"
-		conversation
-			action
-				set "assisted"
 
 
 
@@ -228,16 +225,16 @@ test "Launch Quarg Scanning Mission And Board"
 		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
-		# wait until it scanned us and failed the mission
-		label "floating"
-		# input to make time pass
+		# wait 5 seconds, it should be enough
+		apply
+			"test: waiting time" = 5 * 60
+		label zoom_restore_loop
+		apply
+			"test: waiting time" -= 1
 		input
-			key "return"
-		branch "floating"
-			"assisted" == 0
-		# skip dialogs
-		input
-			key "return"
+		branch zoom_restore_loop
+			"test: waiting time" > 0
+		# skip dialog
 		input
 			key "return"
 
