@@ -210,7 +210,7 @@ void Mission::Load(const DataNode &node)
 			location = BOARDING;
 		else if(child.Token(0) == "shipyard")
 			location = SHIPYARD;
-		else if(child.Token(0) == "outfitter" && child.Size() == 0)
+		else if(child.Token(0) == "outfitter" && child.Size() == 1)
 			location = OUTFITTER;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
