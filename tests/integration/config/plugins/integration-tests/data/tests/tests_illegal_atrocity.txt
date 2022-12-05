@@ -225,9 +225,9 @@ test "Launch Quarg Scanning Mission And Board"
 		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
-		# wait 5 seconds, it should be enough
+		# wait 2 seconds, it should be enough
 		apply
-			"test: waiting time" = 5 * 60
+			"test: waiting time" = 2 * 60
 		label zoom_restore_loop
 		apply
 			"test: waiting time" -= 1
@@ -244,7 +244,7 @@ test "Boarding Test - Repair Friendly Ship"
 	sequence
 		inject "quarg rescue"
 		call "Load First Savegame"
-		watchdog 4000
+		watchdog 3000
 		call "Launch Quarg Scanning Mission And Board"
 		call "Land On Ruin helper"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
@@ -261,7 +261,7 @@ test "Illegal Test - Ignore and New Illegal"
 	sequence
 		inject "quarg scanning"
 		call "Load First Savegame"
-		watchdog 4000
+		watchdog 3000
 		assert
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
@@ -279,7 +279,7 @@ test "Atrocity Test - New Atrocity"
 	sequence
 		inject "quarg atrocity"
 		call "Load First Savegame"
-		watchdog 4000
+		watchdog 3000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
