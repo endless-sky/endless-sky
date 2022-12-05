@@ -1405,7 +1405,14 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
-void Ship::SetHail(const Phrase &phrase)
+const Phrase *Ship::GetHailPhrase() const
+{
+	return hail;
+}
+
+
+
+void Ship::SetHailPhrase(const Phrase &phrase)
 {
 	hail = &phrase;
 }
