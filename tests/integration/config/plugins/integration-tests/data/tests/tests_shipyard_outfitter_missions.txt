@@ -93,7 +93,7 @@ test "Trigger Shipyard Mission"
 		input
 			key s
 
-        
+
 test "Trigger Outfitter Mission"
 	status partial
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the outfitter."
