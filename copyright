@@ -1732,19 +1732,10 @@ Files: images/outfits/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
 
-Files:
-	images/ui/milky way*
-	images/ui/large magellanic cloud*
+Files: images/ui/milky way*
 Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from works by NASA and Michael Zahniser.
-
-Files:
-	images/ui/small magellanic cloud*
-Copyright: NASA
-License: Public-Domain
- From NASA, and therefore in the public domain because they were created by
- government employees while doing work for the government.
 
 Files:
  images/thumbnail/smew*
