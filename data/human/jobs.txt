@@ -1525,7 +1525,6 @@ mission "Cargo [3]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 2000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1546,7 +1545,6 @@ mission "Cargo [4]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 4000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1585,7 +1583,6 @@ mission "Bulk Delivery [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 2000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1606,7 +1603,6 @@ mission "Bulk Delivery [2]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 4000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1627,7 +1623,6 @@ mission "Rush Delivery [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 16000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1648,7 +1643,6 @@ mission "Rush Delivery [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 18000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1670,7 +1664,6 @@ mission "Rush Delivery [2]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 20000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1692,7 +1685,6 @@ mission "Rush Delivery [3]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 22000
 		dialog phrase "generic cargo delivery payment"
 
@@ -1712,7 +1704,6 @@ mission "Passengers [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 2000
 		dialog phrase "generic passenger dropoff payment"
 
@@ -1790,7 +1781,6 @@ mission "Passengers [4]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 2000
 		dialog phrase "generic passenger dropoff payment"
 
@@ -1810,7 +1800,6 @@ mission "Transport miners to <planet>"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 2000
 		dialog "You wish the mining family the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -1830,7 +1819,6 @@ mission "Transport farmers to <planet>"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 2000
 		dialog "You wish the farm family the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -1850,7 +1838,6 @@ mission "Transport mill workers to <planet>"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 2000
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -1870,7 +1857,6 @@ mission "Transport workers to <planet>"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 2000
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -1891,7 +1877,6 @@ mission "Tourists out [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 6000
 		dialog phrase "generic passenger dropoff payment"
 
@@ -1912,7 +1897,6 @@ mission "Tourists out [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 4000
 		dialog phrase "generic passenger dropoff payment"
 
@@ -1956,7 +1940,6 @@ mission "Tourists back [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 6000
 		dialog phrase "generic passenger dropoff payment"
 
@@ -1977,7 +1960,6 @@ mission "Tourists back [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 4000
 		dialog phrase "generic passenger dropoff payment"
 
@@ -2021,7 +2003,6 @@ mission "Family [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 4000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
@@ -2042,7 +2023,6 @@ mission "Family [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 6000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
@@ -2063,7 +2043,6 @@ mission "Family [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 8000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
@@ -2084,7 +2063,6 @@ mission "Family [3]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 10000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
@@ -2106,7 +2084,6 @@ mission "Strike Breakers [mining]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
@@ -2128,7 +2105,6 @@ mission "Strike Breakers [textile]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
@@ -2150,7 +2126,6 @@ mission "Strike Breakers [factory]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
@@ -2174,7 +2149,6 @@ mission "Colonists [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 8000
 		dialog "The colonists depart your ship after paying you <payment>."
 
@@ -2198,7 +2172,6 @@ mission "Colonists [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 10000
 		dialog "The colonists depart your ship after paying you <payment>."
 
@@ -2223,7 +2196,6 @@ mission "Stranded Field Trip"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
 		payment 10000
 		dialog `The students excitedly rush off your ship into the arms of their waiting parents. The adventure was fun, but they're very pleased to be safely home after so long. The school deposits <payment> into your account.`
 
@@ -2424,7 +2396,6 @@ mission "Large Bulk Delivery [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 4000
 		dialog phrase "generic cargo delivery payment"
 
@@ -2445,7 +2416,6 @@ mission "Large Bulk Delivery [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 6000
 		dialog phrase "generic cargo delivery payment"
 
@@ -2467,7 +2437,6 @@ mission "Large Bulk Delivery [2]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 8000
 		dialog phrase "generic cargo delivery payment"
 
@@ -2489,7 +2458,6 @@ mission "Large Rush Delivery [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 36000
 		dialog phrase "generic cargo delivery payment"
 
@@ -2511,7 +2479,6 @@ mission "Large Rush Delivery [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 38000
 		dialog phrase "generic cargo delivery payment"
 
@@ -2534,7 +2501,6 @@ mission "Large Rush Delivery [2]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 40000
 		dialog phrase "generic cargo delivery payment"
 
@@ -2557,7 +2523,6 @@ mission "Large Rush Delivery [3]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment
 		payment 42000
 		dialog phrase "generic cargo delivery payment"
 
@@ -2578,7 +2543,6 @@ mission "Recycle garbage"
 		dialog phrase "generic cargo on visit"
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
-		payment
 		payment 20000
 
 mission "Bounty Hunting (Very Tiny)"
