@@ -47,12 +47,12 @@ outfit "Fate Sealer"
 		"tracking" 10
 		"turn" 180
 		velocity 0
-		acceleration 0.01
 		cluster
-		"velocity override" 70
-		"safe"
+		"velocity override" 1400
+		"range override" 4800
 		"firing energy" 800
 		"firing heat" 400
+		"safe"
 		"submunition" "Fate Sealer Activated"
 	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the explosion pulls the target closer to the origin of the blast.`
 
@@ -87,9 +87,9 @@ outfit "Fate Divider"
 		"tracking" 10
 		"turn" 180
 		velocity 0
-		acceleration 0.01
 		cluster
-		"velocity override" 10
+		"velocity override" 1400
+		"range override" 600
 		"firing energy" 800
 		"firing heat" 400
 		"safe"
