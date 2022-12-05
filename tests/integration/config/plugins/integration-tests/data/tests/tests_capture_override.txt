@@ -77,7 +77,7 @@ fleet "%TEST%: derelicts"
 	personality derelict
 	government "Quarg"
 	variant
-		"%TEST%: outfitless wardragon scanner uncapturable"
+		"%TEST%: outfitless wardragon"
 
 mission "%TEST%: Capture That Quarg!"
 	boarding
