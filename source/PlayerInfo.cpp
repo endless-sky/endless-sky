@@ -3189,7 +3189,7 @@ void PlayerInfo::CreateMissions()
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
-			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT) 
+			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
 				|| it->IsAtLocation(Mission::SHIPYARD)
 				|| it->IsAtLocation(Mission::OUTFITTER);
 			if(hasLowerPriorityLocation && !it->HasPriority())
