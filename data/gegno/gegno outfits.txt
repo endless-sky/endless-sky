@@ -255,8 +255,8 @@ outfit "RG3 Torch Steering"
 	description `The oldest steering system used in Gegno space, RG3 Torch thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
 
 
-outfit "SC-1 Plasma "Engines""
-	plural "SC-1 Plasma "Engines""
+outfit "SC-1 Plasma Engines"
+	plural "SC-1 Plasma Engines"
 	category "Engines"
 	licenses
 		"Gegno Civilian"
