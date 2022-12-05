@@ -1405,6 +1405,13 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
+const Phrase *Ship::GetHailPhrase() const
+{
+	return hail;
+}
+
+
+
 void Ship::SetHailPhrase(const Phrase &phrase)
 {
 	hail = &phrase;
@@ -1421,13 +1428,6 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 	subs["<npc>"] = Name();
 	return Format::Replace(hailStr, subs);
-}
-
-
-
-const Phrase *Ship::GetHailPhrase() const
-{
-	return hail;
 }
 
 

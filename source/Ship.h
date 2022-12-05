@@ -192,9 +192,9 @@ public:
 	void SetPersonality(const Personality &other);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
+	const Phrase *GetHailPhrase() const;
 	void SetHailPhrase(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
-	const Phrase *GetHailPhrase() const;
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
