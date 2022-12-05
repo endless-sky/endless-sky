@@ -134,9 +134,7 @@ fleet "Devil-Run Warships"
 	variant 5
 		"Leviathan"
 	variant 5
-		"Leviathan (Hai Engines)"
-	variant 5
-		"Leviathan (Hai Weapons)"
+		"Marauder Leviathan (Engines)"
 
 fleet "Elenctic Commune Miners"
 	government "Elenctic Commune"
