@@ -170,7 +170,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 			`When the Hai and humans try to deploy troops, they're drawn off by orbital bombardment. You must defeat the entire pirate and marauder defense fleet before landing.`
 
 event "stormhold suppressed"
-	#Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
+	# Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
 	system "Alcyone"
 		remove fleet "Small Core Pirates" # 400
 		remove fleet "Large Core Pirates"# 600
@@ -1401,28 +1401,6 @@ mission "Hai Reveal [B13] Freedom"
 
 
 
-# PROBABLY not needed anymore:
-#
-# Unfettered flagship carrying the surviving human operatives
-#ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump Full)"
-#	add attributes
-#		"required crew" 43
-#	outfits
-#		"Large Heat Shunt" 2
-#		"Jump Drive"
-#		"Systems Core (Large)"
-#		"Quantum Keystone"
-#		"Outfits Expansion" 3
-#		"Boulder Reactor" 3
-#		`"Bufaer" Atomic Steering`
-#		Sunbeam 6
-#		"Korath Warder"
-#		"Small Heat Shunt"
-#		"Thruster (Planetary Class)"
-#		"Fuel Processor" 2
-#
-
-				
 mission "Hai Reveal [B13-G] Elenctic Guard"
 	landing
 	invisible

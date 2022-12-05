@@ -416,7 +416,7 @@ mission "Slave Crew Rescue"
 	invisible
 	assisting
 	deadline 1
-	passengers 1	
+	passengers 1
 	to offer
 		random < 10
 	source

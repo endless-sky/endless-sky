@@ -15,7 +15,7 @@
 
 # Part 4: The crisis expands in scope.
 
-#Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
+# Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
 mission "Hai Reveal [A00] Darkwaste Timer"
 	landing
 	invisible
@@ -962,7 +962,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	She momentarily adopts a self-satisfied smile.`
 			label busy
 			`	"Yes, well, this poses a few issues of its own with the increased demand on the relay bandwidth from here, but I wouldn't have my regular job if something like this was too much to stay on top of."`
-			choice 
+			choice
 				`	"Your regular job?"`
 					goto regular
 				`	"Your job as a secretary?"`
@@ -1481,7 +1481,7 @@ mission "Hai Reveal [A11-A] Permanent Fleets"
 		personality heroic staying
 		fleet "Hai Wormhole Guards" 30
 
-#These are separated because they leave at a different time.
+# These are separated because they leave at a different time.
 mission "Hai Reveal [A11-B] Permanent Fleets"
 	landing
 	invisible
@@ -1518,7 +1518,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	"Captain <last>!" he calls out, audible even over the chaos. He strides up to you quickly and then pulls you aside to a sheltered spot. "Thank the cosmos you're here. I don't know what the devil is going on, either out there or in here, but it's absolute madness."`
 			`	Before you can get a word in he's powered on.`
 			`	"Look at this!" He thrusts a stack of pages at you, pointing to some text that's too small to read while he keeps moving it. "Somehow there's now three alien races involved in this plot, and two are transparently Quarg and Korath. People aren't even meant to know about the Korath!"`
-			choice 
+			choice
 				`	"Turner, I'm here on urgent business."`
 					goto interrupt
 				`	"Know about who?"`
