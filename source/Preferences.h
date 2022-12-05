@@ -32,7 +32,7 @@ public:
 		dmy = 0,
 		mdy,
 		ymd
-  };
+	};
 
 	enum class BoardingPriority : int {
 		PROXIMITY = 0,
