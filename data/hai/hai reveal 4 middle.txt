@@ -1517,25 +1517,28 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	You can't find Terry. She seems to be battling organizational fires and moving round the station fast enough that by the time you get to where she's last been, she's already moved on somewhere else; possibly twice. However, Turner manages to find you in relatively short order.`
 			`	"Captain <last>!" he calls out, audible even over the chaos. He strides up to you quickly and then pulls you aside to a sheltered spot. "Thank the cosmos you're here. I don't know what the devil is going on, either out there or in here, but it's absolute madness."`
 			`	Before you can get a word in he's powered on.`
-			`	"Look at this!" He thrusts a stack of pages at you, pointing to some text that's too small to read while he keeps moving it. "Somehow there's now three alien races involved in this plot, and two are transparently Quarg and Korath. People aren't even meant to know about the Korath! There's philosopher kings involved, and they go off to some ringworld that someone's made up just to work out how to track something through hyperspace! Have you ever heard of anything so ridiculous? This whole plot device wasn't explained until today, and now we've got two thirds of the scenes shot and a script that needs massive rewrites!`
+			`	"Look at this!" He thrusts a stack of pages at you, pointing to some text that's too small to read while he keeps moving it. "Somehow there's now three alien races involved in this plot, and two are transparently Quarg and Korath. People aren't even meant to know about the Korath!"`
+			choice 
+				`	"Turner, I'm here on urgent business."`
+					goto interrupt
+				`	"Know about who?"`
+			`	He ignores you and continues, "There's philosopher kings involved, and they go off to some ringworld that someone's made up just to work out how to track something through hyperspace! Have you ever heard of anything so ridiculous? This whole plot device wasn't explained until today, and now we've got two thirds of the scenes shot and a script that needs massive rewrites!`
 			`	"I mean look at this, look!" He flips to another page with a section circled in red. He takes it back reads aloud, "The two come close and look into each other's eyes for a moment before kissing. Stage Note: Produce different models to focus group the aesthetic look of open-mouth kissing when both participants have finger-length incisors."`
 			`	He gesticulates, apparently at a loss for words. "Who even wrote this? Who writes this stuff? Why would you even put that in there?"`
-			choice 
-				`	(Interrupt him.)`
-					goto interrupt
-				`	(Wait.)`
 			`	"Sorry, you were presumably here on business, what's going on out there?"`
 			label interrupt
 			choice
-				`	"The border is closed."`
+				`	"The Hai have closed their borders and may shoot anyone trying to pass through the wormhole."`
 					goto closed
-				`	"They're having an election."`
+				`	"The Hai are having an election, and Sayari is expecting political chaos. Is everyone here okay?"`
 			`	"They're having a what?" He listens incredulously as you explain the situation with pirate slavers, the Unfettered support, the public shaming and the snap election.`
 				goto continue
 			label closed
 			`	"We suspected that, we haven't been game to test, but why?" He listens incredulously as you explain the situation with pirate slavers, the Unfettered support, the public shaming and the snap election.`
 			label continue
-			`	When you finish on the possibility of an Unfettered war fleet appearing at the wormhole to scour pirate worlds, he stops you with a pained expression. "Well, it's all falling apart, isn't it... Alright, look, this is above my pay-grade, and I don't think within Terry's either. You need to go contact Admiral Danforth. The connection from here to Farpoint is excellent, now since all our traffic is routing through those new relays, so it should be easy enough. I'll make sure no one does anything stupid from this side. I'm sure there's a solution here, we all just need to keep our heads and call the right people."`
+			`	When you finish on the possibility of an Unfettered war fleet appearing at the wormhole to scour pirate worlds, he stops you with a pained expression. "Well, it's all falling apart, isn't it... Alright, look, this is above my pay-grade, and I don't think within Terry's either. You need to go contact Admiral Danforth. The connection from here to Farpoint is excellent now, since all our other traffic is routing through those new relays, so it should be easy enough. I'll make sure no one does anything stupid from this side. I'm sure there's a solution here, we all just need to keep our heads and call the right people."`
+			choice
+				`	"I'll go to my ship's comms now and call him."`
 			`	From back on your ship it is easy enough to use the station's network to place a call. You get in contact with Danforth to brief him on what's going on, with the possibility of an Unfettered fleet coming through the wormhole in a matter of days. He seems unsurprised, but disappointed. "Well, I'll scramble some additional Navy forces. We'll hopefully make sure that whatever happens, we'll have some options."`
 			`	You can hear him grimace on the call. "When this went on as long as it did, I pulled strings to get some Cruisers specially equipped for deep-range, long-duration missions." He sighs. "This is one of those situations where I really wish I hadn't prepared for an eventuality and been right about it.`
 			`	"I'll be there with a fleet soon. In the meantime, you need to go back to <planet> to ensure the safety of the diplomatic corps. Get them out if need be, otherwise just be there with a ship so you can monitor the situation."`
@@ -1556,8 +1559,8 @@ mission "Hai Reveal [A13] A New Elder"
 	on offer
 #		log ``
 		conversation
-			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. You have arrived late in the day and there is a gloom developing as the sun disappears behind the buildings of the capital as you enter into what you have begun to think of as the 'diplomatic wing' of the government complex. Fortunately, though the place appears nearly deserted, you swiftly run into Alondo and Remington who are sitting in the empty cafeteria area with paired glasses of what appears to be scotch whiskey.`
-			`	When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
+			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day when you enter the diplomatic wing of the government complex. The developing gloom as Ya Hai sinks behind the buildings of the capital underscores the mood; the place appears nearly deserted.`
+			`	Fortunately though, you swiftly discover Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey. When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
 			choice
 				`	"Are you all ok?"`
 					goto ok
@@ -1568,6 +1571,10 @@ mission "Hai Reveal [A13] A New Elder"
 			`	Alondo grimaces, raises his eyebrows, and gives a lopsided shrug which altogether does a remarkable job of conveying the sentiment: 'so far it looks like it, but I still need at least one more stiff drink to get over it'. Remington looks at him and chuckles halfheartedly before emptying his glass and putting it down with a sharp clink. "We weren't sure for a while there, but other than being cut off, we're okay."`
 			label continue
 			`	Alondo gestures at the large, wall-mounted monitor they've been watching, and you realize that it must be displaying some kind of post-election coverage. The writing is all in Hai, but it seems that the majority of the information that would matter to the diplomats has been displayed visually. On its own you'd have never guessed at trying to read Teeneep's name written in Hai, but when it's presented next to her face and then shown on a pie chart next to percentages and other graphics, it becomes easy enough to follow what's happening.`
+			choice
+				`	"Who won the election?"`
+					goto "who won"
+				`	"Can either of you explain all of this?"`
 			`	"Every so often they have a segment in something we can understand, presumably because of the rest of us out there," says Remington, gesturing vaguely beyond the walls to the outside. "You wouldn't believe some of the rhetoric the last few days while you've been gone."`
 			`	Alondo visibly shudders, and pushes the bottle across the table back to Remington. "Sometimes it was like watching the old documentaries and political dramas I studied back at school. The ones where there's some populist extremist with dangerous ideas that the establishment is just blindly assuming couldn't possibly be successful, while at the same time that same populist is whipping crowds into a violent frenzy on the streets outside."`
 			`	On the screen the face of a charming-looking male Hai comes up and Alondo points with sudden vigor. "Him! I swear there was going to be torches and pitchforks right below my window one night thanks to him. He's here on Hai-home, as are his followers."`
@@ -1576,11 +1583,22 @@ mission "Hai Reveal [A13] A New Elder"
 			`	"They only started locking in the last few seats a couple of hours ago. Until then we could have been prisoners and at war by now for all we knew. Peace-oriented heads seem to have prevailed though, but there's no lack of passion even in them. Near as I can tell from what has been explained and what I'm seeing; a third of the Elders have been replaced, which is the fastest change they've had since they were invaded by Korath... which I also didn't know was a thing that had happened until yesterday."`
 			`	He manages to make that last line sound both bewildered and grumpy at the same time. "That Teeneep you've been running around with - and yes, don't look at me in shock, Sayari told me when we were concerned you might not get out. You've developed some friends in high places and I admire that... where was I?"`
 			`	"Teeneep!" says Alondo, perhaps a little too loudly, nearly poking Remington in the face.`
-			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
+			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
+				goto "walk or drink"
+			label "who won"
+			`	Remington answers your question. "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
+			label "walk or drink"
+			`	Alondo wobbles over to the bar and says, "I'll get you a drink, <last>. What'll you have?"`
 			choice
-				`	(Wait with them.)`
-				`	(Drink with them.)`
+				`	"Just a water for me, thanks."`
+					goto watch
+				`	"It's time for some celebratory beer. I'll have the best ale!"`
+				`	"I'll need some 'medicine' to get through this horror. Anything at least 80 proof should do."`
+			`	After a few more drinks, Teeneep's speech comes on. Either it's all in Hai, or you drank more than you thought. The speech is short and punchy, but restrained; or at least her delivery of it has that feeling. With nothing else to do, and it being well into the evening, you call it a night.`
+				goto morning
+			label watch
 			`	As it turns out, Teeneep's speech is in Hai with no translation available. It's short and punchy, but restrained; or at least her delivery of it has that feeling. With nothing else to do, and it being well into the evening, you call it a night.`
+			label morning
 			`	The following morning Sayari finds you with Alondo, Remington, Xilin and Batu all having vending machine breakfasts in the cafeteria. It turns out Hai vending machines aren't half bad.`
 			`	"Morning to all of you." She seems a little stiff compared to normal. "I'm glad you're all here together, it'll save me some time. Now, I have good news and bad news. I believe it's polite to ask which do you want first?"`
 			`	Alondo and Remington both groan, neither having pulled up particularly well this morning. Xilin has a great deal more composure but looks like he's not had a break from stress in well over a month... which is probably accurate. "Why don't you pick, <last>?" he says.`
@@ -1597,7 +1615,14 @@ mission "Hai Reveal [A13] A New Elder"
 			label summary
 			`	The freshest of the group, Batu, seems to twig to something first. "There's going to be an ultimatum, isn't there? The fleet is a threat."`
 			`	"Yes," says Sayari. "It's going to be a very broad ultimatum though, with lots of room for the Republic to decide how it's addressed; and no one is shooting at anyone without talking first. Now, all of you except <last> are traveling with Elder Teeneep. I suggest you go and prepare immediately."`
-			`	She approaches you as they leave. "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change elsewhere who was also jusy elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now. You're to come with us too, and I'm told I'm required to travel with you, as insurance."`
+			`	As the meeting disperses, Sayari motions for you. She leads you away to have a private discussion.`
+			choice
+				`	"What has Teeneep done, Sayari?"`
+					goto hasdone
+				`	"I take it you need another ride?"`
+			`	She puts her paw over her face and breathes a long sigh. "Yes, Captain <last>, I do need another ride." She smiles and laughs a little before looking at you again.`
+			label hasdone
+			`	She explains, "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change, who was also just elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now. You're to come with us too, and I'm told I'm required to travel with you, as insurance."`
 			`She hesitates, seeming oddly nervous for the one who theoretically has all the power in the room. "<last>, this will sound silly, but I'm a bit of a traditionalist sometimes. There's a superstition about space travel, and under the circumstances... I'm too old for this stress. Could you please do me a favor and make sure you have a Quantum Keystone on your ship? It's meant to be good luck, and well, I think we need it."`
 			choice
 				`	"Of course."`
