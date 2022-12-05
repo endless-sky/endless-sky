@@ -36468,7 +36468,7 @@ wormhole "Wormhole Link"
 
 planet "Wye Tzeou"
 	landscape land/snow14
-	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions. These constructs are all extremely tall, and no two look alike. It seems the actual surface of the planet is far beneath a layer of these mysterous pillars. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
+	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions. These constructs are all extremely tall, and no two look alike. It seems the actual surface of the planet is far beneath a layer of these mysterious pillars. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
 	description `Deep scans reveal even more odd pellucid compositions below, showing pockets in the depths of the glass forest that look like giant empty gem-like gaps between each pillar.`
 	government Uninhabited
 
