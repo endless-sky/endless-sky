@@ -16,7 +16,7 @@ ship "Emerald Sword"
 	thumbnail "thumbnail/emeraldsword"
 	swizzle 3
 	attributes
-		category "Heavy Warship"
+		category "Superheavy"
 		"cost" 100000000
 		"shields" 9500
 		"hull" 45000
