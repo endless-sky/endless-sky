@@ -75,7 +75,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	SetInterruptible(false);
 }
 
-void ShopPanel::CheckForMissions(Mission::Location location) 
+void ShopPanel::CheckForMissions(Mission::Location location)
 {
 	if(!GetUI()->IsTop(this))
 		return;
