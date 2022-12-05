@@ -1405,7 +1405,7 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
-void Ship::SetHail(const Phrase &phrase)
+void Ship::SetHailPhrase(const Phrase &phrase)
 {
 	hail = &phrase;
 }
