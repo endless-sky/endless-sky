@@ -112,7 +112,7 @@ test "End Missions"
 	status partial
 	description "Just skip a mission by pressing return twice."
 	sequence
-		# press accept (or decline, depending on if it is shown) and then skip the dialog once
+		# Press accept (or decline, depending on if it is shown) and then skip the dialog once.
 		input
 			key "Return"
 		input
@@ -124,7 +124,7 @@ test "Test Shipyard And Outfitter Mission"
 	description "Set a few conditions so they are displayed on errors, clarifying things up."
 	sequence
 		apply
-			# test accepted. If not there it wasnt offered.
+			# Test accepted. If not there it wasn't offered.
 			"test: succeed test" = "succeed test"
 			# if we launched
 			"test: flagship planet: Ruin" = "flagship planet: Ruin"
