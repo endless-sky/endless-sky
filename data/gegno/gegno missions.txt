@@ -184,7 +184,7 @@ mission "Visit Quarg in Gegno Space"
 				launch
 		
 	npc
-		government "Gegno Vi (neutral)"
+		government "Gegno Vi (Neutral)"
 		personality entering staying
 		system "Heutesl"
 		fleet
@@ -193,7 +193,7 @@ mission "Visit Quarg in Gegno Space"
 				"Hornfel" 2
 				"Gneiss" 2
 	npc
-		government "Gegno Scin (neutral)"
+		government "Gegno Scin (Neutral)"
 		personality entering staying
 		system "Heutesl"
 		fleet
@@ -203,12 +203,12 @@ mission "Visit Quarg in Gegno Space"
 				"Feldspar"
 				"Halite" 6
 	npc
-		government "Gegno Vi (neutral)"
+		government "Gegno Vi (Neutral)"
 		personality staying
 		system "Heutesl"
 		fleet "Vi Warfleet"
 	npc
-		government "Gegno Scin (neutral)"
+		government "Gegno Scin (Neutral)"
 		personality staying	
 		system "Heutesl"
 		fleet "Scin Warfleet"

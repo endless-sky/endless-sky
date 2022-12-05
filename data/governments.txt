@@ -256,7 +256,7 @@ government "Gegno"
 	"attitude toward"
 		"Gegno Scin" 0.01
 		"Gegno Vi" 0.01
-		"Quarg" 0.1
+		"Quarg" 0.02
 	penalty for
 		assist 0
 		provoke 10
@@ -296,8 +296,8 @@ government "Gegno Vi"
 	"hostile hail" "hostile gegno uncontacted"
 
 
-# Gegno Scin and Vi governments that do not fight each other
-government "Gegno Scin (neutral)"
+# Gegno Scin and Vi governments that do not fight each other.
+government "Gegno Scin (Neutral)"
 	"display name" "Gegno Scin"
 	swizzle 18
 	language "gegno tongue"
@@ -308,13 +308,12 @@ government "Gegno Scin (neutral)"
 	"crew defense" 1.4
 	"attitude toward"
 		"Gegno" 1
-		"Gegno Vi" -0.01
 	penalty for
 		assist 0
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 	
-government "Gegno Vi (neutral)"
+government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
 	swizzle 0
 	language "gegno tongue"
@@ -325,15 +324,15 @@ government "Gegno Vi (neutral)"
 	"crew defense" 1.5
 	"attitude toward"
 		"Gegno" 1
-		"Gegno Scin" -0.01
 	penalty for
 		assist 0
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 	
 	
-# Gegno Vi governments used for dueling
+# Gegno Vi governments used for dueling.
 government "Gegno Vi (Duelist A)"
+	swizzle 0
 	"display name" "Gegno Vi"
 	language "gegno tongue"
 	color 0.68 0.4 0.4
@@ -352,6 +351,7 @@ government "Gegno Vi (Duelist A)"
 	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Vi (Duelist B)"
+	swizzle 0
 	"display name" "Gegno Vi"
 	language "gegno tongue"
 	color 0.68 0.4 0.4
@@ -912,8 +912,6 @@ government "Quarg"
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
 		"Gegno" 1
-		"Gegno Vi" .01
-		"Gegno Scin" .01
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
