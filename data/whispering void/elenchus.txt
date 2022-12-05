@@ -100,33 +100,35 @@ fleet "Devil-Run Warships"
 	cargo 0
 	personality
 		heroic plunders harvests
-	variant 3
-		"Leviathan"
-	variant 3
-		"Leviathan (Laser)"
-	variant 3
-		"Leviathan (Heavy)"
-	variant 6
-		"Bactrian"
-		"Dagger" 3
-	variant 2
-		"Vanguard (Particle)"
-	variant 1
-		"Vanguard (Missile)"
-	variant 1
-		"Vanguard"
 	variant 1
 		"Firebird"
 	variant 1
-		"Protector (Laser)"
+		"Firebird (Hai Shields)"
 	variant 2
-		"Protector (Proton)"
-	variant 1
+		"Vanguard (Missile)"
+	variant 2
+		"Vanguard (Plasma Slow)"
+	variant 3
+		"Vanguard (Particle)"
+	variant 2
+		"Protector (Quad Blaster)"
+	variant 2
 		"Protector"
 	variant 3
+		"Protector (Proton)"
+	variant 4
+		"Leviathan"
+	variant 4
+		"Leviathan (Hai Engines)"
+	variant 4
+		"Leviathan (Hai Weapons)"
+	variant 4
 		"Falcon"
-	variant 3
-		"Falcon (Laser)"
+	variant 5
+		"Marauder Falcon (Weapons)"
+	variant 6
+		"Bactrian (Hai Weapons)"
+		"Dagger (miner)" 3
 
 fleet "Elenctic Commune Miners"
 	government "Elenctic Commune"
