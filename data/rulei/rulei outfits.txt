@@ -13,7 +13,7 @@
 outfit "Impulse Engine"
 	category "Engines"
 	"cost" 20000000
-	thumbnail "unknown"
+	thumbnail "outfit/unknown"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
@@ -33,7 +33,7 @@ outfit "Impulse Engine"
 outfit "Fate Sealer"
 	category Guns
 	cost 77777777
-	thumbnail "unknown"
+	thumbnail "outfit/unknown"
 	mass 131
 	"outfit space" -131
 	"gun ports" -1
@@ -73,7 +73,7 @@ outfit "Fate Sealer Activated"
 outfit "Fate Divider"
 	category Guns
 	cost 77777777
-	thumbnail "unknown"
+	thumbnail "outfit/unknown"
 	mass 131
 	"outfit space" -131
 	"gun ports" -1
@@ -182,4 +182,3 @@ effect "drained"
 	"lifetime" 20
 	"random velocity" 1
 	"velocity scale" -0.01
-
