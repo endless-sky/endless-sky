@@ -137,13 +137,6 @@ fleet "Devil-Run Warships"
 		"Leviathan (Hai Engines)"
 	variant 5
 		"Leviathan (Hai Weapons)"
-	variant 5
-		"Falcon"
-	variant 6
-		"Marauder Falcon (Weapons)"
-	variant 7
-		"Bactrian (Hai Weapons)"
-		"Dagger (miner)" 3
 
 fleet "Elenctic Commune Miners"
 	government "Elenctic Commune"
