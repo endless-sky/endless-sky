@@ -44,11 +44,33 @@ namespace {
 	class Timing {
 	public:
 		Timing() = default;
-		void AddSample(duration<double, micro> sample, size_t size = 0) {
+		void AddSample(duration<double, micro> sample, size_t size) {
 			max_size = max(max_size, size);
-			if (size == 0) return;
+			if(size == 0) return;
+
 			samples++;
 			average += (sample - average) / samples;
+			if(size < 10)
+			{
+				samples_num[0]++;
+				average_num[0] += (sample - average_num[0]) / samples_num[0];
+			} else if(size < 25)
+			{
+				samples_num[1]++;
+				average_num[1] += (sample - average_num[1]) / samples_num[1];
+			} else if(size < 50)
+			{
+				samples_num[2]++;
+				average_num[2] += (sample - average_num[2]) / samples_num[2];
+			} else if(size < 100)
+			{
+				samples_num[3]++;
+				average_num[3] += (sample - average_num[3]) / samples_num[3];
+			} else
+			{
+				samples_num[4]++;
+				average_num[4] += (sample - average_num[4]) / samples_num[4];
+			}
 		};
 		duration<double, micro> GetAverage() const { return average; }
 		int GetNumSamples() const { return samples; }
@@ -56,9 +78,21 @@ namespace {
 			average = {};
 			samples = 0;
 		}
+
+		~Timing() {
+			cout << "Timing of 'CollisionSet::Line' (max number of objects is " << max_size << "):\n"
+				<< "Average for 0 to 10   objects = " << average_num[0].count() << '\n'
+				<< "Average for 10 to 25  objects = " << average_num[1].count() << '\n'
+				<< "Average for 25 to 50  objects = " << average_num[2].count() << '\n'
+				<< "Average for 50 to 100 objects = " << average_num[3].count() << '\n'
+				<< "Average for 100 to .. objects = " << average_num[4].count() << '\n';
+		}
 	private:
 		duration<double, micro> average;
+		duration<double, micro> average_num[5];
 		int samples;
+		int samples_num[5];
+		int total_samples;
 		size_t max_size;
 	};
 
@@ -218,8 +252,6 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		timing.Reset();
 	}
 
-	const auto start = high_resolution_clock::now();
-
 	const int x = from.X();
 	const int y = from.Y();
 	const int endX = to.X();
@@ -263,10 +295,6 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		if(closer_result.GetClosestDistance() < 1. && closestHit)
 			*closestHit = closer_result.GetClosestDistance();
 
-		const auto stop = high_resolution_clock::now();
-
-		timing.AddSample(stop - start);
-
 		return closer_result.GetClosestBody();
 	}
 
@@ -281,10 +309,6 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
 
-		const auto stop = high_resolution_clock::now();
-
-		timing.AddSample(stop - start);
-
 		return Line(from, newEnd, closestHit, pGov, target);
 	}
 
@@ -298,6 +322,8 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	// that we only need to work with integer coordinates.
 	const uint64_t scale = max<uint64_t>(mx, 1) * max<uint64_t>(my, 1);
 	const uint64_t fullScale = CELL_SIZE * scale;
+
+	const auto start = high_resolution_clock::now();
 
 	// Get the "remainder" distance that we must travel in x and y in order to
 	// reach the next grid cell. These ensure we only check grid cells which the
