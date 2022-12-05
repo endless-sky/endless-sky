@@ -278,21 +278,6 @@ namespace {
 			radius = max(radius, p.LengthSquared());
 		return sqrt(radius);
 	}
-
-
-	Point NearestPointOfSegmentToOrigin(Point start, Point end)
-	{
-		if((start - end).Length() < EPS) return start;
-
-		double ret = start.Dot(start - end) / start.DistanceSquared(end);
-
-		if(ret <= 0.)
-			return start;
-		if(ret >= 1.)
-			return end;
-
-		return start * (1. - ret) + end * ret;
-	}
 }
 
 
@@ -348,7 +333,7 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 		return 1.;
 
 	// Bail out even if segment doesn't touch a circle of 'radius'
-	if(NearestPointOfSegmentToOrigin(sA, sA + vA).Length() > radius)
+	if(DistanceSquared(Point(), sA, sA + vA) > (radius * radius))
 		return 1.;
 
 
