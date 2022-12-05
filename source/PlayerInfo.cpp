@@ -450,7 +450,7 @@ void PlayerInfo::Save() const
 
 	// Save global Conditions:
 	DataWriter globalConditions(Files::Config() + "global conditions.txt");
-	GameData::GlobalConditions().Save(globalConditions, "global conditions");
+	GameData::GlobalConditions().Save(globalConditions);
 }
 
 
