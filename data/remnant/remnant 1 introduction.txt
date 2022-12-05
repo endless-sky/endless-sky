@@ -1691,7 +1691,7 @@ mission "Remnant: Deep Surveillance"
 
 mission "Remnant: Tech Retrieval"
 	name "Remnant Human Tech Retrieval"
-	description "The Remnant are interested in learning what advances humanity has made over the past centuries. Bring them samples of advanced technology."
+	description "The Remnant are interested in learning what advances humanity has made over the past centuries. Bring them samples of advanced technology, such as newly developed ramscoops, weapons, or shields."
 	source "Viminal"
 	to offer
 		has "Remnant: Technology Available: offered"
