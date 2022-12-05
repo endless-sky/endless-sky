@@ -540,7 +540,7 @@ ship "Ikatila'ej"
 		"Double Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Thermal Repeater Rifle"  986
+		"Thermal Repeater Rifle" 986
 		"Microbot Defense Station" 26
 
 		"Afterburner (Lunar Class)"

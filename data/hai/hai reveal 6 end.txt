@@ -54,7 +54,7 @@ mission "Hai Reveal [C01] Cleanup"
 			`	It seems this station has seen serious renovations in the past weeks. You find yourself standing with the diplomats in a room now called the grand Borealis Chamber, "Where Mountains Touch The Sky," as Teeneep makes the first publicly broadcast speech from the Hai to humanity. The three heads of state announce a resolution granting safe passage to all Hai in human space, as long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety. This meeting will now turn into a multi-day summit to discuss the creation of a formal treaty. The process will take a number of days.`
 			choice
 				`	(Relax.)`
-			`Just  as you finish breakfast, when you think that maybe you'll be able to get on with your own life, there's a knock on the door of your station quarters. A slightly sheepish looking Sayari and Xilin are waiting for you when you open the door.`
+			`Just as you finish breakfast, when you think that maybe you'll be able to get on with your own life, there's a knock on the door of your station quarters. A slightly sheepish looking Sayari and Xilin are waiting for you when you open the door.`
 			`	"We need to talk."`
 			`	You feel the deepest of sighs settle into your bones, but at this point you just gesture them inside. It would have been too easy if it was all over, wouldn't it?`
 			`	"It seems that somewhere along the way, a shipload of kidnapped Hai didn't make it to a processing area. The Hai were left on Sunracer, and the ship appears to have disappeared," begins Xilin.`
@@ -104,7 +104,7 @@ mission "Hai Reveal [C02] Cleanup"
 			`	One of the Hai approaches you. "Are you Captain <last>?"`
 			choice
 				`	"Yes, that is me."`
-			`	 He appears visibly relieved. "Oh good. We've been very concerned since we were dropped here. It's all very strange... we've no idea what's going on anymore."`
+			`	He appears visibly relieved. "Oh good. We've been very concerned since we were dropped here. It's all very strange... we've no idea what's going on anymore."`
 			label responses
 			choice
 				`	"The Hai are no longer a secret in human space, but they are concerned how you ended up here."`
