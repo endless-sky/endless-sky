@@ -444,7 +444,7 @@ void PlayerInfo::Save() const
 				if(Files::Exists(files[i + 1]))
 					Files::Move(files[i + 1], files[i]);
 			if(planet->HasSpaceport())
-				Save(root + "~~last-spaceport.txt");
+				Save(root + "~~previous-spaceport.txt");
 		}
 	}
 

@@ -574,8 +574,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		// Paralyzed ships are effectively disabled, and cannot fire, cloak, etc.
-		if(it->IsParalyzed())
+		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
+		if(it->IsOverheated())
 			continue;
 
 		// Special case: if the player's flagship tries to board a ship to
@@ -783,19 +783,20 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 			// Fighters and drones should assist their parent's mining operation if they cannot
 			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
-			const shared_ptr<Minable> &minable = parent ? parent->GetTargetAsteroid() : nullptr;
-			if(it->CanBeCarried() && parent && miningTime[&*parent] < 3601 && minable
-					&& minable->Position().Distance(parent->Position()) < 600.)
+			if(it->CanBeCarried() && parent && miningTime[parent.get()] < 3601)
 			{
-				it->SetTargetAsteroid(minable);
-				MoveToAttack(*it, command, *minable);
-				AutoFire(*it, firingCommands, *minable);
-				it->SetCommands(command);
-				it->SetCommands(firingCommands);
-				continue;
+				const shared_ptr<Minable> &minable = parent->GetTargetAsteroid();
+				if(minable && minable->Position().Distance(parent->Position()) < 600.)
+				{
+					it->SetTargetAsteroid(minable);
+					MoveToAttack(*it, command, *minable);
+					AutoFire(*it, firingCommands, *minable);
+					it->SetCommands(command);
+					it->SetCommands(firingCommands);
+					continue;
+				}
 			}
-			else
-				it->SetTargetAsteroid(nullptr);
+			it->SetTargetAsteroid(nullptr);
 		}
 
 		// Handle carried ships:
@@ -1053,8 +1054,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			const System *system = ship.GetSystem();
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				// Disabled, paralyzed, or otherwise untargetable ships pose no threat.
-				bool harmless = helper->IsDisabled() || helper->IsParalyzed() || !helper->IsTargetable();
+				// Disabled, overheated, or otherwise untargetable ships pose no threat.
+				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1)
+						|| !helper->IsTargetable();
 				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
@@ -1104,7 +1106,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
-			|| helper.IsDisabled() || helper.IsParalyzed() || helper.IsHyperspacing())
+			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1251,8 +1253,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		range -= 1000 * Has(*foe, gov, ShipEvent::BOARD);
 		// Focus on nearly dead ships.
 		range += 500. * (foe->Shields() + foe->Hull());
-		// If a target is paralyzed, focus on ships that can attack back.
-		if(foe->IsParalyzed())
+		// If a target is extremely overheated, focus on ships that can attack back.
+		if(foe->IsOverheated())
 			range += 3000. * (foe->Heat() - .9);
 		if((isPotentialNemesis && !hasNemesis) || range < closest)
 		{

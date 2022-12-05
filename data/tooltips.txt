@@ -1,6 +1,6 @@
 # Outfit and ship attributes:
 tip "active cooling:"
-	`Provides up to this amount of cooling per second. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if your ship is overheated.`
+	`Provides up to this amount of cooling per second. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if you are about to overheat.`
 
 tip "afterburner energy:"
 	`Energy consumed per second when firing this afterburner.`
@@ -102,7 +102,7 @@ tip "cooling:"
 	`Reduces heat by this amount per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
 
 tip "cooling energy:"
-	`When active cooling is running at full strength (because your ship is overheated) it will draw this much energy.`
+	`When active cooling is running at full strength (because your ship's temperature is approaching the overheating threshold) it will draw this much energy.`
 
 tip "cooling inefficiency:"
 	`Interferes with your ship's ability to cool itself. Its cooling systems will only be about 75% effective at a cooling inefficiency of 5, and 30% at an inefficiency of 10.`
