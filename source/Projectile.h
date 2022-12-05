@@ -115,7 +115,7 @@ private:
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
 
-	const Ship *parentShip;
+	const Ship *parentShip = nullptr;
 
 	// The change in velocity of all stages of this projectile
 	// relative to the firing ship.
