@@ -133,7 +133,7 @@ fleet "Devil-Run Warships"
 		"Protector (Proton)"
 	variant 5
 		"Leviathan"
-	variant 5
+	variant 6
 		"Marauder Leviathan (Engines)"
 
 fleet "Elenctic Commune Miners"
