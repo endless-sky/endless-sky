@@ -75,6 +75,10 @@ galaxy "pug empty galaxy"
 	pos 10000 7000
 	sprite ui/pleiades
 
+galaxy "pug empty galaxy"
+	pos 10000 7000
+	sprite ui/pleiades
+
 system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
