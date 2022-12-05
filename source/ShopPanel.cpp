@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Mission.h"
 #include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -72,6 +73,21 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+}
+
+void ShopPanel::CheckForMissions(Mission::Location location) {
+	if(GetUI()->IsTop(this))
+	{
+		Mission *mission = player.MissionToOffer(location);
+		// Special case: if the player somehow got to the outfitter before all
+		// landing missions were offered, they can still be offered here:
+		if(!mission)
+			mission = player.MissionToOffer(Mission::LANDING);
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedMissions(location, GetUI());
+	}
 }
 
 

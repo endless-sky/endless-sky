@@ -98,18 +98,7 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
-	if(GetUI()->IsTop(this))
-	{
-		Mission *mission = player.MissionToOffer(Mission::SHIPYARD);
-		// Special case: if the player somehow got to the shipyard before all
-		// landing missions were offered, they can still be offered here:
-		if(!mission)
-			mission = player.MissionToOffer(Mission::LANDING);
-		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
-		else
-			player.HandleBlockedMissions(Mission::SHIPYARD, GetUI());
-	}
+	ShopPanel::CheckForMissions(Mission::SHIPYARD);
 }
 
 
