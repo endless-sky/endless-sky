@@ -59,13 +59,13 @@ test-data "shipyard outfitter missions"
 mission "%TEST%: SHIPYARD MISSION"
 	shipyard
 	source "Ruin"
-    to offer
+	to offer
 		has "%TEST%: SHIPYARD MISSION OFFER"
 	on offer
 		conversation
 			`THIS IS A SHIPYARD MISSION YO!`
 				decline
-    on decline
+	on decline
 		set "succeed test"
 
 
@@ -73,13 +73,13 @@ mission "%TEST%: SHIPYARD MISSION"
 mission "%TEST%: OUTFITTER MISSION"
 	outfitter
 	source "Ruin"
-    to offer
+	to offer
 		has "%TEST%: OUTFITTER MISSION OFFER"
 	on offer
 		conversation
 			`THIS IS A OUTFITTER MISSION YO!`
 				decline
-    on decline
+	on decline
 		set "succeed test"
 
 
