@@ -53,6 +53,10 @@ test-data "shipyard outfitter missions"
 		conditions
 			# to skip the landing on ruin conversation
 			"Ruin: Landing: offered"
+        changes
+            planet Ruin
+                add shipyard "Remnant"
+                add outfitter "Remnant Core"
 
 
 
