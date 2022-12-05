@@ -314,7 +314,7 @@ mission "Gegno Quarg Direction to Ringworld"
 	name `Visit Quarg Ringworld`
 	landing
 	source
-		near "Giaru Gegno" 1 2
+		near "Aleit" 1 2
 	destination "Giaru Gegno"
 	to offer
 		has "First Contact: Quarg: offered"
