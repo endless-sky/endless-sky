@@ -244,7 +244,7 @@ test "Boarding Test - Repair Friendly Ship"
 	sequence
 		inject "quarg rescue"
 		call "Load First Savegame"
-		watchdog 3000
+		watchdog 5000
 		call "Launch Quarg Scanning Mission And Board"
 		call "Land On Ruin helper"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
@@ -261,7 +261,7 @@ test "Illegal Test - Ignore and New Illegal"
 	sequence
 		inject "quarg scanning"
 		call "Load First Savegame"
-		watchdog 3000
+		watchdog 5000
 		assert
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
@@ -279,7 +279,7 @@ test "Atrocity Test - New Atrocity"
 	sequence
 		inject "quarg atrocity"
 		call "Load First Savegame"
-		watchdog 3000
+		watchdog 5000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
