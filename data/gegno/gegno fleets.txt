@@ -17,21 +17,21 @@ fleet "Small Vi"
 	personality
 		heroic vindictive
 	variant 10
-		Eclogite
+		"Eclogite"
 	variant 7
-		Eclogite 2
+		"Eclogite" 2
 	variant
-		Hornfel
+		"Hornfel"
 	variant 3
-		Eclogite
-		Hornfel
+		"Eclogite"
+		"Hornfel"
 	variant
 		Gneiss
 	variant
-		Eclogite 2
-		"Hornfel Light Load"
+		"Eclogite" 2
+		"Hornfel (Light Load)"
 	variant
-		Gneiss
+		"Gneiss"
 
 fleet "Large Vi"
 	government "Gegno Vi"
@@ -40,52 +40,52 @@ fleet "Large Vi"
 	personality
 		heroic vindictive opportunistic
 	variant 6
-		Eclogite 2
+		"Eclogite" 2
 	variant 4
-		Eclogite
-		Hornfel
+		"Eclogite"
+		"Hornfel"
 	variant 3
-		Hornfel
+		"Hornfel"
 	variant 3
-		"Hornfel Heavy Load"
+		"Hornfel (Heavy Load)"
 	variant 3
-		"Hornfel Light Load"
+		"Hornfel (Light Load)"
 	variant 3
-		Gneiss
+		"Gneiss"
 	variant 3
-		Eclogite 2
-		Gneiss
+		"Eclogite" 2
+		"Gneiss"
 	variant 2
-		Eclogite 2
-		Hornfel 2
+		"Eclogite" 2
+		"Hornfel" 2
 	variant
-		"Hornfel Heavy Load"
-		"Hornfel Light Load"
+		"Hornfel (Heavy Load)"
+		"Hornfel (Light Load)"
 	variant
-		"Hornfel Heavy Load"
-		Gneiss
+		"Hornfel (Heavy Load)"
+		"Gneiss"
 	variant
-		Eclogite
-		Hornfel
-		Gneiss
+		"Eclogite"
+		"Hornfel"
+		"Gneiss"
 	variant 2
-		Eclogite 2
-		"Hornfel Light Load"
-		"Hornfel Heavy Load"
+		"Eclogite" 2
+		"Hornfel (Light Load)"
+		"Hornfel (Heavy Load)"
 	variant
-		Eclogite
-		"Hornfel Light Load"
-		"Hornfel Heavy Load"
-		Gneiss
+		"Eclogite"
+		"Hornfel (Light Load)"
+		"Hornfel (Heavy Load)"
+		"Gneiss"
 	variant
-		Eclogite 2
+		"Eclogite" 2
 	variant
-		"Hornfel Heavy Weapons"
-		"Hornfel Light Load"
-		Eclogite
+		"Hornfel (Heavy Weapons)"
+		"Hornfel (Light Load)"
+		"Eclogite"
 	variant
-		Gneiss
-		"Hornfel Heavy Weapons"
+		"Gneiss"
+		"Hornfel (Heavy Weapons)"
 
 fleet "Vi Transport"
 	government "Gegno Vi"
@@ -94,31 +94,31 @@ fleet "Vi Transport"
 	personality
 		timid plunders opportunistic
 	variant 14
-		Slate
+		"Slate"
 	variant 2
-		Slate 2
+		"Slate" 2
 	variant 8
-		Schist
+		"Schist"
 	variant 3
-		"Schist Light Load"
+		"Schist (Light Load)"
 	variant 2
-		Slate
-		"Schist Heavy Load"
-		"Schist Light Load"
+		"Slate"
+		"Schist (Heavy Load)"
+		"Schist (Light Load)"
 	variant 2
-		Slate 2
-		Schist
+		"Slate" 2
+		"Schist"
 	variant 4
-		Slate
-		"Schist Heavy Load"
+		"Slate"
+		"Schist (Heavy Load)"
 	variant
-		Schist 2
+		"Schist" 2
 	variant 2
-		"Schist Light Load"
+		"Schist (Light Load)"
 	variant
-		"Schist Heavy Load"
+		"Schist (Heavy Load)"
 	variant
-		Protolith
+		"Protolith"
 
 fleet "Vi Cargo"
 	government "Gegno Vi"
@@ -127,23 +127,23 @@ fleet "Vi Cargo"
 	personality
 		plunders heroic opportunistic
 	variant 2
-		"Schist Heavy Load"
+		"Schist (Heavy Load)"
 	variant 2
-		"Hornfel Light Load"
+		"Hornfel (Light Load)"
 	variant
-		"Hornfel Heavy Weapons"
+		"Hornfel (Heavy Weapons)"
 	variant 2
-		"Schist Light Load"
+		"Schist (Light Load)"
 	variant
-		Hornfel
+		"Hornfel"
 	variant
-		Schist
+		"Schist"
 	variant
-		"Hornfel Heavy Load"
-		"Schist Heavy Load"
+		"Hornfel (Heavy Load)"
+		"Schist (Heavy Load)"
 	variant
-		Protolith
-		"Schist Heavy Load"
+		"Protolith"
+		"Schist (Heavy Load)"
 
 fleet "Vi Small II"
 	government "Gegno Vi"
@@ -152,17 +152,17 @@ fleet "Vi Small II"
 	personality
 		heroic vindictive opportunistic
 	variant 3
-		Eclogite
+		"Eclogite"
 	variant 2
-		Eclogite
-		Diorite
+		"Eclogite"
+		"Diorite"
 	variant
-		Diorite
+		"Diorite"
 	variant 
-		Diorite 2
+		"Diorite" 2
 	variant
-		Eclogite 2
-		Diorite
+		"Eclogite" 2
+		"Diorite"
 	
 
 fleet "Small Scin"
@@ -172,17 +172,17 @@ fleet "Small Scin"
 	personality
 		vindictive
 	variant 7
-		Coesite
+		"Coesite"
 	variant 3
-		Felsic
-		Coesite
+		"Felsic"
+		"Coesite"
 	variant 4
-		Coesite 3
+		"Coesite" 3
 	variant
-		Coesite 2
+		"Coesite" 2
 	variant
-		Feldspar
-		Halite 6
+		"Feldspar"
+		"Halite" 6
 
 fleet "Large Scin"
 	government "Gegno Scin"
@@ -191,27 +191,27 @@ fleet "Large Scin"
 	personality
 		vindictive opportunistic
 	variant 8
-		Coesite 2
+		"Coesite" 2
 	variant 4
-		Felsic
-		Coesite
+		"Felsic"
+		"Coesite"
 	variant 3
-		Felsic
-		Coesite 2
+		"Felsic"
+		"Coesite" 2
 	variant 3
-		Coesite 3
+		"Coesite" 3
 	variant 
-		Feldspar
-		Halite 6
+		"Feldspar"
+		"Halite" 6
 	variant 
-		Feldspar
-		Halite 6
-		Coesite
+		"Feldspar"
+		"Halite" 6
+		"Coesite"
 	variant
-		Feldspar
-		Halite 6
-		Felsic
-		Coesite
+		"Feldspar"
+		"Halite" 6
+		"Felsic"
+		"Coesite"
 
 fleet "Scin Transport"
 	government "Gegno Scin"
@@ -220,25 +220,25 @@ fleet "Scin Transport"
 	personality
 		timid
 	variant 7
-		Mica
+		"Mica"
 	variant 4
-		Felsic
-		Mica
+		"Felsic"
+		"Mica"
 	variant 2
-		Felsic
-		Mica
-		Coesite
+		"Felsic"
+		"Mica"
+		"Coesite"
 	variant 3
-		Mica 2
+		"Mica" 2
 	variant
-		Muscovite
-		Halite
+		"Muscovite"
+		"Halite"
 	variant
-		Muscovite
-		Halite
-		Coesite
+		"Muscovite"
+		"Halite"
+		"Coesite"
 	variant
-		Tridymite
+		"Tridymite"
 
 fleet "Scin Cargo"
 	government "Gegno Scin"
@@ -247,23 +247,23 @@ fleet "Scin Cargo"
 	personality
 		timid
 	variant 4
-		Felsic
+		"Felsic"
 	variant 2
-		Felsic
-		Coesite
+		"Felsic"
+		"Coesite"
 	variant
-		Felsic 2
-		Mica
+		"Felsic" 2
+		"Mica"
 	variant 2
-		Felsic
-		Mica
-		Coesite
+		"Felsic"
+		"Mica"
+		"Coesite"
 	variant
-		Muscovite 2
-		Halite 2
+		"Muscovite" 2
+		"Halite" 2
 	variant
-		Muscovite
-		Halite
+		"Muscovite"
+		"Halite"
 
 fleet "Vi Warfleet"
 	government "Gegno Vi"
@@ -272,22 +272,22 @@ fleet "Vi Warfleet"
 	personality
 		heroic vindictive opportunistic
 	variant 5
-		Hornfel
-		Eclogite 2
+		"Hornfel"
+		"Eclogite" 2
 	variant 3
-		Eclogite 3
+		"Eclogite" 3
 	variant 2
-		Hornfel
-		"Hornfel Light Load"
+		"Hornfel"
+		"Hornfel (Light Load)"
 	variant
-		Gneiss
-		Eclogite
-		Hornfel 2
+		"Gneiss"
+		"Eclogite"
+		"Hornfel" 2
 	variant
-		"Hornfel Heavy Weapons"
+		"Hornfel (Heavy Weapons)"
 	variant
-		Gneiss 2
-		"Hornfel Heavy Load"
+		"Gneiss" 2
+		"Hornfel (Heavy Load)"
 
 fleet "Scin Warfleet"
 	government "Gegno Scin"
@@ -296,23 +296,23 @@ fleet "Scin Warfleet"
 	personality
 		vindictive opportunistic
 	variant 5
-		Felsic
-		Coesite 3
+		"Felsic"
+		"Coesite" 3
 	variant 4
-		Felsic 2
-		Coesite 2
+		"Felsic" 2
+		"Coesite" 2
 	variant 2
-		Feldspar 2
-		Halite 12
+		"Feldspar" 2
+		"Halite" 12
 	variant
-		Feldspar
-		Halite 6
-		Coesite 2
-		Felsic
+		"Feldspar"
+		"Halite" 6
+		"Coesite" 2
+		"Felsic"
 	variant
-		Feldspar
-		Halite 6
-		Coesite 2
+		"Feldspar"
+		"Halite" 6
+		"Coesite" 2
 
 fleet "Gegno Basic"
 	government Gegno
@@ -321,23 +321,23 @@ fleet "Gegno Basic"
 	personality
 		timid
 	variant 6
-		Shale
+		"Shale"
 	variant 3
-		Dolomite
+		"Dolomite"
 	variant 3
-		Shale 2
+		"Shale" 2
 	variant
-		Shale 3
+		"Shale" 3
 	variant
-		Dolomite
-		Shale
+		"Dolomite"
+		"Shale"
 	variant
-		Dolomite 2
+		"Dolomite" 2
 	variant
-		Conglomerate
+		"Conglomerate"
 	variant
-		Conglomerate
-		Shale
+		"Conglomerate"
+		"Shale"
 
 fleet "Gegno Miners"
 	government Gegno
@@ -346,9 +346,9 @@ fleet "Gegno Miners"
 	personality
 		pacifist timid plunders frugal mining harvests
 	variant 14
-		Gypsum
+		"Gypsum"
 	variant
-		Gypsum 2
+		"Gypsum" 2
 		
 fleet "Gegno Vi Duelist A"
 	government "Gegno Vi (Duelist A)"
@@ -356,7 +356,7 @@ fleet "Gegno Vi Duelist A"
 	personality
 		heroic unconstrained
 	variant
-		Dunite
+		"Dunite"
 
 fleet "Gegno Vi Duelist B"
 	government "Gegno Vi (Duelist B)"
@@ -364,5 +364,5 @@ fleet "Gegno Vi Duelist B"
 	personality
 		heroic unconstrained
 	variant
-		Dunite
+		"Dunite"
 
