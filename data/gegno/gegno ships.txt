@@ -523,7 +523,7 @@ ship "Diorite"
 	outfits
 		"Ballistic Cannon" 2
 		"Chloeric Cannon"
-		"Irate Cannon Turret" 
+		"Irate Cannon Turret" 2
 		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
