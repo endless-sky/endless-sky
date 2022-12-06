@@ -3838,8 +3838,17 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				deterrence = CalculateDeterrence();
 		}
-		if(outfit->HasAfterburner())
-			afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
+		if(outfit->HasAfterburner() && count > 0)
+			for(unsigned i = count; i > 0; i--)
+				afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
+		else if(outfit->HasAfterburner() && count < 0)
+			for(unsigned i = -count; i > 0; i--)
+				for(const auto &afterburner : afterburnerUsages)
+					if(&afterburner.Afterburner() == outfit)
+					{
+						afterburnerUsages.erase(afterburner);
+						break;
+					}
 
 		if(outfit->Get("cargo space"))
 		{
