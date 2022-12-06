@@ -3134,7 +3134,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!origin)
 			return -1;
-		
+
 		auto distanceMap = DistanceMap(origin);
 		if(!distanceMap.HasRoute(destination))
 			return -1;
