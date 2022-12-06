@@ -140,7 +140,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles,
 						shotShip->SetPersonality(weapon->ShipToShootPersonality());
 					else
 						shotShip->SetPersonality(parentShip->GetPersonality());
-					shotShip->SetHail(*parentShip->GetHailPhrase());
+					shotShip->SetHailPhrase(*parentShip->GetHailPhrase());
 					shotShip->SetSystem(parentShip->GetSystem());
 					if(parentShip->GetParent() && !shotShip->GetPersonality().IsCoward())
 						shotShip->SetParent(parentShip->GetParent());
