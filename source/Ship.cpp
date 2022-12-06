@@ -191,7 +191,7 @@ namespace {
 	}
 
 	// Add an afterburner to the afterburner usages.
-	void AddAfterburner(std::vector<AfterburnerUsage> afterburnerUsages, const Outfit *outfit, int count)
+	void AddAfterburner(std::vector<AfterburnerUsage> &afterburnerUsages, const Outfit *outfit, int count)
 	{
 		if(!outfit || !count)
 			return;
