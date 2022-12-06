@@ -19,6 +19,7 @@ mission "Coalition: First Contact"
 		government "Coalition"
 	destination "Ring of Friendship"
 	on offer
+		set "global: First Contact: Coalition"
 		"reputation: Coalition" += 10
 		"reputation: Heliarch" += 10
 		log "Factions" "Coalition" `The Coalition is an alliance of three different alien species living in peace with each other: the Saryds, the Kimek, and the Arachi. On many Coalition worlds, all three species live together in harmony, which is made easier by the fact that each species prefers a very different climate and thus gravitates to different parts of a planet. They are ruled by individuals known as the Heliarchs.`
