@@ -61,8 +61,9 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship)
-	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
+	const System *system, const shared_ptr<Ship> &ship, const bool overrideCapture)
+	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship),
+	overrideCapture(overrideCapture)
 {
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
@@ -423,14 +424,6 @@ void ConversationPanel::Exit()
 		player.Die(node, ship);
 	else if(ship)
 	{
-		bool overrideCapture = false;
-		for(const Mission &mission : player.Missions())
-			if(mission.OverridesCapture() && !mission.IsFailed())
-			{
-				overrideCapture = true;
-				break;
-			}
-
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
 		if(Conversation::RequiresLaunch(node))
 			ship->Destroy();

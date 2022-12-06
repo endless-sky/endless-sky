@@ -530,8 +530,8 @@ void MainPanel::StepEvents(bool &isActive)
 			bool overrideCapture = false;
 			if(mission && mission->HasSpace(*flagship))
 			{
-				overrideCapture = mission->OverridesCapture() && !boardedShip->IsSpecial() &&
-					mission->Do(Mission::OFFER, player, GetUI(), boardedShip);
+				overrideCapture = mission->OverridesCapture() && !boardedShip->IsSpecial();
+				overrideCapture &= mission->Do(Mission::OFFER, player, GetUI(), boardedShip, overrideCapture);
 			}
 			else if(mission)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
