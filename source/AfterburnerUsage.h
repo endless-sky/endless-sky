@@ -33,10 +33,10 @@ public:
 
 
 private:
-	const Outfit &afterburner;
+	Outfit &afterburner;
 	// Store the duration and cooldown locally so we don't always look for it in the dictionary.
-	const double baseDuration;
-	const double baseCooldown;
+	double baseDuration;
+	double baseCooldown;
 	// The cooldown we need to wait for, and the time we've used it for already.
 	double afterburnerCooldown = 0.;
 	double afterburnerUsageTime = 0.;
