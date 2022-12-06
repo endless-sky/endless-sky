@@ -127,6 +127,8 @@ private:
 	// returns the direction to the target.
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
+	static bool TargetInRange(const Ship &ship);
+	static bool TargetInRange(const Ship &ship, const Body &target);
 	// Aim the given ship's turrets.
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
