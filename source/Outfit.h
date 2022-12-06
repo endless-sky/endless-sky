@@ -114,7 +114,7 @@ private:
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 	// Tags to identify this outfit.
-	std::vector<std::string> tags;
+	std::set<std::string> tags;
 
 	Dictionary attributes;
 
