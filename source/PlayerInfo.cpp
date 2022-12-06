@@ -3130,23 +3130,34 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
 	// Read-only navigation conditions.
+	auto Days = [](const System *origin, const System *destination) -> int
+	{
+		if(!origin)
+			return -1;
+		
+		auto distanceMap = DistanceMap(origin);
+		if(!distanceMap.HasRoute(destination))
+			return -1;
+		return distanceMap.Days(destination);
+	};
+
 	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
-	auto hyperjumpsToSystemFun = [this](const string &name) -> int
+	auto hyperjumpsToSystemFun = [this, &Days](const string &name) -> int
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
 		if(!system)
 		{
-			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: ")) + "\" referred to in condition is not valid.");
+			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: "))
+					+ "\" referred to in condition is not valid.");
 			return -1;
 		}
-		auto distanceMap = DistanceMap(this->GetSystem());
-		return distanceMap.Days(system);
+		return Days(this->GetSystem(), system);
 	};
 	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
 	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
 
 	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
-	auto hyperjumpsToPlanetFun = [this](const string &name) -> int
+	auto hyperjumpsToPlanetFun = [this, &Days](const string &name) -> int
 	{
 		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
 		if(!planet)
@@ -3154,14 +3165,14 @@ void PlayerInfo::RegisterDerivedConditions()
 			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: ")) + "\" referred to in condition is not valid.");
 			return -1;
 		}
-		const System *system = planet->GetSystem();
 		if(!system)
 		{
-			Logger::LogError("Warning: Planet \"" + planet->Name() + "\" referred to in condition has no system.");
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not in any system.");
 			return -1;
 		}
-		auto distanceMap = DistanceMap(this->GetSystem());
-		return distanceMap.Days(system);
+		const System *system = planet->GetSystem();
+		return Days(this->GetSystem(), system);
 	};
 	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
 	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
