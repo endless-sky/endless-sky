@@ -556,7 +556,7 @@ bool Mission::IsAtLocation(Location location) const
 
 
 // Information about what you are doing.
-const Ship *SourceShip() const
+const Ship *Mission::SourceShip() const
 {
 	return sourceShip;
 }
