@@ -109,7 +109,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 	bool overrideCapture = false;
 	for(const Mission &mission : player.Missions())
-		if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == victim)
+		if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == victim.get())
 		{
 			overrideCapture = true;
 			break;
