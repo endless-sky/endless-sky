@@ -2217,6 +2217,9 @@ void PlayerInfo::DoQueuedRelocation()
 		return;
 	}
 
+	Visit(*relocation.relocationPlanet->GetSystem());
+	Visit(*relocation.relocationPlanet);
+
 	flagship->SetSystem(relocation.relocationPlanet->GetSystem());
 	flagship->SetPlanet(relocation.relocationPlanet);
 	if(!relocation.relocateFlagshipOnly)
