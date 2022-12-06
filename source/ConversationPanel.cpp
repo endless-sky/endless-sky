@@ -432,7 +432,7 @@ void ConversationPanel::Exit()
 		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
-			GetUI()->Push(new BoardingPanel(player, ship, overrideCapture));
+			GetUI()->Push(new BoardingPanel(player, ship);
 	}
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.
