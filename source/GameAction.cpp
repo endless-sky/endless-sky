@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cstdlib>
+#include <iostream>
 
 using namespace std;
 
@@ -220,9 +221,12 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		for(const DataNode &grand : child)
 		{
 			if(grand.Token(0) == "location" && grand.HasChildren())
-				relocateFilter.Load(grand);
-			if(grand.Token(0) == "flagship only")
-				relocateFlagshipOnly = true;
+			{
+				relocateAction.isDefined = true;
+				relocateAction.relocateFilter.Load(grand);
+			}
+			else if(grand.Token(0) == "flagship only")
+				relocateAction.relocateFlagshipOnly = true;
 		}
 	}
 	else
@@ -268,11 +272,11 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
 		out.Write("fail", name);
-	if(relocateFilter.IsValid())
+	if(relocateAction.isDefined)
 	{
 		out.Write("relocate");
-		relocateFilter.Save(out);
-		if(relocateFlagshipOnly)
+		relocateAction.relocateFilter.Save(out);
+		if(relocateAction.relocateFlagshipOnly)
 		{
 			out.BeginChild();
 			{
@@ -344,7 +348,7 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 bool GameAction::HasRelocation() const
 {
-	return relocateFilter.IsValid();
+	return relocateAction.isDefined;
 }
 
 
@@ -401,9 +405,10 @@ void GameAction::Do(PlayerInfo &player, UI *ui, bool conversationEmpty) const
 				player.FailMission(mission);
 	}
 
-	if(relocateFilter.IsValid())
+	if(relocateAction.isDefined)
 	{
-		player.QueueRelocation(relocateFilter.PickPlanet(player.GetSystem()), relocateFlagshipOnly);
+		player.QueueRelocation(relocateAction.relocateFilter.PickPlanet(player.GetSystem()),
+							relocateAction.relocateFlagshipOnly);
 		if(conversationEmpty)
 			player.DoQueuedRelocation();
 	}
@@ -450,8 +455,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.fail = fail;
 
-	result.relocateFilter = relocateFilter;
-	result.relocateFlagshipOnly = relocateFlagshipOnly;
+	result.relocateAction.isDefined = relocateAction.isDefined;
+	result.relocateAction.relocateFilter = relocateAction.relocateFilter;
+	result.relocateAction.relocateFlagshipOnly = relocateAction.relocateFlagshipOnly;
 
 	result.conditions = conditions;
 

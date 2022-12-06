@@ -45,6 +45,13 @@ class UI;
 // added to GameAction should be able to be safely executed while in a
 // Conversation.
 class GameAction {
+private:
+	struct RelocateAction {
+		bool isDefined = false;
+
+		LocationFilter relocateFilter;
+		bool relocateFlagshipOnly = false;
+	};
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
@@ -90,8 +97,7 @@ private:
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 
-	LocationFilter relocateFilter;
-	bool relocateFlagshipOnly = false;
+	RelocateAction relocateAction;
 
 	ConditionSet conditions;
 };
