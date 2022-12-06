@@ -107,15 +107,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			plunder.emplace_back(outfit, count);
 	}
 
-	bool overrideCapture = false;
-	if(!victim->IsCapturable())
-		for(const Mission &mission : player.Missions())
-			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == victim.get())
-			{
-				overrideCapture = true;
-				break;
-			}
-	canCapture = victim->IsCapturable() || overrideCapture;
+	canCapture = victim->IsCapturable() || player.CaptureOverriden(victim);
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");

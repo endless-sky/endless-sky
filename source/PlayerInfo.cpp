@@ -1808,6 +1808,16 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 
 
 
+bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
+{
+	if(ship->IsCapturable())
+		return false;
+	const Mission *mission = boardingMissions.empty() ? nullptr : &boardingMissions.back();
+	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
+}
+
+
+
 // Engine calls this after placing the boarding mission's NPCs.
 void PlayerInfo::ClearActiveBoardingMission()
 {
