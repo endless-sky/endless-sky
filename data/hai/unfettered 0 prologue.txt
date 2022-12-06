@@ -16,6 +16,7 @@ mission "First Contact: Unfettered"
 	source
 		attributes "unfettered"
 	on offer
+		set "global: First Contact: Unfettered"
 		conversation
 			branch hai
 				has "First Contact: Hai: offered"

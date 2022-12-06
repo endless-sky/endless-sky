@@ -17,6 +17,7 @@ mission "First Contact: Hai"
 		government "Hai"
 		not attributes "uninhabited"
 	on offer
+		set "global: First Contact: Hai"
 		conversation
 			branch unfettered
 				has "First Contact: Unfettered: offered"
