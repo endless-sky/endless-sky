@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
@@ -192,6 +193,7 @@ private:
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
+	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
@@ -220,8 +222,8 @@ private:
 	Command activeCommands;
 	// Keyboard commands that were active in the previous step.
 	Command keyHeld;
-	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
-	int landKeyInterval = 0;
+	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
+	int keyInterval = 0;
 
 	// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;

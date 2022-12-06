@@ -330,6 +330,10 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 	if(!IsLoaded() || distance > radius + vA.Length())
 		return 1.;
 
+	// Bail out even if the segment doesn't touch a circle of 'radius'.
+	if(DistanceSquared(Point(), sA, sA + vA) > (radius * radius))
+		return 1.;
+
 	// Rotate into the mask's frame of reference.
 	sA = (-facing).Rotate(sA);
 	vA = (-facing).Rotate(vA);
