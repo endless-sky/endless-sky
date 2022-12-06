@@ -190,6 +190,7 @@ namespace {
 		return ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
 	}
 
+	// Add an afterburner to the afterburner usages.
 	void AddAfterburner(std::vector<AfterburnerUsage> afterburnerUsages, const Outfit *outfit, int count)
 	{
 		if(!outfit || !count)
@@ -200,7 +201,7 @@ namespace {
 				afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
 		else if(count < 0)
 			for(unsigned i = -count; i > 0; i--)
-				for(auto it = afterburnerUsages.begin(); it != afterburnerUsages.end(); )
+				for(const auto it = afterburnerUsages.begin(); it != afterburnerUsages.end(); )
 					if(it->Afterburner() == outfit)
 					{
 						afterburnerUsages.erase(it);
@@ -694,7 +695,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 		// Add afterburners to the afterburner usage vector.
 		if(it.first->HasAfterburner())
-			AddAfterburner(afterburnerUsages, *it.first, it.second);
+			AddAfterburner(afterburnerUsages, it.first, it.second);
 
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
