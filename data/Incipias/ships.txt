@@ -48,4 +48,4 @@ ship "Nimbus"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Nimbus is the first spaceship that was really able to navigate through a system built by the Incipias. Since it was first published it is loved among wealthier captains and a dream of captains who just started."
-	description "Although the Nimbus is labeled as a heavy warship it is a multi purpose ship. Whether one uses it for mining, passengers or cargo it will fullfil its job in the most pleasant way. Occasionally it is used in combat because the Incipias are not fighting open wars."
+	description "Although the Nimbus is labeled as a heavy warship it is a multi purpose ship. Whether one uses it for mining, passengers or cargo it will fulfill its job in the most pleasant way. Occasionally it is used in combat because the Incipias are not fighting open wars."
