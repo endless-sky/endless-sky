@@ -87,7 +87,7 @@ mission "%TEST%: Capture That Quarg!"
 	on offer
 		conversation
 			`Skip this and get your own Quarg automaton, today!`
-				decline
+				accept
 	destination "Earth"
 
 
@@ -98,14 +98,9 @@ test "Capture Uncapturable With Capturable Override"
 		inject "quarg capture"
 		call "Load First Savegame"
 		watchdog 6000
-		# so we can capture
+		# to make sure we can capture
 		assert
 			"reputation: Quarg" < 0
-		# start and accept the mission
-		input
-			key p
-		input
-			key d
 		call "Depart"
 		input
 			command board

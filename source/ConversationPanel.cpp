@@ -423,13 +423,21 @@ void ConversationPanel::Exit()
 		player.Die(node, ship);
 	else if(ship)
 	{
+		bool overrideCapture = false;
+		if(!ship->IsCapturable())
+			for(const Mission &mission : player.Missions())
+				if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == victim.get())
+				{
+					overrideCapture = true;
+					break;
+				}
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
 		if(Conversation::RequiresLaunch(node))
 			ship->Destroy();
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
+		else if((node != Conversation::ACCEPT || overrideCapture) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
 			GetUI()->Push(new BoardingPanel(player, ship));

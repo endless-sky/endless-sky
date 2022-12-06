@@ -1012,9 +1012,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 
-	if(boardingShip)
-		sourceShip = boardingShip.get();
-
 	if(trigger == ACCEPT)
 	{
 		++player.Conditions()[name + ": offered"];
@@ -1183,6 +1180,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.autosave = autosave;
 	result.location = location;
 	result.overridesCapture = overridesCapture;
+	result.sourceShip = boardingShip.get();
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
