@@ -154,7 +154,7 @@ public:
 	// If it is not possible for this change to happen, this function returns false.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr,
-		const std::shared_ptr<Ship> &boardingShip = nullptr, const bool overrideCapture);
+		const std::shared_ptr<Ship> &boardingShip = nullptr, const bool overrideCapture = false);
 
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
