@@ -2712,7 +2712,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
 	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
 
-	auto &&daysUntilYearEndProvider() = conditions.GetProviderNamed("days until year end");
+	auto &&daysUntilYearEndProvider = conditions.GetProviderNamed("days until year end");
 	daysUntilYearEndProvider.SetGetFunction([this](const string &name) { return date.DaysUntilYearEnd(); });
 
 	// Read-only account conditions.
