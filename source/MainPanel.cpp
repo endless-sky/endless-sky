@@ -527,6 +527,7 @@ void MainPanel::StepEvents(bool &isActive)
 		{
 			auto boardedShip = event.Target();
 			Mission *mission = player.BoardingMission(boardedShip);
+			bool overrideCapture = false;
 			if(mission && mission->HasSpace(*flagship))
 			{
 				overrideCapture = mission->OverridesCapture() && !boardedShip->IsUnique() &&
