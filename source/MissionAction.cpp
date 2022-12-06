@@ -281,15 +281,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
-	const shared_ptr<Ship> &ship, const bool isUnique, const bool overrideCapture) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation->IsEmpty() && ui)
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship, overrideCapture);
+		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`

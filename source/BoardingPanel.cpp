@@ -59,9 +59,9 @@ namespace {
 
 
 // Constructor.
-BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim, bool overrideCapture)
+BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
-	attackOdds(*you, *victim), defenseOdds(*victim, *you), overrideCapture(overrideCapture)
+	attackOdds(*you, *victim), defenseOdds(*victim, *you)
 {
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
@@ -107,8 +107,16 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim,
 			plunder.emplace_back(outfit, count);
 	}
 
+	bool overrideCapture = false;
+	for(const Mission &mission : player.Missions())
+		if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == victim)
+		{
+			overrideCapture = true;
+			break;
+		}
+	canCapture = overrideCapture || victim->IsCapturable();
 	// Some "ships" do not represent something the player could actually pilot.
-	if(!victim->IsCapturable() && !overrideCapture)
+	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
 
 	// Sort the plunder by price per ton.
@@ -181,7 +189,7 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderPower(crew)));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
-	if(victim && (victim->IsCapturable() || overrideCapture || victim->IsYours()))
+	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
@@ -189,7 +197,7 @@ void BoardingPanel::Draw()
 		info.SetString("enemy defense",
 			Round(attackOdds.DefenderPower(vCrew)));
 	}
-	if(victim && (victim->IsCapturable() || overrideCapture) && !victim->IsYours())
+	if(victim && canCapture && !victim->IsYours())
 	{
 		// If you haven't initiated capture yet, show the self destruct odds in
 		// the attack odds. It's illogical for you to have access to that info,
@@ -489,7 +497,7 @@ bool BoardingPanel::CanCapture() const
 		return false;
 	if(victim->IsYours())
 		return false;
-	if(!victim->IsCapturable() && !overrideCapture)
+	if(!canCapture)
 		return false;
 
 	return (!victim->RequiredCrew() || you->Crew() > 1);

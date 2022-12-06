@@ -36,7 +36,7 @@ class Ship;
 // capture is "turn-based" combat where each "turn" one or both ships lose crew.
 class BoardingPanel : public Panel {
 public:
-	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim, bool overrideCapture = false);
+	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
 
 	virtual void Draw() override;
 
@@ -130,8 +130,8 @@ private:
 	// These messages are shown to report the results of hand to hand combat.
 	std::vector<std::string> messages;
 
-	// If enabled it means that the ship can be captured now, even though it normally could not be.
-	bool overrideCapture = false;
+	// Whether or not the ship can be captured.
+	bool canCapture = false;
 };
 
 

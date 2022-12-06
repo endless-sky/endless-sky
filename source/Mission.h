@@ -90,6 +90,7 @@ public:
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
+	const Ship *SourceShip() const;
 	const Planet *Destination() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
@@ -153,8 +154,7 @@ public:
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY};
-	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr,
-		const std::shared_ptr<Ship> &boardingShip = nullptr, const bool overrideCapture = false);
+	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
@@ -231,6 +231,8 @@ private:
 	ConditionSet toFail;
 
 	const Planet *source = nullptr;
+	// The ship this mission originated from, if it is a boarding mission.
+	const Ship *sourceShip = nullptr;
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
 	LocationFilter destinationFilter;

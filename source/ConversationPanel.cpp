@@ -61,9 +61,8 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship, const bool overrideCapture)
-	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship),
-	overrideCapture(overrideCapture)
+	const System *system, const shared_ptr<Ship> &ship)
+	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
