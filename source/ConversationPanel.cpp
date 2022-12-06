@@ -426,7 +426,7 @@ void ConversationPanel::Exit()
 		bool overrideCapture = false;
 		if(!ship->IsCapturable())
 			for(const Mission &mission : player.Missions())
-				if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship)
+				if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
 				{
 					overrideCapture = true;
 					break;
