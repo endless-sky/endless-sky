@@ -2768,13 +2768,6 @@ const Planet *Ship::GetPlanet() const
 
 
 
-void Ship::SetCapturable(bool capturable)
-{
-	isCapturable = capturable;
-}
-
-
-
 bool Ship::IsCapturable() const
 {
 	return isCapturable;

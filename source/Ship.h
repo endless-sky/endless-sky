@@ -232,8 +232,6 @@ public:
 	// If the ship is landed, get the planet it has landed on.
 	const Planet *GetPlanet() const;
 
-	void SetCapturable(bool capturable = true);
-
 	// Check the status of this ship.
 	bool IsCapturable() const;
 	bool IsTargetable() const;
