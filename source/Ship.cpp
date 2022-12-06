@@ -189,6 +189,24 @@ namespace {
 		double scale = maxEnergy * 220.;
 		return ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
 	}
+
+	void AddAfterburner(std::vector<AfterburnerUsage> afterburnerUsages, const Outfit *outfit, int count)
+	{
+		if(!outfit || !count)
+			return;
+
+		if(count > 0)
+			for(unsigned i = count; i > 0; i--)
+				afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
+		else if(count < 0)
+			for(unsigned i = -count; i > 0; i--)
+				for(auto it = afterburnerUsages.begin(); it != afterburnerUsages.end(); )
+					if(it->Afterburner() == outfit)
+					{
+						afterburnerUsages.erase(it);
+						break;
+					}
+	}
 }
 
 
@@ -673,11 +691,14 @@ void Ship::FinishLoading(bool isNewInstance)
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
+
+		// Add afterburners to the afterburner usage vector.
+		if(it.first->HasAfterburner())
+			AddAfterburner(afterburnerUsages, *it.first, it.second);
+
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
 		// yet installed to the ship's armament.
-		if(it.first->HasAfterburner())
-			afterburnerUsages.emplace_back(*it.first);
 		if(it.first->IsWeapon())
 		{
 			int count = it.second;
@@ -3831,17 +3852,8 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				deterrence = CalculateDeterrence();
 		}
-		if(outfit->HasAfterburner() && count > 0)
-			for(unsigned i = count; i > 0; i--)
-				afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
-		else if(outfit->HasAfterburner() && count < 0)
-			for(unsigned i = -count; i > 0; i--)
-				for(auto it = afterburnerUsages.begin(); it != afterburnerUsages.end(); )
-					if(it->Afterburner() == outfit)
-					{
-						afterburnerUsages.erase(it);
-						break;
-					}
+		if(outfit->HasAfterburner())
+			AddAfterburner(afterburnerUsages, outfit, count);
 
 		if(outfit->Get("cargo space"))
 		{
