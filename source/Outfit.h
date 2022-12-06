@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dictionary.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>

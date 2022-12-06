@@ -284,7 +284,7 @@ void Outfit::Load(const DataNode &node)
 		{
 			if(child.Size() >= 2)
 				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
-					tags.push_back(*it);
+					tags.insert(*it);
 		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
