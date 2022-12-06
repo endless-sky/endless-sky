@@ -1,0 +1,16 @@
+test "Hyperjumps To Autocondition"
+	status active
+	description `Test the "hyperjumps to: <planet|system>" autoconditions.`
+	sequence
+		inject "Three Earthly Barges"
+		call "Load First Savegame"
+		assert
+			"hyperjumps to planet: Earth" == 0
+			"hyperjumps to planet: Luna" == 0
+			"hyperjumps to system: Sol" == 0
+			"hyperjumps to system: Vega" == 1
+			"hyperjumps to system: Sol Saryd" == -1
+			"hyperjumps to planet: Spera Anatrusk" == -1
+			"hyperjumps to system: Waypoint" == -1
+			"hyperjumps to system: Alnitak" == 11
+			"hyperjumps to planet: Farpoint" == 11
