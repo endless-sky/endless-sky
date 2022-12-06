@@ -1813,6 +1813,11 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 	if(ship->IsCapturable())
 		return false;
 	const Mission *mission = boardingMissions.empty() ? nullptr : &boardingMissions.back();
+	// Allow trying to board the ship again once it's been allowed once.
+	if(!mission)
+		for(const Mission &mission : Missions())
+			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
+				return true;
 	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
 }
 
