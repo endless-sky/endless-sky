@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-AfterburnerUsage::AfterburnerUsage(Outfit &outfit) :
-	afterburner(outfit), baseDuration(outfit.Attributes().Get("afterburner duration")),
+AfterburnerUsage::AfterburnerUsage(const Outfit &outfit) :
+	afterburner(&outfit), baseDuration(outfit.Attributes().Get("afterburner duration")),
 	baseCooldown(outfit.Attributes().Get("afterburner cooldown"))
 {}
 

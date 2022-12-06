@@ -198,7 +198,7 @@ namespace {
 
 		if(count > 0)
 			for(unsigned i = count; i > 0; i--)
-				afterburnerUsages.emplace_back(AfterburnerUsage(const_cast<Outfit &>(*outfit)));
+				afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
 		else if(count < 0)
 			for(unsigned i = -count; i > 0; i--)
 				for(const auto it = afterburnerUsages.begin(); it != afterburnerUsages.end(); )

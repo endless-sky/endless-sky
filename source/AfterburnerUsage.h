@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class AfterburnerUsage {
 public:
 	// Constructor
-	AfterburnerUsage(Outfit &outfit);
+	AfterburnerUsage(const Outfit &outfit);
 
 	bool CanUseAfterburner() const;
 	// Refresh the afterburner, used if for specifying if we want to use it or not.
@@ -33,7 +33,7 @@ public:
 
 
 private:
-	Outfit &afterburner;
+	const Outfit *afterburner = nullptr;
 	// Store the duration and cooldown locally so we don't always look for it in the dictionary.
 	double baseDuration;
 	double baseCooldown;
