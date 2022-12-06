@@ -3162,7 +3162,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
 		if(!planet)
 		{
-			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: ")) + "\" referred to in condition is not valid.");
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not valid.");
 			return -1;
 		}
 		if(!system)
