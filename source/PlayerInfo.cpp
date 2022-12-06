@@ -3129,6 +3129,43 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
+	// Read-only navigation conditions.
+	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
+	auto hyperjumpsToSystemFun = [this](const string &name) -> int
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
+		if(!system)
+		{
+			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: ")) + "\" referred to in condition is not valid.");
+			return -1;
+		}
+		auto distanceMap = DistanceMap(this->GetSystem());
+		return distanceMap.Days(system);
+	};
+	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
+	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
+
+	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
+	auto hyperjumpsToPlanetFun = [this](const string &name) -> int
+	{
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
+		if(!planet)
+		{
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: ")) + "\" referred to in condition is not valid.");
+			return -1;
+		}
+		const System *system = planet->GetSystem();
+		if(!system)
+		{
+			Logger::LogError("Warning: Planet \"" + planet->Name() + "\" referred to in condition has no system.");
+			return -1;
+		}
+		auto distanceMap = DistanceMap(this->GetSystem());
+		return distanceMap.Days(system);
+	};
+	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
+	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
+
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
