@@ -423,6 +423,14 @@ void ConversationPanel::Exit()
 		player.Die(node, ship);
 	else if(ship)
 	{
+		bool overrideCapture = false;
+		for(const Mission &mission : player.Missions())
+			if(mission.OverridesCapture() && !mission.IsFailed())
+			{
+				overrideCapture = true;
+				break;
+			}
+
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
 		if(Conversation::RequiresLaunch(node))
 			ship->Destroy();
@@ -432,7 +440,7 @@ void ConversationPanel::Exit()
 		else if(node != Conversation::ACCEPT && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
-			GetUI()->Push(new BoardingPanel(player, ship));
+			GetUI()->Push(new BoardingPanel(player, ship, overrideCapture));
 	}
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.
