@@ -281,7 +281,8 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
+	const shared_ptr<Ship> &ship,const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation->IsEmpty() && ui)

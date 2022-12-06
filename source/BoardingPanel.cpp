@@ -108,13 +108,14 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	}
 
 	bool overrideCapture = false;
-	for(const Mission &mission : player.Missions())
-		if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == victim.get())
-		{
-			overrideCapture = true;
-			break;
-		}
-	canCapture = overrideCapture || victim->IsCapturable();
+	if(!victim->IsCapturable)
+		for(const Mission &mission : player.Missions())
+			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == victim.get())
+			{
+				overrideCapture = true;
+				break;
+			}
+	canCapture = victim->IsCapturable() || overrideCapture;
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
