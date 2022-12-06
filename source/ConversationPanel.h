@@ -144,7 +144,7 @@ private:
 	bool isHovering = false;
 	Point hoverPoint;
 
-	const bool overridesCapture = false;
+	const bool overrideCapture = false;
 };
 
 
