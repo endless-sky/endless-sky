@@ -131,9 +131,9 @@ test "Capture Uncapturable With Capturable Override"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
 		apply
 			"test: reputation: Quarg" = "reputation: Quarg"
-			"test: %TEST%: Wardragon Scanning You!: offered" = "%TEST%: Wardragon Scanning You!: offered"
 			"test: %TEST%: Capture That Quarg!: offered" = "%TEST%: Capture That Quarg!: offered"
-			"test: %TEST%: Wardragon Scanning You!: failed" = "%TEST%: Wardragon Scanning You!: failed"
+			"test: %TEST%: Capture That Quarg!: declined" = "%TEST%: Capture That Quarg!: declined"
 			"test: ship model: %TEST%: outfitless wardragon" = "ship model: %TEST%: outfitless wardragon"
+			"test: total ships" = "total ships"
 		assert
-			"ship model: %TEST%: outfitless wardragon"== 1
+			"ship model: %TEST%: outfitless wardragon" == 1
