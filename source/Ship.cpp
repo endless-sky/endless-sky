@@ -3836,10 +3836,10 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 				afterburnerUsages.emplace_back(AfterburnerUsage(*outfit));
 		else if(outfit->HasAfterburner() && count < 0)
 			for(unsigned i = -count; i > 0; i--)
-				for(const auto &afterburner : afterburnerUsages)
-					if(&afterburner.Afterburner() == outfit)
+				for(auto it = afterburnerUsages.begin(); it != afterburnerUsages.end(); )
+					if(it.Afterburner() == outfit)
 					{
-						afterburnerUsages.erase(afterburner);
+						afterburnerUsages.erase(it);
 						break;
 					}
 
