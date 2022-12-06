@@ -2715,6 +2715,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&daysUntilYearEndProvider = conditions.GetProviderNamed("days until year end");
 	daysUntilYearEndProvider.SetGetFunction([this](const string &name) { return date.DaysUntilYearEnd(); });
 
+	auto &&daysSinceEpochProvider = conditions.GetProviderNamed("days since epoch");
+	daysSinceEpochProvider.SetGetFunction([this](const string &name) { return date.DaysSinceEpoch(); });
+
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
