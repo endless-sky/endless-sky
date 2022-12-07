@@ -2864,7 +2864,7 @@ bool AI::TargetInRange(const Ship &ship, const Hardpoint &hardpoint)
 		return false;
 
 	Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
-	double distance = start.Distance(target.Position());
+	double distance = start.Distance(target->Position());
 	// Extend the weapon range slightly to account for velocity differences.
 	double maxRange = 1.5 * hardpoint.GetOutfit()->Range();
 
