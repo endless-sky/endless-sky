@@ -29039,7 +29039,7 @@ planet "Dwelling of Speloog"
 
 planet Earth
 	attributes "near earth" tourism urban
-	landscape land/city19
+	landscape land/city20
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
 	spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
@@ -31556,7 +31556,7 @@ planet Snowfeather
 
 planet Solace
 	attributes factory frontier south urban
-	landscape land/valley6
+	landscape land/city23
 	description `Solace is a fertile world that was already home to Earth-like vegetation and animals even before the first settlers arrived. It has now been inhabited for nearly half a millennium, and sprawling cities cover much of its surface.`
 	description `	In addition to being one of the major metropolitan centers of the galactic South, Solace is best known as the home of Delta V Corporation, makers of plasma engines and rockets of various sorts.`
 	spaceport `Solace's spaceport is located in a satellite town of one of its major cities. Surrounding the spaceport is an extensive industrial park that stretches out for some distance, until the warehouses and factories abruptly give way to valleys and farmlands.` 
