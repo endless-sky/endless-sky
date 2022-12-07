@@ -2796,6 +2796,61 @@ phrase "friendly pirate"
 
 phrase "friendly pirate"
 	word
+		"You wanna join us%"
+		"You want to come with us%"
+		"Join us"
+		"Come with us"
+		"Come join us"
+		"Go with us"
+		"Let's go"
+		"We're going"
+		"I'm going"
+		"I'm about to go"
+	word
+		" on a raid "
+		" on an assault "
+		" on a plunder "
+	word
+		"against our rivals"
+		"on the spaceport"
+		"on the shipyard"
+		"on the outfitter"
+		"on the refuelling depot"
+		"on the weapons depot"
+		"against a rival cell"
+		"against a rival gang"
+		"against another cell"
+		"against another gang"
+		"against another band"
+		"on those numbskulls"
+		"on the Man"
+		"on the Law"
+		"on our friends"
+	word
+		" at "
+		" in "
+	phrase
+		"north pirate target"
+		"south pirate target"
+		"core pirate target"
+	word
+		"! "
+	word
+		"We're gonna "
+	word
+		"become super rich!"
+		"crawling with cash!"
+		"crawling with credits!"
+		"be the top gang!"
+		"have so many ships!"
+		"dominate them!"
+		"obliterate them!"
+	replace
+		"%!" "?"
+		"%" ""
+
+phrase "friendly pirate"
+	word
 		"" 2
 		"Heh heh heh, "
 		"Ha ha ha, "
