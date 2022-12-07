@@ -2858,7 +2858,9 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 bool AI::TargetInRange(const Ship &ship, const Hardpoint &hardpoint)
 {
-	shared_ptr<const Body> target = ship.GetTargetShip() ?: ship.GetTargetAsteroid();
+	shared_ptr<const Body> shipTarget = ship.GetTargetShip();
+	shared_ptr<const Body> targetAsteroid = ship.GetTargetAsteroid();
+	shared_ptr<const Body> target = shipTarget ?: targetAsteroid;
 
 	if(!target)
 		return false;
