@@ -2825,9 +2825,9 @@ phrase "pirate plans attack on planet"
 		
 phrase "pirate plans attack on ships"
 	word
-		" on a raid "
-		" on an assault "
-		" on a plunder "
+		" on a raid against "
+		" on an assault against "
+		" on a plunder against "
 		" raiding "
 		" plundering "
 		" assaulting "
@@ -2850,6 +2850,7 @@ phrase "pirate plans attack on ships"
 		"the Law"
 		"some of our friends"
 	word
+		"" 2
 		" in the next system"
 		" a couple systems away"
 		" a jump away"
