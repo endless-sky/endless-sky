@@ -335,26 +335,46 @@ mission "Hai Reveal [C05] Cleanup"
 			`	She gives you a hard stare, but her resolve isn't up to the task for more than a couple seconds. She looks away, and you can see her blinking away more tears. "Is this to be my end, then?" she asks. "Is this the price I pay for my efforts?"`
 			label decide
 			choice
+				# First option is to ask for clarification:
 				`	"Am I to be judge, jury, and executioner?"`
 					goto judge
 					to display
 						not "Hai Reveal [C05] Cleanup: label judge"
+
+				# Next two are the silent endings, which are available regardless:
+				`	(Spare her silently.)`
+					goto spare
+				`	(End her wordlessly.)`
+					goto end
+
+				# Justifications are only available after asking for clarification:
 				`	(Spare her.) "There is no other home for you now. Let that be your justice."`
 					goto spare
+					to display
+						has "Hai Reveal [C05] Cleanup: label judge"
 				`	(End her.) "Justice is the price you pay."`
 					goto end
+					to display
+						has "Hai Reveal [C05] Cleanup: label judge"
 				`	(Spare her.) "I've sinned more than you. If people like us decided what is right or wrong, the galaxy would be in cinders."`
 					goto spare
+					to display
+						has "Hai Reveal [C05] Cleanup: label judge"
+
+				# The callous option is available regardless, but it's after the "I thought about it" options:
 				`	(End her.) "This is for all the trouble you've caused me, personally."`
 					goto end
+
+				# Joke options are only available if you don't care enough to ask for clarification:
 				`	(Spare her.) "Consider this my movie review."`
 					goto spare
 					to display
-						has "Hai Reveal [C05] Cleanup: label judge"
+						not "Hai Reveal [C05] Cleanup: label judge"
 				`	(End her.) "Consider this my movie review."`
 					goto end
 					to display
-						has "Hai Reveal [C05] Cleanup: label judge"
+						not "Hai Reveal [C05] Cleanup: label judge"
+
 			label spare
 			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you cannot bring yourself to be her executioner.`
 			action
