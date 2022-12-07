@@ -123,7 +123,7 @@ mission "Hai Reveal [C02] Cleanup"
 					goto kidnappers
 					to display
 						not "Hai Reveal [C02] Cleanup: label kidnappers"
-				`	"Well, lets get you home before anything else happens."`
+				`	"Well, let's get you home before anything else happens."`
 					goto depart
 			label revealed
 			action
@@ -376,7 +376,7 @@ mission "Hai Reveal [C05] Cleanup"
 						not "Hai Reveal [C05] Cleanup: label judge"
 
 			label spare
-			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself though, you cannot bring yourself to be her executioner.`
+			`	You draw your weapon and point it at her, your thumb on the safety. When you look inside yourself, though, you cannot bring yourself to be her executioner.`
 			action
 				set "spared terry"
 				log `Hunted down Terry on Aspiration and confronted her about the events that led you there. The remnants of the anarcho-syndicalist, anti-Syndicate organization called Base Principles were associated with this planet. There are no other actual individuals here that were involved (at least, not anymore), but this community was built in isolation with people who believed in the principles of anarcho-syndicalism. Allowed her to live, but nevertheless this loose end is thoroughly tied up.`
