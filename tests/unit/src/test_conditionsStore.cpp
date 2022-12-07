@@ -712,35 +712,17 @@ SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMult
 		WHEN( "adding a prefixed provider that is in the subset of the prefixed provider" )
 		{
 			auto mockProvPrefixShipsA = MockConditionsProvider();
-			mockProvPrefixShipsA.SetRWPrefixProvider(store, "ships: A:");
-			store["ships: A: something"] = 40;
-			THEN( "only the initial provider is used" )
-			{
-				REQUIRE( mockProvPrefixShipsA.values["ships: A: something"] == 0 );
-				REQUIRE( mockProvPrefixShips.values["ships: A: something"] == 40 );
-			}
+			CHECK_THROWS( mockProvPrefixShipsA.SetRWPrefixProvider(store, "ships: A:") );
 		}
 		WHEN( "adding a named provider that is in the subset of the prefixed provider" )
 		{
 			auto mockProvPrefixShipsA = MockConditionsProvider();
-			mockProvPrefixShipsA.SetRWNamedProvider(store, "ships: A:");
-			store["ships: A: something"] = 40;
-			THEN( "only the initial provider is used" )
-			{
-				REQUIRE( mockProvPrefixShipsA.values["ships: A: something"] == 0 );
-				REQUIRE( mockProvPrefixShips.values["ships: A: something"] == 40 );
-			}
+			CHECK_THROWS( mockProvPrefixShipsA.SetRWNamedProvider(store, "ships: A:") );
 		}
 		WHEN( "adding a prefixed provider that is in the superset of the prefixed provider" )
 		{
 			auto mockProvPrefixShi = MockConditionsProvider();
-			mockProvPrefixShi.SetRWPrefixProvider(store, "shi");
-			store["ships: A: something"] = 40;
-			THEN( "only the superset provider is used" )
-			{
-				REQUIRE( mockProvPrefixShi.values["ships: A: something"] == 40 );
-				REQUIRE( mockProvPrefixShips.values["ships: A: something"] == 0 );
-			}
+			CHECK_THROWS( mockProvPrefixShi.SetRWPrefixProvider(store, "shi") );
 		}
 	}
 	GIVEN( "A pre-existing condition in a store" )
@@ -750,19 +732,11 @@ SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMult
 		WHEN(" a prefixed provider gets added which has the condition in range")
 		{
 			auto mockProvPrefixShips = MockConditionsProvider();
-			mockProvPrefixShips.SetRWPrefixProvider(store, "ships: ");
-			THEN( "The condition is lost/removed" )
-			{
-				REQUIRE( store["ships: A"] == 0 );
-				REQUIRE( mockProvPrefixShips.values["ships: A"] == 0);
-			}
+			CHECK_THROWS( mockProvPrefixShips.SetRWPrefixProvider(store, "ships: ") );
 			THEN( "Adding a sub-prefix-condition should not be possible")
 			{
 				auto mockProvPrefixShipsLarge = MockConditionsProvider();
-				mockProvPrefixShipsLarge.SetRWPrefixProvider(store, "ships: Large: ");
-				store["ships: Large: very"] = 10;
-				REQUIRE( mockProvPrefixShipsLarge.values["ships: Large: very"] == 0 );
-				REQUIRE( mockProvPrefixShips.values["ships: Large: very"] == 10 );
+				CHECK_THROWS( mockProvPrefixShipsLarge.SetRWPrefixProvider(store, "ships: Large: ") );
 			}
 		}
 	}
