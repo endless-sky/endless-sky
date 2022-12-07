@@ -17,6 +17,7 @@ mission "Graveyard Label"
 	source
 		attributes ka'het
 	on offer
+		set "global: First Contact: Ka'het"
 		event "graveyard label"
 		fail
 
@@ -65,7 +66,6 @@ mission "First Contact: Ka'het: Remnant 1A"
 		has "remnant: blood test pure"
 		not "First Contact: Ka'het: Remnant 1B: offered"
 	on offer
-		set "global: First Contact: Ka'het"
 		conversation "ka'het: remnant"
 
 mission "First Contact: Ka'het: Remnant 2A"
@@ -81,7 +81,6 @@ mission "First Contact: Ka'het: Remnant 2A"
 		not "remnant met taely"
 		not "First Contact: Ka'het: Remnant 1B: offered"
 	on offer
-		set "global: First Contact: Ka'het"
 		conversation "ka'het: remnant"
 
 mission "First Contact: Ka'het: Remnant 1B"
@@ -95,7 +94,6 @@ mission "First Contact: Ka'het: Remnant 1B"
 			has "Ringworld Debris: Quarg: offered"
 		has "remnant met taely"
 	on offer
-		set "global: First Contact: Ka'het"
 		conversation
 			`Do you want to ask Taely about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
 			choice
