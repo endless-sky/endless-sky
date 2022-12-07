@@ -1559,7 +1559,7 @@ mission "Cargo [5]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1638,7 +1638,7 @@ mission "Bulk Delivery [3]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1744,7 +1744,7 @@ mission "Rush Delivery [4]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1860,7 +1860,7 @@ mission "Passengers [5]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 0 3
+		distance 1 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
