@@ -2794,6 +2794,40 @@ phrase "friendly pirate"
 	word
 		"."
 
+phrase "friendly pirate"
+	word
+		"You wanna join us%"
+		"You want to come with us%"
+		"Join us"
+		"Come with us"
+		"Come join us"
+		"Go with us"
+		"Let's go"
+		"We're going"
+		"We're about to go"
+	phrase
+		"pirate plans attack on planet"
+		"pirate plans attack on ships"
+	word
+		"! "
+	word
+		"We're gonna "
+		"We'll "
+	word
+		"become super rich!"
+		"be jumping in the cash!"
+		"be crawling with credits!"
+		"be swimming in money!"
+		"be the top gang!"
+		"be the apex gang!"
+		"have so many ships!"
+		"dominate them!"
+		"obliterate them!"
+		"walk away with so much tribute!"
+	replace
+		"%! " "? "
+		"%" ""
+
 phrase "pirate plans attack on planet"
 	word
 		" on our raid on "
@@ -2875,40 +2909,6 @@ phrase "pirate plans attack on ships"
 
 phrase "friendly pirate"
 	word
-		"You wanna join us%"
-		"You want to come with us%"
-		"Join us"
-		"Come with us"
-		"Come join us"
-		"Go with us"
-		"Let's go"
-		"We're going"
-		"We're about to go"
-	phrase
-		"pirate plans attack on planet"
-		"pirate plans attack on ships"
-	word
-		"! "
-	word
-		"We're gonna "
-		"We'll "
-	word
-		"become super rich!"
-		"be jumping in the cash!"
-		"be crawling with credits!"
-		"be swimming in money!"
-		"be the top gang!"
-		"be the apex gang!"
-		"have so many ships!"
-		"dominate them!"
-		"obliterate them!"
-		"walk away with so much tribute!"
-	replace
-		"%! " "? "
-		"%" ""
-
-phrase "friendly pirate"
-	word
 		"Heh heh heh,"
 		"Ha ha ha,"
 		"Ho ho ho,"
@@ -2964,62 +2964,6 @@ phrase "friendly pirate"
 	phrase
 		"pirate big raid 1"
 		"pirate big raid 2"
-
-phrase "north pirate target"
-	word
-		"Farpoint"
-		"Shroud"
-		"Sunracer"
-		"Prime"
-		"Follower"
-		"Freedom"
-		"Haze"
-		"Memory"
-		"Stormhold"
-		"Haven"
-		"Zenith"
-# A few pirates make it up as far north as Asgard, and they have ships like Corvettes and Aeries which they must get from the Deep by raiding or capture. The pirate planets are there because of pirate band infighting. 
-
-phrase "core pirate target"
-	word
-		"Maker"
-		"Moonshake"
-		"Hephaesteus"
-		"Shangri-La"
-		"Foundry"
-		"Delve"
-		"Sundive"
-		"Nimbus"
-		"Lodestone"
-		"Crossroads"
-		"Stormhold"
-
-phrase "south pirate target"
-	word
-		"Glaze"
-		"Solace"
-		"Longjump"
-		"Zug"
-		"Deep"
-		"Wayfarer"
-		"New Britain"
-		"Rand"
-		"Skymoot"
-		"Starcross"
-		"New Argentina"
-		"New Tibet"
-		"New Holland"
-		"Heartland"
-		"Gemstone"
-		"Clark"
-		"Bounty"
-		"New Kansas"
-		"Thule"
-		"Smugglers' Den"
-		"Albatross"
-		"Bloodsea"
-		"Greenrock"
-# Pirate planets are there because of pirate infighting.
 
 phrase "pirate big raid 1"
 	word
@@ -3180,6 +3124,62 @@ phrase	"pirate big raid 2"
 		". I'm not one to joke"
 	word
 		"!"
+
+phrase "north pirate target"
+	word
+		"Farpoint"
+		"Shroud"
+		"Sunracer"
+		"Prime"
+		"Follower"
+		"Freedom"
+		"Haze"
+		"Memory"
+		"Stormhold"
+		"Haven"
+		"Zenith"
+# A few pirates make it up as far north as Asgard, and they have ships like Corvettes and Aeries which they must get from the Deep by raiding or capture. The pirate planets are there because of pirate band infighting. 
+
+phrase "core pirate target"
+	word
+		"Maker"
+		"Moonshake"
+		"Hephaesteus"
+		"Shangri-La"
+		"Foundry"
+		"Delve"
+		"Sundive"
+		"Nimbus"
+		"Lodestone"
+		"Crossroads"
+		"Stormhold"
+
+phrase "south pirate target"
+	word
+		"Glaze"
+		"Solace"
+		"Longjump"
+		"Zug"
+		"Deep"
+		"Wayfarer"
+		"New Britain"
+		"Rand"
+		"Skymoot"
+		"Starcross"
+		"New Argentina"
+		"New Tibet"
+		"New Holland"
+		"Heartland"
+		"Gemstone"
+		"Clark"
+		"Bounty"
+		"New Kansas"
+		"Thule"
+		"Smugglers' Den"
+		"Albatross"
+		"Bloodsea"
+		"Greenrock"
+# Pirate planets are there because of pirate infighting.
 
 phrase "friendly pirate"
 	word
