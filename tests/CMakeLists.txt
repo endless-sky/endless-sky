@@ -49,6 +49,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
 	integration/config/plugins/integration-tests/data/tests/tests_ship_sale.txt
+	integration/config/plugins/integration-tests/data/tests/tests_shipyard_outfitter_missions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_store_outfits_on_take_off.txt
 	integration/config/plugins/integration-tests/data/tests/tests_wormhole_navigation.txt
 )
