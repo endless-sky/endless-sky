@@ -233,7 +233,7 @@ mission "Incipias: First Contact V"
 			label c1
 			`    Some basic information about the spacestation is send to your display and the communication channel gets closed.`
 			action
-				"reputiation: Hicemus" = 1
+				"reputation: Hicemus" = 1
 				"reputation: Incipias" = 1
 
 mission "Incipias: First Contact VI"
