@@ -537,3 +537,107 @@ jobs:
     - name: Execute style checker
       run: python ./utils/check_code_style.py
 
+
+  # CI runs to test the CMake build system.
+
+  build_ubuntu_cmake:
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+    - name: Install development dependencies
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt update
+        sudo apt install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v10
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'linux-ci'
+        buildPreset: 'linux-ci'
+        testPreset: 'linux-ci'
+    - name: Run Benchmarks
+      run: ctest --preset linux-ci-benchmark
+    - name: Prevent saving cache on failure
+      run: |
+        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+      if: ${{ failure() || cancelled() }}
+      shell: bash
+
+
+  build_windows_cmake:
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v10
+      with:
+        prependedCacheKey: mingw-x64
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'mingw-ci'
+        buildPreset: 'mingw-ci'
+        testPreset: 'mingw-ci'
+    - name: Run Benchmarks
+      run: ctest --preset mingw-ci-benchmark
+    - name: Prevent saving cache on failure
+      run: |
+        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+      if: ${{ failure() || cancelled() }}
+      shell: bash
+
+  build_macos_cmake:
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v10
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'macos-ci'
+        buildPreset: 'macos-ci'
+        testPreset: 'macos-ci'
+    - name: Run Benchmarks
+      run: ctest --preset macos-ci-benchmark
+    - name: Prevent saving cache on failure
+      run: |
+        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+      if: ${{ failure() || cancelled() }}
+      shell: bash
+
+  build_windows_clang_cmake:
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v10
+      with:
+        prependedCacheKey: vs-x64
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'clang-cl-ci'
+        buildPreset: 'clang-cl-ci'
+        testPreset: 'clang-cl-ci'
+    - name: Run Benchmarks
+      run: ctest --preset clang-cl-ci-benchmark
+    - name: Prevent saving cache on failure
+      run: |
+        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+      if: ${{ failure() || cancelled() }}
+      shell: bash
