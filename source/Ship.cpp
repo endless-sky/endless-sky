@@ -789,6 +789,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Calculate the values used to determine this ship's value and danger.
 	attraction = CalculateAttraction();
 	deterrence = CalculateDeterrence();
+	// Calculate the speed at which we will land.
+	CalculateLandingSpeed();
 
 	if(!warning.empty())
 	{
@@ -3867,6 +3869,8 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				deterrence = CalculateDeterrence();
 		}
+		if(outfit->Get("landing speed") && planet)
+			CalculateLandingSpeed();
 
 		if(outfit->Get("cargo space"))
 		{
