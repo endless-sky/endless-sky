@@ -12,10 +12,10 @@ test-data "quarg rescue"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
-				drag .1
+				drag 2.1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -25,8 +25,8 @@ test-data "quarg rescue"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 500
-				"turn" 10000
+				"thrust" 25
+				"turn" 250
 				"energy generation" 10
 			outfits
 				Hyperdrive
@@ -64,10 +64,10 @@ test-data "quarg scanning"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
-				drag .1
+				drag 2.1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -77,8 +77,8 @@ test-data "quarg scanning"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 500
-				"turn" 10000
+				"thrust" 25
+				"turn" 250
 				"energy generation" 10
 			outfits
 				Hyperdrive
@@ -127,10 +127,10 @@ test-data "quarg atrocity"
 			attributes
 				category "Light Freighter"
 				cost 190000
-				mass 1
+				mass 70
 				bunks 3
 				"cargo space" 50
-				drag .1
+				drag 2.1
 				"engine capacity" 40
 				"fuel capacity" 300
 				"heat dissipation" 0.8
@@ -140,8 +140,8 @@ test-data "quarg atrocity"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 500
-				"turn" 10000
+				"thrust" 25
+				"turn" 250
 				"energy generation" 10
 			outfits
 				Hyperdrive
