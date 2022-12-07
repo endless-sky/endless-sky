@@ -153,7 +153,7 @@ mission "wanderer peace prove"
 	on complete
 		conversation
 			`    After you arrived at Vara K'chrai, you directly head to the embassy excited what the Wanderers will give you. At the embassy you show the small card the Wanderer gave you and a woman guides you to a separate room, where three Wanderer are standing around a table. On the table is a small plant in a pot. But you have never seen a plant like this before on any Wanderer world. One of the three begins to talk. "This plant on the table there is our gift to you. It is a genmanipulated tree, that will survive under mostly any circumstances, it is something our species is specialized on and it will show our friendship in a very unique way. We hope you like it." Surprised by this unusual gift you thank the wanderers. "It needs nearly no water, so you do not have to care a lot about it, it survives on spaceship so you can take it with you anywhere." You again say thanks to them and then you leave.`
-			`    You now have a prove of the Wanderers friendship. You can show it to the Hai now.`
+			`    You now have a proof of the Wanderers friendship. You can show it to the Hai now.`
 
 
 mission "coalition peace prove"
