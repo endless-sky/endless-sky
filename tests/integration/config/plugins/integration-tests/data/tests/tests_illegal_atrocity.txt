@@ -25,7 +25,7 @@ test-data "quarg rescue"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 25
+				"thrust" 100
 				"turn" 250
 				"energy generation" 10
 			outfits
@@ -77,7 +77,7 @@ test-data "quarg scanning"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 25
+				"thrust" 100
 				"turn" 250
 				"energy generation" 10
 			outfits
@@ -140,7 +140,7 @@ test-data "quarg atrocity"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 25
+				"thrust" 100
 				"turn" 250
 				"energy generation" 10
 			outfits
