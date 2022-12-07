@@ -2860,7 +2860,7 @@ bool AI::TargetInRange(const Ship &ship, const Hardpoint &hardpoint)
 {
 	shared_ptr<const Body> shipTarget = ship.GetTargetShip();
 	shared_ptr<const Body> targetAsteroid = ship.GetTargetAsteroid();
-	shared_ptr<const Body> target = shipTarget ?: targetAsteroid;
+	shared_ptr<const Body> target = shipTarget ? shipTarget : targetAsteroid;
 
 	if(!target)
 		return false;
