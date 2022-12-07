@@ -153,10 +153,11 @@ mission "Remnant: Lost in Ember Waste: Trigger"
 	to offer
 		has "remnant: blood test pure"
 		not "license: Remnant"
+		not "outfit: Quantum Keystone"
+		not "outfit: Quantum Key Stone"
+		not "outfit: Jump Drive"
+		not "outfit: Shield Beetle Pendant"
 	on offer
-		require "Quantum Keystone" 0
-		require "Quantum Key Stone" 0
-		require "Jump Drive" 0
 		event "remnant: lost in ember waste" 14
 		fail
 
@@ -170,10 +171,11 @@ mission "Remnant: Lost in Ember Waste"
 	to offer
 		has "event: remnant: lost in ember waste"
 		not "license: Remnant"
+		not "outfit: Quantum Keystone"
+		not "outfit: Quantum Key Stone"
+		not "outfit: Jump Drive"
+		not "outfit: Shield Beetle Pendant"
 	on offer
-		require "Quantum Keystone" 0
-		require "Quantum Key Stone" 0
-		require "Jump Drive" 0
 		outfit "Quantum Key Stone" 1
 		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
 		conversation
@@ -473,6 +475,7 @@ mission "Remnant: Key Stones (Pre-Hai) 1"
 	description "The manager of the outfitter on <planet> is interested in finding alternative sources of Key Stones. The Remnant have explored the entire Ember Waste, so you will need to search elsewhere for these stones."
 	source "Viminal"
 	to offer
+		not "outfit: Quantum Keystone"
 		not "Remnant: Key Stones (Hai): offered"
 		not "Remnant: Key Stones: offered"
 		not "First Contact: Hai: offered"
@@ -480,7 +483,6 @@ mission "Remnant: Key Stones (Pre-Hai) 1"
 			has "event: remnant: void sprite research"
 			has "Remnant: Defense 3: done"
 	on offer
-		require "Quantum Keystone" 0
 		conversation "remnant key stones"
 		
 	to complete
@@ -529,6 +531,7 @@ mission "Remnant: Key Stones (Hai)"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
+		not "outfit: Quantum Keystone"
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones: offered"
 		has "First Contact: Hai: offered"
@@ -536,7 +539,6 @@ mission "Remnant: Key Stones (Hai)"
 			has "event: remnant: void sprite research"
 			has "Remnant: Defense 3: done"
 	on offer
-		require "Quantum Keystone" 0
 		conversation "remnant key stones"
 			
 	on visit
@@ -553,11 +555,11 @@ mission "Remnant: Key Stones"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
+		has "outfit: Quantum Keystone"
 		has "remnant: blood test pure"
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones (Hai): offered"
 	on offer
-		require "Quantum Keystone"
 		conversation
 			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
 			choice
@@ -1689,7 +1691,7 @@ mission "Remnant: Deep Surveillance"
 
 mission "Remnant: Tech Retrieval"
 	name "Remnant Human Tech Retrieval"
-	description "The Remnant are interested in learning what advances humanity has made over the past centuries. Bring them samples of advanced technology."
+	description "The Remnant are interested in learning what advances humanity has made over the past centuries. Bring them samples of advanced technology, such as newly developed ramscoops, weapons, or shields."
 	source "Viminal"
 	to offer
 		has "Remnant: Technology Available: offered"
