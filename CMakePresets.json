@@ -451,11 +451,27 @@
       },
       "filter": {
         "include": {
-          "label": "integration"
+          "label": "integration$"
         }
       },
       "execution": {
         "timeout": 120
+      }
+    },
+    {
+      "name": "integration-debug",
+      "hidden": true,
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "integration-debug"
+        }
+      },
+      "execution": {
+        "timeout": 360
       }
     },
     {
@@ -529,6 +545,12 @@
       "inherits": "integration"
     },
     {
+      "name": "linux-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "linux-gles-test",
       "displayName": "Tests",
       "configurePreset": "linux-gles",
@@ -545,6 +567,12 @@
       "displayName": "Integration Tests",
       "configurePreset": "linux-gles",
       "inherits": "integration"
+    },
+    {
+      "name": "linux-gles-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux-gles",
+      "inherits": "integration-debug"
     },
     {
       "name": "macos-test",
