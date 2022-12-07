@@ -28,6 +28,7 @@ test-data "quarg rescue"
 				"thrust" 50
 				"turn" 1000
 				"energy generation" 10
+				"landing speed" 100
 			outfits
 				Hyperdrive
 			crew 1
@@ -120,6 +121,7 @@ test-data "quarg scanning"
 				"thrust" 50
 				"turn" 1000
 				"energy generation" 10
+				"landing speed" 100
 			outfits
 				Hyperdrive
 				"Nerve Gas"
@@ -223,6 +225,7 @@ test-data "quarg atrocity"
 				"thrust" 50
 				"turn" 1000
 				"energy generation" 10
+				"landing speed" 100
 			outfits
 				Hyperdrive
 			crew 1

@@ -31,6 +31,7 @@ test-data "Three Earthly Barges"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -70,6 +71,7 @@ test-data "Three Earthly Barges"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -109,6 +111,7 @@ test-data "Three Earthly Barges"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -176,6 +179,7 @@ test-data "Fighters and Carriers and Escorts"
 				"required crew" 1
 				shields 1100
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"Emergency Ramscoop"
 				Flamethrower
@@ -227,6 +231,7 @@ test-data "Fighters and Carriers and Escorts"
 				"required crew" 1
 				shields 1100
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"Emergency Ramscoop"
 				"Fuel Pod"
@@ -283,6 +288,7 @@ test-data "Fighters and Carriers and Escorts"
 				shields 17500
 				"turret mounts" 6
 				"weapon capacity" 3000
+				"landing speed" 100
 			outfits
 				"Antimatter Core"
 				"Hai Tracker" 112
@@ -367,6 +373,7 @@ test-data "Fighters and Carriers and Escorts"
 				"outfit space" 3900
 				"weapon capacity" 1500
 				"engine capacity" 950
+				"landing speed" 100
 				weapon
 					"blast radius" 80
 					"shield damage" 800
@@ -433,6 +440,7 @@ test-data "Fighters and Carriers and Escorts"
 				"required crew" 1
 				shields 1200
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
@@ -483,6 +491,7 @@ test-data "Fighters and Carriers and Escorts"
 				"required crew" 1
 				shields 1200
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
@@ -574,10 +583,10 @@ test "Depart"
 		# Using empty inputs to trigger those game loops.
 		input
 		input
-		# The ships zoom gets restored at a rate of less than .02 per step,
-		# so wait for a bit more than 100 steps to get to full zoom/full control.
+		# The ships zoom gets restored at very fast rate,
+		# so only wait for 5 steps to get to full zoom/full control.
 		apply
-			"test: Depart: zoom_restore_counter" = 105
+			"test: Depart: zoom_restore_counter" = 5
 		label zoom_restore_loop
 		apply
 			"test: Depart: zoom_restore_counter" -= 1

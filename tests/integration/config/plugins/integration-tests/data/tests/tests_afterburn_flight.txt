@@ -25,6 +25,7 @@ test-data "burning flyers"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"Afterburner"
 				"X1200 Ion Steering"

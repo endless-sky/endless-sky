@@ -27,6 +27,7 @@ test-data "conditional choice"
 				"weapon capacity" 200
 				"thrust" 50
 				"turn" 1000
+				"landing speed" 100
 			outfits
 				Hyperdrive
 				"nGVF-BB Fuel Cell"

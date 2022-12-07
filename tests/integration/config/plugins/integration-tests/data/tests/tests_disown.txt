@@ -25,6 +25,7 @@ test-data "Owned Drone"
 				"outfit space" 530
 				"weapon capacity" 100
 				"engine capacity" 280
+				"landing speed" 100
 				weapon
 					"blast radius" 3
 					"shield damage" 30
@@ -79,6 +80,7 @@ test-data "Owned Remote"
 				"required crew" 1
 				shields 1200
 				"weapon capacity" 200
+				"landing speed" 100
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
