@@ -1402,7 +1402,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 
 
 
-mission "Hai Reveal [A11] Sound the Alarm"
+mission "Hai Reveal [A11] Siren Song"
 	landing
 	name "Sound the Alarm"
 	description "Reach <planet> and deliver a warning."
@@ -1508,10 +1508,10 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label whatever
 			`	"Aimet Tatan," Teeneep whispers to you. "Our oldest and most respected Elder, once a general in the Korath war. Sometimes most ardent backer, but more often neutral. I could never read him."`
 			label salute
-			`	As Aimet approaches, guards rise to attention and gives what appears to be a Hai salute: putting their fists over their hearts, and then towards Aimet. Aimet turns to them and returns the salute. As the guards stand at ease, Aimet asks, "Moderator, may I address the accused?"`
-			`	The moderator moves aside, and Aimet faces a camera. He waves some oversized paper printouts of Teeneep's report and speaks. "Our Teeneep showed us truths we do not wish to see. A censure Forever has she challenged weakness and division and brutality. Facts, more facts, indisputable facts! If facts could sway this body, our problems would be long gone!"`
-			`	Aimet turns to Teeneep. "All Hai know of pirates and this Council's inaction. We are beyond charts and analyses." He tosses the papers aside, and they flap loudly to the floor. In a choreographed motion, he swings his arm towards the cameras. "Please tell us what we really need to hear: the whispers of the hearts of all Hai. Rally us as you do your followers. My age has robbed me of the pleasure to see that in person."`
-			`	Many Elders are stunned, and Sayari looks worried. Teeneep pauses, startled by the request, but relieved that she finally gets to respond.`
+			`	Guards rise to attention as Aimet approaches, and give a Hai salute: fists over the heart and then ahead. Aimet returns the salute, and then faces the cameras to address Teeneep.`
+			`	He waves oversized paper printouts of Teeneep's report in a wide motion. "Teeneep showed us truths we do not wish to see and we thank her with censure. Forever has she challenged our stagnation and division with facts! Facts, more facts, indisputable facts!"`
+			`	In a choreographed motion, he tosses the papers aside and they flap loudly to the floor. "Nobody needs your facts to see society's troubles and Council's impotence. Sing us whispers of the Hai heart: Oh Katahat Ha'ii Matii Anii!"`
+			`	The room falls to a stunned silence as Elders understand Aimet's request. Even Teeneep is reluctant to rally protest during her publicized censure trial.`
 			choice
 				`	(Let Sayari encourage Teeneep.)`
 					goto destiny
@@ -1635,7 +1635,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 	source "Mountaintop"
 	destination "Hai-home"
 	to offer
-		has "Hai Reveal [A11] Sound the Alarm: done"
+		has "Hai Reveal [A11] Siren Song: done"
 	on offer
 		log `Alerted Turner and Danforth to the situation. Been sent back to <planet> to ensure the safety of the diplomats.`
 		conversation
