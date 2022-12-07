@@ -2817,7 +2817,7 @@ phrase "friendly pirate"
 		"pirate big raid 1"
 		"pirate big raid 2"
 
-phrase "northern pirate target"
+phrase "north pirate target"
 	word
 		"Farpoint"
 		"Shroud"
