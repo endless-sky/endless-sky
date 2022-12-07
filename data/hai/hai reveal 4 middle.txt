@@ -1412,28 +1412,29 @@ mission "Hai Reveal [A11] Siren Song"
 		has "Hai Reveal [A10] Demanding Satisfaction: done"
 	on offer
 		event "hai and human ships at wormhole"
-		log `Teeneep has been rejected by the Elders again, but has set in a motion a plan which has triggered an election instead. This snap election has closed the border and risked creating a diplomatic incident.`
+		log `You left Teeneep with an uncertain fate while you were ushered out of the Elder Council chambers by a panicked Sayari. Sayari warned of an impending snap election to which panicked Elders will close the border and risk a diplomatic incident.`
+		log "People" "Aimet Taepip" `The longest-serving Elder of Hai history, and once a general in the Hai-Korath war. He commands widespread respect and possesses enormous clout in the Elder council. Like Teeneep, he is seen as a controversial figure and a troublemaker.`
 		conversation
-			`Upon your return, Teeneep frantically types up a report with charts and paragraphs, plus pictures of her and General Choot'k. Sayari sends them to the Elder Council with an urgent request for a meeting. A message comes back in only a few minutes, entirely in your language, announcing an emergency meeting of the full Elder Council in under an hour. That short time later, armed guards escort all of you to the Council.`
-			`	The meeting's room is shaped like a wok, with the Elders towering over a circle in the center of witnesses and a moderator. A wedge of the room is filled with holoprojectors, machinery, entrances, and walkways. There are hovering bricks of cameras moving around the room, presumably for broadcasting to Hai media, or recording for posterity. One of them seems fixated on you as you find your assigned seat between Sayari and Teeneep.`
-			`	After everyone is seated, the moderator abruptly starts. "Teeneep has provided a confession about her visit to the Unfettered, dangerous media activities, disruptions in human space, and other offenses. In this live broadcast, the Elder Council will decide whether to censure or exile Teeneep. All relevant evidence is available in the video feed's metadata. Two Elders have questions for Captain <last> before we vote."`
+			`Upon your return, Teeneep frantically types up a report with charts and paragraphs, accompanying annotated pictures of her and General Choot'k. Sayari sends the report to the Elder Council with an urgent request for a meeting. A message comes back in only a few minutes, entirely in your language, announcing an emergency meeting of the full Elder Council in under an hour. That short time later, armed guards escort all of you to the Council.`
+			`	The meeting's room is shaped like a wok, with the Elders towering over a circle in the center of witnesses and a moderator. A wedge of the room is filled with holoprojectors, machinery, entrances, and walkways. Ever-circling holographic charts and graphs display indecipherable information. There are hovering bricks of cameras moving around the room, presumably for broadcasting to Hai media, or recording for posterity. One of them seems fixated on you as you find your assigned seat between Sayari and Teeneep.`
+			`	After everyone is set in place, the moderator abruptly starts. "Teeneep has provided a confession about her visit to the Unfettered, dangerous media activities, disruptions in human space, and other offenses. In this live broadcast, the Elder Council will decide whether to censure or exile Teeneep. All relevant evidence will be available in the video feed's metadata. Two Elders have questions for Captain <last> before the Council votes."`
 			`	At the word 'confession,' Teeneep is offended and Sayari is worried.`
 			choice
 				`	"Sayari, what is happening?"`
 				`	(Remain silent.)`
 					goto question1
-			`	Sayari explains. "The Elder Council has always been concerned by Teeneep's activism, and her outreach to the Unfettered and humans. It seems they've finally had their fill and decided she's a threat to the peace. This trial will either ban her from public discourse, or exile her from most of Hai space."`
+			`	Sayari explains. "The Elder Council has always been concerned by Teeneep's activism. They're especially fearful of her outreach to the Unfettered and humans. It seems they've finally had their fill and decided she's a threat to the peace. In this trial, Elders will decide will either ban her from public discourse, or exile her from most of Hai space. If she's lucky, they'll do neither."`
 			`	"Ah, but it's broadcast live," reassures Teeneep. "Like any oligarchy, the Elders normally hide their biases and misdeeds behind a veil of secrecy. Even if they take me down, the movement I'm part of will use this broadcast to bring down the current ruling Council.`
-			`	"Be careful what you say in this public broadcast, Captain <last>. Divulging classified information may get you in trouble here or at home, and could cause widespread panic that would negate any good we might have done. Speak with generalities, but make your point abundantly clear."`
+			`	Teeneep gives you a stern warning. "Be careful what you say in this public broadcast, Captain <last>. Divulging classified information may get you in trouble here or at home. It could cause widespread panic that would negate any good we might have done. Speak with generalities, but make your point abundantly clear."`
 			label question1
-			`	The Elder that was dismissive of Teeneep at her last meeting has your first question. "I understand Teeneep has tricked you into being her errand boy. You have my sympathy. During her misguidance, have you seen any evidence of validity to her conspiracy theories? Are the pirate attacks part of a coordinated effort?"`
+			`	The Elder that was dismissive of Teeneep at her last meeting has your first question. "I understand Teeneep has tricked you into being her errand boy. You have my sympathy. During her misguidance, have you seen any evidence of validity of her conspiracy theories? Are the pirate attacks part of a coordinated effort?"`
 			choice
 				`	"The evidence is circumstantial, but it merits further investigation."`
 				`	"There is definitely a coordinated effort among pirates against the Hai."`
 					goto disbelief1
 				`	"Some Elders are complicit in the pirates' coordinated effort against the Hai."`
 					goto anger1
-			`	Nearly all Elders in view seem to agree, including the one who is questioning you.`
+			`	Nearly all Elders seem to agree, including the one who is questioning you.`
 			`	"During your time with Teeneep," he continues, "what was her main motive?"`
 				goto question2
 			label disbelief1
@@ -1444,7 +1445,7 @@ mission "Hai Reveal [A11] Siren Song"
 			action
 				set "Hai Reveal: angered Elder in Council"
 			`	Most Elders in the room are shocked or offended, but a few nod in agreement with you. The Elder who questioned you looks furious.`
-			`	"During your subversive activities," the Elder says angrily, "what was Teeneep's main motive?" He seems to almost spit her name out.`
+			`	"During your subversive activities," the Elder says angrily, "what was Teeneep's main motive?" He grimaces as he spits out her name.`
 			label question2
 			choice
 				`	"Defending the innocent."`
@@ -1463,22 +1464,22 @@ mission "Hai Reveal [A11] Siren Song"
 			`	"Ah, one of the main talking points of her movement," he says, looking disappointed. "I see you've been brainwashed." At least a quarter of the Elders appear strongly offended by that.`
 				goto question3
 			label subversive2
-			`	"The words of a child, Captain <last>," he says, disappointed. "Stability is the only sensible path forward. Anything else will just make matters worse." Most Elders you can see appear to agree with him, though often not wholeheartedly. He sits down, and another Elder approaches.`
+			`	"The words of a child, Captain <last>," he says, disappointed. "Stability is the only sensible path forward. Anything else will just make matters worse." Most Elders you can see appear to agree with him, though often not wholeheartedly. He departs and another Elder approaches.`
 				goto question3
 			label political2
-			`	He shrugs with a look of understanding. "As do we all, I suppose. A foolish child she may be, but a politician nonetheless." He sits down as another Elder approaches.`
+			`	He shrugs with a look of understanding. "As do we all, I suppose. A foolish child she may be, but a politician nonetheless." He departs and another Elder approaches.`
 				goto question3
 			label anger2
 			action
 				set "Hai Reveal: angered Elder in Council"
-			`	He looks annoyed and scolds you. "Take care you don't end up like Teeneep, Captain <last>." After this, he sits as another Elder approaches you to speak.`
+			`	He looks annoyed and scolds you. "Take care you don't end up like Teeneep, Captain <last>." After this, he returns to his seat and another Elder approaches you to speak.`
 				goto question3
 			label rage
 			action
 				set "Hai Reveal: threatened by Elder in Council"
-			`	The Elder stands angrily and smashes his fists upon a decorative railing, breaking it in half. "Take care you don't end up with a worse fate then Teeneep." Most Elders seem appalled, functionaries are fearful, and two guards motion for him to sit farther back in the crowd. The moderator scolds him in Hai, and another Elder approaches you to speak.`
+			`	The Elder stands angrily and smashes his fists upon a decorative railing, breaking it in half. "Take care you don't end up with a worse fate then Teeneep. The powers of an Elder can dispatch the unwary." He looks scared as he realizes what he just did. Most Elders are appalled, their functionaries are fearful, and the moderator scolds him in Hai. Guards escort him to a distant seat and another Elder approaches you to speak.`
 			label question3
-			`	This Elder smiles at Teeneep before speaking. "Teeneep's report stated you were at her meeting with the Unfettered. How do you describe the meeting: constructive, violent, or something else?"`
+			`	This Elder smiles kindly at Teeneep before speaking. "Teeneep's report stated you were at her meeting with the Unfettered. How do you describe the meeting: constructive, violent, or something else?"`
 			choice
 				`	"It was a constructive discussion."`
 					goto constructive
@@ -1490,81 +1491,47 @@ mission "Hai Reveal [A11] Siren Song"
 			`	You hear many sighs, and several people shrug, but nobody seems surprised, just disappointed. "I'm sure our master fencers showed their skill," says the Elder. "Thank you for your time, Captain <last>."`
 				goto vote
 			goto romantic
-			`	Many Elders laugh and none are surprised. The Elder says, "Ah, our pair of master fencers, divided by Cloudfire. At least one good thing came of this: two soulmates were united."`
+			`	Many Elders laugh and none are surprised. The Elder says, "Ah, our pair of master fencers, divided by Cloudfire. At least one good thing came of this: two soulmates were united. I tremble to think of their children in battle." At this, Teeneep rolls her eyes and the Elder departs.`
 				goto vote
 			label constructive
-			`	You're greeted by mockery and laughter, but some Elders seem offended by that response from their colleagues. The Elder explains. "Elders and Unfettered have different views of what constitutes a 'constructive discussion.' You lack the biases of a Hai, so if you say it was constructive, I believe you." The tone of the room changes after that, as the laughter ends. Most Elders appear to agree with your assessment, and many look ashamed.`
+			`	A roomful of laughter engulfs your words, but many Elders appear offended by that mockery. The Elder who questioned you explains. "Elders and Unfettered have different views of what constitutes a 'constructive discussion.' You lack the biases of a Hai, so if you say it was constructive, I believe you." The tone of the room changes after that, as the laughter ends. Most Elders appear to agree with your assessment, and many look ashamed.`
 			label vote
-			`	The moderator concludes, "Teeneep's confession to her crime is taken as the statement from the defense. Now, we will vote on exile, and then on censure. Exile should be a quick vote. Please choose yes or no."`
-			`	In under a minute, the moderator says, "Only one vote for exile, so the next vote is censure." Murmurs begin as the Elders discuss among themselves. It seems the censure vote is viewed as reasonable, but controversial.`
-			`	Teeneep points up and to the right, where an Elder in a floating chair moves slowly from the top of the room towards the moderator. As he approaches the center, the other Elders become silent. This Hai is far older than any other you've met, and several gadgets in his chest appear to be life support mechanisms.`
+			`	The moderator concludes, "Teeneep's confession to her crime is taken as the statement from the defense. We will vote first on exile, and then on censure. Exile should be a quick vote. Choose yes or no."`
+			`	After a minute of Elders voting, the moderator says, "Only one vote for exile, so the next vote is censure." Murmurs begin as the Elders discuss Teeneep's fate. It seems the censure vote is viewed as reasonable, but controversial.`
+			`	Teeneep points into the distance where an Elder on a floating chair descends slowly towards the moderator. As the chair approaches the center, other Elders look on with silent reverence. This Hai is far older than any other you've met, and several devices on his chest appear to be life support systems.`
 			choice
 				`	"Who is this Elder?"`
 				`	(Don't ask.)`
 					goto whatever
-			`	Sayari says, "Aimet Tatan. He's one of the oldest Hai, and has been an Elder longer than any other in written history, in part due to recent medical advances. For my whole life, he has been a voice for change, which has made his views controversial. The Unfettered call him General Aimet Tatan, his title during the Korath war. He rarely speaks in council, preferring to lead from the shadows. When he does speak, everyone listens.`
-			`	"In a society that mistakes age for wisdom, a Hai with abundance of both commands widespread respect. Hopefully that respect will buy Teeneep's freedom."`
+			`	Sayari says, "Aimet Taepip. He's one of the oldest Hai, and has been an Elder longer than any other in written history, in part due to recent medical advances. For my whole life, he has been a voice for change, which has made his views controversial. The Unfettered call him by his title during the Korath war: General Aimet Taepip. He rarely speaks in council, preferring to lead from the shadows. When he does speak, everyone listens.`
+			`	"In a society that mistakes age for wisdom, a Hai with abundance of both always commands the utmost respect. Hopefully that respect will buy Teeneep's freedom."`
 				goto salute
 			label whatever
-			`	"Aimet Tatan," Teeneep whispers to you. "Our oldest and most respected Elder, once a general in the Korath war. Sometimes most ardent backer, but more often neutral. I could never read him."`
+			`	"Aimet Taepip," Teeneep whispers to you. "Our oldest and most respected Elder, once a general in the Korath war. Sometimes my most ardent backer, but more often neutral. I could never read him."`
 			label salute
-			`	Guards rise to attention as Aimet approaches, and give a Hai salute: fists over the heart and then ahead. Aimet returns the salute, and then faces the cameras to address Teeneep.`
-			`	He waves oversized paper printouts of Teeneep's report in a wide motion. "Teeneep showed us truths we do not wish to see and we thank her with censure. Forever has she challenged our stagnation and division with facts! Facts, more facts, indisputable facts!"`
-			`	In a choreographed motion, he tosses the papers aside and they flap loudly to the floor. "Nobody needs your facts to see society's troubles and Council's impotence. Sing us whispers of the Hai heart: Oh Katahat Ha'ii Matii Anii!"`
-			`	The room falls to a stunned silence as Elders understand Aimet's request. Even Teeneep is reluctant to rally protest during her publicized censure trial.`
+			`	Guards rise to attention as Aimet approaches, and they give a Hai salute: fists over the heart and a push ahead. Aimet returns the salute, and then faces the cameras to address Teeneep.`
+			`	In a choreographed motion, he waves oversized paper printouts of Teeneep's report. "Teeneep's crusade champions our truth and salvation, but we threaten and belittle her. Always she challenges stagnation and division with facts. Facts, facts, indisputable facts!"`
+			`	"Now, even the blind can see society's troubles and Council's impotence." With this, he tosses the papers aside and they surrender to their fate. "We need no more facts. Sing to us our true desires: the whispers of the Hai soul. Enchant us."`
+			`	The room falls to a stunned silence when the Elders grasp Aimet's request. Even the notoriously bold Teeneep is hesitant to rally protest during the broadcast of her censure trial.`
 			choice
 				`	(Let Sayari encourage Teeneep.)`
 					goto destiny
 				`	"Give 'em hell, Teeneep."`
-				`	"This is why we came. I have faith in you."`
-					goto faith
-			`	She laughs a little and stands to face the cameras with a smile on her face.`
-				goto speech
-			label faith
-			`	"Thank you, captain," she says, and stands to face the cameras.`
-				goto speech
-			label hand
+				`	"Be careful."`
+					goto careful
+			`	"I will upend Hell, Captain <last>."`
+				goto certainty
+			label careful
+			`	"It's time to tempt fate. I must be daring and brilliant."`
+				goto certainty
+			label destiny
 			`	Sayari speaks in a reassuring tone. "You trained your whole life for this moment. Seize your destiny, Teeneep."`
-			`	With this, Teeneep rises with complete certainty and faces the cameras.`
-			label speech
+			label certainty
+			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber.`
+			# These lines are double indented to make it clear what is sung and what is spoken.
+			# Do not change the rhyming pattern or correct the grammar. These are lyrics, not prose.
 
 
-
-
-			`Upon your return, Teeneep sends an urgent demand for an audience with the Elders, along with a few paragraphs written in Hai. The meeting is called within an hour, and the room is entirely full. This may be the entire Elder Council; if so, they must consider this a grave matter. Teeneep and Sayari are waiting for you to follow them into the chambers.`
-			`	The Elder moderating the proceedings calls Teeneep to testify, using your language. It seems they consider your participation critical.`
-			`	Teeneep begins. "For the first time in three hundred years, we find ourselves beset on our borders by hostile forces. They have kidnapped five thousand of our people, and this council has been too paralyzed with fear of change to defend us. The Unfettered were once the defenders of all Hai, and I have convinced them to be so once again. They are ready to send a fleet to human space and extinguish the pirate threat. Will you do what is right for our people and negotiate this with the humans, or will you be replaced?"`
-			`	At the word "replaced," murmurs rise, and Sayari looks at you with deep concern. The moderator silences the room and asks you to testify.`
-			`	"Captain <last>, can you speak to the truth of these disappearances?"`
-			choice
-				`	"The evidence that there are ongoing kidnappings is circumstantial, but compelling. We must expand the investigation."`
-					goto uncertainties
-				`	"It is a coordinated kidnapping campaign, and we must put a stop to it but take care not to start a war."`
-			`	You hear many murmurs of dissent, but the moderator raises his paws to delay discussion.`
-				goto "next question"
-			label uncertainties
-			`	Teeneep looks mildly perturbed, while many Elders nod with agreement.`
-			label "next question"
-			`	The moderator turns back to you with a highly serious face. "Captain <last>, you have the unique vantage point of an accomplished outsider who has seen all parts of this conflict. We have become unwittingly embroiled in human internal conflicts and have been attacked for the first time in 300 years. Much of this is beyond our experience, but perhaps not beyond yours. What do you advise?"`
-			`	You should carefully choose your words before speaking, as this may be a pivotal moment in history. This may spark a war - or prevent one.`
-			choice
-				`	(Get dinner.)`
-					goto dinner
-				`	(Decline and maybe eat with the diplomats.)`
-			`	There are some perfectly adequate meal places in the cafeteria area. There you manage to join Alondo and Remington, who have a surprisingly civilized conversation the entire time. Albeit mostly about work.`
-			`	You're still finishing up a little shortly after they leave, at which point a harried-looking Sayari appears and practically sprints across the room to you.`
-				goto alarm
-			label dinner
-			`	You join Teeneep and Sayari at a fusion restaurant about a block down the road from the 'Elders' Chambers' - which turns out to be the official name of the whole government complex.`
-			`	Having finished your main meal, and while waiting for some dessert that Teeneep has ordered, Sayari pulls out her datapad. "You know, while we're waiting. It's probably a good idea to check the damage. I don't know if your plan is actually going to have the desired effect, you know. I mean, seriously, Tee, what will you do if it doesn't? Will the Hai actually have to shed our brethren's blood with lethal intent?"`
-			`	Teeneep just sips her drink and shakes her head. "Oh, Sayari, you really are getting too long in the tooth for domestic politics these days."`
-			`	A moment later Sayari squeaks and looks up in horror. "You triggered an election?! This wasn't just making it public, you had the petition for redress ready to go all along!"`
-			`	She scrolls down on her pad several times and begins to mutter, "Oh dear, oh no." She lapses into Hai for a moment before returning. "It hit the trending issues board, and triggered the safety policy alert response. People got direct notifications that this was an issue. There are over two billion supporting votes for an injunctive action and it's only been two hours... this is what you hoped would happen, isn't it?"`
-			`Teeneep places a gentle hand on Sayari's arm. "Better this than war."`
-			label alarm
-			`	Sayari's eyes are alive with thinly-veiled panic as she slams her hand down on the table. "Captain <last>, you must leave immediately. Get on your ship and fly to <planet> right now! The winds of change are afoot and we will have an election. They'll hit the threshold in maybe only twenty minutes, and it'll take maybe thirty more for the bureaucracy to act on it. The instant the election is announced formally, all non-essential ships will be grounded, all communication in or out of Hai space will be cut off, and the border will be sealed to everyone - not in the polite way either. If even one ship tries to cross the border to investigate... there's no telling what will happen."`
-			`	"Go, go with all possible haste! I will tell the others, but right now you must go. Now!"`
-				launch
 	on enter "Waypoint"
 		dialog `As you enter Waypoint one of the Hai captains hails you. "Captain, we've orders to close the border to everyone, but... we know you've been doing official business, and we haven't been told to specifically block you. We also owe you one. You can go through, but don't try and bring anyone with you. We'll have no choice but to fire upon you and them if you do."`
 
