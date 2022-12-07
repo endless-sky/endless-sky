@@ -2854,23 +2854,15 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 	return result ? result : target.Position() - ship.Position();
 }
 
+
+
 bool AI::TargetInRange(const Ship &ship, const Hardpoint &hardpoint)
 {
-	shared_ptr<const Ship> target = ship.GetTargetShip();
-	if(target)
-		return TargetInRange(ship, hardpoint, *target);
+	shared_ptr<const Body> target = ship.GetTargetShip() ?: ship.GetTargetAsteroid();
 
-	shared_ptr<const Minable> targetAsteroid = ship.GetTargetAsteroid();
-	if(targetAsteroid)
-		return TargetInRange(ship, hardpoint, *targetAsteroid);
+	if(!target)
+		return false;
 
-	return false;
-}
-
-
-
-bool AI::TargetInRange(const Ship &ship, const Hardpoint &hardpoint, const Body &target)
-{
 	Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 	double distance = start.Distance(target.Position());
 	// Extend the weapon range slightly to account for velocity differences.
