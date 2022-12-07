@@ -21,6 +21,8 @@ on:
         value: ${{ jobs.changed.outputs.xcode_files }}
       codeblocks_files:
         value: ${{ jobs.changed.outputs.codeblocks_files }}
+      cmake_files:
+        value: ${{ jobs.changed.outputs.cmake }}
       copyright:
         value: ${{ jobs.changed.outputs.copyright }}
 
@@ -38,6 +40,7 @@ jobs:
       codespell: ${{ steps.filter.outputs.codespell }}
       xcode_files: ${{ steps.filter.outputs.xcode_files }}
       codeblocks_files: ${{ steps.filter.outputs.codeblocks_files }}
+      cmake_files: ${{ steps.filter.outputs.cmake_files }}
       copyright: ${{ steps.filter.outputs.copyright }}
     steps:
     - uses: actions/checkout@v2
