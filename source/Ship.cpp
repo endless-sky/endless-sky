@@ -1324,8 +1324,7 @@ void Ship::SetPlanet(const Planet *planet)
 {
 	zoom = !planet;
 	landingPlanet = planet;
-	if(planet)
-		CalculateLandingSpeed();
+	CalculateLandingSpeed();
 }
 
 
@@ -3869,7 +3868,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				deterrence = CalculateDeterrence();
 		}
-		if(outfit->Get("landing speed") && planet)
+		if(outfit->Get("landing speed"))
 			CalculateLandingSpeed();
 
 		if(outfit->Get("cargo space"))
@@ -4238,6 +4237,8 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 
 void Ship::CalculateLandingSpeed()
 {
+	if(!landingPlanet)
+		return;
 	const float mass = Mass();
 	const float shipLandingSpeed = attributes.Get("landing speed");
 

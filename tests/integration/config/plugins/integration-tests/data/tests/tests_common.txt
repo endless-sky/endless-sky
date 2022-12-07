@@ -583,16 +583,8 @@ test "Depart"
 		# Using empty inputs to trigger those game loops.
 		input
 		input
-		# The ships zoom gets restored at very fast rate,
-		# so only wait for 5 steps to get to full zoom/full control.
-		apply
-			"test: Depart: zoom_restore_counter" = 5
-		label zoom_restore_loop
-		apply
-			"test: Depart: zoom_restore_counter" -= 1
+		# Launching is instant in tests.
 		input
-		branch zoom_restore_loop
-			"test: Depart: zoom_restore_counter" > 0
 
 
 test "Sell first ship"
