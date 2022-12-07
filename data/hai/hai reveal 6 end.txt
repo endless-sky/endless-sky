@@ -339,13 +339,13 @@ mission "Hai Reveal [C05] Cleanup"
 					goto judge
 					to display
 						not "Hai Reveal [C05] Cleanup: label judge"
-				`	(Spare her.) "The whole galaxy hunts you now. Let that be your justice."`
+				`	(Spare her.) "There is no other home for you now. Let that be your justice."`
 					goto spare
-				`	(End her.) "The price you pay is justice."`
+				`	(End her.) "Justice is the price you pay."`
 					goto end
 				`	(Spare her.) "I've sinned more than you. If people like us decided what is right or wrong, the galaxy would be in cinders."`
 					goto spare
-				`	(End her.) "This is for all the trouble you put me through."`
+				`	(End her.) "This is for all the trouble you've caused me, personally."`
 					goto end
 				`	(Spare her.) "Consider this my movie review."`
 					goto spare
