@@ -322,7 +322,7 @@ mission "Unfettered Jump Drive Trading"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We will show you the weapons once you arrive. For now you will only be allowed to trade for the one, but if you continue to prove of great assistance to us, you may prove yourself worthy to access the others." They never even stop to ask if you are actually interested in new weapons.`
+			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We will show you the weapons once you arrive. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never even stop to ask if you are actually interested in new weapons.`
 			choice
 				`	(Say nothing.)`
 					goto next
@@ -365,9 +365,9 @@ mission "Unfettered Jump Drive Trading"
 				goto backtochoose
 			label turret
 			scene "outfit/hai ionic turret"
-			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to it being a high range turret, small ships and even fighters will never bother you again!"`
+			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range, small ships and even fighters will never bother you again!"`
 			label backtochoose
-			`	"However, we only have these weapons in very limited quantity, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
+			`	"However, we only have these weapons in very limited quantities, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
 				goto weapons
 
 			label money
@@ -409,7 +409,7 @@ mission "Unfettered Jump Drive Trading"
 			`	She then leaves, to your surprise. The engineer, who had watched the fight then explains, "Since you have failed the test we cannot give you access to our vault yet. Our weapons are only meant for the most capable of warriors. You will of course still be able to trade jump drives for money, but until you otherwise prove yourself, that is the extent of it."`
 			branch enoughJD
 				"unfettered: jd to sell" + 4 < "Unfettered Jump Drive 4: failed"
-			`	"This mistake is not unforgivable; I am sure she will happily forgive you, if you will only bring us more jump drives. Another engineer will be waiting for you at your hatch when that is the case."`
+			`	"This mistake is not permanent; I am sure she will happily forgive you, if you will only bring us more jump drives. Another engineer will be waiting for you at your hatch when that is the case."`
 				defer
 			label enoughJD
 			`	"In fact, your reputation for bringing us jump drives is so great she has no choice but to forgive you in the near future. Another engineer will be waiting for you at your hatch when that is the case."`
