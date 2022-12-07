@@ -25,8 +25,8 @@ test-data "quarg rescue"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 100
-				"turn" 250
+				"thrust" 50
+				"turn" 1000
 				"energy generation" 10
 			outfits
 				Hyperdrive
@@ -77,8 +77,8 @@ test-data "quarg scanning"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 100
-				"turn" 250
+				"thrust" 50
+				"turn" 1000
 				"energy generation" 10
 			outfits
 				Hyperdrive
@@ -140,8 +140,8 @@ test-data "quarg atrocity"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
-				"thrust" 100
-				"turn" 250
+				"thrust" 50
+				"turn" 1000
 				"energy generation" 10
 			outfits
 				Hyperdrive
@@ -206,10 +206,11 @@ test "Land On Ruin helper"
 	status partial
 	description "Helper for landing on Ruin."
 	sequence
-		label "landing"
-		# input to make time pass
 		input
 			command land
+		label "landing"
+		# empty input to make time pass
+		input
 		branch "landing"
 			"flagship planet: Ruin" == 0
 
@@ -224,15 +225,16 @@ test "Launch Quarg Scanning Mission And Board"
 		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
-		# wait 5 seconds, it should be enough
+		# wait for 5 seconds so it should be repaired and have scanned us
 		apply
-			"test: waiting time" = 5 * 60
-		label zoom_restore_loop
-		apply
-			"test: waiting time" -= 1
+			"test: steps to wait" = 10 * 30
+		label "floating"
+		# empty input to make time pass
 		input
-		branch zoom_restore_loop
-			"test: waiting time" > 0
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" > 0
 		# skip dialog
 		input
 			key "return"
@@ -243,7 +245,7 @@ test "Boarding Test - Repair Friendly Ship"
 	sequence
 		inject "quarg rescue"
 		call "Load First Savegame"
-		watchdog 8000
+		watchdog 6000
 		call "Launch Quarg Scanning Mission And Board"
 		call "Land On Ruin helper"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
@@ -260,7 +262,7 @@ test "Illegal Test - Ignore and New Illegal"
 	sequence
 		inject "quarg scanning"
 		call "Load First Savegame"
-		watchdog 8000
+		watchdog 6000
 		assert
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
@@ -278,7 +280,7 @@ test "Atrocity Test - New Atrocity"
 	sequence
 		inject "quarg atrocity"
 		call "Load First Savegame"
-		watchdog 8000
+		watchdog 6000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
