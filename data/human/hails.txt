@@ -3925,7 +3925,7 @@ phrase "pirate boast single"
 
 phrase "pirate boast plural"
 	word
-		"We"
+		"we "
 	word
 		"came back from"
 		"did"
