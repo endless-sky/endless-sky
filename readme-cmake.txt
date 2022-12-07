@@ -75,12 +75,13 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 Here's a summary of every command you will need for development:
 
 ```bash
-$ cmake --preset <preset>               # configure project (only needs to be done once)
-$ cmake --build --preset <preset>-debug # actually build Endless Sky (as well as any tests)
-$ ./build/<preset>/Debug/endless-sky    # run the game
-$ ctest --preset <preset>-test          # run the unit tests
-$ ctest --preset <preset>-benchmark     # run the benchmarks
-$ ctest --preset <preset>-integration   # run the integration tests (Linux only)
+$ cmake --preset <preset>                     # configure project (only needs to be done once)
+$ cmake --build --preset <preset>-debug       # actually build Endless Sky (as well as any tests)
+$ ./build/<preset>/Debug/endless-sky          # run the game
+$ ctest --preset <preset>-test                # run the unit tests
+$ ctest --preset <preset>-benchmark           # run the benchmarks
+$ ctest --preset <preset>-integration-debug   # run the integration tests in debug mode
+$ ctest --preset <preset>-integration         # run the integration tests (Linux only)
 ```
 
 (You can also use the `<preset>-release` preset for a release build, and the output will be in the Release folder).
