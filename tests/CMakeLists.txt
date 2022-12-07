@@ -63,25 +63,23 @@ add_test(NAME benchmark COMMAND "$<TARGET_FILE:EndlessSkyTests>" [!benchmark])
 set_tests_properties(benchmark PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" LABELS benchmark)
 
 # Integration tests.
-if(UNIX AND NOT APPLE)
-	add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
-		COMMENT "Discover every integration test"
-		COMMAND "${CMAKE_COMMAND}" -DES="$<TARGET_FILE:EndlessSky>"
-			-DBINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}"
-			-DES_USE_OFFSCREEN=${ES_USE_OFFSCREEN}
-			-P "${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
-		DEPENDS EndlessSky ${INTEGRATION_TESTS}
-			"${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
-		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
-	set_property(DIRECTORY APPEND PROPERTY TEST_INCLUDE_FILES "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake")
-	add_custom_target(IntegrationTests ALL
-		DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
-		VERBATIM
-	)
+add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
+	COMMENT "Discover every integration test"
+	COMMAND "${CMAKE_COMMAND}" -DES="$<TARGET_FILE:EndlessSky>"
+		-DBINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}"
+		-DES_USE_OFFSCREEN=${ES_USE_OFFSCREEN}
+		-P "${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
+	DEPENDS EndlessSky ${INTEGRATION_TESTS}
+		"${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
+	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+set_property(DIRECTORY APPEND PROPERTY TEST_INCLUDE_FILES "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake")
+add_custom_target(IntegrationTests ALL
+	DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
+	VERBATIM
+)
 
-	# If the target is not run, simply don't provide any integration tests instead of erroring out.
-	file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake" "")
-endif()
+# If the target is not run, simply don't provide any integration tests instead of erroring out.
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake" "")
 
 # Copy the MinGW runtime DLLs if necessary.
 if(MINGW AND WIN32)
