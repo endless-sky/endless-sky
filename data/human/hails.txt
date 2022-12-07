@@ -3014,7 +3014,6 @@ phrase	"pirate big raid 2"
 		"plundering"
 		"looting"
 		"storm"
-		"storming"
 	word
 		" of "
 		" on "
