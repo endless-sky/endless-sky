@@ -3742,7 +3742,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon() && (!shift || TargetInRange(ship, hardpoint)))
+				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon()
+						&& (!shift || TargetInRange(ship, hardpoint)))
 					firingCommands.SetFire(index);
 				++index;
 			}
