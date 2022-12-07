@@ -362,7 +362,7 @@ mission "Hai Reveal [C05] Cleanup"
 						has "Hai Reveal [C05] Cleanup: label judge"
 
 				# The callous option is available regardless, but it's after the "I thought about it" options:
-				`	(End her.) "This is for all the trouble you've caused me, personally."`
+				`	(End her.) "This is for all the trouble you've caused me."`
 					goto end
 
 				# Joke options are only available if you don't care enough to ask for clarification:
