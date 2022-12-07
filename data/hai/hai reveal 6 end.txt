@@ -395,7 +395,7 @@ mission "Hai Reveal [C05] Cleanup"
 			action
 				set "Hai Reveal [C05] Cleanup: label judge"
 			`	"You'd better be," she says. "You and I both know that this can't become public. If you take me to the Syndicate they will do away with me if they find out, and I doubt they could manage to not."`
-			`	"Oh, Alastair did tell me to say you're fired if you don't get back quickly... that was over a week ago now," you tell her.`
+			`	"Oh, Moray told me to say you're fired if you don't get back quickly... that was over a week ago now," you tell her.`
 			`	She rolls her eyes. "Of course, this is exactly the sort of callous governance I expect of them.`
 			`	"Don't distract from the point though. I can never go back. You're the only one who knows everything, and no one else can know it all. Taking me back is a guarantee that I'll be 'disappeared' - you might as well pull the trigger yourself. You must decide here, now, how this ends.`
 			`	"You are the judge, whether you like it or not, and no one else will carry out your judgment."`
