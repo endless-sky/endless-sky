@@ -2718,6 +2718,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&daysSinceEpochProvider = conditions.GetProviderNamed("days since epoch");
 	daysSinceEpochProvider.SetGetFunction([this](const string &name) { return date.DaysSinceEpoch(); });
 
+	auto &&daysSinceStartProvider = conditions.GetProviderNamed("days since start");
+	daysSinceStartProvider.SetGetFunction([this](const string &name)
+	{
+		return StartData().GetDate().DaysSinceEpoch() - date.DaysSinceEpoch();
+	});
+
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
