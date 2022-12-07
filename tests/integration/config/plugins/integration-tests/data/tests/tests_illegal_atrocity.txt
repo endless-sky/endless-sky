@@ -45,9 +45,6 @@ test-data "quarg rescue"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		conditions
-			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 
 test-data "quarg scanning"
@@ -106,9 +103,6 @@ test-data "quarg scanning"
 				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		conditions
-			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 
 test-data "quarg atrocity"
@@ -166,9 +160,6 @@ test-data "quarg atrocity"
 				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		conditions
-			"%TEST%: SCANNING ILLEGALS"
-			"Ruin: Landing: offered"
 
 
 
@@ -197,7 +188,7 @@ mission "%TEST%: Wardragon Scanning You!"
 		has "%TEST%: SCANNING ILLEGALS"
 	npc assist
 		government "Quarg"
-		personality derelict surveillance
+		personality derelict surveillance target
 		ship "%TEST%: outfitless wardragon scanner"
 
 
@@ -218,6 +209,9 @@ test "Launch Quarg Scanning Mission And Board"
 	status partial
 	description "Starts the mission, accepts it and then boards the quarg ship to repair it."
 	sequence
+		apply
+			"%TEST%: SCANNING ILLEGALS" = 1
+			"Ruin: Landing: offered" = 1
 		# launch and accept the mission
 		call "Depart"
 		call "Land On Ruin helper"
@@ -227,15 +221,15 @@ test "Launch Quarg Scanning Mission And Board"
 			command board
 		# wait for 5 seconds so it should be repaired and have scanned us
 		apply
-			"test: steps to wait" = 10 * 30
+			"test: steps to wait" = 5 * 60
 		label "floating"
 		# empty input to make time pass
 		input
 		apply
-			"test: steps to wait" = "test: steps to wait" - 1
+			"test: steps to wait" -= 1
 		branch "floating"
 			"test: steps to wait" > 0
-		# skip dialog
+		# skip dialog, if any
 		input
 			key "return"
 
