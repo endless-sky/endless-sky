@@ -1561,6 +1561,7 @@ mission "Hai Reveal [A11] Siren Song"
 				set "Hai Reveal [A11] Siren Song: label phrase"
 			`	She almost misses your question. "Hmmm? Oh. That's from a dead language. The literal translation is, 'People of three souls as one, indomitable.'"`
 				goto transfixed
+				# FIXME: need follow-up question to explain this.
 			label looking
 			action
 				set "Hai Reveal [A11] Siren Song: label looking"
