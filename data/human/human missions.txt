@@ -4967,7 +4967,7 @@ mission "Riley"
 
 mission "A dead man's path I"
 	name "Siblings to New China"
-	description "Bring these sibling to New China to hear their fathers last will."
+	description "Bring these siblings to New China to hear their father's last will."
 	passengers 2
 	source
 		near "Merak" 3 6
@@ -4977,24 +4977,24 @@ mission "A dead man's path I"
 		random < 20
 	on offer
 		conversation
-			`As you walk through the spaceport with nothing on your mind, a young woman and man, who are both dressed very formal, approach you. The woman starts talking to you, "Hello, are you a spaceship captain?" You answer, "Indeed, I am." She looks happy, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We received notice that our fathers last will will be published there. Do you think you could do this, we will pay for your service of course."`
+			`As you walk through the spaceport with nothing on your mind, a young woman and man, who are both dressed very formally, approach you. The woman begins, "Hello, are you a spaceship captain?" You answer, "Indeed, I am." Her face brightens up with a smile, and she continues, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course."`
 			choice
 				"Of course I can."
 					goto "Agree"
 				"I am sorry, but I have more urgent things to do."
-			`    They both look not very happy as you say that, but they nod and turn away.`
+			`    Her smile fades away as you say that, but they nod and turn away.`
 				decline
 			label "Agree"
-			`    "Fantastic," she says, "my name is Sophie. This is my younger brother," she points at the man to her side. "Hi, I am Liam," he says, "we have been looking for a ride for some time now, we already started to worry we wont get there in time," he tells you. You nod in agreement, "A lot of captains are very busy these times, you are lucky that I have some time. My name is <first> <last>." Theynod in agreement and then you lead them to your spaceship.`
+			`    "Fantastic," she says, "my name is Sophie. This is my younger brother," she points at the man to her side. "Hi, I am Liam," he says, "we have been looking for a ride for some time now, we already started to worry we wouldn't get there in time," he tells you. You nod in agreement. "A lot of captains are very busy these times, you are lucky that I have some time. My name is <first> <last>." They nod in agreement and then you lead them to your spaceship.`
 				accept
 	on complete
 		conversation
-			`As you arrive at New China the siblings head off to the place where their fathers last will will be read out. Liam turns to you, "Captain <last>, I have transferred the payment to your account, would it be ok for you to wait here until we come back? We will need a ride home." You agree and go to the local bar to kill some time.`
-			`    After about two hours they come back, both seem somehow excited. You wink them from your table. They sit down. Sophie begins talking, "Captain <last>, as it turns out we will need a bit more than just a ride home. If you want to hear us out, come here again in two hours, my brother and I need to buy some things."`
+			`When you arrive at New China's spaceport, the siblings head off to the place where their fathers last will will be read out. Liam turns to you. "Captain <last>, I have transferred the payment to your account, would it be okay for you to wait here until we come back? We will need a ride home." You agree, and go to the local bar to kill some time.`
+			`    After about two hours they come back, both seem somehow excited. You flag them down from your table, and they sit down. Sophie begins talking, "Captain <last>, it turns out we will need a bit more than just a ride home. If you want to hear us out, come here again in two hours because my brother and I need to buy some things."`
 		payment 50000
 
 mission "A dead man's path II"
-	name "Following footprints."
+	name "Following Footprints"
 	description "Bring Sophie and Liam to Tundra in the Cebalrai System."
 	passengers 2
 	source
