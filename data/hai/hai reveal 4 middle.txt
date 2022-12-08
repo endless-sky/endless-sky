@@ -1450,15 +1450,15 @@ mission "Hai Reveal [A11] Siren Song"
 			choice
 				`	"Defending the innocent."`
 				`	"Opposing political stagnancy."`
-					label subversive2
+					goto subversive2
 				`	"Advancing her political movement."`
-					label political2
+					goto political2
 				`	"Saving the Hai from Elders like you who shirk their duty."`
-					label rage
+					goto rage
 					to display
 						has "Hai Reveal: angered Elder in Council"
 				`	"Saving the Hai from Elders like you who shirk their duty."`
-					label anger2
+					goto anger2
 					to display
 						not "Hai Reveal: angered Elder in Council"
 			`	"Ah, one of the main talking points of her movement," he says, looking disappointed. "I see you've been brainwashed." At least a quarter of the Elders appear strongly offended by that. He shakes his head and walks away as another Elder approaches.`
@@ -1477,7 +1477,8 @@ mission "Hai Reveal [A11] Siren Song"
 			label rage
 			action
 				set "Hai Reveal: threatened by Elder in Council"
-			`	The Elder stands angrily and smashes his fists upon a decorative railing, breaking it in half. "Take care you don't end up with a worse fate then Teeneep. The powers of an Elder can dispatch the unwary." He looks scared as he realizes what he just did. Most Elders are appalled, their functionaries are fearful, and the moderator scolds him in Hai. Guards escort him to a distant seat and another Elder approaches you to speak.`
+			`	The Elder bounds to his feet and smashes his fists against a decorative railing, breaking it in half. Two functionaries barely dodge the flying pieces, and a rivet lands on Sayari's foot. "Take care you don't end up with a worse fate then Teeneep. The powers of an Elder can dispatch the unwary." Nearby Elders pugnaciously extinguish his ego with long streams of angry words in Hai. The moderator calls for the guards who escort him to a distant seat.`
+			`	During this chaos, a friendly-looking Elder approaches you. He brushes some shattered railing out of his tail.`
 			label question3
 			`	This Elder smiles kindly at Teeneep before speaking. "Teeneep's report stated you were at her meeting with the Unfettered. How do you describe the meeting: constructive, violent, or something else?"`
 			choice
@@ -1490,21 +1491,22 @@ mission "Hai Reveal [A11] Siren Song"
 				`	"Excessively violent."`
 			`	You hear many sighs, and several people shrug, but nobody seems surprised, just disappointed. "I'm sure our master fencers showed their skill," says the Elder. "Thank you for your time, Captain <last>."`
 				goto vote
-			goto romantic
+			label romantic
 			`	Many Elders laugh and none are surprised. The Elder says, "Ah, our pair of master fencers, divided by Cloudfire. At least one good thing came of this: two soulmates were united. I tremble to think of their children in battle." At this, Teeneep rolls her eyes and the Elder departs.`
 				goto vote
 			label constructive
 			`	A roomful of laughter engulfs your words, but many Elders appear offended by that mockery. The Elder who questioned you explains. "Elders and Unfettered have different views of what constitutes a 'constructive discussion.' You lack the biases of a Hai, so if you say it was constructive, I believe you." The tone of the room changes after that, as the laughter ends. Most Elders appear to agree with your assessment, and many look ashamed.`
 			label vote
 			`	The moderator concludes, "Teeneep's confession to her crime is taken as the statement from the defense. We will vote first on exile, and then on censure. Exile should be a quick vote. Choose yes or no."`
-			`	After a minute of Elders voting, the moderator says, "Only one vote for exile, so the next vote is censure." Murmurs begin as the Elders discuss Teeneep's fate. It seems the censure vote is viewed as reasonable, but controversial.`
+			`	Every Elder you can see now has a holographic cube in front of them. The cubes are initially grey, but change color to blue or white of varying intensities as the Elder rotates it. It only takes a few seconds for the Elders to all change their cubes to blue, except for one bright white one in the distance.`
+			`	Soon, the moderator announces the results. "Only one vote for exile, so the next vote is censure." Murmurs begin as the Elders discuss Teeneep's fate. It seems the censure vote is viewed as reasonable, but controversial.`
 			`	Teeneep points into the distance where an Elder on a floating chair descends slowly towards the moderator. As the chair approaches the center, other Elders look on with silent reverence. This Hai is far older than any other you've met, and several devices on his chest appear to be life support systems.`
 			choice
 				`	"Who is this Elder?"`
 				`	(Don't ask.)`
 					goto whatever
 			`	Sayari says, "Aimet Taepip. He's one of the oldest Hai, and has been an Elder longer than any other in written history, in part due to recent medical advances. For my whole life, he has been a voice for change, which has made his views controversial. The Unfettered call him by his title during the Korath war: General Aimet Taepip. He rarely speaks in council, preferring to lead from the shadows. When he does speak, everyone listens.`
-			`	"In a society that mistakes age for wisdom, a Hai with abundance of both always commands the utmost respect. Hopefully that respect will buy Teeneep's freedom."`
+			`	"In a society that mistakes age for wisdom, a Hai with abundance of both always commands the utmost respect. Hopefully that respect will win Teeneep's freedom."`
 				goto salute
 			label whatever
 			`	"Aimet Taepip," Teeneep whispers to you. "Our oldest and most respected Elder, once a general in the Korath war. Sometimes my most ardent backer, but more often neutral. I could never read him."`
@@ -1532,7 +1534,7 @@ mission "Hai Reveal [A11] Siren Song"
 			# FIXME: INSERT SONG HERE
 
 			`	Teeneep's songs continue, mostly in Hai, while Sayari is transfixed by graphs and symbols floating in the room's holoprojection. A question may awaken her.`
-			goto transfixed
+			label transfixed
 			choice
 				`	"Can you translate 'FIXME: HAI PHRASE' for me?"`
 					goto phrase
@@ -1560,7 +1562,11 @@ mission "Hai Reveal [A11] Siren Song"
 				set "Hai Reveal [A11] Siren Song: label phrase"
 			`	She almost misses your question. "Hmmm? Oh. That's from a dead language. The literal translation is, 'People of three souls as one, indomitable.'"`
 				goto transfixed
-				# FIXME: need follow-up question to explain this.
+			label phrase2
+			action
+				set "Hai Reveal [A11] Siren Song: label phrase2"
+			`	FIXME: need follow-up question to explain this.`
+				goto transfixed
 			label looking
 			action
 				set "Hai Reveal [A11] Siren Song: label looking"
@@ -1582,6 +1588,8 @@ mission "Hai Reveal [A11] Siren Song"
 			# An Elder points at the graphs and starts yelling "emergency powers!"
 			# More Elders join in.
 			# Sayari drags Captain Last to the room's exit with orders to go to Mountaintop due to an impending snap election
+			`	FIXME`
+				accept
 
 
 
