@@ -398,8 +398,8 @@ outfit "The old mans sword"
 	category "Hand to Hand"
 	cost 120000
 	thumbnail "outfit/old sword"
-	"capture attack" 7.5
-	"capture defense" 7.5
+	"capture attack" 3
+	"capture defense" 3
 	"unplunderable" 1
 	description "A sword that has all kind of alien technology implemented in it. You have yet to find out what it can do. Some functionalities are a personall shield and an implemented shooting mechanism."
 
