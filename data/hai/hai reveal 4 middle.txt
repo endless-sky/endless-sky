@@ -1532,7 +1532,7 @@ mission "Hai Reveal [A11] Siren Song"
 
 			# FIXME: INSERT SONG HERE
 
-			`	Teeneep songs continue, mostly in Hai, while Sayari is transfixed by graphs and symbols floating in the room's holoprojection. A question may awaken her.`
+			`	Teeneep's songs continue, mostly in Hai, while Sayari is transfixed by graphs and symbols floating in the room's holoprojection. A question may awaken her.`
 			goto transfixed
 			choice
 				`	"Can you translate 'FIXME: HAI PHRASE' for me?"`
