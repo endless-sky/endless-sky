@@ -1527,9 +1527,53 @@ mission "Hai Reveal [A11] Siren Song"
 			label destiny
 			`	Sayari speaks in a reassuring tone. "You trained your whole life for this moment. Seize your destiny, Teeneep."`
 			label certainty
-			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber.`
+			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. As the song progresses, more and more Elders sing along.`
 			# These lines are double indented to make it clear what is sung and what is spoken.
 			# Do not change the rhyming pattern or correct the grammar. These are lyrics, not prose.
+
+			# FIXME: INSERT SONG HERE
+
+			`	The song continues with many verses on the economy, helping "our western cousins," and much more.`
+			`	Meanwhile, Sayari is transfixed by graphs and symbols floating in the room's holoprojection. A question may awaken her.`
+			goto transfixed
+			choice
+				`	"Can you translate 'FIXME: HAI PHRASE' for me?"`
+					goto phrase
+					to display
+						not "Hai Reveal [A11] Siren Song: label phrase"
+				`	"That didn't answer my question. What does it mean?"`
+					goto phrase2
+					to display
+						not "Hai Reveal [A11] Siren Song: label phrase2"
+						has "Hai Reveal [A11] Siren Song: label phrase"
+				`	"What are you looking at, Sayari?"`
+					goto looking
+					to display
+						not "Hai Reveal [A11] Siren Song: label looking"
+				`	"Which graphs?"`
+					goto looking
+					to display
+						not "Hai Reveal [A11] Siren Song: label looking"
+				`	(Sing along.)`
+					goto singalong
+				`	(Remain silent.)`
+					goto runaway
+			label phrase
+			action
+				set "Hai Reveal [A11] Siren Song: label phrase"
+			`	She almost misses your question. "Hmmm? Oh. That's from a dead language. The literal translation is, 'People of three souls as one, indomitable.'"`
+				goto transfixed
+			label looking
+			action
+				set "Hai Reveal [A11] Siren Song: label looking"
+			`	"I'm seeing worrying trends on these graphs. About two thirds of the Hai voting public is seeing this, and they're rapidly fill up Teeneep's Petition of No Confidence. At this rate, it may reach the threshold before her song ends!"`
+				goto transfixed
+
+
+ That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
+			`	"The map is more worrying. 
+				goto panic
+
 
 
 	on enter "Waypoint"
