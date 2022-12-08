@@ -74,9 +74,9 @@ mission "Event: Pug Media Coverage"
 				`	"I think you both need to shave."`
 					goto scowl
 			`	One twin rolls his eyes while the other twitches his mustache awkwardly. He rewinds the video to the Parliamentary discussion, where Danforth is reassuring councilors about the Navy's ability to patrol the fringes of human space.`
-			`	The left twin says, "Look at this bozo! Bounty's Councilor Maduena Kabiru keeps ranting against Admiral uh..." He snaps his fingers trying to remember the name.`
+			`	The left twin says, "Look at this bozo! Bounty's Councilor Maduena Kabiru, he keeps ranting against this Navy guy, uh, this Admiral..." He snaps his fingers trying to remember the name.`
 			`	"Admiral Danforth," says the right twin.`
-			`	"Right. Danforth. This Councilor wants Danforth to defend against unknown dangers at the fringes of human space. Don't we have enough immediate problems without imagining new horrors?"`
+			`	"Right. Danforth. This Councilor wants Danforth to defend against 'unknown dangers at the fringes of human space'. Don't we have enough immediate problems without imagining new horrors?"`
 			`	"Like terrorists nuking us," says the right twin.`
 			choice
 				`	"The Navy is skilled and honorable. I trust them to protect us."`
