@@ -4973,8 +4973,8 @@ mission "A dead man's path I"
 		near "Merak" 3 6
 	destination
 		planet "New China"
-	to offer
-		random < 20
+	#to offer
+	#	random < 20
 	on offer
 		conversation
 			`As you walk through the spaceport with nothing on your mind, a young woman and man, who are both dressed very formal, approach you. The woman starts talking to you, "Hello, are you a spaceship captain?" You answer, "Indeed, I am." She looks happy, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We recieved notice that our fathers last will will be published there. Do you think you could do this, we will pay for your service of course."`
@@ -5031,6 +5031,12 @@ mission "A dead man's path II"
 		conversation
 			`"This was a very interesting trip," you say. The siblings agree. Sophie says, "Captain <last>, both of us think that you should come with us to see what our father left behind. Do you want to see it?" You answer, "I am certainly interested after what I have seen so far." Liam pulls out a map, but not a star map but a local map. "Appearantly our father bought a whole mountain on this planet. Let's get there."`
 			`    After a short shuttle flight, you arrive in front of a single, not too large mountain, that peaks out of the rest of the landscape. Liam, with help of the map, guides to a flat wall. He looks a bit embarrased at you two, "Our father wants us to say: Edr- i fen. I do not know what it means, but I am most certain it refers to one of this fantasy romans he used to read." All of you look at each other and then shout the words out. You all have to laugh a bit after that. Suddenly a blue line appears on the wall. The line shapes rectangle. After it has finished the shape, the stone inside the rectangle just disappears. All of you look surprised. "I could have sweared the stone was real," Liam says silently.`
-			`    You enter the halway behind the opening. The walls are perfectly smooth and the light seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That is totaly our dad." You proceed until you enter dome like room. On the walls all kind of alien artifacts line up next to each other. In the center of the room is a small slope with a strange looking sword inside.`
-			
+			`    You enter the halway behind the opening. The walls are perfectly smooth and the light seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That is totaly our dad." You proceed until you enter dome like room. On the walls all kind of alien artifacts line up next to each other. In the center of the room is a small slope with a strange looking sword inside. A small tablet stand on a socket in front of it.`
+			scene scene/sword
+			`    You all get closer to the tablet. A short message is written on it:`
+			`    My dear children, this is the summary of all the things I have done, enjoy it!`
+			`    All of you walk around for some time and look at the various artifacts. You notice the siblings standing in one corner talking about something. They wink you to them. Sophie starts, "Captain <last>, we have thought about this sometime and we think it would be a shame to just keep this sword as a memory. It needs to be used. It was our fathers one and only weapon, which probably means that is has all kind of alien tecnology integrated," she takes the sword and reaches it to you. "It is yours now." You look at her, surprised. "Are you sure about this?" you ask. "Yes we are," Liam says, "please take it on some more adventures." You take the sword.`
+			action
+				give "The old mans sword"
+			`    "Well, it seems like this is the end of our short journey together, Capatin <last>," Sophie says. "It was a pleasure to travel with you," says Liam. You say goodbye to them and leave them alone in the dome.`
 	
