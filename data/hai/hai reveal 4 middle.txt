@@ -1530,33 +1530,42 @@ mission "Hai Reveal [A11] Siren Song"
 			`	Sayari speaks in a reassuring tone. "You trained your whole life for this moment. Seize your destiny, Teeneep."`
 			label certainty
 			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. A few Elders join the song, and more add their voices as the verses fly by.`
-
-			# FIXME: INSERT SONG HERE
-
+			`	FIXME: INSERT SONG HERE`
 			`	Teeneep's songs continue, mostly in Hai, while Sayari is transfixed by graphs and symbols floating in the room's holoprojection. A question may awaken her.`
 			label transfixed
 			choice
-				`	"Can you translate 'FIXME: HAI PHRASE' for me?"`
-					goto phrase
-					to display
-						not "Hai Reveal [A11] Siren Song: label phrase"
-				`	"That didn't answer my question. What does it mean?"`
-					goto phrase2
-					to display
-						not "Hai Reveal [A11] Siren Song: label phrase2"
-						has "Hai Reveal [A11] Siren Song: label phrase"
+				# In this conversation, you have time to ask one of the follow-up questions
+				# (phrase2 or graphs) OR sing along. After that, it jumps to the "runaway"
+				# label.
+
+				# Initial questions are first so you can open both conversation paths.
 				`	"What are you looking at, Sayari?"`
 					goto looking
 					to display
 						not "Hai Reveal [A11] Siren Song: label looking"
-				`	"Which graphs?"`
+				`	"Can you translate 'FIXME: HAI PHRASE' for me?"`
+					goto phrase
+					to display
+						not "Hai Reveal [A11] Siren Song: label phrase"
+
+				# The graph follow-up question is first since it is more relevant to the plot.
+				`	"Can you explain the graphs in more detail?"`
 					goto graphs
 					to display
 						has "Hai Reveal [A11] Siren Song: label looking"
 						not "Hai Reveal [A11] Siren Song: label graphs"
+				`	"What does, 'People of three souls as one, indomitable' mean?"`
+					goto phrase2
+					to display
+						not "Hai Reveal [A11] Siren Song: label phrase2"
+						has "Hai Reveal [A11] Siren Song: label phrase"
+
+				# You can sing instead:
 				`	(Sing along.)`
 					goto singalong
-				`	(Remain silent.)`
+
+				# Or just jump to the end, if you're impatient:
+				`	(Wait for the spectacle to end.)`
 					goto runaway
 			label phrase
 			action
@@ -1566,8 +1575,12 @@ mission "Hai Reveal [A11] Siren Song"
 			label phrase2
 			action
 				set "Hai Reveal [A11] Siren Song: label phrase2"
-			`	FIXME: need follow-up question to explain this.`
-				goto transfixed
+			`	Her eyes peel away from the graphs at last. "Yes, of course." The singing is growing quite loud as more Elders join in, but you can still barely hear Sayari. Some Elders have started shouting over the song, trying to end the spectacle, but they're drowned out by the unified voice of song.`
+			`	"It originates from a religion in our ancient prehistory, before the Hai left the forest. We believed we were created by a pantheon of gods who, like parents, hoped we would one day surpass them. They gave us stronger souls than their own so we could pursue our dreams.`
+			`	"Some gods grew jealous and fearful of the Hai, so they shattered the Hai soul into three. The Wise Soul of the Elders, the Strong Soul of the protectors, and the Kind Soul of the common people. The other gods ignored our pleas for help because they were scared of us as well."`
+			`	"The gods grew ever more frightened, so one day they came to slay the Hai. Drawn together by a common purpose, the three souls became one. The combined soul was stronger than the gods, so we drove them from the forest. With the unifying threat gone, the Hai soul shattered into three once again.`
+			`	"In modern times, we use that legend as a metaphor for Hai unity, and Teeneep's has made the phrase her motto. It is heard is throughout our history and culture, so everywhere people see strength and unity, they see Teeneep."`
+				goto runaway
 			label looking
 			action
 				set "Hai Reveal [A11] Siren Song: label looking"
@@ -1577,10 +1590,10 @@ mission "Hai Reveal [A11] Siren Song"
 			label graphs
 			action
 				set "Hai Reveal [A11] Siren Song: label graphs"
-			# FIXME: Placeholder text. Needs to be rewritten to be more clear and panicky.
 			`	She points to a whirling cloud and says, "That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
-			`	"The map is more worrying. For several years, Teeneep and her allies have pushed a Petition of No Confidence which would force the Elders to have an election. Every minute it's gaining more votes than it typically did in a week."`
-				goto transfixed
+			`	The singing is growing quite loud as more Elders join in, but you can still barely hear Sayari. Some Elders have started shouting over the song, trying to end the spectacle, but they're drowned out by the unified voice of song.`
+			`	"The map is more worrying." She points to a holographic flow diagram in the shape of Hai space, with bowls for each system, rapidly filling with water. "For several years, Teeneep and her allies have pushed a Petition of No Confidence which would force the Elders to have an election. Every minute it's gaining more votes than it typically did in a week." As she says that, several bowls overflow and spill.`
+				goto runaway
 			label singalong
 			# Calculate player's singing ability from the number of Becca Band and Remnant missions.
 			# Response from those around you depend in your singing ability.
