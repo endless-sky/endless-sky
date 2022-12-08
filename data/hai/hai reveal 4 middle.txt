@@ -1528,7 +1528,7 @@ mission "Hai Reveal [A11] Siren Song"
 			label destiny
 			`	Sayari speaks in a reassuring tone. "You trained your whole life for this moment. Seize your destiny, Teeneep."`
 			label certainty
-			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. As the song progresses, more and more Elders sing along.`
+			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. A few Elders join in at first, but more add their voices as the verses fly by.`
 
 			# FIXME: INSERT SONG HERE
 
