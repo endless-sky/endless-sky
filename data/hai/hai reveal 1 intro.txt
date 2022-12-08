@@ -58,12 +58,12 @@ mission "Event: Pug Media Coverage"
 		event "hai secret leaks" 10 15
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
-			`As you leave your ship, you see two captains ranting about a video playing on a datapad. The walkway forces you to pass close to them.`
+			`As you leave your ship, you see a cloud of captains and crew watching a video on a public information display. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. The walkway from your ship passes by the display, but the video finishes before you arrive. Many of the onlookers have left for their business, but two captains remain. They're having a passionate discussion about the video.`
 			choice
 				`	"Hey! What's this video about?"`
 				`	(Leave them be.)`
 					decline
-			`	You're startled when the captains turn to you, both with preposterous sideburns and rat-like mustaches. It's impossible to tell if they're smiling or frowning, as the pair live squarely in the middle of the uncanny valley. They appear to be twins, as are their well-armed Headhunters.`
+			`	You're startled when the two captains turn to you, twin men with preposterous sideburns and rat-like mustaches. It's impossible to tell if they're smiling or frowning, as the pair live squarely in the middle of the uncanny valley.`
 			`	The left twin asks, "Can you believe this? It's been weeks and everyone's still obsessing over the Pug invasion. The news was all experts and officials at first, but now we just see talking heads and conspiracy theorists."`
 			`	In disbelief, the right twin responds, "It's just a propaganda exercise to boost Syndicate sales. Even if these elusive 'Pug' existed, we won't hear the end of it as long as the story boosts public opinion of the Syndicate."`
 			choice
@@ -73,11 +73,15 @@ mission "Event: Pug Media Coverage"
 					goto nobody
 				`	"I think you both need to shave."`
 					goto scowl
-			`	The right twin rolls his eyes while the left twitches his mustache awkwardly and responds. "Look at this bozo! Bounty's Councilor Maduena Kabiru keeps ranting about defending against unknown dangers at the fringes of human space. Non-stop! Don't we have enough immediate problems without imagining new horrors?"`
+			`	One twin rolls his eyes while the other twitches his mustache awkwardly. He rewinds the video to the Parliamentary discussion, where Danforth is reassuring councilors about the Navy's ability to patrol the fringes of human space.`
+			`	The left twin says, "Look at this bozo! Bounty's Councilor Maduena Kabiru keeps ranting against Admiral uh..." He snaps his fingers trying to remember the name.`
+			`	"Admiral Danforth," says the right twin.`
+			`	"Right. Danforth. This Councilor wants Danforth to defend against unknown dangers at the fringes of human space. Don't we have enough immediate problems without imagining new horrors?"`
 			`	"Like terrorists nuking us," says the right twin.`
 			choice
+				`	"The Navy is skilled and honorable. I trust them to protect us."`
+					goto eyes
 				`	"No, don't worry about that. I ended the bomb threat."`
-				`	"There's a lot of dangers out there, but don't worry. I'll be there to fight them off."`
 				`	"Maybe you're right."`
 					goto shrug
 				`	"All we can do is get on with our lives, right?"`
@@ -85,16 +89,20 @@ mission "Event: Pug Media Coverage"
 				`	"If you don't shave soon, people will think you're wearing masks."`
 					goto scowl
 			label nobody
-			`	The right twin says, "Who are you, Admiral Danforth?" The left one laughs and adds, "Did the Navy fire you or are you here on holiday?" Both of them laugh for a few seconds before you can respond.`
+			`	The left twin says, "Who are you, Admiral Danforts?" His twin corrects him. "Danforth. Admiral Danforth. Did the Navy fire you or are you here on holiday?"`
+			`	Both of them laugh for a few seconds before you can respond.`
 			choice
-				`	"No. I'm the famous Captain <first> <last>!"`
-				`	"You don't recognize me?"`
-					goto shrug
+				`	"Have you been under a rock the whole war? I'm Captain <first> <last>!"`
 				`	"Never mind."`
 					goto shrug
 				`	"At least I don't have a disheveled hamster stuck to my upper lip."`
 					goto scowl
-			`	Both twins look confused and say in unison, "Who?" They shrug and walk away, leaving you to wonder whether your doings are hidden in a cloud of government-enforced secrecy, or if some people have already forgotten about you.`
+			`	Both twins look confused, and the left one responds. "We've been mining asteroids the whole war. The war was a big deal, but most of us had to keep living our lives. Do you think we have time to keep track of every warring captain?"`
+			`	The right one says apologetically, "Thank you for your service, Captain <last>."`
+			`	They both give clumsy but well-intentioned salutes and return to their ships.`
+				decline
+			label eyes
+			`	The left twin laughs and says, "Pardon us if we keep our eyes open and trust to our own guns." Both twins nod and depart to their ships.`
 				decline
 			label shrug
 			`	Both twins shrug and leave for their ships.`
