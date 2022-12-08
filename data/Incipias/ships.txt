@@ -26,7 +26,7 @@ ship "Nimbus"
 		"flare sprite" "effect/incipias flare/flare"
 			"frame rate" 6
 		"flare sound" "plasma huge"
-		"thrust" 12
+		"thrust" 32
 		"thrusting energy" 5
 		"thrusting heat" 10
 

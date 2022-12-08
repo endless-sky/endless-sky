@@ -14,8 +14,8 @@ outfit "Plasma Discharger"
 		"lifetime" 64
 		"random lifetime" 12
 		"reload" 20
-		"firing energy" 8
-		"firing heat" 4
+		"firing energy" 30
+		"firing heat" 15
 		"shield damage" 22.5
 		"hull damage" 21
 		"minable damage" 35
