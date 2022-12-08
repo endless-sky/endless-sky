@@ -4986,7 +4986,7 @@ mission "A dead man's path I"
 				decline
 			label "Agree"
 			`    "Fantastic," she says, "my name is Sophie. This is my younger brother," she points at the man to her side. "Hi, I am Liam," he says, "we have been looking for a ride for some time now, we already started to worry we wont get there in time," he tells you. You nod in agreement, "A lot of captains are very busy these times, you are lucky that I have some time. My name is <first> <last>." Theynod in agreement and then you lead them to your spaceship.`
-			accept
+				accept
 	on complete
 		conversation
 			`As you arrive at New China the siblings head off to the place where their fathers last will will be read out. Liam turns to you, "Captain <last>, I have transfered the payment to your account, would it be ok for you to wait here until we come back? We will need a ride home." You agree and go to the local bar to kill some time.`
