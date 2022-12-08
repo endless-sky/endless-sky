@@ -1570,9 +1570,9 @@ mission "Hai Reveal [A11] Siren Song"
 				goto transfixed
 
 
- That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
-			`	"The map is more worrying. 
-				goto panic
+#  That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
+#			`	"The map is more worrying. 
+#				goto panic
 
 
 
