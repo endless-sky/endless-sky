@@ -53,5 +53,15 @@ codeblocks_files:
   - '*.cbp'
   - 'utils/check_codeblocks.sh'
 
+cmake_files:
+  - CMakeLists.txt
+  - source/CMakeLists.txt
+  - tests/CMakeLists.txt
+  - tests/integration/IntegrationTests.cmake
+  - CMakePresets.json
+  - 'vcpkg/**'
+  - vcpkg.json
+  - vcpkg-configuration.json
+
 copyright:
   - 'copyright'
