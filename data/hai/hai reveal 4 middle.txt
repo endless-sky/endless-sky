@@ -1480,7 +1480,7 @@ mission "Hai Reveal [A11] Siren Song"
 			`	The Elder bounds to his feet and smashes his fists against a decorative railing, breaking it in half. Two functionaries barely dodge the flying pieces, and a rivet lands on Sayari's foot. "Take care you don't end up with a worse fate then Teeneep. The powers of an Elder can dispatch the unwary." Nearby Elders pugnaciously extinguish his ego with long streams of angry words in Hai. The moderator calls for guards who quickly escort the Elder to a distant seat.`
 			`	During this chaos, a friendly-looking Elder approaches you. He brushes some shattered railing out of his tail.`
 			label question3
-			`	This Elder smiles kindly at Teeneep before speaking. "Teeneep's report stated you were at her meeting with the Unfettered. How do you describe the meeting: constructive, violent, or something else?"`
+			`	This Elder smiles kindly at Teeneep before speaking. "Teeneep's report stated you were at her meeting with the Unfettered. How do you describe the meeting: constructive, aggressive, or something else?"`
 			choice
 				`	"It was a constructive discussion."`
 					goto constructive
