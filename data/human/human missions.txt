@@ -4977,7 +4977,7 @@ mission "A dead man's path I"
 		random < 20
 	on offer
 		conversation
-			`As you walk through the spaceport with nothing on your mind, a young woman and man, who are both dressed very formally, approach you. The woman begins, "Hello, are you a spaceship captain?" You answer, "Indeed, I am." Her face brightens up with a smile, and she continues, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course."`
+			`As you walk through the spaceport, a young woman and man, who are both dressed very formally, approach you. The woman begins, "Hello, are you a spaceship captain?" You answer, "Indeed, I am." Her face brightens up with a smile, and she continues, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course."`
 			choice
 				"Of course I can."
 					goto "Agree"
