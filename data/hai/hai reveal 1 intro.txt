@@ -89,7 +89,7 @@ mission "Event: Pug Media Coverage"
 				`	"If you don't shave soon, people will think you're wearing masks."`
 					goto scowl
 			label nobody
-			`	Both of them laugh for a few seconds. Their mustaches wave in the breeze of their breath.`
+			`	Both of them give hard belly laughs, sending waves through their mustaches from the breeze of their breath.`
 			`	The left twin says, "Who are you, Admiral Danforts?" His twin corrects him. "Danforth. Admiral Danforth. Did the Navy fire you or are you here on holiday?"`
 			choice
 				`	"Have you been under a rock the whole war? I'm Captain <first> <last>!"`
