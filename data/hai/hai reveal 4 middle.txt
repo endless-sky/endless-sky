@@ -1512,7 +1512,7 @@ mission "Hai Reveal [A11] Siren Song"
 			label salute
 			`	Guards rise to attention as Aimet approaches, and they give a Hai salute: fists over the heart and a push ahead. Aimet returns the salute, and then faces the cameras to address Teeneep.`
 			`	In a choreographed motion, he waves oversized paper printouts of Teeneep's report. "Teeneep's crusade champions our truth and salvation, but we threaten and belittle her. Always she challenges stagnation and division with facts. Facts, facts, indisputable facts!"`
-			`	"Now, even the blind can see society's troubles and Council's impotence." With this, he tosses the papers aside and they surrender to their fate. "We need no more facts. Sing to us our true desires: the whispers of the Hai soul. Enchant us."`
+			`	He tosses the papers aside and they surrender to their fate. "Even the blind can see society's troubles and Council's impotence. If facts alone could sway this body, this," he motions to the whole room, "would not happen. Sing to us our true desires: the whispers of the Hai soul. Enchant us."`
 			`	The room falls to a stunned silence when the Elders grasp Aimet's request. Even the notoriously bold Teeneep is hesitant to rally protest during the broadcast of her censure trial.`
 			choice
 				`	(Let Sayari encourage Teeneep.)`
@@ -1523,12 +1523,12 @@ mission "Hai Reveal [A11] Siren Song"
 			`	"I will upend Hell, Captain <last>."`
 				goto certainty
 			label careful
-			`	"It's time to tempt fate. I must be daring and brilliant."`
+			`	"No. It's time to tempt fate."`
 				goto certainty
 			label destiny
 			`	Sayari speaks in a reassuring tone. "You trained your whole life for this moment. Seize your destiny, Teeneep."`
 			label certainty
-			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. A few Elders join in at first, but more add their voices as the verses fly by.`
+			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. A few Elders join the song, and more add their voices as the verses fly by.`
 
 			# FIXME: INSERT SONG HERE
 
