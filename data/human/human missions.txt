@@ -4964,3 +4964,73 @@ mission "Riley"
 			label end
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
+
+mission "A dead man's path I"
+	name "Siblings to New China"
+	description "Bring these sibling to New China to hear their fathers last will."
+	passengers 2
+	source
+		near "Merak" 3 6
+	destination
+		planet "New China"
+	to offer
+		random < 20
+	on offer
+		conversation
+			`As you walk through the spaceport with nothing on your mind, a young woman and man, who are both dressed very formal, approach you. The woman starts talking to you, "Hello, are you a spaceship captain?" You answer, "Indeed, I am." She looks happy, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We recieved notice that our fathers last will will be published there. Do you think you could do this, we will pay for your service of course."`
+			choice
+				"Of course I can."
+					goto "Agree"
+				"I am sorry, but I have more urgent things to do."
+			`    They both look not very happy as you say that, but they nod and turn away.`
+				decline
+			label "Agree"
+			`    "Fantastic," she says, "my name is Sophie. This is my younger brother," she points at the man to her side. "Hi, I am Liam," he says, "we have been looking for a ride for some time now, we already started to worry we wont get there in time," he tells you. You nod in agreement, "A lot of captains are very busy these times, you are lucky that I have some time. My name is <first> <last>." Theynod in agreement and then you lead them to your spaceship.`
+			accept
+	on complete
+		conversation
+			`As you arrive at New China the siblings head off to the place where their fathers last will will be read out. Liam turns to you, "Captain <last>, I have transfered the payment to your account, would it be ok for you to wait here until we come back? We will need a ride home." You agree and go to the local bar to kill some time.`
+			`    After about two hours they come back, both seem somehow excited. You wink them from your table. They sit down. Sophie begins talking, "Captain <last>, as it turns out we will need a bit more than just a ride home. If you want to hear us out, come here again in two hours, my brother and I need to buy some things."`
+		payment 50000
+
+mission "A dead man's path II"
+	name "Following footprints."
+	description "Bring Sophie and Liam to Tundra in the Cebalrai System."
+	passengers 2
+	source
+		planet "New China"
+	destination
+		planet "Prime"
+	waypoint "Terminus"
+	waypoint "Aspidiske"
+	waypoint "Gorvi"
+	waypoint "Enif"
+	to offer
+		has "A dead man's path I: done"
+	on offer
+		conversation
+			`They both look very happy when they see you again. "So you have decided to help us," Liam asks. "I do not know yet, maybe you should tell me first what this is about," you answer. "Of course," Sophie says, "my brother is just can not wait to get started. Maybe I should start with who our father was. We do not know much about him. He came home only occasionly, do not get me wrong, our parents were not in conflict, his passion just did not allow him to stay at one place very long. He was a captain, not unlike you. He was restless to explore even the furthest parts of the galaxy and we believe he came further than most human captains. Sometimes he brought small items back home that looked like nothing we know." She pauses for a moment, lost in memories. "Anyways," she continues, "in his testament he told us that he left something behind for us. But because he is a great fan fantasy romans, he said he would not make it easy for us. Instead he left behind a route of waypoints that we should visit before we go to the place where he left something behind. Of course we could go directly to this place, but we want to respect our fathers last will." She looks directly at you now, "And that is why we need your help. Would you help us to get to all waypoints?"`
+			choice
+				"I would be glad to."
+					goto "Accept"
+				"I am sorry but that sounds a bit stupid to me."
+			`    "Well, seems like we need to find somebody else," Sophie says. They both shake your hand and walk away.`
+				decline
+			label "Accept"
+			`    Liam pulls a map out of his bag. "These are the systems our father wants us to visit. Apparently they all have something unique to them. We hope for a nice trip."`
+				accept
+	on enter "Terminus"
+		dialog "You all look fascinated at a anomalie in the system."
+	on enter "Aspidiske"
+		dialog "The beauty of this star stops every conversation for a moment."
+	on enter "Gorvi"
+		dialog "You chat about how much power a supernova must have, if even an old one leaves this much behind."
+	on enter "Enif"
+		dialog "The strange but impressive unfinsihed Quarg ringworld shows all of you how much the human race has to learn."
+	on complete
+		conversation
+			`"This was a very interesting trip," you say. The siblings agree. Sophie says, "Captain <last>, both of us think that you should come with us to see what our father left behind. Do you want to see it?" You answer, "I am certainly interested after what I have seen so far." Liam pulls out a map, but not a star map but a local map. "Appearantly our father bought a whole mountain on this planet. Let's get there."`
+			`    After a short shuttle flight, you arrive in front of a single, not too large mountain, that peaks out of the rest of the landscape. Liam, with help of the map, guides to a flat wall. He looks a bit embarrased at you two, "Our father wants us to say: Edr- i fen. I do not know what it means, but I am most certain it refers to one of this fantasy romans he used to read." All of you look at each other and then shout the words out. You all have to laugh a bit after that. Suddenly a blue line appears on the wall. The line shapes rectangle. After it has finished the shape, the stone inside the rectangle just disappears. All of you look surprised. "I could have sweared the stone was real," Liam says silently.`
+			`    You enter the halway behind the opening. The walls are perfectly smooth and the light seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That is totaly our dad." You proceed until you enter dome like room. On the walls all kind of alien artifacts line up next to each other. In the center of the room is a small slope with a strange looking sword inside.`
+			
+	
