@@ -797,6 +797,7 @@ mission "Hai Leaks Response 4"
 		payment 1000000
 		event "waypoint pirates vanquished"
 		event "hai ladybug available"
+		event "humans adopt ladybugs" 20 30
 		log `Defeated the "Black Lich". They had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. Rewarded well.`
 		conversation
 			`When you return, the Hai Captain thanks you profusely. "The Allhome government has authorized a reward of <payment> for helping to route the pirate problem," he explains while handing you the credits.`
@@ -833,10 +834,8 @@ event "waypoint pirates vanquished"
 		remove fleet "Large Core Pirates"
 
 event "hai ladybug available"
-	shipyard "Hai Intermediate"
-		"Ladybug"
-	shipyard "Hai Advanced"
-		"Ladybug"
+	shipyard "Mon Ki i'Hiya Basics"
+		add "Ladybug"
 
 
 # It is impossible to implement a "capture and return npc" mission. 
@@ -966,6 +965,60 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	turret "Electron Turret"
 	description "This modified Geocoris has identical cargo capacity, but is the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings, and some kind of integrated system core which seems to have something of a life of its own. As such, some systems are built-in and unable to be removed. Nevertheless it is significantly more survivable than a traditional Geocoris and at least as useful."
 
+
+# The spike in interest leads to ladybugs appearing in the Hai Merchant (Human) fleets.	
+event "humans adopt ladybugs"
+	fleet "Small Hai Merchant (Human)"
+		add variant 6
+			"Freighter (Hai)"
+			"Ladybug (Pulse)"
+		add variant 6
+			"Freighter (Hai)"
+			"Ladybug (Three Ion)"
+		add variant 3
+			"Mule (Hai Engines)"
+			"Ladybug (Pulse)"
+		add variant 3
+			"Mule (Hai Engines)"
+			"Ladybug (Three Ion)"
+	fleet "Large Hai Merchant (Human)"
+		add variant 20
+			"Water Bug" 2
+			"Ladybug (Pulse)"
+		add variant 20
+			"Water Bug" 2
+			"Ladybug (Three Ion)"
+		add variant 3
+			"Freighter (Hai)" 2
+			"Ladybug"
+		add variant 10
+			"Freighter (Hai)" 2
+			"Ladybug (Pulse)"
+		add variant 10
+			"Freighter (Hai)" 3
+			"Ladybug (Pulse)"
+		add variant 4
+			"Behemoth (Hai)"
+			"Ladybug (Pulse)" 2
+		add variant 4
+			"Behemoth (Hai)"
+			"Ladybug (Pulse)" 
+			"Ladybug (Three Ion)"
+		add variant 4
+			"Behemoth (Hai)"
+			"Ladybug (Three Ion)" 2
+		add variant 4
+			"Hauler III (Hai)"
+			"Water Bug"
+			"Headhunter (Hai)" 1
+			"Ladybug (Three Ion)"
+		add variant 2
+			"Container Transport (Hai)"
+			"Grasshopper"
+			"Ladybug (Pulse)"
+		add variant 1
+			"Container Transport (Hai)"
+			"Ladybug (Pulse)" 2
 
 
 mission "Hai Leaks Response 5"

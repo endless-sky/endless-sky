@@ -443,6 +443,8 @@ void PlayerInfo::Save() const
 			for(int i = 0; i < 3; ++i)
 				if(Files::Exists(files[i + 1]))
 					Files::Move(files[i + 1], files[i]);
+			if(planet->HasSpaceport())
+				Save(root + "~~previous-spaceport.txt");
 		}
 	}
 
@@ -3214,7 +3216,10 @@ void PlayerInfo::CreateMissions()
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
-			if(it->IsAtLocation(Mission::SPACEPORT) && !it->HasPriority())
+			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
+				|| it->IsAtLocation(Mission::SHIPYARD)
+				|| it->IsAtLocation(Mission::OUTFITTER);
+			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
 				++it;
