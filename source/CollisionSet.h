@@ -96,7 +96,7 @@ private:
 	// Vector for returning the result of a circle query.
 	mutable std::vector<Body *> result;
 
-	// Keep track of which objects we've already considered in "Line" and "Circle" methods.
+	// Keep track of which objects we've already considered
 	mutable std::vector<unsigned> seen;
 	mutable unsigned seenEpoch;
 };

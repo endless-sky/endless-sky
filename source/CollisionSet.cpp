@@ -52,11 +52,11 @@ namespace {
 
 		void TryNearer(double new_closest, Body *new_body)
 		{
-			if(new_closest < closest_dist)
-			{
-				closest_dist = new_closest;
-				closest_body = new_body;
-			}
+			if(new_closest >= closest_dist)
+				return;
+
+			closest_dist = new_closest;
+			closest_body = new_body;
 		}
 
 		double GetClosestDistance() const { return closest_dist; }
@@ -156,6 +156,7 @@ void CollisionSet::Finish()
 	}
 	// Now, counts[index] is where a certain bin begins.
 
+	// Initialize 'seen' with 0
 	seen.clear();
 	seen.resize(all.size());
 	seenEpoch = 0;
