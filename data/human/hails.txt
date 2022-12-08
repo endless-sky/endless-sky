@@ -2799,8 +2799,6 @@ phrase "friendly pirate"
 
 phrase "friendly pirate"
 	word
-		"You wanna join us%"
-		"You want to come with us%"
 		"Join us"
 		"Come with us"
 		"Come join us"
@@ -2819,9 +2817,6 @@ phrase "friendly pirate"
 		"pirate enemy losses"
 	word
 		"!"
-	replace
-		"%! " "? "
-		"%" ""
 
 phrase "pirate plans attack on planet 1"
 	word
@@ -4105,7 +4100,6 @@ phrase "hostile pirate"
 		"skies, "
 		"taikong, "
 	word
-		"you "
 		""
 	word
 		"wimp"
