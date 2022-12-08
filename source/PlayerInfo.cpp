@@ -2764,7 +2764,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
-	auto flagshipAttributeHelper = [](const Ship *flagship, const string &name, bool base) -> int64_t
+	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
 	{
 		if(!flagship)
 			return 0;
