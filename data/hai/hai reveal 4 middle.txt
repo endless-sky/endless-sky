@@ -1427,8 +1427,7 @@ mission "Hai Reveal [A11] Siren Song"
 			`	"Ah, but it's broadcast live," reassures Teeneep. "Like any oligarchy, the Elders normally hide their biases and misdeeds behind a veil of secrecy. Even if they take me down, the movement I'm part of will use this broadcast to bring down the current ruling Council.`
 			`	Teeneep gives you a stern warning. "Be careful what you say in this public broadcast, Captain <last>. Divulging classified information may get you in trouble here or at home. It could cause widespread panic that would negate any good we might have done. Speak with generalities, but make your point abundantly clear."`
 			label question1
-			# FIXME: Need a gender-neutral synonym for "errand boy" that has the same connotations.
-			`	The Elder that was dismissive of Teeneep at her last meeting has your first question. "I understand Teeneep has tricked you into being her errand boy. You have my sympathy. During her misguidance, have you seen any evidence of validity of her conspiracy theories? Are the pirate attacks part of a coordinated effort?"`
+			`	The Elder that was dismissive of Teeneep at her last meeting has your first question. "I understand Teeneep has enlisted you as her gopher. You have my sympathy. During her misguidance, have you seen any evidence of validity of her conspiracy theories? Are the pirate attacks part of a coordinated effort?"`
 			choice
 				`	"The evidence is circumstantial, but it merits further investigation."`
 				`	"There is definitely a coordinated effort among pirates against the Hai."`
