@@ -4201,9 +4201,9 @@ phrase "hostile pirate"
 		"I never learned much biology, but I know that pirates like me come on the top of the food chain, and people like you are at the bottom!"
 		"Anarchists aren't cruel! Well, this one is."
 		"It sure is a good day to blow you up!"
-		"It sure is a good day to blow some merchants up!"
+		"There's no better day to blow some merchants up!"
 		"I can't read the letters, but I know which button is the one to kill you!"
-		"When did differentiation ever save you from a pirate? That's right, never!"
+		"When did algebra ever save you from a pirate? That's right, never!"
 
 phrase "hostile pirate"
 	word
@@ -4267,7 +4267,6 @@ phrase "hostile pirate"
 	word
 		", because "
 		", cause' "
-		", as "
 	word
 		"begging for mercy makes me angry"
 		"you're next"
