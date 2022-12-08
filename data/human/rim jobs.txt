@@ -104,7 +104,7 @@ mission "Han Sizer Month [0]"
 		dialog `As you enter the system your passengers gather together to stare out the viewport. One of them pulls out a datapad and reads what sounds like a log entry by Han Sizer, describing the initial exploration of the system.`
 	on complete
 		payment 10000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart you hear them talking about celerbrating their trip with a party on Longjump.`
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart you hear them talking about celebrating their trip with a party on Longjump.`
 
 
 mission "Han Sizer Month [1]"
@@ -164,4 +164,4 @@ mission "Han Sizer Month [2]"
 		not attributes "station"
 	on complete
 		payment 20000 170
-		dialog `Your guests thank you for taking them on a journey along the flightpath of Han Sizer, and cheerfully pay you <payment>. You notice one has a starchart open to look at Sabik's entry as they head off.`
+		dialog `Your guests thank you for taking them on a journey along the flightpath of Han Sizer, and cheerfully pay you <payment>. You notice one has a starchart open to Sabik's entry as they head off.`
