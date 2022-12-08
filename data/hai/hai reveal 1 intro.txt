@@ -58,7 +58,7 @@ mission "Event: Pug Media Coverage"
 		event "hai secret leaks" 10 15
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
-			`As you leave your ship, you see a cloud of captains and crew watching a video on a public information display. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. The walkway from your ship passes by the display, but the video finishes before you arrive. Many of the onlookers have left for their business, but two captains remain. They're having a passionate discussion about the video.`
+			`As you leave your ship, you see a crowd watching a video on a interactive information display, not far from your landing spot. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. It finishes before you arrive, and many of the onlookers have left for their business, but two captains remain. By the sound of it, they're having a passionate discussion about the video.`
 			choice
 				`	"Hey! What's this video about?"`
 				`	(Leave them be.)`
@@ -89,8 +89,8 @@ mission "Event: Pug Media Coverage"
 				`	"If you don't shave soon, people will think you're wearing masks."`
 					goto scowl
 			label nobody
+			`	Both of them laugh for a few seconds. Their mustaches wave in the breeze of their breath.`
 			`	The left twin says, "Who are you, Admiral Danforts?" His twin corrects him. "Danforth. Admiral Danforth. Did the Navy fire you or are you here on holiday?"`
-			`	Both of them laugh for a few seconds before you can respond.`
 			choice
 				`	"Have you been under a rock the whole war? I'm Captain <first> <last>!"`
 				`	"Never mind."`
