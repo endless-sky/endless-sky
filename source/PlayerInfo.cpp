@@ -2773,7 +2773,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return round(attributes.Get(attribute) * 1000.);
 	};
 
-	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attributes: ");
+	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
 	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
 	{
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
@@ -2781,7 +2781,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
 	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
 
-	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attributes: ");
+	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
 	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
 	{
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
