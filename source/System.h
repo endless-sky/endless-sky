@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SYSTEM_H_
@@ -61,18 +64,6 @@ public:
 		double energy;
 	};
 
-	class Belt {
-	public:
-		Belt(double radius, int weight = 1);
-
-		double Radius() const;
-		int Weight() const;
-
-	private:
-		double radius;
-		int weight;
-	};
-
 
 public:
 	// Load a system's description.
@@ -111,6 +102,12 @@ public:
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
 	double ExtraJumpArrivalDistance() const;
+
+	// The minimum distances from the system center to jump out of the system.
+	// Separated by jump drives and hyperdrives.
+	double JumpDepartureDistance() const;
+	double HyperDepartureDistance() const;
+
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
 	const std::set<const System *> &VisibleNeighbors() const;
@@ -126,7 +123,7 @@ public:
 	// Get the radius of an asteroid belt.
 	double AsteroidBeltRadius() const;
 	// Get the list of asteroid belts.
-	const WeightedList<Belt> &AsteroidBelts() const;
+	const WeightedList<double> &AsteroidBelts() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
@@ -166,6 +163,7 @@ public:
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
+	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false);
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
@@ -211,7 +209,7 @@ private:
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
-	WeightedList<Belt> belts;
+	WeightedList<double> belts;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
@@ -226,6 +224,10 @@ private:
 	// 0 doesn't have the same meaning as for hyperdrives. Negative values will
 	// be interpreted as positive values.
 	double extraJumpArrivalDistance = 0.;
+
+	// The minimum distances from the system center to jump out of the system.
+	double jumpDepartureDistance = 0.;
+	double hyperDepartureDistance = 0.;
 
 	// Commodity prices.
 	std::map<std::string, Price> trade;

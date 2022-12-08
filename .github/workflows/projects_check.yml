@@ -4,21 +4,29 @@ on:
   push:
     branches:
       - master
-      - v[0-9]+.[0-9]+.[0-9]+
+      - releases/v[0-9]+.[0-9]+.[0-9]+
     paths:
       - '.github/workflows/projects_check.yml'
+      - 'copyright'
       - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
-      - 'tests/check_*.sh'
+      - 'tests/unit/**'
+      - 'utils/check_*.sh'
   pull_request:
     types: [opened, synchronize]
     paths:
       - '.github/workflows/projects_check.yml'
+      - 'copyright'
       - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
-      - 'tests/check_*.sh'
+      - 'tests/unit/**'
+      - 'utils/check_*.sh'
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
 
 jobs:
   changed:
@@ -35,7 +43,7 @@ jobs:
     - name: Install dependencies
       run: python3 -m pip install --user docopt openstep_parser pbxproj
     - name: Validate XCode .pbxproj file
-      run: ./tests/check_xcode.sh
+      run: ./utils/check_xcode.sh
     - name: Upload XCode patch
       if: failure()
       uses: actions/upload-artifact@v2
@@ -52,4 +60,29 @@ jobs:
       with:
         fetch-depth: 1
     - name: Validate Code::Blocks project files
-      run: ./tests/check_codeblocks.sh
+      run: ./utils/check_codeblocks.sh
+
+
+  check-cmake:
+    needs: changed
+    if: ${{ needs.changed.outputs.cmake || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Validate CMake project files
+      run: ./utils/check_cmake.sh
+
+
+
+  validate-copyright:
+    needs: changed
+    if: ${{ needs.changed.outputs.copyright == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Install dependencies
+      run: python3 -m pip install --user python-debian
+    - name: Validate copyright file
+      run: python3 ./utils/check_copyright.py
