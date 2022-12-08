@@ -1564,7 +1564,8 @@ mission "Hai Reveal [A11] Siren Song"
 			label looking
 			action
 				set "Hai Reveal [A11] Siren Song: label looking"
-			`	"I'm seeing worrying trends on these graphs. About two thirds of the Hai voting public is seeing this, and they're rapidly fill up Teeneep's Petition of No Confidence. At this rate, it may reach the threshold before her song ends!"`
+			# FIXME: Placeholder text. Needs to be rewritten to be more clear and panicky.
+			`	"I'm seeing worrying trends on these graphs. About two thirds of the Hai voting public is watching this broadcast, and they're rapidly fill up Teeneep's Petition of No Confidence. At this rate, it may reach the threshold before her song ends!"`
 				goto transfixed
 			label graphs
 			# FIXME: Placeholder text. Needs to be rewritten to be more clear and panicky.
