@@ -1499,7 +1499,7 @@ mission "Hai Reveal [A11] Siren Song"
 			label vote
 			`	The moderator concludes, "Teeneep's confession to her crime is taken as the statement from the defense. We will vote first on exile, and then on censure. Exile should be a quick vote. Choose yes or no."`
 			`	Every Elder you can see now has a holographic cube in front of them. The cubes are initially grey, but change color to blue or white of varying intensities as the Elder rotates it. It only takes a few seconds for the Elders to all change their cubes to blue, except for one bright white one in the distance.`
-			`	Soon, the moderator announces the results. "Only one vote for exile, so the next vote is censure." Murmurs begin as the Elders discuss Teeneep's fate. It seems the censure vote is viewed as reasonable, but controversial.`
+			`	Soon, the moderator announces the results. "Only one vote for exile, so the next vote is censure." Voting cubes appear, but few Elders touch them. Murmurs begin as the Elders discuss Teeneep's fate. It seems the censure vote is viewed as reasonable, but controversial.`
 			`	Teeneep points into the distance where an Elder on a floating chair descends slowly towards the moderator. As the chair approaches the center, other Elders look on with silent reverence. This Hai is far older than any other you've met, and several devices on his chest appear to be life support systems.`
 			choice
 				`	"Who is this Elder?"`
