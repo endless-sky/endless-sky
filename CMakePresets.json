@@ -1,0 +1,694 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/install/${presetName}",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_COLOR_DIAGNOSTICS": "ON"
+      }
+    },
+    {
+      "name": "ci",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/ci",
+      "installDir": "${sourceDir}/install/ci",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "ES_USE_SYSTEM_LIBRARIES": "OFF"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "$env{CI}",
+        "rhs": "true"
+      }
+    },
+    {
+      "name": "linux",
+      "displayName": "Linux",
+      "description": "Builds with the default host compiler on Linux",
+      "inherits": "base",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-gles",
+      "displayName": "Linux OpenGL ES",
+      "description": "Builds with the default host compiler with OpenGL ES on Linux",
+      "inherits": "base",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+        "ES_GLES": "ON"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "macos",
+      "displayName": "MacOS",
+      "description": "Builds with the default host compiler on x64-based MacOS",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_OSX_ARCHITECTURES": "x86_64",
+        "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "macos-arm",
+      "displayName": "MacOS ARM",
+      "description": "Builds with the default host compiler on ARM-based MacOS",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_OSX_ARCHITECTURES": "arm64",
+        "VCPKG_TARGET_TRIPLET": "arm64-osx-dynamic"
+      },
+      "architecture": {
+        "value": "arm64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "clang-cl",
+      "displayName": "clang-cl",
+      "description": "Builds with clang-cl on Windows",
+      "inherits": "base",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "CMAKE_CXX_COMPILER": "clang-cl.exe"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "mingw",
+      "displayName": "MinGW",
+      "description": "Builds with the MinGW compiler toolchain",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "mingw32",
+      "displayName": "MinGW x86",
+      "description": "Builds with the x86 MinGW compiler toolchain",
+      "inherits": "base",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "xcode",
+      "displayName": "Xcode",
+      "description": "Builds with Xcode on x64-based MacOS",
+      "inherits": "base",
+      "generator": "Xcode",
+      "cacheVariables": {
+        "CMAKE_OSX_ARCHITECTURES": "x86_64",
+        "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "xcode-arm",
+      "displayName": "Xcode ARM",
+      "description": "Builds with Xcode on ARM-based MacOS",
+      "inherits": "base",
+      "generator": "Xcode",
+      "cacheVariables": {
+        "CMAKE_OSX_ARCHITECTURES": "arm64",
+        "VCPKG_TARGET_TRIPLET": "arm64-osx-dynamic"
+      },
+      "architecture": {
+        "value": "arm64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "linux-ci",
+      "displayName": "Linux CI",
+      "description": "Builds for Linux for CI purposes",
+      "inherits": "ci",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "linux64-release"
+      }
+    },
+    {
+      "name": "linux-gles-ci",
+      "displayName": "Linux GLES CI",
+      "description": "Builds for Linux GLES for CI purposes",
+      "inherits": "ci",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "linux64-release",
+        "ES_GLES": "ON"
+      }
+    },
+    {
+      "name": "macos-ci",
+      "displayName": "MacOS CI",
+      "description": "Builds for MacOS for CI purposes",
+      "inherits": "ci",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "macos64-release",
+        "CMAKE_OSX_ARCHITECTURES": "x86_64",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+      }
+    },
+    {
+      "name": "clang-cl-ci",
+      "displayName": "clang-cl CI",
+      "description": "Builds with clang-cl for CI purposes",
+      "inherits": "ci",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows-release",
+        "CMAKE_CXX_COMPILER": "clang-cl.exe"
+      }
+    },
+    {
+      "name": "mingw-ci",
+      "displayName": "MinGW CI",
+      "description": "Builds with MinGW for CI purposes",
+      "inherits": "ci",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_TARGET_TRIPLET": "win64-release"
+      }
+    },
+    {
+      "name": "mingw32-ci",
+      "displayName": "MinGW x86 CI",
+      "description": "Builds with MinGW x86 for CI purposes",
+      "inherits": "ci",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_TARGET_TRIPLET": "win32-release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "hidden": true,
+      "configuration": "Debug"
+    },
+    {
+      "name": "release",
+      "hidden": true,
+      "configuration": "Release"
+    },
+    {
+      "name": "ci",
+      "hidden": true,
+      "configuration": "Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "$env{CI}",
+        "rhs": "true"
+      }
+    },
+    {
+      "name": "linux-debug",
+      "displayName": "Debug",
+      "configurePreset": "linux",
+      "inherits": "debug"
+    },
+    {
+      "name": "linux-release",
+      "displayName": "Release",
+      "configurePreset": "linux",
+      "inherits": "release"
+    },
+    {
+      "name": "linux-gles-debug",
+      "displayName": "Debug",
+      "configurePreset": "linux-gles",
+      "inherits": "debug"
+    },
+    {
+      "name": "linux-gles-release",
+      "displayName": "Release",
+      "configurePreset": "linux-gles",
+      "inherits": "release"
+    },
+    {
+      "name": "macos-debug",
+      "displayName": "Debug",
+      "configurePreset": "macos",
+      "inherits": "debug"
+    },
+    {
+      "name": "macos-release",
+      "displayName": "Release",
+      "configurePreset": "macos",
+      "inherits": "release"
+    },
+    {
+      "name": "macos-arm-debug",
+      "displayName": "Debug",
+      "configurePreset": "macos-arm",
+      "inherits": "debug"
+    },
+    {
+      "name": "macos-arm-release",
+      "displayName": "Release",
+      "configurePreset": "macos-arm",
+      "inherits": "release"
+    },
+    {
+      "name": "xcode-debug",
+      "displayName": "Debug",
+      "configurePreset": "xcode",
+      "inherits": "debug"
+    },
+    {
+      "name": "xcode-release",
+      "displayName": "Release",
+      "configurePreset": "xcode",
+      "inherits": "release"
+    },
+    {
+      "name": "xcode-arm-debug",
+      "displayName": "Debug",
+      "configurePreset": "xcode-arm",
+      "inherits": "debug"
+    },
+    {
+      "name": "xcode-arm-release",
+      "displayName": "Release",
+      "configurePreset": "xcode-arm",
+      "inherits": "release"
+    },
+    {
+      "name": "clang-cl-debug",
+      "displayName": "Debug",
+      "configurePreset": "clang-cl",
+      "inherits": "debug"
+    },
+    {
+      "name": "clang-cl-release",
+      "displayName": "Release",
+      "configurePreset": "clang-cl",
+      "inherits": "release"
+    },
+    {
+      "name": "mingw-debug",
+      "displayName": "Debug",
+      "configurePreset": "mingw",
+      "inherits": "debug"
+    },
+    {
+      "name": "mingw-release",
+      "displayName": "Release",
+      "configurePreset": "mingw",
+      "inherits": "release"
+    },
+    {
+      "name": "mingw32-debug",
+      "displayName": "Debug",
+      "configurePreset": "mingw32",
+      "inherits": "debug"
+    },
+    {
+      "name": "mingw32-release",
+      "displayName": "Release",
+      "configurePreset": "mingw32",
+      "inherits": "release"
+    },
+    {
+      "name": "linux-ci",
+      "displayName": "Linux CI build",
+      "configurePreset": "linux-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "linux-gles-ci",
+      "displayName": "Linux GLES CI build",
+      "configurePreset": "linux-gles-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "macos-ci",
+      "displayName": "MacOS CI build",
+      "configurePreset": "macos-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "clang-cl-ci",
+      "displayName": "VS CI build",
+      "configurePreset": "clang-cl-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "mingw-ci",
+      "displayName": "MinGW CI build",
+      "configurePreset": "mingw-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "mingw32-ci",
+      "displayName": "MinGW x86 CI build",
+      "configurePreset": "mingw32-ci",
+      "inherits": "ci"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test",
+      "hidden": true,
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "unit"
+        }
+      }
+    },
+    {
+      "name": "benchmark",
+      "hidden": true,
+      "output": {
+        "verbosity": "verbose",
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "benchmark"
+        }
+      }
+    },
+    {
+      "name": "integration",
+      "hidden": true,
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "integration"
+        }
+      },
+      "execution": {
+        "timeout": 120
+      }
+    },
+    {
+      "name": "ci",
+      "hidden": true,
+      "configuration": "Release",
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "unit"
+        }
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "$env{CI}",
+        "rhs": "true"
+      }
+    },
+    {
+      "name": "ci-benchmark",
+      "hidden": true,
+      "configuration": "Release",
+      "output": {
+        "verbosity": "verbose",
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "benchmark"
+        }
+      }
+    },
+    {
+      "name": "ci-integration",
+      "hidden": true,
+      "configuration": "Release",
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "exclude": {
+          "label": "benchmark"
+        }
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "$env{CI}",
+        "rhs": "true"
+      }
+    },
+    {
+      "name": "linux-test",
+      "displayName": "Unit Tests",
+      "configurePreset": "linux",
+      "inherits": "test"
+    },
+    {
+      "name": "linux-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "linux",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "linux-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "linux",
+      "inherits": "integration"
+    },
+    {
+      "name": "linux-gles-test",
+      "displayName": "Tests",
+      "configurePreset": "linux-gles",
+      "inherits": "test"
+    },
+    {
+      "name": "linux-gles-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "linux-gles",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "linux-gles-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "linux-gles",
+      "inherits": "integration"
+    },
+    {
+      "name": "macos-test",
+      "displayName": "Tests",
+      "configurePreset": "macos",
+      "inherits": "test"
+    },
+    {
+      "name": "macos-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "macos",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "macos-arm-test",
+      "displayName": "Tests",
+      "configurePreset": "macos-arm",
+      "inherits": "test"
+    },
+    {
+      "name": "macos-arm-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "macos-arm",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "xcode-test",
+      "displayName": "Tests",
+      "configurePreset": "xcode",
+      "inherits": "test"
+    },
+    {
+      "name": "xcode-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "xcode",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "xcode-arm-test",
+      "displayName": "Tests",
+      "configurePreset": "xcode-arm",
+      "inherits": "test"
+    },
+    {
+      "name": "xcode-arm-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "xcode-arm",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "clang-cl-test",
+      "displayName": "Tests",
+      "configurePreset": "clang-cl",
+      "inherits": "test"
+    },
+    {
+      "name": "clang-cl-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "clang-cl",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "mingw-test",
+      "displayName": "Tests",
+      "configurePreset": "mingw",
+      "inherits": "test"
+    },
+    {
+      "name": "mingw-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "mingw",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "mingw32-test",
+      "displayName": "Tests",
+      "configurePreset": "mingw32",
+      "inherits": "test"
+    },
+    {
+      "name": "mingw32-benchmark",
+      "displayName": "Benchmarks",
+      "configurePreset": "mingw32",
+      "inherits": "benchmark"
+    },
+    {
+      "name": "linux-ci",
+      "displayName": "Linux CI Tests",
+      "configurePreset": "linux-ci",
+      "inherits": "ci-integration"
+    },
+    {
+      "name": "linux-ci-benchmark",
+      "displayName": "Linux CI Benchmarks",
+      "configurePreset": "linux-ci",
+      "inherits": "ci-benchmark"
+    },
+    {
+      "name": "linux-gles-ci",
+      "displayName": "Linux GLES CI Tests",
+      "configurePreset": "linux-gles-ci",
+      "inherits": "ci-integration"
+    },
+    {
+      "name": "linux-gles-ci-benchmark",
+      "displayName": "Linux GLES CI Benchmarks",
+      "configurePreset": "linux-gles-ci",
+      "inherits": "ci-benchmark"
+    },
+    {
+      "name": "macos-ci",
+      "displayName": "MacOS CI Tests",
+      "configurePreset": "macos-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "macos-ci-benchmark",
+      "displayName": "MacOS CI Benchmarks",
+      "configurePreset": "macos-ci",
+      "inherits": "ci-benchmark"
+    },
+    {
+      "name": "clang-cl-ci",
+      "displayName": "VS CI Tests",
+      "configurePreset": "clang-cl-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "clang-cl-ci-benchmark",
+      "displayName": "VS CI Benchmarks",
+      "configurePreset": "clang-cl-ci",
+      "inherits": "ci-benchmark"
+    },
+    {
+      "name": "mingw-ci",
+      "displayName": "Mingw CI Tests",
+      "configurePreset": "mingw-ci",
+      "inherits": "ci"
+    },
+    {
+      "name": "mingw-ci-benchmark",
+      "displayName": "Mingw CI Benchmarks",
+      "configurePreset": "mingw-ci",
+      "inherits": "ci-benchmark"
+    }
+  ]
+}

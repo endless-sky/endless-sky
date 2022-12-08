@@ -71,11 +71,16 @@ Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
 Files:
+ images/ship/hai?flea*
+Copyright: Matthew Smestad
+License: CC-BY-SA-4.0
+
+Files:
  images/outfit/railgun*
  images/outfit/railslug*
  images/projectile/rail?slug*
- images/ship/hai?flea*
-Copyright: Matthew Smestad
+Copyright: 1010todd
+Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
@@ -1850,6 +1855,7 @@ Files:
  images/land/city20*
  images/land/city21*
  images/land/city22*
+ images/land/city23*
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
