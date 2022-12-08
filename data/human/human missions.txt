@@ -5036,7 +5036,5 @@ mission "A dead man's path II"
 			`    You all get closer to the tablet. A short message is written on it:`
 			`    My dear children, this is the summary of all the things I have done, enjoy it!`
 			`    All of you walk around for some time and look at the various artifacts. You notice the siblings standing in one corner talking about something. They wink you to them. Sophie starts, "Captain <last>, we have thought about this sometime and we think it would be a shame to just keep this sword as a memory. It needs to be used. It was our fathers one and only weapon, which probably means that is has all kind of alien tecnology integrated," she takes the sword and reaches it to you. "It is yours now." You look at her, surprised. "Are you sure about this?" you ask. "Yes we are," Liam says, "please take it on some more adventures." You take the sword.`
-			action
-				give "The old mans sword"
 			`    "Well, it seems like this is the end of our short journey together, Capatin <last>," Sophie says. "It was a pleasure to travel with you," says Liam. You say goodbye to them and leave them alone in the dome.`
-	
+		give "The old mans sword"
