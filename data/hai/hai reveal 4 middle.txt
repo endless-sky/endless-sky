@@ -1427,6 +1427,7 @@ mission "Hai Reveal [A11] Siren Song"
 			`	"Ah, but it's broadcast live," reassures Teeneep. "Like any oligarchy, the Elders normally hide their biases and misdeeds behind a veil of secrecy. Even if they take me down, the movement I'm part of will use this broadcast to bring down the current ruling Council.`
 			`	Teeneep gives you a stern warning. "Be careful what you say in this public broadcast, Captain <last>. Divulging classified information may get you in trouble here or at home. It could cause widespread panic that would negate any good we might have done. Speak with generalities, but make your point abundantly clear."`
 			label question1
+			# FIXME: Need a gender-neutral synonym for "errand boy" that has the same connotations.
 			`	The Elder that was dismissive of Teeneep at her last meeting has your first question. "I understand Teeneep has tricked you into being her errand boy. You have my sympathy. During her misguidance, have you seen any evidence of validity of her conspiracy theories? Are the pirate attacks part of a coordinated effort?"`
 			choice
 				`	"The evidence is circumstantial, but it merits further investigation."`
@@ -1461,7 +1462,7 @@ mission "Hai Reveal [A11] Siren Song"
 					label anger2
 					to display
 						not "Hai Reveal: angered Elder in Council"
-			`	"Ah, one of the main talking points of her movement," he says, looking disappointed. "I see you've been brainwashed." At least a quarter of the Elders appear strongly offended by that.`
+			`	"Ah, one of the main talking points of her movement," he says, looking disappointed. "I see you've been brainwashed." At least a quarter of the Elders appear strongly offended by that. He shakes his head and walks away as another Elder approaches.`
 				goto question3
 			label subversive2
 			`	"The words of a child, Captain <last>," he says, disappointed. "Stability is the only sensible path forward. Anything else will just make matters worse." Most Elders you can see appear to agree with him, though often not wholeheartedly. He departs and another Elder approaches.`
@@ -1528,8 +1529,6 @@ mission "Hai Reveal [A11] Siren Song"
 			`	Sayari speaks in a reassuring tone. "You trained your whole life for this moment. Seize your destiny, Teeneep."`
 			label certainty
 			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. As the song progresses, more and more Elders sing along.`
-			# These lines are double indented to make it clear what is sung and what is spoken.
-			# Do not change the rhyming pattern or correct the grammar. These are lyrics, not prose.
 
 			# FIXME: INSERT SONG HERE
 
@@ -1551,7 +1550,7 @@ mission "Hai Reveal [A11] Siren Song"
 					to display
 						not "Hai Reveal [A11] Siren Song: label looking"
 				`	"Which graphs?"`
-					goto looking
+					goto graphs
 					to display
 						not "Hai Reveal [A11] Siren Song: label looking"
 				`	(Sing along.)`
@@ -1568,11 +1567,20 @@ mission "Hai Reveal [A11] Siren Song"
 				set "Hai Reveal [A11] Siren Song: label looking"
 			`	"I'm seeing worrying trends on these graphs. About two thirds of the Hai voting public is seeing this, and they're rapidly fill up Teeneep's Petition of No Confidence. At this rate, it may reach the threshold before her song ends!"`
 				goto transfixed
-
-
-#  That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
-#			`	"The map is more worrying. 
-#				goto panic
+			label graphs
+			`	She points to a whirling cloud and says, "That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
+			`	"The map is more worrying. For several years, Teeneep and her allies have pushed a Petition of No Confidence which would force the Elders to have an election. Every minute it's gaining more votes than it typically did in a week."`
+				goto transfixed
+			label singalong
+			# Calculate player's singing ability from the number of Becca Band and Remnant missions.
+			# Response from those around you depend in your singing ability.
+			# Nearly all songs are in Hai, so you don't know exactly what they're about.
+			# As you sing, more Elders join in as they notice the graphs that Sayari was worried about.
+			#	goto runaway
+			label runaway
+			# An Elder points at the graphs and starts yelling "emergency powers!"
+			# More Elders join in.
+			# Sayari drags Captain Last to the room's exit with orders to go to Mountaintop due to an impending snap election
 
 
 
