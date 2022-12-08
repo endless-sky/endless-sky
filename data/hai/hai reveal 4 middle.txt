@@ -1552,7 +1552,8 @@ mission "Hai Reveal [A11] Siren Song"
 				`	"Which graphs?"`
 					goto graphs
 					to display
-						not "Hai Reveal [A11] Siren Song: label looking"
+						has "Hai Reveal [A11] Siren Song: label looking"
+						not "Hai Reveal [A11] Siren Song: label graphs"
 				`	(Sing along.)`
 					goto singalong
 				`	(Remain silent.)`
@@ -1574,6 +1575,8 @@ mission "Hai Reveal [A11] Siren Song"
 			`	"I'm seeing worrying trends on these graphs. About two thirds of the Hai voting public is watching this broadcast, and they're rapidly fill up Teeneep's Petition of No Confidence. At this rate, it may reach the threshold before her song ends!"`
 				goto transfixed
 			label graphs
+			action
+				set "Hai Reveal [A11] Siren Song: label graphs"
 			# FIXME: Placeholder text. Needs to be rewritten to be more clear and panicky.
 			`	She points to a whirling cloud and says, "That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
 			`	"The map is more worrying. For several years, Teeneep and her allies have pushed a Petition of No Confidence which would force the Elders to have an election. Every minute it's gaining more votes than it typically did in a week."`
