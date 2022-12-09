@@ -20,6 +20,7 @@ mission "Hai Secret Leaker Begins"
 		has "main plot completed"
 	on offer
 		event "pug media coverage" 20 30
+		event "hai secret leaks" 60 90
 		fail
 
 event "pug media coverage"
@@ -55,7 +56,6 @@ mission "Event: Pug Media Coverage"
 	to offer
 		has "event: pug media coverage"
 	on offer
-		event "hai secret leaks" 10 15
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
