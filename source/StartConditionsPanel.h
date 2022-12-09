@@ -63,7 +63,7 @@ private:
 	// The panel to close when a scenario is chosen.
 	const Panel *parent;
 	// The list of starting scenarios to pick from.
-	StartConditionsList &scenarios;
+	const StartConditionsList &scenarios;
 	// The currently selected starting scenario.
 	StartConditionsList::const_iterator startIt;
 	// Colors with which to draw text.
