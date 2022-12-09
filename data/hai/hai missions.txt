@@ -1438,14 +1438,26 @@ mission "Strider: Coalition 2"
 				accept
 
 
-
+# For compatibility
 event "pond strider mass production"
-	shipyard "Hai Basics"
-		"Flea"
-	shipyard "Hai Advanced"
-		"Pond Strider"
-		"Flea"
-	outfitter "Hai Basic"
+
+# The mission to ensure the Pond Strider is properly added to the new Hai shipyards.	
+mission "Pond Strider Patch for v2"
+	landing
+	invisible
+	to offer
+		has "event: pond strider mass production"
+	on offer
+		event "pond strider mass production v2"
+		fail
+
+
+event "pond strider mass production v2"
+	shipyard "Mon Ki i'Hiya Basics"
+		add "Flea"
+	shipyard "Mon Ki i'Hiya Advanced"
+		add "Pond Strider"
+	outfitter "Hai Basics"
 		"Railgun Slug"
 	outfitter "Hai Intermediate"
 		"Railgun"
@@ -1493,7 +1505,7 @@ mission "Strider 3"
 			has "Strider: Coalition 2: done"
 			has "Strider: Remnant 3: done"
 	on offer
-		event "pond strider mass production" 30 90
+		event "pond strider mass production v2" 30 90
 		conversation
 			`Yashili contacts the elders as you land, informing them that you have obtained the hull repair technology. They agree to meet you in the spaceport along with Osen. A group of spaceport workers begins unloading the samples from your cargo bay after you land.`
 			`	As you depart your ship, you spot the Hai elders and Osen approaching. Ambassador Yashili and the Hai delegation step forward to meet them.`
