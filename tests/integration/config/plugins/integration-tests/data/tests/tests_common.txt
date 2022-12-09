@@ -555,15 +555,18 @@ test "Create New Pilot"
 		input
 			key a
 		input
-			key "Return"
+			key "return"
 		# last name: b
 		input
 			key b
 		input
-			key "Return"
+			key "return"
 		# skip text
 		input
-			key "Return"
+			key "return"
+		# to be sure
+		input
+			key "return"
 		# go to the main landing panel
 		input
 			key l
@@ -577,12 +580,12 @@ test "Buy First Ship"
 			key s
 		# buy first ship
 		input
-			key "Down"
+			key "down"
 		input
 			key b
 		# confirm
 		input
-			key "Return"
+			key "return"
 		# back to landing
 		input
 			key l
