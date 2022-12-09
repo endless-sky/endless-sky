@@ -90,12 +90,13 @@ private:
 
 
 private:
+	struct PointInternal {
+		double x;
+		double y;
+	};
 	union {
 		__m128d v;
-		struct {
-			double x;
-			double y;
-		} val;
+		PointInternal val;
 	};
 #else
 	double x;
