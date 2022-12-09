@@ -46,9 +46,8 @@ conversation "default intro"
 
 start "hai"
 	name "Later Start"
-	description `You grew up on Greenwater, a world with a very rich culture, mostly thanks to space travel. You've dreamed of owning your own fleet since you were given toys spaceships to play with, at a very young age. You worked in a texture farm there, making human quite clothing that surprisingly sold very well.`
-	description `	Here, there is no need for licenses in order to buy or fly your ship.`
-	description `	A lot has happened whilst you were on the planet, and you feel like it is finally time for you to play your part.`
+	description `You grew up on Greenwater, a world with a very rich and diverse hai-human culture. You've dreamed of owning your own fleet since you were given toy spaceships. In order to reach that goal, you worked in a texture farm, making human clothing that surprisingly sold very well.`
+	description `	A lot has happened whilst you were on the planet, and you feel like it is finally time for you to play your part. There is nothing to hold you back, as the Hai do not even require pilots to have a license, so you venture into the unknown of the shipyards to meet fate.`
 	thumbnail "scene/hai start"
 	date 18 6 3020
 	system "Fah Soom"
@@ -152,6 +151,8 @@ mission "FW completed"
 		event "fwc liberation of rasalhague"
 		event "fwc pug defeated"
 		event "geminus rebuilt"
+		# note: since you did not participate in the war you don't get the syndicate tech or the nukes.
+
 
 mission "HR completed"
 	landing
@@ -175,9 +176,9 @@ mission "HR completed"
 		event "mooncreek realized"
 
 
+
 event "not from boston"
 	planet "New Boston"
-		remove description
 		description `Most of the land here is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
 
 event "grew up on greenwater"
