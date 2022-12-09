@@ -292,6 +292,9 @@ public:
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 
+	// check if an outfit is known
+	bool OutfitIsKnown(const Outfit &outfit) const;
+
 	// marking outfit as known
 	void DiscoverOutfit(const Outfit &outfit);
 

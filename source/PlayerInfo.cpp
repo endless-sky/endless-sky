@@ -2077,6 +2077,11 @@ void PlayerInfo::Visit(const System &system)
 			seen.insert(neighbor);
 }
 
+bool PlayerInfo::OutfitIsKnown(const Outfit& outfit) const
+{
+	return knownOutfits.count(&outfit);
+}
+
 // Mark outfit as known
 void PlayerInfo::DiscoverOutfit(const Outfit& outfit)
 {
