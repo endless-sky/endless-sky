@@ -612,6 +612,9 @@ test "First Game"
 		call "Buy First Ship"
 		# James starts the convo
 		call "Skip Dialog"
+		# make sure we are still in the landing panel (if already in it this doesn't do anything)
+		input
+			key l
 		# leave to refresh conditions
 		call "Depart"
 		# save these in temporary conditions to know what they are if it fails
