@@ -680,7 +680,7 @@ void PrintData::LocationFilterMatches(const char *const *argv)
 	LocationFilter filter;
 	for(const DataNode &node : file)
 	{
-		if(node.Token(0) == "changes" || "event")
+		if(node.Token(0) == "changes" || node.Token(0) == "event")
 			for(const DataNode &child : node)
 				if(DEFINITION_NODES.count(child.Token(0)))
 					GameData::Change(child);
