@@ -115,7 +115,8 @@ void StartConditionsPanel::Draw()
 		if(it == startIt)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
 
-		const auto name = DisplayText(it->Useable(GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
+		const auto name = DisplayText(
+									it->Unlocked(GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
 	}
 
@@ -152,7 +153,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		Select(startIt);
 	}
 	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
-		&& startIt->Useable(GameData::GlobalConditions()))
+		&& startIt->Unlocked(GameData::GlobalConditions()))
 	{
 		player.New(*startIt);
 
@@ -313,7 +314,7 @@ void StartConditionsPanel::Select(StartConditionsList::const_iterator it)
 
 	// Update the displayed description text.
 	descriptionScroll = 0;
-	description.Wrap(startIt->Useable(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
+	description.Wrap(startIt->Unlocked(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
 
 	// Scroll the selected scenario into view.
 	ScrollToSelected();

@@ -128,8 +128,8 @@ void StartConditions::Load(const DataNode &node)
 		{
 			if(child.Token(1) == "display")
 				toDisplay.Load(child);
-			else if(child.Token(1) == "use")
-				toUse.Load(child);
+			else if(child.Token(1) == "unlock")
+				toUnlock.Load(child);
 		}
 		else
 			conditions.Add(child);
@@ -247,7 +247,7 @@ bool StartConditions::Visible(ConditionsStore conditionsStore) const
 
 
 
-bool StartConditions::Useable(ConditionsStore conditionsStore) const
+bool StartConditions::Unlocked(ConditionsStore conditionsStore) const
 {
-	return toUse.Test(conditionsStore);
+	return toUnlock.Test(conditionsStore);
 }

@@ -57,7 +57,7 @@ public:
 	const std::string &GetHint() const noexcept;
 
 	bool Visible(ConditionsStore conditionsStore) const;
-	bool Useable(ConditionsStore conditionsStore) const;
+	bool Unlocked(ConditionsStore conditionsStore) const;
 
 
 private:
@@ -76,7 +76,7 @@ private:
 	std::string hint;
 
 	ConditionSet toDisplay;
-	ConditionSet toUse;
+	ConditionSet toUnlock;
 };
 
 
