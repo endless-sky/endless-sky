@@ -1516,7 +1516,7 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 					goto ask
 				`	(Return to your ship.)`
 					goto leave
-			`	The stalls have a range of tasty Hai and Hai-human fusion cuisines in disposable takeaway trays. At first glance they appear to be some sort of cardboard equivalent, but a Hai near you finishes their meal and then begins nibbling on the tray afterwards. It would seem that they are edible.`
+			`	The stalls have a range of tasty Hai and Hai-human fusion cuisines in disposable takeaway trays. At first glance they appear to be some sort of cardboard equivalent, but a Hai near you finishes their meal and then begins nibbling on the tray afterwards.`
 			`	The election coverage is in Hai, naturally, but there's a strong sense that people are still scrambling to have relevant commentary on such short notice and with no prior opinion polling in lead-up. It certainly seems like things are heated. Different charts being presented for the same areas seem to suggest that there's a great deal of controversy and some very strong opinions being thrown around. A number of the Hai nearby make some sounds of concern occasionally, but they do not stay around to comment. Unfortunately, nothing comes up in your language by the time you've finished your food.`
 			choice
 				`	(Eat the tray.)`
@@ -1524,15 +1524,15 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 				`	(Return to your ship.)`
 					goto leave
 			label tray
-			`	The tray is hard and difficult to break. It does have a remarkably intriguing combination nutty and herby flavor that would probably be quite enjoyable, but you don't have the teeth for it.`
+			`	The tray is hard and difficult to break. It does have a remarkably intriguing combination of nutty and herby flavors that would probably be quite enjoyable, but you don't quite have the teeth for it.`
 			choice
 				`	(Ask around for an update.)`
 					goto ask
 				`	(Return to your ship.)`
 					goto leave
 			label ask
-			`	When you ask around, a lot of Hai don't seem to be very interested in talking to you. One in particular looks like they recognized you and actively avoided you. After you've approached a half dozen Hai unsuccessfully, though, one takes pity and comes over towards you. He appears to be of middling years and extends a paw to shake your hand in a friendly manner.`
-			`	"Apologies for my brethren's behavior, Captain, but this is a very important time for the Hai, and many of them are under significant strain to be informed and also maintain their essential business as captains themselves. There are a number of regulations for Hai citizens to stay on top of if they are frequently moving between worlds during the period, and they haven't had the time to prepare that they usually would."`
+			`	When you ask around, a lot of Hai don't seem to be very interested in talking to you. One, in particular, looks like they recognized you and actively avoided you. After approaching a half dozen Hai unsuccessfully, one takes pity and comes to you. He appears to be of middling years and extends a paw to shake your hand in a friendly manner.`
+			`	"Apologies for my brethren's behavior, Captain, but this is a very important time for the Hai. Many are under significant strain to be informed and also maintain their essential business as captains themselves. There are a number of regulations for Hai citizens to stay on top of if they are frequently moving between worlds during the period, and they haven't had the time to prepare that they usually would."`
 			choice
 				`	"Is politics a very important matter for the Hai?"`
 					goto politics
