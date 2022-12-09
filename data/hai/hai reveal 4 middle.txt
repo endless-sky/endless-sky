@@ -1425,10 +1425,10 @@ mission "Hai Reveal [A11] Siren Song"
 					goto question1
 			`	Sayari explains. "The Elder Council has always been concerned by Teeneep's activism. They're especially fearful of her outreach to the Unfettered and humans. It seems they've finally had their fill and decided she's a threat to the peace. In this trial, Elders will decide will either ban her from public discourse, or exile her from most of Hai space. If she's lucky, they'll do neither."`
 			`	"Ah, but it's broadcast live," reassures Teeneep. "Like any oligarchy, the Elders normally hide their biases and misdeeds behind a veil of secrecy. Even if they take me down, the movement I'm part of will use this broadcast to bring down the current ruling Council.`
-			`	Teeneep gives you a stern warning. "Be careful what you say in this public broadcast, Captain <last>. Divulging classified information may get you in trouble here or at home. It could cause widespread panic that would negate any good we might have done. Speak with generalities, but make your point abundantly clear."`
 
 			# First question. The rude Elder from before wants to know about conspiracy theories.
 			label question1
+			`	Teeneep gives you a stern warning. "Be careful what you say in this public broadcast, Captain <last>. Divulging classified information may get you in trouble here or at home. It could cause widespread panic that would negate any good we might have done. Speak with generalities, but make your point abundantly clear."`
 			`	The Elder that was dismissive of Teeneep at her last meeting has your first question. "I understand Teeneep has enlisted you as her gopher. You have my sympathy. During her misguidance, have you seen any evidence of validity of her conspiracy theories? Are the pirate attacks part of a coordinated effort?"`
 			choice
 				`	"The evidence is circumstantial, but it merits further investigation."`
@@ -1506,12 +1506,7 @@ mission "Hai Reveal [A11] Siren Song"
 			# Questions end. Voting begins.
 			label vote
 			`	The moderator concludes, "Teeneep's confession to her crime is taken as the statement from the defense. We will vote first on exile, and then on censure. Exile should be a quick vote. Choose yes or no."`
-			`	Every Elder you can see now has a holographic cube in front of them. The cubes are initially gray, but change color to blue or white of varying intensities as the Elder rotates it. It only takes a few seconds for the Elders to all change their cubes to blue, except for one bright white one in the distance.`
-				to display
-					has "Hai Reveal: threatened by Elder in Council"
 			`	Every Elder you can see now has a holographic cube in front of them. The cubes are initially gray, but change color to blue or white of varying intensities as the Elder rotates it. It only takes a few seconds for the Elders to all change their cubes to blue, except for the first Elder to question you. His cube is lit as white as a star.`
-				to display
-					not "Hai Reveal: threatened by Elder in Council"
 			`	Soon, the moderator announces the results. "Only one vote for exile, so the next vote is censure." Voting cubes appear, but few Elders touch them. Murmurs begin as the Elders discuss Teeneep's fate. It seems the censure vote is viewed as reasonable, but controversial.`
 
 			# Aimet arrives to save Teeneep from censure.
@@ -1548,82 +1543,77 @@ mission "Hai Reveal [A11] Siren Song"
 			label certainty
 			`	Teeneep rises with complete certainty and faces the cameras. This young Hai becomes a Siren as her song fills the chamber. A few Elders join the song, and more add their voices as the verses fly by.`
 			`	FIXME: INSERT SONG HERE`
-			`	Teeneep's songs continue, mostly in Hai, while Sayari is transfixed by graphs and symbols floating in the room's holoprojection. A question may awaken her.`
+			`	Teeneep's songs continue, mostly in Hai, while Sayari is transfixed by graphs and symbols floating in the room's holoprojection. You must decide how to pass the time.`
 			label transfixed
 			choice
-				# In this conversation, you have time to ask one of the follow-up questions
-				# (phrase2 or graphs) OR sing along. After that, it jumps to the "runaway"
-				# label.
-
-				# Initial questions are first so you can open both conversation paths.
 				`	"What are you looking at, Sayari?"`
 					goto looking
-					to display
-						not "Hai Reveal [A11] Siren Song: label looking"
-				`	"Can you translate 'FIXME: HAI PHRASE' for me?"`
+				`	"Can you translate the Hai phrase 'FIXME: HAI PHRASE?'"`
 					goto phrase
-					to display
-						not "Hai Reveal [A11] Siren Song: label phrase"
-
-				# Follow-up questions. The graph follow-up is first since it is more immediately relevant.
-				# Either one will end the conversation.
-				`	"Can you explain the graphs in more detail?"`
-					goto graphs
-					to display
-						has "Hai Reveal [A11] Siren Song: label looking"
-						not "Hai Reveal [A11] Siren Song: label graphs"
-				`	"What does, 'People of three souls as one, indomitable' mean?"`
-					goto phrase2
-					to display
-						not "Hai Reveal [A11] Siren Song: label phrase2"
-						has "Hai Reveal [A11] Siren Song: label phrase"
-
-				# You can sing instead. This will end the conversation:
 				`	(Sing along.)`
 					goto singalong
-
-				# Or just jump to the end, if you're impatient:
 				`	(Wait for the spectacle to end.)`
 					goto wait
 
 			# First block of questions for Sayari: What is that strange phrase?
+			# This explains why Teeneep's message is so powerful.
 			label phrase
-			action
-				set "Hai Reveal [A11] Siren Song: label phrase"
-			`	She almost misses your question. "Hmmm? Oh. That's from a dead language. 'People of three souls as one, indomitable'. 'Hai' derives from 'Ha'ii', meaning 'three souls'."`
-				goto transfixed
-			label phrase2
-			action
-				set "Hai Reveal [A11] Siren Song: label phrase2"
-			`	Her eyes peel away from the graphs at last. "Yes, of course. The meaning." The singing is growing quite loud as more Elders join in, but you can still barely hear Sayari. Some Elders have started shouting angrily, trying to end the spectacle, but they're drowned out by the unified voice of song.`
-			`	"It originates from a religion in our ancient prehistory, before the Hai left the forest. We believed we were created by a pantheon of gods who, like parents, hoped we would one day surpass them. They gave us stronger souls than their own so we could pursue our dreams.`
-			`	"Some gods grew jealous and fearful of the Hai, so they shattered the Hai soul into three. The Wise Soul of the Elders, the Mighty Soul of the protectors, and the Kind Soul of the common people. The other gods ignored our pleas for help because they were scared of us as well."`
-			`	"The gods grew ever more frightened, so one day they came to slay the Hai. Drawn together by a common purpose, the three souls became one. The combined soul was stronger than the gods, so we drove them from the forest. With the unifying threat gone, the Hai soul shattered into three once again.`
-			`	"In modern times, we use that legend as a metaphor for Hai unity, and Teeneep's has made the phrase her motto. It is heard is throughout our history and culture, so everywhere people see strength and unity, they see Teeneep."`
+			# FIXME: Improve wording and make this more concise.
+			`	Her eyes peel away from the graphs at last. "Those words are a call for unity, from a long-dead language in our prehistory, before the Hai left the forest. 'People of three souls as one, indomitable'. 'Hai' derives from 'Ha'ii', meaning 'three souls'.`
+			`	"Ancient Hai believed we were created by gods who gave us stronger souls than their own. As parents, they hoped this would let us surpass them, but they soon realized their mistake.`
+			`	"Jealous, fearful, gods shattered the Hai soul into three and came to slay us. The Wise Soul of the Elders, the Mighty Soul of the protectors, and the Kind Soul of the common people. The rallying cry of the Hai became 'FIXME: insert phrase here' to reunite the shards.`
+			`	"Drawn together by a common purpose, the three souls became one, and the gods fled in terror. Then, without a unifying threat, the Hai soul shattered into three again. Sometimes the gods return, and we reunite to defeat them.`
+			`	"In modern times, we use that legend as a metaphor for Hai unity, and Teeneep's has made that famous phrase her motto. It has been ubiquitous in our culture for millennia, and her followers chant it non-stop. Now, when people see strength and unity, they see Teeneep."`
 				goto runaway
 
 			# Second block of questions for Sayari: What are those graphs?
+			# This explains the effect Teeneep's movement is having.
 			label looking
-			action
-				set "Hai Reveal [A11] Siren Song: label looking"
-			# FIXME: Placeholder text. Needs to be rewritten to be more clear and panicky.
-			`	"I'm seeing worrying trends on these graphs. About two thirds of the Hai voting public is watching this broadcast, and they're rapidly fill up Teeneep's Petition of No Confidence. At this rate, it may reach the threshold before her song ends!"`
-				goto transfixed
-			label graphs
-			action
-				set "Hai Reveal [A11] Siren Song: label graphs"
 			# FIXME: make the graph description details more interesting.
 			`	She points to a whirling cloud and says, "That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
 			`	The singing is growing quite loud as more Elders join in, but you can still barely hear Sayari. Some Elders have started shouting angrily, trying to end the spectacle, but they're drowned out by the unified voice of song.`
 			`	"The map is more worrying." She points to a holographic flow diagram in the shape of Hai space, with bowls for each system, rapidly filling with water. "For several years, Teeneep and her allies have pushed a Petition of No Confidence which would force the Elders to have an election. Every minute it's gaining more votes than it typically did in a week." As she says that, several bowls overflow and spill.`
 				goto runaway
 
-			# Instead of quizzing Sayari, sing along:
+			# Instead of quizzing Sayari, sing with Teeneep:
 			label singalong
-			# Calculate player's singing ability from the number of Becca Band and Remnant missions.
-			# Response from those around you depend in your singing ability.
-			# Nearly all songs are in Hai, so you don't know exactly what they're about.
-			# Conversation continues to "label wait"
+
+			# How good is Captain Last at singing?
+			branch cringeworthy
+				not "There Might Be Riots part 3B: done"
+				not "Remnant: Technology Available: offered"
+			branch offkey
+				not "Remnant: Cognizance 1: offered"
+			branch singokay
+				not "Remnant: Cognizance 19: offered"
+			branch singwell
+				not "Remnant: Cognizance 35: done"
+
+			# FIXME: This dialog is all clumsy, but the story elements are okay.
+
+			# Player spent a lot of time with the Remnant, so they can sing at a professional level.
+			`	You begin to sing along with Teeneep, and your skill quickly catches her attention. After the next song ends, she asks you to come over and sing the rest of the concert next to her. Many songs later, you introduce the Hai to anti-Parliament songs from before the human civil war, and anti-Syndicate songs. Teeneep is familiar with them, and feels they fit the anti-Council theme well.`
+				goto wait
+
+			label singwell
+			# Player spent some time with the remnant (cognizance 19) so they can sing skillfully.
+			`	You begin to sing along with Teeneep, and Sayari is surprised. "That's amazing singing, Captain <last>! You've got some hidden talents." The two of you sing enthusiastically together, and dance to some of the more lively songs. Sayari is having so much fun that she almost forgets the chaos around her.`
+				goto wait
+
+			label singokay
+			# Player finished the remnant intro, so they sing well for a novice.
+			`	Sayari nods with approval at your singing skill and sings the rest of the songs with you. Between songs, she looks up at the graphs, quite worried. You notice many Elders are doing the same, and getting increasingly agitated. "I don't like where this is going," says Sayari, "nor how quickly it's going there. You may need to depart soon."`
+				goto wait
+
+			label offkey
+			# Player spent some time with a band, or a little time with the remnant. They're as good as anyone who occasionally sings.
+			`	As you sing, you notice Sayari keeps getting distracted by the graphs floating around the ceiling. She keeps warning you that another planet hit its petition threshold. Eventually, she says, "It's hard to tell through the commotion, but the situation is going downhill fast. You may need to depart soon."`
+				goto wait
+
+			label cringeworthy
+			# Player has rarely, if ever, sung a song. Their performance is utterly cringe-worthy.
+			`	Sayari cringes when you first sing, and keeps trying to distract you with updates on the graphs and political situation. It sounds like the situation is deteriorating rapidly, as Teeneep brings the Hai ever closer to a snap election. Eventually, Sayari says, "You will have to depart abruptly if this worsens."`
+				goto wait
 
 			label wait
 			# FIXME: Placeholder text. Sloppy, needs to be rewritten.
