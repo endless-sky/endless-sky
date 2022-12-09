@@ -542,8 +542,6 @@ test "Load First Savegame"
 test "Create New Pilot"
 	status partial
 	description "Helper function to create a new pilot."
-		input
-			key l
 		# new pilot
 		input
 			key n
