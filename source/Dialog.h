@@ -94,6 +94,7 @@ private:
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback() const;
+	const int Width() const;
 
 
 protected:
@@ -118,6 +119,7 @@ protected:
 
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
+	bool isWide = false;
 };
 
 
