@@ -57,7 +57,7 @@ namespace {
 
 
 
-	void DisplayVector(const string &heading, const vector<string> &entries, 
+	void DisplayVector(const string &heading, const vector<string> &entries,
 		const Font &font, const Color &headingColor, const Color &bodyColor,
 		const Point &textOffset, Point& pos)
 	{
