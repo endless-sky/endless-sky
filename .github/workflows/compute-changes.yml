@@ -22,7 +22,7 @@ on:
       codeblocks_files:
         value: ${{ jobs.changed.outputs.codeblocks_files }}
       cmake_files:
-        value: ${{ jobs.changed.outputs.cmake }}
+        value: ${{ jobs.changed.outputs.cmake_files }}
       copyright:
         value: ${{ jobs.changed.outputs.copyright }}
 
