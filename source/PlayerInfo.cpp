@@ -1013,6 +1013,8 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 	ships.push_back(ship);
 	ship->SetIsSpecial();
 	ship->SetIsYours();
+
+	DiscoverOutfits(ship->Outfits());
 }
 
 
@@ -1047,10 +1049,17 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 			for(const auto &it : model->Outfits())
 				stock[it.first] -= it.second;
 		}
+
+		DiscoverOutfits(model->Outfits());
 	}
 }
 
-
+void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
+{
+		for(const auto &it : outfits)
+			if(!OutfitIsKnown(*it.first))
+				DiscoverOutfit(*it.first);
+}
 
 // Sell the given ship (if it belongs to the player).
 void PlayerInfo::SellShip(const Ship *selected)

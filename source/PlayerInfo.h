@@ -298,6 +298,9 @@ public:
 	// marking outfit as known
 	void DiscoverOutfit(const Outfit &outfit);
 
+	// marking outfits as known
+	void DiscoverOutfits(const std::map<const Outfit *, int> &outfits);
+
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
