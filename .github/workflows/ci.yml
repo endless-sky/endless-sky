@@ -546,8 +546,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - name: Install development dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -577,8 +575,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
@@ -603,8 +599,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
@@ -628,8 +622,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
