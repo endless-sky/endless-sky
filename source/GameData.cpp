@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -97,6 +98,8 @@ namespace {
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
+
+	ConditionsStore globalConditions;
 }
 
 
@@ -627,6 +630,13 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
+ConditionsStore &GameData::GlobalConditions()
+{
+	return globalConditions;
+}
+
+
+
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
@@ -849,8 +859,11 @@ void GameData::LoadSources()
 		else if(Files::Exists(*it + "icon@2x.jpg"))
 			icon->Add(*it + "icon@2x.jpg");
 
-		icon->ValidateFrames();
-		spriteQueue.Add(icon);
+		if(!icon->IsEmpty())
+		{
+			icon->ValidateFrames();
+			spriteQueue.Add(icon);
+		}
 	}
 }
 

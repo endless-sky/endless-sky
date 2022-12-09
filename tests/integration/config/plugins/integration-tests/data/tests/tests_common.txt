@@ -627,7 +627,7 @@ test "Save To Default Snapshot"
 			key a
 		# Confirm usage of the default snapshot name.
 		input
-			key "enter"
+			key "Return"
 		# Exit the menu that we are in (and return to the game)
 		input
 			key b

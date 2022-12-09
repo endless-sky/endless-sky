@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "ShipJumpNavigation.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -442,10 +443,16 @@ void PlayerInfo::Save() const
 			for(int i = 0; i < 3; ++i)
 				if(Files::Exists(files[i + 1]))
 					Files::Move(files[i + 1], files[i]);
+			if(planet->HasSpaceport())
+				Save(root + "~~previous-spaceport.txt");
 		}
 	}
 
 	Save(filePath);
+
+	// Save global conditions:
+	DataWriter globalConditions(Files::Config() + "global conditions.txt");
+	GameData::GlobalConditions().Save(globalConditions);
 }
 
 
@@ -894,7 +901,8 @@ void PlayerInfo::SetFlagship(Ship &other)
 	// Make sure your jump-capable ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() && (!ship->CanBeCarried() || ship->JumpFuel()));
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() &&
+			(!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
 		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 
@@ -1527,16 +1535,25 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-		for(const auto &outfit : cargo.Outfits())
-		{
-			// Compute the total value for each type of excess outfit.
-			if(!outfit.second)
-				continue;
-			int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
-			for(int i = 0; i < outfit.second; ++i)
-				stockDepreciation.Buy(outfit.first, day, &depreciation);
-			income += cost;
-		}
+		if(!planet->HasOutfitter())
+			for(const auto &outfit : cargo.Outfits())
+			{
+				// Compute the total value for each type of excess outfit.
+				if(!outfit.second)
+					continue;
+				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+				for(int i = 0; i < outfit.second; ++i)
+					stockDepreciation.Buy(outfit.first, day, &depreciation);
+				income += cost;
+			}
+		else
+			for(const auto &outfit : cargo.Outfits())
+			{
+				// Transfer the outfits from cargo to the storage on this planet.
+				if(!outfit.second)
+					continue;
+				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+			}
 	}
 	accounts.AddCredits(income);
 	cargo.Clear();
@@ -3137,6 +3154,29 @@ void PlayerInfo::RegisterDerivedConditions()
 		gov->SetReputation(value);
 		return true;
 	});
+
+	// Global conditions setters and getters:
+	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
+	globalProvider.SetHasFunction([](const string &name) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Has(condition);
+	});
+	globalProvider.SetGetFunction([](const string &name) -> int64_t
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Get(condition);
+	});
+	globalProvider.SetSetFunction([](const string &name, int64_t value) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Set(condition, value);
+	});
+	globalProvider.SetEraseFunction([](const string &name) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Erase(condition);
+	});
 }
 
 
@@ -3176,7 +3216,10 @@ void PlayerInfo::CreateMissions()
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
-			if(it->IsAtLocation(Mission::SPACEPORT) && !it->HasPriority())
+			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
+				|| it->IsAtLocation(Mission::SHIPYARD)
+				|| it->IsAtLocation(Mission::OUTFITTER);
+			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
 				++it;
