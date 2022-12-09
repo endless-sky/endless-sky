@@ -54,6 +54,10 @@ public:
 	const Sprite *GetThumbnail() const noexcept;
 	const std::string &GetDisplayName() const noexcept;
 	const std::string &GetDescription() const noexcept;
+	const std::string &GetHint() const noexcept;
+
+	bool Visible(ConditionsStore conditionsStore) const;
+	bool Useable(ConditionsStore conditionsStore) const;
 
 
 private:
@@ -69,6 +73,10 @@ private:
 	// The user-friendly display name for this starting scenario.
 	std::string name;
 	std::string description;
+	std::string hint;
+
+	ConditionSet toDisplay;
+	ConditionSet toUse;
 };
 
 

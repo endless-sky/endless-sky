@@ -99,6 +99,10 @@ void StartConditions::Load(const DataNode &node)
 			}
 			description += value + "\n";
 		}
+		else if(key == "hint" && hasValue)
+		{
+			hint = value;
+		}
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(value);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
@@ -120,6 +124,13 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
+		else if(key == "to")
+		{
+			if(child.Token(1) == "display")
+				toDisplay.Load(child);
+			else if(child.Token(1) == "use")
+				toUse.Load(child);
+		}
 		else
 			conditions.Add(child);
 	}
@@ -218,4 +229,25 @@ const std::string &StartConditions::GetDisplayName() const noexcept
 const std::string &StartConditions::GetDescription() const noexcept
 {
 	return description;
+}
+
+
+
+const std::string &StartConditions::GetHint() const noexcept
+{
+	return hint;
+}
+
+
+
+bool StartConditions::Visible(ConditionsStore conditionsStore) const
+{
+	return toDisplay.Test(conditionsStore);
+}
+
+
+
+bool StartConditions::Useable(ConditionsStore conditionsStore) const
+{
+	return toUse.Test(conditionsStore);
 }

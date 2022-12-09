@@ -99,6 +99,9 @@ void StartConditionsPanel::Draw()
 	for(auto it = scenarios.begin(); it != scenarios.end();
 			++it, pos += Point(0., entryBox.Height()))
 	{
+		if(!it->Visible(player.Conditions()))
+			continue;
+
 		// Any scenario wholly outside the bounds can be skipped.
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
 		if(!(entriesContainer.Contains(zone.TopLeft()) || entriesContainer.Contains(zone.BottomRight())))
@@ -112,7 +115,7 @@ void StartConditionsPanel::Draw()
 		if(it == startIt)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
 
-		const auto name = DisplayText(it->GetDisplayName(), Truncate::BACK);
+		const auto name = DisplayText(it->Useable(player.Conditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
 	}
 
@@ -309,7 +312,7 @@ void StartConditionsPanel::Select(StartConditionsList::const_iterator it)
 
 	// Update the displayed description text.
 	descriptionScroll = 0;
-	description.Wrap(startIt->GetDescription());
+	description.Wrap(startIt->Useable(player.Conditions()) ? startIt->GetDescription() : startIt->GetHint());
 
 	// Scroll the selected scenario into view.
 	ScrollToSelected();
