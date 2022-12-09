@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "File.h"
 #include "Files.h"
 
-#ifndef __APPLE__
+#if !defined(__APPLE__) || defined(ES_CMAKE)
 #include <AL/al.h>
 #else
 #include <OpenAL/al.h>
