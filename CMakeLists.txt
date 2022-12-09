@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16..3.25)
 
 include(CMakeDependentOption)
-option(ES_NO_VCPKG "Don't use vcpkg to get dependencies." OFF)
+option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
@@ -21,7 +21,7 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
-if(NOT ES_NO_VCPKG)
+if(ES_USE_VCPKG)
 	include(utils/vcpkg_bootstrap.cmake)
 	x_vcpkg_bootstrap()
 
