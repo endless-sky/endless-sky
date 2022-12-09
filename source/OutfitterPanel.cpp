@@ -112,6 +112,11 @@ void OutfitterPanel::Step()
 		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
 			checkedHelp = true;
+
+	for(const auto outfit : outfitter) {
+		if(!player.OutfitIsKnown(*outfit))
+			player.DiscoverOutfit(*outfit);
+	}
 }
 
 
