@@ -1,19 +1,7 @@
 First you need a copy of the code (if you intend on working on the game use your fork's URL here):
 
 ```powershell
-> git clone https://github.com/endless-sky/endless-sky --recursive
-```
-
-If you clone the repo another way make sure to download submodules as well when doing so. If you didn't you can download the submodule by executing
-
-```powershell
-> git submodule update --init
-```
-
-It is highly recommended to update submodules every time you `git pull` automatically, by setting the following config:
-
-```powershell
-> git config submodule.recurse true
+> git clone https://github.com/endless-sky/endless-sky
 ```
 
 The game's root directory, where your `git clone`d files reside, will be your starting point for compiling the game.
