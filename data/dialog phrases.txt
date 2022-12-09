@@ -131,3 +131,28 @@ phrase "generic aborted pirate cargo mission"
 phrase "generic completed pirate slave mission"
 	word
 		`After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>.`
+
+phrase "generic mineral payment dialog"
+	word
+		`Your client on <destination>`
+	word
+		` `
+		` gratefully `
+	word
+		`pays you <payment> for helping to`
+	word
+		` deliver `
+		` procure `
+	word
+		`the requested `
+	word
+		`<outfit-units> of <outfit>.`
+
+phrase "generic mineral visit dialog"
+	word
+		`You arrived at <destination>, `
+	word
+		`but you don't have `
+		`you have yet to mine `
+	word
+		`<outfit-units> units of <outfit> yet.`

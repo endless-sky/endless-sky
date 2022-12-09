@@ -380,3 +380,20 @@ outfit "Void Orchid"
 	"installable" -1
 	"minable" 1
 	description "'Void orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+
+
+# The following is the generic mining jobs
+
+outfitter "Mining Job Outfitter"
+	"Aluminum"
+	"Copper"
+	"Gold"
+	"Iron"
+	"Lead"
+	"Neodymium"
+	"Platinum"
+	"Silicon"
+	"Silver"
+	"Titanium"
+	"Tungsten"
+	"Uranium"
