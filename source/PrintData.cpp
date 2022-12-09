@@ -110,6 +110,18 @@ namespace {
 		}
 	}
 
+	const set<string> DEFINITION_NODES = {
+		"fleet",
+		"galaxy",
+		"government",
+		"outfitter",
+		"news",
+		"planet",
+		"shipyard",
+		"system",
+		"substitutions",
+		"wormhole",
+	};
 }
 
 
@@ -667,11 +679,17 @@ void PrintData::LocationFilterMatches(const char *const *argv)
 	DataFile file(cin);
 	LocationFilter filter;
 	for(const DataNode &node : file)
-		if(node.Token(0) == "location")
+	{
+		if(node.Token(0) == "changes" || "event")
+			for(const DataNode &child : node)
+				if(DEFINITION_NODES.count(child.Token(0)))
+					GameData::Change(child);
+		else if(node.Token(0) == "location")
 		{
 			filter.Load(node);
 			break;
 		}
+	}
 
 	cout << "Systems matching provided location filter:\n";
 	for(const auto &it : GameData::Systems())
