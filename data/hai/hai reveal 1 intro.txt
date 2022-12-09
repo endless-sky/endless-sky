@@ -20,7 +20,7 @@ mission "Hai Secret Leaker Begins"
 		has "main plot completed"
 	on offer
 		event "pug media coverage" 20 30
-		event "hai secret leaks" 60 90
+		event "hai secret leaks" 40 60
 		fail
 
 event "pug media coverage"
