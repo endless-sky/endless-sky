@@ -75,6 +75,9 @@ public:
 	// Modifier command, usually triggered by shift-key. Changes behavior of
 	// other commands like NEAREST, TARGET, HAIL and BOARD.
 	static const Command SHIFT;
+	// Modifier command, usually triggered by crt-key. Changes behavior of
+	// primary fire.
+	static const Command CTRL;
 
 
 public:

@@ -75,6 +75,7 @@ const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 27, "");
 const Command Command::STOP(1ul << 28, "");
 const Command Command::SHIFT(1uL << 29, "");
+const Command Command::CTRL(1uL << 30, "");
 
 
 
@@ -117,6 +118,10 @@ void Command::ReadKeyboard()
 	// Check whether the `Shift` modifier key was pressed for this step.
 	if(SDL_GetModState() & KMOD_SHIFT)
 		*this |= SHIFT;
+
+	// Check whether the `CTRL` modifier key was pressed for this step.
+	if(SDL_GetModState() & KMOD_CTRL)
+		*this |= CTRL;
 }
 
 

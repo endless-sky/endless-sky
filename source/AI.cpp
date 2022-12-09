@@ -3291,6 +3291,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	firingCommands.SetHardpoints(ship.Weapons().size());
 
 	bool shift = activeCommands.Has(Command::SHIFT);
+	bool ctrl = activeCommands.Has(Command::CTRL);
 
 	bool isWormhole = false;
 	if(player.HasTravelPlan())
@@ -3743,7 +3744,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon()
-						&& (!shift || TargetInRange(ship, hardpoint)))
+						&& (!ctrl || TargetInRange(ship, hardpoint)))
 					firingCommands.SetFire(index);
 				++index;
 			}
