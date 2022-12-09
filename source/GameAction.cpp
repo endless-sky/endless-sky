@@ -127,6 +127,14 @@ namespace {
 			message += "flagship.";
 		Messages::Add(message, Messages::Importance::High);
 	}
+
+	// Sets a bonus between 1.01 and 2. for the size of the
+	// outfit delivery. Ensures the player makes a profit on
+	// the purchase of outfits.
+	double OutfitBulkBonus(int count)
+	{
+		return count > 500 ? 2. : 1. + count * 0.01;
+	}
 }
 
 
@@ -311,6 +319,14 @@ int64_t GameAction::Fine() const noexcept
 
 
 
+std::string GameAction::FormattedPayment() const noexcept
+{
+	return Format::Credits(abs(payment))
+		+ (payment == 1 ? " credit" : " credits");
+}
+
+
+
 const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 {
 	return giftOutfits;
@@ -396,8 +412,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
-		subs["<payment>"] = Format::Credits(abs(result.payment))
-			+ (result.payment == 1 ? " credit" : " credits");
+		subs["<payment>"] = result.FormattedPayment();
 
 	result.fine = fine;
 	if(result.fine)
@@ -415,4 +430,21 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.conditions = conditions;
 
 	return result;
+}
+
+
+
+void GameAction::AddOutfitObjective(map<string, string> &subs, const std::map<const Outfit *, int> &outfitObjective)
+{
+	int outfitObjectiveCost = 0;
+	for(auto &it : outfitObjective)
+	{
+		outfitObjectiveCost += it.first->Cost() * it.second * OutfitBulkBonus(it.second);
+
+		if(!giftOutfits.count(it.first))
+			giftOutfits[it.first] = 0;
+		giftOutfits[it.first] -= it.second;
+	}
+	payment += outfitObjectiveCost;
+	subs["<payment>"] = FormattedPayment();
 }

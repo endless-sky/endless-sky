@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
+#include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
@@ -34,38 +35,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
 namespace {
-	// Pick a random commodity that would make sense to be exported from the
-	// first system to the second.
-	const Trade::Commodity *PickCommodity(const System &from, const System &to)
-	{
-		vector<int> weight;
-		int total = 0;
-		for(const Trade::Commodity &commodity : GameData::Commodities())
-		{
-			// For every 100 credits in profit you can make, double the chance
-			// of this commodity being chosen.
-			double profit = to.Trade(commodity.name) - from.Trade(commodity.name);
-			int w = max<int>(1, 100. * pow(2., profit * .01));
-			weight.push_back(w);
-			total += w;
-		}
-		total += !total;
-		// Pick a random commodity based on those weights.
-		int r = Random::Int(total);
-		for(unsigned i = 0; i < weight.size(); ++i)
-		{
-			r -= weight[i];
-			if(r < 0)
-				return &GameData::Commodities()[i];
-		}
-		// Control will never reach here, but to satisfy the compiler:
-		return nullptr;
-	}
-
 	// If a source, destination, waypoint, or stopover supplies more than one explicit choice
 	// or a mixture of explicit choice and location filter, print a warning.
 	void ParseMixedSpecificity(const DataNode &node, string &&kind, int expected)
@@ -161,12 +135,18 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
-			cargo = child.Token(1);
-			cargoSize = child.Value(2);
-			if(child.Size() >= 4)
-				cargoLimit = child.Value(3);
-			if(child.Size() >= 5)
-				cargoProb = child.Value(4);
+			if(child.Token(1) == "outfit" && child.Size() >= 4)
+			{
+				outfitObjective.Load(child, 1);
+			}
+			else if(child.Token(1) == "outfitter" && child.Size() >= 4)
+			{
+				outfitterObjective.Load(child, 1);
+			}
+			else if(child.Token(1) != "outfit" && child.Token(1) != "outfitter")
+			{
+				cargoObjective.Load(child, 0);
+			}
 
 			for(const DataNode &grand : child)
 			{
@@ -311,6 +291,9 @@ void Mission::Load(const DataNode &node)
 		displayName = name;
 	if(hasPriority && location == LANDING)
 		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
+	if(outfitObjective.CanBeRealized() && outfitterObjective.CanBeRealized())
+		node.PrintTrace(string("Warning: both outfit and outfitter being defined is not supported,")
+			+ " and will cause both to use the probabilities defined last:");
 }
 
 
@@ -588,6 +571,41 @@ const string &Mission::Cargo() const
 int Mission::CargoSize() const
 {
 	return cargoSize;
+}
+
+
+
+const Outfit *Mission::GetOutfit() const
+{
+	return outfit;
+}
+
+
+
+int Mission::OutfitUnits() const
+{
+	return outfitUnits;
+}
+
+
+
+std::string Mission::OutfitName() const
+{
+	return outfit ? outfit->TrueName() : "";
+}
+
+
+
+double Mission::OutfitUnitsMass() const
+{
+	return outfit ? outfitUnits * outfit->Mass() : 0;
+}
+
+
+
+int64_t Mission::OutfitUnitsMassInt() const
+{
+	return static_cast<int64_t>(std::ceil(Mission::OutfitUnitsMass()));
 }
 
 
@@ -1210,40 +1228,22 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// If cargo is being carried, see if we are supposed to replace a generic
 	// cargo name with something more specific.
-	if(!cargo.empty())
+	if(cargoObjective.CanBeRealized())
 	{
-		const Trade::Commodity *commodity = nullptr;
-		if(cargo == "random")
-			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
-		else
-		{
-			for(const Trade::Commodity &option : GameData::Commodities())
-				if(option.name == cargo)
-				{
-					commodity = &option;
-					break;
-				}
-			for(const Trade::Commodity &option : GameData::SpecialCommodities())
-				if(option.name == cargo)
-				{
-					commodity = &option;
-					break;
-				}
-		}
-		if(commodity)
-			result.cargo = commodity->items[Random::Int(commodity->items.size())];
-		else
-			result.cargo = cargo;
+		result.cargo = cargoObjective.RealizeCargo(*sourceSystem, *result.destination->GetSystem());
+		result.cargoSize = cargoObjective.RealizeCount();
 	}
-	// Pick a random cargo amount, if requested.
-	if(cargoSize || cargoLimit)
+	// If outfit is needed, see if we are supposed to replace a generic
+	if(outfitObjective.CanBeRealized())
 	{
-		if(cargoProb)
-			result.cargoSize = Random::Polya(cargoLimit, cargoProb) + cargoSize;
-		else if(cargoLimit > cargoSize)
-			result.cargoSize = cargoSize + Random::Int(cargoLimit - cargoSize + 1);
-		else
-			result.cargoSize = cargoSize;
+		result.outfit = outfitObjective.RealizeOutfit();
+		result.outfitUnits = outfitObjective.RealizeCount();
+	}
+	// If outfitter is present and exists select a random outfit from it
+	if(outfitterObjective.CanBeRealized())
+	{
+		result.outfit = outfitterObjective.RealizeOutfit();
+		result.outfitUnits = outfitterObjective.RealizeCount();
 	}
 	// Pick a random passenger count, if requested.
 	if(passengers || passengerLimit)
@@ -1262,7 +1262,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	int jumps = result.CalculateJumps(sourceSystem);
 
-	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
+	int64_t cargoPayload = static_cast<int64_t>(result.cargoSize);
+	int64_t passengerPayload = 10 * static_cast<int64_t>(result.passengers);
+	int64_t payload = cargoPayload + passengerPayload;
 
 	// Set the deadline, if requested.
 	if(deadlineBase || deadlineMultiplier)
@@ -1281,6 +1283,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
+	subs["<outfit>"] = result.OutfitName();
+	subs["<outfit-units>"] = to_string(result.outfitUnits);
+	subs["<outfit-tons>"] = to_string(result.OutfitUnitsMassInt())
+		+ (result.OutfitUnitsMassInt() == 1 ? " ton" : " tons");
+	subs["<outfit-cargo>"] = (subs["<outfit-units>"] + " units of " + subs["<outfit>"]
+		+ " totaling " + subs["<outfit-tons>"]);
 	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
@@ -1353,8 +1361,16 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : actions)
+	{
 		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
-
+		if(it.first == COMPLETE && result.outfit && result.outfitUnits > 0)
+		{
+			const map<const Outfit *, int> outfitObjective = {
+				{result.outfit, result.outfitUnits}
+			};
+			result.actions[it.first].AddOutfitObjective(subs, outfitObjective);
+		}
+	}
 	auto oit = onEnter.begin();
 	for( ; oit != onEnter.end(); ++oit)
 	{

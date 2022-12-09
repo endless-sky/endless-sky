@@ -217,6 +217,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
+	MissionHaulerObjective.cpp
+	MissionHaulerObjective.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp

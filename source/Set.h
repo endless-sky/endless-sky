@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SET_H_
 #define SET_H_
 
+#include "Random.h"
+
 #include <map>
 #include <string>
 
@@ -36,6 +38,8 @@ public:
 	const Type *Find(const std::string &name) const;
 
 	bool Has(const std::string &name) const { return data.count(name); }
+
+	const Type *Sample() const;
 
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }
@@ -61,6 +65,17 @@ const Type *Set<Type>::Find(const std::string &name) const
 {
 	auto it = data.find(name);
 	return (it == data.end() ? nullptr : &it->second);
+}
+
+
+
+template <class Type>
+const Type *Set<Type>::Sample() const
+{
+	if(this->size() == 0)
+		return nullptr;
+
+	return &(std::next(this->begin(), Random::Int(this->size()))->second);
 }
 
 

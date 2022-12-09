@@ -360,6 +360,11 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	return result;
 }
 
+void MissionAction::AddOutfitObjective(map<string, string> &subs, const std::map<const Outfit *, int> &outfitObjective)
+{
+	action.AddOutfitObjective(subs, outfitObjective);
+};
+
 
 
 int64_t MissionAction::Payment() const noexcept

@@ -27,7 +27,6 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
-		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
@@ -173,6 +172,7 @@
 		B770487BB26CFD0BFDD89588 /* AlertLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7242769DEFC88E71359DEB /* AlertLabel.cpp */; };
 		C4264774A89C0001B6FFC60E /* Hazard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */; };
 		C7354A3E9C53D6C5E3CC352F /* TestData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02D34A71AE3BC4C93FC6865B /* TestData.cpp */; };
+		CE2941199A77195E5826454E /* MissionHaulerObjective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 939A49BB85E72FCA7997BD30 /* MissionHaulerObjective.cpp */; };
 		CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3754152958FBC924E9F76A9 /* opengl.cpp */; };
 		DAC24E909BF453D18AEE3DA3 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F240B4AC219841424A387A /* Logger.cpp */; };
 		DF8D57E11FC25842001525DA /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF8D57DF1FC25842001525DA /* Dictionary.cpp */; };
@@ -236,6 +236,7 @@
 		19184B47B496B414EC9CE671 /* DamageProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamageProfile.h; path = source/DamageProfile.h; sourceTree = "<group>"; };
 		191E4107A4F1CBBC2526A0E9 /* MaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskManager.h; path = source/MaskManager.h; sourceTree = "<group>"; };
 		210C41C0BA33F71A694D5F98 /* Bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitset.h; path = source/Bitset.h; sourceTree = "<group>"; };
+		27D344A2ACF5CBDF6330D6EE /* MissionHaulerObjective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionHaulerObjective.h; path = source/MissionHaulerObjective.h; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
 		2E1E458DB603BF979429117C /* DisplayText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayText.cpp; path = source/text/DisplayText.cpp; sourceTree = "<group>"; };
 		2E644A108BCD762A2A1A899C /* Hazard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hazard.h; path = source/Hazard.h; sourceTree = "<group>"; };
@@ -277,6 +278,7 @@
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
 		938E07E0235970CE00DC2C2B /* FormationPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPattern.cpp; path = source/FormationPattern.cpp; sourceTree = "<group>"; };
 		938E07E1235970CE00DC2C2B /* FormationPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPattern.h; path = source/FormationPattern.h; sourceTree = "<group>"; };
+		939A49BB85E72FCA7997BD30 /* MissionHaulerObjective.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MissionHaulerObjective.cpp; path = source/MissionHaulerObjective.cpp; sourceTree = "<group>"; };
 		950742538F8CECF5D4168FBC /* EsUuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EsUuid.cpp; path = source/EsUuid.cpp; sourceTree = "<group>"; };
 		98104FFDA18E40F4A712A8BE /* CoreStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStartData.h; path = source/CoreStartData.h; sourceTree = "<group>"; };
 		9BCF4321AF819E944EC02FB9 /* layout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = layout.hpp; path = source/text/layout.hpp; sourceTree = "<group>"; };
@@ -909,6 +911,8 @@
 				0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */,
 				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
 				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
+				939A49BB85E72FCA7997BD30 /* MissionHaulerObjective.cpp */,
+				27D344A2ACF5CBDF6330D6EE /* MissionHaulerObjective.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1310,6 +1314,7 @@
 				DAC24E909BF453D18AEE3DA3 /* Logger.cpp in Sources */,
 				B770487BB26CFD0BFDD89588 /* AlertLabel.cpp in Sources */,
 				1F884DB590D5152608510676 /* ShipJumpNavigation.cpp in Sources */,
+				CE2941199A77195E5826454E /* MissionHaulerObjective.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

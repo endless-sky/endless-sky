@@ -232,6 +232,8 @@
 		<Unit filename="source/Mission.h" />
 		<Unit filename="source/MissionAction.cpp" />
 		<Unit filename="source/MissionAction.h" />
+		<Unit filename="source/MissionHaulerObjective.cpp" />
+		<Unit filename="source/MissionHaulerObjective.h" />
 		<Unit filename="source/MissionPanel.cpp" />
 		<Unit filename="source/MissionPanel.h" />
 		<Unit filename="source/Mortgage.cpp" />

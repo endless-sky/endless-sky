@@ -114,6 +114,16 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 				CHECK( cIt->second.a == 1 );
 			}
 		}
+
+		WHEN( "Sample() is called" ) {
+			const auto &secondPtr = s.Sample();
+			THEN( "the Set does not increase in size" ) {
+				CHECK( s.size() == 1 );
+			}
+			THEN( "the same, valid pointer is returned" ) {
+				CHECK( secondPtr == firstPtr );
+			}
+		}
 	}
 }
 
