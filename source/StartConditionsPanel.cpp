@@ -116,7 +116,7 @@ void StartConditionsPanel::Draw()
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
 
 		const auto name = DisplayText(
-									it->Unlocked(GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
+			it->Unlocked(GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
 	}
 
