@@ -36,7 +36,7 @@ Point::Point() noexcept
 
 Point::Point(double x, double y) noexcept
 #ifdef __SSE3__
-	: v(_mm_set_pd(y, x))
+	: v(_mm_set_pd(val.y, val.x))
 #else
 	: x(x), y(y)
 #endif
@@ -203,7 +203,7 @@ Point &Point::operator/=(double scalar)
 void Point::Set(double x, double y)
 {
 #ifdef __SSE3__
-	v = _mm_set_pd(y, x);
+	v = _mm_set_pd(val.y, val.x);
 #else
 	this->x = x;
 	this->y = y;

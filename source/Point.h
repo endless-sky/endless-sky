@@ -95,7 +95,7 @@ private:
 		struct {
 			double x;
 			double y;
-		};
+		} val;
 	};
 #else
 	double x;
