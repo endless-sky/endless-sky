@@ -681,9 +681,11 @@ void PrintData::LocationFilterMatches(const char *const *argv)
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "changes" || node.Token(0) == "event")
+		{
 			for(const DataNode &child : node)
 				if(DEFINITION_NODES.count(child.Token(0)))
 					GameData::Change(child);
+		}
 		else if(node.Token(0) == "location")
 		{
 			filter.Load(node);
