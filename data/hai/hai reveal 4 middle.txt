@@ -1507,6 +1507,11 @@ mission "Hai Reveal [A11] Siren Song"
 			label vote
 			`	The moderator concludes, "Teeneep's confession to her crime is taken as the statement from the defense. We will vote first on exile, and then on censure. Exile should be a quick vote. Choose yes or no."`
 			`	Every Elder you can see now has a holographic cube in front of them. The cubes are initially gray, but change color to blue or white of varying intensities as the Elder rotates it. It only takes a few seconds for the Elders to all change their cubes to blue, except for one bright white one in the distance.`
+				to display
+					has "Hai Reveal: threatened by Elder in Council"
+			`	Every Elder you can see now has a holographic cube in front of them. The cubes are initially gray, but change color to blue or white of varying intensities as the Elder rotates it. It only takes a few seconds for the Elders to all change their cubes to blue, except for the first Elder to question you. His cube is lit as white as a star.`
+				to display
+					not "Hai Reveal: threatened by Elder in Council"
 			`	Soon, the moderator announces the results. "Only one vote for exile, so the next vote is censure." Voting cubes appear, but few Elders touch them. Murmurs begin as the Elders discuss Teeneep's fate. It seems the censure vote is viewed as reasonable, but controversial.`
 
 			# Aimet arrives to save Teeneep from censure.
@@ -1561,6 +1566,7 @@ mission "Hai Reveal [A11] Siren Song"
 						not "Hai Reveal [A11] Siren Song: label phrase"
 
 				# Follow-up questions. The graph follow-up is first since it is more immediately relevant.
+				# Either one will end the conversation.
 				`	"Can you explain the graphs in more detail?"`
 					goto graphs
 					to display
@@ -1572,13 +1578,13 @@ mission "Hai Reveal [A11] Siren Song"
 						not "Hai Reveal [A11] Siren Song: label phrase2"
 						has "Hai Reveal [A11] Siren Song: label phrase"
 
-				# You can sing instead:
+				# You can sing instead. This will end the conversation:
 				`	(Sing along.)`
 					goto singalong
 
 				# Or just jump to the end, if you're impatient:
 				`	(Wait for the spectacle to end.)`
-					goto runaway
+					goto wait
 
 			# First block of questions for Sayari: What is that strange phrase?
 			label phrase
@@ -1589,9 +1595,9 @@ mission "Hai Reveal [A11] Siren Song"
 			label phrase2
 			action
 				set "Hai Reveal [A11] Siren Song: label phrase2"
-			`	Her eyes peel away from the graphs at last. "Yes, of course." The singing is growing quite loud as more Elders join in, but you can still barely hear Sayari. Some Elders have started shouting angrily, trying to end the spectacle, but they're drowned out by the unified voice of song.`
+			`	Her eyes peel away from the graphs at last. "Yes, of course. The meaning." The singing is growing quite loud as more Elders join in, but you can still barely hear Sayari. Some Elders have started shouting angrily, trying to end the spectacle, but they're drowned out by the unified voice of song.`
 			`	"It originates from a religion in our ancient prehistory, before the Hai left the forest. We believed we were created by a pantheon of gods who, like parents, hoped we would one day surpass them. They gave us stronger souls than their own so we could pursue our dreams.`
-			`	"Some gods grew jealous and fearful of the Hai, so they shattered the Hai soul into three. The Wise Soul of the Elders, the Strong Soul of the protectors, and the Kind Soul of the common people. The other gods ignored our pleas for help because they were scared of us as well."`
+			`	"Some gods grew jealous and fearful of the Hai, so they shattered the Hai soul into three. The Wise Soul of the Elders, the Mighty Soul of the protectors, and the Kind Soul of the common people. The other gods ignored our pleas for help because they were scared of us as well."`
 			`	"The gods grew ever more frightened, so one day they came to slay the Hai. Drawn together by a common purpose, the three souls became one. The combined soul was stronger than the gods, so we drove them from the forest. With the unifying threat gone, the Hai soul shattered into three once again.`
 			`	"In modern times, we use that legend as a metaphor for Hai unity, and Teeneep's has made the phrase her motto. It is heard is throughout our history and culture, so everywhere people see strength and unity, they see Teeneep."`
 				goto runaway
@@ -1606,6 +1612,7 @@ mission "Hai Reveal [A11] Siren Song"
 			label graphs
 			action
 				set "Hai Reveal [A11] Siren Song: label graphs"
+			# FIXME: make the graph description details more interesting.
 			`	She points to a whirling cloud and says, "That spiral is a logarithmic scale showing view statistics. Right now, 17% of the Hai voting public is watching this on official feeds, and an estimated 51% on private media. It's been decades since a public Council broadcast has had that many live viewers.`
 			`	The singing is growing quite loud as more Elders join in, but you can still barely hear Sayari. Some Elders have started shouting angrily, trying to end the spectacle, but they're drowned out by the unified voice of song.`
 			`	"The map is more worrying." She points to a holographic flow diagram in the shape of Hai space, with bowls for each system, rapidly filling with water. "For several years, Teeneep and her allies have pushed a Petition of No Confidence which would force the Elders to have an election. Every minute it's gaining more votes than it typically did in a week." As she says that, several bowls overflow and spill.`
@@ -1616,18 +1623,29 @@ mission "Hai Reveal [A11] Siren Song"
 			# Calculate player's singing ability from the number of Becca Band and Remnant missions.
 			# Response from those around you depend in your singing ability.
 			# Nearly all songs are in Hai, so you don't know exactly what they're about.
-			# As you sing, more Elders join in as they notice the graphs that Sayari was worried about.
-			#	goto runaway
+			# Conversation continues to "label wait"
+
+			label wait
+			# FIXME: Placeholder text. Sloppy, needs to be rewritten.
+			`	For awhile, most Elders are merely dismayed as some of their peers sing along with Teeneep. One-by-one Elders look up at the graphs floating in the room, look worried, and start singing. Eventually a quarter of the Elders have joined this protest against themselves. Half of the Elders start shouting angrily, trying to end the spectacle, but their cacophony of dissent cannot overcome the unified voice of song.`
 
 			# Mission ends when Elders start closing the border:
 			label runaway
-			# An Elder points at the graphs and starts yelling "emergency powers!"
-			# More Elders join in.
-			# Sayari drags Captain Last to the room's exit with orders to go to Mountaintop due to an impending snap election
-			`	FIXME`
-				accept
-
-
+			# FIXME: Placeholder text. Sloppy, needs to be rewritten.
+			`	Some Elders start yelling, "Emergency powers!" while pointing towards the airborne graphs. The moderator starts fiddling with buttons and some of the graphs enlarge.`
+			`	Suddenly, Sayari grab's your arm, and says, "Hurry!" She pulls you up the exit walkway with surprising strength. You could pull away, but it might knock her over.`
+			choice
+				`	"What is it, Sayari?"`
+					goto whuzzit
+				`	(Pull away from her.)`
+			`	Sayari almost trips, does a little jump, and lands on her feet. It seems that even the oldest of Hai can be quite nimble.`
+			label whuzzit
+			# FIXME: This is too long because some information is repeated. That makes it feel less urgent than it is. Must cut it in half.
+			`	"Everything is moving too quickly! Teeneep's chaos has ruined the Elders' utopian facade and triggered an election. Any moment now, the Elders will activate their Emergency Powers, closing all non-essential space traffic, and sealing the Hai borders. Any ship passing through the wormhole will be shot, and that may spark a war!"`
+			`	Sayari notices you look slightly bewildered. She says, "I'm sorry, there's no time for explanations. You must go to Mountaintop and warn the humans not to cross the wormhole until the election's aftermath is cleaned up. I will try to use my diplomatic authority to get you through safely.`
+			`	"Go! Will all possible haste, go to Mountaintop!"`
+			`	At Sayari's stern warning, you run to the <ship>, hoping to leave before the election grounds your ship.`
+				launch
 
 	on enter "Waypoint"
 		dialog `As you enter Waypoint one of the Hai captains hails you. "Captain, we've orders to close the border to everyone, but... we know you've been doing official business, and we haven't been told to specifically block you. We also owe you one. You can go through, but don't try and bring anyone with you. We'll have no choice but to fire upon you and them if you do."`
