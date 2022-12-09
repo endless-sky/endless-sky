@@ -156,6 +156,7 @@ mission "Remnant: Celebration 1"
 	minor
 	source
 		government "Remnant"
+		attributes "remnant capital"
 	destination "Ssil Vida"
 	to offer
 		has "event: remnant: cognizance calm"
