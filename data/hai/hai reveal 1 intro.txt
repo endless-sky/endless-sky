@@ -57,7 +57,7 @@ mission "Event: Pug Media Coverage"
 	to offer
 		has "event: pug media coverage"
 	on offer
-		event "saw pug media coverage"
+		set "saw pug media coverage"
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
@@ -66,8 +66,6 @@ mission "Event: Pug Media Coverage"
 			`	One particular paranoid fringe-world politician dominates the air on the channel you're watching here. Councilor Maduena Kabiru from Bounty demands that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it doesn't carry much weight coming from a councilor whose system is a mere two jumps from a brand new Navy base.`
 			`	In this very public space you spot a couple of people who seem to hesitantly recognize you, presumably from other coverage, and so you keep your thoughts to yourself.`
 				decline
-
-event "saw pug media coverage"
 
 
 
@@ -168,7 +166,7 @@ mission "ZZ Event Hai Secret Leaks: RSHU"
 	clearance
 	to offer
 		has "event: hai secret leaks"
-		has "event: saw pug media coverage"
+		has "saw pug media coverage"
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
 		not "asked to investigate hai leak"
@@ -195,7 +193,7 @@ mission "ZZ Event Hai Secret Leaks: FWHU"
 	clearance
 	to offer
 		has "event: hai secret leaks"
-		has "event: saw pug media coverage"
+		has "saw pug media coverage"
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
 		not "asked to investigate hai leak"
@@ -220,7 +218,7 @@ mission "ZZ Event Hai Secret Leaks: RSH"
 	destination "Allhome"
 	to offer
 		has "event: hai secret leaks"
-		has "event: saw pug media coverage"
+		has "saw pug media coverage"
 		has "First Contact: Hai: offered"
 		not "First Contact: Unfettered: offered"
 		not "asked to investigate hai leak"
@@ -243,7 +241,7 @@ mission "ZZ Event Hai Secret Leaks: FWH"
 	destination "Allhome"
 	to offer
 		has "event: hai secret leaks"
-		has "event: saw pug media coverage"
+		has "saw pug media coverage"
 		has "First Contact: Hai: offered"
 		not "First Contact: Unfettered: offered"
 		not "asked to investigate hai leak"
@@ -266,7 +264,7 @@ mission "ZZ Event Hai Secret Leaks: RS"
 	destination "Sunracer"
 	to offer
 		has "event: hai secret leaks"
-		has "event: saw pug media coverage"
+		has "saw pug media coverage"
 		not "First Contact: Hai: offered"
 		not "asked to investigate hai leak"
 	on offer
@@ -286,7 +284,7 @@ mission "ZZ Event Hai Secret Leaks: FW"
 	destination "Sunracer"
 	to offer
 		has "event: hai secret leaks"
-		has "event: saw pug media coverage"
+		has "saw pug media coverage"
 		not "First Contact: Hai: offered"
 		not "asked to investigate hai leak"
 	on offer
