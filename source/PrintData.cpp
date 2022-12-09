@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "GameData.h"
+#include "GameEvent.h"
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -109,19 +110,6 @@ namespace {
 			cout << '\n';
 		}
 	}
-
-	const set<string> DEFINITION_NODES = {
-		"fleet",
-		"galaxy",
-		"government",
-		"outfitter",
-		"news",
-		"planet",
-		"shipyard",
-		"system",
-		"substitutions",
-		"wormhole",
-	};
 }
 
 
@@ -676,15 +664,34 @@ void PrintData::Systems(const char *const *argv)
 
 void PrintData::LocationFilterMatches(const char *const *argv)
 {
+	static const set<string> ALLOWED_CHANGES = {
+		"government",
+		"outfitter",
+		"planet",
+		"shipyard",
+		"system",
+		"wormhole",
+		"link",
+		"unlink",
+	};
+
 	DataFile file(cin);
 	LocationFilter filter;
 	for(const DataNode &node : file)
 	{
-		if(node.Token(0) == "changes" || node.Token(0) == "event")
+		if(node.Token(0) == "changes" || (node.Token(0) == "event" && node.Size() == 1))
 		{
 			for(const DataNode &child : node)
-				if(DEFINITION_NODES.count(child.Token(0)))
+				if(ALLOWED_CHANGES.count(child.Token(0)))
 					GameData::Change(child);
+		}
+		else if(node.Token(0) == "event")
+		{
+			const auto *event = GameData::Events().Get(node.Token(1));
+			if(!event)
+				continue;
+			for(const auto &change : event->Changes())
+				GameData::Change(change);
 		}
 		else if(node.Token(0) == "location")
 		{
