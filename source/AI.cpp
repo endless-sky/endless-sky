@@ -3655,7 +3655,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(activeCommands.Has(Command::JUMP | Command::FLEET_JUMP))
 	{
-		if((!ship.GetTargetSystem() || player.TravelPlan().empty()| ) && !isWormhole)
+		if((!ship.GetTargetSystem() || player.TravelPlan().empty()) && !isWormhole)
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.JumpNavigation().HasJumpDrive() ?
