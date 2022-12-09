@@ -292,6 +292,9 @@ public:
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 
+	// marking outfit as known
+	void DiscoverOutfit(const Outfit &outfit);
+
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -377,6 +380,7 @@ private:
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
+	std::set<const Outfit *> knownOutfits;
 	std::set<const Outfit *> selectedWeapons;
 
 	std::map<const Outfit *, int> stock;

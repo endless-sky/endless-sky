@@ -52,6 +52,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
+#define KNOWN_OUTFIT_KEY "known outfit"
+
 using namespace std;
 
 namespace {
@@ -345,6 +347,9 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "start")
 			startData.Load(child);
+		else if(child.Token(0) == KNOWN_OUTFIT_KEY && child.Size() >= 2)
+			DiscoverOutfit(*GameData::Outfits().Get(child.Token(1)));
+
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -2072,7 +2077,11 @@ void PlayerInfo::Visit(const System &system)
 			seen.insert(neighbor);
 }
 
-
+// Mark outfit as known
+void PlayerInfo::DiscoverOutfit(const Outfit& outfit)
+{
+	knownOutfits.insert(&outfit);
+}
 
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet &planet)
@@ -3866,6 +3875,15 @@ void PlayerInfo::Save(const string &path) const
 			}
 	}
 	out.EndChild();
+
+//  Save a list of all known outfits to the player
+	WriteSorted(knownOutfits,
+		[](const Outfit *const *lhs, const Outfit *const *rhs)
+			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
+		[&out](const Outfit *outfit)
+		{
+			out.Write(KNOWN_OUTFIT_KEY, outfit->TrueName());
+		});
 
 	out.Write();
 	out.WriteComment("How you began:");
