@@ -36,7 +36,7 @@ Point::Point() noexcept
 
 Point::Point(double x, double y) noexcept
 #ifdef __SSE3__
-	: v(_mm_set_pd(val.y, val.x))
+	: v(_mm_set_pd(y, x))
 #else
 	: x(x), y(y)
 #endif
@@ -55,7 +55,11 @@ Point::operator bool() const noexcept
 
 bool Point::operator!() const noexcept
 {
+#ifdef __SSE3__
+	return (!val.x & !val.y);
+#else
 	return (!x & !y);
+#endif
 }
 
 
