@@ -664,32 +664,16 @@ void PrintData::Systems(const char *const *argv)
 
 void PrintData::LocationFilterMatches(const char *const *argv)
 {
-	static const set<string> ALLOWED_CHANGES = {
-		"government",
-		"outfitter",
-		"planet",
-		"shipyard",
-		"system",
-		"wormhole",
-		"link",
-		"unlink",
-	};
-
 	DataFile file(cin);
 	LocationFilter filter;
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "changes" || (node.Token(0) == "event" && node.Size() == 1))
-		{
 			for(const DataNode &child : node)
-				if(ALLOWED_CHANGES.count(child.Token(0)))
-					GameData::Change(child);
-		}
+				GameData::Change(child);
 		else if(node.Token(0) == "event")
 		{
 			const auto *event = GameData::Events().Get(node.Token(1));
-			if(!event)
-				continue;
 			for(const auto &change : event->Changes())
 				GameData::Change(change);
 		}
