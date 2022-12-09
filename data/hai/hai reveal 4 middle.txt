@@ -1523,7 +1523,12 @@ mission "Hai Reveal [A11] Siren Song"
 			label salute
 			`	Guards rise to attention as Aimet approaches, and they give a Hai salute: fists over the heart and a push ahead. Aimet returns the salute, and then faces the cameras to address Teeneep.`
 			`	In a choreographed motion, he waves oversized paper printouts of Teeneep's report. "Teeneep's crusade champions our truth and salvation, but we threaten and belittle her. Always she challenges stagnation and division with facts. Facts, facts, indisputable facts!"`
-			`	He tosses the papers aside and they surrender to their fate. "Even the blind can see society's troubles and Council's impotence. If facts alone could sway this body, this," he motions to the whole room, "would not happen. Sing to us our true desires: the whispers of the Hai soul. Enchant us."`
+			`	He tosses the papers aside and they surrender to their fate. "Even the blind can see society's troubles and Council's impotence. If facts alone could sway this body, this," he motions to the whole room, "would not happen.`
+
+			# IMPORTANT: I PLAN ON REWRITING EVERYTHING IN THIS MISSION AFTER THIS LINE.
+			# MASTEROFGREY HAS TOLD ME TO WAIT FOR HIM TO REVIEW WHAT I HAVE FIRST.
+
+			`	"Sing to us our true desires: the whispers of the Hai soul. Enchant us."`
 			`	The room falls to a stunned silence when the Elders grasp Aimet's request. Even the notoriously bold Teeneep is hesitant to rally protest during the broadcast of her censure trial.`
 			choice
 				`	(Let Sayari encourage Teeneep.)`
