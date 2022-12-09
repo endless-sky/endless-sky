@@ -146,7 +146,7 @@ ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapI
 	: condMapIt(it), condMapEnd(endIt)
 {
 	MoveToValueCondition();
-};
+}
 
 
 
@@ -169,7 +169,7 @@ ConditionsStore::PrimariesIterator &ConditionsStore::PrimariesIterator::operator
 	condMapIt++;
 	MoveToValueCondition();
 	return *this;
-};
+}
 
 
 
@@ -179,7 +179,7 @@ ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator+
 	condMapIt++;
 	MoveToValueCondition();
 	return tmp;
-};
+}
 
 
 
