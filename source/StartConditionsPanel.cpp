@@ -99,6 +99,9 @@ void StartConditionsPanel::Draw()
 	for(auto it = scenarios.begin(); it != scenarios.end();
 			++it, pos += Point(0., entryBox.Height()))
 	{
+		if(!it->Visible(GameData::GlobalConditions()))
+			continue;
+
 		// Any scenario wholly outside the bounds can be skipped.
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
 		if(!(entriesContainer.Contains(zone.TopLeft()) || entriesContainer.Contains(zone.BottomRight())))
