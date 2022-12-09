@@ -564,9 +564,6 @@ test "Create New Pilot"
 		# skip text
 		input
 			key "return"
-		# to be sure
-		input
-			key "return"
 		# go to the main landing panel
 		input
 			key l
@@ -596,9 +593,15 @@ test "First Game"
 	description "Test if one can start the game correctly: choose a name and buy a ship."
 	sequence
 		call "Create New Pilot"
-		apply
-			"Intro [0]: offered" = 1
 		call "Buy First Ship"
+		# beat it, old timer
+		input
+			key 3
+		input
+			key "return"
+		# to be sure
+		input
+			l
 		# leave to refresh conditions
 		call "Depart"
 		# save these in temporary conditions to know what they are if it fails
