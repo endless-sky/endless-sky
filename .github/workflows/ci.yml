@@ -467,6 +467,32 @@ jobs:
       run: ./utils/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
 
 
+  test_ubuntu-integration-parse:
+    needs: [build_ubuntu, changed]
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        opengl: [desktop]
+        include:
+          - os: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install runtime dependencies
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 libglew2.2 libgl1 uuid-runtime libglvnd-dev
+    - name: Download game binary
+      uses: actions/download-artifact@v3
+      with:
+        name: binary-${{ matrix.os }}-${{ matrix.opengl }}
+    - name: Verify Executable
+      run: chmod +x endless-sky && ./endless-sky -v
+    - name: Parse Datafiles
+      run: ./utils/test_parse.sh ./endless-sky tests/integration/config
+
+
   test_memory-leaks-lite:
     needs: [test_ubuntu-parse, changed]
     if: needs.changed.outputs.game_code == 'true'
