@@ -66,11 +66,11 @@ mission "First Contact: Gegno Vi"
 				`	(Stand up.)`
 			`	With a last thump of their foot, the alien now stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	You aren't sure how to begin a conversation, but start by greeting the alien in a formal manner. Awkward silence ensues, and the alien looks you up and down in an unenthused way. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
-			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a salamander, but its surface is scaly. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice:`
+			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice:`
 			`	"Voordt."`
 				accept
 			label watch
-			`	Cautiously retreating towards your ship, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble again, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the alien figure breathing intensely as they continue to battle the beast.`
+			`	Cautiously retreating towards your ship, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the alien figure breathing intensely as they continue to battle the beast.`
 			choice
 				`	(Help the alien.)`
 					goto help
@@ -83,7 +83,7 @@ mission "First Contact: Gegno Vi"
 				
 			label "second encounter"
 			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide to keep your ship a few thousand meters above the surface. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
-			`	Suddenly, your radar systems pick up a larger signature on the horizon, and you see an odd bulky rock-like structure. Once you get close enough, you recognize it as one of the Gegno's warships, although it is half sunken into the sand.`
+			`	Suddenly, your radar systems pick up a larger signature on the horizon, and you see a bulky, rock-like structure. Once you get close enough, you recognize it as one of the Gegno's warships, although it is half sunken into the sand.`
 			choice
 				`	(Investigate the Gegno ship.)`
 					goto investigate
@@ -111,12 +111,12 @@ mission "First Contact: Gegno Vi"
 				`	(Stand up.)`
 			`	With a last thump of their foot, the Vi warrior now stands before you, giving you a much better look at them. They are at least several feet taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of the Gegno's planets.`
-			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a salamander, but its surface is scaly. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the Vi warrior utters a single intelligible word in a very deep voice:`
+			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the Vi warrior utters a single intelligible word in a very deep voice:`
 			`	"Voordt."`
 				accept
 				
 			label observe
-			`	Cautiously retreating to a safer distance, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble again, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the Vi breathing intensely as they continue to battle the beast.`
+			`	Cautiously retreating to a safer distance, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the Vi breathing intensely as they continue to battle the beast.`
 			choice
 				`	(Assist the Vi.)`
 					goto assist
@@ -176,11 +176,11 @@ mission "Visit Quarg in Gegno Space"
 				
 			branch "has met quarg"			
 				has "Giaru Gegno: Quarg Contact: offered"	
-			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These <aliens> look decently shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demeanor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
+			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demeanor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
 				launch
 
 			label "has met quarg"
-			`	After fiddling with it, the Vi marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. You look at the location and notice that it's the Quarg Ringworld you've previously visited. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of Gegno arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These Gegno look decently shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demenaor is just as rigid. Once your ship's fuel has been filled, the Gegno Vi that has been guiding you gestures towards the sky. It seems your visit to the mysterious Gegno homeworld will have to be cut short.`
+			`	After fiddling with it, the Vi marks a new location and presents it to you. "Oukeug", they say, and gesture you to depart in a fashion of urgency. You look at the location and notice that it's the Quarg Ringworld you've previously visited. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of Gegno arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These Gegno look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demenaor is just as rigid. Once your ship's fuel has been filled, the Gegno Vi that has been guiding you gestures towards the sky. It seems your visit to the mysterious Gegno homeworld will have to be cut short.`
 				launch
 		
 	npc
@@ -252,7 +252,7 @@ mission "Giaru Gegno: Quarg Contact"
 				goto "the gegno"
 			
 			label "intrigued quarg"
-				"You have astonishingly achieved a wondrous feat, brave traverser," the Quarg says, placing its hands together. It seems that the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest earlier by other aliens suggests that the word got spread quickly. The Quarg then sits down across from you, then raises its arms outward in a gesture you never thought you'd see from a Quarg. "Not significantly often it is the mighty Gegno interact with daring outsiders."
+				"You have astonishingly achieved a wondrous feat, brave traverser," the Quarg says, placing its hands together. It seems that the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest earlier by other aliens suggests that the word got spread quickly. It then sits down across from you, then raises its arms outward in a gesture you never thought you'd see from a Quarg. "Not significantly often it is that the mighty Gegno interact with daring outsiders."
 				
 			label "the gegno"
 			choice
@@ -324,7 +324,7 @@ mission "Gegno Quarg Direction to Ringworld"
 			`As soon as you land on this Quarg world, a few Quarg swiftly make their way to your ship. One of them stands in front of the rest and beckons you over while the others quietly speak to themselves in a language you've not heard before. The Quarg bows down slightly to speak to you, and judging by the look in its eyes, they seem rather perplexed. "Sdii veebyi keies Gegnion?" it asks, which seems to be the language the others were speaking in. Afterwords, it patiently waits for your response.`
 			choice
 				`	(Try to speak to the Quarg.)`
-			`	You introduce yourself to the Quarg and then explain that you don't understand their language. It lifts itself back up slowly, seemingly pondering the situation before turning back to the others. After a few more exchanged words, one of the other Quarg walk off and fetch some sort of device, bringing it back to you. It appears to be some type of holographic map, and the Quarg gestures to a system nearby, which then reveals a hologram of a Quarg Ringworld. "Ehsveet Duebyuarr Giaru, Aechman," it says, and then bows before you.`
+			`	You introduce yourself to the Quarg and then explain that you don't understand their language. It lifts itself back up slowly, seemingly pondering the situation before turning back to the others. After a few more exchanged words, one of the other Quarg walk off and fetch some sort of device, bringing it back to you. It appears to be some type of holographic map. The Quarg gestures to a system nearby, which then reveals a hologram of a Quarg Ringworld. "Ehsveet Duebyuarr Giaru, Aechman," it says, and then bows before you.`
 			`	You should probably go pay the ringworld a visit.`
 				accept
 				
@@ -341,9 +341,9 @@ mission "Giaru Gegno: Revisit"
 		has "Visit Quarg in Gegno Space: offered"
 	on complete
 		conversation
-			`	You arrive once more at Giaru Gegno, hoping to find another Quarg that speaks your language. This time, however, you notice that a few of the Gegno on this ringworld occasionally give you a glare of interest as they walk by. Only a minute or so goes by of this, at which a pair of Quarg then approach you, motioning you to follow them. Lead back to the familiar room from before, the Quarg you previously spoke with is already calmly sitting at the other end of the table.`
+			`	You arrive once more at Giaru Gegno, hoping to find another Quarg that speaks your language. This time, however, you notice that a few of the Gegno on this ringworld occasionally give you a look of interest as they walk by. After about a minute of this a pair of Quarg approach you, motioning you to follow them. Lead back to the familiar room from before, the Quarg you previously spoke with is already calmly sitting at the other end of the table.`
 			
-			`	"You have astonishingly achieved a wonderous feat, brave traverser," the Quarg says, placing its hands together. It seems the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest you received earlier suggests that the word got spread quickly. "Not significantly often it is the mighty Gegno interact with daring outsiders."`
+			`	"You have astonishingly achieved a wonderous feat, brave traverser," the Quarg says, placing its hands together. It seems the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest you received earlier suggests that the word spread quickly. "Not significantly often it is the mighty Gegno interact with daring outsiders."`
 			choice
 				`	"It was a coincidence."`
 				`	"They seemed in trouble when I found them, so I helped them."`
