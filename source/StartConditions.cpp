@@ -91,6 +91,8 @@ void StartConditions::Load(const DataNode &node)
 					toDisplay = ConditionSet();
 				else if(child.Token(1) == "unlock")
 					toUnlock = ConditionSet();
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 			else if(key == "conditions")
 				conditions = ConditionSet();
@@ -139,6 +141,8 @@ void StartConditions::Load(const DataNode &node)
 				toDisplay.Load(child);
 			else if(child.Token(1) == "unlock")
 				toUnlock.Load(child);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else
 			conditions.Add(child);
