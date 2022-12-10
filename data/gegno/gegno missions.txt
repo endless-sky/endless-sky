@@ -51,7 +51,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Approach the alien.)`
 				`	(Turn back to my ship.)`
-			`	Suddenly, the ground starts to vibrate with increasing intensity. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times the size of you, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the alien creature riding the beast as they impale it with their weapon.`
+			`	Suddenly, the ground starts to vibrate intensity. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times the size of you, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the alien creature riding the beast as they impale it with their weapon.`
 			choice
 				`	(Leave the planet immediately.)`
 					goto leave
@@ -98,7 +98,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Approach the Vi warrior.)`
 				`	(Turn back to my ship.)`
-			`	Suddenly, the ground starts to vibrate with increasing intensity. You take out your sidearm in a panic, but as you look back up at the Vi, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times the size of you, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the Vi riding the beast as they impale it with their weapon.`
+			`	Suddenly, the ground starts to vibrate intensity. You take out your sidearm in a panic, but as you look back up at the Vi, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times the size of you, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the Vi riding the beast as they impale it with their weapon.`
 			choice
 				`	(Observe the situation from a distance.)`
 					goto observe
@@ -293,6 +293,8 @@ mission "Giaru Gegno: Quarg Contact"
 			`	"Regrettably, most Gegno do not have a drive to pursue their principal future, diluting themselves far into their stagnant present. Segregation of followings was one of few ways to seek motivation beyond the fact."`
 			label "wrap up"
 			choice
+				`	"Thank you for the information."`
+					goto end
 				`	"It seems that you do not like the paths they've chosen."`
 			`	The Quarg stands up, darting its gaze off to the side. The energy it exhibited earlier is gone. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses, then gestures you to stand up as well.`
 
