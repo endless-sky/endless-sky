@@ -80,9 +80,16 @@ $ cmake --build --preset <preset>-debug       # actually build Endless Sky (as w
 $ ./build/<preset>/Debug/endless-sky          # run the game
 $ ctest --preset <preset>-test                # run the unit tests
 $ ctest --preset <preset>-benchmark           # run the benchmarks
-$ ctest --preset <preset>-integration-debug   # run the integration tests in debug mode
 $ ctest --preset <preset>-integration         # run the integration tests (Linux only)
 ```
+
+If you'd like to debug a specific integration test (on any OS), you can do so as follows:
+
+```bash
+$ ctest --preset <preset>-integration-debug -R <name>
+```
+
+You can get a list of integration tests with `ctest --preset <preset>-integration-debug -N`.
 
 (You can also use the `<preset>-release` preset for a release build, and the output will be in the Release folder).
 
