@@ -63,6 +63,16 @@ jobs:
       run: ./utils/check_codeblocks.sh
 
 
+  check-cmake:
+    needs: changed
+    if: ${{ needs.changed.outputs.cmake || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Validate CMake project files
+      run: ./utils/check_cmake.sh
+
+
 
   validate-copyright:
     needs: changed
