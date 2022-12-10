@@ -218,7 +218,7 @@ mission "War Reactions: Syndicate Orphan"
 			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device'. After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you, sir. Can I shake your hand?" He puts out his hand and you shake it.`
 				goto next
 			label blew
-			`	"I bet you did! I wish I was on one of our warships, bravely defend the human race. The honor, the glory, the mercenary pay. It sounds amazing."`
+			`	"I bet you did! I wish I was on one of our warships, bravely defending the human race. The honor, the glory, the mercenary pay. It sounds amazing."`
 			label next
 			`	"What was it like, fighting the evil Pug?"`
 
