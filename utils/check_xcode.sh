@@ -59,7 +59,7 @@ RESULT=0
 for FILE in $(find source -type f | sed s,^source/,, | sort)
 do
   # Check if the file is already in the XCode project
-  if [[ "${FILE}" != "WinApp.rc" ]] && ! has_file "${FILE}"; then
+  if [[ "${FILE}" != "WinApp.rc" ]] && [[ "${FILE}" != "CMakeLists.txt" ]] && ! has_file "${FILE}"; then
     # If this file is present, but under a different path, we should update the paths.
     BASENAME=$(basename "${FILE}")
     if has_file "${BASENAME}"; then

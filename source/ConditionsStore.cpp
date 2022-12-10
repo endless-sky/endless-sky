@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Logger.h"
 
 #include <utility>
 
@@ -145,7 +146,7 @@ ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapI
 	: condMapIt(it), condMapEnd(endIt)
 {
 	MoveToValueCondition();
-};
+}
 
 
 
@@ -168,7 +169,7 @@ ConditionsStore::PrimariesIterator &ConditionsStore::PrimariesIterator::operator
 	condMapIt++;
 	MoveToValueCondition();
 	return *this;
-};
+}
 
 
 
@@ -178,7 +179,7 @@ ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator+
 	condMapIt++;
 	MoveToValueCondition();
 	return tmp;
-};
+}
 
 
 
@@ -204,6 +205,8 @@ void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
 		condMapIt++;
 
+	// We have a valid value when we are not at the end, and callers should
+	// not try to dereference the value when we actually are at the end.
 	if(condMapIt != condMapEnd)
 		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
 }
@@ -417,8 +420,31 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 	auto it = providers.emplace(std::piecewise_construct,
 		std::forward_as_tuple(prefix),
 		std::forward_as_tuple(prefix, true));
-	storage[prefix].provider = &(it.first->second);
-	return it.first->second;
+	DerivedProvider *provider = &(it.first->second);
+	if(!provider->isPrefixProvider)
+	{
+		Logger::LogError("Error: Rewriting named provider \"" + prefix + "\" to prefixed provider.");
+		provider->isPrefixProvider = true;
+	}
+	if(VerifyProviderLocation(prefix, provider))
+	{
+		storage[prefix].provider = provider;
+		// Check if any matching later entries within the prefixed range use the same provider.
+		auto checkIt = storage.find(prefix);
+		while(checkIt != storage.end() && (0 == checkIt->first.compare(0, prefix.length(), prefix)))
+		{
+			ConditionEntry &ce = checkIt->second;
+			if(ce.provider != provider)
+			{
+				ce.provider = provider;
+				ce.fullKey = checkIt->first;
+				throw runtime_error("Replacing condition entries matching prefixed provider \""
+						+ prefix + "\".");
+			}
+			++checkIt;
+		}
+	}
+	return *provider;
 }
 
 
@@ -429,8 +455,12 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 	auto it = providers.emplace(std::piecewise_construct,
 		std::forward_as_tuple(name),
 		std::forward_as_tuple(name, false));
-	storage[name].provider = &(it.first->second);
-	return it.first->second;
+	DerivedProvider *provider = &(it.first->second);
+	if(provider->isPrefixProvider)
+		Logger::LogError("Error: Retrieving prefixed provider \"" + name + "\" as named provider.");
+	else if(VerifyProviderLocation(name, provider))
+		storage[name].provider = provider;
+	return *provider;
 }
 
 
@@ -474,4 +504,33 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 	// And otherwise we don't have a match.
 	return nullptr;
+}
+
+
+
+// Helper function to check if we can safely add a provider with the given name.
+bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider *provider) const
+{
+	auto it = storage.upper_bound(name);
+	if(it == storage.begin())
+		return true;
+
+	--it;
+	const ConditionEntry &ce = it->second;
+
+	// If we find the provider we are trying to add, then it apparently
+	// was safe to add the entry since it was already added before.
+	if(ce.provider == provider)
+		return true;
+
+	if(!ce.provider && it->first == name)
+	{
+		Logger::LogError("Error: overwriting primary condition \"" + name + "\" with derived provider.");
+		return true;
+	}
+
+	if(ce.provider && ce.provider->isPrefixProvider && 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
+		throw runtime_error("Error: not adding provider for \"" + name + "\""
+				", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
+	return true;
 }
