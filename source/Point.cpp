@@ -207,7 +207,7 @@ Point &Point::operator/=(double scalar)
 void Point::Set(double x, double y)
 {
 #ifdef __SSE3__
-	v = _mm_set_pd(val.y, val.x);
+	v = _mm_set_pd(y, x);
 #else
 	this->x = x;
 	this->y = y;
