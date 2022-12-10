@@ -62,6 +62,8 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+	// select name to display at loot menu
+	const std::string GenerateOutfitLootName(const PlayerInfo& player, const Outfit *outfit, const int count) const;
 
 private:
 	// This class represents one item in the list of outfits you can plunder.
@@ -69,7 +71,7 @@ private:
 	public:
 		// Plunder can be either outfits or commodities.
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const Outfit *outfit, int count);
+		Plunder(const BoardingPanel *boardingPanel, const PlayerInfo& player, const Outfit *outfit, int count);
 
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
@@ -98,7 +100,7 @@ private:
 		void Take(int count);
 
 	private:
-		void UpdateStrings();
+		void UpdateStrings(bool obscureValue);
 		double UnitMass() const;
 
 	private:

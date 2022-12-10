@@ -104,7 +104,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			++cit;
 		}
 		if(outfit && count)
-			plunder.emplace_back(outfit, count);
+			plunder.emplace_back(this, player, outfit, count);
 	}
 
 	// Some "ships" do not represent something the player could actually pilot.
@@ -538,17 +538,31 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValue)
 	: name(commodity), outfit(nullptr), count(count), unitValue(unitValue)
 {
-	UpdateStrings();
+	UpdateStrings(false);
 }
 
+const std::string BoardingPanel::GenerateOutfitLootName(const PlayerInfo& player, const Outfit *outfit, const int count) const
+{
+	std::string label = outfit->DisplayName();
 
+	if(!player.OutfitIsKnown(*outfit)) {
+		label = "Unknown " + outfit->Category();
+
+		if(outfit->Category() == "Power")
+			label += " Component";
+		if((count == 1) && (label.back() == 's'))
+			label.pop_back();
+	}
+
+	return label;
+}
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
-BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->DisplayName()), outfit(outfit), count(count),
+BoardingPanel::Plunder::Plunder(const BoardingPanel *boardingPanel, const PlayerInfo& player, const Outfit *outfit, int count)
+	: name(boardingPanel->GenerateOutfitLootName(player, outfit, count)), outfit(outfit), count(count),
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
-	UpdateStrings();
+	UpdateStrings(!player.OutfitIsKnown(*outfit));
 }
 
 
@@ -637,13 +651,13 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 void BoardingPanel::Plunder::Take(int count)
 {
 	this->count -= count;
-	UpdateStrings();
+	UpdateStrings(false);
 }
 
 
 
 // Update the text to reflect a change in the item count.
-void BoardingPanel::Plunder::UpdateStrings()
+void BoardingPanel::Plunder::UpdateStrings(bool obscureValue)
 {
 	double mass = UnitMass();
 	if(count == 1)
@@ -651,7 +665,10 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 
-	value = Format::Credits(unitValue * count);
+	if(obscureValue)
+		value = "???";
+	else
+		value = Format::Credits(unitValue * count);
 }
 
 
