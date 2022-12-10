@@ -222,7 +222,7 @@ void PlayerInfoPanel::Draw()
 		bool allParkedSystem = true;
 		bool hasOtherShips = false;
 		const Ship *flagship = player.Flagship();
-		const System *flagshipSystem = flagship->GetSystem();
+		const System *flagshipSystem = flagship ? flagship->GetSystem() : player.GetSystem();
 		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && it.get() != flagship)
 			{
