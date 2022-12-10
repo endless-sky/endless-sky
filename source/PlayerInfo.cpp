@@ -3166,13 +3166,13 @@ void PlayerInfo::RegisterDerivedConditions()
 					+ "\" referred to in condition is not valid.");
 			return -1;
 		}
+		const System *system = planet->GetSystem();
 		if(!system)
 		{
 			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
 					+ "\" referred to in condition is not in any system.");
 			return -1;
 		}
-		const System *system = planet->GetSystem();
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	};
 	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
