@@ -61,7 +61,7 @@ test-data "flagship planet attribute missions"
 
 
 
-mission "%TEST%: SHIPYARD MISSION"
+mission "%TEST%: FLAGSHIP PLANET ATTRIBUTE MISSION"
 	source "Ruin"
 	to offer
 		has "%TEST%: FLAGSHIP PLANET ATTRIBUTE MISSION OFFER"
