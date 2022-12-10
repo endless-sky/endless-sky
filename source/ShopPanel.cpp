@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Mission.h"
 #include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -524,6 +525,24 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
+}
+
+
+
+void ShopPanel::CheckForMissions(Mission::Location location)
+{
+	if(!GetUI()->IsTop(this))
+		return;
+
+	Mission *mission = player.MissionToOffer(location);
+	// Special case: if the player somehow got to the outfitter before all
+	// landing missions were offered, they can still be offered here:
+	if(!mission)
+		mission = player.MissionToOffer(Mission::LANDING);
+	if(mission)
+		mission->Do(Mission::OFFER, player, GetUI());
+	else
+		player.HandleBlockedMissions(location, GetUI());
 }
 
 
