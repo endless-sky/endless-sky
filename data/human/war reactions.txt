@@ -35,7 +35,6 @@ mission "War Reactions: Asteroid Miners"
 	minor
 	source
 		government "Republic" "Syndicate" "Free Worlds"
-		attributes "spaceport"
 		# These miners were far from the war the whole time.
 		attributes "deep" "paradise" "north"
 	to offer
