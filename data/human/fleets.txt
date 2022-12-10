@@ -31,6 +31,8 @@ fleet "Small Southern Merchants"
 	variant 10
 		"Clipper (Speedy)"
 	variant 10
+		"Clipper (Heavy Laser)"
+	variant 10
 		"Star Barge" 2
 		"Sparrow"
 	variant 10
@@ -104,6 +106,8 @@ fleet "Large Southern Merchants"
 		"Argosy (Blaster)"
 	variant 15
 		"Argosy (Turret)"
+	variant 15
+		"Argosy (Heavy Laser)"
 	variant 10
 		"Bastion"
 		"Freighter" 3
@@ -215,6 +219,8 @@ fleet "Small Core Merchants"
 		"Argosy (Turret)"
 	variant 2
 		"Argosy (Missile)"
+	variant 2
+		"Argosy (Heavy Laser)"
 	variant 5
 		"Heavy Shuttle"
 	variant 3
@@ -491,6 +497,9 @@ fleet "Small Northern Merchants"
 	variant 3
 		"Freighter"
 		"Berserker (Strike)"
+	variant 2
+		"Freighter"
+		'Berserker (Laser)" 2
 	variant 5
 		"Freighter (Fancy)"
 		"Shuttle" 4
@@ -1000,6 +1009,8 @@ fleet "Human Miners"
 		"Headhunter"
 	variant 2
 		"Headhunter (Miner)"
+	variant 1
+		"Clipper (Miner)"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
@@ -1093,6 +1104,10 @@ fleet "Large Free Worlds"
 		"Argosy (Missile)"
 	variant 2
 		"Argosy (Turret)"
+	variant 2
+		"Argosy (Heavy Laser)"
+	variant 1
+		"Argosy (Mega Blaster)"
 	variant 6
 		"Bastion"
 		"Osprey"
@@ -1256,6 +1271,10 @@ fleet "Large Militia"
 		"Argosy (Missile)"
 	variant 2
 		"Argosy (Turret)"
+	variant 2
+		"Argosy (Heavy Laser)"
+	variant 1
+		"Argosy (Mega Blaster)"
 	variant 6
 		"Bastion"
 		"Osprey"
