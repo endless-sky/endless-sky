@@ -3116,7 +3116,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship || !flagship->GetPlanet())
 			return false;
 		string attribute = name.substr(strlen("flagship planet attribute: "));
-		return !!flagship->GetPlanet()->Attributes().count(attribute);
+		return flagship->GetPlanet()->Attributes().count(attribute);
 	};
 	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
 	flagshipPlanetAttributesProvider.SetHasFunction(flagshipPlanetAttributesFun);
