@@ -36,6 +36,8 @@ mission "War Reactions: Asteroid Miners"
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "spaceport"
+		# These miners were far from the war the whole time.
+		attributes "deep" "paradise" "north"
 	to offer
 		has "event: post-war reactions begin"
 		random < 30
@@ -104,6 +106,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "spaceport"
+		# This distance from Sirius puts them a few jumps from the edge of human space, or anywhere in the Free Worlds
 		near "Sirius" 5 100
 	to offer
 		has "event: post-war reactions begin"
