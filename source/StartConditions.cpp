@@ -85,7 +85,7 @@ void StartConditions::Load(const DataNode &node)
 					ships.end());
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();
-			else if(key == "to")
+			else if(key == "to" && child.Size() >= 2)
 			{
 				if(child.Token(1) == "display")
 					toDisplay = ConditionSet();
@@ -135,7 +135,7 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
-		else if(key == "to")
+		else if(key == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "display")
 				toDisplay.Load(child);
