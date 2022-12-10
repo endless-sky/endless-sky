@@ -111,7 +111,7 @@ if(APPLE)
 		file(GLOB_RECURSE RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${folder}/*")
 		target_sources(EndlessSky PRIVATE "${RESOURCES}")
 
-		foreach(FILE "${RESOURCES}")
+		foreach(FILE ${RESOURCES})
 			# Get the relative path from the root folder to the current file.
 			file(RELATIVE_PATH NEW_FILE "${CMAKE_CURRENT_SOURCE_DIR}" "${FILE}")
 			# Get the parent directory for the new location.
