@@ -187,11 +187,23 @@ mission "War Reactions: Syndicate Orphan"
 				`	(Ignore them and keep walking.)`
 					decline
 			`	The three attackers turn around, looking furious. They eye your gun and run away. "Thanks. I'm Gus," says the fourth boy, as he slowly rises to his feet. He looks about twelve years old.`
-			`	Gus thinks for a second and looks worried. "Can you walk me to the factory? I'm already late for work, and I'm afraid they'll attack me again."`
+			`	It takes Gus a few seconds to recover. He looks worried and asks, "Can you walk me to the factory? I'm already late for work, and I'm afraid they'll attack me again."`
+			label questions
 			choice
+				`	"Why were those boys attacking you?"`
+					goto attacking
+					to display
+						not "War Reactions: Syndicate Orphan: attacking"
 				`	"Aren't you a little young to work in a factory?"`
+					goto young
 				`	"I'm in a hurry. You're on your own."`
 					decline
+			label attacking
+			action
+				set "War Reactions: Syndicate Orphan: attacking"
+			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service, which monitors Syndicate-owned workplaces. Those boys are factory workers, and Syndicate security officers aren't nice to factory workers. They can't attack my sister, so they attack me instead."`
+				goto questions
+			label young
 			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some orphans work in factories, in return for better education, good housing, and medical care. Only the cleverest of us get to do it. All of the orphanage factories are safe; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
 			`	"Wait, you're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting human ships on our Syndicate school's big educational viewscreen."`
 			choice
