@@ -112,6 +112,9 @@ test "Flagship Planet Attribute Mission Test"
 	sequence
 		inject "flagship planet attribute missions"
 		call "Load First Savegame"
+		assert
+			"flagship planet attribute: Temperate Climate" == 1
+			"flagship planet attribute: ringworld" == 0
 		apply
 			"%TEST%: FLAGSHIP PLANET ATTRIBUTE MISSION OFFER" = 1
 		call "Trigger Flagship Planet Attribute Mission"
