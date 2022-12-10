@@ -90,7 +90,7 @@ void StartConditions::Load(const DataNode &node)
 				if(child.Token(1) == "display")
 					toDisplay = ConditionSet();
 				else if(child.Token(1) == "unlock")
-					toUnlock = ConditionSet();
+					toUnlock = ConditionSet()
 			}
 			else if(key == "conditions")
 				conditions = ConditionSet();
