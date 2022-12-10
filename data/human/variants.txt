@@ -81,6 +81,45 @@ ship "Argosy" "Argosy (Turret)"
 		"Hyperdrive"
 
 
+ship "Argosy" "Argosy (Plasma Repeater)"
+	outfits
+		"Anti-Missile Turret"
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion"
+		"Plasma Repeater" 2
+		"RT-I Radiothermal"
+
+
+ship "Argosy" "Argosy (Super Blaster)"
+	outfits
+		"Blaster Turret" 2
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"RT-I Radiothermal"
+		"Twin Blaster" 4
+
+
+ship "Argosy" "Argosy (Heavy Laser)"
+	outfits
+		"D67-TM Shield Generator"
+		"Fuel Pod"
+		"Greyhound Plasma Thruster"
+		"Heavy Laser" 4
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Outfits Expansion"
+		"S3 Thermionic"
+
+
 
 ship "Arrow" "Arrow (Hai)"
 	outfits
@@ -442,6 +481,41 @@ ship "Berserker" "Berserker (Strike)"
 		"Hyperdrive"
 
 
+ship "Berserker" "Berserker (Six Blasters)"
+	outfits
+		"D23-QP Shield Generator"
+		"Energy Blaster" 2
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Twin Blaster" 2
+		"X2700 Ion Thruster"
+		"X3200 Ion Steering"
+		"nGVF-CC Fuel Cell"
+
+
+ship "Berserker" "Berserker (Modified Blaster)"
+	outfits
+		"D41-HY Shield Generator"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Modified Blaster" 4
+		"X2700 Ion Thruster"
+		"X3200 Ion Steering"
+		"nGVF-CC Fuel Cell"
+
+
+ship "Berserker" "Berserker (Laser)"
+	outfits
+		"Beam Laser" 4
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"LP036a Battery Pack"
+		"S3 Thermionic"
+
+
+
 ship "Blackbird" "Blackbird (Prisoner Transport)"
 	outfits
 		"Heavy Laser Turret"
@@ -736,6 +810,73 @@ ship "Clipper" "Clipper (Speedy)"
 		"Hyperdrive"
 
 
+# Separate to Hai Trafficker - this ship smuggles illegal goods, not Hai
+ship "Clipper" "Clipper (Smuggler)"
+	outfits
+		Brig
+		"D23-QP Shield Generator"
+		"Fuel Pod"
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Interference Plating" 3
+		Javelin 800
+		"Javelin Pod" 4
+		"Laser Rifle" 3
+		"NT-200 Nucleovoltaic"
+		"Scram Drive"
+		Supercapacitor
+		"Volcano Afterburner"
+
+
+ship "Clipper" "Clipper (Twin Modified Blasters)"
+	outfits
+		"D67-TM Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Laser Rifle" 5
+		"Outfits Expansion"
+		"S3 Thermionic"
+		"Twin Modified Blaster" 4
+
+
+ship "Clipper" "Clipper (Twin Blasters)"
+	outfits
+		"D41-HY Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"S3 Thermionic"
+		"Twin Blaster" 4
+		"Water Coolant System"
+
+
+ship "Clipper" "Clipper (Miner)"
+	outfits
+		"Asteroid Scanner"
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Heavy Laser" 4
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"S3 Thermionic"
+
+
+ship "Clipper" "Clipper (Heavy Laser)"
+	outfits
+		"D41-HY Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Heavy Laser" 4
+		Hyperdrive
+		"Impala Plasma Steering"
+		"NT-200 Nucleovoltaic"
+		Supercapacitor
+
+
+# Separate to Smuggler - this ship has Hai outfits
 ship "Clipper" "Clipper (Hai Trafficker)"
 	add attributes
 		"mass" 31
@@ -1703,6 +1844,18 @@ ship "Fury" "Fury (Miner)"
 		"Hyperdrive"
 
 
+ship "Fury" "Fury (Modified Blaster)"
+	outfits
+		"D14-RN Shield Generator"
+		Hyperdrive
+		"LP036a Battery Pack"
+		"Modified Blaster" 4
+		"Small Radar Jammer"
+		"X2200 Ion Steering"
+		"X2700 Ion Thruster"
+		"nGVF-CC Fuel Cell"
+
+
 
 ship "Gunboat" "Gunboat (Mark II)"
 	outfits
@@ -1718,6 +1871,39 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+
+
+# The next two Gunboat variants are used only rarely and by Northern pirates, 
+# who would have captured a few over the years from the base on Fairpoint. 
+ship "Gunboat" "Gunboat (Pirate)"
+	outfits
+		Brig
+		"D41-HY Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP144a Battery Pack"
+		"Outfits Expansion" 2
+		"RT-I Radiothermal"
+		"Small Radar Jammer"
+		"Volcano Afterburner"
+
+
+ship "Gunboat" "Gunboat (Pirate Particle Cannon)"
+	outfits
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Brig
+		"D41-HY Shield Generator"
+		"Heavy Anti-Missile Turret"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Outfits Expansion" 2
+		"Particle Cannon" 2
+		"S3 Thermionic"
+		"Volcano Afterburner"
 
 
 
@@ -1847,6 +2033,19 @@ ship "Hawk" "Hawk (Miner)"
 		"Hyperdrive"
 
 
+ship "Hawk" "Hawk (Twin Modified Blaster)"
+	outfits
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"KP-6 Photovoltaic Panel" 2
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
+		"Twin Modified Blaster" 2
+		"nGVF-CC Fuel Cell"
+
+
 
 ship "Headhunter" "Headhunter (Hai)"
 	outfits
@@ -1896,6 +2095,19 @@ ship "Headhunter" "Headhunter (Strike)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+
+
+# Only after the main campaign is completed.
+ship "Headhunter" "Headhunter (Electron)"
+	outfits
+		"Anti-Missile Turret"
+		"D23-QP Shield Generator"
+		"Electron Beam" 2
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"RT-I Radiothermal"
 
 
 
@@ -2253,6 +2465,79 @@ ship "Modified Argosy" "Modified Argosy (Smuggler)"
 		"Scram Drive"
 
 
+ship "Modified Argosy" "Modified Argosy (Particle Cannon)"
+	outfits
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Laser Rifle" 2
+		"NT-200 Nucleovoltaic"
+		"Particle Cannon" 4
+		"Water Coolant System"
+
+
+ship "Modified Argosy" "Modified Argosy (Plasma)"
+	outfits
+		"Anti-Missile Turret" 2
+		"Cooling Ducts"
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Laser Rifle" 4
+		"NT-200 Nucleovoltaic"
+		"Outfits Expansion"
+		"Plasma Cannon" 4
+		"Water Coolant System"
+
+
+ship "Modified Argosy" "Modified Argosy (Mega Blaster)"
+	outfits
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Laser Rifle" 2
+		"Liquid Nitrogen Cooler"
+		"NT-200 Nucleovoltaic"
+		"Quad Blaster Turret" 2
+		"Twin Modified Blaster" 4
+
+
+# Only after the player has completed the main campaign. 
+ship "Modified Argosy" "Modified Argosy (Electron)"
+	outfits
+		"D41-HY Shield Generator"
+		"Electron Beam" 4
+		"Electron Turret"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Laser Rifle" 2
+		"NT-200 Nucleovoltaic"
+		"Outfits Expansion"
+		"X3200 Ion Steering"
+
+
+# Only after the player helps test it.
+ship "Modified Argosy" "Modified Argosy (Plasma Repeater)"
+	outfits
+		"Anti-Missile Turret" 2
+		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Laser Rifle" 2
+		"Liquid Helium Cooler"
+		"NT-200 Nucleovoltaic"
+		"Plasma Repeater" 2
+
+
 
 ship "Mule" "Mule (Hai Engines)"
 	outfits
@@ -2406,6 +2691,22 @@ ship "Osprey" "Osprey (Particle Anti-Missile)"
 		"Laser Rifle" 3
 		"Water Coolant System"
 		"Fusion Reactor"
+
+
+ship "Osprey" "Osprey (Electron)"
+	outfits
+		"Anti-Missile Turret"
+		"Breeder Reactor"
+		"D67-TM Shield Generator"
+		"Electron Beam" 4
+		"Electron Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"Impala Plasma Thruster"
+		"LP144a Battery Pack"
+		"Laser Rifle" 13
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion"
 
 
 
@@ -2579,6 +2880,19 @@ ship "Raven" "Raven (Heavy)"
 	gun "Meteor Missile Launcher"
 
 
+# Only after the main campaign is completed.
+ship "Raven" "Raven (Electron)"
+	outfits
+		"D41-HY Shield Generator"
+		"Electron Beam" 4
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Laser Rifle" 2
+		"NT-200 Nucleovoltaic"
+
+
 
 ship "Roost" "Roost (Sidewinder)"
 	outfits
@@ -2711,6 +3025,22 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 	turret "Anti-Missile Turret"
 	turret "Proton Turret"
+
+
+ship "Splinter" "Splinter (Mega Blaster)"
+	outfits
+		"D67-TM Shield Generator"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP144a Battery Pack"
+		"Large Radar Jammer"
+		"Laser Rifle" 6
+		"Liquid Nitrogen Cooler"
+		"NT-200 Nucleovoltaic"
+		"Quad Blaster Turret" 3
+		"Tactical Scanner"
+		"Twin Blaster" 2
+		"X3700 Ion Thruster"
 
 
 # Used in the Hai Reveal campaign by a special Syndicate Security team. Should not be used before.
@@ -2875,3 +3205,15 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+
+
+ship "Wasp" "Wasp (Twin Blaster)"
+	outfits
+		"D14-RN Shield Generator"
+		Hyperdrive
+		"LP036a Battery Pack"
+		"Small Radar Jammer"
+		"Twin Blaster" 2
+		"X2200 Ion Steering"
+		"X2700 Ion Thruster"
+		"nGVF-BB Fuel Cell"
