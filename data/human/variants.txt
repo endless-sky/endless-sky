@@ -1102,6 +1102,43 @@ ship "Cruiser" "Cruiser (Mark II)"
 	turret "Heavy Anti-Missile Turret"
 
 
+ship "Cruiser" "Cruiser (Republic Intelligence)"
+	outfits
+		"Typhoon Launcher" 2
+		"Typhoon Torpedo" 60
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 134
+		"Electron Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"S-970 Regenerator"
+		"Large Radar Jammer"
+		"Small Radar Jammer" 2
+		"Liquid Helium Cooler"
+		"Fuel Pod"
+		"Tactical Scanner"
+		"Laser Rifle" 25
+		"Fragmentation Grenades" 25
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+		"Outfit Scanner" 3
+		"Cargo Scanner" 2
+		"Catalytic Ramscoop"
+		"Outfits Expansion"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	turret "Heavy Anti-Missile Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
 # Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment, intended against the Hai.
 ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 	outfits
@@ -1111,7 +1148,7 @@ ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
 		"Liquid Helium Cooler" 2
 		"Catalytic Ramscoop"
 		Hyperdrive
-		Afterburner
+		"Volcano Afterburner"
 		"Outfits Expansion" 2
 		"Plasma Cannon" 6
 		"A520 Atomic Thruster"
@@ -1140,7 +1177,7 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
-		Afterburner
+		"Volcano Afterburner"
 		
 		"Stack Core"
 		"LP144a Battery Pack"
@@ -1181,7 +1218,7 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 		"S-970 Regenerator"
 		"Liquid Helium Cooler" 2
 		Hyperdrive
-		Afterburner
+		"Volcano Afterburner"
 		Supercapacitor
 		"Outfits Expansion" 2
 		"Plasma Cannon" 4
@@ -1525,6 +1562,31 @@ ship "Freighter" "Freighter (Hai Trafficker)"
 		"Breeder Reactor"
 		"Security Station" 2
 
+
+ship "Frigate" "Frigate (Republic Intelligence)"
+	outfits
+		"A370 Atomic Thruster"
+		"Blaster Turret" 2
+		Brig
+		"Cargo Scanner"
+		"Catalytic Ramscoop"
+		"Electron Beam" 2
+		"Fission Reactor"
+		"Fuel Pod"
+		"Heavy Anti-Missile Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP144a Battery Pack"
+		"Laser Rifle" 15
+		"Fragmentation Grenades" 15
+		"Outfit Scanner"
+		"Outfits Expansion"
+		"S-270 Regenerator"
+		"Sidewinder Missile" 45
+		"Sidewinder Missile Launcher"
+		Torpedo 30
+		"Torpedo Launcher"
+		"Water Coolant System"
 
 
 ship "Frigate" "Frigate (Mark II)"
@@ -2335,7 +2397,7 @@ ship "Osprey" "Osprey (Particle Anti-Missile)"
 		"S-970 Regenerator"
 		Hyperdrive
 		"LP072a Battery Pack"
-		Afterburner
+		"Volcano Afterburner"
 		"Outfits Expansion" 2
 		"Liquid Nitrogen Cooler"
 		"Particle Cannon" 4

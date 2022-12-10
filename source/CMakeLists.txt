@@ -1,0 +1,373 @@
+add_library(EndlessSkyLib STATIC EXCLUDE_FROM_ALL)
+
+# Set the appropriate compiler flags.
+target_include_directories(EndlessSkyLib PUBLIC "${LIBMAD_INCLUDE_DIR}")
+target_compile_definitions(EndlessSkyLib PUBLIC ES_CMAKE)
+if(MSVC)
+	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
+		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/WX;/Oi>")
+	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
+else()
+	target_compile_options(EndlessSkyLib PUBLIC "-Wall" "-Wold-style-cast" "-fno-rtti" "$<$<CONFIG:Release>:-Werror>")
+endif()
+
+# The 'mingw32' lib needs to be linked first.
+if(MINGW)
+	target_link_libraries(EndlessSkyLib PUBLIC mingw32)
+endif()
+
+# Link with the general libraries.
+target_link_libraries(EndlessSkyLib PUBLIC SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
+	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
+
+# Link the needed OS-specific dependencies, if any.
+if(WIN32)
+	target_link_libraries(EndlessSkyLib PUBLIC rpcrt4 Winmm)
+else()
+	target_link_libraries(EndlessSkyLib PUBLIC pthread)
+endif()
+
+# Link with the UUID library, which is different for each OS.
+if(UNIX)
+	if(APPLE)
+		find_library(UUID_LIB NAMES System PATHS /lib /usr/lib /usr/local/lib)
+		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
+		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
+		target_include_directories(EndlessSkyLib PUBLIC "${UUID_INCLUDE}")
+	elseif(ES_USE_SYSTEM_LIBRARIES)
+		find_library(UUID_LIB uuid)
+		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
+	else()
+		find_package(unofficial-libuuid CONFIG REQUIRED)
+		target_link_libraries(EndlessSkyLib PUBLIC unofficial::UUID::uuid)
+	endif()
+endif()
+
+# Every source file (and header file) should be listed here, except main.cpp.
+# If you add a new file, add it to this list.
+target_sources(EndlessSkyLib PRIVATE
+	AI.cpp
+	AI.h
+	Account.cpp
+	Account.h
+	AlertLabel.cpp
+	AlertLabel.h
+	Angle.cpp
+	Angle.h
+	Armament.cpp
+	Armament.h
+	AsteroidField.cpp
+	AsteroidField.h
+	Audio.cpp
+	Audio.h
+	BankPanel.cpp
+	BankPanel.h
+	BatchDrawList.cpp
+	BatchDrawList.h
+	BatchShader.cpp
+	BatchShader.h
+	Bitset.cpp
+	Bitset.h
+	BoardingPanel.cpp
+	BoardingPanel.h
+	Body.cpp
+	Body.h
+	CaptureOdds.cpp
+	CaptureOdds.h
+	CargoHold.cpp
+	CargoHold.h
+	CategoryTypes.h
+	ClickZone.h
+	CollisionSet.cpp
+	CollisionSet.h
+	Color.cpp
+	Color.h
+	Command.cpp
+	Command.h
+	ConditionSet.cpp
+	ConditionSet.h
+	ConditionsStore.cpp
+	ConditionsStore.h
+	Conversation.cpp
+	Conversation.h
+	ConversationPanel.cpp
+	ConversationPanel.h
+	CoreStartData.cpp
+	CoreStartData.h
+	DamageDealt.h
+	DamageProfile.cpp
+	DamageProfile.h
+	DataFile.cpp
+	DataFile.h
+	DataNode.cpp
+	DataNode.h
+	DataWriter.cpp
+	DataWriter.h
+	Date.cpp
+	Date.h
+	Depreciation.cpp
+	Depreciation.h
+	Dialog.cpp
+	Dialog.h
+	Dictionary.cpp
+	Dictionary.h
+	DistanceMap.cpp
+	DistanceMap.h
+	DrawList.cpp
+	DrawList.h
+	Effect.cpp
+	Effect.h
+	Engine.cpp
+	Engine.h
+	EsUuid.cpp
+	EsUuid.h
+	EscortDisplay.cpp
+	EscortDisplay.h
+	ExclusiveItem.h
+	File.cpp
+	File.h
+	Files.cpp
+	Files.h
+	FillShader.cpp
+	FillShader.h
+	FireCommand.cpp
+	FireCommand.h
+	Fleet.cpp
+	Fleet.h
+	Flotsam.cpp
+	Flotsam.h
+	FogShader.cpp
+	FogShader.h
+	FormationPattern.cpp
+	FormationPattern.h
+	FrameTimer.cpp
+	FrameTimer.h
+	Galaxy.cpp
+	Galaxy.h
+	GameAction.cpp
+	GameAction.h
+	GameData.cpp
+	GameData.h
+	GameEvent.cpp
+	GameEvent.h
+	GameLoadingPanel.cpp
+	GameLoadingPanel.h
+	GameWindow.cpp
+	GameWindow.h
+	Government.cpp
+	Government.h
+	HailPanel.cpp
+	HailPanel.h
+	Hardpoint.cpp
+	Hardpoint.h
+	Hazard.cpp
+	Hazard.h
+	HiringPanel.cpp
+	HiringPanel.h
+	ImageBuffer.cpp
+	ImageBuffer.h
+	ImageSet.cpp
+	ImageSet.h
+	InfoPanelState.cpp
+	InfoPanelState.h
+	Information.cpp
+	Information.h
+	Interface.cpp
+	Interface.h
+	ItemInfoDisplay.cpp
+	ItemInfoDisplay.h
+	JumpTypes.h
+	Logger.cpp
+	Logger.h
+	LineShader.cpp
+	LineShader.h
+	LoadPanel.cpp
+	LoadPanel.h
+	LocationFilter.cpp
+	LocationFilter.h
+	LogbookPanel.cpp
+	LogbookPanel.h
+	MainPanel.cpp
+	MainPanel.h
+	MapDetailPanel.cpp
+	MapDetailPanel.h
+	MapOutfitterPanel.cpp
+	MapOutfitterPanel.h
+	MapPanel.cpp
+	MapPanel.h
+	MapPlanetCard.cpp
+	MapPlanetCard.h
+	MapSalesPanel.cpp
+	MapSalesPanel.h
+	MapShipyardPanel.cpp
+	MapShipyardPanel.h
+	Mask.cpp
+	Mask.h
+	MaskManager.cpp
+	MaskManager.h
+	MenuAnimationPanel.cpp
+	MenuAnimationPanel.h
+	MenuPanel.cpp
+	MenuPanel.h
+	Messages.cpp
+	Messages.h
+	Minable.cpp
+	Minable.h
+	Mission.cpp
+	Mission.h
+	MissionAction.cpp
+	MissionAction.h
+	MissionPanel.cpp
+	MissionPanel.h
+	Mortgage.cpp
+	Mortgage.h
+	Music.cpp
+	Music.h
+	NPC.cpp
+	NPC.h
+	News.cpp
+	News.h
+	Outfit.cpp
+	Outfit.h
+	OutfitInfoDisplay.cpp
+	OutfitInfoDisplay.h
+	OutfitterPanel.cpp
+	OutfitterPanel.h
+	OutlineShader.cpp
+	OutlineShader.h
+	Panel.cpp
+	Panel.h
+	Person.cpp
+	Person.h
+	Personality.cpp
+	Personality.h
+	Phrase.cpp
+	Phrase.h
+	Planet.cpp
+	Planet.h
+	PlanetLabel.cpp
+	PlanetLabel.h
+	PlanetPanel.cpp
+	PlanetPanel.h
+	PlayerInfo.cpp
+	PlayerInfo.h
+	PlayerInfoPanel.cpp
+	PlayerInfoPanel.h
+	Point.cpp
+	Point.h
+	PointerShader.cpp
+	PointerShader.h
+	Politics.cpp
+	Politics.h
+	Preferences.cpp
+	Preferences.h
+	PreferencesPanel.cpp
+	PreferencesPanel.h
+	PrintData.cpp
+	PrintData.h
+	Projectile.cpp
+	Projectile.h
+	Radar.cpp
+	Radar.h
+	Random.cpp
+	Random.h
+	RandomEvent.h
+	Rectangle.cpp
+	Rectangle.h
+	RingShader.cpp
+	RingShader.h
+	Sale.h
+	SavedGame.cpp
+	SavedGame.h
+	Screen.cpp
+	Screen.h
+	Set.h
+	Shader.cpp
+	Shader.h
+	Ship.cpp
+	Ship.h
+	ShipEvent.cpp
+	ShipEvent.h
+	ShipInfoDisplay.cpp
+	ShipInfoDisplay.h
+	ShipInfoPanel.cpp
+	ShipInfoPanel.h
+	ShipJumpNavigation.cpp
+	ShipJumpNavigation.h
+	ShipyardPanel.cpp
+	ShipyardPanel.h
+	ShopPanel.cpp
+	ShopPanel.h
+	Sound.cpp
+	Sound.h
+	SpaceportPanel.cpp
+	SpaceportPanel.h
+	Sprite.cpp
+	Sprite.h
+	SpriteQueue.cpp
+	SpriteQueue.h
+	SpriteSet.cpp
+	SpriteSet.h
+	SpriteShader.cpp
+	SpriteShader.h
+	StarField.cpp
+	StarField.h
+	StartConditions.cpp
+	StartConditions.h
+	StartConditionsPanel.cpp
+	StartConditionsPanel.h
+	StellarObject.cpp
+	StellarObject.h
+	System.cpp
+	System.h
+	Test.cpp
+	Test.h
+	TestContext.cpp
+	TestContext.h
+	TestData.cpp
+	TestData.h
+	TextReplacements.cpp
+	TextReplacements.h
+	Trade.cpp
+	Trade.h
+	TradingPanel.cpp
+	TradingPanel.h
+	UI.cpp
+	UI.h
+	UniverseObjects.cpp
+	UniverseObjects.h
+	Variant.cpp
+	Variant.h
+	Visual.cpp
+	Visual.h
+	Weapon.cpp
+	Weapon.h
+	Weather.cpp
+	Weather.h
+	WeightedList.h
+	Wormhole.cpp
+	Wormhole.h
+	comparators/ByGivenOrder.h
+	comparators/ByName.h
+	opengl.cpp
+	opengl.h
+	pi.h
+	shift.h
+	text/DisplayText.cpp
+	text/DisplayText.h
+	text/Font.cpp
+	text/Font.h
+	text/FontSet.cpp
+	text/FontSet.h
+	text/Format.cpp
+	text/Format.h
+	text/Table.cpp
+	text/Table.h
+	text/Utf8.cpp
+	text/Utf8.h
+	text/WrappedText.cpp
+	text/WrappedText.h
+	text/alignment.hpp
+	text/layout.hpp
+	text/truncate.hpp
+)
