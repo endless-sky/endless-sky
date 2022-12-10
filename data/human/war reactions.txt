@@ -193,7 +193,7 @@ mission "War Reactions: Syndicate Orphan"
 				`	"I'm in a hurry. You're on your own."`
 					decline
 			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some orphans work in factories, in return for better education, good housing, and medical care. Only the cleverest of us get to do it. All of the orphanage factories are safe; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
-			`	"Anyway, you're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting human ships on our Syndicate school's big educational viewscreen."`
+			`	"Wait, you're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting human ships on our Syndicate school's big educational viewscreen."`
 			choice
 				`	"Yes, I'm Captain <first> <last>."`
 					goto me
@@ -221,7 +221,7 @@ mission "War Reactions: Syndicate Orphan"
 			`	"That's so insightful! Still, without people like you, the Pug's ploy would never have worked. Thank you for your service, captain."`
 				goto salute
 			label hell
-			`	"You went through hell for us, eh? That's something to think about. Maybe I should stick to engineering instead of becoming a combat pilot. I donno."`
+			`	"You went through hell for us, eh? That's something to think about. Maybe I should stick to engineering instead of becoming a combat pilot. I dunno."`
 				goto salute
 			label chess
 			`	"The Syndicate is training me to maintain and pilot combat ships! One day, I'll fight aliens like you did."`
