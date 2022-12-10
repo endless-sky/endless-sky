@@ -59,53 +59,6 @@ test-data "flagship planet attribute missions"
 
 
 
-mission "%TEST%: FLAGSHIP PLANET ATTRIBUTE MISSION"
-	source "Ruin"
-	to offer
-		has "%TEST%: FLAGSHIP PLANET ATTRIBUTE MISSION OFFER"
-		has "flagship planet attribute: Temperate Climate"
-	on offer
-		conversation
-			`THIS IS A FLAGSHIP PLANET ATTRIBUTE MISSION YO!`
-				decline
-	on decline
-		set "succeed test"
-
-
-
-test "Trigger Flagship Planet Attribute Mission"
-	status partial
-	description "Launch, land, and go to the spaceport to trigger any potential missions in the shipyard."
-	sequence
-		call "Depart"
-		call "Land On Ruin helper"
-		input
-			key p
-
-
-
-test "End Flagship Planet Attribute Missions"
-	status partial
-	description "Just skip a mission by pressing return twice."
-	sequence
-		# Press accept (or decline, depending on if it is shown) and then skip the dialog once.
-		input
-			key "Return"
-		input
-			key "Return"
-
-
-test "Test Flagship Planet Attribute Mission"
-	status partial
-	description "Set a few conditions so they are displayed on errors, clarifying things up."
-	sequence
-		apply
-			# Test accepted. If not there it wasn't offered.
-			"test: succeed test" = "succeed test"
-			# if we launched
-			"test: flagship planet: Ruin" = "flagship planet: Ruin"
-
-
 test "Flagship Planet Attribute Mission Test"
 	status active
 	description "Test if a conversation option shows up when the given condition is set."
@@ -115,11 +68,3 @@ test "Flagship Planet Attribute Mission Test"
 		assert
 			"flagship planet attribute: Temperate Climate" == 1
 			"flagship planet attribute: ringworld" == 0
-		apply
-			"%TEST%: FLAGSHIP PLANET ATTRIBUTE MISSION OFFER" = 1
-		call "Trigger Flagship Planet Attribute Mission"
-		call "End Flagship Planet Attribute Missions"
-		call "Depart"
-		call "Test Shipyard And Outfitter Mission"
-		assert
-			"succeed test" == 1
