@@ -41,7 +41,8 @@ namespace {
 	const double GAP = 6.;
 	const double MIN_DISTANCE = 30.;
 
-	// Check if the given label for the given stellar object and direction overlaps with any other stellar object in the system.
+	// Check if the given label for the given stellar object and direction overlaps
+	// with any other stellar object in the system.
 	bool Overlaps(const System &system, const StellarObject &object, double zoom, double width, int direction)
 	{
 		Point start = zoom * (object.Position() +

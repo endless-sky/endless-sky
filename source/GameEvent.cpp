@@ -37,6 +37,7 @@ namespace {
 		"shipyard",
 		"system",
 		"substitutions",
+		"wormhole",
 	};
 }
 
@@ -189,7 +190,8 @@ const Date &GameEvent::GetDate() const
 
 // Check that this GameEvent has been loaded from a file (vs. referred to only
 // by name), and that the systems & planets it references are similarly defined.
-bool GameEvent::IsValid() const
+// Returns an empty string if it is valid. If not, a reason will be given in the string.
+string GameEvent::IsValid() const
 {
 	// When Apply is called, we mutate the universe definition before we update
 	// the player's knowledge of the universe. Thus, to determine if a system or
@@ -199,13 +201,13 @@ bool GameEvent::IsValid() const
 	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
 		for(auto &&system : systems)
 			if(!system->IsValid() && !deferred["system"].count(system->Name()))
-				return false;
+				return "contains invalid system \"" + system->Name() + "\".";
 	for(auto &&planets : {planetsToVisit, planetsToUnvisit})
 		for(auto &&planet : planets)
 			if(!planet->IsValid() && !deferred["planet"].count(planet->TrueName()))
-				return false;
+				return "contains invalid planet \"" + planet->TrueName() + "\".";
 
-	return isDefined;
+	return isDefined ? "" : "not defined";
 }
 
 
