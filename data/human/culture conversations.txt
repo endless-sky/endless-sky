@@ -613,3 +613,48 @@ mission "Sol-Bound Shuttle"
 			label end
 			`	You say your goodbyes as you board your ships. Although you are both captains, the trajectory of your lives have taken very different courses.`
 				decline
+
+mission "Station External Fuel Leak"
+	minor
+	landing
+	source
+		government "Republic" "Free Worlds" "Independent"
+		attributes "station"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`As you approach <planet>, the stars behind the station seem blurry. You rub your eyes; you've been at the helm for a long time. The blur doesn't clear, and you realize there's some sort of amorphous haze hanging in space close to the station.
+			`	You receive a hail from traffic control. "<ship>, please manoeuvre to parking orbit Six Alpha and await further instructions."`
+			choice
+				`	"What seems to be the problem, <planet> Control?"`
+					goto explain_fuel_leak
+				`	"Acknowledged. Manoeuvring to Six Alpha."`
+					goto wait_at_parking_orbit
+			label explain_fuel_leak
+			`	"<planet> experienced a fuel storage tank rupture about an hour ago. The vented hyperspace fuel will pose a navigational hazard to shipping traffic for an estimated three-to-five hours before dissipation. Please proceed to orbit Six Alpha."`
+			choice
+				`	"Acknowledged. Manoeuvring to Six Alpha."`
+					goto wait_at_parking_orbit
+				`	"I have better things to do and more important places to be."`
+					flee
+				`	"It's just a little fuel! <ship> has been through worse. I'm coming in for a landing!"`
+					goto dissuade_suicide
+			label dissuade_suicide
+			`	"<ship>, divert course immediately! Say again, divert course immediately! Your approach vector is extremely hazardous! Your engines will ignite the fuel! This is suicidal!"`
+			choice
+				`	"Aborting approach, <planet> Control. I didn't realize it was that dangerous. Proceeding immediately to orbit Six Alpha."`
+					goto wait_at_parking_orbit
+				`	(Burn hard toward the station.)`
+					explode
+			label wait_at_parking_orbit
+			`	You follow traffic control's instructions and move <ship> out to a healthy distance from <planet>. From this vantage, you watch the grey smudge you first saw in the sky gradually expand and thin. The shimmering cloud causes the stars behind to twinkle and dance; a rare sight this side of a planetary atmosphere. Over a few hours, the tenuous fog dissipates slowly enough you're not quite sure when the boundary was between watching it hang in the vacuum and it vanishing into imperceptibility.`
+			choice
+				`	(Enjoy the view and the downtime.)`
+					goto fuel_leak_conclusion
+			label fuel_leak_conclusion
+			`	The comms panel chirps. "Thanks for your patience, <ship>. The vented fuel plume has diminished to safe levels, and you're clear to begin your approach."`
+			choice
+				`	"Thanks, <planet> Control. Coming in to dock."`
+					decline
+
