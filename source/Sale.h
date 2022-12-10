@@ -34,6 +34,11 @@ public:
 	void Add(const Sale<Item> &other);
 
 	bool Has(const Item *item) const;
+
+	std::string Description() const;
+
+private:
+	std::string description;
 };
 
 
@@ -72,6 +77,12 @@ bool Sale<Item>::Has(const Item *item) const
 	return this->count(item);
 }
 
+
+template <class Item>
+std::string Sale<Item>::Description() const
+{
+	return description;
+}
 
 
 #endif
