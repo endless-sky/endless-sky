@@ -14,11 +14,13 @@
 		072599D426A8CD5D007EC229 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1578F883250B5F8A00D318FB /* InfoPanelState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1578F880250B5F8A00D318FB /* InfoPanelState.cpp */; };
 		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
+		1F884DB590D5152608510676 /* ShipJumpNavigation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */; };
 		301A4FE885A7A12348986C4F /* UniverseObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 389245138CF297EB417DF730 /* UniverseObjects.cpp */; };
 		46A34BE4A0599886221093BA /* PrintData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 341645FAA25F7901221B8965 /* PrintData.cpp */; };
 		483A40DBA497868FE299CBC2 /* AmmoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAF40DF982694B939AD5086 /* AmmoDisplay.cpp */; };
 		497849B2A4C5EA58A64D316C /* MapPlanetCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
+		53DA422996419974ADADE346 /* Wormhole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D414B4194239522B24F3C95 /* Wormhole.cpp */; };
 		5AB644C9B37C15C989A9DBE9 /* DisplayText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E1E458DB603BF979429117C /* DisplayText.cpp */; };
 		6245F8251D301C7400A7A094 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8231D301C7400A7A094 /* Body.cpp */; };
 		6245F8281D301C9000A7A094 /* Hardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6245F8261D301C9000A7A094 /* Hardpoint.cpp */; };
@@ -26,7 +28,7 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
-		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
+		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		750C4374811B129C0D5C9343 /* SecondaryWeaponIconDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E79F4AA18DC068DFB129E5C6 /* SecondaryWeaponIconDisplay.cpp */; };
 		728B43FDACD43334E7A59BCF /* ConditionsStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */; };
@@ -34,6 +36,7 @@
 		88A64339B56EBA1F7923E1C7 /* GameLoadingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */; };
 		90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950742538F8CECF5D4168FBC /* EsUuid.cpp */; };
 		920F40E0ADECA8926F423FDA /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61FA4C2BB89E08C5E2B8B4B9 /* Variant.cpp */; };
+		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
 		94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A4C648B242742B22A34FA /* Weather.cpp */; };
 		9E1F4BF78F9E1FC4C96F76B5 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E8047A8987DD8EC99FF8E2E /* Test.cpp */; };
 		A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */; };
@@ -169,6 +172,7 @@
 		B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55C239B2303CE8A005C1A14 /* GameWindow.cpp */; };
 		B590161321ED4A0F00799178 /* Utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590161121ED4A0E00799178 /* Utf8.cpp */; };
 		B5DDA6942001B7F600DBA76A /* News.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DDA6922001B7F600DBA76A /* News.cpp */; };
+		B770487BB26CFD0BFDD89588 /* AlertLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B7242769DEFC88E71359DEB /* AlertLabel.cpp */; };
 		C4264774A89C0001B6FFC60E /* Hazard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */; };
 		C7354A3E9C53D6C5E3CC352F /* TestData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02D34A71AE3BC4C93FC6865B /* TestData.cpp */; };
 		CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3754152958FBC924E9F76A9 /* opengl.cpp */; };
@@ -229,6 +233,7 @@
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
+		13B64DB8AE730E57C3DEA2F0 /* ShipJumpNavigation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipJumpNavigation.cpp; path = source/ShipJumpNavigation.cpp; sourceTree = "<group>"; };
 		1578F880250B5F8A00D318FB /* InfoPanelState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InfoPanelState.cpp; path = source/InfoPanelState.cpp; sourceTree = "<group>"; };
 		1578F882250B5F8A00D318FB /* InfoPanelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoPanelState.h; path = source/InfoPanelState.h; sourceTree = "<group>"; };
 		19184B47B496B414EC9CE671 /* DamageProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamageProfile.h; path = source/DamageProfile.h; sourceTree = "<group>"; };
@@ -264,12 +269,17 @@
 		6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextReplacements.cpp; path = source/TextReplacements.cpp; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
 		6A5716321E25BE6F00585EB2 /* CollisionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSet.h; path = source/CollisionSet.h; sourceTree = "<group>"; };
+		6B7242769DEFC88E71359DEB /* AlertLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AlertLabel.cpp; path = source/AlertLabel.cpp; sourceTree = "<group>"; };
+		6D414B4194239522B24F3C95 /* Wormhole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wormhole.cpp; path = source/Wormhole.cpp; sourceTree = "<group>"; };
 		6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTypes.h; path = source/CategoryTypes.h; sourceTree = "<group>"; };
 		74F543598EEFB3745287E663 /* Bitset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitset.cpp; path = source/Bitset.cpp; sourceTree = "<group>"; };
+		864B48C89992966088767671 /* AlertLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertLabel.h; path = source/AlertLabel.h; sourceTree = "<group>"; };
 		86AB4B6E9C4C0490AE7F029B /* EsUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EsUuid.h; path = source/EsUuid.h; sourceTree = "<group>"; };
 		86D9414E818561143BD298BC /* TextReplacements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextReplacements.h; path = source/TextReplacements.h; sourceTree = "<group>"; };
 		8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuAnimationPanel.h; path = source/MenuAnimationPanel.h; sourceTree = "<group>"; };
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
+		938E07E0235970CE00DC2C2B /* FormationPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPattern.cpp; path = source/FormationPattern.cpp; sourceTree = "<group>"; };
+		938E07E1235970CE00DC2C2B /* FormationPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPattern.h; path = source/FormationPattern.h; sourceTree = "<group>"; };
 		950742538F8CECF5D4168FBC /* EsUuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EsUuid.cpp; path = source/EsUuid.cpp; sourceTree = "<group>"; };
 		98104FFDA18E40F4A712A8BE /* CoreStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStartData.h; path = source/CoreStartData.h; sourceTree = "<group>"; };
 		9BCF4321AF819E944EC02FB9 /* layout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = layout.hpp; path = source/text/layout.hpp; sourceTree = "<group>"; };
@@ -537,6 +547,7 @@
 		B590162021ED4A0F00799178 /* DisplayText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayText.h; path = source/text/DisplayText.h; sourceTree = "<group>"; };
 		B5DDA6922001B7F600DBA76A /* News.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = News.cpp; path = source/News.cpp; sourceTree = "<group>"; };
 		B5DDA6932001B7F600DBA76A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = source/News.h; sourceTree = "<group>"; };
+		C36345D8A06AE061537CEF85 /* JumpTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JumpTypes.h; path = source/JumpTypes.h; sourceTree = "<group>"; };
 		C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hazard.cpp; path = source/Hazard.cpp; sourceTree = "<group>"; };
 		C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DamageProfile.cpp; path = source/DamageProfile.cpp; sourceTree = "<group>"; };
 		CCE547DBB6C74E18E1B84D29 /* PrintData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrintData.h; path = source/PrintData.h; sourceTree = "<group>"; };
@@ -554,11 +565,13 @@
 		DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BatchShader.h; path = source/BatchShader.h; sourceTree = "<group>"; };
 		DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageSet.cpp; path = source/ImageSet.cpp; sourceTree = "<group>"; };
 		DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSet.h; path = source/ImageSet.h; sourceTree = "<group>"; };
+		E8B4490F8091C6E3EF571515 /* Wormhole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wormhole.h; path = source/Wormhole.h; sourceTree = "<group>"; };
 		E8F645ACA30BA0E95F83803C /* FireCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FireCommand.cpp; path = source/FireCommand.cpp; sourceTree = "<group>"; };
 		EB4645F28765D37290EA6F78 /* FireCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FireCommand.h; path = source/FireCommand.h; sourceTree = "<group>"; };
 		EB634E95A88454ADDB8644B1 /* opengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opengl.h; path = source/opengl.h; sourceTree = "<group>"; };
 		F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartConditionsPanel.h; path = source/StartConditionsPanel.h; sourceTree = "<group>"; };
 		F8C14CFB89472482F77C051D /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = source/Weather.h; sourceTree = "<group>"; };
+		FBFA4270B7EE3F1C61EA9A44 /* ShipJumpNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipJumpNavigation.h; path = source/ShipJumpNavigation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -582,12 +595,11 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
-				1578F880250B5F8A00D318FB /* InfoPanelState.cpp */,
-				1578F882250B5F8A00D318FB /* InfoPanelState.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
 				A96862D01AE6FD0A004FE1FE /* AI.h */,
+				13B643F6BEC24349F9BC9F42 /* alignment.hpp */,
 				A96862D11AE6FD0A004FE1FE /* Angle.cpp */,
 				A96862D21AE6FD0A004FE1FE /* Angle.h */,
 				A96862D51AE6FD0A004FE1FE /* Armament.cpp */,
@@ -602,14 +614,19 @@
 				DFAAE2A31FD4A25C0072C0A8 /* BatchDrawList.h */,
 				DFAAE2A41FD4A25C0072C0A8 /* BatchShader.cpp */,
 				DFAAE2A51FD4A25C0072C0A8 /* BatchShader.h */,
+				74F543598EEFB3745287E663 /* Bitset.cpp */,
+				210C41C0BA33F71A694D5F98 /* Bitset.h */,
 				A96862DF1AE6FD0A004FE1FE /* BoardingPanel.cpp */,
 				A96862E01AE6FD0A004FE1FE /* BoardingPanel.h */,
 				6245F8231D301C7400A7A094 /* Body.cpp */,
 				6245F8241D301C7400A7A094 /* Body.h */,
+				46B444A6B2A67F93BB272686 /* ByGivenOrder.h */,
+				DE844E2BBF82C39B568527CB /* ByName.h */,
 				A96862E11AE6FD0A004FE1FE /* CaptureOdds.cpp */,
 				A96862E21AE6FD0A004FE1FE /* CaptureOdds.h */,
 				A96862E31AE6FD0A004FE1FE /* CargoHold.cpp */,
 				A96862E41AE6FD0A004FE1FE /* CargoHold.h */,
+				6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */,
 				A96862E51AE6FD0A004FE1FE /* ClickZone.h */,
 				6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */,
 				6A5716321E25BE6F00585EB2 /* CollisionSet.h */,
@@ -619,10 +636,17 @@
 				A96862E91AE6FD0A004FE1FE /* Command.h */,
 				A96862EA1AE6FD0A004FE1FE /* ConditionSet.cpp */,
 				A96862EB1AE6FD0A004FE1FE /* ConditionSet.h */,
+				4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */,
+				A3B9425983D66B182BD724B4 /* ConditionsStore.h */,
 				A96862EC1AE6FD0A004FE1FE /* Conversation.cpp */,
 				A96862ED1AE6FD0A004FE1FE /* Conversation.h */,
 				A96862EE1AE6FD0A004FE1FE /* ConversationPanel.cpp */,
 				A96862EF1AE6FD0A004FE1FE /* ConversationPanel.h */,
+				0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */,
+				98104FFDA18E40F4A712A8BE /* CoreStartData.h */,
+				5CF247B48EEC7A3C366C1DFA /* DamageDealt.h */,
+				C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */,
+				19184B47B496B414EC9CE671 /* DamageProfile.h */,
 				A96862F01AE6FD0A004FE1FE /* DataFile.cpp */,
 				A96862F11AE6FD0A004FE1FE /* DataFile.h */,
 				A96862F21AE6FD0A004FE1FE /* DataNode.cpp */,
@@ -637,6 +661,7 @@
 				A96862F91AE6FD0B004FE1FE /* Dialog.h */,
 				DF8D57DF1FC25842001525DA /* Dictionary.cpp */,
 				DF8D57E01FC25842001525DA /* Dictionary.h */,
+				2E1E458DB603BF979429117C /* DisplayText.cpp */,
 				B590162021ED4A0F00799178 /* DisplayText.h */,
 				A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */,
 				A96862FB1AE6FD0B004FE1FE /* DistanceMap.h */,
@@ -648,12 +673,17 @@
 				A96863031AE6FD0B004FE1FE /* Engine.h */,
 				A96863041AE6FD0B004FE1FE /* EscortDisplay.cpp */,
 				A96863051AE6FD0B004FE1FE /* EscortDisplay.h */,
+				950742538F8CECF5D4168FBC /* EsUuid.cpp */,
+				86AB4B6E9C4C0490AE7F029B /* EsUuid.h */,
+				086E48E490C9BAD6660C7274 /* ExclusiveItem.h */,
 				A9C70E0E1C0E5B51000B3D14 /* File.cpp */,
 				A9C70E0F1C0E5B51000B3D14 /* File.h */,
 				A96863061AE6FD0B004FE1FE /* Files.cpp */,
 				A96863071AE6FD0B004FE1FE /* Files.h */,
 				A96863081AE6FD0B004FE1FE /* FillShader.cpp */,
 				A96863091AE6FD0B004FE1FE /* FillShader.h */,
+				E8F645ACA30BA0E95F83803C /* FireCommand.cpp */,
+				EB4645F28765D37290EA6F78 /* FireCommand.h */,
 				A968630A1AE6FD0B004FE1FE /* Fleet.cpp */,
 				A968630B1AE6FD0B004FE1FE /* Fleet.h */,
 				62C311181CE172D000409D91 /* Flotsam.cpp */,
@@ -666,14 +696,20 @@
 				A968630F1AE6FD0B004FE1FE /* FontSet.h */,
 				A96863101AE6FD0B004FE1FE /* Format.cpp */,
 				A96863111AE6FD0B004FE1FE /* Format.h */,
+				938E07E0235970CE00DC2C2B /* FormationPattern.cpp */,
+				938E07E1235970CE00DC2C2B /* FormationPattern.h */,
 				A96863121AE6FD0B004FE1FE /* FrameTimer.cpp */,
 				A96863131AE6FD0B004FE1FE /* FrameTimer.h */,
 				A96863141AE6FD0B004FE1FE /* Galaxy.cpp */,
 				A96863151AE6FD0B004FE1FE /* Galaxy.h */,
+				9F0F4096A9008E2D8F3304BB /* GameAction.cpp */,
+				6833448DAEB9861D28445DD5 /* GameAction.h */,
 				A96863161AE6FD0B004FE1FE /* GameData.cpp */,
 				A96863171AE6FD0B004FE1FE /* GameData.h */,
 				A96863181AE6FD0B004FE1FE /* GameEvent.cpp */,
 				A96863191AE6FD0B004FE1FE /* GameEvent.h */,
+				A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */,
+				DC8146D5A145C2DA87D98F1F /* GameLoadingPanel.h */,
 				B55C239B2303CE8A005C1A14 /* GameWindow.cpp */,
 				B55C239C2303CE8A005C1A14 /* GameWindow.h */,
 				A968631B1AE6FD0B004FE1FE /* Government.cpp */,
@@ -682,18 +718,23 @@
 				A968631E1AE6FD0B004FE1FE /* HailPanel.h */,
 				6245F8261D301C9000A7A094 /* Hardpoint.cpp */,
 				6245F8271D301C9000A7A094 /* Hardpoint.h */,
+				C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */,
+				2E644A108BCD762A2A1A899C /* Hazard.h */,
 				A968631F1AE6FD0B004FE1FE /* HiringPanel.cpp */,
 				A96863201AE6FD0B004FE1FE /* HiringPanel.h */,
 				A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */,
 				A96863221AE6FD0B004FE1FE /* ImageBuffer.h */,
+				DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */,
+				DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */,
+				1578F880250B5F8A00D318FB /* InfoPanelState.cpp */,
+				1578F882250B5F8A00D318FB /* InfoPanelState.h */,
 				A96863251AE6FD0B004FE1FE /* Information.cpp */,
 				A96863261AE6FD0B004FE1FE /* Information.h */,
 				A96863271AE6FD0B004FE1FE /* Interface.cpp */,
 				A96863281AE6FD0B004FE1FE /* Interface.h */,
-				DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */,
-				DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */,
 				A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */,
 				A9B99D011C616AD000BE7C2E /* ItemInfoDisplay.h */,
+				9BCF4321AF819E944EC02FB9 /* layout.hpp */,
 				A96863291AE6FD0B004FE1FE /* LineShader.cpp */,
 				A968632A1AE6FD0B004FE1FE /* LineShader.h */,
 				A968632B1AE6FD0B004FE1FE /* LoadPanel.cpp */,
@@ -702,6 +743,8 @@
 				A968632E1AE6FD0B004FE1FE /* LocationFilter.h */,
 				A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */,
 				A90633FE1EE602FD000DA6C0 /* LogbookPanel.h */,
+				A7F240B4AC219841424A387A /* Logger.cpp */,
+				AE57401AA43232EDEABFAE13 /* Logger.h */,
 				A968632F1AE6FD0B004FE1FE /* main.cpp */,
 				A96863301AE6FD0B004FE1FE /* MainPanel.cpp */,
 				A96863311AE6FD0B004FE1FE /* MainPanel.h */,
@@ -711,12 +754,18 @@
 				A97C24E91B17BE35007DDFA1 /* MapOutfitterPanel.h */,
 				A96863341AE6FD0C004FE1FE /* MapPanel.cpp */,
 				A96863351AE6FD0C004FE1FE /* MapPanel.h */,
+				32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */,
+				A2A94C40A8DCA99809AD5DEE /* MapPlanetCard.h */,
 				A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */,
 				A9B99D041C616AF200BE7C2E /* MapSalesPanel.h */,
 				A97C24EB1B17BE3C007DDFA1 /* MapShipyardPanel.cpp */,
 				A97C24EC1B17BE3C007DDFA1 /* MapShipyardPanel.h */,
 				A96863361AE6FD0C004FE1FE /* Mask.cpp */,
 				A96863371AE6FD0C004FE1FE /* Mask.h */,
+				499B4DA7A9C7351120660643 /* MaskManager.cpp */,
+				191E4107A4F1CBBC2526A0E9 /* MaskManager.h */,
+				D0FA4800BE72C1B5A7D567B9 /* MenuAnimationPanel.cpp */,
+				8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */,
 				A96863381AE6FD0C004FE1FE /* MenuPanel.cpp */,
 				A96863391AE6FD0C004FE1FE /* MenuPanel.h */,
 				A968633A1AE6FD0C004FE1FE /* Messages.cpp */,
@@ -737,6 +786,8 @@
 				B5DDA6932001B7F600DBA76A /* News.h */,
 				A96863441AE6FD0C004FE1FE /* NPC.cpp */,
 				A96863451AE6FD0C004FE1FE /* NPC.h */,
+				A3754152958FBC924E9F76A9 /* opengl.cpp */,
+				EB634E95A88454ADDB8644B1 /* opengl.h */,
 				A96863461AE6FD0C004FE1FE /* Outfit.cpp */,
 				A96863471AE6FD0C004FE1FE /* Outfit.h */,
 				A96863481AE6FD0C004FE1FE /* OutfitInfoDisplay.cpp */,
@@ -774,12 +825,15 @@
 				A96863621AE6FD0C004FE1FE /* Preferences.h */,
 				A96863631AE6FD0C004FE1FE /* PreferencesPanel.cpp */,
 				A96863641AE6FD0C004FE1FE /* PreferencesPanel.h */,
+				341645FAA25F7901221B8965 /* PrintData.cpp */,
+				CCE547DBB6C74E18E1B84D29 /* PrintData.h */,
 				A96863651AE6FD0C004FE1FE /* Projectile.cpp */,
 				A96863661AE6FD0C004FE1FE /* Projectile.h */,
 				A96863671AE6FD0C004FE1FE /* Radar.cpp */,
 				A96863681AE6FD0C004FE1FE /* Radar.h */,
 				A96863691AE6FD0D004FE1FE /* Random.cpp */,
 				A968636A1AE6FD0D004FE1FE /* Random.h */,
+				A00D4207B8915B5E7E9B4619 /* RandomEvent.h */,
 				A90C15DA1D5BD56800708F3A /* Rectangle.cpp */,
 				A90C15DB1D5BD56800708F3A /* Rectangle.h */,
 				A968636B1AE6FD0D004FE1FE /* RingShader.cpp */,
@@ -821,45 +875,41 @@
 				A968638D1AE6FD0D004FE1FE /* StarField.h */,
 				A968638E1AE6FD0D004FE1FE /* StartConditions.cpp */,
 				A968638F1AE6FD0D004FE1FE /* StartConditions.h */,
+				11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */,
+				F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */,
 				A96863901AE6FD0D004FE1FE /* StellarObject.cpp */,
 				A96863911AE6FD0D004FE1FE /* StellarObject.h */,
 				A96863921AE6FD0D004FE1FE /* System.cpp */,
 				A96863931AE6FD0D004FE1FE /* System.h */,
 				A96863941AE6FD0D004FE1FE /* Table.cpp */,
 				A96863951AE6FD0D004FE1FE /* Table.h */,
+				2E8047A8987DD8EC99FF8E2E /* Test.cpp */,
+				5CE3475B85CE8C48D98664B7 /* Test.h */,
+				A3134EC4B1CCA5546A10C3EF /* TestContext.cpp */,
+				A2A948EE929342C8F84C65D1 /* TestContext.h */,
+				02D34A71AE3BC4C93FC6865B /* TestData.cpp */,
+				9DA14712A9C68E00FBFD9C72 /* TestData.h */,
+				6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */,
+				86D9414E818561143BD298BC /* TextReplacements.h */,
 				A96863961AE6FD0D004FE1FE /* Trade.cpp */,
 				A96863971AE6FD0D004FE1FE /* Trade.h */,
 				A96863981AE6FD0D004FE1FE /* TradingPanel.cpp */,
 				A96863991AE6FD0D004FE1FE /* TradingPanel.h */,
+				2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */,
 				A968639A1AE6FD0D004FE1FE /* UI.cpp */,
 				A968639B1AE6FD0D004FE1FE /* UI.h */,
+				389245138CF297EB417DF730 /* UniverseObjects.cpp */,
+				DB9A43BA91B3BC47186BF05E /* UniverseObjects.h */,
 				B590161121ED4A0E00799178 /* Utf8.cpp */,
 				B590161221ED4A0F00799178 /* Utf8.h */,
+				61FA4C2BB89E08C5E2B8B4B9 /* Variant.cpp */,
+				5EBC44769E84CF0C953D08B3 /* Variant.h */,
 				DF8D57E21FC25889001525DA /* Visual.cpp */,
 				DF8D57E31FC25889001525DA /* Visual.h */,
 				A968639C1AE6FD0D004FE1FE /* Weapon.cpp */,
 				A968639D1AE6FD0D004FE1FE /* Weapon.h */,
-				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
-				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
-				4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */,
-				A3B9425983D66B182BD724B4 /* ConditionsStore.h */,
-				2E8047A8987DD8EC99FF8E2E /* Test.cpp */,
-				02D34A71AE3BC4C93FC6865B /* TestData.cpp */,
-				9DA14712A9C68E00FBFD9C72 /* TestData.h */,
-				5CE3475B85CE8C48D98664B7 /* Test.h */,
-				2E1E458DB603BF979429117C /* DisplayText.cpp */,
-				13B643F6BEC24349F9BC9F42 /* alignment.hpp */,
-				9BCF4321AF819E944EC02FB9 /* layout.hpp */,
-				2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */,
-				C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */,
-				2E644A108BCD762A2A1A899C /* Hazard.h */,
 				8E8A4C648B242742B22A34FA /* Weather.cpp */,
 				F8C14CFB89472482F77C051D /* Weather.h */,
-				11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */,
-				F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */,
-				0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */,
-				98104FFDA18E40F4A712A8BE /* CoreStartData.h */,
-				6DCF4CF2972F569E6DBB8578 /* CategoryTypes.h */,
 				0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */,
 				950742538F8CECF5D4168FBC /* EsUuid.cpp */,
 				86AB4B6E9C4C0490AE7F029B /* EsUuid.h */,
@@ -900,6 +950,8 @@
 				AE57401AA43232EDEABFAE13 /* Logger.h */,
 				AEAF40DF982694B939AD5086 /* AmmoDisplay.cpp */,
 				027941B49DDFA8A963493E3D /* AmmoDisplay.h */,
+				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
+				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1060,6 +1112,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				Base,
 			);
 			mainGroup = A9CC52601950C9F6004E4E22;
@@ -1166,6 +1219,7 @@
 				B590161321ED4A0F00799178 /* Utf8.cpp in Sources */,
 				A96863D41AE6FD0E004FE1FE /* Mask.cpp in Sources */,
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
+				938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
 				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
 				B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */,
@@ -1281,6 +1335,7 @@
 				6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */,
 				03624EC39EE09C7A786B4A3D /* CoreStartData.cpp in Sources */,
 				90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */,
+				53DA422996419974ADADE346 /* Wormhole.cpp in Sources */,
 				03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */,
 				87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */,
 				301A4FE885A7A12348986C4F /* UniverseObjects.cpp in Sources */,
@@ -1297,6 +1352,8 @@
 				46A34BE4A0599886221093BA /* PrintData.cpp in Sources */,
 				DAC24E909BF453D18AEE3DA3 /* Logger.cpp in Sources */,
 				483A40DBA497868FE299CBC2 /* AmmoDisplay.cpp in Sources */,
+				B770487BB26CFD0BFDD89588 /* AlertLabel.cpp in Sources */,
+				1F884DB590D5152608510676 /* ShipJumpNavigation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.16-alpha
+version 0.9.17-alpha
 
 This game is open source.
 To report bugs, give feedback,
@@ -14,11 +14,13 @@ Creator and Lead Programmer
 
 Developers
   Amazinite
+  Anarchist2
   Benjamin Hauch
   MCOfficer
   Peter van der Meer
   Pointedstick
   Quyykk
+  Saugia
   W1zrad
   Zitchas
 
@@ -47,6 +49,8 @@ Storyline & Faction Authors
   LocalGod79
   Peter van der Meer
   Pointedstick
+  Lia Gerty
+  MasterOfGrey
   TheUnfetteredOne
   Zitchas
 

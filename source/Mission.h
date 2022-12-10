@@ -86,7 +86,7 @@ public:
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
@@ -101,6 +101,11 @@ public:
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
+	int64_t DisplayedPayment() const;
+	// The mission should take this many jumps.
+	// Only matters to available jobs (not saved to file)
+	const int ExpectedJumps() const;
+	int CalculateJumps(const System *const sourceSystem);
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
@@ -196,6 +201,7 @@ private:
 	bool isMinor = false;
 	bool autosave = false;
 	Date deadline;
+	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
 	std::string clearance;
@@ -215,6 +221,7 @@ private:
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
+	int64_t paymentApparent = 0;
 
 	ConditionSet toOffer;
 	ConditionSet toComplete;
