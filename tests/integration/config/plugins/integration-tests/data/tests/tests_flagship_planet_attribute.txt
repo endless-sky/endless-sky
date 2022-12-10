@@ -55,8 +55,6 @@ test-data "flagship planet attribute missions"
 			"Ruin: Landing: offered"
 		changes
 			planet Ruin
-				add shipyard "Remnant"
-				add outfitter "Remnant Core"
 				add attributes "Temperate Climate"
 
 
