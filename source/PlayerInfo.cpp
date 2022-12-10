@@ -3157,7 +3157,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
 
 	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
-	auto hyperjumpsToPlanetFun = [this, &Days](const string &name) -> int
+	auto hyperjumpsToPlanetFun = [this, HyperspaceTravelDays](const string &name) -> int
 	{
 		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
 		if(!planet)
@@ -3173,7 +3173,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return -1;
 		}
 		const System *system = planet->GetSystem();
-		return Days(this->GetSystem(), system);
+		return HyperspaceTravelDays(this->GetSystem(), system);
 	};
 	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
 	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
