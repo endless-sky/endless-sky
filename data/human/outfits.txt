@@ -394,16 +394,16 @@ outfit "Nerve Gas"
 	"unplunderable" 1
 	description "This is a highly illegal weapon for hand-to-hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
-outfit "The old mans sword"
-	category "Hand to Hand"
+outfit "Old Man's sword"
+	category "Unique"
 	cost 120000
 	thumbnail "outfit/old sword"
 	"capture attack" 3
 	"capture defense" 3
 	"unplunderable" 1
-	description "Received this from a pair of siblings from New China, by fulfilling their eccentric father's last will and testament on Prime. 
-	While swords are seen today as old curios and commemorative objects as they became obsolete with gunpowder warfare thousands of years ago, this sword seems to be as combat effective as any laser rifle and unlike any you're seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade on it that don't appear to be like any human language.
-	For whatever reason, the red beam within the blade seems to pulsate as you swing it; perhaps there is more to the sword than you know."
+	description "Received this from a pair of siblings from New China, by fulfilling their eccentric father's last will and testament on Prime."
+	description "While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you're seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade on it that don't appear to be like any human language."
+	description "For whatever reason, the red beam within the blade seems to pulsate as you swing it; perhaps there is more to the sword than you know."
 
 outfit "Local Map"
 	category "Special"
