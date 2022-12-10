@@ -13,6 +13,8 @@
 mission "Relic of the Past"
 	invisible
 	landing
+	to complete
+		never
 	npc save
 		government "vyu-Rulei"
 		personality heroic vindictive staying mute
