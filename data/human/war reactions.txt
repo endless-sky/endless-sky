@@ -98,7 +98,6 @@ mission "War Reactions: Asteroid Miners"
 				decline
 
 
-
 mission "War Reactions: Navy and Free Worlds Captains"
 	landing
 	minor
@@ -168,3 +167,70 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			`	Rain says, "We're uniformed career officers who must follow orders. Our country owns the ships, uniforms, and everything else we use. Our salaries may be meager compared to your earnings, but serving one's country is a rich reward.`
 			`	"You, on the other hand, own your ship and serve whoever you want. To keep up with costs, you have to charge a lot of money for your services. Mercenaries only survive as long as you if they're skilled at both finances and combat."`
 				goto questions
+
+
+mission "War Reactions: Syndicate Orphan"
+	landing
+	minor
+	source
+		government "Syndicate"
+		not attributes "station"
+	to offer
+		has "event: post-war reactions begin"
+		random < 30
+	on offer
+		set "pug media coverage"
+		conversation
+			`	When you exit your ship, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
+			choice
+				`	"Break it up, kids."`
+				`	(Ignore them and keep walking.)`
+					decline
+			`	The three attackers turn around, looking furious. They eye your gun and run away. "Thanks. I'm Gus," says the fourth boy, as he slowly rises to his feet. He looks about twelve years old.`
+			`	Gus thinks for a second and looks worried. "Can you walk me to the factory? I'm already late for work, and I'm afraid they'll attack me again."`
+			choice
+				`	"Aren't you a little young to work in a factory?"`
+				`	"I'm in a hurry. You're on your own."`
+					decline
+			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some orphans work in factories, in return for better education, good housing, and medical care. Only the cleverest of us get to do it. All of the orphanage factories are safe; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
+			`	"Anyway, you're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting human ships on our Syndicate school's big educational viewscreen."`
+			choice
+				`	"Yes, I'm Captain <first> <last>."`
+					goto me
+				`	"I blew up my share of Pug ships."`
+					goto blew
+				`	"Actually, I led the battle."`
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device'. After some typing and swiping, he declares, "You're Captain <first> <last>! Wow! It's an honor to meet you, sir. Can I shake your hand?" He puts out his hand and you shake it.`
+				goto next
+			label me
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device'. After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you, sir. Can I shake your hand?" He puts out his hand and you shake it.`
+			label blew
+			`	"I bet you did! I wish I was on one of our warships, bravely defend the human race. The honor, the glory, the mercenary pay. It sounds amazing."`
+				goto next
+			label next
+			`	"What was it like, fighting the evil Pug?"`
+
+			choice
+				`	"Actually, they're not evil. Their 'war' was a ploy to get us to stop fighting among ourselves. A lot of Pug gave their lives willingly to save us from self-destruction."`
+				`	"War is hell, kid. I'm not going to glorify it for you."`
+					goto hell
+				`	"Leading a battle is like chess with guns and engines. It's the most exhilarating feeling I've ever felt."`
+					goto chess
+				`	"I was an honor to protect the human race from our attackers."`
+					goto honor
+			`	"That's so insightful! Still, without people like you, the Pug's ploy would never have worked. Thank you for your service, captain."`
+				goto salute
+			label hell
+			`	"You went through hell for us, eh? That's something to think about. Maybe I should stick to engineering instead of becoming a combat pilot. I donno."`
+				goto salute
+			label chess
+			`	"The Syndicate is training me to maintain and pilot combat ships! One day, I'll fight aliens like you did."`
+				goto salute
+			label honor
+			`	"Glory, honor, and service. The Syndicate has been training me, but I've often thought of enlisting in the Navy. It isn't as profitable, but it's certainly more noble."`
+			label salute
+			`	You arrive at the factory and an older girl, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
+			`	As Gus ends his salute, the girl attacks him from behind, putting him into a choke hold. It's clear she's taking extreme care when doing it. "Did you wander out of the safe zone? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Sally! I was curious."`
+			`	The girl lets him out of the hold and says to you, "Thank you for saving my brother. He's the only family I have left, and I hope," she pinches him, "he'll stop risking his life out of curiosity." She looks at Gus kindly. "Come on, let's get you to the medic."`
+			`	Sally waves goodbye as the walks her brother into the orphanage factory.`
+				decline
