@@ -43,7 +43,7 @@ mission "First Contact: Gegno Vi"
 				`	(Continue to search the surface.)`
 					goto search
 			label land
-			`	You carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range. Exiting your ship in an environment suit and your sidearm on hand, you walk towards the alien ship.`
+			`	You carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range. Exiting your ship in an environment suit and your sidearm on hand, you walk towards the alien spacecraft.`
 			`	The ship appears a bit larger than you thought - around the size of a Firebird. The dark-brown hull appears to be made from an unknown material, and has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, the warship seems perfectly intact, but the way it is angled into the sand suggests that the ship has been there for some time. There doesn't seem to be any activity around it, and you aren't picking up any nearby life signs. You decide to head back to your ship and take another look around the area.`
 			label search
 			`	As you fly onward, an erratic signature appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate.`
