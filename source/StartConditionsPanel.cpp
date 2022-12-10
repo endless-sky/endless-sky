@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "StartConditions.h"
@@ -46,12 +47,18 @@ using namespace std;
 
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
-	const StartConditionsList &scenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.begin()),
+	const StartConditionsList &allScenarios, const Panel *parent)
+	: player(player), gamePanels(gamePanels), parent(parent),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
 {
+	for(const auto &scenario : allScenarios)
+		if(scenario.Visible(GameData::GlobalConditions()))
+			scenarios.emplace_back(scenario);
+
+	startIt = scenarios.begin();
+
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
 	{
@@ -99,9 +106,6 @@ void StartConditionsPanel::Draw()
 	for(auto it = scenarios.begin(); it != scenarios.end();
 			++it, pos += Point(0., entryBox.Height()))
 	{
-		if(!it->Visible(GameData::GlobalConditions()))
-			continue;
-
 		// Any scenario wholly outside the bounds can be skipped.
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
 		if(!(entriesContainer.Contains(zone.TopLeft()) || entriesContainer.Contains(zone.BottomRight())))
@@ -287,7 +291,7 @@ void StartConditionsPanel::ScrollToSelected()
 
 
 // Update the UI to reflect the given starting scenario.
-void StartConditionsPanel::Select(StartConditionsList::const_iterator it)
+void StartConditionsPanel::Select(StartConditionsList::iterator it)
 {
 	startIt = it;
 	if(startIt == scenarios.end())
