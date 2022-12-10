@@ -73,6 +73,8 @@ void StartConditions::Load(const DataNode &node)
 				name.clear();
 			else if(key == "description")
 				description.clear();
+			else if(key == "hint")
+				hint.clear();
 			else if(key == "thumbnail")
 				thumbnail = nullptr;
 			else if(key == "ships")
@@ -83,6 +85,13 @@ void StartConditions::Load(const DataNode &node)
 					ships.end());
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();
+			else if(key == "to")
+			{
+				if(child.Token(1) == "display")
+					toDisplay = ConditionSet();
+				else if(child.Token(1) == "unlock")
+					toUnlock = ConditionSet();
+			}
 			else if(key == "conditions")
 				conditions = ConditionSet();
 			else
