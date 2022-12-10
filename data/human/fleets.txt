@@ -499,7 +499,7 @@ fleet "Small Northern Merchants"
 		"Berserker (Strike)"
 	variant 2
 		"Freighter"
-		'Berserker (Laser)" 2
+		"Berserker (Laser)" 2
 	variant 5
 		"Freighter (Fancy)"
 		"Shuttle" 4
@@ -1796,7 +1796,7 @@ fleet "Small Southern Pirates"
 	variant 2
 		"Hawk (Rocket)"
 	variant 2
-		'Hawk (Twin Modified Blaster)"
+		"Hawk (Twin Modified Blaster)"
 	variant 5
 		"Fury"
 	variant 4
