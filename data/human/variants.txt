@@ -828,7 +828,7 @@ ship "Clipper" "Clipper (Smuggler)"
 		"Volcano Afterburner"
 
 
-ship "Clipper" "Clipper (Twin Modified Blasters)"
+ship "Clipper" "Clipper (Twin Modified Blaster)"
 	outfits
 		"D67-TM Shield Generator"
 		"Greyhound Plasma Thruster"
@@ -841,7 +841,7 @@ ship "Clipper" "Clipper (Twin Modified Blasters)"
 		"Twin Modified Blaster" 4
 
 
-ship "Clipper" "Clipper (Twin Blasters)"
+ship "Clipper" "Clipper (Twin Blaster)"
 	outfits
 		"D41-HY Shield Generator"
 		"Greyhound Plasma Thruster"
