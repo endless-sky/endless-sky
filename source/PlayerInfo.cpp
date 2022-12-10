@@ -3130,7 +3130,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
 	// Read-only navigation conditions.
-	auto Days = [](const System *origin, const System *destination) -> int
+	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
 	{
 		if(!origin)
 			return -1;
@@ -3142,7 +3142,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 
 	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
-	auto hyperjumpsToSystemFun = [this, &Days](const string &name) -> int
+	auto hyperjumpsToSystemFun = [this, HyperspaceTravelDays](const string &name) -> int
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
 		if(!system)
@@ -3151,7 +3151,7 @@ void PlayerInfo::RegisterDerivedConditions()
 					+ "\" referred to in condition is not valid.");
 			return -1;
 		}
-		return Days(this->GetSystem(), system);
+		return HyperspaceTravelDays(this->GetSystem(), system);
 	};
 	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
 	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
