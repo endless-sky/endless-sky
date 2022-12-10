@@ -297,24 +297,28 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	if(startIt == scenarios.end())
 	{
 		// The only time we should be here is if there are no scenarios at all.
-		// Just in case that's not true, clear out the displayed information.
-		info = Information();
 		description.Wrap("No valid starting scenarios were defined!\n\n"
 			"Make sure you installed Endless Sky (and any plugins) properly.");
 		return;
 	}
 
 	// Update the information summary.
-	info.SetCondition("chosen start");
+	info = Information();
+
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
 	info.SetString("name", startIt->GetDisplayName());
 	info.SetString("description", startIt->GetDescription());
-	info.SetString("planet", startIt->GetPlanet().Name());
-	info.SetString("system", startIt->GetSystem().Name());
-	info.SetString("date", startIt->GetDate().ToString());
-	info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
-	info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
+
+	if(startIt->Unlocked(GameData::GlobalConditions()))
+	{
+		info.SetCondition("unlocked start");
+		info.SetString("planet", startIt->GetPlanet().Name());
+		info.SetString("system", startIt->GetSystem().Name());
+		info.SetString("date", startIt->GetDate().ToString());
+		info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
+		info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
+	}
 
 	// Update the displayed description text.
 	descriptionScroll = 0;
