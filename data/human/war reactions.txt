@@ -13,6 +13,11 @@
 
 ########################################################################
 
+# This file contains human reactions to the pug war, and events
+# leading up to it.  It sets up the plot device for the reveal of the
+# Hai, and lets us know how regular, everyday people felt about the
+# war.
+
 mission "00 Post-War Reactions Begin"
 	landing
 	invisible
@@ -27,11 +32,13 @@ event "post-war reactions begin"
 
 mission "War Reactions: Asteroid Miners"
 	landing
+	minor
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "spaceport"
 	to offer
 		has "event: post-war reactions begin"
+		random < 30
 	on offer
 		set "pug media coverage"
 		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid, and insists upon the Navy taking greater steps to better explore the galaxy beyond human space to search for possible threats.`
@@ -89,3 +96,74 @@ mission "War Reactions: Asteroid Miners"
 			`	Both twins' faces twist in a way that might indicate embarrassment or annoyance. It's hard to tell since their facial hair is halting any emotive power. They walk away in the direction of their ships.`
 				decline
 
+
+
+mission "War Reactions: Navy and Free Worlds Captains"
+	landing
+	minor
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "spaceport"
+		attributes "paradise" "deep" "north"
+		near "Sirius" 5 100
+	to offer
+		has "event: post-war reactions begin"
+		random < 30
+	on offer
+		set "pug media coverage"
+		conversation
+			`You are relaxing in a cafe while your ship refuels, and a pair of middle-aged captains come to your table. One is Navy, the other is Free Worlds, and they're obviously sisters.`
+			`	"Captain Rain, R.N.S. Camuy," says one. "How's the <ship>, Captain <last>?"`
+			`	"Captain Fiona, F.S. Baobab," says her sister. "We both saw you in battle. You're the war's most accomplished mercenary!`
+			`	"We've been patrolling together and we saw your ship, so we've come to say 'hi.'"`
+			label questions
+			choice
+				`	"Why are Navy and Free Worlds captains traveling together?"`
+					goto navy
+					to display
+						not "War Reactions: Navy and Free Worlds Captains: label navy"
+				`	"Have you found any aliens?"`
+					goto aliens
+					to display
+						not "War Reactions: Navy and Free Worlds Captains: label aliens"
+						has "War Reactions: Navy and Free Worlds Captains: label navy"
+				`	"Did you fight on the other side of the war from your sister?"`
+					goto sister
+					to display
+						not "War Reactions: Navy and Free Worlds Captains: label sister"
+				`	"Mercenary? I'm not a mercenary."`
+					goto mercenary
+					to display
+						not "War Reactions: Navy and Free Worlds Captains: label mercenary"
+				`	"It was good meeting you both, but I must get back to my business now."`
+					decline
+			label aliens
+			action
+				set "War Reactions: Navy and Free Worlds Captains: label aliens"
+			`	"Only the usual assortment of hoaxes and Quarg," says Rain. The sisters both laugh at this.`
+			`	"Seriously, though, both the Free Worlds Senate and Republic Parliament are up in arms over fear of aliens," says Fiona. Rain adds, "Only metaphorically up in arms, this time.`
+			`	"If we find new aliens, we'll let the necessary authorities know as soon as possible. You should do the same. Be discrete, avoid conflicts, and seek help if you need it."`
+				goto questions
+			label navy
+			action
+				set "War Reactions: Navy and Free Worlds Captains: label navy"
+			`	"Joint police operation," says Captain Rain. "It's more common than you may think."`
+			`	Captain Fiona nods. "We're shutting down a galactic Spider Funk smuggling operation. It's an illegal hallucinogenic. Not addictive, but still dangerous. The organization running it is huge, well funded, and well armed."`
+			`	"Not a match for a Dreadnought and an Auxiliary, though," brags Rain.`
+			`	"We have to fly all over Republic and Free Worlds space, so we have a joint patrol with one ship from each country."`
+			`	"Of course, we have another mission," says Fiona. "Everywhere we go, we look out for new alien activity."`
+				goto questions
+			label sister
+			action
+				set "War Reactions: Navy and Free Worlds Captains: label sister"
+			`	"Yup," Fiona says. "I blew up her Cruiser! When her ship's escape pods were veering towards a star, we rescued them."`
+			`	Rain continues. "Can you imagine my surprise when I woke up on my sister's new Dreadnought?"`
+			`	"Hey, you got a new Auxiliary commission afterwards," replies Fiona. "and your whole crew survived. Now we escort each other's ships during investigations."`
+				goto questions
+			label mercenary
+			action
+				set "War Reactions: Navy and Free Worlds Captains: label mercenary"
+			`	"I meant no offense," says Fiona. "You're quite the hero." She thinks for a second and looks at her sister. "Rain, can you explain?"`
+			`	Rain says, "We're uniformed career officers who must follow orders. Our country owns the ships, uniforms, and everything else we use. Our salaries may be meager compared to your earnings, but serving one's country is a rich reward.`
+			`	"You, on the other hand, own your ship and serve whoever you want. To keep up with costs, you have to charge a lot of money for your services. Mercenaries only survive as long as you if they're skilled at both finances and combat."`
+				goto questions
