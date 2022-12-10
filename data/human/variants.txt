@@ -95,7 +95,7 @@ ship "Argosy" "Argosy (Plasma Repeater)"
 		"RT-I Radiothermal"
 
 
-ship "Argosy" "Argosy (Super Blaster)"
+ship "Argosy" "Argosy (Mega Blaster)"
 	outfits
 		"Blaster Turret" 2
 		"D23-QP Shield Generator"
@@ -2498,7 +2498,7 @@ ship "Modified Argosy" "Modified Argosy (Plasma)"
 		"Water Coolant System"
 
 
-ship "Modified Argosy" "Modified Argosy (Mega Blaster)"
+ship "Modified Argosy" "Modified Argosy (Super Blaster)"
 	outfits
 		"D23-QP Shield Generator"
 		"Greyhound Plasma Thruster"
