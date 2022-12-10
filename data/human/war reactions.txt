@@ -14,9 +14,9 @@
 ########################################################################
 
 # This file contains human reactions to the pug war, and events
-# leading up to it.  It sets up the plot device for the reveal of the
-# Hai, and lets us know how regular, everyday people felt about the
-# war.
+# leading up to it.  It lets us know how regular, everyday people felt
+# about the war. This leads to the reveal of the Hai, who are unable
+# to stay hidden with so many people thinking about aliens.
 
 mission "00 Post-War Reactions Begin"
 	landing
@@ -121,7 +121,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 					goto navy
 					to display
 						not "War Reactions: Navy and Free Worlds Captains: label navy"
-				`	"Have you found any aliens?"`
+				`	"Have you found any new aliens?"`
 					goto aliens
 					to display
 						not "War Reactions: Navy and Free Worlds Captains: label aliens"
@@ -139,7 +139,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			label aliens
 			action
 				set "War Reactions: Navy and Free Worlds Captains: label aliens"
-			`	"Only the usual assortment of hoaxes and Quarg," says Rain. The sisters both laugh at this.`
+			`	"Only the usual assortment of hoaxes," says Rain. The sisters both laugh at this.`
 			`	"Seriously, though, both the Free Worlds Senate and Republic Parliament are up in arms over fear of aliens," says Fiona. Rain adds, "Only metaphorically up in arms, this time.`
 			`	"If we find new aliens, we'll let the necessary authorities know as soon as possible. You should do the same. Be discrete, avoid conflicts, and seek help if you need it."`
 				goto questions
