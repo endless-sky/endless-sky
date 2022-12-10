@@ -1412,7 +1412,7 @@ mission "Hai Reveal [A11] Siren Song"
 		has "Hai Reveal [A10] Demanding Satisfaction: done"
 	on offer
 		event "hai and human ships at wormhole"
-		log `You left Teeneep with an uncertain fate while you were ushered out of the Elder Council chambers by a panicked Sayari. Sayari warned of an impending snap election to which panicked Elders will close the border and risk a diplomatic incident.`
+		log `Sayari warned me of an impending snap election to which panicked Elders will close the border and risk a diplomatic incident. The Elders had not decided Teeneep's fate when I left.`
 		log "People" "Aimet Taepip" `The longest-serving Elder of Hai history, and once a general in the Hai-Korath war. He commands widespread respect and possesses enormous clout in the Elder council. Like Teeneep, he is seen as a controversial figure and a troublemaker.`
 		conversation
 			`Upon your return, Teeneep frantically types up a report with charts and paragraphs, accompanying annotated pictures of her and General Choot'k. Sayari sends the report to the Elder Council with an urgent request for a meeting. A message comes back in only a few minutes, entirely in your language, announcing an emergency meeting of the full Elder Council in under an hour. That short time later, armed guards escort all of you to the Council.`
