@@ -53,7 +53,8 @@ protected:
 
 private:
 	void Update(bool selectLast = true);
-	void ShowStorylines(const Font &font, const Color &headingColor, const Color &bodyColor, const Point &textOffset, Point &pos);
+	void ShowStorylines(const Font &font, const Color &headingColor, const Color &bodyColor,
+		const Point &textOffset, Point &pos);
 
 private:
 	// Reference to the player, to apply any changes to them.

@@ -47,9 +47,9 @@ int Storyline::Progress(const PlayerInfo &player,
 			else
 			{
 				started.emplace_back(
-					name+" (chapter "+
-					to_string(storyline.ChaptersStarted(playerConditions))+
-					" of "+to_string(chapterCount)+")");
+					name + " (chapter " +
+					to_string(storyline.ChaptersStarted(playerConditions)) +
+					" of " + to_string(chapterCount) + ")");
 			}
 		}
 		else if(!storyline.IsBlocked(playerConditions))
@@ -67,7 +67,8 @@ int Storyline::Progress(const PlayerInfo &player,
 
 void Storyline::Load(const DataNode &node)
 {
-	if(node.Size() < 2) {
+	if(node.Size() < 2)
+	{
 		node.PrintTrace("Storyline is missing a name");
 		return;
 	}
@@ -93,12 +94,12 @@ void Storyline::Load(const DataNode &node)
 			else if(child.Token(1) == "secret")
 				visibility = Visibility::secret;
 			else
-				child.PrintTrace("Unknown visibility: "+child.Token(1)+
-					" on "+name);
+				child.PrintTrace("Unknown visibility: "+child.Token(1) +
+					" on " + name);
 		}
 		else
-			child.PrintTrace("Skipping unrecognized attribute: "+
-				child.Token(0)+": "+to_string(child.Size()));
+			child.PrintTrace("Skipping unrecognized attribute: " +
+				child.Token(0) + ": " + to_string(child.Size()));
 	}
 }
 
@@ -154,7 +155,8 @@ int Storyline::ChaptersStarted(const ConditionsStore &conditions) const
 	if(!HasStarted(conditions))
 		return 0;
 	int started = 1;
-	for(const ConditionSet &c : chapterConditions) {
+	for(const ConditionSet &c : chapterConditions)
+	{
 		if(!c.IsEmpty() && c.Test(conditions))
 			started++;
 	}

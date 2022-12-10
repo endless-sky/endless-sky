@@ -59,15 +59,15 @@ namespace {
 
 	void DisplayVector(const string &heading, const vector<string> &entries,
 		const Font &font, const Color &headingColor, const Color &bodyColor,
-		const Point &textOffset, Point& pos)
+		const Point &textOffset, Point &pos)
 	{
 		if(!entries.empty())
 		{
-			font.Draw(heading, pos+textOffset, headingColor);
+			font.Draw(heading, pos + textOffset, headingColor);
 			pos.Y() += LINE_HEIGHT;
 			for(const string &entry : entries)
 			{
-				font.Draw(entry, pos+textOffset, bodyColor);
+				font.Draw(entry, pos + textOffset, bodyColor);
 				pos.Y() += LINE_HEIGHT;
 			}
 		}
@@ -393,7 +393,7 @@ void LogbookPanel::Update(bool selectLast)
 
 void LogbookPanel::ShowStorylines(
 	const Font &font, const Color &headingColor, const Color &bodyColor,
-	const Point &textOffset, Point& pos)
+	const Point &textOffset, Point &pos)
 {
 	vector<string> started;
 	vector<string> ended;
@@ -406,8 +406,9 @@ void LogbookPanel::ShowStorylines(
 		font, headingColor, bodyColor, textOffset, pos);
 	DisplayVector("Available:", available,
 		font, headingColor, bodyColor, textOffset, pos);
-	if(hidden > 0) {
-		font.Draw("Hidden: "+to_string(hidden), pos+textOffset, headingColor);
+	if(hidden > 0)
+	{
+		font.Draw("Hidden: " + to_string(hidden), pos + textOffset, headingColor);
 		pos.Y() += LINE_HEIGHT;
 	}
 }
