@@ -491,6 +491,10 @@ ship "Berserker" "Berserker (Six Blasters)"
 		"X2700 Ion Thruster"
 		"X3200 Ion Steering"
 		"nGVF-CC Fuel Cell"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	gun "Energy Blaster"
+	gun "Energy Blaster"
 
 
 ship "Berserker" "Berserker (Modified Blaster)"
