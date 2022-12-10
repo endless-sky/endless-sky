@@ -247,7 +247,7 @@ government "Free Worlds that won't enter wormhole"
 
 government "Gegno"
 	swizzle 0
-	language "gegno tongue"
+	language "Gegno"
 	color 0.56 0.44 0.2
 
 	"player reputation" 0
@@ -263,7 +263,7 @@ government "Gegno"
 
 government "Gegno Scin"
 	swizzle 18
-	language "gegno tongue"
+	language "Gegno"
 	color 0.5 0.55 0.33
 
 	"player reputation" 0
@@ -277,7 +277,7 @@ government "Gegno Scin"
 
 government "Gegno Vi"
 	swizzle 0
-	language "gegno tongue"
+	language "Gegno"
 	color 0.68 0.4 0.4
 
 	"player reputation" 0
@@ -294,7 +294,7 @@ government "Gegno Vi"
 government "Gegno Scin (Neutral)"
 	"display name" "Gegno Scin"
 	swizzle 18
-	language "gegno tongue"
+	language "Gegno"
 	color 0.5 0.55 0.33
 
 	"player reputation" 0
@@ -308,7 +308,7 @@ government "Gegno Scin (Neutral)"
 government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
 	swizzle 0
-	language "gegno tongue"
+	language "Gegno"
 	color 0.68 0.4 0.4
 
 	"player reputation" 0
@@ -324,7 +324,7 @@ government "Gegno Vi (Neutral)"
 government "Gegno Vi (Duelist A)"
 	swizzle 0
 	"display name" "Gegno Vi"
-	language "gegno tongue"
+	language "Gegno"
 	color 0.68 0.4 0.4
 
 	"player reputation" 0
@@ -341,7 +341,7 @@ government "Gegno Vi (Duelist A)"
 government "Gegno Vi (Duelist B)"
 	swizzle 0
 	"display name" "Gegno Vi"
-	language "gegno tongue"
+	language "Gegno"
 	color 0.68 0.4 0.4
 
 	"player reputation" 0

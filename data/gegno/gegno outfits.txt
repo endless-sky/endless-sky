@@ -119,7 +119,7 @@ outfit "C27 Campaign Core"
 	"energy generation" 22.3
 	"heat generation" 62.9
 	"outfit space" -145
-	description `In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during their colony ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it raises safety concerns.`
+	description `In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign fusion reactor from earlier prototypes during their colony ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it raises safety concerns.`
 
 
 outfit "I70 Ameliorate Cell"
@@ -139,7 +139,7 @@ outfit "I70 Ameliorate Cell"
 	description `The I70 Cell was designed by the Scin as a smaller, more compact power system for their Halite fighters. It has enough energy generation and capacity to fuel the Halite's thrusters and their weapons for a short period. Unfortunately, as a side effect, a bit more excess heat is also generated.`
 
 
-# Engines  :
+# Engines:
 
 outfit "RG15 Torch Thruster"
 	category "Engines"
@@ -440,7 +440,7 @@ outfit "Irate Cannon Turret"
 		"shield damage" 6
 		"hull damage" 16
 		"hit force" 40
-	description `While initially opted out as a weapon for Vi ships due to the production of larger calliber turreted cannons, the Irate Cannon Turret is used as a lighter option on Vi ships that do not have a sizeable weapon capacity. Despite the lack of raw firepower, the key feature of an Irate cannon's rate of fire is doubled with two of these mounted together on an assisting rotating platform.`
+	description `While initially opted out as a weapon for Vi ships due to the production of larger calliber turreted cannons, the Irate Cannon Turret is used as a lighter option on Vi ships that do not have a sizeable weapon capacity. Despite the lack of raw firepower, the key feature of an Irate Cannon's rate of fire is doubled with two of these mounted together on an assisting rotating platform.`
 
 effect "irate fire"
 	sprite "effect/irfire"
