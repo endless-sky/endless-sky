@@ -61,6 +61,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string BOARDING_PRIORITY = "Boarding target priority";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 1;
@@ -184,6 +185,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			else if(zone.Value() == BOARDING_PRIORITY)
+				Preferences::ToggleBoarding();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -449,12 +452,18 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
-	// An empty string indicates that a category has ended.
-	// A '\t' character indicates that the first column on this page has ended,
-	// and the next line should be drawn at the start of the next column.
-	// A '\n' character indicates that this page is complete, no further lines should be drawn on this page.
-	// In all three cases, the first non-special string will be considered the category heading
-	// and will be drawn differently to normal setting entries.
+	// About SETTINGS pagination
+	// * An empty string indicates that a category has ended.
+	// * A '\t' character indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' character indicates that this page is complete, no further lines
+	//   should be drawn on this page.
+	// * In all three cases, the first non-special string will be considered the
+	//   category heading and will be drawn differently to normal setting
+	//   entries.
+	// * The namespace variable SETTINGS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
@@ -472,6 +481,7 @@ void PreferencesPanel::DrawSettings()
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
+		BOARDING_PRIORITY,
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
@@ -580,6 +590,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == BOARDING_PRIORITY)
+		{
+			isOn = true;
+			text = Preferences::BoardingSetting();
 		}
 		else if(setting == REACTIVATE_HELP)
 		{

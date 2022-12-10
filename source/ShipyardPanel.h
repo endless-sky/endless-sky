@@ -37,6 +37,8 @@ class ShipyardPanel : public ShopPanel {
 public:
 	explicit ShipyardPanel(PlayerInfo &player);
 
+	virtual void Step() override;
+
 
 protected:
 	virtual int TileSize() const override;

@@ -192,7 +192,8 @@ public:
 	void SetPersonality(const Personality &other);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
-	void SetHail(const Phrase &phrase);
+	const Phrase *GetHailPhrase() const;
+	void SetHailPhrase(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
 
 	// Set the commands for this ship to follow this timestep.
@@ -236,7 +237,6 @@ public:
 	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
-	bool IsParalyzed() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
@@ -321,7 +321,7 @@ public:
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
 	bool NeedsFuel(bool followParent = true) const;
-	// Get the amount of fuel missing for the next jump (smart refuelling)
+	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
@@ -620,6 +620,8 @@ private:
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
+
+	bool removeBays = false;
 };
 
 

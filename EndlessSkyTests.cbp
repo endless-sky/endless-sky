@@ -47,6 +47,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-pedantic-errors" />
 			<Add option="-std=c++11" />
 			<Add option="-Wold-style-cast" />
 			<Add option="-fno-rtti" />
@@ -75,6 +76,7 @@
 		<Unit filename="tests/unit/src/test_conditionsStore.cpp" />
 		<Unit filename="tests/unit/src/test_datafile.cpp" />
 		<Unit filename="tests/unit/src/test_datanode.cpp" />
+		<Unit filename="tests/unit/src/test_dictionary.cpp" />
 		<Unit filename="tests/unit/src/test_esuuid.cpp" />
 		<Unit filename="tests/unit/src/test_exclusiveItem.cpp" />
 		<Unit filename="tests/unit/src/test_firecommand.cpp" />
