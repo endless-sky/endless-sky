@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 fleet "Small Southern Merchants"
 	government "Merchant"
@@ -3134,3 +3137,28 @@ fleet "Hired Guns"
 		"Bactrian (Hired Gun)"
 		"Dagger" 3
 		"Splinter (Proton)"
+
+# The Navy forces which blockade the wormhole during the Hai crisis.
+fleet "Human Wormhole Guards"
+	government "Republic that won't enter wormhole"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 2
+		"Carrier (Mark II)"
+		"Combat Drone" 6
+		"Lance (Gatling)" 4
+	variant 1
+		"Auxiliary (Transport)"
+	variant 2
+		"Cruiser (Plasma Anti-Missile)"
+		"Combat Drone" 4
+	variant 2
+		"Cruiser (Mark II)"
+		"Combat Drone" 4
+	variant 8
+		"Frigate (Mark II)"
+	variant 5
+		"Rainmaker (Mark II Old Weapons)"

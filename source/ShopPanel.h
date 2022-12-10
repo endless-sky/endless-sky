@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SHOP_PANEL_H_
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
@@ -49,9 +53,11 @@ protected:
 
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
+	void CheckForMissions(Mission::Location location);
+
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
-	virtual int VisiblityCheckboxesSize() const;
+	virtual int VisibilityCheckboxesSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;

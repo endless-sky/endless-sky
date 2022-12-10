@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PERSONALITY_H_
@@ -32,6 +35,8 @@ public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 
+	bool IsDefined() const;
+
 	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
@@ -48,6 +53,7 @@ public:
 	bool IsCoward() const;
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
+	bool IsMerciful() const;
 
 	// Mission NPC states:
 	bool IsStaying() const;
@@ -76,6 +82,7 @@ public:
 
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
+	static Personality DefenderFighter();
 
 
 private:
@@ -83,6 +90,8 @@ private:
 
 
 private:
+	bool isDefined = false;
+
 	int flags;
 	double confusionMultiplier;
 	double aimMultiplier;

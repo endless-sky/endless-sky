@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MASK_H_
@@ -37,7 +40,8 @@ public:
 
 	// Check if this mask intersects the given line segment (from sA to vA). If
 	// it does, return the fraction of the way along the segment where the
-	// intersection occurs. The sA should be relative to this object's center.
+	// intersection occurs. The sA should be relative to this object's center,
+	// while vA should be relative to sA.
 	// If this object contains the given point, the return value is 0. If there
 	// is no collision, the return value is 1.
 	double Collide(Point sA, Point vA, Angle facing) const;
