@@ -4977,7 +4977,16 @@ mission "A dead man's path I"
 		random < 20
 	on offer
 		conversation
-			`As you walk through the spaceport, a young woman and man, who are both dressed very formally, approach you. The woman begins, "Hello, are you a spaceship captain?" You answer, "Indeed, I am." Her face brightens up with a smile, and she continues, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course."`
+			`As you walk through the spaceport, a young woman and man, who are both dressed very formally, approach you. The woman begins, "Hello, are you a spaceship captain?"`
+			choice
+				"Depends on why you are asking."
+					goto suspicious
+				"Indeed, I am."
+			`    Her face brightens up with a smile, and she continues, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course."`
+				goto helpornot
+			label suspicious
+			`    She laughs, "No need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course.`
+			label helpornot
 			choice
 				"Of course I can."
 					goto "Agree"
@@ -4985,7 +4994,11 @@ mission "A dead man's path I"
 			`    Her smile fades away as you say that, but they nod and turn away.`
 				decline
 			label "Agree"
-			`    "Fantastic," she says, "my name is Sophie. This is my younger brother," she points at the man to her side. "Hi, I am Liam," he says, "we have been looking for a ride for some time now, we already started to worry we wouldn't get there in time," he tells you. You nod in agreement. "A lot of captains are very busy these times, you are lucky that I have some time. My name is <first> <last>." They nod in agreement and then you lead them to your spaceship.`
+			`    "Fantastic," she says, "my name is Sophie. This is my younger brother," she points at the man to her side. "Hi, I am Liam," he says, "we have been looking for a ride for some time now, we already started to worry we wouldn't get there in time," he tells you.` 
+			choice
+				"You will be surpised how fast my ship flies, my name is <first> <last> by the way."
+				"Yes, a lot of captains are busy these days. Call me Captain <last>."
+			`   You lead them to your spaceship.`
 				accept
 	on complete
 		conversation
