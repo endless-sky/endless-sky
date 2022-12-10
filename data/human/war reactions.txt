@@ -150,21 +150,21 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			`	"Joint police operation," says Captain Rain. "It's more common than you may think."`
 			`	Captain Fiona nods. "We're shutting down a galactic Spider Funk smuggling operation. It's an illegal hallucinogenic. Not addictive, but still dangerous. The organization running it is huge, well funded, and well armed."`
 			`	"Not a match for a Dreadnought and an Auxiliary, though," brags Rain.`
-			`	"We have to fly all over Republic and Free Worlds space, so we have a joint patrol with one ship from each country."`
+			`	"We have to fly all over Republic and Free Worlds space, so we have a joint patrol with one ship from each state."`
 			`	"Of course, we have another mission," says Fiona. "Everywhere we go, we look out for new alien activity."`
 				goto questions
 			label sister
 			action
 				set "War Reactions: Navy and Free Worlds Captains: label sister"
-			`	"Yup," Fiona says. "I blew up her Cruiser! When her ship's escape pods were veering towards a star, we rescued them."`
-			`	Rain continues. "Can you imagine my surprise when I woke up on my sister's new Dreadnought?"`
-			`	"Hey, you got a new Auxiliary commission afterwards," replies Fiona. "and your whole crew survived. Now we escort each other's ships during investigations."`
+			`	"Yup," Fiona says, "I blew up her Cruiser! When her ship's escape pods were veering towards a star, we rescued them."`
+			`	Rain continues, "Can you imagine my surprise when I woke up on my sister's new Dreadnought?"`
+			`	"Hey, you got a new Auxiliary commission afterwards," replies Fiona, poking Rain as she says it, "and your whole crew survived. Now we escort each other's ships during investigations!"`
 				goto questions
 			label mercenary
 			action
 				set "War Reactions: Navy and Free Worlds Captains: label mercenary"
-			`	"I meant no offense," says Fiona. "You're quite the hero." She thinks for a second and looks at her sister. "Rain, can you explain?"`
-			`	Rain says, "We're uniformed career officers who must follow orders. Our country owns the ships, uniforms, and everything else we use. Our salaries may be meager compared to your earnings, but serving one's country is a rich reward.`
+			`	"I meant no offense," says Fiona, "you're quite the hero." She thinks for a second and glances at her sister. "Rain, can you explain?"`
+			`	Rain says, "We're uniformed career officers who must follow orders. Our states own the ships, uniforms, and everything else we use. Our salaries may be meager compared to your earnings, but serving one's state is a rich reward.`
 			`	"You, on the other hand, own your ship and serve whoever you want. To keep up with costs, you have to charge a lot of money for your services. Mercenaries only survive as long as you if they're skilled at both finances and combat."`
 				goto questions
 
