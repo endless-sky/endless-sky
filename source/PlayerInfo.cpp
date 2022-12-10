@@ -2606,6 +2606,8 @@ void PlayerInfo::ApplyChanges()
 		// Government changes may have changed the player's ship swizzles.
 		ship->SetGovernment(GameData::PlayerGovernment());
 		ship->FinishLoading(false);
+
+		DiscoverOutfits(ship->Outfits());
 	}
 
 	// Recalculate jumps that the available jobs will need
