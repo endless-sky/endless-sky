@@ -231,6 +231,8 @@ void Mission::Load(const DataNode &node)
 				toComplete.Load(child);
 			else if(child.Token(1) == "fail")
 				toFail.Load(child);
+			else if(child.Token(1) == "accept")
+				toAccept.Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -374,6 +376,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.BeginChild();
 			{
 				toOffer.Save(out);
+			}
+			out.EndChild();
+		}
+		if(!toAccept.IsEmpty())
+		{
+			out.Write("to", "accept");
+			out.BeginChild();
+			{
+				toAccept.Save(out);
 			}
 			out.EndChild();
 		}
@@ -739,6 +750,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
+	const auto &playerConditions = player.Conditions();
+	if(!toAccept.Test(playerConditions))
+		return false;
+
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
@@ -1271,6 +1286,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Copy the conditions. The offer conditions must be copied too, because they
 	// may depend on a condition that other mission offers might change.
 	result.toOffer = toOffer;
+	result.toAccept = toAccept;
 	result.toComplete = toComplete;
 	result.toFail = toFail;
 

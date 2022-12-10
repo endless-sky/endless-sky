@@ -224,6 +224,7 @@ private:
 	int64_t paymentApparent = 0;
 
 	ConditionSet toOffer;
+	ConditionSet toAccept;
 	ConditionSet toComplete;
 	ConditionSet toFail;
 
