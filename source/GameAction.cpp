@@ -126,6 +126,9 @@ namespace {
 		else
 			message += "flagship.";
 		Messages::Add(message, Messages::Importance::High);
+
+		if((didCargo || didShip) && !player.OutfitIsKnown(*outfit))
+			player.DiscoverOutfit(*outfit);
 	}
 }
 
