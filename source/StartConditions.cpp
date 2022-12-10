@@ -135,6 +135,7 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
+		// Only global conditions are supported in this condition sets.
 		else if(key == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "display")
