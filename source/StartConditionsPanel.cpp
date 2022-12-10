@@ -305,6 +305,8 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	// Update the information summary.
 	info = Information();
 
+	info.SetCondition("chosen start");
+
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
 	info.SetString("name", startIt->GetDisplayName());
