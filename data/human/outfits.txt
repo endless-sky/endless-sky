@@ -401,7 +401,9 @@ outfit "The old mans sword"
 	"capture attack" 3
 	"capture defense" 3
 	"unplunderable" 1
-	description "A sword that has all kind of alien technology implemented in it. You have yet to find out what it can do. Some functionalities are a personall shield and an implemented shooting mechanism."
+	description "Received this from a pair of siblings from New China, by fulfilling their eccentric father's last will and testament on Prime. 
+	While swords are seen today as old curios and commemorative objects as they became obsolete with gunpowder warfare thousands of years ago, this sword seems to be as combat effective as any laser rifle and unlike any you're seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade on it that don't appear to be like any human language.
+	For whatever reason, the red beam within the blade seems to pulsate as you swing it; perhaps there is more to the sword than you know."
 
 outfit "Local Map"
 	category "Special"
