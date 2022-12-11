@@ -3110,6 +3110,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
 
+	auto &&flagshipPlanetAttributesProvider = conditions.GetProviderPrefixed("flagship planet attribute: ");
+	auto flagshipPlanetAttributesFun = [this](const string &name) -> bool
+	{
+		if(!flagship || !flagship->GetPlanet())
+			return false;
+		string attribute = name.substr(strlen("flagship planet attribute: "));
+		return flagship->GetPlanet()->Attributes().count(attribute);
+	};
+	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
+	flagshipPlanetAttributesProvider.SetHasFunction(flagshipPlanetAttributesFun);
+
 	// Read only exploration conditions.
 	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
 	auto visitedPlanetFun = [this](const string &name) -> bool
