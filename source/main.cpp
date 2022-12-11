@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -58,6 +59,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <windows.h>
 #include <mmsystem.h>
 #endif
+
+namespace {
+	// The delay in frames when debugging the integration tests.
+	constexpr int UI_DELAY = 60;
+}
 
 using namespace std;
 
@@ -168,6 +174,12 @@ int main(int argc, char *argv[])
 
 		Preferences::Load();
 
+		// Load global conditions:
+		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		for(const DataNode &node : globalConditions)
+			if(node.Token(0) == "conditions")
+				GameData::GlobalConditions().Load(node);
+
 		if(!GameWindow::Init())
 			return 1;
 
@@ -231,7 +243,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
 	bool isFastForward = false;
-	int testDebugUIDelay = 3 * 60;
+	int testDebugUIDelay = UI_DELAY;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
 	int skipFrame = 0;
@@ -343,7 +355,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				Command ignored;
 				runningTest->Step(testContext, player, ignored);
 				// Reset the visual delay.
-				testDebugUIDelay = 3 * 60;
+				testDebugUIDelay = UI_DELAY;
 			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
 			// We don't skip UI-frames to ensure we test the UI code more.

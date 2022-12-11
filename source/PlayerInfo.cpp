@@ -449,6 +449,10 @@ void PlayerInfo::Save() const
 	}
 
 	Save(filePath);
+
+	// Save global conditions:
+	DataWriter globalConditions(Files::Config() + "global conditions.txt");
+	GameData::GlobalConditions().Save(globalConditions);
 }
 
 
@@ -2705,6 +2709,21 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&yearProvider = conditions.GetProviderNamed("year");
 	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
 
+	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
+	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
+
+	auto &&daysUntilYearEndProvider = conditions.GetProviderNamed("days until year end");
+	daysUntilYearEndProvider.SetGetFunction([this](const string &name) { return date.DaysUntilYearEnd(); });
+
+	auto &&daysSinceEpochProvider = conditions.GetProviderNamed("days since epoch");
+	daysSinceEpochProvider.SetGetFunction([this](const string &name) { return date.DaysSinceEpoch(); });
+
+	auto &&daysSinceStartProvider = conditions.GetProviderNamed("days since start");
+	daysSinceStartProvider.SetGetFunction([this](const string &name)
+	{
+		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch();
+	});
+
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
@@ -3106,6 +3125,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
 
+	auto &&flagshipPlanetAttributesProvider = conditions.GetProviderPrefixed("flagship planet attribute: ");
+	auto flagshipPlanetAttributesFun = [this](const string &name) -> bool
+	{
+		if(!flagship || !flagship->GetPlanet())
+			return false;
+		string attribute = name.substr(strlen("flagship planet attribute: "));
+		return flagship->GetPlanet()->Attributes().count(attribute);
+	};
+	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
+	flagshipPlanetAttributesProvider.SetHasFunction(flagshipPlanetAttributesFun);
+
 	// Read only exploration conditions.
 	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
 	auto visitedPlanetFun = [this](const string &name) -> bool
@@ -3124,6 +3154,55 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
+
+	// Read-only navigation conditions.
+	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
+	{
+		if(!origin)
+			return -1;
+
+		auto distanceMap = DistanceMap(origin);
+		if(!distanceMap.HasRoute(destination))
+			return -1;
+		return distanceMap.Days(destination);
+	};
+
+	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
+	auto hyperjumpsToSystemFun = [this, HyperspaceTravelDays](const string &name) -> int
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
+		if(!system)
+		{
+			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: "))
+					+ "\" referred to in condition is not valid.");
+			return -1;
+		}
+		return HyperspaceTravelDays(this->GetSystem(), system);
+	};
+	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
+	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
+
+	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
+	auto hyperjumpsToPlanetFun = [this, HyperspaceTravelDays](const string &name) -> int
+	{
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
+		if(!planet)
+		{
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not valid.");
+			return -1;
+		}
+		const System *system = planet->GetSystem();
+		if(!system)
+		{
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not in any system.");
+			return -1;
+		}
+		return HyperspaceTravelDays(this->GetSystem(), system);
+	};
+	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
+	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
 
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
@@ -3149,6 +3228,29 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		gov->SetReputation(value);
 		return true;
+	});
+
+	// Global conditions setters and getters:
+	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
+	globalProvider.SetHasFunction([](const string &name) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Has(condition);
+	});
+	globalProvider.SetGetFunction([](const string &name) -> int64_t
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Get(condition);
+	});
+	globalProvider.SetSetFunction([](const string &name, int64_t value) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Set(condition, value);
+	});
+	globalProvider.SetEraseFunction([](const string &name) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Erase(condition);
 	});
 }
 
@@ -3189,7 +3291,10 @@ void PlayerInfo::CreateMissions()
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
-			if(it->IsAtLocation(Mission::SPACEPORT) && !it->HasPriority())
+			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
+				|| it->IsAtLocation(Mission::SHIPYARD)
+				|| it->IsAtLocation(Mission::OUTFITTER);
+			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
 				++it;
