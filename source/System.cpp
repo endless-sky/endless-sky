@@ -763,6 +763,14 @@ bool System::HasOutfitter() const
 
 
 
+
+double System::InvisibleFenceRadius() const
+{
+	return invisibleFenceRadius;
+}
+
+
+
 // Get the specification of how many asteroids of each type there are.
 const vector<System::Asteroid> &System::Asteroids() const
 {
@@ -965,11 +973,4 @@ void System::Price::SetBase(int base)
 void System::Price::Update()
 {
 	price = base + static_cast<int>(-100. * erf(supply / LIMIT));
-}
-
-
-
-double System::InvisibleFenceRadius() const
-{
-	return invisibleFenceRadius;
 }
