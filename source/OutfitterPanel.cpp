@@ -271,9 +271,9 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 	if(planet && !planet->OutfitterDescription().empty())
 	{
-		Point descriptionPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + heightOffset);
+		Point descriptionPoint(center.X() - INFOBAR_WIDTH / 2 + 25, center.Y() + heightOffset);
 		description.SetAlignment(Alignment::JUSTIFIED);
-		description.SetWrapWidth(INFOBAR_WIDTH - 40);
+		description.SetWrapWidth(INFOBAR_WIDTH - 50);
 		description.SetFont(font);
 		description.Wrap(planet->OutfitterDescription());
 		heightOffset += description.Height();
