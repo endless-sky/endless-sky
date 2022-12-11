@@ -520,7 +520,7 @@ mission "Paradise Job: Wilderness Retreat"
 		payment 25000 250
 		dialog `Your passengers are met by an overly enthusiastic greeting service of comically overdressed "wilderness guides." You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers to you your payment of <payment>.`
 
- mission "Martini Evacuation (Family, No Luxury Accomodations)"
+mission "Martini Evacuation (Family, No Luxury Accomodations)"
 	name "Evacuate Martini residents to <planet>"
 	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their belongings to <destination> where they have a second apartment to stay at. They will pay you <payment> as demand is so high and the regional spaceports on Martini cannot handle the traffic."
 	job
