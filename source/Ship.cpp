@@ -2211,9 +2211,22 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+				int minimumHull = ship.MinimumHull();
+				int maximumHull = -1;
+				if(ship.hull < minimumHull || ship.isDisabled)
+				{
+					// Fighter is disabled so "board" it to repair it first:
+					maximumHull = ship.attributes.Get("hull");
+					ship.hull = min(max(ship.hull, minimumHull * 1.5), static_cast<double>(maximumHull));
+					ship.isDisabled = false;
+				}
 				if(!hullDelay)
-					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
+				{
+					if(maximumHull < 0)
+						maximumHull = ship.attributes.Get("hull");
+					DoRepair(ship.hull, hullRemaining, maximumHull,
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
+				}
 				if(!shieldDelay)
 					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"),
 						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
