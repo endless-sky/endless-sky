@@ -364,6 +364,12 @@ void Test::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "sequence")
 			LoadSequence(child);
+		else if(child.Token(0) == "description")
+		{
+			// Provides a human friendly description of the test, but it is not used internally.
+		}
+		else
+			child.PrintTrace("Error: Skipping unrecognized attribute:");
 	}
 }
 
