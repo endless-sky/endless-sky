@@ -226,11 +226,16 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
 	}
 
+	if(planet && !planet->ShipyardDescription().empty()) {
+		Point descriptionPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
+		description.SetAlignment(Alignment::JUSTIFIED);
+		description.SetWrapWidth(INFOBAR_WIDTH - 20);
+		description.SetFont(font);
+		description.Wrap(planet->ShipyardDescription());
+		description.Draw(descriptionPoint, bright);
+	}
 	// Draw this string representing the selected ship (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	if(planet && !planet->ShipyardDescription().empty())
-		font.Draw({planet->ShipyardDescription(), {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
-			selectedPoint, bright);
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
