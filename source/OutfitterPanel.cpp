@@ -332,6 +332,9 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
 	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
+	if(planet && !planet->OutfitterDescription().empty())
+		font.Draw({planet->OutfitterDescription(), {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+			selectedPoint, bright);
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 

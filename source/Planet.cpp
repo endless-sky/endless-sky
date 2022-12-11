@@ -392,6 +392,22 @@ const Sale<Ship> &Planet::Shipyard() const
 
 
 
+// Get the shipyard description
+const std::string &ShipyardDescription() const
+{
+	if(!shipyardDescription.empty())
+		return shipyardDescription;
+
+	std::string shipyardDescriptionFromSales = '';
+
+	for(const Sale<Ship> *sale : shipSales)
+		shipyardDescriptionFromSales += sale.description;
+
+	return shipyardDescriptionFromSales;
+}
+
+
+
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
@@ -408,6 +424,22 @@ const Sale<Outfit> &Planet::Outfitter() const
 		outfitter.Add(*sale);
 
 	return outfitter;
+}
+
+
+
+// Get the outfitter description
+const std::string &OutfitterDescription() const
+{
+	if(!outfitterDescription.empty())
+		return outfitterDescription;
+
+	std::string outfitterDescriptionFromSales = '';
+
+	for(const Sale<Outfit> *sale : outfitSales)
+		outfitterDescriptionFromSales += outfitSales.description;
+
+	return outfitterDescriptionFromSales;
 }
 
 

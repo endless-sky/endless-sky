@@ -228,6 +228,9 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
 	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	if(planet && !planet->ShipyardDescription().empty())
+		font.Draw({planet->ShipyardDescription(), {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+			selectedPoint, bright);
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
