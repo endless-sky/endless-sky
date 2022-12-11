@@ -971,5 +971,5 @@ void System::Price::Update()
 
 double System::InvisibleFenceRadius() const
 {
-	return this->invisibleFenceRadius;
+	return invisibleFenceRadius;
 }
