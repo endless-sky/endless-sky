@@ -403,6 +403,10 @@ public:
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
 
+	// Daily cost and income provided/needed by/for this ship.
+	const int64_t DailyCost() const;
+	const int64_t DailyIncome() const;
+
 	// Get the list of weapons.
 	Armament &GetArmament();
 	const std::vector<Hardpoint> &Weapons() const;

@@ -149,14 +149,20 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	int64_t fullCost = ship.Cost();
 	int64_t depreciated = depreciation.Value(ship, day);
 	if(depreciated == fullCost)
+	{
 		attributeLabels.push_back("cost:");
+		attributeValues.push_back(Format::Credits(fullCost));
+	}
 	else
 	{
 		ostringstream out;
-		out << "cost (" << (100 * depreciated) / fullCost << "%):";
+		out << "cost (" << (100 * depreciated) / fullCost << "%) / daily:";
 		attributeLabels.push_back(out.str());
+		int64_t maintenanceCost = depreciation.MaintenanceCost(ship, day) + ship.DailyCost() - ship.DailyIncome();
+		ostringstream priceOut;
+		priceOut << Format::Credits(depreciated) << " / " << maintenanceCost;
+		attributeValues.push_back(priceOut.str());
 	}
-	attributeValues.push_back(Format::Credits(depreciated));
 	attributesHeight += 20;
 
 	attributeLabels.push_back(string());

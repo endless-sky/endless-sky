@@ -3895,6 +3895,30 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 
 
+const int64_t Ship::DailyCost() const
+{
+	int64_t maintenanceCosts = max<int64_t>(0, Attributes().Get("maintenance costs"));
+	for(const auto &outfit : Cargo().Outfits())
+		maintenanceCosts += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
+	if(!IsParked())
+		maintenanceCosts += max<int64_t>(0, Attributes().Get("operating costs"));
+	return maintenanceCosts;
+}
+
+
+
+const int64_t Ship::DailyIncome() const
+{
+	int64_t assetsReturns = max<int64_t>(0, Attributes().Get("income"));
+	for(const auto &outfit : Cargo().Outfits())
+		assetsReturns += max<int64_t>(0, outfit.first->Get("income")) * outfit.second;
+	if(!IsParked())
+		assetsReturns += max<int64_t>(0, Attributes().Get("operating income"));
+	return assetsReturns;
+}
+
+
+
 // Get the list of weapons.
 Armament &Ship::GetArmament()
 {

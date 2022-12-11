@@ -31,9 +31,11 @@ namespace {
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
 	constexpr double FULL_DEPRECIATION = 0.25;
-	constexpr double DAILY_DEPRECIATION = 0.997;
+	constexpr double DAILY_DEPRECIATION = 0.998;
 	constexpr int GRACE_PERIOD = 7;
-	constexpr int MAX_AGE = 1000 + GRACE_PERIOD;
+	constexpr int MAX_AGE = 2000 + GRACE_PERIOD;
+	
+	constexpr double MAINTAIN_SHIP_COST = 0.0001;
 }
 
 
@@ -231,6 +233,14 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 	for(const auto &it : outfitCount)
 		value += Value(it.first, day, it.second);
 	return value;
+}
+
+
+
+// Get the maintenance cost of a ship, linked to how depreciated it is.
+int64_t Depreciation::MaintenanceCost(const Ship &ship, int day) const
+{
+	return (1 - Value(ship, day) / ship.Cost()) * ship.Cost() * MAINTAIN_SHIP_COST;
 }
 
 

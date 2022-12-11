@@ -829,18 +829,10 @@ PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsDestroyed())
 		{
-			b.maintenanceCosts += max<int64_t>(0, ship->Attributes().Get("maintenance costs"));
-			b.assetsReturns += max<int64_t>(0, ship->Attributes().Get("income"));
-			for(const auto &outfit : ship->Cargo().Outfits())
-			{
-				b.maintenanceCosts += max<int64_t>(0, outfit.first->Get("maintenance costs")) * outfit.second;
-				b.assetsReturns += max<int64_t>(0, outfit.first->Get("income")) * outfit.second;
-			}
+			b.maintenanceCosts += ship->DailyCost();
 			if(!ship->IsParked())
-			{
-				b.maintenanceCosts += max<int64_t>(0, ship->Attributes().Get("operating costs"));
-				b.assetsReturns += max<int64_t>(0, ship->Attributes().Get("operating income"));
-			}
+				b.maintenanceCosts += depreciation.MaintenanceCost(*ship.get(), date.DaysSinceEpoch());
+			b.assetsReturns += ship->DailyIncome();
 		}
 	return b;
 }
