@@ -830,7 +830,8 @@ PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 		if(!ship->IsDestroyed())
 		{
 			b.maintenanceCosts += ship->DailyCost();
-			if(!ship->IsParked())
+			// Maintenance cost per day, excluding the flagship.
+			if(!ship->IsParked() && ship != flagship)
 				b.maintenanceCosts += depreciation.MaintenanceCost(*ship.get(), date.DaysSinceEpoch());
 			b.assetsReturns += ship->DailyIncome();
 		}
