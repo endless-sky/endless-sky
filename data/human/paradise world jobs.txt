@@ -583,7 +583,8 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		has "outfit: Luxury Accomodations"
+	on offer
+		require "Luxury Accommodations"
 	source
 		planet "Martini" "Thrall"
 	destination
@@ -607,7 +608,8 @@ mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		has "outfit: Luxury Accomodations"
+	on offer
+		require "Luxury Accommodations"
 	source
 		planet "Martini" "Thrall"
 	destination
