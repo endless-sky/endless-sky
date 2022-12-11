@@ -95,15 +95,15 @@ conversation "hai reveal republic or syndicate news"
 	`	The severe-looking anchorwoman bores down the camera with an expression that demands attention.`
 	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at six."`
 	`	You raise your eyebrows. Actual footage of an unknown alien conflict doesn't seem likely.`
-	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.` 
+	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.`
 	`	The news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and appears very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
 	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other, and fire weapons quite unlike anything produced in human space.`
 	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader, resulting in quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
 	`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing... You listen in to collect the relevant details for future reference.`
-	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer.` 
-		accept	
+	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer.`
+		accept
 	label "hai knowledge"
 	`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons.`
 	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
@@ -352,8 +352,8 @@ mission "Trader Directions to Hai Space"
 		dialog `This system appears to contain some sort of astronomical anomaly. Perhaps this is the wormhole you were directed to.`
 			
 
-#This branch is if you have met the Hai but not the Unfettered
-	#Goto Stop 3 Wah Yoot (Darkcloak) and pick up at Tour 4 mission.
+# This branch is if you have met the Hai but not the Unfettered
+	# Goto Stop 3 Wah Yoot (Darkcloak) and pick up at Tour 4 mission.
 mission "Hai Witness Unfettered [1]"
 	name "Witness the Unfettered"
 	description "It turns out this conflict has some truth to it. Go see where it's happening."
@@ -369,8 +369,8 @@ mission "Hai Witness Unfettered [1]"
 
 # This fires if you haven't met the Hai, to trigger the entire tour.
 # It must happen after the first contact mission.
-	#Goto Stop 1 Imo Dep (Stonebreak)
-	#This follows immediately after the First Contact text - no other convo is required.
+	# Goto Stop 1 Imo Dep (Stonebreak)
+	# This follows immediately after the First Contact text - no other convo is required.
 mission "ZZ Hai Tour [1] Stonebreak"
 	landing
 	name "Visit <planet>"
@@ -389,7 +389,7 @@ mission "ZZ Hai Tour [1] Stonebreak"
 				`	"Thanks, I'll do that!"`
 					accept
 
-	#Goto Stop 2 Alta Hai (Alta Hai Ringworld)
+	# Goto Stop 2 Alta Hai (Alta Hai Ringworld)
 mission "Hai Tour [2] Alta Hai"
 	landing
 	name "Visit the ringworld on <planet>"
@@ -399,7 +399,7 @@ mission "Hai Tour [2] Alta Hai"
 	to offer
 		has "ZZ Hai Tour [1] Stonebreak: done"
 	on offer
-		conversation 
+		conversation
 			`This star system has an unusual number of metallic asteroids, which you noticed the Hai harvesting for the raw materials before you landed. Stonebreak itself is home to incredibly large cities: massive, clearly planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards.`
 			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is a dull and slightly irregular gray color, all made from the same material which seems to be some metallic alloy, and the corners of each building are slightly beveled instead of meeting at right angles.`
 			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, while warehouses and living quarters dot the inside of the ring.`
@@ -407,7 +407,7 @@ mission "Hai Tour [2] Alta Hai"
 			`	As you are wandering around and getting a feel for the place, you overhear someone talking about an apparently complete ringworld in a system called Hevru Hai. It definitely sounds like something you should check out, and asking around quickly gets you some clear directions.`
 				accept
 
-	#Goto Stop 3 Wah Yoot (Darkcloak) - must happen after Quarg first contact
+	# Goto Stop 3 Wah Yoot (Darkcloak) - must happen after Quarg first contact
 mission "ZZ Hai Tour [3] Meet Unfettered"
 	landing
 	name "Meet the Rebels on <planet>"
@@ -417,22 +417,22 @@ mission "ZZ Hai Tour [3] Meet Unfettered"
 	to offer
 		has "Hai Tour [2] Alta Hai: done"
 	on offer
-		conversation 
+		conversation
 			`This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships while housing storage facilities for cargo.`
-			`	Pondering your questions, you find a Quarg and ask, "Is this a dead end? This isn't Hai space."` 
+			`	Pondering your questions, you find a Quarg and ask, "Is this a dead end? This isn't Hai space."`
 			`	The Quarg explains, "Much like in Enif in human space, this is where we live as friends to the Hai."`
 			`	This explanation seems typically Quarg, but it's the best one you're able to get. Before you go, you ask, "Do you know about the rebels I've been hearing about?"`
 			`	The Quarg responds, "The Hai and their rebels are the same. You should travel to Darkcloak in Wah Yoot to understand. Be warned, they tend to shoot at newcomers."`
 			`	It seems like there's nothing else for it but to see for yourself.`
 				accept
 	
-	#Goto Stop 4 Wah Ki (Cloudfire)
+	# Goto Stop 4 Wah Ki (Cloudfire)
 	# Must happen before unfettered first contact
 mission "00 Hai Tour [4] Cloudfire"
 	landing
 	name "Find out about the Rebels on Cloudfire"
 	description "Go to Cloudfire and compare the Hai's side of the conflict."
-	source "Darkcloak" 
+	source "Darkcloak"
 	destination "Cloudfire"
 	to offer
 		or
@@ -443,7 +443,7 @@ mission "00 Hai Tour [4] Cloudfire"
 			`You had to bribe your way through just to land without being blown up. These "Unfettered" Hai do not seem friendly, but it's time to find out what they're about.`
 				accept
 	on complete
-		conversation 
+		conversation
 			`You dodge the conflict in space and come in to land. Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, likely due to the conflict with the Unfettered, and the one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
 			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced.`
 			`	It does not take long to realize that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defense without apparently taxing their civilization to any great extent.`
@@ -499,7 +499,7 @@ mission "Hai Tour [5] Tour Ends"
 
 
 
-#All prior branches merge here.
+# All prior branches merge here.
 	
 mission "Hai Leaks Response 1"
 	landing
@@ -561,7 +561,7 @@ mission "Hai Leaks Response 1"
 				`	"That seems practical."`
 				`	"I don't really have an option to refuse, do I?"`
 			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments, then we can begin a liaison on how best to deal with this current scenario."`
-			`	She hands you an officially branded box containing a metallic badge. There is a symbol minutely engraved into the front that you remember seeing on your way into the complex, and must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.` 
+			`	She hands you an officially branded box containing a metallic badge. There is a symbol minutely engraved into the front that you remember seeing on your way into the complex, and must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.`
 			choice
 				`	"Various? We only have two governments."`
 			`	"Oh," she says, "we've treated the Syndicate as a de facto government for many decades now; with the amount of influence they have it was the only prudent thing to do."`
@@ -623,7 +623,7 @@ mission "Hai Leaks Response 2"
 		log `Brought human diplomatic representatives from each human faction to Hai-home to address the crisis. Something drastic needs to be done to keep the secret from entirely bursting, but they know how long they will have to work with. Asked to rout pirates hoping to benefit from the chaos while they work on a solution.`
 
 event "pirates respond to leaks"
-	#Add pirate spawns to Waypoint and Heia Due
+	# Add pirate spawns to Waypoint and Heia Due
 	system "Waypoint"
 		government "Pirate"
 		add fleet "Large Northern Pirates" 3000
@@ -639,7 +639,7 @@ event "pirates respond to leaks"
 		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
 		
 	
-#If a republic/syndicate campaign gets added this text will need variants.
+# If a republic/syndicate campaign gets added this text will need variants.
 mission "Hai Leaks Response 2A"
 	landing
 	invisible
@@ -663,7 +663,7 @@ mission "Hai Leaks Response 2B"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
-		not planet "Deep" "Foundry"
+		not planet "Deep" "Foundry" "Watcher"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
@@ -700,8 +700,8 @@ mission "Hai Leaks Response 2C"
 
 
 
-#This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
-#No longer gets picked up silently due to write-read order style preferences - but may need to be moved back to Response 2 or have multiple versions of this mission when other campaigns exist.
+# This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
+# No longer gets picked up silently due to write-read order style preferences - but may need to be moved back to Response 2 or have multiple versions of this mission when other campaigns exist.
 mission "Hai Leaks Response 3"
 	name "Meet with Security Forces on Allhome"
 	description "Meet with the Security Forces on <destination> to fight pirates."
@@ -741,11 +741,11 @@ mission "Hai Leaks Response 3"
 			choice
 				`	"I'll do what I can."`
 					accept
-#If a republic/syndicate campaign gets added this text will need variants.
+# If a republic/syndicate campaign gets added this text will need variants.
 
 
 
-#Go kill pirates mission with chat on Allhome.
+# Go kill pirates mission with chat on Allhome.
 mission "Hai Leaks Response 4"
 	autosave
 	landing
@@ -817,10 +817,10 @@ mission "Hai Leaks Response 4"
 				decline
 			label "saved geocoris2"
 			`	With a final nod of thanks he departs to attend to his business, leaving you free to wander the spaceport for a couple of hours until they release your new ship.`
-				decline			
+				decline
 	
 event "waypoint pirates vanquished"
-	#Update pirate and anti-pirate spawns in Waypoint and Heia Due
+	# Update pirate and anti-pirate spawns in Waypoint and Heia Due
 	system "Waypoint"
 		government "Hai"
 		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
@@ -838,7 +838,7 @@ event "hai ladybug available"
 		add "Ladybug"
 
 
-# It is impossible to implement a "capture and return npc" mission. 
+# It is impossible to implement a "capture and return npc" mission.
 # Once the ship is captured, the NPC is gone and the mission is failed.
 # The NPC has an outfit used to determine if you managed to get it back safely.
 mission "Hai Leaks Response 4A"
@@ -858,11 +858,11 @@ mission "Hai Leaks Response 4A"
 		dialog `After successfully boarding the Geocoris and defeating its pirate crews, you are greeted by the relieved captive Hai. You promise to escort their ship safely to Allhome. (You will need to swap the Geocoris to your flagship, and depart and land again in order to progress the missions properly.)`
 #	on fail
 #		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
-#Too hand-holdy for present implementation and content.
+# Too hand-holdy for present implementation and content.
 
 
 # Must be able to resolve earlier than the rest in this set.
-#The Geodesic Geocoris may become available to purchase specially later on.
+# The Geodesic Geocoris may become available to purchase specially later on.
 mission "00 Hai Leaks Response 4B"
 	landing
 	source "Allhome"
@@ -966,7 +966,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	description "This modified Geocoris has identical cargo capacity, but is the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings, and some kind of integrated system core which seems to have something of a life of its own. As such, some systems are built-in and unable to be removed. Nevertheless it is significantly more survivable than a traditional Geocoris and at least as useful."
 
 
-# The spike in interest leads to ladybugs appearing in the Hai Merchant (Human) fleets.	
+# The spike in interest leads to ladybugs appearing in the Hai Merchant (Human) fleets.
 event "humans adopt ladybugs"
 	fleet "Small Hai Merchant (Human)"
 		add variant 6
@@ -1002,7 +1002,7 @@ event "humans adopt ladybugs"
 			"Ladybug (Pulse)" 2
 		add variant 4
 			"Behemoth (Hai)"
-			"Ladybug (Pulse)" 
+			"Ladybug (Pulse)"
 			"Ladybug (Three Ion)"
 		add variant 4
 			"Behemoth (Hai)"
