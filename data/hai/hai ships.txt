@@ -1273,7 +1273,7 @@ ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
 	outfits
 		"Pulse Cannon" 8
 		"Pulse Turret" 2
-		"Chameleon Anti-Missile" 2 
+		"Chameleon Anti-Missile" 2
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator" 3

@@ -235,7 +235,7 @@ mission "Wanderers: Diplomacy"
 				`	"What if the humans want our own envoy to these aliens?"`
 			label envoy
 			`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
-				accept			
+				accept
 	on accept
 		fail "First Contact: Wanderer"
 	on visit

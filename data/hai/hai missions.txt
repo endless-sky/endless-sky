@@ -1436,7 +1436,7 @@ mission "Strider: Coalition 2"
 # For compatibility
 event "pond strider mass production"
 
-# The mission to ensure the Pond Strider is properly added to the new Hai shipyards.	
+# The mission to ensure the Pond Strider is properly added to the new Hai shipyards.
 mission "Pond Strider Patch for v2"
 	landing
 	invisible

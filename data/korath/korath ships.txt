@@ -418,8 +418,8 @@ ship "Kas'ik Tek 7"
 		"Generator (Candle Class)"
 		"Small Heat Shunt"
 		"Engine (Meteor Class)"
-	engine 0 22.5 
-	engine -8.5 25 
+	engine 0 22.5
+	engine -8.5 25
 	engine 8.5 25
 	explode "tiny explosion" 9
 	explode "small explosion" 6
@@ -540,7 +540,7 @@ ship "Ikatila'ej"
 		"Double Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Thermal Repeater Rifle"  986
+		"Thermal Repeater Rifle" 986
 		"Microbot Defense Station" 26
 
 		"Afterburner (Lunar Class)"
