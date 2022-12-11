@@ -53,8 +53,10 @@ public:
 	bool operator==(const Date &other) const;
 	bool operator!=(const Date &other) const;
 
-	// Get the number of days that have elapsed since the "epoch".
+	// Get the number of days that have elapsed since the "epoch" and the start of this year.
 	int DaysSinceEpoch() const;
+	int DaysSinceYearStart() const;
+	int DaysUntilYearEnd() const;
 
 	// Get the date as numbers.
 	int Day() const;
