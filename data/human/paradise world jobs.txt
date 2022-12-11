@@ -574,7 +574,7 @@ phrase "martini evac dialog plural"
 
 mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 	name "Evacuate Martini residents to <planet>"
-	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
+	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
@@ -583,7 +583,7 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		require "Luxury Accomodations"
+		has "outfit: Luxury Accomodations"
 	source
 		planet "Martini" "Thrall"
 	destination
@@ -607,7 +607,7 @@ mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		require "Luxury Accomodations"
+		has "outfit: Luxury Accomodations"
 	source
 		planet "Martini" "Thrall"
 	destination
