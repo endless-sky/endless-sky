@@ -5030,7 +5030,7 @@ mission "A dead man's path II"
 			choice
 				"I would be glad to."
 					goto "Accept"
-				"I am sorry but that sounds a bit stupid to me."
+				"I am sorry but that sounds overly complicated to me."
 			`    "Well, seems like we need to find somebody else," Sophie says. They both shake your hand and walk away.`
 				decline
 			label "Accept"
