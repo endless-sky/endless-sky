@@ -56,6 +56,7 @@
 		<Compiler>
 			<Add option="-Wnon-virtual-dtor" />
 			<Add option="-Wall" />
+			<Add option="-pedantic-errors" />
 			<Add option="-std=c++11" />
 			<Add option="-Wold-style-cast" />
 			<Add option="-fno-rtti" />
