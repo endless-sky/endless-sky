@@ -35,7 +35,7 @@ namespace {
 	constexpr int GRACE_PERIOD = 7;
 	constexpr int MAX_AGE = 1500 + GRACE_PERIOD;
 
-	constexpr double MAINTAIN_SHIP_COST = 0.00001;
+	constexpr double MAINTAIN_SHIP_COST = 0.000005;
 }
 
 
