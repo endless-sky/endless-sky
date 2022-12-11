@@ -363,7 +363,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 void MissionAction::AddOutfitObjective(map<string, string> &subs, const std::map<const Outfit *, int> &outfitObjective)
 {
 	action.AddOutfitObjective(subs, outfitObjective);
-};
+}
 
 
 
