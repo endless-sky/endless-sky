@@ -393,7 +393,7 @@ const Sale<Ship> &Planet::Shipyard() const
 
 
 // Get the shipyard description
-const string &Planet::ShipyardDescription() const
+string Planet::ShipyardDescription() const
 {
 	if(!shipyardDescription.empty())
 		return shipyardDescription;
@@ -401,7 +401,7 @@ const string &Planet::ShipyardDescription() const
 	string shipyardDescriptionFromSales = "";
 
 	for(const Sale<Ship> *sale : shipSales)
-		shipyardDescriptionFromSales += sale.description;
+		shipyardDescriptionFromSales += sale->description;
 
 	return shipyardDescriptionFromSales;
 }
@@ -429,7 +429,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 
 
 // Get the outfitter description
-const string &Planet::OutfitterDescription() const
+string Planet::OutfitterDescription() const
 {
 	if(!outfitterDescription.empty())
 		return outfitterDescription;
@@ -437,7 +437,7 @@ const string &Planet::OutfitterDescription() const
 	string outfitterDescriptionFromSales = "";
 
 	for(const Sale<Outfit> *sale : outfitSales)
-		outfitterDescriptionFromSales += outfitSales.description;
+		outfitterDescriptionFromSales += sale->description;
 
 	return outfitterDescriptionFromSales;
 }
