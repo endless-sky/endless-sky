@@ -521,69 +521,76 @@ mission "Paradise Job: Wilderness Retreat"
 		dialog `Your passengers are met by an overly enthusiastic greeting service of comically overdressed "wilderness guides." You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers to you your payment of <payment>.`
 
  mission "Martini Evacuation (Family, No Luxury Accomodations)"
-    name "Evacuate Martini residents to <planet>"
-    description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their belongings to <destination> where they have a second apartment to stay at. They will pay you <payment> as demand is so high and the regional spaceports on Martini cannot handle the traffic."
-    job
-    repeat
-    passengers 3 6
-    cargo "Luggage" 2 4
-    clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
-    to offer
-        has "event: war begins"
-        not "event: initial deployment 2" # Gives the player about a month to do these missions.
-    source
-        Martini
-    destination
-        distance 2 5
-        attributes "paradise" "rich"
-        not attributes "station"
-    on visit
-        dialog phrase "generic cargo and passenger on visit"
-    on complete
-        dialog phrase "martini evac dialog plural"
-        payment 90000
+	name "Evacuate Martini residents to <planet>"
+	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their belongings to <destination> where they have a second apartment to stay at. They will pay you <payment> as demand is so high and the regional spaceports on Martini cannot handle the traffic."
+	job
+	repeat
+	passengers 3 6
+	cargo "Luggage" 2 4
+	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2" # Gives the player about a month to do these missions.
+	source
+		Martini
+	destination
+		distance 2 5
+		attributes "paradise" "rich"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog plural"
+		payment 90000
 
 phrase "martini evac dialog plural"
-    word
-        "Throughout the whole trip, your passengers from Martini have been "
-    phrase
-        "martini evac dialog"
+	word
+		"Throughout the whole trip, your passengers from Martini have been "
+	phrase
+		"martini evac dialog"
 
 phrase "martini evac dialog"
-    word
-        "going on about"
-        "complaining about"
-        "accusing"
-    word
-        " "
-    word
-        "the Free Worlds"
-        "those 'bloody collectivists from Bourne'"
-        "'those Southerners'"
-        "'those seditionists from the Rim'"
-        "'those charity-cases from the South'"
-    word
-        " and have been calling them some "
-        ", and using some "
-        ", along with some"
-    word
-        " "
-        " very "
-        " other "
-    word
-        "colorful"
-        "rude"
-        "insulting"
-    word
-        "names"
-        "words"
-    word
-        ". They hand you <payment> and head off for their "
-    word
-        "penthouse"
-        "yacht"
-        "apartment"
-        "mansion"
-        "house"
-    word
-        "on <destination>."
+	word
+		"going on about"
+		"complaining about"
+		"accusing"
+	word
+		" "
+	word
+		"the Free Worlds"
+		"those 'bloody collectivists from Bourne'"
+		"'those Southerners'"
+		"'those seditionists from the Rim'"
+		"'those charity-cases from the South'"
+	word
+		", "
+		" for the nuclear bombings,"
+		" for the destruction of their apartment,"
+		" for the loss of life on Martini,"
+		" for the destruction on Martini,"
+		" for the destruction of the Martinese captial,"
+	word
+		" and have been calling them some "
+		" and using some "
+		" along with some "
+	word
+		" "
+		" very "
+		" other "
+	word
+		"colorful"
+		"rude"
+		"insulting"
+	word
+		"names"
+		"words"
+	word
+		". They hand you <payment> and head off for their "
+	word
+		"penthouse"
+		"yacht"
+		"apartment"
+		"mansion"
+		"house"
+	word
+		"on <destination>."
