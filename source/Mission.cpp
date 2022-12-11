@@ -896,7 +896,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		cargoNeeded -= flagship->Cargo().Free();
 		bunksNeeded -= flagship->Cargo().BunksFree();
 	}
-	if(cargoNeeded < 0 && bunksNeeded < 0)
+	if(cargoNeeded < 0 && bunksNeeded < 0 && CanAccept(player))
 		return "";
 
 	map<string, string> subs;
