@@ -156,7 +156,7 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center)
 {
-	string selectedItem = "No Ship Selected";
+	const string selectedItem = selectedShip ? selectedShip->ModelName() : "No Ship Selected";
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
@@ -183,7 +183,6 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	if(selectedShip)
 	{
 		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
-		selectedItem = selectedShip->ModelName();
 
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
