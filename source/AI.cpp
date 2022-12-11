@@ -514,8 +514,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	}
 	for(const auto &it : ships)
 	{
-		const System *system = it->GetActualSystem()
-		if(system && it->Position().Length() >= system ->InvisibleFenceRadius())
+		const System *system = it->GetActualSystem();
+		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
 		{
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
