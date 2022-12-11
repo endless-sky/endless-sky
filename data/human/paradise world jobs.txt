@@ -578,9 +578,9 @@ phrase "martini evac dialog"
 		" very "
 		" other "
 	word
-		"colorful"
-		"rude"
-		"insulting"
+		"colorful "
+		"rude "
+		"insulting "
 	word
 		"names"
 		"words"
@@ -593,4 +593,4 @@ phrase "martini evac dialog"
 		"mansion"
 		"house"
 	word
-		"on <destination>."
+		" on <planet>."
