@@ -1864,7 +1864,7 @@ fleet "Small Southern Pirates"
 	variant 1
 		"Clipper (Twin Modified Blaster)"
 	variant 1
-		"Clipper (Twin Blasters)"
+		"Clipper (Twin Blaster)"
 	variant 1
 		"Clipper (Heavy Laser)"
 	variant 1
