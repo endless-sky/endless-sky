@@ -116,6 +116,8 @@ test "Flagship Attribute Autoconditions"
 		inject "Flagship Attribute Autoconditions Testing"
 		call "Load First Savegame"
 		apply
+			"test: base: cost" = "flagship base attribute: cost"
+			"test: base: mass" = "flagship base attribute: mass"
 			"test: base: bunks" = "flagship base attribute: bunks"
 			"test: base: cargo space" = "flagship base attribute: cargo space"
 			"test: base: cloak" = "flagship base attribute: cloak"
@@ -147,6 +149,8 @@ test "Flagship Attribute Autoconditions"
 
 			"test: base: heat generation" = "flagship base attribute: heat generation"
 
+			"test: cost" = "flagship attribute: cost"
+			"test: mass" = "flagship attribute: mass"
 			"test: drag" = "flagship attribute: drag"
 			"test: engine capacity" = "flagship attribute: engine capacity"
 			"test: gun ports" = "flagship attribute: gun ports"
@@ -155,6 +159,8 @@ test "Flagship Attribute Autoconditions"
 			"test: weapon capacity" = "flagship attribute: weapon capacity"
 
 		assert
+			"flagship base attribute: cost" == 41627000
+			"flagship base attribute: mass" == 350000
 			"flagship base attribute: bunks" == 25000
 			"flagship base attribute: cargo space" == 59000
 			"flagship base attribute: cloak" == 40
@@ -186,6 +192,8 @@ test "Flagship Attribute Autoconditions"
 
 			"flagship base attribute: heat generation" == 0
 
+			"flagship attribute: cost" == 56584000
+			"flagship attribute: mass" == 902100
 			"flagship attribute: drag" == 4300
 			"flagship attribute: engine capacity" == 13000
 			"flagship attribute: gun ports" == 0
