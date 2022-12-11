@@ -564,7 +564,7 @@ mission "Martini Evacuation (Singular, Apartment, No Luxury Accomodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 120000
+		payment 80000
 
 phrase "martini evac dialog plural"
 	word
@@ -583,7 +583,7 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		has outfits "Luxury Accomodations"
+		outfit "Luxury Accomodations"
 	source
 		planet "Martini" "Thrall"
 	destination
@@ -594,7 +594,7 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 120000
+		payment 180000
 
 mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
 	name "Evacuate Martini residents to <planet>"
@@ -607,7 +607,7 @@ mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		has outfits "Luxury Accomodations"
+		outfit "Luxury Accomodations"
 	source
 		planet "Martini" "Thrall"
 	destination
@@ -618,7 +618,7 @@ mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 120000
+		payment 110000
 
 phrase "martini evac dialog plural"
 	word
