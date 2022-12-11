@@ -31,9 +31,9 @@ namespace {
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 	// Depreciation parameters.
 	constexpr double FULL_DEPRECIATION = 0.25;
-	constexpr double DAILY_DEPRECIATION = 0.998;
+	constexpr double DAILY_DEPRECIATION = 0.999;
 	constexpr int GRACE_PERIOD = 7;
-	constexpr int MAX_AGE = 2000 + GRACE_PERIOD;
+	constexpr int MAX_AGE = 1500 + GRACE_PERIOD;
 
 	constexpr double MAINTAIN_SHIP_COST = 0.00001;
 }
