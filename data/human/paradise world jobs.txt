@@ -522,11 +522,11 @@ mission "Paradise Job: Wilderness Retreat"
 
 mission "Martini Evacuation (Family, Apartment, No Luxury Accomodations)"
 	name "Evacuate Martini residents to <planet>"
-	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> of belongings to <destination> where they have a second apartment to stay at. They will pay you <payment>."
+	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have a second apartment to stay at. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
-	cargo "Luggage" 2 4
+	cargo "belongings" 2 4
 	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
 	to offer
 		has "event: war begins"
