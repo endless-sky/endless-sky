@@ -544,12 +544,12 @@ mission "Martini Evacuation (Family, Apartment, No Luxury Accomodations)"
 		payment 120000
 
 mission "Martini Evacuation (Singular, Apartment, No Luxury Accomodations)"
-	name "Evacuate Martini residents to <planet>"
+	name "Evacuate Martini resident to <planet>"
 	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
 	repeat
-	passengers 3 6
-	cargo "belongings" 2 4
+	passengers 1
+	cargo "belongings" 1 2
 	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
@@ -583,7 +583,7 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		outfit "Luxury Accomodations"
+		require "Luxury Accomodations"
 	source
 		planet "Martini" "Thrall"
 	destination
@@ -597,17 +597,17 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 		payment 180000
 
 mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
-	name "Evacuate Martini residents to <planet>"
-	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
+	name "Evacuate Martini resident to <planet>"
+	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
 	repeat
-	passengers 3 6
-	cargo "belongings" 2 4
+	passengers 1
+	cargo "belongings" 1 2
 	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		outfit "Luxury Accomodations"
+		require "Luxury Accomodations"
 	source
 		planet "Martini" "Thrall"
 	destination
