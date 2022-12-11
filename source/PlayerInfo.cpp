@@ -2721,7 +2721,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&daysSinceStartProvider = conditions.GetProviderNamed("days since start");
 	daysSinceStartProvider.SetGetFunction([this](const string &name)
 	{
-		return StartData().GetDate().DaysSinceEpoch() - date.DaysSinceEpoch();
+		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch();
 	});
 
 	// Read-only account conditions.
