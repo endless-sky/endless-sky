@@ -500,12 +500,21 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 					&& !(it->second & ShipEvent::ASSIST);
 			}
 			bool isHere = false;
+			bool isCarried = ship->CanBeCarried() && ship->GetParent();
 			// If this ship is being carried, check the parent's system.
-			if(!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent())
+			if(!ship->GetSystem() && isCarried)
 				isHere = ship->GetParent()->GetSystem() == playerSystem;
 			else
 				isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
-			if((isHere && !isImmobile) ^ mustAccompany)
+			// For "evade" fleets, any surviving ships must either not be here or be immobile.
+			// (Windows on disabled ships are so foggy that the inhabitants cannot see out of them.)
+			if(mustEvade && isHere && !isImmobile)
+				return false;
+			// For "accompany" fleets, surviving ships must be in the system.
+			else if(mustAccompany && !isHere)
+				return false;
+			// "Accompany" ships must also be mobile, or be carried by something that is mobile.
+			else if(mustAccompany && isImmobile && !isCarried)
 				return false;
 		}
 
