@@ -520,7 +520,8 @@ mission "Paradise Job: Wilderness Retreat"
 		payment 25000 250
 		dialog `Your passengers are met by an overly enthusiastic greeting service of comically overdressed "wilderness guides." You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers to you your payment of <payment>.`
 
-mission "Martini Evacuation (Family, Apartment, No Luxury Accomodations)"
+# Martini Bombings missions
+mission "Martini Bombings (Evacuation, Family, No Luxury Accomodations)"
 	name "Evacuate Martini residents to <planet>"
 	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
@@ -543,7 +544,7 @@ mission "Martini Evacuation (Family, Apartment, No Luxury Accomodations)"
 		dialog phrase "martini evac dialog plural"
 		payment 120000
 
-mission "Martini Evacuation (Singular, Apartment, No Luxury Accomodations)"
+mission "Martini Bombings (Evacuation, Singular, No Luxury Accomodations)"
 	name "Evacuate Martini resident to <planet>"
 	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
@@ -555,7 +556,7 @@ mission "Martini Evacuation (Singular, Apartment, No Luxury Accomodations)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		planet "Martini" "Thrall"
+		planet "Martini"
 	destination
 		distance 2 5
 		attributes "paradise" "rich"
@@ -566,13 +567,7 @@ mission "Martini Evacuation (Singular, Apartment, No Luxury Accomodations)"
 		dialog phrase "martini evac dialog singular"
 		payment 80000
 
-phrase "martini evac dialog plural"
-	word
-		"Throughout the whole trip, your passengers from Martini have been "
-	phrase
-		"martini evac dialog"
-
-mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
+mission "Martini Bombings (Evacuation, Family, Luxury Accomodations)"
 	name "Evacuate Martini residents to <planet>"
 	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
@@ -586,7 +581,7 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 	on offer
 		require "Luxury Accommodations"
 	source
-		planet "Martini" "Thrall"
+		planet "Martini"
 	destination
 		distance 2 5
 		attributes "paradise" "rich"
@@ -597,7 +592,7 @@ mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
 		dialog phrase "martini evac dialog plural"
 		payment 180000
 
-mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
+mission "Martini Bombings (Evacuation, Singular, Luxury Accomodations)"
 	name "Evacuate Martini resident to <planet>"
 	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
@@ -611,7 +606,7 @@ mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
 	on offer
 		require "Luxury Accommodations"
 	source
-		planet "Martini" "Thrall"
+		planet "Martini"
 	destination
 		distance 2 5
 		attributes "paradise" "rich"
@@ -665,3 +660,108 @@ phrase "martini evac dialog"
 		"house"
 	word
 		" on <planet>."
+
+mission "Martini Bombings (Medical, Iodine)"
+	name "Iodine tablets to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "iodine tablets" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of iodine tablets to treat radiation sickness, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		distance 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Bombings (Medical, Masks)"
+	name "Masks to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "masks" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of masks for the evacuation efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		distance 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Bombings (Medical, Painkillers)"
+	name "Painkillers to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "painkillers" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of painkiller tablets to treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		distance 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Bombings (Medical, Hazmat Suits)"
+	name "Hazmat suits to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "hazmat suits" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of hazmat suits for the evacuation efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		distance 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
+
+mission "Martini Bombings (Medical, Dosimeters)"
+	name "Dosimeters to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "dosimeters" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of dosimeters for the evacuation efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		distance 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
