@@ -331,7 +331,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 
 
-	if(planet && !planet->OutfitterDescription().empty()) {
+	if(planet && !planet->OutfitterDescription().empty())
+	{
 		Point descriptionPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
 		description.SetAlignment(Alignment::JUSTIFIED);
 		description.SetWrapWidth(INFOBAR_WIDTH - 20);

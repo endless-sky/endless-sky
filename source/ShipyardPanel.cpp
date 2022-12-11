@@ -226,7 +226,8 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
 	}
 
-	if(planet && !planet->ShipyardDescription().empty()) {
+	if(planet && !planet->ShipyardDescription().empty())
+	{
 		Point descriptionPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
 		description.SetAlignment(Alignment::JUSTIFIED);
 		description.SetWrapWidth(INFOBAR_WIDTH - 20);
