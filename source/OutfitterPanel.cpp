@@ -267,7 +267,23 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 
-	int heightOffset = 20;
+	int heightOffset = 0;
+
+	if(planet && !planet->OutfitterDescription().empty())
+	{
+		Point descriptionPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y() + heightOffset);
+		description.SetAlignment(Alignment::JUSTIFIED);
+		description.SetWrapWidth(INFOBAR_WIDTH - 20);
+		description.SetFont(font);
+		description.Wrap(planet->OutfitterDescription());
+		heightOffset += description.Height();
+		description.Draw(descriptionPoint, bright);
+	}
+	// Draw this string representing the selected item (if any), centered in the details side panel
+	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y() + heightOffset);
+	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+		selectedPoint, bright);
+	heightOffset += 20;
 
 	if(selectedOutfit)
 	{
@@ -281,9 +297,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
 			: static_cast<float>(TileSize());
 
-		Point thumbnailCenter(center.X(), center.Y() + 20 + tileSize / 2);
-
-		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
+		Point thumbnailCenter(center.X(), center.Y() + heightOffset + tileSize / 2);
+		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + heightOffset + tileSize);
 
 		double descriptionOffset = 35.;
 		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
@@ -329,21 +344,6 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		heightOffset = reqsPoint.Y() + outfitInfo.RequirementsHeight();
 	}
-
-
-	if(planet && !planet->OutfitterDescription().empty())
-	{
-		Point descriptionPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
-		description.SetAlignment(Alignment::JUSTIFIED);
-		description.SetWrapWidth(INFOBAR_WIDTH - 20);
-		description.SetFont(font);
-		description.Wrap(planet->OutfitterDescription());
-		description.Draw(descriptionPoint, bright);
-	}
-	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
-		selectedPoint, bright);
 
 	return heightOffset;
 }
