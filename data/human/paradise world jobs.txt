@@ -571,16 +571,15 @@ phrase "martini evac dialog"
 		" for the destruction of the Martinese captial,"
 	word
 		" and have been calling them some "
-		" and using some "
 		" along with some "
 	word
-		" "
-		" very "
-		" other "
+		""
+		" very"
+		" other"
 	word
-		"colorful "
-		"rude "
-		"insulting "
+		" colorful "
+		" rude "
+		" insulting "
 	word
 		"names"
 		"words"
