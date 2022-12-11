@@ -1374,6 +1374,7 @@ mission "Remnant: Cognizance 32"
 	destination "Clink"
 	to offer
 		has "Remnant: Cognizance 31: done"
+	to accept
 		has "license: Remnant Capital"
 	on offer
 		conversation
