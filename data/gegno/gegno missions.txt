@@ -13,7 +13,7 @@
 mission "First Contact: Gegno Vi"
 	landing
 	name `<Alien> Transport`
-	description `Transport the <alien> you assisted on Var Oti to the location designated on the map.`
+	description `Transport the <alien> you assisted on <origin> to the location designated on the map.`
 	substitutions
 		"<alien>" "alien"
 		"<alien>" "Gegno"
