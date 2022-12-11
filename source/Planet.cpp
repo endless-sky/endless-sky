@@ -148,7 +148,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		{
 			if(remove)
 				shipSales.erase(GameData::Shipyards().Get(value));
-			else if (value == "description" && child.Size() > (valueIndex + 1))
+			else if(value == "description" && child.Size() > (valueIndex + 1))
 				shipyardDescription += child.Token(valueIndex + 1) + '\n';
 			else
 				shipSales.insert(GameData::Shipyards().Get(value));
@@ -157,7 +157,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		{
 			if(remove)
 				outfitSales.erase(GameData::Outfitters().Get(value));
-			else if (value == "description" && child.Size() > (valueIndex + 1))
+			else if(value == "description" && child.Size() > (valueIndex + 1))
 				outfitterDescription += child.Token(valueIndex + 1) + '\n';
 			else
 				outfitSales.insert(GameData::Outfitters().Get(value));
