@@ -522,7 +522,7 @@ mission "Paradise Job: Wilderness Retreat"
 
 mission "Martini Evacuation (Family, Apartment, No Luxury Accomodations)"
 	name "Evacuate Martini residents to <planet>"
-	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have a second apartment to stay at. They will pay you <payment>."
+	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
@@ -543,9 +543,95 @@ mission "Martini Evacuation (Family, Apartment, No Luxury Accomodations)"
 		dialog phrase "martini evac dialog plural"
 		payment 120000
 
+mission "Martini Evacuation (Singular, Apartment, No Luxury Accomodations)"
+	name "Evacuate Martini residents to <planet>"
+	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
+	job
+	repeat
+	passengers 3 6
+	cargo "belongings" 2 4
+	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		planet "Martini" "Thrall"
+	destination
+		distance 2 5
+		attributes "paradise" "rich"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog singular"
+		payment 120000
+
 phrase "martini evac dialog plural"
 	word
 		"Throughout the whole trip, your passengers from Martini have been "
+	phrase
+		"martini evac dialog"
+
+mission "Martini Evacuation (Family, Apartment, Luxury Accomodations)"
+	name "Evacuate Martini residents to <planet>"
+	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
+	job
+	repeat
+	passengers 3 6
+	cargo "belongings" 2 4
+	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		has outfits "Luxury Accomodations"
+	source
+		planet "Martini" "Thrall"
+	destination
+		distance 2 5
+		attributes "paradise" "rich"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog plural"
+		payment 120000
+
+mission "Martini Evacuation (Singular, Apartment, Luxury Accomodations)"
+	name "Evacuate Martini residents to <planet>"
+	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have a second house to stay at. They will pay you <payment>."
+	job
+	repeat
+	passengers 3 6
+	cargo "belongings" 2 4
+	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		has outfits "Luxury Accomodations"
+	source
+		planet "Martini" "Thrall"
+	destination
+		distance 2 5
+		attributes "paradise" "rich"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog singular"
+		payment 120000
+
+phrase "martini evac dialog plural"
+	word
+		"Throughout the whole trip, your passengers from Martini have been "
+	phrase
+		"martini evac dialog"
+
+
+
+# Martini evac on complete dialog
+phrase "martini evac dialog singular"
+	word
+		"Throughout the whole trip, your passenger from Martini has been "
 	phrase
 		"martini evac dialog"
 
@@ -563,26 +649,10 @@ phrase "martini evac dialog"
 		"'those seditionists from the Rim'"
 		"'those charity-cases from the South'"
 	word
-		", "
-		" for the nuclear bombings,"
-		" for the destruction of their apartment,"
-		" for the loss of life on Martini,"
-		" for the destruction on Martini,"
-		" for the destruction of the Martinese captial,"
-	word
-		" and have been calling them some "
-		" along with some "
-	word
-		""
-		" very"
-		" other"
-	word
-		" colorful "
-		" rude "
-		" insulting "
-	word
-		"names"
-		"words"
+		" for the nuclear bombings"
+		" for the destruction of their apartment"
+		" for the loss of life on Martini"
+		" for the destruction on Martini"
 	word
 		". They hand you <payment> and head off for their "
 	word
