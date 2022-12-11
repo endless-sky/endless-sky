@@ -3155,6 +3155,55 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
+	// Read-only navigation conditions.
+	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
+	{
+		if(!origin)
+			return -1;
+
+		auto distanceMap = DistanceMap(origin);
+		if(!distanceMap.HasRoute(destination))
+			return -1;
+		return distanceMap.Days(destination);
+	};
+
+	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
+	auto hyperjumpsToSystemFun = [this, HyperspaceTravelDays](const string &name) -> int
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
+		if(!system)
+		{
+			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: "))
+					+ "\" referred to in condition is not valid.");
+			return -1;
+		}
+		return HyperspaceTravelDays(this->GetSystem(), system);
+	};
+	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
+	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
+
+	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
+	auto hyperjumpsToPlanetFun = [this, HyperspaceTravelDays](const string &name) -> int
+	{
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
+		if(!planet)
+		{
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not valid.");
+			return -1;
+		}
+		const System *system = planet->GetSystem();
+		if(!system)
+		{
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not in any system.");
+			return -1;
+		}
+		return HyperspaceTravelDays(this->GetSystem(), system);
+	};
+	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
+	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
+
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
