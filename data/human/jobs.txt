@@ -3641,3 +3641,62 @@ mission "Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
+
+
+
+mission "Mineral Very Large Bulk Delivery"
+	job
+	repeat
+	name "Very Large Bulk <outfit> Delivery"
+	description "A client on <destination> has requested an astonishing <outfit-cargo> and is willing to pay <payment>."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 0
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	cargo outfitter "Mining Job Outfitter" 250 750
+	to offer
+		random < 10
+	on visit
+		dialog phrase "generic mineral visit dialog"
+	on complete
+		payment
+		dialog phrase "generic mineral payment dialog"
+
+mission "Mineral Large Bulk Delivery"
+	job
+	repeat
+	name "Large Bulk <outfit> Delivery"
+	description "A client on <destination> has requested <outfit-cargo> and is willing to pay <payment>."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 0
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	cargo outfitter "Mining Job Outfitter" 100 500
+	to offer
+		random < 20
+	on visit
+		dialog phrase "generic mineral visit dialog"
+	on complete
+		payment
+		dialog phrase "generic mineral payment dialog"
+
+mission "Mineral Bulk Delivery"
+	job
+	repeat
+	name "Bulk <outfit> Delivery"
+	description "A client on <destination> has requested <outfit-cargo> and is willing to pay <payment>."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 0
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	cargo outfitter "Mining Job Outfitter" 50 150
+	to offer
+		random < 30
+	on visit
+		dialog phrase "generic mineral visit dialog"
+	on complete
+		payment
+		dialog phrase "generic mineral payment dialog"
