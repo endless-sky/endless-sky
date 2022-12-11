@@ -371,13 +371,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
 			}
 		}
-		else if(key == "invisible fence")
-		{
-			if(child.Size() >= 2)
-			{
-				invisibleFenceRadius = child.Value(1);
-			}
-		}
+		else if(key == "invisible fence" && child.Size() >= 2)
+			invisibleFenceRadius = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
