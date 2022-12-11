@@ -2770,6 +2770,10 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 
 		const Outfit &attributes = base ? flagship->BaseAttributes() : flagship->Attributes();
+		if(attribute == "cost")
+			return attributes.Cost();
+		if(attribute == "mass")
+			return attributes.Mass() * 1000.;
 		return round(attributes.Get(attribute) * 1000.);
 	};
 
