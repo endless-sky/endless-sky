@@ -2723,7 +2723,7 @@ phrase "friendly pirate"
 	word
 		" It worked for me!"
 		" I guarantee it works!"
-		" It's an 100% success rate so far!"
+		" It's been a 100% success rate for me so far!"
 		" They'll never bother you again!"
 		" If it doesn't work, you can always replace them!"
 		" It's an old family trick!"
@@ -2889,6 +2889,8 @@ phrase "pirate plans attack on planet 2"
 		"weapons depot"
 		"villages"
 		"towns"
+	replace
+		"s's" "s'"
 		
 phrase "pirate plans attack on ships"
 	word
@@ -3118,7 +3120,6 @@ phrase	"pirate big raid 2"
 		"hugest"
 		"gnarliest"
 		"biggest"
-		"hugest"
 		"craziest"
 		"juiciest"
 		"most cosmic"
@@ -3190,6 +3191,7 @@ phrase	"pirate big raid 2"
 	word
 		"!"
 
+# A few pirates make it up as far north as Asgard, and they have ships like Corvettes and Aeries which they must get from the Deep by raiding or capture. The pirate planets are there because of pirate band infighting. 
 phrase "north pirate target"
 	word
 		"Farpoint"
@@ -3203,7 +3205,6 @@ phrase "north pirate target"
 		"Stormhold"
 		"Haven"
 		"Zenith"
-# A few pirates make it up as far north as Asgard, and they have ships like Corvettes and Aeries which they must get from the Deep by raiding or capture. The pirate planets are there because of pirate band infighting. 
 
 phrase "core pirate target"
 	word
@@ -3277,7 +3278,7 @@ phrase "friendly pirate"
 	word
 		"and I get scanned by the Man."
 		"and I get scanned by the Law."
-		"and the long hand of the Law starts tapping on my shoulders." 
+		"and the long arm of the Law starts tapping on my shoulders." 
 		"and the Navy starts chasing me."
 		"and there's a Gunboat waiting for me."
 		"and one of my rivals notices me."
@@ -4292,6 +4293,8 @@ phrase "hostile pirate"
 		"living without authority"
 	word
 		"!"
+	replace
+		"%" ""
 
 phrase "hostile pirate"
 	word
