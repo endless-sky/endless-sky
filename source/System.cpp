@@ -372,7 +372,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 		}
 		else if(key == "invisible fence" && child.Size() >= 2)
-			invisibleFenceRadius = child.Value(1);
+			invisibleFenceRadius = max(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
