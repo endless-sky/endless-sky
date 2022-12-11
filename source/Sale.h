@@ -53,6 +53,8 @@ void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 			this->erase(items.Get(child.Token(1)));
 		else if(token == "add" && child.Size() >= 2)
 			this->insert(items.Get(child.Token(1)));
+		else if(token == "description" && child.Size() >= 2)
+			description += child.Token(1) + '\n';
 		else
 			this->insert(items.Get(token));
 	}
@@ -73,5 +75,7 @@ bool Sale<Item>::Has(const Item *item) const
 {
 	return this->count(item);
 }
+
+
 
 #endif
