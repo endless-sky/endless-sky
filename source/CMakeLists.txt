@@ -8,7 +8,8 @@ if(MSVC)
 		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/WX;/Oi>")
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
-	target_compile_options(EndlessSkyLib PUBLIC "-Wall" "-Wold-style-cast" "-fno-rtti" "$<$<CONFIG:Release>:-Werror>")
+	target_compile_options(EndlessSkyLib PUBLIC
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti" "$<$<CONFIG:Release>:-Werror>")
 endif()
 
 # The 'mingw32' lib needs to be linked first.
