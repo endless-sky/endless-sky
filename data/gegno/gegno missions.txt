@@ -467,6 +467,10 @@ mission "Gegno Genocide Defense"
 			has "gegno: unified defense"
 		to despawn
 			has "dead augen"
+		to spawn
+			has "gegno: unified defense"
+		to despawn
+			has "dead augen"
 		personality heroic vindictive staying
 		system "Heutesl"
 		ship Augen "Vytii Yrrlausei"
