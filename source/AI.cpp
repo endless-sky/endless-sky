@@ -514,15 +514,12 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	}
 	for(const auto &it : ships)
 	{
-		// Skip carried fighters or drones.
-		if(!it->GetSystem())
-			continue;
-		else
-			if(it->Position().Length() >= it->GetSystem()->InvisibleFenceRadius())
-			{
-				int &value = fenceCount[&*it];
-				value = min(FENCE_MAX, value + FENCE_DECAY + 1);
-			}
+		const System *system = it->GetActualSystem()
+		if(system && it->Position().Length() >= system ->InvisibleFenceRadius())
+		{
+			int &value = fenceCount[&*it];
+			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
+		}
 	}
 
 	const Ship *flagship = player.Flagship();
