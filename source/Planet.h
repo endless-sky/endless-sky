@@ -147,6 +147,8 @@ private:
 	std::string name;
 	std::string description;
 	std::string spaceport;
+	std::string shipyardDescription;
+	std::string outfitterDescription;
 	const Sprite *landscape = nullptr;
 	std::string music;
 
