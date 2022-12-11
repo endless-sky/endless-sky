@@ -35,8 +35,8 @@ mission "Hai Reveal [D01A] Summoned to Mountaintop"
 	destination "Mountaintop"
 	to offer
 		not "Hai Reveal [D01B] Summoned to Mountaintop: offered"
-		#This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
-		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
+		# This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
+		# This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
 		has "event: hai-human treaty prepared"
 		has "Nanachi 4: done"
 		# Nanachi is too long a chain to do in the middle of the main story, the starting conditions have been changed to be available as soon as you're famous and not busy.
@@ -47,7 +47,7 @@ mission "Hai Reveal [D01A] Summoned to Mountaintop"
 	on offer
 		event "cardax site chosen"
 		conversation
-			#A message summons you for the treaty resolution.
+			# A message summons you for the treaty resolution.
 			`When you land at the spaceport, you find a message waiting for you from Teneep in the system buffer.`
 			`	The message has traveled a very long way and filtered through a great many relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
 			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on <destination> when you're ready.`
@@ -63,8 +63,8 @@ mission "Hai Reveal [D01B] Summoned to Mountaintop"
 	destination "Mountaintop"
 	to offer
 		not "Hai Reveal [D01A] Summoned to Mountaintop: offered"
-		#This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
-		#This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
+		# This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
+		# This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
 		has "event: hai-human treaty prepared"
 		has "Nanachi 4: done"
 		# Nanachi is too long a chain to do in the middle of the main story, the starting conditions have been changed to be available as soon as you're famous and not busy.
@@ -75,12 +75,12 @@ mission "Hai Reveal [D01B] Summoned to Mountaintop"
 	on offer
 		event "cardax site chosen"
 		conversation
-			#A message summons you for the treaty resolution.
+			# A message summons you for the treaty resolution.
 			`When you land at the spaceport, you find a message waiting for you from Teneep in the system buffer.`
 			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on <destination> when you're ready.`
 				accept
 	
-#Redefine Cardax to have a named location for the station.
+# Redefine Cardax to have a named location for the station.
 event "cardax site chosen"
 	system Cardax
 		add object
@@ -217,7 +217,7 @@ mission "Hai Reveal [D03] Defend Mooncreek Construction Site"
 		ship Geocoris "Luf Sook Hey"
 		ship Geocoris "Du Eh"
 		ship Geocoris "Mon e Ow"
-	npc 
+	npc
 		government "Pirate"
 		system Alcyone
 		personality heroic unconstrained waiting nemesis
@@ -463,8 +463,8 @@ mission "Hai Reveal [D09] Escort Hai Outfitters"
 		ship Geocoris "Mon Yo Sen"
 		
 		
-#The Free Worlds demand a tour so they can be seen to be contributing to the wider benefit of humanity. (They're PR hogs.)
-#This will need branches in the event of future alternative campaigns.
+# The Free Worlds demand a tour so they can be seen to be contributing to the wider benefit of humanity. (They're PR hogs.)
+# This will need branches in the event of future alternative campaigns.
 mission "Hai Reveal [D10] Escort Free World Outfitters"
 	landing
 	name "<origin> Construction"
@@ -558,25 +558,25 @@ mission "Hai Reveal [D12] Escort Free World Outfitters"
 		ship "Hauler III" "F.S. Ponderosa"
 		ship "Hauler III" "F.S. Bartlett"
 		ship "Hauler III" "F.S. Sycamore"
-	npc 
+	npc
 		government "Pirate"
 		system Shaula
 		personality heroic unconstrained waiting nemesis
 		fleet "Marauder fleet X"
 		fleet "Marauder fleet IX" 2
-	npc 
+	npc
 		government "Pirate"
 		system Gienah
 		personality heroic unconstrained waiting nemesis
 		fleet "Marauder fleet X"
 		fleet "Marauder fleet IX" 2
-	npc 
+	npc
 		government "Pirate"
 		system Alcyone
 		personality heroic unconstrained waiting nemesis
 		fleet "Marauder fleet X"
 		fleet "Marauder fleet IX" 2
-	npc 
+	npc
 		government "Pirate"
 		system Almaaz
 		personality heroic unconstrained waiting nemesis
@@ -591,13 +591,13 @@ event "mooncreek main outfitters"
 		add outfitter "Hai Security"
 		security 0.8
 
-#Kraz & Delta V
+# Kraz & Delta V
 event "mooncreek fw outfitters"
 	planet Mooncreek
 		add outfitter "FW Security"
 
 
-#add syndicate hai and republic outfitters event - do not add FW outfitter event - proceed to trigger story conclusion.
+# add syndicate hai and republic outfitters event - do not add FW outfitter event - proceed to trigger story conclusion.
 mission "Hai Reveal [D0XA] Skipped Mooncreek Escorts"
 	landing
 	invisible
@@ -613,7 +613,7 @@ mission "Hai Reveal [D0XB] Skipped Mooncreek Escorts"
 	description "Travel to Mountaintop for the final treaty signing."
 	destination "Mountaintop"
 	to offer
-		has "mooncreek main outfitters" 
+		has "mooncreek main outfitters"
 		not "Hai Reveal [D04] Escort Republic Outfitters: done"
 	on offer
 		conversation
@@ -626,7 +626,7 @@ mission "Hai Reveal [D0XC] Skipped Mooncreek Escorts"
 	description "Travel to Mountaintop for the final treaty signing."
 	destination "Mountaintop"
 	to offer
-		has "mooncreek main outfitters" 
+		has "mooncreek main outfitters"
 		has "Hai Reveal [D10] Escort Free World Outfitters: declined"
 	on offer
 		conversation
@@ -673,7 +673,7 @@ mission "Hai Reveal [D14] Hai-Human Treaty"
 				decline
 
 
-#The final conclusion event.
+# The final conclusion event.
 event "hai-human treaty signed"
 
 

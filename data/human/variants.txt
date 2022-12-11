@@ -972,7 +972,7 @@ ship "Corvette" "Corvette (Hai Trafficker)"
 		"Hai Tracker Pod" 4
 		Ramscoop
 		"Boulder Reactor"
-		"Outfits Expansion" 
+		"Outfits Expansion"
 		"Liquid Nitrogen Cooler"
 		"Security Station" 4
 

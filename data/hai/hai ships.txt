@@ -535,9 +535,9 @@ ship "Ladybug"
 		# Expensive features mentioned in description:
 		"ramscoop" 0.25
 		"cargo scan power" 5
-		"cargo scan speed" 1
+		"cargo scan speed" 16
 		"outfit scan power" 17
-		"outfit scan speed" 1
+		"outfit scan speed" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30
@@ -1273,7 +1273,7 @@ ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
 	outfits
 		"Pulse Cannon" 8
 		"Pulse Turret" 2
-		"Chameleon Anti-Missile" 2 
+		"Chameleon Anti-Missile" 2
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
 		"Hai Diamond Regenerator" 3
