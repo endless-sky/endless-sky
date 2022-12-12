@@ -34,6 +34,7 @@
 		90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950742538F8CECF5D4168FBC /* EsUuid.cpp */; };
 		920F40E0ADECA8926F423FDA /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61FA4C2BB89E08C5E2B8B4B9 /* Variant.cpp */; };
 		938E07E4235970CE00DC2C2B /* FormationPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 938E07E0235970CE00DC2C2B /* FormationPattern.cpp */; };
+		93A9D98B2946BA9500167143 /* SpriteParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A9D9892946BA8E00167143 /* SpriteParameters.cpp */; };
 		94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A4C648B242742B22A34FA /* Weather.cpp */; };
 		9E1F4BF78F9E1FC4C96F76B5 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E8047A8987DD8EC99FF8E2E /* Test.cpp */; };
 		A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */; };
@@ -275,8 +276,8 @@
 		8E8A4C648B242742B22A34FA /* Weather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weather.cpp; path = source/Weather.cpp; sourceTree = "<group>"; };
 		938E07E0235970CE00DC2C2B /* FormationPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormationPattern.cpp; path = source/FormationPattern.cpp; sourceTree = "<group>"; };
 		938E07E1235970CE00DC2C2B /* FormationPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormationPattern.h; path = source/FormationPattern.h; sourceTree = "<group>"; };
-		93A9D9872946B9F600167143 /* SpriteParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SpriteParameters.cpp; path = source/SpriteParameters.cpp; sourceTree = "<group>"; };
-		93A9D9882946B9F600167143 /* SpriteParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpriteParameters.h; path = source/SpriteParameters.h; sourceTree = "<group>"; };
+		93A9D9892946BA8E00167143 /* SpriteParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SpriteParameters.cpp; path = source/SpriteParameters.cpp; sourceTree = "<group>"; };
+		93A9D98A2946BA8E00167143 /* SpriteParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpriteParameters.h; path = source/SpriteParameters.h; sourceTree = "<group>"; };
 		950742538F8CECF5D4168FBC /* EsUuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EsUuid.cpp; path = source/EsUuid.cpp; sourceTree = "<group>"; };
 		98104FFDA18E40F4A712A8BE /* CoreStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStartData.h; path = source/CoreStartData.h; sourceTree = "<group>"; };
 		9BCF4321AF819E944EC02FB9 /* layout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = layout.hpp; path = source/text/layout.hpp; sourceTree = "<group>"; };
@@ -588,6 +589,8 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
+				93A9D9892946BA8E00167143 /* SpriteParameters.cpp */,
+				93A9D98A2946BA8E00167143 /* SpriteParameters.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -858,8 +861,6 @@
 				A96863831AE6FD0D004FE1FE /* SpaceportPanel.h */,
 				A96863841AE6FD0D004FE1FE /* Sprite.cpp */,
 				A96863851AE6FD0D004FE1FE /* Sprite.h */,
-				93A9D9872946B9F600167143 /* SpriteParameters.cpp */,
-				93A9D9882946B9F600167143 /* SpriteParameters.h */,
 				A96863861AE6FD0D004FE1FE /* SpriteQueue.cpp */,
 				A96863871AE6FD0D004FE1FE /* SpriteQueue.h */,
 				A96863881AE6FD0D004FE1FE /* SpriteSet.cpp */,
@@ -1285,6 +1286,7 @@
 				A96863E11AE6FD0E004FE1FE /* Personality.cpp in Sources */,
 				A96863B41AE6FD0E004FE1FE /* Date.cpp in Sources */,
 				DF8D57E51FC25889001525DA /* Visual.cpp in Sources */,
+				93A9D98B2946BA9500167143 /* SpriteParameters.cpp in Sources */,
 				A96863EF1AE6FD0E004FE1FE /* SavedGame.cpp in Sources */,
 				A96863A11AE6FD0E004FE1FE /* AI.cpp in Sources */,
 				A96863F71AE6FD0E004FE1FE /* Sound.cpp in Sources */,
