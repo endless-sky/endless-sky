@@ -15,7 +15,7 @@
 
 # Part 4: The crisis expands in scope.
 
-#Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
+# Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
 mission "Hai Reveal [A00] Darkwaste Timer"
 	landing
 	invisible
@@ -962,7 +962,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	She momentarily adopts a self-satisfied smile.`
 			label busy
 			`	"Yes, well, this poses a few issues of its own with the increased demand on the relay bandwidth from here, but I wouldn't have my regular job if something like this was too much to stay on top of."`
-			choice 
+			choice
 				`	"Your regular job?"`
 					goto regular
 				`	"Your job as a secretary?"`
@@ -1481,7 +1481,7 @@ mission "Hai Reveal [A11-A] Permanent Fleets"
 		personality heroic staying
 		fleet "Hai Wormhole Guards" 30
 
-#These are separated because they leave at a different time.
+# These are separated because they leave at a different time.
 mission "Hai Reveal [A11-B] Permanent Fleets"
 	landing
 	invisible
@@ -1498,7 +1498,56 @@ mission "Hai Reveal [A11-B] Permanent Fleets"
 
 
 
-# <insert text only mission(s?) that provides news updates on the election if you land anywhere en route>
+mission "Hai Reveal [A11-C] Outgoing Election Update 1"
+	landing
+	source
+		government "Hai"
+		not planet "Hai-home"
+		attributes "spaceport"
+	to offer
+		has "Hai Reveal [A11] Sound the Alarm: offered"
+	on offer
+		conversation
+			`The spaceport appears to be operating on a skeleton staff with an increased security presence. Plenty of ships are still coming and going, but they seem to be here strictly on business. The usual milling of tourists, haggling of merchants, and perusal of jobs all appear to have been suspended in favor of efficient boarding and disembarking of Hai with places to go and goods with places to be. The displays in the main thoroughfare have been switched over to wall-to-wall election coverage and the rest of the non-essential sections of the spaceport have been closed.`
+			`	Some of the restaurants that are currently closed have set up temporary stands near the displays with the most standing room in the vicinity, and are serving food to those who have no choice but to be here for some duration of time.`
+			choice
+				`	(Get some food.)`
+				`	(Ask around for an update.)`
+					goto ask
+				`	(Return to your ship.)`
+					goto leave
+			`	The stalls have a range of tasty Hai and Hai-human fusion cuisines in disposable takeaway trays. At first glance they appear to be some sort of cardboard equivalent, but a Hai near you finishes their meal and then begins nibbling on the tray afterwards.`
+			`	The election coverage is in Hai, naturally, but there's a strong sense that people are still scrambling to have relevant commentary on such short notice and with no prior opinion polling in lead-up. It certainly seems like things are heated. Different charts being presented for the same areas seem to suggest that there's a great deal of controversy and some very strong opinions being thrown around. A number of the Hai nearby make some sounds of concern occasionally, but they do not stay around to comment. Unfortunately, nothing comes up in your language by the time you've finished your food.`
+			choice
+				`	(Eat the tray.)`
+					goto tray
+				`	(Return to your ship.)`
+					goto leave
+			label tray
+			`	The tray is hard and difficult to break. It does have a remarkably intriguing combination of nutty and herby flavors that would probably be quite enjoyable, but you don't quite have the teeth for it.`
+			choice
+				`	(Ask around for an update.)`
+					goto ask
+				`	(Return to your ship.)`
+					goto leave
+			label ask
+			`	When you ask around, a lot of Hai don't seem to be very interested in talking to you. One, in particular, looks like they recognized you and actively avoided you. After approaching a half dozen Hai unsuccessfully, one takes pity and comes to you. He appears to be of middling years and extends a paw to shake your hand in a friendly manner.`
+			`	"Apologies for my brethren's behavior, Captain, but this is a very important time for the Hai. Many are under significant strain to be informed and also maintain their essential business as captains themselves. There are a number of regulations for Hai citizens to stay on top of if they are frequently moving between worlds during the period, and they haven't had the time to prepare that they usually would."`
+			choice
+				`	"Is politics a very important matter for the Hai?"`
+					goto politics
+				`	"What do they need to prepare for an election?"`
+			`	He gestures at the various Hai captains paying close attention to the election coverage or scrolling information feeds on their data pads. "No one is more closely tied to the specific dynamics of trade between our worlds, and the subtleties of what makes them healthy, than our merchant captains are. I believe the human phrase is that they have their, 'fingers on the pulses', yes? This election has nothing to do with economics, and yet all the candidates have historical economic platforms that they can be expected to bring with them. These captains are being bombarded by queries from friends, families, organizations they trade with frequently, institutions they studied at or supported, local media outlets, and more.`
+			`	"Ordinarily, they would spend at least a month checking on different things and solidifying their positions before an election. A snap election has robbed them of that preparation time, and so they are stressed and concerned. Many, including myself, will have to put up with the consequences of this election for at least the next two decades before any meaningful correction can occur, should the outcome be unfortunate. Long is the timeline that a Hai merchant must consider when asked who should be supported in an election."`
+				goto ping
+			label politics
+			`	He smiles. "You must not have considered the Hai lifespan, Captain. A human might not understand the situation to have nuanced opinions until they are more than twenty years of age, and by the time they are fifty the outcome of their votes are unlikely to have a large effect on the remainder of their lives. It is comparatively easy, if things are okay, for you to simply ignore your politics in favor of other things. A Hai may live for over three hundred years, if they are quite fortunate, but will in most cases still be trying to make a livelihood halfway through that. Barring accident, stupidity, or malicious action, a Hai will typically live to see the longer term effects of their voting preferences. The more wealth a Hai has, the more significant those effects are likely to be. There are few Hai more politically aware than merchant captains, and fewer still whose opinions on the effects of change are trusted more widely.`
+			`	"Our merchant captains are bombarded by queries from friends, families, organizations they trade with frequently, institutions they studied at or supported, local media outlets, and more. Ordinarily, they would spend at least a month checking on different things and solidifying their positions before an election. A snap election has robbed them of that preparation time, and so they are stressed and concerned."`
+			label ping
+			`	There is a gentle ping, and the Hai looks at a device on his wrist. "And now it seems my ship is finished refueling, and I too must be about my business. Safe travels, Captain."`
+			label leave
+			`	With nothing else to do here you return to your ship.`
+				decline
 
 
 
@@ -1518,7 +1567,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	"Captain <last>!" he calls out, audible even over the chaos. He strides up to you quickly and then pulls you aside to a sheltered spot. "Thank the cosmos you're here. I don't know what the devil is going on, either out there or in here, but it's absolute madness."`
 			`	Before you can get a word in he's powered on.`
 			`	"Look at this!" He thrusts a stack of pages at you, pointing to some text that's too small to read while he keeps moving it. "Somehow there's now three alien races involved in this plot, and two are transparently Quarg and Korath. People aren't even meant to know about the Korath!"`
-			choice 
+			choice
 				`	"Turner, I'm here on urgent business."`
 					goto interrupt
 				`	"Know about who?"`
@@ -1557,7 +1606,6 @@ mission "Hai Reveal [A13] A New Elder"
 	to offer
 		has "Hai Reveal [A12] Into the Lion's Den: done"
 	on offer
-#		log ``
 		conversation
 			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day when you enter the diplomatic wing of the government complex. The developing gloom as Ya Hai sinks behind the buildings of the capital underscores the mood; the place appears nearly deserted.`
 			`	Fortunately though, you swiftly discover Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey. When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
@@ -1809,7 +1857,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	After the screens go off, a number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations, as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
 			`	When you finally emerge Terry and Turner are waiting for you. Terry addresses you. "Captain <last>. We have a little problem. The many civilians that have been living under this cover or being serviced by it have been kept in the dark, and are very nervous about the massed Navy ships. They've been so far sold a story about a 'pirate menace,' and now we need them out of here."`
 			`	Turner smiles, "And I think it would be appropriate if you, as the famous war hero, were the one to escort them to safety and keep everyone's eyes away from what's happening here."`
-			`	The two of them look at each other for a second before Terry says,  "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
+			`	The two of them look at each other for a second before Terry says, "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
 				accept
 	npc accompany
 		government "Merchant"

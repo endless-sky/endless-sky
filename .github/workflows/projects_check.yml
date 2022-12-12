@@ -37,7 +37,7 @@ jobs:
     if: ${{ needs.changed.outputs.xcode_files || needs.changed.outputs.game_code }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Install dependencies
@@ -46,7 +46,7 @@ jobs:
       run: ./utils/check_xcode.sh
     - name: Upload XCode patch
       if: failure()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: xcode-project.patch
         path: xcode-project.patch
@@ -56,7 +56,7 @@ jobs:
     if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Validate Code::Blocks project files
@@ -79,7 +79,7 @@ jobs:
     if: ${{ needs.changed.outputs.copyright == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Install dependencies
