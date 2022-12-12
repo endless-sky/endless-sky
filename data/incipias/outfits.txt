@@ -60,7 +60,7 @@ outfit "Solid Class Shield"
 	"shield generation" .45
 	"energy generation" 6
 	"heat generation" 8
-	description "This shield generator is efficiency pure. It burns it input in stages from solid in the center to gas state in the outer hull. Sadly this efficiency requires a lot of adjusting system to stabalize the process. Only the most heavy warships are using this genereator therefore."
+	description "This shield generator is pure efficiency. It burns its input in stages from solid in the center to a gaseous state in the outer hull. Sadly this efficiency requires a lot of adjusting systems to stabilize the process, and therefore only the heaviest warships use this generator."
 
 outfit "Liquid Hydrogen Cell"
 	category "Power"
