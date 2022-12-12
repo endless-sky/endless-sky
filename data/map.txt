@@ -30168,12 +30168,10 @@ planet Luna
 	shipyard "Navy Basics"
 	shipyard "Betelgeuse Basics"
 	shipyard "Syndicate Basics"
-	shipyard description "Don't call the Luna shipyard workers Lunatics. They seem to be very sensitive about it."
 	outfitter "Common Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
-	outfitter description "Don't call the Luna outfitter workers Lunatics. They seem to be very sensitive about it."
 	bribe 0.05
 	security 0.2
 	tribute 2500
