@@ -788,7 +788,7 @@ phrase "martini evac dialog"
 
 mission "Martini Bombings (Medical, Iodine)"
 	name "Iodine tablets to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
 	cargo "iodine tablets" 5 25
@@ -810,7 +810,7 @@ mission "Martini Bombings (Medical, Iodine)"
 
 mission "Martini Bombings (Medical, Painkillers)"
 	name "Painkillers to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
 	cargo "painkillers" 5 25
@@ -832,7 +832,7 @@ mission "Martini Bombings (Medical, Painkillers)"
 
 mission "Martini Bombings (Medical, Medical Kits)"
 	name "Medical Kits to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
 	cargo "medical kits" 5 25
@@ -854,7 +854,7 @@ mission "Martini Bombings (Medical, Medical Kits)"
 
 mission "Martini Bombings (Medical, Stretchers)"
 	name "Stretchers to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
 	cargo "stretchers" 5 25
@@ -876,7 +876,7 @@ mission "Martini Bombings (Medical, Stretchers)"
 
 mission "Martini Bombings (Medical, Bandages)"
 	name "Bandages to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
 	cargo "bandages" 5 25
@@ -898,7 +898,7 @@ mission "Martini Bombings (Medical, Bandages)"
 
 mission "Martini Bombings (Medical, Medical Gloves)"
 	name "Medical Gloves to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
 	cargo "medical gloves" 5 25
@@ -920,7 +920,7 @@ mission "Martini Bombings (Medical, Medical Gloves)"
 
 mission "Martini Bombings (Medical, Saline)"
 	name "Saline solution to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. Payment is <payment>."
 	job
 	repeat
 	cargo "saline solution" 5 25
@@ -942,7 +942,7 @@ mission "Martini Bombings (Medical, Saline)"
 
 mission "Martini Bombings (Evacuation, Masks)"
 	name "Masks to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the evacuation efforts. Payment is <payment>."
 	job
 	repeat
 	cargo "masks" 5 25
@@ -962,9 +962,31 @@ mission "Martini Bombings (Evacuation, Masks)"
 		dialog phrase "generic cargo delivery payment"
 
 
+mission "Martini Bombings (Evacuation, Respirators)"
+	name "Respirators to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the evacuation efforts. Payment is <payment>."
+	job
+	repeat
+	cargo "respirators" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of respirators for the evacuation efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 40
+	source
+		near "Pollux" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
 mission "Martini Bombings (Evacuation, Hazmat Suits)"
 	name "Hazmat suits to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the evacuation efforts. Payment is <payment>."
 	job
 	repeat
 	cargo "hazmat suits" 5 25
@@ -986,7 +1008,7 @@ mission "Martini Bombings (Evacuation, Hazmat Suits)"
 
 mission "Martini Bombings (Evacuation, Dosimeters)"
 	name "Dosimeters to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the evacuation efforts. Payment is <payment>."
 	job
 	repeat
 	cargo "dosimeters" 5 25
@@ -1006,13 +1028,13 @@ mission "Martini Bombings (Evacuation, Dosimeters)"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Martini Bombings (Evacuation, Helicopters)"
+mission "Martini Bombings (Evacuation, Rescue Helicopters)"
 	name "Helicopers to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help with the evacuation efforts. Payment is <payment>."
 	job
 	repeat
-	cargo "helicoptor" 5 25
-	clearance "When you explain to the spaceport controller that you are carrying a vital supply of helicopters for the evacuation efforts, they give you the clearance to land."
+	cargo "rescue helicoptors" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital cargo of rescue helicopters for the evacuation efforts, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
