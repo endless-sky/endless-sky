@@ -457,10 +457,10 @@ mission "WR Star 1"
 		random < 20
 	passengers 3
 	cargo "sensors" 2
-	
 	on offer
 		dialog `A group of <bunks> scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
-	
+	on waypoint
+		dialog `The team of scientists unpacks their equipment and takes some measurements of the star. Before long they inform you they are ready to go home.`
 	on visit
 		dialog phrase "generic missing waypoint or cargo and passengers"
 	on complete
@@ -4048,6 +4048,7 @@ mission "Laborer"
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	destination
+		distance 1 100
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	to offer

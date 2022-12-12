@@ -320,7 +320,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 	landing
 	invisible
-	source 
+	source
 		not planet "Hai-home"
 		not planet "Mountaintop"
 		not planet "Darkwaste"
@@ -509,7 +509,7 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			`	After a few goodbyes, you head out to search for answers.`
 				accept
 
-# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.	
+# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.
 event "ladybug surveillance"
 	fleet "Hai Surveillance"
 		add variant 10
@@ -518,7 +518,7 @@ event "ladybug surveillance"
 		add variant 5
 			"Ladybug"
 		add variant 5
-			"Lightning Bug (Surveillance)" 
+			"Lightning Bug (Surveillance)"
 			"Ladybug"
 		add variant 5
 			"Lightning Bug (Surveillance)" 2
