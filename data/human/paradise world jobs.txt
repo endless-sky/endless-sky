@@ -629,7 +629,7 @@ mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
 
 mission "Martini Bombings (Evacuation, Tourist, No Luxury Accommodations)"
 	name "Evacuate tourist from Martini to <planet>"
-	description "This tourist from <planet>, who was on Martini to see its sights when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>. They will pay you <payment>."
+	description "This tourist from <planet>, who was on Martini to see its sights when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 1
@@ -652,14 +652,14 @@ mission "Martini Bombings (Evacuation, Tourist, No Luxury Accommodations)"
 
 mission "Martini Bombings (Evacuation, Tourist Family, No Luxury Accommodations)"
 	name "Evacuate tourists from Martini to <planet>"
-	description "This family of <bunks> from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their home on <planet>. They will pay you <payment>."
+	description "This family of <bunks> from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 2 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
+	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
-		not "event: initial deployment 2" # Gives the player about a month to do these missions.
+		not "event: initial deployment 2"
 	source
 		planet "Martini"
 	destination
@@ -674,14 +674,14 @@ mission "Martini Bombings (Evacuation, Tourist Family, No Luxury Accommodations)
 
 mission "Martini Bombings (Evacuation, Tourist Group, No Luxury Accommodations)"
 	name "Evacuate tourists from Martini to <planet>"
-	description "This group of <bunks> from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>. They will pay you <payment>."
+	description "This group of <bunks> from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 2 6
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
+	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
-		not "event: initial deployment 2" # Gives the player about a month to do these missions.
+		not "event: initial deployment 2"
 		random < 70
 	source
 		planet "Martini"
@@ -697,7 +697,7 @@ mission "Martini Bombings (Evacuation, Tourist Group, No Luxury Accommodations)"
 
 mission "Martini Bombings (Evacuation, Businessman Group, No Luxury Accommodations)"
 	name "Evacuate Martini residents to <planet>"
-	description "This group of <bunks> businessmen from <planet>, who were on Martini conducting a business trip when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>. They will pay you <payment>."
+	description "This group of <bunks> businessmen from <planet>, who were on Martini conducting a business trip when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
@@ -720,7 +720,7 @@ mission "Martini Bombings (Evacuation, Businessman Group, No Luxury Accommodatio
 
 mission "Martini Bombings (Evacuation, Businessman, No Luxury Accommodations)"
 	name "Evacuate Martini resident to <planet>"
-	description "This businessman from <planet>, who was on Martini conducting a business trip when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>. They will pay you <payment>."
+	description "This businessman from <planet>, who was on Martini conducting a business trip when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
 	job
 	repeat
 	passengers 1
@@ -757,9 +757,8 @@ phrase "martini evac dialog plural"
 
 phrase "martini evac dialog"
 	word
-		"going on about"
-		"complaining about"
 		"accusing"
+		"repeatedly accusing"
 	word
 		" "
 	word
@@ -770,7 +769,7 @@ phrase "martini evac dialog"
 		"'those charity-cases from the South'"
 	word
 		" for the nuclear bombings"
-		" for the destruction of their apartment"
+		" for the destruction of their home city"
 		" for the loss of life on Martini"
 		" for the destruction on Martini"
 	word
@@ -796,7 +795,7 @@ mission "Martini Bombings (Medical, Iodine)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -818,7 +817,7 @@ mission "Martini Bombings (Medical, Painkillers)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -840,7 +839,7 @@ mission "Martini Bombings (Medical, Medical Kits)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -862,7 +861,7 @@ mission "Martini Bombings (Medical, Stretchers)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -884,7 +883,7 @@ mission "Martini Bombings (Medical, Bandages)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -906,7 +905,7 @@ mission "Martini Bombings (Medical, Medical Gloves)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -928,7 +927,7 @@ mission "Martini Bombings (Medical, Saline)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -950,7 +949,7 @@ mission "Martini Bombings (Evacuation, Masks)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -972,7 +971,7 @@ mission "Martini Bombings (Evacuation, Respirators)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -994,7 +993,7 @@ mission "Martini Bombings (Evacuation, Hazmat Suits)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1016,7 +1015,7 @@ mission "Martini Bombings (Evacuation, Dosimeters)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1038,7 +1037,7 @@ mission "Martini Bombings (Evacuation, Rescue Helicopters)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1060,7 +1059,7 @@ mission "Martini Bombings (Evacuation, Rescue Drones)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1082,7 +1081,7 @@ mission "Martini Bombings (Construction, Cement)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1104,7 +1103,7 @@ mission "Martini Bombings (Construction, Medical Tents)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1126,7 +1125,7 @@ mission "Martini Bombings (Construction, Temporary Housing Units)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1148,7 +1147,7 @@ mission "Martini Bombings (Construction, Generator Units)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1170,7 +1169,7 @@ mission "Martini Bombings (Construction, Diggers)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1192,7 +1191,7 @@ mission "Martini Bombings (Construction, Shovels)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1214,7 +1213,7 @@ mission "Martini Bombings (People, Doctors)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1236,7 +1235,7 @@ mission "Martini Bombings (People, Evacuation Coordinators)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1258,7 +1257,7 @@ mission "Martini Bombings (People, Search and Rescue Team)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
@@ -1280,7 +1279,7 @@ mission "Martini Bombings (People, Nurses)"
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
-		random < 40
+		random < 30
 	source
 		near "Pollux" 2 5
 	destination
