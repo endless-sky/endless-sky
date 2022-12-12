@@ -170,7 +170,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 			`When the Hai and humans try to deploy troops, they're drawn off by orbital bombardment. You must defeat the entire pirate and marauder defense fleet before landing.`
 
 event "stormhold suppressed"
-	#Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
+	# Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
 	system "Alcyone"
 		remove fleet "Small Core Pirates" # 400
 		remove fleet "Large Core Pirates"# 600
@@ -725,7 +725,7 @@ mission "Hai Reveal [B07-long] Learn of Keystones"
 				`	"What does the Hai's message mean?"`
 				`	"Let's make sure that Hai didn't die in vain. What can you tell me?"`
 			`	"I have always believed the Keystones were to indicate respect for traditional superstitions. I fear it has lured some Hai into thinking they're trustworthy when they were clearly not. Perhaps there is more though. We have folktales of these stones making travel between the stars easier, and our space once extended to this region where the wormhole is. It is possible there may be a relation."`
-			`	She chuckles, "Maybe it is fortunate I insisted you have one for me to travel on your ship. If our quantum keystones have some effect on the wormhole...  Please, continue your investigation, talk to whoever you need to talk to, and don't go unprepared. This may be key to a peaceful resolution at the end of all this."`
+			`	She chuckles, "Maybe it is fortunate I insisted you have one for me to travel on your ship. If our quantum keystones have some effect on the wormhole... Please, continue your investigation, talk to whoever you need to talk to, and don't go unprepared. This may be key to a peaceful resolution at the end of all this."`
 			choice
 				`	"What is going on back in Hai space?"`
 				`	"How are the Hai recovering from the election?"`
@@ -1078,7 +1078,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			label working
 			action
 				set "Hai Reveal [B12] Devil-Hide Battle: working"
-			`	 "Our ruse is getting preposterous. The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles you've just flown here have been explained away as experimental ship designs from the movie production being tested out. Still though, our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore."`
+			`	"Our ruse is getting preposterous. The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles you've just flown here have been explained away as experimental ship designs from the movie production being tested out. Still though, our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore."`
 				goto kopkow
 			label giveup
 			`	He blinks at you, "Wait, what?"`
@@ -1401,28 +1401,6 @@ mission "Hai Reveal [B13] Freedom"
 
 
 
-# PROBABLY not needed anymore:
-#
-# Unfettered flagship carrying the surviving human operatives
-#ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump Full)"
-#	add attributes
-#		"required crew" 43
-#	outfits
-#		"Large Heat Shunt" 2
-#		"Jump Drive"
-#		"Systems Core (Large)"
-#		"Quantum Keystone"
-#		"Outfits Expansion" 3
-#		"Boulder Reactor" 3
-#		`"Bufaer" Atomic Steering`
-#		Sunbeam 6
-#		"Korath Warder"
-#		"Small Heat Shunt"
-#		"Thruster (Planetary Class)"
-#		"Fuel Processor" 2
-#
-
-				
 mission "Hai Reveal [B13-G] Elenctic Guard"
 	landing
 	invisible

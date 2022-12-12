@@ -59,6 +59,7 @@ jobs:
 
 
   build_ubuntu:
+    name: Ubuntu
     needs: changed
     # TODO: only build if source changed. otherwise, d/l latest continuous
     runs-on: ${{ matrix.os }}
@@ -71,10 +72,10 @@ jobs:
         CXX: ccache g++
         ARTIFACT: endless-sky
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Restore cached game binary
       id: cache-artifact
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
@@ -96,7 +97,7 @@ jobs:
         python --version
     - name: Cache ccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ matrix.os }}-${{ matrix.opengl }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
@@ -108,13 +109,14 @@ jobs:
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: scons -Qj $(nproc) opengl=${{ matrix.opengl }};
     - name: Upload game binary
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: binary-${{ matrix.os }}-${{ matrix.opengl }}
         path: ${{ env.ARTIFACT }}
 
 
   test_ubuntu-unit:
+    name: Ubuntu Unit Tests
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.linux == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -126,10 +128,10 @@ jobs:
         CXX: ccache g++
         TEST_BINARY: tests/unit/endless-sky-tests
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Restore cached test binary
       id: cache-tests
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
@@ -142,7 +144,7 @@ jobs:
         python3 -m pip install --user scons
     - name: Cache ccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
@@ -160,6 +162,7 @@ jobs:
 
 
   build_windows:
+    name: Windows
     needs: changed
     # TODO: only build if source changed. otherwise, d/l latest continuous
     runs-on: ${{ matrix.os }}
@@ -174,10 +177,10 @@ jobs:
         ARTIFACT: EndlessSky.exe
         AR: gcc-ar
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Restore cached game binary
       id: cache-artifact
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
@@ -193,13 +196,13 @@ jobs:
         Remove-Item win64-dev.zip
     - name: Cache scons
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: 'scons-local'
         key: scons-${{ hashFiles('.winmake') }}
     - name: Cache sccache results
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.SCCACHE_DIR }}
         key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
@@ -214,13 +217,14 @@ jobs:
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
     - name: Upload game binary
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
 
 
   test_windows-unit:
+    name: Windows Unit Tests
     needs: [build_windows, changed]
     if: ${{ needs.changed.outputs.windows == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -235,10 +239,10 @@ jobs:
         AR: gcc-ar
         TEST_BINARY: .\tests\unit\endless-sky-tests.exe
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Restore cached test binary
       id: cache-tests
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
@@ -248,7 +252,7 @@ jobs:
       run: choco install sccache
     - name: Cache scons
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: 'scons-local'
         key: scons-${{ hashFiles('.winmake') }}
@@ -263,7 +267,7 @@ jobs:
         COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
     - name: Cache sccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.SCCACHE_DIR }}
         key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
@@ -281,6 +285,7 @@ jobs:
 
 
   build_macos:
+    name: MacOS
     needs: changed
     # TODO: only build if source changed. otherwise, d/l latest continuous
     runs-on: ${{ matrix.os }}
@@ -291,10 +296,10 @@ jobs:
       ARTIFACT: Endless Sky
       SDL2_FRAMEWORK: build/SDL2.framework
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Restore cached game binary
       id: cache-artifact
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.ARTIFACT }}
         key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**', '.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
@@ -306,7 +311,7 @@ jobs:
       run: brew install libpng jpeg-turbo
     - name: Restore cached SDL2 framework
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.SDL2_FRAMEWORK }}
         key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
@@ -317,13 +322,14 @@ jobs:
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: mv "build/Release/Endless Sky.app/Contents/MacOS/Endless Sky" .
     - name: Upload game binary
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: binary-${{ matrix.os }}
         path: ${{ env.ARTIFACT }}
 
 
   test_ubuntu-integration:
+    name: Integration Tests
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.integration_tests == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -346,7 +352,7 @@ jobs:
           #   opengl: gles
           #   glew: libgles2-mesa
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -355,7 +361,7 @@ jobs:
     - name: Install xvfb runtime dependencies
       run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils # TODO: ALSA mocking?
     - name: Download artifact
-      uses: actions/download-artifact@v1.0.0
+      uses: actions/download-artifact@v3
       with:
         name: binary-${{ matrix.os }}-${{ matrix.opengl }}
         path: .
@@ -368,6 +374,7 @@ jobs:
 
 
   test_ubuntu-parse:
+    name: Ubuntu Parse
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -380,14 +387,14 @@ jobs:
           - os: ubuntu-22.04
             glew: libglew2.2
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 uuid-runtime libglvnd-dev
     - name: Download game binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: binary-${{ matrix.os }}-${{ matrix.opengl }}
     - name: Verify Executable
@@ -397,6 +404,7 @@ jobs:
 
 
   test_windows-parse:
+    name: Windows Parse
     needs: [build_windows, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -406,7 +414,7 @@ jobs:
       matrix:
         os: [windows-latest]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install runtime dependencies
       run: |
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
@@ -417,7 +425,7 @@ jobs:
         COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
         COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
     - name: Download game binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: binary-${{ matrix.os }}
     - name: Parse Datafiles
@@ -425,6 +433,7 @@ jobs:
 
 
   test_macos-parse:
+    name: MacOS Parse
     needs: [build_macos, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -435,13 +444,13 @@ jobs:
       ES_BINARY: Endless Sky
       SDL2_FRAMEWORK: build/SDL2.framework
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Update Homebrew
       run: brew update
     - name: Install dependencies
       run: brew install libmad libpng jpeg-turbo
     - name: Restore cached SDL2 framework
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.SDL2_FRAMEWORK }}
         key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
@@ -457,7 +466,7 @@ jobs:
         ln -s ../../images
         ln -s ../../sounds
     - name: Download game binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: binary-${{ matrix.os }}
         path: Contents/MacOS
@@ -468,6 +477,7 @@ jobs:
 
 
   test_ubuntu-integration-parse:
+    name: Integration Tests Parse
     needs: [build_ubuntu, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -477,7 +487,7 @@ jobs:
         include:
           - os: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install runtime dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -494,6 +504,7 @@ jobs:
 
 
   test_memory-leaks-lite:
+    name: Memory Leak Test
     needs: [test_ubuntu-parse, changed]
     if: needs.changed.outputs.game_code == 'true'
     runs-on: ${{ matrix.os }}
@@ -504,14 +515,14 @@ jobs:
           - os: ubuntu-20.04
             glew: libglew2.1
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Install runtime dependencies & valgrind
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-2.0-0 libpng16-16 libjpeg-turbo8 libopenal1 libmad0 ${{ matrix.glew }} libgl1 valgrind uuid-runtime libglvnd-dev
     - name: Download game binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: binary-${{ matrix.os }}-${{ matrix.opengl }}
     - name: Verify Executable
@@ -525,11 +536,12 @@ jobs:
 
 
   spellcheck:
+    name: Spellcheck
     needs: [changed]
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: ${{ github.event.pull_request.head.sha }}
     - uses: codespell-project/actions-codespell@master
@@ -540,14 +552,16 @@ jobs:
 
 
   style-check:
+    name: Style Check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: editorconfig-checker/action-editorconfig-checker@main
     - run: editorconfig-checker
 
 
   check-coding-style:
+    name: Code Style Check
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ubuntu-latest
@@ -567,6 +581,7 @@ jobs:
   # CI runs to test the CMake build system.
 
   build_ubuntu_cmake:
+    name: Ubuntu (CMake)
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: ubuntu-latest
@@ -596,6 +611,7 @@ jobs:
 
 
   build_windows_cmake:
+    name: Windows (CMake)
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: windows-latest
@@ -621,6 +637,7 @@ jobs:
       shell: bash
 
   build_macos_cmake:
+    name: MacOS (CMake)
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: macos-latest
@@ -644,6 +661,7 @@ jobs:
       shell: bash
 
   build_windows_clang_cmake:
+    name: Windows Clang (CMake)
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: windows-latest
