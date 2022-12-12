@@ -194,7 +194,8 @@ public:
 	void SetPersonality(const Personality &other);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
-	void SetHail(const Phrase &phrase);
+	const Phrase *GetHailPhrase() const;
+	void SetHailPhrase(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
 
 	// Set the commands for this ship to follow this timestep.
@@ -238,7 +239,6 @@ public:
 	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
-	bool IsParalyzed() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;

@@ -38,9 +38,9 @@
 #			has "Unwanted Cargo: done"
 #			has "Hai Leaks Response 6: offered"
 # - needs: not "event: hai-human treaty signed"
-# 
+#
 # Filler Events:
-# # Prison RPers, Meroot & Lucy 
+# # Prison RPers, Meroot & Lucy
 # - Only mission logs
 # - Cannot be discovered pre-story
 # - to offer
@@ -283,7 +283,7 @@ mission "Hai Rescue: Ooonem"
 			choice
 				`	"Don't worry. I know how to dodge pirates."`
 					goto go
-				`	"I have a better ship parked somewhere else. I'll go get that first."`	
+				`	"I have a better ship parked somewhere else. I'll go get that first."`
 				`	"You should find a different ride then."`
 					decline
 			`	She looks at you curiously. "You're a good one, aren't you? Very well, take this transmitter. When you return, come back to this area. Activate it, and I will find you. Come alone."`

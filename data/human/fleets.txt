@@ -1699,6 +1699,7 @@ fleet "Large Syndicate"
 		"Quicksilver" 3
 	variant 2
 		"Splinter (Laser)"
+		"Quicksilver (Proton)" 3
 	variant 2
 		"Splinter (Proton)"
 		"Quicksilver" 3
@@ -1760,6 +1761,12 @@ fleet "Large Syndicate"
 	variant 1
 		"Vanguard (Missile)"
 		"Quicksilver (Proton)" 2
+	variant 1
+		"Protector"
+		"Vanguard (Particle)"
+	variant 1
+		"Protector (Proton)"
+		"Vanguard"
 
 fleet "Small Southern Pirates"
 	government "Pirate"
@@ -3141,7 +3148,8 @@ fleet "Hired Guns"
 # The Navy forces which blockade the wormhole during the Hai crisis.
 fleet "Human Wormhole Guards"
 	government "Republic that won't enter wormhole"
-	names civilian
+	names "republic capital"
+	fighters "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
