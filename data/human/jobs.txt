@@ -1550,6 +1550,23 @@ mission "Cargo [4]"
 		payment 4000
 		dialog phrase "generic cargo delivery payment"
 
+mission "Cargo [5]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 5 2 .1
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
 mission "Bulk Delivery [0]"
 	name "Bulk delivery to <planet>"
 	job
@@ -1608,6 +1625,25 @@ mission "Bulk Delivery [2]"
 	on complete
 		payment
 		payment 4000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Delivery [3]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 25 2 .05
+	to offer
+		random < 70
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
 		dialog phrase "generic cargo delivery payment"
 
 mission "Rush Delivery [0]"
@@ -1694,6 +1730,27 @@ mission "Rush Delivery [3]"
 	on complete
 		payment
 		payment 22000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Rush Delivery [4]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 10000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1792,6 +1849,24 @@ mission "Passengers [4]"
 	on complete
 		payment
 		payment 2000
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Passengers [5]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 1 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 500
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Transport miners to <planet>"
