@@ -1227,7 +1227,7 @@ mission "Martini Bombings (People, Doctors)"
 
 
 mission "Martini Bombings (People, Evacuation Coordinators)"
-	name "Construction Workers to Martini"
+	name "Evacuation coordinators to Martini"
 	description "Due to the recent nuclear bombings, bring <bunks> evacuation coordinators to <planet> to help with the evacuation. Payment is <payment>."
 	job
 	repeat
