@@ -151,28 +151,36 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		else if(key == "shipyard")
 		{
 			if(value == "description")
+			{
 				if(remove)
 					shipyardDescription = "";
 				else if(child.Size() > (valueIndex + 1))
 					shipyardDescription += child.Token(valueIndex + 1) + '\n';
+			}
 			else
+			{
 				if(remove)
 					shipSales.erase(GameData::Shipyards().Get(value));
 				else
 					shipSales.insert(GameData::Shipyards().Get(value));
+			}
 		}
 		else if(key == "outfitter")
 		{
 			if(value == "description")
+			{
 				if(remove)
 					outfitterDescription = "";
 				else if(child.Size() > (valueIndex + 1))
 					outfitterDescription += child.Token(valueIndex + 1) + '\n';
+			}
 			else
+			{
 				if(remove)
 					outfitSales.erase(GameData::Outfitters().Get(value));
 				else
 					outfitSales.insert(GameData::Outfitters().Get(value));
+			}
 		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
