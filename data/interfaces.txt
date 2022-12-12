@@ -527,6 +527,9 @@ interface "hud"
 
 	# Targets.
 	anchor top left
+	image "alarm sprite"
+		from 10 10
+		align top left
 	sprite "ui/radar"
 		from 0 0
 		align top left
