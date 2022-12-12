@@ -1464,7 +1464,7 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, vector<Ship*> &repairedInBay)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -1487,7 +1487,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	personality.UpdateConfusion(firingCommands.IsFiring());
 
 	// Generate energy, heat, etc.
-	DoGeneration();
+	DoGeneration(repairedInBay);
 
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -2147,7 +2147,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 // Generate energy, heat, etc. (This is called by Move().)
-void Ship::DoGeneration()
+void Ship::DoGeneration(vector<int> &repairedInBay)
 {
 	// First, allow any carried ships to do their own generation.
 	for(const Bay &bay : bays)
@@ -2212,8 +2212,11 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(ship.hull < ship.MinimumHull() || ship.isDisabled)
+				{
 					// Fighter is disabled so "board" it to repair it first:
 					ship.AssistedRepair();
+					repairedInBay.push_back(ship);
+				}
 				if(!hullDelay)
 					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);

@@ -251,6 +251,9 @@ private:
 	double load = 0.;
 	int loadCount = 0;
 	double loadSum = 0.;
+
+	// For keeping track of which ships were repaired in their carrier's bays
+	vector<int> repairedInBay;
 };
 
 
