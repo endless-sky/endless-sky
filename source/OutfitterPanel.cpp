@@ -331,6 +331,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 	else if(planet && !planet->OutfitterDescription().empty())
 	{
+		heightOffset += 5;
 		Point descriptionPoint(center.X() - INFOBAR_WIDTH / 2 + 25, center.Y() + heightOffset);
 		heightOffset += DrawDetailDescription(planet->OutfitterDescription(), descriptionPoint);
 	}
