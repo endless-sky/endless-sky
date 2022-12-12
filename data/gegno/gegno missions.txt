@@ -35,22 +35,21 @@ mission "First Contact: Gegno Vi"
 			branch "return encounter"
 				has "First Contact: Gegno Vi: deferred"
 				
-			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide to keep your ship a few thousand meters above the surface. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
-			`	Suddenly, your radar systems pick up a larger signature on the horizon, and you see a bulky, rock-like structure. Once you get close enough, the structure begins to resemble a ship like ones you've seen flying around in the nearby systems, although it is half sunken into the sand.`
+			`As you descend towards the surface of this seemingly uninhabited world, you active your ship's radar system to scan the surface for anything of interest. While waiting for something to appear, you look up and catch a glimpse of cloud of dust burst from the ground far off to your right. Peering back down to your radar, you check the surface scans of that direction, but nothing appears. As you continue your flight, another sudden dust cloud appears several minutes later, but still nothing on the radar. You decide to keep your ship a few thousand meters above the surface and take the time to carefully look around, but there still doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
+			`	Suddenly, your radar system picks up a larger signature on the horizon, and you see a bulky, rock-like structure. Once you get close enough, the structure begins to resemble a ship like ones you've seen flying around in the nearby systems, although it is half sunken into the sand.`
 			choice
 				`	(Land near the ship and investigate.)`
 					goto land
 				`	(Continue to search the surface.)`
 					goto search
 			label land
-			`	You carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range. Exiting your ship in an environment suit and your sidearm on hand, you walk towards the alien spacecraft.`
-			`	The ship appears a bit larger than you thought - around the size of a Firebird. The dark-brown hull appears to be made from an unknown material, and has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, the warship seems perfectly intact, but the way it is angled into the sand suggests that the ship has been there for some time. There doesn't seem to be any activity around it, and you aren't picking up any nearby life signs. You decide to head back to your ship and take another look around the area.`
-			`	As you fly onward, an erratic signature appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate.`
+			`	You carefully land your ship nearby, exiting your ship in an environment suit with your sidearm on hand and walk towards the alien spacecraft. The ship appears a bit larger than you thought - around the size of a Firebird. The dark-brown hull appears to be made from an unknown material, and has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, the warship seems perfectly intact, but the way it is angled into the sand suggests that the ship has been there for some time. There doesn't seem to be any activity around it, and there doesn't seem to be any lively activity nearby. You decide to head back to your ship and take another look around the area.`
+			`	As you fly onward, an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate.`
 				goto skip
 			label search
-			`	As you fly onward, an erratic signature appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate, making sure to equip an environment suit and holster your sidearm.`
+			`	As you fly onward, an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate, making sure to equip an environment suit and holster your sidearm.`
 			label skip
-			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. You were sure your sensors showed no life signs, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding a spear-like weapon. The figure moves around attentively as if it is focused on its surroundings, but appears to take no interest in your presence. Unlike other aliens you have met in the galaxy, this encounter feels very odd in that there is no immediate interaction with you.`
+			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. Your radar showed something much less defined than a humanoid, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding a spear-like weapon. The figure moves around attentively as if it is focused on its surroundings, but appears to take no interest in your presence. The encounter feels very odd in that there is no immediate interaction or acknowledgement of your presence .`
 			choice
 				`	(Approach the alien.)`
 				`	(Turn back to my ship.)`
@@ -67,12 +66,26 @@ mission "First Contact: Gegno Vi"
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
 			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the alien marching out of the creature's mouth.` 
 			choice
-				`	(Stand up.)`
-			`	With a last thump of their foot, the alien now stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
-			`	You aren't sure how to begin a conversation, but start by greeting the alien in a formal manner. Awkward silence ensues, and the alien looks you up and down in an unenthused way. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
-			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice:`
+				`	(Stand up and approach the alien.)`
+				`	(Get up and run to your ship.)`
+			`	Before you can collect yourself, you realize the alien is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+			`	Awkward silence ensues, and the alien looks you up and down in an unenthused way. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
+			choice
+				`	(Accept their request).'
+				`	(Ask about their request).`
+					goto about
+				`	(Reject their request.)`
+					goto deny
+			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the Vi warrior utters a single intelligible word in a very deep voice:`
 			`	"Voordt."`
 				accept
+			label about
+			`	You try to ask the Gegno about the trip, but they simply give you a blank stare for a few seconds before shoving the star map into your chest, letting go of it. You reactively catch it, almost falling over yourself, and then take one last glance at the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. Turning around, the Gegno is already far ahead of you, and you rush after so they aren't first to your ship.`
+				accept
+			label deny
+			`	You shake your head and decline the request of the Gegno after having dealt with everything that's happened. Turning back towards your ship to leave, you suddenly find yourself face-first in the ground, coughing up sand and dust, and hear the device hit the ground beside you. In frustration, you quickly get up and look for the Gegno, who already marching towards your ship in the distance. Perhaps it wasn't the best idea to decline the request and turn your back on a being several times larger than you who just took down a beast hundreds of times the size of them. You turn to look at the huge creature one last time. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. Definitely something more dangerous than you could ever be on foot.`
+				accept
+
 			label watch
 			`	Cautiously retreating towards your ship, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much deeper than that of a bird. As some of the dust clears, you see the alien figure breathing intensely as they continue to battle the beast.`
 			choice
@@ -83,10 +96,9 @@ mission "First Contact: Gegno Vi"
 			label leave
 			`	With the situation beginning to spin out of your control, you quickly turn around and make for your ship, taking off as soon as you can. You wonder what will become of the alien figure as while they are most certainly a member of the species inhabiting the nearby systems, it doesn't seem like any help will be sent for them anytime soon.`
 				depart
-				
-				
+
 			label "second encounter"
-			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide to keep your ship a few thousand meters above the surface. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
+			`As you descend towards the surface of this seemingly uninhabited world, you active your ship's radar system to scan the surface for anything of interest. While waiting for something to appear, you look up and catch a glimpse of cloud of dust burst from the ground far off to your right. Peering back down to your radar, you check the surface scans of that direction, but nothing appears. As you continue your flight, another sudden dust cloud appears several minutes later, but still nothing on the radar. You decide to keep your ship a few thousand meters above the surface and take the time to carefully look around, but there still doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
 			`	Suddenly, your radar systems pick up a larger signature on the horizon, and you see a bulky, rock-like structure. Once you get close enough, you recognize it as one of the Gegno's warships, although it is half sunken into the sand.`
 			choice
 				`	(Investigate the Gegno ship.)`
@@ -97,7 +109,7 @@ mission "First Contact: Gegno Vi"
 			`	You carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range. Exiting your ship in an environment suit and your sidearm on hand, you walk towards the Gegno ship.`
 			`	The ship appears a bit larger than you thought - around the size of a Firebird. The dark-brown hull appears to be made from an unknown material, and has several metallic-looking parts both hatched in crevices and protruding outward, indicative of the Gegno Vi's brutish aesthetics. Oddly enough, the warship seems perfectly intact, but the way it is angled into the sand suggests that the ship has been here for some time. There doesn't seem to be any activity around it, and you aren't picking up any nearby life signs. You decide to head back to your ship and take another look around the area.`
 			label resume
-			`	As you fly onward, an erratic signature appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate.`
+			`	As you fly onward, an erratic signature appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate, donning your evironment suit with your sidearm at hand.`
 			`	Much to your surprise, there is a large humanoid figure standing in front of you. It looks nothing like the Gegno you've seen on the nearby Quarg ringworld; it is large, bulky, and clad in metallic armor. In one of its hands is a spear-like weapon; you guess that they are a Gegno Vi based on their appearance. The Vi moves around attentively, focused on its surroundings, but appears to take no interest in your presence.`
 			choice
 				`	(Approach the Vi warrior.)`
@@ -112,13 +124,26 @@ mission "First Contact: Gegno Vi"
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
 			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the Vi marching out of the creature's mouth.` 
 			choice
-				`	(Stand up.)`
-			`	With a last thump of their foot, the Vi warrior now stands before you, giving you a much better look at them. They are at least several feet taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
-			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of the Gegno's planets.`
+			`	(Stand up and approach the alien.)`
+				`	(Get up and run to your ship.)`
+			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are at least several feet taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of the Gegno's planets.`
+			choice
+				`	(Accept their request).'
+				`	(Ask about their request).`
+					goto ask
+				`	(Reject their request.)`
+					goto reject
 			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the Vi warrior utters a single intelligible word in a very deep voice:`
 			`	"Voordt."`
 				accept
-				
+			label ask
+			`	You try to ask the Gegno about the trip, but they simply give you a blank stare for a few seconds before shoving the star map into your chest, letting go of it. You reactively catch it, almost falling over yourself, and then take one last glance at the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. Turning around, the Gegno is already far ahead of you, and you rush after so they aren't first to your ship.`
+				accept
+			label reject
+			`	You shake your head and decline the request of the Gegno after having dealt with everything that's happened. Turning back towards your ship to leave, you suddenly find yourself face-first in the ground, coughing up sand and dust, and hear the device hit the ground beside you. In frustration, you quickly get up and look for the Gegno, who already marching towards your ship in the distance. Perhaps it wasn't the best idea to decline the request and turn your back on a being several times larger than you who just took down a beast hundreds of times the size of them. You turn to look at the huge creature one last time. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. Definitely something more dangerous than you could ever be on foot.`
+				accept
+
 			label observe
 			`	Cautiously retreating to a safer distance, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the Vi breathing intensely as they continue to battle the beast.`
 			choice
@@ -192,6 +217,7 @@ mission "Visit Quarg in Gegno Space"
 		personality entering staying
 		system "Heutesl"
 		fleet
+			names "Gegno Vi"
 			variant
 				"Eclogite" 3
 				"Hornfel" 2
@@ -201,6 +227,7 @@ mission "Visit Quarg in Gegno Space"
 		personality entering staying
 		system "Heutesl"
 		fleet
+			names "Gegno Scin"
 			variant
 				"Coesite" 3
 				"Felsic" 2
@@ -422,7 +449,7 @@ mission "Gegno Genocide Defense"
 		system
 			government "Gegno"
 		fleet
-			names "gegno vi" "gegno scin"
+			names "gegno united"
 			variant 
 				Gneiss 3
 				Hornfel 2
@@ -438,7 +465,7 @@ mission "Gegno Genocide Defense"
 		system
 			government "Gegno"
 		fleet
-			names "gegno vi" "gegno scin"
+			names "gegno united"
 			variant
 				Feldspar 2
 				Halite 12
@@ -452,7 +479,7 @@ mission "Gegno Genocide Defense"
 		system
 			government "Gegno"
 		fleet
-			names "gegno vi" "gegno scin"
+			names "gegno united"
 			variant
 				Feldspar 4
 				Halite 24
