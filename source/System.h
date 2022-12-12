@@ -212,10 +212,11 @@ private:
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 
+	WeightedList<double> belts;
+
 	// The "invisible fence" radius for this system.
 	double invisibleFenceRadius = 10000.;
 
-	WeightedList<double> belts;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
