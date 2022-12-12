@@ -827,12 +827,7 @@ mission "Nanachi 1"
 	name "Escort Nanachi to <planet>"
 	description "Help Nanachi, a Hai who just bought her first ship, make a simple delivery to <destination> by <date>."
 	minor
-	source
-		# This is a mandatory mission, so the range is as far as a
-		# Heavy Shuttle can reach (500 fuel)
-		near "Wah Ki" 1 5
-		government "Hai"
-		not attributes "uninhabited" "station"
+	source "Giverstone"
 	destination "Cloudfire"
 	deadline 2 1
 	to offer
@@ -1441,7 +1436,7 @@ mission "Strider: Coalition 2"
 # For compatibility
 event "pond strider mass production"
 
-# The mission to ensure the Pond Strider is properly added to the new Hai shipyards.	
+# The mission to ensure the Pond Strider is properly added to the new Hai shipyards.
 mission "Pond Strider Patch for v2"
 	landing
 	invisible
