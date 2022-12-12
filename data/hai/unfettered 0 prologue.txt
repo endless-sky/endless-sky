@@ -361,7 +361,7 @@ mission "Unfettered Jump Drive Trading"
 				`	"I would just prefer the money, actually."`
 					goto money
 			scene "outfit/hai ionic blaster"
-			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space for it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight."`
+			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space to it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight."`
 				goto backtochoose
 			label turret
 			scene "outfit/hai ionic turret"
