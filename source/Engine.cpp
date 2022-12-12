@@ -448,12 +448,6 @@ void Engine::Wait()
 void Engine::Step(bool isActive)
 {
 	events.swap(eventQueue);
-	for(auto &event : events)
-		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
-		{
-			printf("Top of EngineStep events received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
-			break;
-		}
 	eventQueue.clear();
 
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
@@ -489,12 +483,6 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
-	for(auto &event : events)
-		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
-		{
-			printf("After ai.UpdateEvents, events contains a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
-			break;
-		}
 	if(isActive)
 	{
 		HandleKeyboardInputs();
@@ -912,12 +900,6 @@ void Engine::Step(bool isActive)
 				.8 * minable->Radius(),
 				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
 				3});
-		}
-	for(auto &event : events)
-		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
-		{
-			printf("At bottom of Engine.Step(), events contains a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
-			break;
 		}
 }
 
@@ -1611,12 +1593,6 @@ void Engine::CalculateStep()
 		loadSum = 0.;
 		loadCount = 0;
 	}
-	for(auto &event : eventQueue)
-		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
-		{
-			printf("End of CalculatedStep received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
-			break;
-		}
 }
 
 
@@ -1637,13 +1613,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
-	repairedInBay.clear();
 	ship->Move(newVisuals, newFlotsam, repairedInBay);
 	for(auto &docked : repairedInBay)
-	{
-		printf("%s repaired %s in bay so sending assist event\n",docked.first->Name().c_str(),docked.second->Name().c_str());
 		eventQueue.emplace_back(docked.first, docked.second, ShipEvent::REPAIRED_IN_BAY);
-	}
+	repairedInBay.clear();
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
 	// Bail out if the ship just died.

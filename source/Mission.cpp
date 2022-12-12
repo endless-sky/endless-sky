@@ -1062,10 +1062,6 @@ bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
-	{
-		printf("Mission received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
-	}
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;

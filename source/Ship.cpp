@@ -2201,7 +2201,6 @@ void Ship::DoGeneration(vector<pair<shared_ptr<Ship>,shared_ptr<Ship>>> &repaire
 				if(bay.ship->hull < bay.ship->MinimumHull() || bay.ship->isDisabled)
 				{
 					// Fighter is disabled so "board" it to repair it first:
-					printf("%s is repairing its docked ship %s\n",this->Name().c_str(),bay.ship->Name().c_str());
 					bay.ship->AssistedRepair();
 					repairedInBay.emplace_back(shared_from_this(),bay.ship);
 				}

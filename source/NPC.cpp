@@ -399,10 +399,6 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 // Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 {
-	if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
-	{
-		printf("NPC received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
-	}
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
 	// is an NPC and it just got captured, replace it with a destroyed copy of
 	// itself so that this class thinks the ship is destroyed.
@@ -446,10 +442,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 
 	// If this event was "ASSIST", the ship is now known as not disabled.
 	if(type == ShipEvent::ASSIST || type==ShipEvent::REPAIRED_IN_BAY)
-	{
-		printf("%s: ASSIST, so removing DISABLE",ship->Name().c_str());
 		actions[ship.get()] &= ~(ShipEvent::DISABLE);
-	}
 
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, assisting, capturing, or provoking.
