@@ -5095,7 +5095,7 @@ mission "A dead man's path II"
 					has "Sheragi Archaeology: The Emerald Sword 3: done"
 			`    After some time Sophie calls you both to the tablet.`
 			label sword-scene
-			scene "outfit/old sword"
+			scene "scene/sword dome"
 			`    You all get closer to the tablet. A short message is written on it:`
 			`    My dear children, this is the summary of all the things I have done, enjoy it!`
 			choice
