@@ -674,7 +674,7 @@ mission "Martini Bombings (Medical, Iodine)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -694,7 +694,7 @@ mission "Martini Bombings (Medical, Painkillers)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -714,7 +714,7 @@ mission "Martini Bombings (Medical, Medical Kits)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -734,7 +734,7 @@ mission "Martini Bombings (Medical, Stretchers)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -754,7 +754,7 @@ mission "Martini Bombings (Medical, Bandages)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -774,7 +774,7 @@ mission "Martini Bombings (Medical, Medical Gloves)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -794,7 +794,7 @@ mission "Martini Bombings (Medical, Saline)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -814,7 +814,7 @@ mission "Martini Bombings (Evacuation, Masks)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -834,7 +834,7 @@ mission "Martini Bombings (Evacuation, Hazmat Suits)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -854,7 +854,7 @@ mission "Martini Bombings (Evacuation, Dosimeters)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -874,7 +874,7 @@ mission "Martini Bombings (Construction, Cement)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -894,7 +894,7 @@ mission "Martini Bombings (Construction, Medical Tents)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -915,7 +915,7 @@ mission "Martini Bombings (Construction, Temporary Housing Units)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -935,7 +935,7 @@ mission "Martini Bombings (Construction, Generator Units)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -955,7 +955,7 @@ mission "Martini Bombings (Construction, Diggers)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -975,7 +975,7 @@ mission "Martini Bombings (People, Doctors)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -995,7 +995,7 @@ mission "Martini Bombings (People, Evacuation Coordinators)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -1016,7 +1016,7 @@ mission "Martini Bombings (People, Search and Rescue Team)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		near "Martini" 2 5
+		near "Pollux" 2 5
 	destination
 		planet "Martini"
 	on visit
