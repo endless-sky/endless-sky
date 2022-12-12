@@ -69,6 +69,8 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::CAPTURE;
 		else if(node.Token(i) == "provoke")
 			succeedIf |= ShipEvent::PROVOKE;
+		else if(node.Token(i) == "repaired_in_bay")
+			succeedIf |= ShipEvent::REPAIRED_IN_BAY;
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
 		else if(node.Token(i) == "accompany")
@@ -397,6 +399,10 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 // Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 {
+	if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+	{
+		printf("NPC received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+	}
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
 	// is an NPC and it just got captured, replace it with a destroyed copy of
 	// itself so that this class thinks the ship is destroyed.
@@ -425,7 +431,13 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			break;
 		}
 	if(!ship)
+	{
+		if(type == ShipEvent::ASSIST)
+			printf("Discarding assist event for null ship\n");
+		if(type == ShipEvent::REPAIRED_IN_BAY)
+			printf("Discarding repaired_in_bay event for null ship\n");
 		return;
+	}
 
 	// Determine if this NPC is already in the succeeded state,
 	// regardless of whether it will despawn on the next landing.

@@ -448,6 +448,12 @@ void Engine::Wait()
 void Engine::Step(bool isActive)
 {
 	events.swap(eventQueue);
+	for(auto &event : events)
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("Top of EngineStep events received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
 	eventQueue.clear();
 
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
@@ -483,6 +489,12 @@ void Engine::Step(bool isActive)
 			--jumpCount;
 	}
 	ai.UpdateEvents(events);
+	for(auto &event : events)
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("After ai.UpdateEvents, events contains a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
 	if(isActive)
 	{
 		HandleKeyboardInputs();
@@ -900,6 +912,12 @@ void Engine::Step(bool isActive)
 				.8 * minable->Radius(),
 				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
 				3});
+		}
+	for(auto &event : events)
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("At bottom of Engine.Step(), events contains a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
 		}
 }
 
@@ -1593,6 +1611,12 @@ void Engine::CalculateStep()
 		loadSum = 0.;
 		loadCount = 0;
 	}
+	for(auto &event : eventQueue)
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("End of CalculatedStep received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
 }
 
 

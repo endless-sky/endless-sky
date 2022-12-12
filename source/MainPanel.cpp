@@ -129,11 +129,29 @@ void MainPanel::Step()
 		}
 	}
 
+	for(auto &event : engine.Events())
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("MainPanel sees a REPAIRED_IN_BAY event before engine.Step in engine.Events() for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
 	engine.Step(isActive);
 
 	// Splice new events onto the eventQueue for (eventual) handling. No
 	// other classes use Engine::Events() after Engine::Step() completes.
+	for(auto &event : engine.Events())
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("MainPanel Step sees a REPAIRED_IN_BAY event in engine.Events() for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
 	eventQueue.splice(eventQueue.end(), engine.Events());
+	for(auto &event : eventQueue)
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("MainPanel Step sees a REPAIRED_IN_BAY event in eventQueue for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
 	// Handle as many ShipEvents as possible (stopping if no longer active
 	// and updating the isActive flag).
 	StepEvents(isActive);
@@ -194,6 +212,13 @@ void MainPanel::OnCallback()
 	engine.Go();
 	engine.Wait();
 	engine.Step(true);
+	eventQueue.splice(eventQueue.end(), engine.Events());
+	for(auto &event : engine.Events())
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("MainPanel OnCallback sees a REPAIRED_IN_BAY event in engine.Events() for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
 	// Start the next step of the simulation because Step() above still
 	// thinks the planet panel is up and therefore will not start it.
 	engine.Go();
@@ -490,9 +515,20 @@ bool MainPanel::ShowHailPanel()
 // oldest and then process events until any create a new UI element.
 void MainPanel::StepEvents(bool &isActive)
 {
+	for(auto &event : eventQueue)
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("MainPanel received a REPAIRED_IN_BAY event for %s repairing %s\n",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+			break;
+		}
+	
 	while(isActive && !eventQueue.empty())
 	{
 		const ShipEvent &event = eventQueue.front();
+		if(event.Type() == ShipEvent::REPAIRED_IN_BAY)
+		{
+			printf("MainPanel::StepEvents sees %s repairing %s in bay",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
+		}
 		const Government *actor = event.ActorGovernment();
 
 		// Pass this event to the player, to update conditions and make
