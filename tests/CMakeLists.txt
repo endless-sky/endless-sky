@@ -81,8 +81,10 @@ add_custom_target(IntegrationTests ALL
 	VERBATIM
 )
 
-# If the target is not run, simply don't provide any integration tests instead of erroring out.
-file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake" "")
+if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake")
+	# If the target is not run, simply don't provide any integration tests instead of erroring out.
+	file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake" "")
+endif()
 
 # Copy the MinGW runtime DLLs if necessary.
 if(MINGW AND WIN32)
