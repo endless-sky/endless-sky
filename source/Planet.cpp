@@ -398,7 +398,7 @@ string Planet::ShipyardDescription() const
 	if(!shipyardDescription.empty())
 		return shipyardDescription;
 
-	string shipyardDescriptionFromSales = "";
+	string shipyardDescriptionFromSales;
 
 	for(const Sale<Ship> *sale : shipSales)
 		shipyardDescriptionFromSales += sale->description;
@@ -434,7 +434,7 @@ string Planet::OutfitterDescription() const
 	if(!outfitterDescription.empty())
 		return outfitterDescription;
 
-	string outfitterDescriptionFromSales = "";
+	string outfitterDescriptionFromSales;
 
 	for(const Sale<Outfit> *sale : outfitSales)
 		outfitterDescriptionFromSales += sale->description;
