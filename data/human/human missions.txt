@@ -5089,7 +5089,7 @@ mission "A dead man's path II"
 					goto sword-scene
 				"[take a look around first]"
 			`    You walk around, looking at the various alien artifacts.`
-			`    A lot of the artifacts look similiar to Sheragi technology, you ask yourself where he got this stuff.`
+			`    A lot of the artifacts look similar to Sheragi technology, you ask yourself where he got this stuff.`
 				to display
 					has "Sheragi Archaeology: The Emerald Sword 3: done"
 			`    After some time Sophie calls you both to the tablet.`
