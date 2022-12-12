@@ -87,9 +87,15 @@ mission "Han Sizer Month [0]"
 	repeat
 	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .9
+	substitutions
+		"<on Longjump>" "somewhere nearby."
+			has "flagship planet: Longjump"
+	substitutions
+		"<on Longjump>" "on Longjump"
+			not "flagship planet: Longjump"
 	to offer
-		random < 30
-		month == 8
+		# random < 30
+		# month == 8
 	source
 		attributes "rim"
 	stopover
@@ -100,11 +106,11 @@ mission "Han Sizer Month [0]"
 		distance 5 10
 		attributes "rim"
 		not attributes "station"
-	on enter
-		dialog `As you enter the system your passengers gather together to stare out the viewport. One of them pulls out a datapad and reads what sounds like a log entry by Han Sizer, describing the initial exploration of the system.`
+	on stopover
+		dialog `As you land your passengers gather together to stare out the viewport. One of them pulls out a datapad and reads what sounds like a log entry by Han Sizer, describing the initial exploration of the planet.`
 	on complete
 		payment 10000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart you hear them talking about celebrating their trip with a party on Longjump.`
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart you hear them talking about celebrating their trip with a party <on Longjump>.`
 
 
 mission "Han Sizer Month [1]"
@@ -113,6 +119,12 @@ mission "Han Sizer Month [1]"
 	repeat
 	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .8
+	substitutions
+		"<on Longjump>" "someone near here."
+			has "flagship planet: Longjump"
+	substitutions
+		"<on Longjump>" "on Longjump"
+			not "flagship planet: Longjump"
 	to offer
 		random < 20
 		month == 8
@@ -132,7 +144,7 @@ mission "Han Sizer Month [1]"
 		not attributes "station"
 	on complete
 		payment 15000 170
-		dialog `Your passengers are excited to have completed their journey around the Rim, and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone on Longjump as they start walking away.`
+		dialog `Your passengers are excited to have completed their journey around the Rim, and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone <on Longjump> as they start walking away.`
 
 
 mission "Han Sizer Month [2]"
