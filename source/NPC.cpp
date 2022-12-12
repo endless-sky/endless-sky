@@ -69,7 +69,7 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::CAPTURE;
 		else if(node.Token(i) == "provoke")
 			succeedIf |= ShipEvent::PROVOKE;
-		else if(node.Token(i) == "repaired_in_bay")
+		else if(node.Token(i) == "repaired in bay")
 			succeedIf |= ShipEvent::REPAIRED_IN_BAY;
 		else if(node.Token(i) == "evade")
 			mustEvade = true;
