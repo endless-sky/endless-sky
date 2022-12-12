@@ -419,6 +419,7 @@
     {
       "name": "test",
       "hidden": true,
+      "configuration": "Debug",
       "output": {
         "shortProgress": true,
         "outputOnFailure": true
@@ -432,6 +433,7 @@
     {
       "name": "benchmark",
       "hidden": true,
+      "configuration": "Release",
       "output": {
         "verbosity": "verbose",
         "outputOnFailure": true

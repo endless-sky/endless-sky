@@ -7,6 +7,7 @@ on:
 
 jobs:
   appimage_amd64:
+    name: Linux
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
@@ -14,7 +15,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -24,7 +25,7 @@ jobs:
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -37,19 +38,20 @@ jobs:
           asset_content_type: application/octet-stream
 
   dmg_macos:
+    name: MacOS
     runs-on: macos-latest
     env:
       OUTPUT: endless-sky-macos-${{ github.event.release.tag_name }}
       SDL2_FRAMEWORK: build/SDL2.framework
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
         run: brew install libpng jpeg-turbo
       - name: Restore cached SDL2 framework
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SDL2_FRAMEWORK }}
           key: macos-latest-sdl2-${{ hashFiles('EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
@@ -63,7 +65,7 @@ jobs:
           ln -s /Applications ${{ env.OUTPUT }}
           hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder ${{ env.OUTPUT }} ${{ github.workspace }}/${{ env.OUTPUT }}.dmg
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT }}.dmg
           path: ${{ env.OUTPUT }}.dmg
