@@ -20,7 +20,7 @@ jobs:
     env:
       OUTPUT: endless-sky-x86_64-continuous.tar.gz
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -37,7 +37,7 @@ jobs:
       - name: Package Application
         run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -49,7 +49,7 @@ jobs:
       OUTPUT: endless-sky-x86_64-continuous.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -61,7 +61,7 @@ jobs:
       - name: Build AppImage
         run: ./utils/build_appimage.sh
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -74,14 +74,14 @@ jobs:
       OUTPUT: EndlessSky-win64-continuous.zip
       AR: gcc-ar
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Fetch development libraries
         run: |
           Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
           Expand-Archive win64-dev.zip -DestinationPath . -Force
           Remove-Item win64-dev.zip
       - name: Cache scons
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: 'scons-local'
           key: scons-${{ hashFiles('.winmake') }}
@@ -99,7 +99,7 @@ jobs:
           COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
           7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -110,13 +110,13 @@ jobs:
       OUTPUT: EndlessSky-macOS-continuous.zip
       SDL2_FRAMEWORK: build/SDL2.framework
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
         run: brew install libpng jpeg-turbo
       - name: Restore cached SDL2 framework
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SDL2_FRAMEWORK }}
           key: macos-latest-sdl2-${{ hashFiles('EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
@@ -130,7 +130,7 @@ jobs:
           cd build/Release
           7z a ${{ github.workspace }}/${{ env.OUTPUT }} Endless\ Sky.app
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -150,7 +150,7 @@ jobs:
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install github-release
         run: |
           go install github.com/github-release/github-release@latest
@@ -185,7 +185,7 @@ jobs:
               --pre-release
           fi
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
       - name: Add ${{ env.OUTPUT_UBUNTU }} to release tag
