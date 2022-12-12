@@ -169,6 +169,9 @@ private:
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
 	std::vector<Visual> newVisuals;
 
+	// For keeping track of which ships were repaired in their carrier's bays
+	std::vector<std::pair<std::shared_ptr<Ship>,std::shared_ptr<Ship>>> repairedInBay;
+
 	// Track which ships currently have anti-missiles ready to fire.
 	std::vector<Ship *> hasAntiMissile;
 
@@ -251,9 +254,6 @@ private:
 	double load = 0.;
 	int loadCount = 0;
 	double loadSum = 0.;
-
-	// For keeping track of which ships were repaired in their carrier's bays
-	std::vector<std::pair<std::shared_ptr<Ship>,std::shared_ptr<Ship>>> repairedInBay;
 };
 
 
