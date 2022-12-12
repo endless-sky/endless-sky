@@ -1616,7 +1616,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	repairedInBay.clear();
 	ship->Move(newVisuals, newFlotsam, repairedInBay);
 	for(auto &docked : repairedInBay)
-		eventQueue.emplace_back(ship, docked, ShipEvent::ASSIST);
+	{
+		printf("%s repaired %s in bay so sending assist event\n",docked.first->Name().c_str(),docked.second->Name().c_str());
+		eventQueue.emplace_back(docked.first, docked.second, ShipEvent::REPAIRED_IN_BAY);
+	}
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
 	// Bail out if the ship just died.

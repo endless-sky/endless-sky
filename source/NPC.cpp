@@ -433,8 +433,11 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	bool alreadyFailed = HasFailed();
 
 	// If this event was "ASSIST", the ship is now known as not disabled.
-	if(type == ShipEvent::ASSIST)
+	if(type == ShipEvent::ASSIST || type==ShipEvent::REPAIRED_IN_BAY)
+	{
+		printf("%s: ASSIST, so removing DISABLE",ship->Name().c_str());
 		actions[ship.get()] &= ~(ShipEvent::DISABLE);
+	}
 
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, assisting, capturing, or provoking.

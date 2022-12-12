@@ -1956,8 +1956,11 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 		}
 
 	for(Mission &mission : missions)
+	{
+		if( (event.Type()&ShipEvent::REPAIRED_IN_BAY) )
+			printf("HandleEvent(%s repaired %s in bay)",event.Actor()->Name().c_str(),event.Target()->Name().c_str());
 		mission.Do(event, *this, ui);
-
+	}
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();

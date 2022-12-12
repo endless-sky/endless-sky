@@ -66,7 +66,11 @@ public:
 		// you had with the given government, first.
 		ATROCITY = (1 << 8),
 		// This ship just jumped into a different system.
-		JUMP = (1 << 9)
+		JUMP = (1 << 9),
+		// This ship was "ASSIST"ed while in its parent's bay. This is used to
+		// clear the "DISABLED" flag on docked ships without sending an ASSIST
+		// event.
+		REPAIRED_IN_BAY = (1 << 10)
 	};
 
 

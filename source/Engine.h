@@ -253,7 +253,7 @@ private:
 	double loadSum = 0.;
 
 	// For keeping track of which ships were repaired in their carrier's bays
-	vector<int> repairedInBay;
+	std::vector<std::pair<std::shared_ptr<Ship>,std::shared_ptr<Ship>>> repairedInBay;
 };
 
 

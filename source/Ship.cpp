@@ -1464,7 +1464,7 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, vector<Ship*> &repairedInBay)
+void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, vector<pair<shared_ptr<Ship>,shared_ptr<Ship>>> &repairedInBay)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -2147,12 +2147,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, vec
 
 
 // Generate energy, heat, etc. (This is called by Move().)
-void Ship::DoGeneration(vector<int> &repairedInBay)
+void Ship::DoGeneration(vector<pair<shared_ptr<Ship>,shared_ptr<Ship>>> &repairedInBay)
 {
 	// First, allow any carried ships to do their own generation.
 	for(const Bay &bay : bays)
 		if(bay.ship)
-			bay.ship->DoGeneration();
+			bay.ship->DoGeneration(repairedInBay);
 
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
@@ -2195,8 +2195,18 @@ void Ship::DoGeneration(vector<int> &repairedInBay)
 			// If this ship is carrying fighters, determine their repair priority.
 			vector<pair<double, Ship *>> carried;
 			for(const Bay &bay : bays)
-				if(bay.ship)
-					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
+			{
+				if(!bay.ship)
+					continue;
+				if(bay.ship->hull < bay.ship->MinimumHull() || bay.ship->isDisabled)
+				{
+					// Fighter is disabled so "board" it to repair it first:
+					printf("%s is repairing its docked ship %s\n",this->Name().c_str(),bay.ship->Name().c_str());
+					bay.ship->AssistedRepair();
+					repairedInBay.emplace_back(shared_from_this(),bay.ship);
+				}
+				carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
+			}
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
@@ -2211,12 +2221,6 @@ void Ship::DoGeneration(vector<int> &repairedInBay)
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				if(ship.hull < ship.MinimumHull() || ship.isDisabled)
-				{
-					// Fighter is disabled so "board" it to repair it first:
-					ship.AssistedRepair();
-					repairedInBay.push_back(ship);
-				}
 				if(!hullDelay)
 					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
