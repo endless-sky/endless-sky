@@ -217,7 +217,7 @@ mission "Visit Quarg in Gegno Space"
 		personality entering staying
 		system "Heutesl"
 		fleet
-			names "Gegno Vi"
+			names "gegno vi"
 			variant
 				"Eclogite" 3
 				"Hornfel" 2
@@ -227,7 +227,7 @@ mission "Visit Quarg in Gegno Space"
 		personality entering staying
 		system "Heutesl"
 		fleet
-			names "Gegno Scin"
+			names "gegno scin"
 			variant
 				"Coesite" 3
 				"Felsic" 2
