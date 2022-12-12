@@ -1173,7 +1173,7 @@ mission "FW Katya 1"
 	destination "Glory"
 	to offer
 		or
-			random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
+			random < 70 + 7 * "assisted free worlds" * "assisted free worlds"
 			has "flagship planet: Zug"
 	to fail
 		has "chosen sides"
