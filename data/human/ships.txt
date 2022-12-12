@@ -1258,7 +1258,81 @@ ship "Cruiser"
 	"final explode" "final explosion large"
 	description "The Republic Cruiser is a relatively recent design, a much larger version of the Frigate designed to be able to take on an entire pirate fleet if necessary. In addition to a wide variety of weaponry, Cruisers have space to carry four attack drones: fast, pilotless fighters that can be controlled remotely."
 
-
+ship "Stolen Cruiser"
+	sprite "ship/cruiser"
+	thumbnail "thumbnail/cruiser"
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Navy Cruiser"
+		"cost" 11200000
+		"shields" 19600
+		"hull" 6400
+		"required crew" 81
+		"bunks" 136
+		"mass" 680
+		"drag" 10.1
+		"heat dissipation" .45
+		"fuel capacity" 600
+		"cargo space" 60
+		"outfit space" 760
+		"weapon capacity" 320
+		"engine capacity" 170
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Particle Cannon" 4
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer" 2
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
+		"Security Station"
+		"Tactical Scanner"
+		
+		"X4700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -28 154 0.95
+	engine 28 154 0.95
+	engine -52 151 0.75
+	engine 52 151 0.75
+	gun -30 -55 "Particle Cannon"
+	gun 30 -55 "Particle Cannon"
+	gun -40.5 -52 "Particle Cannon"
+	gun 40.5 -52 "Particle Cannon"
+	gun -30 -30 "Sidewinder Missile Launcher"
+	gun 30 -30 "Sidewinder Missile Launcher"
+	turret 0 -39.5 "Heavy Anti-Missile Turret"
+	turret -32 -23 "Heavy Laser Turret"
+	turret 32 -23 "Heavy Laser Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
+	bay "Drone" -25 19.5
+	bay "Drone" 25 19.5
+	bay "Drone" -25 49.5
+	bay "Drone" 25 49.5
+	leak "leak" 30 50
+	leak "flame" 50 80
+	leak "big leak" 40 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Republic Cruiser is a relatively recent design, a much larger version of the Frigate designed to be able to take on an entire pirate fleet if necessary. In addition to a wide variety of weaponry, Cruisers have space to carry four attack drones: fast, pilotless fighters that can be controlled remotely. Somebody stole this one, and the Republic wants it destroyed."
 
 ship "Dagger"
 	sprite "ship/dagger"
