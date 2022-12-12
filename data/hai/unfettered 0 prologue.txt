@@ -322,7 +322,7 @@ mission "Unfettered Jump Drive Trading"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We will show you the weapons once you arrive. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never even stop to ask if you are actually interested in new weapons.`
+			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We will show you the weapons once you arrive. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
 			choice
 				`	(Say nothing.)`
 					goto next
