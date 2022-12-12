@@ -47,12 +47,17 @@ void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 	{
 		const std::string &token = child.Token(0);
 		bool remove = (token == "clear" || token == "remove");
+		bool add = token == "add";
 		if(remove && child.Size() == 1)
 			this->clear();
 		else if(remove && child.Size() >= 2)
 			this->erase(items.Get(child.Token(1)));
-		else if(token == "add" && child.Size() >= 2)
+		else if(add && child.Size() == 2 && child.Token(1) != "description")
 			this->insert(items.Get(child.Token(1)));
+		else if(add && child.Size() >= 3 && child.Token(1) == "description")
+			description += child.Token(2) + '\n';
+		else if(remove && child.Size() >= 2 && child.Token(1) == "description")
+			description = "";
 		else if(token == "description" && child.Size() >= 2)
 			description += child.Token(1) + '\n';
 		else
