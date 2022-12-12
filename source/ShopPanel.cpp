@@ -564,10 +564,6 @@ void ShopPanel::CheckForMissions(Mission::Location location)
 		return;
 
 	Mission *mission = player.MissionToOffer(location);
-	// Special case: if the player somehow got to the outfitter before all
-	// landing missions were offered, they can still be offered here:
-	if(!mission)
-		mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
 		mission->Do(Mission::OFFER, player, GetUI());
 	else
