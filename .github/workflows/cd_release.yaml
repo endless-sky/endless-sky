@@ -7,6 +7,7 @@ on:
 
 jobs:
   appimage_amd64:
+    name: Linux
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
@@ -37,6 +38,7 @@ jobs:
           asset_content_type: application/octet-stream
 
   dmg_macos:
+    name: MacOS
     runs-on: macos-latest
     env:
       OUTPUT: endless-sky-macos-${{ github.event.release.tag_name }}
