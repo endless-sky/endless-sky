@@ -49,7 +49,7 @@ mission "First Contact: Gegno Vi"
 			label search
 			`	As you fly onward, an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate, making sure to equip an environment suit and holster your sidearm.`
 			label skip
-			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. Your radar showed something much less defined than a humanoid, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding a spear-like weapon. The figure moves around attentively as if it is focused on its surroundings, but appears to take no interest in your presence. The encounter feels very odd in that there is no immediate interaction or acknowledgement of your presence .`
+			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. Your radar showed something much less defined than a humanoid, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding a spear-like weapon. The figure moves around attentively as if it is focused on its surroundings, but appears to take no interest in your presence. The encounter feels very odd in that there is no immediate interaction or acknowledgment of your presence .`
 			choice
 				`	(Approach the alien.)`
 				`	(Turn back to my ship.)`
@@ -109,7 +109,7 @@ mission "First Contact: Gegno Vi"
 			`	You carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range. Exiting your ship in an environment suit and your sidearm on hand, you walk towards the Gegno ship.`
 			`	The ship appears a bit larger than you thought - around the size of a Firebird. The dark-brown hull appears to be made from an unknown material, and has several metallic-looking parts both hatched in crevices and protruding outward, indicative of the Gegno Vi's brutish aesthetics. Oddly enough, the warship seems perfectly intact, but the way it is angled into the sand suggests that the ship has been here for some time. There doesn't seem to be any activity around it, and you aren't picking up any nearby life signs. You decide to head back to your ship and take another look around the area.`
 			label resume
-			`	As you fly onward, an erratic signature appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate, donning your evironment suit with your sidearm at hand.`
+			`	As you fly onward, an erratic signature appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate, donning your environment suit with your sidearm at hand.`
 			`	Much to your surprise, there is a large humanoid figure standing in front of you. It looks nothing like the Gegno you've seen on the nearby Quarg ringworld; it is large, bulky, and clad in metallic armor. In one of its hands is a spear-like weapon; you guess that they are a Gegno Vi based on their appearance. The Vi moves around attentively, focused on its surroundings, but appears to take no interest in your presence.`
 			choice
 				`	(Approach the Vi warrior.)`
