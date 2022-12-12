@@ -897,10 +897,6 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		bunksNeeded -= flagship->Cargo().BunksFree();
 	}
 
-	const auto &playerConditions = player.Conditions();
-	bool toAcceptPassed = !toAccept || toAccept.Test(playerConditions);
-	subs["<conditions>"] = toAcceptPassed ? "meet" : "do not meet";
-
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	substitutions.Substitutions(subs, player.Conditions());
@@ -908,6 +904,10 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	subs["<last>"] = player.LastName();
 	if(flagship)
 		subs["<ship>"] = flagship->Name();
+
+	const auto &playerConditions = player.Conditions();
+	bool toAcceptPassed = toAccept.IsEmpty() || toAccept.Test(playerConditions);
+	subs["<conditions>"] = toAcceptPassed ? "meet" : "do not meet";
 
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -917,7 +917,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(cargoNeeded > 0)
 		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons") << " of cargo space";
 	if(bunksNeeded <= 0 && cargoNeeded <= 0)
-		out << "no additional space"
+		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
 	string message = Format::Replace(blocked, subs);
