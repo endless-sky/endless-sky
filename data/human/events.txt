@@ -135,7 +135,9 @@ event "war begins"
 		outfitter clear
 		"required reputation" 100
 	planet "Martini"
-		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
+		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well. Currently, there is a massive rescue and evacuation operation going on in the capital city.`
+		spaceport `Instead of the immaculate spaceport that Martini once sported, this temporary spaceport consists of about a hundred hastily poured landing pads, in order to allow the increased numbers of both Navy and civilian ships helping with the rescue and evacuation operation. For whatever reason, someone has hired an entire legion of workers to clean every landing pad before a ship lands, which has caused a considerable queue to form both at the spaceport and in the air. Some habits never change.`
+		spaceport `	The old spaceport still remains, although three of the original granite towers partially collapsed in the bombings and now appear from the distance to be three black spires into the sky. Strangely, it is now the most prominent building of the old capital's skyline, as its deflector shields managed to absorb a considerable amount of damage from the blast that other buildings could not.`
 		"required reputation" 100
 		security .9
 	planet "Bourne"
@@ -2950,4 +2952,20 @@ mission "Geminus Rebuilt"
 		has "main plot completed"
 	on offer
 		event "geminus rebuilt" 90
+		fail
+
+event "martini rebuilt"
+	planet "Martini"
+		description `Martini is a world of exotic beaches and perfect weather. Its previous capital city - which is being rebuilt when the radiation clears away - is currently sealed off from public access, an unnecessary reminder of the day when millions of people died so that a recession could be averted.`
+		description `	The new capital city is on the other side of the continent where the radioactive remainders will not affect the rest of the population. It is not so grand, but the remaining inhabitants have a sort of 'will-do' attitude that only occurs after such a devastating and destructive event like an atomic bombing.`
+		spaceport `The new planetary spaceport, which was the new capital's regional spaceport, was not designed for the increased traffic that was to come with becoming the capital of a planet. The temporary spaceport is still under use, and since then even more pads were poured, but there are plans to demolish it and expand the new planetary spaceport.`
+		spaceport `	The old spaceport still remains, although three of the original granite towers partially collapsed in the bombings and now appear from the distance to be three black spires into the sky. Strangely, it is now the most prominent building of the old capital's skyline, as its deflector shields managed to absorb a considerable amount of damage from the blast that other buildings could not.`
+
+mission "Martini Rebuilt"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		event "martini rebuilt" 45
 		fail
