@@ -9,7 +9,6 @@ outfit "Strange Ray"
 		"inaccuracy" 0
 		"velocity" 1
 		"lifetime" 20
-		"random lifetime" 0
 		"reload" 3
 		"firing energy" 8
 		"firing heat" 4
