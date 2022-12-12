@@ -1182,6 +1182,28 @@ mission "Martini Bombings (Construction, Diggers)"
 		dialog phrase "generic cargo delivery payment"
 
 
+mission "Martini Bombings (Construction, Shovels)"
+	name "Shovels to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the evacuation and reconstruction efforts. Payment is <payment>."
+	job
+	repeat
+	cargo "shovels" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of shovels for the evacuation and reconstruction efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 40
+	source
+		near "Pollux" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
 mission "Martini Bombings (People, Doctors)"
 	name "Doctors to Martini"
 	description "Due to the recent nuclear bombings, bring <bunks> doctors to <planet> to release demand from overloaded hospitals treating patients. Payment is <payment>."
@@ -1249,7 +1271,7 @@ mission "Martini Bombings (People, Search and Rescue Team)"
 
 
 mission "Martini Bombings (People, Nurses)"
-	name "Doctors to Martini"
+	name "Nurses to Martini"
 	description "Due to the recent nuclear bombings, bring <bunks> nurses to <planet> to release demand from overloaded hospitals treating patients. Payment is <payment>."
 	job
 	repeat
