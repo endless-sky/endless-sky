@@ -94,8 +94,8 @@ mission "Han Sizer Month [0]"
 		"<on Longjump>" "on Longjump"
 			not "flagship planet: Longjump"
 	to offer
-		# random < 30
-		# month == 8
+		random < 30
+		month == 8
 	source
 		attributes "rim"
 	stopover
