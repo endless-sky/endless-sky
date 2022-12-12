@@ -16,6 +16,7 @@ concurrency:
 jobs:
 
   cd_appimage_x86_64:
+    name: Linux
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
@@ -40,6 +41,7 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   cd_windows_win64:
+    name: Windows
     runs-on: windows-latest
     env:
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
@@ -78,6 +80,7 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   cd_macos_x86_64:
+    name: MacOS
     runs-on: macos-latest
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
@@ -109,6 +112,7 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   cd_upload_artifacts_to_release:
+    name: Upload
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs:
