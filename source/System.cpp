@@ -688,6 +688,13 @@ const WeightedList<double> &System::AsteroidBelts() const
 
 
 
+double System::InvisibleFenceRadius() const
+{
+	return invisibleFenceRadius;
+}
+
+
+
 // Get how far ships can jump from this system.
 double System::JumpRange() const
 {
@@ -759,13 +766,6 @@ bool System::HasOutfitter() const
 			return true;
 
 	return false;
-}
-
-
-
-double System::InvisibleFenceRadius() const
-{
-	return invisibleFenceRadius;
 }
 
 
