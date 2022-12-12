@@ -5026,7 +5026,7 @@ mission "A dead man's path II"
 			choice
 				"I do not know what you want me to do yet."
 				"Sorry, but I would be stupid to accept a mission I do not know anything about."
-			`"Of course," Sophie says, "my brother is just can not wait to get started. Maybe I should start with who our father was. We do not know much about him. He came home only occasionally, do not get me wrong, our parents were not in conflict, his passion just did not allow him to stay at one place very long. He was a captain, not unlike you. He was restless to explore even the furthest parts of the galaxy and we believe he travelled further than most human captains. Sometimes he brought small items back home that looked like nothing we know." She pauses for a moment, lost in memories. "Anyways," she continues, "in his testament he told us that he left something behind for us. But because he is a great fan fantasy books, he said he would not make it easy for us. Instead he left behind a route of waypoints that we should visit before we go to the place where he left something behind. Of course we could go directly to this place, but we want to respect our fathers last will." She looks directly at you now, "And that is why we need your help. Would you help us to get to all waypoints?"`
+			`"Of course," Sophie says, "my brother is just can not wait to get started. Maybe I should start with who our father was. We do not know much about him. He came home only occasionally, do not get me wrong, our parents were not in conflict, his passion just did not allow him to stay at one place very long. He was a captain, not unlike you. He was restless to explore even the furthest parts of the galaxy and we believe he travelled further than most human captains. Sometimes he brought small items back home that looked like nothing we know." She pauses for a moment, lost in memories. "Anyways," she continues, "in his testament he told us that he left something behind for us. But because he is a great fan of fantasy books, he said he would not make it easy for us. Instead he left behind a route of waypoints that we should visit before we go to the place where he left something behind. Of course we could go directly to this place, but we want to respect our fathers last will." She looks directly at you now, "And that is why we need your help. Would you help us to get to all of the waypoints?"`
 			choice
 				"I would be glad to."
 					goto "Accept"
@@ -5046,12 +5046,82 @@ mission "A dead man's path II"
 		dialog "The strange but impressive unfinsihed Quarg ringworld shows all of you how much the human race has to learn."
 	on complete
 		conversation
-			`"This was a very interesting trip," you say. The siblings agree. Sophie says, "Captain <last>, both of us think that you should come with us to see what our father left behind. Do you want to see it?" You answer, "I am certainly interested after what I have seen so far." Liam pulls out a map, but not a star map but a local map. "Apparently our father bought a whole mountain on this planet. Let's get there."`
-			`    After a short shuttle flight, you arrive in front of a single, not too large mountain, that peaks out of the rest of the landscape. Liam, with help of the map, guides to a flat wall. He looks a bit embarrassed at you two, "Our father wants us to say: Edr- i fen. I do not know what it means, but I am most certain it refers to one of this fantasy romans he used to read." All of you look at each other and then shout the words out. You all have to laugh a bit after that. Suddenly a blue line appears on the wall. The line shapes rectangle. After it has finished the shape, the stone inside the rectangle just disappears. All of you look surprised. "I could have sweared the stone was real," Liam says silently.`
-			`    You enter the halway behind the opening. The walls are perfectly smooth and the light seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That is totally our dad." You proceed until you enter dome like room. On the walls all kind of alien artifacts line up next to each other. In the center of the room is a small slope with a strange looking sword inside. A small tablet stand on a socket in front of it.`
+			`"This was a very interesting trip," you say. The siblings agree. Sophie says, "Captain <last>, both of us think that you should come with us to see what our father left behind. Do you want to see it?"`
+			choice
+				"Now that I came so far, sure."
+					goto continue
+				"Sorry, but could youst pay me now?"
+			`    "Sure," Liam says. Here is your payment.`
+				accept
+			label continue
+			`    Liam pulls out a map, not a star map but a local map. "Apparently our father bought a whole mountain on this planet. Let's get there."`
+			choice
+				"Sounds good, lets get there."
+					goto shuttle
+				"We could also have a look around here, see why your father chose this planet."
+			`    "You are right, Sophie says, "lets just relax in this town first."`
+			`    The three walk around for some time. At one giant plaza you see one of the newest ship of Betelgeuse being showed off. Liam's face brightens as if he just understood something. "I think our father chose this planet, because he always was a fan of the Betelgeuse ships. If I recall correctly, he once was gifted one of their newest ships for test flighting it." Sophie nods, "Right now that you say, I remember that too. Anyways, shall we get to the mountain now?"`
+			choice
+				"We should take a shuttle, they are the fastest way."
+					goto shuttle
+				"We have time, lets take the maglev."
+					goto maglev
+			label shuttle
+			`    After a short shuttle flight, you arrive in front of a single, not too large mountain, that peaks out of the rest of the landscape.`
+				goto front-mountain
+			label maglev
+			`    You take the maglev and get a tour through some regions of the planet. Although it is hard to get any detail because of the high speed, you get a good impression. After an hour you end up close to a mountain that stands solely in the landscape.`
+			label front-mountain
+			`    Liam, with help of the map, guides to a flat wall. He looks a bit embarrassed at you two, "Our father wants us to say: Edr- i fen. I do not know what it means, but I am most certain it refers to one of this fantasy novels he used to read."`
+			choice
+				"Sounds funny, lets do it."
+				"What a strange man, but I like his sense of humor."
+			`    You count to three and then shout out the phrase together. You all have to laugh a bit after that. Suddenly a blue line appears on the wall. The line shapes rectangle. After it has finished the shape, the stone inside the rectangle just disappears. All of you look surprised. "I could have sweared the stone was real," Liam says silently.`
+			choice
+				"Just like a real adventure, lets go!"
+					goto enter
+				"We do not know what is inside there, lets be careful."
+			`    "Oh, now that you say it, I recently bought a small camera drone," Liam says, "we can use it to scout out the hallway." He takes out a small box with a drone inside. "It is only in infrared, so we wont see much details," he adds. He starts the drone and guides it with a small remote control with integrated display. "I think it is safe, we can go," he tells you after some time.`
+			label enter
+			`    You enter the halway behind the opening. The walls are perfectly smooth and the light seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That is totally our dad." You proceed until you enter dome like room. On the walls all kind of alien artifacts line up next to each other. In the center of the room is a small slope with a strange looking sword inside. A small tablet stands on a socket in front of it.`
+			choice
+				"[get closer to the tablet]"
+					goto sword-scene
+				"[take a look around first]"
+			`    You walk around, looking at the various alien artifacts.`
+			`    A lot of the artifacts look similiar to Sheragi technology, you ask yourself where he got this stuff.`
+				to display
+					has "Sheragi Archaeology: The Emerald Sword 3: done"
+			`    After some time Sophie calls you both to the tablet.`
+			label sword-scene
 			scene "outfit/old sword"
 			`    You all get closer to the tablet. A short message is written on it:`
 			`    My dear children, this is the summary of all the things I have done, enjoy it!`
-			`    All of you walk around for some time and look at the various artifacts. You notice the siblings standing in one corner talking about something. They wink you to them. Sophie starts, "Captain <last>, we have thought about this sometime and we think it would be a shame to just keep this sword as a memory. It needs to be used. It was our fathers one and only weapon, which probably means that is has all kind of alien tecnology integrated," she takes the sword and reaches it to you. "It is yours now." You look at her, surprised. "Are you sure about this?" you ask. "Yes we are," Liam says, "please take it on some more adventures." You take the sword.`
+			choice
+				"That is one of the best gifts I have ever seen."
+				"Now this is some cool stuff."
+			`    You leave the two of them alone for a bit, walking around and looking at the atrifacts.`
+			`    After some time they wink you to them. Sophie starts, "Captain <last>, we have thought about this sometime and we think it would be a shame to just keep this sword as a memory. It needs to be used. It was our fathers one and only weapon, which probably means that is has all kind of alien tecnology integrated," she takes the sword and reaches it to you. "It is yours now." You look at her, surprised.`
+			choice
+				"This is too much for me to take."
+					goto decline-offer
+				"I would be more than grateful to take it."
+					goto accept-sword
+			label decline-offer
+			`    "Are you sure," Liam asks, "this is a one time offer."`
+			choice
+				"Yes, I am sure."
+				"Well, if you say it like this, I will take it."
+					goto accept-sword
+			`    "I see, at least take this extra payment," Liam transfers 50 thousand credits to your bank account.`
+			action
+				payment 50000
+			`    "It is for you traveling so much with us," Sophie adds.`
+				goto end
+			label accept-sword
+			`    "Please take it on some more adventures," Sophie says. You take the sword. It feels strangely light and as you swing it an energy bolts shoots out of it. Better be careful with his.`
+			action
+				outfit "Old Man's sword" 1
+			label end
 			`    "Well, it seems like this is the end of our short journey together, Capatin <last>," Sophie says. "It was a pleasure to travel with you," says Liam. You say goodbye to them and leave them alone in the dome.`
-		outfit "Old Man's sword" 1
+		payment 50000
