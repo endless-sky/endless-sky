@@ -244,6 +244,7 @@ test-data "quarg atrocity"
 				atrocities
 					Hyperdrive
 				remove "enforces"
+				remove "death sentence"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		"available mission" "%TEST%: Wardragon Scanning You!"

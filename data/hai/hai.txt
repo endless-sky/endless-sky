@@ -11,27 +11,49 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-shipyard "Hai Basics"
-	"Aphid"
-	"Lightning Bug"
-	"Centipede"
-	"Grasshopper"
+# For Hai shipyards their "Advanced" ships are restricted to the planets where the ships are actually manufactured.
+# In the case of "Intermediate" shipyards being required, those should be restricted to planets with substantial industrial bases.
+# The basics are those which can (but might not) be exported and sold pretty much anywhere that could provide reasonable maintenance services.
 
-shipyard "Hai Intermediate"
-	"Aphid"
+# Imo Loo Mer Corp shipyards:
+shipyard "Imo Loo Mer Basics"
+	"Scarab"
 	"Lightning Bug"
-	"Water Bug"
-	"Centipede"
-	"Grasshopper"
 
-shipyard "Hai Advanced"
-	"Aphid"
-	"Lightning Bug"
-	"Water Bug"
-	"Shield Beetle"
+shipyard "Imo Loo Mer Advanced"
 	"Centipede"
 	"Geocoris"
+
+
+# Mon Ki o'Uden Splinter (unfettered) shipyards:
+shipyard "Mon Ki o'Uden Advanced"
+	"Aphid"
+	"Lightning Bug"	#Stolen
+	"Sea Scorpion"
+	"Shield Beetle"
+	# Has "Solifuge" and "Violin Spider" added by event.
+	# Technically has the specs for the "Ladybug" but not the resources to build it.
+
+
+# Mon Ki i'Hiya Consortium (loyalist) shipyards:
+shipyard "Mon Ki i'Hiya Basics"
+	"Aphid"
+	# Has "Ladybug" & "Flea" added by event.
+
+shipyard "Mon Ki i'Hiya Advanced"
+	"Shield Beetle"
+	# Has "Pond Strider" added by event.
+
+
+# Yeer e Ki Cooperative shipyards:
+shipyard "Yeer e Ki Basics"
+	"Aphid"
 	"Grasshopper"
+
+shipyard "Yeer e Ki Advanced"
+	"Water Bug"
+	"Cicada"
+
 
 outfitter "Hai Basics"
 	"Pulse Cannon"
@@ -157,11 +179,6 @@ outfitter "Hai Security"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
-shipyard "Unfettered Basics"
-	"Lightning Bug"
-	"Water Bug"
-	"Sea Scorpion"
-
 outfitter "Unfettered Basics"
 	"Pulse Cannon"
 	"Hai Tracker"
@@ -197,10 +214,8 @@ phrase "hai"
 		"Yoot"
 		"Imo"
 	word
-		" "
-		" "
-		" e "
-		" e "
+		" " 2
+		" e " 2
 		" Cor "
 		" Yo "
 		" Sook "
@@ -216,7 +231,7 @@ phrase "hai"
 		"Sen"
 		"Bin"
 		"Bah"
-		"Ki"
+		"Ki" 2
 		"Blep"
 		"Tee"
 		"Say"
@@ -225,7 +240,6 @@ phrase "hai"
 		"Gip"
 		"Oo"
 		"Mer"
-		"Ki"
 		"Tou"
 
 phrase "hai first names"
