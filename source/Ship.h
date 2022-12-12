@@ -175,7 +175,6 @@ public:
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
 	void SetIsPlayerFlagship(bool isFlagship = true);
-	void SetFirePrimary(bool firePrimary = true);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 
@@ -505,7 +504,6 @@ private:
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
-	bool firePrimary = false;
 	double steeringDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;

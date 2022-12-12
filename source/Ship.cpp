@@ -1343,13 +1343,6 @@ void Ship::SetIsPlayerFlagship(bool isFlagship)
 
 
 
-void Ship::SetFirePrimary(bool firePrimary)
-{
-	this->firePrimary = firePrimary;
-}
-
-
-
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
@@ -2110,7 +2103,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 
 	static const double weaponsRangeMultiplier = 1.25;
-	bool hasPrimary = firePrimary;
+	bool hasPrimary = commands.Has(Command::PRIMARY);
 
 	// Boarding:
 	shared_ptr<const Ship> target = GetTargetShip();
