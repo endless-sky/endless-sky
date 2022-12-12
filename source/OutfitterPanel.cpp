@@ -263,7 +263,6 @@ int OutfitterPanel::DrawDetails(const Point &center)
 {
 	const string selectedItem = selectedOutfit ? selectedOutfit->DisplayName() : "Nothing Selected";
 	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 
