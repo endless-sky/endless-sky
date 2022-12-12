@@ -427,13 +427,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			break;
 		}
 	if(!ship)
-	{
-		if(type == ShipEvent::ASSIST)
-			printf("Discarding assist event for null ship\n");
-		if(type == ShipEvent::REPAIRED_IN_BAY)
-			printf("Discarding repaired_in_bay event for null ship\n");
 		return;
-	}
 
 	// Determine if this NPC is already in the succeeded state,
 	// regardless of whether it will despawn on the next landing.

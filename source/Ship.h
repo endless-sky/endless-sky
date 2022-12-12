@@ -203,7 +203,8 @@ public:
 	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
-	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam,std::vector<std::pair<std::shared_ptr<Ship>,std::shared_ptr<Ship>>> &repairedInBay);
+	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam,
+		std::vector<std::pair<std::shared_ptr<Ship>,std::shared_ptr<Ship>>> &repairedInBay);
 	// Generate energy, heat, etc. (This is called by Move().)
 	void DoGeneration(std::vector<std::pair<std::shared_ptr<Ship>,std::shared_ptr<Ship>>> &repairedInBay);
 	// Launch any ships that are ready to launch.

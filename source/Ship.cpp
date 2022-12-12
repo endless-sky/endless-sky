@@ -1464,7 +1464,8 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, vector<pair<shared_ptr<Ship>,shared_ptr<Ship>>> &repairedInBay)
+void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam,
+	vector<pair<shared_ptr<Ship>,shared_ptr<Ship>>> &repairedInBay)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -2202,7 +2203,7 @@ void Ship::DoGeneration(vector<pair<shared_ptr<Ship>,shared_ptr<Ship>>> &repaire
 				{
 					// Fighter is disabled so "board" it to repair it first:
 					bay.ship->AssistedRepair();
-					repairedInBay.emplace_back(shared_from_this(),bay.ship);
+					repairedInBay.emplace_back(shared_from_this(), bay.ship);
 				}
 				carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
 			}
