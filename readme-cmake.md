@@ -91,9 +91,9 @@ Replace `<preset>` with one of the following presets:
 
 ## Building with Visual Studio Code
 
-Install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions and open the project folder under File -> Open Folder.
+Install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools), [CMake Test explorer](https://marketplace.visualstudio.com/items?itemName=fredericbonnet.cmake-test-adapter) extensions and open the project folder under File -> Open Folder.
 
-You'll be asked to select a preset. Select the one you want (see the table above). If you get asked to configure the project, click on Yes. You can use the bar at the very bottom to select between different configurations (Debug/Release), build, start the game, and execute the unit tests.
+You'll be asked to select a preset. Select the one you want (see the table above). If you get asked to configure the project, click on Yes. You can use the bar at the very bottom to select between different configurations (Debug/Release), build, start the game, and execute the unit tests. On the left you can click on the test icon to run individual integration tests.
 
 ## Building with Code::Blocks
 
