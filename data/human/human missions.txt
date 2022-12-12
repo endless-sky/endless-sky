@@ -4048,6 +4048,7 @@ mission "Laborer"
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	destination
+		distance 1 100
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	to offer

@@ -663,7 +663,7 @@ mission "Hai Leaks Response 2B"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
-		not planet "Deep" "Foundry"
+		not planet "Deep" "Foundry" "Watcher"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
