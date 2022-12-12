@@ -589,8 +589,6 @@
 		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
-				93A9D9892946BA8E00167143 /* SpriteParameters.cpp */,
-				93A9D98A2946BA8E00167143 /* SpriteParameters.h */,
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
 				A96862CE1AE6FD0A004FE1FE /* Account.h */,
 				A96862CF1AE6FD0A004FE1FE /* AI.cpp */,
@@ -861,6 +859,8 @@
 				A96863831AE6FD0D004FE1FE /* SpaceportPanel.h */,
 				A96863841AE6FD0D004FE1FE /* Sprite.cpp */,
 				A96863851AE6FD0D004FE1FE /* Sprite.h */,
+				93A9D9892946BA8E00167143 /* SpriteParameters.cpp */,
+				93A9D98A2946BA8E00167143 /* SpriteParameters.h */,
 				A96863861AE6FD0D004FE1FE /* SpriteQueue.cpp */,
 				A96863871AE6FD0D004FE1FE /* SpriteQueue.h */,
 				A96863881AE6FD0D004FE1FE /* SpriteSet.cpp */,
