@@ -683,26 +683,6 @@ mission "Martini Bombings (Medical, Iodine)"
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
 
-mission "Martini Bombings (Medical, Masks)"
-	name "Masks to Martini"
-	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
-	job
-	repeat
-	cargo "masks" 5 25
-	clearance "When you explain to the spaceport controller that you are carrying a vital supply of masks for the evacuation efforts, they give you the clearance to land."
-	to offer
-		has "event: war begins"
-		not "event: initial deployment 2"
-	source
-		near "Martini" 2 5
-	destination
-		planet "Martini"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		payment 25000
-		dialog phrase "generic cargo delivery payment"
-
 mission "Martini Bombings (Medical, Painkillers)"
 	name "Painkillers to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
@@ -723,7 +703,127 @@ mission "Martini Bombings (Medical, Painkillers)"
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
 
-mission "Martini Bombings (Medical, Hazmat Suits)"
+mission "Martini Bombings (Medical, Medical Kits)"
+	name "Medical Kits to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "medical kits" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of medical kits to treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Medical, Stretchers)"
+	name "Stretchers to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "stretchers" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of stretchers to treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Medical, Bandages)"
+	name "Bandages to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "bandages" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of bandages to treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Medical, Medical Gloves)"
+	name "Medical Gloves to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "medical gloves" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of medical gloves to treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Medical, Saline)"
+	name "Saline solution to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "saline solution" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of saline solution to treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Evacuation, Masks)"
+	name "Masks to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
+	job
+	repeat
+	cargo "masks" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of masks for the evacuation efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Evacuation, Hazmat Suits)"
 	name "Hazmat suits to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
 	job
@@ -743,7 +843,7 @@ mission "Martini Bombings (Medical, Hazmat Suits)"
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
 
-mission "Martini Bombings (Medical, Dosimeters)"
+mission "Martini Bombings (Evacuation, Dosimeters)"
 	name "Dosimeters to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
 	job
@@ -824,6 +924,25 @@ mission "Martini Bombings (Construction, Temporary Housing Units)"
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
 
+mission "Martini Bombings (Construction, Generator Units)"
+	name "Generator units to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the evacuation and reconstruction efforts. Payment is <payment>."
+	job
+	repeat
+	cargo "generator units" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of generator units for the evacuation and reconstruction efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
 
 mission "Martini Bombings (Construction, Diggers)"
 	name "Diggers to Martini"
@@ -872,6 +991,27 @@ mission "Martini Bombings (People, Evacuation Coordinators)"
 	repeat
 	passengers 5 15
 	clearance "When you explain to the spaceport controller that you have on board a group of evacuation coordinators to help with the evacuation efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Martini Bombings (People, Search and Rescue Team)"
+	name "Search and rescure team to Martini"
+	description "Due to the recent nuclear bombings, bring a team of <bunks> search and rescue specialists to <planet> to help with the evacuation. Payment is <payment>."
+	job
+	repeat
+	passengers 5 15
+	clearance "When you explain to the spaceport controller that you have on board a team of search and rescue specialists to help with the evacuation efforts, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
