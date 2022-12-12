@@ -244,5 +244,5 @@ mission "War Reactions: Syndicate Orphan"
 			`	You arrive at the factory and an older girl, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
 			`	As Gus ends his salute, the girl attacks him from behind, putting him into a choke hold. It's clear she's taking extreme care when doing it. "Did you wander out of the safe zone? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Sally! I was curious."`
 			`	The girl lets him out of the hold and says to you, "Thank you for saving my brother. He's the only family I have left, and I hope," she pinches him, "he'll stop risking his life out of curiosity." She looks at Gus kindly. "Come on, let's get you to the medic."`
-			`	Sally waves goodbye as the walks her brother into the orphanage factory.`
+			`	Sally waves goodbye as she walks her brother into the orphanage factory.`
 				decline
