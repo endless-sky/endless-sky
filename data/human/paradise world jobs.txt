@@ -661,6 +661,8 @@ phrase "martini evac dialog"
 	word
 		" on <planet>."
 
+
+
 mission "Martini Bombings (Medical, Iodine)"
 	name "Iodine tablets to Martini"
 	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help sustain the supply. Payment is <payment>."
@@ -672,7 +674,7 @@ mission "Martini Bombings (Medical, Iodine)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		distance 2 5
+		near "Martini" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -680,7 +682,6 @@ mission "Martini Bombings (Medical, Iodine)"
 	on complete
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
-
 
 mission "Martini Bombings (Medical, Masks)"
 	name "Masks to Martini"
@@ -693,7 +694,7 @@ mission "Martini Bombings (Medical, Masks)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		distance 2 5
+		near "Martini" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -701,7 +702,6 @@ mission "Martini Bombings (Medical, Masks)"
 	on complete
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
-
 
 mission "Martini Bombings (Medical, Painkillers)"
 	name "Painkillers to Martini"
@@ -714,7 +714,7 @@ mission "Martini Bombings (Medical, Painkillers)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		distance 2 5
+		near "Martini" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -722,7 +722,6 @@ mission "Martini Bombings (Medical, Painkillers)"
 	on complete
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
-
 
 mission "Martini Bombings (Medical, Hazmat Suits)"
 	name "Hazmat suits to Martini"
@@ -735,7 +734,7 @@ mission "Martini Bombings (Medical, Hazmat Suits)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		distance 2 5
+		near "Martini" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -743,8 +742,6 @@ mission "Martini Bombings (Medical, Hazmat Suits)"
 	on complete
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
-
-
 
 mission "Martini Bombings (Medical, Dosimeters)"
 	name "Dosimeters to Martini"
@@ -757,7 +754,7 @@ mission "Martini Bombings (Medical, Dosimeters)"
 		has "event: war begins"
 		not "event: initial deployment 2"
 	source
-		distance 2 5
+		near "Martini" 2 5
 	destination
 		planet "Martini"
 	on visit
@@ -765,3 +762,125 @@ mission "Martini Bombings (Medical, Dosimeters)"
 	on complete
 		payment 25000
 		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Construction, Cement)"
+	name "Cement to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> so that the overloaded regional spaceports can build more landing pads. Payment is <payment>."
+	job
+	repeat
+	cargo "cement" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of cement for landing pads, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (Construction, Medical Tents)"
+	name "Medical tents to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to release demand from overloaded hospitals treating patients. Payment is <payment>."
+	job
+	repeat
+	cargo "medical tents" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of medical tents, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Bombings (Construction, Temporary Housing Units)"
+	name "Temporary housing units to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> so that residents left without a home can be sheltered. Payment is <payment>."
+	job
+	repeat
+	cargo "temporary housing units" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of temporary housing units, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Bombings (Construction, Diggers)"
+	name "Diggers to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the evacuation and reconstruction efforts. Payment is <payment>."
+	job
+	repeat
+	cargo "diggers" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of diggers for the evacuation and reconstruction efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Martini Bombings (People, Doctors)"
+	name "Doctors to Martini"
+	description "Due to the recent nuclear bombings, bring <bunks> doctors to <planet> to release demand from overloaded hospitals treating patients. Payment is <payment>."
+	job
+	repeat
+	passengers 5 15
+	clearance "When you explain to the spaceport controller that you have on board a group of doctors to treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Martini Bombings (People, Evacuation Coordinators)"
+	name "Construction Workers to Martini"
+	description "Due to the recent nuclear bombings, bring <bunks> evacuation coordinators to <planet> to help with the evacuation. Payment is <payment>."
+	job
+	repeat
+	passengers 5 15
+	clearance "When you explain to the spaceport controller that you have on board a group of evacuation coordinators to help with the evacuation efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+	source
+		near "Martini" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic passenger dropoff payment"
