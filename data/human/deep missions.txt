@@ -436,7 +436,7 @@ mission "Deep: Mystery Cubes 2"
 			label accept
 			`	In the end, only one of the merchant captains declines. She is escorted out of the room, and the admiral explains each merchant captain's new role.`
 			`	"We assume that Beelzebub knows where we will be, but we know where he is as well - the stolen Cruisers and the pirate fleet that attacked our base moved toward the Core. Given the severity of the crime that Beelzebub has just committed, he will undoubtedly attempt to get as far away from the law as possible. That leaves us only two possible destinations: Buccaneer Bay, or the anarchist colonies of the Far North. Our best guess is that the colonies are the more appealing option to a warlord.`
-			`	"We'll be setting up multiple blockades in hopes of boxing Beelzebub in as a number of fleets sweep the galaxy. Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
+			`	"We'll be setting up multiple blockades in hopes of boxing Beelzebub in as a number of fleets sweep the galaxy. Those Cruisers need to be destroyed - we can't risk leaving them in pirate hands. Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
 				accept
 			
 	on visit
@@ -534,7 +534,7 @@ mission "Deep: Mystery Cubes 3"
 		fleet
 			names "pirate"
 			variant
-				"Cruiser" 2
+				"Stolen Cruiser" 2
 				"Fury (Laser)" 3
 
 
@@ -617,7 +617,7 @@ mission "Deep: Mystery Cubes 4"
 		fleet
 			names pirate
 			variant
-				"Cruiser" 3
+				"Stolen Cruiser" 3
 				"Marauder Leviathan"
 				"Leviathan (Hai Engines)"
 				"Headhunter (Particle)" 3
