@@ -1,4 +1,4 @@
-name: Validate Project files
+name: Check
 
 on:
   push:
@@ -33,6 +33,7 @@ jobs:
     uses: ./.github/workflows/compute-changes.yml
 
   check-xcode:
+    name: XCode
     needs: changed
     if: ${{ needs.changed.outputs.xcode_files || needs.changed.outputs.game_code }}
     runs-on: ubuntu-latest
@@ -52,6 +53,7 @@ jobs:
         path: xcode-project.patch
 
   check-codeblocks:
+    name: CodeBlocks
     needs: changed
     if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
     runs-on: ubuntu-latest
@@ -64,6 +66,7 @@ jobs:
 
 
   check-cmake:
+    name: CMake
     needs: changed
     if: ${{ needs.changed.outputs.cmake || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
     runs-on: ubuntu-latest
@@ -75,6 +78,7 @@ jobs:
 
 
   validate-copyright:
+    name: Copyright
     needs: changed
     if: ${{ needs.changed.outputs.copyright == 'true' }}
     runs-on: ubuntu-latest
