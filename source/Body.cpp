@@ -241,10 +241,31 @@ const Government *Body::GetGovernment() const
 
 
 // Load the sprite specification, including all animation attributes.
-void Body::LoadSprite(const DataNode &node, Body::BodyState state)
+bool Body::LoadSprite(const DataNode &node)
 {
 	if(node.Size() < 2)
-		return;
+		return false;
+
+	// Static map for loading sprites
+	static const std::map<const std::string, Body::BodyState> SPRITE_LOAD_PARAMS = {
+		{"sprite", Body::BodyState::FLYING},
+		{"sprite-flying", Body::BodyState::FLYING},
+		{"sprite-firing", Body::BodyState::FIRING},
+		{"sprite-launching", Body::BodyState::LAUNCHING},
+		{"sprite-landing", Body::BodyState::LANDING},
+		{"sprite-jumping", Body::BodyState::JUMPING},
+		{"sprite-disabled", Body::BodyState::DISABLED},
+		{"hardpoint sprite", Body::BodyState::FLYING},
+		{"flare sprite", Body::BodyState::FLYING},
+		{"reverse flare sprite", Body::BodyState::FLYING},
+		{"steering flare sprite", Body::BodyState::FLYING}
+	};
+
+	// Default to flying state sprite
+	Body::BodyState state = Body::BodyState::FLYING;
+	auto pair = SPRITE_LOAD_PARAMS.find(node.Token(0));
+	if(pair != SPRITE_LOAD_PARAMS.end())
+		state = pair->second;
 
 	const Sprite *sprite = SpriteSet::Get(node.Token(1));
 	SpriteParameters *spriteData = &this->sprites[state];
@@ -357,6 +378,8 @@ void Body::LoadSprite(const DataNode &node, Body::BodyState state)
 
 	if(scale != 1.f)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
+
+	return true;
 }
 
 

@@ -235,18 +235,8 @@ void Ship::Load(const DataNode &node)
 					? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
-		if(key == "sprite" || key == "sprite-flying")
-			LoadSprite(child, Body::BodyState::FLYING);
-		else if(key == "sprite-firing")
-			LoadSprite(child, Body::BodyState::FIRING);
-		else if(key == "sprite-landing")
-			LoadSprite(child, Body::BodyState::LANDING);
-		else if(key == "sprite-launching")
-			LoadSprite(child, Body::BodyState::LAUNCHING);
-		else if(key == "sprite-jumping")
-			LoadSprite(child, Body::BodyState::JUMPING);
-		else if(key == "sprite-disabled")
-			LoadSprite(child, Body::BodyState::DISABLED);
+		if(LoadSprite(child))
+			continue;
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
@@ -1834,6 +1824,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					MarkForRemoval();
 					return;
 				}
+
 				zoom = 0.f;
 			}
 			// Ship should be small enough to not notice any sprite changes

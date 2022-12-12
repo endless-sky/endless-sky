@@ -31,6 +31,8 @@ class Mask;
 class Outfit;
 class Sprite;
 
+
+
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
 class Body {
@@ -78,8 +80,8 @@ public:
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
 
-	// Sprite serialization.
-	void LoadSprite(const DataNode &node, Body::BodyState state = Body::BodyState::FLYING);
+	// Sprite serialization. Return true if sprite is successfully loaded
+	bool LoadSprite(const DataNode &node);
 	bool LoadTriggerSprite(const DataNode &node, Body::BodyState state, SpriteParameters::AnimationParameters params);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
 	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const;
@@ -125,8 +127,8 @@ protected:
 
 
 private:
-	// Set what animation step we're on. This affects future calls to GetMask()
-	// and GetFrame().
+	// Set what animation step we're on and indicate whether a state transition has finished.
+	// This affects future calls to GetMask() and GetFrame().
 	bool SetStep(int step) const;
 
 
