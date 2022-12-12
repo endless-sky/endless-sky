@@ -2211,22 +2211,12 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				int minimumHull = ship.MinimumHull();
-				int maximumHull = -1;
-				if(ship.hull < minimumHull || ship.isDisabled)
-				{
+				if(ship.hull < ship.MinimumHull() || ship.isDisabled)
 					// Fighter is disabled so "board" it to repair it first:
-					maximumHull = ship.attributes.Get("hull");
-					ship.hull = min(max(ship.hull, minimumHull * 1.5), static_cast<double>(maximumHull));
-					ship.isDisabled = false;
-				}
+					ship.AssistedRepair();
 				if(!hullDelay)
-				{
-					if(maximumHull < 0)
-						maximumHull = ship.attributes.Get("hull");
-					DoRepair(ship.hull, hullRemaining, maximumHull,
+					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
-				}
 				if(!shieldDelay)
 					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"),
 						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
@@ -2498,6 +2488,15 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 
 
+// Another ship is helping this disabled ship repair its damage.
+void Ship::AssistedRepair()
+{
+	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
+	isDisabled = false;
+}
+
+
+
 // Check if this ship is boarding another ship.
 shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 {
@@ -2525,8 +2524,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
-		victim->isDisabled = false;
+		victim->AssistedRepair();
 		// Transfer some fuel if needed.
 		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{

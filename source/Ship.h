@@ -208,6 +208,8 @@ public:
 	void DoGeneration();
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
+	// Another ship is helping this disabled ship repair its damage.
+	void AssistedRepair();
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
