@@ -15,33 +15,6 @@ concurrency:
 
 jobs:
 
-  cd_ubuntu_x86_64:
-    runs-on: ubuntu-latest
-    env:
-      OUTPUT: endless-sky-x86_64-continuous.tar.gz
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev
-          python3 -m pip install --user scons
-      - name: Adjust version strings
-        run: ./utils/cd_update_versions.sh
-        shell: bash
-      - name: Build Application
-        run: scons -Qj $(nproc)
-      - name: Run Unit Tests
-        run: scons -Qj $(nproc) test
-      - name: Package Application
-        run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
-
   cd_appimage_x86_64:
     runs-on: ubuntu-20.04
     env:
