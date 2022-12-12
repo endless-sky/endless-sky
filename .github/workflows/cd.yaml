@@ -69,7 +69,7 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   cd_windows_win64:
-    name: Windows x64
+    name: Windows
     runs-on: windows-latest
     env:
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
