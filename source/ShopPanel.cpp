@@ -300,6 +300,35 @@ void ShopPanel::DrawShipsSidebar()
 
 
 
+int ShopPanel::DrawDetailSelected(const std::string selectedText, const Point &center)
+{
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+
+	font.Draw({selectedText, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+		center, bright);
+
+	return 20;
+}
+
+
+
+int ShopPanel::DrawDetailDescription(const std::string descriptionText, const Point &center)
+{
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+
+	description.SetAlignment(Alignment::JUSTIFIED);
+	description.SetWrapWidth(INFOBAR_WIDTH - 50);
+	description.SetFont(font);
+	description.Wrap(planet->OutfitterDescription());
+	description.Draw(center, bright);
+
+	return description.Height();
+}
+
+
+
 void ShopPanel::DrawDetailsSidebar()
 {
 	// Fill in the background.
