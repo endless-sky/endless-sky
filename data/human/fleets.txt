@@ -1699,6 +1699,7 @@ fleet "Large Syndicate"
 		"Quicksilver" 3
 	variant 2
 		"Splinter (Laser)"
+		"Quicksilver (Proton)" 3
 	variant 2
 		"Splinter (Proton)"
 		"Quicksilver" 3
@@ -1760,6 +1761,12 @@ fleet "Large Syndicate"
 	variant 1
 		"Vanguard (Missile)"
 		"Quicksilver (Proton)" 2
+	variant 1
+		"Protector"
+		"Vanguard (Particle)"
+	variant 1
+		"Protector (Proton)"
+		"Vanguard"
 
 fleet "Small Southern Pirates"
 	government "Pirate"
