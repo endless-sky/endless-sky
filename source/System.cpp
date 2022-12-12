@@ -763,7 +763,6 @@ bool System::HasOutfitter() const
 
 
 
-
 double System::InvisibleFenceRadius() const
 {
 	return invisibleFenceRadius;
