@@ -500,9 +500,9 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 					&& !(it->second & ShipEvent::ASSIST);
 			}
 			bool isHere = false;
-			bool isCarried = ship->CanBeCarried() && ship->GetParent();
+			bool isCarried = !ship->GetSystem() && ship->CanBeCarried() && ship->GetParent();
 			// If this ship is being carried, check the parent's system.
-			if(!ship->GetSystem() && isCarried)
+			if(isCarried)
 				isHere = ship->GetParent()->GetSystem() == playerSystem;
 			else
 				isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
