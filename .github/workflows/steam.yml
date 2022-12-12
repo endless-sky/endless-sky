@@ -32,7 +32,7 @@ jobs:
       sdk: com.valvesoftware.SteamRuntime.Sdk-${{ matrix.platform }}-scout-sysroot
       ARTIFACT: endless-sky
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Check steamrt version
@@ -43,7 +43,7 @@ jobs:
         echo "::set-output name=RT_VERSION::$STEAM_VERSION"
     - name: Restore cached steamrt archive
       id: cache-tarball
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: build/docker/${{ env.sdk }}.tar.gz
         key: ${{ env.RT_VERSION }}-${{ matrix.arch }}-steamrt-sdk
@@ -94,7 +94,7 @@ jobs:
     - name: Prepare binary
       run: mv build/endless-sky .
     - name: Upload GH artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: binary-${{ runner.os }}-${{ matrix.arch }}
         path: ${{ env.ARTIFACT }}
@@ -109,12 +109,12 @@ jobs:
       snapshot: latest-steam-client-general-availability
       tarball: steam-runtime.tar.xz
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Restore cached Steam Runtime environment
       id: cache-tarball
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.tarball }}
         key: ${{ matrix.os }}-${{ needs.build_linux.outputs.RT_VERSION }}-steamrt-env
@@ -124,7 +124,7 @@ jobs:
     - name: Extract Steam Runtime
       run: tar -xf ${{ env.tarball }}
     - name: Download Endless Sky binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: binary-${{ runner.os }}-x86_64
         path: .
@@ -153,7 +153,7 @@ jobs:
       ARTIFACT: endless-sky
     steps:
     - name: Download Artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         path: ${{ github.workspace }}
     - name: Prepare binary upload
@@ -180,7 +180,7 @@ jobs:
     env:
       dir: data-depot
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: 'Prepare data upload'
