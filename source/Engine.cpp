@@ -680,7 +680,7 @@ void Engine::Step(bool isActive)
 	if(flagship)
 	{
 		if(alarmTime && step / 20 % 2)
-			info.SetSprite("alarm sprite", SpriteSet::Get("ui/red alert"));
+			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
