@@ -603,12 +603,50 @@ test "Sell first ship"
 
 
 
-test "Trigger Spaceport Mission"
+test "Land On Ruin helper"
+	status partial
+	description "Helper for landing on Ruin."
+	sequence
+		input
+			command land
+		label "landing"
+		# empty input to make time pass
+		input
+		branch "landing"
+			"flagship planet: Ruin" == 0
+
+
+
+test "Land On Prime helper"
+	status partial
+	description "Helper for landing on Prime."
+	sequence
+		input
+			command land
+		label "landing"
+		# empty input to make time pass
+		input
+		branch "landing"
+			"flagship planet: Prime" == 0
+
+
+
+test "Trigger Ruin Spaceport Mission"
 	status partial
 	description "Launch, land, and go to the spaceport to trigger any potential missions."
 	sequence
 		call "Depart"
 		call "Land On Ruin helper"
+		input
+			key p
+
+
+test "Trigger Prime Spaceport Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions."
+	sequence
+		call "Depart"
+		call "Land On Prime helper"
 		input
 			key p
 

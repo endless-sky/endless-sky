@@ -168,7 +168,7 @@ test "Conditional Test"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		call "Skip Spaceport Mission"
 		call "Depart"
 		call "Test Conditions"
@@ -184,7 +184,7 @@ test "Conditional Test Goto"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE GOTO" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		call "Skip Spaceport Mission"
 		call "Depart"
 		call "Test Conditions"
@@ -200,7 +200,7 @@ test "Conditional Test Out of Bound"
 		call "Load First Savegame"
 		apply
 			"%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		# If only one option is displayed this shouldn't do anything,
 		# but if we can somehow access the condition below with the down key then its a problem.
 		input
@@ -222,7 +222,7 @@ test "Enter Name in Conversation"
 			"name: Bobbi Bughunter" == 1
 		apply
 			"%TEST%: NAME IN CONVERSATION" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Ruin Spaceport Mission"
 		input
 			key a
 		input

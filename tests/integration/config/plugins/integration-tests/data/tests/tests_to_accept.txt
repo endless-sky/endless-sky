@@ -71,6 +71,7 @@ test-data "To Accept Sparrow On Prime"
 mission "%TEST%: TO ACCEPT BLOCKED MISSION"
 	source "Prime"
 	destination "Earth"
+	blocked "There mission is blocked because you are not in the right type of ship."
 	to offer
 		has "%TEST%: TO ACCEPT BLOCKED MISSION OFFER"
 	to accept
@@ -91,7 +92,7 @@ test "To Accept Blocks Accepts When Conditions Fail"
 		call "Load First Savegame"
 		apply
 			"%TEST%: TO ACCEPT BLOCKED MISSION OFFER" = 1
-		call "Trigger Spaceport Mission"
+		call "Trigger Prime Spaceport Mission"
 		call "Skip Spaceport Mission"
 		assert
 			"fail test" != 1
