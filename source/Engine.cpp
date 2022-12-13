@@ -679,6 +679,7 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
+		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && step / 20 % 2)
 			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
