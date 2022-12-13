@@ -681,7 +681,7 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
-		if(alarmTime)
+		if(alarmTime && step / 20 % 2)
 			info.SetSprite("alarm sprite", SpriteSet::Get("ui/error"));
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
@@ -2323,7 +2323,7 @@ void Engine::FillRadar()
 	{
 		if(Preferences::Has("Warning siren"))
 			Audio::Play(Audio::Get("alarm"));
-		alarmTime = 180;
+		alarmTime = 300;
 		hadHostiles = true;
 	}
 	else if(!hasHostiles)
