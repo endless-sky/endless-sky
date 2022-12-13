@@ -1,6 +1,9 @@
 name: Install sccache
 description: Installs sccache for the current platform
 inputs:
+  read-only:
+    description: Whether the cache should be read-only
+    default: 'false'
   cache-key:
     description: The cache key to use to read/write the cache
     default: ''
@@ -33,7 +36,7 @@ runs:
       run: echo "." >> $GITHUB_PATH
       shell: bash
     - name: Write to the cache
-      if: ${{ github.event_name == 'push' }}
+      if: ${{ inputs.read-only == 'true' || github.event_name == 'push' }}
       run: echo "SCCACHE_GHA_CACHE_TO=sccache-${{ inputs.cache-key }}-${{ github.sha }}" >> $GITHUB_ENV
       shell: bash
     - name: Read from the cache

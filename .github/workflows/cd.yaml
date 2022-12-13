@@ -34,6 +34,7 @@ jobs:
       - name: Setup sccache
         uses: ./.github/sccache
         with:
+          read-only: 'true'
           cache-key: ubuntu-20.04-desktop
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
@@ -73,6 +74,7 @@ jobs:
       - name: Setup sccache
         uses: ./.github/sccache
         with:
+          read-only: 'true'
           cache-key: windows-2022
       - name: Build Application
         run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
