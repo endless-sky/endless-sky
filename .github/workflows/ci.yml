@@ -387,7 +387,7 @@ jobs:
 
   test_memory-leaks-lite:
     name: Memory Leak Test
-    needs: [test_ubuntu-parse, changed]
+    needs: [build_ubuntu, changed]
     if: needs.changed.outputs.game_code == 'true'
     runs-on: ${{ matrix.os }}
     strategy:
