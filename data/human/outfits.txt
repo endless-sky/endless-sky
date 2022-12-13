@@ -213,7 +213,7 @@ outfit "Cargo Scanner"
 	"mass" 1
 	"outfit space" -1
 	"cargo scan power" 9
-	"cargo scan speed" 5
+	"cargo scan efficiency" 5
 	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
 outfit "Outfit Scanner"
@@ -223,7 +223,7 @@ outfit "Outfit Scanner"
 	"mass" 2
 	"outfit space" -2
 	"outfit scan power" 25
-	"outfit scan speed" 15
+	"outfit scan efficiency" 15
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
 outfit "Asteroid Scanner"
@@ -251,9 +251,9 @@ outfit "Surveillance Pod"
 	"mass" 5
 	"outfit space" -5
 	"outfit scan power" 16
-	"outfit scan speed" 2
+	"outfit scan efficiency" 20
 	"cargo scan power" 4
-	"cargo scan speed" 2
+	"cargo scan efficiency" 10
 	"atmosphere scan" 100
 	"tactical scan power" 9
 	description "This is Navy technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
