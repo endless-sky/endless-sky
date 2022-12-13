@@ -3572,12 +3572,10 @@ void PlayerInfo::Autosave() const
 
 
 
-void PlayerInfo::Save(const std::string &filePath) const
+void PlayerInfo::Save(const string &filePath) const
 {
 	if(transactionSnapshot)
-	{
 		transactionSnapshot->SaveToPath(filePath);
-	}
 	else
 	{
 		DataWriter out(filePath);
