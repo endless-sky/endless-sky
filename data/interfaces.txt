@@ -531,6 +531,7 @@ interface "hud"
 	sprite "ui/red alert"
 		from 10 10
 		align top left
+	visible
 	sprite "ui/radar"
 		from 0 0
 		align top left
