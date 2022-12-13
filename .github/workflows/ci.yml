@@ -587,8 +587,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - name: Install development dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -596,6 +594,8 @@ jobs:
         sudo apt install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
+      with:
+        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'linux-ci'
@@ -617,11 +617,10 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
+        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
         prependedCacheKey: mingw-x64
     - uses: lukka/run-cmake@v10
       with:
@@ -643,10 +642,10 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
+      with:
+        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'
@@ -667,11 +666,10 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: true
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
+        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
         prependedCacheKey: vs-x64
     - uses: lukka/run-cmake@v10
       with:
