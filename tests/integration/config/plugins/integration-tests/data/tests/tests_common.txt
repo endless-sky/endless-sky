@@ -601,3 +601,24 @@ test "Sell first ship"
 		input
 			key "l"
 
+
+
+test "Trigger Spaceport Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions."
+	sequence
+		call "Depart"
+		call "Land On Ruin helper"
+		input
+			key p
+
+
+test "Skip Spaceport Mission"
+	status partial
+	description "Just skip a mission by pressing return twice."
+	sequence
+		# press accept (or decline, depending on if it is shown) and then skip the dialog once
+		input
+			key "Return"
+		input
+			key "Return"
