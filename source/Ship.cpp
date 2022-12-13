@@ -2570,13 +2570,19 @@ int Ship::Scan()
 	if(!cargoDistanceSquared && !outfitDistanceSquared)
 		return 0;
 
-	double cargoSpeed = attributes.Get("cargo scan speed");
+	double cargoSpeed = attributes.Get("cargo scan velocity");
+	// Accommodate deprecated "scan speed" attributes that are on old outfits.
+	// Most of the time, scan speed was simply 1, and scan power is all that changed.
+	// A reasonable generic scan speed will be roughly equal to scan speed * scan power.
+	cargoSpeed += attributes.Get("cargo scan speed") * cargoDistanceSquared;
+	// If all else fails, assign a reasonable default speed.
 	if(!cargoSpeed)
-		cargoSpeed = 1.;
+		cargoSpeed = cargoDistanceSquared;
 
-	double outfitSpeed = attributes.Get("outfit scan speed");
+	double outfitSpeed = attributes.Get("outfit scan velocity");
+	outfitSpeed += attributes.Get("outfit scan speed") * outfitDistanceSquared;
 	if(!outfitSpeed)
-		outfitSpeed = 1.;
+		outfitSpeed = outfitDistanceSquared;
 
 	// Check how close this ship is to the target it is trying to scan.
 	// To normalize 1 "scan power" to reach 100 pixels, divide this square distance by 100^2, or multiply by 0.0001.
@@ -2586,8 +2592,8 @@ int Ship::Scan()
 	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
 	// Normalized around 200 tons of cargo/outfit space.
 	// A ship with less than 10 tons of outfit space or cargo space takes as long to
-	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
-	// causing a divide by zero error at sizes of 0.
+	// scan as one with 10 tons. This avoids small sizes being scanned instantly.
+	// If instantly scanning very small ships is desirable, this can be removed.
 	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
 	double cargo = max(10., target->attributes.Get("cargo space")) * .005;
 
@@ -2606,9 +2612,9 @@ int Ship::Scan()
 			// Division is more expensive to calculate than multiplication,
 			// so rearrange the formula to minimize divisions.
 
-			// "(scannerRange - distance) / scannerRange"
-			// This line hits 1 at distace = 0, and 0 at distance = scannerRange.
-			// This is a hard cap on scanning range.
+			// "(scannerRange - 0.5 * distance) / scannerRange"
+			// This line hits 1 at distace = 0, and 0.5 at distance = scannerRange.
+			// There is also a hard cap on scanning range.
 
 			// "speed / (sqrt(speed) + distance)"
 			// This gives a modest speed boost at no distance, and
@@ -2618,7 +2624,7 @@ int Ship::Scan()
 			// This makes scan time proportional to cargo or outfit space.
 
 			// To make up for previous scan delay, also add 1.
-			elapsed += ((scannerRange - distanceSquared) * speed) / (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+			elapsed += ((scannerRange - .5 * distanceSquared) * speed) / (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
