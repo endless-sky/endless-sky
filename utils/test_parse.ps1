@@ -11,6 +11,7 @@ $EndlessSky = Resolve-Path -Path "$EndlessSky" -Relative;
 # Remove any existing error files first.
 $FILEDIR = if ($IsWindows) `
           { "$env:APPDATA\endless-sky" } `
+          elseif ($IsMacOS) { "$env:HOME/Library/Application Support/endless-sky"} `
           else { "$env:HOME/.local/share/endless-sky" };
 if ($Config) { $FILEDIR = $CONFIG; }
 $ERR_FILE = Join-Path -Path $FILEDIR -ChildPath "errors.txt";
