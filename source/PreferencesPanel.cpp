@@ -452,12 +452,18 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
-	// An empty string indicates that a category has ended.
-	// A '\t' character indicates that the first column on this page has ended,
-	// and the next line should be drawn at the start of the next column.
-	// A '\n' character indicates that this page is complete, no further lines should be drawn on this page.
-	// In all three cases, the first non-special string will be considered the category heading
-	// and will be drawn differently to normal setting entries.
+	// About SETTINGS pagination
+	// * An empty string indicates that a category has ended.
+	// * A '\t' character indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' character indicates that this page is complete, no further lines
+	//   should be drawn on this page.
+	// * In all three cases, the first non-special string will be considered the
+	//   category heading and will be drawn differently to normal setting
+	//   entries.
+	// * The namespace variable SETTINGS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,

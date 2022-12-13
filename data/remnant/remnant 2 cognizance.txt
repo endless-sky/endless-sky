@@ -1149,7 +1149,7 @@ mission "Remnant: Cognizance 24"
 
 mission "Remnant: Cognizance 25"
 	name "Patrol systems near Postverta."
-	description "Gavriil has asked you to do a patrol through the nearby systems."
+	description "Gavriil has asked you to do a patrol through the nearby systems to make sure that a Palavret that passed by recently did not leave behind any surprises."
 	landing
 	source "Ssil Vida"
 	waypoint "Diespiter"
@@ -1183,6 +1183,10 @@ mission "Remnant: Cognizance 25"
 		dialog "You have destroyed the ships that the Palavret left behind."
 	on waypoint
 		dialog "You have patrolled all six systems."
+	on enter Egeria
+		dialog "As soon as you enter the system, three 'olofezes begin targeting your ship. These are probably the surprises that Gavriil was worried about."
+	on visit
+		dialog "You have returned to Ssil Vida, but you have not ensured all the nearby systems are clear."
 	on complete
 		event "korath rescue: egeria tiny"
 		event "korath rescue: egeria tiny end" 14

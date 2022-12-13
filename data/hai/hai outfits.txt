@@ -430,7 +430,7 @@ outfit "Hai Williwaw Cooling"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5
-	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and cause their reactors to shut down. When that happens, they install these."
+	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Quantum Keystone"
 	category "Systems"
@@ -777,6 +777,7 @@ outfit "Shield Beetle Pendant"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
+	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."
 
 
 outfit "Failed Control System"
