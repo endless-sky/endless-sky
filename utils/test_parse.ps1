@@ -17,7 +17,14 @@ $ERR_FILE = Join-Path -Path $FILEDIR -ChildPath "errors.txt";
 if (Test-Path -Path $ERR_FILE) { Remove-Item -Path $ERR_FILE; }
 
 # Parse the game data files
-$p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p','--config',"$FILEDIR" -Wait -PassThru;
+if ($CONFIG)
+{
+  $p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p','--config',"$FILEDIR" -Wait -PassThru;
+}
+else
+{
+  $p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p' -Wait -PassThru;
+}
 
 # Assert there is no content in the "errors.txt" file.
 if ((Test-Path -Path "$ERR_FILE") -and ((Get-Content -Path "$ERR_FILE" -Raw).Length -gt 0))
