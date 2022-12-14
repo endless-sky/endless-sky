@@ -2624,7 +2624,9 @@ int Ship::Scan()
 			// This makes scan time proportional to cargo or outfit space.
 
 			// To make up for previous scan delay, also add 1.
-			elapsed += ((scannerRange - .5 * distanceSquared) * speed) / (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
+				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+
 			if(elapsed >= SCAN_TIME)
 				result |= event;
 		}
