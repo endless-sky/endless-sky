@@ -226,7 +226,7 @@ mission "Incipias: First Contact V"
 				"I am exploring the limits of space."
 					goto limits
 				"I am searching for new species and technologies"
-			`    The Incipias listens to you and then it looks like they are looking to someone on its right you do not see. After a short moment it turns towards you again. It starts flickering "We do not think we have [better, more advanced] technologies than [you, your kind]. But [I, we] look forward to a [benefical, peaceful] contact with [you, your kind]. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this adventure] further.`
+			`    The Incipias listens to you and then it looks like they are looking to someone on its right you do not see. After a short moment it turns towards you again. It starts flickering "We do not think we have [better, more advanced] technologies than [you, your kind]. But [I, we] look forward to a [beneficial, peaceful] contact with [you, your kind]. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this adventure] further.`
 				goto c1
 			label limits
 			`    The Incipias listens to you and then it looks like it is looking to someone on their right you do not see. After a short moment it turns towards you again. It starts flickering "[I, we] are happy to [greet, meet, see] you traveller. [I, we] would like to invite you to our [space station, home, safe place], to [communicate, continue this meeting] further.`
