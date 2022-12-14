@@ -61,7 +61,7 @@ template <class Type>
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 
 	// Allow the AI to track any events it is interested in.
-	void UpdateEvents(const std::list<ShipEvent> &events);
+	void UpdateEvents(PlayerInfo &player, const std::list<ShipEvent> &events);
 	// Reset the AI's memory of events.
 	void Clean();
 	// Clear ship orders. This should be done when the player lands on a planet,

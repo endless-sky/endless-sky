@@ -482,7 +482,7 @@ void Engine::Step(bool isActive)
 		else if(jumpCount > 0)
 			--jumpCount;
 	}
-	ai.UpdateEvents(events);
+	ai.UpdateEvents(player, events);
 	if(isActive)
 	{
 		HandleKeyboardInputs();

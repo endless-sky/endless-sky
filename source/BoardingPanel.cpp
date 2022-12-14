@@ -346,6 +346,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 				if(Random::Real() * total >= yourPower)
 					you->AddCrew(-1);
+					player.HandleIncurredCrewCasualties(-1);
 				else
 					victim->AddCrew(-1);
 			}

@@ -54,6 +54,10 @@ public:
 	const std::vector<Mortgage> &Mortgages() const;
 	void AddMortgage(int64_t principal);
 	void AddFine(int64_t amount);
+	void AddCrewLifeInsuranceCounter(int64_t deaths);
+	void DecayCrewLifeInsuranceCounter();
+	double CrewLifeInsuranceSalariesMultiplier() const;
+	int64_t CalculateCrewLifeInsuranceCost(int64_t salaries) const;
 	int64_t Prequalify() const;
 	// Assets:
 	int64_t NetWorth() const;
@@ -76,6 +80,7 @@ private:
 	int64_t maintenanceDue = 0;
 	// Your credit score determines the interest rate on your mortgages.
 	int creditScore = 400;
+	int64_t crewLifeInsuranceCounter = 0;
 
 	std::vector<Mortgage> mortgages;
 

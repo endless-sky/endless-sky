@@ -427,7 +427,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 
 
 
-void AI::UpdateEvents(const list<ShipEvent> &events)
+void AI::UpdateEvents(PlayerInfo &player, const list<ShipEvent> &events)
 {
 	for(const ShipEvent &event : events)
 	{
@@ -455,6 +455,22 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 				if(event.Type() & ShipEvent::PROVOKE)
 					newActions |= ShipEvent::PROVOKE;
 				event.TargetGovernment()->Offend(newActions, target->CrewValue());
+
+				if(event.Type() & ShipEvent::DESTROY)
+				{
+					player.HandleInflectedDestroyEvent(event.Target());
+				}
+			}
+		}
+		const auto &targetGovernment = event.TargetGovernment();
+		if(targetGovernment)
+		{
+			if(targetGovernment->IsPlayer())
+			{
+				if(event.Type() & ShipEvent::DESTROY)
+				{
+					player.HandleIncurredDestroyEvent(event.Target());
+				}
 			}
 		}
 	}

@@ -60,6 +60,8 @@ void Account::Load(const DataNode &node, bool clearFirst)
 		else if(child.Token(0) == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
+		else if(child.Token(0) == "crew life insurance counter")
+			crewLifeInsuranceCounter = child.Value(1);
 	}
 }
 
@@ -88,6 +90,8 @@ void Account::Save(DataWriter &out) const
 
 		for(const Mortgage &mortgage : mortgages)
 			mortgage.Save(out);
+
+		out.Write("crew life insurance counter", crewLifeInsuranceCounter);
 	}
 	out.EndChild();
 }
@@ -135,7 +139,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	salariesOwed += salaries;
+	salariesOwed += salaries + CalculateCrewLifeInsuranceCost(salaries);
 	maintenanceDue += maintenance;
 	bool missedPayment = false;
 
@@ -276,6 +280,9 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		if(finesPaid)
 			out << creditString(finesPaid) << " in fines.";
 	}
+
+	DecayCrewLifeInsuranceCounter();
+
 	return out.str();
 }
 
@@ -335,6 +342,37 @@ void Account::AddMortgage(int64_t principal)
 void Account::AddFine(int64_t amount)
 {
 	mortgages.emplace_back(amount, 0, 60);
+}
+
+
+
+void AddCrewLifeInsuranceCounter(int64_t deaths)
+{
+	// The Max could be configurable
+	crewLifeInsuranceCounter = min(crewLifeInsuranceCounter + deaths, 1000);
+}
+
+
+
+void DecayCrewLifeInsuranceCounter()
+{
+	// The decay could be configurable
+	crewLifeInsuranceCounter = floor(crewLifeInsuranceCounter * 0.95);
+}
+
+
+
+double CrewLifeInsuranceCounterMultiplier() const
+{
+	// The denominator could be configurable
+	return max(crewLifeInsuranceCounter / 100., 1.);
+}
+
+
+
+int64_t CalculateCrewLifeInsuranceCost(int64_t salaries) const
+{
+	return salaries * (CrewLifeInsuranceCounterMultiplier - 1)
 }
 
 
