@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-
 	using chrono::high_resolution_clock;
 	using chrono::duration_cast;
 	using chrono::duration;
@@ -51,29 +50,6 @@ namespace {
 		int samples;
 	};
 
-	// Perform a binary search on a sorted vector. Return the key's location (or
-	// proper insertion spot) in the first element of the pair, and "true" in
-	// the second element if the key is already in the vector.
-	pair<size_t, bool> Search(stringAndHash key, const vector<pair<stringAndHash, double>> &v)
-	{
-		// At each step of the search, we know the key is in [low, high).
-		size_t low = 0;
-		size_t high = v.size();
-
-		while(low != high)
-		{
-			size_t mid = (low + high) / 2;
-			if(key.GetHash().Get() == v[mid].first.GetHash().Get())
-				return make_pair(mid, true);
-
-			if(key.GetHash().Get() < v[mid].first.GetHash().Get())
-				high = mid;
-			else
-				low = mid + 1;
-		}
-		return make_pair(low, false);
-	}
-
 	// String interning: return a pointer to a character string that matches the
 	// given string but has static storage duration.
 	const char *Intern(const char *key)
@@ -87,11 +63,53 @@ namespace {
 	}
 }
 
+// Define the searching function and method
+template <typename Type>
+pair<size_t, bool> Search(Type key, const vector<pair<stringAndHash, double>> &v);
+
+// The dataset is sorted by its 'char *' key (which is indeed the only
+// allowed key used when adding a new element because it's unique), so
+// a bynary search is not possible: do a 'find'
+template <>
+pair<size_t, bool> Search(const HashWrapper key, const vector<pair<stringAndHash, double>> &v)
+{
+	for(size_t low = 0; low < v.size(); low++)
+	{
+		if(key.Get() == v[low].first.GetHash().Get())
+			return make_pair(low, true);
+	}
+	return make_pair(v.size(), false);
+}
+
+// Perform a binary search on a sorted vector. Return the key's location (or
+// proper insertion spot) in the first element of the pair, and "true" in
+// the second element if the key is already in the vector.
+template <>
+pair<size_t, bool> Search(const char *key, const vector<pair<stringAndHash, double>> &v)
+{
+	// At each step of the search, we know the key is in [low, high).
+	size_t low = 0;
+	size_t high = v.size();
+
+	while(low != high)
+	{
+		size_t mid = (low + high) / 2;
+		int cmp = strcmp(key, v[mid].first.GetString());
+		if(!cmp)
+			return make_pair(mid, true);
+
+		if(cmp < 0)
+			high = mid;
+		else
+			low = mid + 1;
+	}
+	return make_pair(low, false);
+}
 
 
 double &Dictionary::operator[](const char *key)
 {
-	pair<size_t, bool> pos = Search(stringAndHash(key), *this);
+	pair<size_t, bool> pos = Search(key, *this);
 	if(pos.second)
 		return data()[pos.first].second;
 
@@ -112,7 +130,7 @@ double Dictionary::Get(HashWrapper hash_wr) const
 	static Timing timing;
 	const auto start = high_resolution_clock::now();
 
-	pair<size_t, bool> pos = Search(stringAndHash(hash_wr), *this);
+	pair<size_t, bool> pos = Search(hash_wr, *this);
 
 	const auto stop = high_resolution_clock::now();
 
@@ -134,7 +152,7 @@ double Dictionary::Get(const char *key) const
 	static Timing timing;
 	const auto start = high_resolution_clock::now();
 
-	pair<size_t, bool> pos = Search(stringAndHash(key), *this);
+	pair<size_t, bool> pos = Search(key, *this);
 
 	const auto stop = high_resolution_clock::now();
 
