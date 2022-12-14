@@ -4979,38 +4979,46 @@ mission "A dead man's path I"
 		random < 20
 	on offer
 		conversation
-			`As you walk through the spaceport, a young woman and man, who are both dressed very formally, approach you. The woman begins, "Hello, are you a spaceship captain?"`
+			`The spaceport on <origin> is lively tonight. There are porters running to and from depots with crates, crewmen buying rounds of drinks for each other around the bars before they hit the bed, and bands of Navy officers jovially greeting captains and systematically inspecting ships. The energy and self-purpose of this spaceport is on full display this one night.`
+			`	The only exception to the bustle and activity are a young woman and man, both dressed very formally, who are seemingly lost and having no luck approaching anybody. You watch they drift from one person to another, each time being sent off without an answer. Finally, they come towards your direction.`
+			`	Their faces show clearly that they are on their last legs of hope. It is only with reluctance that the woman says, "Excuse me, are you a spaceship captain?"`
 			choice
-				"Depends on why you are asking."
+				`	"Yes, my name's Captain <last>."`
+				`	"Depends on what you are asking."`
 					goto suspicious
-				"Indeed, I am."
-			`    Her face brightens up with a smile, and she continues, "That is good to hear, my brother and I were searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course."`
+			`	Her face brightens up with a smile, and she continues, "That's good to hear! My brother and I were searching for someone who could give us a ride to New China, we received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course."`
 				goto helpornot
 			label suspicious
-			`    She laughs, "No need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will will be published there. Do you think you could do this? We will pay for your service, of course.`
+			`    She laughs, "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course.`
 			label helpornot
 			choice
-				"Of course I can."
-					goto "Agree"
-				"I am sorry, but I have more urgent things to do."
-			`    Her smile fades away as you say that, but they nod and turn away.`
+			`	"Of course I can."`
+					goto agreed
+			`	"I'm sorry, but I've got more urgent things to do. You'll need to find someone else."`
+			`	Her smile fades away as you say that, but they both simply nod and walk away out the gates of the spaceport, with both heads looking down.`
 				decline
-			label "Agree"
-			`    "Fantastic," she says, "my name is Sophie. This is my younger brother," she points at the man to her side. "Hi, I am Liam," he says, "we have been looking for a ride for some time now, we already started to worry we wouldn't get there in time," he tells you.` 
+			label agreed
+			`    "Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We have been looking for a ride for some time now, we've already started worrying that we wouldn't get there in time! You'll have to bring us there quickly."`
 			choice
-				"You will be surpised how fast my ship flies, my name is <first> <last> by the way."
-				"Yes, a lot of captains are busy these days. Call me Captain <last>."
-			`   You lead them to your spaceship.`
+			`	"Don't worry, you'll be surprised how fast my ship flies. We'll get there in no time."`
+				goto notime
+			`	"Yes, a lot of captains are quite busy these days."`
+			`	"Yes, it seems that way nowadays," Sophie agrees. "Everyone feels more tense or uncertain, and there's always more to do and less time to do it."`
+				goto ship
+			label notime
+			`	Liam's voice barely hides his excitement at finding an available captain. "Well, let's see that ship of yours then, and show us if it's as fast as you say it is!"
+			label ship
+			`	You lead them to your ship, and help them with their bags as they board.`
 				accept
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
-		conversation
-			`When you arrive at New China's spaceport, the siblings head off to the place where their fathers last will will be read out. Liam turns to you. "Captain <last>, I have transferred the payment to your account, would it be okay for you to wait here until we come back? We will need a ride home." You agree, and go to the local bar to kill some time.`
-			`    After about two hours they come back, both seem somehow excited. You flag them down from your table, and they sit down. Sophie begins talking, "Captain <last>, it turns out we will need a bit more than just a ride home. If you want to hear us out, come here again in two hours because my brother and I need to buy some things."`
+		dialog `When you arrive at New China's spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We will need a ride home."`
 		payment 50000
 
 mission "A dead man's path II"
 	name "Following Footprints"
-	description "Bring Sophie and Liam to Tundra in the Cebalrai System."
+	description "Bring Sophie and Liam through <waypoints>, before finally bringing them to <destination>."
 	passengers 2
 	source
 		planet "New China"
@@ -5024,106 +5032,116 @@ mission "A dead man's path II"
 		has "A dead man's path I: done"
 	on offer
 		conversation
-			`They both look very happy when they see you again. "So you have decided to help us," Liam asks`
+			`	After about two hours they come back, although unexpectedly they both have broad smiles on their face. You flag them down from your table, and they eagerly take a seat. 
+			`	Liam speaks as soon as he can. "Captain <last>, it turns out we will need a bit more than just a ride home! Have you decided to help us again?"`
 			choice
-				"I do not know what you want me to do yet."
-				"Sorry, but I would be stupid to accept a mission I do not know anything about."
-			`"Of course," Sophie says, "my brother is just can not wait to get started. Maybe I should start with who our father was. We do not know much about him. He came home only occasionally, do not get me wrong, our parents were not in conflict, his passion just did not allow him to stay at one place very long. He was a captain, not unlike you. He was restless to explore even the furthest parts of the galaxy and we believe he travelled further than most human captains. Sometimes he brought small items back home that looked like nothing we know." She pauses for a moment, lost in memories. "Anyways," she continues, "in his testament he told us that he left something behind for us. But because he is a great fan of fantasy books, he said he would not make it easy for us. Instead he left behind a route of waypoints that we should visit before we go to the place where he left something behind. Of course we could go directly to this place, but we want to respect our fathers last will." She looks directly at you now, "And that is why we need your help. Would you help us to get to all of the waypoints?"`
+				`	"But what do you want me to do?"`
+				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
+			`	Sophie looks at her brother amusedly. "Of course, my brother just can't wait to get started," She turns back to you. "Maybe I should start with who our father was. We do not know much about him, he came home only occasionally. Don't get me wrong, our parents weren't fighting, but his passion just did not allow him to stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
+			`	She pauses for a moment, lost in her memories. "Anyways," she continues, "in his testament he told us that he left something behind for us. He said that he would not make it easy, though; he was a great fan of fantasy books, and in those stories there is always something mysterious at play. Instead, he left behind a few systems that before we should visit before we go to Prime, where he left something behind for us.`
+			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now, "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
-				"I would be glad to."
-					goto "Accept"
-				"I am sorry but that sounds overly complicated to me."
-			`    "Well, seems like we need to find somebody else," Sophie says. They both shake your hand and walk away.`
+			`	"Yes, I'd be glad to."`
+					goto accepted
+			`	"I'm sorry, but that sounds too complicated to me."`
+			`	"Well, it looks like we'll need to find somebody else," Sophie says. They both thank you for bringing them this far and walk away.`
 				decline
-			label "Accept"
-			`    Liam pulls a map out of his bag. "These are the systems our father wants us to visit. Apparently they all have something unique to them. We hope for a nice trip."`
+			label accepted
+			`	Liam pulls a starmap out of his bag. "These are the systems our father wants us to visit. Apparently they all have something unique to them. We weren't expecting this trip so we'll need to buy some supplies, but as soon as you're ready we'll be on board."`
 				accept
 	on enter "Terminus"
-		dialog "You all look fascinated at a anomalie in the system."
+		dialog `It's often thought that there are nothing to these uninhabited by the Deep, but Sophie points out that there's a strange anomaly in this system.`
 	on enter "Aspidiske"
-		dialog "The beauty of this star stops every conversation for a moment."
+		dialog `While Sophie and Liam are both quite chatty at times, the beauty of this star stops all of their conversations.`
 	on enter "Gorvi"
-		dialog "You chat about how much power a supernova must have, if even an old one leaves this much behind."
+		dialog `Sophie and Liam both talk about how much power a supernova must have, even an old one, if it leaves this much behind.`
 	on enter "Enif"
-		dialog "The strange but impressive unfinsihed Quarg ringworld shows all of you how much the human race has to learn."
+		dialog `If there was ever a prime example of how much the human race still has to learn, it is the strange and impressive yet still unfinished Quarg ringworld in this system. Liam tells you, "Our father was a very intriguing man, and he always talked about the Quarg and their ringworlds and how it would be another thousand years before humanity could build anything similar. We never knew how big it was until now!"`
 	on complete
 		conversation
-			`"This was a very interesting trip," you say. The siblings agree. Sophie says, "Captain <last>, both of us think that you should come with us to see what our father left behind. Do you want to see it?"`
+			`The siblings are uncharacteristically quiet, perhaps in anticipation of finally arriving at their destination. It is only when you've all stepped out into Prime's spaceport that Sophie says, "Captain <last>, you've helped us immensely, and we can't thank you enough for bringing us all across the galaxy! But we have one last request. Both of us think that you should come with us to see what our father left behind. Do you want to see it?"`
 			choice
-				"Now that I came so far, sure."
+				`	"Now that we've come so far, sure."`
 					goto continue
-				"Sorry, but could youst pay me now?"
-			`    "Sure," Liam says. Here is your payment.`
-				accept
+				`	"I'm sorry, I've got to be somewhere else."`
+			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will! Oh, and here's your payment," Liam says, handing you credit chip of <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
+			payment 50000
+			decline
 			label continue
-			`    Liam pulls out a map, not a star map but a local map. "Apparently our father bought a whole mountain on this planet. Let's get there."`
+			`	Liam pulls out a map, not the starmap he had before but a map of Prime. "Apparently our father bought a whole mountain on this planet, and he wants us to go there."`
 			choice
-				"Sounds good, lets get there."
-					goto shuttle
-				"We could also have a look around here, see why your father chose this planet."
-			`    "You are right, Sophie says, "lets just relax in this town first."`
-			`    The three walk around for some time. At one giant plaza you see one of the newest ship of Betelgeuse being showed off. Liam's face brightens as if he just understood something. "I think our father chose this planet, because he always was a fan of the Betelgeuse ships. If I recall correctly, he once was gifted one of their newest ships for test flighting it." Sophie nods, "Right now that you say, I remember that too. Anyways, shall we get to the mountain now?"`
+				`	"Sounds good. I'll follow your lead."`
+						goto shuttle
+				`	"We could also have a look around here, and see why your father chose this planet."`
+			`	"You're right. I hadn't thought of that," Sophie says."`
+			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest ships of Betelgeuse being displayed.
+			`	Liam's face brightens as if he just understood something. "I think our father chose this planet because he was always a fan of Betelgeuse ships. If I recall correctly, he was a test pilot here, and once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots." Sophie nods, "Right! Now that you say that, I remember that too. Anyways, shall we go to the mountain now?"`
 			choice
-				"We should take a shuttle, they are the fastest way."
-					goto shuttle
-				"We have time, lets take the maglev."
-					goto maglev
+				`	"We should take a shuttle. It'll be the fastest way."
+						goto shuttle
+				`	"We have time. Let's take the maglev."
+						goto maglev
 			label shuttle
-			`    After a short shuttle flight, you arrive in front of a single, not too large mountain, that peaks out of the rest of the landscape.`
+			`	After a short shuttlecraft flight on Prime's extensive and well maintained shuttle service, you arrive at the base of a small mountain that stands alone against the rest of the landscape.`
 				goto front-mountain
 			label maglev
-			`    You take the maglev and get a tour through some regions of the planet. Although it is hard to get any detail because of the high speed, you get a good impression. After an hour you end up close to a mountain that stands solely in the landscape.`
+			`	You take a maglev from the spaceport and get a tour through some of the regions of Prime. Although it is hard to get any detail because of the high speed, you get a good impression. After an hour you end up close to a mountain that stands alone against the rest of the landscape.`
 			label front-mountain
-			`    Liam, with help of the map, guides to a flat wall. He looks a bit embarrassed at you two, "Our father wants us to say: Edr- i fen. I do not know what it means, but I am most certain it refers to one of this fantasy novels he used to read."`
+			`	Liam, with the help of the map, guides all of you to a flat wall. He looks a bit embarrassed as he says, "There's a phrase our father left in the instructions: 'Edr- i fen'. I do not know what it means, but I'm certain it has something to do with one of these fantasy novels he used to read."`
 			choice
-				"Sounds funny, lets do it."
-				"What a strange man, but I like his sense of humor."
-			`    You count to three and then shout out the phrase together. You all have to laugh a bit after that. Suddenly a blue line appears on the wall. The line shapes rectangle. After it has finished the shape, the stone inside the rectangle just disappears. All of you look surprised. "I could have sweared the stone was real," Liam says silently.`
+				`	"Sounds funny, but let's say it."`
+				`	"You've got a strange dad, but I like his sense of humor."`
+			`	Sophie counts to three, and then all of you shout out the phrase together.`
+			`	Suddenly, a bright blue line appears on the wall. For a second, a flash blinds you and there is a dim hissing noise, like the sound of rock being cut by a laser. As you look back, the line forms into a blue rectangle, the shape rapidly expanding down the wall. When it reaches the ground, the shape has become large enough to cover a human.`
+			`	For a moment, nothing happens, and the siblings are too stunned to do anything. The blue rectangle starts flashing between different hues of blue, until the whole rectangle and the stone it covered disappears suddenly to leave behind a cavity in the wall. "I could have sworn the stone was real," Liam says under his breath.`
 			choice
-				"Just like a real adventure, lets go!"
-					goto enter
-				"We do not know what is inside there, lets be careful."
-			`    "Oh, now that you say it, I recently bought a small camera drone," Liam says, "we can use it to scout out the hallway." He takes out a small box with a drone inside. "It is only in infrared, so we wont see much details," he adds. He starts the drone and guides it with a small remote control with integrated display. "I think it is safe, we can go," he tells you after some time.`
+				`	"Well, this is a real adventure. Lets go!"`
+						goto enter
+				`	"We don't know what's inside there. Be careful."`
+			`	"Well, now that you say it, I recently bought a small camera drone," Liam responds. "We can use it to scout out the hallway. It's only in infrared, so we won't see too many details," he adds. Liam starts the drone and guides it using a small remote control with integrated display. After some time, the drone flies back out and he tells you, "I think it is safe. We can go."`
 			label enter
-			`    You enter the halway behind the opening. The walls are perfectly smooth and the light seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That is totally our dad." You proceed until you enter dome like room. On the walls all kind of alien artifacts line up next to each other. In the center of the room is a small slope with a strange looking sword inside. A small tablet stands on a socket in front of it.`
+			`	The three of you enter the hallway behind the opening in single file. Strangely, the stone walls are perfectly smoothed off, and the light that guides you through seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That's totally our dad."`
+			`	For a long while, the three of you continue through the stone hallway, the light following your movements, until it opens up into a dome-shaped room, brilliantly bathed in blue light. On the walls, there are all kinds of alien artifacts lined up next to each other, but at the center of the room there is a pedestal with a sword inserted into it. A small tablet stands in a socket in front of it.`
 			choice
-				"[get closer to the tablet]"
-					goto sword-scene
-				"[take a look around first]"
-			`    You walk around, looking at the various alien artifacts.`
-			`    A lot of the artifacts look similar to Sheragi technology, you ask yourself where he got this stuff.`
+				`	"(Go up to the sword.)"`
+						goto sword-scene
+				`	"(Take a look around first.)"`
+			`	You walk around, looking at the various alien artifacts. "Wow, he must have always brought us back the small items from his expeditions, because these artifacts over here are huge!" Liam exclaims from another part of the dome. "How did he even move all these here?"`
+			`	Now that Liam points it out, many of the larger artifacts look similar to the Sheragi technology you studied with Albert Foster.`
 				to display
 					has "Sheragi Archaeology: The Emerald Sword 3: done"
-			`    After some time Sophie calls you both to the tablet.`
+			`	After some time, Sophie calls you both to come to look at the tablet.`
 			label sword-scene
 			scene "scene/sword dome"
-			`    You all get closer to the tablet. A short message is written on it:`
-			`    My dear children, this is the summary of all the things I have done, enjoy it!`
+			`	Approaching the tablet, there is a short message written on it:`
+			`	"My dear children. The galaxy runs far and wide, and I have traveled many places, more than most in many lifetimes. I have seen many worlds, both alien and human, too. And it was on those worlds that I have been exploring, discovering, and researching everything you see around you. It was my life's duty.`
+			`	But still, there were many paths I did not take, many rocks I have left unturned, and many worlds I have not yet landed on. And I suspect that you will have read this before those destinations were reached. Well, I have arrived at a different destination now, the only one nobody can understand, but everybody reaches eventually. Do not fear for me.`
+			`	This room you are in now is the culmination of all my work. I hope you understand that it was for your sake that I kept these a secret. My journey was long and unforgiving, but it was my life. I hope you continue that journey, to understand the universe a little better.`
+			`	Your father."`
+			`	You leave the two of them alone for a bit, walking around and looking at the artifacts.`
+			`	After some time they call you to them. Sophie starts, "Captain <last>, Liam and I have thought through about this, and we think it would be a shame if we just kept this sword as a memory to him. It needs to be used. It was our father's one and only weapon, and it has been many places. Take it to many more." She pulls the sword from the pedestal and hands it to you. "It is yours now."`
 			choice
-				"That is one of the best gifts I have ever seen."
-				"Now this is some cool stuff."
-			`    You leave the two of them alone for a bit, walking around and looking at the atrifacts.`
-			`    After some time they wink you to them. Sophie starts, "Captain <last>, we have thought about this sometime and we think it would be a shame to just keep this sword as a memory. It needs to be used. It was our fathers one and only weapon, which probably means that is has all kind of alien tecnology integrated," she takes the sword and reaches it to you. "It is yours now." You look at her, surprised.`
+				`	"I would be more than grateful to accept it."`
+						goto accepted
+				`	"This is too much for me to take."`
+						goto declined
+			label declined
+			`	"Are you sure?" Liam asks. "This is a one time offer. It would be wasted on us."`
 			choice
-				"This is too much for me to take."
-					goto decline-offer
-				"I would be more than grateful to take it."
-					goto accept-sword
-			label decline-offer
-			`    "Are you sure," Liam asks, "this is a one time offer."`
-			choice
-				"Yes, I am sure."
-				"Well, if you say it like this, I will take it."
-					goto accept-sword
-			`    "I see, at least take this extra payment," Liam transfers 50 thousand credits to your bank account.`
-			action
-				payment 50000
-			`    "It is for you traveling so much with us," Sophie adds.`
+				`	"Yes, I'm sure."`
+				`	"Well, if you frame it that way, I will take it."`
+					goto accepted
+			`	"I see. Please, at least take this extra payment of <credits>," Liam says. "It is for you traveling so much with us."`
+				action
+					payment 50000
 				goto end
 			label accept-sword
-			`    "Please take it on some more adventures," Sophie says. You take the sword. It feels strangely light and as you swing it an energy bolts shoots out of it. Better be careful with his.`
+			`	"Please take it on some more adventures," Sophie says.`
 			action
-				outfit "Old Man's sword" 1
+				outfit "Old Man's Sword" 1
 			label end
-			`    "Well, it seems like this is the end of our short journey together, Capatin <last>," Sophie says. "It was a pleasure to travel with you," says Liam. You say goodbye to them and leave them alone in the dome.`
-		payment 50000
+			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
+			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will. Here's your payment of <payment>, and farewell." `
+			`	You say goodbye to them and leave them alone in the dome.`
+				payment 50000
+				decline
