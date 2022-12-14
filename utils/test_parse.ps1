@@ -20,11 +20,11 @@ if (Test-Path -Path $ERR_FILE) { Remove-Item -Path $ERR_FILE; }
 # Parse the game data files
 if ($CONFIG)
 {
-  $p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p','--config',"$FILEDIR" -Wait -PassThru;
+  & "$EndlessSky" -p --config "$FILEDIR" 2> null;
 }
 else
 {
-  $p = Start-Process -FilePath "$EndlessSky" -ArgumentList '-p' -Wait -PassThru;
+  & "$EndlessSky" -p 2> null;
 }
 
 # Assert there is no content in the "errors.txt" file.
@@ -33,8 +33,8 @@ if ((Test-Path -Path "$ERR_FILE") -and ((Get-Content -Path "$ERR_FILE" -Raw).Len
   $err_msg = "Assertion failed: content written to file $ERR_FILE";
   $content = Get-Content -Path "$ERR_FILE" -Raw;
   Write-Host $content;
-  Write-Error -Message $err_msg -Category ParserError;
+  Write-Error -Message $err_msg;
   exit 1;
 }
 else { Write-Host "No data-parsing errors were encountered"; }
-exit $p.ExitCode;
+exit $LASTEXITCODE;
