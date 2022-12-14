@@ -5006,7 +5006,7 @@ mission "A dead man's path I"
 			`	"Yes, it seems that way nowadays," Sophie agrees. "Everyone feels more tense or uncertain, and there's always more to do and less time to do it."`
 				goto ship
 			label notime
-			`	Liam's voice barely hides his excitement at finding an available captain. "Well, let's see that ship of yours then, and show us if it's as fast as you say it is!"
+			`	Liam's voice barely hides his excitement at finding an available captain. "Well, let's see that ship of yours then, and show us if it's as fast as you say it is!"`
 			label ship
 			`	You lead them to your ship, and help them with their bags as they board.`
 				accept
@@ -5032,7 +5032,7 @@ mission "A dead man's path II"
 		has "A dead man's path I: done"
 	on offer
 		conversation
-			`	After about two hours they come back, although unexpectedly they both have broad smiles on their face. You flag them down from your table, and they eagerly take a seat. 
+			`	After about two hours they come back, although unexpectedly they both have broad smiles on their face. You flag them down from your table, and they eagerly take a seat.`
 			`	Liam speaks as soon as he can. "Captain <last>, it turns out we will need a bit more than just a ride home! Have you decided to help us again?"`
 			choice
 				`	"But what do you want me to do?"`
@@ -5114,12 +5114,12 @@ mission "A dead man's path II"
 			label sword-scene
 			scene "scene/sword dome"
 			`	Approaching the tablet, there is a short message written on it:`
-			`	"My dear children. The galaxy runs far and wide, and I have traveled many places, more than most in many lifetimes. I have seen many worlds, both alien and human, too. And it was on those worlds that I have been exploring, discovering, and researching everything you see around you. It was my life's duty.`
-			`	But still, there were many paths I did not take, many rocks I have left unturned, and many worlds I have not yet landed on. And I suspect that you will have read this before those destinations were reached. Well, I have arrived at a different destination now, the only one nobody can understand, but everybody reaches eventually. Do not fear for me.`
-			`	This room you are in now is the culmination of all my work. I hope you understand that it was for your sake that I kept these a secret. My journey was long and unforgiving, but it was my life. I hope you continue that journey, to understand the universe a little better.`
-			`	Your father."`
-			`	You leave the two of them alone for a bit, walking around and looking at the artifacts.`
-			`	After some time they call you to them. Sophie starts, "Captain <last>, Liam and I have thought through about this, and we think it would be a shame if we just kept this sword as a memory to him. It needs to be used. It was our father's one and only weapon, and it has been many places. Take it to many more." She pulls the sword from the pedestal and hands it to you. "It is yours now."`
+			`			"My dear children. The galaxy runs far and wide, and I have traveled many places, more than most in many lifetimes. I have seen many worlds, both alien and human, too. And it was on those worlds that I have been exploring, discovering, and researching everything you see around you. It was my life's duty.`
+			`			But still, there were many paths I did not take, many rocks I have left unturned, and many worlds I have not yet landed on. And I suspect that you will have read this before those destinations were reached. Well, I have arrived at a different destination now, the only one nobody can understand, but everybody reaches eventually. Do not fear for me.`
+			`			This room you are in now is the culmination of all my work. I hope you understand that it was for your sake that I kept these a secret. My journey was long and unforgiving, but it was my life. I hope you continue that journey, to understand the universe a little better.`
+			`			Your father."`
+			`	Understanding the personal nature of the message, you leave the two of them alone for a bit, walking around and looking at the artifacts.`
+			`	After some time, the siblings call you back to them. Sophie starts, "Captain <last>, Liam and I have thought through about this, and we think it would be a shame if we just kept this sword as a memory to him. It needs to be used. It was our father's one and only weapon, and it has been many places. Take it to many more." She pulls the sword from the pedestal and hands it to you. "It is yours now."`
 			choice
 				`	"I would be more than grateful to accept it."`
 						goto accepted
@@ -5135,13 +5135,12 @@ mission "A dead man's path II"
 				action
 					payment 50000
 				goto end
-			label accept-sword
-			`	"Please take it on some more adventures," Sophie says.`
+			label accepted
 			action
 				outfit "Old Man's Sword" 1
 			label end
 			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
 			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will. Here's your payment of <payment>, and farewell." `
-			`	You say goodbye to them and leave them alone in the dome.`
+			`	You say goodbye to them, and leave them alone in their father's dome.`
 				payment 50000
 				decline
