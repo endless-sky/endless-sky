@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Escort (Tiny, Northern, Dangerous Destination)"
+missidfon "Escort (Tiny, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
 	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
 	repeat
