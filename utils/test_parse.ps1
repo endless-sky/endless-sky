@@ -20,13 +20,12 @@ if (Test-Path -Path $ERR_FILE) { Remove-Item -Path $ERR_FILE; }
 # Parse the game data files
 if ($CONFIG)
 {
-  & "$EndlessSky" -p --config "$FILEDIR" 2> $null;
+  & "$EndlessSky" -p --config "$FILEDIR" 2> $null | Out-Null;
 }
 else
 {
-  & "$EndlessSky" -p 2> $null;
+  & "$EndlessSky" -p 2> $null | Out-Null;
 }
-& "$EndlessSky" -p;
 
 # Assert there is no content in the "errors.txt" file.
 if ((Test-Path -Path "$ERR_FILE") -and ((Get-Content -Path "$ERR_FILE" -Raw).Length -gt 0))
