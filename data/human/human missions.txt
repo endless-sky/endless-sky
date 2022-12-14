@@ -4972,6 +4972,7 @@ mission "A dead man's path I"
 	passengers 2
 	source
 		near "Merak" 3 6
+		not attributes "station"
 	destination
 		planet "New China"
 	to offer
