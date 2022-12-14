@@ -26,9 +26,7 @@ else
 {
   & "$EndlessSky" -p 2> $null;
 }
-Write-Host $ERR_FILE
-$A = Test-Path -Path "$ERR_FILE"
-Write-Host $A
+& "$EndlessSky" -p;
 
 # Assert there is no content in the "errors.txt" file.
 if ((Test-Path -Path "$ERR_FILE") -and ((Get-Content -Path "$ERR_FILE" -Raw).Length -gt 0))
