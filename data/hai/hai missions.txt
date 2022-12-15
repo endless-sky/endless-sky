@@ -835,7 +835,7 @@ mission "Nanachi 1"
 		or
 			has "event: hai-human resolution announced"
 			and
-				"net worth" > 2000000000
+				"net worth" > 200000000
 				"combat rating" > 1200
 				has "First Contact: Hai: offered"
 	on offer
