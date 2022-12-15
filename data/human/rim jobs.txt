@@ -120,7 +120,7 @@ mission "Han Sizer Month [1]"
 	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .8
 	substitutions
-		"<on Longjump>" "someone near here."
+		"<on Longjump>" "near here."
 			has "flagship planet: Longjump"
 	substitutions
 		"<on Longjump>" "on Longjump"
