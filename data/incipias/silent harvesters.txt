@@ -17,7 +17,7 @@ outfit "Strange Ray"
 		"minable damage" 64
 
 ship "Silent Harvester"
-	sprite "ship/silent harvester/ign"
+	sprite "ship/silent harvester"
 		rewind
 	swizzle 0
 	"never disabled"
