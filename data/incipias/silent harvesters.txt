@@ -18,7 +18,6 @@ outfit "Strange Ray"
 
 ship "Silent Harvester"
 	sprite "ship/silent harvester"
-		rewind
 	swizzle 0
 	"never disabled"
 	attributes
