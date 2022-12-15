@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdexcept>
 
 #define KNOWN_OUTFIT_KEY "known outfit"
+#define VISITED_OUTFITTERS_KEY "visited outfitter"
 
 using namespace std;
 
@@ -349,6 +350,8 @@ void PlayerInfo::Load(const string &path)
 			startData.Load(child);
 		else if(child.Token(0) == KNOWN_OUTFIT_KEY && child.Size() >= 2)
 			DiscoverOutfit(*GameData::Outfits().Get(child.Token(1)));
+		else if(child.Token(0) == VISITED_OUTFITTERS_KEY && child.Size() >= 2)
+			VisitOutfitter(GameData::Planets().Get(child.Token(1))->Outfitter());
 
 	}
 	// Modify the game data with any changes that were loaded from this file.
@@ -1059,6 +1062,11 @@ void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
 		for(const auto &it : outfits)
 			if(!OutfitIsKnown(*it.first))
 				DiscoverOutfit(*it.first);
+}
+
+void PlayerInfo::VisitOutfitter(const Sale<Outfit>& outfitter)
+{
+	visitedOutfitters.insert(&outfitter);
 }
 
 // Sell the given ship (if it belongs to the player).
@@ -3899,6 +3907,23 @@ void PlayerInfo::Save(const string &path) const
 		[&out](const Outfit *outfit)
 		{
 			out.Write(KNOWN_OUTFIT_KEY, outfit->TrueName());
+		});
+
+// Save a list of all visited outfitters
+	std::set< const Planet* > planetsWithVisitedOutfitters;
+	for(const auto outfitter : visitedOutfitters) {
+		for(const auto planet : visitedPlanets) {
+			if(&planet->Outfitter() == outfitter)
+				planetsWithVisitedOutfitters.insert(planet);
+		}
+	}
+
+	WriteSorted(planetsWithVisitedOutfitters,
+		[](const Planet *const *lhs, const Planet *const *rhs)
+		{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
+		[&out](const Planet *planet)
+		{
+			out.Write(VISITED_OUTFITTERS_KEY, planet->TrueName());
 		});
 
 	out.Write();
