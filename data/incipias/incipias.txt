@@ -39,13 +39,20 @@ phrase "incipias"
 		"iam"
 
 
-fleet "Nimbi"
+fleet "Incipias Standard"
 	government "Hicemus"
 	names "hicemus"
 	cargo 0
 	personality
 		timid mining harvests
 	variant
+		"Nimbus"
+	variant
+		"Stratus"
+	variant
+		"Stratus" 2
+	variant
+		"Stratus"
 		"Nimbus"
 
 outfitter "Hicemus"
@@ -56,6 +63,7 @@ outfitter "Hicemus"
 
 shipyard "Hicemus"
 	"Nimbus"
+	"Stratus"
 
 news "Incipias common"
 	location

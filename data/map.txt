@@ -9490,7 +9490,7 @@ system Dom'us
 	trade Medical 842
 	trade Metal 270
 	trade Plastic 267
-	fleet "Nimbi" 600
+	fleet "Incipias Standard" 600
 	object
 		sprite star/f0
 		distance 500.6777

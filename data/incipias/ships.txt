@@ -7,6 +7,7 @@ ship "Nimbus"
 		"category" "Medium Warship"
 		"cost" 500000
 		"hull" 2500
+		"shields" 3800
 		"required crew" 20
 		"bunks" 40
 		"mass" 700
@@ -14,7 +15,7 @@ ship "Nimbus"
 		"heat dissipation" .7
 		"cargo space" 100
 		"outfit space" 450
-		"weapon capacity" 50 
+		"weapon capacity" 80 
 		"gaslining" 1
 		"fuel capacity" 200
 
@@ -48,3 +49,48 @@ ship "Nimbus"
 	"final explode" "final explosion large"
 	description "The Nimbus is the first spaceship that was really able to navigate through a system built by the Incipias. Since it was first published it is loved among wealthier captains and a dream of captains who just started."
 	description "Although the Nimbus is labeled as a medium warship, it is a multi-purpose ship. Whether one uses it for mining, passengers or cargo it will fulfill its job in the most pleasant way. It is only occasionally used in combat because the Incipias are not fighting open wars."
+
+ship "Stratus"
+	"plural" "Strati"
+	"sprite" ship/stratus
+	"thumbnail" thumbnail/stratus
+	"swizzle" 0
+	attributes
+		"category" "Utility"
+		"cost" 50000
+		"hull" 500
+		"shields" 1400
+		"required crew" 5
+		"bunks" 10
+		"mass" 200
+		"drag" 13.3
+		"heat dissipation" .8
+		"cargo space" 100
+		"outfit space" 250
+		"weapon capacity" 50 
+		"gaslining" 1
+		"fuel capacity" 200
+
+		"steering flare sound" "plasma huge"
+		"turn" 233
+		"turning energy" 1.
+		"turning heat" 3
+
+		"flare sprite" "effect/incipias flare/flare"
+			"frame rate" 6
+		"flare sound" "plasma huge"
+		"thrust" 16
+		"thrusting energy" 2
+		"thrusting heat" 2.5
+
+	outfits
+		"Gas Class Shield"
+		"Liquid Hydrogen Cell"
+		"Plasma Discharger" 2
+	gun -13 -48.5
+	gun 13 -48.5
+	engine 0 61.5
+	explode "medium explosion" 10
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description "stratus description"
