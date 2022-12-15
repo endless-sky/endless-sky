@@ -521,7 +521,7 @@ phrase "person you could suspect to be aliens"
 
 ########################################################################
 
-#Many different missions have the potential to trigger this so an event is used instead of missions in the "to show".
+# Many different missions have the potential to trigger this so an event is used instead of missions in the "to show".
 event "news: hai video clip published"
 
 news "Hai video: human response"
