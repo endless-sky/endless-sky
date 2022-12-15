@@ -701,7 +701,7 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 	for(int i = 0; i < Body::BodyState::NUM_STATES; i++)
 		triggerSet[i] = false;
 
-	for(const auto it : outfits)
+	for(const auto &it : outfits)
 		for(int i = 0; i < Body::BodyState::NUM_STATES; i++)
 			if(!triggerSet[i])
 			{
