@@ -361,27 +361,37 @@ event "reveal devil-run"
 
 # This mission exists to set a condition about whether or not you already knew about keystones going through red wormholes. (It doesn't care how you know.)
 # This is used to send you on a side-quest to Tarazed if it's your first encounter with them.
+# This can trigger anywhere and should trigger when you're sent to find the system with the wormhole so it's active before you reach the split.
 mission "Hai Reveal [B04-A] The Road Not Taken"
 	landing
 	invisible
-	source "Canyon"
 	to offer
 		has "Hai Reveal [B03] Contact Giti: done"
 		not "event: knows about keystones and wormholes"
 		or
+			# These check criteria from the Deep missions
 			has "deep: knew of stones before scientists"
-			has "Deep: Remnant: Keystone Research"
+			has "Deep: Remnant: Keystone Research: offered"
+			# These check criteria from Remnant missions - Remnant First Contact doesn't actually explain them.
+			has "Remnant: Key Stones: offered"
+			has "Remnant: Key Stones (Pre-Hai) 1: offered"
+			has "Remnant: Key Stones (Hai): offered"
+			has "Remnant: Lost in Ember Waste: offered"
 	on offer
 		event "knows about keystones and wormholes"
 
 event "knows about keystones and wormholes"
 
 # Relevant conditions origins:
-#	from: mission "First Contact: Remnant"
-#		has "First Contact: Remnant: offered"
+#	from: various "Remnant: Key Stones" missions
+#		has "Remnant: Key Stones: offered"
+#		has "Remnant: Key Stones (Pre-Hai) 1: offered"
+#		has "Remnant: Key Stones (Hai): offered"
+#	from: mission "Remnant: Lost in Ember Waste"
+#		has "Remnant: Lost in Ember Waste: offered"
 #	from: mission "Deep: Remnant 0"
-#		has "Deep: Remnant: Keystone Research"
-#		has "deep: knew of stones before scientists" (redundant with remnant first contact for knowledge, may be useful for conversation branches)
+#		has "Deep: Remnant: Keystone Research: offered"
+#		has "deep: knew of stones before scientists" (redundant with remnant explanations for knowledge, may be useful for conversation branches)
 #		has "deep: did reveal remnant" (may be useful for conversation branches)
 #		has "deep: did not reveal remnant" (may be useful for conversation branches)
 
