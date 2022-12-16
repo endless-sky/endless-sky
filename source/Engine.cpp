@@ -2211,9 +2211,24 @@ void Engine::DoCollection(Flotsam &flotsam)
 			commodity = outfit->DisplayName();
 			player.Harvest(outfit);
 		}
-		else
+		else {
+			string dn = outfit->DisplayName();
+			string pn = outfit->PluralName();
+
+			if(!player.OutfitIsKnown(*outfit)) {
+				dn = "Unknown " + outfit->Category();
+
+				if((amount == 1) && (dn.back() == 's')) {
+					dn.pop_back();
+					dn += " Component";
+				}
+
+				pn = dn + 's';
+			}
+
 			message = name + to_string(amount) + " "
-				+ (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
+				+ (amount == 1 ? dn : pn) + ".";
+		}
 	}
 	else
 		commodity = flotsam.CommodityType();
