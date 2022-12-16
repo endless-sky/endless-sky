@@ -186,7 +186,7 @@ ship "Ember Waste Node"
 		"cloak" .05
 		"quantum keystone" 1
 		"outfit scan power" 12
-		"outfit scan speed" 1
+		"outfit scan speed" 25
 		"tactical scan power" 50
 		"asteroid scan power" 50
 		"inscrutable" 1

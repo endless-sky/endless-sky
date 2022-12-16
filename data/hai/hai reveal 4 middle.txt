@@ -15,7 +15,7 @@
 
 # Part 4: The crisis expands in scope.
 
-#Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
+# Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
 mission "Hai Reveal [A00] Darkwaste Timer"
 	landing
 	invisible
@@ -962,7 +962,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	She momentarily adopts a self-satisfied smile.`
 			label busy
 			`	"Yes, well, this poses a few issues of its own with the increased demand on the relay bandwidth from here, but I wouldn't have my regular job if something like this was too much to stay on top of."`
-			choice 
+			choice
 				`	"Your regular job?"`
 					goto regular
 				`	"Your job as a secretary?"`
@@ -1481,7 +1481,7 @@ mission "Hai Reveal [A11-A] Permanent Fleets"
 		personality heroic staying
 		fleet "Hai Wormhole Guards" 30
 
-#These are separated because they leave at a different time.
+# These are separated because they leave at a different time.
 mission "Hai Reveal [A11-B] Permanent Fleets"
 	landing
 	invisible
@@ -1567,7 +1567,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 			`	"Captain <last>!" he calls out, audible even over the chaos. He strides up to you quickly and then pulls you aside to a sheltered spot. "Thank the cosmos you're here. I don't know what the devil is going on, either out there or in here, but it's absolute madness."`
 			`	Before you can get a word in he's powered on.`
 			`	"Look at this!" He thrusts a stack of pages at you, pointing to some text that's too small to read while he keeps moving it. "Somehow there's now three alien races involved in this plot, and two are transparently Quarg and Korath. People aren't even meant to know about the Korath!"`
-			choice 
+			choice
 				`	"Turner, I'm here on urgent business."`
 					goto interrupt
 				`	"Know about who?"`
@@ -1606,7 +1606,6 @@ mission "Hai Reveal [A13] A New Elder"
 	to offer
 		has "Hai Reveal [A12] Into the Lion's Den: done"
 	on offer
-#		log ``
 		conversation
 			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day when you enter the diplomatic wing of the government complex. The developing gloom as Ya Hai sinks behind the buildings of the capital underscores the mood; the place appears nearly deserted.`
 			`	Fortunately though, you swiftly discover Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey. When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
@@ -1858,7 +1857,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	After the screens go off, a number of people involved in the busywork of bureaucracy start slipping out of the room, doubtlessly to get a head start on certain preparations, as Teeneep and the leaders on the screen conclude some formal thanks for continued cooperation and other matters of protocol. You are too visible to slip away though and have to wait.`
 			`	When you finally emerge Terry and Turner are waiting for you. Terry addresses you. "Captain <last>. We have a little problem. The many civilians that have been living under this cover or being serviced by it have been kept in the dark, and are very nervous about the massed Navy ships. They've been so far sold a story about a 'pirate menace,' and now we need them out of here."`
 			`	Turner smiles, "And I think it would be appropriate if you, as the famous war hero, were the one to escort them to safety and keep everyone's eyes away from what's happening here."`
-			`	The two of them look at each other for a second before Terry says,  "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
+			`	The two of them look at each other for a second before Terry says, "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
 				accept
 	npc accompany
 		government "Merchant"
