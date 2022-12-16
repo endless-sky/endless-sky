@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Escort (Tiny, Northern, Dangerous Destination)"
-	name "Escorft to <planet>"
+	name "Escort to <planet>"
 	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> for an escort into a dangerous region of space to reach <destination> by <date>."
 	repeat
 	job
