@@ -356,7 +356,7 @@ jobs:
       run: ./tests/integration/run_tests_headless.sh
 
   test-parse:
-    name: Data Parse
+    name: Data Files
     needs: [build_windows, changed]
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' }}
     runs-on: ${{ matrix.os }}
