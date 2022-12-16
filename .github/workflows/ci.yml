@@ -98,8 +98,6 @@ jobs:
     - name: Setup sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: ./.github/sccache
-      with:
-        cache-key: ${{ matrix.os }}-${{ matrix.opengl }}
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: scons -Qj $(nproc) opengl=${{ matrix.opengl }};
@@ -140,8 +138,6 @@ jobs:
     - name: Setup sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: ./.github/sccache
-      with:
-        cache-key: ${{ matrix.os }}-desktop
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: scons -Qj $(nproc) build-tests
@@ -178,8 +174,6 @@ jobs:
     - name: Setup sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: ./.github/sccache
-      with:
-        cache-key: ${{ matrix.os }}
     - name: Install development dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -247,8 +241,6 @@ jobs:
     - name: Setup sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: ./.github/sccache
-      with:
-        cache-key: ${{ matrix.os }}
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests

@@ -4,10 +4,6 @@ inputs:
   read-only:
     description: Whether the cache should be read-only
     default: 'false'
-  cache-key:
-    description: The cache key to use to read/write the cache
-    default: ''
-    required: true
 runs:
   using: 'composite'
   steps:
@@ -34,10 +30,10 @@ runs:
       shell: bash
     - name: Write to the cache
       if: ${{ inputs.read-only == 'false' && github.event_name == 'push' }}
-      run: echo "SCCACHE_GHA_CACHE_TO=sccache-${{ inputs.cache-key }}-${{ github.sha }}" >> $GITHUB_ENV
+      run: echo "SCCACHE_GHA_CACHE_TO=sccache-${{ github.sha }}" >> $GITHUB_ENV
       shell: bash
     - name: Read from the cache
-      run: echo "SCCACHE_GHA_CACHE_FROM=sccache-${{ inputs.cache-key }}-" >> $GITHUB_ENV
+      run: echo "SCCACHE_GHA_CACHE_FROM=sccache-" >> $GITHUB_ENV
       shell: bash
     - name: Configure sccache
       uses: actions/github-script@v6
