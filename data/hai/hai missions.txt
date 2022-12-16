@@ -272,6 +272,7 @@ mission "Unwanted Cargo Trigger"
 	to offer
 		random < 1
 		"cargo space" > 0
+		not "event: hai secret leaks"
 	on offer
 		event "hai in cargo" 14
 		fail
