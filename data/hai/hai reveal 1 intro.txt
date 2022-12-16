@@ -47,18 +47,6 @@ mission "Hai Reveal: Reputation Reset"
 
 
 
-mission "Hai Reveal: Wanderers in Progress Reputation Fix"
-	landing
-	invisible
-	to offer
-		has "Hai Secret Leaker Begins: failed"
-		has "First Contact: Wanderer: offered"
-	on offer
-		# Call this early instead of at the end so people aren't disrupted mid-way through the Wanderer campaign.
-		event "Vara K'chrai is accessible"
-
-
-
 mission "Event: Pug Media Coverage"
 	landing
 	source
