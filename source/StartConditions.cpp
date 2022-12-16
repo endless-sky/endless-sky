@@ -265,6 +265,12 @@ bool StartConditions::Visible(ConditionsStore conditionsStore) const
 }
 
 
+bool StartConditions::Revealed(ConditionsStore conditionsStore) const
+{
+	return toReveal.Test(conditionsStore);
+}
+
+
 
 bool StartConditions::Unlocked(ConditionsStore conditionsStore) const
 {
