@@ -101,6 +101,16 @@ test "Saving during conversation"
 		# Test mission was available again
 		assert
 			"%TEST%: transient" == 1
+		input
+			key return
+		input
+			key return
+		# Now save after the conversation is finished
+		input
+			key escape
+		call "Load First Savegame"
+		assert
+			"%TEST%: transient" == 1
 
 
 test "Loading and Reloading"
