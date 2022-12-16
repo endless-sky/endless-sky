@@ -47,7 +47,7 @@ mission "Hai Reveal: Reputation Reset"
 
 
 
-mission "Hai Reveal: Wanderer's in Progress Reputation Fix"
+mission "Hai Reveal: Wanderers in Progress Reputation Fix"
 	landing
 	invisible
 	to offer
