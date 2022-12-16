@@ -1069,6 +1069,11 @@ void PlayerInfo::VisitOutfitter(const Sale<Outfit>& outfitter)
 	visitedOutfitters.insert(&outfitter);
 }
 
+bool PlayerInfo::OutfitterVisited(const Sale<Outfit>& outfitter) const
+{
+	return visitedOutfitters.count(&outfitter);
+}
+
 // Sell the given ship (if it belongs to the player).
 void PlayerInfo::SellShip(const Ship *selected)
 {
@@ -3911,12 +3916,10 @@ void PlayerInfo::Save(const string &path) const
 
 // Save a list of all visited outfitters
 	std::set< const Planet* > planetsWithVisitedOutfitters;
-	for(const auto outfitter : visitedOutfitters) {
-		for(const auto planet : visitedPlanets) {
+	for(const auto outfitter : visitedOutfitters)
+		for(const auto planet : visitedPlanets)
 			if(&planet->Outfitter() == outfitter)
 				planetsWithVisitedOutfitters.insert(planet);
-		}
-	}
 
 	WriteSorted(planetsWithVisitedOutfitters,
 		[](const Planet *const *lhs, const Planet *const *rhs)

@@ -304,6 +304,9 @@ public:
 	// mark outfitter as visited
 	void VisitOutfitter(const Sale<Outfit> &outfitter);
 
+	// check if an outfitter was visited by the player
+	bool OutfitterVisited(const Sale<Outfit> &outfitter) const;
+
 private:
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();

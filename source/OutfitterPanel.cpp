@@ -97,8 +97,11 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 				catalog[outfit->Category()].insert(name);
 		}
 
-	if(player.GetPlanet())
+	if(player.GetPlanet()) {
+		if(!player.OutfitterVisited(player.GetPlanet()->Outfitter()))
+			player.VisitOutfitter(player.GetPlanet()->Outfitter());
 		outfitter = player.GetPlanet()->Outfitter();
+	}
 }
 
 
