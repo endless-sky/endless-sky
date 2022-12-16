@@ -3213,7 +3213,7 @@ mission "Home for Skadenga 3"
 			``
 			`	'This box once contained the cure to the Rigellian Plague. It belonged to the renowned explorer, adventurer, and researcher Dr. Henry Forsyth. It was donated by the Forsyth Foundation for Academic Honesty.'`
 			``
-			`	Disappointed, you head back down to the lower levels of the mall and take a seat at a small in-door park at the base of God-Stone. After a moment, a woman wearing a well-pressed pants suit approaches you.`
+			`	Disappointed, you head back down to the lower levels of the mall and take a seat at a small in-door park at the base of God-Stone. After a moment, a woman wearing a well-pressed pantsuit approaches you.`
 			choice
 				`	(Offer a non-committal "Hello.")`
 				`	(Grin and say, "Hey!")`

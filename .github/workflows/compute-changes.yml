@@ -43,7 +43,7 @@ jobs:
       cmake_files: ${{ steps.filter.outputs.cmake_files }}
       copyright: ${{ steps.filter.outputs.copyright }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 2
     - uses: dorny/paths-filter@v2

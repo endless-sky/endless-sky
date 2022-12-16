@@ -15,6 +15,7 @@ jobs:
     uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
 
   build_linux:
+    name: Build
     needs: changed
     if: needs.changed.outputs.linux == 'true'
     runs-on: ubuntu-latest
@@ -32,7 +33,7 @@ jobs:
       sdk: com.valvesoftware.SteamRuntime.Sdk-${{ matrix.platform }}-scout-sysroot
       ARTIFACT: endless-sky
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Check steamrt version
@@ -43,7 +44,7 @@ jobs:
         echo "::set-output name=RT_VERSION::$STEAM_VERSION"
     - name: Restore cached steamrt archive
       id: cache-tarball
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: build/docker/${{ env.sdk }}.tar.gz
         key: ${{ env.RT_VERSION }}-${{ matrix.arch }}-steamrt-sdk
@@ -94,12 +95,13 @@ jobs:
     - name: Prepare binary
       run: mv build/endless-sky .
     - name: Upload GH artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: binary-${{ runner.os }}-${{ matrix.arch }}
         path: ${{ env.ARTIFACT }}
 
   test_linux:
+    name: Test
     needs: build_linux
     runs-on: ${{ matrix.os }}
     strategy:
@@ -109,12 +111,12 @@ jobs:
       snapshot: latest-steam-client-general-availability
       tarball: steam-runtime.tar.xz
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Restore cached Steam Runtime environment
       id: cache-tarball
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.tarball }}
         key: ${{ matrix.os }}-${{ needs.build_linux.outputs.RT_VERSION }}-steamrt-env
@@ -124,7 +126,7 @@ jobs:
     - name: Extract Steam Runtime
       run: tar -xf ${{ env.tarball }}
     - name: Download Endless Sky binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: binary-${{ runner.os }}-x86_64
         path: .
@@ -144,6 +146,7 @@ jobs:
       run: steam-runtime/run.sh tests/integration/run_tests_headless.sh
 
   deploy_linux:
+    name: Deploy
     needs: test_linux
     runs-on: ubuntu-latest
     # environment: steam
@@ -153,7 +156,7 @@ jobs:
       ARTIFACT: endless-sky
     steps:
     - name: Download Artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         path: ${{ github.workspace }}
     - name: Prepare binary upload
@@ -173,6 +176,7 @@ jobs:
     #     releaseBranch: canary
 
   deploy_data_depot:
+    name: Deploy Data
     needs: changed
     if: needs.changed.outputs.data == 'true'
     runs-on: ubuntu-latest
@@ -180,7 +184,7 @@ jobs:
     env:
       dir: data-depot
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: 'Prepare data upload'
