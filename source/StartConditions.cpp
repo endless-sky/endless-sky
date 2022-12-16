@@ -89,6 +89,8 @@ void StartConditions::Load(const DataNode &node)
 			{
 				if(child.Token(1) == "display")
 					toDisplay = ConditionSet();
+				else if(child.Token(1) == "reveal")
+					toReveal = ConditionSet();
 				else if(child.Token(1) == "unlock")
 					toUnlock = ConditionSet();
 				else
@@ -141,6 +143,8 @@ void StartConditions::Load(const DataNode &node)
 		{
 			if(child.Token(1) == "display")
 				toDisplay.Load(child);
+			else if(child.Token(1) == "reveal")
+				toReveal.Load(child);
 			else if(child.Token(1) == "unlock")
 				toUnlock.Load(child);
 			else
