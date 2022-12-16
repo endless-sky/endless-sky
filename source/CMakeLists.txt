@@ -53,6 +53,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Account.h
 	AlertLabel.cpp
 	AlertLabel.h
+	AmmoDisplay.cpp
+	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
 	Armament.cpp
