@@ -688,6 +688,7 @@ const WeightedList<double> &System::AsteroidBelts() const
 
 
 
+// Get the system's invisible fence radius.
 double System::InvisibleFenceRadius() const
 {
 	return invisibleFenceRadius;
