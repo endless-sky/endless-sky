@@ -325,7 +325,7 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 
 	// Update the displayed description text.
 	descriptionScroll = 0;
-	description.Wrap(startIt->Unlocked(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
+	description.Wrap(startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
 
 	// Scroll the selected scenario into view.
 	ScrollToSelected();
