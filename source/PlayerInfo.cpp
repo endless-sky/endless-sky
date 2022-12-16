@@ -2779,6 +2779,35 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
+	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		const Outfit &attributes = base ? flagship->BaseAttributes() : flagship->Attributes();
+		if(attribute == "cost")
+			return attributes.Cost();
+		if(attribute == "mass")
+			return round(attributes.Mass() * 1000.);
+		return round(attributes.Get(attribute) * 1000.);
+	};
+
+	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
+	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	{
+		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
+	};
+	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
+	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
+
+	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
+	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	{
+		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
+	};
+	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
+	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{

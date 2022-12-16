@@ -659,3 +659,38 @@ mission "Remnant: Rescue 5"
 	on visit
 		dialog
 			`You have returned, but there is still no word from the missing ship.`
+
+
+mission "Remnant: Disable 1"
+	job
+	repeat
+	name "Disable Damaged Kas'lor Ik 582"
+	description "A damaged Kas'lor Ik 582 is stuck in a newly accessible system, near Postverta. It has a large civilian population so we ask you to only disable it to avoid an atrocity. Once you return to <planet> you will receive a logistics adjustment of <payment>."
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Will Not Someone Please Think Of The Children: done"
+		not "Remnant: Disable 1: aborted"
+		not "Remnant: Disable 1: failed"
+		random < 5
+	npc disable save
+		government "Korath"
+		personality heroic target marked staying disables plunders
+		system 
+			near "Vaticanus" 1
+		fleet
+			names "korath"
+			variant
+				"Kas'lor Ik 582 (Stranded)"
+		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
+	on visit
+		dialog `You've landed on <planet>, but the stuck Kas'lor Ik 582 has not been disabled yet. Hunt it down and disable it before returning.`
+	on abort
+		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They advise you they will prioritize other teams for these missions in the future.`
+	on fail
+		"reputation: Remnant" -= 250
+		dialog `You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+	on complete
+		"remnant: disable and save count" ++
+		payment 2000000
+		dialog "A Remnant military prefect thanks you for disabling down the Kas'lor Ik 582 <npc>, and gives you the agreed-upon logistics adjustment of <payment>."
