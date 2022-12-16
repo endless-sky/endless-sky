@@ -144,7 +144,7 @@ if(APPLE)
 
 	# Add plist to bundle.
 	set_target_properties(EndlessSky PROPERTIES
-		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/XCode/EndlessSky-Info.plist"
+		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/resources/EndlessSky-Info.plist"
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
 elseif(WIN32)
