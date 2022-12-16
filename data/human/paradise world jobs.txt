@@ -545,7 +545,7 @@ mission "Martini Bombings (Evacuation, Family, No Luxury Accommodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 120000
+		payment 100000
 
 
 mission "Martini Bombings (Evacuation, Singular, No Luxury Accommodations)"
@@ -570,7 +570,7 @@ mission "Martini Bombings (Evacuation, Singular, No Luxury Accommodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 80000
+		payment 60000
 
 
 mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
@@ -597,7 +597,7 @@ mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 180000
+		payment 160000
 
 
 mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
@@ -624,7 +624,7 @@ mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 110000
+		payment 90000
 
 
 mission "Martini Bombings (Evacuation, Tourist, No Luxury Accommodations)"
@@ -647,7 +647,7 @@ mission "Martini Bombings (Evacuation, Tourist, No Luxury Accommodations)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 50000
+		payment 30000
 
 
 mission "Martini Bombings (Evacuation, Tourist Family, No Luxury Accommodations)"
@@ -669,7 +669,7 @@ mission "Martini Bombings (Evacuation, Tourist Family, No Luxury Accommodations)
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 80000
+		payment 60000
 
 
 mission "Martini Bombings (Evacuation, Tourist Group, No Luxury Accommodations)"
@@ -692,7 +692,7 @@ mission "Martini Bombings (Evacuation, Tourist Group, No Luxury Accommodations)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 80000
+		payment 60000
 
 
 mission "Martini Bombings (Evacuation, Businessman Group, No Luxury Accommodations)"
@@ -715,7 +715,7 @@ mission "Martini Bombings (Evacuation, Businessman Group, No Luxury Accommodatio
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 110000
+		payment 90000
 
 
 mission "Martini Bombings (Evacuation, Businessman, No Luxury Accommodations)"
@@ -738,7 +738,29 @@ mission "Martini Bombings (Evacuation, Businessman, No Luxury Accommodations)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 90000
+		payment 70000
+
+
+mission "Martini Bombings (Evacuation, Exhausted Doctors)"
+	name "Transport discharged doctors from Martini to <planet>"
+	description "These <bunks> doctors from <planet> have been treating patients on Martini after the bombings and have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 2 6
+	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
+	to offer
+		has "event: initial deployment 1"
+		not "event: initial deployment 2"
+	source
+		planet "Martini"
+	destination
+		distance 2 5
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment 60000
 
 
 
@@ -803,7 +825,7 @@ mission "Martini Bombings (Medical, Iodine)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 30000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -825,7 +847,7 @@ mission "Martini Bombings (Medical, Painkillers)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 30000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -847,7 +869,7 @@ mission "Martini Bombings (Medical, Medical Kits)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 30000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -869,7 +891,7 @@ mission "Martini Bombings (Medical, Stretchers)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 30000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -891,7 +913,7 @@ mission "Martini Bombings (Medical, Bandages)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 30000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -913,7 +935,7 @@ mission "Martini Bombings (Medical, Medical Gloves)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 30000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -935,7 +957,7 @@ mission "Martini Bombings (Medical, Saline)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 30000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -957,7 +979,7 @@ mission "Martini Bombings (Evacuation, Masks)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 27000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -979,7 +1001,7 @@ mission "Martini Bombings (Evacuation, Respirators)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 27000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1001,7 +1023,7 @@ mission "Martini Bombings (Evacuation, Hazmat Suits)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 27000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1023,7 +1045,7 @@ mission "Martini Bombings (Evacuation, Dosimeters)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 27000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1045,7 +1067,7 @@ mission "Martini Bombings (Evacuation, Rescue Helicopters)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 27000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1067,7 +1089,7 @@ mission "Martini Bombings (Evacuation, Rescue Drones)"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 25000
+		payment 27000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1203,6 +1225,72 @@ mission "Martini Bombings (Construction, Shovels)"
 		dialog phrase "generic cargo delivery payment"
 
 
+mission "Martini Bombings (Essential, Food)"
+	name "Food packages to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
+	job
+	repeat
+	cargo "Food packages" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of food packages for the refugee camps, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source
+		near "Pollux" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 29000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Bombings (Essential, Water tablets)"
+	name "Water purification tablets to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. Payment is <payment>."
+	job
+	repeat
+	cargo "water purification tablets" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of water purification tablets for the refugee camps, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source
+		near "Pollux" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 29000
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Bombings (Essential, Latrines)"
+	name "Latrines to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help with the evacuation efforts. Payment is <payment>."
+	job
+	repeat
+	cargo "latrines" 5 25
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of latrines for the refugee camps, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source
+		near "Pollux" 2 5
+	destination
+		planet "Martini"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 29000
+		dialog phrase "generic cargo delivery payment"
+
+
 mission "Martini Bombings (People, Doctors)"
 	name "Doctors to Martini"
 	description "Due to the recent nuclear bombings, bring <bunks> doctors to <planet> to release demand from overloaded hospitals treating patients. Payment is <payment>."
@@ -1221,7 +1309,7 @@ mission "Martini Bombings (People, Doctors)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 25000
+		payment 35000
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -1243,7 +1331,7 @@ mission "Martini Bombings (People, Evacuation Coordinators)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 25000
+		payment 35000
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -1265,7 +1353,7 @@ mission "Martini Bombings (People, Search and Rescue Team)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 25000
+		payment 35000
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -1287,5 +1375,5 @@ mission "Martini Bombings (People, Nurses)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 25000
+		payment 35000
 		dialog phrase "generic passenger dropoff payment"
