@@ -2,6 +2,7 @@ import os
 import platform
 from SCons.Node.FS import Dir
 from SCons.Errors import SConsEnvironmentError
+from SCons.Defaults import DefaultEnvironment
 
 def pathjoin(*args):
 	return os.path.join(*args)
