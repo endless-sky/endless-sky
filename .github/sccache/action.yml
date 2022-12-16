@@ -17,11 +17,11 @@ runs:
     - name: Download sccache
       if: runner.os == 'Linux'
       run: |
-        if [ $RUNNER_OS == "Linux"]; then
+        if [ $RUNNER_OS == "Linux" ]; then
             PLATFORM="unknown-linux-musl"
-        elif [ $RUNNER_OS == "Windows"]; then
+        elif [ $RUNNER_OS == "Windows" ]; then
             PLATFORM="pc-windows-msvc"
-        elif [ $RUNNER_OS == "macOS"]; then
+        elif [ $RUNNER_OS == "macOS" ]; then
             PLATFORM="apple-darwin"
         fi
         gh release download -R mozilla/sccache ${{ env.SCCACHE_VERSION }} -p sccache-${{ env.SCCACHE_VERSION }}-x86_64-$PLATFORM.tar.gz
