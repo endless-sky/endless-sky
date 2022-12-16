@@ -3062,7 +3062,7 @@ mission "Home for Skadenga 1"
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
 			`	At this distance, you can see that the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read and appear to be family names. Myrlinga, Baning, and Amalung are the few you can read.`
 			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr, you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
-			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exoctic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
+			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exotic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
 			choice
 				`	(Head to the shuttle.)`
 			label shuttle
