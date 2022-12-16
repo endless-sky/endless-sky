@@ -51,6 +51,9 @@ namespace {
 
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
+
+	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
+	int alertIndicatorIndex = 3;
 }
 
 
@@ -287,4 +290,52 @@ Preferences::BoardingPriority Preferences::GetBoardingPriority()
 const string &Preferences::BoardingSetting()
 {
 	return BOARDING_SETTINGS[boardingIndex];
+}
+
+
+
+void Preferences::ToggleAlert()
+{
+	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
+		alertIndicatorIndex = 0;
+}
+
+
+
+Preferences::AlertIndicator Preferences::GetAlertIndicator()
+{
+	return static_cast<AlertIndicator>(alertIndicatorIndex);
+}
+
+
+
+const std::string &Preferences::AlertSetting()
+{
+	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
+}
+
+
+
+bool Preferences::PlayAudioAlert()
+{
+	return DoAlertHelper(AlertIndicator::AUDIO);
+}
+
+
+
+bool Preferences::DisplayVisualAlert()
+{
+	return DoAlertHelper(AlertIndicator::VISUAL);
+}
+
+
+
+bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
+{
+	auto value = GetAlertIndicator();
+	if(value == AlertIndicator::BOTH)
+		return true;
+	else if(value == toDo)
+		return true;
+	return false;
 }
