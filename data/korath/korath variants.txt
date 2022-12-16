@@ -823,6 +823,8 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
+
+
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
 	outfits
 		"Langrage Hyper-Heaver" 3
@@ -850,6 +852,8 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
 	turret "Banisher Grav-Turret"
 	turret "Banisher Grav-Turret"
 	turret "Warder Anti-Missile"
+
+
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
 	outfits

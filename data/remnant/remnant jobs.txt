@@ -682,7 +682,7 @@ mission "Remnant: Disable 1"
 			names "korath"
 			variant
 				"Kas'lor Ik 582 (Stranded)"
-		dialog `You have disabled the Kas'lor Ik 582, time to report back to <planet>.`
+		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
 	on visit
 		dialog `You've landed on <planet>, but the stuck Kas'lor Ik 582 has not been disabled yet. Hunt it down and disable it before returning.`
 	on abort
