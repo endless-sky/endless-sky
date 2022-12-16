@@ -15,7 +15,6 @@ runs:
       run: echo "SCCACHE_VERSION=v0.3.3" >> $GITHUB_ENV
       shell: bash
     - name: Download sccache
-      if: runner.os == 'Linux'
       run: |
         if [ $RUNNER_OS == "Linux" ]; then
             PLATFORM="unknown-linux-musl"
