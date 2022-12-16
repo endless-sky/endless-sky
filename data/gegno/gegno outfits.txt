@@ -73,7 +73,7 @@ outfit "C3 Scrap Cell"
 		"Gegno Civilian"
 	cost 54000
 	mass 25
-	thumbnail "outfit/vicoretiny"
+	thumbnail "outfit/scrap cell"
 	"energy generation" 1.4
 	"heat generation" 2.2
 	"outfit space" -25
@@ -86,7 +86,7 @@ outfit "C7 Brawl Cell"
 		"Gegno Civilian"
 	cost 68100
 	mass 39
-	thumbnail "outfit/vicoresmall"
+	thumbnail "outfit/brawl cell"
 	"energy generation" 2.5
 	"heat generation" 3.9
 	"outfit space" -39
@@ -99,7 +99,7 @@ outfit "C17 Warzone Core"
 		"Gegno Civilian"
 	cost 2472000
 	mass 87
-	thumbnail "outfit/vicoremed"
+	thumbnail "outfit/warzone core"
 	"energy generation" 14.1
 	"heat generation" 38.3
 	"outfit space" -87
@@ -115,7 +115,7 @@ outfit "C27 Campaign Core"
 		"Vi Lord"
 	cost 8145000
 	mass 145
-	thumbnail "outfit/vicorelarge"
+	thumbnail "outfit/campaign core"
 	"energy generation" 22.3
 	"heat generation" 62.9
 	"outfit space" -145
@@ -131,7 +131,7 @@ outfit "I70 Ameliorate Cell"
 	plural "I70 Ameliorate Cells"
 	cost 166000
 	mass 27
-	thumbnail "outfit/scincoretiny"
+	thumbnail "outfit/ameliorate cell"
 	"energy capacity" 840
 	"energy generation" 1.4
 	"heat generation" 2.9
