@@ -99,7 +99,7 @@ fleet "Devil-Run Warships"
 	names "pirate"
 	cargo 0
 	personality
-		heroic plunders harvests disables
+		heroic plunders harvests vindictive
 	variant 1
 		"Firebird"
 	variant 1
