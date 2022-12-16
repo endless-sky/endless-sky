@@ -109,7 +109,7 @@ jobs:
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'
-          buildPreset: 'macos-release'
+          buildPreset: 'macos-ci-release'
       - name: Package Application
         run: |
           cmake --install build/release
