@@ -1952,11 +1952,17 @@ phrase "friendly navy"
 	word
 		"the Navy,"
 	word
-		" "
+		" the "
 	word
-		"the biggest"
-		"the largest"
-		"the greatest"
+		"biggest"
+		"largest"
+		"greatest"
+		"most prestigious"
+		"most worthwhile"
+		"most honorable"
+		"most respected"
+		"most rewarding"
+		"most valued"
 	word
 		" "
 	word
@@ -1975,6 +1981,8 @@ phrase "friendly navy"
 	word
 		"in the galaxy"
 		"in the Republic"
+		"of Humanity"
+		"of all mankind"
 	word
 		"!"
 		
@@ -2045,7 +2053,88 @@ phrase "friendly navy"
 		"If you have courage, if you have honor, join the Navy!"
 		"We want YOU for the Navy!"
 
-phrase "friendly militia"
+phrase "friendly navy"
+	word
+		"Civilian"
+		"Merchant"
+		"All"
+		"All civilian"
+		"All merchant"
+		"We warn you that all"
+	word
+		" "
+	word
+		"ships"
+		"vessels"
+	word
+		" "
+	word
+		"" 5
+		"in the Republic "
+		"in Republic space "
+		"within Republic jurisdiction "
+		"within Parliament's mandate "
+		"within Parliament's jurisdiction "
+	word
+		"will undergo"
+		"will be subjected to"
+		"must perform"
+		"must conduct"
+		"must comply with"
+	word
+		" "
+	word
+		"periodic"
+		"random"
+		"indiscriminate"
+		"regular"
+		"intermittent"
+	word
+		" "
+	word
+		"cargo"
+		"outfit"
+		"structural"
+	word
+		" scans "
+		" examinations "
+		" searches "
+		" sweeps "
+	word
+		"by planetary officials upon landing"
+		"by Navy officers upon landing"
+		"by border control officials upon landing"
+		"by our Gunboat patrols"
+		"by our Gunboats"
+		"by our Gunboat forces"
+		"by our Gunboat monitors"
+		"by the Republic's Gunboat forces"
+		"through our Gunboats"
+		"by our police forces"
+		"by Navy forces"
+		"by Republic forces"
+	word
+		". "
+	word
+		"" 3
+		"This is for your safety."
+		"We do this to benefit you."
+		"This is to maintain the integrity of the Republic."
+		"This is to maintain the integrity of Parliament's mandate."
+		"This is to maintain the integrity of our laws."
+		"This is to maintain the integrity of Republic law."
+		"Please do not attempt to resist."
+		"Please adhere to our instructions while we do so."
+		"Please follow all instructions."
+		"Please follow any instructions."
+		"Please follow the instructions of your Navy officer on duty."
+		"Your cooperation is greatly valued."
+		"We appreciate your complicance."
+		"We will fine anybody with illegal weaponry or outfits."
+		"There are grave penalties for non-compliance."
+		"There are penalties for anybody with illegal weaponry or outfits."
+
+phrase "friendly free worlds militia 1"
 	word
 		"We are"
 	word
@@ -2053,6 +2142,7 @@ phrase "friendly militia"
 	word
 		"on the lookout for"
 		"searching for"
+		"scanning for"
 	word
 		" any "
 		" "
@@ -2077,7 +2167,7 @@ phrase "friendly militia"
 	word
 		"."
 
-phrase "friendly militia"
+phrase "friendly free worlds militia 2"
 	word
 		"No"
 		"Not a single"
@@ -2108,7 +2198,7 @@ phrase "friendly militia"
 		"."
 		"!"
 
-phrase "friendly militia"
+phrase "friendly militia 1"
 	word
 		"Pirates"
 		"Criminals"
@@ -2135,7 +2225,7 @@ phrase "friendly militia"
 		"."
 		"!"
 
-phrase "friendly militia"
+phrase "friendly militia 2"
 	word
 		"We are the militia, "
 	word
@@ -2152,7 +2242,7 @@ phrase "friendly militia"
 		"."
 		"!"
 
-phrase "friendly militia"
+phrase "friendly militia 3"
 	word
 		"It wouldn't hurt if "
 	word
@@ -2164,6 +2254,15 @@ phrase "friendly militia"
 	word
 		"pirates."
 		"criminals."
+
+# Militia hails shared with the Free Worlds. Some are Militia only. This should give each of these hail sets the same chance of appearing.
+phrase "friendly militia"
+	phrase
+		"friendly free worlds militia 1"
+		"friendly free worlds militia 2"
+		"friendly militia 1"
+		"friendly militia 2"
+		"friendly militia 3"
 
 phrase "friendly syndicate"
 	word
@@ -2327,7 +2426,7 @@ phrase "friendly syndicate"
 		"can't be beat!"
 		"will keep you smiling!"
 
-phrase "friendly free worlds"
+phrase "friendly free worlds 1"
 	word
 		"Be"
 	word
@@ -2346,7 +2445,7 @@ phrase "friendly free worlds"
 	word
 		"! Be free!"
 
-phrase "friendly free worlds"
+phrase "friendly free worlds 2"
 	word
 		"Without"
 	word
@@ -2370,10 +2469,11 @@ phrase "friendly free worlds"
 		"freedom"
 		"safety"
 		"prosperity"
+		"liberty"
 	word
 		"!"
 
-phrase "friendly free worlds"
+phrase "friendly free worlds 3"
 	word
 		"Fight"
 		"Overthrow"
@@ -2381,6 +2481,10 @@ phrase "friendly free worlds"
 		"Stand up to"
 		"Defy"
 		"Speak out against"
+		"Stand united against"
+		"Unite against"
+		"Join us in fighting"
+		"We are here to fight"
 	word
 		" "
 	word
@@ -2413,6 +2517,186 @@ phrase "friendly free worlds"
 		"executives"
 	word
 		"! Join the Free Worlds!"
+
+
+phrase "friendly free worlds 4"
+	word
+		"We are Free forces, "
+		"We are Free Worlds ships, "
+		"We are the Free Worlds, "
+	word
+		"defenders of the innocent"
+		"defenders of this system"
+		"defenders of this planet"
+		"defenders of this region"
+		"defenders of these skies"
+		"defenders of liberty"
+		"defenders of freedom"
+		"destroyers of pirates"
+		"destroyers of evil"
+		"destroyers of criminals"
+	word
+		"."
+		"!"
+
+phrase "friendly free worlds 5"
+	word
+		"For "
+	word
+		"freedom"
+		"equality"
+		"justice"
+		"sacrifice"
+		"courage"
+		"tenacity"
+		"hope"
+	word
+		"! "
+	word
+		"For "
+	word
+		"peace"
+		"freedom"
+		"safety"
+		"prosperity"
+		"liberty"
+		"unity"
+	word
+		"!"
+
+phrase "free worlds 6 help"
+	word
+		"want to further"
+		"wish to further"
+		"believe in the cause of"
+		"believe in"
+	word
+		" "
+	word
+		"freedom"
+		"welfare"
+		"democracy"
+		"liberty"
+		"individual freedoms"
+		"commonwealth"
+		"common prosperity"
+		"proper representation"
+
+phrase "free worlds 6 accuse"
+	word
+		"have seen"
+		"know of"
+		"can see"
+		"have suffered from"
+		"have experienced"
+		"are affected by"
+		"cannot tolerate"
+		"refuse to sanction"
+	word
+		" "
+	word
+		"the oppression"
+		"the decadence"
+	word
+		" of "
+	word
+		"the Republic"
+		"Parliament"
+		"the Syndicate"
+		"the Paradise Planets"
+		"of individual freedoms"
+
+phrase "friendly free worlds 6"
+	word
+		"If you "
+	phrase
+		"free worlds 6 help"
+		"free worlds 6 accuse"
+	word
+		", "
+	word
+		"join us"
+		"join the Free Worlds"
+		"join our Free Worlds"
+		"become part of the Free Worlds"
+		"become a member of the Free Worlds"
+		"become a member of the Free forces"
+		"do not hesitate to join the Free Worlds"
+		"stand united with us"
+		"fight for us"
+		"fight with us"
+		"fight by our side"
+	word
+		"!"
+
+phrase "friendly free worlds 7"
+	word
+		"Pirates"
+		"Criminals"
+		"Evil-doers"
+		"Threats to freedom"
+		"Threats to democracy"
+		"Threats to liberty"
+		"Threats to this system"
+		"Threats to this planet"
+		"Threats to our system"
+		"Threats to our planet"
+		"Threats to our Free Worlds"
+	word
+		" beware"
+		" be warned"
+		", turn back now"
+	word
+		". "
+		"! "
+	word
+		"Free forces are here"
+		"The might of the Free Worlds are here"
+		"The cavalry are here"
+		"You won't beat us"
+		"We cannot be defeated"
+	word
+		"."
+		"!"
+
+phrase "friendly free worlds 8"
+	word
+		"Fight for"
+		"Fight on the side of"
+		"Join us in advancing"
+		"The Free Worlds exist to advance"
+		"Our ships fight for"
+		"Our Free Worlds struggle for"
+		"We live in a struggle for"
+		"We struggle for"
+	word
+		" "
+	word
+		"freedom"
+		"equality"
+		"justice"
+		"peace"
+		"freedom"
+		"safety"
+		"prosperity"
+		"liberty"
+		"unity"
+	word
+		"!"
+
+# Militia hails shared with the Free Worlds. These should give all the hails an equal chance of occuring.
+phrase "friendly free worlds"
+	phrase
+		"friendly free worlds militia 1"
+		"friendly free worlds militia 2"
+		"friendly free worlds 1"
+		"friendly free worlds 2"
+		"friendly free worlds 3"
+		"friendly free worlds 4"
+		"friendly free worlds 5"
+		"friendly free worlds 6"
+		"friendly free worlds 7"
+		"friendly free worlds 8"
 
 phrase "friendly pirate"
 	word
