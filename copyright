@@ -1617,11 +1617,12 @@ Files:
  images/outfit/astuit*
  images/outfit/ballistic?cannon*
  images/outfit/ballistic?turret*
+ images/outfit/battlezone?battery*
  images/outfit/brawl?cell*
- images/outfit/warzone?core*
  images/outfit/campaign?core*
  images/outfit/chloeric?cannon*
  images/outfit/chloeric?turret*
+ images/outfit/crusade?battery*
  images/outfit/firestorm?battery*
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
@@ -1630,6 +1631,9 @@ Files:
  images/outfit/irate?turret*
  images/outfit/mcs?extractor*
  images/outfit/scrap?cell*
+ images/outfit/skirmish?battery*
+ images/outfit/warforge?battery*
+ images/outfit/warzone?core*
  images/planet/tschyss*
  images/planet/vesvi*
  images/projectile/acuit*
