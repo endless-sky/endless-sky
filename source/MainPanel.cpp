@@ -374,7 +374,39 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const auto &it : target->Outfits())
 		{
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			int count = it.second;
+
+			if(!player.OutfitIsKnown(*it.first)) {
+				string dn = "Unknown Component";
+				string pn = dn + "s";
+				// check if this cat's summary has more than one unknown component
+				auto item = outfitsByCategory[it.first->Category()].find(pn);
+
+				// it does, use pn
+				if(item != outfitsByCategory[it.first->Category()].end()) {
+					outfitNameForDisplay = pn;
+					count += item->second;
+				}
+				else // doesn't have.
+				{
+					// check if this cat's summary has one unknown component
+					auto item = outfitsByCategory[it.first->Category()].find(dn);
+
+					// it does.
+					if(item != outfitsByCategory[it.first->Category()].end()) {
+						outfitNameForDisplay = pn;
+						count += item->second;
+						outfitsByCategory[it.first->Category()].erase(item);
+					}
+					else // it doesn't
+					{
+						outfitNameForDisplay = (it.second == 1 ? dn : pn);
+						count = it.second;
+					}
+				}
+			}
+
+			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), count);
 		}
 		for(const auto &it : outfitsByCategory)
 		{
