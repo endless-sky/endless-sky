@@ -2788,7 +2788,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(attribute == "cost")
 			return attributes.Cost();
 		if(attribute == "mass")
-			return attributes.Mass() * 1000.;
+			return round(attributes.Mass() * 1000.);
 		return round(attributes.Get(attribute) * 1000.);
 	};
 
