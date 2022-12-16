@@ -112,7 +112,7 @@ mission "Hai Reveal [C02] Cleanup"
 			`	One of the Hai approaches you. "Are you Captain <last>?"`
 			choice
 				`	"Yes, that is me."`
-			`	 He appears visibly relieved. "Oh good. We've been very concerned since we were dropped here. It's all very strange... we've no idea what's going on anymore."`
+			`	He appears visibly relieved. "Oh good. We've been very concerned since we were dropped here. It's all very strange... we've no idea what's going on anymore."`
 			label responses
 			choice
 				`	"The Hai are no longer a secret in human space, but they are concerned how you ended up here."`
@@ -181,7 +181,7 @@ mission "Hai Reveal [C03] Cleanup"
 				`	"Not if I can help it."`
 				`	"Hopefully not, but we'll see."`
 			`	You leave them with only guesses. You're not entirely sure yourself what's going on, but you do know one thing: you have to go to Freedom, where this all began.`
-				accept	
+				accept
 
 # These don't have to be here, but this is where they used to be defined by event, and these are the systems used for this going forward.
 system "Al Hurr"
@@ -423,7 +423,7 @@ event "Vara K'chrai is accessible"
 
 event "wandering nightmare map"
 
-#TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
+# TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
 mission "Hai Reveal [C05C] Cleanup Check"
 	landing
 	invisible
