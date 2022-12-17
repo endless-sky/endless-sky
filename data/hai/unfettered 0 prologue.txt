@@ -302,20 +302,46 @@ mission "Unfettered Jump Drive Trading"
 	landing
 	invisible
 	source "Darkcloak"
+	substitutions
+		<"run as before"> "You"
+		<"run as before"> "As before, you"
+			has "unfettered: dodged the blade"
+		<"flee as before"> "You"
+		<"flee as before" "Just like last time, you"
+			has "unfettered: flee from the blade"
+		<leave> "She then leaves, to your surprise."
+		<leave> "She then leaves, her angered barely contained."
+			or
+				"unfettered: flee from the blade"
+				"unfettered: dodged the blade"
+		<hood> ", with their face hidden"
+			or
+				"unfettered: flee from the blade"
+				"unfettered: dodged the blade"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
+		not "Wanderers: Jump Drive Source: done"
 		# There is no minimum amount of JD to sell (other than the first 3), except if you failed to prove yourself the first time.
 		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
 		"unfettered: jd to sell" < "Unfettered Jump Drive 4: failed"
-		random < 25 + 8 * "Unfettered Jump Drive 4: failed"
+		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
 	on offer
 		conversation
-			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
+			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
 			choice
 				`	(No.)`
 					defer
 				`	(Yes.)`
+			`	You exit your ship as you did last time but the pretended engineer drops her equipement and then throws a blade at you just like before, not wasting time anymore.`
+				to display
+					"unfettered: flee from the blade" + "unfettered: dodged the blade" == 1
+			`	You exit your ship like the previous times, and out of sudden an Unfettered shouts at you to attract your attention, and throws a blade at you, without any ceremony.`
+				to display
+					and
+						"unfettered: flee from the blade"
+						"unfettered: dodged the blade"
+				goto blade
 			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in provide us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
 			choice
 				`	(Say nothing.)`
@@ -326,6 +352,12 @@ mission "Unfettered Jump Drive Trading"
 			`	"These are not standard Hai weapons, Captain, trust me. Also, it would be ill-advised to judge before seeing them, would it not?"`
 			label next
 			`	They lead you through the usual outfitter but then go to an area you have never noticed before, probably because you were not meant to. As you are about to pass through what you assume to be a security check, an Unfettered throws a blade at your face!`
+			label blade
+			`	You recognize that it is the same Unfettered as last time. She must fancy throwing blades at people.`
+				to display
+					or
+						"unfettered: flee from the blade"
+						"unfettered: dodged the blade"
 			choice
 				`	(Try to grab it.)`
 					goto grab
@@ -404,24 +436,41 @@ mission "Unfettered Jump Drive Trading"
 
 			label dodge
 			action
-				# so it's only +2 in total
-				"unfettered: jd to sell" -= 2
-			`	You manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, discontent clear on their face. "So this is how you 'fight,' Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
+				"unfettered: jd to sell" += 2
+				"unfettered: dodged the blade" ++
+			`	<"run as before"> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, discontent clear on their face.`
+			`	"So this is how you 'fight,' Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
+				to display
+					not "unfettered: flee from the blade"
 				goto fail
 			label flee
-			`	You run away from the blade without any difficulty, but the Hai that threw it catches up to you in mere seconds and immobilizes you with their blade on your throat. "You disappoint me, Captain. In battle it is of great importance that you identify your advantages over the enemy and not show weakness by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
-
+			action
+				"unfettered: jd to sell" += 4
+				"unfettered: flee from the blade" ++
+			`	<"flee as before"> run away from the blade without any difficulty, but the Hai that threw it catches up to you in mere seconds and immobilizes you with their blade on your throat.`
+			`	"You disappoint me, Captain. In battle it is of great importance that you identify your advantages over the enemy and not show weakness by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
+				to display
+					not "unfettered: dodged the blade"
 			label fail
-			`	She then leaves, to your surprise. The engineer, who had watched the fight then explains, "Since you have failed the test we cannot give you access to our vault yet. Our weapons are only meant for the most capable of warriors. You will of course still be able to trade jump drives for money, but until you otherwise prove yourself, that is the extent of it."`
-			branch enoughJD
-				"unfettered: jd to sell" + 4 < "Unfettered Jump Drive 4: failed"
+			`	"You really keep disapointing me, captain. One time you try to run, and the other to dodge? Maybe you truly are no warrior."`
+				to display
+					has "unfettered: flee from the blade"
+					has "unfettered: dodged the blade"
+			`	"I will not keep on teaching you the same lesson! You had your chance. We cannot accept that one does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons."`
+				to display
+					or
+						"unfettered: dodged the blade" > 1
+						"unfettered: flee from the blade" > 1
+				decline
+			`	<leave> The engineer, who had watched the fight then explains, "Since you have failed the test we cannot give you access to our vault yet. Our weapons are only meant for the most capable of warriors. You will of course still be able to trade jump drives for money, but until you otherwise prove yourself, that is the extent of it."`
 			`	"This mistake is not permanent; I am sure she will happily forgive you, if you will only bring us more jump drives. Another engineer will be waiting for you at your hatch when that is the case."`
+				to display
+					"unfettered: jd to sell" < "Unfettered Jump Drive 4: failed"
 				defer
-			label enoughJD
 			`	"In fact, your reputation for bringing us jump drives is so great she has no choice but to forgive you in the near future. Another engineer will be waiting for you at your hatch when that is the case."`
+				to display
+					"unfettered: jd to sell" > "Unfettered Jump Drive 4: failed"
 				defer
-	on defer
-		"unfettered: jd to sell" += 4
 	on accept
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
