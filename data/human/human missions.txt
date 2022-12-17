@@ -5134,10 +5134,10 @@ mission "A dead man's path II"
 				`	"Well, if you frame it that way, I will take it."`
 					goto accepted
 			`	"I see. Please, at least take this extra payment of <credits>," Liam says. "It is for you traveling so much with us."`
-				action
-					payment 50000
+			action
+				payment 50000
+			``
 				decline
-				goto end
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
@@ -5145,6 +5145,7 @@ mission "A dead man's path II"
 			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
 			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will. Here's your payment of <payment>, and farewell." `
 			`	You say goodbye to them, and leave them alone in their father's dome.`
-				action
-					payment 50000
+			action
+				payment 50000
+			``
 				decline
