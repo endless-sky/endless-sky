@@ -5136,8 +5136,6 @@ mission "A dead man's path II"
 			`	"I see. Please, at least take this extra payment of <credits>," Liam says. "It is for you traveling so much with us."`
 			action
 				payment 50000
-			``
-				decline
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
