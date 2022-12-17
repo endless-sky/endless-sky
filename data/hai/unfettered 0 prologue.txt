@@ -349,21 +349,35 @@ mission "Unfettered Jump Drive Trading"
 			action
 				log "minor people" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. She fought you to test your resolve before you were given access to their weapons. You suspect she was holding back, or you would never have stood a chance.`
 			`	She does some kind of salute with her fist before leaving. "I most go now. I hope you will find the weapon you need, Captain."`
-			`	The engineer, who had stepped back during the fight, now proceeds to take you underground to what looks like a very basic weapon testing range. Many Hai are there, experimenting with small modifications, but never performing any extreme tests. Seeing your interest, the engineer explains. "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." She points to where a few captains watch the tests; apparently satisfied with what they see, one even requests a weapon to be taken to their ship. You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
-			`	"Welcome to the special section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but enhanced in one way or another. There are even some weapons that appear to be ion-based; one is smaller than an Ion Cannon whilst another one looks like a turret-mounted version of it.`
+			`	The engineer, who had stepped back during the fight, now proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
+			`	"Welcome to the advanced section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but enhanced in one way or another. There are even some weapons that appear to be ion-based; one is smaller than an Ion Cannon whilst another one looks like a turret-mounted version of it.`
 			label weapons
 			choice
 				`	"Tell me more about those Tripulse Shredders I can buy."`
+					to display
+						not "choice: tripulse"
 					goto tripulse
+				`	"I'll settle for the tripulse, then."`
+					to display
+						has "choice: tripulse"
+					goto buytripulse
 				`	"Can you tell me more about that small ionic weapon?"`
-				`	"I'd like to learn about the Ion Turret."`
+					to display
+						not "choice: blaster"
+				`	"I'd like to learn about the Ionic Turret."`
+					to display
+						not "choice: turret"
 					goto turret
 				`	"I would just prefer the money, actually."`
 					goto money
+			action
+				set "choice: blaster"
 			scene "outfit/hai ionic blaster"
 			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space to it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight."`
 				goto backtochoose
 			label turret
+			action
+				set "choice: turret"
 			scene "outfit/hai ionic turret"
 			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range, small ships and even fighters will never bother you again!"`
 			label backtochoose
@@ -375,7 +389,7 @@ mission "Unfettered Jump Drive Trading"
 			choice
 				`	"Sounds good to me."`
 				`	"Wait, what was that weapon again?"`
-					goto weapons
+					goto tripulse
 			action
 				payment 1000000
 				set "unfettered: money for drives"
@@ -383,14 +397,12 @@ mission "Unfettered Jump Drive Trading"
 				accept
 
 			label tripulse
-			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can take out a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
+			action
+				set "choice: tripulse"
 			scene "outfit/tripulse shredder"
-			choice
-				`	"I'll take that offer."`
-				`	"I'd like to learn more about the other weapons first."`
-					goto weapons
-				`	"Actually, could you give me the money instead?"`
-					goto money
+			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can take out a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
+				goto weapons
+			label buytripulse
 			action
 				outfit "Tripulse Shredder" 2
 			`	They order their crew to do the transfer and come address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
