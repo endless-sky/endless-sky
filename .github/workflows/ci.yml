@@ -68,9 +68,9 @@ jobs:
         os: [ubuntu-20.04, ubuntu-22.04]
         opengl: [desktop, gles]
     env:
-        CCACHE_DIR: ./ccache/
-        CXX: ccache g++
-        ARTIFACT: endless-sky
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CXX: sccache g++
+      ARTIFACT: endless-sky
     steps:
     - uses: actions/checkout@v3
     - name: Restore cached game binary
@@ -95,16 +95,9 @@ jobs:
         ld -v
         scons --version
         python --version
-    - name: Cache ccache results
+    - name: Setup sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v3
-      with:
-        path: ${{ env.CCACHE_DIR }}
-        key: ${{ matrix.os }}-${{ matrix.opengl }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ matrix.os }}-${{ matrix.opengl }}-ccache-${{ github.repository }}-${{ github.ref }}-
-          ${{ matrix.os }}-${{ matrix.opengl }}-ccache-${{ github.repository }}-
-          ${{ matrix.os }}-${{ matrix.opengl }}-ccache-
+      uses: ./.github/sccache
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: scons -Qj $(nproc) opengl=${{ matrix.opengl }};
@@ -124,9 +117,9 @@ jobs:
       matrix:
         os: [ubuntu-20.04, ubuntu-22.04]
     env:
-        CCACHE_DIR: ./ccache/
-        CXX: ccache g++
-        TEST_BINARY: tests/unit/endless-sky-tests
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CXX: sccache g++
+      TEST_BINARY: tests/unit/endless-sky-tests
     steps:
     - uses: actions/checkout@v3
     - name: Restore cached test binary
@@ -142,16 +135,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev ccache libgles2-mesa
         python3 -m pip install --user scons
-    - name: Cache ccache results
-      if: steps.cache-tests.outputs.cache-hit != 'true'
-      uses: actions/cache@v3
-      with:
-        path: ${{ env.CCACHE_DIR }}
-        key: ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ matrix.os }}-ccache-${{ github.repository }}-${{ github.ref }}-
-          ${{ matrix.os }}-ccache-${{ github.repository }}-
-          ${{ matrix.os }}-ccache-
+    - name: Setup sccache
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      uses: ./.github/sccache
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: scons -Qj $(nproc) build-tests
@@ -168,14 +154,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-2022]
     env:
-        SCCACHE_DIR: ./sccache/
-        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
-        DIR_ESLIB: dev64
-        CXX: sccache g++
-        ARTIFACT: EndlessSky.exe
-        AR: gcc-ar
+      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
+      DIR_ESLIB: dev64
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CXX: sccache g++
+      ARTIFACT: EndlessSky.exe
+      AR: gcc-ar
     steps:
     - uses: actions/checkout@v3
     - name: Restore cached game binary
@@ -185,9 +171,9 @@ jobs:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
         key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**', '.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
-    - name: Install sccache
+    - name: Setup sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: choco install sccache
+      uses: ./.github/sccache
     - name: Install development dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -200,16 +186,6 @@ jobs:
       with:
         path: 'scons-local'
         key: scons-${{ hashFiles('.winmake') }}
-    - name: Cache sccache results
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      uses: actions/cache@v3
-      with:
-        path: ${{ env.SCCACHE_DIR }}
-        key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-
-          ${{ matrix.os }}-sccache-${{ github.repository }}-
-          ${{ matrix.os }}-sccache
     - name: Compile
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
@@ -230,14 +206,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-2022]
     env:
-        SCCACHE_DIR: ./sccache/
-        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
-        DIR_ESLIB: .\dev64
-        CXX: sccache g++
-        AR: gcc-ar
-        TEST_BINARY: .\tests\unit\endless-sky-tests.exe
+      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
+      DIR_ESLIB: .\dev64
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CXX: sccache g++
+      AR: gcc-ar
+      TEST_BINARY: .\tests\unit\endless-sky-tests.exe
     steps:
     - uses: actions/checkout@v3
     - name: Restore cached test binary
@@ -247,9 +223,6 @@ jobs:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
         key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/**', '.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
-    - name: Install development dependencies
-      if: steps.cache-tests.outputs.cache-hit != 'true'
-      run: choco install sccache
     - name: Cache scons
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v3
@@ -265,16 +238,9 @@ jobs:
         COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
         COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
         COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
-    - name: Cache sccache results
-      if: steps.cache-tests.outputs.cache-hit != 'true'
-      uses: actions/cache@v3
-      with:
-        path: ${{ env.SCCACHE_DIR }}
-        key: ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ matrix.os }}-sccache-${{ github.repository }}-${{ github.ref }}-
-          ${{ matrix.os }}-sccache-${{ github.repository }}-
-          ${{ matrix.os }}-sccache
+    - name: Setup sccache
+      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      uses: ./.github/sccache
     - name: Compile tests
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake build-tests
@@ -364,7 +330,7 @@ jobs:
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-2022]
     steps:
     - uses: actions/checkout@v3
     - name: Install runtime dependencies
