@@ -303,6 +303,17 @@ mission "Unfettered Jump Drive Trading"
 	invisible
 	source "Darkcloak"
 	substitutions
+		<hood> ", with their face hidden"
+			has "unfettered: blade rodeo"
+		<learned> "It did take you 2 tries, but I am glad that you were able to learn from your mistake."
+			"unfettered: blade rodeo" == 1
+		<learned> "You finally learned from your mistakes. This is why our practise exercices are never fatal."
+			"unfettered: blade rodeo" == 2
+		"<The engineer>" "The engineer, who had stepped back during the fight"
+		"<The engineer>" "The real engineer then moves out of the crowd"
+			"unfettered: blade rodeo" == 1
+		"<The engineer>" "The engineer, who had stepped back during the fight reveals their face"
+			"unfettered: blade rodeo" == 2
 		"<as before (run)>" "You"
 		"<as before (run)>" "As before, you"
 			has "unfettered: dodged the blade"
@@ -312,13 +323,6 @@ mission "Unfettered Jump Drive Trading"
 		<leave> "She then leaves, to your surprise."
 		<leave> "She then leaves, her angered barely contained."
 			has "unfettered: blade rodeo"
-		<hood> ", with their face hidden"
-			has "unfettered: blade rodeo"
-		"<The engineer>" "The engineer, who had stepped back during the fight"
-		"<The engineer>" "The real engineer then moves out of the crowd"
-			"unfettered: blade rodeo" == 1
-		"<The engineer>" "The engineer, who had stepped back during the fight reveals their face"
-			"unfettered: blade rodeo" == 2
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -370,16 +374,16 @@ mission "Unfettered Jump Drive Trading"
 				`	(Leap to the side and use my own weapon.)`
 				`	(Flee.)`
 					goto flee
-			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did. I am Desneeparu, and it is my pleasure to meet you, Captain."`
+			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did.<learned> I am Desneeparu, and it is my pleasure to meet you, Captain."`
 				goto meet
 			label grab
 			`	You manage to grab the weapon, just in time to deflect an incoming attack from the same Unfettered. They duel with you for what feels like an eternity. At first you are astonished by the fact you have managed to survive this long, but you soon realize that, as you have not managed to land a single successful blow, this must be some kind of deliberate test.`
-			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade! I am Desneeparu, and it is a pleasure to meet you, Captain <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
+			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade!<learned> I am Desneeparu, and it is a pleasure to meet you, Captain <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
 			label meet
 			action
 				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
 			`	She does some kind of salute with her fist before leaving. "I most go now. I hope you will find the weapon you need, Captain."`
-			`	<The engineer> now proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
+			`	<The engineer>, now proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
 			`	"Welcome to the advanced section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but enhanced in one way or another.`
 			label weapons
 			choice
