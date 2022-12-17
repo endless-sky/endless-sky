@@ -324,7 +324,7 @@ void Outfit::Load(const DataNode &node)
 	// so no runtime code has to check for both.
 	auto convertScan = [&](string &&kind) -> void
 	{
-		const string label = kind + " scan";
+		string label = kind + " scan";
 		double initial = attributes.Get(label);
 		if(initial)
 		{
@@ -336,8 +336,23 @@ void Outfit::Load(const DataNode &node)
 			attributes[label + " power"] += initial * initial * .0001;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
-			if(!attributes.Get(label + " speed"))
-				attributes[label + " speed"] = 1.;
+			if(!attributes.Get(label + " efficiency"))
+				attributes[label + " efficiency"] = 15.;
+		}
+
+		// Similar check for scan speed which is replaced with scan efficiency.
+		// If this could be simplified into the above, I wouldn't know how to.
+		label += " speed";
+		initial = attributes.Get(label);
+		if(intial)
+		{
+			attributes[label] = 0.;
+			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+					+ kind + " scan efficiency\":");
+			// A reasonable update is 15x the previous value-
+			// scans take 10x longer standard, large ships take longer to scan,
+			// and scanning speed scales inversely with distance. 
+			attributes[kind + " scan efficiency"] += initial * 15.;
 		}
 	};
 	convertScan("outfit");
