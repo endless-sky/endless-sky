@@ -247,11 +247,7 @@ mission "Unfettered Small Medicals Rush"
 		attributes "spaceport"
 	destination "Darkcloak"
 	to offer
-		or
-			random < 30
-			and
-				has "Unfettered Jump Drive 1: offered"
-				random < 60
+		random < 30 + "Unfettered Jump Drive 1: offered" * 30
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
@@ -277,11 +273,7 @@ mission "Unfettered Big Medicals Rush"
 	destination
 		attributes "unfettered"
 	to offer
-		or
-			random < 20
-			and
-				has "Unfettered Jump Drive 1: offered"
-				random < 40
+		random < 20 + "Unfettered Jump Drive 1: offered" * 20
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
