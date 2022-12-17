@@ -22,6 +22,7 @@ jobs:
       ARCH: x86_64
       OUTPUT: endless-sky-x86_64-continuous.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CXX: sccache g++
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
@@ -30,6 +31,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev
           python3 -m pip install --user scons
+      - name: Setup sccache
+        uses: ./.github/sccache
+        with:
+          read-only: 'true'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - name: Build AppImage
@@ -42,12 +47,14 @@ jobs:
 
   cd_windows_win64:
     name: Windows
-    runs-on: windows-latest
+    runs-on: windows-2022
     env:
       DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
       DIR_ESLIB: .\dev64
       OUTPUT: EndlessSky-win64-continuous.zip
       AR: gcc-ar
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CXX: sccache g++
     steps:
       - uses: actions/checkout@v3
       - name: Fetch development libraries
@@ -63,6 +70,10 @@ jobs:
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
+      - name: Setup sccache
+        uses: ./.github/sccache
+        with:
+          read-only: 'true'
       - name: Build Application
         run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
       - name: Package Application
