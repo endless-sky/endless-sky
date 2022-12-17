@@ -307,17 +307,13 @@ mission "Unfettered Jump Drive Trading"
 		<"run as before"> "As before, you"
 			has "unfettered: dodged the blade"
 		<"flee as before"> "You"
-		<"flee as before" "Just like last time, you"
+		<"flee as before"> "Just like last time, you"
 			has "unfettered: flee from the blade"
 		<leave> "She then leaves, to your surprise."
 		<leave> "She then leaves, her angered barely contained."
-			or
-				has "unfettered: flee from the blade"
-				has "unfettered: dodged the blade"
+			has "unfettered: blade rodeo"
 		<hood> ", with their face hidden"
-			or
-				has "unfettered: flee from the blade"
-				has "unfettered: dodged the blade"
+			has "unfettered: blade rodeo"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -328,19 +324,24 @@ mission "Unfettered Jump Drive Trading"
 		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
 	on offer
 		conversation
-			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
+			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch.`
+			`	Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
+				to display
+					not "unfettered: blade rodeo"
+			`	They probably mean to offer the same deal of exchanging jump drives for weapons as before. Do you want to try and see if you can prove yourself worthy this time, and bargain for a jump drive?`
+				to display
+					has "unfettered: blade rodeo"
 			choice
 				`	(No.)`
 					defer
 				`	(Yes.)`
 			`	As soon as you set foot on the world the pretended engineer drops her equipement and throws a blade at you just like before - it seems that she does not want to waste time with you anymore.`
 				to display
-					"unfettered: flee from the blade" + "unfettered: dodged the blade" == 1
+					"unfettered: blade rodeo" == 1
 				goto blade
 			`	You exit your ship but before you can even reach the engineer an Unfettered shouts at you to attract your attention and throws a blade at you, without any ceremony.`
 				to display
-					has "unfettered: flee from the blade"
-					has "unfettered: dodged the blade"
+					"unfettered: blade rodeo" > 1
 				goto blade
 			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in provide us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
 			choice
@@ -355,9 +356,7 @@ mission "Unfettered Jump Drive Trading"
 			label blade
 			`	You recognize that it is the same Unfettered as last time. She must fancy throwing blades at people.`
 				to display
-					or
-						has "unfettered: flee from the blade"
-						has "unfettered: dodged the blade"
+					has "unfettered: blade rodeo"
 			choice
 				`	(Try to grab it.)`
 					goto grab
@@ -452,11 +451,13 @@ mission "Unfettered Jump Drive Trading"
 				to display
 					not "unfettered: dodged the blade"
 			label fail
-			`	"You really keep on disappointing me, captain. One time you try to run, and the other to dodge? Maybe you truly are no warrior."`
+			action
+				"unfettered: blade rodeo" ++
+			`	"You really keep on disappointing me, Captain. At one time you tried to avoid a fight you could not flee from, and the other to dodge a weapon that was so readily presented to you? Maybe you truly are no warrior, and let most of your subordinates do the dirty work."`
 				to display
 					has "unfettered: flee from the blade"
 					has "unfettered: dodged the blade"
-			`	"I will not keep on teaching you the same lesson! You had your chance. We cannot accept that one does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons."`
+			`	"I will not keep on teaching you the same lesson! You had your chance, we cannot accept that one does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons." She then leaves, visibly irritated.`
 				to display
 					or
 						"unfettered: dodged the blade" > 1
@@ -472,6 +473,7 @@ mission "Unfettered Jump Drive Trading"
 					"unfettered: jd to sell" > "Unfettered Jump Drive 4: failed"
 				defer
 	on accept
+		clear "unfettered: blade rodeo"
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		"reputation: Hai (Unfettered)" >?= 40
