@@ -2,6 +2,7 @@ outfit "Plasma Discharger"
 	category "Guns"
 	mass 25
 	"outfit space" -20
+	"weapon capacity" -20
 	"gun ports" -1
 	thumbnail "outfit/plasma discharger"
 	weapon
@@ -37,6 +38,7 @@ outfit "Tractor Beam"
 	category "Turrets"
 	mass 30
 	"outfit space" -30
+	"weapon capacity" -30
 	"turret mounts" -1
 	thumbnail "outfit/tractor beam"
 	weapon
