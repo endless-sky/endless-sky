@@ -52,7 +52,7 @@ outfit "Tractor Beam"
 		"velocity" 600
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.33
+		"firing energy" 0.8
 		"firing heat" 3.2
 		"shield damage" 0.1
 		"hull damage" 0.2
@@ -73,7 +73,7 @@ outfit "Gas Class Shield"
 	mass 60
 	"outfit space" -60
 	"shield generation" .1
-	"energy generation" 2.2
+	"energy generation" 4.2
 	"heat generation" 5
 	description "The shield technology is one of the most recent technologies of the Incipias. While the shield appears similar to a human shield device it works on a completely different base. In its core hydrogen is burned that provides energy for regeneration. But because scientists saw a more efficient use of this burning technology, the Incipias also made it the main power source of all of their ships."
 
@@ -83,7 +83,7 @@ outfit "Liquid Class Shield"
 	mass 80
 	"outfit space" -90
 	"shield generation" .25
-	"energy generation" 4.1
+	"energy generation" 6.1
 	"heat generation" 6
 	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency by a lot but also requires some extra structures which make this outfit only popular on larger ships."
 
