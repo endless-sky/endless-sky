@@ -5344,7 +5344,7 @@ system Asio
 	government Gegno
 	attributes "TBD"
 	arrival 500
-	habitable 330
+	habitable 320
 	belt 1478
 	haze _menu/haze-133
 	link Heutesl
@@ -5364,19 +5364,19 @@ system Asio
 	object "Ef Aourtdye"
 		sprite planet/rock11
 		distance 935.9
-		period 621.104
+		period 640.219
 	object
 		sprite planet/rock8-b
 		distance 700
-		period 401.760
+		period 414.125
 	object
 		sprite planet/gas14-b
 		distance 2105
-		period 2095.07
+		period 2159.54
 	object
 		sprite planet/browndwarf-y
 		distance 3413
-		period 3115.4
+		period 4458.50
 
 system Aspidiske
 	pos -690 -282
@@ -13210,8 +13210,8 @@ system G-6183
 	pos 1019.4 -590.18
 	government Uninhabited
 	attributes "TBD"
-	arrival 500
-	habitable 10
+	arrival 5000
+	habitable 10000
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
@@ -13233,7 +13233,7 @@ system G-6183
 	object
 		sprite planet/browndwarf-t
 		distance 4111.16
-		period 6062.46
+		period 1054.40
 		object
 			sprite planet/ice0
 			distance 273
@@ -13245,7 +13245,7 @@ system G-6183
 	object
 		sprite planet/gas5-b
 		distance 7745
-		period 60964.5
+		period 2726.41
 		offset 145
 
 system G-719
@@ -13307,8 +13307,8 @@ system G-819
 	pos 1186.97 -477.17
 	government Uninhabited
 	attributes "TBD"
-	arrival 710
-	habitable 710
+	arrival 700
+	habitable 700
 	belt 1333
 	"jump range" 60
 	haze _menu/haze-coal
@@ -13328,11 +13328,11 @@ system G-819
 	object
 		sprite planet/gas2-b
 		distance 909.1
-		period 408.612
+		period 414.408
 	object
 		sprite planet/browndwarf-y
 		distance 4113.95
-		period 8321.15
+		period 3989.32
 		object
 			sprite planet/dust4-b
 			distance 291
@@ -13340,7 +13340,7 @@ system G-819
 	object
 		sprite planet/gas10-b
 		distance 5315
-		period 5776.28
+		period 5858.22
 		object
 			sprite planet/rhea-b
 			distance 218
@@ -15751,8 +15751,8 @@ system Iliniza
 		period 42.96
 	object
 		sprite planet/rock11
-		distance 237.350
-		period 53.0564
+		distance 237.35
+		period 53.0563
 	object "Enn Bue"
 		sprite planet/oberon-b
 		distance 531
@@ -19188,8 +19188,8 @@ system M-1188
 	pos 1124.66 -607.233
 	government Uninhabited
 	attributes "TBD"
-	arrival 760
-	habitable 760
+	arrival 750
+	habitable 750
 	belt 1676
 	"jump range" 80
 	haze _menu/haze-coal
@@ -19207,11 +19207,11 @@ system M-1188
 	object
 		sprite planet/rock9
 		distance 749.46
-		period 295.758
+		period 299.676
 	object
 		sprite planet/gas5-b
 		distance 3738
-		period 3294.37
+		period 3338.01
 		object
 			sprite planet/luna
 			distance 550
@@ -19219,11 +19219,11 @@ system M-1188
 	object
 		sprite planet/rock3-b
 		distance 5764
-		period 6308.12
+		period 6391.68
 	object
 		sprite planet/browndwarf-t
 		distance 18930
-		period 416721.
+		period 38041.2
 
 system MC-42
 	pos 1113.33 -500.68
@@ -21861,7 +21861,7 @@ system Nnaug
 	object
 		sprite planet/gas11
 		distance 2236.14
-		period 700.105
+		period 700.103
 	object
 		sprite planet/gas8-b
 		distance 3346.7
@@ -22125,7 +22125,7 @@ system Nunki
 			period 66.2404
 
 system O-3184
-	pos 1100.40 -646.047
+	pos 1100.4 -646.047
 	government Uninhabited
 	attributes "TBD"
 	arrival 500
@@ -29529,7 +29529,7 @@ system Uhebe
 	object
 		sprite planet/cloud5-b
 		distance 677.988
-		period 70.6144
+		period 70.6143
 	object
 		sprite planet/desert3
 		distance 963.487
