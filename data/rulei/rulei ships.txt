@@ -19,25 +19,41 @@ ship "vyu-Ira"
 	"never disabled"
 	attributes
 		category "Heavy Warship"
-		cost 77777777
-		shields 68000
-		hull 49000
+		"cost" 77777777
+		"shields" 68000
+		"hull" 49000
 		"required crew" 1	
-		bunks 100
-		drag 20
+		"bunks" 100
+		"mass" 0
+		"drag" 20
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"cargo space" 1000
 		"outfit space" 1000
 		"weapon capacity" 1000
 		"engine capacity" 1000
+		
 		"energy capacity" 60000
 		"energy generation" 80
 		"heat generation" 20
+		
+		"thrust" 50
+		"thrusting energy" 20
+		"thrusting heat" 10
+		"flare sound" "impulse engine"
+		"reverse thrust" 50
+		"reverse thrusting energy" 20
+		"reverse thrusting heat" 10
+		"reverse flare sound" "impulse engine"
+		"turn" 600
+		"turning energy" 10
+		"turning heat" 5
+		"steering flare sound" "impulse engine"
+		
 		"disruption protection" 2
-		"ion protection" 2
 		"energy protection" 2
 		"force protection" 1
+		"ion protection" 2
 		"slowing protection" 1
 		weapon
 			"blast radius" 200
@@ -48,11 +64,6 @@ ship "vyu-Ira"
 		"Abyssal Composer"
 		"Fate Sealer" 2
 		"Fate Divider" 2
-		
-		"Nanotech Battery"
-		"Antimatter Core"
-
-		"Impulse Engine"
 	engine 0 200
 	"steering engine" 0 200
 	"reverse engine" 0 200

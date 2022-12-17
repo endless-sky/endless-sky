@@ -34,15 +34,13 @@ mission "First Contact: Gegno Vi"
 				has "Giaru Gegno: Quarg Contact: offered"
 			branch "return encounter"
 				has "First Contact: Gegno Vi: deferred"
-				
+			
 			`As you descend towards the surface of this seemingly uninhabited world, you active your ship's radar system to scan the surface for anything of interest. While waiting for something to appear, you look up and catch a glimpse of cloud of dust burst from the ground far off to your right. Peering back down to your radar, you check the surface scans of that direction, but nothing appears. As you continue your flight, another sudden dust cloud appears several minutes later, but still nothing on the radar. You decide to keep your ship a few thousand meters above the surface and take the time to carefully look around, but there still doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
 			`	Suddenly, your radar system picks up a larger signature on the horizon, and you see a bulky, rock-like structure. Once you get close enough, the structure begins to resemble a ship like ones you've seen flying around in the nearby systems, although it is half sunken into the sand.`
 			choice
 				`	(Land near the ship and investigate.)`
-					goto land
 				`	(Continue to search the surface.)`
 					goto search
-			label land
 			`	You carefully land your ship nearby, exiting your ship in an environment suit with your sidearm on hand and walk towards the alien spacecraft. The ship appears a bit larger than you thought - around the size of a Firebird. The dark-brown hull appears to be made from an unknown material, and has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, the warship seems perfectly intact, but the way it is angled into the sand suggests that the ship has been there for some time. There doesn't seem to be any activity around it, and there doesn't seem to be any lively activity nearby. You decide to head back to your ship and take another look around the area.`
 			`	As you fly onward, an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the signature and exit to investigate.`
 				goto skip
@@ -60,7 +58,6 @@ mission "First Contact: Gegno Vi"
 				`	(Distance myself from the site but continue to watch.)`
 					goto watch
 				`	(Try to help the alien defeat the beast.)`
-					goto help
 			label help
 			`	You aim your sidearm at the beast, preparing to fire. Instead of digging back under the surface, the beast continues to thrash about where it is while the alien batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. The flailing creature begins to gets closer, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
@@ -85,7 +82,7 @@ mission "First Contact: Gegno Vi"
 			label deny
 			`	You shake your head and decline the request of the alien after having dealt with everything that's happened. Turning back towards your ship to leave, you suddenly find yourself face-first in the ground, coughing up sand and dust, and hear the device hit the ground beside you. In frustration, you quickly get up and look for the alien, who already marching towards your ship in the distance. Perhaps it wasn't the best idea to decline the request and turn your back on a being several times larger than you who just took down a beast hundreds of times the size of them. You turn to look at the huge creature one last time. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. Definitely something more dangerous than you could ever be on foot.`
 				accept
-
+			
 			label watch
 			`	Cautiously retreating towards your ship, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much deeper than that of a bird. As some of the dust clears, you see the alien figure breathing intensely as they continue to battle the beast.`
 			choice
@@ -96,7 +93,7 @@ mission "First Contact: Gegno Vi"
 			label leave
 			`	With the situation beginning to spin out of your control, you quickly turn around and make for your ship, taking off as soon as you can. You wonder what will become of the alien figure as while they are most certainly a member of the species inhabiting the nearby systems, it doesn't seem like any help will be sent for them anytime soon.`
 				depart
-
+			
 			label "second encounter"
 			`As you descend towards the surface of this seemingly uninhabited world, you active your ship's radar system to scan the surface for anything of interest. While waiting for something to appear, you look up and catch a glimpse of cloud of dust burst from the ground far off to your right. Peering back down to your radar, you check the surface scans of that direction, but nothing appears. As you continue your flight, another sudden dust cloud appears several minutes later, but still nothing on the radar. You decide to keep your ship a few thousand meters above the surface and take the time to carefully look around, but there still doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
 			`	Suddenly, your radar systems pick up a larger signature on the horizon, and you see a bulky, rock-like structure. Once you get close enough, you recognize it as one of the Gegno's warships, although it is half sunken into the sand.`
@@ -143,14 +140,13 @@ mission "First Contact: Gegno Vi"
 			label reject
 			`	You shake your head and decline the request of the Gegno after having dealt with everything that's happened. Turning back towards your ship to leave, you suddenly find yourself face-first in the ground, coughing up sand and dust, and hear the device hit the ground beside you. In frustration, you quickly get up and look for the Gegno, who already marching towards your ship in the distance. Perhaps it wasn't the best idea to decline the request and turn your back on a being several times larger than you who just took down a beast hundreds of times the size of them. You turn to look at the huge creature one last time. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. Definitely something more dangerous than you could ever be on foot.`
 				accept
-
+			
 			label observe
 			`	Cautiously retreating to a safer distance, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the Vi breathing intensely as they continue to battle the beast.`
 			choice
 				`	(Assist the Vi.)`
 					goto assist
-
-				
+			
 			label "return encounter"
 			`You find yourself approaching this desert world once again, wondering what happened to the alien figure you previously encountered. Knowing the world is home to a dangerous indigenous species, you are hesitant on landing, making sure to stay clear of any of those creatures' radar signatures.`
 			choice
@@ -158,7 +154,7 @@ mission "First Contact: Gegno Vi"
 					goto "search again"
 				`	(Carry on.)`
 					defer
-					
+			
 			label "search again"
 			`	With the coordinates of the alien vessel still in the history of your ship's computer, you set off to find it again. On your flight there, your radar suddenly picks up another ship approaching, and you look up to see the same type of ship you saw before flying at a higher altitude over you in the opposite direction. It must be another pilot belonging to the alien species.`
 			choice
@@ -169,11 +165,11 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Assist the alien in defeating the creature.)`
 					goto help
-		
+	
 	on defer
 		set "First Contact: Gegno Vi: deferred"
-		
-				
+
+
 mission "Visit Quarg in Gegno Space"
 	landing
 	name `Travel to <designated system>`
@@ -207,11 +203,11 @@ mission "Visit Quarg in Gegno Space"
 				has "Giaru Gegno: Quarg Contact: offered"	
 			`	After fiddling with it, the <alien> marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of <aliens> arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These <aliens> look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demeanor is just as rigid. Once your ship's fuel has been filled, the <alien> that has been guiding you gestures towards the sky. It seems your visit to the mysterious <alien> homeworld will have to be cut short.`
 				launch
-
+			
 			label "has met quarg"
 			`	After fiddling with it, the Vi marks a new location and presents it to you. "Oukeug," they say, and gesture you to depart in a fashion of urgency. You look at the location and notice that it's the Quarg ringworld you've previously visited. They then leave your ship, walk towards the others, and have a brief discussion. A few moments later, another smaller group of Gegno arrive with what looks to be some type of fueling device, and after a minute or so of fidgeting with it, manage to hook it up to your ship. These Gegno look shorter and thinner than the others, and wear more leather-like garments than heavy metal ones - but their demenaor is just as rigid. Once your ship's fuel has been filled, the Gegno Vi that has been guiding you gestures towards the sky. It seems your visit to the mysterious Gegno homeworld will have to be cut short.`
 				launch
-		
+	
 	npc
 		government "Gegno Vi (Neutral)"
 		personality entering staying
@@ -260,7 +256,7 @@ mission "Giaru Gegno: Quarg Contact"
 			"After jumping through several systems of many alien ships, a Quarg ring world is a sight of relief to you. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting to your eye is that some other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval human clothing."
 			`	The mood here is eerie as the Quarg here move in a more quiet manner than what you're used to. They are almost dismissive of the other species walking about, who are equally as dismissive of you. The unusual atmosphere around you is finally broken when a few Quarg start to advance towards you, moving much quicker than the rest. After a moment of unidentifiable discussion and gestures between themselves, one of them motions you to follow them.`
 				goto "walking"
-	
+			
 			label "has met gegno"
 			`The visual of a complete Quarg Ringworld is drastically different than the Gegno homeworld you were on before. Such a pristine, advanced structure is quite the opposite of the disorderly industry of Gegno civilisation. The population of Quarg here must be at least around the trillions, many times more than the population of the Gegno homeworld. What's even more interesting is there are other aliens of the kind you met before here on the ring too. The Quarg must have some kind of relations with them, perhaps through trade, maintenance, or other services. Despite them being present, the Quarg seem to be very dismissive of them. However, a few of the aliens occasionally glance over at you with hints of interest.`
 			`	Soon enough, a few Quarg start to rush towards you much faster than the others and begin a conversation between themselves. You aren't sure what language they are speaking, but judging by the tones and pronunciations, it sounds similar to the one you've heard the aliens speaking before. After a moment or so, one of them motions you to follow them.`
@@ -275,7 +271,7 @@ mission "Giaru Gegno: Quarg Contact"
 			
 			branch "intrigued quarg"
 				has "Visit Quarg in Gegno Space: offered"
-		
+			
 			`	You preemptively begin to stand up, but you are cut short when you see the second Quarg raise its arms outward in a gesture you never thought you'd see from a Quarg. "This must be for you an exhilarating day, young traverser. I strongly imagine this is a first for both of us." It is now obvious that this Quarg is not the same one from earlier, and you begin to see a few differences in its attire and figure. The upbeat rhythm to their speech is not something you would expect of a Quarg.`
 			choice
 				`	"Where am I?"`
@@ -283,8 +279,8 @@ mission "Giaru Gegno: Quarg Contact"
 				goto "the gegno"
 			
 			label "intrigued quarg"
-				"You have astonishingly achieved a wondrous feat, brave traverser," the Quarg says, placing its hands together. It seems that the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest earlier by other aliens suggests that the word got spread quickly. It then sits down across from you, then raises its arms outward in a gesture you never thought you'd see from a Quarg. "Not significantly often it is that the mighty Gegno interact with daring outsiders."
-				
+			`	"You have astonishingly achieved a wondrous feat, brave traverser," the Quarg says, placing its hands together. It seems that the Quarg are already aware of your encounter on the alien homeworld. In fact, thinking back to it, the looks of interest earlier by other aliens suggests that the word got spread quickly. It then sits down across from you, then raises its arms outward in a gesture you never thought you'd see from a Quarg. "Not significantly often it is that the mighty Gegno interact with daring outsiders."`
+			
 			label "the gegno"
 			choice
 				`	"The Gegno?"`
@@ -328,10 +324,10 @@ mission "Giaru Gegno: Quarg Contact"
 					goto end
 				`	"It seems that you do not like the paths they've chosen."`
 			`	The Quarg stands up, darting its gaze off to the side. The energy it exhibited earlier is gone. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses, then gestures you to stand up as well.`
-
+			
 			branch "interacted with outsider"
 				has "Visit Quarg in Gegno Space: offered"
-
+			
 			`	"Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
 				goto end
 			
@@ -342,7 +338,7 @@ mission "Giaru Gegno: Quarg Contact"
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
 
-				
+
 mission "Gegno Quarg Direction to Ringworld"
 	name `Visit Quarg Ringworld`
 	landing
@@ -360,7 +356,7 @@ mission "Gegno Quarg Direction to Ringworld"
 			`	You introduce yourself to the Quarg and then explain that you don't understand their language. It lifts itself back up slowly, seemingly pondering the situation before turning back to the others. After a few more exchanged words, one of the other Quarg walk off and fetch some sort of device, bringing it back to you. It appears to be some type of holographic map. The Quarg gestures to a system nearby, which then reveals a hologram of a Quarg Ringworld. "Ehsveet Duebyuarr Giaru, Aechman," it says, and then bows before you.`
 			`	You should probably go pay the ringworld a visit.`
 				accept
-				
+
 
 mission "Giaru Gegno: Revisit"
 	invisible
@@ -384,7 +380,8 @@ mission "Giaru Gegno: Revisit"
 				decline
 
 
-# Gegno Superheavy	
+
+# Gegno Superheavy
 
 mission "Stationed Augen"
 	invisible
@@ -392,7 +389,7 @@ mission "Stationed Augen"
 	npc save
 		government "Gegno Vi"
 		personality heroic vindictive staying
-		system Kiluit
+		system "Kiluit"
 		ship "Augen" "Vytii Yrrlausei"
 	to fail
 		has "event: Vesvii war"
@@ -416,11 +413,10 @@ mission "Active Augen"
 	npc save
 		government "Gegno Vi"
 		personality heroic vindictive staying
-		system Vesvii
-		ship Augen "Vytii Yrrlausei"
+		system "Vesvii"
+		ship "Augen" "Vytii Yrrlausei"
 
 event "Vesvii War"
-
 
 
 
@@ -451,14 +447,14 @@ mission "Gegno Genocide Defense"
 		fleet
 			names "gegno united"
 			variant 
-				Gneiss 3
-				Hornfel 2
+				"Gneiss" 3
+				"Hornfel" 2
 				"Hornfel (Heavy Weapons)" 2
-				Eclogite 5
-				Feldspar 3
-				Halite 18
-				Felsic 3
-				Coesite 5
+				"Eclogite" 5
+				"Feldspar" 3
+				"Halite" 18
+				"Felsic" 3
+				"Coesite" 5
 	npc
 		government "Gegno"
 		personality nemesis heroic vindictive
@@ -467,12 +463,12 @@ mission "Gegno Genocide Defense"
 		fleet
 			names "gegno united"
 			variant
-				Feldspar 2
-				Halite 12
-				Gneiss 4
-				Felsic 4
-				Coesite 4
-				Eclogite 3
+				"Feldspar" 2
+				"Halite" 12
+				"Gneiss" 4
+				"Felsic" 4
+				"Coesite" 4
+				"Eclogite" 3
 	npc
 		government "Gegno"
 		personality nemesis heroic vindictive
@@ -481,26 +477,22 @@ mission "Gegno Genocide Defense"
 		fleet
 			names "gegno united"
 			variant
-				Feldspar 4
-				Halite 24
-				Gneiss 2
-				Hornfel 3
+				"Feldspar" 4
+				"Halite" 24
+				"Gneiss" 2
+				"Hornfel" 3
 				"Hornfel (Heavy Weapons)"
-				Eclogite 3
-				Coesite 6
+				"Eclogite" 3
+				"Coesite" 6
 	npc
 		government "Gegno Vi"
 		to spawn
 			has "gegno: unified defense"
 		to despawn
 			has "dead augen"
-		to spawn
-			has "gegno: unified defense"
-		to despawn
-			has "dead augen"
 		personality heroic vindictive staying
 		system "Heutesl"
-		ship Augen "Vytii Yrrlausei"
+		ship "Augen" "Vytii Yrrlausei"
 
 
 event "gegno: unified defense"
@@ -546,13 +538,15 @@ mission "Gegno Vi Duels"
 		near "Ookmya" 100
 	to offer
 		random < 60
-	npc provoke
+	to complete
+		never
+	npc
 		system "Ookmya"
 		government "Gegno Vi (Duelist A)"
 		personality heroic uninterested
 		fleet "Gegno Vi Duelist A"
 		conversation "interfered with duel"
-	npc provoke
+	npc
 		system "Ookmya"
 		government "Gegno Vi (Duelist B)"
 		personality heroic uninterested

@@ -15,9 +15,9 @@
 ship "Jje"
 	plural "Jje"
 	noun "creature"
-	swizzle 0
 	"sprite" ship/jje/jje
 		"frame rate" 4
+	swizzle 0
 	"never disabled"
 	attributes
 		category "Fighter"
@@ -27,35 +27,37 @@ ship "Jje"
 		"bunks" 2
 		"mass" 100
 		"drag" 10
-		"atmosphere scan" 10
 		"heat dissipation" 20
-		"energy capacity" 400
-		"energy generation" 4
 		"engine capacity" 200
 		"cargo space" 10
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		
+		"hull repair rate" 1
+		"atmosphere scan" 10
 		"inscrutable" 1
 		"gaslining" 1
-		"hull repair rate" 1
+		"energy capacity" 400
+		"energy generation" 4
+		
+		"thrust" 8
+		"flare sound" "ambient/jje"
+		"turn" 60
+		"steering flare sound" "ambient/jje"
+		
+		"burn protection" 2
+		"discharge protection" 2
+		"energy protection" 2
 		"hull protection" 2
 		"ion protection" 2
 		"ion resistance" 2
 		"slowing protection" 2
-		"burn protection" 2
-		"energy protection" 2
-		"discharge protection" 2
-		"thrust" 8
-		"turn" 60
-		"flare sound" "ambient/jje"
-		"steering flare sound" "ambient/jje"
 		weapon
 			"blast radius" 80
 			"shield damage" 800
 			"hull damage" 400
 			"hit force" 1200
-	outfits
 	engine 0 0
 	"steering engine" 0 0
 	"final explode" "jje boom"
@@ -64,9 +66,9 @@ ship "Jje"
 ship "Ayym"
 	plural "Ayym"
 	noun "creature"
-	swizzle 0
 	"sprite" ship/ayym/ayym
 		"frame rate" 8
+	swizzle 0
 	"never disabled"
 	attributes
 		category "Utility"
@@ -76,45 +78,46 @@ ship "Ayym"
 		"bunks" 4
 		"mass" 200
 		"drag" 20
-		"thrust" 14
-		"turn" 80
-		"atmosphere scan" 10
 		"heat dissipation" 20
-		"energy capacity" 400
-		"energy generation" 4
 		"engine capacity" 200
 		"fuel capacity" 100
 		"cargo space" 10
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		
+		"hull repair rate" 2
+		"ramscoop" 10
+		"energy capacity" 400
+		"energy generation" 4
+		"atmosphere scan" 10
 		"inscrutable" 1
 		"gaslining" 1
-		"ramscoop" 10
-		"hull repair rate" 2
-		"hull protection" 3
-		"ion protection" 3
-		"ion resistance" 3
-		"slowing protection" 3
-		"burn protection" 3
-		"energy protection" 3
-		"discharge protection" 3
+		
 		"thrust" 14
-		"turn" 80
 		"flare sound" "ambient/ayym"
+		"turn" 80
 		"steering flare sound" "ambient/ayym"
+		
 		"jump fuel" 100
 		"jump speed" .2
 		"hyperdrive" 1
 		"hyperdrive sound" "organ drive"
 		"hyperdrive out sound" "organ drive out"
 		"hyperdrive in sound" "organ drive in"
+		
+		"burn protection" 3
+		"discharge protection" 3
+		"energy protection" 3
+		"hull protection" 3
+		"ion protection" 3
+		"ion resistance" 3
+		"slowing protection" 3
 		weapon
 			"blast radius" 300
 			"shield damage" 3000
 			"hull damage" 1500
 			"hit force" 4500
-	outfits
 	engine 0 0
 	"steering engine" 0 0
 	bay "Fighter" -36 40
@@ -174,7 +177,7 @@ effect "ayym boom"
 
 # Fleets:
 
-fleet "Iije"
+fleet "Iije (Uninterested)"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
@@ -215,7 +218,7 @@ fleet "Iije"
 		"Ayym"
 		"Jje" 9
 		
-fleet "Iije II"
+fleet "Iije (Swarming)"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
@@ -256,7 +259,7 @@ fleet "Iije II"
 		"Ayym"
 		"Jje" 9
 		
-fleet "Iije III"
+fleet "Iije (Surveillance)"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality

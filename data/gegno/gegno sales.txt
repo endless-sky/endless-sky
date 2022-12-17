@@ -91,5 +91,3 @@ outfitter "Gegno Scin Outfits"
 	"SC-14 Plasma Steering"
 	"SC-14 Plasma Thruster"
 	"SC-15 Plasma Thrusters"
-
-
