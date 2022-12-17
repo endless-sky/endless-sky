@@ -3,14 +3,16 @@ Version 0.9.17
     * The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live (without the bug this time). (@Amazinite, @RisingLeaf)
   * Big changes:
     * Hai Reveal! (@MasterOfGrey)
-	  * Various fixes to missions. (@bene-dictator, @Hurleveur, @McloughlinGuy, @UnorderedSigh)
+	  * Various fixes to missions. (@bene-dictator, @Hurleveur, @McloughlinGuy, @RisingLeaf, @UnorderedSigh)
 	  * Various typo fixes. (@bene-dictator, @Hatrask, @McloughlinGuy, @UnorderedSigh)
 	  * Relocate the new "Deep Space" systems. (@Quantumshark)
+	  * Various fixes to other content. (TomGoodIdea)
 	* The job board supports sorting jobs! (@alextd, @samrocketman)
 	* Text and choices in conversations can be hidden with conditions! (@SolraBizna, @UnorderedSigh, @Hurleveur)
+	* Conditions can be stored and accessed across save files using the "global: " prefix. (@RisingLeaf)
   * Bug fixes:
     * Content bugs:
-	  * Typo fixes. (@Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @nathan-b, @williaji, @zlonghofer)
+	  * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @nathan-b, @real-dam, @williaji, @zlonghofer)
 	  * Gave Void Sprite Parts a proper plural name override. (@warp-core)
 	  * Moved the log entry in "Unfettered: Jump Drive Source" to the correct place. (@Hurleveur)
 	  * Added range and velocity overrides and hit effects to the Twin Blaster definitions. (@Hecter94)
@@ -29,6 +31,16 @@ Version 0.9.17
 	  * Ensure Remnant Gascraft-Puffin compatibility with older saves. (@warp-core)
 	  * Fixed a broken branch in Remnant: Paradise Visit. (@warp-core)
 	  * Removed some British English spellings. (@a-random-lemurian)
+	  * Adjust articles prior to "<ship>" text replacements. (@McloughlinGuy)
+	  * Replace Korath world-ship freighter with fuel tanker in Ember Waste Large Raid fleet. (@rovermicrover)
+	  * Improved the description of the Remnant Tech Retrieval mission. (@Zitchas)
+	  * Improved dialogs in Remnant Cognizance 25 to make the objective clearer. (@McloughlinGuy)
+	  * Remove a duplicated "Fury" in pirate ship name phrases. (@bene-dictator)
+	  * Allowed Nanachi missions to start on Giverstone again. (@williaji)
+	  * Various style fixes. (@tibetiroka)
+	  * Increase scan speeds on some ships to account for the changes to scanning. (@Zitchas)
+	  * Ensured the Laborer mission cannot select the source as the destination. (@quyykk)
+	  * Prevent Remnant Celebration mission from occuring in non-sensical places. (@warp-core)
 	* Engine bugs:
 	  * Various style fixes. (@tibetiroka, @petervdmeer)
 	  * Fixed rendering of some compressed PNGs. (@quyykk)
@@ -46,6 +58,9 @@ Version 0.9.17
 	  * Ensured ships will always have an attraction and deterrence value. (@quyykk)
 	  * Ensured options in conversation choices which aren't being displayed can't be selected with keyboard navigation. (@UnorderedSigh)
 	  * Improved behaviour of out of system escorts without fuel. (@wjp)
+	  * Fixed a null pointer dereference in the player info panel when the player has multiple ships but no flagship. (@warp-core)
+	  * Do not offer landing missions in the shipyard or outfitter. (@warp-core)
+	  * Do not allow disabled ships to dock with carriers. (@UnorderedSigh)
   * Game content:
     * New content:
 	  * Two new human guns: Twin Blaster and Modified Twin Blaster. (@Daeridanii1)
@@ -63,6 +78,13 @@ Version 0.9.17
 		* Ikatila'ej: a large mining and manufacturing ship with a unique spinal weapon.
 	  * A surveillance drone for the Korath Exiles: the Kas'ik Tek 7. (@Saugia)
 	  * A person ship for MasterOfGrey. (@Saugia)
+	  * Quarg now consider possession of their outfits or ships to be attrocities and will permmanently imprison the player if they are caught with them. (@Arachi-Lover)
+	  * Increased cooperation between Tarazed corporation and the Free Worlds early in the cammpaign. (@bene-dictator)
+	  * A new Free Worlds side mission about expanding infrastructure on Zug. (@bene-dictator)
+	  * Added basic human jobs with shorter ranges than usual; 1 to 3 jumps. (@Zitchas)
+	  * Six new pirate hails. (@bene-dictator)
+	  * Added descriptions to the tier 1 Pug ships. (@McloughlinGuy)
+	  * A Remnant job to disable (but not destroy or capture) a stranded Korath world-ship. (@rovermicrover)
 	* Mission changes:
 	  * Adjusted human bounty jobs to make them more active. (@Anarchist2)
 	    * The target ships will only spawn in a system one jump away from the source.
@@ -84,6 +106,11 @@ Version 0.9.17
 	    * Updated the "Wanderers: Sestor: Factory" missions to add escorts equipped with Moonbeams and edit the conversation to discuss the new weapons.
 		* Refactor some patch missions into a single mission and update the base mission to no longer require patching on new saves.
 		* Added some Wanderer ships equipped with Moonbeams to various Wanderer fleets after this event.
+	  * Improved offer checks of Remnant keystone missions using new autoconditions. (@Zitchas)
+	  * Added an "on waypoint" message to the star research mission. (@Zitchas)
+	  * Nanachi missions will no longer start during the Hai Reveal storyline. (@Zitchas)
+	  * Adjusted text in Remnant ground assault ship bounty job. (@McloughlinGuy)
+	  * Added advice on using multiple scanners to increase performance in FW Recon 1. (@williaji)
 	* Balance:
 	  * Adjusted the Sparrow and Flivver to better match their roles. (@Hecter94)
 	    * Flivver:
@@ -123,13 +150,21 @@ Version 0.9.17
 	  * Added a Small Biochemical Cell to the Summer Leaf. (@warp-core)
 	  * Added some more Wanderer escort ships (equipped with Moonbeams) to "Wanderers: Sestor: Factory Escorts". (@warp-core)
 	  * Significantly increase the energy capacity of Archons. (@Zitchas)
+	  * Nerfed the flamethrower. (@Quantumshark)
+	    * +100% firing heat (2 -> 4).
+		* -25% heat damage (200 -> 150)
+		* Added damage dropoff with range beyond 45 units. Damage is halved by maximum range.
+	  * Increased the size of some Large Syndicate fleet variants. (@Quantumshark)
+	  * Added a small amount of inertia reduction and force protection to Quarg engines. (@Zitchas)
+	  * Made the Unfettered Hai attacking Wah Ki cowards and the Hai defending the system merciful, so fewer Unfettered die there. (@Hurleveur)
 	* Graphics:
       * Added sprites for the Remnant Swan. (@Saugia)
       * Remodelled Korath Thermal Repeater sprites. (@Daeridanii1)
       * Remodelled the Android sprite. (@Anarchist2)
       * Added sprites for a Republic Navy Battleship and a spinal weapon for it. (@GefullteTaubenbrust2)
 	  * Reduced the scaling of Hai stations from 0.5 to 0.4. (@Azure3141)
-	  * New landscape images for Earth, New China, and Chiron. (@bene-dictator)
+	  * New landscape images for Earth, New China, Chiron, and Solace. (@bene-dictator)
+	  * Remodelled the Hai railgun, railgun slug, and railgun slug rack. (@1010todd)
     * Sounds:
 	  * Reduced the volumes of the Particle and Plasma Cannon sounds. (@Saugia)
 	  * A new sound for the Ion Hail Turret. (@Saugia)
@@ -144,11 +179,17 @@ Version 0.9.17
 	  * Improved descriptions of various planets: Longjump, Buccaneer Bay, Poisonwood, Bourne, Millrace, and Solace. (@bene-dictator)
 	  * Added a new category to the shipyard: Superheavy. (@Saugia)
 	    * Also moved the Ikatila'ej, Korsmmanath A'awoj, Heron, and Emerald Sword to this category.
+      * Danforth's ship now also have the "timid" personality in "Wanderers: Alpha Surveillance G". (@Quantumshark)
+	  * Add some diversity to the sale of Hai ships. (@MasterOfGrey)
   * Game mechanics:
     * New mechanics:
       * New autoconditions:
         * Pilot name. (@RisingLeaf)
         * Ships, total ships, ship model, outfits, visited. (@Amazinite)
+		* Flagship planet attribute. (@rovermicrover)
+		* Several date related conditions. (@warp-core)
+		* Conditions for the number of hyperspace jumps to another planet or system. (@warp-core)
+		* Flagship attribute. (@warp-core)
       * Illegal outfits and cargo:
         * "scan brightness" attribute, increases the chance an outfit is found on a scan. (@quyykk)
         * "scan concealment" attribute, reduces the chance an outfit is found on a scan. (@quyykk)
@@ -159,6 +200,9 @@ Version 0.9.17
 	  * Systems can now define a "departure distance", a minimum distance a ship must be from the centre to jump to another system. (@RisingLeaf, @petervdmeer, @quyykk)
 	  * When taking off from a planet with an outfitter with more outfits in cargo than there is space for, store them instead of selling them. (@warp-core)
 	  * Ship variant definitions can now remove all the bays from the base definition. (@daggs1)
+	  * It is now possible to offer a mission in the shipyard or outfitter. (@rovermmicrover)
+	  * A system definition can now include a custom value for the invisible fence radius. (@a-random-lemurian)
+	  * TODO: find a concise way to describe the foreign penalty thing for governments. (@Hurleveur)
     * Mechanic changes:
       * Frugal ships now consider their health percentage instead of the sum of their shield and hull percentages. (@Hurleveur)
       * Changed the scanning formula for detecting illegal cargo so more legal cargo can conceal illegal cargo in the hold, making it less likely to be detected. (@quyykk)
@@ -168,6 +212,9 @@ Version 0.9.17
 	  * Both a dialog and conversation may now be displayed upon completing the objective for a mission NPC. (@Hurleveur)
 	  * Improve wormhole definition syntax. (@quyykk, @tibetiroka)
 	    * TODO: this
+      * Ships no longer always have a small amount of ramscoop when very close to the centre of a system. (@Zitchas)
+	  * Restored the old overheating behaviour where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
+	  * Initiating a hyperspace jump with no travel plan set does not set one. (@Zitchas)
   * User interface:
     * Added shortcut keys for parking and unparking ships. (@Terin)
     * Added a setting to always underline the shortcut hotkey on button labels. (@warp-core)
@@ -181,6 +228,10 @@ Version 0.9.17
 	* The boarding panel will now indicate how many crew were transferred to a captured ship. (@warp-core)
 	* Added indicator overlays for missiles. (@Koranir)
 	* Added an 's' unit symbol for attributes that are in seconds. (@Koranir)
+	* Improvements to the selecting targets for boarding. (@Hurleveur)
+	  * Automatic target selection can prioritise either proximity or value, based on a user controlled setting.
+	  * Pressing the 'board' key multiple times in quick succession will now cycle through boarding targets.
+    * An additional autosave at the most recent planet with a spaceport. (@Hurleveur)
   * Under the hood:
     * Cache attraction and deterrence values. (@Hurleveur)
     * Added a warning when no plural name is defined for ships and outfits with names ending in 's'. (@warp-core)
@@ -192,8 +243,17 @@ Version 0.9.17
 	* Added a command line option for parsing a location filter definition and printing all the planets and systems which match. (@warp-core)
 	* Include afterburner attributes when printing engine outfit data. (@warp-core)
 	* Fixed typos & metadata in the appdata file for latest releases. (@tehhowch)
+	* Link on Linux to the new OpenGL ABI. (@sevu)
+	* Improved the error message for instantiation of events referencing invalid planets or systems. (@warp-core)
+	* Improved documentation on settings panel pagination. (@samrocketman)
+	* Re-ordered minable checks in AI::Step() to improve performance. (@wjp)
+	* Added a method for getting the hail phrase of a ship. (@RisingLeaf)
+	* Added a method for checking if the Personality has been defined. (@RisingLeaf)
+	* Added a coarse check to Mask::Collide() to improve performance. (@mike-f1)
+	* Improved CollisionSet performance. (@mike-f1)
   * CI/CD and development environment:
     * A variety of new integration tests for new and existing features. (@Hurleveur, @warp-core)
+	* Various fixes to unit tests. (@quyykk)
     * Updated Ubuntu runtime to 20.04. (@tibetiroka)
     * Created an issue template for documentation problems. (@quyykk)
     * Improved bash debug output for Steam release build. (@samrocketman)
@@ -202,7 +262,7 @@ Version 0.9.17
 	* Added an integration test for afterburner only flight. (@petervdmeer)
 	* Improved the handling of known failing tests. (@petervdmeer, @quyykk)
 	* Expanded code style check. (@tibetiroka, @petervdmeer, @quyykk)
-	* Fixed integration test path filter. (@quyykk)
+	* Fixed CI path filter. (@quyykk)
 	* Increased capacities of ships defined in test data to account for increased secondary weapon sizes. (@Hurleveur)
 	* Fixed some pilot name checking in integration tests. (@Hurleveur, @petervdmeer)
 	* A warning is now printed and the integration test will fail if an input key string parses to SDLK_UNKNOWN. (@warp-core)
@@ -211,6 +271,29 @@ Version 0.9.17
 	* Fixed deprecated usage of "go get" in CD release upload. (@MCOfficer)
 	* Cancel currently running workflows when starting new ones. (@quyykk, @warp-core)
 	* Inverted a condition in the copyright CI. (@quyykk)
+	* Booted the appveyor config. (@tehhowch)
+	* Honor CPPFLAGS from environment in scons. (@real-dam)
+	* Added file argument support to check_code_style.py. (@samrocketman)
+	* Added SonarQube static analysis files to gitignore. (@samrocketman)
+	* Added unit tests and benchmarks for Dictionary. (@quyykk)
+	* Fixed the project check CI when adding a new test file. (@quyykk)
+	* Added missing runtime dependency. (@quyykk)
+	* No longer report condition errors in unit testing. (@quyykk)
+	* CMake! (@quyykk)
+	  * TODO: this
+	  * Fix MacOS bundle. (@RisingLeaf)
+    * Added CI to verify integration test syntax. (@quyykk)
+	* Fixed test presets not working. (@quyykk)
+	* Reduced the output delay when running integration tests with the --debug flag. (@quyykk)
+	* Compile in strict C++ mode (without any compiler extensions). (@quyykk)
+	* Update GitHub Action versions. (@quyykk)
+	* Improve CI job names. (@quyykk)
+	* Remove the Ubuntu CD run. (@quyykk)
+	* Import DefaultEnvironment from scons. (@quyykk)
+	* Use relative path for workflows instead of absolute. (@quyykk)
+	* Improved the test parse script. (@quyykk)
+	* Simplified data parsing CI jobs. (@quyykk)
+	* Use dedicated sccache GHA support + Linux support. (@quyykk)
 
 Version 0.9.16.1:
   * Breaking changes:
