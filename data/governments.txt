@@ -698,7 +698,7 @@ government "Mercenaries"
 	"attitude toward"
 		"Hai (Governor Escort)" -.01
 		"Shadow" .01
-		"Hydra" -.1
+		"Cerberus" -.1
 	bribe .25
 	fine 0
 	"friendly hail" "friendly mercenary"
@@ -706,7 +706,7 @@ government "Mercenaries"
 	"hostile hail" "enemy mercenary"
 	"hostile disabled hail" "disabled mercenary"
 
-government "Hydra"
+government "Cerberus"
 	swizzle 1
 	"crew attack" 2.5
 	"crew defense" 1
@@ -719,7 +719,7 @@ government "Hydra"
 	"display name" "Pirate"
 	bribe 0
 	fine 0
-	"hostile hail" "hydra hails"
+	"hostile hail" "cerberus hails"
 
 government "Shadow"
 	swizzle 4
@@ -728,7 +728,7 @@ government "Shadow"
 
 	"attitude toward"
 		"Mercenaries" .01
-		"Hydra" -.1
+		"Cerberus" -.1
 		"Korath" -.01
 	bribe 0
 	fine 0

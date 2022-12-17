@@ -887,7 +887,7 @@ phrase "enemy mercenary"
 		"You do not understand of value of what you have stolen."
 		"Mere children cannot be allowed to hold on to such power!"
 
-phrase "hydra hails"
+phrase "cerberus hails"
 	word
 		"We do not accept your surrender!"
 		"You stand no chance!"

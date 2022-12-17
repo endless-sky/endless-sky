@@ -725,11 +725,11 @@ mission "Unfettered: Prove Your Strength"
 
 
 
-event "hydra revealed"
-	government "Hydra"
+event "cerberus revealed"
+	government "Cerberus"
 		remove "display name"
 
-# SPOILER: stealing JD from the Alpha's servants: Hydra
+# SPOILER: stealing JD from the Alpha's servants: Cerberus
 mission "Unfettered: Prove Your Strength 2"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover jump drives from a vault.`
@@ -796,24 +796,24 @@ mission "Unfettered: Prove Your Strength 2"
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
 			`"Here be yer share: <payment>. Ye have saved me life, Captain <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye  even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
-			branch "hydra question"
+			branch "cerberus question"
 				not "Unfettered: Attracted Attention: offered"
 			choice
 				`	(Let him leave).`
 					goto leave
-				`	"I heard you say a name, 'Hydra', I believe."`
+				`	"I heard you say a name, 'Cerberus', I believe."`
 			action
-				event "hydra revealed"
+				event "cerberus revealed"
 			`	"If ye really must know, that be how the spineless, biscuit eatin' pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
 				goto leave
-			label "hydra question"
+			label "cerberus question"
 			choice
 				`	(Let him leave).`
 					goto leave
 				`	"Who were these pirates attacking us?"`
-			`	"If ye really must know, they be called Hydra." He obviously does not wish to elaborate on it any further.`
+			`	"If ye really must know, they be called Cerberus." He obviously does not wish to elaborate on it any further.`
 			action
-				event "hydra revealed"
+				event "cerberus revealed"
 			label leave
 			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, I wonder what happened to him."`
 				to display
@@ -912,7 +912,7 @@ mission "Unfettered: Jump Drive Retrieval"
 		"outfit" "Jump Drive" 4
 	# a side mission will spawn additional ships if you brought a JD with you before the start of this mission.
 	npc evade
-		government "Hydra"
+		government "Cerberus"
 		personality disables plunders vindictive
 		system "Almaaz"
 		fleet "Large Northern Pirates"
@@ -1088,7 +1088,7 @@ outfit "Materials"
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
 # this is a Marauder version with small buffs and disabled faster so it doesn't blow as often to Koraths<
-ship "Bactrian" "Bactrian (Hydra)"
+ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
 		"threshold percentage" .4
 		"outfit space" 17
@@ -1205,7 +1205,7 @@ mission "Unfettered: Materials Intercepted"
 				accept
 	on enter "Misam"
 		conversation
-			`As you enter the system, you notice pirates from Hydra in orbit around the planet. They could have the cargo you are looking for.`
+			`As you enter the system, you notice pirates from Cerberus in orbit around the planet. They could have the cargo you are looking for.`
 			choice
 				`	Demand that the materials be returned to you.`
 				`	(Say nothing, I have no need to talk with these scums. I shall take back what they stole.)`
@@ -1223,11 +1223,11 @@ mission "Unfettered: Materials Intercepted"
 			`	They quickly land on the planet, probably in order to avoid a fight, or maybe just to win some time... It looks like you will have to land too in order to retrieve the cargo.`
 	npc board
 		system "Misam"
-		government "Hydra"
+		government "Cerberus"
 		to spawn
 			has "Unfettered: Cavalry Arrives: active"
 		personality target launching plunders vindictive uninterested
-		ship "Bactrian (Hydra)" "Rested Snake"
+		ship "Bactrian (Cerberus)" "Rested Snake"
 		conversation
 			action
 				set "unfettered: boarded bactrian"
@@ -1262,8 +1262,8 @@ mission "Unfettered: Materials Intercepted"
 			action
 				set "mercenaries: accepted duel"
 			branch cleanupdone
-				has "unfettered: cleaned up hydra"
-			`	"First we need to finish off all Hydra pirates remaining, do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
+				has "unfettered: cleaned up cerberus"
+			`	"First we need to finish off all Cerberus pirates remaining, do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
 				accept
 			label cleanupdone
 			`	"We will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
@@ -1319,7 +1319,7 @@ mission "Unfettered: Cavalry Arrives"
 		ship "Sea Dragon" "Talon"
 	npc kill
 		system "Misam"
-		government "Hydra"
+		government "Cerberus"
 		personality plunders vindictive entering
 		fleet "Small Northern Pirates" 3
 		fleet "Large Northern Pirates"
@@ -1327,7 +1327,7 @@ mission "Unfettered: Cavalry Arrives"
 			branch boardedship
 				has "unfettered: boarded bactrian"
 			action
-				set "unfettered: cleaned up hydra"
+				set "unfettered: cleaned up cerberus"
 			"Now that you have taken care of all pirate reinforcements, it is time to board the flagship and take their loot."
 				decline
 			label boardedship
@@ -1356,7 +1356,7 @@ mission "Unfettered: Cavalry Arrives"
 			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 				decline
 			label nevercompleted
-			`You gave up fixing the Unfettered cargo situation, and the mysterious ships leave pursuing Hydra ships that are left.`
+			`You gave up fixing the Unfettered cargo situation, and the mysterious ships leave pursuing Cerberus ships that are left.`
 
 
 

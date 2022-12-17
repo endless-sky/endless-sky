@@ -803,7 +803,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			label words
 			`	"Those will be your last words, scum. Should've chosen better ones!"`
 	npc board
-		government "Hydra"
+		government "Cerberus"
 		system "Sumar"
 		personality derelict staying target
 		ship "Behemoth (Mammoth)" "Mammoth"

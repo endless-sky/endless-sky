@@ -571,7 +571,7 @@ event "mercenaries: thorn talon vengeance"
 	# can't rep farm anymore
 	government "Shadow"
 		"attitude toward"
-			"Hydra" -.01
+			"Cerberus" -.01
 
 
 
