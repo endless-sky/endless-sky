@@ -3905,6 +3905,13 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 
 
+int Ship::WeaponIndex(const Hardpoint &hardpoint) const
+{
+	return &hardpoint - &Weapons().front();
+}
+
+
+
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
 bool Ship::CanFire(const Weapon *weapon) const

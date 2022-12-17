@@ -406,6 +406,8 @@ public:
 	// Get the list of weapons.
 	Armament &GetArmament();
 	const std::vector<Hardpoint> &Weapons() const;
+	// Get the index of the given hardpoint.
+	int WeaponIndex(const Hardpoint &hardpoint) const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Weapon *weapon) const;
