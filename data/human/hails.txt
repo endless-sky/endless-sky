@@ -2481,9 +2481,6 @@ phrase "friendly free worlds 3"
 		"Stand up to"
 		"Defy"
 		"Speak out against"
-		"Stand united against"
-		"Unite against"
-		"Join us in fighting"
 		"We are here to fight"
 	word
 		" "
@@ -2517,12 +2514,14 @@ phrase "friendly free worlds 3"
 		"executives"
 	word
 		"! Join the Free Worlds!"
+		"! Join us in this struggle!"
+		"! Join us in our fight!"
 
 
 phrase "friendly free worlds 4"
 	word
 		"We are Free forces, "
-		"We are Free Worlds ships, "
+		"We are Free ships, "
 		"We are the Free Worlds, "
 	word
 		"defenders of the innocent"
@@ -2568,10 +2567,24 @@ phrase "free worlds 6 help"
 	word
 		"want to further"
 		"wish to further"
-		"believe in the cause of"
+		"want to advance"
+		"wish to advance"
+		"want to bolster"
+		"wish to bolster"
+		"want to strengthen"
+		"wish to strengthen"
 		"believe in"
+		"are sympathetic to"
+		"support"
+		"approve of"
+		"respect"
+		"stand by"
 	word
 		" "
+		" our "
+		" the Free Worlds' struggle for "
+		" the cause of "
+		" our cause of "
 	word
 		"freedom"
 		"welfare"
@@ -2589,14 +2602,17 @@ phrase "free worlds 6 accuse"
 		"can see"
 		"have suffered from"
 		"have experienced"
+		"have been affected by"
 		"are affected by"
 		"cannot tolerate"
+		"cannot ignore"
 		"refuse to sanction"
 	word
 		" "
 	word
 		"the oppression"
 		"the decadence"
+		"the corruption"
 	word
 		" of "
 	word
@@ -2604,7 +2620,37 @@ phrase "free worlds 6 accuse"
 		"Parliament"
 		"the Syndicate"
 		"the Paradise Planets"
-		"of individual freedoms"
+
+phrase "free worlds 6 loss"
+	word
+		"have seen"
+		"know of"
+		"can see"
+		"have suffered from"
+		"have experienced"
+		"have been affected by"
+		"are affected by"
+		"cannot tolerate"
+		"cannot ignore"
+		"refuse to sanction"
+	word
+		" "
+	word
+		"the oppression"
+		"the decadence"
+		"the corruption"
+		"the loss"
+	word
+		" of our "
+		" of "
+	word
+		"individual freedoms"
+		"rights"
+		"representation"
+		"liberty"
+		"independence"
+		"autonomy"
+		"self-determination"
 
 phrase "friendly free worlds 6"
 	word
@@ -2612,6 +2658,7 @@ phrase "friendly free worlds 6"
 	phrase
 		"free worlds 6 help"
 		"free worlds 6 accuse"
+		"free worlds 6 loss"
 	word
 		", "
 	word
@@ -2683,6 +2730,9 @@ phrase "friendly free worlds 8"
 		"unity"
 	word
 		"!"
+	word
+		""
+		" Join the Free Worlds!"
 
 # Militia hails shared with the Free Worlds. These should give all the hails an equal chance of occuring.
 phrase "friendly free worlds"
