@@ -5145,5 +5145,4 @@ mission "A dead man's path II"
 			`	You say goodbye to them, and leave them alone in their father's dome.`
 			action
 				payment 50000
-			``
 				decline
