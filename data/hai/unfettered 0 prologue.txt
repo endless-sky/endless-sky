@@ -312,12 +312,12 @@ mission "Unfettered Jump Drive Trading"
 		<leave> "She then leaves, to your surprise."
 		<leave> "She then leaves, her angered barely contained."
 			or
-				"unfettered: flee from the blade"
-				"unfettered: dodged the blade"
+				has "unfettered: flee from the blade"
+				has "unfettered: dodged the blade"
 		<hood> ", with their face hidden"
 			or
-				"unfettered: flee from the blade"
-				"unfettered: dodged the blade"
+				has "unfettered: flee from the blade"
+				has "unfettered: dodged the blade"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -333,14 +333,14 @@ mission "Unfettered Jump Drive Trading"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You exit your ship as you did last time but the pretended engineer drops her equipement and then throws a blade at you just like before, not wasting time anymore.`
+			`	As soon as you set foot on the world the pretended engineer drops her equipement and throws a blade at you just like before - it seems that she does not want to waste time with you anymore.`
 				to display
 					"unfettered: flee from the blade" + "unfettered: dodged the blade" == 1
-			`	You exit your ship like the previous times, and out of sudden an Unfettered shouts at you to attract your attention, and throws a blade at you, without any ceremony.`
+				goto blade
+			`	You exit your ship but before you can even reach the engineer an Unfettered shouts at you to attract your attention and throws a blade at you, without any ceremony.`
 				to display
-					and
-						"unfettered: flee from the blade"
-						"unfettered: dodged the blade"
+					has "unfettered: flee from the blade"
+					has "unfettered: dodged the blade"
 				goto blade
 			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in provide us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
 			choice
@@ -356,8 +356,8 @@ mission "Unfettered Jump Drive Trading"
 			`	You recognize that it is the same Unfettered as last time. She must fancy throwing blades at people.`
 				to display
 					or
-						"unfettered: flee from the blade"
-						"unfettered: dodged the blade"
+						has "unfettered: flee from the blade"
+						has "unfettered: dodged the blade"
 			choice
 				`	(Try to grab it.)`
 					goto grab
@@ -452,7 +452,7 @@ mission "Unfettered Jump Drive Trading"
 				to display
 					not "unfettered: dodged the blade"
 			label fail
-			`	"You really keep disapointing me, captain. One time you try to run, and the other to dodge? Maybe you truly are no warrior."`
+			`	"You really keep on disappointing me, captain. One time you try to run, and the other to dodge? Maybe you truly are no warrior."`
 				to display
 					has "unfettered: flee from the blade"
 					has "unfettered: dodged the blade"
