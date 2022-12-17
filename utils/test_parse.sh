@@ -14,6 +14,11 @@ elif [[ $OSTYPE == 'msys' ]] || [[ $OS == 'Windows_NT' ]] || [[ ! -z ${APPDATA:-
 else
   FILEDIR="$HOME/.local/share/endless-sky"
 fi
+# Check if a custom config location is specified.
+if [ "$2" ]; then
+  FILEDIR="$2"
+fi
+
 ERR_FILE="$FILEDIR/errors.txt"
 RUNTIME_ERRS="launch-errors.txt"
 # Remove any existing error files first.
@@ -21,8 +26,14 @@ if [ -f "$ERR_FILE" ]; then
   rm -f "$ERR_FILE"
 fi
 
+if [ "$2" ]; then
+  "$1" -p --config "$FILEDIR" 2>"$RUNTIME_ERRS"
+else
+  "$1" -p 2>"$RUNTIME_ERRS"
+fi
+
 # Parse the game data files.
-if ! "$1" -p 2>"$RUNTIME_ERRS"; then
+if [ $? -ne 0 ]; then
   EXIT_CODE=$?
   echo "Error executing file/command '$1':"
   cat "$RUNTIME_ERRS"
