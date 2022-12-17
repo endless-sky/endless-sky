@@ -303,11 +303,11 @@ mission "Unfettered Jump Drive Trading"
 	invisible
 	source "Darkcloak"
 	substitutions
-		<"run as before"> "You"
-		<"run as before"> "As before, you"
+		"<run as before>" "You"
+		"<run as before>" "As before, you"
 			has "unfettered: dodged the blade"
-		<"flee as before"> "You"
-		<"flee as before"> "Just like last time, you"
+		"<flee as before>" "You"
+		"<flee as before>" "Just like last time, you"
 			has "unfettered: flee from the blade"
 		<leave> "She then leaves, to your surprise."
 		<leave> "She then leaves, her angered barely contained."
@@ -455,8 +455,8 @@ mission "Unfettered Jump Drive Trading"
 				"unfettered: blade rodeo" ++
 			`	"You really keep on disappointing me, Captain. At one time you tried to avoid a fight you could not flee from, and the other to dodge a weapon that was so readily presented to you? Maybe you truly are no warrior, and let most of your subordinates do the dirty work."`
 				to display
-					has "unfettered: flee from the blade"
-					has "unfettered: dodged the blade"
+					"unfettered: flee from the blade" == 1
+					"unfettered: dodged the blade" == 1
 			`	"I will not keep on teaching you the same lesson! You had your chance, we cannot accept that one does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons." She then leaves, visibly irritated.`
 				to display
 					or
