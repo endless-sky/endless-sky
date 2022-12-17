@@ -33,6 +33,38 @@ outfit "plasma particle"
 		"hull damage" 5
 		"minable damage" 6
 
+outfit "Tractor Beam"
+	category "Turrets"
+	mass 30
+	"outfit space" -30
+	"turret mounts" -1
+	thumbnail "outfit/tractor beam"
+	weapon
+		sprite "projectile/tractor beam"
+			"frame rate" 6
+		"hardpoint sprite" "hardpoint/tractor beam"
+		sound "laser"
+		"hit effect" "tractor beam impact"
+		"inaccuracy" .5
+		"turret turn" 7.5
+		"velocity" 600
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1.33
+		"firing heat" 3.2
+		"shield damage" 0.1
+		"hull damage" 0.2
+		"hit force" -40
+
+effect "tractor beam impact"
+	sprite "effect/tractor impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"velocity scale" -.005
+
+
 outfit "Gas Class Shield"
 	category "Systems"
 	thumbnail "outfit/gas class shield"

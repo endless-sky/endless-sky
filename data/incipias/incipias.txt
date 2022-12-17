@@ -60,6 +60,7 @@ outfitter "Hicemus"
 	"Gas Class Shield"
 	"Liquid Class Shield"
 	"Plasma Discharger"
+	"Tractor Beam"
 
 shipyard "Hicemus"
 	"Nimbus"

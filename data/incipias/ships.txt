@@ -15,7 +15,7 @@ ship "Nimbus"
 		"heat dissipation" .7
 		"cargo space" 100
 		"outfit space" 450
-		"weapon capacity" 80 
+		"weapon capacity" 120 
 		"gaslining" 1
 		"fuel capacity" 200
 
@@ -35,6 +35,7 @@ ship "Nimbus"
 		"Liquid Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 4
+		"Tractor Beam"
 	engine 0 120
 	engine 0 120
 	engine -30.5 120
@@ -43,6 +44,7 @@ ship "Nimbus"
 	gun 15 -117
 	gun 0 -117
 	gun 0 -117
+	turret 0 31.5
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10
