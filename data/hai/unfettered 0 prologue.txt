@@ -303,17 +303,22 @@ mission "Unfettered Jump Drive Trading"
 	invisible
 	source "Darkcloak"
 	substitutions
-		"<run as before>" "You"
-		"<run as before>" "As before, you"
+		"<as before (run)>" "You"
+		"<as before (run)>" "As before, you"
 			has "unfettered: dodged the blade"
-		"<flee as before>" "You"
-		"<flee as before>" "Just like last time, you"
+		"<as before (flee)>" "You"
+		"<as before (flee)>" "Just like last time, you"
 			has "unfettered: flee from the blade"
 		<leave> "She then leaves, to your surprise."
 		<leave> "She then leaves, her angered barely contained."
 			has "unfettered: blade rodeo"
 		<hood> ", with their face hidden"
 			has "unfettered: blade rodeo"
+		"<The engineer>" "The engineer, who had stepped back during the fight"
+		"<The engineer>" "The real engineer then moves out of the crowd"
+			"unfettered: blade rodeo" == 1
+		"<The engineer>" "The engineer, who had stepped back during the fight reveals their face"
+			"unfettered: blade rodeo" == 2
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -374,7 +379,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
 			`	She does some kind of salute with her fist before leaving. "I most go now. I hope you will find the weapon you need, Captain."`
-			`	The engineer, who had stepped back during the fight, now proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
+			`	<The engineer> now proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
 			`	"Welcome to the advanced section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but enhanced in one way or another.`
 			label weapons
 			choice
@@ -437,7 +442,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				"unfettered: jd to sell" += 2
 				"unfettered: dodged the blade" ++
-			`	<"run as before"> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, discontent clear on their face.`
+			`	<as before (run)> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, discontent clear on their face.`
 			`	"So this is how you 'fight,' Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
 				to display
 					not "unfettered: flee from the blade"
@@ -446,7 +451,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				"unfettered: jd to sell" += 4
 				"unfettered: flee from the blade" ++
-			`	<"flee as before"> run away from the blade without any difficulty, but the Hai that threw it catches up to you in mere seconds and immobilizes you with their blade on your throat.`
+			`	<as before (flee)> run away from the blade without any difficulty, but the Hai that threw it catches up to you in mere seconds and immobilizes you with their blade on your throat.`
 			`	"You disappoint me, Captain. In battle it is of great importance that you identify your advantages over the enemy and not show weakness by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
 				to display
 					not "unfettered: dodged the blade"
