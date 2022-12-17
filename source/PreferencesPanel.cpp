@@ -62,7 +62,7 @@ namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string BOARDING_PRIORITY = "Boarding target priority";
-	const string ALERT_INDICATOR = "Alert warning";
+	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 1;
