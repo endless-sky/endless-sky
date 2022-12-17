@@ -36,8 +36,7 @@ mission "First Contact: Wanderer (Before Hai)"
 	source
 		attributes "wanderer"
 	to offer
-		not "First Contact: Hai: offered"
-		not "First Contact: Unfettered: offered"
+		not "event: hai-human resolution announced"
 	on offer
 		fail "Wandering Nightmares"
 		conversation
