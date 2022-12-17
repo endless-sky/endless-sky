@@ -4992,18 +4992,18 @@ mission "A dead man's path I"
 			`    She laughs, "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to New China. We received notice that our father's last will is going to be published there. Do you think you could bring us there? We will pay you for your service, of course.`
 			label helpornot
 			choice
-			`	"Of course I can."`
-					goto agreed
-			`	"I'm sorry, but I've got more urgent things to do. You'll need to find someone else."`
+				`	"Of course I can."`
+						goto agreed
+				`	"I'm sorry, but I've got more urgent things to do. You'll need to find someone else."`
 			`	Her smile fades away as you say that, but they both simply nod and walk away out the gates of the spaceport, with both heads looking down.`
 				decline
 			label agreed
 			`    "Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We have been looking for a ride for some time now, we've already started worrying that we wouldn't get there in time! You'll have to bring us there quickly."`
 			choice
-			`	"Don't worry, you'll be surprised how fast my ship flies. We'll get there in no time."`
-				goto notime
-			`	"Yes, a lot of captains are quite busy these days."`
-			`	"Yes, it seems that way nowadays," Sophie agrees. "Everyone feels more tense or uncertain, and there's always more to do and less time to do it."`
+				`	"Don't worry, you'll be surprised how fast my ship flies. We'll get there in no time."`
+					goto notime
+				`	"Yes, a lot of captains are quite busy these days."`
+			`	"It seems that way," Sophie agrees. "Everyone feels more tense or uncertain, and there's always more to do and less time to do it."`
 				goto ship
 			label notime
 			`	Liam's voice barely hides his excitement at finding an available captain. "Well, let's see that ship of yours then, and show us if it's as fast as you say it is!"`
@@ -5041,9 +5041,9 @@ mission "A dead man's path II"
 			`	She pauses for a moment, lost in her memories. "Anyways," she continues, "in his testament he told us that he left something behind for us. He said that he would not make it easy, though; he was a great fan of fantasy books, and in those stories there is always something mysterious at play. Instead, he left behind a few systems that before we should visit before we go to Prime, where he left something behind for us.`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now, "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
-			`	"Yes, I'd be glad to."`
-					goto accepted
-			`	"I'm sorry, but that sounds too complicated to me."`
+				`	"Yes, I'd be glad to."`
+						goto accepted
+				`	"I'm sorry, but that sounds too complicated to me."`
 			`	"Well, it looks like we'll need to find somebody else," Sophie says. They both thank you for bringing them this far and walk away.`
 				decline
 			label accepted
@@ -5064,8 +5064,10 @@ mission "A dead man's path II"
 				`	"Now that we've come so far, sure."`
 					goto continue
 				`	"I'm sorry, I've got to be somewhere else."`
-			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will! Oh, and here's your payment," Liam says, handing you credit chip of <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
-			payment 50000
+			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will! Oh, and here's your payment," Liam says, handing you a credit chip for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
+			action
+				payment 50000
+			decline
 			decline
 			label continue
 			`	Liam pulls out a map, not the starmap he had before but a map of Prime. "Apparently our father bought a whole mountain on this planet, and he wants us to go there."`
@@ -5074,12 +5076,12 @@ mission "A dead man's path II"
 						goto shuttle
 				`	"We could also have a look around here, and see why your father chose this planet."`
 			`	"You're right. I hadn't thought of that," Sophie says."`
-			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest ships of Betelgeuse being displayed.
+			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest ships of Betelgeuse being displayed.`
 			`	Liam's face brightens as if he just understood something. "I think our father chose this planet because he was always a fan of Betelgeuse ships. If I recall correctly, he was a test pilot here, and once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots." Sophie nods, "Right! Now that you say that, I remember that too. Anyways, shall we go to the mountain now?"`
 			choice
-				`	"We should take a shuttle. It'll be the fastest way."
+				`	"We should take a shuttle. It'll be the fastest way."`
 						goto shuttle
-				`	"We have time. Let's take the maglev."
+				`	"We have time. Let's take the maglev."`
 						goto maglev
 			label shuttle
 			`	After a short shuttlecraft flight on Prime's extensive and well maintained shuttle service, you arrive at the base of a small mountain that stands alone against the rest of the landscape.`
@@ -5134,6 +5136,7 @@ mission "A dead man's path II"
 			`	"I see. Please, at least take this extra payment of <credits>," Liam says. "It is for you traveling so much with us."`
 				action
 					payment 50000
+				decline
 				goto end
 			label accepted
 			action
@@ -5142,5 +5145,6 @@ mission "A dead man's path II"
 			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
 			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will. Here's your payment of <payment>, and farewell." `
 			`	You say goodbye to them, and leave them alone in their father's dome.`
-				payment 50000
+				action
+					payment 50000
 				decline
