@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16..3.25)
 
 include(CMakeDependentOption)
+option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
@@ -20,14 +21,16 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
-set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
-set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
-set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-	message(FATAL_ERROR "Can't find vcpkg, did you forget to run 'git submodule update --init'?")
+if(ES_USE_VCPKG)
+	include(utils/vcpkg_bootstrap.cmake)
+	x_vcpkg_bootstrap()
+
+	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
+	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
+	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+		CACHE STRING "Vcpkg toolchain file")
 endif()
-set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-	CACHE STRING "Vcpkg toolchain file")
 
 if(ES_USE_SYSTEM_LIBRARIES)
 	if(UNIX AND NOT APPLE)
