@@ -2570,17 +2570,11 @@ int Ship::Scan()
 	if(!cargoDistanceSquared && !outfitDistanceSquared)
 		return 0;
 
-	double cargoSpeed = attributes.Get("cargo scan velocity");
-	// Accommodate deprecated "scan speed" attributes that are on old outfits.
-	// Most of the time, scan speed was simply 1, and scan power is all that changed.
-	// A reasonable generic scan speed will be roughly equal to scan speed * scan power.
-	cargoSpeed += attributes.Get("cargo scan speed") * cargoDistanceSquared;
-	// If all else fails, assign a reasonable default speed.
+	double cargoSpeed = attributes.Get("cargo scan efficiency");
 	if(!cargoSpeed)
 		cargoSpeed = cargoDistanceSquared;
 
-	double outfitSpeed = attributes.Get("outfit scan velocity");
-	outfitSpeed += attributes.Get("outfit scan speed") * outfitDistanceSquared;
+	double outfitSpeed = attributes.Get("outfit scan efficiency");
 	if(!outfitSpeed)
 		outfitSpeed = outfitDistanceSquared;
 
