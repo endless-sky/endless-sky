@@ -215,7 +215,7 @@ void TradingPanel::Draw()
 	tradeUi->Draw(info, this);
 }
 
-
+#include <iostream>
 
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
@@ -252,6 +252,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			if(it.first->Get("installable") >= 0. && !sellOutfits)
+				continue;
+			if(!player.OutfitIsKnown(*it.first))
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
