@@ -169,7 +169,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on complete
 		outfit "Alpha Pirate Crew" -1
 		outfit "Jump Drive" -10
-		log `Captured the Alpha Auxiliary. The Alphas had a trap set for me, but I got the upper hand.`
+		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or at least that's what they want everyone to think.`
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
@@ -1434,9 +1434,10 @@ mission "Unfettered: Ready For The War"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
-		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships.`
+		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, that is, when they become available in the near future.`
 		"salary: Unfettered" = 5000
 		set "license: True Unfettered"
+		set "global: unfettered human"
 		event "joined the unfettered"
 		clear "unfettered: defeated Si-Ra"
 		#"reputation: Wanderer" <?= -1000 

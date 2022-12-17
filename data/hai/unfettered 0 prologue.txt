@@ -709,7 +709,7 @@ mission "Unfettered: Prove Your Strength"
 			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
 			label end
 			action
-				log `Defeated a young Unfettered captain in a duel.`
+				log `Defeated a young Unfettered Captain in a duel.`
 				set "unfettered: beaten the captain"
 				payment 100000
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished."`
@@ -717,7 +717,7 @@ mission "Unfettered: Prove Your Strength"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog "You have not yet defeated the Unfettered captain. If he did not show up it is probably because your fleet is too large."
+		dialog "You have not yet defeated the Unfettered Captain. If he did not show up it is probably because your fleet is too large."
 	to complete
 		has "unfettered: beaten the captain"
 	on complete
@@ -792,7 +792,7 @@ mission "Unfettered: Prove Your Strength 2"
 	on complete
 		outfit "Jump Drive" -4
 		payment 3000000
-		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
+		log `Helped a young Unfettered Captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
 			`"Here be yer share: <payment>. Ye have saved me life, Captain <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye  even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
@@ -920,7 +920,7 @@ mission "Unfettered: Jump Drive Retrieval"
 
 
 
-# SPOILERS: the tsunami was caused by the Alphas as a warning to listen to their demands	(and also because the Unfettered allowed you to see them)
+# SPOILERS: the tsunami was caused by the Alphas as a warning to listen to their demands (and also because the Unfettered allowed you to see them)
 # this also is to increase tensions and to make Unfettered attack Wanderers faster.
 mission "Unfettered: Escort Hai Fleet"
 	landing
@@ -1284,7 +1284,7 @@ mission "Unfettered: Materials Intercepted"
 		clear "unfettered: materials intercepted offered"
 		outfit "Materials" -142
 		payment 2000000
-		log "Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas, and the Shadows."
+		log `Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, and one may wonder how it is related to the Alphas, and Shadow.`
 		conversation
 			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
 			`	The Elder then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
