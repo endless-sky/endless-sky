@@ -95,7 +95,7 @@ ship "Argosy" "Argosy (Plasma Repeater)"
 		"Hyperdrive"
 
 
-ship "Argosy" "Argosy (Large Blaster)"
+ship "Argosy" "Argosy (Twin Blaster)"
 	outfits
 		"Twin Blaster" 4
 		"Blaster Turret" 2
@@ -2499,7 +2499,7 @@ ship "Modified Argosy" "Modified Argosy (Plasma)"
 		"Laser Rifle" 4
 
 
-ship "Modified Argosy" "Modified Argosy (Large Blaster)"
+ship "Modified Argosy" "Modified Argosy (Twin Modified Blaster)"
 	outfits
 		"Quad Blaster Turret" 2
 		"Twin Modified Blaster" 4
@@ -3034,7 +3034,7 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 
 
-ship "Splinter" "Splinter (Large Blaster)"
+ship "Splinter" "Splinter (Twin Blaster)"
 	outfits
 		"Twin Blaster" 2
 		"Quad Blaster Turret" 3
