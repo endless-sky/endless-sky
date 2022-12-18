@@ -3912,6 +3912,29 @@ int Ship::WeaponIndex(const Hardpoint &hardpoint) const
 
 
 
+const std::vector<const Hardpoint *> Ship::TurrettedWeapons() const
+{
+	std::vector<const Hardpoint *> turrettedHardpoints;
+	for(auto &hardpoint : Weapons())
+	{
+		if(hardpoint.CanAim()) turrettedHardpoints.push_back(&hardpoint);
+	}
+	return turrettedHardpoints;
+}
+
+
+const std::vector<const Hardpoint *> Ship::FixedWeapons() const
+{
+	std::vector<const Hardpoint *> fixedHardpoints;
+	for(auto &hardpoint : Weapons())
+	{
+		if(!hardpoint.CanAim()) fixedHardpoints.push_back(&hardpoint);
+	}
+	return fixedHardpoints;
+}
+
+
+
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
 bool Ship::CanFire(const Weapon *weapon) const
