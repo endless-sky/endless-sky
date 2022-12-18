@@ -100,12 +100,12 @@ mission "Incipias: First Contact III"
 				accept
 	to complete
 		or
-			has "wanderer peace prove: done"
+			has "wanderer peace proof: done"
 			has "coalition peace prove: offered"
 	on complete
 		conversation 
 			branch species
-				has "wanderer peace prove: done"
+				has "wanderer peace proof: done"
 			`    You take the box with the gem inside and decide to show the Hai this very unique proof of a good relationship. When you get to the embassy the Hai there already know you and guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again. If you got back here this means you have a proof?" "Yes, I have something very unique.", you answer. The Hai looks very interested and you pull out the box and put it on the table. "Well", he says, "I hope it is not only this box. It does not seem made by humans, but I fear this wont be enough for a proof." "Of course not", you say and open the box towards the Hai. Suddenly he freezes and just stares at the small gem inside of it. "Indeed, that is nothing made by humans and no Hai could create this either. This must be the work of a really advanced species. Do not worry, I will not ask you from which species you got this. This is more than enough for a proof."`
 				goto haihelp
 			label species
