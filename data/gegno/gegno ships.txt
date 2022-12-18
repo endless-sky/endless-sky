@@ -48,7 +48,7 @@ ship "Shale"
 	leak "leak" 50 60
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description `As the Gegno began splitting up and colonizing new worlds, they needed a smaller ship to transport smaller payloads in place of their enormous (and expensive) City-Ships. The Shale is the Gegno's equivalent of a shuttle: a small and compact transport. Whether it be cargo, trade goods, travellers, or recruits, Shales are the foundation of the Gegno interstellar civilization.`
+	description `After the Gegno discovered hyperspace lanes and began to use them, their enormous (and expensive) generation ships became too cumbersome to use for the purpose of interstellar commerce, leading to the need for a smaller and more manageable ship such as this. The Shale is the Gegno's equivalent of a Shuttle: a small and compact transport. Whether it be cargo, trade goods, travelers, or recruits, Shales are the foundation of Gegno interstellar civilization.`
 
 ship "Dolomite"
 	sprite "ship/gegno dolomite"
@@ -91,7 +91,7 @@ ship "Dolomite"
 	explode "small explosion" 26
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Almost as large as a human cruiser, Dolomites are the Gegno's most common cargo vessel in service, having been used since the early days of space colonization. They are used as both passenger liners and cargo vessels. Due to its popularity and continuous usage, both the Gegno Vi and Gegno Scin factions have developed upon on the original design for their own purposes.`
+	description `Almost as large as a human cruiser, Dolomites are the Gegno's most common cargo vessel in service, its original design dating back to the early days of space colonization. They are used as both passenger liners and cargo vessels. Due to their popularity and continuous usage, both the Vi and Scin factions have developed on the original design for their own purposes.`
 
 ship "Conglomerate"
 	sprite "ship/gegno conglomerate"
@@ -135,7 +135,7 @@ ship "Conglomerate"
 	explode "medium explosion" 38
 	explode "small explosion" 26
 	"final explode" "final explosion large"
-	description `Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated City-Ships. Conglomerates are built to haul large amounts of cargo and personnel across Gegno space.`
+	description `Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated generation ships, but larger than their shuttlecraft. The Conglomerate was designed to fill that exact role.`
 
 ship "Gypsum"
 	sprite "ship/gegno gypsum"
@@ -224,8 +224,8 @@ ship "Dunite"
 	leak "leak" 40 20
 	explode "small explosion" 4
 	explode "tiny explosion" 8
-	description `Dunites are unique vessels designed by the Gegno Vi entirely for the purpose of dueling. It is a hodgepodge of parts, simply being an engine, power system, cockpit and Irate Cannon mashed together without any regard to structural integrity. The most notable feature is a long mace-like protrusion next to the Irate Cannon which is used for jousting and ramming other duelists.`
-	description `	Being a mangled mess of machinery designed for only a single purpose, Dunites do not have nor have room for "hyperdrives," and are purely system-based craft.`
+	description `Dunites are unique vessels designed by the Gegno Vi entirely for the purpose of dueling. It is a hodgepodge of parts, simply being an engine, power system, cockpit, and Irate Cannon mashed together without any regard to structural integrity. The most notable feature is a long mace-like protrusion next to the Irate Cannon which is used for jousting and ramming other duelists.`
+	description `	Being a mangled mess of machinery designed for only a single purpose, Dunites do not come equipped with nor have room for hyperdrives, and are purely intrastellar craft.`
 
 
 ship "Augen"
@@ -344,7 +344,7 @@ ship "Augen"
 	explode "small explosion" 20
 	explode "tiny explosion" 60
 	"final explode" "final explosion large"
-	description `The Augen-class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Gegno Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet.`
+	description `The Augen-class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet.`
 	description `	This project was meant to result in two sister-ship behemoths, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
 ship "Slate"
@@ -439,8 +439,8 @@ ship "Schist"
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Gegno Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
-	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of cannons and a turret so they can bring some type of weaponry to any possible engagement.`
+	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
+	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of forward facing cannons and a turret so they can bring some type of weaponry to any possible engagement, as well as a set of angled guns for deterring any smaller, faster ships from attempting to flank the ship.`
 
 ship "Schist" "Schist (Light Load)"
 	sprite "ship/gegno schist b"
@@ -459,7 +459,7 @@ ship "Schist" "Schist (Heavy Load)"
 		"drag" 0.2
 		"cargo space" 49
 
-ship Eclogite
+ship "Eclogite"
 	sprite "ship/gegno eclogite"
 	thumbnail "thumbnail/gegno eclogite"
 	attributes
@@ -479,7 +479,6 @@ ship Eclogite
 		"outfit space" 285
 		"weapon capacity" 96
 		"engine capacity" 110
-		"weapon capacity" 96
 		weapon
 			"blast radius" 36
 			"shield damage" 210
@@ -507,7 +506,7 @@ ship Eclogite
 	explode "small explosion" 20
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
-	description `While the style of longer battleship-esque vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi war vessels. The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another pounding.`
+	description `While the style of longer battleship-esque vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi war vessels. The Eclogite is one of the newest designs in the Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another run.`
 
 ship "Diorite"
 	sprite "ship/gegno diorite"
@@ -625,7 +624,7 @@ ship "Hornfel"
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many racks to support cargo pods, allowing them to provide a secondary transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are occasionally found with adjustments to carry a larger payload rather than cargo load. This usage as a multi-role ship is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
+	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many mounting points to support cargo pods, allowing them to provide a secondary transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are instead occasionally found with adjustments to carry a larger armament. This multi-role function is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
 
 ship "Hornfel" "Hornfel (Light Load)"
 	sprite "ship/gegno hornfel b"
@@ -752,7 +751,7 @@ ship "Gneiss"
 	explode "small explosion" 40
 	explode "tiny explosion" 80
 	"final explode" "final explosion large"
-	description `Gneiss Battleships are the Gegno Vi's true sword and shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing 3 huge mounts dedicated to holding enormous Ballistic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
+	description `Gneiss battleships are the Gegno Vi's true sword and shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing three huge mounts dedicated to holding enormous Ballistic Cannons. Gniess also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
 	description `	Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer.`
 
 ship "Protolith"
@@ -824,7 +823,7 @@ ship "Protolith"
 	explode "medium explosion" 35
 	explode "small explosion" 25
 	"final explode" "final explosion large"
-	description `Protoliths are descendants of the Gegno's early City-Ships used to colonize nearby systems. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive.`
+	description `Protoliths are descendants of the Gegno's early generation ships used to colonize nearby systems before the invention of the hyperdrive. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships, but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive.`
 
 # Gegno Scin:
 
@@ -866,7 +865,7 @@ ship "Halite"
 	leak "leak" 60 50
 	explode "small explosion" 8
 	explode "tiny explosion" 10
-	description `Halites are a successful experimental test platform designed by the Gegno Scin. They are the Gegno's first fighter-based craft, and the first to equip both early-stage beam weapon and shield technology; almost half the hull is dedicated to these new developments.`
+	description `Halites are a successful experimental test platform designed by the Gegno Scin. They are the Gegno's first fighter-based craft, and the first to equip both early-stage pulse weapon and shield technology; almost half the hull is dedicated to these new developments.`
 	description `	Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft.`
 
 ship "Mica"
@@ -952,7 +951,7 @@ ship "Coesite"
 	explode "small explosion" 24
 	explode "tiny explosion" 18
 	"final explode" "final explosion small"
-	description `Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry two turret mounts which allow them to always be orbiting and firing on the move. Being a smaller design, these ships are relatively easy to manufacture, and are often fielded in groups so they may overtake vessels much larger than them.`
+	description `Coesites are smaller warships that the Scin use as screening vessels during battles with the Vi. They are speedy and carry two turret mounts which allow them to always be orbiting and firing on the move. Being a smaller design, these ships are relatively easy to manufacture, and are often fielded in groups so they may overtake vessels much larger than them.`
 
 ship "Tridymite"
 	sprite "ship/gegno tridymite"
@@ -1123,7 +1122,7 @@ ship "Feldspar"
 	explode "small explosion" 50
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
-	description `The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite Fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They also were designed as a semi-experimental platform, built around a brand new multi-engine system and the latest in Gegno plasma technology.`
+	description `The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They were also designed as a semi-experimental platform, built around a brand new multi-engine system and the latest in Gegno plasma technology.`
 	description `	Able to keep a decent stance away from a battle while putting down artillery fire, Feldspars are quite a dangerously well-rounded ship for their size. On the downside, they are more susceptible to hull damage like any other Scin warship, especially when alone. As such, they rely on their fighters since they aren't a dedicated warship themselves.`
 
 ship "Muscovite"
@@ -1185,5 +1184,5 @@ ship "Muscovite"
 	explode "medium explosion" 42
 	explode "small explosion" 38
 	"final explode" "final explosion large"
-	description `Muscovites are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, where they perform research or experiments, or allow for mobile on-board demonstrations and observations. Each Muscovite is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Muscovites can also be used as a secondary warship when needed.`
-	description `	Like other Gegno Scin ships, Muscovites themselves are an experimental test bed; they are built around the large engine system tested on Feldspars, making them notably fast for their size.`
+	description `Muscovites are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Muscovite is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Muscovites can also be used as a secondary warship when needed.`
+	description `	Like other Gegno Scin ships, Muscovites themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`
