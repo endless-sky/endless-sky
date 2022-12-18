@@ -372,7 +372,7 @@ mission "Remnant: Cognizance 9"
 	blocked "Plume's engineer needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
 	source "Aventine"
 	destination "Esquiline"
-	cargo equipment 8
+	cargo "equipment" 8
 	passengers 1
 	to offer
 		has "Remnant: Cognizance 8: done"
