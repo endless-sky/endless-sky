@@ -5050,7 +5050,7 @@ mission "A dead man's path II"
 			`	Liam pulls a starmap out of his bag. "These are the systems our father wants us to visit. Apparently they all have something unique to them. We weren't expecting this trip so we'll need to buy some supplies, but as soon as you're ready we'll be on board."`
 				accept
 	on enter "Terminus"
-		dialog `It's often thought that there are nothing to these uninhabited by the Deep, but Sophie points out that there's a strange anomaly in this system.`
+		dialog `It's often thought that there are nothing to these uninhabited stars by the Deep, but Sophie points out that there's a strange anomaly in this system.`
 	on enter "Aspidiske"
 		dialog `While Sophie and Liam are both quite chatty at times, the beauty of this star stops all of their conversations.`
 	on enter "Gorvi"
@@ -5064,10 +5064,9 @@ mission "A dead man's path II"
 				`	"Now that we've come so far, sure."`
 					goto continue
 				`	"I'm sorry, I've got to be somewhere else."`
-			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will! Oh, and here's your payment," Liam says, handing you a credit chip for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
 			action
 				payment 50000
-			decline
+			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will! Oh, and here's your payment," Liam says, handing you a credit chip for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
 			decline
 			label continue
 			`	Liam pulls out a map, not the starmap he had before but a map of Prime. "Apparently our father bought a whole mountain on this planet, and he wants us to go there."`
@@ -5108,8 +5107,8 @@ mission "A dead man's path II"
 				`	"(Go up to the sword.)"`
 						goto sword-scene
 				`	"(Take a look around first.)"`
-			`	You walk around, looking at the various alien artifacts. "Wow, he must have always brought us back the small items from his expeditions, because these artifacts over here are huge!" Liam exclaims from another part of the dome. "How did he even move all these here?"`
-			`	Now that Liam points it out, many of the larger artifacts look similar to the Sheragi technology you studied with Albert Foster.`
+			`	You walk around to the right of the dome to a collection of various alien artifacts, all steel in color and rather blocky. "Wow, he must have always brought us back the small items from his expeditions, because these artifacts over here are huge!" Liam exclaims from another part of the dome. "How did he even move all these here?"`
+			`	Now that Liam points it out, many of the larger artifacts over his way look similar to the Sheragi technology you studied with Albert Foster.`
 				to display
 					has "Sheragi Archaeology: The Emerald Sword 3: done"
 			`	After some time, Sophie calls you both to come to look at the tablet.`
@@ -5120,7 +5119,7 @@ mission "A dead man's path II"
 			`			But still, there were many paths I did not take, many rocks I have left unturned, and many worlds I have not yet landed on. And I suspect that you will have read this before those destinations were reached. Well, I have arrived at a different destination now, the only one nobody can understand, but everybody reaches eventually. Do not fear for me.`
 			`			This room you are in now is the culmination of all my work. I hope you understand that it was for your sake that I kept these a secret. My journey was long and unforgiving, but it was my life. I hope you continue that journey, to understand the universe a little better.`
 			`			Your father."`
-			`	Understanding the personal nature of the message, you leave the two of them alone for a bit, walking around and looking at the artifacts.`
+			`	Understanding the personal nature of the message, you leave the two of them alone for a bit, walking around and looking at the artifacts on the left of the dome.`
 			`	After some time, the siblings call you back to them. Sophie starts, "Captain <last>, Liam and I have thought through about this, and we think it would be a shame if we just kept this sword as a memory to him. It needs to be used. It was our father's one and only weapon, and it has been many places. Take it to many more." She pulls the sword from the pedestal and hands it to you. "It is yours now."`
 			choice
 				`	"I would be more than grateful to accept it."`
@@ -5133,16 +5132,16 @@ mission "A dead man's path II"
 				`	"Yes, I'm sure."`
 				`	"Well, if you frame it that way, I will take it."`
 					goto accepted
-			`	"I see. Please, at least take this extra payment of <credits>," Liam says. "It is for you traveling so much with us."`
 			action
 				payment 50000
+			`	"I see. Please, at least take this extra payment of <credits>," Liam says. "It is for you traveling so much with us."`
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
 			label end
-			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
-			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will. Here's your payment of <payment>, and farewell." `
-			`	You say goodbye to them, and leave them alone in their father's dome.`
 			action
 				payment 50000
+			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
+			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will, we never imagined that we would come so far and we would have never done it without you. It means so much to us. We fare you well among the stars!"`
+			`	After he hands you a credit ship of <payment>, you say goodbye to them and leave them in their father's dome.`
 			decline
