@@ -38,14 +38,14 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node)
+NPC::NPC(const DataNode &node, const ConditionsStore &vars)
 {
-	Load(node);
+	Load(node, vars);
 }
 
 
 
-void NPC::Load(const DataNode &node)
+void NPC::Load(const DataNode &node, const ConditionsStore &vars)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
@@ -182,7 +182,7 @@ void NPC::Load(const DataNode &node)
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
+				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child,vars)));
 				if(child.Size() >= 2)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
@@ -566,7 +566,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
+		const ConditionsStore &vars) const
 {
 	NPC result;
 	result.government = government;
@@ -607,7 +608,14 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.ships.back()->SetName(*nameIt);
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
-		fleet->Place(*result.system, result.ships, false);
+		if(fleet->HasConditions())
+		{
+			Fleet instantiated(*fleet);
+			instantiated.UpdateConditions(vars);
+			instantiated.Place(*result.system, result.ships, false);
+		}
+		else
+			fleet->Place(*result.system, result.ships, false);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{

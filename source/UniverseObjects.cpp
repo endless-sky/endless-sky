@@ -72,14 +72,14 @@ namespace {
 
 
 
-future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode)
+future<void> UniverseObjects::Load(const vector<string> &sources, const ConditionsStore &vars, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]() noexcept -> void
+	return async(launch::async, [this, vars, sources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)
@@ -97,7 +97,7 @@ future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode
 			const double step = 1. / (static_cast<int>(files.size()) + 1);
 			for(const auto &path : files)
 			{
-				LoadFile(path, debugMode);
+				LoadFile(path, vars, debugMode);
 
 				// Increment the atomic progress by one step.
 				// We use acquire + release to prevent any reordering.
@@ -163,10 +163,10 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node)
+void UniverseObjects::Change(const DataNode &node, const ConditionsStore &vars)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
-		fleets.Get(node.Token(1))->Load(node);
+		fleets.Get(node.Token(1))->Load(node, vars);
 	else if(node.Token(0) == "galaxy" && node.Size() >= 2)
 		galaxies.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "government" && node.Size() >= 2)
@@ -321,7 +321,7 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const string &path, bool debugMode)
+void UniverseObjects::LoadFile(const string &path, const ConditionsStore &vars, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
 	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
@@ -344,7 +344,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "event" && node.Size() >= 2)
 			events.Get(node.Token(1))->Load(node);
 		else if(key == "fleet" && node.Size() >= 2)
-			fleets.Get(node.Token(1))->Load(node);
+			fleets.Get(node.Token(1))->Load(node, vars);
 		else if(key == "formation" && node.Size() >= 2)
 			formations.Get(node.Token(1))->Load(node);
 		else if(key == "galaxy" && node.Size() >= 2)
@@ -368,7 +368,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "minable" && node.Size() >= 2)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
-			missions.Get(node.Token(1))->Load(node);
+			missions.Get(node.Token(1))->Load(node, vars);
 		else if(key == "outfit" && node.Size() >= 2)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
@@ -510,4 +510,15 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 {
 	lock_guard<mutex> lock(menuBackgroundMutex);
 	menuBackgroundCache.Draw(Information(), panel);
+}
+
+
+
+void UniverseObjects::UpdateConditions(const ConditionsStore &vars)
+{
+	printf("UniverseObjects::UpdateConditions\n");
+	for(auto &fleet : fleets)
+		fleet.second.UpdateConditions(vars);
+	for(auto &system : systems)
+		system.second.UpdateConditions(vars);
 }

@@ -20,6 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include "RValue.h"
+
+
+class ConditionsStore;
 
 
 // A DataNode is a single line of a DataFile. It consists of one or more tokens,
@@ -64,6 +68,9 @@ public:
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "") const;
 
+	// Get the value, and if it was a variable, the variable name
+	RValue<double> AsRValue(int index, const ConditionsStore &vars,
+		double ifMissing = RValue<double>::BadValue) const;
 
 private:
 	// Adjust the parent pointers when a copy is made of a DataNode.

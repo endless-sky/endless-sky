@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 
 #include "Color.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
@@ -65,14 +66,14 @@ class UniverseObjects {
 	friend class GameData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
+	std::future<void> Load(const std::vector<std::string> &sources, const ConditionsStore &vars, bool debugMode);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
 	void FinishLoading();
 
 	// Apply the given change to the universe.
-	void Change(const DataNode &node);
+	void Change(const DataNode &node, const ConditionsStore &vars);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
@@ -84,9 +85,12 @@ public:
 	// through GameData, this function is thread-safe.
 	void DrawMenuBackground(Panel *panel) const;
 
+	// Tells all objects that may dynamically change based on conditions to update their internal state:
+	void UpdateConditions(const ConditionsStore &vars);
+
 
 private:
-	void LoadFile(const std::string &path, bool debugMode = false);
+	void LoadFile(const std::string &path, const ConditionsStore &vars, bool debugMode);
 
 
 private:

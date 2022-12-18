@@ -136,7 +136,9 @@ future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 		Music::Init(sources);
 	}
 
-	return objects.Load(sources, debugMode);
+	ConditionsStore empty;
+
+	return objects.Load(sources, empty, debugMode);
 }
 
 
@@ -439,9 +441,10 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node)
+void GameData::Change(const DataNode &node, const ConditionsStore &vars)
 {
-	objects.Change(node);
+	objects.Change(node, vars);
+	objects.UpdateConditions(vars);
 }
 
 
@@ -451,6 +454,15 @@ void GameData::Change(const DataNode &node)
 void GameData::UpdateSystems()
 {
 	objects.UpdateSystems();
+}
+
+
+
+// Tells all game data objects that may dynamically change
+// based on conditions to update their internal state:
+void GameData::UpdateConditions(const ConditionsStore &vars)
+{
+	objects.UpdateConditions(vars);
 }
 
 

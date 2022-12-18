@@ -13,9 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "ConditionsStore.h"
 #include "DataNode.h"
 
 #include "Logger.h"
+#include "RValue.h"
 
 #include <algorithm>
 #include <cctype>
@@ -282,6 +284,22 @@ int DataNode::PrintTrace(const string &message) const
 
 	// Tell the caller what indentation level we're at now.
 	return indent;
+}
+
+
+
+// Get the value, and if it was a variable, the variable name
+RValue<double> DataNode::AsRValue(int index, const ConditionsStore &vars, double ifMissing) const
+{
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		return RValue<double>(ifMissing);
+        else if(IsNumber(tokens[index]))
+		return RValue<double>(Value(index), string());
+	auto result = vars.HasGet(tokens[index]);
+	if(result.first)
+		return RValue<double>(result.second, tokens[index]);
+	else
+		return RValue<double>(ifMissing, tokens[index]);
 }
 
 

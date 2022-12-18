@@ -17,40 +17,72 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define RANDOMEVENT_H_
 
 
+#include "RValue.h"
 
-// A class representing an event that triggers randomly
-// in a given internal, for example fleets or hazards.
-template <typename T>
-class RandomEvent {
-public:
-	constexpr RandomEvent(const T *event, int period) noexcept;
 
-	constexpr const T *Get() const noexcept;
-	constexpr int Period() const noexcept;
 
-private:
-	const T *event;
-	int period;
+template <class T>
+struct PeriodTypeHasConditions
+{
+	static bool HasConditions(const T &t) { return false; }
+};
+
+template <class V, class K>
+struct PeriodTypeHasConditions<RValue<V, K>>
+{
+	static bool HasConditions(const RValue<V, K> &t) { return t.WasLValue(); }
 };
 
 
+// A class representing an event that triggers randomly
+// in a given internal, for example fleets or hazards.
+template <typename T, typename P = int>
+class RandomEvent {
+public:
+	typedef T EventType;
+	typedef P PeriodType;
 
-template <typename T>
-constexpr RandomEvent<T>::RandomEvent(const T *event, int period) noexcept
-	: event(event), period(period > 0 ? period : 200)
+	constexpr RandomEvent(const T *event, const P &period) noexcept;
+
+	constexpr const T *Get() const noexcept;
+	constexpr const P &Period() const noexcept;
+
+	// Update the period from a ConditionSet if needed:
+	template<typename Getter>
+	void UpdateConditions(const Getter &getter);
+
+	bool HasConditions() const { return PeriodTypeHasConditions<P>::HasConditions(period); }
+
+private:
+	const T *event;
+	P period;
+};
+
+
+template <typename T, typename P>
+constexpr RandomEvent<T,P>::RandomEvent(const T *event, const PeriodType &period) noexcept
+	: event(event), period(period > 0 ? period : PeriodType(200))
 {
 }
 
-template <typename T>
-constexpr const T *RandomEvent<T>::Get() const noexcept
+template <typename T, typename P>
+constexpr const T *RandomEvent<T,P>::Get() const noexcept
 {
 	return event;
 }
 
-template <typename T>
-constexpr int RandomEvent<T>::Period() const noexcept
+template <typename T, typename P>
+constexpr const P &RandomEvent<T,P>::Period() const noexcept
 {
 	return period;
+}
+
+// Update the period from a ConditionSet if needed.
+template <typename T, typename P>
+template <typename Getter>
+void RandomEvent<T,P>::UpdateConditions(const Getter &getter)
+{
+	period.Update(getter);
 }
 
 

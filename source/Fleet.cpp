@@ -149,14 +149,15 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Fleet::Fleet(const DataNode &node)
+Fleet::Fleet(const DataNode &node, const ConditionsStore &vars):
+  cargo(3)
 {
-	Load(node);
+	Load(node, vars);
 }
 
 
 
-void Fleet::Load(const DataNode &node)
+void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 {
 	if(node.Size() >= 2)
 		fleetName = node.Token(1);
@@ -188,7 +189,7 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
 		else if(key == "cargo" && hasValue)
-			cargo = static_cast<int>(child.Value(1));
+			cargo = child.AsRValue(1, vars, 3);
 		else if(key == "commodities" && hasValue)
 		{
 			commodities.clear();
@@ -210,7 +211,9 @@ void Fleet::Load(const DataNode &node)
 				resetVariants = false;
 				variants.clear();
 			}
-			int weight = (child.Size() >= add + 2) ? max<int>(1, child.Value(add + 1)) : 1;
+			RValue<int> weight;
+			if(child.Size() >= add + 2)
+				weight = child.AsRValue(add + 1, vars, 1);
 			variants.emplace_back(weight, child);
 		}
 		else if(key == "variant")
@@ -228,6 +231,9 @@ void Fleet::Load(const DataNode &node)
 	if(variants.empty())
 		node.PrintTrace("Warning: " + (fleetName.empty()
 			? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
+
+	hasConditions = cargo.WasLValue() ||
+		variants.Any([](const WeightType &w, const Variant &v) noexcept -> bool { return w.WasLValue(); });
 }
 
 
@@ -245,8 +251,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 		return false;
 
 	// Any variant a fleet could choose should be valid.
-	if(any_of(variants.begin(), variants.end(),
-			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
+	if(!variants.All([](unsigned weight, const Variant &v) noexcept -> bool { return v.IsValid(); }))
 		return false;
 
 	return true;
@@ -272,6 +277,22 @@ void Fleet::RemoveInvalidVariants()
 const Government *Fleet::GetGovernment() const
 {
 	return government;
+}
+
+
+
+void Fleet::UpdateConditions(const ConditionsStore &vars)
+{
+	if(!hasConditions)
+		return;
+	variants.UpdateConditions(vars);
+}
+
+
+
+bool Fleet::HasConditions() const
+{
+	return hasConditions;
 }
 
 

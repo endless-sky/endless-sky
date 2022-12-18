@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef FLEET_H_
 #define FLEET_H_
 
+#include "ConditionsStore.h"
 #include "Personality.h"
 #include "Sale.h"
 #include "Variant.h"
@@ -45,12 +46,13 @@ class System;
 // AI personality, and set of friendly and hostile "hail" messages, and the ship
 // names are chosen based on a given random "phrase" generator.
 class Fleet {
+	typedef RValue<unsigned> WeightType;
 public:
 	Fleet() = default;
 	// Construct and Load() at the same time.
-	Fleet(const DataNode &node);
+	Fleet(const DataNode &node, const ConditionsStore &vars);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore &vars);
 
 	// Determine if this fleet template uses well-defined data.
 	bool IsValid(bool requireGovernment = true) const;
@@ -73,6 +75,11 @@ public:
 
 	int64_t Strength() const;
 
+	// Updates any data that relies on conditions
+	void UpdateConditions(const ConditionsStore &vars);
+
+	// Determines if this Fleet uses conditions.
+	bool HasConditions() const;
 
 private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
@@ -82,13 +89,14 @@ private:
 
 
 private:
+	bool hasConditions = true;
 	std::string fleetName;
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	WeightedList<Variant> variants;
+	WeightedList<Variant,WeightType> variants;
 	// The number of different items the ships in this fleet will carry in cargo.
-	int cargo = 3;
+	RValue<int> cargo;
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
 

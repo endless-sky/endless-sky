@@ -426,6 +426,15 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
 		belts.emplace_back(1, 1500.);
+
+	// Update cached info about whether there are conditions
+	hasConditions = false;
+	for(auto &fleet : fleets)
+		if(fleet.HasConditions())
+		{
+			hasConditions = true;
+			break;
+		}
 }
 
 
@@ -845,8 +854,25 @@ double System::Exports(const string &commodity) const
 
 
 
+void System::UpdateConditions(const ConditionsStore &vars)
+{
+	if(!hasConditions)
+		return;
+	for(auto &fleet : fleets)
+		fleet.UpdateConditions(vars);
+}
+
+
+
+bool System::HasConditions() const
+{
+	return hasConditions;
+}
+
+
+
 // Get the probabilities of various fleets entering this system.
-const vector<RandomEvent<Fleet>> &System::Fleets() const
+const vector<RandomEvent<Fleet, RValue<int>>> &System::Fleets() const
 {
 	return fleets;
 }

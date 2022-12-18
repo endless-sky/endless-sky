@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef NPC_H_
 #define NPC_H_
 
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
@@ -56,9 +57,9 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	NPC(const DataNode &node);
+	NPC(const DataNode &node, const ConditionsStore &vars);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore &vars);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
@@ -89,7 +90,8 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
+		const ConditionsStore &vars) const;
 
 
 private:

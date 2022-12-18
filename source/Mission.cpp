@@ -111,15 +111,15 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Mission::Mission(const DataNode &node)
+Mission::Mission(const DataNode &node, const ConditionsStore &vars)
 {
-	Load(node);
+	Load(node, vars);
 }
 
 
 
 // Load a mission, either from the game data or from a saved game.
-void Mission::Load(const DataNode &node)
+void Mission::Load(const DataNode &node, const ConditionsStore &vars)
 {
 	// All missions need a name.
 	if(node.Size() < 2)
@@ -269,7 +269,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
+			npcs.emplace_back(child, vars);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -1335,7 +1335,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), player.Conditions()));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.

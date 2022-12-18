@@ -260,7 +260,7 @@ void PlayerInfo::Load(const string &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(child.Token(0) == "mission")
 		{
-			missions.emplace_back(child);
+			missions.emplace_back(child, conditions);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers") && child.HasChildren())
@@ -277,7 +277,7 @@ void PlayerInfo::Load(const string &path)
 					}
 		}
 		else if(child.Token(0) == "available job")
-			availableJobs.emplace_back(child);
+			availableJobs.emplace_back(child, conditions);
 		else if(child.Token(0) == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(child.Token(0) == "sort descending")
@@ -287,7 +287,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "separate possible")
 			sortSeparatePossible = true;
 		else if(child.Token(0) == "available mission")
-			availableMissions.emplace_back(child);
+			availableMissions.emplace_back(child, conditions);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
 		else if(child.Token(0) == "event")
@@ -477,7 +477,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		changedSystems |= (change.Token(0) == "system");
 		changedSystems |= (change.Token(0) == "link");
 		changedSystems |= (change.Token(0) == "unlink");
-		GameData::Change(change);
+		GameData::Change(change, conditions);
 	}
 	if(changedSystems)
 	{
@@ -1244,6 +1244,7 @@ void PlayerInfo::Land(UI *ui)
 	{
 		Audio::Play(Audio::Get("landing"));
 		Audio::PlayMusic(planet->MusicName());
+		GameData::UpdateConditions(conditions);
 	}
 
 	// Mark this planet as visited.
@@ -1569,6 +1570,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
+
+	GameData::UpdateConditions(conditions);
 
 	return true;
 }
@@ -1961,6 +1964,8 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
+	else
+		GameData::UpdateConditions(conditions);
 }
 
 
@@ -2538,6 +2543,9 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 // Apply any "changes" saved in this player info to the global game state.
 void PlayerInfo::ApplyChanges()
 {
+	// Update any game data that uses the player's ConditionsStore
+	GameData::UpdateConditions(conditions);
+
 	for(const auto &it : reputationChanges)
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();

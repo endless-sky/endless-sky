@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PrintData.h"
 
+#include "ConditionsStore.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "GameData.h"
@@ -666,16 +667,17 @@ void PrintData::LocationFilterMatches(const char *const *argv)
 {
 	DataFile file(cin);
 	LocationFilter filter;
+	ConditionsStore conditions;
 	for(const DataNode &node : file)
 	{
 		if(node.Token(0) == "changes" || (node.Token(0) == "event" && node.Size() == 1))
 			for(const DataNode &child : node)
-				GameData::Change(child);
+				GameData::Change(child, conditions);
 		else if(node.Token(0) == "event")
 		{
 			const auto *event = GameData::Events().Get(node.Token(1));
 			for(const auto &change : event->Changes())
-				GameData::Change(change);
+				GameData::Change(change, conditions);
 		}
 		else if(node.Token(0) == "location")
 		{

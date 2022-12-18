@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MISSION_H_
 #define MISSION_H_
 
-#include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "Date.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
@@ -57,10 +57,10 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	Mission(const DataNode &node);
+	Mission(const DataNode &node, const ConditionsStore &vars);
 
 	// Load a mission, either from the game data or from a saved game.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore &vars);
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;

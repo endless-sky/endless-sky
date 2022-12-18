@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "ConditionsStore.h"
 #include "Hazard.h"
 #include "Point.h"
 #include "RandomEvent.h"
@@ -71,6 +72,12 @@ public:
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
+
+	// Updates any data that relies on conditions
+	void UpdateConditions(const ConditionsStore &vars);
+
+	// Does this System use any conditions?
+	bool HasConditions() const;
 
 	// Modify a system's links.
 	void Link(System *other);
@@ -155,7 +162,7 @@ public:
 	double Exports(const std::string &commodity) const;
 
 	// Get the probabilities of various fleets entering this system.
-	const std::vector<RandomEvent<Fleet>> &Fleets() const;
+	const std::vector<RandomEvent<Fleet, RValue<int>>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
@@ -186,6 +193,7 @@ private:
 
 
 private:
+	bool hasConditions = true;
 	bool isDefined = false;
 	bool hasPosition = false;
 	// Name and position (within the star map) of this system.
@@ -208,7 +216,7 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
-	std::vector<RandomEvent<Fleet>> fleets;
+	std::vector<RandomEvent<Fleet, RValue<int>>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;
