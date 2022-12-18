@@ -59,7 +59,7 @@ public:
 
 	// Allow construction and assignment between RValue types to
 	// facilitate type conversion.
-	
+
 	template <class V2, class K2>
 	RValue(const RValue<V2,K2> &other);
 
@@ -69,9 +69,9 @@ public:
 	// Update the value from a scope that contains it
 	template<class Getter>
 	const ValueType &Update(const Getter &getter);
-	
+
 	// Accessors and mutators
-	
+
 	const ValueType &Value() const;
 	ValueType &Value();
 	const KeyType &Key() const { return key; }
@@ -85,12 +85,12 @@ public:
 
 	// Does this originate from dereferencing something?
 	bool WasLValue() const { return !key.empty(); }
-	
+
 	explicit operator bool() const { return static_cast<bool>(value); }
 
 	// Allow the RValue to be treated as its value in most contexts.
 	operator ValueType() const { return value; }
-	
+
 private:
 	ValueType value;
 	KeyType key;

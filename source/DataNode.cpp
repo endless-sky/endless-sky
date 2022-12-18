@@ -293,7 +293,7 @@ RValue<double> DataNode::AsRValue(int index, const ConditionsStore &vars, double
 {
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return RValue<double>(ifMissing);
-        else if(IsNumber(tokens[index]))
+	else if(IsNumber(tokens[index]))
 		return RValue<double>(Value(index), string());
 	auto result = vars.HasGet(tokens[index]);
 	if(result.first)
