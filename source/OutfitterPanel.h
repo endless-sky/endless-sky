@@ -48,7 +48,7 @@ public:
 
 protected:
 	virtual int TileSize() const override;
-	virtual int VisiblityCheckboxesSize() const override;
+	virtual int VisibilityCheckboxesSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;

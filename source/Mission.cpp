@@ -185,6 +185,8 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
 		}
+		else if(child.Token(0) == "apparent payment" && child.Size() >= 2)
+			paymentApparent = child.Value(1);
 		else if(ParseContraband(child))
 		{
 			// This was an "illegal" or "stealth" entry. It has already been
@@ -328,6 +330,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
 			out.Write("passengers", passengers);
+		if(paymentApparent)
+			out.Write("apparent payment", paymentApparent);
 		if(illegalCargoFine)
 			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
 		if(failIfDiscovered)
@@ -608,6 +612,20 @@ bool Mission::FailIfDiscovered() const
 int Mission::Passengers() const
 {
 	return passengers;
+}
+
+
+
+int64_t Mission::DisplayedPayment() const
+{
+	return paymentApparent ? paymentApparent : GetAction(Mission::Trigger::COMPLETE).Payment();
+}
+
+
+
+const int Mission::ExpectedJumps() const
+{
+	return expectedJumps;
 }
 
 
@@ -1134,17 +1152,17 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.name = name;
 	result.waypoints = waypoints;
 	// Handle waypoint systems that are chosen randomly.
-	const System * const source = player.GetSystem();
+	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
-		const System *system = filter.PickSystem(source);
+		const System *system = filter.PickSystem(sourceSystem);
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
 	}
 	// If one of the waypoints is the current system, it is already visited.
-	if(result.waypoints.erase(source))
-		result.visitedWaypoints.insert(source);
+	if(result.waypoints.erase(sourceSystem))
+		result.visitedWaypoints.insert(sourceSystem);
 
 	// Copy the template's stopovers, and add planets that match the template's filters.
 	result.stopovers = stopovers;
@@ -1159,7 +1177,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(source, !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1172,7 +1190,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(source, !clearance.empty());
+		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -1192,7 +1210,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	{
 		const Trade::Commodity *commodity = nullptr;
 		if(cargo == "random")
-			commodity = PickCommodity(*source, *result.destination->GetSystem());
+			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
@@ -1233,37 +1251,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		else
 			result.passengers = passengers;
 	}
+	result.paymentApparent = paymentApparent;
 	result.illegalCargoFine = illegalCargoFine;
 	result.illegalCargoMessage = illegalCargoMessage;
 	result.failIfDiscovered = failIfDiscovered;
 
-	// Estimate how far the player will have to travel to visit all the waypoints
-	// and stopovers and then to land on the destination planet. Rather than a
-	// full traveling salesman path, just calculate a greedy approximation.
-	const System *path = source;
-	list<const System *> destinations;
-	for(const System *system : result.waypoints)
-		destinations.push_back(system);
-	for(const Planet *planet : result.stopovers)
-		destinations.push_back(planet->GetSystem());
+	int jumps = result.CalculateJumps(sourceSystem);
 
-	int jumps = 0;
-	while(!destinations.empty())
-	{
-		// Find the closest destination to this location.
-		DistanceMap distance(path);
-		auto it = destinations.begin();
-		auto bestIt = it;
-		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
-				bestIt = it;
-
-		path = *bestIt;
-		jumps += distance.Days(*bestIt);
-		destinations.erase(bestIt);
-	}
-	DistanceMap distance(path);
-	jumps += distance.Days(result.destination->GetSystem());
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
 
 	// Set the deadline, if requested.
@@ -1337,7 +1331,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, source, result.destination->GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1355,7 +1349,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto oit = onEnter.begin();
 	for( ; oit != onEnter.end(); ++oit)
@@ -1371,7 +1365,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, source, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
 	for( ; eit != genericOnEnter.end(); ++eit)
@@ -1387,7 +1381,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(subs, source, jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
@@ -1399,6 +1393,41 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	result.hasFailed = false;
 	return result;
+}
+
+
+
+int Mission::CalculateJumps(const System *sourceSystem)
+{
+	expectedJumps = 0;
+
+	// Estimate how far the player will have to travel to visit all the waypoints
+	// and stopovers and then to land on the destination planet. Rather than a
+	// full traveling salesman path, just calculate a greedy approximation.
+	list<const System *> destinations;
+	for(const System *system : waypoints)
+		destinations.push_back(system);
+	for(const Planet *planet : stopovers)
+		destinations.push_back(planet->GetSystem());
+
+	while(!destinations.empty())
+	{
+		// Find the closest destination to this location.
+		DistanceMap distance(sourceSystem);
+		auto it = destinations.begin();
+		auto bestIt = it;
+		for(++it; it != destinations.end(); ++it)
+			if(distance.Days(*it) < distance.Days(*bestIt))
+				bestIt = it;
+
+		sourceSystem = *bestIt;
+		expectedJumps += distance.Days(*bestIt);
+		destinations.erase(bestIt);
+	}
+	DistanceMap distance(sourceSystem);
+	expectedJumps += distance.Days(destination->GetSystem());
+
+	return expectedJumps;
 }
 
 

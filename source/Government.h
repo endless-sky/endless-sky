@@ -29,6 +29,7 @@ class Fleet;
 class Phrase;
 class Planet;
 class PlayerInfo;
+class Outfit;
 class Ship;
 class System;
 
@@ -109,6 +110,10 @@ public:
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
 	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
+	// Check to see if the items are condemnable (atrocities) or warrant a fine.
+	bool Condemns(const Outfit *outfit) const;
+	// Returns the fine for given outfit for this government.
+	int Fines(const Outfit *outfit) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
@@ -132,6 +137,8 @@ private:
 	std::vector<double> attitudeToward;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
+	std::map<const Outfit*, int> illegals;
+	std::map<const Outfit*, bool> atrocities;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;

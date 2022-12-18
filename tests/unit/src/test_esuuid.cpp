@@ -54,7 +54,7 @@ struct Identifiable {
 	const EsUuid &UUID() const noexcept { return id; }
 };
 struct InstantiableContainer : public Identifiable {
-	std::list<InstantiableContainer> items;
+	std::vector<InstantiableContainer> items;
 	std::vector<InstantiableContainer> others;
 
 	std::vector<std::string> GetIds() const {

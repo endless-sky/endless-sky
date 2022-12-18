@@ -11,6 +11,7 @@ on:
       - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
+      - 'tests/unit/**'
       - 'utils/check_*.sh'
   pull_request:
     types: [opened, synchronize]
@@ -20,7 +21,12 @@ on:
       - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
+      - 'tests/unit/**'
       - 'utils/check_*.sh'
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
 
 jobs:
   changed:
@@ -60,7 +66,7 @@ jobs:
 
   validate-copyright:
     needs: changed
-    if: ${{ needs.changed.outputs.copyright }}
+    if: ${{ needs.changed.outputs.copyright == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

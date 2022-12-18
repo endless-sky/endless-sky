@@ -59,8 +59,9 @@ void FireCommand::UpdateWith(const FireCommand &other) noexcept
 // Reset this to an empty command.
 void FireCommand::Clear()
 {
-	weapon.Clear();
-	aim.clear();
+	weapon.Reset();
+	for(auto &it : aim)
+		it = '\0';
 }
 
 

@@ -34,6 +34,7 @@ mission "Remnant: Bounty"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Palavret (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -66,6 +67,7 @@ mission "Remnant: Bounty 2"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Palavret (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -152,6 +154,7 @@ mission "Remnant: Bounty 3"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
@@ -181,8 +184,9 @@ mission "Remnant: Bounty 4"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
-				"Rano'erek"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -215,6 +219,7 @@ mission "Remnant: Bounty 5"
 		fleet
 			names "korath"
 			cargo 3
+			commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 			variant
 				"Rano'erek (Ground Assault)"
 				"'olofez" 4
@@ -350,9 +355,7 @@ mission "Remnant: Rescue"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -374,7 +377,7 @@ mission "Remnant: Rescue"
 
 # The Rescue Dummy is meant to commit suicide as soon as possible on entering the randomized system.
 ship "Rescue Dummy"
-	#sprite "ship/behemoth"
+	# sprite "ship/behemoth"
 	attributes
 		"heat dissipation" 1
 		"hull" 1
@@ -419,9 +422,7 @@ mission "Remnant: Rescue 1B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -458,9 +459,7 @@ mission "Remnant: Rescue 2"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -499,9 +498,7 @@ mission "Remnant: Rescue 2B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -538,9 +535,7 @@ mission "Remnant: Rescue 3"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -577,9 +572,7 @@ mission "Remnant: Rescue 3B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not near "Arculus" 3
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -615,9 +608,7 @@ mission "Remnant: Rescue 4"
 			attributes "graveyard"
 			not attributes "inaccessible"
 			not government "Remnant"
-			not system "Perfica"
-			not system "Farinus"
-			not system "Edusa"
+			not system "Patir"
 			not system "Aki'il"
 		personality escort derelict heroic plunders
 		government "Remnant"
@@ -631,7 +622,7 @@ mission "Remnant: Rescue 4"
 		"remnant: rescue missions" ++
 		payment 500000
 		dialog
-			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you." `
+			`Upon landing, the captain of the <npc> meets you at your ship to thank you personally for rescuing them from the Graveyard, leaving you with a heartfelt sentence: "May the Embers burn bright for you."`
 			`	Soon after, your communicator notifies you of a resource allocation of <payment>.`
 	on visit
 		dialog

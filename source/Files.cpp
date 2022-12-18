@@ -62,6 +62,23 @@ namespace {
 				c = '/';
 	}
 #endif
+
+	// Open the given folder in a separate window.
+	void OpenFolder(const string &path)
+	{
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+		if(SDL_OpenURL(("file://" + path).c_str()))
+			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
+#elif defined(__linux__)
+		// Some supported distributions do not have an up-to-date SDL.
+		cout.flush();
+		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
+			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
+#else
+#warning SDL 2.0.14 or higher is needed for opening folders!
+		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
+#endif
+	}
 }
 
 
@@ -232,7 +249,7 @@ vector<string> Files::List(string directory)
 		return list;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
@@ -289,7 +306,7 @@ vector<string> Files::ListDirectories(string directory)
 		return list;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
@@ -357,7 +374,7 @@ void Files::RecursiveList(string directory, vector<string> *list)
 		return;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
@@ -544,6 +561,14 @@ void Files::Write(FILE *file, const string &data)
 		return;
 
 	fwrite(&data[0], 1, data.size(), file);
+}
+
+
+
+// Open this user's plugins directory in their native file explorer.
+void Files::OpenUserPluginFolder()
+{
+	OpenFolder(Config() + "plugins");
 }
 
 

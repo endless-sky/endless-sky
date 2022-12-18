@@ -302,7 +302,7 @@ void Mask::Create(const ImageBuffer &image, int frame)
 			continue;
 
 		radius = max(radius, ComputeRadius(outline));
-		outlines.push_back(move(outline));
+		outlines.push_back(std::move(outline));
 		outlines.back().shrink_to_fit();
 	}
 	outlines.shrink_to_fit();
