@@ -254,7 +254,7 @@ mission "Ringworld Debris: Quarg"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			apply
+			action
 				clear "ringworld debris"
 			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You show it the piece of debris, and ask what it knows about it. It is momentarily stunned when you show the dark piece of technology, calmly taking it into its own hands after recovering. "A fragment of our ships, is what it is. A remnant of part of our equipment. Thank you for returning it to us."`
 			`	You continue by telling it about your travels in the section of the galaxy where you found the debris, and asking what it knows of the place and the hostiles that inhabit it.`
@@ -440,7 +440,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"I know someone who will want to see all this. Meet me in the spaceport when you have the chance."`
 				decline
 			label busy
-			apply
+			action
 				set "ka'het: dusk was busy"
 			`	"I know someone who will want to see all this. You have met Dusk, correct?"`
 			`	You nod. "I have, but I believe he's busy at the moment."`
@@ -556,7 +556,7 @@ mission "Ka'het: Patir Mystery 3"
 			`	The data that Dusk's scanners will gather will not be perfect, but it is better than having to risk getting close to something you know so little about. After a few minutes, the scan completes, and you are ready to return to <planet>.`
 				accept
 			label near
-			apply
+			action
 				"exploration interest" ++
 			`	You carefully position your ship above the structure and activate the sensors. As the scan proceeds, you monitor the position of the Ka'sei fleet. Some of the Fetri'sei nearest to you have stopped their standard activities and are standing by, perhaps observing your actions the same way you are observing theirs. Luckily, after a few minutes the sensors complete their analysis of the structure and you are ready to return to <planet> unmolested.`
 				accept
@@ -690,7 +690,7 @@ mission "Ka'het: Patir Mystery 5"
 			label expel
 			`	Soon after, the frontal door recedes. You two run out of the airlock as fast as possible. Behind you, you hear the roar of metal melting as a rush of air passes you by. You start running back to your ship with Dusk, hoping that the Ka'sei will not get out of the building before you are safe.`
 			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier and turns it on. "Phew. I was afraid it had broken down when we had to run away, but maybe we can still get the data we need."`
-			apply
+			action
 				set "atmospheric scan intact"
 			
 			label attack
@@ -727,7 +727,7 @@ mission "Ka'het: Patir Mystery 5"
 				decline
 			
 			label attacked
-			apply
+			action
 				set "ka'het: attacked ka'sei"
 			`You disembark from your ship with Dusk, who is visible angry that you destroyed one of the Ka'sei. "I told you not to attack them! I told you of their importance!" he signs harshly while pacing back and forth. "Oh my, oh my, we can only hope that this does not close any doors for us. Perhaps we can attempt to communicate with them? Tell them it was an accident?" He looks to you as if searching for some reassurance, but you have none to give. "Forget it. I will study what we have gathered, but I am afraid that it will be all that we will ever gather from that system." Dusk storms off without saying goodbye, typing away on his touchpad as he goes.`
 

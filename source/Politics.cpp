@@ -31,6 +31,31 @@ using namespace std;
 
 
 
+namespace {
+	// Check if the ship evades being cargo scanned.
+	bool EvadesCargoScan(const Ship &ship)
+	{
+		// Illegal goods can be hidden inside legal goods to avoid detection.
+		const int contraband = ship.Cargo().IllegalCargoAmount();
+		const int netIllegalCargo = contraband - ship.Attributes().Get("scan concealment");
+		if(netIllegalCargo <= 0)
+			return true;
+
+		const int legalGoods = ship.Cargo().Used() - contraband;
+		const double illegalRatio = legalGoods ? max(1., 2. * netIllegalCargo / legalGoods) : 1.;
+		const double scanChance = illegalRatio / (1. + ship.Attributes().Get("scan interference"));
+		return Random::Real() > scanChance;
+	}
+
+	// Check if the ship evades being outfit scanned.
+	bool EvadesOutfitScan(const Ship &ship)
+	{
+		return Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+	}
+}
+
+
+
 // Reset to the initial political state defined in the game data.
 void Politics::Reset()
 {
@@ -108,7 +133,10 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
-			double penalty = (count * weight) * other->PenaltyFor(eventType);
+			// If the other government cares what the offended government thinks about the event,
+			// use that instead.
+			double penalty = (count * weight) * (other->IsUsingForeignPenaltiesFor(gov) ?
+				gov->PenaltyFor(eventType) : other->PenaltyFor(eventType));
 			if(eventType & ShipEvent::ATROCITY && weight > 0)
 				reputationWith[other] = min(0., reputationWith[other]);
 
@@ -224,19 +252,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		int failedMissions = 0;
 
-		if(!scan || (scan & ShipEvent::SCAN_CARGO))
+		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			// Illegal goods can be hidden inside legal goods to avoid detection.
-			const int contraband = ship->Cargo().IllegalCargoAmount();
-			const int legalGoods = ship->Cargo().Used() - contraband;
-			const int netIllegalCargo = contraband - ship->Attributes().Get("scan concealment");
-
-			const double illegalRatio = legalGoods ? max(1., 2. * netIllegalCargo / legalGoods) : 1.;
-			const double scanChance = illegalRatio / (1. + ship->Attributes().Get("scan interference"));
-			if(Random::Real() > scanChance)
-				continue;
-
-			int64_t fine = ship->Cargo().IllegalCargoFine();
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -263,16 +281,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				}
 			}
 		}
-		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
-		{
-			// Check if the ship evades being scanned due to interference plating.
-			if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
-				continue;
+		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
-					int64_t fine = it.first->Get("illegal");
-					if(it.first->Get("atrocity") > 0.)
+					int fine = gov->Fines(it.first);
+					if(gov->Condemns(it.first))
 						fine = -1;
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
@@ -280,7 +294,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
-		}
 		if(failedMissions && maxFine > 0)
 		{
 			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
