@@ -2220,7 +2220,7 @@ system Actannka
 	object
 		sprite planet/cloud2-b
 		distance 2300
-		period 260.845
+		period 779.967
 		object Truklar
 			sprite planet/rhea
 			distance 196
@@ -2228,7 +2228,7 @@ system Actannka
 	object
 		sprite planet/gas16-b
 		distance 1100.4
-		period 566.034
+		period 258.113
 	object
 		sprite planet/gas2
 		distance 4081.2
@@ -5364,11 +5364,11 @@ system Asio
 	object "Ef Aourtdye"
 		sprite planet/rock11
 		distance 235.9
-		period 640.219
+		period 81.0171
 	object
 		sprite planet/rock8-b
 		distance 400
-		period 414.125
+		period 178.885
 	object
 		sprite planet/gas14-b
 		distance 2105
@@ -5599,7 +5599,7 @@ system Auhru
 	object "Oup Je"
 		sprite planet/rock2-b
 		distance 5000
-		period 98.7799
+		period 1520.57
 	object
 		sprite planet/browndwarf-l
 		distance 3731.72
@@ -10492,7 +10492,7 @@ system Eebu
 	object
 		sprite planet/cloud7
 		distance 2000
-		period 68.4403
+		period 1011.92
 		object
 			sprite planet/tethys
 			distance 134
@@ -11282,11 +11282,11 @@ system Eogho
 	object
 		sprite planet/gas8-hot
 		distance 1555
-		period 62.5101
+		period 293.161
 	object
 		sprite planet/gas1
 		distance 2676
-		period 328.036
+		period 661.820
 		object
 			sprite planet/rhea-b
 			distance 510
@@ -11294,7 +11294,7 @@ system Eogho
 	object
 		sprite planet/dust7-b
 		distance 5255
-		period 887.845
+		period 1821.25
 
 system "Epsilon Leonis"
 	pos -619 -229
@@ -13696,7 +13696,7 @@ system Ghhil
 	object Ruelogakk
 		sprite planet/station0
 		distance 2600
-		period 105.031
+		period 968.187
 
 system Gienah
 	pos -176 354
@@ -14914,15 +14914,15 @@ system Heutesl
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
 		distance 1000
-		period 442.110
+		period 349.481
 	object
 		sprite planet/gas16
 		distance 2400
-		period 919.403
+		period 1299.39
 	object
 		sprite planet/gas4
 		distance 1300
-		period 1586.20
+		period 518.011
 		object "Iemn Eitch"
 			sprite planet/dust3-b
 			distance 258
@@ -15756,7 +15756,7 @@ system Iliniza
 	object "Enn Bue"
 		sprite planet/oberon-b
 		distance 720
-		period 177.539
+		period 280.318
 	object
 		sprite planet/mars-b
 		distance 1009
@@ -16354,7 +16354,7 @@ system "Jyeg Pvu"
 	object
 		sprite planet/cloud1
 		distance 3200
-		period 68.9073
+		period 1007.99
 		object
 			sprite planet/oberon-b
 			distance 197
@@ -16362,15 +16362,15 @@ system "Jyeg Pvu"
 	object "Gara Pvu"
 		sprite planet/rock1
 		distance 6000
-		period 203.707
+		period 2587.98
 	object
 		sprite planet/gas7
 		distance 2627
-		period 365.440
+		period 749.765
 	object
 		sprite planet/gas9-b
 		distance 9000
-		period 924.156
+		period 4754.43
 		offset 160
 		object
 			sprite planet/dust0
@@ -17344,11 +17344,11 @@ system Kiluit
 	object
 		sprite planet/lava5
 		distance 515
-		period 71.5
+		period 99.6688
 	object Enbi
 		sprite planet/rock18
 		distance 1550
-		period 166.925
+		period 520.410
 	object
 		sprite planet/gas11-b
 		distance 2912.4
@@ -21852,7 +21852,7 @@ system Nnaug
 	object "Sies Upi"
 		sprite planet/dust2
 		distance 2560
-		period 311.587
+		period 857.577
 		object
 			sprite planet/lava0
 			distance 166.7
@@ -21861,11 +21861,11 @@ system Nnaug
 	object
 		sprite planet/gas11
 		distance 4236.14
-		period 700.103
+		period 1825.44
 	object
 		sprite planet/gas8-b
 		distance 5646
-		period 1281.85
+		period 2808.82
 		object
 			sprite planet/ice7
 			distance 361
@@ -22027,7 +22027,7 @@ system Nssryos
 	object "Var Oti"
 		sprite planet/rock2-b
 		distance 3645.5
-		period 494.498
+		period 1176.52
 	object
 		sprite planet/desert4-b
 		distance 666
@@ -22035,11 +22035,11 @@ system Nssryos
 	object
 		sprite planet/rock15-b
 		distance 1200
-		period 180.827
+		period 222.196
 	object
 		sprite planet/gas2-b
 		distance 6076
-		period 911.896
+		period 2531.58
 		object
 			sprite planet/ice8
 			distance 299
@@ -22313,15 +22313,15 @@ system Ookmya
 	object Ternituul
 		sprite planet/dust4
 		distance 7375.1
-		period 882.422
+		period 2850.35
 	object
 		sprite planet/rock2-b
 		distance 3375
-		period 628.956
+		period 882.382
 	object
 		sprite planet/gas5-b
 		distance 1500
-		period 211.452
+		period 261.446
 	object
 		sprite planet/dust1
 		distance 6114.1
@@ -22329,7 +22329,7 @@ system Ookmya
 	object
 		sprite planet/gas14-b
 		distance 8780.6
-		period 1487.54
+		period 3702.82
 		object
 			sprite planet/rhea
 			distance 241
@@ -26479,22 +26479,22 @@ system Scija
 	object Graede
 		sprite planet/earth-b
 		distance 4000
-		period 327.068
+		period 1352.24
 	object
 		sprite planet/gas3-b
 		distance 6000
-		period 602.761
+		period 2484.23
 		object Siedi
 			sprite planet/forest3
 			distance 453.9
 	object
 		sprite planet/lava0
 		distance 1490
-		period 192.514
+		period 307.429
 	object
 		sprite planet/gas17
 		distance 8000
-		period 1421.27
+		period 3824.73
 		object
 			sprite planet/dust7
 			distance 262
@@ -26506,7 +26506,7 @@ system Scija
 	object
 		sprite planet/saturn
 		distance 8500
-		period 2054.84
+		period 4188.84
 		object
 			sprite planet/europa
 			distance 485.167
@@ -30396,7 +30396,7 @@ system Vilacira
 	object
 		sprite planet/gas1-b
 		distance 16267
-		period 87344.4
+		period 67760.3
 
 system Vindemiatrix
 	pos -635 257
@@ -31280,11 +31280,11 @@ system Wreoul
 	object
 		sprite planet/gas13-b
 		distance 2030
-		period 1079.61
+		period 2987.15
 	object
 		sprite planet/gas5
 		distance 735
-		period 2360.28
+		period 650.796
 		object Cyife
 			sprite planet/ice8-b
 			distance 323.1
@@ -31728,15 +31728,15 @@ system Zeinar
 	object "Dueitch Ae"
 		sprite planet/ocean0-b
 		distance 450
-		period 583.814
+		period 185.218
 	object
 		sprite planet/dust6
 		distance 6400
-		period 187.197
+		period 9934.25
 	object
 		sprite planet/gas1-b
 		distance 550
-		period 2896.35
+		period 250.270
 		object Cipi
 			sprite planet/ice7-b
 			distance 411.8
