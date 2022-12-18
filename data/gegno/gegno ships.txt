@@ -27,7 +27,7 @@ ship "Shale"
 		"mass" 121
 		"drag" 1.8
 		"heat dissipation" 0.8
-		"fuel capacity" 400		
+		"fuel capacity" 400
 		"cargo space" 54
 		"outfit space" 113
 		"weapon capacity" 0
@@ -40,7 +40,7 @@ ship "Shale"
 	outfits
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
-
+		
 		"RG15 Torch Thruster"
 		"RG15 Torch Steering"
 		"Hyperdrive"
@@ -59,13 +59,13 @@ ship "Dolomite"
 			"Gegno Civilian"
 		"cost" 1692000
 		"shields" 0
-		"hull" 10500	
+		"hull" 10500
 		"required crew" 34
 		"bunks" 80
 		"mass" 570
 		"drag" 5.9
 		"heat dissipation" 0.7
-		"fuel capacity" 500		
+		"fuel capacity" 500
 		"cargo space" 155
 		"outfit space" 150
 		"weapon capacity" 0
@@ -255,7 +255,7 @@ ship "Augen"
 			"hit force" 2100
 	outfits
 		"Chloeric Cannon"
-		"Irate Cannon" 17	
+		"Irate Cannon" 17
 		"Ballistic Cannon Turret" 6
 		"Chloeric Cannon Turret" 2
 		"Irate Cannon Turret"
@@ -413,10 +413,10 @@ ship "Schist"
 	outfits
 		"Irate Cannon" 6
 		"Irate Cannon Turret"
-
+		
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
-
+		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
 		"Hyperdrive"
@@ -491,7 +491,7 @@ ship Eclogite
 		
 		"C7 Brawl Cell"
 		"R03 Warforge Battery"
-
+		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
 		"Hyperdrive"
@@ -541,7 +541,7 @@ ship "Diorite"
 		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
-
+		
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
 		"Hyperdrive"
@@ -591,10 +591,10 @@ ship "Hornfel"
 	outfits
 		"Irate Cannon" 10
 		"Chloeric Cannon Turret" 2
-
+		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
-
+		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
 		"Hyperdrive"
@@ -607,7 +607,7 @@ ship "Hornfel"
 	gun 32.5 -129 "Irate Cannon"
 		angle 60
 	gun -30.5 -114 "Irate Cannon"
-		angle -60		
+		angle -60
 	gun -41.5 -2 "Irate Cannon"
 		angle -90
 	gun 42.5 31 "Irate Cannon"
@@ -657,10 +657,10 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 		"Irate Cannon" 8
 		"Chloeric Cannon Turret" 2
 		"Irate Cannon Turret"
-
+		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
-
+		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
 		"Hyperdrive"
@@ -671,7 +671,7 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 	gun 32.5 -129 "Irate Cannon"
 		angle 60
 	gun -30.5 -114 "Irate Cannon"
-		angle -60		
+		angle -60
 	gun -41.5 -2 "Irate Cannon"
 		angle -90
 	gun 42.5 31 "Irate Cannon"
@@ -716,7 +716,7 @@ ship "Gneiss"
 		
 		"C17 Warzone Core"
 		"R04 Crusade Battery"
-
+		
 		"RG3 Torch Thruster"
 		"RG3 Torch Steering"
 		"Hyperdrive"
@@ -784,10 +784,10 @@ ship "Protolith"
 		"Irate Cannon" 11
 		"Irate Cannon Turret"
 		"Chloeric Cannon Turret"
-
+		
 		"C7 Brawl Cell" 2
 		"R02 Battlezone Battery"
-
+		
 		"RG3 Torch Thruster"
 		"RG3 Torch Steering"
 		"Hyperdrive"
@@ -855,9 +855,9 @@ ship "Halite"
 			"hit force" 160
 	outfits
 		"Guile Pulse Laser" 2
-
+		
 		"I70 Ameliorate Cell"
-
+		
 		"SC-1 Plasma Engines"
 	engine -11 42
 	engine 11 42
@@ -873,7 +873,7 @@ ship "Mica"
 	sprite "ship/gegno mica"
 	thumbnail "thumbnail/gegno mica"
 	attributes
-		category "Transport"	
+		category "Transport"
 		licenses
 			"Scin Adjutant"
 		"cost" 358000
@@ -938,7 +938,7 @@ ship "Coesite"
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		"R02 Battlezone Battery" 2
-
+		
 		"SC-12 Plasma Thruster"
 		"SC-14 Plasma Steering"
 		"Hyperdrive"
@@ -1028,7 +1028,7 @@ ship "Felsic"
 			"hit force" 690
 	outfits
 		"Astuit Battery" 3
-
+		
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
 		
@@ -1077,10 +1077,10 @@ ship "Feldspar"
 			"hit force" 1000
 	outfits
 		"Acuit Artillery" 2
-
+		
 		"C27 Campaign Core"
 		"R03 Warforge Battery"
-
+		
 		"SC-15 Plasma Thrusters"
 		"SC-12 Plasma Steering"
 		"SC-14 Plasma Steering"
@@ -1160,7 +1160,7 @@ ship "Muscovite"
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
-
+		
 		"SC-15 Plasma Thrusters"
 		"SC-14 Plasma Steering" 2
 		"Hyperdrive"
