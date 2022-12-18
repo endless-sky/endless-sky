@@ -57,6 +57,7 @@ outfit "Tractor Beam"
 		"shield damage" 0.1
 		"hull damage" 0.2
 		"hit force" -40
+		"slowing damage" 0.1
 
 effect "tractor beam impact"
 	sprite "effect/tractor impact"
