@@ -1125,9 +1125,9 @@ ship "Feldspar"
 	description `The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They were also designed as a semi-experimental platform, built around a brand new multi-engine system and the latest in Gegno plasma technology.`
 	description `	Able to keep a decent stance away from a battle while putting down artillery fire, Feldspars are quite a dangerously well-rounded ship for their size. On the downside, they are more susceptible to hull damage like any other Scin warship, especially when alone. As such, they rely on their fighters since they aren't a dedicated warship themselves.`
 
-ship "Muscovite"
-	sprite "ship/gegno muscovite"
-	thumbnail "thumbnail/gegno muscovite"
+ship "Epidote"
+	sprite "ship/gegno epidote"
+	thumbnail "thumbnail/gegno epidote"
 	attributes
 		category "Utility"
 		licenses
@@ -1184,5 +1184,5 @@ ship "Muscovite"
 	explode "medium explosion" 42
 	explode "small explosion" 38
 	"final explode" "final explosion large"
-	description `Muscovites are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Muscovite is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Muscovites can also be used as a secondary warship when needed.`
-	description `	Like other Gegno Scin ships, Muscovites themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`
+	description `Epidotes are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Epidote is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Along with their three dorsal turrets, Epidotes can also be used as a secondary warship when needed.`
+	description `	Like other Gegno Scin ships, Epidotes themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`

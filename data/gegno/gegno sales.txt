@@ -71,7 +71,7 @@ shipyard "Gegno Scin Ships"
 	"Felsic"
 	"Halite"
 	"Mica"
-	"Muscovite"
+	"Epidote"
 	"Tridymite"
 
 outfitter "Gegno Scin Outfits"

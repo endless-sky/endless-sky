@@ -231,10 +231,10 @@ fleet "Scin Transport"
 	variant 3
 		"Mica" 2
 	variant
-		"Muscovite"
+		"Epidote"
 		"Halite"
 	variant
-		"Muscovite"
+		"Epidote"
 		"Halite"
 		"Coesite"
 	variant
@@ -259,10 +259,10 @@ fleet "Scin Cargo"
 		"Mica"
 		"Coesite"
 	variant
-		"Muscovite" 2
+		"Epidote" 2
 		"Halite" 2
 	variant
-		"Muscovite"
+		"Epidote"
 		"Halite"
 
 fleet "Vi Warfleet"
