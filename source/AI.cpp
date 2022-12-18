@@ -1795,7 +1795,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// If a fighter is armed with only ammo-using weapons, but no longer has the ammunition
 	// needed to use them, it should dock if the parent can supply that ammo.
-	auto requiredAmmo = set<const Outfit *>{};
+	bool dockToReload = false;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
@@ -1806,14 +1806,14 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 			{
 				// This fighter has at least one usable weapon, and
 				// thus does not need to dock to continue fighting.
-				requiredAmmo.clear();
+				dockToReload = false;
 				break;
 			}
 			else if(parent.OutfitCount(ammo))
-				requiredAmmo.insert(ammo);
+				dockToReload = true;
 		}
 	}
-	if(!requiredAmmo.empty())
+	if(dockToReload)
 		return true;
 
 	// If a carried ship has fuel capacity but is very low, it should return if
