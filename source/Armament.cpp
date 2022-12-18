@@ -183,6 +183,39 @@ const vector<Hardpoint> &Armament::Get() const
 
 
 
+const std::vector<const Hardpoint *> Armament::TurrettedWeapons() const
+{
+	std::vector<const Hardpoint *> turrettedHardpoints;
+	for(auto &hardpoint : hardpoints)
+	{
+		if(hardpoint.CanAim())
+			turrettedHardpoints.push_back(&hardpoint);
+	}
+	return turrettedHardpoints;
+}
+
+
+
+const std::vector<const Hardpoint *> Armament::FixedWeapons() const
+{
+	std::vector<const Hardpoint *> fixedHardpoints;
+	for(auto &hardpoint : hardpoints)
+	{
+		if(!hardpoint.CanAim())
+			fixedHardpoints.push_back(&hardpoint);
+	}
+	return fixedHardpoints;
+}
+
+
+
+int Armament::WeaponIndex(const Hardpoint &hardpoint) const
+{
+	return &hardpoint - &hardpoints.front();
+}
+
+
+
 // Determine how many fixed gun hardpoints are on this ship.
 int Armament::GunCount() const
 {

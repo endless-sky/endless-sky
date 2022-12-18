@@ -3898,39 +3898,16 @@ Armament &Ship::GetArmament()
 
 
 
+const Armament &Ship::GetArmament() const
+{
+	return armament;
+}
+
+
+
 const vector<Hardpoint> &Ship::Weapons() const
 {
 	return armament.Get();
-}
-
-
-
-int Ship::WeaponIndex(const Hardpoint &hardpoint) const
-{
-	return &hardpoint - &Weapons().front();
-}
-
-
-
-const std::vector<const Hardpoint *> Ship::TurrettedWeapons() const
-{
-	std::vector<const Hardpoint *> turrettedHardpoints;
-	for(auto &hardpoint : Weapons())
-	{
-		if(hardpoint.CanAim()) turrettedHardpoints.push_back(&hardpoint);
-	}
-	return turrettedHardpoints;
-}
-
-
-const std::vector<const Hardpoint *> Ship::FixedWeapons() const
-{
-	std::vector<const Hardpoint *> fixedHardpoints;
-	for(auto &hardpoint : Weapons())
-	{
-		if(!hardpoint.CanAim()) fixedHardpoints.push_back(&hardpoint);
-	}
-	return fixedHardpoints;
 }
 
 

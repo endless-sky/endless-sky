@@ -63,6 +63,11 @@ public:
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
+	const std::vector<const Hardpoint *> TurrettedWeapons() const;
+	const std::vector<const Hardpoint *> FixedWeapons() const;
+	// Get the index of the given hardpoint.
+	int WeaponIndex(const Hardpoint &hardpoint) const;
+
 	int GunCount() const;
 	int TurretCount() const;
 	// Determine the ammunition used by this armament that can be resupplied (i.e. is not self-uninstalling).
