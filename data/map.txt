@@ -9487,7 +9487,7 @@ system Dokdobaru
 
 system Dom'us
 	pos 180.716 -760.552
-	government "Incipias"
+	government "Hicemus"
 	habitable 560.92
 	belt 1259
 	link Hui'uc

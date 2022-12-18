@@ -411,7 +411,7 @@ government "Hicemus"
 	language "Incups"
 	"player reputation" 0
 	"attitude toward"
-		"Quarg" 1
+		"Quarg" 0.01
 		"Incipias" 1
 
 government "Incipias"
@@ -420,9 +420,9 @@ government "Incipias"
 	"crew attack" .2
 	"crew defense" 1
 	language "Incups"
-	"player reputation" 1
+	"player reputation" 0
 	"attitude toward"
-		"Quarg" 1
+		"Quarg" 0.01
 		"Hicemus" 1
 
 government "Independent"

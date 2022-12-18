@@ -61,7 +61,7 @@ outfit "Tractor Beam"
 		"hull damage" 0.1
 		"hit force" -40
 		"slowing damage" 0.1
-	description "The tractor beam is one of the few technologies of the Incipias that surpasses anything Humanity has made thus far - in fact, the first prototypes were built before the Incipias dreamed of space travel. Giant reactors were constrcuted to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
+	description "The tractor beam is one of the few technologies of the Incipias that surpasses anything Humanity has made thus far - in fact, the first prototypes were built before the Incipias dreamed of space travel. Giant reactors were constructed to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
 	description "As the Incipias' mastery of spaceflight grew, so did the generators' efficiency - this allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models - much to the benefit of the Incipias' otherwise sluggish ships."
 	description "Officially, these beams are used for mining operations; however, less scrupulous individuals have found they are equally-valuable in combat, using the beams to lock down and pull in their opponents for the kill."
 	description "The secret of how these beams work is only known to a few scientists of the Incipias who are under the control of the state. Such knowledge, if made public, could have disastrous consequences."
@@ -111,3 +111,14 @@ outfit "Liquid Hydrogen Cell"
 	"outfit space" -20
 	"energy capacity" 2000
 	description "This form of energy storage was discovered early by the Incipias because of the great amount of Hydrogen on their homeworld. Because the Incipias mostly access the energy at the time it is produced only a small storage is needed. That is why most of their ship have only one cell installed."
+
+outfit "Heavy Machine Gun"
+	category "Hand to Hand"
+	cost 10000
+	thumbnail "outfit/heavy machine gun"
+	licenses
+		"Hicemus Conflict"
+	"capture attack" .55
+	"capture defense" 1.5
+	"unplunderable" 1
+	description "When it comes to close combat, the Incipias are serious enemies. This brutal weapon may not be the best to invade another ship, but when it comes to defending the own ship, it is shredding the enemies inside the hallways."

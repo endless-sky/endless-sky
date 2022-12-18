@@ -5,6 +5,8 @@ ship "Nimbus"
 	"swizzle" 0
 	attributes
 		"category" "Medium Warship"
+		licenses
+			"Hicemus Conflict"
 		"cost" 500000
 		"hull" 2500
 		"shields" 3800
@@ -36,6 +38,7 @@ ship "Nimbus"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 4
 		"Tractor Beam"
+		"Heavy Machine Gun" 20
 	engine 0 120
 	engine 0 120
 	engine -30.5 120
