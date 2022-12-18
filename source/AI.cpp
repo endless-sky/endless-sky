@@ -3755,12 +3755,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.
-		for(const Hardpoint &weapon : ship.Weapons())
-			if(!weapon.CanAim() && !weapon.IsTurret() && weapon.GetOutfit())
-			{
-				shouldAutoAim = true;
-				break;
-			}
+		if(!ship.GetArmament().FixedWeapons().empty())
+			shouldAutoAim = true;
 	}
 	if(shouldAutoAim)
 	{
