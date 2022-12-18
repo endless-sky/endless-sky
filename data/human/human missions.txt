@@ -5013,6 +5013,7 @@ mission "A dead man's path I"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		log "A last will" `Dropped of two siblings on New China to be told their father's last will. They might need another ride.`
 		dialog `When you arrive at New China's spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We will need a ride home."`
 		payment 50000
 
@@ -5058,6 +5059,7 @@ mission "A dead man's path II"
 	on enter "Enif"
 		dialog `If there was ever a prime example of how much the human race still has to learn, it is the strange and impressive yet still unfinished Quarg ringworld in this system. Liam tells you, "Our father was a very intriguing man, and he always talked about the Quarg and their ringworlds and how it would be another thousand years before humanity could build anything similar. We never knew how big it was until now!"`
 	on complete
+		log "A last will" `Brought the siblings to various locations, before finally bringing them to Prime, where their father has left something for them.`
 		conversation
 			`The siblings are uncharacteristically quiet, perhaps in anticipation of finally arriving at their destination. It is only when you've all stepped out into Prime's spaceport that Sophie says, "Captain <last>, you've helped us immensely, and we can't thank you enough for bringing us all across the galaxy! But we have one last request. Both of us think that you should come with us to see what our father left behind. Do you want to see it?"`
 			choice
