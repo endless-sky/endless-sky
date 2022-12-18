@@ -5013,7 +5013,7 @@ mission "A dead man's path I"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		log "A last will" `Dropped of two siblings on New China to be told their father's last will. They might need another ride.`
+		log `Helped a pair of siblings named Sophie and Liam by bringing them to New China so they can hear their father's last will.`
 		dialog `When you arrive at New China's spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We will need a ride home."`
 		payment 50000
 
@@ -5038,8 +5038,8 @@ mission "A dead man's path II"
 			choice
 				`	"But what do you want me to do?"`
 				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
-			`	Sophie looks at her brother amusedly. "Of course, my brother just can't wait to get started," She turns back to you. "Maybe I should start with who our father was. We do not know much about him, he came home only occasionally. Don't get me wrong, our parents weren't fighting, but his passion just did not allow him to stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
-			`	She pauses for a moment, lost in her memories. "Anyways," she continues, "in his testament he told us that he left something behind for us. He said that he would not make it easy, though; he was a great fan of fantasy books, and in those stories there is always something mysterious at play. Instead, he left behind a few systems that before we should visit before we go to Prime, where he left something behind for us.`
+			`	Sophie looks at her brother amusedly. "Of course, my brother just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well, he came home only occasionally. Don't get me wrong, our parents weren't fighting, but his passion just did not allow him to stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
+			`	She pauses for a moment, lost in her memories. "Anyways," she continues, "in his testament he told us that he left something behind for us on Prime. He said that he would not make it easy, though; he was a great fan of fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. Instead, he told us of a few systems that before we should visit before we go to Prime.`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now, "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
 				`	"Yes, I'd be glad to."`
@@ -5053,13 +5053,13 @@ mission "A dead man's path II"
 	on enter "Terminus"
 		dialog `It's often thought that there are nothing to these uninhabited stars by the Deep, but Sophie points out that there's a strange anomaly in this system.`
 	on enter "Aspidiske"
-		dialog `While Sophie and Liam are both quite chatty at times, the beauty of this star stops all of their conversations.`
+		dialog `While Sophie and Liam are both quite chatty at times, the beauty of this star stops all their conversations.`
 	on enter "Gorvi"
-		dialog `Sophie and Liam both talk about how much power a supernova must have, even an old one, if it leaves this much behind.`
+		dialog `Sophie and Liam both go on about how much power a supernova must have, even an old one, if it leaves this much behind.`
 	on enter "Enif"
-		dialog `If there was ever a prime example of how much the human race still has to learn, it is the strange and impressive yet still unfinished Quarg ringworld in this system. Liam tells you, "Our father was a very intriguing man, and he always talked about the Quarg and their ringworlds and how it would be another thousand years before humanity could build anything similar. We never knew how big it was until now!"`
+		dialog `If there was ever a prime example of how much the human race still has to learn, it is the strange and impressive yet still unfinished Quarg ringworld in this system. Liam tells you, "Our father was a very curious man, and he always talked about the Quarg and their ringworlds and how it would be another thousand years before humanity could build anything similar. We never knew how big it was until now!"`
 	on complete
-		log "A last will" `Brought the siblings to various locations, before finally bringing them to Prime, where their father has left something for them.`
+		log `Brought Sophie and Liam around the galaxy to various locations that their dead father asked them to visit, before finally bringing them to Prime where he left something for them.`
 		conversation
 			`The siblings are uncharacteristically quiet, perhaps in anticipation of finally arriving at their destination. It is only when you've all stepped out into Prime's spaceport that Sophie says, "Captain <last>, you've helped us immensely, and we can't thank you enough for bringing us all across the galaxy! But we have one last request. Both of us think that you should come with us to see what our father left behind. Do you want to see it?"`
 			choice
@@ -5106,9 +5106,9 @@ mission "A dead man's path II"
 			`	The three of you enter the hallway behind the opening in single file. Strangely, the stone walls are perfectly smoothed off, and the light that guides you through seems to come out of nowhere. "To use alien technology for something like this," Sophie laughs, "That's totally our dad."`
 			`	For a long while, the three of you continue through the stone hallway, the light following your movements, until it opens up into a dome-shaped room, brilliantly bathed in blue light. On the walls, there are all kinds of alien artifacts lined up next to each other, but at the center of the room there is a pedestal with a sword inserted into it. A small tablet stands in a socket in front of it.`
 			choice
-				`	"(Go up to the sword.)"`
+				`	(Go up to the sword.)`
 						goto sword-scene
-				`	"(Take a look around first.)"`
+				`	(Take a look around first.)`
 			`	You walk around to the right of the dome to a collection of various alien artifacts, all steel in color and rather blocky. "Wow, he must have always brought us back the small items from his expeditions, because these artifacts over here are huge!" Liam exclaims from another part of the dome. "How did he even move all these here?"`
 			`	Now that Liam points it out, many of the larger artifacts over his way look similar to the Sheragi technology you studied with Albert Foster.`
 				to display
@@ -5136,7 +5136,7 @@ mission "A dead man's path II"
 					goto accepted
 			action
 				payment 50000
-			`	"I see. Please, at least take this extra payment of <credits>," Liam says. "It is for you traveling so much with us."`
+			`	"I see. Please, at least take this extra payment of <payment>," Liam says. "It is for you traveling so much with us."`
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
@@ -5145,5 +5145,5 @@ mission "A dead man's path II"
 				payment 50000
 			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
 			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will, we never imagined that we would come so far and we would have never done it without you. It means so much to us. We fare you well among the stars!"`
-			`	After he hands you a credit ship of <payment>, you say goodbye to them and leave them in their father's dome.`
-			decline
+			`	After he hands you a credit ship for <payment>, you say goodbye to them and leave them in their father's dome.`
+				decline
