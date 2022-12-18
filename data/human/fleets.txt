@@ -1107,7 +1107,7 @@ fleet "Large Free Worlds"
 	variant 2
 		"Argosy (Heavy Laser)"
 	variant 1
-		"Argosy (Mega Blaster)"
+		"Argosy (Large Blaster)"
 	variant 6
 		"Bastion"
 		"Osprey"
@@ -1274,7 +1274,7 @@ fleet "Large Militia"
 	variant 2
 		"Argosy (Heavy Laser)"
 	variant 1
-		"Argosy (Mega Blaster)"
+		"Argosy (Large Blaster)"
 	variant 6
 		"Bastion"
 		"Osprey"
@@ -1910,7 +1910,7 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Modified Argosy (Plasma)"
 	variant 1
-		"Modified Argosy (Super Blaster)"
+		"Modified Argosy (Large Blaster)"
 	variant 4
 		"Clipper"
 	variant 2
@@ -1979,7 +1979,7 @@ fleet "Large Southern Pirates"
 		"Argosy (Missile)"
 		"Hawk (Rocket)"
 	variant 1
-		"Argosy (Mega Blaster)"
+		"Argosy (Large Blaster)"
 		"Hawk (Speedy)"
 	variant 1
 		"Argosy (Heavy Laser)"
@@ -2003,9 +2003,9 @@ fleet "Large Southern Pirates"
 		"Modified Argosy (Plasma)"
 	variant 1
 		"Hawk (Twin Modified Blaster)"
-		"Modified Argosy (Super Blaster)"
+		"Modified Argosy (Large Blaster)"
 	variant 1
-		"Modified Argosy (Super Blaster)" 2
+		"Modified Argosy (Large Blaster)" 2
 	variant 1
 		"Modified Argosy (Plasma)" 2
 	variant 4
@@ -2209,7 +2209,7 @@ fleet "Large Core Pirates"
 		"Splinter (Laser)"
 		"Quicksilver"
 	variant 2
-		"Splinter (Mega Blaster)"
+		"Splinter (Large Blaster)"
 		"Quicksilver (Proton)"
 	variant 2
 		"Hawk (Bomber)"
@@ -2233,7 +2233,7 @@ fleet "Large Core Pirates"
 		"Splinter (Proton)"
 		"Quicksilver"
 	variant 2
-		"Splinter (Mega Blaster)"
+		"Splinter (Large Blaster)"
 		"Hawk (Twin Modified Blaster)"
 	variant 4
 		"Manta (Proton)"
@@ -2246,7 +2246,7 @@ fleet "Large Core Pirates"
 	variant 1
 		"Splinter (Proton)" 2
 	variant 1
-		"Splinter (Mega Blaster)" 2
+		"Splinter (Large Blaster)" 2
 	variant 2
 		"Falcon"
 	variant 1
@@ -2471,7 +2471,7 @@ fleet "pirate raid"
 	variant 2
 		"Argosy (Heavy Laser)"
 	variant 2
-		"Argosy (Mega Blaster)"
+		"Argosy (Large Blaster)"
 	variant 1
 		"Modified Argosy"
 	variant 1
@@ -2483,7 +2483,7 @@ fleet "pirate raid"
 	variant 1
 		"Modified Argosy (Plasma)"
 	variant 1
-		"Modified Argosy (Super Blaster)"
+		"Modified Argosy (Large Blaster)"
 	variant 2
 		"Clipper (Speedy)"
 	variant 1
@@ -2668,7 +2668,7 @@ fleet "Bounty Hunters"
 		"Sparrow" 2
 		"Headhunter (Strike)"
 	variant 3
-		"Argosy (Mega Blaster)"
+		"Argosy (Large Blaster)"
 		"Fury (Modified Blaster)"
 	variant 3
 		"Raven"
