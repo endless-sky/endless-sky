@@ -29,6 +29,14 @@ using namespace std;
 
 
 
+Armament::Armament(const Armament &other)
+	: streamReload(other.streamReload)
+	, hardpoints(other.hardpoints)
+{
+	RecreateShortcuts();
+}
+
+
 // Add a gun hardpoint (fixed-direction weapon).
 void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit)
 {
@@ -110,6 +118,10 @@ int Armament::Add(const Outfit *outfit, int count)
 		else
 			streamReload.erase(outfit);
 	}
+
+	// Update 'shortcuts'
+	RecreateShortcuts();
+
 	return added;
 }
 
@@ -122,6 +134,8 @@ void Armament::FinishLoading()
 	for(Hardpoint &hardpoint : hardpoints)
 		if(hardpoint.GetOutfit())
 			hardpoint.Install(hardpoint.GetOutfit());
+
+	RecreateShortcuts();
 
 	ReloadAll();
 }
@@ -151,6 +165,9 @@ void Armament::UninstallAll()
 {
 	for(auto &hardpoint : hardpoints)
 		hardpoint.Uninstall();
+
+	turrettedHardpoints.clear();
+	fixedHardpoints.clear();
 }
 
 
@@ -171,6 +188,8 @@ void Armament::Swap(int first, int second)
 	const Outfit *outfit = hardpoints[first].GetOutfit();
 	hardpoints[first].Install(hardpoints[second].GetOutfit());
 	hardpoints[second].Install(outfit);
+
+	RecreateShortcuts();
 }
 
 
@@ -185,12 +204,6 @@ const vector<Hardpoint> &Armament::Get() const
 
 const std::vector<const Hardpoint *> Armament::TurrettedWeapons() const
 {
-	std::vector<const Hardpoint *> turrettedHardpoints;
-	for(auto &hardpoint : hardpoints)
-	{
-		if(hardpoint.CanAim())
-			turrettedHardpoints.push_back(&hardpoint);
-	}
 	return turrettedHardpoints;
 }
 
@@ -198,12 +211,6 @@ const std::vector<const Hardpoint *> Armament::TurrettedWeapons() const
 
 const std::vector<const Hardpoint *> Armament::FixedWeapons() const
 {
-	std::vector<const Hardpoint *> fixedHardpoints;
-	for(auto &hardpoint : hardpoints)
-	{
-		if(!hardpoint.CanAim())
-			fixedHardpoints.push_back(&hardpoint);
-	}
 	return fixedHardpoints;
 }
 
@@ -319,5 +326,18 @@ void Armament::Step(const Ship &ship)
 		it.second -= count;
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);
+	}
+}
+
+void Armament::RecreateShortcuts()
+{
+	turrettedHardpoints.clear();
+	fixedHardpoints.clear();
+	for(auto &hardpoint : hardpoints)
+	{
+		if(hardpoint.CanAim())
+			turrettedHardpoints.push_back(&hardpoint);
+		else
+			fixedHardpoints.push_back(&hardpoint);
 	}
 }

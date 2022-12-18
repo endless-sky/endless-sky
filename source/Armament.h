@@ -42,6 +42,9 @@ class Visual;
 // distance away and velocity relative to the ship that is firing.
 class Armament {
 public:
+	Armament() = default;
+	Armament(const Armament &other);
+
 	// Add a gun or turret hard-point.
 	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
 	void AddTurret(const Point &point, bool isUnder, const Outfit *outfit = nullptr);
@@ -86,11 +89,19 @@ public:
 
 
 private:
-	// Note: the Armament must be copied when an instance of a Ship is made, so
-	// it should not hold any pointers specific to one ship (including to
-	// elements of this Armament itself).
+	// Notes:
+	// * the Armament must be copied when an instance of a Ship is made, so
+	//   it should not hold any pointers specific to one ship (including to
+	//   elements of this Armament itself)
+	// * the above holds for views because their elements must refer to
+	//   those on the newly created copy
 	std::map<const Outfit *, int> streamReload;
 	std::vector<Hardpoint> hardpoints;
+	// 'Views' useful to group common turrets togheter
+	std::vector<const Hardpoint *> turrettedHardpoints;
+	std::vector<const Hardpoint *> fixedHardpoints;
+
+	void RecreateShortcuts();
 };
 
 
