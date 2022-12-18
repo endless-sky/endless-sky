@@ -124,6 +124,8 @@ public:
 	double AsteroidBeltRadius() const;
 	// Get the list of asteroid belts.
 	const WeightedList<double> &AsteroidBelts() const;
+	// Get the system's invisible fence radius.
+	double InvisibleFenceRadius() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
@@ -210,6 +212,7 @@ private:
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;
+	double invisibleFenceRadius = 10000.;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
