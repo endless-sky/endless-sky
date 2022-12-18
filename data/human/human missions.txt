@@ -5067,7 +5067,7 @@ mission "A dead man's path II"
 			action
 				payment 50000
 			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will! Oh, and here's your payment," Liam says, handing you a credit chip for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
-			decline
+				decline
 			label continue
 			`	Liam pulls out a map, not the starmap he had before but a map of Prime. "Apparently our father bought a whole mountain on this planet, and he wants us to go there."`
 			choice
