@@ -202,14 +202,14 @@ const vector<Hardpoint> &Armament::Get() const
 
 
 
-const std::vector<const Hardpoint *> Armament::TurrettedWeapons() const
+const std::vector<Hardpoint *> Armament::TurrettedWeapons() const
 {
 	return turrettedHardpoints;
 }
 
 
 
-const std::vector<const Hardpoint *> Armament::FixedWeapons() const
+const std::vector<Hardpoint *> Armament::FixedWeapons() const
 {
 	return fixedHardpoints;
 }
@@ -265,8 +265,11 @@ set<const Outfit *> Armament::RestockableAmmo() const
 // Adjust the aim of the turrets.
 void Armament::Aim(const FireCommand &command)
 {
-	for(unsigned i = 0; i < hardpoints.size(); ++i)
-		hardpoints[i].Aim(command.Aim(i));
+	for(auto *hardpoint : turrettedHardpoints)
+	{
+		int index = WeaponIndex(*hardpoint);
+		hardpoint->Aim(command.Aim(index));
+	}
 }
 
 
@@ -317,8 +320,11 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 // Update the reload counters.
 void Armament::Step(const Ship &ship)
 {
-	for(Hardpoint &hardpoint : hardpoints)
-		hardpoint.Step();
+	for(Hardpoint *hardpoint : turrettedHardpoints)
+		hardpoint->Step();
+
+	for(Hardpoint *hardpoint : fixedHardpoints)
+		hardpoint->Step();
 
 	for(auto &it : streamReload)
 	{
@@ -335,6 +341,9 @@ void Armament::RecreateShortcuts()
 	fixedHardpoints.clear();
 	for(auto &hardpoint : hardpoints)
 	{
+		if(!hardpoint.GetOutfit())
+			continue;
+
 		if(hardpoint.CanAim())
 			turrettedHardpoints.push_back(&hardpoint);
 		else

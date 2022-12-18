@@ -66,8 +66,8 @@ public:
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
-	const std::vector<const Hardpoint *> TurrettedWeapons() const;
-	const std::vector<const Hardpoint *> FixedWeapons() const;
+	const std::vector<Hardpoint *> TurrettedWeapons() const;
+	const std::vector<Hardpoint *> FixedWeapons() const;
 	// Get the index of the given hardpoint.
 	int WeaponIndex(const Hardpoint &hardpoint) const;
 
@@ -97,9 +97,9 @@ private:
 	//   those on the newly created copy
 	std::map<const Outfit *, int> streamReload;
 	std::vector<Hardpoint> hardpoints;
-	// 'Views' useful to group common turrets togheter
-	std::vector<const Hardpoint *> turrettedHardpoints;
-	std::vector<const Hardpoint *> fixedHardpoints;
+	// 'Views' useful to iterate over specific categories, skipping empty hardpoints
+	std::vector<Hardpoint *> turrettedHardpoints;
+	std::vector<Hardpoint *> fixedHardpoints;
 
 	void RecreateShortcuts();
 };
