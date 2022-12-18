@@ -1866,9 +1866,29 @@ Files:
  images/outfit/gas class shield.png
  images/outfit/liquid class shield.png
  images/outfit/liquid hydrogen cell.png
+ images/outfit/tractor beam.png
+ images/hardpoint/tractor beam.png
+ images/effect/tractor impact*
+ images/projectile/tractor beam*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
-Comment: Artwork for the Incipias
+
+Files:
+ images/ship/nimbus.png
+ images/thumbnail/nimbus.png
+ images/ship/cirrus.png
+ images/thumbnail/cirrus.png
+ images/ship/stratus.png
+ images/thumbnail/stratus.png
+ images/ship/silent harvester.png
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/heavy machine gun.png
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
@@ -1983,15 +2003,15 @@ License: CC-BY-SA-4.0
  .
  b. produce, reproduce, and Share Adapted Material.
  .
- 2. Exceptions and Limitations. For the avoidance of doubt, where
+ 1. Exceptions and Limitations. For the avoidance of doubt, where
  Exceptions and Limitations apply to Your use, this Public
  License does not apply, and You do not need to comply with
  its terms and conditions.
  .
- 3. Term. The term of this Public License is specified in Section
+ 1. Term. The term of this Public License is specified in Section
  6(a).
  .
- 4. Media and formats; technical modifications allowed. The
+ 1. Media and formats; technical modifications allowed. The
  Licensor authorizes You to exercise the Licensed Rights in
  all media and formats whether now known or hereafter created,
  and to make technical modifications necessary to do so. The
@@ -2003,7 +2023,7 @@ License: CC-BY-SA-4.0
  simply making modifications authorized by this Section 2(a)
  (4) never produces Adapted Material.
  .
- 5. Downstream recipients.
+ 1. Downstream recipients.
  .
  a. Offer from the Licensor -- Licensed Material. Every
  recipient of the Licensed Material automatically
@@ -2024,7 +2044,7 @@ License: CC-BY-SA-4.0
  Licensed Rights by any recipient of the Licensed
  Material.
  .
- 6. No endorsement. Nothing in this Public License constitutes or
+ 1. No endorsement. Nothing in this Public License constitutes or
  may be construed as permission to assert or imply that You
  are, or that Your use of the Licensed Material is, connected
  with, or sponsored, endorsed, or granted official status by,
@@ -2041,10 +2061,10 @@ License: CC-BY-SA-4.0
  extent necessary to allow You to exercise the Licensed
  Rights, but not otherwise.
  .
- 2. Patent and trademark rights are not licensed under this
+ 1. Patent and trademark rights are not licensed under this
  Public License.
  .
- 3. To the extent possible, the Licensor waives any right to
+ 1. To the extent possible, the Licensor waives any right to
  collect royalties from You for the exercise of the Licensed
  Rights, whether directly or through a collecting society
  under any voluntary or waivable statutory or compulsory
@@ -2087,14 +2107,14 @@ License: CC-BY-SA-4.0
  Public License, and include the text of, or the URI or
  hyperlink to, this Public License.
  .
- 2. You may satisfy the conditions in Section 3(a)(1) in any
+ 1. You may satisfy the conditions in Section 3(a)(1) in any
  reasonable manner based on the medium, means, and context in
  which You Share the Licensed Material. For example, it may be
  reasonable to satisfy the conditions by providing a URI or
  hyperlink to a resource that includes the required
  information.
  .
- 3. If requested by the Licensor, You must remove any of the
+ 1. If requested by the Licensor, You must remove any of the
  information required by Section 3(a)(1)(A) to the extent
  reasonably practicable.
  .
@@ -2107,12 +2127,12 @@ License: CC-BY-SA-4.0
  license with the same License Elements, this version or
  later, or a BY-SA Compatible License.
  .
- 2. You must include the text of, or the URI or hyperlink to, the
+ 1. You must include the text of, or the URI or hyperlink to, the
  Adapter's License You apply. You may satisfy this condition
  in any reasonable manner based on the medium, means, and
  context in which You Share Adapted Material.
  .
- 3. You may not offer or impose any additional or different terms
+ 1. You may not offer or impose any additional or different terms
  or conditions on, or apply any Effective Technological
  Measures to, Adapted Material that restrict exercise of the
  rights granted under the Adapter's License You apply.
@@ -2181,7 +2201,7 @@ License: CC-BY-SA-4.0
  it is cured within 30 days of Your discovery of the
  violation; or
  .
- 2. upon express reinstatement by the Licensor.
+ 1. upon express reinstatement by the Licensor.
  .
  For the avoidance of doubt, this Section 6(b) does not affect any
  right the Licensor may have to seek remedies for Your violations
