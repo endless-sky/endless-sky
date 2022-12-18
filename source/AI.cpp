@@ -3045,13 +3045,13 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 	// Find the longest range of any of your non-homing weapons. Homing weapons
 	// that don't consume ammo may also fire in non-homing mode.
 	double maxRange = 0.;
-	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.IsReady()
-				&& !(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
-				&& !(!secondary && weapon.GetOutfit()->Icon())
-				&& !(beFrugal && weapon.GetOutfit()->Ammo())
-				&& !(isWaitingToJump && weapon.GetOutfit()->FiringForce()))
-			maxRange = max(maxRange, weapon.GetOutfit()->Range());
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsReady()
+				&& !(!currentTarget && hardpoint.IsHoming() && hardpoint.GetOutfit()->Ammo())
+				&& !(!secondary && hardpoint.GetOutfit()->Icon())
+				&& !(beFrugal && hardpoint.GetOutfit()->Ammo())
+				&& !(isWaitingToJump && hardpoint.GetOutfit()->FiringForce()))
+			maxRange = max(maxRange, hardpoint.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
 
