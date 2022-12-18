@@ -344,15 +344,15 @@ mission "Unfettered Jump Drive Trading"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	As soon as you set foot on the world the pretended engineer drops her equipement and throws a blade at you just like before - it seems that she does not want to waste time with you anymore.`
+			`	As soon as you set foot on the world the supposed engineer drops her equipment and throws a blade at you just like before - it seems that she does not want to waste time with you anymore.`
 				to display
 					"unfettered: blade rodeo" == 1
 				goto blade
-			`	You exit your ship but before you can even reach the engineer an Unfettered shouts at you to attract your attention and throws a blade at you, without any ceremony.`
+			`	You exit your ship, but before you can even reach the engineer, another Unfettered shouts to attract your attention and then throws a blade at you, without any other warning or ceremony.`
 				to display
 					"unfettered: blade rodeo" > 1
 				goto blade
-			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in provide us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
+			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in providing us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
 			choice
 				`	(Say nothing.)`
 					goto next
@@ -363,7 +363,7 @@ mission "Unfettered Jump Drive Trading"
 			label next
 			`	They lead you through the usual outfitter but then go to an area you have never noticed before, probably because you were not meant to. As you are about to pass through what you assume to be a security check, an Unfettered throws a blade at your face!`
 			label blade
-			`	You recognize that it is the same Unfettered as last time. She must fancy throwing blades at people.`
+			`	You recognize the same Unfettered as last time; she must fancy throwing blades at people.`
 				to display
 					has "unfettered: blade rodeo"
 			choice
@@ -446,7 +446,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				"unfettered: jd to sell" += 2
 				"unfettered: dodged the blade" ++
-			`	<as before (run)> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, discontent clear on their face.`
+			`	<as before (run)> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, dissatisfaction clear on their face.`
 			`	"So this is how you 'fight,' Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
 				to display
 					not "unfettered: flee from the blade"
@@ -462,11 +462,11 @@ mission "Unfettered Jump Drive Trading"
 			label fail
 			action
 				"unfettered: blade rodeo" ++
-			`	"You really keep on disappointing me, Captain. At one time you tried to avoid a fight you could not flee from, and the other to dodge a weapon that was so readily presented to you? Maybe you truly are no warrior, and let most of your subordinates do the dirty work."`
+			`	"You really keep on disappointing me, Captain. At one time you tried to avoid a fight you could not flee from, and the other to dodge a weapon that was so readily presented to you? Maybe you truly are no warrior and let most of your subordinates do the dirty work."`
 				to display
 					"unfettered: flee from the blade" == 1
 					"unfettered: dodged the blade" == 1
-			`	"I will not keep on teaching you the same lesson! You had your chance, we cannot accept that one does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons." She then leaves, visibly irritated.`
+			`	"I will not keep on teaching you the same lesson! You had your chance, we cannot accept one that does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons." She then leaves, visibly irritated.`
 				to display
 					or
 						"unfettered: dodged the blade" > 1
