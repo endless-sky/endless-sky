@@ -906,8 +906,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		subs["<ship>"] = flagship->Name();
 
 	const auto &playerConditions = player.Conditions();
-	bool toAcceptPassed = toAccept.IsEmpty() || toAccept.Test(playerConditions);
-	subs["<conditions>"] = toAcceptPassed ? "meet" : "do not meet";
+	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
 
 	ostringstream out;
 	if(bunksNeeded > 0)
