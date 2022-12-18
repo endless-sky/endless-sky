@@ -2142,6 +2142,111 @@ phrase "friendly navy"
 		"All unlicensed ships will be fined."
 
 phrase "friendly navy"
+	word
+		"We are obligated to inform you that"
+		"Be warned that"
+		"We warn you that"
+		"We inform you that"
+		"An injunctive warning:"
+		"Under Republic law,"
+		"By the decree of Parliament,"
+		"By the laws of Parliament,"
+		"By Republic law,"
+		"We advise you that"
+	word
+		"planetary officials upon landing"
+		"Navy officers upon landing"
+		"border control officials upon landing"
+		"Gunboat patrols"
+		"Navy Gunboats"
+		"Gunboat forces"
+		"Gunboat monitors"
+		"the Republic's Gunboat forces"
+		"Navy police forces"
+		"Navy forces"
+		"Republic forces"
+	word
+		" will "
+	phrase
+		"navy warning adverb first"
+		"navy warning adverb last"
+	word
+		"cargo"
+		"outfit"
+		"structural"
+	word
+		" scans"
+		" examinations"
+		" inspections"
+		" searches"
+		" sweeps"
+	word
+		" on all "
+	word
+		"civilian "
+		"merchant "
+		"private "
+	word
+		"ships "
+		"vessels "
+		"warships "
+	word
+		"in the Republic"
+		"in Republic space"
+		"in Republic jurisdiction"
+		"within the Republic"
+		"within Republic space"
+		"within Republic jurisdiction"
+		"landing on a Republic planet"
+		"landing within Republic territory" 
+	word
+		". "
+	word
+		"" 3
+		"This is for your safety."
+		"We do this to benefit you."
+		"We do this to maintain the integrity of the Republic."
+		"We do this to maintain the integrity of Parliament's mandate."
+		"We do this to maintain the integrity of our laws."
+		"We do this to maintain the integrity of Republic law."
+		"Please adhere to our instructions while we do so."
+		"Please follow all the instructions of your Navy officer on duty."
+		"Please follow any instructions of your Navy officer on duty."
+		"Please follow the instructions of your Navy officer on duty."
+		"Your cooperation is greatly valued."
+		"We thank you for your cooperation."
+		"We appreciate your complicance."
+		"We will fine anybody with illegal weaponry or outfits."
+		"There are grave penalties for non-compliance."
+		"There are penalties for anybody with illegal weaponry or outfits."
+		"There are penalties for unlicensed ships."
+		"All unlicensed ships will be fined."
+
+phrase "navy warning adverb first"
+	word
+		"indiscriminantely"
+		"periodically"
+		"randomly"
+		"regularly"
+	word
+		"perform"
+		"conduct"
+		"run"
+		"carry out"
+
+phrase "navy warning adverb last"
+	word
+		"perform"
+		"conduct"
+		"run"
+		"carry out"
+	word
+		"indiscriminante"
+		"periodic"
+		"random"
+		"regular"
+
+phrase "friendly navy"
 	word 
 		"It is illegal"
 		"It is prohibited"
