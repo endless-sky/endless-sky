@@ -1863,14 +1863,22 @@ Comment: Taken from unsplash.com and cropped.
 Files:
  images/effect/incipias flare/flare*
  images/effect/plasma particle.png
+ images/effect/tractor impact*
+ images/projectile/plasma discharge+.png
+ images/projectile/strange ray/*
+ images/projectile/tractor beam*
  images/outfit/gas class shield.png
  images/outfit/liquid class shield.png
  images/outfit/liquid hydrogen cell.png
  images/outfit/tractor beam.png
  images/hardpoint/tractor beam.png
- images/effect/tractor impact*
- images/projectile/tractor beam*
+ images/planet/pontes.png
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/gasgiant1
+Copyright: SteelSirokos
 License: CC-BY-SA-4.0
 
 Files:
