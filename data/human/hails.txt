@@ -2493,7 +2493,6 @@ phrase "friendly free worlds 3"
 		"Stand up to"
 		"Defy"
 		"Speak out against"
-		"We are here to fight"
 	word
 		" "
 	word
@@ -2526,8 +2525,6 @@ phrase "friendly free worlds 3"
 		"executives"
 	word
 		"! Join the Free Worlds!"
-		"! Join us in this struggle!"
-		"! Join us in our fight!"
 
 
 phrase "friendly free worlds 4"
@@ -2727,6 +2724,10 @@ phrase "friendly free worlds 8"
 		"Our Free Worlds struggle for"
 		"We live in a struggle for"
 		"We struggle for"
+		"We fight for"
+		"We rally behind"
+		"Stand for"
+		"Stand behind"
 	word
 		" "
 	word
@@ -2735,13 +2736,41 @@ phrase "friendly free worlds 8"
 		"justice"
 		"peace"
 		"freedom"
-		"safety"
 		"prosperity"
 		"liberty"
 		"unity"
 	word
 		"!"
 		"! Join the Free Worlds!"
+
+phrase "friendly free worlds 9"
+	word
+		"Stand United"
+		"Fight for freedom"
+		"Fight for self-determination"
+		"Fight for peace"
+		"Fight for justice"
+		"Fight for progress"
+		"Fight for your rights"
+		"Fight for your representation"
+		"Fight for your livelihood"
+		"Fight against oppression"
+		"Fight againt decadence"
+		"Fight against corruption"
+	word
+		"! "
+	word
+		"Join the Free Worlds in our struggle"
+		"Join us in our fight"
+		"Join us in our struggle"
+		"Join us"
+		"Join the Free Worlds"
+		"Fight for the Free Worlds"
+		"Fight for liberty"
+		"Fight for prosperity"
+		"Fight for equality"
+	word
+		"!"
 
 # Militia hails shared with the Free Worlds. These should give all the hails an equal chance of occuring.
 phrase "friendly free worlds"
@@ -2756,6 +2785,7 @@ phrase "friendly free worlds"
 		"friendly free worlds 6"
 		"friendly free worlds 7"
 		"friendly free worlds 8"
+		"friendly free worlds 9"
 
 phrase "friendly pirate"
 	word
