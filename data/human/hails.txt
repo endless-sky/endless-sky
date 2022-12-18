@@ -2074,7 +2074,6 @@ phrase "friendly navy"
 		"ships"
 		"vessels"
 		"warships"
-		"escorts"
 	word
 		" "
 	word
@@ -2095,7 +2094,6 @@ phrase "friendly navy"
 	word
 		"periodic"
 		"random"
-		"indiscriminate"
 		"regular"
 		"intermittent"
 	word
@@ -2115,11 +2113,11 @@ phrase "friendly navy"
 		"by Navy officers upon landing"
 		"by border control officials upon landing"
 		"by our Gunboat patrols"
-		"by our Gunboats"
+		"by Navy Gunboats"
 		"by our Gunboat forces"
 		"by our Gunboat monitors"
 		"by the Republic's Gunboat forces"
-		"by our police forces"
+		"by Navy police forces"
 		"by Navy forces"
 		"by Republic forces"
 	word
@@ -2753,7 +2751,7 @@ phrase "friendly free worlds 9"
 		"Fight for your representation"
 		"Fight for your livelihood"
 		"Fight against oppression"
-		"Fight againt decadence"
+		"Fight against decadence"
 		"Fight against corruption"
 	word
 		"! "
@@ -2770,7 +2768,7 @@ phrase "friendly free worlds 9"
 	word
 		"!"
 
-# Militia hails shared with the Free Worlds. These should give all the hails an equal chance of occuring.
+# Militia hails shared with the Free Worlds. These should give all the hails an equal chance of occurring.
 phrase "friendly free worlds"
 	phrase
 		"friendly free worlds militia 1"
