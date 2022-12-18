@@ -41,6 +41,8 @@ outfit "Tractor Beam"
 	"weapon capacity" -30
 	"turret mounts" -1
 	thumbnail "outfit/tractor beam"
+	licenses
+		"Hicemus Conflict"
 	weapon
 		sprite "projectile/tractor beam"
 			"frame rate" 6
@@ -58,6 +60,10 @@ outfit "Tractor Beam"
 		"hull damage" 0.2
 		"hit force" -40
 		"slowing damage" 0.1
+	description "The tractor beam is one of the few technologies of the Incipias that is more advanced than human technology. First prototypes were built even before the Incipias started space travel. They built giant reactors to pull asteriods out of the orbit of their home planet to get access to more resources. But because the asteroids wher coming in too fast, they also created a mechanism to slow them down."
+	description "Later, when the Incipias started to build space ships these generators were made more efficient and smaller to pull mined materials towards their rather slow ships."
+	description "While the official use for these beams is mining it is an unspoken truth that these beams are very useful in combat to pull ships close and then lock them down."
+	description "The secret of how these beams work is only known to a few scientists of the Incipias who are under the control of the state. It is considered too powerful to be known to the public."
 
 effect "tractor beam impact"
 	sprite "effect/tractor impact"
