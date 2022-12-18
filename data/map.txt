@@ -33123,6 +33123,11 @@ planet "Devil-Run Wormhole"
 	spaceport ``
 	wormhole "Devil-Run Wormhole"
 
+wormhole "Devil-Run Wormhole"
+	mappable
+	link "Deep Space 7C" Devil-Run
+	link Devil-Run "Deep Space 7C"
+
 planet "Devru Kaska"
 	attributes korath station
 	landscape land/station27
@@ -33300,23 +33305,50 @@ planet "Ember Gegno"
 	attributes "requires: quantum keystone"
 	wormhole "Ember Gegno"
 
+wormhole "Ember Gegno"
+	mappable
+	link Lucina Rouseu
+	link Rouseu Lucina
+
 planet "Ember Graveyard"
 	attributes "requires: quantum keystone"
 	wormhole "Ember Graveyard"
+
+wormhole "Ember Graveyard"
+	mappable
+	link Polerius Ossipago
+	link Ossipago Polerius
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
 	spaceport ``
 	wormhole "Ember Reaches"
 
+wormhole "Ember Reaches"
+	mappable
+	link Coluber Convector
+	link Convector Coluber
+
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
 	wormhole "Ember Threshold"
+
+wormhole "Ember Threshold"
+	mappable
+	link Cardea Terminus
+	link Terminus Cardea
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
 	spaceport ``
 	wormhole "Ember Wormhole"
+
+wormhole "Ember Wormhole"
+	mappable
+	link Aescolanus Cardea
+	link Cardea Insitor
+	link Insitor Segesta
+	link Segesta Aescolanus
 
 planet Eminonu
 	attributes uninhabited
@@ -33830,9 +33862,19 @@ planet Grakhord
 planet "Graveyard Wormhole (Stable)"
 	wormhole "Graveyard Wormhole (Stable)"
 
+wormhole "Graveyard Wormhole (Stable)"
+	mappable
+	link Ritilas Fearis
+	link Fearis Ritilas
+
 planet "Graveyard Wormhole (Unstable)"
 	attributes "requires: quantum keystone"
 	wormhole "Graveyard Wormhole (Unstable)"
+
+wormhole "Graveyard Wormhole (Unstable)"
+	mappable
+	link Esix Relifer
+	link Relifer Esix
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -35243,6 +35285,10 @@ planet Prime
 
 planet "Pug Wormhole"
 
+wormhole "Pug Wormhole"
+	link "Over the Rainbow" Deneb
+	link Deneb "Over the Rainbow"
+
 planet Pugglemug
 	landscape land/myrabella5
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
@@ -35329,6 +35375,11 @@ planet "Remnant Wormhole"
 	attributes "requires: quantum keystone"
 	spaceport ``
 	wormhole "Remnant Wormhole"
+
+wormhole "Remnant Wormhole"
+	mappable
+	link Peragenor Edusa
+	link Edusa Peragenor
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -36578,17 +36629,37 @@ planet "Wormhole Alpha"
 	government "Wormhole Alpha"
 	wormhole "Wormhole Alpha"
 
+wormhole "Wormhole Alpha"
+	mappable
+	link "Ultima Thule" Waypoint
+	link Waypoint "Ultima Thule"
+
 planet "Wormhole Barren Alpha"
 	attributes "requires: quantum keystone"
 	wormhole "Wormhole Barren Alpha"
+
+wormhole "Wormhole Barren Alpha"
+	mappable
+	link Egeria Levana
+	link Levana Egeria
 
 planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
 	wormhole "Wormhole Barren Beta"
 
+wormhole "Wormhole Barren Beta"
+	mappable
+	link Caeculus Prosa
+	link Prosa Caeculus
+
 planet "Wormhole Link"
 	attributes "requires: quantum keystone"
 	wormhole "Wormhole Link"
+
+wormhole "Wormhole Link"
+	mappable
+	link Statina Vaticanus
+	link Vaticanus Statina
 
 planet "Wye Tzeou"
 	landscape land/snow14
@@ -36668,74 +36739,3 @@ planet Zug
 	tribute 1200
 		threshold 3000
 		fleet "Large Militia" 18
-
-wormhole "Devil-Run Wormhole"
-	mappable
-	link "Deep Space 7C" Devil-Run
-	link Devil-Run "Deep Space 7C"
-
-wormhole "Ember Gegno"
-	mappable
-	link Lucina Rouseu
-	link Rouseu Lucina
-
-wormhole "Ember Graveyard"
-	mappable
-	link Polerius Ossipago
-	link Ossipago Polerius
-
-wormhole "Ember Reaches"
-	mappable
-	link Coluber Convector
-	link Convector Coluber
-
-wormhole "Ember Threshold"
-	mappable
-	link Cardea Terminus
-	link Terminus Cardea
-
-wormhole "Ember Wormhole"
-	mappable
-	link Aescolanus Cardea
-	link Cardea Insitor
-	link Insitor Segesta
-	link Segesta Aescolanus
-
-wormhole "Graveyard Wormhole (Stable)"
-	mappable
-	link Ritilas Fearis
-	link Fearis Ritilas
-
-wormhole "Graveyard Wormhole (Unstable)"
-	mappable
-	link Esix Relifer
-	link Relifer Esix
-
-wormhole "Pug Wormhole"
-	link "Over the Rainbow" Deneb
-	link Deneb "Over the Rainbow"
-
-wormhole "Remnant Wormhole"
-	mappable
-	link Peragenor Edusa
-	link Edusa Peragenor
-
-wormhole "Wormhole Alpha"
-	mappable
-	link "Ultima Thule" Waypoint
-	link Waypoint "Ultima Thule"
-
-wormhole "Wormhole Barren Alpha"
-	mappable
-	link Egeria Levana
-	link Levana Egeria
-
-wormhole "Wormhole Barren Beta"
-	mappable
-	link Caeculus Prosa
-	link Prosa Caeculus
-
-wormhole "Wormhole Link"
-	mappable
-	link Statina Vaticanus
-	link Vaticanus Statina
