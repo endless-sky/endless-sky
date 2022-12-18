@@ -56,8 +56,9 @@ outfit "Tractor Beam"
 		"reload" 1
 		"firing energy" 0.8
 		"firing heat" 3.2
+		# Deal damage to provoke ships.
 		"shield damage" 0.1
-		"hull damage" 0.2
+		"hull damage" 0.1
 		"hit force" -40
 		"slowing damage" 0.1
 	description "The tractor beam is one of the few technologies of the Incipias that surpasses anything Humanity has made thus far - in fact, the first prototypes were built before the Incipias dreamed of space travel. Giant reactors were constrcuted to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
