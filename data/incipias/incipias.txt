@@ -39,21 +39,45 @@ phrase "incipias"
 		"iam"
 
 
-fleet "Incipias Standard"
+fleet "Hicemus Standard Mining"
 	government "Hicemus"
 	names "hicemus"
 	cargo 0
 	personality
-		timid mining harvests
-	variant
+		timid mining harvests coward
+	variant 2
 		"Nimbus"
-	variant
+	variant 5
 		"Stratus"
-	variant
+	variant 5
 		"Stratus" 2
-	variant
+	variant 1
 		"Stratus"
 		"Nimbus"
+
+fleet "Hicemus Standard Surveilance"
+	government "Hicemus"
+	names "hicemus"
+	cargo 0
+	personality
+		heroic vindictive surveillance
+	variant 5
+		"Nimbus"
+	variant 1
+		"Nimbus" 2
+
+fleet "Hicemus Standard Trade"
+	government "Hicemus"
+	names "hicemus"
+	cargo 4
+	personality
+		heroic vindictive surveillance
+	variant 5
+		"Cirrus"
+	variant 1
+		"Nimbus"
+	variant 4
+		"Cirrus" 2
 
 outfitter "Hicemus"
 	"Plasma Discharger"
@@ -64,8 +88,9 @@ outfitter "Hicemus"
 	"Heavy Machine Gun"
 
 shipyard "Hicemus"
-	"Nimbus"
+	"Cirrus"
 	"Stratus"
+	"Nimbus"
 
 news "Incipias common"
 	location

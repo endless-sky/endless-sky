@@ -70,7 +70,7 @@ ship "Stratus"
 		"mass" 200
 		"drag" 13.3
 		"heat dissipation" .8
-		"cargo space" 100
+		"cargo space" 50
 		"outfit space" 250
 		"weapon capacity" 50 
 		"gaslining" 1
@@ -99,3 +99,46 @@ ship "Stratus"
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description "stratus description"
+
+ship "Cirrus"
+	"plural" "Cirri"
+	"sprite" ship/cirrus
+	"thumbnail" thumbnail/cirrus
+	"swizzle" 0
+	attributes
+		"category" "Light Freighter"
+		"cost" 100000
+		"hull" 750
+		"shields" 1500
+		"required crew" 7
+		"bunks" 14
+		"mass" 400
+		"drag" 13.3
+		"heat dissipation" .75
+		"cargo space" 200
+		"outfit space" 100
+		"gaslining" 1
+		"fuel capacity" 200
+
+		"steering flare sound" "plasma huge"
+		"turn" 233
+		"turning energy" 1.
+		"turning heat" 3
+
+		"flare sprite" "effect/incipias flare/flare"
+			"frame rate" 6
+		"flare sound" "plasma huge"
+		"thrust" 16
+		"thrusting energy" 2
+		"thrusting heat" 2.5
+
+	outfits
+		"Gas Class Shield"
+		"Liquid Hydrogen Cell"
+	engine -32 80
+	engine 32 80
+	engine 0 80
+	explode "medium explosion" 20
+	explode "large explosion" 30
+	"final explode" "final explosion medium"
+	description "cirrus description"
