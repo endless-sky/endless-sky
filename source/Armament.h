@@ -71,6 +71,9 @@ public:
 	// Get the index of the given hardpoint.
 	int WeaponIndex(const Hardpoint &hardpoint) const;
 
+	// Get actual min/max range of the mounted weapons
+	std::pair<double, double> GetMinMaxRange() const;
+
 	int GunCount() const;
 	int TurretCount() const;
 	// Determine the ammunition used by this armament that can be resupplied (i.e. is not self-uninstalling).
