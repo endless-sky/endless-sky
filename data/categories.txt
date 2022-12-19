@@ -29,21 +29,21 @@ category "ship"
 
 # Ships of these types can be carried by other ships.
 category "bay type"
-	"Drone" 10
-	"Fighter" 20
+	"Drone"
+	"Fighter"
 
 
 # Outfits of these types can be bought and sold via the outfitter.
 category "outfit"
-	"Guns" 10
-	"Turrets" 20
-	"Secondary Weapons" 30
-	"Ammunition" 40
-	"Systems" 50
-	"Power" 60
-	"Engines" 70
-	"Hand to Hand" 80
-	"Unique" 90
-	"Minerals" 100
-	"Special" 110
-	"Licenses" 120
+	"Guns"
+	"Turrets"
+	"Secondary Weapons"
+	"Ammunition"
+	"Systems"
+	"Power"
+	"Engines"
+	"Hand to Hand"
+	"Unique"
+	"Minerals"
+	"Special"
+	"Licenses"
