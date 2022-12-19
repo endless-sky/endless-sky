@@ -56,6 +56,7 @@ public:
 
 template<>
 class BySeriesAndIndex<Outfit> {
+public:
 	bool operator()(const std::string &nameA, const std::string &nameB)
 	{
 		const Outfit *outfitA = GameData::Outfits().Get(nameA);
