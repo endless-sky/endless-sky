@@ -2862,15 +2862,12 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	const Ship *currentTarget = ship.GetTargetShip().get();
 	if(opportunistic || !currentTarget || !currentTarget->IsTargetable())
 	{
-		// Find the maximum range of any of this ship's turrets.
-		double maxRange = 0.;
-		for(const Hardpoint *weapon : ship.GetArmament().TurrettedWeapons())
-			maxRange = max(maxRange, weapon->GetOutfit()->Range());
+		// Find the maximum range of any of this ship's turrets, and extend
+		// the weapon range slightly to account for velocity differences.
+		const double maxRange = ship.GetArmament().GetTurretsMaxRange() * 1.5;
 		// If this ship has no turrets, bail out.
 		if(!maxRange)
 			return;
-		// Extend the weapon range slightly to account for velocity differences.
-		maxRange *= 1.5;
 
 		// Now, find all enemy ships within that radius.
 		auto enemies = GetShipsList(ship, true, maxRange);

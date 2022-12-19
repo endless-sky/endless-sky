@@ -228,6 +228,11 @@ std::pair<double, double> Armament::GetMinMaxRange() const
 	return { minRange, maxRange };
 }
 
+double Armament::GetTurretsMaxRange() const
+{
+	return maxTurretsRange;
+}
+
 // Determine how many fixed gun hardpoints are on this ship.
 int Armament::GunCount() const
 {
@@ -356,13 +361,14 @@ void Armament::RecreateViewsAndRanges()
 		else
 			fixedHardpoints.push_back(&hardpoint);
 	}
-	std::tie(minRange, maxRange) = CalculateMinMaxRange();
+	std::tie(minRange, maxRange, maxTurretsRange) = CalculateRanges();
 }
 
-std::pair<double, double> Armament::CalculateMinMaxRange() const
+std::tuple<double, double, double> Armament::CalculateRanges() const
 {
 	double rangeMin = numeric_limits<double>::infinity();
 	double rangeMax = 0.;
+	double rangeMaxTurrets = 0;
 	for(const Hardpoint *hardpoint : fixedHardpoints)
 	{
 		if(hardpoint->IsAntiMissile())
@@ -379,7 +385,10 @@ std::pair<double, double> Armament::CalculateMinMaxRange() const
 
 		auto range = hardpoint->GetOutfit()->Range();
 		rangeMin = min(rangeMin, range);
-		rangeMax = max(rangeMax, range);
+		rangeMaxTurrets = max(rangeMaxTurrets, range);
 	}
-	return { rangeMin, rangeMax };
+
+	rangeMax = max(rangeMax, rangeMaxTurrets);
+
+	return { rangeMin, rangeMax, rangeMaxTurrets };
 }

@@ -73,6 +73,8 @@ public:
 
 	// Get actual min/max range of the mounted weapons
 	std::pair<double, double> GetMinMaxRange() const;
+	// Get max range of turrets only weapons
+	double GetTurretsMaxRange() const;
 
 	int GunCount() const;
 	int TurretCount() const;
@@ -93,7 +95,9 @@ public:
 
 private:
 	void RecreateViewsAndRanges();
-	std::pair<double, double> CalculateMinMaxRange() const;
+	// Return global minimum and maximum range of all weapons
+	// and the maximum range of turrets
+	std::tuple<double, double, double> CalculateRanges() const;
 
 	// Notes:
 	// * the Armament must be copied when an instance of a Ship is made, so
@@ -110,6 +114,8 @@ private:
 	// Global ranges of actual configuration
 	double minRange = 0.;
 	double maxRange = 0.;
+	// Max ranges of turrets
+	double maxTurretsRange = 0.;
 };
 
 
