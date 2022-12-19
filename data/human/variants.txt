@@ -1235,21 +1235,18 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 # Same as above but repurposed for Hai Reveal.
 ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
 	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator" 2
+		"Heavy Anti-Missile Turret" 2
+		"Plasma Turret" 3
+		"Stack Core"
+		"S-970 Regenerator" 3
 		"Liquid Helium Cooler" 2
-		"Cooling Ducts"
 		"Jump Drive"
 		"Volcano Afterburner"
 		"Outfits Expansion" 2
-		"Plasma Cannon" 4
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-		"Fission Reactor"
-		"Quad Blaster Turret" 2
 		"Laser Rifle" 25
-		"LP072a Battery Pack"
+		"LP144a Battery Pack"
 		"Quantum Keystone"
 		"Fuel Pod" 2
 		"Catalytic Ramscoop"
