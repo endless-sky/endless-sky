@@ -546,7 +546,8 @@ const std::string BoardingPanel::GenerateOutfitLootName(const PlayerInfo& player
 {
 	std::string label = outfit->DisplayName();
 
-	if(!player.OutfitIsKnown(*outfit)) {
+	if(!player.OutfitIsKnown(*outfit))
+	{
 		label = "Unknown " + outfit->Category();
 
 		if(outfit->Category() == "Power")
@@ -559,7 +560,8 @@ const std::string BoardingPanel::GenerateOutfitLootName(const PlayerInfo& player
 }
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
-BoardingPanel::Plunder::Plunder(const BoardingPanel *boardingPanel, const PlayerInfo &player, const Outfit *outfit, int count)
+BoardingPanel::Plunder::Plunder(const BoardingPanel *boardingPanel, const PlayerInfo &player,
+								const Outfit *outfit, int count)
 	: name(boardingPanel->GenerateOutfitLootName(player, outfit, count)), outfit(outfit), count(count),
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
