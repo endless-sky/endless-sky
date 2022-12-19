@@ -529,16 +529,16 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
-void ShopPanel::CheckForMissions(Mission::Location location)
+void ShopPanel::CheckForMissions(Mission::Setting setting)
 {
 	if(!GetUI()->IsTop(this))
 		return;
 
-	Mission *mission = player.MissionToOffer(location);
+	Mission *mission = player.MissionToOffer(setting);
 	if(mission)
 		mission->Do(Mission::OFFER, player, GetUI());
 	else
-		player.HandleBlockedMissions(location, GetUI());
+		player.HandleBlockedMissions(setting, GetUI());
 }
 
 
