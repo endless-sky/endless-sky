@@ -115,15 +115,13 @@ namespace {
 	// Determine if the ship has any usable weapons.
 	bool IsArmed(const Ship &ship)
 	{
-		for(const Hardpoint &hardpoint : ship.Weapons())
+		for(const Hardpoint *hardpoint : ship.GetArmament().TurrettedWeaponsNoAM())
 		{
-			const Weapon *weapon = hardpoint.GetOutfit();
-			if(weapon && !hardpoint.IsAntiMissile())
-			{
-				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
-					continue;
-				return true;
-			}
+			const Weapon *weapon = hardpoint->GetOutfit();
+
+			if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
+				continue;
+			return true;
 		}
 		return false;
 	}
@@ -1790,22 +1788,18 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a fighter is armed with only ammo-using weapons, but no longer has the ammunition
 	// needed to use them, it should dock if the parent can supply that ammo.
 	bool dockToReload = false;
-	for(const Hardpoint &hardpoint : ship.Weapons())
+	for(const Hardpoint *hardpoint : ship.GetArmament().TurrettedWeaponsNoAM())
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		const Outfit *ammo = hardpoint->GetOutfit()->Ammo();
+		if(!ammo || ship.OutfitCount(ammo))
 		{
-			const Outfit *ammo = weapon->Ammo();
-			if(!ammo || ship.OutfitCount(ammo))
-			{
-				// This fighter has at least one usable weapon, and
-				// thus does not need to dock to continue fighting.
-				dockToReload = false;
-				break;
-			}
-			else if(parent.OutfitCount(ammo))
-				dockToReload = true;
+			// This fighter has at least one usable weapon, and
+			// thus does not need to dock to continue fighting.
+			dockToReload = false;
+			break;
 		}
+		else if(parent.OutfitCount(ammo))
+			dockToReload = true;
 	}
 	if(dockToReload)
 		return true;
@@ -2171,25 +2165,23 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	bool isArmed = false;
 	bool hasAmmo = false;
 	double minSafeDistance = 0.;
-	for(const Hardpoint &hardpoint : ship.Weapons())
+	for(const Hardpoint *hardpoint : ship.GetArmament().TurrettedWeaponsNoAM())
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
-		{
-			isArmed = true;
-			bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
-			hasAmmo |= hasThisAmmo;
+		const Weapon *weapon = hardpoint->GetOutfit();
 
-			// Exploding weaponry that can damage this ship requires special
-			// consideration (while we have the ammo to use the weapon).
-			if(hasThisAmmo && weapon->BlastRadius() && !weapon->IsSafe())
-				minSafeDistance = max(weapon->BlastRadius() + weapon->TriggerRadius(), minSafeDistance);
+		isArmed = true;
+		bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
+		hasAmmo |= hasThisAmmo;
 
-			// The missile boat AI should be applied at 1000 pixels range if
-			// all weapons are homing or turrets, and at 2000 if not.
-			double multiplier = (hardpoint.IsHoming() || hardpoint.IsTurret()) ? 1. : .5;
-			shortestRange = min(multiplier * weapon->Range(), shortestRange);
-		}
+		// Exploding weaponry that can damage this ship requires special
+		// consideration (while we have the ammo to use the weapon).
+		if(hasThisAmmo && weapon->BlastRadius() && !weapon->IsSafe())
+			minSafeDistance = max(weapon->BlastRadius() + weapon->TriggerRadius(), minSafeDistance);
+
+		// The missile boat AI should be applied at 1000 pixels range if
+		// all weapons are homing or turrets, and at 2000 if not.
+		double multiplier = (hardpoint->IsHoming() || hardpoint->IsTurret()) ? 1. : .5;
+		shortestRange = min(multiplier * weapon->Range(), shortestRange);
 	}
 	// If this ship was using the missile boat AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This

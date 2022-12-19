@@ -67,6 +67,7 @@ public:
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
 	const std::vector<Hardpoint *> TurrettedWeapons() const;
+	const std::vector<Hardpoint *> TurrettedWeaponsNoAM() const;
 	const std::vector<Hardpoint *> FixedWeapons() const;
 	const std::vector<Hardpoint *> AntiMissileWeapons() const;
 	// Get the index of the given hardpoint.
@@ -111,6 +112,7 @@ private:
 	// 'Views' useful to iterate over specific categories, skipping empty hardpoints
 	// Note: turrettedHardpoints and fixedHardpoints are mutually exclusive
 	std::vector<Hardpoint *> turrettedHardpoints;
+	std::vector<Hardpoint *> turrettedHardpointsNoAM;
 	std::vector<Hardpoint *> fixedHardpoints;
 	std::vector<Hardpoint *> antiMissileHardpoints;
 
