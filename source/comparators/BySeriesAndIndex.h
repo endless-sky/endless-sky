@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 namespace {
 	bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)
 	{
-		CategoryList series = GameData::GetCategory(CategoryType::SERIES);
+		static const CategoryList &series = GameData::GetCategory(CategoryType::SERIES);
 		if(a.Series() == b.Series())
 		{
 			if(a.Index() == b.Index())
