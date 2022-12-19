@@ -19,8 +19,7 @@ outfit "Cooling Ducts"
 	"mass" 5
 	"outfit space" -5
 	"cooling" 5
-	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where it is sporadically overheating. In that case, you may need to install one of these."
-	description "	An overheated ship will shut down its energy reactors in an attempt to reduce its temperature, but at the risk of running out of stored energy in its batteries and becoming a sitting duck."
+	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where it is sporadically overheating and shutting down. In that case, you may need to install one of these."
 
 outfit "Water Coolant System"
 	category "Systems"
@@ -152,7 +151,7 @@ outfit "Ramscoop"
 	"outfit space" -10
 	"ramscoop" 1
 	description "In the early days of space exploration, when ships could travel through half a dozen systems before encountering an established colony where they could refuel, ramscoops were an essential piece of equipment, harvesting plasma from the solar wind to refill your hyperspace fuel tanks. Although you can install more than one ramscoop, additional ramscoops on a single ship are not as effective as the first."
-	description "	(As a safety measure, all ships are able to harvest tiny amounts of fuel by flying close to a star, but this outfit allows you to accumulate fuel much more quickly. The closer you are to the star, the faster fuel will accumulate.)"
+	description "	Different kinds of stars will generate varying levels of fuel in the solar wind, but in all cases the closer you are to the star, the faster fuel will accumulate."
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
