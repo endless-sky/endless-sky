@@ -294,18 +294,6 @@ test-data "quarg atrocity"
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
 
-test "Land On Ruin helper"
-	status partial
-	description "Helper for landing on Ruin."
-	sequence
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Ruin" == 0
-
 test "Launch Quarg Scanning Mission And Board"
 	status partial
 	description "Starts the mission, accepts it and then boards the quarg ship to repair it."
