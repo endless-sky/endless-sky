@@ -525,7 +525,7 @@ mission "Paradise Job: Wilderness Retreat"
 # Martini Bombings missions
 mission "Martini Bombings (Evacuation, Resident Family)"
 	name "Evacuate Martini family to <planet>"
-	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accomodation. They will pay you <payment>."
+	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
@@ -550,7 +550,7 @@ mission "Martini Bombings (Evacuation, Resident Family)"
 
 mission "Martini Bombings (Evacuation, Resident Group)"
 	name "Evacuate Martini residents to <planet>"
-	description "These <bunks> residents from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accomodation. They will pay you <payment>."
+	description "These <bunks> residents from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
@@ -575,7 +575,7 @@ mission "Martini Bombings (Evacuation, Resident Group)"
 
 mission "Martini Bombings (Evacuation, Resident)"
 	name "Evacuate Martini resident to <planet>"
-	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have accomodation. They will pay you <payment>."
+	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 1
@@ -600,7 +600,7 @@ mission "Martini Bombings (Evacuation, Resident)"
 
 mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
 	name "Evacuate Martini residents to <planet>"
-	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accomodation. They will pay you <payment>."
+	description "This family of <bunks> from Martini had their apartment destroyed in the nuclear bombing and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 3 6
@@ -627,7 +627,7 @@ mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
 
 mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
 	name "Evacuate Martini resident to <planet>"
-	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accomodation. They will pay you <payment>."
+	description "This resident from Martini had their apartment destroyed in the nuclear bombing and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
 	job
 	repeat
 	passengers 1
