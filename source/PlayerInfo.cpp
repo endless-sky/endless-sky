@@ -3318,7 +3318,8 @@ void PlayerInfo::CreateMissions()
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
-		if(it.second.IsAtSetting(Mission::BOARDING) || it.second.IsAtSetting(Mission::ASSISTING) || it.second.IsAtSetting(Mission::ENTERING))
+		if(it.second.IsAtSetting(Mission::BOARDING) || it.second.IsAtSetting(Mission::ASSISTING)
+				|| it.second.IsAtSetting(Mission::ENTERING))
 			continue;
 		if(skipJobs && it.second.IsAtSetting(Mission::JOB))
 			continue;
@@ -3424,8 +3425,10 @@ void PlayerInfo::SortAvailable()
 				// Sorting by "convenience" means you already have a mission to a
 				// planet. Missions at the same planet are sorted higher.
 				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
-				const int lConvenient = destinations.count(lhs.Destination().GetPlanet()) + destinations.count(lhs.Destination().GetSystem());
-				const int rConvenient = destinations.count(rhs.Destination().GetPlanet()) + destinations.count(rhs.Destination().GetSystem());
+				const int lConvenient = destinations.count(lhs.Destination().GetPlanet())
+						+ destinations.count(lhs.Destination().GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination().GetPlanet())
+						+ destinations.count(rhs.Destination().GetSystem());
 				if(lConvenient < rConvenient)
 					return true;
 				if(lConvenient > rConvenient)

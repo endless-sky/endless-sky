@@ -22,13 +22,6 @@ using namespace std;
 
 
 
-/*Location::Location()
-	: planet(nullptr), system(nullptr)
-{
-}*/
-
-
-
 Location::Location(const Planet *planet)
 	: planet(planet), system(nullptr)
 {
@@ -47,10 +40,10 @@ Location &Location::operator=(const Location &location)
 {
 	if(location.planet)
 		*this = location.planet;
-		//this->planet = location.planet;
+		// this->planet = location.planet;
 	else if(location.system)
 		*this = location.system;
-		//this->system = location.system;
+		// this->system = location.system;
 	else
 	{
 		this->planet = nullptr;
@@ -93,7 +86,7 @@ const Planet *Location::GetPlanet() const
 
 
 
-const System *Location::GetSystem()  const
+const System *Location::GetSystem() const
 {
 	if(planet)
 		return planet->GetSystem();
