@@ -140,6 +140,7 @@ namespace {
 		{"discharge protection", -0.99},
 		{"drag reduction", -0.99},
 		{"corrosion protection", -0.99},
+		{"inertia reduction", -0.99},
 		{"ion protection", -0.99},
 		{"leak protection", -0.99},
 		{"burn protection", -0.99},
@@ -191,12 +192,15 @@ namespace {
 void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
-		name = node.Token(1);
+		trueName = node.Token(1);
+
 	isDefined = true;
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "category" && child.Size() >= 2)
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
@@ -287,16 +291,19 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	if(displayName.empty())
+		displayName = trueName;
+
 	// If no plural name has been defined, append an 's' to the name and use that.
 	// If the name ends in an 's' or 'z', and no plural name has been defined, print a
 	// warning since an explicit plural name is always required in this case.
 	// Unless this outfit definition isn't declared with the `outfit` keyword,
 	// because then this is probably being done in `add attributes` on a ship,
 	// so the name doesn't matter.
-	if(!name.empty() && pluralName.empty())
+	if(!displayName.empty() && pluralName.empty())
 	{
-		pluralName = name + 's';
-		if((name.back() == 's' || name.back() == 'z') && node.Token(0) == "outfit")
+		pluralName = displayName + 's';
+		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
 			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
@@ -349,16 +356,23 @@ bool Outfit::IsDefined() const
 
 // When writing to the player's save, the reference name is used even if this
 // outfit was not fully defined (i.e. belongs to an inactive plugin).
-const string &Outfit::Name() const
+const string &Outfit::TrueName() const
 {
-	return name;
+	return trueName;
+}
+
+
+
+const string &Outfit::DisplayName() const
+{
+	return displayName;
 }
 
 
 
 void Outfit::SetName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 

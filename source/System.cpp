@@ -353,6 +353,26 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
 			}
 		}
+		else if(key == "departure")
+		{
+			if(child.Size() >= 2)
+			{
+				jumpDepartureDistance = child.Value(1);
+				hyperDepartureDistance = fabs(child.Value(1));
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
+					hyperDepartureDistance = grand.Value(1);
+				else if(type == "jump" && grand.Size() >= 2)
+					jumpDepartureDistance = fabs(grand.Value(1));
+				else
+					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
+			}
+		}
+		else if(key == "invisible fence" && child.Size() >= 2)
+			invisibleFenceRadius = max(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -571,6 +591,20 @@ double System::ExtraJumpArrivalDistance() const
 
 
 
+double System::JumpDepartureDistance() const
+{
+	return jumpDepartureDistance;
+}
+
+
+
+double System::HyperDepartureDistance() const
+{
+	return hyperDepartureDistance;
+}
+
+
+
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them.
 const set<const System *> &System::VisibleNeighbors() const
@@ -650,6 +684,14 @@ double System::AsteroidBeltRadius() const
 const WeightedList<double> &System::AsteroidBelts() const
 {
 	return belts;
+}
+
+
+
+// Get the system's invisible fence radius.
+double System::InvisibleFenceRadius() const
+{
+	return invisibleFenceRadius;
 }
 
 

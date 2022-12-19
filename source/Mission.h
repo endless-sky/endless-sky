@@ -87,7 +87,7 @@ public:
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Setting {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, ENTERING};
+	enum Setting {SPACEPORT, LANDING, SHIPYARD, OUTFITTER, JOB, ASSISTING, BOARDING, ENTERING};
 	bool IsAtSetting(Setting setting) const;
 
 	// Information about what you are doing.
@@ -225,6 +225,7 @@ private:
 	int64_t paymentApparent = 0;
 
 	ConditionSet toOffer;
+	ConditionSet toAccept;
 	ConditionSet toComplete;
 	ConditionSet toFail;
 

@@ -216,7 +216,7 @@ void MissionPanel::Draw()
 	MapPanel::Draw();
 
 	// Update the tooltip timer [0-60].
-	hoverSortCount += hoverSort >=0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
+	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;
@@ -386,16 +386,16 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			// Sorter buttons
 			else if(hoverSort >= 0)
 			{
-				if (hoverSort == 0)
+				if(hoverSort == 0)
 					player.ToggleSortSeparateDeadline();
-				else if (hoverSort == 1)
+				else if(hoverSort == 1)
 					player.ToggleSortSeparatePossible();
-				else if (hoverSort == 2)
+				else if(hoverSort == 2)
 				{
 					player.NextAvailableSortType();
 					tooltip.clear();
 				}
-				else if (hoverSort == 3)
+				else if(hoverSort == 3)
 					player.ToggleSortAscending();
 				return true;
 			}
@@ -726,11 +726,15 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 
 	// Panel sorting
-	const Sprite *rush[2] = { SpriteSet::Get("ui/sort rush include"), SpriteSet::Get("ui/sort rush separate")};
-	const Sprite *acceptable[2] = { SpriteSet::Get("ui/sort unacceptable include"), SpriteSet::Get("ui/sort unacceptable separate") };
-	const Sprite *sortIcon[4] = { SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
-		SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient") };
-	const Sprite *arrow[2] = { SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
+	const Sprite *rush[2] = {
+			SpriteSet::Get("ui/sort rush include"), SpriteSet::Get("ui/sort rush separate") };
+	const Sprite *acceptable[2] = {
+			SpriteSet::Get("ui/sort unacceptable include"), SpriteSet::Get("ui/sort unacceptable separate") };
+	const Sprite *sortIcon[4] = {
+			SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"),
+			SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient") };
+	const Sprite *arrow[2] = {
+			SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending") };
 
 	// Draw Sorting Columns
 	if(entries && sorter)
@@ -852,10 +856,19 @@ void MissionPanel::DrawTooltips()
 		{
 			switch(player.GetAvailableSortType())
 			{
-				case 0: tooltip = "Sort alphabetically"; break;
-				case 1: tooltip = "Sort by payment"; break;
-				case 2: tooltip = "Sort by distance"; break;
-				case 3: tooltip = "Sort by convenience: Prioritize missions going to a planet or system that is already a destination of one of your missions"; break;
+				case 0:
+					tooltip = "Sort alphabetically";
+					break;
+				case 1:
+					tooltip = "Sort by payment";
+					break;
+				case 2:
+					tooltip = "Sort by distance";
+					break;
+				case 3:
+					tooltip = "Sort by convenience: "
+							"Prioritize missions going to a planet or system that is already a destination of one of your missions";
+					break;
 			}
 		}
 		else if(hoverSort == 3)
