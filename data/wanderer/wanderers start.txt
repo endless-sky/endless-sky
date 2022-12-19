@@ -36,6 +36,7 @@ mission "First Contact: Wanderer (Before Hai)"
 	source
 		attributes "wanderer"
 	to offer
+		not "First Contact: Wanderer: offered"
 		not "event: hai-human resolution announced"
 	on offer
 		fail "Wandering Nightmares"
@@ -47,7 +48,7 @@ mission "First Contact: Wanderer (Before Hai)"
 				`	"Hello. I come in peace."`
 				`	"My name is <first>. I am glad to meet you."`
 			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, judging by the difficulty it seems to be having in trying to speak it, you suspect that it is the language of a different species entirely. Unfortunately, for whatever reason, it is no more comprehensible to you than the bird's own language.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, judging by the difficulty it seems to be having in trying to speak it, you suspect that it is the language of a different species entirely. Unfortunately, it is no more comprehensible to you than the bird's own language.`
 			`	They make some further attempts to communicate with you, but without success. Eventually they give up and all but the leader leaves. The leader makes a sweeping gesture to the rest of the spaceport, apparently inviting you to explore.`
 				decline
 
