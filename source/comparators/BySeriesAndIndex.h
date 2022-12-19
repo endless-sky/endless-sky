@@ -22,8 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Outfit.h"
 #include "../Ship.h"
 
-#include <type_traits>
-
 namespace {
 	bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)
 	{
