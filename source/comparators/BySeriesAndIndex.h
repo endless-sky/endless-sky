@@ -24,39 +24,43 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <type_traits>
 
-template<class T>
-class BySeriesAndIndex {
-public:
-	bool operator()(const std::string &nameA, const std::string &nameB) const
-	{
-		if(std::is_same<T, Ship>::value)
-		{
-			const Outfit shipA = GameData::Ships().Get(nameA)->Attributes();
-			const Outfit shipB = GameData::Ships().Get(nameB)->Attributes();
-			return Helper(shipA, shipB);
-		}
-		else if(std::is_same<T, Outfit>::value)
-		{
-			const Outfit *outfitA = GameData::Outfits().Get(nameA);
-			const Outfit *outfitB = GameData::Outfits().Get(nameB);
-			return Helper(*outfitA, *outfitB);
-		}
-	}
-
-
-private:
-	bool Helper(const Outfit a, const Outfit b) const
+namespace {
+	bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)
 	{
 		CategoryList series = GameData::GetCategory(CategoryType::SERIES);
 		if(a.Series() == b.Series())
 		{
 			if(a.Index() == b.Index())
-				return a.Name() < b.Name();
+				return nameA < nameB;
 			return a.Index() < b.Index();
 		}
 		const CategoryList::Category catA = series.GetCategory(a.Series());
 		const CategoryList::Category catB = series.GetCategory(b.Series());
 		return catA < catB;
+	}
+}
+
+template<class T>
+class BySeriesAndIndex;
+
+template<>
+class BySeriesAndIndex<Ship> {
+public:
+	bool operator()(const std::string &nameA, const std::string &nameB) const
+	{
+		const Outfit &shipA = GameData::Ships().Get(nameA)->Attributes();
+		const Outfit &shipB = GameData::Ships().Get(nameB)->Attributes();
+		return Helper(shipA, shipB, nameA, nameB);
+	}
+};
+
+template<>
+class BySeriesAndIndex<Outfit> {
+	bool operator()(const std::string &nameA, const std::string &nameB)
+	{
+		const Outfit *outfitA = GameData::Outfits().Get(nameA);
+		const Outfit *outfitB = GameData::Outfits().Get(nameB);
+		return Helper(*outfitA, *outfitB, nameA, nameB);
 	}
 };
 
