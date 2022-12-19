@@ -2215,10 +2215,12 @@ void Engine::DoCollection(Flotsam &flotsam)
 			string dn = outfit->DisplayName();
 			string pn = outfit->PluralName();
 
-			if(!player.OutfitIsKnown(*outfit)) {
+			if(!player.OutfitIsKnown(*outfit))
+			{
 				dn = "Unknown " + outfit->Category();
 
-				if((amount == 1) && (dn.back() == 's')) {
+				if((amount == 1) && (dn.back() == 's'))
+				{
 					dn.pop_back();
 					dn += " Component";
 				}

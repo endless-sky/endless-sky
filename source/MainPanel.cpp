@@ -376,14 +376,16 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
 			int count = it.second;
 
-			if(!player.OutfitIsKnown(*it.first)) {
+			if(!player.OutfitIsKnown(*it.first))
+			{
 				string dn = "Unknown Component";
 				string pn = dn + "s";
 				// check if this cat's summary has more than one unknown component
 				auto item = outfitsByCategory[it.first->Category()].find(pn);
 
 				// it does, use pn
-				if(item != outfitsByCategory[it.first->Category()].end()) {
+				if(item != outfitsByCategory[it.first->Category()].end())
+				{
 					outfitNameForDisplay = pn;
 					count += item->second;
 				}
@@ -393,7 +395,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					auto item = outfitsByCategory[it.first->Category()].find(dn);
 
 					// it does.
-					if(item != outfitsByCategory[it.first->Category()].end()) {
+					if(item != outfitsByCategory[it.first->Category()].end())
+					{
 						outfitNameForDisplay = pn;
 						count += item->second;
 						outfitsByCategory[it.first->Category()].erase(item);

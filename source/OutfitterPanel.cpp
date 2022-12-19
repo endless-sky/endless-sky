@@ -97,7 +97,8 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 				catalog[outfit->Category()].insert(name);
 		}
 
-	if(player.GetPlanet()) {
+	if(player.GetPlanet())
+	{
 		if(!player.OutfitterVisited(player.GetPlanet()->Outfitter()))
 			player.VisitOutfitter(player.GetPlanet()->Outfitter());
 		outfitter = player.GetPlanet()->Outfitter();
@@ -116,10 +117,9 @@ void OutfitterPanel::Step()
 			// All help messages have now been displayed.
 			checkedHelp = true;
 
-	for(const auto outfit : outfitter) {
+	for(const auto outfit : outfitter)
 		if(!player.OutfitIsKnown(*outfit))
 			player.DiscoverOutfit(*outfit);
-	}
 
 	for(auto ship : player.Ships())
 		player.DiscoverOutfits(ship->Cargo().Outfits());
