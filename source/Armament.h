@@ -92,6 +92,9 @@ public:
 
 
 private:
+	void RecreateViewsAndRanges();
+	std::pair<double, double> CalculateMinMaxRange() const;
+
 	// Notes:
 	// * the Armament must be copied when an instance of a Ship is made, so
 	//   it should not hold any pointers specific to one ship (including to
@@ -104,7 +107,9 @@ private:
 	std::vector<Hardpoint *> turrettedHardpoints;
 	std::vector<Hardpoint *> fixedHardpoints;
 
-	void RecreateShortcuts();
+	// Global ranges of actual configuration
+	double minRange = 0.;
+	double maxRange = 0.;
 };
 
 
