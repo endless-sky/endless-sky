@@ -658,7 +658,7 @@ mission "Martini Bombings (Evacuation, Tourist)"
 	job
 	repeat
 	passengers 1
-	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
+	clearance "When you inform the spaceport controller that your passenger is permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
@@ -681,7 +681,7 @@ mission "Martini Bombings (Evacuation, Tourist Couple)"
 	job
 	repeat
 	passengers 2
-	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land." # In case the destination is Hermes.
+	clearance "When you inform the spaceport controller that your passengers are permitted to live on <destination>, they give you the clearance to land."
 	to offer
 		has "event: war begins"
 		not "event: initial deployment 2"
