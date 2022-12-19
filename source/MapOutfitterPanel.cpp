@@ -146,7 +146,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &outfitter = object.GetPlanet()->Outfitter();
-			if(outfitter.Has(selected))
+			if(player.OutfitterVisited(outfitter) && outfitter.Has(selected))
 				return 1.;
 			if(!outfitter.empty())
 				value = 0.;
@@ -264,14 +264,15 @@ void MapOutfitterPanel::Init()
 	set<const Outfit *> seen;
 
 	// Add all outfits sold by outfitters of visited planets.
-	for(auto &&it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+	for(auto &&it : GameData::Planets()) {
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()) && player.OutfitterVisited(it.second.Outfitter()))
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
+	}
 
 	// Add outfits in storage
 	for(const auto &it : player.PlanetaryStorage())
