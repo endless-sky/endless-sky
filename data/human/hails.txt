@@ -5664,11 +5664,20 @@ phrase "hostile free worlds"
 
 phrase "hostile free worlds"
 	word
-		"Your actions"
+		"Your "
+		"Your destructive "
+		"Your oppressive "
+		"Your unlawful "
+		"Your illicit "
+		"Your punitive "
+	word
+		"actions "
+		"acts "
 	word
 		"are in violation of"
 		"violate"
 		"breach"
+		"go against"
 	word
 		" the "
 	word
@@ -5676,8 +5685,15 @@ phrase "hostile free worlds"
 		"jurisdiction"
 		"integrity"
 		"security"
+		"values"
+		"peace"
+		"policy"
+		"unity"
+		"safety"
 	word
-		" of "
+		" of the "
+		" enforced by the "
+		" upheld by the"
 	word
 		"Senate"
 		"Free Worlds Senate"
@@ -5685,7 +5701,7 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
-		" and we are forced to destroy you."
+		", and we are forced to destroy you."
 
 phrase "hostile free worlds"
 	word
