@@ -1,4 +1,4 @@
-/* comparators/BySeriesAndIndex.h
+/* BySeriesAndIndex.h
 Copyright (c) 2022 by warp-core
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
