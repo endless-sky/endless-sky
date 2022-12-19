@@ -555,8 +555,6 @@ void Engine::Step(bool isActive)
 
 	const System *currentSystem = player.GetSystem();
 	// Update this here, for thread safety.
-	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-		player.TravelPlan().push_back(flagship->GetTargetSystem());
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
 	if(doFlash)
@@ -1770,7 +1768,7 @@ void Engine::SpawnPersons()
 					ship->SetName(it.first);
 				ship->SetGovernment(person.GetGovernment());
 				ship->SetPersonality(person.GetPersonality());
-				ship->SetHail(person.GetHail());
+				ship->SetHailPhrase(person.GetHail());
 				if(!parent)
 					parent = ship;
 				else
