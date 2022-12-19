@@ -30,6 +30,9 @@ public:
 	// Constructor for colors, opaque unless an alpha is also given.
 	Color(float r, float g, float b, float a = 1.f);
 
+	bool operator==(const Color &other) const;
+	bool operator!=(const Color &other) const;
+
 	// Set this color to the given RGBA values.
 	void Load(double r, double g, double b, double a);
 	// Get the color as a float vector, suitable for use by OpenGL.

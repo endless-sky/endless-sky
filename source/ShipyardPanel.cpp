@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -96,6 +97,14 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
+}
+
+
+
+void ShipyardPanel::Step()
+{
+	ShopPanel::Step();
+	ShopPanel::CheckForMissions(Mission::SHIPYARD);
 }
 
 

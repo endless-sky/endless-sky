@@ -13,17 +13,18 @@
 
 # Ships of these types can be purchased and also used as mission sources.
 category "ship"
-	"Transport" 10
-	"Space Liner" 20
-	"Light Freighter" 30
-	"Heavy Freighter" 40
-	"Utility" 50
-	"Interceptor" 60
-	"Light Warship" 70
-	"Medium Warship" 80
-	"Heavy Warship" 90
-	"Fighter" 100
-	"Drone" 110
+	"Transport"
+	"Space Liner"
+	"Light Freighter"
+	"Heavy Freighter"
+	"Utility"
+	"Interceptor"
+	"Light Warship"
+	"Medium Warship"
+	"Heavy Warship"
+	"Superheavy"
+	"Fighter"
+	"Drone"
 
 
 # Ships of these types can be carried by other ships.

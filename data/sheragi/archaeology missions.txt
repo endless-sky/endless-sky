@@ -886,7 +886,7 @@ mission "Sheragi Archaeology: The Box 4"
 				defer
 			
 			label haggle
-			apply
+			action
 				set "haggled"
 			`	Mammon doesn't look pleased.`
 			`	"What part of non-negotiable did you not understand? You're pushing your luck, Captain <last>. I didn't expect you to be such a petty money pincher."`
@@ -1003,7 +1003,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			`	Feeling distrustful, you immediately close the hatch and get back into your ship while they scatter.`
 			
 			label shoot
-			apply
+			action
 				set "burned white flag"
 			`	Disregarding their surrender, you turn your ship towards them and open fire on the small army. Using your ship-mounted guns against ground personnel is honestly excessive, and they didn't stand a chance. There is now a smoldering clearing around the place where they once stood, and a forest fire is beginning to spread.`
 			`	You enter the camp, shooting any mercenaries that remained hidden, and pillage their tents. You find hundreds of thousands of credits, in chips and valuables, and eventually, you find the cube as well. With that in hand, you go back to your ship, ready to take it back to John.`
@@ -1374,7 +1374,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	(Return to my ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
-			apply
+			action
 				set "spoke with foster"
 			`	You find Foster in a room that appears to have been expanded beyond its original size and converted into a farming facility of some sort. There are rows of dried out soil, its nutrients long gone, with sunlamps suspended above. While most of the crew with Foster is busy studying the farm itself, his attention seems to be on a mummified Sheragi corpse slumped over against one of the walls. You notice that the corpse has a prosthetic wing attached to it, which has survived far better than its host.`
 			`	"What have you found so far?" you ask Foster.`
@@ -1408,7 +1408,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label eyama
-			apply
+			action
 				set "spoke with eyama"
 			`	You find Eyama investigating the living quarters of the ship, which consists of long halls lined on either side by bunk rooms. Many of the doors are already opened, suggesting that Eyama has already been through many of them. She comes out of one of the bunk rooms after looking through it and notices you. "Captain <last>! What brings you here?" she asks.`
 			`	"I'm wondering if you've found anything interesting yet," you respond.`
@@ -1458,7 +1458,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label rakei
-			apply
+			action
 				set "spoke with rakei"
 			`	As you are looking for Rakei, you hear a low hum begin emanating through the ship, followed by the dim glow of the emergency lights being replaced by the bright main lights. You eventually find Rakei with her crew walking through the halls of the underbelly of the ship. "Greetings, Captain," she says. "Is there something you need?"`
 			`	"Have you found anything interesting down here?" you ask.`
@@ -1494,7 +1494,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label desyo
-			apply
+			action
 				set "spoke with desyo"
 			`	You find Desyo in the cockpit of the ship, overseeing a crew attempting to take control of the ship's computer systems. Makeshift scaffolding has been put in place just so that the crew can reach the controls. "Hello there, Captain," Desyo greets you as you walk in through the massive doorway. "Is there anything I can help you with?"`
 			`	"I'm just curious as to what you've found," you respond.`

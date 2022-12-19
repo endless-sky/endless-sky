@@ -1,3 +1,7 @@
+Version 0.9.16.1:
+  * Breaking changes:
+    * Revert the changes to the accompany objective on mission npcs made in the last release. (@warp-core)
+
 Version 0.9.16:
   * Breaking changes:
     * The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live. (@RisingLeaf)

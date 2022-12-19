@@ -69,6 +69,9 @@ public:
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(FILE *file, const std::string &data);
 
+	// Open this user's plugins directory in their native file explorer.
+	static void OpenUserPluginFolder();
+
 	// Logging to the error-log. Actual calls should be done through Logger
 	// and not directly here to ensure that other logging actions also
 	// happen (and to ensure thread safety on the logging).
