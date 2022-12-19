@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ENGINE_H_
@@ -33,6 +36,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <utility>
 #include <vector>
 
+class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
@@ -136,7 +140,8 @@ private:
 
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
+		Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, double angle = 0.);
 
 		Point position;
 		double outer;
@@ -175,6 +180,7 @@ private:
 
 	bool calcTickTock = false;
 	bool drawTickTock = false;
+	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
@@ -192,6 +198,7 @@ private:
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
+	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
@@ -220,8 +227,8 @@ private:
 	Command activeCommands;
 	// Keyboard commands that were active in the previous step.
 	Command keyHeld;
-	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
-	int landKeyInterval = 0;
+	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
+	int keyInterval = 0;
 
 	// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;
@@ -238,6 +245,8 @@ private:
 	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
+	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
+	double nextZoom = 0.;
 
 	double load = 0.;
 	int loadCount = 0;

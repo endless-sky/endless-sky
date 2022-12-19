@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Dialog.h"
@@ -85,7 +88,8 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, Truncate truncate)
+Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
+	: allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate, false);
 }
@@ -93,8 +97,9 @@ Dialog::Dialog(const string &text, Truncate truncate)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
+	allowsFastForward(allowsFastForward),
 	system(system), player(&player)
 {
 	Init(text, truncate, true, true);
@@ -195,6 +200,13 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 				text += "\n\t";
 			text += child.Token(i);
 		}
+}
+
+
+
+bool Dialog::AllowsFastForward() const noexcept
+{
+	return allowsFastForward;
 }
 
 

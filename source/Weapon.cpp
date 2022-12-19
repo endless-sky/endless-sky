@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Weapon.h"
@@ -33,7 +36,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 	calculatedDamage = false;
 	doesDamage = false;
 	bool disabledDamageSet = false;
+	bool minableDamageSet = false;
 	bool relativeDisabledDamageSet = false;
+	bool relativeMinableDamageSet = false;
 
 	for(const DataNode &child : node)
 	{
@@ -212,6 +217,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[DISABLED_DAMAGE] = value;
 				disabledDamageSet = true;
 			}
+			else if(key == "minable damage")
+			{
+				damage[MINABLE_DAMAGE] = value;
+				minableDamageSet = true;
+			}
 			else if(key == "fuel damage")
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
@@ -240,6 +250,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			{
 				damage[RELATIVE_DISABLED_DAMAGE] = value;
 				relativeDisabledDamageSet = true;
+			}
+			else if(key == "relative minable damage")
+			{
+				damage[RELATIVE_MINABLE_DAMAGE] = value;
+				relativeMinableDamageSet = true;
 			}
 			else if(key == "relative fuel damage")
 				damage[RELATIVE_FUEL_DAMAGE] = value;
@@ -272,6 +287,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
 	if(!relativeDisabledDamageSet)
 		damage[RELATIVE_DISABLED_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
+	// Minable damage defaults to hull damage instead of 0.
+	if(!minableDamageSet)
+		damage[MINABLE_DAMAGE] = damage[HULL_DAMAGE];
+	if(!relativeMinableDamageSet)
+		damage[RELATIVE_MINABLE_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
 
 	// Sanity checks:
 	if(burstReload > reload)
