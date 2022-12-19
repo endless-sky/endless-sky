@@ -502,8 +502,7 @@ mission "Remnant: Shattered Light 3"
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
 				accept
 	on enter "Coluber"
-		dialog
-			`Ruach briefly checks the scanning arrays before reporting that; unsurprisingly, the subject seems to not be present. She suggests searching nearby systems to locate it.`
+		dialog `Ruach briefly checks the scanning arrays before reporting that, unsurprisingly, the ship seems to not be present. She suggests searching nearby systems to locate it.`
 	npc "scan outfits"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
