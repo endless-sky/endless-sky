@@ -407,7 +407,7 @@ mission "Remnant: Cognizance 10"
 	source "Esquiline"
 	stopover "Caelian"
 	blocked "Plume's technician needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
-	cargo equipment 8
+	cargo "equipment" 8
 	passengers 1
 	to offer
 		has "Remnant: Cognizance 9: done"
@@ -434,8 +434,7 @@ mission "Remnant: Cognizance 11"
 	source "Esquiline"
 	destination "Viminal"
 	to offer
-		or
-			has "Remnant: Cognizance 10: done"
+		has "Remnant: Cognizance 10: done"
 	on offer
 		conversation
 			`As you finish unloading, you spot Gavriil approaching. They gesture in greeting as they approach. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." They pause and fish a data crystal out of a pouch. "Could you take this to Prefect Taely on <planet>? She is overseeing some retrofits and will need this data.`
@@ -452,7 +451,7 @@ mission "Remnant: Cognizance 12"
 	source "Viminal"
 	destination "Esquiline"
 	stopover "Nasqueron"
-	cargo equipment 8
+	cargo "equipment" 8
 	to offer
 		has "Remnant: Cognizance 11: done"
 	on offer
@@ -473,8 +472,8 @@ mission "Remnant: Cognizance 12"
 			cargo 1
 			commodities Equipment
 			variant
-				Pelican
 				Puffin 4
+				Pelican
 	on stopover
 		dialog
 			`You cruise through the atmosphere at a relaxed pace, waiting while the equipment does its work. You see fewer void sprites than usual, and many have scars. Once the equipment indicates that it has reached capacity, you climb up to where the Pelican is waiting in the high atmosphere, hook up the connections to offload the gas, and then head back down into the depths of the planet. After several hours, the captain of the Pelican informs you that the tanks are full, and it is time to head to <planet>.`
@@ -503,7 +502,7 @@ mission "Remnant: Cognizance 14"
 	name "Investigate strange sensor readings"
 	description "Long range sensors have picked up strange gravitational waves. Go investigate, then return to <destination>."
 	source "Viminal"
-	waypoint Postverta
+	waypoint "Postverta"
 	stopover "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 12: done"
@@ -669,7 +668,7 @@ mission "Remnant: Cognizance 19"
 	destination
 		government "Remnant"
 		distance 1 5
-		not attributes "requires: gaslining"
+		attributes "remnant primary"
 	to offer
 		has "Remnant: Cognizance 18: done"
 	on offer
@@ -693,7 +692,7 @@ mission "Remnant: Cognizance 20"
 	stopover
 		government "Remnant"
 		distance 1 5
-		not attributes "requires: gaslining"
+		attributes "remnant primary"
 	blocked "You need 10 free cargo space as well as a research laboratory for this mission."
 	cargo "supplies" 10
 	to offer
@@ -765,6 +764,7 @@ mission "Remnant: Cognizance 21"
 	description "Install a research laboratory, transport these Remnant researchers to <stopovers>, and then return to <destination>."
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	stopover "Ssil Vida"
 	blocked "You need 10 free space for this mission."
 	cargo "supplies" 10
@@ -1068,7 +1068,7 @@ mission "Remnant: Cognizance 24"
 		government "Remnant"
 	stopover "Esquiline"
 	destination "Ssil Vida"
-	cargo "Outpost Equipment" 11
+	cargo "outpost equipment" 11
 	passengers 1
 	to offer
 		has "Remnant: Cognizance 23: done"
@@ -1359,6 +1359,7 @@ mission "Remnant: Cognizance 32"
 	description "Chilia has asked you to pick up 58 tons of refined fuel from <planet> by <date>."
 	source "Viminal"
 	destination "Clink"
+	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."
 	deadline 19
 	to offer
 		has "Remnant: Cognizance 31: done"
