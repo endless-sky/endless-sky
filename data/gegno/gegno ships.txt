@@ -560,7 +560,7 @@ ship "Diorite"
 	explode "small explosion" 20
 	explode "tiny explosion" 17
 	"final explode" "final explosion medium"
-	description "Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, and sometimes smaller ones as well."
+	description `Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, and sometimes smaller ones as well.`
 
 ship "Hornfel"
 	sprite "ship/gegno hornfel a"
@@ -974,6 +974,11 @@ ship "Tridymite"
 		"outfit space" 240
 		"weapon capacity" 0
 		"engine capacity" 86
+		
+		"outfit scan power" 18
+		"outfit scan speed" 8
+		"cargo scan power" 6
+		"cargo scan speed" 2
 		weapon
 			"blast radius" 35
 			"shield damage" 220
@@ -997,7 +1002,7 @@ ship "Tridymite"
 	explode "small explosion" 19
 	explode "tiny explosion" 14
 	"final explode" "final explosion small"
-	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be found in the military, used as scout craft.`
+	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be seen used as a scout craft by the military, equipped an early prototype scanner system built into the frame.`
 
 ship "Felsic"
 	sprite "ship/gegno felsic"

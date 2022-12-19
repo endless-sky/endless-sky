@@ -239,6 +239,14 @@ mission "Visit Quarg in Gegno Space"
 		personality staying	
 		system "Heutesl"
 		fleet "Scin Warfleet"
+	npc
+		government "Gegno Scin (Neutral)"
+		personality surveillance
+		system "Heutesl"
+		fleet
+			names "gegno scin"
+			variant
+				"Tridymite"
 
 
 mission "Giaru Gegno: Quarg Contact"
