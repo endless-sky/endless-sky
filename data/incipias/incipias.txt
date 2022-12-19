@@ -60,7 +60,7 @@ fleet "Hicemus Standard Surveilance"
 	names "hicemus"
 	cargo 0
 	personality
-		heroic vindictive surveillance
+		heroic vindictive swarming
 	variant 5
 		"Nimbus"
 	variant 1
@@ -71,7 +71,8 @@ fleet "Hicemus Standard Trade"
 	names "hicemus"
 	cargo 4
 	personality
-		heroic vindictive surveillance
+		confusion 40
+		timid frugal appeasing
 	variant 5
 		"Cirrus"
 	variant 1

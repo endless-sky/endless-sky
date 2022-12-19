@@ -9495,9 +9495,9 @@ system Dom'us
 	asteroids "small rock" 1 6.9552
 	asteroids "medium rock" 21 7.7004
 	asteroids "large rock" 18 4.0986
-	minables copper 4 7.76463
-	minables iron 2 8.43123
-	minables silicon 5 10.4989
+	minables copper 4 4.5
+	minables iron 2 5.3
+	minables silicon 5 3.2
 	trade Clothing 354
 	trade Electronics 673
 	trade Equipment 614
@@ -9509,8 +9509,8 @@ system Dom'us
 	trade Metal 270
 	trade Plastic 267
 	fleet "Hicemus Standard Mining" 900
-	fleet "Hicemus Standard Surveilance" 1200
-	fleet "Hicemus Standard Trade" 1100
+	fleet "Hicemus Standard Surveilance" 2400
+	fleet "Hicemus Standard Trade" 1500
 	object
 		sprite star/f0
 		distance 500.6777

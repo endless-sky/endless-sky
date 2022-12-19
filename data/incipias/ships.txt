@@ -12,8 +12,8 @@ ship "Nimbus"
 		"shields" 3800
 		"required crew" 20
 		"bunks" 40
-		"mass" 700
-		"drag" 13.3
+		"mass" 900
+		"drag" 7
 		"heat dissipation" .7
 		"cargo space" 100
 		"outfit space" 450
@@ -22,7 +22,7 @@ ship "Nimbus"
 		"fuel capacity" 200
 
 		"steering flare sound" "plasma huge"
-		"turn" 453
+		"turn" 556
 		"turning energy" 2.5
 		"turning heat" 12
 
@@ -67,8 +67,8 @@ ship "Stratus"
 		"shields" 1400
 		"required crew" 5
 		"bunks" 10
-		"mass" 200
-		"drag" 13.3
+		"mass" 400
+		"drag" 7
 		"heat dissipation" .8
 		"cargo space" 50
 		"outfit space" 250
@@ -77,7 +77,7 @@ ship "Stratus"
 		"fuel capacity" 200
 
 		"steering flare sound" "plasma huge"
-		"turn" 233
+		"turn" 274
 		"turning energy" 1.
 		"turning heat" 3
 
@@ -112,8 +112,8 @@ ship "Cirrus"
 		"shields" 1500
 		"required crew" 7
 		"bunks" 14
-		"mass" 400
-		"drag" 13.3
+		"mass" 600
+		"drag" 7
 		"heat dissipation" .75
 		"cargo space" 200
 		"outfit space" 100
@@ -121,7 +121,7 @@ ship "Cirrus"
 		"fuel capacity" 200
 
 		"steering flare sound" "plasma huge"
-		"turn" 233
+		"turn" 343
 		"turning energy" 1.
 		"turning heat" 3
 
