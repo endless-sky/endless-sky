@@ -2296,8 +2296,8 @@ phrase "friendly navy"
 		" that has broken "
 	word
 		"Republic law" 
-		"the law of Parliament"
-		"the law of the Republic"
+		"the laws of Parliament"
+		"the laws of the Republic"
 	word
 		"will be fined."
 		"will face penalties."
@@ -2384,7 +2384,6 @@ phrase "friendly militia 1"
 		" be warned"
 		", turn back now"
 	word
-		". "
 		"! "
 	word
 		"The militia are here"
@@ -2393,7 +2392,6 @@ phrase "friendly militia 1"
 		"You won't beat us"
 		"We cannot be defeated"
 	word
-		"."
 		"!"
 
 phrase "friendly militia 2"
@@ -2980,9 +2978,6 @@ phrase "friendly free worlds 10"
 	word
 		"equality"
 		"justice"
-		"sacrifice"
-		"self-sacrifice"
-		'matyrdom"
 		"courage"
 		"tenacity"
 		"audacity"
@@ -2992,7 +2987,7 @@ phrase "friendly free worlds 10"
 		"unity"
 		"the rule of law"
 		"fighting for it"
-		"a struggle"
+		"struggle"
 	word
 		"!"
 		"! Join the Free Worlds!"
@@ -3027,11 +3022,10 @@ phrase "friendly free worlds 10"
 	word
 		"equality"
 		"justice"
-		"sacrifice"
 		"courage"
 		"tenacity"
 		"audacity"
-		"a spirit"
+		"spirit"
 		"determination"
 		"hope"
 		"unity"
@@ -4106,12 +4100,10 @@ phrase "friendly disabled"
 
 phrase "disabled free worlds"
 	word
-		"Well, this sucks."
-		"Darn it!"
-		"Oh, great."
+		"Well, this sucks. "
+		"Darn it! "
+		"Oh, great. "
 		"" 4
-	word
-		" "
 	word
 		"I knew I should"
 		"I knew I shouldn't"
@@ -5545,7 +5537,6 @@ phrase "hostile militia"
 		"bust open your cockpit"
 		"bust open your ship"
 	word
-		"."
 		"!"
 		", pirate!"
 		", criminal!"
@@ -5554,7 +5545,6 @@ phrase "hostile militia"
 	word
 		"Quickly, merchants"
 	word
-		". "
 		"! "
 	word
 		"Leave before this pirate destroys you"
@@ -5563,7 +5553,6 @@ phrase "hostile militia"
 		"Escape and allow us to fight this battle"
 		"Get away! We will hold them off"
 	word
-		"."
 		"!"
 
 phrase "hostile militia"
@@ -5672,6 +5661,31 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
+
+phrase "hostile free worlds"
+	word
+		"Your actions"
+	word
+		"are in violation of"
+		"violate"
+		"breach"
+	word
+		" the "
+	word
+		"laws"
+		"jurisdiction"
+		"integrity"
+		"security"
+	word
+		" of "
+	word
+		"Senate"
+		"Free Worlds Senate"
+		"Free Worlds"
+	word
+		"."
+		"!"
+		" and we are forced to destroy you."
 
 phrase "hostile free worlds"
 	word
