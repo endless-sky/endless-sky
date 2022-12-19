@@ -147,13 +147,13 @@ ship "Gypsum"
 		"cost" 1692000
 		"shields" 0
 		"hull" 5200
-		"required crew" 18
-		"bunks" 40
+		"required crew" 7
+		"bunks" 16
 		"mass" 380
 		"drag" 3
 		"heat dissipation" 0.8
 		"fuel capacity" 500
-		"cargo space" 115
+		"cargo space" 125
 		"outfit space" 240
 		"weapon capacity" 42
 		"engine capacity" 120
@@ -837,7 +837,7 @@ ship "Halite"
 			"Scin Architect"
 		"cost" 129000
 		"shields" 240
-		"hull" 780
+		"hull" 580
 		"required crew" 1
 		"bunks" 1
 		"mass" 30
