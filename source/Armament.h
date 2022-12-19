@@ -68,6 +68,7 @@ public:
 	const std::vector<Hardpoint> &Get() const;
 	const std::vector<Hardpoint *> TurrettedWeapons() const;
 	const std::vector<Hardpoint *> FixedWeapons() const;
+	const std::vector<Hardpoint *> AntiMissileWeapons() const;
 	// Get the index of the given hardpoint.
 	int WeaponIndex(const Hardpoint &hardpoint) const;
 
@@ -108,8 +109,10 @@ private:
 	std::map<const Outfit *, int> streamReload;
 	std::vector<Hardpoint> hardpoints;
 	// 'Views' useful to iterate over specific categories, skipping empty hardpoints
+	// Note: turrettedHardpoints and fixedHardpoints are mutually exclusive
 	std::vector<Hardpoint *> turrettedHardpoints;
 	std::vector<Hardpoint *> fixedHardpoints;
+	std::vector<Hardpoint *> antiMissileHardpoints;
 
 	// Global ranges of actual configuration
 	double minRange = 0.;
