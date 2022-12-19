@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   changed:
-    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
+    uses: ./.github/workflows/compute-changes.yml
 
   build_linux:
     name: Build
