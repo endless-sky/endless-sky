@@ -60,14 +60,14 @@ ship "Dolomite"
 		"cost" 1692000
 		"shields" 0
 		"hull" 10500
-		"required crew" 34
+		"required crew" 18
 		"bunks" 80
 		"mass" 570
 		"drag" 5.9
 		"heat dissipation" 0.7
 		"fuel capacity" 500
-		"cargo space" 155
-		"outfit space" 150
+		"cargo space" 200
+		"outfit space" 186
 		"weapon capacity" 0
 		"engine capacity" 81
 		weapon
@@ -103,8 +103,8 @@ ship "Conglomerate"
 		"cost" 1692000
 		"shields" 0
 		"hull" 13300
-		"required crew" 18
-		"bunks" 66
+		"required crew" 32
+		"bunks" 68
 		"mass" 760
 		"drag" 8.9
 		"heat dissipation" 0.7
@@ -1009,7 +1009,7 @@ ship "Felsic"
 			"Scin Hoplologist"
 		"cost" 2342000
 		"shields" 0
-		"hull" 9650
+		"hull" 9850
 		"required crew" 38
 		"bunks" 78
 		"mass" 565
