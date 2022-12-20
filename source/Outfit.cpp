@@ -344,7 +344,7 @@ void Outfit::Load(const DataNode &node)
 		// If this could be simplified into the above, I wouldn't know how to.
 		label += " speed";
 		initial = attributes.Get(label);
-		if(intial)
+		if(initial)
 		{
 			attributes[label] = 0.;
 			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
