@@ -331,6 +331,8 @@ public:
 	double MaximumHeat() const;
 	// Get the ship's temperature, in units Kelvin.
 	double ShipTemperature() const;
+	// Calculate the power of radiative cooling for a given temperature.
+	double RadiativeCooling(float temp) const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Calculate the ship's drag after accounting for drag reduction.
