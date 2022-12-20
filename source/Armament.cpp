@@ -167,7 +167,7 @@ void Armament::UninstallAll()
 		hardpoint.Uninstall();
 
 	turrettedHardpoints.clear();
-	turrettedHardpointsNoAM.clear();
+	allHardpointsNoAM.clear();
 	fixedHardpoints.clear();
 	antiMissileHardpoints.clear();
 }
@@ -211,9 +211,9 @@ const std::vector<Hardpoint *> Armament::TurrettedWeapons() const
 
 
 
-const std::vector<Hardpoint *> Armament::TurrettedWeaponsNoAM() const
+const std::vector<Hardpoint *> Armament::AllWeaponsNoAM() const
 {
-	return turrettedHardpointsNoAM;
+	return allHardpointsNoAM;
 }
 
 
@@ -366,7 +366,7 @@ void Armament::Step(const Ship &ship)
 void Armament::RecreateViewsAndRanges()
 {
 	turrettedHardpoints.clear();
-	turrettedHardpointsNoAM.clear();
+	allHardpointsNoAM.clear();
 	fixedHardpoints.clear();
 	antiMissileHardpoints.clear();
 	for(auto &hardpoint : hardpoints)
@@ -375,16 +375,14 @@ void Armament::RecreateViewsAndRanges()
 			continue;
 
 		if(hardpoint.CanAim())
-		{
 			turrettedHardpoints.push_back(&hardpoint);
-			if(!hardpoint.IsAntiMissile())
-				turrettedHardpointsNoAM.push_back(&hardpoint);
-		}
 		else
 			fixedHardpoints.push_back(&hardpoint);
 
 		if(hardpoint.IsAntiMissile())
 			antiMissileHardpoints.push_back(&hardpoint);
+		else
+			allHardpointsNoAM.push_back(&hardpoint);
 	}
 	std::tie(minRange, maxRange, maxTurretsRange) = CalculateRanges();
 }
