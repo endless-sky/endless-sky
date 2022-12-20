@@ -5514,10 +5514,12 @@ phrase "hostile syndicate"
 		"Our corporate charter includes provisions for self-defense!"
 		"Enemies of commerce are enemies of Syndicated Systems."
 		"Enemies of free trade are enemies of Syndicated Systems."
-		"Thank you for volunteering to be a target ship for Syndicated Weapon Systems!"
+		"Thank you for volunteering to be a target ship for Syndicated Weapons Systems!"
 		"Syndicated Systems disapproves of space littering; your ship's wreckage will be recycled after we are finished destroying it."
 		"With authority vested in me by Syndicated Systems corporate charter, section 8, paragraph 22... prepare to die!"
 		"The remains of your soon-to-be derelict ship will pad my profit margins!"
+		"Chalk another one up for the cost of goods destroyed..."
+		"Syndicated Security appreciates the voluntary donation of your ship to their training programmes!"
 
 phrase "hostile militia"
 	word
@@ -5661,54 +5663,6 @@ phrase "hostile free worlds"
 	word
 		"."
 		"!"
-
-phrase "hostile free worlds"
-	word
-		"Your "
-	word
-		""
-		"destructive"
-		"oppressive"
-		"unlawful"
-		"illicit"
-		"punitive"
-		"aggressive"
-		"disruptive"
-	word
-		" actions "
-		" acts "
-	word
-		"are in violation of"
-		"violate"
-		"breach"
-		"are against"
-		"infringe upon"
-		"are an infraction of"
-		"are a transgression of"
-	word
-		" the "
-	word
-		"laws"
-		"jurisdiction"
-		"integrity"
-		"security"
-		"values"
-		"peace"
-		"policy"
-		"unity"
-		"safety"
-	word
-		" of the "
-		" enforced by the "
-		" upheld by the "
-	word
-		"Senate"
-		"Free Worlds Senate"
-		"Free Worlds"
-	word
-		"."
-		"!"
-		", and we are forced to destroy you."
 
 phrase "hostile free worlds"
 	word
