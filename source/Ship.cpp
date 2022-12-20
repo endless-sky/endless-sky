@@ -785,7 +785,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	if(attributes.Get("maximum temperature") <= 0.)
 	{
-		warning += "Defaulting " + string(attributes.Get("maximum temperature") ? "invalid" : "missing") + " \"maximum temperature\" attribute to 1000.0\n";
+		warning += "Defaulting " + string(attributes.Get("maximum temperature") ? "invalid" : "missing")
+			+ " \"maximum temperature\" attribute to 1000.0\n";
 		attributes.Set("maximum temperature", 1000.);
 	}
 
@@ -3337,7 +3338,7 @@ double Ship::IdleHeat() const
 	double coolingEfficiency = CoolingEfficiency();
 	double cooling = coolingEfficiency * attributes.Get("cooling");
 	double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-	double radiativeCooling =  coolingEfficiency * attributes.Get("radiative cooling");
+	double radiativeCooling = coolingEfficiency * attributes.Get("radiative cooling");
 
 	// Idle heat is the heat level where:
 	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
@@ -3364,7 +3365,8 @@ double Ship::HeatDissipation() const
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {
-	return (attributes.Get("maximum temperature")) / 10. * (cargo.Used() + attributes.Mass() + attributes.Get("heat capacity"));
+	return (attributes.Get("maximum temperature")) / 10. * (cargo.Used() + attributes.Mass()
+			+ attributes.Get("heat capacity"));
 }
 
 
