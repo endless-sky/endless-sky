@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Sprite.h"
 
+#include <iostream>
+
 using namespace std;
 
 namespace {
@@ -26,6 +28,7 @@ namespace {
 	// Uniforms:
 	GLint scaleI;
 	GLint frameCountI;
+	GLint alphaI;
 	// Vertex data:
 	GLint vertI;
 	GLint texCoordI;
@@ -60,6 +63,7 @@ void BatchShader::Init()
 #endif
 		"uniform sampler2DArray tex;\n"
 		"uniform float frameCount;\n"
+		"uniform float alpha;\n"
 
 		"in vec3 fragTexCoord;\n"
 
@@ -72,6 +76,7 @@ void BatchShader::Init()
 		"  finalColor = mix(\n"
 		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
 		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
+		"  finalColor *= vec4(alpha);\n"
 		"}\n";
 
 	// Compile the shaders.
@@ -79,6 +84,7 @@ void BatchShader::Init()
 	// Get the indices of the uniforms and attributes.
 	scaleI = shader.Uniform("scale");
 	frameCountI = shader.Uniform("frameCount");
+	alphaI = shader.Uniform("alpha");
 	vertI = shader.Attrib("vert");
 	texCoordI = shader.Attrib("texCoord");
 
@@ -125,7 +131,7 @@ void BatchShader::Bind()
 
 
 
-void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data)
+void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data, double alpha)
 {
 	// Do nothing if there are no sprites to draw.
 	if(data.empty())
@@ -135,6 +141,9 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(isHighDPI));
 	// The shader also needs to know how many frames the texture has.
 	glUniform1f(frameCountI, sprite->Frames());
+
+	glUniform1f(alphaI, alpha);
+	std::cout<<alpha<<" "<<alphaI<<std::endl;
 
 	// Upload the vertex data.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STREAM_DRAW);

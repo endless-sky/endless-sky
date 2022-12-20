@@ -267,6 +267,11 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// sub-munitions next turn.
 	if(target && (position - target->Position()).Length() < weapon->SplitRange())
 		lifetime = 0;
+
+	if(lifetime < weapon->FadeOut())
+	{
+		alpha = (double)lifetime / weapon->FadeOut();
+	}
 }
 
 
@@ -422,4 +427,11 @@ void Projectile::CheckLock(const Ship &target)
 double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
+}
+
+
+
+double Projectile::Alpha() const
+{
+	return alpha;
 }

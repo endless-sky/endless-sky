@@ -112,6 +112,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
+		else if(key == "fade out" && child.Size() >= 2)
+			fadeOut = child.Value(1);
 		else
 		{
 			double value = child.Value(1);
@@ -426,6 +428,13 @@ const map<const Effect *, int> &Weapon::DieEffects() const
 const vector<Weapon::Submunition> &Weapon::Submunitions() const
 {
 	return submunitions;
+}
+
+
+
+int Weapon::FadeOut() const
+{
+	return fadeOut;
 }
 
 

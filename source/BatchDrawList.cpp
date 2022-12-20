@@ -56,7 +56,7 @@ void BatchDrawList::SetCenter(const Point &center)
 
 
 // Add an unswizzled object based on the Body class.
-bool BatchDrawList::Add(const Body &body, float clip)
+bool BatchDrawList::Add(const Body &body, float clip, double _alpha)
 {
 	// TODO: Rather than compensate using 1/2 the Visual | Projectile velocity, we should
 	// extend the Sprite class to know its reference point. For most sprites, this will be
@@ -68,7 +68,7 @@ bool BatchDrawList::Add(const Body &body, float clip)
 	// we want it to be drawn with its center halfway to the target. For longer-lived projectiles, we
 	// expect the position to be the actual location of the projectile at that point in time.
 	Point position = (body.Position() + .5 * body.Velocity() - center) * zoom;
-	return Add(body, position, clip);
+	return Add(body, position, clip, _alpha);
 }
 
 
@@ -76,7 +76,7 @@ bool BatchDrawList::Add(const Body &body, float clip)
 // TODO: Once we have sprite reference positions, this method will not be needed.
 bool BatchDrawList::AddVisual(const Body &visual)
 {
-	return Add(visual, (visual.Position() - center) * zoom, 1.f);
+	return Add(visual, (visual.Position() - center) * zoom, 1.f, 1.);
 }
 
 
@@ -87,7 +87,7 @@ void BatchDrawList::Draw() const
 	BatchShader::Bind();
 
 	for(const pair<const Sprite * const, vector<float>> &it : data)
-		BatchShader::Add(it.first, isHighDPI, it.second);
+		BatchShader::Add(it.first, isHighDPI, it.second, alpha);
 
 	BatchShader::Unbind();
 }
@@ -117,10 +117,12 @@ bool BatchDrawList::Cull(const Body &body, const Point &position) const
 
 
 
-bool BatchDrawList::Add(const Body &body, Point position, float clip)
+bool BatchDrawList::Add(const Body &body, Point position, float clip, double _alpha)
 {
 	if(Cull(body, position))
 		return false;
+
+	alpha = _alpha;
 
 	// Get the data vector for this particular sprite.
 	vector<float> &v = data[body.GetSprite()];

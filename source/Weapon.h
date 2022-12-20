@@ -73,6 +73,7 @@ public:
 	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::vector<Submunition> &Submunitions() const;
+	int FadeOut() const;
 
 	// Accessor functions for various attributes.
 	int Lifetime() const;
@@ -216,6 +217,7 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+	int fadeOut = 0;
 
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;

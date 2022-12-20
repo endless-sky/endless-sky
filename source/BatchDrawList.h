@@ -35,7 +35,7 @@ public:
 	void SetCenter(const Point &center);
 
 	// Add an unswizzled object based on the Body class.
-	bool Add(const Body &body, float clip = 1.f);
+	bool Add(const Body &body, float clip = 1.f, double _alpha = 1.);
 	bool AddVisual(const Body &visual);
 
 	// Draw all the items in this list.
@@ -47,7 +47,7 @@ private:
 	bool Cull(const Body &body, const Point &position) const;
 
 	// Add the given body at the given position.
-	bool Add(const Body &body, Point position, float clip);
+	bool Add(const Body &body, Point position, float clip, double _alpha);
 
 
 private:
@@ -55,6 +55,8 @@ private:
 	double zoom = 1.;
 	bool isHighDPI = false;
 	Point center;
+
+	double alpha = 1.;
 
 	// Each sprite consists of six vertices (four vertices to form a quad and
 	// two dummy vertices to mark the break in between them). Each of those
