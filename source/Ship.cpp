@@ -784,7 +784,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		attributes.Set("drag", 100.);
 	}
 	if(attributes.Get("maximum temperature") < 0.)
-		warning += "Defaulting " + string("negative" + " \"maximum temperature\" attribute to 1000.0\n";
+		warning += "Defaulting negative \"maximum temperature\" attribute to 1000.0\n";
 	if(attributes.Get("maximum temperature") <= 0.)
 		attributes.Set("maximum temperature", 1000.);
 
