@@ -319,8 +319,7 @@ void Engine::Place()
 			// Default to the player's planet in the case of data definition errors.
 			if(person.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
-				if(planet)
-					ship->SetPlanet(planet);
+				ship->SetPlanet(planet);
 				pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
 			}
 			else if(hasOwnPlanet)
