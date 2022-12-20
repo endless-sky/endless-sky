@@ -5665,19 +5665,26 @@ phrase "hostile free worlds"
 phrase "hostile free worlds"
 	word
 		"Your "
-		"Your destructive "
-		"Your oppressive "
-		"Your unlawful "
-		"Your illicit "
-		"Your punitive "
 	word
-		"actions "
-		"acts "
+		""
+		"destructive"
+		"oppressive"
+		"unlawful"
+		"illicit"
+		"punitive"
+		"aggressive"
+		"disruptive"
+	word
+		" actions "
+		" acts "
 	word
 		"are in violation of"
 		"violate"
 		"breach"
-		"go against"
+		"are against"
+		"infringe upon"
+		"are an infraction of"
+		"are a transgression of"
 	word
 		" the "
 	word
@@ -5693,7 +5700,7 @@ phrase "hostile free worlds"
 	word
 		" of the "
 		" enforced by the "
-		" upheld by the"
+		" upheld by the "
 	word
 		"Senate"
 		"Free Worlds Senate"
