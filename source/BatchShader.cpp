@@ -19,8 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 #include "Sprite.h"
 
-#include <iostream>
-
 using namespace std;
 
 namespace {
@@ -143,7 +141,6 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 	glUniform1f(frameCountI, sprite->Frames());
 
 	glUniform1f(alphaI, alpha);
-	std::cout<<alpha<<" "<<alphaI<<std::endl;
 
 	// Upload the vertex data.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STREAM_DRAW);

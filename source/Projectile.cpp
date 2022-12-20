@@ -428,10 +428,3 @@ double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
 }
-
-
-
-double Projectile::Alpha() const
-{
-	return alpha;
-}

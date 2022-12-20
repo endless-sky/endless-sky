@@ -100,9 +100,6 @@ public:
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
 
-	double Alpha() const;
-
-
 private:
 	void CheckLock(const Ship &target);
 
@@ -121,8 +118,6 @@ private:
 	int lifetime = 0;
 	double distanceTraveled = 0;
 	bool hasLock = true;
-
-	double alpha = 1.0;
 };
 
 
