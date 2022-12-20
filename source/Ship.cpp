@@ -783,11 +783,10 @@ void Ship::FinishLoading(bool isNewInstance)
 		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
 		attributes.Set("drag", 100.);
 	}
+	if(attributes.Get("maximum temperature") < 0.)
+		warning += "Defaulting " + string("negative" + " \"maximum temperature\" attribute to 1000.0\n";
 	if(attributes.Get("maximum temperature") <= 0.)
 		attributes.Set("maximum temperature", 1000.);
-	if(attributes.Get("maximum temperature") < 0.)
-		warning += "Defaulting " + string(attributes.Get("maximum temperature") ? "invalid" : "missing")
-		+ " \"maximum temperature\" attribute to 1000.0\n";
 
 	// Calculate the values used to determine this ship's value and danger.
 	attraction = CalculateAttraction();
