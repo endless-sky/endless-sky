@@ -452,11 +452,11 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	}
 	else if(key == 'y' && isStarry == false)
 	{
-		return isStarry = true;
+		player.SetStarry(true);
 	}
 	else if(key == 'y' && isStarry == true)
 	{
-		return isStarry = false;
+		player.SetStarry(false);
 	}
 	else if(key == 'f')
 	{
@@ -1042,7 +1042,7 @@ void MapPanel::DrawEscorts()
 
 			// Active and parked ships are drawn/indicated by a ring in the center.
 			if(squad.second.activeShips || squad.second.parkedShips)
-				RingShader::Draw(pos, OUTER * sqrt(zoom) * 2 + 2, OUTER * sqrt(zoom) * 2, squad.second.activeShips ? active : parked);
+				RingShader::Draw(pos, INNER, 0, squad.second.activeShips ? active : parked);
 
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 			if(squad.second.outfits.size())

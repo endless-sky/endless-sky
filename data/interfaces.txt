@@ -1074,9 +1074,11 @@ interface "map buttons" bottom right
 		
 	sprite "ui/star button"
 		from -80 -80 to -130 -130
+	active if "!is starry"
 	button y "_"
 		from -70 -70 to -140 -140
 		size 18
+	active if "is starry"
 	button y "_"
 		from -70 -70 to -140 -140
 		size 18

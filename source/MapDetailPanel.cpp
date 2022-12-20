@@ -105,6 +105,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = player.MapColoring();
+	isStarry = player.IsStarry();
 }
 
 
@@ -936,7 +937,11 @@ void MapDetailPanel::SetCommodity(int index)
 	player.SetMapColoring(commodity);
 }
 
-
+void MapDetailPanel::SetStarry(bool starry)
+{
+	isStarry = starry;
+	player.SetStarry(starry);
+}
 
 void MapDetailPanel::SetScroll(double newScroll)
 {

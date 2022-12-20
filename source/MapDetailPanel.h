@@ -69,6 +69,9 @@ private:
 
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
+
+	void SetStarry(bool starry);
+
 	// Set the scroll, and make sure it does not become a negative value.
 	void SetScroll(double newScroll);
 

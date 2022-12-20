@@ -138,8 +138,8 @@ protected:
 	Point recenterVector;
 	int recentering = 0;
 	int commodity;
+	bool isStarry;
 	int step = 0;
-	bool isStarry = true;
 	std::string buttonCondition;
 
 	// Distance from the screen center to the nearest owned system,
@@ -173,8 +173,6 @@ private:
 	void DrawMissions();
 	void DrawTooltips();
 	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
-
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
 	void DrawNames();
 
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
@@ -189,13 +187,11 @@ private:
 	class Node {
 	public:
 
-		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government, const std::vector<std::string> &mapIcon, bool isVisited)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government), mapIcon(mapIcon), isVisited(isVisited) {}
-
 		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
-
+			const Color &nameColor, const Government *government,
+			const std::vector<std::string> &mapIcon, bool isVisited)
+			: position(position), color(color), name(name), nameColor(nameColor),
+			government(government), mapIcon(mapIcon), isVisited(isVisited) {}
 
 		Point position;
 		Color color;

@@ -199,6 +199,8 @@ void PlayerInfo::Load(const string &path)
 			travelDestination = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
 			mapColoring = child.Value(1);
+		else if(child.Token(0) == "is starry" && child.Size() >= 2)
+			isStarry = child.Value(1);
 		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
 			mapZoom = child.Value(1);
 		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
@@ -2497,12 +2499,22 @@ int PlayerInfo::MapColoring() const
 	return mapColoring;
 }
 
-
+bool PlayerInfo::IsStarry() const
+{
+	return isStarry;
+}
 
 // Set what the map is being colored by.
 void PlayerInfo::SetMapColoring(int index)
 {
 	mapColoring = index;
+}
+
+
+
+void PlayerInfo::SetStarry(bool starry)
+{
+	isStarry = starry;
 }
 
 
@@ -3483,6 +3495,7 @@ void PlayerInfo::Save(const string &path) const
 
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
+	out.Write("is starry", isStarry);
 	out.Write("map zoom", mapZoom);
 	// Remember what categories are collapsed.
 	for(const auto &it : collapsed)
