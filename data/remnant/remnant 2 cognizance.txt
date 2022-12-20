@@ -839,7 +839,7 @@ mission "Remnant: Cognizance 21"
 			action
 				explorationinterest ++
 			`	You pick up some instruments, recording equipment, and wayfinding labels, then check the map tracking the other Remnant researchers. Picking an unexplored direction, you set off.`
-			`	The first few corridors are marked with labels indicating the direction that other explorers travelled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars along each side, and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
+			`	The first few corridors are marked with labels indicating the direction that other explorers traveled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars along each side, and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
 			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours exploring you head back to the main area.`
 				goto wrapup
 			label scienceassistant
@@ -1149,7 +1149,7 @@ mission "Remnant: Cognizance 24"
 
 mission "Remnant: Cognizance 25"
 	name "Patrol systems near Postverta."
-	description "Gavriil has asked you to do a patrol through the nearby systems."
+	description "Gavriil has asked you to do a patrol through the nearby systems to make sure that a Palavret that passed by recently did not leave behind any surprises."
 	landing
 	source "Ssil Vida"
 	waypoint "Diespiter"
@@ -1183,6 +1183,10 @@ mission "Remnant: Cognizance 25"
 		dialog "You have destroyed the ships that the Palavret left behind."
 	on waypoint
 		dialog "You have patrolled all six systems."
+	on enter Egeria
+		dialog "As soon as you enter the system, three 'olofezes begin targeting your ship. These are probably the surprises that Gavriil was worried about."
+	on visit
+		dialog "You have returned to Ssil Vida, but you have not ensured all the nearby systems are clear."
 	on complete
 		event "korath rescue: egeria tiny"
 		event "korath rescue: egeria tiny end" 14
