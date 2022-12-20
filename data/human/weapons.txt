@@ -20,7 +20,6 @@ outfit "Energy Blaster"
 	"weapon capacity" -5
 	"gun ports" -1
 	weapon
-		"fade out" 48
 		sprite "projectile/blaster"
 		sound "blaster"
 		"hit effect" "blaster impact"
