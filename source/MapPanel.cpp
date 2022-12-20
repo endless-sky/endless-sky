@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "SpriteShader.h"
+#include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -888,7 +889,8 @@ void MapPanel::UpdateCache()
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.HasVisited(system) ? system.GetGovernment() : nullptr);
+			player.HasVisited(system) ? system.GetGovernment() : nullptr,
+			system.GetMapIcon(), player.HasVisited(system));
 	}
 
 	// Now, update the cache of the links.
@@ -1134,7 +1136,23 @@ void MapPanel::DrawSystems()
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+
+		// Ensures every multiple-star system has a deterministic but distinct rotation.
+		float starAngle = node.name.length() + node.position.Length();
+		float spin = 4 * acos(0.0) / node.mapIcon.size();
+
+		Point starOffset(4, 4);
+		if(node.mapIcon.size() == 1)
+			starOffset = Point(0, 0);
+
+		// Draws the star sprites.
+		for(string stars : node.mapIcon)
+		{
+			starAngle = starAngle + spin;
+			Point starRotate(cos(starAngle), sin(starAngle));
+			string displayStar = (node.isVisited) ? stars : "map/unexplored-star";
+			SpriteShader::Draw(SpriteSet::Get(displayStar), pos + zoom * starOffset * starRotate, zoom / 8);
+		}
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
