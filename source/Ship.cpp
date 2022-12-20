@@ -3344,7 +3344,8 @@ double Ship::IdleHeat() const
 	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
-	double dissipation = HeatDissipation() + activeCooling / MaximumHeat() + radiativeCooling;
+	double dissipation = HeatDissipation() + activeCooling / MaximumHeat()
+		+ radiativeCooling * attributes.Get("maximum temperature") / 1000.;
 
 	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
 	return production / dissipation;
