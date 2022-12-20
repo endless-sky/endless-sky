@@ -2401,7 +2401,7 @@ void Ship::DoGeneration()
 		}
 		// Apply radiative cooling. The amount of radiative cooling is scaled by the fourth power of
 		// your ship's current temperature.
-		heat -= coolingEfficiency * attributes.Get("radiative cooling") * pow(ShipTemperature() / 1000., 4);
+		heat -= coolingEfficiency * attributes.Get("radiative cooling") * pow(ShipTemperature() / 1000., 4.);
 	}
 
 	// Don't allow any levels to drop below zero.
@@ -3346,7 +3346,7 @@ double Ship::IdleHeat() const
 	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat()
-		+ radiativeCooling * attributes.Get("maximum temperature") / 1000.;
+		+ radiativeCooling * pow(attributes.Get("maximum temperature") / 1000., 4.);
 
 	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
 	return production / dissipation;
@@ -3365,7 +3365,7 @@ double Ship::HeatDissipation() const
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {
-	return (attributes.Get("maximum temperature")) / 10. * (cargo.Used() + attributes.Mass()
+	return attributes.Get("maximum temperature") / 10. * (cargo.Used() + attributes.Mass()
 			+ attributes.Get("heat capacity"));
 }
 
