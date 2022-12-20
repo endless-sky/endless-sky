@@ -126,6 +126,24 @@ namespace {
 		return false;
 	}
 
+	bool ShouldDockForReloading(const Ship &ship, const Ship &parent)
+	{
+		bool dockToReload = false;
+		for(const Hardpoint *hardpoint : ship.GetArmament().AllWeaponsNoAM())
+		{
+			const Outfit *ammo = hardpoint->GetOutfit()->Ammo();
+			if(!ammo || ship.OutfitCount(ammo))
+			{
+				// This fighter has at least one usable weapon, and
+				// thus does not need to dock to continue fighting.
+				return false;
+			}
+			else if(parent.OutfitCount(ammo))
+				dockToReload = true;
+		}
+		return dockToReload;
+	}
+
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
@@ -1787,21 +1805,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// If a fighter is armed with only ammo-using weapons, but no longer has the ammunition
 	// needed to use them, it should dock if the parent can supply that ammo.
-	bool dockToReload = false;
-	for(const Hardpoint *hardpoint : ship.GetArmament().AllWeaponsNoAM())
-	{
-		const Outfit *ammo = hardpoint->GetOutfit()->Ammo();
-		if(!ammo || ship.OutfitCount(ammo))
-		{
-			// This fighter has at least one usable weapon, and
-			// thus does not need to dock to continue fighting.
-			dockToReload = false;
-			break;
-		}
-		else if(parent.OutfitCount(ammo))
-			dockToReload = true;
-	}
-	if(dockToReload)
+	if(ShouldDockForReloading(ship, parent))
 		return true;
 
 	// If a carried ship has fuel capacity but is very low, it should return if
