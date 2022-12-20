@@ -115,7 +115,10 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// the value of its protection attribute.
 	auto ScaleType = [&](double blocked, double protection)
 	{
-		return damage.scaling * (1. - blocked * shieldFraction) / (1. + protection);
+		return damage.scaling
+			* ((blocked > 0.) ? (1. - blocked * shieldFraction)
+			: (-blocked * shieldFraction))
+			/ (1. + protection);
 	};
 
 	// Determine the shieldFraction, which dictates how much damage
@@ -173,9 +176,10 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., attributes.Get("leak protection"));
 
 	// Unique special damage types.
-	// Disruption and slowing are blocked 50% by shields.
-	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(.5, attributes.Get("disruption protection"));
+	// Slowing is blocked 50% by shields.
+	// Disruption is reduced by 50% by the absence of shields.
 	damage.slowingDamage = weapon.SlowingDamage() * ScaleType(.5, attributes.Get("slowing protection"));
+	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(-.5, attributes.Get("disruption protection"));
 
 	// Hit force is blocked 0% by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., attributes.Get("force protection"));
