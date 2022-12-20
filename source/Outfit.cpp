@@ -351,7 +351,7 @@ void Outfit::Load(const DataNode &node)
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value-
 			// scans take 10x longer standard, large ships take longer to scan,
-			// and scanning speed scales inversely with distance. 
+			// and scanning speed scales inversely with distance.
 			attributes[kind + " scan efficiency"] += initial * 15.;
 		}
 	};
