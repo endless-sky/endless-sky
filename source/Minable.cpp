@@ -102,19 +102,19 @@ void Minable::Place(double energy, double beltRadius)
 	double curved = (pow(asin(theta * 2. - 1.) / (.5 * PI), 3.) + 1.) * .5;
 	theta = (eccentricity * curved + (1. - eccentricity) * theta) * 2. * PI;
 
-	// Now, pick the orbital "scale" such that, relative to the "belt radius":
-	// periapsis distance (scale / (1 + e)) is no closer than .4: scale >= .4 * (1 + e)
-	// apoapsis distance (scale / (1 - e)) is no farther than 4.: scale <= 4. * (1 - e)
-	// periapsis distance is no farther than 1.3: scale <= 1.3 * (1 + e)
-	// apoapsis distance is no closer than .8: scale >= .8 * (1 - e)
+	// Now, pick the orbital "orbitScale" such that, relative to the "belt radius":
+	// periapsis distance (orbitScale / (1 + e)) is no closer than .4: orbitScale >= .4 * (1 + e)
+	// apoapsis distance (orbitScale / (1 - e)) is no farther than 4.: orbitScale <= 4. * (1 - e)
+	// periapsis distance is no farther than 1.3: orbitScale <= 1.3 * (1 + e)
+	// apoapsis distance is no closer than .8: orbitScale >= .8 * (1 - e)
 	double sMin = max(.4 * (1. + eccentricity), .8 * (1. - eccentricity));
 	double sMax = min(4. * (1. - eccentricity), 1.3 * (1. + eccentricity));
-	scale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
+	orbitScale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
 
 	// At periapsis, the object should have this velocity:
 	double maximumVelocity = (Random::Real() + 2. * eccentricity) * .5 * energy;
 	// That means that its angular momentum is equal to:
-	angularMomentum = (maximumVelocity * scale) / (1. + eccentricity);
+	angularMomentum = (maximumVelocity * orbitScale) / (1. + eccentricity);
 
 	// Start the object off with a random facing angle and spin rate.
 	angle = Angle::Random();
@@ -124,7 +124,7 @@ void Minable::Place(double energy, double beltRadius)
 	rotation = Random::Real() * 2. * PI;
 
 	// Calculate the object's initial position.
-	radius = scale / (1. + eccentricity * cos(theta));
+	radius = orbitScale / (1. + eccentricity * cos(theta));
 	position = radius * Point(cos(theta + rotation), sin(theta + rotation));
 
 	// Add a random amount of hull value to the object.
@@ -174,7 +174,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Advance the object forward one step.
 	theta += angularMomentum / (radius * radius);
-	radius = scale / (1. + eccentricity * cos(theta));
+	radius = orbitScale / (1. + eccentricity * cos(theta));
 
 	// Calculate the new position.
 	Point newPosition(radius * cos(theta + rotation), radius * sin(theta + rotation));
