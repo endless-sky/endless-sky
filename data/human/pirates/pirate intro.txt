@@ -162,7 +162,7 @@ conversation "I Want To Be A Pirate Conclusion"
 		`	"Of course. Slavery. A fine and upstanding industry. Someone has to do all the work, and it's damn well not going to be me."`
 		`	"Slavery? You're a monster."`
 			goto slaveryspeech
-	apply
+	action
 		set terribleperson
 	`	"I'm glad we see eye to eye. Protection racket, landlord, slavemaster; whatever people want to call it, it's simply the natural order of things that some are strong, and some are weak. The strong thrive because they put to better use that which the weak produce. And you? I know which of the two you are now. I'll put your name into the ears of others like us."`
 	#the ring token is for integration into the pirate campaign
@@ -200,7 +200,7 @@ conversation "I Want To Be A Pirate Conclusion"
 	label slaver
 	choice
 		`	(Address the Capo.) "I conquered Darkstone and sold the inhabitants into slavery for a tidy profit."`
-	apply
+	action
 		set RookieSlaver
 	`	"So I heard, so I heard! It was my boys you were selling those dirt-grubbers off to. Mind you, I wasn't expecting to need to cut you in on this, but you did chase off the old owners so I suppose it's fair. One thing is sure: you've got a winner's instincts. I'm proud to sponsor you, and rest assured... people will know you're a cutthroat bastard, ready to sell any body that falls into your hands. Just like me." The Capo pauses to wipe a tear from his eye. "I swear, if I still had lips I'd be smiling."`
 	label outlawapproval
@@ -455,7 +455,7 @@ conversation "Den Handoff"
 			goto cool
 		`	(Go for your gun.)`
 	`	You're promptly clobbered by the soldier standing behind you with the scanner. Rather than shoot, they'd simply opted for using what they had at hand - a heavy metallic sensor bar. "Baita soco, camarada!" is the last thing you hear before blacking out.`
-	apply
+	action
 		set "clobbered"
 	choice
 		`	(What a headache.)`
@@ -686,7 +686,6 @@ mission "Pirate Intro: Darkstone Slavers (Dominated)"
 				`	"Done deal."`
 			action
 				payment 250000
-			apply
 				set "slaver of Darkstone"
 				set "terribleperson"
 			`	The slave boss counts out an appropriate stack of credits and presses them into your palm. The slaves regard you with a mixture of hatred and resignation. Now rather richer than you would have been just collecting their paltry tribute, you return to the skies.`
