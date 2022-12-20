@@ -785,6 +785,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	if(attributes.Get("maximum temperature") <= 0.)
 		attributes.Set("maximum temperature", 1000.);
+	if(attributes.Get("maximum temperature") < 0.)
+		warning += "Defaulting " + string(attributes.Get("maximum temperature") ? "invalid" : "missing")
+		+ " \"maximum temperature\" attribute to 1000.0\n";
 
 	// Calculate the values used to determine this ship's value and danger.
 	attraction = CalculateAttraction();
@@ -3337,9 +3340,9 @@ double Ship::IdleHeat() const
 	double radiativeCooling = coolingEfficiency * RadiativeCooling(attributes.Get("maximum temperature"));
 
 	// Idle heat is the heat level where:
-	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
-	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
-	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass) - radiativeCool
+	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool - radiativeCool)
+	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool - radiativeCool)
 	double production = max(0., attributes.Get("heat generation") - cooling - radiativeCooling);
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 
