@@ -329,6 +329,8 @@ public:
 	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
 	double MaximumHeat() const;
+	// Get the ship's temperature, in units Kelvin.
+	double ShipTemperature() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Calculate the ship's drag after accounting for drag reduction.

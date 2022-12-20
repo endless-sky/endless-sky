@@ -307,7 +307,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	const double idleHeatPerFrame = attributes.Get("heat generation")
 		+ attributes.Get("solar heat")
 		+ attributes.Get("fuel heat")
-		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
+		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling")
+		+ attributes.Get("radiative cooling"));
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
 	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));

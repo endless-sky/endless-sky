@@ -822,8 +822,8 @@ void Engine::Step(bool isActive)
 				info.SetString("target fuel", to_string(fuel));
 				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
 				info.SetString("target energy", to_string(energy));
-				int heat = round(100. * target->Heat());
-				info.SetString("target heat", to_string(heat) + "%");
+				int heat = round(target->ShipTemperature());
+				info.SetString("target heat", to_string(heat) + " K");
 			}
 		}
 	}

@@ -341,6 +341,9 @@ tip "mass with no cargo:"
 tip "mass:"
 	`Mass, in tons. A ship's mass determines how fast it turns and accelerates and its maximum heat before overheating.`
 
+tip "maximum temperature:"
+	`The maximum temperature a ship can reach before it starts to overheat and shuts down.`
+
 tip "operating costs:"
 	`How many credits per day you need to spend to maintain this outfit while it is in active use.`
 
@@ -373,6 +376,9 @@ tip "piercing protection:"
 
 tip "radar jamming:"
 	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
+
+tip "radiative cooling:"
+	`Cools your ship at a rate proportional to the fourth power of its temperature. This value shows the amount of heat removed per second when your ship's temperature is at 1000 K, the maximum for most ships.`
 
 tip "ramscoop:"
 	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
