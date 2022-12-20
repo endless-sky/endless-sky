@@ -270,7 +270,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	if(lifetime < weapon->FadeOut())
 	{
-		alpha = (double)lifetime / weapon->FadeOut();
+		alpha = static_cast<double>(lifetime) / weapon->FadeOut();
 	}
 }
 
