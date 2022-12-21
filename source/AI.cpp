@@ -2860,19 +2860,19 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	{
 		// Find the maximum range of any of this ship's turrets, and extend
 		// the weapon range slightly to account for velocity differences.
-		const double maxRange = ship.GetArmament().GetTurretsMaxRange() * 1.5;
+		const double rangeOfInterest = ship.GetArmament().GetTurretsMaxRange() * 1.5;
 		// If this ship has no turrets, bail out.
-		if(!maxRange)
+		if(!rangeOfInterest)
 			return;
 
 		// Now, find all enemy ships within that radius.
-		auto enemies = GetShipsList(ship, true, maxRange);
+		auto enemies = GetShipsList(ship, true, rangeOfInterest);
 		// Convert the shared_ptr<Ship> into const Body *, to allow aiming turrets
 		// at a targeted asteroid. Skip disabled ships, which pose no threat.
 		for(auto &&foe : enemies)
 			if(!foe->IsDisabled())
 				targets.emplace_back(foe);
-		// Even if the ship's current target ship is beyond maxRange,
+		// Even if the ship's current target ship is beyond rangeOfInterest,
 		// or is already disabled, consider aiming at it.
 		if(currentTarget && currentTarget->IsTargetable()
 				&& find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
@@ -3046,10 +3046,10 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 				&& !(isWaitingToJump && hardpoint.GetOutfit()->FiringForce()))
 			maxRange = max(maxRange, hardpoint.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
-	maxRange *= 1.5;
+	const double rangeOfInterest = maxRange * 1.5;
 
 	// Find all enemy ships within range of at least one weapon.
-	auto enemies = GetShipsList(ship, true, maxRange);
+	auto enemies = GetShipsList(ship, true, rangeOfInterest);
 	// Consider the current target if it is not already considered (i.e. it
 	// is a friendly ship and this is a player ship ordered to attack it).
 	if(currentTarget && currentTarget->IsTargetable()
