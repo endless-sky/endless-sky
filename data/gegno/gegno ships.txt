@@ -157,6 +157,8 @@ ship "Gypsum"
 		"outfit space" 240
 		"weapon capacity" 42
 		"engine capacity" 120
+		"drill port" 1
+		"drill lock" -1
 		weapon
 			"blast radius" 72
 			"shield damage" 320

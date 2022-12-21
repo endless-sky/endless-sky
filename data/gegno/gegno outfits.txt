@@ -759,6 +759,8 @@ outfit "Excavator"
 	"outfit space" -42
 	"weapon capacity" -42
 	"gun ports" -1
+	"drill port" -1
+	"drill lock" 1
 	weapon
 		sound "drill"
 		"hit effect" "drilling"
