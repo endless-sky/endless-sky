@@ -254,10 +254,10 @@ ship "Augen"
 			"hull damage" 2700
 			"hit force" 2100
 	outfits
-		"Chloeric Cannon"
+		"Choleric Cannon"
 		"Irate Cannon" 17
 		"Ballistic Cannon Turret" 6
-		"Chloeric Cannon Turret" 2
+		"Choleric Cannon Turret" 2
 		"Irate Cannon Turret"
 
 		"C17 Warzone Core"
@@ -295,7 +295,7 @@ ship "Augen"
 		zoom 0.3
 		angle 65
 		left
-	gun 58 -385 "Chloeric Cannon"
+	gun 58 -385 "Choleric Cannon"
 	gun -29 -378.5 "Irate Cannon"
 	gun -35.5 -373.5 "Irate Cannon"
 	gun -42.5 -367.5 "Irate Cannon"
@@ -333,9 +333,9 @@ ship "Augen"
 	turret 27 140.5 "Ballistic Cannon Turret"
 	turret 17.5 229 "Ballistic Cannon Turret"
 	turret 17.5 317 "Ballistic Cannon Turret"
-	turret 92 -208 "Chloeric Cannon Turret"
+	turret 92 -208 "Choleric Cannon Turret"
 	turret -81.5 -25.5 "Irate Cannon Turret"
-	turret -81.5 100 "Chloeric Cannon Turret"
+	turret -81.5 100 "Choleric Cannon Turret"
 	leak "leak" 50 50
 	leak "flame" 80 140
 	explode "huge explosion" 36
@@ -485,7 +485,7 @@ ship "Eclogite"
 			"hull damage" 490
 			"hit force" 470
 	outfits
-		"Chloeric Cannon"
+		"Choleric Cannon"
 		"Irate Cannon" 4
 		
 		"C7 Brawl Cell"
@@ -495,7 +495,7 @@ ship "Eclogite"
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	engine 0 82
-	gun 0 -98 "Chloeric Cannon"
+	gun 0 -98 "Choleric Cannon"
 	gun -11.5 -53 "Irate Cannon"
 	gun 11.5 -53 "Irate Cannon"
 	gun -11.5 -29 "Irate Cannon"
@@ -535,7 +535,7 @@ ship "Diorite"
 			"hit force" 810
 	outfits
 		"Ballistic Cannon" 2
-		"Chloeric Cannon"
+		"Choleric Cannon"
 		"Irate Cannon Turret" 2
 		
 		"C17 Warzone Core"
@@ -549,7 +549,7 @@ ship "Diorite"
 	engine 22.5 158
 	gun -7 -193 "Ballistic Cannon"
 	gun 7 -193 "Ballistic Cannon"
-	gun 0 143 "Chloeric Cannon"
+	gun 0 143 "Choleric Cannon"
 		angle 180
 	turret -24 -77 "Irate Cannon Turret"
 	turret 24 -77 "Irate Cannon Turret"
@@ -589,7 +589,7 @@ ship "Hornfel"
 			"hit force" 900
 	outfits
 		"Irate Cannon" 10
-		"Chloeric Cannon Turret" 2
+		"Choleric Cannon Turret" 2
 		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
@@ -615,8 +615,8 @@ ship "Hornfel"
 		angle -135
 	gun 32 160.5 "Irate Cannon"
 		angle 135
-	turret 0 -117.5 "Chloeric Cannon Turret"
-	turret 0 -44 "Chloeric Cannon Turret"
+	turret 0 -117.5 "Choleric Cannon Turret"
+	turret 0 -44 "Choleric Cannon Turret"
 	leak "leak" 60 50
 	leak "flame" 60 80
 	explode "large explosion" 10
@@ -652,9 +652,9 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 		"outfit space" 20
 		"weapon capacity" 70
 	outfits
-		"Chloeric Cannon" 2
+		"Choleric Cannon" 2
 		"Irate Cannon" 8
-		"Chloeric Cannon Turret" 2
+		"Choleric Cannon Turret" 2
 		"Irate Cannon Turret"
 		
 		"C17 Warzone Core"
@@ -663,8 +663,8 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
 		"Hyperdrive"
-	gun 20.5 -234.5 "Chloeric Cannon"
-	gun -20.5 -234.5 "Chloeric Cannon"
+	gun 20.5 -234.5 "Choleric Cannon"
+	gun -20.5 -234.5 "Choleric Cannon"
 	gun -26.5 -222.5 "Irate Cannon"
 	gun 26.5 -222.5 "Irate Cannon"
 	gun 32.5 -129 "Irate Cannon"
@@ -679,8 +679,8 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 		angle 135
 	gun 32 160.5 "Irate Cannon"
 		angle -135
-	turret 0 -117.5 "Chloeric Cannon Turret"
-	turret 0 -44 "Chloeric Cannon Turret"
+	turret 0 -117.5 "Choleric Cannon Turret"
+	turret 0 -44 "Choleric Cannon Turret"
 	turret 0 -185 "Irate Cannon Turret"
 
 ship "Gneiss"
@@ -782,7 +782,7 @@ ship "Protolith"
 	outfits
 		"Irate Cannon" 11
 		"Irate Cannon Turret"
-		"Chloeric Cannon Turret"
+		"Choleric Cannon Turret"
 		
 		"C7 Brawl Cell" 2
 		"R02 Battlezone Battery"
@@ -813,7 +813,7 @@ ship "Protolith"
 		angle -125
 	gun 94.5 211 "Irate Cannon"
 		angle 150
-	turret 0 21 "Chloeric Cannon Turret"
+	turret 0 21 "Choleric Cannon Turret"
 	turret -69.5 21 "Irate Cannon Turret"
 	leak "leak" 30 50
 	leak "flame" 30 80
