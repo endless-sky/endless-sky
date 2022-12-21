@@ -414,7 +414,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	const Sprite *sprite = ship.GetSprite();
 	double scale = 0.;
 	if(sprite)
-		scale = min(1., min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height()));
+		scale = min(1., min((bounds.Width() - 10) / sprite->Width(), (bounds.Height() - 10) / sprite->Height()));
 
 	// Figure out the left- and right-most hardpoints on the ship. If they are
 	// too far apart, the scale may need to be reduced.
@@ -477,7 +477,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		bool isHover = (index == hoverIndex);
 		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
 		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
-		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
+		Point zoneCenter(centerX + labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
 		// Determine what color to use for the line.
@@ -487,7 +487,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 			color = Color(0.f, .75f * high, high, 1.f);
 
 		// Draw the line.
-		Point from(fromX[isRight], zoneCenter.Y());
+		Point from(centerX + fromX[isRight], zoneCenter.Y());
 		Point to = bounds.Center() + (2. * scale) * hardpoint.GetPoint();
 		DrawLine(from, to, color);
 		if(isHover)

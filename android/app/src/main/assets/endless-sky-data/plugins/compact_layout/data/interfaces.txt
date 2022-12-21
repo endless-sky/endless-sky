@@ -318,127 +318,143 @@ interface "map buttons" bottom right
 
 
 interface "info panel"
-	sprite "ui/info panel"
-		center 0 -5
+	line "bg"
+		# line coordinates are broken. The shader expects the center coordinate,
+		# but the top left coordinate is provided. This shifts each rect 50% to
+		# the left and above where it should be.
+		# See https://github.com/endless-sky/endless-sky/issues/7918
+		# For now, just draw a massive rectangle on 0,0 and hope that nobody
+		# ever gets a screen this big
+		from 0 0 to 100000 100000 top left
+		color "panel background"
 	visible if "five buttons"
 	sprite "ui/five info buttons"
-		center 0 255
+		from -1020 -50 bottom right
+		to 0 0 bottom right
 	visible if "three buttons"
 	sprite "ui/three info buttons"
-		center 0 255
+		from -1020 -50 bottom right
+		to 0 0 bottom right
 
+	# TODO adjust these
 	box "player"
-		from -500 -240 to -250 230
+		from 0 40 top left
+		to 250 -50 bottom left
 	box "fleet"
-		from -250 -240 to 500 230
+		from 250 40 top left
+		to 0 -50 bottom right
 
 	box "stats"
-		from -500 -240 to -250 230
+		from 0 40 top left
+		to 250 -50 bottom left
+		# from -500 -240 to -250 230
 	box "outfits"
-		from -250 -240 to 500 -20
+		from 250 40 top left
+		to 0 260 top right
 	box "weapons"
-		from -250 -20 to 250 230
+		from 250 260 top left
+		to 750 -50 bottom left
 	box "cargo"
-		from 250 -240 to 500 230
+		from 750 40 top left
+		to 0 -50 bottom right
+
+	visible
+	line
+		# line will be drawn 50% to the left, which we can't correct for with a
+		# variable sized screen. Just draw it all the way off the edge. If it
+		# gets too big though, the shader can lose precision with the ratio, and
+		# draw it more than one pixel thick.
+		color "bright"
+		from 0 40 top left
+		to 6000 41 top right
 
 	visible if "ship tab"
 	button R
-		center -375 -220
-		dimensions 250 30
+		from 0 40 top left
+		to 250 70 top left
 	sprite "ui/ship tab"
-		center 0 -260
+		from -10 0 top left
+		to 1010 40 top left
 	label "Ship Info"
-		center -300 -255
+		from 155 15 to 240 35 top left
 		color "bright"
 	label "Player _Info"
-		center -420 -255
+		from 35 15 to 120 35 top left
 	button i
-		center -420 -255
-		dimensions 120 30
+		from 30 10 to 125 40 top left
 
 	visible if "player tab"
 	sprite "ui/player tab"
-		center 0 -260
+		from -10 0 top left
+		to 1010 40 top left
 	label "_Ship Info"
-		center -300 -255
+		from 155 15 to 240 35 top left
 	label "Player Info"
-		center -420 -255
+		from 35 15 to 120 35 top left
 		color "bright"
 	button s
-		center -300 -255
-		dimensions 120 30
+		from 150 10 to 245 40 top left
 
 	visible
 	button d "_Done"
-		center 455 255
-		dimensions 90 30
+		from -100 -50 to -10 0 bottom right
 	button m "_Missions..."
-		center 355 255
-		dimensions 90 30
+		from -200 -50 to -110 0 bottom right
 	active if "enable logbook"
 	button l "_Logbook..."
-		center 255 255
-		dimensions 90 30
+		from -300 -50 to -210 0 bottom right
 	active
 
 	visible if "five buttons"
 	button n "_Next"
-		center 145 255
-		dimensions 90 30
+		from -410 -50 to -320 0 bottom right
 	button p "_Previous"
-		center 45 255
-		dimensions 90 30
+		from -510 -50 to -420 0 bottom right
+
 
 	visible if "show park"
 	active if "can park"
 	sprite "ui/dialog cancel"
-		center -55 255
+		from -660 -50 to -570 0 bottom right
 	button P "Park"
-		center -55 255
-		dimensions 70 30
+		from -660 -50 to -570 0 bottom right
 	active
 
 	visible if "show unpark"
 	sprite "ui/dialog cancel"
-		center -55 255
+		from -660 -50 to -570 0 bottom right
 	button P "Unpark"
-		center -55 255
-		dimensions 70 30
+		from -660 -50 to -570 0 bottom right
 
 	visible if "show disown"
 	sprite "ui/dialog cancel"
-		center -150 255
+		from -760 -50 to -670 0 bottom right
 	button D "Disown"
-		center -150 255
-		dimensions 70 30
+		from -760 -50 to -670 0 bottom right
 
 	visible if "show dump"
 	active if "enable dump"
 	sprite "ui/wide button"
-		center -65 255
+		from -760 -50 to -650 0 bottom right
 	button c "Dump _Cargo"
-		center -65 255
-		dimensions 90 30
+		from -760 -50 to -650 0 bottom right
 	active
 
 	visible if "show park all"
 	sprite "ui/wide button"
-		center 145 255
+		from -420 -50 to -310 0 bottom right
 	button A "Park All"
-		center 145 255
-		dimensions 90 30
+		from -420 -50 to -310 0 bottom right
 	visible if "show unpark all"
 	sprite "ui/wide button"
-		center 145 255
+		from -420 -50 to -310 0 bottom right
 	button A "Unpark All"
-		center 145 255
-		dimensions 90 30
+		from -420 -50 to -310 0 bottom right
 	visible if "show save order"
 	sprite "ui/wide button"
-		center -195 255
+		from -760 -50 to -650 0 bottom right
 	button v "Save Order"
-		center -195 255
-		dimensions 90 30
+		from -760 -50 to -650 0 bottom right
 
 interface "load menu"
 	sprite "_menu/side panel"
