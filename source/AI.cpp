@@ -2867,7 +2867,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		result += p.Unit() * abs(damage);
 	}
 
-	return result ? result : ship.Position() - target.Positition();
+	return result ? result : ship.Position() - target.Position();
 }
 
 
