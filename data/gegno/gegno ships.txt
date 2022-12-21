@@ -612,9 +612,9 @@ ship "Hornfel"
 	gun 42.5 31 "Irate Cannon"
 		angle 90
 	gun -33 150.5 "Irate Cannon"
-		angle 135
-	gun 32 160.5 "Irate Cannon"
 		angle -135
+	gun 32 160.5 "Irate Cannon"
+		angle 135
 	turret 0 -117.5 "Chloeric Cannon Turret"
 	turret 0 -44 "Chloeric Cannon Turret"
 	leak "leak" 60 50
