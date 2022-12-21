@@ -161,7 +161,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			label sister
 			action
 				set "War Reactions: Navy and Free Worlds Captains: label sister"
-			`	"Yup," Fiona says, "I blew up her Cruiser! When her ship's escape pods were veering towards a star, we rescued them."`
+			`	"Yup," Fiona says, "being my sister didn't stop me blowing up her Cruiser! We rescued her ship's escape pods, though; they were veering concerningly towards a star."`
 			`	Rain continues, "Can you imagine my surprise when I woke up on my sister's new Dreadnought?"`
 			`	"Hey, you got a new Auxiliary commission afterwards," replies Fiona, poking Rain as she says it, "and your whole crew survived. Now we escort each other's ships during investigations!"`
 				goto questions
