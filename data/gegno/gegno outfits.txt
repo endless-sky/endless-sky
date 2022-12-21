@@ -400,6 +400,7 @@ outfit "Irate Cannon"
 		sprite "projectile/irate"
 		sound "irate"
 		"fire effect" "irate fire"
+		"live effect" "irate smoke" 12
 		"hit effect" "tiny explosion"
 		"inaccuracy" 2
 		"velocity" 22
@@ -431,6 +432,7 @@ outfit "Irate Cannon Turret"
 		"hardpoint offset" 1.5
 		sound "irate"
 		"fire effect" "irate fire"
+		"live effect" "irate smoke" 12
 		"hit effect" "tiny explosion"
 		"inaccuracy" 2
 		"turret turn" 1
@@ -449,6 +451,17 @@ effect "irate fire"
 		"frame rate" 40
 		"no repeat"
 	"lifetime" 5
+	
+effect "irate smoke"
+	sprite "effect/smoke"
+		"scale" 0.1
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 2
+	"random spin" 6
+	"random angle" 360
+	"random velocity" 1
+	"velocity scale" 0.4
 
 
 outfit "Chloeric Cannon"
@@ -467,6 +480,7 @@ outfit "Chloeric Cannon"
 		sprite "projectile/chloeric"
 		sound "chloeric"
 		"fire effect" "chloeric fire"
+		"live effect" "chloeric smoke" 24
 		"hit effect" "small explosion"
 		"inaccuracy" 2
 		"velocity" 11
@@ -499,6 +513,7 @@ outfit "Chloeric Cannon Turret"
 		"hardpoint offset" 3
 		sound "chloeric"
 		"fire effect" "chloeric fire"
+		"live effect" "chloeric smoke" 24
 		"hit effect" "small explosion"
 		"inaccuracy" 2
 		"turret turn" 1.2
@@ -517,6 +532,17 @@ effect "chloeric fire"
 		"frame rate" 25
 		"no repeat"
 	"lifetime" 7
+
+effect "chloeric smoke"
+	sprite "effect/smoke"
+		"scale" 0.1
+		"no repeat"
+		"frame rate" 18
+	"lifetime" 16
+	"random spin" 6
+	"random angle" 360
+	"random velocity" 0.5
+	"velocity scale" 0.4
 	
 
 outfit "Ballistic Cannon"
@@ -536,6 +562,7 @@ outfit "Ballistic Cannon"
 		sprite "projectile/ballistic"
 		sound "ballistic"
 		"fire effect" "ballistic fire"
+		"live effect" "ballistic smoke" 36
 		"hit effect" "ballistic hit"
 		"inaccuracy" 3
 		"velocity" 8
@@ -571,6 +598,7 @@ outfit "Ballistic Cannon Turret"
 		"hardpoint offset" -1
 		sound "ballistic"
 		"fire effect" "ballistic fire"
+		"live effect" "ballistic smoke" 36
 		"hit effect" "ballistic hit"
 		"inaccuracy" 3
 		"turret turn" 0.6
@@ -603,6 +631,16 @@ effect "ballistic hit"
 	"random spin" 5
 	"velocity scale" 0.4
 	
+effect "ballistic smoke"
+	sprite "effect/smoke"
+		"scale" 0.1
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random spin" 6
+	"random angle" 360
+	"random velocity" 0.5
+	"velocity scale" 0.01
 
 outfit "Astuit Battery"
 	category "Turrets"
