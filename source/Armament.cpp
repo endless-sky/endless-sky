@@ -38,7 +38,7 @@ namespace {
 				continue;
 
 			const auto *weapon = hardpoint.GetOutfit();
-			if (!weapon)
+			if(!weapon)
 				continue;
 
 			const auto range = weapon->Range();
@@ -62,7 +62,7 @@ namespace {
 				continue;
 
 			const auto *weapon = hardpoint.GetOutfit();
-			if (!weapon)
+			if(!weapon)
 				continue;
 
 			const auto range = weapon->Range();
