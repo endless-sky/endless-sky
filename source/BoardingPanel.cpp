@@ -541,8 +541,8 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 	UpdateStrings(false);
 }
 
-const std::string BoardingPanel::GenerateOutfitLootName(const PlayerInfo& player,
-														const Outfit *outfit, const int count) const
+std::string BoardingPanel::GenerateOutfitLootName(const PlayerInfo& player,
+												  const Outfit *outfit, const int count) const
 {
 	std::string label = outfit->DisplayName();
 

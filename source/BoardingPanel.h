@@ -63,7 +63,7 @@ private:
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
 	// select name to display at loot menu
-	const std::string GenerateOutfitLootName(const PlayerInfo& player, const Outfit *outfit, const int count) const;
+	std::string GenerateOutfitLootName(const PlayerInfo& player, const Outfit *outfit, const int count) const;
 
 private:
 	// This class represents one item in the list of outfits you can plunder.
