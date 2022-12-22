@@ -354,7 +354,7 @@ outfit "SC-14 Plasma Steering"
 	"steering flare sprite" "effect/scin flare/med"
 		"frame rate" 0.4
 	"steering flare sound" "scplasma medium"
-	description `Larger than SC-12 thrusters, SC-14 steering thrusters are one of the most powerful steering systems in Gegno space, allowing the Scin to reposition even their largest ships many times faster than their Vi counterparts.`
+	description `Larger than SC-12 engines, SC-14-class steering is one of the most powerful steering systems in Gegno space, allowing the Scin to reposition even their largest ships many times faster than their Vi counterparts.`
 
 
 outfit "SC-15 Plasma Thrusters"
@@ -491,7 +491,7 @@ outfit "Choleric Cannon"
 		"shield damage" 95
 		"hull damage" 280
 		"hit force" 180
-	description `A caliber higher than the Irate Cannon, Choleric Cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon, it is, along with other Gegno weaponry, very ineffective against any sort of shielding.`
+	description `A higher caliber than the Irate Cannon, Choleric Cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon, it is, along with other Gegno weaponry, very ineffective against any sort of shielding.`
 
 
 outfit "Choleric Cannon Turret"
@@ -525,7 +525,7 @@ outfit "Choleric Cannon Turret"
 		"shield damage" 95
 		"hull damage" 280
 		"hit force" 180
-	description `Mounted on a turret, a Choleric Cannon is much more devastating without the need to keep a target in front to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is forced to retreat after a decent enough bombardment.`
+	description `Mounted on a turret, a Choleric Cannon is much more devastating without the need to keep a target in front of the ship to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is forced to retreat after a decent enough bombardment lest they be destroyed.`
 	
 effect "choleric fire"
 	sprite "effect/chfire"
