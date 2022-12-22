@@ -1057,6 +1057,8 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 	}
 }
 
+
+
 void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
 {
 		for(const auto &it : outfits)
@@ -1064,15 +1066,21 @@ void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
 				DiscoverOutfit(*it.first);
 }
 
+
+
 void PlayerInfo::VisitOutfitter(const Sale<Outfit>& outfitter)
 {
 	visitedOutfitters.insert(&outfitter);
 }
 
+
+
 bool PlayerInfo::OutfitterVisited(const Sale<Outfit>& outfitter) const
 {
 	return visitedOutfitters.count(&outfitter);
 }
+
+
 
 // Sell the given ship (if it belongs to the player).
 void PlayerInfo::SellShip(const Ship *selected)
