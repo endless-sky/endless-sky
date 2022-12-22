@@ -326,7 +326,7 @@ outfit "SC-14 Plasma Thruster"
 		"Gegno Civilian"
 		"Scin Adjutant"
 	cost 162000
-	thumbnail "outfit/medium plasma steering scin"
+	thumbnail "outfit/medium plasma thruster scin"
 	"mass" 45
 	"outfit space" -45
 	"engine capacity" -45
@@ -345,7 +345,7 @@ outfit "SC-14 Plasma Steering"
 		"Gegno Civilian"
 		"Scin Adjutant"
 	cost 156400
-	thumbnail "outfit/large plasma engines scin"
+	thumbnail "outfit/medium plasma steering scin"
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -366,7 +366,7 @@ outfit "SC-15 Plasma Thrusters"
 		"Scin Hoplologist"
 		"Scin Architect"
 	cost 2312000
-	thumbnail "outfit/medium plasma steering scin"
+	thumbnail "outfit/large plasma engines scin"
 	"mass" 112
 	"outfit space" -112
 	"engine capacity" -112
