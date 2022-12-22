@@ -3147,7 +3147,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&flagshipLandedProvider = conditions.GetProviderNamed("flagship landed");
 	auto flagshipLandedFun = [this](const string &name) -> bool
 	{
-		return (flagship && flagship->GetPlanet())
+		return (flagship && flagship->GetPlanet());
 	};
 	flagshipLandedProvider.SetHasFunction(flagshipLandedFun);
 	flagshipLandedProvider.SetGetFunction(flagshipLandedFun);
