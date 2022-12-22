@@ -140,6 +140,7 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 	// The shader also needs to know how many frames the texture has.
 	glUniform1f(frameCountI, sprite->Frames());
 
+	// Specify the opacity of the sprite.
 	glUniform1f(alphaI, alpha);
 
 	// Upload the vertex data.

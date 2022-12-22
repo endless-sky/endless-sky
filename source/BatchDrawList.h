@@ -29,6 +29,12 @@ class Sprite;
 // This class collects a set of OpenGL draw commands to issue and groups them by
 // sprite, so all instances of each sprite can be drawn with a single command.
 class BatchDrawList {
+private:
+	class DrawElement {
+	public:
+		std::vector<float> vertices;
+		double alpha;
+	};
 public:
 	// Clear the list, also setting the global time step for animation.
 	void Clear(int step = 0, double zoom = 1.);
@@ -61,7 +67,7 @@ private:
 	// vertices has five attributes: (x, y) position in pixels, (s, t) texture
 	// coordinates, and the index of the sprite frame.
 	// Each Sprite has also an alpha value asigned.
-	std::map<const Sprite *, std::pair<std::vector<float>, double>> data;
+	std::map<const Sprite *, DrawElement> data;
 };
 
 

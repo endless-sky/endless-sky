@@ -86,8 +86,8 @@ void BatchDrawList::Draw() const
 {
 	BatchShader::Bind();
 
-	for(const pair<const Sprite * const, pair<vector<float>, double>> &it : data)
-		BatchShader::Add(it.first, isHighDPI, it.second.first, it.second.second);
+	for(const pair<const Sprite * const, DrawElement> &it : data)
+		BatchShader::Add(it.first, isHighDPI, it.second.vertices, it.second.alpha);
 
 	BatchShader::Unbind();
 }
@@ -122,9 +122,9 @@ bool BatchDrawList::Add(const Body &body, Point position, float clip)
 	if(Cull(body, position))
 		return false;
 
-	data[body.GetSprite()].second = body.Alpha();
+	data[body.GetSprite()].alpha = body.Alpha();
 	// Get the data vector for this particular sprite.
-	vector<float> &v = data[body.GetSprite()].first;
+	vector<float> &v = data[body.GetSprite()].vertices;
 	// The sprite frame is the same for every vertex.
 	float frame = body.GetFrame(step);
 
