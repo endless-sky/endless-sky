@@ -196,24 +196,24 @@ mission "War Reactions: Syndicate Orphan"
 				`	(Ignore them and keep walking.)`
 					decline
 			`	The three attackers turn around, looking furious. They eye your gun and run away. "Thanks. I'm Gus," says the fourth boy, as he slowly rises to his feet. He looks about twelve years old.`
-			`	It takes Gus a few seconds to recover. He looks worried and asks, "Can you walk me to the factory? I'm already late for work, and I'm afraid they'll attack me again."`
+			`	It takes Gus a few seconds to recover. He looks worried and asks, "Can you walk me to the repair shop? I'm already late for work, and I'm afraid they'll attack me again."`
 			label questions
 			choice
 				`	"Why were those boys attacking you?"`
 					goto attacking
 					to display
 						not "War Reactions: Syndicate Orphan: attacking"
-				`	"Aren't you a little young to work in a factory?"`
+				`	"Aren't you a little young to work in a repair shop?"`
 					goto young
 				`	"I'm in a hurry. You're on your own."`
 					decline
 			label attacking
 			action
 				set "War Reactions: Syndicate Orphan: attacking"
-			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and she turned those boys in for smoking on the job last week. I guess they finally got a break for the factory and came after me since they can't hurt my sister."`
+			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and she turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my sister."`
 				goto questions
 			label young
-			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in factories. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
+			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
 			`	"Wait a minute!" He suddenly looks at you with wide eyes. "You're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting our ships on our school's big edu-screen."`
 			choice
 				`	"Yes, I'm Captain <first> <last>."`
@@ -250,8 +250,8 @@ mission "War Reactions: Syndicate Orphan"
 			label honor
 			`	"Honor, and service. The Syndicate will train boys like me, but I've wondered about joining the Navy. It isn't as profitable, but it sounds more noble."`
 			label salute
-			`	You arrive at the factory, and an older girl, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
-			`	As Gus ends his salute, the girl attacks him from behind, putting him into a choke hold. It's clear she's taking extreme care when doing it. "Did you wander out of the safe zone? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Sally! I was curious."`
+			`	You arrive at the repair shop, and an older girl, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
+			`	As Gus ends his salute, the girl attacks him from behind, putting him into a choke hold. It's clear she's taking extreme care when doing it. "Did you wander out of the childcare district? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Sally! I was curious."`
 			`	The girl lets him out of the hold and says to you, "Thank you for saving my brother. He's the only family I have left, and I hope," she pinches him, "he'll stop risking his life out of curiosity." She looks at Gus kindly. "Come on, let's get you to the medic."`
-			`	Sally waves goodbye as she walks her brother into the orphanage factory.`
+			`	Sally waves goodbye as she walks her brother into the repair shop orphanage.`
 				decline
