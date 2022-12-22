@@ -127,7 +127,7 @@ test "Test Shipyard And Outfitter Mission"
 			# Test accepted. If not there it wasn't offered.
 			"test: succeed test" = "succeed test"
 			# if we launched
-			"test: flagship planet: Ruin" = "flagship planet: Ruin"
+			"test: flagship landed" = "flagship landed"
 
 
 test "Shipyard Mission Test"
