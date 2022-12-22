@@ -550,8 +550,6 @@ std::string BoardingPanel::GenerateOutfitLootName(const PlayerInfo& player,
 	{
 		label = "Unknown " + outfit->Category();
 
-		if(outfit->Category() == "Power")
-			label += " Component";
 		if((count == 1) && (label.back() == 's'))
 			label.pop_back();
 	}
