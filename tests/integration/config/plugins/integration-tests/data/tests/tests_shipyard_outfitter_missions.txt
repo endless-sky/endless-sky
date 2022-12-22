@@ -93,7 +93,7 @@ test "Trigger Shipyard Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the shipyard."
 	sequence
 		call "Depart"
-		call "Land On Ruin helper"
+		call "Land"
 		input
 			key s
 
@@ -103,7 +103,7 @@ test "Trigger Outfitter Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the outfitter."
 	sequence
 		call "Depart"
-		call "Land On Ruin helper"
+		call "Land"
 		input
 			key o
 
