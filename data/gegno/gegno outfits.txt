@@ -480,7 +480,7 @@ outfit "Choleric Cannon"
 	weapon
 		sprite "projectile/choleric"
 		sound "choleric"
-		"fire effect" "irate fire"
+		"fire effect" "choleric fire"
 		"live effect" "choleric smoke" 24
 		"hit effect" "small explosion"
 		"inaccuracy" 2
@@ -511,7 +511,7 @@ outfit "Choleric Cannon Turret"
 	weapon
 		sprite "projectile/choleric"
 		"hardpoint sprite" "hardpoint/choleric"
-		"hardpoint offset" 3
+		"hardpoint offset" 15
 		sound "choleric"
 		"fire effect" "choleric fire"
 		"live effect" "choleric smoke" 24
@@ -562,7 +562,7 @@ outfit "Ballistic Cannon"
 	weapon
 		sprite "projectile/ballistic"
 		sound "ballistic"
-		"fire effect" "irate fire"
+		"fire effect" "ballistic fire"
 		"live effect" "ballistic smoke" 36
 		"hit effect" "ballistic hit"
 		"inaccuracy" 3
@@ -596,7 +596,7 @@ outfit "Ballistic Cannon Turret"
 	weapon
 		sprite "projectile/ballistic"
 		"hardpoint sprite" "hardpoint/ballistic"
-		"hardpoint offset" -1
+		"hardpoint offset" 10
 		sound "ballistic"
 		"fire effect" "ballistic fire"
 		"live effect" "ballistic smoke" 36
