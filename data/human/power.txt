@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Supercapacitor"
-	category "Power"
+	category "Power Component"
 	cost 9000
 	thumbnail "outfit/supercapacitor"
 	"mass" 2
@@ -21,7 +21,7 @@ outfit "Supercapacitor"
 	description "With a powerful enough generator, many ships do not need batteries at all. The one exception is projectile weapons, which usually require a burst of energy far exceeding what the generator produces. Supercapacitors provide just enough energy storage for those weapons, without requiring you to install a bulky battery pack."
 
 outfit "LP036a Battery Pack"
-	category "Power"
+	category "Power Component"
 	cost 6000
 	thumbnail "outfit/tiny battery"
 	"mass" 10
@@ -30,7 +30,7 @@ outfit "LP036a Battery Pack"
 	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
 outfit "LP072a Battery Pack"
-	category "Power"
+	category "Power Component"
 	cost 14000
 	thumbnail "outfit/small battery"
 	"mass" 20
@@ -39,7 +39,7 @@ outfit "LP072a Battery Pack"
 	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
 
 outfit "LP144a Battery Pack"
-	category "Power"
+	category "Power Component"
 	cost 32000
 	thumbnail "outfit/medium battery"
 	"mass" 40
@@ -48,7 +48,7 @@ outfit "LP144a Battery Pack"
 	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
 
 outfit "LP288a Battery Pack"
-	category "Power"
+	category "Power Component"
 	cost 54000
 	thumbnail "outfit/large battery"
 	"mass" 60
@@ -57,7 +57,7 @@ outfit "LP288a Battery Pack"
 	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
 
 outfit "LP576a Battery Pack"
-	category "Power"
+	category "Power Component"
 	cost 80000
 	thumbnail "outfit/huge battery"
 	"mass" 80
@@ -67,7 +67,7 @@ outfit "LP576a Battery Pack"
 
 
 outfit "KP-6 Photovoltaic Panel"
-	category "Power"
+	category "Power Component"
 	cost 7000
 	thumbnail "outfit/tiny photovoltaic"
 	"mass" 3
@@ -76,7 +76,7 @@ outfit "KP-6 Photovoltaic Panel"
 	description "This early commercial photovoltaic system was the driving force behind humanity's first interplanetary trade network. Rugged and modular, it can be bolted to the hull of any ship and has seen even the most remote parts of human space."
 
 outfit "KP-6 Photovoltaic Array"
-	category "Power"
+	category "Power Component"
 	cost 60000
 	thumbnail "outfit/small photovoltaic"
 	"mass" 24
@@ -86,7 +86,7 @@ outfit "KP-6 Photovoltaic Array"
 
 
 outfit "nGVF-AA Fuel Cell"
-	category "Power"
+	category "Power Component"
 	cost 35000
 	thumbnail "outfit/tiny fuel cell"
 	"mass" 20
@@ -96,7 +96,7 @@ outfit "nGVF-AA Fuel Cell"
 	description "Fuel cells have been the cheapest and most common starship power sources since the dawn of the space era. This model produces only enough power for very small or slow ships."
 
 outfit "nGVF-BB Fuel Cell"
-	category "Power"
+	category "Power Component"
 	cost 47000
 	thumbnail "outfit/small fuel cell"
 	"mass" 30
@@ -106,7 +106,7 @@ outfit "nGVF-BB Fuel Cell"
 	description "This is a step up from the smallest fuel cells, providing enough energy to power a few small guns in addition to your engines."
 
 outfit "nGVF-CC Fuel Cell"
-	category "Power"
+	category "Power Component"
 	cost 72000
 	thumbnail "outfit/medium fuel cell"
 	"mass" 40
@@ -116,7 +116,7 @@ outfit "nGVF-CC Fuel Cell"
 	description "This is a medium-sized fuel cell, designed to be sufficient for larger civilian ships and small warships while still being more affordable than the more sophisticated generator options."
 
 outfit "nGVF-DD Fuel Cell"
-	category "Power"
+	category "Power Component"
 	cost 118000
 	thumbnail "outfit/large fuel cell"
 	"mass" 60
@@ -126,7 +126,7 @@ outfit "nGVF-DD Fuel Cell"
 	description "This is a relatively large fuel cell. Other generators are available that produce more energy and fit into a smaller space, but they are much more expensive. As a result, large civilian ships that will not be frequently in combat often come equipped with these fuel cells."
 
 outfit "nGVF-EE Fuel Cell"
-	category "Power"
+	category "Power Component"
 	cost 177000
 	thumbnail "outfit/huge fuel cell"
 	"mass" 80
@@ -137,7 +137,7 @@ outfit "nGVF-EE Fuel Cell"
 
 
 outfit "RT-I Radiothermal"
-	category "Power"
+	category "Power Component"
 	cost 300000
 	thumbnail "outfit/small radiothermal"
 	"mass" 45
@@ -147,7 +147,7 @@ outfit "RT-I Radiothermal"
 	description "Radiothermal generators harvest heat from radioactive isotopes and convert it into electricity. They are more powerful than fuel cells, but also produce a relatively high amount of heat."
 
 outfit "S3 Thermionic"
-	category "Power"
+	category "Power Component"
 	cost 360000
 	thumbnail "outfit/small thermionic"
 	"mass" 55
@@ -157,7 +157,7 @@ outfit "S3 Thermionic"
 	description "Thermionic radioisotopic generators were designed as a cooler-running alternative to radiothermal generators."
 
 outfit "NT-200 Nucleovoltaic"
-	category "Power"
+	category "Power Component"
 	cost 570000
 	thumbnail "outfit/small nucleovoltaic"
 	"mass" 65
@@ -168,7 +168,7 @@ outfit "NT-200 Nucleovoltaic"
 
 
 outfit "Dwarf Core"
-	category "Power"
+	category "Power Component"
 	cost 800000
 	thumbnail "outfit/dwarf core"
 	"mass" 36
@@ -178,7 +178,7 @@ outfit "Dwarf Core"
 	description "A Dwarf Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. It was designed by Deep Sky to be paired with their power-hungry atomic engines."
 
 outfit "Fission Reactor"
-	category "Power"
+	category "Power Component"
 	cost 1500000
 	thumbnail "outfit/fission"
 	"mass" 65
@@ -188,7 +188,7 @@ outfit "Fission Reactor"
 	description "Fission reactors have been a mainstay of large military vessels since even before the dawn of the space era. Today's models are very safe and efficient, but some pilots still find them disconcerting."
 
 outfit "Breeder Reactor"
-	category "Power"
+	category "Power Component"
 	cost 2500000
 	thumbnail "outfit/breeder"
 	"mass" 80
@@ -198,7 +198,7 @@ outfit "Breeder Reactor"
 	description "A breeder reactor is a more efficient fission reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
 
 outfit "Fusion Reactor"
-	category "Power"
+	category "Power Component"
 	cost 5000000
 	thumbnail "outfit/fusion"
 	"mass" 100
@@ -208,7 +208,7 @@ outfit "Fusion Reactor"
 	description "The invention of practical fusion power near the end of the twenty-first century spurred a new era of prosperity and plenty. Centuries later, the generators have been reduced in size, but are still generally only used in capital warships."
 
 outfit "Armageddon Core"
-	category "Power"
+	category "Power Component"
 	cost 9000000
 	thumbnail "outfit/core"
 	"mass" 130
@@ -218,7 +218,7 @@ outfit "Armageddon Core"
 	description "The Armageddon Core was designed to meet the extreme power needs of the largest warships of the Republic Navy. One of these generators costs more than an entire fleet of smaller ships."
 
 outfit "Stack Core"
-	category "Power"
+	category "Power Component"
 	cost 4500000
 	thumbnail "outfit/stack core"
 	"mass" 140

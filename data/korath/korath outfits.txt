@@ -14,7 +14,7 @@
 
 outfit "Generator (Candle Class)"
 	plural "Generators (Candle Class)"
-	category "Power"
+	category "Power Component"
 	cost 493000
 	thumbnail "outfit/small korath generator"
 	"mass" 23
@@ -25,7 +25,7 @@ outfit "Generator (Candle Class)"
 
 outfit "Generator (Furnace Class)"
 	plural "Generators (Furnace Class)"
-	category "Power"
+	category "Power Component"
 	cost 925000
 	thumbnail "outfit/medium korath generator"
 	"mass" 39
@@ -36,7 +36,7 @@ outfit "Generator (Furnace Class)"
 
 outfit "Generator (Inferno Class)"
 	plural "Generators (Inferno Class)"
-	category "Power"
+	category "Power Component"
 	cost 1877000
 	thumbnail "outfit/large korath generator"
 	"mass" 71
@@ -46,7 +46,7 @@ outfit "Generator (Inferno Class)"
 	description "With their typical disregard for the environmental impacts of their technology, the Korath put some rather alarming isotopes into this radiothermal generator. Its considerable energy output is offset by the heat it produces."
 
 outfit "Plasma Core"
-	category "Power"
+	category "Power Component"
 	cost 4188000
 	thumbnail "outfit/plasma core"
 	"mass" 54
@@ -56,7 +56,7 @@ outfit "Plasma Core"
 	description "This compact fusion reactor is an ancient Korath design, and served as the mainstay of their war fleets until larger ships and more powerful weapons created a need for bigger and more powerful generators."
 
 outfit "Double Plasma Core"
-	category "Power"
+	category "Power Component"
 	cost 9321000
 	thumbnail "outfit/double plasma core"
 	"mass" 93
@@ -66,7 +66,7 @@ outfit "Double Plasma Core"
 	description "This reactor core combines a pair of the ancient and robust Korath plasma cores into a single package."
 
 outfit "Triple Plasma Core"
-	category "Power"
+	category "Power Component"
 	cost 20460000
 	thumbnail "outfit/triple plasma core"
 	"mass" 169

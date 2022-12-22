@@ -659,7 +659,7 @@ tip "Ammunition:"
 tip "Systems:"
 	`Outfits that occupy general space, not the space set aside for engines or weapons.`
 
-tip "Power:"
+tip "Power Component:"
 	`Outfits that either supply energy, or store the energy that is generated.`
 
 tip "Engines:"

@@ -297,7 +297,7 @@ outfit "Thunderhead Storage Array"
 	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
 
 outfit "Small Biochemical Cell"
-	category "Power"
+	category "Power Component"
 	licenses
 		"Wanderer Outfits"
 	cost 230000
@@ -310,7 +310,7 @@ outfit "Small Biochemical Cell"
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
 outfit "Large Biochemical Cell"
-	category "Power"
+	category "Power Component"
 	licenses
 		"Wanderer Outfits"
 	cost 940000
@@ -323,7 +323,7 @@ outfit "Large Biochemical Cell"
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
 outfit "Red Sun Reactor"
-	category "Power"
+	category "Power Component"
 	licenses
 		"Wanderer Outfits"
 	cost 3800000
@@ -336,7 +336,7 @@ outfit "Red Sun Reactor"
 	description "The Wanderers have recently begun producing this tiny reactor as a way to squeeze a bit more energy production into their warships."
 
 outfit "Yellow Sun Reactor"
-	category "Power"
+	category "Power Component"
 	licenses
 		"Wanderer Outfits"
 	cost 7500000
@@ -349,7 +349,7 @@ outfit "Yellow Sun Reactor"
 	description "This is a compact nuclear reactor designed by the Wanderers. In addition to generating power, it is able to store a small amount of energy."
 
 outfit "White Sun Reactor"
-	category "Power"
+	category "Power Component"
 	licenses
 		"Wanderer Outfits"
 	cost 13900000
@@ -362,7 +362,7 @@ outfit "White Sun Reactor"
 	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."
 
 outfit "Blue Sun Reactor"
-	category "Power"
+	category "Power Component"
 	licenses
 		"Wanderer Outfits"
 	cost 21500000

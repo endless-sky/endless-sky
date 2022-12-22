@@ -454,7 +454,7 @@ outfit "Value Detector"
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
-	category "Power"
+	category "Power Component"
 	cost 7000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
@@ -464,7 +464,7 @@ outfit "Hai Chasm Batteries"
 
 outfit "Hai Fissure Batteries"
 	plural "Hai Fissure Batteries"
-	category "Power"
+	category "Power Component"
 	cost 11000
 	thumbnail "outfit/small battery hai"
 	"mass" 15
@@ -474,7 +474,7 @@ outfit "Hai Fissure Batteries"
 
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
-	category "Power"
+	category "Power Component"
 	cost 25000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
@@ -484,7 +484,7 @@ outfit "Hai Gorge Batteries"
 
 outfit "Hai Ravine Batteries"
 	plural "Hai Ravine Batteries"
-	category "Power"
+	category "Power Component"
 	cost 47000
 	thumbnail "outfit/large battery hai"
 	"mass" 50
@@ -494,7 +494,7 @@ outfit "Hai Ravine Batteries"
 
 outfit "Hai Valley Batteries"
 	plural "Hai Valley Batteries"
-	category "Power"
+	category "Power Component"
 	cost 74000
 	thumbnail "outfit/huge battery hai"
 	"mass" 70
@@ -504,7 +504,7 @@ outfit "Hai Valley Batteries"
 
 
 outfit "Boulder Reactor"
-	category "Power"
+	category "Power Component"
 	cost 5750000
 	thumbnail "outfit/hai boulder"
 	"mass" 90
@@ -514,7 +514,7 @@ outfit "Boulder Reactor"
 	description "The Hai designed these miniaturized fusion generators back when their territory was being raided by the Korath. In these relatively peaceful times, they have seen no need to update the design."
 
 outfit "Geode Reactor"
-	category "Power"
+	category "Power Component"
 	cost 1750000
 	thumbnail "outfit/hai geode"
 	"mass" 58
@@ -524,7 +524,7 @@ outfit "Geode Reactor"
 	description "Fission reactors are considered a rudimentary technology among interstellar species. Nonetheless, it remains a proven and safe technology that even the Hai use fairly regularly."
 
 outfit "Pebble Core"
-	category "Power"
+	category "Power Component"
 	cost 1050000
 	thumbnail "outfit/hai pebble core"
 	"mass" 32
@@ -534,7 +534,7 @@ outfit "Pebble Core"
 	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
 outfit "Sand Cell"
-	category "Power"
+	category "Power Component"
 	cost 45000
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24

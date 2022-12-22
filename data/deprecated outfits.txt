@@ -15,7 +15,7 @@
 # must be maintained in case anyone installed one of them while they were available.
 
 outfit "Korath Tek'far Reactor"
-	category "Power"
+	category "Power Component"
 	cost 1200000
 	thumbnail "outfit/unknown"
 	"mass" 25
@@ -25,7 +25,7 @@ outfit "Korath Tek'far Reactor"
 	description "This is a miniature nuclear reactor, used by the Korath to power their fighters."
 
 outfit "Korath Tek'nel Reactor"
-	category "Power"
+	category "Power Component"
 	cost 14000000
 	thumbnail "outfit/unknown"
 	"mass" 140

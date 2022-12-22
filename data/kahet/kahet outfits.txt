@@ -372,7 +372,7 @@ outfit "Ka'het Grand Restorer"
 # Power:
 
 outfit "Ka'het MHD Generator"
-	category "Power"
+	category "Power Component"
 	cost 1263000
 	thumbnail "outfit/ka'het mhd generator"
 	"mass" 20
@@ -382,7 +382,7 @@ outfit "Ka'het MHD Generator"
 	description "The Builders originally created this magnetohydrodynamic generator as the Ka'mar main power source. Similarly to what happened with many Mar devices, it was later reused in the Het ships as a secondary energy generator, supplementing their integrated power systems when they proved to be unsatisfactory."
 
 outfit "Ka'het Reserve Accumulator"
-	category "Power"
+	category "Power Component"
 	cost 27000
 	thumbnail "outfit/ka'het reserve accumulator"
 	"mass" 2

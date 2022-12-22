@@ -15,7 +15,7 @@
 
 outfit "Small EM Battery"
 	plural "Small EM Batteries"
-	category "Power"
+	category "Power Component"
 	cost 200000
 	thumbnail "outfit/small embattery"
 	"mass" 14
@@ -28,7 +28,7 @@ outfit "Small EM Battery"
 
 outfit "Large EM Battery"
 	plural "Large EM Batteries"
-	category "Power"
+	category "Power Component"
 	cost 1000000
 	thumbnail "outfit/embattery"
 	"mass" 150

@@ -13,7 +13,7 @@
 
 outfit "Nanotech Battery"
 	plural "Nanotech Batteries"
-	category "Power"
+	category "Power Component"
 	cost 3000000
 	thumbnail "outfit/quarg nanotech battery"
 	"mass" 50
@@ -22,7 +22,7 @@ outfit "Nanotech Battery"
 	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being less than a third the size."
 
 outfit "Antimatter Core"
-	category "Power"
+	category "Power Component"
 	cost 100000000
 	thumbnail "outfit/quarg antimatter core"
 	"mass" 80
