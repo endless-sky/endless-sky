@@ -190,7 +190,7 @@ mission "War Reactions: Syndicate Orphan"
 	on offer
 		set "pug media coverage"
 		conversation
-			`	When you exit your ship, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
+			`	When you exit the secure landing area, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
 			choice
 				`	"Break it up, kids."`
 				`	(Ignore them and keep walking.)`
@@ -210,7 +210,7 @@ mission "War Reactions: Syndicate Orphan"
 			label attacking
 			action
 				set "War Reactions: Syndicate Orphan: attacking"
-			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service, which monitors Syndicate-owned workplaces. Those boys are factory workers, and Syndicate security officers aren't nice to factory workers. They can't attack my sister, so they attack me instead."`
+			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service, which monitors Syndicate-owned workplaces. Those boys are factory workers that my sister turned in for smoking on the job. They took their rage out on me since they can't attack my sister."`
 				goto questions
 			label young
 			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some orphans work in factories, in return for better education, good housing, and medical care. Only the cleverest of us get to do it. All of the orphanage factories are safe; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
