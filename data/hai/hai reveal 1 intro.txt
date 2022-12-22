@@ -846,7 +846,7 @@ mission "00 Hai Leaks Response 4B"
 		log `Successfully rescued the kidnapped Hai and reclaimed the Geocoris. This ship has been modified in ways that aren't of Hai origin, and which don't appear to be fully functional.`
 		event "returned geocoris" 365
 		conversation
-			`You have successfully rescued the kidnapped Hai and reclaimed the Geocoris. On your way back to <planet> the crew you sent across to fly it home report that something is different about it... It appears that it has been modified with systems of some kind which are not of Hai design. It also appears that not everything about those systems is perhaps working wholly as intended.`
+			`You have successfully rescued the kidnapped Hai and reclaimed the Geocoris. On your way back to <planet> the crew you sent across to fly it home report that something is different about it... It appears that it has been modified with systems of some kind, which are not of Hai design. It also appears that perhaps not everything about those systems is working wholly as intended.`
 				decline
 
 event "returned geocoris"
