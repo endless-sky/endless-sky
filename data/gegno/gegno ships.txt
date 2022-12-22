@@ -19,7 +19,7 @@ ship "Shale"
 		category "Transport"
 		licenses
 			"Gegno Civilian"
-		"cost" 265000
+		"cost" 148000
 		"shields" 0
 		"hull" 760
 		"required crew" 1
@@ -54,7 +54,7 @@ ship "Dolomite"
 	sprite "ship/gegno dolomite"
 	thumbnail "thumbnail/gegno dolomite"
 	attributes
-		category "Light Freighter"
+		category "Heavy Freighter"
 		licenses
 			"Gegno Civilian"
 		"cost" 1692000
@@ -146,14 +146,14 @@ ship "Gypsum"
 			"Gegno Civilian"
 		"cost" 1692000
 		"shields" 0
-		"hull" 5200
-		"required crew" 7
-		"bunks" 16
+		"hull" 6000
+		"required crew" 5
+		"bunks" 15
 		"mass" 380
 		"drag" 3
 		"heat dissipation" 0.8
 		"fuel capacity" 500
-		"cargo space" 125
+		"cargo space" 220
 		"outfit space" 240
 		"weapon capacity" 42
 		"engine capacity" 120
@@ -195,6 +195,7 @@ ship "Dunite"
 		category "Interceptor"
 		licenses
 			"Vi Evocati"
+		"cost" 50000
 		"shields" 0
 		"hull" 460
 		"required crew" 1
@@ -203,6 +204,7 @@ ship "Dunite"
 		"drag" 0.6
 		"heat dissipation" 0.9
 		"fuel capacity" 1
+		"cargo capacity" 1
 		"outfit space" 115
 		"weapon capacity" 22
 		"engine capacity" 56
@@ -356,7 +358,7 @@ ship "Slate"
 		category "Transport"
 		licenses
 			"Vi Evocati"
-		"cost" 302000
+		"cost" 169000
 		"shields" 0
 		"hull" 825
 		"required crew" 1
@@ -391,7 +393,7 @@ ship "Schist"
 	sprite "ship/gegno schist a"
 	thumbnail "thumbnail/gegno schist a"
 	attributes
-		category "Light Freighter"
+		category "Heavy Freighter"
 		licenses
 			"Vi Evocati"
 		"cost" 1932000
@@ -471,8 +473,8 @@ ship "Eclogite"
 		"cost" 2500000
 		"shields" 0
 		"hull" 6900
-		"required crew" 8
-		"bunks" 20
+		"required crew" 9
+		"bunks" 15
 		"mass" 275
 		"drag" 3.7
 		"heat dissipation" 0.7
@@ -480,7 +482,7 @@ ship "Eclogite"
 		"cargo space" 70
 		"outfit space" 285
 		"weapon capacity" 96
-		"engine capacity" 110
+		"engine capacity" 94
 		weapon
 			"blast radius" 36
 			"shield damage" 210
@@ -878,7 +880,7 @@ ship "Mica"
 		category "Transport"
 		licenses
 			"Scin Adjutant"
-		"cost" 358000
+		"cost" 201000
 		"shields" 0
 		"hull" 700
 		"required crew" 1
@@ -916,19 +918,19 @@ ship "Coesite"
 		category "Light Warship"
 		licenses
 			"Scin Adjutant"
-		"cost" 3120000
+		"cost" 1872000
 		"shields" 0
-		"hull" 6450
-		"required crew" 9
-		"bunks" 26
+		"hull" 6200
+		"required crew" 8
+		"bunks" 14
 		"mass" 260
 		"drag" 4
 		"heat dissipation" 0.7
 		"fuel capacity" 400
 		"cargo space" 40
 		"outfit space" 264
-		"weapon capacity" 110
-		"engine capacity" 120
+		"weapon capacity" 86
+		"engine capacity" 80
 		weapon
 			"blast radius" 40
 			"shield damage" 240
@@ -964,15 +966,15 @@ ship "Tridymite"
 		licenses
 			"Scin Architect"
 			"Scin Hoplologist"
-		"cost" 1960000
+		"cost" 1470000
 		"shields" 0
-		"hull" 5290
-		"required crew" 9
+		"hull" 5100
+		"required crew" 7
 		"bunks" 29
-		"mass" 240
-		"drag" 4
+		"mass" 230
+		"drag" 3.5
 		"heat dissipation" 0.7
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 56
 		"outfit space" 240
 		"weapon capacity" 0
@@ -1011,7 +1013,7 @@ ship "Felsic"
 	sprite "ship/gegno felsic"
 	thumbnail "thumbnail/gegno felsic"
 	attributes
-		category "Light Freighter"
+		category "Utility"
 		licenses
 			"Scin Architect"
 			"Scin Hoplologist"
