@@ -754,7 +754,7 @@ outfit "Guile Pulse Laser"
 outfit "Excavator"
 	category "Guns"
 	cost 0
-	"thumbnail" "outfit/mouthparts"
+	"thumbnail" "outfit/excavator"
 	"mass" 42
 	"outfit space" -42
 	"weapon capacity" -42
