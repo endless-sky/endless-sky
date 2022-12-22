@@ -100,7 +100,7 @@ private:
 		void Take(int count);
 
 	private:
-		void UpdateStrings(bool obscureValue);
+		void UpdateStrings(bool obscureValue = false);
 		double UnitMass() const;
 
 	private:
