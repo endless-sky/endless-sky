@@ -12,9 +12,10 @@ concurrency:
 
 jobs:
   changed:
-    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
+    uses: ./.github/workflows/compute-changes.yml
 
   build_linux:
+    name: Build
     needs: changed
     if: needs.changed.outputs.linux == 'true'
     runs-on: ubuntu-latest
@@ -100,6 +101,7 @@ jobs:
         path: ${{ env.ARTIFACT }}
 
   test_linux:
+    name: Test
     needs: build_linux
     runs-on: ${{ matrix.os }}
     strategy:
@@ -144,6 +146,7 @@ jobs:
       run: steam-runtime/run.sh tests/integration/run_tests_headless.sh
 
   deploy_linux:
+    name: Deploy
     needs: test_linux
     runs-on: ubuntu-latest
     # environment: steam
@@ -173,6 +176,7 @@ jobs:
     #     releaseBranch: canary
 
   deploy_data_depot:
+    name: Deploy Data
     needs: changed
     if: needs.changed.outputs.data == 'true'
     runs-on: ubuntu-latest
