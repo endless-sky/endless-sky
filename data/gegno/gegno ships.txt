@@ -1047,7 +1047,7 @@ ship "Felsic"
 		"Hyperdrive"
 	engine -18.5 155.5
 	engine 18.5 155.5
-	turret 0 -87.5 "Astuit Battery"
+	turret 0 -73.5 "Astuit Battery"
 	turret -41.5 84.5 "Astuit Battery"
 	turret 41.5 84.5 "Astuit Battery"
 	leak "leak" 60 50

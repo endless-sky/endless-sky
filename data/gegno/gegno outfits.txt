@@ -373,13 +373,13 @@ outfit "SC-15 Plasma Thrusters"
 	"thrust" 62.4
 	"thrusting energy" 11.1
 	"thrusting heat" 26.4
-	"flare sprite" "effect/scplasma/large"
+	"flare sprite" "effect/scin flare/large"
 		"frame rate" 0.3
 	"flare sound" "scplasma large"
 	"reverse thrust" 29.2
 	"reverse thrusting energy" 7.8
 	"reverse thrusting heat" 20.6
-	"reverse flare sprite" "effect/scplasma/large"
+	"reverse flare sprite" "effect/scin flare/large"
 		"frame rate" 0.3
 	"reverse flare sound" "scplasma large"
 	description `The Gegno Scin have taken another step forward from the SC-14 class engine system, incorporating both reverse and forward thrust into a single engine. In order to field the SC-15, the Scin had to design their largest ships around the thrusters, rather than fit it on later. The ability to reverse is especially important in engagements with the Gegno Vi's forward-heavy combat vessels.`
@@ -430,7 +430,7 @@ outfit "Irate Cannon Turret"
 	weapon
 		sprite "projectile/irate"
 		"hardpoint sprite" "hardpoint/irate"
-		"hardpoint offset" 1.5
+		"hardpoint offset" -0.8 12
 		sound "irate"
 		"fire effect" "irate fire"
 		"live effect" "irate smoke" 12
@@ -480,7 +480,7 @@ outfit "Choleric Cannon"
 	weapon
 		sprite "projectile/choleric"
 		sound "choleric"
-		"fire effect" "choleric fire"
+		"fire effect" "irate fire"
 		"live effect" "choleric smoke" 24
 		"hit effect" "small explosion"
 		"inaccuracy" 2
@@ -562,7 +562,7 @@ outfit "Ballistic Cannon"
 	weapon
 		sprite "projectile/ballistic"
 		sound "ballistic"
-		"fire effect" "ballistic fire"
+		"fire effect" "irate fire"
 		"live effect" "ballistic smoke" 36
 		"hit effect" "ballistic hit"
 		"inaccuracy" 3
