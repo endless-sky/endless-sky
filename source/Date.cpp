@@ -47,6 +47,10 @@ namespace {
 	}
 
 	Preferences::DateFormat dateFormatInUse = Preferences::DateFormat::dmy;
+
+	// Months contain a variable number of days.
+	const int MDAYS[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+
 }
 
 
@@ -302,8 +306,6 @@ int Date::DaysSinceEpoch() const
 		int month = Month();
 		int year = Year();
 
-		// Months contain a variable number of days.
-		int MDAYS[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 		daysSinceEpoch += MDAYS[month - 1];
 		// Add in a leap day if this is a leap year and it is after February.
 		if(month > 2 && !(year % 4) && ((year % 100) || !(year % 400)))
@@ -329,6 +331,26 @@ int Date::DaysSinceEpoch() const
 		daysSinceEpoch += 365 * year;
 	}
 	return daysSinceEpoch;
+}
+
+
+
+int Date::DaysSinceYearStart() const
+{
+	int result = Day() + MDAYS[Month() - 1];
+	// Add 1 if this is a leap year and it is after February.
+	if(Month() > 2 && !(Year() % 4))
+		++result;
+	return result;
+}
+
+
+
+int Date::DaysUntilYearEnd() const
+{
+	if(Year() % 4)
+		return 365 - DaysSinceYearStart();
+	return 366 - DaysSinceYearStart();
 }
 
 
