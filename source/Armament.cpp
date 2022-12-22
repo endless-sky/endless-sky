@@ -211,7 +211,7 @@ const std::vector<Hardpoint *> Armament::TurrettedWeapons() const
 
 
 
-const std::vector<Hardpoint *> Armament::AllWeaponsNoAM() const
+const std::vector<Hardpoint *> Armament::NonAMWeapons() const
 {
 	return allHardpointsNoAM;
 }

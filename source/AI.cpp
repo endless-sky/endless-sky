@@ -115,7 +115,7 @@ namespace {
 	// Determine if the ship has any usable weapons.
 	bool IsArmed(const Ship &ship)
 	{
-		for(const Hardpoint *hardpoint : ship.GetArmament().AllWeaponsNoAM())
+		for(const Hardpoint *hardpoint : ship.GetArmament().NonAMWeapons())
 		{
 			const Weapon *weapon = hardpoint->GetOutfit();
 
@@ -129,7 +129,7 @@ namespace {
 	bool ShouldDockForReloading(const Ship &ship, const Ship &parent)
 	{
 		bool dockToReload = false;
-		for(const Hardpoint *hardpoint : ship.GetArmament().AllWeaponsNoAM())
+		for(const Hardpoint *hardpoint : ship.GetArmament().NonAMWeapons())
 		{
 			const Outfit *ammo = hardpoint->GetOutfit()->Ammo();
 			if(!ammo || ship.OutfitCount(ammo))
@@ -2169,7 +2169,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	bool isArmed = false;
 	bool hasAmmo = false;
 	double minSafeDistance = 0.;
-	for(const Hardpoint *hardpoint : ship.GetArmament().AllWeaponsNoAM())
+	for(const Hardpoint *hardpoint : ship.GetArmament().NonAMWeapons())
 	{
 		const Weapon *weapon = hardpoint->GetOutfit();
 
