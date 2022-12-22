@@ -538,7 +538,7 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValue)
 	: name(commodity), outfit(nullptr), count(count), unitValue(unitValue)
 {
-	UpdateStrings(false);
+	UpdateStrings();
 }
 
 std::string BoardingPanel::GenerateOutfitLootName(const PlayerInfo& player,
