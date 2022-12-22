@@ -2212,24 +2212,24 @@ void Engine::DoCollection(Flotsam &flotsam)
 			player.Harvest(outfit);
 		}
 		else {
-			string dn = outfit->DisplayName();
-			string pn = outfit->PluralName();
+			string displayName = outfit->DisplayName();
+			string pluralName = outfit->PluralName();
 
 			if(!player.OutfitIsKnown(*outfit))
 			{
-				dn = "Unknown " + outfit->Category();
+				displayName = "Unknown " + outfit->Category();
 
-				if((amount == 1) && (dn.back() == 's'))
+				if((amount == 1) && (displayName.back() == 's'))
 				{
-					dn.pop_back();
-					dn += " Component";
+					displayName.pop_back();
+					displayName += " Component";
 				}
 
-				pn = dn + 's';
+				pluralName = displayName + 's';
 			}
 
 			message = name + to_string(amount) + " "
-				+ (amount == 1 ? dn : pn) + ".";
+				+ (amount == 1 ? displayName : pluralName) + ".";
 		}
 	}
 	else
