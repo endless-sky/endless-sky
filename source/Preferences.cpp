@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Preferences.h"
@@ -38,9 +41,16 @@ namespace {
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
+	// Default to fullscreen.
+	int screenModeIndex = 1;
+	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
+
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
+	int boardingIndex = 0;
 }
 
 
@@ -78,10 +88,14 @@ void Preferences::Load()
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
+		else if(node.Token(0) == "boarding target")
+			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "fullscreen")
+			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -97,6 +111,7 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
+	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
 
@@ -183,6 +198,35 @@ bool Preferences::ZoomViewOut()
 
 
 
+double Preferences::MinViewZoom()
+{
+	return ZOOMS[0];
+}
+
+
+
+double Preferences::MaxViewZoom()
+{
+	return ZOOMS[ZOOMS.size() - 1];
+}
+
+
+
+void Preferences::ToggleScreenMode()
+{
+	GameWindow::ToggleFullscreen();
+	screenModeIndex = GameWindow::IsFullscreen();
+}
+
+
+
+const string &Preferences::ScreenModeSetting()
+{
+	return SCREEN_MODE_SETTINGS[screenModeIndex];
+}
+
+
+
 bool Preferences::ToggleVSync()
 {
 	int targetIndex = vsyncIndex + 1;
@@ -219,4 +263,28 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+void Preferences::ToggleBoarding()
+{
+	int targetIndex = boardingIndex + 1;
+	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
+		targetIndex = 0;
+	boardingIndex = targetIndex;
+}
+
+
+
+Preferences::BoardingPriority Preferences::GetBoardingPriority()
+{
+	return static_cast<BoardingPriority>(boardingIndex);
+}
+
+
+
+const string &Preferences::BoardingSetting()
+{
+	return BOARDING_SETTINGS[boardingIndex];
 }

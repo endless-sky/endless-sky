@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Word lists that are re-used for many different ship name phrases
 phrase "digit"
@@ -4224,7 +4227,6 @@ phrase "bad outcomes"
 		"Blood"
 		"Poison"
 		"Blight"
-		"Fury"
 		"Misfortune"
 		"Damnation"
 		"Contagion"
@@ -4532,7 +4534,7 @@ phrase "pirate subphrase 2"
 	phrase
 		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 3"
 	phrase
@@ -4543,7 +4545,7 @@ phrase "pirate subphrase 3"
 		" "
 	phrase
 		"sinister names" 78
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 4"
 	phrase
@@ -4553,7 +4555,7 @@ phrase "pirate subphrase 4"
 	phrase
 		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 	# When making a word ending in "s" possessive, only add an apostrophe.
 	replace
 		"s%'s" "s'"
@@ -4578,7 +4580,7 @@ phrase "pirate subphrase 6"
 
 phrase "pirate subphrase 7"
 	phrase
-		"bad outcomes" 53
+		"bad outcomes" 52
 		"pirate adjectives that work as titles" 65
 		"pirate adjectives that don't work as titles" 67
 	word
@@ -4590,7 +4592,7 @@ phrase "pirate subphrase 8"
 	phrase
 		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 9"
 	word

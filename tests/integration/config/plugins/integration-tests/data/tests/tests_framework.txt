@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 test "Test-Framework - Empty Testcase"
 	status "active"
@@ -63,22 +66,22 @@ test "Test-Framework - UI Keyboard controls"
 		# Enter and leave jobs
 		input
 			key j
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		input
 			key d
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter trading
 		input
 			key t
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter bank
 		input
 			key b
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter spaceport
 		input
 			key p
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Enter and leave shipyard
 		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
 		#input
@@ -88,13 +91,13 @@ test "Test-Framework - UI Keyboard controls"
 		# Enter and leave outfitter
 		input
 			key o
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		input
 			key l
 		# Enter hire-crew section
 		input
 			key h
-			#TODO: check if the panel is actually loaded
+			# TODO: check if the panel is actually loaded
 		# Depart
 		input
 			key d

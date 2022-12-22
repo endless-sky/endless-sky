@@ -31,9 +31,9 @@ test-data "Wormhole Navigation"
 				"fuel capacity" 2500
 				"ramscoop" 10
 				"cargo space" 1110
-				"outfit space" 2150
-				"weapon capacity" 470
-				"engine capacity" 800
+				"outfit space" 21500
+				"weapon capacity" 4700
+				"engine capacity" 8000
 				"shield generation" 15
 				"shield energy" 1.8
 				"hull repair rate" 15

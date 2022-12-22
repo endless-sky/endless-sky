@@ -12,9 +12,7 @@ test "Land - Clear flagship model condition helper"
 
 
 test "Clear flagship model condition"
-	# Known failure: The "flagship planet: " condition is currently not cleared at departure.
-	# This will be fixed by https://github.com/endless-sky/endless-sky/pull/5244 or a similar PR.
-	status "known failure"
+	status active
 	description "Test that the flagship model condition is correctly cleared."
 	sequence
 		# Create/inject the savegame and load it.

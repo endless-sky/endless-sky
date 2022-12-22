@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MINABLE_H_
@@ -36,13 +39,13 @@ class Visual;
 // ellipse around the system center.
 class Minable : public Body {
 public:
-	/* Inherited from Body:
-	Frame GetFrame(int step = -1) const;
-	const Mask &GetMask(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const; */
+	// Inherited from Body:
+	// Frame GetFrame(int step = -1) const;
+	// const Mask &GetMask(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
 
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);

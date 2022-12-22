@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "OutfitterPanel.h"
@@ -22,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Hardpoint.h"
 #include "text/layout.hpp"
+#include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -71,7 +75,7 @@ namespace {
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
-	};
+	}
 }
 
 
@@ -84,10 +88,10 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	// Add owned licenses
 	const string PREFIX = "license: ";
-	for(auto &it : player.Conditions())
-		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
+	for(auto it = player.Conditions().PrimariesBegin(); it != player.Conditions().PrimariesEnd(); ++it)
+		if(it->first.compare(0, PREFIX.length(), PREFIX) == 0 && it->second > 0)
 		{
-			const string name = it.first.substr(PREFIX.length()) + " License";
+			const string name = it->first.substr(PREFIX.length()) + " License";
 			const Outfit *outfit = GameData::Outfits().Get(name);
 			if(outfit)
 				catalog[outfit->Category()].insert(name);
@@ -103,6 +107,7 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
+	ShopPanel::CheckForMissions(Mission::OUTFITTER);
 	if(GetUI()->IsTop(this) && !checkedHelp)
 		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
@@ -118,9 +123,9 @@ int OutfitterPanel::TileSize() const
 
 
 
-int OutfitterPanel::VisiblityCheckboxesSize() const
+int OutfitterPanel::VisibilityCheckboxesSize() const
 {
-	return 60;
+	return 30;
 }
 
 
@@ -181,7 +186,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		int minCount = numeric_limits<int>::max();
 		int maxCount = 0;
 		if(isLicense)
-			minCount = maxCount = player.GetCondition(LicenseName(name));
+			minCount = maxCount = player.Conditions().Get(LicenseName(name));
 		else if(mapSize)
 			minCount = maxCount = player.HasMapped(mapSize);
 		else
@@ -267,7 +272,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	if(selectedOutfit)
 	{
 		outfitInfo.Update(*selectedOutfit, player, CanSell());
-		selectedItem = selectedOutfit->Name();
+		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
 		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
@@ -298,7 +303,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter,
+			descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
@@ -358,7 +364,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 	if(cost > player.Accounts().Credits() && !isAlreadyOwned)
 		return false;
 
-	if(HasLicense(selectedOutfit->Name()))
+	if(HasLicense(selectedOutfit->TrueName()))
 		return false;
 
 	if(!playerShip)
@@ -379,12 +385,13 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 void OutfitterPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
+	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedOutfit->Licenses())
-			if(!player.GetCondition("license: " + licenseName))
-				player.Conditions()["license: " + licenseName] = true;
+			if(!playerConditions.Get("license: " + licenseName))
+				playerConditions.Set("license: " + licenseName, true);
 	}
 
 	int modifier = Modifier();
@@ -404,9 +411,9 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		}
 
 		// Special case: licenses.
-		if(IsLicense(selectedOutfit->Name()))
+		if(IsLicense(selectedOutfit->TrueName()))
 		{
-			auto &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
+			auto &entry = player.Conditions()[LicenseName(selectedOutfit->TrueName())];
 			if(entry <= 0)
 			{
 				entry = true;
@@ -517,7 +524,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(HasLicense(selectedOutfit->Name()))
+	if(HasLicense(selectedOutfit->TrueName()))
 	{
 		GetUI()->Push(new Dialog("You already have one of these licenses, "
 			"so there is no reason to buy another."));
@@ -736,7 +743,7 @@ void OutfitterPanel::FailSell(bool toStorage) const
 		return;
 	else if(selectedOutfit->Get("map"))
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
-	else if(HasLicense(selectedOutfit->Name()))
+	else if(HasLicense(selectedOutfit->TrueName()))
 		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
@@ -763,7 +770,7 @@ void OutfitterPanel::FailSell(bool toStorage) const
 									"because that would cause your ship's \"" + it.first +
 									"\" value to be reduced to less than zero. "
 									"To " + verb + " this outfit, you must " + verb + " the " +
-									sit.first->Name() + " outfit first."));
+									sit.first->DisplayName() + " outfit first."));
 								return;
 							}
 						GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
@@ -803,7 +810,7 @@ void OutfitterPanel::DrawKey()
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
-	Point pos = Screen::BottomLeft() + Point(10., -VisiblityCheckboxesSize() + 10.);
+	Point pos = Screen::BottomLeft() + Point(10., -VisibilityCheckboxesSize() - 20.);
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
@@ -826,7 +833,7 @@ void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
 
-	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -840,7 +847,7 @@ void OutfitterPanel::ToggleStorage()
 {
 	showStorage = !showStorage;
 
-	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -854,7 +861,7 @@ void OutfitterPanel::ToggleCargo()
 {
 	showCargo = !showCargo;
 
-	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -913,7 +920,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	SpriteShader::Draw(thumbnail, center);
 
 	// Draw the outfit name.
-	const string &name = outfit.Name();
+	const string &name = outfit.DisplayName();
 	const Font &font = FontSet::Get(14);
 	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
@@ -937,7 +944,7 @@ bool OutfitterPanel::IsLicense(const string &name) const
 
 bool OutfitterPanel::HasLicense(const string &name) const
 {
-	return (IsLicense(name) && player.GetCondition(LicenseName(name)) > 0);
+	return (IsLicense(name) && player.Conditions().Get(LicenseName(name)) > 0);
 }
 
 
