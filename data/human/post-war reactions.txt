@@ -190,7 +190,7 @@ mission "War Reactions: Syndicate Orphan"
 	on offer
 		set "pug media coverage"
 		conversation
-			`	When you exit the secure landing area, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
+			`	When you exit the secure landing area, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three scruffy-looking boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
 			choice
 				`	"Break it up, kids."`
 				`	(Ignore them and keep walking.)`
@@ -210,11 +210,11 @@ mission "War Reactions: Syndicate Orphan"
 			label attacking
 			action
 				set "War Reactions: Syndicate Orphan: attacking"
-			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service, which monitors Syndicate-owned workplaces. Those boys are factory workers that my sister turned in for smoking on the job. They took their rage out on me since they can't attack my sister."`
+			`	"My sister is a Private, Third Class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and she turned those boys in for smoking on the job last week. I guess they finally got a break for the factory and came after me since they can't hurt my sister."`
 				goto questions
 			label young
-			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some orphans work in factories, in return for better education, good housing, and medical care. Only the cleverest of us get to do it. All of the orphanage factories are safe; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
-			`	"Wait, you're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting human ships on our Syndicate school's big educational viewscreen."`
+			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in factories. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
+			`	"Wait a minute!" He suddenly looks at you with wide eyes. "You're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting our ships on our school's big edu-screen."`
 			choice
 				`	"Yes, I'm Captain <first> <last>."`
 					goto me
@@ -227,9 +227,9 @@ mission "War Reactions: Syndicate Orphan"
 			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device'. After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you, sir. Can I shake your hand?" He puts out his hand, and you shake it.`
 				goto next
 			label blew
-			`	"I bet you did! I wish I was on one of our warships, bravely defending the human race. The honor, the glory, the mercenary pay. It sounds amazing."`
+			`	"I bet you did! I wish I was on one of our warships, bravely defending us all. Blowing up Pugs, getting paid. It sounds amazing!"`
 			label next
-			`	"What was it like, fighting the evil Pug?"`
+			`	"What was it like, fighting those nasty, evil Pugs?"`
 
 			choice
 				`	"Actually, they're not evil. Their 'war' was a ploy to get us to stop fighting among ourselves. A lot of Pug gave their lives willingly to save us from self-destruction."`
@@ -239,13 +239,13 @@ mission "War Reactions: Syndicate Orphan"
 					goto chess
 				`	"It was an honor to protect the human race from our attackers."`
 					goto honor
-			`	"That's so insightful! Still, without people like you, the Pug's ploy would never have worked. Thank you for your service, Captain."`
+			`	"Woah, you sound really smart. Like one of those sensible experts in the vids! Still, without people like you, the Pug's plan couldn't have worked. I still reckon you were the best, Captain."`
 				goto salute
 			label hell
-			`	"You went through hell for us, eh? That's something to think about. Maybe I should stick to engineering instead of becoming a combat pilot. I dunno."`
+			`	"You went through hell for us, eh? That sounds less fun than I thought... Maybe I should stick to school and be an engineer instead of a pilot. I dunno."`
 				goto salute
 			label chess
-			`	"The Syndicate is training me to maintain and pilot combat ships! One day, I'll fight aliens like you did."`
+			`	"The Syndicate is training me to maintain and they're even going to train me to pilot their combat ships when I'm older! One day, I'll fight aliens like you did."`
 				goto salute
 			label honor
 			`	"Glory, honor, and service. The Syndicate has been training me, but I've often thought of enlisting in the Navy. It isn't as profitable, but it's certainly more noble."`
