@@ -3913,7 +3913,7 @@ void PlayerInfo::Save(const string &path) const
 	}
 	out.EndChild();
 
-//  Save a list of all known outfits to the player
+	//  Save a list of all known outfits to the player
 	WriteSorted(knownOutfits,
 		[](const Outfit *const *lhs, const Outfit *const *rhs)
 			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
@@ -3922,7 +3922,7 @@ void PlayerInfo::Save(const string &path) const
 			out.Write(KNOWN_OUTFIT_KEY, outfit->TrueName());
 		});
 
-// Save a list of all visited outfitters
+	// Save a list of all visited outfitters
 	std::set< const Planet* > planetsWithVisitedOutfitters;
 	for(const auto outfitter : visitedOutfitters)
 		for(const auto planet : visitedPlanets)
