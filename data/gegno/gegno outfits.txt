@@ -317,7 +317,7 @@ outfit "SC-12 Plasma Steering"
 	"steering flare sprite" "effect/scin flare/small"
 		"frame rate" 0.5
 	"steering flare sound" "scplasma small"
-	description `The new SC plasma engines allow Gegno Scin ships to outmaneuver their opposing brothers. What might take a Vi ship a long time takes only a moment's worth on a Scin ship.`
+	description `The new SC plasma engines allow Gegno Scin ships to outmanoeuvre their opposing brothers. What might take a Vi ship a long time takes only a moment on a Scin ship.`
 
 
 outfit "SC-14 Plasma Thruster"
@@ -576,7 +576,7 @@ outfit "Ballistic Cannon"
 		"hit force" 360
 		"stream"
 		"missile strength" 18
-	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber weapon that the Gegno field. Each cannon round can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload time and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can create a deadly wall of fire in their sight.`
+	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber weapon that the Gegno field. Each cannon round can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload time and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can create a deadly wall of fire.`
 
 
 outfit "Ballistic Cannon Turret"
@@ -669,7 +669,7 @@ outfit "Astuit Battery"
 		"firing heat" 34
 		"shield damage" 8.8
 		"hull damage" 9.4
-	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat, although the energy requirement of such technology is still significant. Astuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With four blasters on a turreted mount, it produces a constant stream of damage which adds up over time, despite the minor damage that each individual projectile creates."
+	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat, although the energy requirement of such technology is still significant. Astuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With four Astuit Blasters on a turreted mount, it produces a constant stream of damage which adds up over time, despite the minor damage that each individual projectile creates."
 
 effect "astuit hit"
 	sprite "effect/ast hit"
