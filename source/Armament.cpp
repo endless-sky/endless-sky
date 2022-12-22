@@ -27,6 +27,52 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	std::tuple<double, double> CalculateMinMaxRanges(const vector<Hardpoint> &hardpoints)
+	{
+		double rangeMin = numeric_limits<double>::infinity();
+		double rangeMax = 0.;
+		for(const Hardpoint &hardpoint : hardpoints)
+		{
+			if(hardpoint.IsAntiMissile())
+				continue;
+
+			const auto *weapon = hardpoint.GetOutfit();
+			if (!weapon)
+				continue;
+
+			const auto range = weapon->Range();
+			rangeMin = min(rangeMin, range);
+			rangeMax = max(rangeMax, range);
+		}
+
+		return { rangeMin, rangeMax };
+	}
+
+
+	double CalculateTurretsMaxRange(const vector<Hardpoint> &hardpoints)
+	{
+		double rangeMaxTurrets = 0;
+		for(const Hardpoint &hardpoint : hardpoints)
+		{
+			if(hardpoint.IsAntiMissile())
+				continue;
+
+			if(!hardpoint.CanAim())
+				continue;
+
+			const auto *weapon = hardpoint.GetOutfit();
+			if (!weapon)
+				continue;
+
+			const auto range = weapon->Range();
+			rangeMaxTurrets = max(rangeMaxTurrets, range);
+		}
+		return rangeMaxTurrets;
+	}
+
+}
+
 
 
 Armament::Armament(const Armament &other)
@@ -384,34 +430,6 @@ void Armament::RecreateViewsAndRanges()
 		else
 			allHardpointsNoAM.push_back(&hardpoint);
 	}
-	std::tie(minRange, maxRange, maxTurretsRange) = CalculateRanges();
-}
-
-std::tuple<double, double, double> Armament::CalculateRanges() const
-{
-	double rangeMin = numeric_limits<double>::infinity();
-	double rangeMax = 0.;
-	double rangeMaxTurrets = 0;
-	for(const Hardpoint *hardpoint : fixedHardpoints)
-	{
-		if(hardpoint->IsAntiMissile())
-			continue;
-
-		auto range = hardpoint->GetOutfit()->Range();
-		rangeMin = min(rangeMin, range);
-		rangeMax = max(rangeMax, range);
-	}
-	for(const Hardpoint *hardpoint : turrettedHardpoints)
-	{
-		if(hardpoint->IsAntiMissile())
-			continue;
-
-		auto range = hardpoint->GetOutfit()->Range();
-		rangeMin = min(rangeMin, range);
-		rangeMaxTurrets = max(rangeMaxTurrets, range);
-	}
-
-	rangeMax = max(rangeMax, rangeMaxTurrets);
-
-	return { rangeMin, rangeMax, rangeMaxTurrets };
+	std::tie(minRange, maxRange) = CalculateMinMaxRanges(hardpoints);
+	maxTurretsRange = CalculateTurretsMaxRange(hardpoints);
 }
