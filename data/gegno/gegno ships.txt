@@ -565,7 +565,7 @@ ship "Diorite"
 	explode "small explosion" 20
 	explode "tiny explosion" 17
 	"final explode" "final explosion medium"
-	description `Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets. In conjunction with this configuration, the Diorite is much more maneuverable than other Vi ships in its class and can easily keep a beat on other ships its size, and sometimes smaller ones as well.`
+	description `Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets. In conjunction with this configuration, the Diorite is much more manoeuvrable than other Vi ships in its class and can easily keep a bead on other ships its size, and sometimes smaller ones as well.`
 
 ship "Hornfel"
 	sprite "ship/gegno hornfel a"
