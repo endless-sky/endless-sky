@@ -1294,7 +1294,7 @@ mission "Hai Reveal [B13] Freedom"
 			choice
 				`	"Lead on."`
 					goto leadon
-				`	"Are you calling me a coward? If I had more time, I'd challenge you to a duel for that."`
+				`	"Treating me like a coward? That's grounds for a duel."`
 			`	"Heh heh," he laughs in a low voice. "Maybe soon."`
 			action
 				set "Hai Reveal [B13] Freedom: challenged Choot'k"
