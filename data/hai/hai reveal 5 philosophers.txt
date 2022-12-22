@@ -602,12 +602,14 @@ event "devil-run smugglers visible"
 		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Alpheratz"
 		add fleet "Smuggler (Hai Traffickers)" 7000
-	system "Achernar"
-		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Al Dhanab"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Achernar"
 		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Mirach"
 		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Schedar"
+		add fleet "Smuggler (Hai Traffickers)" 3500
 	
 	# Staging areas for transfers
 	system "Alcyone"
