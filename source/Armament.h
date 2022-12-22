@@ -109,11 +109,11 @@ private:
 	std::map<const Outfit *, int> streamReload;
 	std::vector<Hardpoint> hardpoints;
 	// 'Views' useful to iterate over specific categories, skipping empty hardpoints
-	// Note: turrettedHardpoints and fixedHardpoints are mutually exclusive
-	std::vector<Hardpoint *> allHardpointsNoAM;
-	std::vector<Hardpoint *> turrettedHardpoints;
-	std::vector<Hardpoint *> fixedHardpoints;
-	std::vector<Hardpoint *> antiMissileHardpoints;
+	// Note: turrettedWeapons and fixedWeapons are mutually exclusive
+	std::vector<Hardpoint *> nonAMWeapons;
+	std::vector<Hardpoint *> turrettedWeapons;
+	std::vector<Hardpoint *> fixedWeapons;
+	std::vector<Hardpoint *> antiMissileWeapons;
 
 	// Global ranges of actual configuration (excluding AntiMissiles)
 	double minRange = 0.;
