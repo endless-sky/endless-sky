@@ -37,8 +37,7 @@ using namespace std;
 
 
 MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited)
-	: number(number), hasVisited(hasVisited)
-	, yCoordinate(0.), planetName(object.Name())
+	: number(number), hasVisited(hasVisited), planetName(object.Name())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasSpaceport();

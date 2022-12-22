@@ -72,7 +72,6 @@ namespace {
 // Initialize a collision set. The cell size and cell count should both be
 // powers of two; otherwise, they are rounded down to a power of two.
 CollisionSet::CollisionSet(unsigned cellSize, unsigned cellCount)
-	: seenEpoch(0)
 {
 	// Right shift amount to convert from (x, y) location to grid (x, y).
 	SHIFT = 0u;
