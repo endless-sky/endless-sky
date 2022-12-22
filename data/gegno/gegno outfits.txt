@@ -22,7 +22,7 @@ outfit "R01 Skirmish Battery"
 	"mass" 12
 	"outfit space" -12
 	"energy capacity" 1121
-	description `Skirmish Batteries are very common among ships across Gegno space. They can be either a cheaper and more convenient storage of battery power in place of upgrading to larger Gegno generators, or a nice addition alongside them where more energy may be needed.`
+	description `Skirmish Batteries are very common outfits on Gegno ships. They can be either a cheaper alternative than upgrading to a larger reactor, or a nice addition alongside one where short bursts of high energy may be needed.`
 
 
 outfit "R02 Battlezone Battery"
@@ -35,7 +35,7 @@ outfit "R02 Battlezone Battery"
 	"mass" 23
 	"outfit space" -23
 	"energy capacity" 2237
-	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long-lasting engagements. They also fit nicely on larger vessels as a buffer to power their larger systems.`
+	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long-lasting engagements. They also fit nicely on larger vessels as a buffer to power their more energy hungry systems.`
 
 
 outfit "R03 Warforge Battery"
@@ -48,7 +48,7 @@ outfit "R03 Warforge Battery"
 	"mass" 41
 	"outfit space" -41
 	"energy capacity" 4469
-	description `Warforge Batteries have proved their usefulness over the years as large, sturdy battery packs. They support the equally large volleys that are fired from Gegno ships, and help maintain an excess of power for engine usage.`
+	description `Warforge Batteries have proven their usefulness over the years as large, sturdy battery packs. They support the equally large volleys that are fired from Gegno ships, and help maintain an excess of power for engine usage.`
 
 
 outfit "R04 Crusade Battery"
@@ -64,7 +64,7 @@ outfit "R04 Crusade Battery"
 	"mass" 83
 	"outfit space" -83
 	"energy capacity" 8885
-	description `As the largest battery mounted on energy-hungry Gegno ships, the Crusade Battery holds a large amount of power, more than it would take a small generator a decent amount of time to produce. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options.`
+	description `As the largest battery mounted on power-hungry Gegno ships, the Crusade Battery holds an immense amount of energy, more than a Scrap Cell could produce in almost two minutes. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options.`
 
 
 outfit "C3 Scrap Cell"
@@ -90,7 +90,7 @@ outfit "C7 Brawl Cell"
 	"outfit space" -39
 	"energy generation" 2.5
 	"heat generation" 3.9
-	description `Unlike other C-class cores, C7 Brawl Cells are mounted horizontally. This design still serves the Gegno well, though it will likely be phased out in favor of larger generators as they become more compact and efficient.`
+	description `When developing the C7 Brawl Cell, the Gegno decided to scale up the smaller C3 Scrap Cell. Unfortunately, the new design became so tall that the Gegno struggled to fit it into some of their ships, requiring them to turn the entire thing sideways. This design still serves the Gegno well, though it will likely be phased out in favor of newer generators as they become more compact and efficient.`
 
 
 outfit "C17 Warzone Core"
@@ -103,7 +103,7 @@ outfit "C17 Warzone Core"
 	"outfit space" -87
 	"energy generation" 14.1
 	"heat generation" 38.3
-	description `As did humans, the Gegno began developing nuclear technology once their cities grew massive enough to require it. The Warzone Core is a medium-sized nuclear fission reactor that is a suitable power source for most of the Gegno's large ships, though it looks even more discomforting than a human one.`
+	description `The Gegno began developing nuclear technology once their cities grew massive enough to require it. The Warzone Core is a medium-sized nuclear fission reactor that is a suitable power source for most of the Gegno's large ships, though it appears to lack many of the fail safes you would expect to find on a human nuclear reactor.`
 
 
 outfit "C27 Campaign Core"
@@ -119,7 +119,7 @@ outfit "C27 Campaign Core"
 	"outfit space" -145
 	"energy generation" 22.3
 	"heat generation" 62.9
-	description `In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign fusion reactor from earlier prototypes during their colony ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it raises safety concerns.`
+	description `In order to power the largest of vessels along with their energy-guzzling systems and engines, the Gegno designed the Campaign fusion reactor from earlier prototypes dating back to their generation ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it raises safety concerns.`
 
 
 outfit "I70 Ameliorate Cell"
@@ -155,7 +155,7 @@ outfit "RG15 Torch Thruster"
 	"flare sprite" "effect/vi flare/small"
 		"frame rate" 2.5
 	"flare sound" "ion torch small"
-	description `The RG15 Ion Torch Thruster is the Gegno Vi's smallest torch thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size, but it also uses slightly less energy.`
+	description `The RG15 Ion Torch Thruster is the Gegno Vi's smallest torch thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size in exchange for using slightly less energy.`
 
 
 outfit "RG15 Torch Steering"
@@ -297,7 +297,7 @@ outfit "SC-12 Plasma Thruster"
 	"flare sprite" "effect/scin flare/small"
 		"frame rate" 0.5
 	"flare sound" "scplasma small"
-	description `Rather than developing on the Ion Torch design of the Gegno Vi, the Gegno Scin began work on a plasma-based thruster. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel some of their heat in their thrust, the more stable and powerful SC thrusters tend to run hotter.`
+	description `Rather than developing on the Ion Torch design of the Vi, the Scin began work on a plasma-based thruster. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel some of their heat in their thrust, the more stable and powerful SC thrusters tend to run hotter.`
 
 
 outfit "SC-12 Plasma Steering"
@@ -316,7 +316,7 @@ outfit "SC-12 Plasma Steering"
 	"steering flare sprite" "effect/scin flare/small"
 		"frame rate" 0.5
 	"steering flare sound" "scplasma small"
-	description `The new SC plasma thrusters allow Gegno Scin ships to outmaneuver their opposing brothers. What might take a Gegno Vi ship a long time takes only a moment's worth on a Scin ship.`
+	description `The new SC plasma engines allow Gegno Scin ships to outmaneuver their opposing brothers. What might take a Vi ship a long time takes only a moment's worth on a Scin ship.`
 
 
 outfit "SC-14 Plasma Thruster"
@@ -335,7 +335,7 @@ outfit "SC-14 Plasma Thruster"
 	"flare sprite" "effect/scin flare/med"
 		"frame rate" 0.4
 	"flare sound" "scplasma medium"
-	description `SC-14 class Thrusters power the Scin's average gunboat or transport, giving their ships reliable speed. They can quickly propel any medium-sized ship forward with reasonable efficiency.`
+	description `SC-14 class thrusters power the Scin's average gunboat or transport, giving their ships reliable speed. They can quickly propel any medium-sized ship forward with reasonable efficiency.`
 
 
 outfit "SC-14 Plasma Steering"
@@ -381,7 +381,7 @@ outfit "SC-15 Plasma Thrusters"
 	"reverse flare sprite" "effect/scplasma/large"
 		"frame rate" 0.3
 	"reverse flare sound" "scplasma large"
-	description `The Gegno Scin have taken another step forward from the SC-14 class Engine System, incorporating both reverse and forward thrust into a single engine. In order to field the SC-15, the Scin had to design their largest ships around the thrusters, rather than fit it on later. The ability to reverse is especially important in engagements with the Gegno Vi's forward-heavy combat vessels.`
+	description `The Gegno Scin have taken another step forward from the SC-14 class engine system, incorporating both reverse and forward thrust into a single engine. In order to field the SC-15, the Scin had to design their largest ships around the thrusters, rather than fit it on later. The ability to reverse is especially important in engagements with the Gegno Vi's forward-heavy combat vessels.`
 
 # Weapons:
 
@@ -411,7 +411,7 @@ outfit "Irate Cannon"
 		"shield damage" 6
 		"hull damage" 16
 		"hit force" 40
-	description `Irate Cannons are a rudimentary cannon technology that fire explosive projectiles made out of condensed energy and metal, making them effective against armor. They fire decently fast, but one cannon alone is barely enough to output any sort of meaningful damage, which is why they are often found clustered together in numbers.`
+	description `Irate Cannons are a rudimentary cannon technology that fire explosive projectiles made out of condensed scrap metal, making them effective against armor. They fire decently fast, but one cannon alone is barely enough to output any sort of meaningful damage, which is why they are often found clustered together in numbers.`
 
 
 outfit "Irate Cannon Turret"
@@ -444,7 +444,7 @@ outfit "Irate Cannon Turret"
 		"shield damage" 6
 		"hull damage" 16
 		"hit force" 40
-	description `While initially opted out as a weapon for Vi ships due to the production of larger calliber turreted cannons, the Irate Cannon Turret is used as a lighter option on Vi ships that do not have a sizeable weapon capacity. Despite the lack of raw firepower, the key feature of an Irate Cannon's rate of fire is doubled with two of these mounted together on an assisting rotating platform.`
+	description `While the Irate Cannon Turret originally saw little use due to Vi ships having enough space to field larger caliber weapons in their turret mounts, this turret has become more popular as the Vi produce smaller ships with more limited weapon space. To offset the lack of raw firepower from a single cannon, the turret boasts two mounted on a rotating platform, doubling its rate of fire in a single mount.`
 
 effect "irate fire"
 	sprite "effect/irfire"
@@ -575,7 +575,7 @@ outfit "Ballistic Cannon"
 		"hit force" 360
 		"stream"
 		"missile strength" 18
-	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber. Each cannon round is as powerful as a small rocket and can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can leave a deadly field in their sight.`
+	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber weapon that the Gegno field. Each cannon round can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload time and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can create a deadly wall of fire in their sight.`
 
 
 outfit "Ballistic Cannon Turret"
@@ -668,8 +668,7 @@ outfit "Astuit Battery"
 		"firing heat" 34
 		"shield damage" 8.8
 		"hull damage" 9.4
-	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
-	description `	Although each shot does not hit very hard, consistent fire adds up - but so does energy usage.`
+	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat, although the energy requirement of such technology is still significant. Astuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With four blasters on a turreted mount, it produces a constant stream of damage which adds up over time, despite the minor damage that each individual projectile creates."
 
 effect "astuit hit"
 	sprite "effect/ast hit"
@@ -680,6 +679,7 @@ effect "astuit hit"
 
 
 outfit "Acuit Artillery"
+	plural "Acuit Artillery"
 	category "Turrets"
 	licenses
 		"Gegno Civilian"
@@ -710,7 +710,7 @@ outfit "Acuit Artillery"
 		"shield damage" 170
 		"hull damage" 290
 		"hit force" 40
-	description `With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno Vi's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon from afar.`
+	description `With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno Vi's huge cannon weaponry. Acuit Artillery outranges most weapons in Gegno space, while having a higher rate of fire as well, making them very efficient bombardment weapons.`
 
 effect "acuit hit"
 	sprite "effect/acuit hit"
@@ -774,7 +774,7 @@ outfit "Excavator"
 		"hull damage" 14
 		"minable damage" 104
 		"hit force" -4
-	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial existing infrastructure to be functional.`
+	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
 
 effect "drilling"
 	sprite "effect/smoke"
@@ -791,7 +791,7 @@ effect "drilling"
 outfit "Savagery Bludgeon"
 	category "Guns"
 	cost 0
-	"thumbnail" "outfit/unknown"
+	thumbnail "outfit/unknown"
 	"mass" 10
 	"outfit space" -10
 	"weapon capacity" -10
@@ -806,7 +806,7 @@ outfit "Savagery Bludgeon"
 		"shield damage" 8
 		"hull damage" 40
 		"hit force" 140
-	description `A Savagery Bludgeon is a mace-like weapon found jammed into the Gegno Vi's Dunite duelist ships. They are used as melee weapons for close-quarter rams and jousts during duels. However, they barely have any use of a weapon outside of this as they merely scratch larger ship's hulls and barely put a dent into anything shielded.`
+	description `A Savagery Bludgeon is a mace-like weapon found jammed into the Gegno Vi's Dunite duelist ships. They are used as melee weapons for close-quarter rams and jousts during duels. However, they barely have any use as a weapon outside of this as they merely scratch larger ship's hulls and barely put a dent into anything shielded.`
 	
 effect "bludgeon impact"
 	sound "bludgeon impact"
@@ -837,7 +837,7 @@ outfit "Vi Evocati License"
 outfit "Scin Hoplologist License"
 	category "Special"
 	thumbnail "outfit/unknown"
-	description "Your intelligence is most desirable in the eyes of the Gegno Scin, and your reward is the allowance of usage of advanced Scin weaponry."
+	description "Your intelligence is most desirable in the eyes of the Gegno Scin, and your reward is the usage of advanced Scin weaponry."
 
 outfit "Scin Architect License"
 	category "Special"

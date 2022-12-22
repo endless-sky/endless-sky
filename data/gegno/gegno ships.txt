@@ -869,6 +869,7 @@ ship "Halite"
 	explode "tiny explosion" 10
 	description `Halites are a successful experimental test platform designed by the Gegno Scin. They are the Gegno's first fighter-based craft, and the first to equip both early-stage pulse weapon and shield technology; almost half the hull is dedicated to these new developments.`
 	description `	Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft.`
+	description `	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay.`
 
 ship "Mica"
 	sprite "ship/gegno mica"
