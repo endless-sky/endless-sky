@@ -52,12 +52,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
-#define KNOWN_OUTFIT_KEY "known outfit"
-#define VISITED_OUTFITTERS_KEY "visited outfitter"
-
 using namespace std;
 
 namespace {
+#define KNOWN_OUTFIT_KEY "known outfit"
+#define VISITED_OUTFITTERS_KEY "visited outfitter"
+
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
 	// was higher up the list.
