@@ -654,7 +654,7 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 void BoardingPanel::Plunder::Take(int count)
 {
 	this->count -= count;
-	UpdateStrings(false);
+	UpdateStrings();
 }
 
 
