@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define RVALUE_H_
 
 
+#include <cstdio>
 #include <stdexcept>
 #include <string>
 
@@ -48,9 +49,9 @@ public:
 	static constexpr ValueType BadValue = ValueType();
 #endif
 
-	RValue(): value(), key() {}
-	RValue(const V &value): value(value), key() {}
-	RValue(const V &value, const K &key): value(value), key(key) {}
+	constexpr RValue(): value(), key() {}
+	constexpr RValue(const V &value): value(value), key() {}
+	constexpr RValue(const V &value, const K &key): value(value), key(key) {}
 	~RValue() {}
 
 	// Equality is handled by operator ValueType() which means only the
@@ -84,7 +85,12 @@ public:
 	bool SameOrigin(const RValue<V,K> &o);
 
 	// Does this originate from dereferencing something?
-	bool WasLValue() const { return !key.empty(); }
+	bool WasLValue() const
+	{
+		if(!key.empty())
+			printf("WasLValue: %s %f\n",key.c_str(),double(value));
+		return !key.empty();
+	}
 
 	explicit operator bool() const { return static_cast<bool>(value); }
 
@@ -130,7 +136,10 @@ const V &RValue<V,K>::Update(const Getter &getter)
 	// Assumes: got.first = true iff getter has key
 	// got.second = value iff got.first
 	if(got.first)
+	{
 		value = static_cast<ValueType>(got.second);
+		printf("RValue %s updated to %f\n",key.c_str(),double(value));
+	}
 #ifdef DEBUG_RVALUE_CONDITIONS
 	// If the value hasn't been initialized, use the default value
 	else if(value == BadValue)

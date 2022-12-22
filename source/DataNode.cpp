@@ -289,13 +289,15 @@ int DataNode::PrintTrace(const string &message) const
 
 
 // Get the value, and if it was a variable, the variable name
-RValue<double> DataNode::AsRValue(int index, const ConditionsStore &vars, double ifMissing) const
+RValue<double> DataNode::AsRValue(int index, const ConditionsStore *vars, double ifMissing) const
 {
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return RValue<double>(ifMissing);
 	else if(IsNumber(tokens[index]))
-		return RValue<double>(Value(index), string());
-	auto result = vars.HasGet(tokens[index]);
+		return RValue<double>(Value(index));
+	else if(!vars)
+		return RValue<double>(ifMissing, tokens[index]);
+	auto result = vars->HasGet(tokens[index]);
 	if(result.first)
 		return RValue<double>(result.second, tokens[index]);
 	else

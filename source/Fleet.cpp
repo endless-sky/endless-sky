@@ -189,7 +189,7 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
 		else if(key == "cargo" && hasValue)
-			cargo = child.AsRValue(1, vars, 3);
+			cargo = child.AsRValue(1, &vars, 3);
 		else if(key == "commodities" && hasValue)
 		{
 			commodities.clear();
@@ -213,7 +213,7 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 			}
 			RValue<int> weight;
 			if(child.Size() >= add + 2)
-				weight = child.AsRValue(add + 1, vars, 1);
+				weight = child.AsRValue(add + 1, &vars, 1);
 			variants.emplace_back(weight, child);
 		}
 		else if(key == "variant")
@@ -234,6 +234,8 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 
 	hasConditions = cargo.WasLValue() ||
 		variants.Any([](const WeightType &w, const Variant &v) noexcept -> bool { return w.WasLValue(); });
+	if(hasConditions)
+		printf("Fleet has conditions.\n");
 }
 
 
@@ -281,6 +283,7 @@ const Government *Fleet::GetGovernment() const
 
 
 
+// Updates any data that relies on conditions
 void Fleet::UpdateConditions(const ConditionsStore &vars)
 {
 	if(!hasConditions)
@@ -290,9 +293,30 @@ void Fleet::UpdateConditions(const ConditionsStore &vars)
 
 
 
+// Determines if this Fleet uses conditions.
 bool Fleet::HasConditions() const
 {
 	return hasConditions;
+}
+
+
+
+// Does this fleet have any variants with non-zero arrival rates?
+bool Fleet::HasActiveVariants() const
+{
+	return variants.TotalWeight();
+}
+
+
+
+// Is it possible to place this fleet via Place()?
+bool Fleet::CanPlace() const
+{
+	bool canPlace=variants.TotalWeight() && government;
+        typedef unsigned long long ull;
+	if(!canPlace)
+		printf("Fleet::CanPlace: Can't place fleet! v=%llu g=%llx\n",ull(variants.TotalWeight()),ull(government));
+	return canPlace;
 }
 
 

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "DataNode.h"
 #include "Date.h"
+#include "Engine.h"
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
@@ -238,7 +239,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+				fleets.emplace_back(fleet, child.AsRValue(valueIndex + 1, nullptr, 0), true);
 		}
 		else if(key == "hazard")
 		{
@@ -430,11 +431,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Update cached info about whether there are conditions
 	hasConditions = false;
 	for(auto &fleet : fleets)
-		if(fleet.HasConditions())
+		if(fleet.Period().WasLValue() || (fleet.Get() && fleet.Get()->HasConditions()))
 		{
 			hasConditions = true;
 			break;
 		}
+	if(hasConditions)
+		printf("System has conditions.\n");
 }
 
 
@@ -894,6 +897,8 @@ double System::Danger() const
 	double danger = 0.;
 	for(const auto &fleet : fleets)
 	{
+		if(fleet.Period() > Engine::MinimumFleetPeriod())
+			continue;
 		auto *gov = fleet.Get()->GetGovernment();
 		if(gov && gov->IsEnemy())
 			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();

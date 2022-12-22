@@ -98,6 +98,11 @@ public:
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
 
+	// Minimum allowed spawn period for fleets, used as a
+	// safeguard against bad conditions. This is essentially an
+	// epsilon for comparison to zero.
+	static int MinimumFleetPeriod();
+
 
 private:
 	void EnterSystem();
@@ -177,6 +182,11 @@ private:
 	std::thread calcThread;
 	std::condition_variable condition;
 	std::mutex swapMutex;
+
+	// Minimum allowed spawn period for fleets, used as a
+	// safeguard against bad conditions. This is essentially an
+	// epsilon for comparison to zero.
+	static const int minimumFleetPeriod = 30;
 
 	bool calcTickTock = false;
 	bool drawTickTock = false;

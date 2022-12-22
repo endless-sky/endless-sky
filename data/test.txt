@@ -1,0 +1,26 @@
+mission Test
+	source Sunracer
+	on offer
+		conversation
+			label top
+			`How often should Korath appear in Cardax?`
+			choice
+				`	Never`
+				`	Rarely`
+					goto rarely
+				`	Non-Stop`
+					goto non-stop
+			action
+				"cardax korath raid" = 0
+			`	Period is 0 (disabled).`
+				defer
+			label rarely
+			action
+				"cardax korath raid" = 10000
+			`	Period is 10000 frames.`
+				defer
+			label non-stop
+			action
+				"cardax korath raid" = 200
+			`	Period is 200 frames.`
+				defer

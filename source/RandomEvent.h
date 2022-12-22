@@ -42,7 +42,7 @@ public:
 	typedef T EventType;
 	typedef P PeriodType;
 
-	constexpr RandomEvent(const T *event, const P &period) noexcept;
+	constexpr RandomEvent(const T *event, const P &period, bool overrideMinimum=false) noexcept;
 
 	constexpr const T *Get() const noexcept;
 	constexpr const P &Period() const noexcept;
@@ -60,10 +60,9 @@ private:
 
 
 template <typename T, typename P>
-constexpr RandomEvent<T,P>::RandomEvent(const T *event, const PeriodType &period) noexcept
-	: event(event), period(period > 0 ? period : PeriodType(200))
-{
-}
+constexpr RandomEvent<T,P>::RandomEvent(const T *event, const PeriodType &period, bool overrideMinimum) noexcept
+	: event(event), period(overrideMinimum ? period : (period > 0 ? period : PeriodType(200)))
+{}
 
 template <typename T, typename P>
 constexpr const T *RandomEvent<T,P>::Get() const noexcept

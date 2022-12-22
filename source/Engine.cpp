@@ -1279,8 +1279,12 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
+			if(fleet.Get()->CanPlace() && fleet.Period()>minimumFleetPeriod
+					&& Random::Int(max(200,static_cast<int>(fleet.Period()))) < 60)
+			{
+				printf("Initial spawn of fleet with period %d\n",int(fleet.Period()));
 				fleet.Get()->Place(*system, newShips);
+			}
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -1359,6 +1363,13 @@ void Engine::ThreadEntryPoint()
 		}
 		condition.notify_one();
 	}
+}
+
+
+
+int Engine::MinimumFleetPeriod()
+{
+	return minimumFleetPeriod;
 }
 
 
@@ -1714,8 +1725,11 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()))
+		if(fleet.Get()->CanPlace() && fleet.Period()>minimumFleetPeriod
+			&& !Random::Int(max(200,static_cast<int>(fleet.Period()))))
 		{
+			if(fleet.Period()<60)
+				printf("Spawn fleet with period %d\n",int(fleet.Period()));
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
 				continue;

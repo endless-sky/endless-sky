@@ -81,6 +81,12 @@ public:
 	// Determines if this Fleet uses conditions.
 	bool HasConditions() const;
 
+	// Does this fleet have any variants with non-zero arrival rates?
+	bool HasActiveVariants() const;
+
+	// Is it possible to place this fleet via Place()?
+	bool CanPlace() const;
+
 private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(const std::vector<const Ship *> &ships) const;

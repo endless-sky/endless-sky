@@ -69,7 +69,7 @@ public:
 	int PrintTrace(const std::string &message = "") const;
 
 	// Get the value, and if it was a variable, the variable name
-	RValue<double> AsRValue(int index, const ConditionsStore &vars,
+	RValue<double> AsRValue(int index, const ConditionsStore *vars = nullptr,
 		double ifMissing = RValue<double>::BadValue) const;
 
 private:
