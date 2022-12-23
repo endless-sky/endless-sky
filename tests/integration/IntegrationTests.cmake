@@ -31,7 +31,7 @@ foreach(test ${INTEGRATION_TESTS_LIST})
 		# Launches the integration tests in release mode: In the background and as fast as possible.
 		set(ADD_TEST
 	"add_test([==[${test}]==]
-		$ENV{ES_INTEGRATION_PREFIX} ${XFVB} \"${ES}\" --config \"${TEST_CONFIG}\" --test \"${test}\")")
+		$ENV{ES_INTEGRATION_PREFIX} ${XFVB} \"${ES}\" --config \"${TEST_CONFIG}\" --resources \"${RESOURCE_PATH}\" --test \"${test}\")")
 		set(SET_TEST_PROPS
 	"set_tests_properties([==[${test}]==] PROPERTIES
 		WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\"
@@ -41,7 +41,7 @@ foreach(test ${INTEGRATION_TESTS_LIST})
 	# Launches the integration tests in debug mode, so that they can be followed.
 	set(ADD_TEST_DEBUG
 "add_test([==[[debug] ${test}]==]
-	$ENV{ES_INTEGRATION_PREFIX} \"${ES}\" --config \"${TEST_CONFIG}\" --test \"${test}\" --debug)")
+	$ENV{ES_INTEGRATION_PREFIX} \"${ES}\" --config \"${TEST_CONFIG}\" --resources \"${RESOURCE_PATH}\" --test \"${test}\" --debug)")
 	set(SET_TEST_PROPS_DEBUG
 "set_tests_properties([==[[debug] ${test}]==] PROPERTIES
 	WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\"
