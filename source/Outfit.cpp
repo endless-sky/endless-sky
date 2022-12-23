@@ -618,3 +618,15 @@ const Sprite *Outfit::FlotsamSprite() const
 {
 	return flotsamSprite;
 }
+
+
+
+std::string Outfit::UnknownName(int amount) const
+{
+	std::string name = "Unknown " + category;
+
+	if((amount == 1) && (name.back() == 's'))
+		name.pop_back();
+
+	return name;
+}

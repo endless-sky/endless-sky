@@ -550,19 +550,9 @@ BoardingPanel::Plunder::Plunder(const BoardingPanel *boardingPanel, const Player
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	if(!player.OutfitIsKnown(*outfit))
-		UpdateName();
+		name = outfit->UnknownName();
 
 	UpdateStrings(!player.OutfitIsKnown(*outfit));
-}
-
-
-// generate obscure name
-void BoardingPanel::Plunder::UpdateName()
-{
-	name = "Unknown " + outfit->Category();
-
-	if((count == 1) && (name.back() == 's'))
-		name.pop_back();
 }
 
 

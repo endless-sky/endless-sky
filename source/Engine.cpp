@@ -2217,14 +2217,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 
 			if(!player.OutfitIsKnown(*outfit))
 			{
-				displayName = "Unknown " + outfit->Category();
-
-				if((amount == 1) && (displayName.back() == 's'))
-				{
-					displayName.pop_back();
-					displayName += " Component";
-				}
-
+				displayName = outfit->UnknownName(amount) + " Component";
 				pluralName = displayName + 's';
 			}
 
