@@ -6,6 +6,7 @@ cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
 	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
+cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable" OFF APPLE OFF)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
@@ -105,7 +106,7 @@ if(BUILD_TESTING)
 endif()
 
 # Create game target.
-if(APPLE)
+if(APPLE AND ES_CREATE_BUNDLE)
 	add_executable(EndlessSky MACOSX_BUNDLE source/main.cpp)
 
 	# MacOS bundles are a bit special and need every resource specified when
