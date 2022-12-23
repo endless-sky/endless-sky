@@ -389,7 +389,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					outfitNameForDisplay = pluralName;
 					count += item->second;
 				}
-				else // doesn't have.
+				// doesn't have.
+				else
 				{
 					// check if this cat's summary has one unknown component
 					auto item = outfitsByCategory[it.first->Category()].find(displayName);
