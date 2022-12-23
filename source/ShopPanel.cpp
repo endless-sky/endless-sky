@@ -1074,7 +1074,16 @@ void ShopPanel::SideSelect(Ship *ship)
 		}
 	}
 	else if(!control)
+	{
+		// if we clicked on the only ship selected, then unselect it
+		if (playerShips.size() == 1 && *playerShips.begin() == ship)
+		{
+			playerShips.clear();
+			playerShip = nullptr;
+			return;
+		}
 		playerShips.clear();
+	}
 	else if(playerShips.count(ship))
 	{
 		playerShips.erase(ship);
