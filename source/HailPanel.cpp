@@ -61,13 +61,15 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
-	else if(ship->IsDisabled() && !gov->IsEnemy())
+	else if(gov->IsEnemy())
+		SetBribe(ship->GetGovernment()->GetBribeFraction());
+	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
 		if(flagship->NeedsFuel(false) || flagship->IsDisabled())
 			message = "Sorry, we can't help you, because our ship is disabled.";
 	}
-	else if(!gov->IsEnemy())
+	else
 	{
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
@@ -286,7 +288,6 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			{
 				if(!requestToBribeShip)
 				{
-					SetBribe(gov->GetBribeFraction());
 					if(bribe)
 						message = "If you want us to leave you alone, it'll cost you "
 							+ Format::Credits(bribe) + " credits.";
