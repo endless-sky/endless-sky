@@ -44,6 +44,9 @@ class Armament {
 public:
 	Armament() = default;
 	Armament(const Armament &other);
+	Armament &operator=(const Armament &other);
+	Armament(Armament &&other) = default;
+	Armament &operator=(Armament &&other) = default;
 
 	// Add a gun or turret hard-point.
 	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr);

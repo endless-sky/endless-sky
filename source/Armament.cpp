@@ -83,6 +83,18 @@ Armament::Armament(const Armament &other)
 }
 
 
+
+Armament &Armament::operator=(const Armament &other)
+{
+	streamReload = other.streamReload;
+	hardpoints = other.hardpoints;
+
+	RecreateViewsAndRanges();
+	return *this;
+}
+
+
+
 // Add a gun hardpoint (fixed-direction weapon).
 void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit)
 {
