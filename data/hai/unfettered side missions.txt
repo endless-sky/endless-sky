@@ -1344,7 +1344,7 @@ mission "Unfettered: Speak Sestor"
 	on offer
 		conversation
 			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
-			scene "scene/chootkfirelode"
+			scene "scene/chootk firelode"
 			`	He notices your arrival and invites you to admire the view as well. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughes.`
 			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
 			`	"I am sure you have already noticed that communication with the Koraths can be... difficult, since you met them."`
