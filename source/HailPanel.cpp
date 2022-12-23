@@ -288,18 +288,17 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			{
 				if(!requestToBribeShip)
 				{
-					if(bribe)
-						message = "If you want us to leave you alone, it'll cost you "
-							+ Format::Credits(bribe) + " credits.";
+					message = "If you want us to leave you alone, it'll cost you "
+						+ Format::Credits(bribe) + " credits.";
 					requestToBribeShip = true;
 				}
 				else
 				{
-				bribed = ship->GetGovernment();
-				bribed->Bribe();
-				Messages::Add("You bribed a " + bribed->GetName() + " ship "
-					+ Format::Credits(bribe) + " credits to refrain from attacking you today."
-						, Messages::Importance::High);
+					bribed = ship->GetGovernment();
+					bribed->Bribe();
+					Messages::Add("You bribed a " + bribed->GetName() + " ship "
+						+ Format::Credits(bribe) + " credits to refrain from attacking you today."
+							, Messages::Importance::High);
 				}
 			}
 			else
