@@ -102,11 +102,11 @@ void Minable::Place(double energy, double beltRadius)
 	double curved = (pow(asin(theta * 2. - 1.) / (.5 * PI), 3.) + 1.) * .5;
 	theta = (eccentricity * curved + (1. - eccentricity) * theta) * 2. * PI;
 
-	// Now, pick the orbital "orbitScale" such that, relative to the "belt radius":
-	// periapsis distance (orbitScale / (1 + e)) is no closer than .4: orbitScale >= .4 * (1 + e)
-	// apoapsis distance (orbitScale / (1 - e)) is no farther than 4.: orbitScale <= 4. * (1 - e)
-	// periapsis distance is no farther than 1.3: orbitScale <= 1.3 * (1 + e)
-	// apoapsis distance is no closer than .8: orbitScale >= .8 * (1 - e)
+	// Now, pick the orbital "scale" such that, relative to the "belt radius":
+	// periapsis distance (scale / (1 + e)) is no closer than .4: scale >= .4 * (1 + e)
+	// apoapsis distance (scale / (1 - e)) is no farther than 4.: scale <= 4. * (1 - e)
+	// periapsis distance is no farther than 1.3: scale <= 1.3 * (1 + e)
+	// apoapsis distance is no closer than .8: scale >= .8 * (1 - e)
 	double sMin = max(.4 * (1. + eccentricity), .8 * (1. - eccentricity));
 	double sMax = min(4. * (1. - eccentricity), 1.3 * (1. + eccentricity));
 	orbitScale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
