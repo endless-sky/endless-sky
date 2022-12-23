@@ -2118,6 +2118,8 @@ void PlayerInfo::DiscoverOutfit(const Outfit& outfit)
 	knownOutfits.insert(&outfit);
 }
 
+
+
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet &planet)
 {
