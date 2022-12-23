@@ -544,7 +544,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
-BoardingPanel::Plunder::Plunder(const BoardingPanel *boardingPanel, const PlayerInfo &player,
+BoardingPanel::Plunder::Plunder(const PlayerInfo &player,
 								const Outfit *outfit, int count)
 	: name(outfit->DisplayName()), outfit(outfit), count(count),
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
