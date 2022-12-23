@@ -132,6 +132,9 @@ protected:
 	Point dragPoint;
 	// The group of all selected, player-owned ships.
 	std::set<Ship *> playerShips;
+	// When the last click occurred, so we can measure long clicks
+	unsigned int lastShipClickTime = -1;
+	Ship* shipToRemoveIfLongClick = nullptr; // ship to remove if it turns out to be a long click
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;

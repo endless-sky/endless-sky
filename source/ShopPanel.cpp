@@ -60,7 +60,7 @@ namespace {
 	}
 }
 
-
+static const unsigned int LONG_CLICK_DURATION = 500; // milliseconds
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
@@ -787,6 +787,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		{
 			if(zone.GetShip())
 			{
+				lastShipClickTime = SDL_GetTicks();
+
 				// Is the ship that was clicked one of the player's?
 				for(const shared_ptr<Ship> &ship : player.Ships())
 					if(ship.get() == zone.GetShip())
@@ -877,8 +879,40 @@ bool ShopPanel::Drag(double dx, double dy)
 
 bool ShopPanel::Release(int x, int y)
 {
-	dragShip = nullptr;
-	isDraggingShip = false;
+	if (isDraggingShip)
+	{
+		dragShip = nullptr;
+		isDraggingShip = false;
+	}
+	else if (lastShipClickTime != static_cast<unsigned int>(-1))
+	{
+		if (SDL_GetTicks() - lastShipClickTime < LONG_CLICK_DURATION)
+		{
+			// normal click. Remove everything but the current ship
+			if (playerShip)
+			{
+				playerShips.clear();
+				playerShips.insert(playerShip);
+			}
+		}
+		else
+		{
+			// long click. if the ship was already there, remove it
+			if (shipToRemoveIfLongClick)
+			{
+				playerShips.erase(shipToRemoveIfLongClick);
+				if (shipToRemoveIfLongClick == playerShip)
+				{
+					if (!playerShips.empty())
+						playerShip = *playerShips.begin();
+					else
+						playerShip = nullptr;
+				}
+			}
+		}
+	}
+	lastShipClickTime = -1;
+	shipToRemoveIfLongClick = nullptr;
 	return true;
 }
 
@@ -1059,6 +1093,7 @@ void ShopPanel::SideSelect(Ship *ship)
 
 	if(shift)
 	{
+		lastShipClickTime = -1;
 		bool on = false;
 		const System *here = player.GetSystem();
 		for(const shared_ptr<Ship> &other : player.Ships())
@@ -1078,14 +1113,16 @@ void ShopPanel::SideSelect(Ship *ship)
 		// if we clicked on the only ship selected, then unselect it
 		if (playerShips.size() == 1 && *playerShips.begin() == ship)
 		{
+			lastShipClickTime = -1;
 			playerShips.clear();
 			playerShip = nullptr;
 			return;
 		}
-		playerShips.clear();
+		// playerShips.clear(); // deferred until we know if it was a long click
 	}
 	else if(playerShips.count(ship))
 	{
+		lastShipClickTime = -1;
 		playerShips.erase(ship);
 		if(playerShip == ship)
 			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
@@ -1093,7 +1130,11 @@ void ShopPanel::SideSelect(Ship *ship)
 	}
 
 	playerShip = ship;
-	playerShips.insert(playerShip);
+	if (playerShips.count(playerShip))
+		// Already here. remove it if this turns out to be a long click
+		shipToRemoveIfLongClick = ship;
+	else
+		playerShips.insert(playerShip);
 	sameSelectedTopY = true;
 }
 
