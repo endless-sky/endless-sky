@@ -33,7 +33,7 @@ test-data "Flagship Attribute Autoconditions Testing"
 				"hull repair rate" 2.5
 				"ion protection" 0.25
 				"outfit scan power" 18
-				"outfit scan speed" 22
+				"outfit scan efficiency" 22
 				"outfit space" 552
 				ramscoop 2.5
 				"remnant node" 5
@@ -134,7 +134,7 @@ test "Flagship Attribute Autoconditions"
 			"test: base: hull repair rate" = "flagship base attribute: hull repair rate"
 			"test: base: ion protection" = "flagship base attribute: ion protection"
 			"test: base: outfit scan power" = "flagship base attribute: outfit scan power"
-			"test: base: outfit scan speed" = "flagship base attribute: outfit scan speed"
+			"test: base: outfit scan efficiency" = "flagship base attribute: outfit scan efficiency"
 			"test: base: outfit space" = "flagship base attribute: outfit space"
 			"test: base: ramscoop" = "flagship base attribute: ramscoop"
 			"test: base: remnant node" = "flagship base attribute: remnant node"
@@ -177,7 +177,7 @@ test "Flagship Attribute Autoconditions"
 			"flagship base attribute: hull repair rate" == 2500
 			"flagship base attribute: ion protection" == 250
 			"flagship base attribute: outfit scan power" == 18000
-			"flagship base attribute: outfit scan speed" == 22000
+			"flagship base attribute: outfit scan efficiency" == 22000
 			"flagship base attribute: outfit space" == 552000
 			"flagship base attribute: ramscoop" == 2500
 			"flagship base attribute: remnant node" == 5000
