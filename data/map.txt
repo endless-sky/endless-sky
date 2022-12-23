@@ -26847,7 +26847,7 @@ system "Wah Ki"
 	trade Plastic 432
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 500
-	fleet "Large Unfettered" 800
+	fleet "Large Plundering Unfettered" 550
 	fleet "Small Hai Merchant" 4800
 	fleet "Large Hai Merchant" 2000
 	fleet "Small Hai Merchant (Sympathizers)" 1200
