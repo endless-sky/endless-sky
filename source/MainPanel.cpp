@@ -401,7 +401,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 						count += item->second;
 						outfitsByCategory[it.first->Category()].erase(item);
 					}
-					else // it doesn't
+					// it doesn't
+					else
 					{
 						outfitNameForDisplay = (it.second == 1 ? displayName : pluralName);
 						count = it.second;
