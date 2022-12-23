@@ -15,16 +15,6 @@ mission "First Contact: Gegno Vi"
 	landing
 	name `<Alien> Transport`
 	description `Transport the <alien> you assisted on <origin> to the location designated on the map.`
-	substitutions
-		"<alien>" "alien"
-		"<alien>" "Gegno"
-			has "Giaru Gegno: Quarg Contact: offered"
-		"<Alien>" "Alien"
-		"<Alien>" "Gegno"
-			has "Giaru Gegno: Quarg Contact: offered"
-		"<aliens>" "aliens"
-		"<aliens>" "Gegno"
-			has "Giaru Gegno: Quarg Contact: offered"
 	source "Var Oti"
 	destination "Dueyu Eitch"
 	clearance
@@ -256,8 +246,9 @@ mission "Giaru Gegno: Quarg Contact"
 	to offer
 		has "First Contact: Quarg: offered"
 	on offer
-		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them is a complacent civilian population.`
+		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them, a majority of the Gegno's population consists of complacent civilians.`
 		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
+		event "gegno space label"
 		conversation
 			branch "has met gegno"
 				has "Visit Quarg in Gegno Space: offered"
@@ -346,6 +337,11 @@ mission "Giaru Gegno: Quarg Contact"
 			label end
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
+
+
+event "gegno space label"
+	galaxy "label gegno"
+		sprite label/gegno
 
 
 mission "Gegno Quarg Direction to Ringworld"

@@ -33,6 +33,9 @@ galaxy "label dirt belt"
 galaxy "label earth"
 	pos -420 94
 	sprite label/earth
+	
+galaxy "label gegno"
+	pos 854 -544
 
 galaxy "label graveyard"
 	pos 45 590
