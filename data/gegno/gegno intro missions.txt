@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
 mission "First Contact: Gegno Vi"
 	landing
 	name `<Alien> Transport`
@@ -346,11 +347,6 @@ mission "Giaru Gegno: Quarg Contact"
 				decline
 
 
-event "gegno space label"
-	galaxy "label gegno"
-		sprite label/gegno
-
-
 mission "Gegno Quarg Direction to Ringworld"
 	name `Visit Quarg Ringworld`
 	landing
@@ -522,38 +518,7 @@ mission "Gegno Genocide Defense"
 		ship "Augen" "Vytii Yrrlausei"
 
 
-event "gegno: unified defense"
-	government "Gegno Vi"
-		"attitude toward"
-			"Gegno Scin" 1
-	government "Gegno Scin"
-		"attitude toward"
-			"Gegno Vi" 1
-	government "Gegno"
-		"attitude toward"
-			"Gegno Scin" 1
-			"Gegno Vi" 1
-	government "Quarg"
-		"attitude toward"
-			"Gegno" 1
-			"Gegno Vi" 1
-			"Gegno Scin" 1
-	system "Vesvii"
-		remove fleet "Vi Warfleet"
-		remove fleet "Scin Warfleet"
-		add fleet "Gegno Miners" 1000
-	system "Zeinar"
-		add fleet "Scin Warfleet" 600
-		add fleet "Quarg" 1000
-	system "Scija"
-		add fleet "Vi Warfleet" 600
-		add fleet "Quarg" 1000
-	system "Heutesl"
-		add fleet "Scin Warfleet" 600
-		add fleet "Vi Warfleet" 600
-		add fleet "Quarg Large" 600
-
-
+# Gegno Vi Duels
 
 mission "Gegno Vi Duels"
 	minor
