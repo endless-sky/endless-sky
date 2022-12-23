@@ -455,7 +455,7 @@ mission "Gegno Genocide Defense"
 					goto what
 				`	"I do not care."`
 					goto care
-				`	"It is greatly unlikely for violence upon unarmed victims to be accidental. Regardless of the cause, the effect has already occured. The Gegno have banded together under one flag in an effort to deter any more outside interference. You are no longer welcome in their space, and you are advised to not visit again, lest we show you the same belligerent behavior you have exhibited to their citizens."`
+				`	"It is greatly unlikely for violence upon unarmed victims to be accidental. Regardless of the cause, the effect has already occurred. The Gegno have banded together under one flag in an effort to deter any more outside interference. You are no longer welcome in their space, and you are advised to not visit again, lest we show you the same belligerent behavior you have exhibited to their citizens."`
 					accept
 				label "what"
 				`	"Your behavior has caused the Gegno to unite their fleets and deter any more presence from outsiders. It is a great shame. The time they would use to resolve their inner conflicts is now wasted upon hostility towards strangers due to your naivety. You are no longer welcome in Gegno space, and if you dare visit again, we shall demonstrate the same treatment you gave their citizens."`
