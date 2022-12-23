@@ -784,6 +784,21 @@ event "initial deployment 4"
 
 
 
+event "fw zug expansion underway"
+	planet Zug
+		spaceport `The spaceport of Zug has been growing by amalgamation for centuries. At its core is the "Old Port," a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call "The Port," a set of buildings that were constructed a century ago, with bolder architecture and more modern design.`
+		spaceport `	Some distance away is the "New Port," a towering structure with robotic cargo lifts and large hangars for more expensive ships. Meanwhile, an expansion to the New Port is currently ongoing. You can't help but wonder what the new expansion will be named.`
+
+
+
+event "fw zug expansion complete"
+	planet Zug
+		add shipyard "Tarazed Advanced"
+		spaceport `The spaceport of Zug has been growing by amalgamation for centuries. At its core is the "Old Port," a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call "The Port," a set of buildings that were constructed a century ago, with bolder architecture and more modern design.`
+		spaceport `	Some distance away is the "New Port," a towering structure with robotic cargo lifts and large hangars for more expensive ships. It was recently expanded to handle the increased activity demanded by the Free Worlds, making Zug the chief ship foundry of the galactic south. It's not surprising to learn that the addition to the New Port has quickly been dubbed "The Expansion."`
+
+
+
 event "capture of Kornephoros"
 	system "Kornephoros"
 		government "Republic"
@@ -990,6 +1005,16 @@ event "syndicate assistance"
 		outfitter "Syndicate Assistance"
 	planet "Zug"
 		outfitter "Syndicate Assistance"
+
+
+
+event "tarazed assistance"
+	planet "Glaze"
+		shipyard "Tarazed Basics"
+	planet "Rust"
+		shipyard "Tarazed Basics"
+	planet "Zug"
+		shipyard "Tarazed Basics"
 
 
 

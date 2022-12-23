@@ -244,6 +244,7 @@ test-data "quarg atrocity"
 				atrocities
 					Hyperdrive
 				remove "enforces"
+				remove "death sentence"
 		visited "Terra Incognita"
 		"visited planet" Ruin
 		"available mission" "%TEST%: Wardragon Scanning You!"
@@ -292,18 +293,6 @@ test-data "quarg atrocity"
 
 # just so the mission actually works
 mission "%TEST%: Wardragon Scanning You!"
-
-test "Land On Ruin helper"
-	status partial
-	description "Helper for landing on Ruin."
-	sequence
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Ruin" == 0
 
 test "Launch Quarg Scanning Mission And Board"
 	status partial
