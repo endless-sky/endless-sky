@@ -430,6 +430,6 @@ void Armament::RecreateViewsAndRanges()
 		else
 			nonAMWeapons.push_back(&hardpoint);
 	}
-	std::tie(minRange, maxRange) = CalculateMinMaxRanges(hardpoints);
+	tie(minRange, maxRange) = CalculateMinMaxRanges(hardpoints);
 	maxTurretsRange = CalculateTurretsMaxRange(hardpoints);
 }
