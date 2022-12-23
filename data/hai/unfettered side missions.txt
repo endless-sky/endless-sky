@@ -1300,12 +1300,12 @@ mission "Unfettered: Close Quarter"
 event "unfettered: better sestor translator"
 
 # no blocked dialog because 1 bunk, and it's a side mission anyway
-mission "Unfettered: Speak Sestor"
+mission "Unfettered: Speak Sestor Notice"
 	minor
-	name "Speak Sestor"
-	description "Go to <stopovers> to acquire the records of Sestor language."
+	name "Find Choot'k"
+	description "Go to <destination> to find Choot'k. He should be on top of the biggest mountain."
 	source "Darkcloak"
-	stopover "Hai-home"
+	destination "Firelode"
 	to offer
 		has "salary: Unfettered"
 		has "Hai Reveal [C01] Cleanup: done"
@@ -1326,7 +1326,26 @@ mission "Unfettered: Speak Sestor"
 					defer
 				`	(Never.)`
 					decline
-			`	You head to his throne room to see him, and this time the Unfettered gards have no issue with letting you pass. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his hand heading for his blade. For a few seconds you can feel some tension, but then he laughes.`
+			`	You head to his throne room to see him, and this time the Unfettered gards have no issue with letting you pass. It is only once you enter the room you learn he is missing from one of his aid. They tell you to go look on Firelode, on top of the biggest mountain, as that's probably where he would be.`
+				accept
+
+
+
+mission "Unfettered: Speak Sestor"
+	landing
+	name "Speak Sestor"
+	description "Go to <stopovers> to acquire the records of Sestor language."
+	source "Firelode"
+	stopover "Hai-home"
+	destination "Darkcloak"
+	passengers 1
+	to offer
+		has "Unfettered: Speak Sestor Notice: offered"
+	on offer
+		conversation
+			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
+			scene "scene/chootkfirelode"
+			`	He notices your arrival and invites you to admire the view as well. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughes.`
 			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
 			`	"I am sure you have already noticed that communication with the Koraths can be... difficult, since you met them."`
 				to display
