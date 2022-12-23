@@ -104,7 +104,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			++cit;
 		}
 		if(outfit && count)
-			plunder.emplace_back(player, outfit, count);
+			plunder.emplace_back(player, outfit, count, player.OutfitIsKnown(*outfit));
 	}
 
 	// Some "ships" do not represent something the player could actually pilot.
@@ -545,14 +545,11 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const PlayerInfo &player,
-								const Outfit *outfit, int count)
-	: name(outfit->DisplayName()), outfit(outfit), count(count),
+								const Outfit *outfit, int count, bool outfitIsKnown)
+	: name(outfitIsKnown ? outfit->DisplayName() : "Unknown Outfit"), outfit(outfit), count(count),
 	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
-	if(!player.OutfitIsKnown(*outfit))
-		name = outfit->UnknownName();
-
-	UpdateStrings(!player.OutfitIsKnown(*outfit));
+	UpdateStrings(outfitIsKnown);
 }
 
 
@@ -647,7 +644,7 @@ void BoardingPanel::Plunder::Take(int count)
 
 
 // Update the text to reflect a change in the item count.
-void BoardingPanel::Plunder::UpdateStrings(bool obscureValue)
+void BoardingPanel::Plunder::UpdateStrings(bool outfitIsKnown)
 {
 	double mass = UnitMass();
 	if(count == 1)
@@ -655,7 +652,7 @@ void BoardingPanel::Plunder::UpdateStrings(bool obscureValue)
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 
-	if(obscureValue)
+	if(!outfitIsKnown)
 		value = "???";
 	else
 		value = Format::Credits(unitValue * count);

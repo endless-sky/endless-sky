@@ -68,7 +68,7 @@ private:
 	public:
 		// Plunder can be either outfits or commodities.
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const PlayerInfo &player, const Outfit *outfit, int count);
+		Plunder(const PlayerInfo &player, const Outfit *outfit, int count, bool outfitIsKnown);
 
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
