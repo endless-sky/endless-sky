@@ -117,7 +117,7 @@ void OutfitterPanel::Step()
 			// All help messages have now been displayed.
 			checkedHelp = true;
 
-	for(const auto outfit : outfitter)
+	for(const auto &outfit : outfitter)
 		if(!player.OutfitIsKnown(*outfit))
 			player.DiscoverOutfit(*outfit);
 
