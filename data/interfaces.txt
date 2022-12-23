@@ -875,7 +875,7 @@ interface "hiring"
 		align right
 	
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	label "bunks"
@@ -957,7 +957,7 @@ interface "hiring"
 
 interface "trade"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can buy"
@@ -986,7 +986,7 @@ interface "trade"
 
 interface "bank"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can pay"
