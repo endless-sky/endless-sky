@@ -61,24 +61,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
-	// Update default hail responses based on the hailed ship's government and status condition.
-	else if(gov->IsEnemy())
-	{
-		if(!ship->IsDisabled())
-		{
-			SetBribe(gov->GetBribeFraction());
-			if(bribe)
-				message = "If you want us to leave you alone, it'll cost you "
-					+ Format::Credits(bribe) + " credits.";
-		}
-	}
-	else if(ship->IsDisabled())
+	else if(ship->IsDisabled() && !gov->IsEnemy())
 	{
 		const Ship *flagship = player.Flagship();
 		if(flagship->NeedsFuel(false) || flagship->IsDisabled())
 			message = "Sorry, we can't help you, because our ship is disabled.";
 	}
-	else
+	else if(!gov->IsEnemy())
 	{
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
@@ -295,11 +284,22 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			if(ship)
 			{
+				if(!requestToBribeShip)
+				{
+					SetBribe(gov->GetBribeFraction());
+					if(bribe)
+						message = "If you want us to leave you alone, it'll cost you "
+							+ Format::Credits(bribe) + " credits.";
+					requestToBribeShip = true;
+				}
+				else
+				{
 				bribed = ship->GetGovernment();
 				bribed->Bribe();
 				Messages::Add("You bribed a " + bribed->GetName() + " ship "
 					+ Format::Credits(bribe) + " credits to refrain from attacking you today."
 						, Messages::Importance::High);
+				}
 			}
 			else
 			{
