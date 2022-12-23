@@ -1061,9 +1061,9 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 
 void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
 {
-		for(const auto &it : outfits)
-			if(!OutfitIsKnown(*it.first))
-				DiscoverOutfit(*it.first);
+	for(const auto &it : outfits)
+		if(!OutfitIsKnown(*it.first))
+			DiscoverOutfit(*it.first);
 }
 
 
