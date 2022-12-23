@@ -250,28 +250,28 @@ const vector<Hardpoint> &Armament::Get() const
 
 
 
-const std::vector<Hardpoint *> Armament::TurrettedWeapons() const
+const std::vector<Hardpoint *> &Armament::TurrettedWeapons() const
 {
 	return turrettedWeapons;
 }
 
 
 
-const std::vector<Hardpoint *> Armament::NonAMWeapons() const
+const std::vector<Hardpoint *> &Armament::NonAMWeapons() const
 {
 	return nonAMWeapons;
 }
 
 
 
-const std::vector<Hardpoint *> Armament::FixedWeapons() const
+const std::vector<Hardpoint *> &Armament::FixedWeapons() const
 {
 	return fixedWeapons;
 }
 
 
 
-const std::vector<Hardpoint *> Armament::AntiMissileWeapons() const
+const std::vector<Hardpoint *> &Armament::AntiMissileWeapons() const
 {
 	return antiMissileWeapons;
 }

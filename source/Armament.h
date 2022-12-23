@@ -66,10 +66,10 @@ public:
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
-	const std::vector<Hardpoint *> NonAMWeapons() const;
-	const std::vector<Hardpoint *> TurrettedWeapons() const;
-	const std::vector<Hardpoint *> FixedWeapons() const;
-	const std::vector<Hardpoint *> AntiMissileWeapons() const;
+	const std::vector<Hardpoint *> &NonAMWeapons() const;
+	const std::vector<Hardpoint *> &TurrettedWeapons() const;
+	const std::vector<Hardpoint *> &FixedWeapons() const;
+	const std::vector<Hardpoint *> &AntiMissileWeapons() const;
 	// Get the index of the given hardpoint.
 	int WeaponIndex(const Hardpoint &hardpoint) const;
 
