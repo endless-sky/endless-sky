@@ -35455,10 +35455,10 @@ planet "Ring of Wisdom"
 	security 0.8
 
 planet Ruelogakk
-	attributes "gegno quarg"
+	attributes quarg "gegno quarg" station
 	landscape land/station5
-	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for tourists, though very few docking bays are in use. A hauntingly low amount of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
-	spaceport `Only a few small Gegno transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the Gegno's presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
+	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for tourists, though very few docking bays are in use. A hauntingly low numnber of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
+	spaceport `Only a few small alien transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the alien's presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
 	government Quarg
 	bribe 0
 	security 0.9
@@ -35776,18 +35776,20 @@ planet Shroud
 		fleet "Large Republic" 14
 
 planet Siedi
+	attributes gegno vi
 	landscape land/forest5
 	description `The gravitational pull of the nearby gas giant resulted in the large, bulky, mountainous surface of this planet. Tectonic shifts are very common, and the surface is marked with the wear and tear of massive tremors. Beneath the cracks, however, lies a rich source of materials that the Vi quickly capitalized on for their nearby worlds.`
-	spaceport `The spaceport is haphazardly built inside the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below. You're not sure if it is beneath you or somewhere off in the distance. The area around the spaceport continues to be under construction, but it is more likely because the Vi are mining for materials here rather than making improvements to the structure itself.`
+	spaceport `The spaceport is haphazardly built into the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below. You're not sure if it is beneath you or somewhere off in the distance. Construction work around the spaceport is ongoing, but it is more likely because the Vi are busy finding new places to mine for materials rather than making improvements to the spaceport itself.`
 	government "Gegno Vi"
 	"required reputation" 1
 	bribe 0
 	security 0
 
 planet "Sies Upi"
+	attributes gegno vi
 	landscape land/hills1
 	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions.`
-	spaceport `This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-personnel civilians here, and it feels somewhat claustrophobic with all of the guards standing around.`
+	spaceport `This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
 	government "Gegno Vi"
 	"required reputation" 1
 	bribe 0
@@ -36240,19 +36242,19 @@ planet Trove
 		fleet "Small Syndicate" 5
 
 planet Truklar
-	attributes "gegno quarg"
+	attributes quarg "gegno quarg"
 	landscape land/mars2
-	description `This world, like others the Quarg live on, has noticeably lower gravity than humans are accustomed to. Several medium-sized extravagant villages are found nested deep within an oddly shaped glass structure, and it is a beautiful sight to behold. Many different, smaller biomes also contain wondrous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the Gegno, who find it hard navigating through the narrow hallways.`
+	description `This world, like others the Quarg live on, has noticeably lower gravity than humans are accustomed to. Several medium-sized extravagant villages are found nested deep within an oddly shaped glass structure, and it is a beautiful sight to behold. Many different, smaller biomes also contain wondrous flora and fauna that don't seem to be native to this particular moon. Despite all of this, structures were not built in accustom to visitors such as the nearby aliens, who find it hard navigating through the narrow hallways.`
 	spaceport `Most of the spaceport is automated Quarg robotics that do not provide any interaction with you besides basic spaceport tasks such as refueling. Occasionally, one of these robots, visually similar to the Quarg themselves, guide you throughout the visitable zones of the port. Otherwise, your presence here is mostly overlooked.`
 	government Quarg
 	bribe 0
 	security 0.9
 
 planet Tschyss
+	attributes gegno station
 	landscape land/sivael6
-	description `This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes.`
-	description `	Despite the scale and number of onboard facilities, there is only a small percentage of Gegno making use of them.`
-	spaceport `Gegno of all kinds are walking to and fro, though they seem very tired and overworked. Not a lot of them seem happy with their current working conditions, but all you can do is watch from a distance in a small half-built area nearby your ship's designated lock.`
+	description `This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than in human space, and the outside is enveloped in many docking bays of numerous sizes.`
+	spaceport `Gegno of all kinds are walking to and fro, though they seem very tired and overworked. Not a lot of them seem happy with their current working conditions, but all you can do is watch from a distance in a small half-built area nearby your ship's designated docking bay.	Despite the scale and number of onboard facilities that you can see, there is only a small number of Gegno making use of them.`
 	government Gegno
 	"required reputation" 1
 	bribe 0
@@ -36340,8 +36342,9 @@ planet "Valley of the Damned"
 	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Most traces of attempted colonization by the Sheragi have eroded away by now, leaving only broken buildings and decaying bones.`
 
 planet "Var Oti"
+	attributes gegno
 	landscape land/desert0
-	description `This rocky is world covered with vast ranges of desert. While some places have plateaus of rugged rock formations, others have articulate valleys of sand. When it comes to less distinct locations, it is hard to tell at first glance whether or not they are simply a formation of rocks resting on a deep layer of sand, or a thin layer of sand resting on a great foundation of rock. In addition, common dust storms constantly reshape the terrain, and together with the harsh, dry conditions, Var Oti is a dangerous world to those who aren't prepared when visiting.`
+	description `This rocky world is covered with vast ranges of desert. While some places have plateaus of rugged rock formations, others have articulate valleys of sand. When it comes to less distinct locations, it is hard to tell at first glance whether or not they are simply a formation of rocks resting on a deep layer of sand, or a thin layer of sand resting on a great foundation of rock. In addition, common dust storms constantly reshape the terrain, and together with the harsh, dry conditions, Var Oti is a dangerous world to those who aren't prepared when visiting.`
 	government Uninhabited
 
 planet "Var' Kar'i'i"
@@ -36511,7 +36514,7 @@ planet "Vibrant Water"
 
 planet Vigales
 	landscape land/desert5
-	description `This hot desert world is home to several species of large underground animals, which most often resemble reptilian and amphibious-like creatures such as salamanders or lizards. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
+	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
 
 planet Viminal
 	attributes remnant "remnant primary"
@@ -36668,8 +36671,8 @@ wormhole "Wormhole Link"
 
 planet "Wye Tzeou"
 	landscape land/snow14
-	description `For being found in a noticeably quieter system than others, this ice planet has extreme crystalline-like ice structures covering the surface that protrude out in various fashions. These constructs are all extremely tall, and no two look alike. It seems the actual surface of the planet is far beneath a layer of these mysterious pillars. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
-	description `	Deep scans reveal even more odd pellucid compositions below, showing pockets in the depths of the glass forest that look like giant empty gem-like gaps between each pillar.`
+	description `Wye Tzeou is found in a noticeably quieter system than others. Its surface is covered in extreme crystalline-like structures protruding out in various fashions. These constructs are all extremely tall, and no two look alike. It seems the actual surface of the planet is far beneath a layer of these mysterious pillars. There is no apparent environmental reasoning to this composition as the soft snowy seasons and calm low winds are the most active natural elements on Wye Tzeou.`
+	description `	Deep scans reveal even more odd compositions below, showing pockets in the depths of the glass forest that look like giant empty gaps between each pillar.`
 	government Uninhabited
 
 planet "Wyvern Station"
@@ -36702,14 +36705,14 @@ planet Yedikule
 planet "Yniu Eiu"
 	landscape land/canyon0
 	music "ambient/rulei planet"
-	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more striking visuals are the patches of purple-red webbed lakes flowing to and through other lakes, canyons, and valleys. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
-	description `	The red-purple lakes and rivers have an odd shimmer to them to suggest they are somehow alive. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
+	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more striking visuals are the patches of purple-red webbed lakes and rivers flowing across the surface. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
+	description `	The surface of these red-purple lakes and rivers move in odd ways that make them seem almost alive. Although they flow at extremely low rates, they also softly bulge and contract in a curious linear motion.`
 	government Uninhabited
 
 planet "Yniu Ena"
 	landscape land/canyon03
 	music "ambient/rulei planet"
-	description `Like its parent planet below, Yniu Eiu has a thick purple-reddish web of unnatural material spread across its surface. Some patches are much larger than others, with a very few being hundreds of times larger, as if they're scars on the planet.`
+	description `Like its parent planet below, Yniu Ena has a thick purple-reddish web of unnatural material spread across its surface, forming rivers and large lakes. While most of these lakes are rather small relative to the planet's surface, there are a few as large as oceans that give the appearance of scars on the planet.`
 	government Uninhabited
 
 planet Zenith

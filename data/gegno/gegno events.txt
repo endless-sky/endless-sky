@@ -47,3 +47,8 @@ event "gegno: unified defense"
 		add fleet "Scin Warfleet" 600
 		add fleet "Vi Warfleet" 600
 		add fleet "Quarg Large" 600
+
+
+# Will be defined in the future.
+
+event "Vesvii War"

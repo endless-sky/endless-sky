@@ -185,7 +185,7 @@ ship "Gypsum"
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
-	description `	Because of the Gegno's limited technology, the Gypsum is much more sluggish than similarly sized ships elsewhere in the galaxy, making it too slow to chase faster asteroids. For those asteroids it can catch up to, the powerful Excavator Drill is able to grind materials out with ease.`
+	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
 
 # Gegno Vi:
 

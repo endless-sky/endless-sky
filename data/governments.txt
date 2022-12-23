@@ -898,7 +898,7 @@ government "Quarg"
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
-		"Gegno" 1
+		"Gegno" 0.1
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"

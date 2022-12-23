@@ -65,7 +65,7 @@ outfit "R04 Crusade Battery"
 	"mass" 83
 	"outfit space" -83
 	"energy capacity" 8885
-	description `As the largest battery mounted on power-hungry Gegno ships, the Crusade Battery holds an immense amount of energy, more than a Scrap Cell could produce in almost two minutes. However, the Gegno are inefficient at increasing density with size, causing these batteries to fall behind similarly sized options.`
+	description `As the largest battery mounted on power-hungry Gegno ships, the Crusade Battery holds an immense amount of energy, more than a Scrap Cell could produce in almost two minutes. However, the Gegno are inefficient at increasing density with size. As a result, these batteries are generally only used on ships that consistently need this sort of power reserve, while most other ships simply stack multiple smaller batteries that are more convenient to install or remove according to their needs.`
 
 
 outfit "C3 Scrap Cell"
@@ -78,7 +78,7 @@ outfit "C3 Scrap Cell"
 	"outfit space" -25
 	"energy generation" 1.4
 	"heat generation" 2.2
-	description `The Scrap Cell is a small radiothermal generator that produces a limited amount of energy. It is only used in tandem with the Gegno's smaller-sized vessels and internals.`
+	description `The Scrap Cell is a small radiothermal generator that produces a limited amount of energy. It is only used on the Gegno's smaller-sized vessels, or in tandem with their less energy hungry internals.`
 
 
 outfit "C7 Brawl Cell"
