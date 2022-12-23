@@ -121,7 +121,7 @@ void OutfitterPanel::Step()
 		if(!player.OutfitIsKnown(*outfit))
 			player.DiscoverOutfit(*outfit);
 
-	for(auto ship : player.Ships())
+	for(auto &&ship : player.Ships())
 		player.DiscoverOutfits(ship->Cargo().Outfits());
 }
 
