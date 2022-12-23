@@ -35133,7 +35133,7 @@ planet "Oup Je"
 	attributes gegno scin
 	landscape land/canyon4
 	description `The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes.`
-	spaceport `The Scin here have different gear than those leaving and entering the spaceport, suggesting they have a particular place on the surface to be - most likely in the mines. They seem quite interested in you compared to other Gegno, probably because being that a majority of their days involve seeing mostly minerals and machinery.`
+	spaceport `A few Scin in the spaceport are equipped with what looks like heavy mining gear in contrast to normal pilot attire, and are never seen boarding any spacecraft. Rather than cautious, they appear to be genuinely curious of your presence, staring at you in fascination. Presumably, these Scin spend most of their days deep in this planet's mines, so seeing anything beyond minerals or machinery, let alone foreigners, is quite astonishing to them.`
 	government "Gegno Scin"
 	"required reputation" 1
 	bribe 0
