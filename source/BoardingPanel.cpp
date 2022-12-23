@@ -104,7 +104,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			++cit;
 		}
 		if(outfit && count)
-			plunder.emplace_back(this, player, outfit, count);
+			plunder.emplace_back(player, outfit, count);
 	}
 
 	// Some "ships" do not represent something the player could actually pilot.
