@@ -452,9 +452,9 @@ mission "Gegno Genocide Defense"
 			choice
 				`	"It was an accident!"`
 				`	"What are you talking about?"`
-					goto what
+					goto "what"
 				`	"I do not care."`
-					goto care
+					goto "care"
 				`	"It is greatly unlikely for violence upon unarmed victims to be accidental. Regardless of the cause, the effect has already occurred. The Gegno have banded together under one flag in an effort to deter any more outside interference. You are no longer welcome in their space, and you are advised to not visit again, lest we show you the same belligerent behavior you have exhibited to their citizens."`
 					accept
 				label "what"
