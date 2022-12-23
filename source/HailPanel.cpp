@@ -286,11 +286,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			if(ship)
 			{
-				if(!requestToBribeShip)
+				if(!requestedToBribeShip)
 				{
 					message = "If you want us to leave you alone, it'll cost you "
 						+ Format::Credits(bribe) + " credits.";
-					requestToBribeShip = true;
+					requestedToBribeShip = true;
 				}
 				else
 				{

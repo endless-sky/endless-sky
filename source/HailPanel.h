@@ -72,7 +72,7 @@ private:
 	bool canGiveFuel = false;
 	bool canRepair = false;
 	bool hasLanguage = true;
-	bool requestToBribeShip = false;
+	bool requestedToBribeShip = false;
 };
 
 
