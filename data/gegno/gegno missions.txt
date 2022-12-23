@@ -337,11 +337,11 @@ mission "Giaru Gegno: Quarg Contact"
 			branch "interacted with outsider"
 				has "Visit Quarg in Gegno Space: offered"
 			
-			`	"Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
+			`	"Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate virtuous pleasantries between you and them, though you are welcome at this ring should you find yourself here again. Please keep encounters with the Gegno minimal."`
 				goto end
 			
 			label "interacted with outsider"
-			`	"However, it is still quite staggering that the Gegno interacted with an audacious outsider such as yourself." The Quarg pauses for a moment and takes a longer breath than usual. "Please do be distinctly cautious in chance encounters with the Gegno. Unfortunately, we cannot advocate virtuous pleasantries between you and them. Only a brief history of them can we tell. Although, you are appreciably welcome at this ring should you find yourself here again."`
+			`	"However, it is still quite staggering that the Gegno interacted with an audacious outsider such as yourself." The Quarg pauses for a moment and takes a longer breath than usual. "Please do be distinctly cautious in encounters with the Gegno. Unfortunately, we cannot advocate virtuous pleasantries between you and them. Only a brief history of them can we tell. Although, you are appreciably welcome at this ring should you find yourself here again."`
 			
 			label end
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
