@@ -454,7 +454,7 @@ outfit "Ember Tear"
 	weapon
 		sprite "projectile/ember tear/ember tear"
 			"frame rate" 30
-		sound "ion"
+		sound "ember tear"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
 		"hit effect" "ember tear vortex"
@@ -515,6 +515,7 @@ effect "ember tear vortex"
 		"start frame" 0
 		"no repeat"
 		"frame rate" 10
+	"sound" "ember tear hit"
 	"lifetime" 100
 	"velocity scale" 0
 	"random angle" 360
