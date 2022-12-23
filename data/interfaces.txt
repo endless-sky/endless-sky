@@ -99,7 +99,7 @@ color "missile dangerous" 1. .1 .1 1.
 color "radar player" .2 1. 0. 0.
 color "radar friendly" .4 .6 1. 0.
 color "radar unfriendly" .8 .8 .4 0.
-color "radar hostile" 1. .6 .4 0.
+color "radar hostile" 1. .3 .2 0.
 color "radar inactive" .4 .4 .4 0.
 color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
