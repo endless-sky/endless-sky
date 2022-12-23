@@ -292,19 +292,11 @@ public:
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 
-	// check if an outfit is known
+	// Methods for changing or getting if an outfit is known to the player.
 	bool OutfitIsKnown(const Outfit &outfit) const;
-
-	// marking outfit as known
 	void DiscoverOutfit(const Outfit &outfit);
-
-	// marking outfits as known
 	void DiscoverOutfits(const std::map<const Outfit *, int> &outfits);
-
-	// mark outfitter as visited
 	void VisitOutfitter(const Sale<Outfit> &outfitter);
-
-	// check if an outfitter was visited by the player
 	bool OutfitterVisited(const Sale<Outfit> &outfitter) const;
 
 private:
