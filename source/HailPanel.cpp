@@ -284,6 +284,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = "Sorry, but you don't have enough money to be worth my while.";
 		else if(bribe)
 		{
+			if(!ship || requestedToBribeShip)
+			{
+				player.Accounts().AddCredits(-bribe);
+				message = "It's a pleasure doing business with you.";
+			}
 			if(ship)
 			{
 				if(!requestedToBribeShip)
@@ -308,9 +313,6 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 					+ Format::Credits(bribe) + " credits to permit you to land."
 						, Messages::Importance::High);
 			}
-
-			player.Accounts().AddCredits(-bribe);
-			message = "It's a pleasure doing business with you.";
 		}
 		else
 			message = "I do not want your money.";
