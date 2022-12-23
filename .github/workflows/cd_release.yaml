@@ -71,7 +71,7 @@ jobs:
           mv "build/release/Endless Sky.app" "Endless Sky.app.x64"
           cp -r "Endless Sky.app.arm" "Endless Sky.app"
           lipo -create -output "Endless Sky.app/Contents/MacOS/Endless Sky" "Endless Sky.app.arm/Contents/MacOS/Endless Sky" "Endless Sky.app.x64/Contents/MacOS/Endless Sky"
-          for lib in "Endless Sky.app/Contents/Frameworks/*"; do lipo -create -output $lib "Endless Sky.app.arm/Contents/Frameworks/$(basename $lib)" "Endless Sky.app.x64/Contents/Frameworks/$(basename $lib)"; done
+          for lib in "Endless Sky.app/Contents/Frameworks/*"; do lipo -create -output "$lib" "Endless Sky.app.arm/Contents/Frameworks/$(basename $lib)" "Endless Sky.app.x64/Contents/Frameworks/$(basename $lib)"; done
       - name: Package Application
         run: |
           mkdir "${{ env.OUTPUT }}"
