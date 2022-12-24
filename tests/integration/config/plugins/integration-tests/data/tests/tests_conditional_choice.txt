@@ -157,7 +157,7 @@ test "Test Conditions"
 			"test: succeed test" = "succeed test"
 			"test: failed test" = "failed test"
 			# if we launched
-			"test: flagship planet: Ruin" = "flagship planet: Ruin"
+			"test: flagship landed" = "flagship landed"
 
 
 test "Conditional Test"
