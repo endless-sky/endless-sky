@@ -38,14 +38,13 @@ ship "Jje"
 		"hull repair rate" 1
 		"atmosphere scan" 10
 		"inscrutable" 1
-		"gaslining" 1
 		"energy capacity" 400
 		"energy generation" 4
 		
 		"thrust" 8
-		"flare sound" "sounds/jje"
+		"flare sound" "jje"
 		"turn" 60
-		"steering flare sound" "sounds/jje"
+		"steering flare sound" "jje"
 		
 		"burn protection" 2
 		"discharge protection" 2
@@ -93,12 +92,11 @@ ship "Ayym"
 		"energy generation" 4
 		"atmosphere scan" 10
 		"inscrutable" 1
-		"gaslining" 1
 		
 		"thrust" 14
-		"flare sound" "sounds/ayym"
+		"flare sound" "ayym"
 		"turn" 80
-		"steering flare sound" "sounds/ayym"
+		"steering flare sound" "ayym"
 		
 		"jump fuel" 100
 		"jump speed" .2
