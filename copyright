@@ -41,7 +41,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
 
 Files:
- images/ship/pointedstick_vanguard*
+ images/ship/pointedstick?vanguard*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license).
@@ -59,7 +59,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/projectile/bullet*
- images/outfit/bullet?impact*
+ images/effect/bullet?impact*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 Comment: Derived from works by Amazinite derived from works by Michael Zahniser (under the same license).
@@ -71,11 +71,16 @@ Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
 Files:
+ images/ship/hai?flea*
+Copyright: Matthew Smestad
+License: CC-BY-SA-4.0
+
+Files:
  images/outfit/railgun*
  images/outfit/railslug*
  images/projectile/rail?slug*
- images/ship/hai?flea*
-Copyright: Matthew Smestad
+Copyright: 1010todd
+Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
@@ -470,7 +475,7 @@ Files:
  images/ship/pug?arfecta*
  images/thumbnail/hai?sea?scorpion*
  images/thumbnail/ibis*
- images/thumbnails/merganser*
+ images/thumbnail/merganser*
  images/thumbnail/penguin*
  images/thumbnail/petrel*
  images/thumbnail/tern*
@@ -565,7 +570,7 @@ Files:
  images/land/desert2*
  images/land/desert11*
  images/land/desert12*
- images/land/deser13*
+ images/land/desert13*
  images/land/dune1*
  images/land/fields1*
  images/land/fields2*
@@ -809,9 +814,9 @@ License: CC-BY-SA-4.0
 Comment: Derived from public domain sounds taken from freesound.org.
 
 Files:
- images/outfit/T3?anti?missile*
+ images/outfit/t3?anti?missile*
  images/outfit/pug?gridfire?turret*
- images/hardpoint/T3?anti?missile*
+ images/hardpoint/t3?anti?missile*
  images/hardpoint/pug?gridfire?turret*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
@@ -1109,7 +1114,7 @@ License: CC-BY-SA-4.0
 Comment: rotate, flip, scale the "images/thumbnail/hai geocoris@2x.png" by Michael Zahniser (under the same license)
 
 Files:
- image/effect/firestorm?ring*
+ images/effect/firestorm?ring*
 Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
 License: CC0
 
@@ -1167,7 +1172,7 @@ Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 
 Files:
- images/projectile/korath?digger*
+ images/projectile/digger*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by NomadicVolcano (public domain).
@@ -1257,7 +1262,7 @@ Files:
  images/effect/ka'het?flare/*
  images/effect/fissionflare*
  images/effect/pwtflare*
- images/effect/nuke*
+ images/effect/explosions/nuke*
  images/icon/dragonflame*
  images/icon/shard*
  images/outfit/dragonflame*
@@ -1593,7 +1598,7 @@ Files:
  images/outfit/firestorm?battery*
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
- images/outfit/mcs?exctractor*
+ images/outfit/mcs?extractor*
  images/projectile/firestorm?torpedo*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
@@ -1630,15 +1635,16 @@ Files:
  images/thumbnail/squall*
  images/thumbnail/sunder*
  images/thumbnail/swan*
+ sounds/moonbeam*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- sound/drill*
- sound/ion?rain*
- sound/korath?afterburner*
- sound/remnant?afterburner*
+ sounds/drill*
+ sounds/ion?rain*
+ sounds/korath?afterburner*
+ sounds/remnant?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
@@ -1781,7 +1787,7 @@ License: CC-BY-SA-4.0
 Files:
  images/scene/citydark*
  images/scene/buildings*
- images/scene/busysteet*
+ images/scene/busystreet*
  images/scene/iceplains*
  images/scene/iceplains2*
  images/scene/iceplains3*
@@ -1792,15 +1798,15 @@ Files:
  images/scene/smeer*
  images/scene/snowfield*
  images/scene/snowvillage*
- images/scene/sunet*
+ images/scene/sunset*
  images/scene/tower*
  images/scene/icepicture*
- images/scene/snowplains*
+ images/scene/snowplain*
 Copyright: unsplash.com/
 License: CC0
 
 Files:
- images/scenes/hroar*
+ images/scene/hroar*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
@@ -1824,7 +1830,7 @@ Comment: Derived from works by MZ (under the same license), and contributions by
 
 Files:
  images/ship/modified?dromedary?ghost*
- images/ship/modified?dromedary?spectre*
+ images/ship/modified?dromedary?specter*
 Copyright: Saugia (https://github.com/Saugia)
 License: CC-BY-SA-4.0
 Comment: Transparent materials by scrinarii1337.
@@ -1849,6 +1855,7 @@ Files:
  images/land/city20*
  images/land/city21*
  images/land/city22*
+ images/land/city23*
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.

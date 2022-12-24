@@ -430,7 +430,7 @@ outfit "Hai Williwaw Cooling"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5
-	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and cause their reactors to shut down. When that happens, they install these."
+	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Quantum Keystone"
 	category "Systems"
@@ -447,9 +447,9 @@ outfit "Value Detector"
 	thumbnail "outfit/value detector"
 	"mass" 3
 	"outfit space" -3
-	"cargo scan power" 22
-	"cargo scan speed" 4
-	"tactical scan power" 27
+	"cargo scan power" 88
+	"cargo scan speed" 16
+	"tactical scan power" 92
 	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar and provide more detailed information about the tactical condition of enemy vessels. This dual function is useful when fielding experimental weaponry."
 
 outfit "Hai Chasm Batteries"
@@ -777,6 +777,7 @@ outfit "Shield Beetle Pendant"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
+	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."
 
 
 outfit "Failed Control System"

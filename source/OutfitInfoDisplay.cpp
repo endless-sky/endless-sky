@@ -35,7 +35,7 @@ namespace {
 		make_pair(60. * 100., ""),
 		make_pair(100., "%"),
 		make_pair(100., ""),
-		make_pair(1. / 60., "")
+		make_pair(1. / 60., "s")
 	};
 
 	const map<string, int> SCALE = {
