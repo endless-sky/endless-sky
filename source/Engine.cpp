@@ -312,7 +312,7 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || planet->CanLand(*ship))
+			bool launchesWithPlayer = (ship->IsYours() || (planet && planet->CanLand(*ship)))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
@@ -555,8 +555,6 @@ void Engine::Step(bool isActive)
 
 	const System *currentSystem = player.GetSystem();
 	// Update this here, for thread safety.
-	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-		player.TravelPlan().push_back(flagship->GetTargetSystem());
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
 	if(doFlash)
