@@ -2077,7 +2077,6 @@ system Achernar
 system Acnanjo
 	pos 516.8 -544.7
 	government Uninhabited
-	attributes "TBD"
 	arrival 4050
 	habitable 4050
 	belt 1944
@@ -2194,7 +2193,6 @@ system Acrux
 system Actannka
 	pos 1016.73 -706.867
 	government Quarg
-	attributes "TBD"
 	arrival 3200
 	habitable 3200
 	belt 1228
@@ -2370,7 +2368,6 @@ system Aescolanus
 system Aierena
 	pos 1048.06 -348.956
 	government Uninhabited
-	attributes "TBD"
 	arrival 3000
 	habitable 3000
 	belt 1856
@@ -2405,7 +2402,7 @@ system Aierena
 system "Aik Kamgatake"
 	pos 487.63 -365.37
 	government Uninhabited
-	attributes "TBD"
+	attributes "nova"
 	arrival 525
 	habitable 525
 	belt 1920
@@ -2506,7 +2503,6 @@ system Aki'il
 system Aksek
 	pos 477.944 -401.011
 	government Uninhabited
-	attributes "TBD"
 	arrival 2300
 	habitable 2300
 	belt 1795
@@ -2984,7 +2980,7 @@ system Aldhibain
 system Aleit
 	pos 967.604 -690.722
 	government Quarg
-	attributes "TBD"
+	attributes "ringworld"
 	arrival 700
 	habitable 700
 	belt 1864
@@ -4598,7 +4594,7 @@ system Aludra
 system Anbrim
 	pos 725.7 -376.2
 	government Uninhabited
-	attributes "TBD"
+	attributes "nova"
 	arrival 2300
 	habitable 2300
 	belt 1101
@@ -4896,7 +4892,7 @@ system Antares
 system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "carbon"
 	arrival 3000
 	habitable 3000
 	belt 1994
@@ -5345,7 +5341,7 @@ system Asikafarnut
 system Asio
 	pos 807 -629.8
 	government Gegno
-	attributes "TBD"
+	attributes "gegno"
 	arrival 500
 	habitable 320
 	belt 1478
@@ -5570,7 +5566,7 @@ system Atria
 system Auhru
 	pos 1007.41 -524.011
 	government "Gegno Scin"
-	attributes "TBD"
+	attributes "gegno" "scin"
 	arrival 5000
 	habitable 8650
 	belt 1336
@@ -6816,7 +6812,7 @@ system "Broken Bowl"
 system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "wolf-rayet"
 	arrival 5000
 	habitable 50000
 	belt 1797
@@ -8035,7 +8031,6 @@ system "Cor Caroli"
 system Cotpoxi
 	pos 843.1 -372.6
 	government Uninhabited
-	attributes "TBD"
 	arrival 3025
 	habitable 3025
 	belt 1607
@@ -8080,7 +8075,6 @@ system Cotpoxi
 system Cshudlye
 	pos 595.14 -477.911
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 5600
 	belt 1675
@@ -10182,7 +10176,7 @@ system Durax
 system E-4183
 	pos 1042.97 -618.13
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 5000
 	habitable 7900
 	belt 1542
@@ -10230,7 +10224,7 @@ system E-4183
 system E-9182
 	pos 1167.2 -629
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 5000
 	habitable 13720
 	belt 1387
@@ -10471,7 +10465,6 @@ system Edusa
 system Eebu
 	pos 825.7 -487.48
 	government Uninhabited
-	attributes "TBD"
 	arrival 1250
 	habitable 1250
 	belt 1384
@@ -10896,7 +10889,6 @@ system Ekuarik
 system Elifennka
 	pos 990.5 -728.2
 	government Uninhabited
-	attributes "TBD"
 	arrival 3400
 	habitable 3400
 	belt 1533
@@ -11063,7 +11055,6 @@ system Eltanin
 system Empeles
 	pos 668.174 -400.789
 	government "Gegno Vi"
-	attributes "TBD"
 	arrival 700
 	habitable 700
 	belt 1416
@@ -11265,7 +11256,6 @@ system Enif
 system Eogho
 	pos 812.579 -541.547
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 7000
 	belt 1960
@@ -11378,7 +11368,7 @@ system "Epsilon Leonis"
 system "Erba Yle"
 	pos 1001.69 -488.05
 	government "Gegno Scin"
-	attributes "TBD"
+	attributes "gegno" "scin"
 	arrival 500
 	habitable 320
 	belt 1204
@@ -11702,7 +11692,7 @@ system Eteron
 system Evrae
 	pos 884.49 -475.35
 	government Gegno
-	attributes "TBD"
+	attributes "gegno"
 	arrival 3200
 	habitable 3200
 	belt 1985
@@ -13073,7 +13063,7 @@ system "Four Pillars"
 system Fscher
 	pos 725.47 -418.2
 	government Gegno
-	attributes "TBD"
+	attributes "gegno"
 	arrival 5000
 	habitable 6300
 	belt 1048
@@ -13180,7 +13170,7 @@ system Furmeliki
 system G-3191
 	pos 1039.23 -395
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 5000
 	habitable 20250
 	belt 1341
@@ -13212,7 +13202,7 @@ system G-3191
 system G-6183
 	pos 1019.4 -590.18
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach" "blackhole"
 	arrival 5000
 	habitable 10000
 	belt 1187
@@ -13254,7 +13244,7 @@ system G-6183
 system G-719
 	pos 1162.19 -417.18
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 2900
 	habitable 2900
 	belt 1870
@@ -13309,7 +13299,7 @@ system G-719
 system G-819
 	pos 1186.97 -477.17
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 700
 	habitable 700
 	belt 1333
@@ -13548,7 +13538,6 @@ system "Gamma Corvi"
 system Gaungu
 	pos 1097.72 -321.899
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 400
 	belt 1072
@@ -13657,7 +13646,6 @@ system Gerenus
 system Ghhil
 	pos 922.4 -714
 	government Quarg
-	attributes "TBD"
 	arrival 3000
 	habitable 3000
 	belt 1760
@@ -14250,7 +14238,6 @@ system Graffias
 system Gualetri
 	pos 909.9 -529.18
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 100
 	belt 1734
@@ -14343,7 +14330,7 @@ system Gupta
 system H-8188
 	pos 1206.6 -506.5
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 3650
 	habitable 3650
 	belt 1254
@@ -14381,7 +14368,7 @@ system H-8188
 system H-9187
 	pos 1130.88 -455.97
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 3400
 	habitable 3400
 	belt 1102
@@ -14877,7 +14864,7 @@ system Hesselpost
 system Heutesl
 	pos 871.8 -631.53
 	government Gegno
-	attributes "TBD"
+	attributes "gegno"
 	arrival 1310
 	habitable 1310
 	belt 1000
@@ -15427,7 +15414,6 @@ system Hunter
 system Huud
 	pos 767.7 -394.3
 	government Uninhabited
-	attributes "TBD"
 	arrival 3430
 	habitable 3430
 	belt 1319
@@ -15466,7 +15452,6 @@ system Huud
 system Iigen
 	pos 928.4 -615.7
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 230
 	belt 1699
@@ -15514,7 +15499,6 @@ system Iigen
 system Iinjma
 	pos 986.29 -410.7
 	government Uninhabited
-	attributes "TBD"
 	arrival 3755
 	habitable 3755
 	belt 1861
@@ -15563,7 +15547,6 @@ system Iinjma
 system Iise
 	pos 468.376 -446.156
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 100
 	belt 1734
@@ -15720,7 +15703,7 @@ system Ildaria
 system Iliniza
 	pos 931.904 -441.026
 	government "Gegno Scin"
-	attributes "TBD"
+	attributes "gegno" "scin"
 	arrival 760
 	habitable 760
 	belt 1624
@@ -15784,7 +15767,6 @@ system Iliniza
 system Ilirco
 	pos 894.124 -395.267
 	government Uninhabited
-	attributes "TBD"
 	arrival 980
 	habitable 980
 	belt 1655
@@ -16297,7 +16279,6 @@ system Izar
 system Jied
 	pos 720.68 -541.24
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 425
 	belt 1377
@@ -16334,7 +16315,6 @@ system Jied
 system "Jyeg Pvu"
 	pos 904.75 -426.028
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 5160
 	belt 1522
@@ -16387,7 +16367,6 @@ system "Jyeg Pvu"
 system Jyelio
 	pos 772.8 -465.9
 	government Uninhabited
-	attributes "TBD"
 	arrival 550
 	habitable 550
 	belt 1779
@@ -16634,7 +16613,7 @@ system Kaliptari
 system Kanguwa
 	pos 990.137 -331.456
 	government Uninhabited
-	attributes "TBD"
+	attributes "neutron" "rulei"
 	music "ambient/rulei space"
 	arrival 500
 	habitable 100
@@ -16743,7 +16722,6 @@ system "Kappa Centauri"
 system Karhio
 	pos 535.278 -421.4
 	government Uninhabited
-	attributes "TBD"
 	arrival 950
 	habitable 950
 	belt 1163
@@ -17268,7 +17246,6 @@ system "Ki War Ek"
 system Kilema
 	pos 1043.5 -472.08
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 150
 	belt 1612
@@ -17305,7 +17282,7 @@ system Kilema
 system Kiluit
 	pos 699.45 -562.23
 	government "Gegno Vi"
-	attributes "TBD"
+	attributes "gegno" "vi"
 	arrival 2200
 	habitable 2200
 	belt 1258
@@ -17501,7 +17478,7 @@ system Kiru'kichi
 system Kneirc
 	pos 856.6 -511.36
 	government "Gegno Scin"
-	attributes "TBD"
+	attributes "gegno" "scin"
 	arrival 1430
 	habitable 1430
 	belt 1163
@@ -17610,7 +17587,7 @@ system Kochab
 system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
-	attributes "korath"
+	attributes "korath" "carbon"
 	arrival 3100
 	habitable 3100
 	belt 1606
@@ -18420,7 +18397,7 @@ system Kursa
 system L-118
 	pos 1085.78 -416.75
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 3000
 	habitable 3000
 	belt 1724
@@ -18457,7 +18434,7 @@ system L-118
 system L-6181
 	pos 1139.93 -522.87
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 885
 	habitable 885
 	belt 1758
@@ -18822,7 +18799,6 @@ system Lire
 system Lloloi
 	pos 907.022 -251.144
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 10000
 	belt 1338
@@ -19190,7 +19166,7 @@ system Lurata
 system M-1188
 	pos 1124.66 -607.233
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 750
 	habitable 750
 	belt 1676
@@ -19231,7 +19207,7 @@ system M-1188
 system MC-42
 	pos 1113.33 -500.68
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach" "iije"
 	arrival 625
 	habitable 625
 	belt 1290
@@ -19266,7 +19242,7 @@ system MC-42
 system MS-219
 	pos 1075.13 -568.167
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach" "iije"
 	arrival 2075
 	habitable 2075
 	belt 1404
@@ -19388,7 +19364,6 @@ system Makferuti
 system Maoni
 	pos 607.46 -389.147
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 100
 	belt 1734
@@ -21113,7 +21088,6 @@ system Mizar
 system Mnashyu
 	pos 824.044 -309.322
 	government Gegno
-	attributes "TBD"
 	arrival 1430
 	habitable 1430
 	belt 1163
@@ -21175,7 +21149,6 @@ system Mnashyu
 system Mohuwo
 	pos 956.45 -544.26
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 6210
 	belt 1213
@@ -21358,7 +21331,6 @@ system Mora
 system Msalbit
 	pos 978.348 -274.767
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 13720
 	belt 1333
@@ -21785,7 +21757,6 @@ system Nihal
 system Nnatai
 	pos 513.2 -470.3
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 5600
 	belt 1478
@@ -21821,7 +21792,7 @@ system Nnatai
 system Nnaug
 	pos 718.89 -592.01
 	government "Gegno Vi"
-	attributes "TBD"
+	attributes "gegno" "vi"
 	arrival 3650
 	habitable 3650
 	belt 1901
@@ -22006,7 +21977,6 @@ system Nona
 system Nssryos
 	pos 770.122 -524.267
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 5600
 	belt 1175
@@ -22130,7 +22100,7 @@ system Nunki
 system O-3184
 	pos 1100.4 -646.047
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 500
 	habitable 230
 	belt 1119
@@ -22235,7 +22205,6 @@ system Oblate
 system Oihaug
 	pos 773.5 -573.14
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 160
 	belt 1756
@@ -22283,7 +22252,7 @@ system Oihaug
 system Ookmya
 	pos 633.6 -610.17
 	government "Gegno Vi"
-	attributes "TBD"
+	attributes "gegno" gegno vi"
 	arrival 5000
 	habitable 7900
 	belt 1144
@@ -22345,7 +22314,7 @@ system Ookmya
 system Oosuoro
 	pos 839 -592.67
 	government Gegno
-	attributes "TBD"
+	attributes "gegno"
 	arrival 700
 	habitable 700
 	belt 828
@@ -22882,7 +22851,7 @@ system Patir
 system Pbelnep
 	pos 945.6 -505.7
 	government "Gegno Scin"
-	attributes "TBD"
+	attributes "gegno" "scin"
 	arrival 725
 	habitable 725
 	belt 1803
@@ -24215,7 +24184,7 @@ system Prosa
 system Ptetubo
 	pos 594 -569.3
 	government "Gegno Vi"
-	attributes "TBD"
+	attributes "gegno" "vi"
 	arrival 1250
 	habitable 1250
 	belt 1478
@@ -24278,7 +24247,6 @@ system Ptetubo
 system Ptobeh
 	pos 553.2 -526.3
 	government Uninhabited
-	attributes "TBD"
 	arrival 5000
 	habitable 13720
 	belt 1440
@@ -24361,7 +24329,6 @@ system "Pug Iyik"
 system Pukako
 	pos 618.64 -440.28
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 490
 	belt 1154
@@ -25505,7 +25472,7 @@ system Ritilas
 system Rouseu
 	pos 566.7 -404.133
 	government Uninhabited
-	attributes "TBD"
+	attributes "wormhole"
 	arrival 5000
 	habitable 8800
 	belt 1648
@@ -25978,6 +25945,7 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
+	attributes "blackhole"
 	arrival 5000
 	habitable 100000
 	belt 1500
@@ -26442,7 +26410,7 @@ system Schedar
 system Scija
 	pos 651.5 -586
 	government "Gegno Vi"
-	attributes "TBD"
+	attributes "gegno" "vi"
 	arrival 5000
 	habitable 5600
 	belt 1431
@@ -29308,7 +29276,6 @@ system Tortor
 system Tscera
 	pos 867 -684.1
 	government Uninhabited
-	attributes "TBD"
 	arrival 2560
 	habitable 2560
 	haze _menu/haze-33
@@ -29404,7 +29371,7 @@ system Turais
 system U-5188
 	pos 1084 -665.623
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 500
 	habitable 425
 	belt 1330
@@ -29445,7 +29412,6 @@ system U-5188
 system Uelawan
 	pos 895.2 -565.75
 	government Uninhabited
-	attributes "TBD"
 	arrival 3200
 	habitable 3200
 	belt 1976
@@ -29508,7 +29474,7 @@ system Uelawan
 system Uhebe
 	pos 647.4 -496.3
 	government "Gegno Vi"
-	attributes "TBD"
+	attributes "gegno" "vi"
 	arrival 5000
 	habitable 10000
 	belt 1771
@@ -29894,8 +29860,7 @@ system Unukalhai
 
 system Uttna
 	pos 946.3 -580.8
-	government Gegno
-	attributes "TBD"
+	government Uninhabited
 	arrival 3000
 	habitable 3000
 	belt 1748
@@ -30019,7 +29984,6 @@ system "Uwa Fahn"
 system "Uwo Seija"
 	pos 420.667 -429
 	government Uninhabited
-	attributes "TBD"
 	arrival 4630
 	habitable 4630
 	belt 1222
@@ -30061,7 +30025,7 @@ system "Uwo Seija"
 system V-2189
 	pos 1135.9 -711.667
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 5000
 	habitable 17370
 	belt 1985
@@ -30118,7 +30082,6 @@ system V-2189
 system Vaiov
 	pos 631.5 -347
 	government Uninhabited
-	attributes "TBD"
 	arrival 950
 	habitable 950
 	belt 1529
@@ -30131,19 +30094,19 @@ system Vaiov
 	object
 		sprite star/k5-old
 		distance 190
-		period 130.94
+		period 130
 	object
 		sprite planet/browndwarf-y
 		distance 190
-		period 33.9882
+		period 130
 		offset 180
 	object
 		sprite planet/rhea-b
-		distance 587
+		distance 687
 		period 184.567
 	object
 		sprite planet/lava6
-		distance 863
+		distance 963
 		period 329.014
 	object
 		sprite planet/gas10
@@ -30157,7 +30120,6 @@ system Vaiov
 system Vanguwo
 	pos 978.189 -237.686
 	government Uninhabited
-	attributes "TBD"
 	arrival 3450
 	habitable 3450
 	belt 1964
@@ -30311,7 +30273,7 @@ system Vega
 system Vesvii
 	pos 792.58 -432.88
 	government Uninhabited
-	attributes "TBD"
+	attributes "vesvi"
 	arrival 1270
 	habitable 1270
 	belt 976
@@ -30363,8 +30325,7 @@ system Vesvii
 
 system Vilacira
 	pos 805.1 -350.2
-	government Gegno
-	attributes "TBD"
+	government Uninhabited
 	arrival 500
 	habitable 150
 	belt 1157
@@ -30514,7 +30475,6 @@ system Volax
 system Vorsuke
 	pos 678.952 -513.115
 	government Uninhabited
-	attributes "TBD"
 	arrival 625
 	habitable 625
 	belt 1177
@@ -30556,7 +30516,7 @@ system Vorsuke
 system Vulcuja
 	pos 1071.75 -263.767
 	government Uninhabited
-	attributes "TBD"
+	attributes "carbon"
 	arrival 3000
 	habitable 3000
 	belt 1972
@@ -30584,7 +30544,7 @@ system Vulcuja
 system W-3197
 	pos 1204.5 -400
 	government Uninhabited
-	attributes "TBD"
+	attributes "umbral reach"
 	arrival 5000
 	habitable 6300
 	belt 1887
@@ -31258,7 +31218,6 @@ system "World's End"
 system Wreoul
 	pos 692.34 -464.1
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 150
 	belt 1409
@@ -31444,7 +31403,6 @@ system "Yed Prior"
 system Yerser
 	pos 827.319 -412.984
 	government Uninhabited
-	attributes "TBD"
 	arrival 3650
 	habitable 3650
 	belt 1478
@@ -31484,7 +31442,6 @@ system Yerser
 system Yli
 	pos 737.404 -492.911
 	government Uninhabited
-	attributes "TBD"
 	arrival 500
 	habitable 405
 	belt 1529
@@ -31530,8 +31487,7 @@ system Yli
 
 system Yllke
 	pos 947.7 -648.2
-	government Gegno
-	attributes "TBD"
+	government Uninhabited
 	arrival 5000
 	habitable 5160
 	belt 1925
@@ -31584,7 +31540,7 @@ system Yllke
 system Yranjiu
 	pos 1054.27 -298.942
 	government Uninhabited
-	attributes "TBD"
+	attributes "blackhole"
 	arrival 5000
 	habitable 10550
 	belt 1478
@@ -31691,7 +31647,7 @@ system Zaurak
 system Zeinar
 	pos 984.87 -452.389
 	government "Gegno Scin"
-	attributes "TBD"
+	attributes "gegno" "scin"
 	arrival 500
 	habitable 425
 	belt 1960
@@ -31881,7 +31837,6 @@ system "Zeta Centauri"
 system Zolpulti
 	pos 920.989 -294.2
 	government Uninhabited
-	attributes "TBD"
 	arrival 1080
 	habitable 1080
 	belt 1159
