@@ -36,7 +36,7 @@ outfit "R02 Battlezone Battery"
 	"mass" 23
 	"outfit space" -23
 	"energy capacity" 2237
-	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long-lasting engagements. They also fit nicely on larger vessels as a buffer to power their more energy hungry systems.`
+	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long-lasting engagements. They also fit nicely on larger vessels as a buffer to power their more energy-hungry systems.`
 
 
 outfit "R03 Warforge Battery"
@@ -78,7 +78,7 @@ outfit "C3 Scrap Cell"
 	"outfit space" -25
 	"energy generation" 1.4
 	"heat generation" 2.2
-	description `The Scrap Cell is a small radiothermal generator that produces a limited amount of energy. It is only used on the Gegno's smaller-sized vessels, or in tandem with their less energy hungry internals.`
+	description `The Scrap Cell is a small radiothermal generator that produces a limited amount of energy. It is only used on the Gegno's smaller-sized vessels, or in tandem with their less energy-hungry internals.`
 
 
 outfit "C7 Brawl Cell"
@@ -104,7 +104,7 @@ outfit "C17 Warzone Core"
 	"outfit space" -87
 	"energy generation" 14.1
 	"heat generation" 38.3
-	description `The Gegno began developing nuclear technology once their cities grew massive enough to require it. The Warzone Core is a medium-sized nuclear fission reactor that is a suitable power source for most of the Gegno's large ships, though it appears to lack many of the fail safes you would expect to find on a human nuclear reactor.`
+	description `The Gegno began developing nuclear technology once their cities grew massive enough to require it. The Warzone Core is a medium-sized nuclear fission reactor that is a suitable power source for most of the Gegno's large ships, though it appears to lack many of the fail-safes you would expect to find on a human nuclear reactor.`
 
 
 outfit "C27 Campaign Core"
@@ -807,7 +807,7 @@ outfit "Savagery Bludgeon"
 		"shield damage" 8
 		"hull damage" 40
 		"hit force" 140
-	description `A Savagery Bludgeon is a mace-like weapon found jammed into the Gegno Vi's Dunite duelist ships. They are used as melee weapons for close-quarter rams and jousts during duels. However, they barely have any use as a weapon outside of this as they merely scratch larger ship's hulls and barely put a dent into anything shielded.`
+	description `A Savagery Bludgeon is a mace-like weapon found jammed into the Gegno Vi's Dunite duelist ships. They are used as melee weapons for close-quarter rams and jousts during duels. However, they have hardly any use as a weapon outside of this as they merely scratch larger ship's hulls and barely put a dent into anything shielded.`
 	
 effect "bludgeon impact"
 	sound "bludgeon impact"

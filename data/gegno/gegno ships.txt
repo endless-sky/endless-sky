@@ -185,7 +185,7 @@ ship "Gypsum"
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
-	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
+	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster-moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
 
 # Gegno Vi:
 
@@ -445,7 +445,7 @@ ship "Schist"
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.` 
-	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of forward facing cannons and a turret so they can bring some type of weaponry to any possible engagement, as well as a set of angled guns for deterring any smaller, faster ships from attempting to flank the ship.`
+	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of forward facing cannons and a turret so they can bring some type of weaponry to any possible engagement, as well as a set of angled guns for deterring any smaller, faster ships from attempting to flank the vessel.`
 
 ship "Schist" "Schist (Light Load)"
 	sprite "ship/gegno schist b"
@@ -511,7 +511,7 @@ ship "Eclogite"
 	explode "small explosion" 20
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
-	description `While the style of longer battleship-esque vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi war vessels. The Eclogite is one of the newest designs in the Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another run.`
+	description `While the style of longer battleship-esque vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi warship designs. The Eclogite is one of the newest designs in the Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another run.`
 
 ship "Diorite"
 	sprite "ship/gegno diorite"
@@ -629,7 +629,7 @@ ship "Hornfel"
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many mounting points to support cargo pods, allowing them to provide a secondary transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are instead occasionally found with adjustments to carry a larger armament. This multi-role function is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
+	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships designed for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many mounting points to support cargo pods, allowing them to provide a secondary transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are instead occasionally found with adjustments to carry a larger armament. This multi-role function is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
 
 ship "Hornfel" "Hornfel (Light Load)"
 	sprite "ship/gegno hornfel b"
@@ -1008,7 +1008,7 @@ ship "Tridymite"
 	explode "small explosion" 19
 	explode "tiny explosion" 14
 	"final explode" "final explosion small"
-	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be seen used as a scout craft by the military, equipped an early prototype scanner system built into the frame.`
+	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be seen used as a scout craft by the military, equipped with an early prototype scanner system built into the frame.`
 
 ship "Felsic"
 	sprite "ship/gegno felsic"

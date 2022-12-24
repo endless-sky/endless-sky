@@ -146,7 +146,7 @@ outfit "Abyssal Composer"
 		"energy damage" 100
 		"piercing" 0.3
 		"safe"
-	description `This is an extremely dangerous weapon that uses graviton technology to pull a target's mass and energy apart, and then feeds it to the firing ship's systems.`
+	description `This is an extremely dangerous weapon that uses graviton technology to pull a target's mass and energy apart, and then feeds the materials to the firing ship's systems.`
 
 effect "composed"
 	sprite "effect/composed"
