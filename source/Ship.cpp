@@ -2734,8 +2734,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 		if(CanFire(weapon))
 		{
 			const double jamChance = CalculateJamChance(Energy(), ionization);
-			int i = armament.WeaponIndex(*hardpoint);
-			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
+			if(armament.FireAntiMissile(*hardpoint, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 		}
 	}

@@ -384,6 +384,13 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 
 
 
+void Armament::Fire(const Hardpoint &hardpoint, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed)
+{
+	int index = WeaponIndex(hardpoint);
+	Fire(index, ship, projectiles, visuals, jammed);
+}
+
+
 bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile,
 	vector<Visual> &visuals, bool jammed)
 {
@@ -399,6 +406,13 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
 }
 
+
+
+bool Armament::FireAntiMissile(const Hardpoint &hardpoint, Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals, bool jammed)
+{
+	int index = WeaponIndex(hardpoint);
+	return FireAntiMissile(index, ship, projectile, visuals, jammed);
+}
 
 
 // Update the reload counters.
