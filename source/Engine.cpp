@@ -2212,17 +2212,17 @@ void Engine::DoCollection(Flotsam &flotsam)
 			player.Harvest(outfit);
 		}
 		else {
-			string displayName = outfit->DisplayName();
-			string pluralName = outfit->PluralName();
+			string outfitDisplayName = outfit->DisplayName();
+			string outfitPluralName = outfit->PluralName();
 
 			if(!player.OutfitIsKnown(*outfit))
 			{
-				displayName = outfit->UnknownName(amount) + " Component";
-				pluralName = displayName + 's';
+				outfitDisplayName = "Unknown Outfit";
+				outfitPluralName = outfitDisplayName + "s";
 			}
 
 			message = name + to_string(amount) + " "
-				+ (amount == 1 ? displayName : pluralName) + ".";
+				+ (amount == 1 ? outfitDisplayName : outfitPluralName) + ".";
 		}
 	}
 	else
