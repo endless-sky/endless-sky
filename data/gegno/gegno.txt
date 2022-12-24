@@ -13,10 +13,7 @@
 
 phrase "gegno vi"
 	word
-		""
-		""
-		""
-		""
+		"" 4
 		"Beuci"
 		"Dueyu"
 		"Tie"
@@ -63,8 +60,7 @@ phrase "gegno vi"
 
 phrase "gegno scin"
 	word
-		""
-		""
+		"" 2
 		"Kuuay"
 		"Jiee"
 		"Tyuoe"
@@ -105,12 +101,7 @@ phrase "gegno scin"
 
 phrase "gegno united"
 	word
-		""
-		""
-		""
-		""
-		""
-		""
+		"" 6
 		"Kuuay"
 		"Jiee"
 		"Tyuoe"
@@ -144,12 +135,7 @@ phrase "gegno united"
 	word
 		" "
 	word
-		""
-		""
-		""
-		""
-		""
-		""
+		"" 6
 		"Oorevyt"
 		"Iil"
 		"Iievae"
