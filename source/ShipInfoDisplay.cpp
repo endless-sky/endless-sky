@@ -38,13 +38,13 @@ using namespace std;
 
 ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed)
 {
-	Update(ship, player, descriptionCollapsed);
+	Update(ship, player, descriptionCollapsed, true);
 }
 
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed)
+void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool sale)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
 	UpdateAttributes(ship, player, descriptionCollapsed);
@@ -131,7 +131,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool sale)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
@@ -373,21 +373,25 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		* (1. + attributes.Get("hull heat multiplier")) : 0.;
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 
-	// Add up the maximum possible changes and add the total to the table.
-	attributesHeight += 20;
-	const double overallEnergy = idleEnergyPerFrame
-		- movingEnergyPerFrame
-		- firingEnergy
-		- shieldEnergy
-		- hullEnergy;
-	const double overallHeat = idleHeatPerFrame
-		+ movingHeatPerFrame
-		+ firingHeat
-		+ shieldHeat
-		+ hullHeat;
-	tableLabels.push_back("max change:");
-	energyTable.push_back(Format::Number(60. * overallEnergy));
-	heatTable.push_back(Format::Number(60. * overallHeat));
+	// For detailed shipyard view
+	if (sale)
+	{
+		// Add up the maximum possible changes and add the total to the table.
+		attributesHeight += 20;
+		const double overallEnergy = idleEnergyPerFrame
+			- movingEnergyPerFrame
+			- firingEnergy
+			- shieldEnergy
+			- hullEnergy;
+		const double overallHeat = idleHeatPerFrame
+			+ movingHeatPerFrame
+			+ firingHeat
+			+ shieldHeat
+			+ hullHeat;
+		tableLabels.push_back("max change:");
+		energyTable.push_back(Format::Number(60. * overallEnergy));
+		heatTable.push_back(Format::Number(60. * overallHeat));
+	}
 
 	// Add maximum values of energy and heat to the table.
 	attributesHeight += 20;
