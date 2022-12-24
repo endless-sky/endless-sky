@@ -61,7 +61,7 @@ class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
-		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
+		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(std::move(category)) {}
 		Bay(Bay &&) = default;
 		Bay &operator=(Bay &&) = default;
 		~Bay() = default;
