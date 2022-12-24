@@ -129,7 +129,7 @@ int OutfitterPanel::VisibilityCheckboxesSize() const
 
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
+	shipInfo.Update(*playerShip, player, collapsed.count("description"), true);
 	shipInfo.DrawAttributes(point);
 
 	return shipInfo.AttributesHeight();

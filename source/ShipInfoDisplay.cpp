@@ -374,7 +374,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 
 	// For detailed shipyard view
-	if (sale)
+	if(sale)
 	{
 		// Add up the maximum possible changes and add the total to the table.
 		attributesHeight += 20;
