@@ -32,13 +32,8 @@ shipyard "Gegno Vi Ships"
 	"Eclogite"
 	"Gneiss"
 	"Hornfel"
-	"Hornfel (Heavy Weapons)"
-	"Hornfel (Light Load)"
-	"Hornfel (Heavy Load)"
 	"Protolith"
 	"Schist"
-	"Schist (Light Load)"
-	"Schist (Heavy Load)"
 	"Slate"
 	
 
