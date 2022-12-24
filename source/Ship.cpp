@@ -2919,7 +2919,7 @@ bool Ship::IsCloaked() const
 
 double Ship::CloakingSpeed() const
 {
-	return attributes.Get("cloak") + attributes.Get("cloak by mass") / Mass();
+	return attributes.Get("cloak") + attributes.Get("cloak by mass") * 1000. / Mass();
 }
 
 
