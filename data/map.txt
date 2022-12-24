@@ -22252,7 +22252,7 @@ system Oihaug
 system Ookmya
 	pos 633.6 -610.17
 	government "Gegno Vi"
-	attributes "gegno" gegno vi"
+	attributes "gegno" "vi"
 	arrival 5000
 	habitable 7900
 	belt 1144
