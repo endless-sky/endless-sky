@@ -43,9 +43,9 @@ ship "Jje"
 		"energy generation" 4
 		
 		"thrust" 8
-		"flare sound" "ambient/jje"
+		"flare sound" "sounds/jje"
 		"turn" 60
-		"steering flare sound" "ambient/jje"
+		"steering flare sound" "sounds/jje"
 		
 		"burn protection" 2
 		"discharge protection" 2
@@ -96,9 +96,9 @@ ship "Ayym"
 		"gaslining" 1
 		
 		"thrust" 14
-		"flare sound" "ambient/ayym"
+		"flare sound" "sounds/ayym"
 		"turn" 80
-		"steering flare sound" "ambient/ayym"
+		"steering flare sound" "sounds/ayym"
 		
 		"jump fuel" 100
 		"jump speed" .2
