@@ -381,8 +381,7 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->OpticalTracking())
 	{
 		double weight = target.Mass() * target.Mass();
-		double probability = weapon->OpticalTracking() * weight / (150000. + weight) *
-			(target.IsCloaked() ? target.Attributes().Get("cloak visibility") : 1.);
+		double probability = weapon->OpticalTracking() * weight / (150000. + weight);
 		hasLock |= Check(probability, base);
 	}
 
@@ -397,8 +396,7 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05) *
-			(target.IsCloaked() ? target.Attributes().Get("cloak infrared traceability") : 1.);
+		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05);
 		hasLock |= Check(probability, base);
 	}
 
@@ -417,8 +415,7 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			radarJamming = (1. - rangeFraction) * radarJamming;
 		}
-		double probability = weapon->RadarTracking() / (1. + radarJamming) *
-			(target.IsCloaked() ? target.Attributes().Get("cloak radar traceability") : 1.);
+		double probability = weapon->RadarTracking() / (1. + radarJamming);
 		hasLock |= Check(probability, base);
 	}
 }

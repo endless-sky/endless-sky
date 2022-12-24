@@ -1523,10 +1523,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& fuel >= cloakingFuel && energy >= cloakingEnergy
 			&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
-		double defaultCloak = attributes.Get("permanent cloak");
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
-			cloak = min(1., max(defaultCloak, cloak + cloakingSpeed));
+			cloak = min(1., max(0., cloak + cloakingSpeed));
 			fuel -= cloakingFuel;
 			energy -= cloakingEnergy;
 			shields -= cloakingShield;
@@ -1543,7 +1542,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		else if(cloakingSpeed)
 		{
-			cloak = max(defaultCloak, cloak - cloakingSpeed);
+			cloak = max(0., cloak - cloakingSpeed);
 			// If you're trying to cloak but are unable to (too little energy or
 			// fuel) you're forced to decloak fully for one frame before you can
 			// engage cloaking again.
@@ -2809,7 +2808,7 @@ bool Ship::IsTargetable() const
 
 bool Ship::IsCloakTargetable() const
 {
-	return (cloak < 1. || Random::Real() < attributes.Get("cloak targetability"));
+	return cloak < 1.;
 }
 
 

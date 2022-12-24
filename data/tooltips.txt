@@ -86,9 +86,6 @@ tip "cargo:"
 tip "cargo space:"
 	`How much cargo (commodities, mission cargo, and plundered outfits) this ship can carry.`
 
-tip "permanent cloak:"
-	`A ship with this outfit will always be cloaked to this degree at least.`
-
 tip "cloak:"
 	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked, except if they have the related "cloaked action" attribute.`
 
@@ -123,19 +120,7 @@ tip "cloak shield protection:"
 	`Protection against weapons that do shield damage when the cloak is active. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "cloak phasing"
-	`Weapons cannot affect this ship, and pass right trough.`
-
-tip "cloak visibility:"
-	`How visible your ship will be while cloaked. 0 being totally invisible to optical tracking, 1 being as visible as without a cloak.`
-
-tip "cloak targetability:"
-	`Ships will still have a chance to keep a lock on you when you are cloaked, 1 being a guaranteed lock and 0 is untargetable.`
-
-tip "cloak infrared traceability:"
-	`This value represents how easy this ship is to track using missiles and other guidance systems, when the cloak is active. All missiles will have a really hard time locking on you if it is low enough.`
-
-tip "cloak radar traceability:"
-	`This cloaking device does not hide you from radars. On top of that, it has an effect on radar trackers. The lower this value is, the easier time tracking you they will have.`
+	`When cloaked, weapons cannot affect this ship, and pass right trough.`
 
 tip "cloaked firing:"
 	`This device is so efficient at hiding you that you may shoot when cloaking, losing this amount of cloaking in the process, before being cloaked again. A negative value means shooting does not even hinder your cloak.`
