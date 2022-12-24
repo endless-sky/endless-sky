@@ -301,7 +301,7 @@ mission "Quarg Pug Arfecta Warning"
 			`	It scoffs, "It matters not how it happened."`
 				goto end
 			label righteous
-			`	“You fancy yourself a savior or a revolutionary then?” the Quarg says with what you assume is a sarcastic tone.`
+			`	"You fancy yourself a savior or a revolutionary then?" the Quarg says with what you assume is a sarcastic tone.`
 				goto end
 			label anarchy
 			`	"So you took it upon yourself to prove them wrong?" the Quarg says with an amused, incredulous smile.`
