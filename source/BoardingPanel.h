@@ -97,8 +97,7 @@ private:
 		void Take(int count);
 
 	private:
-		void UpdateStrings(bool obscureValue = false);
-		void UpdateName();
+		void UpdateStrings();
 		double UnitMass() const;
 
 	private:
@@ -108,6 +107,7 @@ private:
 		int64_t unitValue;
 		std::string size;
 		std::string value;
+		bool knownToPlayer;
 	};
 
 private:
