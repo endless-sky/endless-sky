@@ -32777,7 +32777,7 @@ system "Is Il Z-59"
 		object
 			sprite planet/fg_terrestrial6
 			distance 551
-			period nan
+			period 312
 	object
 		sprite planet/dust0
 		distance 2996
@@ -33116,7 +33116,7 @@ system "Ae Il G-66"
 		object
 			sprite planet/fg_terrestrial6
 			distance 459
-			period nan
+			period 190
 
 system "Ae Il A-3"
 	pos 477.32 -590.375
