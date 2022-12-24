@@ -2356,9 +2356,6 @@ void Engine::AddSprites(const Ship &ship)
 {
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
-	double cloakVisibility = ship.Attributes().Get("cloak visibility");
-	if(cloakVisibility)
-		cloak = min(1. - cloakVisibility, cloak);
 	bool drawCloaked = (cloak && ship.IsYours());
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
