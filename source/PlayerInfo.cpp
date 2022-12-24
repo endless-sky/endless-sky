@@ -1770,7 +1770,7 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 	// If a mission can be offered right now, move it to the start of the list
 	// so we know what mission the callback is referring to, and return it.
 	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && it->HasSpace(*this))
+		if(it->IsAtLocation(location) && it->CanOffer(*this) && it->CanAccept(*this))
 		{
 			availableMissions.splice(availableMissions.begin(), availableMissions, it);
 			return &availableMissions.front();
@@ -1830,7 +1830,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 		return;
 
 	for(auto it = missionList.begin(); it != missionList.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
+		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->CanAccept(*this))
 		{
 			string message = it->BlockedMessage(*this);
 			if(!message.empty())
@@ -2779,6 +2779,35 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
+	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		const Outfit &attributes = base ? flagship->BaseAttributes() : flagship->Attributes();
+		if(attribute == "cost")
+			return attributes.Cost();
+		if(attribute == "mass")
+			return round(attributes.Mass() * 1000.);
+		return round(attributes.Get(attribute) * 1000.);
+	};
+
+	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
+	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	{
+		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
+	};
+	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
+	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
+
+	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
+	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	{
+		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
+	};
+	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
+	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
@@ -3114,6 +3143,14 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipSystemProvider.SetHasFunction(flagshipSystemFun);
 	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
+
+	auto &&flagshipLandedProvider = conditions.GetProviderNamed("flagship landed");
+	auto flagshipLandedFun = [this](const string &name) -> bool
+	{
+		return (flagship && flagship->GetPlanet());
+	};
+	flagshipLandedProvider.SetHasFunction(flagshipLandedFun);
+	flagshipLandedProvider.SetGetFunction(flagshipLandedFun);
 
 	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
 	auto flagshipPlanetFun = [this](const string &name) -> bool

@@ -188,6 +188,7 @@ mission "Returning Home"
 	source
 		government "Hai"
 		not planet "Allhome"
+		not attributes "station"
 	destination
 		attributes "dirt belt"
 		attributes "farming"
@@ -271,6 +272,7 @@ mission "Unwanted Cargo Trigger"
 	to offer
 		random < 1
 		"cargo space" > 0
+		not "event: hai secret leaks"
 	on offer
 		event "hai in cargo" 14
 		fail
@@ -287,6 +289,7 @@ mission "Unwanted Cargo"
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
+		not "event: hai secret leaks"
 	on offer
 		conversation
 			`The "Check Cargo" light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
@@ -727,6 +730,7 @@ mission "Hiding in Plain Sight"
 	minor
 	source
 		government "Hai"
+		not attributes "station"
 	destination "Vinci"
 	passengers 2
 	deadline 30
@@ -734,7 +738,7 @@ mission "Hiding in Plain Sight"
 		random < 30
 		has "First Contact: Hai: offered"
 		or
-			not "event: pirates respond to leaks"
+			not "event: hai secret leaks"
 			has "event: hai-human resolution announced"
 	on offer
 		conversation
@@ -832,12 +836,12 @@ mission "Nanachi 1"
 	deadline 2 1
 	to offer
 		random < 15
+		"net worth" > 20000000
+		"combat rating" > 1200
+		has "First Contact: Hai: offered"
 		or
+			not "event: hai secret leaks"
 			has "event: hai-human resolution announced"
-			and
-				"net worth" > 2000000000
-				"combat rating" > 1200
-				has "First Contact: Hai: offered"
 	on offer
 		conversation
 			`As you are making your way through the spaceport you notice a worried-looking Hai staring at the local job board and back at some sort of document they are holding.`
@@ -1127,7 +1131,7 @@ mission "Strider Alt Start"
 	source
 		government "Hai"
 		not planet "Hai-home"
-		not attributes "uninhabited"
+		not attributes "uninhabited" "station"
 	destination "Hai-home"
 	clearance
 	to offer
