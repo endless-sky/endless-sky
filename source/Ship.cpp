@@ -3651,7 +3651,7 @@ bool Ship::CanBeCarried() const
 
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
-	if(!ship || !ship->CanBeCarried())
+	if(!ship || !ship->CanBeCarried() || ship->IsDisabled())
 		return false;
 
 	// Check only for the category that we are interested in.

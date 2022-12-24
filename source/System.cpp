@@ -371,6 +371,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
 			}
 		}
+		else if(key == "invisible fence" && child.Size() >= 2)
+			invisibleFenceRadius = max(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -682,6 +684,14 @@ double System::AsteroidBeltRadius() const
 const WeightedList<double> &System::AsteroidBelts() const
 {
 	return belts;
+}
+
+
+
+// Get the system's invisible fence radius.
+double System::InvisibleFenceRadius() const
+{
+	return invisibleFenceRadius;
 }
 
 

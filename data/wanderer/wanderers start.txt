@@ -36,8 +36,8 @@ mission "First Contact: Wanderer (Before Hai)"
 	source
 		attributes "wanderer"
 	to offer
-		not "First Contact: Hai: offered"
-		not "First Contact: Unfettered: offered"
+		not "First Contact: Wanderer: offered"
+		not "event: hai-human resolution announced"
 	on offer
 		fail "Wandering Nightmares"
 		conversation
@@ -48,7 +48,7 @@ mission "First Contact: Wanderer (Before Hai)"
 				`	"Hello. I come in peace."`
 				`	"My name is <first>. I am glad to meet you."`
 			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, you suspect that it is the language of a different species entirely, but unfortunately it is no more comprehensible to you than the bird's own language.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, judging by the difficulty it seems to be having in trying to speak it, you suspect that it is the language of a different species entirely. Unfortunately, it is no more comprehensible to you than the bird's own language.`
 			`	They make some further attempts to communicate with you, but without success. Eventually they give up and all but the leader leaves. The leader makes a sweeping gesture to the rest of the spaceport, apparently inviting you to explore.`
 				decline
 
@@ -61,9 +61,7 @@ mission "First Contact: Wanderer"
 	source
 		attributes "wanderer"
 	to offer
-		or
-			has "First Contact: Hai: offered"
-			has "First Contact: Unfettered: offered"
+		has "event: hai-human resolution announced"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
@@ -85,7 +83,7 @@ mission "First Contact: Wanderer"
 			`As before, you are ushered to the ground by a flock of the small alien ships, and a few of them fly over to your ship and wait for your to come out and try to talk to them. Also as before, you do not recognize their language and they do not understand yours, although their leader seems to be focused intently on trying to understand you.`
 			
 			label hai
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai. The difficulty it has producing the sounds lends it a rather coarse accent, but it is almost certainly Hai.`
 			`	"Hai, you speak the Hai language?" you ask. You cup your hands above your ears to mimic the large, rodent-like ears of the Hai.`
 			`	"Iy, ka'hai!" says the alien, rustling its wings in what you take as a gesture of excitement, "Speru ek ka'hai?" At the same time, though, one of the other aliens takes a step back and flexes its talons at you. It occurs to you that the Hai may or may not be viewed favorably here.`
 			choice
