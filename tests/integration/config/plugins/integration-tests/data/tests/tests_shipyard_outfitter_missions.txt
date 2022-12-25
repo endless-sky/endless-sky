@@ -93,7 +93,7 @@ test "Trigger Shipyard Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the shipyard."
 	sequence
 		call "Depart"
-		call "Land On Ruin helper"
+		call "Land"
 		input
 			key s
 
@@ -103,7 +103,7 @@ test "Trigger Outfitter Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the outfitter."
 	sequence
 		call "Depart"
-		call "Land On Ruin helper"
+		call "Land"
 		input
 			key o
 
@@ -127,7 +127,7 @@ test "Test Shipyard And Outfitter Mission"
 			# Test accepted. If not there it wasn't offered.
 			"test: succeed test" = "succeed test"
 			# if we launched
-			"test: flagship planet: Ruin" = "flagship planet: Ruin"
+			"test: flagship landed" = "flagship landed"
 
 
 test "Shipyard Mission Test"
