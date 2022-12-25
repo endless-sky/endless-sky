@@ -1991,7 +1991,7 @@ phrase "friendly navy"
 		"Getting wounded"
 		"Taking a hit"
 		"Injury"
-		"Becoming injured"
+		"Sustaining injury"
 	word
 		" "
 	word
@@ -2029,6 +2029,7 @@ phrase "friendly navy"
 		"when it assists us to"
 		"when it helps us to"
 		"when we are able to"
+		"when that sacrifice helps us to"
 		"but our duty is to"
 		"but our real job is to"
 		"but our goal is to"
@@ -2047,6 +2048,7 @@ phrase "friendly navy"
 		"but that is for nought if it does not help to"
 		"but it is wasted if it does not help to"
 		"but that sacrifice has greater meaning when it helps us to"
+		"but that sacrifice only means something when it helps us to"
 	word
 		" "
 	word
@@ -2140,7 +2142,7 @@ phrase "navy protection hail"
 		" "
 	word
 		"these skies"
-		"our universe"
+		"our galaxy"
 		"the Deep"
 		"the Rim"
 		"the South"
@@ -2161,6 +2163,52 @@ phrase "navy protection hail"
 		" from anarchism"
 		" from those who threaten freedom"
 		" from those who threaten liberty"
+
+phrase "navy protection hail"
+	word
+		"protected"
+		"guarded"
+		"defended"
+		"shielded"
+	word
+		" "
+	word
+		"these skies"
+		"our galaxy"
+		"the Deep"
+		"the Rim"
+		"the South"
+		"the Core"
+		"the Dirt Belt"
+		"the Far North"
+		"the Paradise Worlds"
+		"the Near Earth sector"
+	word
+		" from "
+	word
+		"piracy"
+		"crime"
+		"instability"
+		"chaos"
+		"conflict"
+		"autocracy"
+		"authoritarianism"
+		"regionalism"
+	word
+		" and "
+	word
+		"division"
+		"disunity"
+		"disorder"
+		"disarray"
+		"discord"
+		"destruction"
+		"devastation"
+		"turmoil"
+		"oppression"
+		"civil war"
+		"fragmentation"
+		"anarchism"
 
 phrase "navy protection hail"
 	word
@@ -2195,7 +2243,7 @@ phrase "navy protection hail"
 		" "
 	word
 		"these skies" 4
-		"our universe" 2
+		"our galaxy" 2
 		"the Deep"
 		"the Rim"
 		"the South"
@@ -2214,6 +2262,30 @@ phrase "navy protection hail"
 		"been the protector of humanity"
 		"been the defender of humanity"
 
+phrase "navy protection hail"
+	word
+		"promoted"
+		"encouraged"
+		"advanced"
+		"given you"
+		"striven for"
+	word
+		" "
+	word
+		"equality"
+		"freedom"
+		"unity"
+		"harmony"
+		"security"
+		"hope"
+	word
+		"" 3
+		" and order"
+		" and justice"
+		" and concord"
+		" and safety"
+		" and liberty"
+
 phrase "friendly navy"
 	word
 		"If you "
@@ -2221,6 +2293,8 @@ phrase "friendly navy"
 		"want"
 		"wish"
 		"desire"
+		"aspire"
+		"seek"
 	word
 		" to "
 	phrase 
@@ -2238,6 +2312,8 @@ phrase "friendly navy"
 		"want"
 		"wish"
 		"desire"
+		"aspire"
+		"seek"
 	word
 		" to "
 	phrase
@@ -2277,7 +2353,6 @@ phrase "things the navy does"
 		"defend the Republic"
 		"defend democracy"
 		"defend Parliament"
-		"ensure peace among the stars"
 
 phrase "things the navy does"
 	word
@@ -2295,19 +2370,48 @@ phrase "things the navy does"
 		"scourge"
 		"menace"
 		"threat"
+		"evils"
 	word
 		" of "
 	word
 		"piracy"
+		"crime"
 		"instability"
 		"chaos"
+		"conflict"
+		"autocracy"
+		"authoritarianism"
+		"regionalism"
 	word
 		" and "
 	word
 		"division"
 		"disunity"
+		"disorder"
+		"disarray"
+		"discord"
+		"destruction"
+		"devastation"
+		"turmoil"
+		"oppression"
+		"civil war"
+		"fragmentation"
 		"anarchism"
 
+phrase "things the navy does"
+	word
+		"ensure"
+		"advance"
+		"maintain"
+		"uphold"
+	word
+		" "
+	word
+		"peace among the stars"
+		"peace"
+		"stability"
+		"democracy"
+		"concord"
 
 phrase "friendly navy"
 	word
@@ -2337,6 +2441,9 @@ phrase "friendly navy"
 		"is advancing"
 		"ensures"
 		"promotes"
+		"is here to ensure"
+		"is here to advance"
+		"is here to promote"
 	word
 		" "
 	word
@@ -2368,6 +2475,9 @@ phrase "friendly navy"
 		"We appreciate your complicance."
 		"Be thankful for our protection."
 		"Be grateful for our protection."
+		"Be thankful for our sacrifice."
+		"Be grateful for our sacrifice."
+		"Remember that our sacrifice is for your sake."
 
 phrase "navy purpose"
 	word
@@ -4888,6 +4998,7 @@ phrase "hostile navy"
 		"For "
 	word
 		"glory"
+		"justice"
 		"duty"
 		"peace"
 		"peace among the stars"
@@ -4918,6 +5029,7 @@ phrase "hostile navy"
 		"harmony"
 		"security"
 		"hope"
+		"peace among the stars"
 	word
 		". We regret that"
 		". It is unfortunate that"
@@ -4937,6 +5049,7 @@ phrase "hostile navy"
 		"we have to"
 		"we are duty-bound to"
 		"we are forced to"
+		"our orders are to"
 	word
 		" "
 	word
@@ -4949,6 +5062,67 @@ phrase "hostile navy"
 		"be your destroyer"
 		"terminate you"
 		"stop you"
+	word
+		"."
+
+phrase "hostile navy"
+	word
+		"We must"
+		"We are ordered to"
+		"We fight you to"
+		"Our directive is to"
+		"Our ships are here to"
+		"The Navy exists to"
+		"The Navy's directive is to"
+		"The Navy's mission is to"
+		"The Navy's purpose is to"
+		"The Navy must"
+		"The Navy is here to"
+		"The Navy's fleets"
+		"The Navy's forces"
+	word
+		" "
+	word
+		"defend "
+		"protect "
+		"guard "
+	word
+		"humanity"
+		"mankind"
+		"the Republic"
+	word
+		" from the "
+	word
+		"scourge"
+		"menace"
+		"threat"
+		"evils"
+	word
+		" of "
+	word
+		"piracy"
+		"crime"
+		"instability"
+		"chaos"
+		"conflict"
+		"autocracy"
+		"authoritarianism"
+		"regionalism"
+	word
+		" and "
+	word
+		"division"
+		"disunity"
+		"disorder"
+		"disarray"
+		"discord"
+		"destruction"
+		"devastation"
+		"turmoil"
+		"oppression"
+		"civil war"
+		"fragmentation"
+		"anarchism"
 	word
 		"."
 
