@@ -4229,10 +4229,10 @@ void Ship::RegisterDerivedConditions()
 		return this->OutfitCount(outfit);
 	});
 
-	auto &&outfitUsingProvider = conditions.GetProviderPrefixed("outfit (using): ");
-	outfitUsingProvider.SetGetFunction([this](const string &name) -> int64_t
+	auto &&jumpUsingProvider = conditions.GetProviderPrefixed("jump (using): ");
+	jumpUsingProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (using): ")));
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("jump (using): ")));
 		if(!outfit)
 			return 0;
 		if(targetSystem)
@@ -4243,16 +4243,7 @@ void Ship::RegisterDerivedConditions()
 								(outfit->TrueName() == "Hyperdrive" || outfit->TrueName() == "Scram Drive");
 			return jumpDrive || hyperDrive ? 1 : 0;
 		}
-		return this->OutfitCount(outfit);
-	});
-
-	auto &&outfitCargoProvider = conditions.GetProviderPrefixed("outfit (cargo): ");
-	outfitCargoProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (cargo): ")));
-		if(!outfit)
-			return 0;
-		return this->Cargo().Get(outfit);
+		return 0;
 	});
 
 	auto &&weaponFiringProvider = conditions.GetProviderPrefixed("weapon (firing): ");
