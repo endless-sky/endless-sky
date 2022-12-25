@@ -1641,12 +1641,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ sounds/coalition?launch*
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
+ sounds/hai?launch*
+ sounds/human?launch*
  sounds/ion?rain*
  sounds/korath?afterburner*
+ sounds/korath?launch*
  sounds/remnant?afterburner*
+ sounds/remnant?launch*
+ sounds/sheragi?launch*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
