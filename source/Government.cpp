@@ -99,6 +99,8 @@ void Government::Load(const DataNode &node)
 				language.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
+			else if(key == "use foreign penalties for")
+				useForeignPenaltiesFor.clear();
 			else if(key == "illegals")
 				illegals.clear();
 			else if(key == "atrocities")
@@ -187,6 +189,9 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
+		else if(key == "use foreign penalties for")
+			for(const DataNode &grand : child)
+				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -509,4 +514,11 @@ double Government::CrewDefense() const
 bool Government::IsProvokedOnScan() const
 {
 	return provokedOnScan;
+}
+
+
+
+bool Government::IsUsingForeignPenaltiesFor(const Government *government) const
+{
+	return useForeignPenaltiesFor.count(government->id);
 }

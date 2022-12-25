@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -214,9 +215,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
-		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
+		bool hasJumpDrive = player.Flagship()->JumpNavigation().HasJumpDrive();
 		const set<const System *> &links = hasJumpDrive
-			? source->JumpNeighbors(player.Flagship()->JumpRange()) : source->Links();
+			? source->JumpNeighbors(player.Flagship()->JumpNavigation().JumpRange()) : source->Links();
 
 		// For each link we can travel from this system, check whether the link
 		// is closer to the current angle (while still being larger) than any

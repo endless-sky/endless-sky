@@ -14,6 +14,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 import glob
+import sys
 
 import regex as re
 
@@ -209,7 +210,7 @@ def sanitize(lines, skip_checks=False):
 		segments = []
 		is_escaped = False
 		# Checking for preprocessor text, except includes
-		if line.lstrip().startswith("#") and not line.lstrip().startswith("#include"):
+		if not is_string and not is_multiline_comment and not is_char and line.lstrip().startswith("#") and not line.lstrip().startswith("#include"):
 			line_segments.append(segments)
 			continue
 		# Start index is the beginning of the sequence to be tested
@@ -534,7 +535,7 @@ def check_include(sanitized_lines, original_lines, file):
 	if file.endswith(".cpp") and name[0].isupper():
 		if len(groups) == 0:
 			warnings.append(Warning("", 0, "missing include statement for own header file"))
-			return
+			return errors, warnings
 		elif original_lines[groups[0][0]] != "#include \"" + name + "\"":
 			warnings.append(Warning(original_lines[groups[0][0]], groups[0][0],
 									"missing include for own header file"))
@@ -567,7 +568,12 @@ if __name__ == '__main__':
 	errors = 0
 	warnings = 0
 
-	files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
+	files = []
+	if len(sys.argv[1:]) > 0:
+		for pattern in sys.argv[1:]:
+			files += glob.glob(pattern, recursive=True)
+	else:
+		files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
 	files.sort()
 
 	for file in files:

@@ -4227,7 +4227,6 @@ phrase "bad outcomes"
 		"Blood"
 		"Poison"
 		"Blight"
-		"Fury"
 		"Misfortune"
 		"Damnation"
 		"Contagion"
@@ -4535,7 +4534,7 @@ phrase "pirate subphrase 2"
 	phrase
 		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 3"
 	phrase
@@ -4546,7 +4545,7 @@ phrase "pirate subphrase 3"
 		" "
 	phrase
 		"sinister names" 78
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 4"
 	phrase
@@ -4556,7 +4555,7 @@ phrase "pirate subphrase 4"
 	phrase
 		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 	# When making a word ending in "s" possessive, only add an apostrophe.
 	replace
 		"s%'s" "s'"
@@ -4581,7 +4580,7 @@ phrase "pirate subphrase 6"
 
 phrase "pirate subphrase 7"
 	phrase
-		"bad outcomes" 53
+		"bad outcomes" 52
 		"pirate adjectives that work as titles" 65
 		"pirate adjectives that don't work as titles" 67
 	word
@@ -4593,7 +4592,7 @@ phrase "pirate subphrase 8"
 	phrase
 		"pirate nouns" 110
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 9"
 	word
