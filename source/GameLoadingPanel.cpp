@@ -15,19 +15,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameLoadingPanel.h"
 
+#include "text/alignment.hpp"
 #include "Angle.h"
 #include "Audio.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
+#include "text/DisplayText.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
+#include "Random.h"
 #include "Ship.h"
 #include "SpriteSet.h"
 #include "StarField.h"
@@ -108,4 +112,7 @@ void GameLoadingPanel::Draw()
 		a += da;
 	}
 	PointerShader::Unbind();
+
+	DisplayText::DisplayText(Random::Int(0, sizeof(loadingHintArray) - 1), 	Layout(100, CENTER) noexcept;
+)
 }

@@ -48,6 +48,13 @@ private:
 	const double ANGLE_OFFSET;
 	// The current number of ticks to be displayed.
 	int progress = 0;
+	// An array of loading hints.
+	const char loadingHintArray[4] = {
+		"If you fly far enough from the center of a system, ships chasing you will often give up.",
+		"Hold the alt key to highlight keyboard shortcuts.",
+		"Ctrl-click to select multiple ships while in the shipyard.",
+		"The Endless Sky Discord server is located at https://discord.gg/ZeuASSx."
+		};
 };
 
 
