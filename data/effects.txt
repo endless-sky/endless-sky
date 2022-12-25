@@ -389,4 +389,4 @@ effect "coalition launch"
 
 effect "sheragi launch"
 	sound "sheragi launch"
-	
+
