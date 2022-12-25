@@ -369,3 +369,24 @@ effect "pug huge explosion"
 	"random spin" 5
 	"random velocity" 1
 	"velocity scale" .4
+
+# Fighter launch effects/sounds.
+
+effect "human launch"
+	sound "human launch"
+
+effect "hai launch"
+	sound "hai launch"
+	
+effect "remnant launch"
+	sound "remnant launch"
+
+effect "korath launch"
+	sound "korath launch"
+
+effect "coalition launch"
+	sound "coalition launch"
+
+effect "sheragi launch"
+	sound "sheragi launch"
+	
