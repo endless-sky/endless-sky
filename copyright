@@ -1642,6 +1642,8 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  sounds/drill*
+ sounds/ember?tear*
+ sounds/ember?tear?hit*
  sounds/ion?rain*
  sounds/korath?afterburner*
  sounds/remnant?afterburner*
@@ -1855,6 +1857,7 @@ Files:
  images/land/city20*
  images/land/city21*
  images/land/city22*
+ images/land/city23*
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
