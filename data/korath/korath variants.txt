@@ -1055,35 +1055,35 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
 	bay "Fighter" -100 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" 0 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" 100 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" -98 156 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" 98 156 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" -50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" -50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" 50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Fighter" 50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" -100 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 100 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" -98 156 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 98 156 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" -50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
@@ -1118,23 +1118,23 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
 	bay "Drone" -100 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 0 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 100 -169
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" -98 156 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 98 156 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" -50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" -50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 	bay "Drone" 50 303 back
-		"launch effect" "korath launch"
+		"launch effect" "korath internall"
 
 
 

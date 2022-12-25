@@ -223,18 +223,6 @@ effect "asteroid crunch large"
 
 
 
-effect "basic launch"
-	sprite "effect/smoke"
-		"no repeat"
-		"random start frame"
-		"frame rate" 8
-	"lifetime" 30
-	"random angle" 15
-	"random spin" 360
-	"random velocity" 3
-
-
-
 effect "smoke"
 	sprite "effect/smoke"
 		"no repeat"
@@ -372,21 +360,78 @@ effect "pug huge explosion"
 
 # Fighter launch effects/sounds.
 
-effect "human launch"
+effect "human external"
+	sound "human launch"
+
+effect "human internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
 	sound "human launch"
 
 effect "hai launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
 	sound "hai launch"
 	
-effect "remnant launch"
+effect "remnant external"
+	sound "remnant launch"
+	
+effect "remnant internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
 	sound "remnant launch"
 
-effect "korath launch"
+effect "korath external"
+	sound "korath launch"
+
+effect "korath internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
 	sound "korath launch"
 
 effect "coalition launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
 	sound "coalition launch"
 
 effect "sheragi launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
 	sound "sheragi launch"
 
