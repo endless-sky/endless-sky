@@ -122,9 +122,7 @@ const int SpriteParameters::RequestTriggerUpdate(ConditionsStore &store)
 		}
 	// Return to default
 	if(this->exposedIndex != DEFAULT)
-	{
 		this->requestedIndex = DEFAULT;
-	}
 	return DEFAULT;
 }
 

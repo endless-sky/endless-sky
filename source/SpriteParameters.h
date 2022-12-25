@@ -79,11 +79,10 @@ public:
 
 
 public:
+	// ID For default sprite
+	const static int DEFAULT = 0;
 	// Animation parameters exposed to Body
 	SpriteParameters::AnimationParameters exposed;
-
-private:
-	const static int DEFAULT = 0;
 
 private:
 	void Expose(int index);

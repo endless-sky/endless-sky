@@ -41,7 +41,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 	SpriteParameters::AnimationParameters spriteAnimationParameters;
 	spriteAnimationParameters.randomizeStart = true;
 	static ConditionSet empty;
-	spriteState->SetSprite(0, sprite, spriteAnimationParameters, empty);
+	spriteState->SetSprite(SpriteParameters::DEFAULT, sprite, spriteAnimationParameters, empty);
 	anim.randomize = true;
 }
 
@@ -363,13 +363,14 @@ bool Body::LoadSprite(const DataNode &node)
 		this->LoadTriggerSprite(node, state, spriteAnimationParameters, val + 1);
 	}
 	static ConditionSet empty;
-	spriteData->SetSprite(0, sprite, spriteAnimationParameters, empty);
+	spriteData->SetSprite(SpriteParameters::DEFAULT, sprite, spriteAnimationParameters, empty);
 
 	if(scale != 1.f)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 
 	return true;
 }
+
 
 
 // Returns whether the trigger sprite is based on the outfit being used
@@ -477,6 +478,7 @@ void Body::LoadTriggerSprite(const DataNode &node, Body::BodyState state,
 }
 
 
+
 // Save the sprite specification, including all animation attributes.
 void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
@@ -522,6 +524,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 			return;
 	}
 }
+
+
 
 void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int index) const
 {
@@ -570,9 +574,11 @@ void Body::SetSprite(const Sprite *sprite, Body::BodyState state)
 {
 	SpriteParameters::AnimationParameters init;
 	static ConditionSet empty;
-	this->sprites[state].SetSprite(0, sprite, init, empty);
+	this->sprites[state].SetSprite(SpriteParameters::DEFAULT, sprite, init, empty);
 	currentStep = -1;
 }
+
+
 
 // Set the state.
 void Body::SetState(Body::BodyState state)
@@ -680,6 +686,7 @@ void Body::CheckTriggers()
 			}
 		}
 }
+
 
 
 // Indicate whether the body can perform the requested action (depending on its state)
