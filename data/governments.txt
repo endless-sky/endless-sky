@@ -411,8 +411,8 @@ government "Hicemus"
 	language "Incups"
 	"player reputation" 0
 	"attitude toward"
-		"Quarg" 0.01
-		"Incipias" 1
+		"Incipias" 0.1
+		"Incipias Civilian" 1
 
 government "Incipias"
 	swizzle 0
@@ -422,8 +422,19 @@ government "Incipias"
 	language "Incups"
 	"player reputation" 0
 	"attitude toward"
-		"Quarg" 0.01
+		"Hicemus" 0.1
+		"Incipias Civilian" 1
+
+government "Incipias Civilian"
+	swizzle 0
+	color 0.5 0.0 0.9
+	"crew attack" .2
+	"crew defense" 1
+	language "Incups"
+	"player reputation" 0
+	"attitude toward"
 		"Hicemus" 1
+		"Incipias" 1
 
 government "Independent"
 	swizzle 6

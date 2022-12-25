@@ -1,7 +1,8 @@
 # Ship names:
-phrase "hicemus"
+phrase "hicemus military"
 	word
-		"An"
+		"HIC "
+	word
 		"Ab"
 		"Do"
 		"Na"
@@ -14,9 +15,31 @@ phrase "hicemus"
 		"im"
 		"it"
 	word
-		"en"
+		"en #"
+	word
+		"ff"
+		"b9"
+		"89"
+		"5d"
+		"32"
+		"00"
+	word
+		"ff"
+		"b9"
+		"89"
+		"5d"
+		"32"
+		"00"
+	word
+		"ff"
+		"b9"
+		"89"
+		"5d"
+		"32"
+		"00"
 
-phrase "incipias"
+
+phrase "incipias civilian"
 	word
 		"En"
 		"Nun"
@@ -37,11 +60,34 @@ phrase "incipias"
 		"ias"
 		"ium"
 		"iam"
+	word
+		" #"
+	word
+		"ff"
+		"b9"
+		"89"
+		"5d"
+		"32"
+		"00"
+	word
+		"ff"
+		"b9"
+		"89"
+		"5d"
+		"32"
+		"00"
+	word
+		"ff"
+		"b9"
+		"89"
+		"5d"
+		"32"
+		"00"
 
 
 fleet "Hicemus Standard Mining"
-	government "Hicemus"
-	names "hicemus"
+	government "Incipias Civilian"
+	names "incipias civilian"
 	cargo 0
 	personality
 		timid mining harvests coward
@@ -57,7 +103,7 @@ fleet "Hicemus Standard Mining"
 
 fleet "Hicemus Standard Surveilance"
 	government "Hicemus"
-	names "hicemus"
+	names "hicemus military"
 	cargo 0
 	personality
 		heroic vindictive swarming
@@ -67,8 +113,8 @@ fleet "Hicemus Standard Surveilance"
 		"Nimbus" 2
 
 fleet "Hicemus Standard Trade"
-	government "Hicemus"
-	names "hicemus"
+	government "Incipias Civilian"
+	names "incipias civilian"
 	cargo 4
 	personality
 		confusion 40
@@ -110,6 +156,43 @@ news "Incipias common"
 			"I saw a plasma discharger with a leak not so long ago, the ship looked good from the outside, but inside of it was a firestorm."
 			"I have never seen something like [you, your species], why don't you float like us?"
 
+phrase "incipias common"
+	phrase
+		"incipias common hard defined"
+		"incipias common generated"
+
+phrase "incipias common hard defined"
+	word
+		"You say you left this [system, home]? One day, [I, we] will also see other [systems, homes]."
+		"There were more [interesting, dangerous] times, to fly a spaceship, nower days a lot of people have one."
+		"I just got my license for being part of a spaceship renewed, the government controls them [strictly, like freaks]."
+		"There is nothing more [exciting, fun] to switch in turbines mode and fly through the clouds of [our home, our origin]."
+		"It has been [some, a lot of] time since the last great breakthrough has been achieved. The government [says, promises us] that they work on something, but my guess is that they have no clue what to do."
+		"I saw a plasma discharger with a leak not so long ago, the ship looked good from the outside, but inside of it was a firestorm."
+		"I have never seen something like [you, your species], why don't you float like us?"
+
+phrase "incipias common generated"
+	word
+		"These technologies"
+		"These [ships, relocate mechanisms]"
+		"These [weapons, death machines]"
+		"These [engines, movement devices]"
+		"These [shields, secure mechanism]"
+	word
+		" "
+	word
+		"of yours"
+		"you have"
+		"you have installed"
+		"of your kind"
+	word
+		" "
+	word
+		"are very impressive."
+		"look very impressive."
+		"are very efficient."
+		"look very efficient."
+		"look very stylish."
 
 news "Hicemus official"
 	location
@@ -125,6 +208,7 @@ news "Hicemus official"
 			"Our technology is superior, no one can question our authority."
 			"As long as we exist, we will progress."
 
+# is this ok derpy? XD
 news "special"
 	location
 		planet "Pon'tes"
