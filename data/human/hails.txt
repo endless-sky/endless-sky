@@ -2223,7 +2223,8 @@ phrase "friendly navy"
 		"desire"
 	word
 		" to "
-
+	phrase 
+		"things the navy does"
 	word
 		", "
 	word
@@ -2271,6 +2272,7 @@ phrase "things the navy does"
 		"fight for mankind"
 		"fight for Parliament"
 		"fight for democracy"
+		"fight for peace"
 		"defend humanity"
 		"defend the Republic"
 		"defend democracy"
@@ -2284,22 +2286,26 @@ phrase "things the navy does"
 		"guard "
 		"shield "
 	word
-		"humanity "
-		"mankind "
+		"humanity"
+		"mankind"
+		"the Republic"
 	word
-		"from the "
+		" from the "
 	word
-		"scourge "
-		"menace "
-		"threat "
+		"scourge"
+		"menace"
+		"threat"
 	word
-		"of "
+		" of "
 	word
 		"piracy"
+		"instability"
+		"chaos"
 	word
 		" and "
 	word
-		"instability"
+		"division"
+		"disunity"
 		"anarchism"
 
 
@@ -2323,11 +2329,14 @@ phrase "friendly navy"
 	word
 		"'s goal:"
 		"'s motto:"
+		"'s goal is to create"
+		"'s goal is to ensure"
 		"seeks"
 		"wishes for"
 		"strives for"
 		"is advancing"
 		"ensures"
+		"promotes"
 	word
 		" "
 	word
@@ -2359,7 +2368,6 @@ phrase "friendly navy"
 		"We appreciate your complicance."
 		"Be thankful for our protection."
 		"Be grateful for our protection."
-		"We hope you appreciate our work."
 
 phrase "navy purpose"
 	word
@@ -2397,6 +2405,7 @@ phrase "navy purpose"
 		"peace among the stars"
 		"freedom"
 		"liberty"
+		"your rights"
 
 phrase "friendly navy"
 	word
@@ -2506,8 +2515,7 @@ phrase "friendly navy"
 		" must "
 		" may "
 	phrase
-		"navy warning adverb first"
-		"navy warning adverb last"
+		"navy warning adverb"
 	word
 		"cargo"
 		"outfit"
@@ -2546,7 +2554,7 @@ phrase "friendly navy"
 	word
 		"."
 
-phrase "navy warning adverb first"
+phrase "navy warning adverb"
 	word
 		"randomly "
 		"regularly "
@@ -2556,7 +2564,7 @@ phrase "navy warning adverb first"
 		"conduct "
 		"run "
 
-phrase "navy warning adverb last"
+phrase "navy warning adverb"
 	word
 		"perform "
 		"conduct "
@@ -2573,6 +2581,7 @@ phrase "friendly navy"
 		"It is an illegal act"
 		"It is an illicit act"
 	word
+		"" 3
 		"under Republic law"
 		"by the laws of the Republic"
 		"by the laws of Parliament"
@@ -2601,6 +2610,8 @@ phrase "friendly navy"
 		"attack corporate security forces"
 		"attack private ships"
 		"attack civilian ships"
+		"attack Republic ships"
+		"attack Syndicate ships"
 		"paint your ship in colors that would label you as a pirate"
 		"paint your ship in colors that would suggest piracy"
 		"paint your ship in illegal colors"
@@ -2620,11 +2631,14 @@ phrase "friendly navy"
 		"the laws of Parliament"
 		"the laws of the Republic"
 	word
-		"will be fined."
-		"will face penalties."
-		"will face severe penalties."
-		"may be imprisoned."
-		"may be sentenced to prison."
+		"will be fined"
+		"will face penalties"
+		"will face severe penalties"
+		"may be imprisoned"
+		"may be sentenced to prison"
+		"may be sent to a penal colony"
+	word
+		"."
 
 phrase "friendly free worlds militia 1"
 	word
@@ -3007,17 +3021,27 @@ phrase "friendly free worlds 3"
 
 phrase "friendly free worlds 4"
 	word
-		"We are Free forces, "
-		"We are Free ships, "
-		"We are the Free Worlds, "
+		"We are Free forces"
+		"We are Free ships"
+		"We are the Free Worlds"
 	word
-		"defenders of the innocent"
-		"defenders of this system"
-		"defenders of this planet"
-		"defenders of this region"
-		"defenders of these skies"
-		"defenders of liberty"
-		"defenders of freedom"
+		", "
+	word
+		"defenders of"
+		"guardians of"
+		"protectors of"
+	word
+		"the innocent"
+		"this system"
+		"this planet"
+		"this region"
+		"these skies"
+		"liberty"
+		"freedom"
+		"the Rim"
+		"the South"
+		"the Dirt Belt"
+		"the Southern Rim"
 	word
 		"."
 		"!"
@@ -3046,7 +3070,7 @@ phrase "friendly free worlds 5"
 	word
 		"!"
 
-phrase "free worlds 6 help"
+phrase "free worlds 6 variations"
 	word
 		"want to further"
 		"wish to further"
@@ -3077,7 +3101,7 @@ phrase "free worlds 6 help"
 		"common prosperity"
 		"proper representation"
 
-phrase "free worlds 6 accuse"
+phrase "free worlds 6 variations"
 	word
 		"have seen"
 		"know of"
@@ -3111,7 +3135,7 @@ phrase "free worlds 6 accuse"
 		"dirty politics"
 		"fraudulent dealings"
 
-phrase "free worlds 6 loss"
+phrase "free worlds 6 variations"
 	word
 		"have seen"
 		"know of"
@@ -3131,6 +3155,7 @@ phrase "free worlds 6 loss"
 		"corruption"
 		"loss"
 		"decay"
+		"subversion"
 	word
 		" of "
 	word
@@ -3143,7 +3168,7 @@ phrase "free worlds 6 loss"
 		"responsible government"
 		"lawful governance"
 	word
-		"" 5
+		"" 4
 		" by the Republic"
 		" by Parliament"
 		" by the Syndicate"
@@ -3153,9 +3178,7 @@ phrase "friendly free worlds 6"
 	word
 		"If you "
 	phrase
-		"free worlds 6 help"
-		"free worlds 6 accuse"
-		"free worlds 6 loss"
+		"free worlds 6 variations"
 	word
 		", "
 	word
@@ -3290,6 +3313,7 @@ phrase "friendly free worlds 10"
 		"success"
 		"welfare"
 		"order"
+		"'peace among the stars'"
 	word
 		" without "
 	word
@@ -3323,10 +3347,8 @@ phrase "friendly free worlds 10"
 		" "
 	word
 		"peace"
-		"freedom"
 		"safety"
 		"prosperity"
-		"liberty"
 		"stability"
 		"success"
 		"welfare"
@@ -3337,12 +3359,11 @@ phrase "friendly free worlds 10"
 		" when we have "
 	word
 		"equality"
+		"freedom"
 		"justice"
 		"courage"
 		"tenacity"
 		"audacity"
-		"spirit"
-		"determination"
 		"hope"
 		"unity"
 		"a united vision"
