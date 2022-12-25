@@ -306,8 +306,7 @@ outfit "Hai Tracker Pod"
 		"die effect" "tracker impact"
 		"inaccuracy" 20
 		"velocity" 14
-		"lifetime" 600
-		"range override" 5000
+		"lifetime" 475
 		"reload" 60
 		"firing energy" 45
 		"firing heat" 5
