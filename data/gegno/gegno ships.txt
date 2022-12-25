@@ -22,10 +22,10 @@ ship "Shale"
 			"Gegno Civilian"
 		"cost" 148000
 		"shields" 0
-		"hull" 760
+		"hull" 800
 		"required crew" 1
 		"bunks" 7
-		"mass" 121
+		"mass" 93
 		"drag" 1.8
 		"heat dissipation" 0.8
 		"fuel capacity" 400
@@ -58,17 +58,17 @@ ship "Dolomite"
 		category "Heavy Freighter"
 		licenses
 			"Gegno Civilian"
-		"cost" 1692000
+		"cost" 2768000
 		"shields" 0
-		"hull" 10500
-		"required crew" 18
-		"bunks" 80
-		"mass" 570
-		"drag" 5.9
-		"heat dissipation" 0.7
+		"hull" 8200
+		"required crew" 9
+		"bunks" 79
+		"mass" 540
+		"drag" 4.6
+		"heat dissipation" 0.6
 		"fuel capacity" 500
 		"cargo space" 200
-		"outfit space" 186
+		"outfit space" 152
 		"weapon capacity" 0
 		"engine capacity" 81
 		weapon
@@ -77,7 +77,7 @@ ship "Dolomite"
 			"hull damage" 620
 			"hit force" 720
 	outfits
-		"C3 Scrap Cell"
+		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		
 		"RG15 Torch Thruster"
@@ -101,19 +101,19 @@ ship "Conglomerate"
 		category "Heavy Freighter"
 		licenses
 			"Gegno Civilian"
-		"cost" 1692000
+		"cost" 5909000
 		"shields" 0
-		"hull" 13300
-		"required crew" 32
-		"bunks" 68
-		"mass" 760
-		"drag" 8.9
-		"heat dissipation" 0.7
-		"fuel capacity" 400
+		"hull" 10600
+		"required crew" 13
+		"bunks" 50
+		"mass" 905
+		"drag" 13.9
+		"heat dissipation" 0.6
+		"fuel capacity" 500
 		"cargo space" 415
-		"outfit space" 200
+		"outfit space" 253
 		"weapon capacity" 0
-		"engine capacity" 136
+		"engine capacity" 146
 		weapon
 			"blast radius" 124
 			"shield damage" 960
@@ -121,9 +121,11 @@ ship "Conglomerate"
 			"hit force" 1650
 	outfits
 		"C7 Brawl Cell"
+		"C3 Scrap Cell"
 		"R02 Battlezone Battery"
 		
 		"RG18 Torch Thruster"
+		"RG15 Torch Thruster"
 		"RG18 Torch Steering"
 		"RG15 Torch Steering"
 		"Hyperdrive"
@@ -147,14 +149,14 @@ ship "Gypsum"
 			"Gegno Civilian"
 		"cost" 1692000
 		"shields" 0
-		"hull" 6000
+		"hull" 5500
 		"required crew" 5
-		"bunks" 15
-		"mass" 380
+		"bunks" 9
+		"mass" 360
 		"drag" 3
 		"heat dissipation" 0.8
-		"fuel capacity" 500
-		"cargo space" 220
+		"fuel capacity" 600
+		"cargo space" 160
 		"outfit space" 240
 		"weapon capacity" 42
 		"engine capacity" 120
@@ -198,7 +200,7 @@ ship "Dunite"
 			"Vi Evocati"
 		"cost" 50000
 		"shields" 0
-		"hull" 460
+		"hull" 500
 		"required crew" 1
 		"bunks" 1
 		"mass" 98
@@ -246,7 +248,7 @@ ship "Augen"
 		"required crew" 280
 		"bunks" 360
 		"mass" 5000
-		"drag" 40
+		"drag" 50
 		"heat dissipation" 0.4
 		"fuel capacity" 500
 		"cargo space" 84
@@ -356,19 +358,19 @@ ship "Slate"
 	sprite "ship/gegno slate"
 	thumbnail "thumbnail/gegno slate"
 	attributes
-		category "Transport"
+		category "Light Freighter"
 		licenses
 			"Vi Evocati"
 		"cost" 169000
 		"shields" 0
-		"hull" 825
+		"hull" 1000
 		"required crew" 1
-		"bunks" 7
-		"mass" 121
+		"bunks" 4
+		"mass" 116
 		"drag" 2
 		"heat dissipation" 0.8
 		"fuel capacity" 400
-		"cargo space" 60
+		"cargo space" 81
 		"outfit space" 122
 		"weapon capacity" 0
 		"engine capacity" 58
@@ -397,19 +399,19 @@ ship "Schist"
 		category "Heavy Freighter"
 		licenses
 			"Vi Evocati"
-		"cost" 1932000
+		"cost" 3737000
 		"shields" 0
-		"hull" 12375
-		"required crew" 36
-		"bunks" 86
+		"hull" 10700
+		"required crew" 23
+		"bunks" 73
 		"mass" 560
 		"drag" 5.9
 		"heat dissipation" 0.7
 		"fuel capacity" 500
 		"cargo space" 140
 		"outfit space" 298
-		"engine capacity" 106
 		"weapon capacity" 100
+		"engine capacity" 96
 		weapon
 			"blast radius" 71
 			"shield damage" 310
@@ -475,7 +477,7 @@ ship "Eclogite"
 		"shields" 0
 		"hull" 6900
 		"required crew" 9
-		"bunks" 15
+		"bunks" 12
 		"mass" 275
 		"drag" 3.7
 		"heat dissipation" 0.7
@@ -520,31 +522,30 @@ ship "Diorite"
 		category "Medium Warship"
 		licenses
 			"Vi Centurion"
-		"cost" 6980000
+		"cost" 3350000
 		"shields" 0
-		"hull" 11600
-		"required crew" 41
-		"bunks" 68
-		"mass" 642
-		"drag" 6.3
-		"heat dissipation" 0.5
+		"hull" 7900
+		"required crew" 14
+		"bunks" 29
+		"mass" 238
+		"drag" 5.2
+		"heat dissipation" 0.8
 		"fuel capacity" 500
 		"cargo space" 40
-		"outfit space" 548
-		"engine capacity" 124
-		"weapon capacity" 285
+		"outfit space" 453
+		"weapon capacity" 195
+		"engine capacity" 140
 		weapon
 			"blast radius" 90
 			"shield damage" 540
 			"hull damage" 770
 			"hit force" 810
 	outfits
-		"Ballistic Cannon" 2
-		"Choleric Cannon"
-		"Irate Cannon Turret" 2
+		"Choleric Cannon" 3
+		"Choleric Cannon Turret" 2
 		
 		"C17 Warzone Core"
-		"R03 Warforge Battery"
+		"R02 Battlezone Battery"
 		
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
@@ -552,12 +553,12 @@ ship "Diorite"
 	engine -19.5 132
 	engine 0 137
 	engine 19.5 132
-	gun -6 -160 "Ballistic Cannon"
-	gun 6 -160 "Ballistic Cannon"
+	gun -6 -160 "Choleric Cannon"
+	gun 6 -160 "Choleric Cannon"
 	gun 0 116 "Choleric Cannon"
 		angle 180
-	turret -19.5 -63 "Irate Cannon Turret"
-	turret 19.5 -63 "Irate Cannon Turret"
+	turret -19.5 -63 "Choleric Cannon Turret"
+	turret 19.5 -63 "Choleric Cannon Turret"
 	leak "leak" 30 50
 	leak "flame" 50 90
 	explode "large explosion" 9
@@ -565,7 +566,19 @@ ship "Diorite"
 	explode "small explosion" 20
 	explode "tiny explosion" 17
 	"final explode" "final explosion medium"
-	description `Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. Rather than being a platform for large turreted mounts, the Diorite is focused on having powerful forward weaponry in the form of two mounted Ballistic Cannons and a pair of Irate Cannon Turrets. In conjunction with this configuration, the Diorite is much more manoeuvrable than other Vi ships in its class and can easily keep a bead on other ships its size, and sometimes smaller ones as well.`
+	description `Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. It is much more maneuverable than other Vi ships in its class, allowing it to easily keep a bead on other ships its size, and sometimes smaller ones as well.`
+
+ship "Diorite" "Diorite (Ballistic)"
+	outfits
+		"Ballistic Cannon" 2
+		
+		"C7 Brawl Cell" 2
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG3 Torch Steering"
+		"RG15 Torch Steering"
+		"Hyperdrive"
 
 ship "Hornfel"
 	sprite "ship/gegno hornfel a"
@@ -574,18 +587,18 @@ ship "Hornfel"
 		category "Medium Warship"
 		licenses
 			"Vi Centurion"
-		"cost" 7630000
+		"cost" 5052000
 		"shields" 0
-		"hull" 14550
-		"required crew" 58
-		"bunks" 74
+		"hull" 14600
+		"required crew" 32
+		"bunks" 48
 		"mass" 740
-		"drag" 5.9
+		"drag" 6.3
 		"heat dissipation" 0.6
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 120
-		"outfit space" 548
-		"weapon capacity" 260
+		"outfit space" 508
+		"weapon capacity" 240
 		"engine capacity" 94
 		weapon
 			"blast radius" 90
@@ -696,13 +709,13 @@ ship "Gneiss"
 		category "Heavy Warship"
 		licenses
 			"Vi Lord"
-		"cost" 15690000
+		"cost" 15066000
 		"shields" 0
-		"hull" 22275
+		"hull" 26300
 		"required crew" 112
 		"bunks" 162
-		"mass" 1245
-		"drag" 18
+		"mass" 1032
+		"drag" 12.9
 		"heat dissipation" 0.4
 		"fuel capacity" 500
 		"cargo space" 95
@@ -766,19 +779,19 @@ ship "Protolith"
 		category "Heavy Freighter"
 		licenses
 			"Vi Lord"
-		"cost" 17600000
+		"cost" 16820000
 		"shields" 0
-		"hull" 19575
-		"required crew" 94
-		"bunks" 262
+		"hull" 21200
+		"required crew" 53
+		"bunks" 237
 		"mass" 1260
-		"drag" 16.1
+		"drag" 23.5
 		"heat dissipation" 0.4
-		"fuel capacity" 700
-		"cargo space" 530
-		"outfit space" 576
-		"weapon capacity" 238
-		"engine capacity" 176
+		"fuel capacity" 900
+		"cargo space" 718
+		"outfit space" 651
+		"weapon capacity" 216
+		"engine capacity" 203
 		weapon
 			"blast radius" 280
 			"shield damage" 1550
@@ -790,10 +803,13 @@ ship "Protolith"
 		"Choleric Cannon Turret"
 		
 		"C7 Brawl Cell" 2
-		"R02 Battlezone Battery"
+		"C3 Scrap Cell"
+		"R03 Warforge Battery" 3
 		
 		"RG3 Torch Thruster"
+		"RG15 Torch Thruster"
 		"RG3 Torch Steering"
+		"RG15 Torch Steering"
 		"Hyperdrive"
 	engine 0 266
 	engine -48 258
@@ -840,15 +856,14 @@ ship "Halite"
 		licenses
 			"Scin Hoplologist"
 			"Scin Architect"
-		"cost" 129000
-		"shields" 240
-		"hull" 580
+		"cost" 71000
+		"shields" 300
+		"hull" 500
 		"required crew" 1
 		"bunks" 1
 		"mass" 30
 		"drag" 0.74
-		"heat dissipation" 0.76
-		"cargo space" 1
+		"heat dissipation" 0.95
 		"outfit space" 78
 		"weapon capacity" 30
 		"engine capacity" 21
@@ -885,12 +900,12 @@ ship "Mica"
 		"shields" 0
 		"hull" 700
 		"required crew" 1
-		"bunks" 9
-		"mass" 115
+		"bunks" 10
+		"mass" 70
 		"drag" 1.7
 		"heat dissipation" 0.8
 		"fuel capacity" 400
-		"cargo space" 42
+		"cargo space" 36
 		"outfit space" 118
 		"weapon capacity" 0
 		"engine capacity" 50
@@ -921,13 +936,13 @@ ship "Coesite"
 			"Scin Adjutant"
 		"cost" 1872000
 		"shields" 0
-		"hull" 6200
+		"hull" 5600
 		"required crew" 8
 		"bunks" 14
-		"mass" 260
+		"mass" 230
 		"drag" 4
 		"heat dissipation" 0.7
-		"fuel capacity" 400
+		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 264
 		"weapon capacity" 86
@@ -941,11 +956,13 @@ ship "Coesite"
 		"Astuit Battery" 2
 		
 		"C7 Brawl Cell"
+		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
-		"R02 Battlezone Battery" 2
+		"R02 Battlezone Battery"
 		
 		"SC-12 Plasma Thruster"
 		"SC-14 Plasma Steering"
+		"SC-1 Plasma Engines"
 		"Hyperdrive"
 	engine 48 85
 	engine -48 85
@@ -967,17 +984,17 @@ ship "Tridymite"
 		licenses
 			"Scin Architect"
 			"Scin Hoplologist"
-		"cost" 1470000
+		"cost" 1170000
 		"shields" 0
-		"hull" 5100
+		"hull" 4000
 		"required crew" 7
 		"bunks" 29
-		"mass" 230
+		"mass" 190
 		"drag" 3.5
 		"heat dissipation" 0.7
-		"fuel capacity" 600
+		"fuel capacity" 800
 		"cargo space" 56
-		"outfit space" 240
+		"outfit space" 200
 		"weapon capacity" 0
 		"engine capacity" 86
 		
@@ -1018,18 +1035,18 @@ ship "Felsic"
 		licenses
 			"Scin Architect"
 			"Scin Hoplologist"
-		"cost" 2342000
+		"cost" 3955000
 		"shields" 0
-		"hull" 9850
-		"required crew" 38
-		"bunks" 78
+		"hull" 9100
+		"required crew" 18
+		"bunks" 53
 		"mass" 565
 		"drag" 5.9
 		"heat dissipation" 0.7
 		"fuel capacity" 500
 		"cargo space" 150
-		"outfit space" 310
-		"weapon capacity" 84
+		"outfit space" 322
+		"weapon capacity" 109
 		"engine capacity" 106
 		weapon
 			"blast radius" 74
@@ -1044,6 +1061,7 @@ ship "Felsic"
 		
 		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
+		"SC-12 Plasma Steering"
 		"Hyperdrive"
 	engine -18.5 155.5
 	engine 18.5 155.5
@@ -1057,7 +1075,7 @@ ship "Felsic"
 	explode "small explosion" 28
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
-	description `Felsics are based on Schists, but offer many upgrades in exchange for less durability and space for engines. The Scin have opted for three turret mounts, as well as expanded capacity for outfits and weapons. All this allows these ships to perform logistical duties as well as doubling as a secondary combat vessel, making up for the lack of a dedicated Scin warship.`
+	description `Felsics are based on Schists, but offer many upgrades in exchange for less durability. The Scin have opted for three turret mounts, as well as expanded capacity for outfits, weapons, and engines. All this allows these ships to perform logistical duties as well as doubling as a secondary combat vessel, making up for the lack of a dedicated Scin warship.`
 
 ship "Feldspar"
 	sprite "ship/gegno feldspar"
@@ -1069,12 +1087,12 @@ ship "Feldspar"
 			"Scin Hoplologist"
 		"cost" 14760000
 		"shields" 0
-		"hull" 18800
+		"hull" 20700
 		"required crew" 133
 		"bunks" 192
 		"mass" 1090
 		"drag" 15
-		"heat dissipation" 1
+		"heat dissipation" 0.5
 		"fuel capacity" 600
 		"cargo space" 82
 		"outfit space" 566
@@ -1144,17 +1162,17 @@ ship "Epidote"
 		licenses
 			"Scin Architect"
 			"Scin Hoplologist"
-		"cost" 16460000
+		"cost" 14454000
 		"shields" 0
-		"hull" 15400
-		"required crew" 38
-		"bunks" 98
+		"hull" 16900
+		"required crew" 102
+		"bunks" 170
 		"mass" 1146
 		"drag" 16.1
-		"heat dissipation" 0.9
+		"heat dissipation" 0.55
 		"fuel capacity" 600
 		"cargo space" 430
-		"outfit space" 527
+		"outfit space" 552
 		"weapon capacity" 166
 		"engine capacity" 182
 		weapon
