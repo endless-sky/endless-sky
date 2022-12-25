@@ -848,17 +848,17 @@ ship "Ibis"
 		"Scram Drive"
 		
 	bay "Drone" 0 30 over
-		"launch effect" "remnant launch"
+		"launch effect" "remnant external"
 	bay "Drone" -34 68 over
-		"launch effect" "remnant launch"
+		"launch effect" "remnant external"
 	bay "Drone" 0 81 over
-		"launch effect" "remnant launch"
+		"launch effect" "remnant external"
 	bay "Drone" 34 68 over
-		"launch effect" "remnant launch"
+		"launch effect" "remnant external"
 	bay "Fighter" -25 10 under
-		"launch effect" "remnant launch"
+		"launch effect" "remnant external"
 	bay "Fighter" 25 10 under
-		"launch effect" "remnant launch"
+		"launch effect" "remnant external"
 	engine -16.5 120 0.7
 	engine 0 116.5 1
 	engine 16.5 120 0.7
