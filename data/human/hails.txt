@@ -1990,6 +1990,8 @@ phrase "friendly navy"
 		"Dying"
 		"Getting wounded"
 		"Taking a hit"
+		"Injury"
+		"Service"
 	word
 		" "
 	word
@@ -1999,29 +2001,47 @@ phrase "friendly navy"
 		" "
 	word
 		"a firefight"
+		"a dogfight"
+		"a conflict"
+		"a confrontation"
 		"battle"
 		"space battle"
 		"war"
+		"engagement"
+		"combat"
 	word
 		" is "
 	word
 		"heroic"
+		"noble"
 		"honourable"
 		"respectable"
+		"admirable"
 	word
 		", "
 	word
-		"when it helps your brothers and sisters in arms to"
 		"if such action helps to"
+		"if it helps us to"
+		"when it helps your brothers and sisters in arms to"
 		"when on duty to"
-		"when it helps to"
-		"but if you ask me; our real job is to"
-		"our goal however is to"
+		"when it assists us to"
+		"when it helps us to"
+		"when we are able to"
+		"but our duty is to"
+		"but our real job is to"
+		"but our goal is to"
+		"but we are duty-bound to"
+		"but we must"
+		"but our mission"
+		"but our directive"
+		"but we must focus on"
+		"but only when it helps us to"
 		"but our focus should be to"
 		"but only if it helps the Navy to"
-		"but my commander really prefers me to"
-		"but it seems more efficient if we instead"
-		"but the world actually expects us to"
+		"but my commander expects me to"
+		"but we are expected to"
+		"but it would be more efficient if we"
+		"but the universe expects us to"
 	word
 		" "
 	word
@@ -2036,27 +2056,116 @@ phrase "friendly navy"
 		" "
 	word
 		"pirates"
+		"warlords"
+		"smugglers"
 		"criminals"
 		"our adversaries"
 		"our enemies"
 		"terrorists"
+		"enemies to our Republic"
+		"enemies to our democracy"
+		"enemies of Parliament"
+		"threats to our Republic"
+		"threats to our democracy"
+		"threats to Parliament"
 	word
 		"."
 
 phrase "friendly navy"
 	word
+		"Be thankful to"
+		"Be grateful to"
+		"Thank"
+	word
+		" "
+	word
+		"the Republic for"
+		"the Navy for"
+	word
+		" "
+	word
+		"three centuries"
+		"three hundred years"
+	word
+		" of "
+	word
+		"freedom"
+		"liberty"
+		"protection"
+		"prosperity"
+		"security"
+		"guardianship"
+		"plenty"
+	word
+		"."
+
+phrase "friendly navy"
+	word
+		"The Republic"
+		"The Navy"
+	word
+		" has "
+	word
+		"protected"
+		"guarded"
+	word
+		" "
+	word
+		"you"
+		"these skies"
+		"our universe"
+		"mankind"
+		"humanity"
+	word
+		"" 5
+		" against piracy"
+		" against pirates"
+		" against marauders"
+		" those who threaten freedom"
+		" those who threaten liberty"
+	word
+		" "
+	word
+		"for three centuries"
+		"for three hundred years"
+	word
+		"."
+
+phrase "friendly navy"
+	word
+		"If you "
+	word
+		"want"
+		"wish"
+	word
+		" to "
+	word
+		"distinguish yourself"
+		"be the guard against piracy"
+		"fight against piracy"
+		"fight against marauders"
+		"fight for the Republic"
+		"fight for humanity"
+		"fight for mankind"
+		"defend humanity"
+		"defend the Republic"
+		"defend democracy"
+	word
+		", "
+	word
+		"join the Navy"
+		"enlist with the Navy"
+	word
+		"!"
+
+phrase "friendly navy"
+	word
 		"United, humanity stands. Divided we will fall."
-		"Be thankful to the Republic for three centuries of freedom."
-		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
 		"We want YOU for the Navy!"
-
-		"We will fine anybody with illegal weaponry or outfits."
-		"There are grave penalties for non-compliance."
-		"There are penalties for anybody with illegal weaponry or outfits."
-		"There are penalties for unlicensed ships."
-		"All unlicensed ships will be fined."
+		"The Navy is in need of good captains like you! Join the Navy!"
+		"If you feel indebted to the Republic for three centuries of freedom, join the Navy!"
 
 phrase "friendly navy"
 	word
@@ -2081,10 +2190,13 @@ phrase "friendly navy"
 		"the integrity of our laws."
 		"the integrity of Republic law."
 	word
+		" "
+	word
 		"" 5
-		" Your cooperation is greatly valued."
-		" We thank you for your cooperation."
-		" We appreciate your complicance."
+		"Your cooperation is greatly valued."
+		"We thank you for your cooperation."
+		"We appreciate your complicance."
+		"Be thankful for our protection."
 
 phrase "friendly navy"
 	word
@@ -2100,23 +2212,27 @@ phrase "friendly navy"
 		"By Republic law, all"
 		"We advise you that all"
 	word
-		" civilian "
-		" merchant "
-		" private "
+		"civilian "
+		"merchant "
+		"private "
 	word
-		"ships"
-		"vessels"
-		"warships"
+		"ships "
+		"vessels "
+		"warships "
 	word
-		" in "
-		" within "
+		"in "
+		"within "
+		"passing through "
+		"travelling in "
 	word
-		"the Republic "
-		"Republic space "
+		"the Republic"
+		"Republic space"
 		"Republic jurisdiction"
-		"Republic's jurisdiction "
-		"Parliament's mandate "
-		"Parliament's jurisdiction "
+		"Republic's jurisdiction"
+		"Parliament's mandate"
+		"Parliament's jurisdiction"
+	word
+		" "
 	word
 		"will undergo"
 		"will be subjected to"
@@ -2136,11 +2252,15 @@ phrase "friendly navy"
 		"outfit"
 		"structural"
 	word
-		" scans "
-		" examinations "
-		" inspections "
-		" searches "
-		" sweeps "
+		" "
+	word
+		"scans"
+		"examinations"
+		"inspections"
+		"searches"
+		"sweeps"
+	word
+		" "
 	word
 		"by planetary officials upon landing"
 		"by Navy officers upon landing"
@@ -2154,7 +2274,7 @@ phrase "friendly navy"
 		"by Navy forces"
 		"by Republic forces"
 	word
-		". "
+		"."
 
 phrase "friendly navy"
 	word
@@ -2194,21 +2314,27 @@ phrase "friendly navy"
 		"outfit"
 		"structural"
 	word
-		" scans"
-		" examinations"
-		" inspections"
-		" searches"
-		" sweeps"
+		" "
+	word
+		"scans"
+		"examinations"
+		"inspections"
+		"searches"
+		"sweeps"
 	word
 		" on all "
 	word
-		"civilian "
-		"merchant "
-		"private "
+		"civilian"
+		"merchant"
+		"private"
 	word
-		"ships "
-		"vessels "
-		"warships "
+		" "
+	word
+		"ships"
+		"vessels"
+		"warships"
+	word
+		" "
 	word
 		"in the Republic"
 		"in Republic space"
@@ -2248,13 +2374,13 @@ phrase "friendly navy"
 		"It is an illegal act"
 		"It is an illicit act"
 	word
-		" under Republic law "
-		" by the laws of the Republic "
-		" by the laws of Parliament "
+		"under Republic law"
+		"by the laws of the Republic"
+		"by the laws of Parliament"
 	word
-		"to "
+		" to "
 	word
-		" "
+		"willingly "
 		"knowingly "
 		"deliberately "
 	word
@@ -2282,6 +2408,8 @@ phrase "friendly navy"
 		"paint your ship in uncivil colors"
 	word
 		". "
+
+phrase "friendly navy"
 	word
 		"Anybody" 
 		"Any ship"
@@ -2691,9 +2819,6 @@ phrase "friendly free worlds 4"
 		"defenders of these skies"
 		"defenders of liberty"
 		"defenders of freedom"
-		"destroyers of pirates"
-		"destroyers of evil"
-		"destroyers of criminals"
 	word
 		"."
 		"!"
@@ -2702,7 +2827,7 @@ phrase "friendly free worlds 5"
 	word
 		"For "
 	word
-		"freedom"
+		"peace"
 		"equality"
 		"justice"
 		"courage"
@@ -2713,7 +2838,6 @@ phrase "friendly free worlds 5"
 	word
 		"For "
 	word
-		"peace"
 		"freedom"
 		"safety"
 		"prosperity"
@@ -2975,7 +3099,6 @@ phrase "friendly free worlds 10"
 		"courage"
 		"tenacity"
 		"audacity"
-		"a spirit"
 		"determination"
 		"hope"
 		"unity"
@@ -4532,6 +4655,25 @@ phrase "hostile navy"
 
 phrase "hostile navy"
 	word
+		"For "
+	word
+		"honor"
+		"unity"
+		"order"
+	word
+		"! "
+	word
+		"For "
+	word
+		"glory"
+		"duty"
+		"the integrity of our Republic"
+		"the Republic"
+	word
+		"!"
+
+phrase "hostile navy"
+	word
 		"We are agents of"
 		"We seek to bring"
 		"Our mandate is to promote"
@@ -4570,6 +4712,7 @@ phrase "hostile navy"
 		"we are now required to"
 		"we have to"
 		"we are duty-bound to"
+		"we are forced to"
 	word
 		" "
 	word
