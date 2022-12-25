@@ -214,11 +214,8 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		for(unsigned int it = 1; it < child.Tokens().size(); ++it)
 			shipModifiers.back().scopes.emplace_back(child.Token(it));
 		for(const auto &grand : child)
-		{
 			if(grand.Token(0) == "take outfits")
 				shipModifiers.back().removeOutfits.Load(grand);
-
-		}
 	}
 	else if(key == "payment")
 	{
