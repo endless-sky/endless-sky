@@ -1991,7 +1991,7 @@ phrase "friendly navy"
 		"Getting wounded"
 		"Taking a hit"
 		"Injury"
-		"Service"
+		"Becoming injured"
 	word
 		" "
 	word
@@ -2004,10 +2004,10 @@ phrase "friendly navy"
 		"a dogfight"
 		"a conflict"
 		"a confrontation"
+		"an engagement"
 		"battle"
 		"space battle"
 		"war"
-		"engagement"
 		"combat"
 	word
 		" is "
@@ -2017,11 +2017,13 @@ phrase "friendly navy"
 		"honourable"
 		"respectable"
 		"admirable"
+		"commendable"
 	word
 		", "
 	word
 		"if such action helps to"
 		"if it helps us to"
+		"if that sacrifice helps us to"
 		"when it helps your brothers and sisters in arms to"
 		"when on duty to"
 		"when it assists us to"
@@ -2032,8 +2034,8 @@ phrase "friendly navy"
 		"but our goal is to"
 		"but we are duty-bound to"
 		"but we must"
-		"but our mission"
-		"but our directive"
+		"but our mission is to"
+		"but our directive is to"
 		"but we must focus on"
 		"but only when it helps us to"
 		"but our focus should be to"
@@ -2042,6 +2044,9 @@ phrase "friendly navy"
 		"but we are expected to"
 		"but it would be more efficient if we"
 		"but the universe expects us to"
+		"but that is for nought if it does not help to"
+		"but it is wasted if it does not help to"
+		"but that sacrifice has greater meaning when it helps us to"
 	word
 		" "
 	word
@@ -2062,12 +2067,9 @@ phrase "friendly navy"
 		"our adversaries"
 		"our enemies"
 		"terrorists"
-		"enemies to our Republic"
-		"enemies to our democracy"
+		"enemies of our Republic"
+		"enemies of our democracy"
 		"enemies of Parliament"
-		"threats to our Republic"
-		"threats to our democracy"
-		"threats to Parliament"
 	word
 		"."
 
@@ -2084,13 +2086,25 @@ phrase "friendly navy"
 	word
 		" "
 	word
+		"" 6
+		"providing"
+		"ensuring"
+		"giving you"
+		"giving us"
+		"giving humanity"
+		"giving mankind"
+	word
+		" "
+	word
 		"three centuries"
 		"three hundred years"
+		"ten generations"
 	word
 		" of "
 	word
 		"freedom"
 		"liberty"
+		"democracy"
 		"protection"
 		"prosperity"
 		"security"
@@ -2105,31 +2119,100 @@ phrase "friendly navy"
 		"The Navy"
 	word
 		" has "
+	phrase
+		"navy protection hail"
+	word
+		" for "
+	word
+		"three centuries"
+		"three hundred years"
+		"ten generations"
+	word
+		"."
+
+phrase "navy protection hail"
 	word
 		"protected"
 		"guarded"
+		"defended"
+		"shielded"
 	word
 		" "
 	word
-		"you"
 		"these skies"
 		"our universe"
-		"mankind"
-		"humanity"
-	word
-		"" 5
-		" against piracy"
-		" against pirates"
-		" against marauders"
-		" those who threaten freedom"
-		" those who threaten liberty"
+		"the Deep"
+		"the Rim"
+		"the South"
+		"the Core"
+		"the Dirt Belt"
+		"the Far North"
+		"the Paradise Worlds"
+		"the Near Earth sector"
 	word
 		" "
 	word
-		"for three centuries"
-		"for three hundred years"
+		"" 5
+		" from piracy"
+		" from pirates"
+		" from marauders"
+		" from disorder"
+		" from instability"
+		" from anarchism"
+		" from those who threaten freedom"
+		" from those who threaten liberty"
+
+phrase "navy protection hail"
 	word
-		"."
+		"protected"
+		"guarded"
+		"defended"
+		"shielded"
+	word
+		"you"
+		"mankind"
+		"humanity"
+		"merchant ships"
+	word
+		"" 5
+		" from piracy"
+		" from pirates"
+		" from marauders"
+		" from disorder"
+		" from instability"
+		" from anarchism"
+
+phrase "navy protection hail"
+	word
+		"patroled"
+		"policed"
+		"defended"
+		"guarded"
+		"protected"
+		"watched over"
+		"maintained the peace in"
+	word
+		" "
+	word
+		"these skies" 4
+		"our universe" 2
+		"the Deep"
+		"the Rim"
+		"the South"
+		"the Core"
+		"the Dirt Belt"
+		"the Far North"
+		"the Paradise Worlds"
+		"the Near Earth sector"
+
+phrase "navy protection hail"
+	word
+		"kept you safe"
+		"kept humanity safe"
+		"assisted you"
+		"been the guardian of humanity"
+		"been the protector of humanity"
+		"been the defender of humanity"
 
 phrase "friendly navy"
 	word
@@ -2137,35 +2220,118 @@ phrase "friendly navy"
 	word
 		"want"
 		"wish"
+		"desire"
 	word
 		" to "
-	word
-		"distinguish yourself"
-		"be the guard against piracy"
-		"fight against piracy"
-		"fight against marauders"
-		"fight for the Republic"
-		"fight for humanity"
-		"fight for mankind"
-		"defend humanity"
-		"defend the Republic"
-		"defend democracy"
+
 	word
 		", "
 	word
-		"join the Navy"
-		"enlist with the Navy"
+		"join the Navy!"
+		"enlist with the Navy!"
+
+phrase "friendly navy"
 	word
-		"!"
+		"Do you"
+	word
+		"want"
+		"wish"
+		"desire"
+	word
+		" to "
+	phrase
+		"things the navy does"
+	word
+		"? "
+	word
+		"Join the Navy!"
+		"Enlist with the Navy!"
+
+phrase "things the navy does"
+	word
+		"distinguish yourself"
+		"prove yourself"
+		"prove your piloting skills"
+		"prove your worth as a captain"
+		"contribute to something bigger than yourself"
+		"serve your state"
+		"serve humanity"
+		"serve the Republic"
+		"serve for democracy"
+		"be the guard against piracy"
+		"be the guard against marauders"
+		"be the guard against instability"
+		"be the guard against anarchism"
+		"fight against piracy"
+		"fight against marauders"
+		"fight against instability"
+		"fight against anarchism"
+		"fight for the Republic"
+		"fight for humanity"
+		"fight for mankind"
+		"fight for Parliament"
+		"fight for democracy"
+		"defend humanity"
+		"defend the Republic"
+		"defend democracy"
+		"defend Parliament"
+		"ensure peace among the stars"
+
+phrase "things the navy does"
+	word
+		"defend "
+		"protect "
+		"guard "
+		"shield "
+	word
+		"humanity "
+		"mankind "
+	word
+		"from the "
+	word
+		"scourge "
+		"menace "
+		"threat "
+	word
+		"of "
+	word
+		"piracy"
+	word
+		" and "
+	word
+		"instability"
+		"anarchism"
+
 
 phrase "friendly navy"
 	word
 		"United, humanity stands. Divided we will fall."
+		"Humanity must stand united in a universe that seeks to push us apart."
+		"Where the universe pushes humanity apart, the Republic unites humanity together."
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
 		"We want YOU for the Navy!"
 		"The Navy is in need of good captains like you! Join the Navy!"
-		"If you feel indebted to the Republic for three centuries of freedom, join the Navy!"
+		"There is no greater service than to serve your state. Join the Navy!"
+		"You can count on the Navy to serve you."
+		"Peace among the stars. May you remember that."
+
+phrase "friendly navy"
+	word
+		"The Republic"
+		"The Navy"
+	word
+		"'s goal:"
+		"'s motto:"
+		"seeks"
+		"wishes for"
+		"strives for"
+		"is advancing"
+		"ensures"
+	word
+		" "
+	word
+		"peace among the stars."
 
 phrase "friendly navy"
 	word
@@ -2173,30 +2339,64 @@ phrase "friendly navy"
 		"The Navy is here"
 		"The Navy exists"
 		"The Navy patrols"
+		"The Navy's duty is"
 		"We fight"
 		"We are here"
 		"We exist"
 		"We patrol these skies"
+		"We police these skies"
+		"Our duty is"
 	word
 		" to "
+	phrase
+		"navy purpose"
 	word
-		"ensure "
-		"maintain "
-		"uphold "
-		"defend "
-	word
-		"the integrity of the Republic."
-		"the integrity of Parliament's mandate."
-		"the integrity of our laws."
-		"the integrity of Republic law."
-	word
-		" "
+		". "
 	word
 		"" 5
 		"Your cooperation is greatly valued."
 		"We thank you for your cooperation."
 		"We appreciate your complicance."
 		"Be thankful for our protection."
+		"Be grateful for our protection."
+		"We hope you appreciate our work."
+
+phrase "navy purpose"
+	word
+		"ensure "
+		"maintain "
+		"uphold "
+		"defend "
+	word
+		"the integrity of "
+	word
+		"the Republic"
+		"Parliament's mandate"
+		"our laws"
+		"Republic law"
+		"Parliament"
+
+phrase "navy purpose"
+	word
+		"protect"
+		"defend"
+		"guard"
+		"assist"
+		"serve"
+	word
+		" you"
+
+phrase "navy purpose"
+	word
+		"ensure "
+		"maintain "
+		"advance "
+	word
+		"stability"
+		"peace"
+		"peace among the stars"
+		"freedom"
+		"liberty"
 
 phrase "friendly navy"
 	word
@@ -2266,7 +2466,6 @@ phrase "friendly navy"
 		"by Navy officers upon landing"
 		"by border control officials upon landing"
 		"by our Gunboat patrols"
-		"by Navy Gunboats"
 		"by our Gunboat forces"
 		"by our Gunboat monitors"
 		"by the Republic's Gunboat forces"
@@ -2345,7 +2544,7 @@ phrase "friendly navy"
 		"landing on a Republic planet"
 		"landing within Republic territory" 
 	word
-		". "
+		"."
 
 phrase "navy warning adverb first"
 	word
@@ -2407,7 +2606,7 @@ phrase "friendly navy"
 		"paint your ship in illegal colors"
 		"paint your ship in uncivil colors"
 	word
-		". "
+		"."
 
 phrase "friendly navy"
 	word
@@ -4660,6 +4859,8 @@ phrase "hostile navy"
 		"honor"
 		"unity"
 		"order"
+		"hope"
+		"stability"
 	word
 		"! "
 	word
@@ -4667,6 +4868,8 @@ phrase "hostile navy"
 	word
 		"glory"
 		"duty"
+		"peace"
+		"peace among the stars"
 		"the integrity of our Republic"
 		"the Republic"
 	word
