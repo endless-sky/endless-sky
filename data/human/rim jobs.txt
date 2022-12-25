@@ -142,7 +142,7 @@ mission "Han Sizer Month [1]"
 		not attributes "station"
 	on complete
 		payment 15000 170
-		dialog `Your passengers are excited to have completed their journey around the Rim, and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone <on Longjump> as they start walking away.`
+		dialog `Your passengers are excited to have completed their journey around the Rim and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone <on Longjump> as they start walking away.`
 
 
 mission "Han Sizer Month [2]"
@@ -174,4 +174,4 @@ mission "Han Sizer Month [2]"
 		not attributes "station"
 	on complete
 		payment 20000 170
-		dialog `Your guests thank you for taking them on a journey along the flightpath of Han Sizer, and cheerfully pay you <payment>. You notice one has a starchart open to Sabik's entry as they head off.`
+		dialog `Your guests thank you for taking them on a journey along the flightpath of Han Sizer and cheerfully pay you <payment>. You notice one has a starchart open to Sabik's entry as they head off.`
