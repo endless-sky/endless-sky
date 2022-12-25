@@ -447,6 +447,8 @@ public:
 
 
 private:
+	// Register ship level conditions
+	void RegisterDerivedConditions();
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);

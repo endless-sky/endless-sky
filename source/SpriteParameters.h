@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SPRITE_PARAMETERS_H
 #define SPRITE_PARAMETERS_H
 
+#include "ConditionSet.h"
+
 #include <map>
 #include <string>
 #include <tuple>
@@ -50,31 +52,30 @@ public:
 		bool transitionFinish = false;
 		bool transitionRewind = false;
 		bool indicateReady = false;
-		bool triggerOnUse = false;
 	};
 
+public:
+	typedef std::tuple<const Sprite*, SpriteParameters::AnimationParameters, ConditionSet> SpriteDetails;
+	typedef std::map<int, SpriteParameters::SpriteDetails> SpriteMap;
 
 public:
 	SpriteParameters();
 	explicit SpriteParameters(const Sprite *sprite);
-
 	// Add a sprite-trigger mapping
-	void SetSprite(std::string trigger, const Sprite *sprite, SpriteParameters::AnimationParameters data);
-	// Get the sprite associated with the current trigger
-	const Sprite *GetSprite() const;
-	const Sprite *GetSprite(std::string trigger) const;
-
-	// Set the current trigger
-	std::string GetTrigger() const;
-	bool RequestTrigger(std::string trigger);
-	bool RequestTriggerOnUse(std::string trigger, bool use);
-	bool IsCurrentTrigger(std::string trigger) const;
-	bool IsTrigger(std::string trigger) const;
-
+	void SetSprite(int index, const Sprite *sprite,
+				   SpriteParameters::AnimationParameters data, ConditionSet triggerConditions);
+	// Get the data associated with the current trigger
+	const Sprite *GetSprite(int index = -1) const;
+	ConditionSet GetConditions(int index = -1) const;
+	AnimationParameters GetParameters(int index = -1) const;
+	// Used to verify trigger transitions
+	const int GetExposedID() const;
+	// Check all conditions and return if one is true
+	const int RequestTriggerUpdate(ConditionsStore &store);
+	// Complete the switch to a new sprite
 	void CompleteTriggerRequest();
-
 	// Used for saving the sprites.
-	const std::map<std::string, std::tuple<const Sprite *, SpriteParameters::AnimationParameters>> *GetAllSprites() const;
+	const SpriteMap *GetAllSprites() const;
 
 
 public:
@@ -82,15 +83,16 @@ public:
 	SpriteParameters::AnimationParameters exposed;
 
 private:
-	typedef std::tuple<const Sprite*, SpriteParameters::AnimationParameters> SpriteDetails;
-	typedef std::map<std::string, SpriteParameters::SpriteDetails> SpriteMap;
+	const static int DEFAULT = 0;
 
 private:
-	// Used to trigger different animations
-	std::string trigger = "default", requestedTrigger = "default";
+	void Expose(int index);
 
+private:
 	// Sprites to be animated
 	SpriteParameters::SpriteMap sprites;
+	SpriteParameters::SpriteDetails exposedDetails, defaultDetails;
+	int exposedIndex = 0, requestedIndex = 0;
 };
 
 

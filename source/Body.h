@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define BODY_H_
 
 #include "Angle.h"
+#include "ConditionsStore.h"
 #include "Point.h"
 #include "SpriteParameters.h"
 
@@ -28,7 +29,6 @@ class DataNode;
 class DataWriter;
 class Government;
 class Mask;
-class Outfit;
 class Sprite;
 
 
@@ -82,9 +82,10 @@ public:
 
 	// Sprite serialization. Return true if sprite is successfully loaded
 	bool LoadSprite(const DataNode &node);
-	bool LoadTriggerSprite(const DataNode &node, Body::BodyState state, SpriteParameters::AnimationParameters params);
+	void LoadTriggerSprite(const DataNode &node, Body::BodyState state,
+						   SpriteParameters::AnimationParameters params, int index);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
-	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const;
+	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int index) const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite, Body::BodyState state = BodyState::FLYING);
 	void SetState(Body::BodyState state);
@@ -98,11 +99,10 @@ protected:
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
 	void ShowDefaultSprite(bool defaultSprite);
+	// Check if any triggers should be activated in this state
+	void CheckTriggers();
 	// Ready to perform the desired action
 	bool ReadyForAction() const;
-	// Assign any outfit triggers for animations
-	void AssignStateTriggers(std::map<const Outfit *, int> &outfits);
-	bool AssignStateTriggerOnUse(Body::BodyState state, std::string trigger);
 	// Finish transitioning between states
 	void FinishStateTransition() const;
 	// Mark this object to be removed from the game.
@@ -125,6 +125,9 @@ protected:
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
 
+	// Conditions registered from bodies
+	ConditionsStore conditions;
+
 
 private:
 	// Set what animation step we're on and indicate whether a state transition has finished.
@@ -140,7 +143,6 @@ private:
 	mutable Body::BodyState currentState = Body::BodyState::FLYING,
 							transitionState = Body::BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
-	mutable bool postTriggerTransition = false;
 	bool returnDefaultSprite = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;

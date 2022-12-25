@@ -214,7 +214,8 @@ void Ship::Load(const DataNode &node)
 	isDefined = true;
 
 	government = GameData::PlayerGovernment();
-
+	// Populate the ConditionStore
+	RegisterDerivedConditions();
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
 	bool hasEngine = false;
@@ -1497,6 +1498,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Generate energy, heat, etc.
 	DoGeneration();
 
+	// Check if any conditions for trigger sprites are met
+	this->CheckTriggers();
+
 	// Handle ionization effects, etc.
 	if(ionization)
 		CreateSparks(visuals, "ion spark", ionization * .1);
@@ -1838,8 +1842,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Ship is moving upwards to space
 			if(zoom <= zoomTriggerStart)
 			{
-				// Calculate all state triggers on launch
-				this->AssignStateTriggers(outfits);
 				// If the ship was transitioning states while landing, finish any animation transitions.
 				this->FinishStateTransition();
 			}
@@ -1870,16 +1872,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
-		if(targetSystem)
-		{
-			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
-			bool isJump = (jumpUsed.first == JumpType::JUMP_DRIVE);
-			if(isJump)
-				this->AssignStateTriggerOnUse(Body::BodyState::JUMPING, "Jump Drive");
-			else
-				this->AssignStateTriggerOnUse(Body::BodyState::JUMPING, "default");
-		}
-
 		this->SetState(Body::BodyState::JUMPING);
 		if(IsReadyToJump())
 		{
@@ -2791,14 +2783,12 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	double jamChance = CalculateJamChance(Energy(), ionization);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
-	bool assigned = false;
 
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon)
 		{
-			std::string weaponName = hardpoints[i].GetOutfit()->TrueName();
 			bool isAntiMissile = weapon->AntiMissile();
 			if(CanFire(weapon))
 			{
@@ -2807,8 +2797,6 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				else if(firingCommands.HasFire(i))
 				{
 					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
-					if(!assigned && this->AssignStateTriggerOnUse(Body::BodyState::FIRING, weaponName))
-						assigned = true;
 				}
 			}
 			// Calculate max range of firable weapons
@@ -2816,12 +2804,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				weaponRange = max(weaponRange, weapon->Range());
 		}
 	}
-
-	if(!assigned)
-		this->AssignStateTriggerOnUse(Body::BodyState::FIRING, "default");
-
 	armament.Step(*this);
-
 	return antiMissileRange;
 }
 
@@ -4223,6 +4206,71 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+// Register ship based conditions
+void Ship::RegisterDerivedConditions()
+{
+	// Read only conditions
+	auto &&hullProvider = conditions.GetProviderNamed("hull");
+	hullProvider.SetGetFunction([this](const string &name) { return hull; });
+
+	auto &&shieldsProvider = conditions.GetProviderNamed("shields");
+	shieldsProvider.SetGetFunction([this](const string &name) { return shields; });
+
+	auto &&outfitInstalledProvider = conditions.GetProviderPrefixed("outfit (installed): ");
+	outfitInstalledProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (installed): ")));
+		if(!outfit)
+			return 0;
+		return this->OutfitCount(outfit);
+	});
+
+	auto &&outfitUsingProvider = conditions.GetProviderPrefixed("outfit (using): ");
+	outfitUsingProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (using): ")));
+		if(!outfit)
+			return 0;
+		if(targetSystem)
+		{
+			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
+			bool jumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE) && outfit->TrueName() == "Jump Drive";
+			bool hyperDrive = (jumpUsed.first == JumpType::HYPERDRIVE) &&
+								(outfit->TrueName() == "Hyperdrive" || outfit->TrueName() == "Scram Drive");
+			return jumpDrive || hyperDrive ? 1 : 0;
+		}
+		return this->OutfitCount(outfit);
+	});
+
+	auto &&outfitCargoProvider = conditions.GetProviderPrefixed("outfit (cargo): ");
+	outfitCargoProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (cargo): ")));
+		if(!outfit)
+			return 0;
+		return this->Cargo().Get(outfit);
+	});
+
+	auto &&weaponFiringProvider = conditions.GetProviderPrefixed("weapon (firing): ");
+	weaponFiringProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("weapon (firing): ")));
+		if(!outfit || this->OutfitCount(outfit) <= 0)
+			return 0;
+		const vector<Hardpoint> &hardpoints = armament.Get();
+		for(unsigned i = 0; i < hardpoints.size(); ++i)
+		{
+			const Weapon *weapon = hardpoints[i].GetOutfit();
+			std::string weaponName = hardpoints[i].GetOutfit()->TrueName();
+			if(weaponName == outfit->TrueName() && CanFire(weapon) && firingCommands.HasFire(i))
+				return 1;
+		}
+		return 0;
+	});
 }
 
 

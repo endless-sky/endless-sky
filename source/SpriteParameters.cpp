@@ -26,97 +26,113 @@ SpriteParameters::SpriteParameters()
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	AnimationParameters initDefault;
-	auto tuple = SpriteParameters::SpriteDetails{sprite, initDefault};
-	this->sprites.insert(std::pair<std::string, SpriteParameters::SpriteDetails>("default", tuple));
+	static ConditionSet empty;
+	auto tuple = SpriteParameters::SpriteDetails{sprite, initDefault, empty};
+	this->sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(0, tuple));
 	this->exposed = initDefault;
+	this->exposedIndex = 0;
+	this->defaultDetails = tuple;
+	this->exposedDetails = tuple;
 }
 
 
 
-void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite,
-									SpriteParameters::AnimationParameters params)
+void SpriteParameters::SetSprite(int index, const Sprite *sprite,
+									SpriteParameters::AnimationParameters params, ConditionSet triggerConditions)
 {
-	auto tuple = SpriteParameters::SpriteDetails{sprite, params};
-	this->sprites.insert(std::pair<std::string, SpriteParameters::SpriteDetails>(trigger, tuple));
-	if(trigger == "default")
-		this->exposed = params;
-}
-
-
-
-const Sprite *SpriteParameters::GetSprite() const
-{
-	auto it = this->sprites.find(this->trigger);
-	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
-}
-
-
-
-const Sprite *SpriteParameters::GetSprite(std::string trigger) const
-{
-	auto it = this->sprites.find(trigger);
-	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
-}
-
-
-
-std::string SpriteParameters::GetTrigger() const
-{
-	return this->trigger;
-}
-
-
-
-bool SpriteParameters::RequestTrigger(std::string trigger)
-{
-	auto it = this->sprites.find(trigger);
-	if(it == this->sprites.end())
-		return false;
-
-	this->requestedTrigger = trigger;
-	return true;
-}
-
-
-
-bool SpriteParameters::RequestTriggerOnUse(std::string trigger, bool use)
-{
-	auto it = this->sprites.find(trigger);
-	if(it == this->sprites.end())
-		return false;
-
-	SpriteParameters::AnimationParameters toExpose = std::get<1>(it->second);
-	if(toExpose.triggerOnUse == use)
+	auto tuple = SpriteParameters::SpriteDetails{sprite, params, triggerConditions};
+	this->sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(index, tuple));
+	if(index == DEFAULT)
 	{
-		this->requestedTrigger = trigger;
-		return true;
+		this->exposed = params;
+		this->exposedIndex = 0;
+		this->defaultDetails = tuple;
+		this->exposedDetails = tuple;
 	}
+}
 
-	return false;
+
+
+const Sprite *SpriteParameters::GetSprite(int index) const
+{
+	if(index < 0)
+		return std::get<0>(this->exposedDetails);
+	else
+	{
+		auto it = this->sprites.find(index);
+		if(it != this->sprites.end())
+			return std::get<0>(it->second);
+	}
+	return NULL;
+}
+
+
+
+ConditionSet SpriteParameters::GetConditions(int index) const
+{
+	static ConditionSet empty;
+	if(index < 0)
+		return std::get<2>(this->exposedDetails);
+	else
+	{
+		auto it = this->sprites.find(index);
+		if(it != this->sprites.end())
+			return std::get<2>(it->second);
+	}
+	return empty;
+}
+
+
+
+SpriteParameters::AnimationParameters SpriteParameters::GetParameters(int index) const
+{
+	SpriteParameters::AnimationParameters def;
+	if(index < 0)
+		return std::get<1>(this->exposedDetails);
+	else
+	{
+		auto it = this->sprites.find(index);
+		if(it != this->sprites.end())
+			return std::get<1>(it->second);
+	}
+	return def;
+}
+
+
+
+const int SpriteParameters::GetExposedID() const
+{
+	return this->exposedIndex;
+}
+
+
+
+const int SpriteParameters::RequestTriggerUpdate(ConditionsStore &store)
+{
+	for(auto it = this->sprites.begin(); it != this->sprites.end(); it++)
+		if(it->first != DEFAULT)
+		{
+			ConditionSet conditions = std::get<2>(it->second);
+			if(conditions.Test(store))
+			{
+				this->requestedIndex = it->first;
+				return it->first;
+			}
+			
+		}
+	// Return to default
+	if(this->exposedIndex != DEFAULT)
+	{
+		this->requestedIndex = DEFAULT;
+	}
+	return DEFAULT;
 }
 
 
 
 void SpriteParameters::CompleteTriggerRequest()
 {
-	auto it = this->sprites.find(this->requestedTrigger);
-	this->trigger = this->requestedTrigger;
-	this->exposed = std::get<1>(it->second);
-}
-
-
-
-bool SpriteParameters::IsCurrentTrigger(std::string trigger) const
-{
-	return this->trigger == trigger;
-}
-
-
-
-bool SpriteParameters::IsTrigger(std::string trigger) const
-{
-	auto it = this->sprites.find(trigger);
-	return it != this->sprites.end();
+	this->Expose(this->requestedIndex);
 }
 
 
@@ -124,4 +140,14 @@ bool SpriteParameters::IsTrigger(std::string trigger) const
 const SpriteParameters::SpriteMap *SpriteParameters::GetAllSprites() const
 {
 	return &this->sprites;
+}
+
+
+
+void SpriteParameters::Expose(int index)
+{
+	this->exposedIndex = index;
+	auto it = this->sprites.find(index);
+	this->exposed = std::get<1>(it->second);
+	this->exposedDetails = it->second;
 }
