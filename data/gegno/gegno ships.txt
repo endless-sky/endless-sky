@@ -131,6 +131,8 @@ ship "Conglomerate"
 		"Hyperdrive"
 	engine -34.5 220
 	engine 34.5 220
+	engine 13 206 0.75
+	engine -13 206 0.75
 	leak "leak" 30 40
 	leak "flame" 80 20
 	explode "huge explosion" 10
@@ -814,6 +816,8 @@ ship "Protolith"
 	engine 0 266
 	engine -48 258
 	engine 48 258
+	engine 28 263 0.5
+	engine -28 263 0.5
 	gun -22.5 -269 "Irate Cannon"
 	gun 22.5 -269 "Irate Cannon"
 	gun 62.5 -186.5 "Irate Cannon"
@@ -964,8 +968,10 @@ ship "Coesite"
 		"SC-14 Plasma Steering"
 		"SC-1 Plasma Engines"
 		"Hyperdrive"
-	engine 48 85
-	engine -48 85
+	engine 47 85
+	engine -47 85
+	engine 32 84 0.5
+	engine -32 84 0.5
 	turret -25.5 -25.5 "Astuit Battery"
 	turret 25.5 -25.5 "Astuit Battery"
 	leak "leak" 60 50
