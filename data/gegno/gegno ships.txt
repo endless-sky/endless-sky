@@ -549,15 +549,15 @@ ship "Diorite"
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
 		"Hyperdrive"
-	engine -22.5 158
-	engine 0 164
-	engine 22.5 158
-	gun -7 -193 "Ballistic Cannon"
-	gun 7 -193 "Ballistic Cannon"
-	gun 0 143 "Choleric Cannon"
+	engine -19.5 132
+	engine 0 137
+	engine 19.5 132
+	gun -6 -160 "Ballistic Cannon"
+	gun 6 -160 "Ballistic Cannon"
+	gun 0 116 "Choleric Cannon"
 		angle 180
-	turret -24 -77 "Irate Cannon Turret"
-	turret 24 -77 "Irate Cannon Turret"
+	turret -19.5 -63 "Irate Cannon Turret"
+	turret 19.5 -63 "Irate Cannon Turret"
 	leak "leak" 30 50
 	leak "flame" 50 90
 	explode "large explosion" 9
@@ -602,26 +602,26 @@ ship "Hornfel"
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
 		"Hyperdrive"
-	engine -20 205
-	engine 20 205
-	gun 20.5 -234.5 "Irate Cannon"
-	gun -20.5 -234.5 "Irate Cannon"
-	gun -26.5 -222.5 "Irate Cannon"
-	gun 26.5 -222.5 "Irate Cannon"
-	gun 32.5 -129 "Irate Cannon"
+	engine -18 193
+	engine 18 193
+	gun 18.5 -220 "Irate Cannon"
+	gun -18.5 -220 "Irate Cannon"
+	gun -24.5 -208 "Irate Cannon"
+	gun 24.5 -208 "Irate Cannon"
+	gun 29 -120 "Irate Cannon"
 		angle 60
-	gun -30.5 -114 "Irate Cannon"
+	gun -29 -107.5 "Irate Cannon"
 		angle -60
-	gun -41.5 -2 "Irate Cannon"
+	gun -38 -1.5 "Irate Cannon"
 		angle -90
-	gun 42.5 31 "Irate Cannon"
+	gun 40.5 30 "Irate Cannon"
 		angle 90
-	gun -33 150.5 "Irate Cannon"
+	gun -29 141.5 "Irate Cannon"
 		angle -135
-	gun 32 160.5 "Irate Cannon"
+	gun 29 120.5 "Irate Cannon"
 		angle 135
-	turret 0 -117.5 "Choleric Cannon Turret"
-	turret 0 -44 "Choleric Cannon Turret"
+	turret 0 -111 "Choleric Cannon Turret"
+	turret 0 -42 "Choleric Cannon Turret"
 	leak "leak" 60 50
 	leak "flame" 60 80
 	explode "large explosion" 10
@@ -668,25 +668,25 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
 		"Hyperdrive"
-	gun 20.5 -234.5 "Choleric Cannon"
-	gun -20.5 -234.5 "Choleric Cannon"
-	gun -26.5 -222.5 "Irate Cannon"
-	gun 26.5 -222.5 "Irate Cannon"
-	gun 32.5 -129 "Irate Cannon"
+	gun 18.5 -220 "Choleric Cannon"
+	gun -18.5 -220 "Choleric Cannon"
+	gun -24.5 -208 "Irate Cannon"
+	gun 24.5 -208 "Irate Cannon"
+	gun 29 -120 "Irate Cannon"
 		angle 60
-	gun -30.5 -114 "Irate Cannon"
+	gun -29 -107.5 "Irate Cannon"
 		angle -60
-	gun -41.5 -2 "Irate Cannon"
+	gun -38 -1.5 "Irate Cannon"
 		angle -90
-	gun 42.5 31 "Irate Cannon"
+	gun 40.5 30 "Irate Cannon"
 		angle 90
-	gun -33 150.5 "Irate Cannon"
-		angle 135
-	gun 32 160.5 "Irate Cannon"
+	gun -29 141.5 "Irate Cannon"
 		angle -135
-	turret 0 -117.5 "Choleric Cannon Turret"
-	turret 0 -44 "Choleric Cannon Turret"
-	turret 0 -185 "Irate Cannon Turret"
+	gun 29 120.5 "Irate Cannon"
+		angle 135
+	turret 0 -174 "Irate Cannon Turret"
+	turret 0 -111 "Choleric Cannon Turret"
+	turret 0 -42 "Choleric Cannon Turret"
 
 ship "Gneiss"
 	plural "Gneiss"
