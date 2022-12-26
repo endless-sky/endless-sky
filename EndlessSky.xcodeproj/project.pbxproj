@@ -326,7 +326,7 @@
 		A96862E71AE6FD0A004FE1FE /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = source/Color.h; sourceTree = "<group>"; };
 		A96862E81AE6FD0A004FE1FE /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Command.cpp; path = source/Command.cpp; sourceTree = "<group>"; };
 		A96862E91AE6FD0A004FE1FE /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Command.h; path = source/Command.h; sourceTree = "<group>"; };
-		A96862EA1AE6FD0A004FE1FE /* Condition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Condition.cpp; path = source/Condition.cpp; sourceTree = "<group>"; };
+		A96862EA1AE6FD0A004FE1FE /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Condition.h; path = source/Condition.h; sourceTree = "<group>"; };
 		A96862EA1AE6FD0A004FE1FE /* ConditionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConditionSet.cpp; path = source/ConditionSet.cpp; sourceTree = "<group>"; };
 		A96862EB1AE6FD0A004FE1FE /* ConditionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConditionSet.h; path = source/ConditionSet.h; sourceTree = "<group>"; };
 		A96862EC1AE6FD0A004FE1FE /* Conversation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Conversation.cpp; path = source/Conversation.cpp; sourceTree = "<group>"; };
