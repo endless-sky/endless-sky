@@ -99,7 +99,7 @@ const Track *Playlist::GetCurrentTrack() const
 		++it;
 		if(it == tracks.end())
 			it = tracks.begin();
-		currentTrack = *it.base();
+		currentTrack = *it;
 		return tmpTrack;
 	}
 	else if(progressionStyle == "pick")
