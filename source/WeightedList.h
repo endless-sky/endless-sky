@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WEIGHTED_LIST_H_
 
 #include "Random.h"
-#include "RValue.h"
+#include "Condition.h"
 
 #include <cstddef>
 #include <iterator>
@@ -64,7 +64,7 @@ public:
 	>::type Average(Callable c) const;
 	// Supplying a callable that does not return an arithmetic value will fail to compile.
 
-	// Update weight values. This is to support the use of RValue weights.
+	// Update weight values. This is to support the use of Condition weights.
 	// The Getter must be a class with a HasGet method like ConditionsStore
 	template <class Getter>
 	void UpdateConditions(const Getter &c);
@@ -111,14 +111,14 @@ private:
 template <class T,class U>
 void AssignWeight(T &t, U u)
 {
-	static_assert(std::is_integral<T>::value, "AssignWeight takes only integral types or RValues");
+	static_assert(std::is_integral<T>::value, "AssignWeight takes only integral types or Conditions");
 	t = u;
 }
 
 
 
 template <class T,class U>
-void AssignWeight(RValue<T> &t,U u)
+void AssignWeight(Condition<T> &t,U u)
 {
 	t.Value() = u;
 }
@@ -223,7 +223,7 @@ Type &WeightedList<Type,WeightType>::emplace_back(const NewWeightType &newWeight
 
 
 
-// Update weight values. This is to support the use of RValue weights.
+// Update weight values. This is to support the use of Condition weights.
 // The Getter must be a class with a HasGet method like ConditionsStore
 template <class Type, class WeightType>
 template <class Getter>

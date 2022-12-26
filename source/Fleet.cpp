@@ -189,7 +189,7 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
 		else if(key == "cargo" && hasValue)
-			cargo = child.AsRValue(1, &vars, 3);
+			cargo = child.AsCondition(1, &vars, 3);
 		else if(key == "commodities" && hasValue)
 		{
 			commodities.clear();
@@ -211,9 +211,9 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 				resetVariants = false;
 				variants.clear();
 			}
-			RValue<int> weight(1);
+			Condition<int> weight(1);
 			if(child.Size() >= add + 2)
-				weight = child.AsRValue(add + 1, &vars, 1);
+				weight = child.AsCondition(add + 1, &vars, 1);
 			variants.emplace_back(weight, child);
 		}
 		else if(key == "variant")

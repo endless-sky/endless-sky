@@ -182,12 +182,12 @@ void NPC::Load(const DataNode &node, const ConditionsStore &vars)
 		{
 			if(child.HasChildren())
 				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child, vars)),
-					child.AsRValue(1, nullptr, 1));
+					child.AsCondition(1, nullptr, 1));
 			else if(child.Size() >= 2)
 			{
 				if(child.Size() >= 3)
 					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))),
-						child.AsRValue(2, nullptr, 1));
+						child.AsCondition(2, nullptr, 1));
 				else
 					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))), 1);
 			}
@@ -602,7 +602,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	for(const auto &fleetCount : fleets)
 	{
 		const auto &fleet = fleetCount.first;
-		RValue<int> count = fleetCount.second;
+		Condition<int> count = fleetCount.second;
 		count.UpdateConditions(vars);
 		if(count <= 0)
 			continue;

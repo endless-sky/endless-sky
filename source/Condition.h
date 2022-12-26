@@ -1,4 +1,5 @@
-/* RValue.h
+/* Condition.h 
+Copyright (c) 2022 by an anonymous author.
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -22,9 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <string>
 #include <type_traits>
-
-
-#define DEBUG_RVALUE_CONDITIONS
 
 
 
@@ -61,12 +59,12 @@ struct DoNotValidate
 // Or, this was from dereferencing something (ie. Dictionary,
 // ConditionsStore) in which case the key is not empty()
 //
-// The value (V) is first in the template since (nearly?) all RValue
+// The value (V) is first in the template since (nearly?) all Condition
 // classes will use a std::string key (K). Having a template key type
 // allows storage of scope, wstring, etc. in the future without
 // rewriting this class.
 template < class V, class K = std::string >
-class RValue {
+class Condition {
 public:
 	typedef V ValueType;
 	typedef K KeyType;
@@ -81,23 +79,23 @@ public:
 	static constexpr ValueType BadValue = ValueType();
 #endif
 
-	constexpr RValue();
-	constexpr RValue(const V &value);
-	constexpr RValue(const V &value, const K &key);
-	~RValue();
+	constexpr Condition();
+	constexpr Condition(const V &value);
+	constexpr Condition(const V &value, const K &key);
+	~Condition();
 
 	// Equality is handled by operator ValueType() which means only the
 	// value is compared for equality.
-	bool operator == (const RValue<V,K> &other) const = delete;
+	bool operator == (const Condition<V,K> &other) const = delete;
 
-	// Allow construction and assignment between RValue types to
+	// Allow construction and assignment between Condition types to
 	// facilitate type conversion.
 
 	template <class V2, class K2>
-	RValue(const RValue<V2,K2> &other);
+	Condition(const Condition<V2,K2> &other);
 
 	template <class V2, class K2>
-	RValue<V,K> &operator = (const RValue<V2,K2> &other);
+	Condition<V,K> &operator = (const Condition<V2,K2> &other);
 
 	// Update the value from a scope that contains it
 	template<class Getter>
@@ -115,18 +113,18 @@ public:
 	const KeyType &Key() const { return key; }
 	KeyType &Key() { return key; }
 
-	// Does this RValue come from the same place as the other one?
+	// Does this Condition come from the same place as the other one?
 	// If it was an lvalue, the key must be the same.
 	// For literals, this means the value is the same.
 	// You can think of this as an operator== that cares about the key.
-	bool SameOrigin(const RValue<V,K> &o);
+	bool SameOrigin(const Condition<V,K> &o);
 
 	// Does this originate from dereferencing something?
 	bool WasLValue() const { return !key.empty(); }
 
 	explicit operator bool() const { return NotNearZero(value); }
 
-	// Allow the RValue to be treated as its value in most contexts.
+	// Allow the Condition to be treated as its value in most contexts.
 	operator ValueType() const { return value; }
 
 private:
@@ -137,7 +135,7 @@ private:
 
 
 template <class V, class K>
-constexpr RValue<V,K>::RValue():
+constexpr Condition<V,K>::Condition():
 	value(),
 	key()
 {
@@ -146,7 +144,7 @@ constexpr RValue<V,K>::RValue():
 
 
 template <class V, class K>
-constexpr RValue<V,K>::RValue(const V &value):
+constexpr Condition<V,K>::Condition(const V &value):
 	value(value),
 	key()
 {
@@ -155,7 +153,7 @@ constexpr RValue<V,K>::RValue(const V &value):
 
 
 template <class V, class K>
-constexpr RValue<V,K>::RValue(const V &value, const K &key):
+constexpr Condition<V,K>::Condition(const V &value, const K &key):
 	value(value),
 	key(key)
 {
@@ -164,17 +162,17 @@ constexpr RValue<V,K>::RValue(const V &value, const K &key):
 
 
 template <class V, class K>
-RValue<V,K>::~RValue()
+Condition<V,K>::~Condition()
 {
 }
 
 
 
-// Allow construction and assignment between RValue types to
+// Allow construction and assignment between Condition types to
 // facilitate type conversion.
 template <class V, class K>
 template <class V2, class K2>
-RValue<V,K>::RValue(const RValue<V2,K2> &other):
+Condition<V,K>::Condition(const Condition<V2,K2> &other):
 	value(static_cast<ValueType>(other.Value())),
 	key(static_cast<KeyType>(other.Key()))
 {
@@ -182,11 +180,11 @@ RValue<V,K>::RValue(const RValue<V2,K2> &other):
 
 
 
-// Allow construction and assignment between RValue types to
+// Allow construction and assignment between Condition types to
 // facilitate type conversion.
 template <class V, class K>
 template <class V2, class K2>
-RValue<V,K> &RValue<V,K>::operator = (const RValue<V2,K2> &other)
+Condition<V,K> &Condition<V,K>::operator = (const Condition<V2,K2> &other)
 {
 	value = static_cast<ValueType>(other.Value());
 	if(Key().empty())
@@ -199,7 +197,7 @@ RValue<V,K> &RValue<V,K>::operator = (const RValue<V2,K2> &other)
 // Update the value from a scope that contains it
 template <class V, class K>
 template <class Getter>
-const V &RValue<V,K>::UpdateConditions(const Getter &getter)
+const V &Condition<V,K>::UpdateConditions(const Getter &getter)
 {
 	// If this was a literal, do nothing.
 	if(!WasLValue())
@@ -222,7 +220,7 @@ const V &RValue<V,K>::UpdateConditions(const Getter &getter)
 // Update the value from a scope that contains it
 template <class V, class K>
 template <class Getter, class Validator>
-const V &RValue<V,K>::UpdateConditions(const Getter &getter, Validator validator)
+const V &Condition<V,K>::UpdateConditions(const Getter &getter, Validator validator)
 {
 	// If this was a literal, do nothing.
 	if(!WasLValue())
@@ -243,11 +241,11 @@ const V &RValue<V,K>::UpdateConditions(const Getter &getter, Validator validator
 
 
 template <class V, class K>
-const V &RValue<V,K>::Value() const
+const V &Condition<V,K>::Value() const
 {
 #ifdef DEBUG_RVALUE_CONDITIONS
 	if(!key.empty() && value == BadValue)
-		throw std::runtime_error("Found uninitialized value with key \""+key+"\"");
+		throw std::runtime_error("Found uninitialized value with key \"" + key + "\"");
 #endif
 	return value;
 }
@@ -255,23 +253,23 @@ const V &RValue<V,K>::Value() const
 
 
 template <class V, class K>
-V &RValue<V,K>::Value()
+V &Condition<V,K>::Value()
 {
 #ifdef DEBUG_RVALUE_CONDITIONS
 	if(!key.empty() && value == BadValue)
-		throw std::runtime_error("Found uninitialized value with key \""+key+"\"");
+		throw std::runtime_error("Found uninitialized value with key \"" + key + "\"");
 #endif
 	return value;
 }
 
 
 
-// Does this RValue come from the same place as the other one?
+// Does this Condition come from the same place as the other one?
 // If it was an lvalue, the key must be the same.
 // For literals, this means the value is the same.
 // You can think of this as an operator== that cares about the key.
 template <class V, class K>
-bool RValue<V,K>::SameOrigin(const RValue<V,K> &o)
+bool Condition<V,K>::SameOrigin(const Condition<V,K> &o)
 {
 	if(WasLValue())
 		return key == o.Key();

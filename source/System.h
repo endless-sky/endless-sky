@@ -162,7 +162,7 @@ public:
 	double Exports(const std::string &commodity) const;
 
 	// Get the probabilities of various fleets entering this system.
-	const std::vector<RandomEvent<Fleet, RValue<int>>> &Fleets() const;
+	const std::vector<RandomEvent<Fleet, Condition<int>>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
@@ -216,7 +216,7 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
-	std::vector<RandomEvent<Fleet, RValue<int>>> fleets;
+	std::vector<RandomEvent<Fleet, Condition<int>>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;

@@ -326,6 +326,7 @@
 		A96862E71AE6FD0A004FE1FE /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = source/Color.h; sourceTree = "<group>"; };
 		A96862E81AE6FD0A004FE1FE /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Command.cpp; path = source/Command.cpp; sourceTree = "<group>"; };
 		A96862E91AE6FD0A004FE1FE /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Command.h; path = source/Command.h; sourceTree = "<group>"; };
+		A96862EA1AE6FD0A004FE1FE /* Condition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Condition.cpp; path = source/Condition.cpp; sourceTree = "<group>"; };
 		A96862EA1AE6FD0A004FE1FE /* ConditionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConditionSet.cpp; path = source/ConditionSet.cpp; sourceTree = "<group>"; };
 		A96862EB1AE6FD0A004FE1FE /* ConditionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConditionSet.h; path = source/ConditionSet.h; sourceTree = "<group>"; };
 		A96862EC1AE6FD0A004FE1FE /* Conversation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Conversation.cpp; path = source/Conversation.cpp; sourceTree = "<group>"; };
@@ -452,7 +453,6 @@
 		A968636A1AE6FD0D004FE1FE /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Random.h; path = source/Random.h; sourceTree = "<group>"; };
 		A968636B1AE6FD0D004FE1FE /* RingShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RingShader.cpp; path = source/RingShader.cpp; sourceTree = "<group>"; };
 		A968636C1AE6FD0D004FE1FE /* RingShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RingShader.h; path = source/RingShader.h; sourceTree = "<group>"; };
-		A968636C1AE6FD0D004FE1FE /* RValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RValue.h; path = source/RValue.h; sourceTree = "<group>"; };
 		A968636D1AE6FD0D004FE1FE /* Sale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sale.h; path = source/Sale.h; sourceTree = "<group>"; };
 		A968636E1AE6FD0D004FE1FE /* SavedGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SavedGame.cpp; path = source/SavedGame.cpp; sourceTree = "<group>"; };
 		A968636F1AE6FD0D004FE1FE /* SavedGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SavedGame.h; path = source/SavedGame.h; sourceTree = "<group>"; };
@@ -631,6 +631,7 @@
 				A96862E71AE6FD0A004FE1FE /* Color.h */,
 				A96862E81AE6FD0A004FE1FE /* Command.cpp */,
 				A96862E91AE6FD0A004FE1FE /* Command.h */,
+				A96862EA1AE6FD0A004FE1FE /* Condition.h */,
 				A96862EA1AE6FD0A004FE1FE /* ConditionSet.cpp */,
 				A96862EB1AE6FD0A004FE1FE /* ConditionSet.h */,
 				4256486EA97E57BBB38CDAF2 /* ConditionsStore.cpp */,
@@ -835,7 +836,6 @@
 				A90C15DB1D5BD56800708F3A /* Rectangle.h */,
 				A968636B1AE6FD0D004FE1FE /* RingShader.cpp */,
 				A968636C1AE6FD0D004FE1FE /* RingShader.h */,
-				A968636C1AE6FD0D004FE1FE /* RValue.h */,
 				A968636D1AE6FD0D004FE1FE /* Sale.h */,
 				A968636E1AE6FD0D004FE1FE /* SavedGame.cpp */,
 				A968636F1AE6FD0D004FE1FE /* SavedGame.h */,

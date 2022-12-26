@@ -46,7 +46,7 @@ class System;
 // AI personality, and set of friendly and hostile "hail" messages, and the ship
 // names are chosen based on a given random "phrase" generator.
 class Fleet {
-	typedef RValue<unsigned> WeightType;
+	typedef Condition<unsigned> WeightType;
 public:
 	Fleet() = default;
 	// Construct and Load() at the same time.
@@ -102,7 +102,7 @@ private:
 	const Phrase *fighterNames = nullptr;
 	WeightedList<Variant,WeightType> variants;
 	// The number of different items the ships in this fleet will carry in cargo.
-	RValue<int> cargo;
+	Condition<int> cargo;
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
 

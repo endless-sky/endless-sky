@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include "RValue.h"
+#include "Condition.h"
 
 
 class ConditionsStore;
@@ -69,8 +69,8 @@ public:
 	int PrintTrace(const std::string &message = "") const;
 
 	// Get the value, and if it was a variable, the variable name
-	RValue<double> AsRValue(int index, const ConditionsStore *vars = nullptr,
-		double ifMissing = RValue<double>::BadValue) const;
+	Condition<double> AsCondition(int index, const ConditionsStore *vars = nullptr,
+		double ifMissing = Condition<double>::BadValue) const;
 
 private:
 	// Adjust the parent pointers when a copy is made of a DataNode.

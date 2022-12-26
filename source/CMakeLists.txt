@@ -85,6 +85,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Color.h
 	Command.cpp
 	Command.h
+	Condition.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -277,7 +278,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Rectangle.h
 	RingShader.cpp
 	RingShader.h
-	RValue.h
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h

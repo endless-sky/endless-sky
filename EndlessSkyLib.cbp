@@ -100,6 +100,7 @@
 		<Unit filename="source/Color.h" />
 		<Unit filename="source/Command.cpp" />
 		<Unit filename="source/Command.h" />
+		<Unit filename="source/Condition.h" />
 		<Unit filename="source/ConditionSet.cpp" />
 		<Unit filename="source/ConditionSet.h" />
 		<Unit filename="source/ConditionsStore.cpp" />
@@ -292,7 +293,6 @@
 		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />
 		<Unit filename="source/RingShader.h" />
-		<Unit filename="source/RValue.h" />
 		<Unit filename="source/Sale.h" />
 		<Unit filename="source/SavedGame.cpp" />
 		<Unit filename="source/SavedGame.h" />

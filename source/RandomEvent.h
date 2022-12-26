@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define RANDOMEVENT_H_
 
 
-#include "RValue.h"
+#include "Condition.h"
 
 
 
@@ -28,9 +28,9 @@ struct PeriodTypeHasConditions
 };
 
 template <class V, class K>
-struct PeriodTypeHasConditions<RValue<V, K>>
+struct PeriodTypeHasConditions<Condition<V, K>>
 {
-	static bool HasConditions(const RValue<V, K> &t) { return t.WasLValue(); }
+	static bool HasConditions(const Condition<V, K> &t) { return t.WasLValue(); }
 };
 
 

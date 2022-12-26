@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 #include "ConditionsStore.h"
-#include "RValue.h"
+#include "Condition.h"
 
 class DataNode;
 class Ship;
@@ -39,7 +39,7 @@ public:
 	// Determine if this variant template uses well-defined data.
 	bool IsValid() const;
 
-	const RValue<int> &Weight() const;
+	const Condition<int> &Weight() const;
 	const std::vector<const Ship *> &Ships() const;
 
 	void UpdateConditions(const ConditionsStore &vars);
@@ -52,7 +52,7 @@ public:
 
 
 private:
-	RValue<int> weight;
+	Condition<int> weight;
 	std::vector<const Ship *> ships;
 };
 

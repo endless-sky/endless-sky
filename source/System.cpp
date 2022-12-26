@@ -239,7 +239,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.AsRValue(valueIndex + 1, nullptr, 0), true);
+				fleets.emplace_back(fleet, child.AsCondition(valueIndex + 1, nullptr, 0), true);
 		}
 		else if(key == "hazard")
 		{
@@ -873,7 +873,7 @@ bool System::HasConditions() const
 
 
 // Get the probabilities of various fleets entering this system.
-const vector<RandomEvent<Fleet, RValue<int>>> &System::Fleets() const
+const vector<RandomEvent<Fleet, Condition<int>>> &System::Fleets() const
 {
 	return fleets;
 }
