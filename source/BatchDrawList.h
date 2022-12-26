@@ -30,8 +30,13 @@ class Sprite;
 // sprite, so all instances of each sprite can be drawn with a single command.
 class BatchDrawList {
 private:
-	class DrawElement {
-	public:
+	// A struct to hold the data that is assigned to a sprite.
+	struct DrawElement {
+		// Each sprite consists of six vertices (four vertices to form a quad and
+		// two dummy vertices to mark the break in between them). Each of those
+		// vertices has five attributes: (x, y) position in pixels, (s, t) texture
+		// coordinates, and the index of the sprite frame.
+		// Each Sprite has also an alpha value asigned.
 		std::vector<float> vertices;
 		double alpha;
 	};
@@ -62,11 +67,6 @@ private:
 	bool isHighDPI = false;
 	Point center;
 
-	// Each sprite consists of six vertices (four vertices to form a quad and
-	// two dummy vertices to mark the break in between them). Each of those
-	// vertices has five attributes: (x, y) position in pixels, (s, t) texture
-	// coordinates, and the index of the sprite frame.
-	// Each Sprite has also an alpha value asigned.
 	std::map<const Sprite *, DrawElement> data;
 };
 
