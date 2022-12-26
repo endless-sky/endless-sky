@@ -31466,10 +31466,10 @@ system Yli
 		offset 180
 	object
 		sprite star/k8
-		distance 2.74276
+		distance 2.742
 		period 61.1493
 	object
-		sprite planet/fg_terrestrial6
+		sprite planet/rock0
 		distance 296
 		period 101.220
 	object "Dlia Jzaur"
