@@ -100,7 +100,6 @@ void Wormhole::Load(const DataNode &node)
 		}
 		else if(key == "color" && child.Size() >= 3 + valueIndex)
 			linkColor = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
-
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		else
