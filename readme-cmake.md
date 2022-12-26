@@ -63,13 +63,21 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 Here's a summary of every command you will need for development:
 
 ```bash
-$ cmake --preset <preset>               # configure project (only needs to be done once)
-$ cmake --build --preset <preset>-debug # actually build Endless Sky (as well as any tests)
-$ ./build/<preset>/Debug/endless-sky    # run the game
-$ ctest --preset <preset>-test          # run the unit tests
-$ ctest --preset <preset>-benchmark     # run the benchmarks
-$ ctest --preset <preset>-integration   # run the integration tests (Linux only)
+$ cmake --preset <preset>                     # configure project (only needs to be done once)
+$ cmake --build --preset <preset>-debug       # actually build Endless Sky (as well as any tests)
+$ ./build/<preset>/Debug/endless-sky          # run the game
+$ ctest --preset <preset>-test                # run the unit tests
+$ ctest --preset <preset>-benchmark           # run the benchmarks
+$ ctest --preset <preset>-integration         # run the integration tests (Linux only)
 ```
+
+If you'd like to debug a specific integration test (on any OS), you can do so as follows:
+
+```bash
+$ ctest --preset <preset>-integration-debug -R <name>
+```
+
+You can get a list of integration tests with `ctest --preset <preset>-integration-debug -N`.
 
 (You can also use the `<preset>-release` preset for a release build, and the output will be in the Release folder).
 
@@ -83,9 +91,9 @@ Replace `<preset>` with one of the following presets:
 
 ## Building with Visual Studio Code
 
-Install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions and open the project folder under File -> Open Folder.
+Install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools), [CMake Test explorer](https://marketplace.visualstudio.com/items?itemName=fredericbonnet.cmake-test-adapter) extensions and open the project folder under File -> Open Folder.
 
-You'll be asked to select a preset. Select the one you want (see the table above). If you get asked to configure the project, click on Yes. You can use the bar at the very bottom to select between different configurations (Debug/Release), build, start the game, and execute the unit tests.
+You'll be asked to select a preset. Select the one you want (see the table above). If you get asked to configure the project, click on Yes. You can use the bar at the very bottom to select between different configurations (Debug/Release), build, start the game, and execute the unit tests. On the left you can click on the test icon to run individual integration tests.
 
 ## Building with Code::Blocks
 
