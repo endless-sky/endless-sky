@@ -19,12 +19,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Logger.h"
 #include "Music.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Playlist.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Random.h"
 #include "Sound.h"
+#include "System.h"
 
 #if !defined(__APPLE__) || defined(ES_CMAKE)
 #include <AL/al.h>
@@ -294,65 +296,76 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 	if(!isInitialized)
 		return;
 
-	if(Preferences::Has("ingame music"))
+	// Music defined by planet
+	if(state == Track::GameState::LANDED)
+		if(!player.GetPlanet()->MusicName().empty())
+		{
+			PlayMusic(player.GetPlanet()->MusicName());
+			return;
+		}
+	else
+		if(player.GetSystem()->MusicName().empty())
+		{
+			PlayMusic(player.GetSystem()->MusicName());
+			return;
+		}
+
+	// If the current playlists conditions are not matching anymore, search a new one.
+	bool currentPlaylistValid = currentPlaylist ?
+		currentPlaylist->MatchingConditions(player) : false;
+	// The track has to be updated if the current track is finished or the playlist is not matching
+	// anymore.
+	if(currentTrack->IsFinished() || !currentPlaylistValid)
 	{
-		// If the current playlists conditions are not matching anymore, search a new one.
-		bool currentPlaylistValid = currentPlaylist ?
-			currentPlaylist->MatchingConditions(player) : false;
-		// The track has to be updated if the current track is finished or the playlist is not matching
-		// anymore.
-		if(currentTrack->IsFinished() || !currentPlaylistValid)
+		if(!currentPlaylistValid)
 		{
-			if(!currentPlaylistValid)
-			{
-				// If the current playlist is not valid, find a new one based on priority and weight.
-				WeightedList<const Playlist *> validPlaylists;
-				int priority = 0;
-				for(auto &playlist : GameData::Playlists())
-					if(playlist.second.MatchingConditions(player))
+			// If the current playlist is not valid, find a new one based on priority and weight.
+			WeightedList<const Playlist *> validPlaylists;
+			int priority = 0;
+			for(auto &playlist : GameData::Playlists())
+				if(playlist.second.MatchingConditions(player))
+				{
+					// Higher priorities always win.
+					if(playlist.second.Priority() == priority)
+						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
+					else if(playlist.second.Priority() > priority)
 					{
-						// Higher priorities always win.
-						if(playlist.second.Priority() == priority)
-							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
-						else if(playlist.second.Priority() > priority)
-						{
-							priority = playlist.second.Priority();
-							validPlaylists.clear();
-							validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
-						}
+						priority = playlist.second.Priority();
+						validPlaylists.clear();
+						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
 					}
-				if(!validPlaylists.empty())
-				{
-					// This will return a random playlist, with playlist with a higher weight being more
-					// probable to be returned.
-					currentPlaylist = validPlaylists.Get();
-					currentPlaylist->Activate();
 				}
-				else
-					currentPlaylist = nullptr;
-			}
-			// Only switch to a new track if a playlist is set.
-			if(currentPlaylist)
+			if(!validPlaylists.empty())
 			{
-				currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
-				if(currentPlaylistTrack)
-				{
-					musicVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
-					SetMusicVolume(volume);
-					PlayMusic(currentPlaylistTrack->GetTitle(state));
-				}
-				oldState = state;
+				// This will return a random playlist, with playlist with a higher weight being more
+				// probable to be returned.
+				currentPlaylist = validPlaylists.Get();
+				currentPlaylist->Activate();
 			}
-			// If no playlist is set this means nothing should be played, so stop everything.
 			else
-				currentTrack->Finish();
+				currentPlaylist = nullptr;
 		}
-		if(oldState != state)
+		// Only switch to a new track if a playlist is set.
+		if(currentPlaylist)
 		{
-			oldState = state;
+			currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
 			if(currentPlaylistTrack)
+			{
+				musicVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
+				SetMusicVolume(volume);
 				PlayMusic(currentPlaylistTrack->GetTitle(state));
+			}
+			oldState = state;
 		}
+		// If no playlist is set this means nothing should be played, so stop everything.
+		else
+			currentTrack->Finish();
+	}
+	if(oldState != state)
+	{
+		oldState = state;
+		if(currentPlaylistTrack)
+			PlayMusic(currentPlaylistTrack->GetTitle(state));
 	}
 }
 

@@ -476,7 +476,6 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		"In-game music",
 		"Show status overlays",
 		"Show missile overlays",
 		"Highlight player's flagship",

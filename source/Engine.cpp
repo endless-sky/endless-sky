@@ -518,8 +518,6 @@ void Engine::Step(bool isActive)
 		// If there are hostile ships in the system, set the state to COMBAT.
 		if(hadHostiles)
 			state = Track::GameState::COMBAT;
-		if(player.GetPlanet())
-			state = Track::GameState::LANDED;
 		Audio::UpdateMusic(player, state);
 	}
 
