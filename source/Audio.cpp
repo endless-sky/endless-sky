@@ -298,17 +298,21 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 
 	// Music defined by planet
 	if(state == Track::GameState::LANDED)
+	{
 		if(!player.GetPlanet()->MusicName().empty())
 		{
 			PlayMusic(player.GetPlanet()->MusicName());
 			return;
 		}
+	}
 	else
+	{
 		if(player.GetSystem()->MusicName().empty())
 		{
 			PlayMusic(player.GetSystem()->MusicName());
 			return;
 		}
+	}
 
 	// If the current playlists conditions are not matching anymore, search a new one.
 	bool currentPlaylistValid = currentPlaylist ?
