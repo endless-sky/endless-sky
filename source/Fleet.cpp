@@ -211,7 +211,7 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 				resetVariants = false;
 				variants.clear();
 			}
-			RValue<int> weight;
+			RValue<int> weight(1);
 			if(child.Size() >= add + 2)
 				weight = child.AsRValue(add + 1, &vars, 1);
 			variants.emplace_back(weight, child);
@@ -288,7 +288,16 @@ void Fleet::UpdateConditions(const ConditionsStore &vars)
 {
 	if(!hasConditions)
 		return;
+	printf("Update variant conditions. (total weight was %d)\n",int(variants.TotalWeight()));
 	variants.UpdateConditions(vars);
+	variants.Any([&](const RValue<int> &w,const Variant &v)
+	{
+		typedef long long int lli;
+		printf("Variant weight %d from \"%s\" = %lld\n",
+			int(w),w.Key().c_str(),lli(vars.Get(w.Key())));
+		return false;
+	});
+	printf("Done updating variant conditions. (total weight is %d)\n",int(variants.TotalWeight()));
 }
 
 
@@ -304,7 +313,9 @@ bool Fleet::HasConditions() const
 // Does this fleet have any variants with non-zero arrival rates?
 bool Fleet::HasActiveVariants() const
 {
-	return variants.TotalWeight();
+	size_t weight=variants.TotalWeight();
+	printf("HasActiveVariants? %d\n",int(weight));
+	return static_cast<bool>(weight);
 }
 
 

@@ -25,7 +25,8 @@ using namespace std;
 
 
 
-Variant::Variant(const DataNode &node)
+Variant::Variant(const DataNode &node):
+	weight(1)
 {
 	Load(node);
 }
@@ -35,9 +36,9 @@ Variant::Variant(const DataNode &node)
 void Variant::Load(const DataNode &node)
 {
 	if(node.Token(0) == "variant" && node.Size() >= 2)
-		weight = max<int>(1, node.Value(1));
+		weight = node.AsRValue(1,nullptr,1);
 	else if(node.Token(0) == "add" && node.Size() >= 3)
-		weight = max<int>(1, node.Value(2));
+		weight = node.AsRValue(2,nullptr,1);
 
 	for(const DataNode &child : node)
 	{
@@ -63,7 +64,7 @@ bool Variant::IsValid() const
 
 
 
-int Variant::Weight() const
+const RValue<int> &Variant::Weight() const
 {
 	return weight;
 }
@@ -73,6 +74,13 @@ int Variant::Weight() const
 const vector<const Ship *> &Variant::Ships() const
 {
 	return ships;
+}
+
+
+
+void Variant::UpdateConditions(const ConditionsStore &vars)
+{
+	weight.UpdateConditions(vars);
 }
 
 

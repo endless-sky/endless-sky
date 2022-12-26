@@ -81,7 +81,7 @@ template <typename T, typename P>
 template <typename Getter>
 void RandomEvent<T,P>::UpdateConditions(const Getter &getter)
 {
-	period.Update(getter);
+	period.UpdateConditions(getter);
 }
 
 

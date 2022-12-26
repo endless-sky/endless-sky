@@ -2,7 +2,6 @@ mission Test
 	source Sunracer
 	on offer
 		conversation
-			label top
 			`How often should Korath appear in Cardax?`
 			choice
 				`	Never`
@@ -24,3 +23,100 @@ mission Test
 				"cardax korath raid" = 200
 			`	Period is 200 frames.`
 				defer
+
+mission Test2
+	landing
+	source Stormhold
+	on offer
+		conversation
+			`How much should Sparrows be weighted?`
+			choice
+				`	(No change.)`
+					goto osprey
+					to display
+						has "have weights"
+				`	100`
+					goto sparrow100
+				`	5`
+					goto sparrow5
+				`	1`
+					goto sparrow1
+				`	0 (never)`
+			action
+				"sparrow weight" = 0
+			`	sparrow weight = 0`
+				goto osprey
+			label sparrow1
+			action
+				"sparrow weight" = 1
+			`	sparrow weight = 1`
+				goto osprey
+			label sparrow5
+			action
+				"sparrow weight" = 5
+			`	sparrow weight = 5`
+				goto osprey
+			label sparrow100
+			action
+				"sparrow weight" = 100
+			`	sparrow weight = 100`
+			label osprey
+			`How much should Ospreys be weighted?`
+			choice
+				`	(No change.)`
+					goto end
+					to display
+						has "have weights"
+				`	100`
+					goto osprey100
+				`	5`
+					goto osprey5
+				`	1`
+					goto osprey1
+				`	0 (never)`
+			action
+				"osprey weight" = 0
+			`	osprey weight = 0`
+				goto end
+			label osprey1
+			action
+				"osprey weight" = 1
+			`	osprey weight = 1`
+				goto end
+			label osprey5
+			action
+				"osprey weight" = 5
+			`	osprey weight = 5`
+				goto end
+			label osprey100
+			action
+				"osprey weight" = 100
+			`	osprey weight = 100`
+				goto end
+			label end
+			action
+				"have weights" = 1
+			`	Any changes will take effect after you depart and land since the spaceport mission Test3 is already instantiated, or not, based on conditions upon landing.`
+				defer
+
+
+mission Test3
+	source Stormhold
+	destination Stormhold
+	name "Escort variant count test."
+	description "Return all escorts to Stormhold alive."
+	repeat
+	to offer
+		has "have weights"
+	on offer
+		conversation
+			`Spawning some escorts.`
+				accept
+	npc save
+		personality waiting escort
+		fleet 10
+			variant "sparrow weight"
+				Sparrow
+			variant "osprey weight"
+				Osprey
+

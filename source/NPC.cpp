@@ -611,11 +611,24 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		if(fleet->HasConditions())
 		{
 			Fleet instantiated(*fleet);
+			printf("Update conditions on instantiated fleet.\n");
 			instantiated.UpdateConditions(vars);
-			instantiated.Place(*result.system, result.ships, false);
+			printf("Check for active variants on instantiated fleet.\n");
+			if(instantiated.HasActiveVariants())
+			{
+				printf("Fleet has active variants.\n");
+				instantiated.Place(*result.system, result.ships, false);
+			}
+			else
+				printf("Skip fleet with no active variants.\n");
+		}
+		else if(fleet->HasActiveVariants())
+		{
+			printf("Place fleet without updating conditions.\n");
+			fleet->Place(*result.system, result.ships, false);
 		}
 		else
-			fleet->Place(*result.system, result.ships, false);
+			printf("Skip fleet with no active variants.\n");
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{

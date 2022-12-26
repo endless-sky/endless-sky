@@ -69,7 +69,7 @@ public:
 
 	// Update the value from a scope that contains it
 	template<class Getter>
-	const ValueType &Update(const Getter &getter);
+	const ValueType &UpdateConditions(const Getter &getter);
 
 	// Accessors and mutators
 
@@ -127,7 +127,7 @@ RValue<V,K> &RValue<V,K>::operator = (const RValue<V2,K2> &other)
 // Update the value from a scope that contains it
 template <class V, class K>
 template <class Getter>
-const V &RValue<V,K>::Update(const Getter &getter)
+const V &RValue<V,K>::UpdateConditions(const Getter &getter)
 {
 	// If this was a literal, do nothing.
 	if(!WasLValue())

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WEIGHTED_LIST_H_
 
 #include "Random.h"
+#include "RValue.h"
 
 #include <cstddef>
 #include <iterator>
@@ -60,9 +61,9 @@ public:
 	template <class Getter>
 	void UpdateConditions(const Getter &c);
 
-	// Weights must be at least one, and must be finite.
+	// Weights must be at least zero, and must be finite.
 	template <class T>
-	static bool IsAValidWeight(const T &t) { return t >= 1 && (t + 1 > t); }
+	static bool IsAValidWeight(const T &t) { return t >= 0 && (t + 1 > t); }
 
 	// At least one choice has c(weight,choice) = true
 	template <class Callable>
@@ -100,6 +101,23 @@ private:
 	std::vector<WeightType> weights;
 	std::size_t total = 0;
 };
+
+
+
+template <class T,class U>
+void AssignWeight(T &t,U u)
+{
+	static_assert(std::is_integral<T>::value, "AssignWeight takes only integral types or RValues");
+	t = u;
+}
+
+
+
+template <class T,class U>
+void AssignWeight(RValue<T> &t,U u)
+{
+	t.Value() = u;
+}
 
 
 
@@ -152,12 +170,29 @@ const Type &WeightedList<Type,WeightType>::Get() const
 		// When no fleets are enabled, return the first.
 		return choices[0];
 
-	unsigned index = 0;
-	for(unsigned choice = Random::Int(total); weights[index] &&
-			choice >= static_cast<unsigned>(weights[index]); ++index)
-		choice -= static_cast<unsigned>(weights[index]);
+	unsigned choice0 = Random::Int(total);
+	unsigned choice = choice0;
+	for(unsigned index = 0; index < weights.size() ; ++index)
+	{
+		typedef long long ll;
+		printf("Try weight %lld with choice %lld\n",ll(weights[index]),ll(choice));
+		if(!weights[index])
+			continue;
+		else if(choice < weights[index])
+		{
+			printf("Match.\n");
+			return choices[index];
+		}
+		else
+		{
+			printf("No match so choice is now %lld\n",ll(choice));
+			choice -= weights[index];
+		}
+	}
 
-	return choices[index];
+	// Failsafe. Should not get here.
+	printf("Reached WeightedList::Get failsafe from %u\n",choice0);
+	return choices[0];
 }
 
 
@@ -185,10 +220,9 @@ template <class ...Args>
 Type &WeightedList<Type,WeightType>::emplace_back(const WeightType &weight, Args&&... args)
 {
 	choices.emplace_back(std::forward<Args>(args)...);
-	if(IsAValidWeight(weight))
-		weights.emplace_back(weight);
-	else
-		weights.emplace_back();
+	weights.emplace_back(weight);
+	if(!IsAValidWeight(weights.back()))
+		AssignWeight(weights.back(), 0);
 	total += static_cast<std::size_t>(weights.back());
 	return choices.back();
 }
@@ -203,18 +237,14 @@ void WeightedList<Type, WeightType>::UpdateConditions(const Getter &getter)
 {
 	for(unsigned index = 0; index < choices.size(); ++index)
 	{
-		if(!weights[index].WasLValue())
-			continue;
-		auto result = getter.HasGet(weights[index].Key());
-		if(!result.first)
-			continue;
-		if(IsAValidWeight(result.second))
-			weights[index] = static_cast<WeightType>(result.second);
-		else
-			// Non-finite weights and small weights become 0
-			weights[index] = 0;
+		weights[index].UpdateConditions(getter);
+		if(!IsAValidWeight(weights[index]))
+			AssignWeight(weights[index], 0);
+		choices[index].UpdateConditions(getter);
+		printf("weight now %d\n",int(weights[index]));
 	}
 	RecalculateWeight();
+	printf("total weight now %d\n",int(total));
 }
 
 
@@ -224,7 +254,7 @@ template <class Type, class WeightType>
 template <class Callable>
 bool WeightedList<Type, WeightType>::Any(Callable c) const
 {
-	for(unsigned index = 0; index<choices.size() && weights[index]; ++index)
+	for(unsigned index = 0; index<choices.size(); ++index)
 		if(c(weights[index], choices[index]))
 			return true;
 	return false;

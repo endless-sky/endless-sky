@@ -19,6 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <vector>
 
+#include "ConditionsStore.h"
+#include "RValue.h"
+
 class DataNode;
 class Ship;
 
@@ -36,8 +39,10 @@ public:
 	// Determine if this variant template uses well-defined data.
 	bool IsValid() const;
 
-	int Weight() const;
+	const RValue<int> &Weight() const;
 	const std::vector<const Ship *> &Ships() const;
+
+	void UpdateConditions(const ConditionsStore &vars);
 
 	// The strength of a variant is the sum of the cost of its ships.
 	int64_t Strength() const;
@@ -47,7 +52,7 @@ public:
 
 
 private:
-	int weight = 1;
+	RValue<int> weight;
 	std::vector<const Ship *> ships;
 };
 
