@@ -1919,6 +1919,7 @@ phrase "friendly navy"
 phrase "friendly navy"
 	word
 		"Join the Navy."
+		"Enlist in the Navy."
 	word
 		" "
 	word
@@ -1947,6 +1948,7 @@ phrase "friendly navy"
 	word
 		"Join"
 		"Become part of"
+		"Enlist in "
 	word
 		" "
 	word
@@ -2217,6 +2219,8 @@ phrase "navy protection hail"
 		"defended"
 		"shielded"
 	word
+		" "
+	word
 		"you"
 		"mankind"
 		"humanity"
@@ -2242,8 +2246,8 @@ phrase "navy protection hail"
 	word
 		" "
 	word
-		"these skies" 4
-		"our galaxy" 2
+		"these skies"
+		"our galaxy"
 		"the Deep"
 		"the Rim"
 		"the South"
@@ -2278,8 +2282,9 @@ phrase "navy protection hail"
 		"harmony"
 		"security"
 		"hope"
+		"peace"
 	word
-		"" 3
+		"" 5
 		" and order"
 		" and justice"
 		" and concord"
@@ -2303,7 +2308,8 @@ phrase "friendly navy"
 		", "
 	word
 		"join the Navy!"
-		"enlist with the Navy!"
+		"enlist in the Navy!"
+		"become part of the Navy!"
 
 phrase "friendly navy"
 	word
@@ -2322,7 +2328,8 @@ phrase "friendly navy"
 		"? "
 	word
 		"Join the Navy!"
-		"Enlist with the Navy!"
+		"Enlist in the Navy!"
+		"Become part of the Navy!"
 
 phrase "things the navy does"
 	word
@@ -2346,13 +2353,13 @@ phrase "things the navy does"
 		"fight for the Republic"
 		"fight for humanity"
 		"fight for mankind"
-		"fight for Parliament"
 		"fight for democracy"
 		"fight for peace"
 		"defend humanity"
 		"defend the Republic"
 		"defend democracy"
-		"defend Parliament"
+		"save lives"
+		"improve the livelihoods of others"
 
 phrase "things the navy does"
 	word
@@ -2412,6 +2419,7 @@ phrase "things the navy does"
 		"stability"
 		"democracy"
 		"concord"
+		"liberty"
 
 phrase "friendly navy"
 	word
@@ -2431,8 +2439,8 @@ phrase "friendly navy"
 		"The Republic"
 		"The Navy"
 	word
-		"'s goal:" 2
-		"'s motto:" 2
+		"'s goal:" 4
+		"'s motto:" 4
 		"'s goal is to create"
 		"'s goal is to ensure"
 		" seeks"
@@ -2461,12 +2469,14 @@ phrase "friendly navy"
 		"The Navy exists"
 		"The Navy patrols"
 		"The Navy's duty is"
+		"The Navy's purpose is"
 		"We fight"
 		"We are here"
 		"We exist"
 		"We patrol these skies"
 		"We police these skies"
 		"Our duty is"
+		"Our purpose is"
 	word
 		" to "
 	phrase
@@ -2714,7 +2724,7 @@ phrase "friendly navy"
 		"It is an illicit act"
 		"It is a criminal act"
 	word
-		" " 3
+		"" 3
 		" under Republic law"
 		" by the laws of the Republic"
 		" by the laws of Parliament"
@@ -2730,7 +2740,6 @@ phrase "friendly navy"
 		"navy illegal acts"
 	word
 		"."
-
 
 phrase "navy illegal acts"
 	word
@@ -2829,6 +2838,9 @@ phrase "navy illegal acts"
 		"the order"
 		"merchant activity"
 		"mercantile activity"
+		"economic activity"
+		"commercial activity"
+		"trade lanes"
 		"civil order"
 
 phrase "navy illegal acts"
@@ -2850,11 +2862,16 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"paint your "
-		"decorate your "
+		"paint your ship in"
+		"paint your vessel in"
+		"decorate your ship in"
+		"decorate your vessel in"
+		"have your ship fly"
+		"have your ship display"
+		"fly"
+		"display"
 	word
-		"vessel in "
-		"ship in "
+		" "
 	word
 		"colors that would label you as a pirate"
 		"markings that would label you as a pirate"
@@ -2934,6 +2951,7 @@ phrase "friendly free worlds militia 2"
 		" "
 	word
 		"merchant"
+		"civilian"
 		"innocent life"
 		"innocent ship"
 		"inhabitant of this system"
@@ -3005,11 +3023,14 @@ phrase "friendly militia 3"
 		"the Navy"
 		"the Republic"
 		"a Navy fleet"
+		"Parliament"
 	word
 		" would help us out with these "
 	word
 		"pirates."
 		"criminals."
+		"warlords."
+		"marauders."
 
 # Militia hails shared with the Free Worlds. Some are Militia only. This should give each of these hail sets the same chance of appearing.
 phrase "friendly militia"
@@ -3198,6 +3219,11 @@ phrase "friendly free worlds 1"
 		"confident"
 		"equitable"
 		"brave"
+		"audacious"
+		"tenacious"
+		"bold"
+		"daring"
+		"valiant"
 	word
 		"! Be free!"
 
@@ -3374,7 +3400,6 @@ phrase "free worlds 6 variations"
 		"the Syndicate's "
 		"the Paradise Planets' "
 	word
-		"oppression"
 		"decadence"
 		"corruption"
 		"dishonesty"
@@ -3403,7 +3428,6 @@ phrase "free worlds 6 variations"
 	word
 		" the "
 	word
-		"oppression"
 		"corruption"
 		"loss"
 		"decay"
@@ -3580,6 +3604,7 @@ phrase "friendly free worlds 10"
 		"the rule of law"
 		"fighting for it"
 		"struggle"
+		"representation"
 	word
 		"!"
 		"! Join the Free Worlds!"
