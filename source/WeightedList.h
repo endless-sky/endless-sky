@@ -105,7 +105,7 @@ private:
 
 
 template <class T,class U>
-void AssignWeight(T &t,U u)
+void AssignWeight(T &t, U u)
 {
 	static_assert(std::is_integral<T>::value, "AssignWeight takes only integral types or RValues");
 	t = u;
@@ -243,7 +243,7 @@ template <class Type, class WeightType>
 template <class Callable>
 bool WeightedList<Type, WeightType>::Any(Callable c) const
 {
-	for(unsigned index = 0; index<choices.size(); ++index)
+	for(unsigned index = 0; index < choices.size(); ++index)
 		if(c(weights[index], choices[index]))
 			return true;
 	return false;
@@ -255,7 +255,7 @@ template <class Type, class WeightType>
 template <class Callable>
 bool WeightedList<Type, WeightType>::All(Callable c) const
 {
-	for(unsigned index = 0; index<choices.size(); ++index)
+	for(unsigned index = 0; index < choices.size(); ++index)
 		if(!c(weights[index], choices[index]))
 			return false;
 	return true;

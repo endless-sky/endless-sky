@@ -611,11 +611,11 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 			Fleet instantiated(*fleet);
 			instantiated.UpdateConditions(vars);
 			if(instantiated.HasActiveVariants())
-				for(int i=0; i<count; ++i)
+				for(int i = 0; i < count; ++i)
 					instantiated.Place(*result.system, result.ships, false);
 		}
 		else if(fleet->HasActiveVariants())
-			for(int i=0; i<count; ++i)
+			for(int i = 0; i < count; ++i)
 				fleet->Place(*result.system, result.ships, false);
 	}
 	// Ships should either "enter" the system or start out there.

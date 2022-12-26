@@ -1725,8 +1725,6 @@ void Engine::SpawnFleets()
 		if(fleet.Get()->CanPlace() && fleet.Period()>minimumFleetPeriod
 			&& !Random::Int(max(200,static_cast<int>(fleet.Period()))))
 		{
-			if(fleet.Period()<60)
-				printf("Spawn fleet with period %d\n",int(fleet.Period()));
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
 				continue;

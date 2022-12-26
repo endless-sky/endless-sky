@@ -42,7 +42,7 @@ public:
 	typedef T EventType;
 	typedef P PeriodType;
 
-	constexpr RandomEvent(const T *event, const P &period, bool overrideMinimum=false) noexcept;
+	constexpr RandomEvent(const T *event, const P &period, bool overrideMinimum = false) noexcept;
 
 	constexpr const T *Get() const noexcept;
 	constexpr const P &Period() const noexcept;

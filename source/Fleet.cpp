@@ -303,8 +303,7 @@ bool Fleet::HasConditions() const
 // Does this fleet have any variants with non-zero arrival rates?
 bool Fleet::HasActiveVariants() const
 {
-	size_t weight=variants.TotalWeight();
-	return static_cast<bool>(weight);
+	return static_cast<bool>(variants.TotalWeight());
 }
 
 
