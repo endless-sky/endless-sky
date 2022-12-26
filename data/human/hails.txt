@@ -2431,19 +2431,24 @@ phrase "friendly navy"
 		"The Republic"
 		"The Navy"
 	word
-		"'s goal:"
-		"'s motto:"
+		"'s goal:" 2
+		"'s motto:" 2
 		"'s goal is to create"
 		"'s goal is to ensure"
-		"seeks"
-		"wishes for"
-		"strives for"
-		"is advancing"
-		"ensures"
-		"promotes"
-		"is here to ensure"
-		"is here to advance"
-		"is here to promote"
+		" seeks"
+		" wishes for"
+		" strives for"
+		" aspires to achieve"
+		" seeks to achieve"
+		" strives to achieve"
+		" is advancing"
+		" ensures"
+		" promotes"
+		" believes in"
+		" works for"
+		" is here to ensure"
+		" is here to advance"
+		" is here to promote"
 	word
 		" "
 	word
@@ -2503,6 +2508,8 @@ phrase "navy purpose"
 		"serve"
 	word
 		" you"
+		" humanity"
+		" mankind"
 
 phrase "navy purpose"
 	word
@@ -2517,6 +2524,19 @@ phrase "navy purpose"
 		"liberty"
 		"your rights"
 
+phrase "navy purpose"
+	word
+		"protect "
+		"defend "
+		"guard "
+		"patrol "
+		"police "
+	word
+		"these skies"
+		"our galaxy"
+		"our worlds"
+		"the Republic"
+
 phrase "friendly navy"
 	word
 		"We are obligated to inform you that all"
@@ -2530,6 +2550,8 @@ phrase "friendly navy"
 		"By the laws of Parliament, all"
 		"By Republic law, all"
 		"We advise you that all"
+	word
+		" "
 	word
 		"civilian "
 		"merchant "
@@ -2668,7 +2690,7 @@ phrase "navy warning adverb"
 	word
 		"randomly "
 		"regularly "
-		" " 3
+		" "
 	word
 		"perform "
 		"conduct "
@@ -2682,7 +2704,7 @@ phrase "navy warning adverb"
 	word
 		"random "
 		"regular "
-		" " 3
+		" "
 
 phrase "friendly navy"
 	word 
@@ -2690,60 +2712,180 @@ phrase "friendly navy"
 		"It is prohibited"
 		"It is an illegal act"
 		"It is an illicit act"
+		"It is a criminal act"
 	word
-		"" 3
-		"under Republic law"
-		"by the laws of the Republic"
-		"by the laws of Parliament"
+		" " 3
+		" under Republic law"
+		" by the laws of the Republic"
+		" by the laws of Parliament"
 	word
 		" to "
 	word
 		"willingly "
 		"knowingly "
 		"deliberately "
-	word
-		"operate an unlicensed ship"
-		"pilot an unlicensed ship"
-		"have installed illegal outfits"
-		"transport contraband"
-		"transport ${contraband}"
-		"transport drugs"
-		"carry Nerve Gas in your hold"
-		"engage in the transportation of slaves"
-		"engage in the galactic slave trade"
-		"engage in slavery"
-		"attack merchants"
-		"attack merchant ships"
-		"attack Navy ships"
-		"attack corporate-affiliated ships"
-		"attack planetary security forces"
-		"attack corporate security forces"
-		"attack private ships"
-		"attack civilian ships"
-		"attack Republic ships"
-		"attack Syndicate ships"
-		"paint your ship in colors that would label you as a pirate"
-		"paint your ship in colors that would suggest piracy"
-		"paint your ship in illegal colors"
-		"paint your ship in uncivil colors"
+		"purposefully "
+		"" 2
+	phrase
+		"navy illegal acts"
 	word
 		"."
 
+
+phrase "navy illegal acts"
+	word
+		"install "
+		"use "
+		"employ "
+		"utilize "
+	word
+		"illegal "
+		"unauthorized "
+		"unlicenced "
+	word
+		"outfits"
+		"equipment"
+
+phrase "navy illegal acts"
+	word
+		"traffic "
+		"transport "
+		"smuggle "
+		"trade "
+		"deal "
+		"carry "
+	word
+		"${contraband}"
+
+phrase "navy illegal acts"
+	word
+		"engage in "
+		"participate in "
+		"become involved in "
+	word
+		"the transportation of slaves"
+		"the trafficking of slaves"
+		"the trading of slaves"
+		"the galactic slave trade"
+		"slavery"
+
+phrase "navy illegal acts"
+	word
+		"operate "
+		"pilot "
+	word
+		"an unlicensed "
+		"an unauthorized "
+		"an illegal "
+	word
+		"ship"
+		"warship"
+		"vessel"
+
+phrase "navy illegal acts"
+	word
+		"operate "
+		"pilot "
+	word
+		"unlicensed "
+		"unauthorized "
+		"illegal "
+	word
+		"ships"
+		"warships"
+		"vessels"
+
+phrase "navy illegal acts"
+	word
+		"attack"
+		"provoke"
+		"damage"
+		"destroy"
+		"disable"
+		"harm"
+		"plunder"
+		"seize control of"
+	word
+		" "
+	word
+		"merchants"
+		"merchant ships"
+		"Navy ships"
+		"corporate-affiliated ships"
+		"planetary security forces"
+		"corporate security forces"
+		"private ships"
+		"civilian ships"
+		"Republic ships"
+		"Syndicate ships"
+
+phrase "navy illegal acts"
+	word
+		"disrupt "
+		"disturb "
+		"interrupt "
+	word
+		"the peace"
+		"the order"
+		"merchant activity"
+		"mercantile activity"
+		"civil order"
+
+phrase "navy illegal acts"
+	word
+		"interdict"
+		"intercept"
+		"attack"
+		"obstruct"
+		"impede"
+	word
+		" "
+	word
+		"merchant activity"
+		"mercantile activity"
+		"merchant ships"
+		"merchant vessels"
+		"civilian ships"
+		"civilian vessels"
+
+phrase "navy illegal acts"
+	word
+		"paint your "
+		"decorate your "
+	word
+		"vessel in "
+		"ship in "
+	word
+		"colors that would label you as a pirate"
+		"markings that would label you as a pirate"
+		"colors that would suggest piracy"
+		"markings that would suggest piracy"
+		"illegal colors"
+		"illegal markings"
+		"uncivil colors"
+		"uncivil markings"
+		"pirate colors"
+		"pirate markings"
+		"anarchist colors"
+		"anarchist markings"
+
 phrase "friendly navy"
 	word
-		"Anybody" 
-		"Any ship"
+		"Anybody " 
+		"Any ship "
 	word
-		" found in breach of "
-		" that has broken "
+		"found in breach of "
+		"that has broken "
 	word
-		"Republic law" 
-		"the laws of Parliament"
-		"the laws of the Republic"
+		"Republic law "
+		"the laws of Parliament "
+		"the laws of the Republic "
 	word
 		"will be fined"
+		"will face fines"
 		"will face penalties"
 		"will face severe penalties"
+		"may be penalized"
 		"may be imprisoned"
 		"may be sentenced to prison"
 		"may be sent to a penal colony"
