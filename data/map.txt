@@ -2419,9 +2419,10 @@ system "Aik Kamgatake"
 	minables copper 32 3.06
 	object
 		sprite star/nova-core
+		period 1000
 	object
 		sprite star/nova
-		period 10
+		period 1000
 	object
 		sprite planet/cloud3
 		distance 3966.2
@@ -4609,8 +4610,11 @@ system Anbrim
 	minables yottrite 2 6.7
 	fleet "Scin Transport" 4000
 	object
+		sprite star/nova-core
+		period 1000
+	object
 		sprite star/nova
-		period 10
+		period 1000
 	object
 		sprite planet/oberon-b
 		distance 1001
@@ -4627,8 +4631,6 @@ system Anbrim
 		sprite planet/rhea-b
 		distance 13205
 		period 7153.21
-	object
-		sprite star/f3
 
 system "Ancient Hope"
 	pos -1159.59 702.051
