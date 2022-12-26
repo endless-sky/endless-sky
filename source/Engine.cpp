@@ -1281,10 +1281,7 @@ void Engine::EnterSystem()
 		for(const auto &fleet : system->Fleets())
 			if(fleet.Get()->CanPlace() && fleet.Period()>minimumFleetPeriod
 					&& Random::Int(max(200,static_cast<int>(fleet.Period()))) < 60)
-			{
-				printf("Initial spawn of fleet with period %d\n",int(fleet.Period()));
 				fleet.Get()->Place(*system, newShips);
-			}
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{

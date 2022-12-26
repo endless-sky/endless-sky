@@ -164,10 +164,7 @@ const V &RValue<V,K>::UpdateConditions(const Getter &getter)
 	// Assumes: got.first = true iff getter has key
 	// got.second = value iff got.first
 	if(got.first)
-	{
 		value = static_cast<ValueType>(got.second);
-		printf("RValue %s updated to %f\n",key.c_str(),double(value));
-	}
 #ifdef DEBUG_RVALUE_CONDITIONS
 	// If the value hasn't been initialized, use the default value
 	else if(value == BadValue)

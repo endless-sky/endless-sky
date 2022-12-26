@@ -516,7 +516,6 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 
 void UniverseObjects::UpdateConditions(const ConditionsStore &vars)
 {
-	printf("UniverseObjects::UpdateConditions\n");
 	for(auto &fleet : fleets)
 		fleet.second.UpdateConditions(vars);
 	for(auto &system : systems)

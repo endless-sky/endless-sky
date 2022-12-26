@@ -174,24 +174,15 @@ const Type &WeightedList<Type,WeightType>::Get() const
 	unsigned choice = choice0;
 	for(unsigned index = 0; index < weights.size() ; ++index)
 	{
-		typedef long long ll;
-		printf("Try weight %lld with choice %lld\n",ll(weights[index]),ll(choice));
 		if(!weights[index])
 			continue;
 		else if(choice < weights[index])
-		{
-			printf("Match.\n");
 			return choices[index];
-		}
 		else
-		{
-			printf("No match so choice is now %lld\n",ll(choice));
 			choice -= weights[index];
-		}
 	}
 
 	// Failsafe. Should not get here.
-	printf("Reached WeightedList::Get failsafe from %u\n",choice0);
 	return choices[0];
 }
 
@@ -241,10 +232,8 @@ void WeightedList<Type, WeightType>::UpdateConditions(const Getter &getter)
 		if(!IsAValidWeight(weights[index]))
 			AssignWeight(weights[index], 0);
 		choices[index].UpdateConditions(getter);
-		printf("weight now %d\n",int(weights[index]));
 	}
 	RecalculateWeight();
-	printf("total weight now %d\n",int(total));
 }
 
 

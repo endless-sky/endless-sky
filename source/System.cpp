@@ -436,8 +436,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			hasConditions = true;
 			break;
 		}
-	if(hasConditions)
-		printf("System has conditions.\n");
 }
 
 

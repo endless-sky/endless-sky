@@ -234,8 +234,6 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 
 	hasConditions = cargo.WasLValue() ||
 		variants.Any([](const WeightType &w, const Variant &v) noexcept -> bool { return w.WasLValue(); });
-	if(hasConditions)
-		printf("Fleet has conditions.\n");
 }
 
 
@@ -288,16 +286,7 @@ void Fleet::UpdateConditions(const ConditionsStore &vars)
 {
 	if(!hasConditions)
 		return;
-	printf("Update variant conditions. (total weight was %d)\n",int(variants.TotalWeight()));
 	variants.UpdateConditions(vars);
-	variants.Any([&](const RValue<int> &w,const Variant &v)
-	{
-		typedef long long int lli;
-		printf("Variant weight %d from \"%s\" = %lld\n",
-			int(w),w.Key().c_str(),lli(vars.Get(w.Key())));
-		return false;
-	});
-	printf("Done updating variant conditions. (total weight is %d)\n",int(variants.TotalWeight()));
 	cargo.UpdateConditions(vars);
 }
 
@@ -315,7 +304,6 @@ bool Fleet::HasConditions() const
 bool Fleet::HasActiveVariants() const
 {
 	size_t weight=variants.TotalWeight();
-	printf("HasActiveVariants? %d\n",int(weight));
 	return static_cast<bool>(weight);
 }
 
@@ -324,11 +312,7 @@ bool Fleet::HasActiveVariants() const
 // Is it possible to place this fleet via Place()?
 bool Fleet::CanPlace() const
 {
-	bool canPlace=variants.TotalWeight() && government;
-        typedef unsigned long long ull;
-	if(!canPlace)
-		printf("Fleet::CanPlace: Can't place fleet! v=%llu g=%llx\n",ull(variants.TotalWeight()),ull(government));
-	return canPlace;
+	return variants.TotalWeight() && government;
 }
 
 
@@ -671,8 +655,6 @@ void Fleet::SetCargo(Ship *ship) const
 	auto outfits = OutfitChoices(outfitters, ship->GetSystem(), free);
 
 	// Choose random outfits or commodities to transport.
-	if(cargo.WasLValue())
-		printf("Choose %d random outfits or commodities.\n",int(cargo));
 	for(int i = 0; i < cargo; ++i)
 	{
 		if(free <= 0)
