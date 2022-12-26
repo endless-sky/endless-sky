@@ -20,7 +20,7 @@ ship "Zooroid" "Zooroid (Plankton)"
 	"never disabled"
 	attributes
 		"category" "Fighter"
-		"cost 0"
+		"cost" 0
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
@@ -50,7 +50,7 @@ ship "Zooroid" "Zooroid (Plankton)"
 # Fleets:
 
 fleet "Zooroid (Plankton)"
-	government "indigenous"
+	government "Indigenous Lifeform"
 	cargo 0
 	personality
 		timid mute swarming
