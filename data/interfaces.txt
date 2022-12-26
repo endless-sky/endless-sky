@@ -372,6 +372,8 @@ interface "load menu"
 interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
+	sprite "ui/music volume"
+		center -65 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
