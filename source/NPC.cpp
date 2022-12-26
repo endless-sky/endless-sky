@@ -181,23 +181,15 @@ void NPC::Load(const DataNode &node, const ConditionsStore &vars)
 		else if(child.Token(0) == "fleet")
 		{
 			if(child.HasChildren())
-			{
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child,vars)));
-				if(child.Size() >= 2)
-				{
-					// Copy the custom fleet in lieu of reparsing the same DataNode.
-					size_t numAdded = child.Value(1);
-					for(size_t i = 1; i < numAdded; ++i)
-						fleets.push_back(fleets.back());
-				}
-			}
+				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child, vars)),
+					child.AsRValue(1, nullptr, 1));
 			else if(child.Size() >= 2)
 			{
-				auto fleet = ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1)));
-				if(child.Size() >= 3 && child.Value(2) > 1.)
-					fleets.insert(fleets.end(), child.Value(2), fleet);
+				if(child.Size() >= 3)
+					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))),
+						child.AsRValue(2, nullptr, 1));
 				else
-					fleets.push_back(fleet);
+					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))), 1);
 			}
 		}
 		else
@@ -333,9 +325,9 @@ string NPC::Validate(bool asTemplate) const
 
 		// NPC fleets, unlike stock fleets, do not need a valid government
 		// since they will unconditionally inherit this NPC's government.
-		for(auto &&fleet : fleets)
-			if(!fleet->IsValid(false))
-				return fleet.IsStock() ? "stock fleet" : "custom fleet";
+		for(auto &&fleetCount : fleets)
+			if(!fleetCount.first->IsValid(false))
+				return fleetCount.first.IsStock() ? "stock fleet" : "custom fleet";
 	}
 
 	// Ships must always be valid.
@@ -607,28 +599,25 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.ships.push_back(make_shared<Ship>(**shipIt));
 		result.ships.back()->SetName(*nameIt);
 	}
-	for(const ExclusiveItem<Fleet> &fleet : fleets)
-		if(fleet->HasConditions())
+	for(const auto &fleetCount : fleets)
+	{
+		const auto &fleet = fleetCount.first;
+		RValue<int> count = fleetCount.second;
+		count.UpdateConditions(vars);
+		if(count <= 0)
+			continue;
+		else if(fleet->HasConditions())
 		{
 			Fleet instantiated(*fleet);
-			printf("Update conditions on instantiated fleet.\n");
 			instantiated.UpdateConditions(vars);
-			printf("Check for active variants on instantiated fleet.\n");
 			if(instantiated.HasActiveVariants())
-			{
-				printf("Fleet has active variants.\n");
-				instantiated.Place(*result.system, result.ships, false);
-			}
-			else
-				printf("Skip fleet with no active variants.\n");
+				for(int i=0; i<count; ++i)
+					instantiated.Place(*result.system, result.ships, false);
 		}
 		else if(fleet->HasActiveVariants())
-		{
-			printf("Place fleet without updating conditions.\n");
-			fleet->Place(*result.system, result.ships, false);
-		}
-		else
-			printf("Skip fleet with no active variants.\n");
+			for(int i=0; i<count; ++i)
+				fleet->Place(*result.system, result.ships, false);
+	}
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{

@@ -4,25 +4,121 @@ mission Test
 		conversation
 			`How often should Korath appear in Cardax?`
 			choice
+				`	(No change.)`
+					goto palavret
+					to display
+						has "made fleets"
 				`	Never`
 				`	Rarely`
-					goto rarely
+					goto korathrarely
 				`	Non-Stop`
-					goto non-stop
+					goto korathnonstop
 			action
 				"cardax korath raid" = 0
 			`	Period is 0 (disabled).`
-				defer
-			label rarely
+				goto palavret
+			label korathrarely
 			action
 				"cardax korath raid" = 10000
 			`	Period is 10000 frames.`
-				defer
-			label non-stop
+				goto palavret
+			label korathnonstop
 			action
 				"cardax korath raid" = 200
 			`	Period is 200 frames.`
+				goto palavret
+
+
+			label palavret
+			`	What should the Palavret variant weight be?`
+			choice
+				`	(No change.)`
+					goto ranoerek
+					to display
+						has "made fleets"
+				`	100`
+					goto palavret100
+				`	5`
+					goto palavret5
+				`	1`
+					goto palavret1
+				`	0 (never)`
+			action
+				"Palavret weight" = 0
+			`	Palavret weight = 0`
+				goto ranoerek
+			label palavret1
+			action
+				"Palavret weight" = 1
+			`	Palavret weight = 1`
+				goto ranoerek
+			label palavret5
+			action
+				"Palavret weight" = 5
+			`	Palavret weight = 5`
+				goto ranoerek
+			label palavret100
+			action
+				"Palavret weight" = 100
+			`	Palavret weight = 100`
+
+
+			label ranoerek
+			`	What should the Ranoerek variant weight be?`
+			choice
+				`	(No change.)`
+					goto end
+					to display
+						has "made fleets"
+				`	100`
+					goto ranoerek100
+				`	5`
+					goto ranoerek5
+				`	1`
+					goto ranoerek1
+				`	0 (never)`
+			action
+				"Rano'erek weight" = 0
+			`	Rano'erek weight = 0`
+				goto end
+			label ranoerek1
+			action
+				"Rano'erek weight" = 1
+			`	Rano'erek weight = 1`
+				goto end
+			label ranoerek5
+			action
+				"Rano'erek weight" = 5
+			`	Rano'erek weight = 5`
+				goto end
+			label ranoerek100
+			action
+				"Rano'erek weight" = 100
+			`	Rano'erek weight = 100`
+				goto end
+			label end
+			action
+				"made fleets" = 1
+			`	Done.`
 				defer
+
+
+
+fleet "Cardax Korath Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant "Palavret weight"
+		"Palavret (Blaze)"
+		"'olofez" 2
+	variant "Rano'erek weight"
+		"Rano'erek (Shunt)"
+		"'olofez" 4
+
+
 
 mission Test2
 	landing
@@ -64,7 +160,7 @@ mission Test2
 			`How much should Ospreys be weighted?`
 			choice
 				`	(No change.)`
-					goto end
+					goto cargo
 					to display
 						has "have weights"
 				`	100`
@@ -77,27 +173,94 @@ mission Test2
 			action
 				"osprey weight" = 0
 			`	osprey weight = 0`
-				goto end
+				goto cargo
 			label osprey1
 			action
 				"osprey weight" = 1
 			`	osprey weight = 1`
-				goto end
+				goto cargo
 			label osprey5
 			action
 				"osprey weight" = 5
 			`	osprey weight = 5`
-				goto end
+				goto cargo
 			label osprey100
 			action
 				"osprey weight" = 100
 			`	osprey weight = 100`
+				goto cargo
+			label cargo
+			`How much cargo in each ship?`
+			choice
+				`	(No change.)`
+					goto count
+					to display
+						has "have weights"
+				`	1`
+					goto cargo1
+				`	3`
+					goto cargo3
+				`	10`
+					goto cargo10
+				`	0 (none)`
+			action
+				"fleet cargo" = 0
+			`	fleet cargo = 0`
+				goto count
+			label cargo1
+			action
+				"fleet cargo" = 1
+			`	fleet cargo = 1`
+				goto count
+			label cargo3
+			action
+				"fleet cargo" = 3
+			`	fleet cargo = 3`
+				goto count
+			label cargo10
+			action
+				"fleet cargo" = 10
+			`	fleet cargo = 10`
+				goto count
+			`How many escorts?`
+			choice
+				`	(No change.)`
+					goto end
+					to display
+						has "have weights"
+				`	1`
+					goto count1
+				`	3`
+					goto count3
+				`	10`
+					goto count10
+				`	0 (none)`
+			action
+				"fleet count" = 0
+			`	fleet count = 0`
+				goto end
+			label count1
+			action
+				"fleet count" = 1
+			`	fleet count = 1`
+				goto end
+			label count3
+			action
+				"fleet count" = 3
+			`	fleet count = 3`
+				goto end
+			label count10
+			action
+				"fleet count" = 10
+			`	fleet count = 10`
 				goto end
 			label end
 			action
 				"have weights" = 1
 			`	Any changes will take effect after you depart and land since the spaceport mission Test3 is already instantiated, or not, based on conditions upon landing.`
+			`	To get your escorts, visit the spaceport.`
 				defer
+
 
 
 mission Test3
@@ -114,7 +277,8 @@ mission Test3
 				accept
 	npc save
 		personality waiting escort
-		fleet 10
+		fleet "fleet count"
+			cargo "fleet cargo"
 			variant "sparrow weight"
 				Sparrow
 			variant "osprey weight"

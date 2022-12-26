@@ -15,12 +15,39 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define RVALUE_H_
 
 
+#include <cmath>
 #include <cstdio>
+#include <limits>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 
 
 #define DEBUG_RVALUE_CONDITIONS
+
+
+
+template <class T,
+	typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr
+>
+bool NotNearZero(T whut)
+{
+	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon*2);
+	// Inf and -Inf are NotNearZero but NaN isn't. This is because
+	// NaN compares as false to any floating-point value,
+	// including itself.
+	return whut > epsilon || whut < -epsilon;
+}
+
+
+
+template <class T,
+	typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr
+>
+bool NotNearZero(T whut)
+{
+	return static_cast<bool>(whut);
+}
 
 
 
@@ -85,14 +112,9 @@ public:
 	bool SameOrigin(const RValue<V,K> &o);
 
 	// Does this originate from dereferencing something?
-	bool WasLValue() const
-	{
-		if(!key.empty())
-			printf("WasLValue: %s %f\n",key.c_str(),double(value));
-		return !key.empty();
-	}
+	bool WasLValue() const { return !key.empty(); }
 
-	explicit operator bool() const { return static_cast<bool>(value); }
+	explicit operator bool() const { return NotNearZero(value); }
 
 	// Allow the RValue to be treated as its value in most contexts.
 	operator ValueType() const { return value; }
@@ -106,7 +128,6 @@ private:
 
 // Allow construction and assignment between RValue types to
 // facilitate type conversion.
-
 template <class V, class K>
 template <class V2, class K2>
 RValue<V,K>::RValue(const RValue<V2,K2> &other):
@@ -115,14 +136,21 @@ RValue<V,K>::RValue(const RValue<V2,K2> &other):
 {
 }
 
+
+
+// Allow construction and assignment between RValue types to
+// facilitate type conversion.
 template <class V, class K>
 template <class V2, class K2>
 RValue<V,K> &RValue<V,K>::operator = (const RValue<V2,K2> &other)
 {
 	value = static_cast<ValueType>(other.Value());
-	key = static_cast<KeyType>(other.Key());
+	if(Key().empty())
+		key = static_cast<KeyType>(other.Key());
 	return *this;
 }
+
+
 
 // Update the value from a scope that contains it
 template <class V, class K>
@@ -148,6 +176,8 @@ const V &RValue<V,K>::UpdateConditions(const Getter &getter)
 	return value;
 }
 
+
+
 template <class V, class K>
 const V &RValue<V,K>::Value() const
 {
@@ -158,6 +188,8 @@ const V &RValue<V,K>::Value() const
 	return value;
 }
 
+
+
 template <class V, class K>
 V &RValue<V,K>::Value()
 {
@@ -167,6 +199,8 @@ V &RValue<V,K>::Value()
 #endif
 	return value;
 }
+
+
 
 // Does this RValue come from the same place as the other one?
 // If it was an lvalue, the key must be the same.

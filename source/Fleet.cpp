@@ -298,6 +298,7 @@ void Fleet::UpdateConditions(const ConditionsStore &vars)
 		return false;
 	});
 	printf("Done updating variant conditions. (total weight is %d)\n",int(variants.TotalWeight()));
+	cargo.UpdateConditions(vars);
 }
 
 
@@ -670,6 +671,8 @@ void Fleet::SetCargo(Ship *ship) const
 	auto outfits = OutfitChoices(outfitters, ship->GetSystem(), free);
 
 	// Choose random outfits or commodities to transport.
+	if(cargo.WasLValue())
+		printf("Choose %d random outfits or commodities.\n",int(cargo));
 	for(int i = 0; i < cargo; ++i)
 	{
 		if(free <= 0)

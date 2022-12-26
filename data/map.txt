@@ -6623,7 +6623,7 @@ system Cardax
 	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
-	fleet "Korath Raid" "cardax korath raid"
+	fleet "Cardax Korath Raid" "cardax korath raid"
 	object
 		sprite star/g0
 		distance 36.6984

@@ -131,7 +131,7 @@ private:
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<const Ship *> stockShips;
 	std::list<std::string> shipNames;
-	std::list<ExclusiveItem<Fleet>> fleets;
+	std::list<std::pair<ExclusiveItem<Fleet>,RValue<int>>> fleets;
 
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;
