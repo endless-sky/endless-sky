@@ -1085,7 +1085,7 @@ void MapPanel::DrawWormholes()
 
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
-		if(link.first.first < link.first.second || !arrowsToDraw.count(make_pair(make_pair(link.first.second, link.first.first), link.second)))
+		if(link.first.first < link.first.second || !arrowsToDraw.count(link))
 			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
