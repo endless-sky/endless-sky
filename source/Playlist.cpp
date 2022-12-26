@@ -55,8 +55,11 @@ void Playlist::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "conditions")
-			toPlay.Load(child);
+		if(child.Token(0) == "to")
+		{
+			if(child.Token(1) == "play")
+				toPlay.Load(child);
+		}
 		else if(child.Token(0) == "location")
 			location.Load(child);
 		else if(child.Token(0) == "priority" && child.Size() >= 2)
