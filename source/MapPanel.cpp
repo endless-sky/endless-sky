@@ -1044,16 +1044,7 @@ void MapPanel::DrawEscorts()
 
 void MapPanel::DrawWormholes()
 {
-struct WormholeArrow {
-        WormholeArrow() {}
-        WormholeArrow(const System *from, const System *to, const Color *color)
-        : from(from), to(to), color(color) {}
-        const System *from;
-        const System *to;
-        const Color *color;
-    };
-
-// Keep track of what arrows and links need to be drawn.
+	// Keep track of what arrows and links need to be drawn.
 	vector<WormholeArrow> arrowsToDraw;
 
 	// A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
@@ -1099,7 +1090,7 @@ struct WormholeArrow {
 		if(link.from < link.to || count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
 			[link](WormholeArrow cmp)
 			{
-				return cmp.from == link.to && cmp.to == link.from;
+			return cmp.from == link.to && cmp.to == link.from;
 			}))
 			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
