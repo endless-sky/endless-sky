@@ -314,8 +314,11 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			if(currentPlaylist)
 			{
 				currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
-				SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
-				PlayMusic(currentPlaylistTrack->GetTitle(state));
+				if(currentPlaylistTrack)
+				{
+					SetVolume(volume + currentPlaylistTrack->GetVolumeModifier());
+					PlayMusic(currentPlaylistTrack->GetTitle(state));
+				}
 				oldState = state;
 			}
 			// If no playlist is set this means nothing should be played, so stop everything.
@@ -325,7 +328,8 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		if(oldState != state)
 		{
 			oldState = state;
-			PlayMusic(currentPlaylistTrack->GetTitle(state));
+			if(currentPlaylistTrack)
+				PlayMusic(currentPlaylistTrack->GetTitle(state));
 		}
 	}
 }
