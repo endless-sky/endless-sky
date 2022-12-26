@@ -26,7 +26,7 @@ using namespace std;
 
 namespace {
 	const Track *currentTrack = nullptr;
-};
+}
 
 
 
