@@ -171,7 +171,7 @@ const Type &WeightedList<Type,WeightType>::Get() const
 		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
 
 	if(!total)
-		// When no fleets are enabled, return the first.
+		// When no choices are enabled, return the first.
 		return choices[0];
 
 	unsigned choice0 = Random::Int(total);

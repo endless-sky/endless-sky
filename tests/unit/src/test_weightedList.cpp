@@ -178,6 +178,57 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 			}
 		}
 	}
+	GIVEN( "a weighted list with 0 weight for first item" ) {
+		auto list = WeightedList<Object>{};
+		list.emplace_back(0, 10);
+		list.emplace_back(1, 20);
+		REQUIRE( list.size() == 2 );
+
+		WHEN( "getting an item" ) {
+			THEN( "it should not provide the first item" ) {
+				CHECK( list.Get() == 20 );
+			}
+		}
+	}
+	GIVEN( "a weighted list with 0 weight for all items" ) {
+		auto list = WeightedList<Object>{};
+		list.emplace_back(0, 10);
+		list.emplace_back(0, 20);
+		REQUIRE( list.size() == 2 );
+
+		WHEN( "getting an item" ) {
+			THEN( "it should provide the first item" ) {
+				CHECK( list.Get() == 10 );
+			}
+		}
+	}
+	GIVEN( "a weighted list" ) {
+		auto list = WeightedList<Object>{};
+		list.emplace_back(1, 10);
+		list.emplace_back(2, 20);
+		REQUIRE( list.size() == 2 );
+
+		WHEN( "calling Any to check for a value known to exist" ) {
+			THEN( "should return true" ) {
+				CHECK( list.Any([&](unsigned i, Object j) { return i == 10 || j.GetValue() == 10; }) );
+			}
+		}
+		WHEN( "calling Any to check for a value known to not exist" ) {
+			THEN( "should return false" ) {
+				CHECK_FALSE( list.Any([&](unsigned i, Object j) { return i == 999 || j.GetValue() == 999; }) );
+			}
+		}
+		WHEN( "calling All to check if all values are less than a very large number" ) {
+			THEN( "should return true" ) {
+				CHECK( list.All([&](unsigned i, Object j) { return i < 999 && j.GetValue() < 999; }) );
+			}
+		}
+		WHEN( "calling All to check if all values are greater than a very large number" ) {
+			THEN( "should return false" ) {
+				CHECK_FALSE( list.All([&](unsigned i, Object j) { return i > 999 && j.GetValue() > 999; }) );
+			}
+		}
+	}
 }
 
 SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage]" ) {

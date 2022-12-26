@@ -84,13 +84,6 @@ public:
 	constexpr Condition(const V &value, const K &key);
 	~Condition();
 
-	// Equality is handled by operator ValueType() which means only the
-	// value is compared for equality.
-	bool operator == (const Condition<V,K> &other) const = delete;
-
-	// Allow construction and assignment between Condition types to
-	// facilitate type conversion.
-
 	template <class V2, class K2>
 	Condition(const Condition<V2,K2> &other);
 
