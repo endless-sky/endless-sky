@@ -76,6 +76,9 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		gamePanels.StepAll();
 		gamePanels.StepAll();
 	}
+
+	if(player.GetPlanet())
+		Audio::UpdateMusic(player, Track::GameState::LANDED);
 }
 
 
