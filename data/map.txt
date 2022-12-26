@@ -13215,7 +13215,6 @@ system G-6183
 	minables neodymium 6 3.87
 	minables titanium 44 4.15
 	minables tungsten 16 2.37
-	hazard "Small Black Hole Accretion Disk" 1
 	hazard "Small Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
 	object
