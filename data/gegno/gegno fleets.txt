@@ -282,13 +282,14 @@ fleet "Vi Warfleet"
 		"Hornfel (Light Load)"
 	variant
 		"Gneiss"
+		"Eclogite" 2
+	variant
+		"Gneiss"
 		"Eclogite"
-		"Hornfel" 2
+		"Hornfel (Heavy Load)" 2
 	variant
+		"Gneiss"
 		"Hornfel (Heavy Weapons)"
-	variant
-		"Gneiss" 2
-		"Hornfel (Heavy Load)"
 
 fleet "Scin Warfleet"
 	government "Gegno Scin"
@@ -302,7 +303,7 @@ fleet "Scin Warfleet"
 	variant 4
 		"Felsic" 2
 		"Coesite" 2
-	variant 2
+	variant
 		"Feldspar" 2
 		"Halite" 12
 	variant
@@ -314,6 +315,8 @@ fleet "Scin Warfleet"
 		"Feldspar"
 		"Halite" 6
 		"Coesite" 2
+	variant
+		"Felsic" 3
 
 fleet "Gegno Basic"
 	government Gegno
