@@ -88,6 +88,7 @@ void PreferencesPanel::Draw()
 
 	Information info;
 	info.SetBar("volume", Audio::Volume());
+	info.SetBar("volume", Audio::MusicVolume());
 	if(SETTINGS_PAGE_COUNT > 1)
 		info.SetCondition("multiple pages");
 	if(currentSettingsPage > 0)
