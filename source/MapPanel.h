@@ -43,14 +43,14 @@ class System;
 // drawing routes in between systems.
 class MapPanel : public Panel {
 private:
-    struct WormholeArrow {
-    	WormholeArrow() = default;
-        WormholeArrow(const System *from, const System *to, const Color *color)
-        : from(from), to(to), color(color) {}
-        const System *from = nullptr;
-        const System *to = nullptr;
-        const Color *color = nullptr;
-    };
+	struct WormholeArrow {
+		WormholeArrow() = default;
+		WormholeArrow(const System *from, const System *to, const Color *color)
+		: from(from), to(to), color(color) {}
+		const System *from = nullptr;
+		const System *to = nullptr;
+		const Color *color = nullptr;
+	};
 
 public:
 	// Enumeration for how the systems should be colored:

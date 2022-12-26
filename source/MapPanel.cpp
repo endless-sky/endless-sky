@@ -1054,26 +1054,26 @@ struct WormholeArrow {
     };
 
 // Keep track of what arrows and links need to be drawn.
-    vector<WormholeArrow> arrowsToDraw;
+	vector<WormholeArrow> arrowsToDraw;
 
-    // A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
-    // share a link vector.
-    for(auto &&it : GameData::Wormholes())
-    {
-        if(!it.second.IsValid())
-            continue;
+	// A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
+	// share a link vector.
+	for(auto &&it : GameData::Wormholes())
+	{
+		if(!it.second.IsValid())
+			continue;
 
-        const Planet &p = *it.second.GetPlanet();
-        if(!p.IsValid() || !player.HasVisited(p) || !it.second.IsMappable())
-            continue;
+		const Planet &p = *it.second.GetPlanet();
+		if(!p.IsValid() || !player.HasVisited(p) || !it.second.IsMappable())
+			continue;
 
-        for(auto &&link : it.second.Links())
-            if(p.IsInSystem(link.first) && player.HasVisited(*link.first) && player.HasVisited(*link.second))
-            {
-                WormholeArrow tmpArrow(link.first, link.second, it.second.GetLinkColor());
-                arrowsToDraw.emplace_back(tmpArrow);
-            }
-    }
+		for(auto &&link : it.second.Links())
+			if(p.IsInSystem(link.first) && player.HasVisited(*link.first) && player.HasVisited(*link.second))
+			{
+				WormholeArrow tmpArrow(link.first, link.second, it.second.GetLinkColor());
+				arrowsToDraw.emplace_back(tmpArrow);
+			}
+	}
 
 	static const double ARROW_LENGTH = 4.;
 	static const double ARROW_RATIO = .3;
@@ -1081,27 +1081,27 @@ struct WormholeArrow {
 	static const Angle RIGHT(-30.);
 	const double zoom = Zoom();
 
-    for(const WormholeArrow &link : arrowsToDraw)
-    {
-        // Get the wormhole link color.
-        const Color &arrowColor = *link.color;
-        const Color &wormholeDim = Color::Combine(1.f, arrowColor, -0.66f, arrowColor);
+	for(const WormholeArrow &link : arrowsToDraw)
+	{
+		// Get the wormhole link color.
+		const Color &arrowColor = *link.color;
+		const Color &wormholeDim = Color::Combine(1.f, arrowColor, -0.66f, arrowColor);
 
-        // Compute the start and end positions of the wormhole link.
-        Point from = zoom * (link.from->Position() + center);
-        Point to = zoom * (link.to->Position() + center);
-        Point offset = (from - to).Unit() * LINK_OFFSET;
-        from -= offset;
-        to += offset;
+		// Compute the start and end positions of the wormhole link.
+		Point from = zoom * (link.from->Position() + center);
+		Point to = zoom * (link.to->Position() + center);
+		Point offset = (from - to).Unit() * LINK_OFFSET;
+		from -= offset;
+		to += offset;
 
-        // If an arrow is being drawn, the link will always be drawn too. Draw
-        // the link only for the first instance of it in this set.
-        if(link.from < link.to || count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
-            [link](WormholeArrow cmp)
-            {
-                return cmp.from == link.to && cmp.to == link.from;
-            }))
-            LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
+		// If an arrow is being drawn, the link will always be drawn too. Draw
+		// the link only for the first instance of it in this set.
+		if(link.from < link.to || count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
+			[link](WormholeArrow cmp)
+			{
+				return cmp.from == link.to && cmp.to == link.from;
+			}))
+			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
 		Point arrowStem = zoom * ARROW_LENGTH * offset;
