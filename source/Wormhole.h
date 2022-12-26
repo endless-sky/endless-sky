@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifndef WORMHOLE_H_
 #define WORMHOLE_H_
+#include "Color.h"
 
 #include <string>
 #include <unordered_map>
@@ -41,6 +42,8 @@ public:
 	const std::string &Name() const;
 	// Whether this wormhole's link appears on the map.
 	bool IsMappable() const;
+	// Returns this wormhole's link color.
+	const Color *GetLinkColor() const;
 	// Whether this wormhole was auto-generated. This is used to
 	// update this wormhole in game events that update the corresponding
 	// planet.
@@ -65,6 +68,7 @@ private:
 	const Planet *planet = nullptr;
 	std::string name = "???";
 	bool mappable = false;
+	Color linkColor;
 	std::unordered_map<const System *, const System *> links;
 };
 

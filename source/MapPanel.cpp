@@ -926,7 +926,7 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	const Color &wormholeColor = *colors.Get("map used wormhole");
+	const Color &wormholeColor = *colors.Get("map travel wormhole");
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1045,7 +1045,7 @@ void MapPanel::DrawEscorts()
 void MapPanel::DrawWormholes()
 {
 	// Keep track of what arrows and links need to be drawn.
-	set<pair<const System *, const System *>> arrowsToDraw;
+	set<pair<pair<const System *, const System *>, const Color *>> arrowsToDraw;
 
 	// A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector.
@@ -1061,29 +1061,31 @@ void MapPanel::DrawWormholes()
 		for(auto &&link : it.second.Links())
 			if(p.IsInSystem(link.first)
 					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
-				arrowsToDraw.emplace(link.first, link.second);
+				arrowsToDraw.emplace(make_pair(link.first, link.second), it.second.GetLinkColor());
 	}
 
-	const Color &wormholeDim = *GameData::Colors().Get("map unused wormhole");
-	const Color &arrowColor = *GameData::Colors().Get("map used wormhole");
 	static const double ARROW_LENGTH = 4.;
 	static const double ARROW_RATIO = .3;
 	static const Angle LEFT(30.);
 	static const Angle RIGHT(-30.);
 	const double zoom = Zoom();
 
-	for(const pair<const System *, const System *> &link : arrowsToDraw)
+	for(const pair<pair<const System *, const System *>, const Color *> &link : arrowsToDraw)
 	{
+		// Get the wormhole link color.
+		const Color &arrowColor = *link.second;
+		const Color &wormholeDim = Color::Combine(1.f, arrowColor, -0.66f, arrowColor);
+
 		// Compute the start and end positions of the wormhole link.
-		Point from = zoom * (link.first->Position() + center);
-		Point to = zoom * (link.second->Position() + center);
+		Point from = zoom * (link.first.first->Position() + center);
+		Point to = zoom * (link.first.second->Position() + center);
 		Point offset = (from - to).Unit() * LINK_OFFSET;
 		from -= offset;
 		to += offset;
 
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
-		if(link.first < link.second || !arrowsToDraw.count(make_pair(link.second, link.first)))
+		if(link.first.first < link.first.second || !arrowsToDraw.count(make_pair(make_pair(link.first.second, link.first.first), link.second)))
 			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
