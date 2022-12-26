@@ -254,6 +254,8 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
+	Playlist.cpp
+	Playlist.h
 	Point.cpp
 	Point.h
 	PointerShader.cpp
@@ -329,6 +331,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TestData.h
 	TextReplacements.cpp
 	TextReplacements.h
+	Track.cpp
+	Track.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp
