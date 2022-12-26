@@ -455,6 +455,11 @@ interface "preferences"
 		dimensions 0 -200
 		color "energy"
 		size 3
+	bar "music volume"
+		from 315.5 15
+		dimensions 0 -200
+		color "energy"
+		size 3
 
 
 
