@@ -32546,7 +32546,7 @@ system "Is Ce B-139"
 	link "Ae Ce L-332"
 	link "Is Ce F-422"
 	link "Is Il V-263"
-	"Sagittarius A*"
+	link "Sagittarius A*"
 	asteroids "small rock" 4 6.076
 	asteroids "medium rock" 10 6.014
 	asteroids "large rock" 8 3.596
