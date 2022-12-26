@@ -15,9 +15,9 @@ outfit "Fate Sealer"
 	category "Guns"
 	cost 77777777
 	thumbnail "outfit/unknown"
-	"mass" 131
-	"outfit space" -131
-	"weapon capacity" -131
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
 	"gun ports" -1
 	weapon
 		sound "fate fire"
@@ -57,9 +57,9 @@ outfit "Fate Divider"
 	category "Guns"
 	cost 77777777
 	thumbnail "outfit/unknown"
-	"mass" 131
-	"outfit space" -131
-	"weapon capacity" -131
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
 	"gun ports" -1
 	weapon
 		sound "fate fire"
@@ -119,9 +119,9 @@ outfit "Abyssal Composer"
 	category "Guns"
 	cost 170000000
 	thumbnail "outfit/unknown"
-	"mass" 21
-	"outfit space" -21
-	"weapon capacity" -21
+	"mass" 121
+	"outfit space" -121
+	"weapon capacity" -121
 	"gun ports" -1
 	weapon
 		sound "composer"

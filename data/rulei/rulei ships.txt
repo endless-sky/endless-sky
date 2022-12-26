@@ -25,7 +25,7 @@ ship "vyu-Ira"
 		"hull" 49000
 		"required crew" 1	
 		"bunks" 100
-		"mass" 0
+		"mass" 600
 		"drag" 20
 		"heat dissipation" 10
 		"fuel capacity" 1000
