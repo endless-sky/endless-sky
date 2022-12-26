@@ -43,6 +43,8 @@ public:
 	const std::string &Name() const;
 	// Whether this wormhole's link appears on the map.
 	bool IsMappable() const;
+	// Whether this wormhole has a colored outline as a planet.
+	bool IsColored() const;
 	// Returns this wormhole's arrows color. The link color
 	// will be a dim version of this color.
 	const Color *GetLinkColor() const;
@@ -70,6 +72,7 @@ private:
 	const Planet *planet = nullptr;
 	std::string name = "???";
 	bool mappable = false;
+	bool colored = false;
 	Color linkColor;
 	std::unordered_map<const System *, const System *> links;
 };
