@@ -28965,7 +28965,6 @@ wormhole "Devil-Run Wormhole"
 	mappable
 	link "Deep Space 7C" "Devil-Run"
 	link "Devil-Run" "Deep Space 7C"
-	color 0.5 0.1 0.3
 
 planet "Devru Kaska"
 	attributes korath station
@@ -29093,7 +29092,6 @@ wormhole "Ember Graveyard"
 	mappable
 	link Polerius Ossipago
 	link Ossipago Polerius
-	color 0.5 0.1 0.3
 
 planet "Ember Reaches"
 	attributes "requires: quantum keystone"
@@ -29104,7 +29102,6 @@ wormhole "Ember Reaches"
 	mappable
 	link Coluber Convector
 	link Convector Coluber
-	color 0.5 0.1 0.3
 
 planet "Ember Threshold"
 	attributes "requires: quantum keystone"
@@ -29114,7 +29111,6 @@ wormhole "Ember Threshold"
 	mappable
 	link Cardea Terminus
 	link Terminus Cardea
-	color 0.5 0.1 0.3
 
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
@@ -29127,7 +29123,6 @@ wormhole "Ember Wormhole"
 	link Cardea Insitor
 	link Insitor Segesta
 	link Segesta Aescolanus
-	color 0.5 0.1 0.3
 
 planet Eminonu
 	attributes uninhabited
@@ -29591,7 +29586,6 @@ wormhole "Graveyard Wormhole (Unstable)"
 	mappable
 	link Esix Relifer
 	link Relifer Esix
-	color 0.5 0.1 0.3
 
 planet Greenbloom
 	attributes hai "hai tourism" "human tourism"
@@ -31079,7 +31073,6 @@ wormhole "Remnant Wormhole"
 	mappable
 	link Peragenor Edusa
 	link Edusa Peragenor
-	color 0.5 0.1 0.3
 
 planet "Remote Blue"
 	attributes kimek urban
@@ -32277,7 +32270,6 @@ wormhole "Wormhole Barren Alpha"
 	mappable
 	link Egeria Levana
 	link Levana Egeria
-	color 0.5 0.1 0.3
 
 planet "Wormhole Barren Beta"
 	attributes "requires: quantum keystone"
@@ -32287,7 +32279,6 @@ wormhole "Wormhole Barren Beta"
 	mappable
 	link Caeculus Prosa
 	link Prosa Caeculus
-	color 0.5 0.1 0.3
 
 planet "Wormhole Link"
 	attributes "requires: quantum keystone"
@@ -32297,7 +32288,6 @@ wormhole "Wormhole Link"
 	mappable
 	link Statina Vaticanus
 	link Vaticanus Statina
-	color 0.5 0.1 0.3
 
 planet "Wyvern Station"
 	attributes rim station
