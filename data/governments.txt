@@ -899,8 +899,8 @@ government "Quarg"
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
 		"Gegno" 0.1
-		"use foreign penalties for"
-			"Gegno"
+	"use foreign penalties for"
+		"Gegno"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
