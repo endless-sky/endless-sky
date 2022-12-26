@@ -222,6 +222,7 @@ mission Test2
 				"fleet cargo" = 10
 			`	fleet cargo = 10`
 				goto count
+			label count
 			`How many escorts?`
 			choice
 				`	(No change.)`
