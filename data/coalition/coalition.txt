@@ -272,6 +272,68 @@ fleet "Large Saryd"
 		"Arach Courier" 2
 		"Kimek Briar"
 
+fleet "Arach Miners"
+	government "Coalition"
+	names "arach"
+	cargo 0
+	personality
+		confusion 20
+		pacifist timid mining harvests
+	variant 5
+		"Arach Courier (Miner)"
+	variant 2
+		"Arach Freighter (Miner)"
+	variant 2
+		"Arach Transport (Miner)"
+	variant 1
+		"Kimek Thorn (Miner)"
+	variant 1
+		"Saryd Runabout (Miner)"
+	variant 1
+		"Arach Spindle (Miner)"
+	variant 1
+		"Arach Hulk (Miner)"
+
+fleet "Kimek Miners"
+	government "Coalition"
+	names "kimek"
+	cargo 0
+	personality
+		confusion 20
+		pacifist timid mining harvests
+	variant 5
+		"Kimek Thorn (Miner)"
+	variant 3
+		"Kimek Briar (Miner)"
+	variant 2
+		"Kimek Thistle (Miner)"
+	variant 1
+		"Arach Courier (Miner)"
+	variant 1
+		"Saryd Runabout (Miner)"
+	variant 1
+		"Kimek Spire (Miner)"
+
+fleet "Saryd Miners"
+	government "Coalition"
+	names "saryd"
+	cargo 0
+	personality
+		confusion 20
+		pacifist timid mining harvests
+	variant 4
+		"Saryd Runabout (Miner)"
+	variant 3
+		"Saryd Visitor (Miner)"
+	variant 3
+		"Saryd Traveler (Miner)"
+	variant 1
+		"Arach Courier (Miner)"
+	variant 1
+		"Kimek Thorn (Miner)"
+	variant 1
+		"Saryd Sojourner (Miner)"
+
 
 outfitter "Coalition Basics"
 	"Small Collector Module"
@@ -292,6 +354,7 @@ outfitter "Coalition Basics"
 	"Local Map"
 
 outfitter "Coalition Advanced"
+	"MCS Extractor"
 	"Small Collector Module"
 	"Large Collector Module"
 	"Small Cogeneration Module"
@@ -306,7 +369,7 @@ outfitter "Coalition Advanced"
 	"Small Thrust Module"
 	"Large Thrust Module"
 	"Small Reverse Module"
-	"Large Reverse Module"	
+	"Large Reverse Module"
 	"Small Steering Module"
 	"Large Steering Module"
 	"Cargo Expansion"

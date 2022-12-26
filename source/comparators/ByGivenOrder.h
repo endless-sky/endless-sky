@@ -1,4 +1,4 @@
-/* comparators/ByGivenOrder.h
+/* ByGivenOrder.h
 Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

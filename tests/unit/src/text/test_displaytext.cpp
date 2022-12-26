@@ -1,4 +1,4 @@
-/* text/test_displaytext.cpp
+/* test_displaytext.cpp
 Copyright (c) 2020 by Benjamin Hauch
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -34,8 +34,10 @@ using T = DisplayText;
 TEST_CASE( "DisplayText class", "[text][DisplayText]" ) {
 	SECTION( "Class Traits" ) {
 		CHECK_FALSE( std::is_trivial<T>::value );
-		CHECK( std::is_standard_layout<T>::value );
 		CHECK( std::is_nothrow_destructible<T>::value );
+		// Contains a string, thus will not be standard layout unless std::string is.
+		CHECK( std::is_standard_layout<T>::value ==
+			std::is_standard_layout<std::string>::value );
 		// Contains a string, thus will not be trivially destructible unless std::string is.
 		CHECK_FALSE( std::is_trivially_destructible<T>::value );
 		CHECK( std::is_trivially_destructible<T>::value ==

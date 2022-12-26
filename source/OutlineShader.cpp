@@ -158,7 +158,8 @@ void OutlineShader::Init()
 
 
 
-void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color, const Point &unit, float frame)
+void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size,
+	const Color &color, const Point &unit, float frame)
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);

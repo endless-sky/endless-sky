@@ -110,7 +110,8 @@ void PointerShader::Init()
 
 
 
-void PointerShader::Draw(const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
+void PointerShader::Draw(const Point &center, const Point &angle,
+	float width, float height, float offset, const Color &color)
 {
 	Bind();
 
@@ -135,7 +136,8 @@ void PointerShader::Bind()
 
 
 
-void PointerShader::Add(const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
+void PointerShader::Add(const Point &center, const Point &angle,
+	float width, float height, float offset, const Color &color)
 {
 	GLfloat c[2] = {static_cast<float>(center.X()), static_cast<float>(center.Y())};
 	glUniform2fv(centerI, 1, c);

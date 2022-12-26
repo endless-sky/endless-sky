@@ -24,8 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <cstring>
-#include <string>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -72,6 +72,11 @@ string GameWindow::SDLVersions()
 
 bool GameWindow::Init()
 {
+#ifdef _WIN32
+	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
+	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+#endif
+
 	// This needs to be called before any other SDL commands.
 	if(SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
@@ -87,7 +92,8 @@ bool GameWindow::Init()
 		return false;
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + "). The game will run more slowly.");
+		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
+			" The game will run more slowly.");
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int minWidth = 640;
@@ -114,7 +120,7 @@ bool GameWindow::Init()
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
-	if(Preferences::Has("fullscreen"))
+	if(Preferences::ScreenModeSetting() == "fullscreen")
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 	else if(Preferences::Has("maximized"))
 		flags |= SDL_WINDOW_MAXIMIZED;

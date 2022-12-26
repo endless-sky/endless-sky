@@ -75,15 +75,15 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
-		if(!flagship->JumpsRemaining() || flagship->IsDisabled())
+		if(flagship->NeedsFuel(false) || flagship->IsDisabled())
 			message = "Sorry, we can't help you, because our ship is disabled.";
 	}
 	else
 	{
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
-		// Check if the player is in need of fuel to jump away.
-		if(!flagship->JumpsRemaining() && flagship->JumpFuelMissing())
+		// Check if the player is out of fuel.
+		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
 			canGiveFuel = ship->CanRefuel(*flagship);

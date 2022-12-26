@@ -65,7 +65,8 @@ namespace {
 	}
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
+	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
+		int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -218,16 +219,23 @@ void PlayerInfoPanel::Draw()
 	if(panelState.CanEdit() && panelState.Ships().size() > 1)
 	{
 		bool allParked = true;
+		bool allParkedSystem = true;
 		bool hasOtherShips = false;
 		const Ship *flagship = player.Flagship();
+		const System *flagshipSystem = flagship ? flagship->GetSystem() : player.GetSystem();
 		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && it.get() != flagship)
 			{
 				allParked &= it->IsParked();
 				hasOtherShips = true;
+				if(it->GetSystem() == flagshipSystem)
+					allParkedSystem &= it->IsParked();
 			}
 		if(hasOtherShips)
+		{
 			interfaceInfo.SetCondition(allParked ? "show unpark all" : "show park all");
+			interfaceInfo.SetCondition(allParkedSystem ? "show unpark system" : "show park system");
+		}
 
 		// If ships are selected, decide whether the park or unpark button
 		// should be shown.
@@ -399,7 +407,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				ScrollAbsolute(selected);
 		}
 	}
-	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
+	else if(panelState.CanEdit() && (key == 'k' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -418,7 +426,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				player.ParkShip(&ship, !allParked);
 		}
 	}
-	else if(panelState.CanEdit() && (key == 'A' || (key == 'a' && shift)) && panelState.Ships().size() > 1)
+	else if(panelState.CanEdit() && (key == 'a') && panelState.Ships().size() > 1)
 	{
 		// Toggle the parked status for all ships except the flagship.
 		bool allParked = true;
@@ -429,6 +437,20 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
+				player.ParkShip(it.get(), !allParked);
+	}
+	else if(panelState.CanEdit() && (key == 'c') && panelState.Ships().size() > 1)
+	{
+		// Toggle the parked status for all ships in system except the flagship.
+		bool allParked = true;
+		const Ship *flagship = player.Flagship();
+		const System *flagshipSystem = flagship->GetSystem();
+		for(const auto &it : panelState.Ships())
+			if(!it->IsDisabled() && it.get() != flagship && it->GetSystem() == flagshipSystem)
+				allParked &= it->IsParked();
+
+		for(const auto &it : panelState.Ships())
+			if(!it->IsDisabled() && (allParked || it.get() != flagship) && it->GetSystem() == flagship->GetSystem())
 				player.ParkShip(it.get(), !allParked);
 	}
 	// If "Save order" button is pressed.
@@ -494,7 +516,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 bool PlayerInfoPanel::Click(int x, int y, int clicks)
 {
 	// Sort the ships if the click was on one of the column headers.
-	Point mouse = Point(x,y);
+	Point mouse = Point(x, y);
 	for(auto &zone : menuZones)
 		if(zone.Contains(mouse))
 		{

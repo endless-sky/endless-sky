@@ -118,6 +118,7 @@ ship "Summer Leaf"
 		"Sunbeam" 2
 		
 		"Yellow Sun Reactor"
+		"Small Biochemical Cell"
 		"Bright Cloud Shielding"
 		"Wanderer Ramscoop"
 		
@@ -355,6 +356,30 @@ ship "Tempest" "Tempest (Missile)"
 	turret "Dual Sunbeam Turret"
 	turret "Dual Sunbeam Turret"
 
+ship "Tempest" "Tempest (Moonbeam)"
+	outfits
+		"Sunbeam" 2
+		"Moonbeam" 2
+		"Dual Sunbeam Turret"
+		"Moonbeam Turret" 2
+		
+		"Blue Sun Reactor"
+		"Dark Storm Shielding"
+		"Wanderer Heat Sink"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+	
+	gun "Moonbeam"
+	gun "Moonbeam"
+	gun "Sunbeam"
+	gun "Sunbeam"
+	turret "Dual Sunbeam Turret"
+	turret "Moonbeam Turret"
+	turret "Moonbeam Turret"
+
 
 
 ship "Derecho"
@@ -455,6 +480,35 @@ ship "Derecho" "Derecho (Tough)"
 	turret "Dual Sunbeam Turret"
 	turret
 	turret
+
+ship "Derecho" "Derecho (Moonbeam)"
+	outfits
+		"Sunbeam" 2
+		"Moonbeam" 2
+		"Dual Sunbeam Turret" 2
+		"Moonbeam Turret" 2
+		
+		"Blue Sun Reactor"
+		"Red Sun Reactor"
+		"Dark Storm Shielding"
+		"Bright Cloud Shielding"
+		"Wanderer Heat Sink"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 1 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+	
+	gun "Moonbeam"
+	gun "Moonbeam"
+	gun "Sunbeam"
+	gun "Sunbeam"
+	turret "Moonbeam Turret"
+	turret "Moonbeam Turret"
+	turret "Dual Sunbeam Turret"
+	turret "Dual Sunbeam Turret"
 
 
 
@@ -565,6 +619,36 @@ ship "Hurricane" "Hurricane (Tough)"
 	turret
 	turret "Wanderer Anti-Missile"
 	turret "Wanderer Anti-Missile"
+
+ship "Hurricane" "Hurricane (Moonbeam)"
+	outfits
+		"Sunbeam" 2
+		"Moonbeam" 4
+		"Dual Sunbeam Turret" 2
+		"Moonbeam Turret" 3
+		
+		"Blue Sun Reactor"
+		"White Sun Reactor"
+		"Dark Storm Shielding" 2
+		"Wanderer Heat Sink" 2
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Type 2 Radiant Steering"
+		"Hyperdrive"
+	
+	gun "Moonbeam"
+	gun "Moonbeam"
+	gun "Sunbeam"
+	gun "Sunbeam"
+	gun "Moonbeam"
+	gun "Moonbeam"
+	turret "Moonbeam Turret"
+	turret "Moonbeam Turret"
+	turret "Moonbeam Turret"
+	turret "Dual Sunbeam Turret"
+	turret "Dual Sunbeam Turret"
 
 
 

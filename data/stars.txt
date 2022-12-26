@@ -175,12 +175,24 @@ star "star/nova"
 star "star/nova-old"
 	power 0.3
 	wind 6
-star "star/wr0"
+star "star/nova-small"
+	power 0.2
+	wind 4
+star "star/wr"
 	power 0.4
 	wind 4
-star "star/wr1"
+star "star/protostar-orange"
+	power 0.5
+	wind 3
+star "star/protostar-yellow"
 	power 0.4
-	wind 4
+	wind 5
+
+# Rogue planet with unusual properties
+star "planet/rogue-radiating"
+	power .2
+	wind .6
+
 star "star/neutron"
 	power 4
 	wind 0.4

@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
 
@@ -225,7 +226,8 @@ void Fleet::Load(const DataNode &node)
 	}
 
 	if(variants.empty())
-		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
+		node.PrintTrace("Warning: " + (fleetName.empty()
+			? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
 }
 
 
@@ -273,6 +275,7 @@ const Government *Fleet::GetGovernment() const
 }
 
 
+
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
@@ -306,13 +309,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		double jumpDistance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const Ship *ship : variantShips)
 		{
-			if(ship->Attributes().Get("jump drive"))
+			if(ship->JumpNavigation().HasJumpDrive())
 			{
 				hasJump = true;
-				jumpDistance = ship->JumpRange();
+				jumpDistance = ship->JumpNavigation().JumpRange();
 				break;
 			}
-			if(ship->Attributes().Get("hyperdrive"))
+			if(ship->JumpNavigation().HasHyperdrive())
 				hasHyper = true;
 		}
 		// Don't try to make a fleet "enter" from another system if none of the
@@ -563,7 +566,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName()
+				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 

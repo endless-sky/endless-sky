@@ -34,16 +34,15 @@ class StellarObject : public Body {
 public:
 	StellarObject();
 
-	/* Functions provided by the Body base class:
-	bool HasSprite() const;
-	int Width() const;
-	int Height() const;
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	*/
+	// Functions provided by the Body base class:
+	// bool HasSprite() const;
+	// int Width() const;
+	// int Height() const;
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
 
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;

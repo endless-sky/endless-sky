@@ -49,7 +49,8 @@ namespace {
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 
-	void AddHaze(DrawList &drawList, const std::vector<Body> &haze, const Point &topLeft, const Point &bottomRight, double transparency)
+	void AddHaze(DrawList &drawList, const std::vector<Body> &haze,
+		const Point &topLeft, const Point &bottomRight, double transparency)
 	{
 		for(auto &&it : haze)
 		{

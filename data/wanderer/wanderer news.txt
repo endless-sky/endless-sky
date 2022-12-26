@@ -304,8 +304,8 @@ news "Wanderers and Korath"
 	to show
 		has "Wanderers: Sestor: Final: done"
 	location
-			government "Wanderer"
-			not attributes "evacuation"
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Wanderer merchant captain"
@@ -330,8 +330,8 @@ news "Wanderer Linguistics"
 	to show
 		has "Wanderers: Sestor: Final: done"
 	location
-			government "Wanderer"
-			not attributes "evacuation"
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Wanderer linguist"

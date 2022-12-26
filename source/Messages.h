@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MESSAGES_H_
 #define MESSAGES_H_
 
+#include <cstdint>
 #include <string>
 #include <vector>
-#include <cstdint>
 
 
 
@@ -48,7 +48,7 @@ public:
 
 public:
 	// Add a message to the list along with its level of importance
-	static void Add(const std::string &message, Importance importance);
+	static void Add(const std::string &message, Importance importance = Importance::Low);
 
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have

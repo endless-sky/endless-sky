@@ -60,14 +60,13 @@ public:
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
 
-	/* Functions provided by the Body base class:
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	const Government *GetGovernment() const;
-	*/
+	// Functions provided by the Body base class:
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+	// const Government *GetGovernment() const;
 
 	// Move the projectile. It may create effects or submunitions.
 	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles);

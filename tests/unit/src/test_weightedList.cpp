@@ -408,7 +408,9 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 				{
 					INFO("alpha = 0.05");
 					CHECK( computeChiStat(totalPicks) <= 5.991 );
-				} else {
+				}
+				else
+				{
 					SUCCEED( "null hypothesis is not rejected" );
 				}
 			}
@@ -427,7 +429,7 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 					list.emplace_back(-1, 1);
 					FAIL( "should have thrown" );
 				}
-				catch(const std::invalid_argument &e)
+				catch(const std::invalid_argument &)
 				{
 					SUCCEED( "threw when item weight was negative" );
 					AND_THEN( "the invalid object was not inserted into the list" ) {

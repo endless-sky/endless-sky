@@ -131,7 +131,8 @@ void RingShader::Draw(const Point &pos, float out, float in, const Color &color)
 
 
 
-void RingShader::Draw(const Point &pos, float radius, float width, float fraction, const Color &color, float dash, float startAngle)
+void RingShader::Draw(const Point &pos, float radius, float width, float fraction,
+	const Color &color, float dash, float startAngle)
 {
 	Bind();
 
@@ -164,7 +165,8 @@ void RingShader::Add(const Point &pos, float out, float in, const Color &color)
 
 
 
-void RingShader::Add(const Point &pos, float radius, float width, float fraction, const Color &color, float dash, float startAngle)
+void RingShader::Add(const Point &pos, float radius, float width, float fraction,
+	const Color &color, float dash, float startAngle)
 {
 	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);

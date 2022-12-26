@@ -1,4 +1,4 @@
-/* comparators/ByName.h
+/* ByName.h
 Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -24,6 +24,17 @@ public:
 	bool operator()(const T *a, const T *b) const
 	{
 		return a->Name() < b->Name();
+	}
+};
+
+
+
+template<class T>
+class ByDisplayName {
+public:
+	bool operator()(const T *a, const T *b) const
+	{
+		return a->DisplayName() < b->DisplayName();
 	}
 };
 

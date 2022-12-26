@@ -33,7 +33,8 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret,
+		bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;

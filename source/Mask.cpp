@@ -35,7 +35,8 @@ namespace {
 		const uint32_t *begin = image.Pixels() + frame * numPixels;
 		auto LogError = [width, height](string reason)
 		{
-			Logger::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height) + " px image: " + std::move(reason));
+			Logger::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height)
+				+ " px image: " + std::move(reason));
 		};
 		raw.clear();
 
@@ -301,7 +302,7 @@ void Mask::Create(const ImageBuffer &image, int frame)
 			continue;
 
 		radius = max(radius, ComputeRadius(outline));
-		outlines.push_back(move(outline));
+		outlines.push_back(std::move(outline));
 		outlines.back().shrink_to_fit();
 	}
 	outlines.shrink_to_fit();
@@ -327,6 +328,10 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 	// Bail out if we're too far away to possibly be touching.
 	double distance = sA.Length();
 	if(!IsLoaded() || distance > radius + vA.Length())
+		return 1.;
+
+	// Bail out even if the segment doesn't touch a circle of 'radius'.
+	if(DistanceSquared(Point(), sA, sA + vA) > (radius * radius))
 		return 1.;
 
 	// Rotate into the mask's frame of reference.
