@@ -42,7 +42,8 @@ public:
 	const std::string &Name() const;
 	// Whether this wormhole's link appears on the map.
 	bool IsMappable() const;
-	// Returns this wormhole's link color.
+	// Returns this wormhole's arrows color. The link color
+	// will be a dim version of this color.
 	const Color *GetLinkColor() const;
 	// Whether this wormhole was auto-generated. This is used to
 	// update this wormhole in game events that update the corresponding
