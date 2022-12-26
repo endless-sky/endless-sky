@@ -30136,9 +30136,6 @@ system Vanguwo
 	minables uranium 14 1.89
 	minables copper 10 3.4
 	minables silver 26 2.1
-	fleet "Small Scin" 3400
-	fleet "Scin Transport" 4300
-	fleet "Gegno Miners" 3700
 	object
 		sprite star/giant
 		period 10
