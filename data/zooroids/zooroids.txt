@@ -31,19 +31,15 @@ ship "Zooroid" "Zooroid (Plankton)"
 		"outfit space" 0
 		"weapon capacity" 0
 		"engine capacity" 0
-
 		"hull repair rate" 1
 		"inscrutable" 1
 		"energy capacity" 100
 		"energy generation" 1
-
 		"thrust" 10
 		"turn" 120
-
 		"energy protection" 1
 		"ion protection" 1
-
-	leak blood 1 2
+	"leak" "blood" 1 2
 	"final explode" "blood"
 	description `These are tiny space creatures that feed on solar energy, storing it into two receptors found at the front of their bodies. They are extremely docile, and are found in large groups - almost never seen alone.`
 
