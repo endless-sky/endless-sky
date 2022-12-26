@@ -56,7 +56,6 @@ public:
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Description() const;
-	std::string UnknownName(int amount = 1) const;
 	int64_t Cost() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
