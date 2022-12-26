@@ -277,6 +277,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Rectangle.h
 	RingShader.cpp
 	RingShader.h
+	RValue.h
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h

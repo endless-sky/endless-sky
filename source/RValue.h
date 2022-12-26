@@ -28,9 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-template <class T,
-	typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr
->
+template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr >
 bool NotNearZero(T whut)
 {
 	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon*2);
@@ -42,13 +40,19 @@ bool NotNearZero(T whut)
 
 
 
-template <class T,
-	typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr
->
+template < class T, typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr >
 bool NotNearZero(T whut)
 {
 	return static_cast<bool>(whut);
 }
+
+
+
+template<class T>
+struct DoNotValidate
+{
+	bool operator() (const T &t) { return true; }
+};
 
 
 
@@ -61,7 +65,7 @@ bool NotNearZero(T whut)
 // classes will use a std::string key (K). Having a template key type
 // allows storage of scope, wstring, etc. in the future without
 // rewriting this class.
-template <class V, class K=std::string>
+template < class V, class K = std::string >
 class RValue {
 public:
 	typedef V ValueType;
@@ -77,10 +81,10 @@ public:
 	static constexpr ValueType BadValue = ValueType();
 #endif
 
-	constexpr RValue(): value(), key() {}
-	constexpr RValue(const V &value): value(value), key() {}
-	constexpr RValue(const V &value, const K &key): value(value), key(key) {}
-	~RValue() {}
+	constexpr RValue();
+	constexpr RValue(const V &value);
+	constexpr RValue(const V &value, const K &key);
+	~RValue();
 
 	// Equality is handled by operator ValueType() which means only the
 	// value is compared for equality.
@@ -98,6 +102,11 @@ public:
 	// Update the value from a scope that contains it
 	template<class Getter>
 	const ValueType &UpdateConditions(const Getter &getter);
+
+	// Update the value from a scope that contains it, but use
+	// ValueType() if Validator(weight) is false.
+	template<class Getter, class Validator>
+	const ValueType &UpdateConditions(const Getter &getter, Validator validator);
 
 	// Accessors and mutators
 
@@ -124,6 +133,40 @@ private:
 	ValueType value;
 	KeyType key;
 };
+
+
+
+template <class V, class K>
+constexpr RValue<V,K>::RValue():
+	value(),
+	key()
+{
+}
+
+
+
+template <class V, class K>
+constexpr RValue<V,K>::RValue(const V &value):
+	value(value),
+	key()
+{
+}
+
+
+
+template <class V, class K>
+constexpr RValue<V,K>::RValue(const V &value, const K &key):
+	value(value),
+	key(key)
+{
+}
+
+
+
+template <class V, class K>
+RValue<V,K>::~RValue()
+{
+}
 
 
 
@@ -165,6 +208,29 @@ const V &RValue<V,K>::UpdateConditions(const Getter &getter)
 	// Assumes: got.first = true iff getter has key
 	// got.second = value iff got.first
 	if(got.first)
+		value = static_cast<ValueType>(got.second);
+#ifdef DEBUG_RVALUE_CONDITIONS
+	// If the value hasn't been initialized, use the default value
+	else if(value == BadValue)
+		value = ValueType();
+#endif
+	return value;
+}
+
+
+
+// Update the value from a scope that contains it
+template <class V, class K>
+template <class Getter, class Validator>
+const V &RValue<V,K>::UpdateConditions(const Getter &getter, Validator validator)
+{
+	// If this was a literal, do nothing.
+	if(!WasLValue())
+		return value;
+	auto got = getter.HasGet(key);
+	// Assumes: got.first = true iff getter has key
+	// got.second = value iff got.first
+	if(got.first and validator(got.second))
 		value = static_cast<ValueType>(got.second);
 #ifdef DEBUG_RVALUE_CONDITIONS
 	// If the value hasn't been initialized, use the default value

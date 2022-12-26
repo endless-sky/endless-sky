@@ -38,6 +38,9 @@ class DataWriter;
 // formulae).
 class ConditionsStore {
 public:
+	typedef int64_t ValueType;
+	typedef std::string KeyType;
+
 	// Forward declaration, needed to make ConditionEntry a friend of the
 	// DerivedProvider.
 	class ConditionEntry;

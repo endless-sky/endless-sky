@@ -424,20 +424,12 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 		REQUIRE( list.empty() );
 
 		WHEN( "attempting to insert a negative weighted object" ) {
-			THEN( "an invalid argument exception is thrown" ) {
-				try {
-					list.emplace_back(-1, 1);
-					FAIL( "should have thrown" );
-				}
-				catch(const std::invalid_argument &)
-				{
-					SUCCEED( "threw when item weight was negative" );
-					AND_THEN( "the invalid object was not inserted into the list" ) {
-						CHECK( list.empty() );
-						CHECK( list.size() == 0 );
-						CHECK( list.TotalWeight() == 0 );
-					}
-				}
+			THEN( "weight should be zero" ) {
+				list.emplace_back(-1, 1);
+				if(list.TotalWeight())
+					FAIL( "weight should be zero" );
+				else
+					SUCCEED( "weight was zero when item weight was negative" );
 			}
 		}
 	}

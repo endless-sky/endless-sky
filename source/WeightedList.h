@@ -29,6 +29,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
+// Weights must be at least zero, and must be finite.
+template <class T>
+static bool IsAValidWeight(const T &t) {
+	return t >= 0 && (t + 1 > t);
+}
+
+
+
 // Template representing a list of objects of a given type where each item in the
 // list is weighted with an integer. This list can be queried to randomly return
 // one object from the list where the probability of an object being returned is
@@ -61,10 +69,6 @@ public:
 	template <class Getter>
 	void UpdateConditions(const Getter &c);
 
-	// Weights must be at least zero, and must be finite.
-	template <class T>
-	static bool IsAValidWeight(const T &t) { return t >= 0 && (t + 1 > t); }
-
 	// At least one choice has c(weight,choice) = true
 	template <class Callable>
 	bool Any(Callable c) const;
@@ -85,8 +89,8 @@ public:
 	Type &back() noexcept { return choices.back(); }
 	const Type &back() const noexcept { return choices.back(); }
 
-	template <class ...Args>
-	Type &emplace_back(const WeightType &weight, Args&&... args);
+	template <class NewWeightType, class ...Args>
+	Type &emplace_back(const NewWeightType &weight, Args&&... args);
 
 	iterator eraseAt(iterator position) noexcept;
 	iterator erase(iterator first, iterator last) noexcept;
@@ -207,13 +211,12 @@ typename std::enable_if<
 
 
 template <class Type, class WeightType>
-template <class ...Args>
-Type &WeightedList<Type,WeightType>::emplace_back(const WeightType &weight, Args&&... args)
+template <class NewWeightType, class ...Args>
+Type &WeightedList<Type,WeightType>::emplace_back(const NewWeightType &newWeight, Args&&... args)
 {
+	WeightType weight = IsAValidWeight(newWeight) ? WeightType(newWeight) : WeightType(0);
 	choices.emplace_back(std::forward<Args>(args)...);
 	weights.emplace_back(weight);
-	if(!IsAValidWeight(weights.back()))
-		AssignWeight(weights.back(), 0);
 	total += static_cast<std::size_t>(weights.back());
 	return choices.back();
 }
@@ -228,9 +231,10 @@ void WeightedList<Type, WeightType>::UpdateConditions(const Getter &getter)
 {
 	for(unsigned index = 0; index < choices.size(); ++index)
 	{
-		weights[index].UpdateConditions(getter);
-		if(!IsAValidWeight(weights[index]))
-			AssignWeight(weights[index], 0);
+		weights[index].UpdateConditions(getter, [&](typename Getter::ValueType w)
+		{
+			return IsAValidWeight(w);
+		});
 		choices[index].UpdateConditions(getter);
 	}
 	RecalculateWeight();
