@@ -32349,6 +32349,8 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 		
+# Needs organizing.
+		
 system "Is Il T-94"
 	pos 754.681 -656.444
 	government Uninhabited
@@ -32424,6 +32426,7 @@ system "Is Il T-127"
 	asteroids "large rock" 3 2.61
 	asteroids "large metal" 1 2.54
 	minables titanium 1 5.05
+	fleet "Zooroid (Plankton)" 700
 	object
 		sprite star/g5
 		distance 169.674
@@ -32466,6 +32469,7 @@ system "Is Il V-263"
 	asteroids "large metal" 1 4.557
 	minables iron 4 3.442
 	minables titanium 3 5.731
+	fleet "Zooroid (Plankton)" 1200
 	object
 		sprite star/b-supergiant
 		period 10
@@ -32508,6 +32512,7 @@ system "Is Il X-626"
 	haze _menu/haze-67
 	link "Is Il T-127"
 	asteroids "large metal" 1 3.402
+	fleet "Zooroid (Plankton)" 1000
 	object
 		sprite star/m8
 		distance 153.479
@@ -32546,6 +32551,7 @@ system "Is Ce B-139"
 	asteroids "small metal" 8 6.2
 	asteroids "medium metal" 5 3.41
 	asteroids "large metal" 2 4.402
+	fleet "Zooroid (Plankton)" 600
 	object
 		sprite star/protostar-orange
 		period 40
@@ -32566,6 +32572,7 @@ system "Is Ce F-422"
 	asteroids "medium rock" 4 2.145
 	asteroids "large rock" 9 2.262
 	asteroids "large metal" 1 3.783
+	fleet "Zooroid (Plankton)" 800
 	object
 		sprite star/m3
 		distance 100.764
@@ -32635,6 +32642,7 @@ system "Is Ce G-460"
 	asteroids "medium metal" 19 7.173
 	asteroids "large metal" 8 4.594
 	minables silicon 6 10.214
+	fleet "Zooroid (Plankton)" 1400
 	object
 		sprite star/k-dwarf
 		period 10
@@ -32682,6 +32690,7 @@ system "Is Ce J-591"
 	asteroids "medium metal" 67 2.912
 	asteroids "large metal" 3 1.664
 	minables silicon 8 3.635
+	fleet "Zooroid (Plankton)" 1100
 	object
 		sprite star/g0
 		distance 191.43
@@ -32745,6 +32754,7 @@ system "Is Il Z-59"
 	asteroids "large metal" 15 4.784
 	minables aluminum 9 5.165
 	minables iron 14 4.93
+	fleet "Zooroid (Plankton)" 2300
 	object
 		sprite star/g5
 		distance 71.062
@@ -32878,6 +32888,7 @@ system "Ae Il I-99"
 	asteroids "large metal" 46 2.819
 	minables titanium 1 4.724
 	minables copper 5 5.306
+	fleet "Zooroid (Plankton)" 2700
 	object
 		sprite star/g0-old
 		period 10
@@ -33133,6 +33144,7 @@ system "Ae Il A-3"
 	asteroids "large metal" 1 7.208
 	minables iron 11 4.735
 	minables silver 37 3.069
+	fleet "Zooroid (Plankton)" 3000
 	object
 		sprite star/g-supergiant
 		distance 825.197
