@@ -16,7 +16,7 @@ fleet "Small Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables opportunistic
+		disables opportunistic merciful
 	variant 1
 		"Lightning Bug" 3
 	variant 1
@@ -47,7 +47,7 @@ fleet "Large Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables opportunistic
+		disables opportunistic merciful
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -689,8 +689,7 @@ fleet "Small Unfettered"
 	names "hai"
 	cargo 1
 	personality
-		disables
-		plunders
+		disables plunders
 	variant 3
 		"Lightning Bug (Pulse)" 2
 	variant 3
@@ -712,8 +711,52 @@ fleet "Large Unfettered"
 	names "hai"
 	cargo 1
 	personality
-		disables
-		plunders
+		disables plunders
+	variant 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant 1
+		"Shield Beetle (Tracker)" 2
+	variant 1
+		"Shield Beetle" 2
+	variant 1
+		"Lightning Bug" 5
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+
+fleet "Large Plundering Unfettered"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		disables plunders coward
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -795,8 +838,7 @@ fleet "Unfettered Raid"
 	names "hai"
 	cargo 1
 	personality
-		disables
-		plunders
+		disables plunders
 	variant
 		"Shield Beetle (Jump)" 3
 	variant

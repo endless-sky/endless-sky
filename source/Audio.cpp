@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 #include "TaskQueue.h"
 
-#ifndef __APPLE__
+#if !defined(__APPLE__) || defined(ES_CMAKE)
 #include <AL/al.h>
 #include <AL/alc.h>
 #else
