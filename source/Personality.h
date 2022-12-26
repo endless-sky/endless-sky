@@ -35,6 +35,8 @@ public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 
+	bool IsDefined() const;
+
 	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
@@ -88,6 +90,8 @@ private:
 
 
 private:
+	bool isDefined = false;
+
 	int flags;
 	double confusionMultiplier;
 	double aimMultiplier;
