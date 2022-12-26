@@ -375,43 +375,46 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		{
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
 			int count = it.second;
+			string category = it.first->Category();
 
 			if(!player.OutfitIsKnown(*it.first))
 			{
-				string displayName = "Unknown Component";
-				string pluralName = displayName + "s";
-				// check if this cat's summary has more than one unknown component
-				auto item = outfitsByCategory[it.first->Category()].find(pluralName);
+				string outfitDisplayName = "Unknown Outfit";
+				string outfitPluralName = outfitDisplayName + "s";
+				category = "Unknown";
 
-				// it does, use pluralName
-				if(item != outfitsByCategory[it.first->Category()].end())
+				// check if this cat's summary has more than one unknown outfit
+				auto item = outfitsByCategory[category].find(outfitPluralName);
+
+				// it does, use outfitPluralName
+				if(item != outfitsByCategory[category].end())
 				{
-					outfitNameForDisplay = pluralName;
+					outfitNameForDisplay = outfitPluralName;
 					count += item->second;
 				}
 				// doesn't have.
 				else
 				{
-					// check if this cat's summary has one unknown component
-					auto item = outfitsByCategory[it.first->Category()].find(displayName);
+					// check if this cat's summary has one unknown outfit
+					auto item = outfitsByCategory[category].find(outfitDisplayName);
 
 					// it does.
-					if(item != outfitsByCategory[it.first->Category()].end())
+					if(item != outfitsByCategory[category].end())
 					{
-						outfitNameForDisplay = pluralName;
+						outfitNameForDisplay = outfitPluralName;
 						count += item->second;
-						outfitsByCategory[it.first->Category()].erase(item);
+						outfitsByCategory[category].erase(item);
 					}
 					// it doesn't
 					else
 					{
-						outfitNameForDisplay = (it.second == 1 ? displayName : pluralName);
+						outfitNameForDisplay = (it.second == 1 ? outfitDisplayName : outfitPluralName);
 						count = it.second;
 					}
 				}
 			}
 
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), count);
+			outfitsByCategory[category][outfitNameForDisplay] = count;
 		}
 		for(const auto &it : outfitsByCategory)
 		{
