@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship "Zooroid" "Zooroid (Plankton)"
+ship "Zooroid"
 	noun creature
 	sprite "ship/zooroids/zooroid-a"
 		"frame rate" 24
@@ -51,12 +51,12 @@ fleet "Zooroid (Plankton)"
 	personality
 		timid mute swarming
 	variant 200
-		"Zooroid (Plankton)" 3
+		"Zooroid" 7
 	variant 140
-		"Zooroid (Plankton)" 4
+		"Zooroid" 5
 	variant 50
-		"Zooroid (Plankton)" 5
+		"Zooroid" 4
 	variant 20
-		"Zooroid (Plankton)" 7
+		"Zooroid" 3
 	variant 
-		"Zooroid (Plankton)"
+		"Zooroid"
