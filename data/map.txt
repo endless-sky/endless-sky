@@ -2418,6 +2418,8 @@ system "Aik Kamgatake"
 	minables iron 34 2.5
 	minables copper 32 3.06
 	object
+		sprite star/nova-core
+	object
 		sprite star/nova
 		period 10
 	object
@@ -2444,8 +2446,6 @@ system "Aik Kamgatake"
 		sprite planet/gas11
 		distance 10053
 		period 5473.98
-	object
-		sprite star/k5
 
 system Aki'il
 	pos -83 722
@@ -29483,6 +29483,7 @@ system Uhebe
 	link Ptetubo
 	link Scija
 	link Wreoul
+	link Vorsuke
 	asteroids "small rock" 3 1.2
 	asteroids "medium rock" 12 1.91
 	asteroids "large rock" 3 1.489
@@ -30479,6 +30480,7 @@ system Vorsuke
 	habitable 625
 	belt 1177
 	haze _menu/haze-none
+	link Uhebe
 	asteroids "small rock" 13 4.23
 	asteroids "medium rock" 1 2.87
 	asteroids "large rock" 7 3.78
