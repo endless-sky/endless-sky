@@ -127,6 +127,8 @@ namespace {
 			message += "flagship.";
 		Messages::Add(message, Messages::Importance::High);
 
+		// when receiving a outfit as gift, it can be either installed
+		// or in the cargo, in that case, mark it as known.
 		if((didCargo || didShip) && !player.OutfitIsKnown(*outfit))
 			player.DiscoverOutfit(*outfit);
 	}
