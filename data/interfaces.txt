@@ -373,7 +373,7 @@ interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
 	sprite "ui/music volume"
-		center 325.5 -60
+		center 330 -60
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
