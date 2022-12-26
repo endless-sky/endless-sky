@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifndef WORMHOLE_H_
 #define WORMHOLE_H_
+
 #include "Color.h"
 
 #include <string>
