@@ -62,11 +62,6 @@ class Weather;
 // situations where there are many objects on screen at once.
 class Engine {
 public:
-	// Minimum allowed spawn period for fleets, used as a
-	// safeguard against bad conditions. This is essentially an
-	// epsilon for comparison to zero.
-	static const int MINIMUM_FLEET_PERIOD = 1;
-
 	explicit Engine(PlayerInfo &player);
 	~Engine();
 
