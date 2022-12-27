@@ -73,7 +73,6 @@ test "Loading and Saving"
 			year == 3013
 			month == 11
 			day == 19
-		call "Open Menu"
 		call "Save To Default Snapshot"
 		call "Depart"
 		assert
