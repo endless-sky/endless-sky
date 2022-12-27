@@ -87,12 +87,12 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 		WHEN( "it is default initialized" ) {
 			Condition<double> condition;
 			THEN( "the contents should be empty" ) {
-				CHECK( condition.Value() == 0 );
+				CHECK( condition.Value() == double() );
 				CHECK( condition.Key().empty() );
 				CHECK( condition.IsLiteral() );
 				CHECK_FALSE( condition.HasConditions() );
 				CHECK_FALSE( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == 0);
+				CHECK( static_cast<double>(condition) == double());
 				CHECK( static_cast<double>(condition) == condition.Value());
 			}
 			THEN( "it should have the same origin as itself" ) {
@@ -102,7 +102,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				ConditionMaker vars({ { otherKey, otherValue } });
 				condition.UpdateConditions(vars.Store());
 				THEN( "the key and value should not change" ) {
-					CHECK( condition.Value() == 0 );
+					CHECK( condition.Value() == double() );
 					CHECK( condition.IsLiteral() );
 					CHECK_FALSE( condition.HasConditions() );
 					CHECK( condition.Key().empty() );
@@ -321,9 +321,9 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 				CHECK_FALSE( condition.HasConditions() );
 			}
 			THEN( "the value should be the type default (0.0)" ) {
-				CHECK( condition.Value() == 0.0 );
+				CHECK( condition.Value() == double() );
 				CHECK_FALSE( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == 0.0 );
+				CHECK( static_cast<double>(condition) == double() );
 			}
 		}
 	}
@@ -338,9 +338,9 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 				CHECK( condition.HasConditions() );
 			}
 			THEN( "the value should be the type default (0.0)" ) {
-				CHECK( condition.Value() == 0.0 );
+				CHECK( condition.Value() == double() );
 				CHECK_FALSE( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == 0.0 );
+				CHECK( static_cast<double>(condition) == double() );
 			}
 		}
 		WHEN( "calling UpdateCondition with the key and a bad value" ) {
@@ -353,9 +353,9 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 				CHECK( condition.HasConditions() );
 			}
 			THEN( "the value should be the type default (0.0)" ) {
-				CHECK( condition.Value() == 0.0 );
+				CHECK( condition.Value() == double() );
 				CHECK_FALSE( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == 0.0 );
+				CHECK( static_cast<double>(condition) == double() );
 			}
 		}
 		WHEN( "calling UpdateCondition with the key and a good value" ) {

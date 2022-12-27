@@ -28,14 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Weights must be at least zero, and must be finite.
-template <class T>
-static bool IsAValidWeight(const T &t) {
-	return t >= 0 && (t + 1 > t);
-}
-
-
-
 // Template representing a list of objects of a given type where each item in the
 // list is weighted with an integer. This list can be queried to randomly return
 // one object from the list where the probability of an object being returned is
@@ -191,6 +183,14 @@ typename std::enable_if<
 	for(unsigned index = 0; index < choices.size(); ++index)
 		sum += fn(choices[index]) * static_cast<unsigned>(weights[index]);
 	return sum / tw;
+}
+
+
+
+// Weights must be at least zero, and must be finite.
+template <class T>
+static bool IsAValidWeight(const T &t) {
+	return t >= 0 && (t + 1 > t);
 }
 
 

@@ -18,18 +18,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 #include <cmath>
-#include <cstdio>
 #include <limits>
-#include <stdexcept>
 #include <string>
 #include <type_traits>
 
 
 
-// This class stores an rvalue and remembers where the rvalue came
-// from.  Either this was a literal value, in which the key is empty()
-// Or, this was from dereferencing something (ie. Dictionary,
-// ConditionsStore) in which case the key is not empty()
+// This class stores either:
+//   1. A condition's value and key
+//   2. A literal value (key is empty)
 //
 // The value (V) is first in the template since (nearly?) all Condition
 // classes will use a std::string key (K). Having a template key type
@@ -41,20 +38,10 @@ public:
 	typedef V ValueType;
 	typedef K KeyType;
 
-	// The BadValue represents a key whose value was unavailable
-	// when it was loaded. This is never set by default. The
-	// caller has to explicitly request it.
-
-#ifdef DEBUG_RVALUE_CONDITIONS
-	static constexpr ValueType BadValue = ValueType(0xDeadBeef);
-#else
-	static constexpr ValueType BadValue = ValueType();
-#endif
-
-	constexpr Condition();
-	explicit constexpr Condition(const V &value);
-	constexpr Condition(const V &value, const K &key);
-	~Condition();
+	constexpr Condition(): value(), key() {}
+	explicit constexpr Condition(const V &value): value(value), key() {}
+	constexpr Condition(const V &value, const K &key): value(value), key(key) {}
+	~Condition() {}
 
 	template <class V2, class K2>
 	Condition(const Condition<V2,K2> &other);
@@ -73,15 +60,15 @@ public:
 
 	// Accessors and mutators
 
-	const ValueType &Value() const;
-	ValueType &Value();
+	const ValueType &Value() const { return value; }
+	ValueType &Value() { return value; }
 	const KeyType &Key() const { return key; }
 	KeyType &Key() { return key; }
 
 	// Does this Condition come from the same place as the other one?
-	// If it was an lvalue, the key must be the same.
-	// For literals, this means the value is the same.
-	// You can think of this as an operator== that cares about the key.
+	// If it was a condition, the key must be the same (value doesn't matter)
+	// If it was a literal (no key) then the value must be the same.
+	// If one is literal and the other is conditional, the result is false.
 	bool SameOrigin(const Condition<V,K> &o);
 
 	// Does this originate from a condition?
@@ -90,6 +77,8 @@ public:
 	// Does this originate from a literal value (ie. 5.071)?
 	bool IsLiteral() const { return key.empty(); }
 
+	// Floating-point values are false if they're within sqrt(epsilon*2) of 0 (very small numbers)
+	// while anything else is simply passed through static_cast<bool>
 	explicit operator bool() const;
 
 	// Allow the Condition to be treated as its value in most contexts.
@@ -99,41 +88,6 @@ private:
 	ValueType value;
 	KeyType key;
 };
-
-
-
-template <class V, class K>
-constexpr Condition<V,K>::Condition():
-	value(),
-	key()
-{
-}
-
-
-
-template <class V, class K>
-constexpr Condition<V,K>::Condition(const V &value):
-	value(value),
-	key()
-{
-}
-
-
-
-template <class V, class K>
-constexpr Condition<V,K>::Condition(const V &value, const K &key):
-	value(value),
-	key(key)
-{
-}
-
-
-
-template <class V, class K>
-Condition<V,K>::~Condition()
-{
-}
-
 
 
 // Allow construction and assignment between Condition types to
@@ -147,7 +101,6 @@ Condition<V,K>::Condition(const Condition<V2,K2> &other):
 }
 
 
-
 // Allow construction and assignment between Condition types to
 // facilitate type conversion.
 template <class V, class K>
@@ -158,7 +111,6 @@ Condition<V,K> &Condition<V,K>::operator = (const Condition<V2,K2> &other)
 	key = static_cast<KeyType>(other.Key());
 	return *this;
 }
-
 
 
 // Update the value from a scope that contains it
@@ -174,15 +126,9 @@ const V &Condition<V,K>::UpdateConditions(const Getter &getter)
 		// got.second = value iff got.first
 		if(got.first)
 			value = static_cast<ValueType>(got.second);
-#ifdef DEBUG_RVALUE_CONDITIONS
-		// If the value hasn't been initialized, use the default value
-		else if(value == BadValue)
-			value = ValueType();
-#endif
 	}
 	return value;
 }
-
 
 
 // Update the value from a scope that contains it, if the new value passes a validator.
@@ -201,14 +147,6 @@ const V &Condition<V,K>::UpdateConditions(const Getter &getter, Validator valida
 			value = static_cast<ValueType>(got.second);
 			return value;
 		}
-#ifdef DEBUG_RVALUE_CONDITIONS
-		// If the value hasn't been initialized, use the default value
-		else if(value == BadValue)
-		{
-			value = ValueType();
-			return value;
-		}
-#endif
 	}
 	if(!validator(value))
 		value = ValueType();
@@ -216,35 +154,6 @@ const V &Condition<V,K>::UpdateConditions(const Getter &getter, Validator valida
 }
 
 
-
-template <class V, class K>
-const V &Condition<V,K>::Value() const
-{
-#ifdef DEBUG_RVALUE_CONDITIONS
-	if(!key.empty() && value == BadValue)
-		throw std::runtime_error("Found uninitialized value with key \"" + key + "\"");
-#endif
-	return value;
-}
-
-
-
-template <class V, class K>
-V &Condition<V,K>::Value()
-{
-#ifdef DEBUG_RVALUE_CONDITIONS
-	if(!key.empty() && value == BadValue)
-		throw std::runtime_error("Found uninitialized value with key \"" + key + "\"");
-#endif
-	return value;
-}
-
-
-
-// Does this Condition come from the same place as the other one?
-// If it was an lvalue, the key must be the same.
-// For literals, this means the value is the same.
-// You can think of this as an operator== that cares about the key.
 template <class V, class K>
 bool Condition<V,K>::SameOrigin(const Condition<V,K> &o)
 {
@@ -255,6 +164,7 @@ bool Condition<V,K>::SameOrigin(const Condition<V,K> &o)
 	else
 		return value == o.Value();
 }
+
 
 template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr >
 bool NotNearZero(T whut)
@@ -267,11 +177,13 @@ bool NotNearZero(T whut)
 	return whut > epsilon || whut < -epsilon;
 }
 
+
 template < class T, typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr >
 bool NotNearZero(T whut)
 {
 	return static_cast<bool>(whut);
 }
+
 
 template <class V, class K>
 Condition<V,K>::operator bool() const {

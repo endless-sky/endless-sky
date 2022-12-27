@@ -70,7 +70,7 @@ public:
 
 	// Get the value, and if it was a variable, the variable name
 	Condition<double> AsCondition(int index, const ConditionsStore *vars = nullptr,
-		double ifMissing = Condition<double>::BadValue) const;
+		double ifMissing = 0) const;
 
 private:
 	// Adjust the parent pointers when a copy is made of a DataNode.
