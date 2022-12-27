@@ -338,7 +338,7 @@ mission "Remnant: Celebration 1"
 			choice
 				`	"Yes."`
 					accept
-				`	"Sorry, I'm not headed that way."`
+				`	"Sorry, I am not headed that way."`
 			`	She looks disappointed, but merely shrugs and pockets the crystal. "I will find someone else to transport this, then."`
 				decline
 	on complete
@@ -369,7 +369,7 @@ mission "Remnant: Teciimach Deployment"
 			`	"Good timing, Captain! We just rolled out an upgrade to some of our oldest equipment, and our Mergansers finally have something to carry as first-strike weapons. Interested in taking a look?"`
 			choice
 				`	"Yes."`
-				`	"Sorry, but I'm a bit busy at the moment."`
+				`	"Sorry, but I am a bit busy at the moment."`
 					goto empno
 			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP torpedo canisters into place. "Well, you have probably seen us use EMP torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
 			`	"Over the past decades we have had a few teams working on improving them from different angles. Some focused on the torpedoes themselves, others focused on the launcher. The surprising development, however, was from a team working down in the Warren. They figured out a way to shave a few cubic meters off the systems that assemble the torpedoes, and compress the whole structure. Very impressive work, and the results should be in the outfitter for you in the next day or two."`
@@ -584,7 +584,7 @@ mission "Remnant: Shattered Light 4"
 			`	"In terms of help, could you go to Caelian? We have sent word ahead, and our engineers are retrieving some of our remaining equipment from the time of the Exodus. We are hoping that it might be of use to help us repair the Shattered Light, or at least understand what happened to it.`
 			`	"Before you leave, though, there was some stuff that survived intact we would like to share with you." Behind her five androids emerge from one of the cargo holds, each one carrying a large trunk of equipment.`
 			scene "outfit/android"
-			`	"These are known as NDR-114 Androids, and were cutting edge innovations back when the Exodus occurred. Don't expect too much of them. They are not self-aware, sentient, or even particularly advanced artificial intelligences. They are, however, excellent extensions of a ship's self-maintenance systems. As it turns out, a large number of these androids were instrumental in keeping the Shattered Light flying all these years. We have plenty to study, so we thought you might appreciate having a few." She makes a dismissive gesture. "If they end up not being helpful for you, our outfitters will be able to re-assign them to another ship.`
+			`	"These are known as NDR-114 Androids, and were cutting edge innovations back when the Exodus occurred. Do not expect too much of them. They are not self-aware, sentient, or even particularly advanced artificial intelligences. They are, however, excellent extensions of a ship's self-maintenance systems. As it turns out, a large number of these androids were instrumental in keeping the Shattered Light flying all these years. We have plenty to study, so we thought you might appreciate having a few." She makes a dismissive gesture. "If they end up not being helpful for you, our outfitters will be able to re-assign them to another ship.`
 			`	"Embers light your path, Captain <first>." With that, the crowd disperses.`
 
 
@@ -707,7 +707,7 @@ mission "Remnant: Scent of Rain 1"
 			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data," he comments. "What are your thoughts, having seen it first hand?"`
 			choice
 				`	"You were right in suspecting that this new ship carries an additional fighter. One more fighter might not change much in combat, but if the Korath are building new warships, they may also be building stronger fighters."`
-				`	"An extra fighter bay isn't the only thing this new ship has. It also comes with an extra gun, bigger engines, superior shields and hull, and likely other unseen improvements. Overall it's much more formidable than its predecessor."`
+				`	"An extra fighter bay is not the only thing this new ship has. It also comes with an extra gun, bigger engines, superior shields and hull, and likely other unseen improvements. Overall it's much more formidable than its predecessor."`
 			`	He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
 			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
 			choice

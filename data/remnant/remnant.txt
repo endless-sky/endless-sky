@@ -362,7 +362,7 @@ phrase "remnant"
 
 phrase "remnant uncontacted"
 	word
-		"(They sent you a hail consisting of a sign language you don't understand.)"
+		"(They sent you a hail consisting of a sign language you do not understand.)"
 		"(You hear a short song about how scanning them will be considered a hostile action.)"
 		`"If you value the continued survival of humanity, do not scan our ships," a strangely melodic voice says.`
 		`"If you value your continued survival, do not scan our ships." The voice speaks with a tone reminiscent of singing.`
@@ -430,8 +430,8 @@ phrase "remnant uncontacted hostile"
 
 phrase "remnant uncontacted hostile"
 	word
-		"(They sent you hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
-		"(They sign so quickly that your hail receiver can't process it all.)"
+		"(They sent you hail consisting of a sign language you do not understand, and it does not seem friendly.)"
+		"(They sign so quickly that your hail receiver can not process it all.)"
 		"(It seems you are not welcome here.)"
 
 phrase "remnant friendly"
@@ -898,7 +898,7 @@ phrase "remnant friendly cautions"
 	word
 		" "
 	word
-		"You don't want to get yourself killed"
+		"You do not want to get yourself killed"
 		"It is dangerous to encounter them"
 		"Always have some weapons in case you come across them"
 		"We have ships that can cloak in case you find yourself in a tricky situation with them"
@@ -908,7 +908,7 @@ phrase "remnant friendly cautions"
 
 phrase "remnant hostile"
 	word
-		"(It consists of signs so complex that any regular human wouldn't understand, but it seems that they don't like you.)"
+		"(It consists of signs so complex that any regular human would not understand, but it seems that they do not like you.)"
 
 phrase "remnant hostile"
 	word
