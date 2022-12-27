@@ -86,7 +86,8 @@ test "Loading and Saving"
 			"test: year" = year
 			"test: month" = month
 			"test: day" = day
-		call "Depart"
+		input
+			key d
 		# Don't ask me why we need two of these, but it seems we do.
 		call "Depart"
 		apply
