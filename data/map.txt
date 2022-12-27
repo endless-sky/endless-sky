@@ -7318,8 +7318,12 @@ system Clepsydra
 	asteroids "large metal" 1 1.287
 	minables aluminum 3 1.513
 	object
-		sprite star/a-test
+		sprite star/a-eater
 		period 10
+	object
+		sprite star/a-dwarf
+		period 10
+		distance 55
 	object
 		sprite planet/ganymede-b
 		distance 999.815

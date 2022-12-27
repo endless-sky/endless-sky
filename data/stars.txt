@@ -166,6 +166,9 @@ star "star/m-supergiant"
 	wind 2
 
 # Special stars.
+star "star/a-eater"
+	power 1.84
+	wind 0.45
 star "star/carbon"
 	power 0.1
 	wind 10
@@ -250,9 +253,5 @@ star "star/m4"
 	power 0.62
 	wind 1.00
 star "star/giant"
-	power 1.4
-	wind 2
-
-star "star/a-test"
 	power 1.4
 	wind 2
