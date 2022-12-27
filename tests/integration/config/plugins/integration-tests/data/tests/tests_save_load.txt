@@ -43,6 +43,9 @@ test "Loading and Saving"
 		inject "Three Earthly Barges"
 		call "Load First Savegame"
 		call "Depart"
+		apply
+			"test: Depart: 0 zoom_restore_counter" = "test: Depart: zoom_restore_counter"
+			"test: 0 departed 1" = 1
 		assert
 			year == 3013
 			month == 11
@@ -57,6 +60,8 @@ test "Loading and Saving"
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
+		apply
+			"test: 1 entered A Cen 1" = 1
 		# Terminate jumping if it still is active.
 		input
 			command forward
@@ -69,14 +74,27 @@ test "Loading and Saving"
 		label notReturned1
 		branch notReturned1
 			not "flagship planet: Earth"
+		apply
+			"test: 2 returned to Earth 1" = 1
 		assert
 			year == 3013
 			month == 11
 			day == 19
 		call "Save To Default Snapshot"
+		apply
+			"test: 3 saved to default snapshot" = 1
+			"test: year" = year
+			"test: month" = month
+			"test: day" = day
 		call "Depart"
 		# Don't ask me why we need two of these, but it seems we do.
 		call "Depart"
+		apply
+			"test: Depart: 1 zoom_restore_counter" = "test: Depart: zoom_restore_counter"
+			"test: 4 departed again" = 1
+			"test: year" = year
+			"test: month" = month
+			"test: day" = day
 		assert
 			year == 3013
 			month == 11
@@ -93,13 +111,22 @@ test "Loading and Saving"
 		label notAlpha2
 		branch notAlpha2
 			not "flagship system: Alpha Centauri"
+		apply
+			"test: 5 entered A Cen 2" = 1
+			"test: year" = year
+			"test: month" = month
+			"test: day" = day
 		assert
 			year == 3013
 			month == 11
 			day == 21
 		call "Open Menu"
 		call "Load First Savegame"
+		apply
+			"test: 6 loaded first savegame" = 1
 		call "Depart"
+		apply
+			"test: 7 departed one more time" = 1
 		assert
 			year == 3013
 			month == 11
