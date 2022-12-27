@@ -72,6 +72,11 @@ string GameWindow::SDLVersions()
 
 bool GameWindow::Init()
 {
+#ifdef _WIN32
+	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
+	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+#endif
+
 	// This needs to be called before any other SDL commands.
 	if(SDL_Init(SDL_INIT_VIDEO) != 0)
 	{

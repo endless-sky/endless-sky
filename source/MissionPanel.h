@@ -89,7 +89,7 @@ private:
 
 	int dragSide = 0;
 	int hoverSortCount = 0;
-	int hoverSort = -1; //0 to 3 for each UI element
+	int hoverSort = -1; // 0 to 3 for each UI element
 	WrappedText wrap;
 };
 

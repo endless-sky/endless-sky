@@ -32,7 +32,7 @@ ship "Archon"
 		"outfit space" 1300
 		"weapon capacity" 1125
 		"engine capacity" 200
-		"energy capacity" 20000
+		"energy capacity" 100000
 		"energy generation" 1000
 		"heat generation" 17
 		"shield generation" 100

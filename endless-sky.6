@@ -42,7 +42,7 @@ prints any content or whitespace\-formatting errors found while loading data fil
 execute the test case with the given name
 
 .IP \fB\-\-tests
-prints (to STDOUT) a table of available tests, usable for automatic test runs. This option prevents the game from launching.
+prints (to STDOUT) a list of available tests, usable for automatic test runs. This option prevents the game from launching.
 
 .IP \fB\-s,\ \-\-ships
 prints (to STDOUT) a table of ship stats (just the base stats, not considering any stored outfits). This option prevents the game from launching.
@@ -98,6 +98,9 @@ prints (to STDOUT) a list of all systems and their attributes.
 prints (to STDOUT) a list of all system attributes and which systems have them.
 .RE
 .RE
+
+.IP \fB\-\-matches
+reads a data file from STDIN and looks for a "location" node at the root level (i.e. not indentated). If it finds one, prints a list of all systems and planets which match the location filter in that node.
 
 .SH AUTHOR
 Michael Zahniser (mzahniser@gmail.com)
