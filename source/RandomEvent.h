@@ -74,19 +74,19 @@ T InitialPeriod(const T &period, U minimumValue, bool overrideMinimum)
 }
 
 template <typename T, typename P>
-constexpr RandomEvent<T,P>::RandomEvent(const T *event, const PeriodType &period, bool overrideMinimum) noexcept
+constexpr RandomEvent<T, P>::RandomEvent(const T *event, const PeriodType &period, bool overrideMinimum) noexcept
 	: event(event), overrideMinimum(overrideMinimum),
 	period(InitialPeriod(period, minimumPeriod, overrideMinimum))
 {}
 
 template <typename T, typename P>
-constexpr const T *RandomEvent<T,P>::Get() const noexcept
+constexpr const T *RandomEvent<T, P>::Get() const noexcept
 {
 	return event;
 }
 
 template <typename T, typename P>
-constexpr const P &RandomEvent<T,P>::Period() const noexcept
+constexpr const P &RandomEvent<T, P>::Period() const noexcept
 {
 	return period;
 }
@@ -94,7 +94,7 @@ constexpr const P &RandomEvent<T,P>::Period() const noexcept
 // Update the period from a ConditionSet if needed.
 template <typename T, typename P>
 template <typename Getter>
-void RandomEvent<T,P>::UpdateConditions(const Getter &getter)
+void RandomEvent<T, P>::UpdateConditions(const Getter &getter)
 {
 	period.UpdateConditions(getter);
 	if(period <= 0)
@@ -102,7 +102,7 @@ void RandomEvent<T,P>::UpdateConditions(const Getter &getter)
 }
 
 template <typename T, typename P>
-bool RandomEvent<T,P>::HasConditions() const
+bool RandomEvent<T, P>::HasConditions() const
 {
 	return PeriodTypeHasConditions<P>(period);
 }

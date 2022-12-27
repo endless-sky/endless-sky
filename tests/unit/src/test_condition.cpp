@@ -37,7 +37,10 @@ const double value = intValue;
 const double otherValue = 2.0;
 const double tinyValue = 1e-30;
 const std::string key = "key";
-const std::string otherKey = "anotherkey";
+const std::string otherKey = "otherKey";
+const char *nonEmptyCString = "nonEmptyCString";
+const char *anotherCString = "anotherCString";
+
 
 // For validation checks
 const double badValue = -1.0;
@@ -50,9 +53,13 @@ bool Validate(double d)
 
 // #endregion mock data
 
+// IMPLEMENTATION NOTE: These unit tests assume the default KeyType of
+// a Condition is std::string. This is because the code assumes that
+// as well.
+
 // #region unit tests
 TEST_CASE( "Condition Basics", "[Condition]" ) {
-	using T = Condition<double>;
+	using T = Condition<double, std::string>;
 	SECTION( "Class Traits" ) {
 		CHECK_FALSE( std::is_trivial<T>::value );
 		CHECK( std::is_nothrow_destructible<T>::value );
@@ -79,6 +86,37 @@ TEST_CASE( "Condition Basics", "[Condition]" ) {
 		CHECK( std::is_move_assignable<T>::value );
 		CHECK_FALSE( std::is_trivially_move_assignable<T>::value );
 		CHECK_FALSE( std::is_nothrow_move_assignable<T>::value );
+	}
+}
+
+SCENARIO( "Creating a Condition with the default KeyType" , "[Condition][KeyType]" ) {
+	GIVEN( "a default-constructed Condition<double>::KeyType" ) {
+		WHEN( "its empty() method is called" ) {
+			Condition<double>::KeyType key;
+			THEN( "the result should be true" ) {
+				CHECK( key.empty() );
+				CHECK_FALSE( !key.empty() );
+			}
+		}
+	}
+	GIVEN( "a Condition<double>::KeyType constructed from a c string (const char *) to a non-empty string" ) {
+		Condition<double>::KeyType key(nonEmptyCString);
+		WHEN( "its empty() method is called" ) {
+			THEN( "the result should be false" ) {
+				CHECK_FALSE( key.empty() );
+				CHECK( !key.empty() );
+			}
+		}
+		WHEN( "compared to c strings" ) {
+			THEN( "it should be equal to the c string provide to it" ) {
+				CHECK( key == nonEmptyCString );
+				CHECK_FALSE( key != nonEmptyCString );
+			}
+			THEN( "it should not be equal to a different c string" ) {
+				CHECK_FALSE( key == anotherCString );
+				CHECK( key != anotherCString );
+			}
+		}
 	}
 }
 
