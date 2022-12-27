@@ -603,9 +603,9 @@ test "Sell first ship"
 
 
 
-test "Land On Ruin helper"
+test "Land"
 	status partial
-	description "Helper for landing on Ruin."
+	description "Helper for landing."
 	sequence
 		input
 			command land
@@ -613,21 +613,7 @@ test "Land On Ruin helper"
 		# empty input to make time pass
 		input
 		branch "landing"
-			"flagship planet: Ruin" == 0
-
-
-
-test "Land On Prime helper"
-	status partial
-	description "Helper for landing on Prime."
-	sequence
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Prime" == 0
+			"flagship landed" == 0
 
 
 
@@ -636,7 +622,7 @@ test "Trigger Ruin Spaceport Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions."
 	sequence
 		call "Depart"
-		call "Land On Ruin helper"
+		call "Land"
 		input
 			key p
 
@@ -646,7 +632,7 @@ test "Trigger Prime Spaceport Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions."
 	sequence
 		call "Depart"
-		call "Land On Prime helper"
+		call "Land"
 		input
 			key p
 
