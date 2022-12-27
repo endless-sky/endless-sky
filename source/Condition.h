@@ -38,9 +38,9 @@ public:
 	typedef V ValueType;
 	typedef K KeyType;
 
-	constexpr Condition(): value(), key() {}
-	explicit constexpr Condition(const V &value): value(value), key() {}
-	constexpr Condition(const V &value, const K &key): value(value), key(key) {}
+	constexpr Condition() : value(), key() {}
+	explicit constexpr Condition(const V &value) : value(value), key() {}
+	constexpr Condition(const V &value, const K &key) : value(value), key(key) {}
 	~Condition() {}
 
 	template <class V2, class K2>
