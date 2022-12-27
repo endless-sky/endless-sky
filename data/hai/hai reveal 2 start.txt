@@ -470,7 +470,7 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"No, I was just walking by. Sorry to bother you."`
 					decline
 			label hiding
-			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again.`
+			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again."`
 				goto trustcheck
 
 			label help

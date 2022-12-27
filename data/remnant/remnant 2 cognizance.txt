@@ -34,7 +34,7 @@ mission "Remnant: Cognizance 1"
 				`	"Not right now, but I could later."`
 					defer
 				`	"How much will I get paid?"`
-			`	"Once the research is published, you will receive one million credits.`
+			`	"Once the research is published, you will receive one million credits."`
 			choice
 				`	"I accept."`
 				`	"Not right now, but I could later."`
@@ -947,7 +947,7 @@ mission "Remnant: Cognizance 22"
 				`	"Well, that is done. Taely is waiting for me."`
 					goto departure
 				`	"Those turrets looked different."`
-			`	The Remnant nods. "You are observant. Most of those turrets are, in fact, the originals that we discovered here. Each one is a veritable fortress in and of itself, which is why we built similar ones to use as point defense systems for our ships.`
+			`	The Remnant nods. "You are observant. Most of those turrets are, in fact, the originals that we discovered here. Each one is a veritable fortress in and of itself, which is why we built similar ones to use as point defense systems for our ships."`
 			choice
 				`	"Originals?"`
 				`	"You did not build the vault?"`
@@ -1602,7 +1602,7 @@ mission "Remnant: Cognizance 38"
 				`	(Explain everything that happened.)`
 					goto cognizanceexplanation
 				`	"I think I should tell this to the prefects first."`
-			`	The Remnant around you look amused. "Do not be concerned, <first>. Everything you say will reach them. The sooner you tell us, the sooner we can start preparing for whatever is necessary.`
+			`	The Remnant around you look amused. "Do not be concerned, <first>. Everything you say will reach them. The sooner you tell us, the sooner we can start preparing for whatever is necessary."`
 			choice
 				`	(Explain everything that happened.)`
 					goto cognizanceexplanation
