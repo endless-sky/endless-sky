@@ -590,6 +590,7 @@ test "Buy First Ship"
 
 test "Wait 55 steps"
 	status partial
+	description "Wait 55 steps for something that requires some time, like launching or loading the game."
 	sequence
 		apply
 			"test: wait 55" = 55
@@ -603,6 +604,7 @@ test "Wait 55 steps"
 
 test "Wait 10 steps"
 	status partial
+	description "Wait 10 steps to give time for the game to get the newest conditions. 5 steps are just enough but may as well be sure."
 	sequence
 		apply
 			"test: wait 10" = 10
