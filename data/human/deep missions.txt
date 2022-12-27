@@ -3305,7 +3305,7 @@ mission "Home for Skadenga 4"
 				accept
 	on complete
 		conversation
-			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg."`
+			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
 			scene "scene/tower"
 			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden. We are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients.`
 			`	"We've heard that you have this inspiring idea to transport an entire backwater community from one world to another," Kaiden says.`
@@ -3535,7 +3535,7 @@ mission "Skadenga Call 2"
 			`	The police officers enter your ship and start restraining and removing the the Skadenga aboard it.`
 			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment for your aid in the next couple days, after I've gotten it approved." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One, however, is screaming, kicking, and biting.`
 			`	The unruly Skadenga is dragged past you, and spit splashes against your cheek. "I'll kill you, <first>. If ever ve meet again I'll kill you. You've killed me. You've killed me." Hjlod's red and tear-stained face recedes as officers drag her away.`
-			`	"Misguided girl," Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>.`
+			`	"Misguided girl," Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>."`
 				decline
 			label takeoff
 			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor. "Thank Skade," is all she says.`
@@ -3691,7 +3691,7 @@ mission "Home for Skadenga 9"
 				`	"I'm out. No deal."`
 			action
 				set "refusedhroar"
-			`	Hroar smirks. "Alright. You're out. Get outta my booth, and good luck on your little charity adventure." Hroar goes back to drinking his whiskey as the saloon's swinging door hits you on your way out."`
+			`	Hroar smirks. "Alright. You're out. Get outta my booth, and good luck on your little charity adventure." Hroar goes back to drinking his whiskey as the saloon's swinging door hits you on your way out.`
 				decline
 			label deal
 			action

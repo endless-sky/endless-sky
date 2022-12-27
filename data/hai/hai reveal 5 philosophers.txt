@@ -512,7 +512,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 					goto lead
 				`	"Oh that's her handle?"`
 			`	He blinks at you. "I mean, I assume you're with the librarian?"`
-			`	"Research librarian," you clarify."`
+			`	"Research librarian," you clarify.`
 			`	"Exactly, come on, lets go." He quickly leads the way back to the tube.`
 				goto lab
 			label lead
@@ -791,7 +791,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 		log `You've been told to take Giti and some scanning equipment to the unexplored region beyond the Syndicate wormhole to seek a base of operations and bring back information.`
 		conversation
 			`Despite expectations, you are told to leave Giti on the ship, and a man who immediately identifies himself to you as Deputy Director Stephen Moray meets you at the entrance of the docking tube at the spaceport and gestures you into the private antechamber attached to each dock in the <origin> port. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My department of Internal Affairs works on piracy-related matters."`
-			`	After you both sit, Stephen Moray turns on a device and places it on the table. "Communications jammer," he explains, "so we're not heard.`
+			`	After you both sit, Stephen Moray turns on a device and places it on the table. "Communications jammer," he explains, "so we're not heard."`
 			choice
 				`	"What is this about?"`
 					goto about

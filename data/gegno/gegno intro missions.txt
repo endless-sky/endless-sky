@@ -301,7 +301,7 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"What is this guidance they pursue?"`
 					goto guidance
 			label ships
-			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration."`
+			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration.`
 			choice
 				`	"Do the Gegno upset you in some way?"`
 					goto sacrifice
