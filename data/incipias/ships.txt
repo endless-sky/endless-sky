@@ -22,7 +22,7 @@ ship "Nimbus"
 		"fuel capacity" 200
 
 		"steering flare sound" "plasma huge"
-		"turn" 556
+		"turn" 756
 		"turning energy" 2.5
 		"turning heat" 12
 
@@ -77,7 +77,7 @@ ship "Stratus"
 		"fuel capacity" 200
 
 		"steering flare sound" "plasma huge"
-		"turn" 274
+		"turn" 332
 		"turning energy" 1.
 		"turning heat" 3
 
