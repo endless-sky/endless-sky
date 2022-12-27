@@ -149,8 +149,7 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Fleet::Fleet(const DataNode &node, const ConditionsStore &vars):
-	cargo(3)
+Fleet::Fleet(const DataNode &node, const ConditionsStore &vars)
 {
 	Load(node, vars);
 }

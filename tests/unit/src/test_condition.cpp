@@ -273,10 +273,6 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			THEN( "they should have the same key" ) {
 				CHECK( condition.Key() == copy.Key() );
 			}
-			THEN( "they should have the same origin" ) {
-				CHECK( condition.SameOrigin(copy) );
-				CHECK( copy.SameOrigin(condition) );
-			}
 			AND_WHEN( "UpdateConditions is called without that key" ) {
 				ConditionMaker vars({ { otherKey, otherValue } });
 				copy.UpdateConditions(vars.Store());

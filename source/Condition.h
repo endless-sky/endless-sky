@@ -38,6 +38,9 @@ public:
 	typedef V ValueType;
 	typedef K KeyType;
 
+	static_assert(std::is_arithmetic<ValueType>::value, "Condition value type must be arithmetic.");
+	static_assert(std::is_class<KeyType>::value, "Condition key type must be a class.");
+
 	constexpr Condition() : value(), key() {}
 	explicit constexpr Condition(const V &value) : value(value), key() {}
 	constexpr Condition(const V &value, const K &key) : value(value), key(key) {}
@@ -84,6 +87,7 @@ public:
 
 	// Allow the Condition to be treated as its value in most contexts.
 	operator ValueType() const { return value; }
+
 
 private:
 	ValueType value;
@@ -168,21 +172,21 @@ bool Condition<V,K>::SameOrigin(const Condition<V,K> &o)
 
 
 template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr >
-bool NotNearZero(T whut)
+bool NotNearZero(T number)
 {
 	// Use about half the precision of the type when comparing it to zero.
 	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon()*2);
 	// Inf and -Inf are NotNearZero but NaN isn't. This is because
 	// it is not a number, so it can't be near a number. The
 	// consequence is that Condition(NaN) is false in a bool context.
-	return whut > epsilon || whut < -epsilon;
+	return number > epsilon || number < -epsilon;
 }
 
 
 template < class T, typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr >
-bool NotNearZero(T whut)
+bool NotNearZero(T number)
 {
-	return static_cast<bool>(whut);
+	return static_cast<bool>(number);
 }
 
 

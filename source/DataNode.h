@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 
 
+
 // A DataNode is a single line of a DataFile. It consists of one or more tokens,
 // which can be interpreted either as strings or as floating point values, and
 // it may also have "children," which may each in turn have their own children.

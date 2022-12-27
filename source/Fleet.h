@@ -102,7 +102,7 @@ private:
 	const Phrase *fighterNames = nullptr;
 	WeightedList<Variant,WeightType> variants;
 	// The number of different items the ships in this fleet will carry in cargo.
-	Condition<int> cargo;
+	Condition<int> cargo = Condition<int>(3);
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
 
