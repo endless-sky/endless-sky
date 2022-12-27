@@ -166,9 +166,9 @@ mission "Wealthy Hai [1]"
 	deadline
 	to offer
 		random < 70
-	on offer
-		require "Luxury Accommodations"
-		require "Quantum Keystone"
+	to accept
+		"outfit: Luxury Accommodations"
+		"outfit: Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -194,9 +194,9 @@ mission "Wealthy Hai [2]"
 	deadline
 	to offer
 		random < 30
-	on offer
-		require "Luxury Accommodations"
-		require "Quantum Keystone"
+	to accept
+		"outfit: Luxury Accommodations"
+		"outfit: Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -1482,8 +1482,8 @@ mission "Hai Prisoner Roleplay"
 		distance 3 7
 		government "Hai"
 		not attributes "station"
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
