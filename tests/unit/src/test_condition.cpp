@@ -59,7 +59,7 @@ bool Validate(double d)
 
 // #region unit tests
 TEST_CASE( "Condition Basics", "[Condition]" ) {
-	using T = Condition<double, std::string>;
+	using T = Condition<double>;
 	SECTION( "Class Traits" ) {
 		CHECK_FALSE( std::is_trivial<T>::value );
 		CHECK( std::is_nothrow_destructible<T>::value );
