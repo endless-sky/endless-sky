@@ -1460,7 +1460,7 @@ mission "Coalition: Alpha Encounter"
 				`	"Voices in your head? Are you sure you weren't just imagining them?"`
 					goto imaginary
 				`	"What did the voice say?"`
-			`	He looks away from you. "You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself what the voices say. Find out if it classifies you as 'disposable' as well.`
+			`	He looks away from you. "You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself what the voices say. Find out if it classifies you as 'disposable' as well."`
 				goto end
 			label imaginary
 			`	He looks away from you. "No imaginary thing could have such an impact on me. You're here now, aren't you? This means you must have a device to jump beyond links as I did. Travel to the east and find out for yourself that the voices are real."`
@@ -1592,7 +1592,7 @@ mission "Saryd University Lecture"
 				has "coalition knows hai"
 			action
 				set "coalition knows hai"
-			`	"Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
+			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
 			`	"Tell us more of them, could you?" asks another scientist.`
 			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 				goto nextquestion
@@ -1680,7 +1680,7 @@ mission "Saryd University Lecture"
 				decline
 			label exit
 			`	Upon the announcement of the interview's end, the crowd begins to leave. The mood is exuberant as you exit the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
-			`	"Thank you, captain! Expanded our knowledge greatly, you have. He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
+			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
 			`	After he shakes your hand, you say your goodbyes and board your ship.`
 				decline
 
@@ -2486,7 +2486,7 @@ mission "Coalition: Expeditions Past 3"
 				goto accept
 			label decline
 			`	You hear her stomping her hoofs on the ground as you head back to your ship, and see her and the Heliarch council representatives arguing with one another as you close your hatch. When you're back on the spaceport landing area, a Sojourner lands next to your ship, and Repilor, the Saryd from earlier, comes out.`
-			`	"Forgive me for being rude earlier, you must." He says as he greets you. "Thought I had, that talked my sister into this you did. That filled her head with more grandiose tales of the outside, you must have." He sighs. "Thank you, Captain. Hate you now, my sister must, but the right thing, you did.`
+			`	"Forgive me for being rude earlier, you must," he says as he greets you. "Thought I had, that talked my sister into this you did. That filled her head with more grandiose tales of the outside, you must have." He sighs. "Thank you, Captain. Hate you now, my sister must, but the right thing, you did.`
 			`	"That no inspector in the last 6000 years has ever returned from their expedition, the truth is, so afraid you were leading my sister to her death, I was. Better for the both of you, this is." He gives you a few seconds to process, then continues. "Please, hold it against her, I ask that you do not. Certain I am that intending you no harm, she was. It's just... trying to leave for so long, she has been, that afraid of telling you the whole truth, I imagine she was." He nods lightly in a bow, and heads back to his ship.`
 				decline
 			label wrong

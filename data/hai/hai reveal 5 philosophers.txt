@@ -294,7 +294,7 @@ mission "Hai Reveal [B03] Contact Giti"
 				`	"Do you have more leads on the smuggling operation?"`
 			`	Once there she pulls up information on known or possible smuggling operations used to justify the <origin> operation. Her focus is on what they hadn't reconciled. "Unfortunately, while many matches were found, there was nothing in the new data that conclusively linked to the mysterious symbol. No human escapees had been tested for mild cadmium poisoning, so that was a dead end too. I know it's been thrust into the background pretty heavily, but did you find anything yourself? We need to decide if we're setting this aside or not."`
 			choice
-				`	"I've met a reseracher named Giti who has been quite informative."`
+				`	"I've met a researcher named Giti who has been quite informative."`
 					goto giti
 				`	"I need to leave the communication blackout to check."`
 			`	Sayari responds. "Yes, of course.`
@@ -512,7 +512,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 					goto lead
 				`	"Oh that's her handle?"`
 			`	He blinks at you. "I mean, I assume you're with the librarian?"`
-			`	"Research librarian," you clarify."`
+			`	"Research librarian," you clarify.`
 			`	"Exactly, come on, lets go." He quickly leads the way back to the tube.`
 				goto lab
 			label lead
@@ -541,7 +541,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	"Take your time."`
 				`	"I'll be here waiting."`
-			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local relay when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work.`
+			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local relay when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work."`
 			choice
 				`	"That's some impressive work in such a short time."`
 				`	"Thank you for the help."`
@@ -790,8 +790,8 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 		log "People" "Stephen Moray" `Deputy Director Moray works for Syndicate Internal Affairs dealing with pirate-related matters. In addition to enforcing the law, he also smuggles slaves from pirate worlds into freedom in Syndicate space. He claims to be an ally in this investigation and has provided equipment to further the goal.`
 		log `You've been told to take Giti and some scanning equipment to the unexplored region beyond the Syndicate wormhole to seek a base of operations and bring back information.`
 		conversation
-			`Despite expectations, you are told to leave Giti on the ship, and a man who immediately identifies himself to you as Deputy Director Stephen Moray meets you at the entrance of the docking tube at the spaceport and gestures you into the private antechamber attached to each dock in the <origin> port. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My department of Internal Affairs works on piracy-related matters.`
-			`	After you both sit, Stephen Moray turns on a device and places it on the table. "Communications jammer," he explains, "so we're not heard.`
+			`Despite expectations, you are told to leave Giti on the ship, and a man who immediately identifies himself to you as Deputy Director Stephen Moray meets you at the entrance of the docking tube at the spaceport and gestures you into the private antechamber attached to each dock in the <origin> port. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My department of Internal Affairs works on piracy-related matters."`
+			`	After you both sit, Stephen Moray turns on a device and places it on the table. "Communications jammer," he explains, "so we're not heard."`
 			choice
 				`	"What is this about?"`
 					goto about
@@ -843,14 +843,14 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			label planet
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label planet"
-			`	"Okay, the planet..." Her voice trails off. "Wow! That's odd. This scanner is definitely not designed to properly scan this thing; I can only get surface readings."`
+			`	"Okay, the planet..." Her voice trails off. "Wow! That's odd. This scanner is definitely not designed to properly scan this thing; I can only get surface readings.`
 			`	"Whatever it is, this planet is not normal by any stretch. It is completely inhospitable and appears to have a huge network of caves and caverns with crystalline structures that are radiating... something. Whatever it is, it's messing with the scanner's attempts to identify it. I'd have to know more about this scanner's functions to guess what the interference is. There's deuterium, though. Maybe the denizens of this system siphon the deuterium to make hyperspace fuel? Doesn't seem very efficient, but the solar wind is thin here. There's some kind of gravitational anomaly though, or maybe its just some kind of interference lensing. It looks like the planet has about a thousand times the mass it should, but with gravity around Earth normal. That... can't be right."`
 			`	She shakes it off and looks at you. "Whatever it is we're looking for, it's not down there."`
 				goto scan
 			label moon
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label moon"
-			`	The moon? Hmmm... okay, it's just an ordinary chunk of rock, but radiation from the planet is disturbing the sensors. I can only see a few dozen meters below ground, even though the scanner should be able to look down at least ten times that far... Aha!"`
+			`	"The moon? Hmmm... okay, it's just an ordinary chunk of rock, but radiation from the planet is disturbing the sensors. I can only see a few dozen meters below ground, even though the scanner should be able to look down at least ten times that far... Aha!`
 			`	"I found something. There's a facility buried in the moon's surface. There is definitely a lot of Hai tech too, your concerns were spot on. I can only see the uppermost part of the facility, but it appears to be divided into two parts. One section has hydroponics, big cargo bays, docking bays for ships, even a small shipyard. Doesn't look like they have space for more than a handful of large ships, though. It also seems to have the only decently sized air processor I can identify. The other section is deeper, and appears to have some spacious living areas. I can see some support systems, but it seems that the air supply is effectively controlled from the surface access section. I can detect 1,387 people, though no details about them, and that's just in the upper three floors that I can see."`
 			`	She looks at you, eyes wide. "This isn't just a base; there's a base down there, but it's controlling a whole colony."`
 			`	There is a pregnant pause for a moment and then she suddenly gasps. "Captain, this must be Elenchus!"`
@@ -937,7 +937,7 @@ mission "Hai Reveal [B11] Moving Together"
 			action
 				set "Hai Reveal [B11] Moving Together: label smuggling"
 			`	Remington looks at you. "I know it's rough when news travels ahead of you, but Moray's team identified two bases which act as holding facilities in human space for the previously unidentified group that you've been investigating. That's where the largest number of kidnapped Hai have been taken for processing, before being taken to this mysterious 'Elenchus' place you've found. One of the bases is on Deadman's Cove, and arrangements are already being made to deal with it, but the other one is right here on Stormhold.`
-			`	This operation narrowed down our remaining search here to a single target in one area up in the north. It should take us no more than a few days to pinpoint it, and a few days more to plan and execute an action against it." He shrugs. "The information was just too important to delay it for your arrival. That, and they decided they wanted me here personally since Terry appears to be busy off doing something else."`
+			`	"This operation narrowed down our remaining search here to a single target in one area up in the north. It should take us no more than a few days to pinpoint it, and a few days more to plan and execute an action against it." He shrugs. "The information was just too important to delay it for your arrival. That, and they decided they wanted me here personally since Terry appears to be busy off doing something else."`
 				goto briefing
 			label dealt
 			action
