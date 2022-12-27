@@ -746,7 +746,7 @@ phrase "remnant inhibitor cannon"
 		" "
 	word
 		"and prevent them from escaping"
-		"and they won't stand a chance"
+		"and they will not stand a chance"
 	word
 		"."
 		"!"

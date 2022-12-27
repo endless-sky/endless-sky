@@ -685,7 +685,7 @@ mission "Remnant: Void Sprites 2"
 			choice
 				`	"Okay, I will install an outfit scanner and see what it can tell me."`
 					accept
-				`	"Are you sure they won't interpret the scanner beam as an attack?"`
+				`	"Are you sure they will not interpret the scanner beam as an attack?"`
 
 			`	"I doubt it," he says. "It is a very low-power beam. And after all, you were not attacked just now when you scanned them with my equipment."`
 			choice
@@ -1585,11 +1585,11 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label escorted
-			`	The security guards escort you out of Ivan's office, and then out of the building. Looks like the Remnant won't be getting what they were hoping for.`
+			`	The security guards escort you out of Ivan's office, and then out of the building. Looks like the Remnant will not be getting what they were hoping for.`
 				decline
 				
 			label out
-			`	You back out of Ivan's office with him looking at you the entire time. Looks like the Remnant won't be getting what they were hoping for.`
+			`	You back out of Ivan's office with him looking at you the entire time. Looks like the Remnant will not be getting what they were hoping for.`
 				decline
 			
 			label leave
