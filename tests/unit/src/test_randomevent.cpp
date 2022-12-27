@@ -156,7 +156,7 @@ SCENARIO( "Creating a RandomEvent with a Condition period", "[RandomEvent][Condi
 			CHECK( event.HasConditions() );
 		}
 		AND_WHEN( "setting to a valid period via UpdateConditions" ) {
-			vars.Set("period", minimumPeriod*2);
+			vars.Set("period", minimumPeriod * 2);
 			event.UpdateConditions(vars.Store());
 			THEN( "the period should be the specified value" ) {
 				CHECK( event.Period() == minimumPeriod * 2 );
