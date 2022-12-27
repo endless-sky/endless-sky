@@ -1233,6 +1233,10 @@ interface "hail panel"
 	button b "Offer _Bribe"
 		center 130 115
 		dimensions 140 30
+	active if "offered bribe"
+	button b "Pay _Bribe"
+		center 130 115
+		dimensions 140 30
 		
 	visible if "show dominate"
 	active if "can dominate"

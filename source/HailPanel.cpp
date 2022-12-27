@@ -165,7 +165,12 @@ void HailPanel::Draw()
 		if(hasLanguage && !ship->IsDisabled())
 		{
 			if(ship->GetGovernment()->IsEnemy())
-				info.SetCondition("can bribe");
+			{
+				if(requestedToBribeShip)
+					info.SetCondition("offered bribe");
+				else
+					info.SetCondition("can bribe");
+			}
 			else if(!ship->CanBeCarried() && ship->GetShipToAssist() != player.FlagshipPtr())
 				info.SetCondition("can assist");
 		}
