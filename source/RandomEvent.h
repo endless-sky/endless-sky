@@ -60,28 +60,17 @@ bool PeriodTypeHasConditions(const T &t)
 	return false;
 }
 
-template < class T, class U, typename std::enable_if<std::is_class<T>::value, T>::type* Check = nullptr >
+template < class T, class U, typename std::enable_if<std::is_arithmetic<U>::value, U>::type* Check = nullptr >
 T InitialPeriod(const T &period, U minimumValue, bool overrideMinimum)
 {
 	T result(period);
 	if(result > 0)
 		return result;
 	else if(overrideMinimum)
-		result.Value() = 0;
+		result = 0;
 	else
-		result.Value() = minimumValue;
+		result = minimumValue;
 	return result;
-}
-
-template < class T, class U, typename std::enable_if<!std::is_class<T>::value, T>::type* Check = nullptr >
-T InitialPeriod(T period, U minimumValue, bool overrideMinimum)
-{
-	if(period > 0)
-		return period;
-	else if(overrideMinimum)
-		return 0;
-	else
-		return minimumValue;
 }
 
 template <typename T, typename P>

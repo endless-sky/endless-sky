@@ -53,6 +53,9 @@ public:
 	template <class V2, class K2>
 	Condition<V,K> &operator = (const Condition<V2,K2> &other);
 
+	template <class T, typename std::enable_if<std::is_arithmetic<T>::value, T>::type* Check = nullptr>
+	Condition<V,K> &operator = (const T &t) { value = static_cast<ValueType>(t); return *this; }
+
 	// Update the value from a scope that contains it
 	template<class Getter>
 	const ValueType &UpdateConditions(const Getter &getter);
