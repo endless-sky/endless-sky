@@ -75,6 +75,8 @@ test "Loading and Saving"
 			day == 19
 		call "Save To Default Snapshot"
 		call "Depart"
+		# Don't ask me why we need two of these, but it seems we do.
+		call "Depart"
 		assert
 			year == 3013
 			month == 11
