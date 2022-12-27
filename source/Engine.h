@@ -62,6 +62,11 @@ class Weather;
 // situations where there are many objects on screen at once.
 class Engine {
 public:
+	// Minimum allowed spawn period for fleets, used as a
+	// safeguard against bad conditions. This is essentially an
+	// epsilon for comparison to zero.
+	static const int MINIMUM_FLEET_PERIOD = 30;
+
 	explicit Engine(PlayerInfo &player);
 	~Engine();
 
@@ -97,11 +102,6 @@ public:
 	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
-
-	// Minimum allowed spawn period for fleets, used as a
-	// safeguard against bad conditions. This is essentially an
-	// epsilon for comparison to zero.
-	static int MinimumFleetPeriod();
 
 
 private:
@@ -182,11 +182,6 @@ private:
 	std::thread calcThread;
 	std::condition_variable condition;
 	std::mutex swapMutex;
-
-	// Minimum allowed spawn period for fleets, used as a
-	// safeguard against bad conditions. This is essentially an
-	// epsilon for comparison to zero.
-	static const int minimumFleetPeriod = 30;
 
 	bool calcTickTock = false;
 	bool drawTickTock = false;

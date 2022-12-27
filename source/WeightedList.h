@@ -147,23 +147,19 @@ const Type &WeightedList<Type,Weight>::Get() const
 	if(empty())
 		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
 
-	if(!total)
-		// When no choices are enabled, return the first.
-		return choices[0];
-
-	unsigned choice0 = Random::Int(total);
-	unsigned choice = choice0;
-	for(unsigned index = 0; index < weights.size() ; ++index)
+	if(total)
 	{
-		if(!weights[index])
-			continue;
-		else if(choice < weights[index])
-			return choices[index];
-		else
-			choice -= weights[index];
+		unsigned choice = Random::Int(total);
+		for(unsigned index = 0; index < weights.size() ; ++index)
+			if(!weights[index])
+				continue;
+			else if(choice < weights[index])
+				return choices[index];
+			else
+				choice -= weights[index];
 	}
 
-	// Failsafe. Should not get here.
+	// When no choices are enabled, return the first.
 	return choices[0];
 }
 

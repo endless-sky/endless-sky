@@ -897,7 +897,7 @@ double System::Danger() const
 	double danger = 0.;
 	for(const auto &fleet : fleets)
 	{
-		if(fleet.Period() > Engine::MinimumFleetPeriod())
+		if(fleet.Period() >= Engine::MINIMUM_FLEET_PERIOD)
 			continue;
 		auto *gov = fleet.Get()->GetGovernment();
 		if(gov && gov->IsEnemy())
