@@ -1672,8 +1672,8 @@ mission "Slave Transport [0]"
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1696,8 +1696,8 @@ mission "Slave Transport [1]"
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1720,8 +1720,8 @@ mission "Slave Transport [2]"
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1746,8 +1746,8 @@ mission "Bulk Slave Transport [0]"
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Pirate"
 	destination
@@ -1770,8 +1770,8 @@ mission "Bulk Slave Transport [1]"
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Pirate"
 	destination
