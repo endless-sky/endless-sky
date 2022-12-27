@@ -775,8 +775,8 @@ mission "Wanderer Captured Unfettered"
 		has "language: Wanderer"
 		not "event: wanderers: the eye opens"
 		random < 20
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	on complete
 		payment 50000 180
 		dialog "Once you land on <planet>, several uniformed Wanderers drive the Unfettered prisoners off of your ship. You collect your payment of <payment>."
@@ -797,8 +797,8 @@ mission "Wanderer Governor Transport"
 		has "language: Wanderer"
 		has "Wanderers Solifuge Recon 2: done"
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	on complete
 		payment 75000 220
 		dialog phrase "generic passenger dropoff payment"
