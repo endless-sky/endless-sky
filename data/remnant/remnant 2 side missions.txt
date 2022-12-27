@@ -501,6 +501,8 @@ mission "Remnant: Shattered Light 3"
 			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
 				accept
+	on enter "Coluber"
+		dialog `Ruach briefly checks the scanning arrays before reporting that, unsurprisingly, the ship seems to not be present. She suggests searching nearby systems to locate it.`
 	npc "scan outfits"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
