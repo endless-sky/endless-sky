@@ -89,6 +89,7 @@ public:
 	operator ValueType() const { return value; }
 
 
+
 private:
 	ValueType value;
 	KeyType key;
