@@ -1999,8 +1999,8 @@ mission "Wealthy tourists out"
 	passengers 2 10 .9
 	to offer
 		random < 75
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2064,8 +2064,8 @@ mission "Wealthy tourists back"
 	passengers 2 10 .9
 	to offer
 		random < 75
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2317,8 +2317,8 @@ mission "Prisoners [0]"
 		attributes "north" "south" "rim" "frontier" "core"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2333,8 +2333,8 @@ mission "Prisoners [1]"
 	passengers 2 10 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2356,8 +2356,8 @@ mission "Prisoners [2]"
 	passengers 2 10 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2378,8 +2378,8 @@ mission "Prisoners [3]"
 	passengers 2 15 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2401,8 +2401,8 @@ mission "Prisoners [4]"
 	to offer
 		random < 10
 		"combat rating" > 50
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -3081,8 +3081,8 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 	to offer
 		"combat rating" > 50
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3120,8 +3120,8 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	to offer
 		"combat rating" > 200
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
