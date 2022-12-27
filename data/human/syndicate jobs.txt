@@ -20,8 +20,8 @@ mission "Transport executive to <planet>"
 	passengers 1
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		government "Syndicate"
 	destination
@@ -43,8 +43,8 @@ mission "Corporate retreat from <origin>"
 	passengers 7 18
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		government "Syndicate"
 	stopover
@@ -352,8 +352,8 @@ mission "Syndicate Prisoner Transport [0]"
 		attributes "frontier"
 	to offer
 		random < 5
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -376,8 +376,8 @@ mission "Syndicate Prisoner Transport [1]"
 		attributes "military"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -400,8 +400,8 @@ mission "Syndicate Prisoner Transport [2]"
 		attributes "military"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -425,8 +425,8 @@ mission "Syndicate Prisoner Transport [3]"
 		attributes "military"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -450,8 +450,8 @@ mission "Syndicate Prisoner Transport [4]"
 		attributes "military"
 	to offer
 		random < 10
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -476,8 +476,8 @@ mission "Return Syndicate Prisoners [0]"
 		attributes "urban"
 	to offer
 		random < 5
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
