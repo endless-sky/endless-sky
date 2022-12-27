@@ -238,8 +238,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else
+			else if(child.Size() > valueIndex + 1)
 				fleets.emplace_back(fleet, child.AsCondition(valueIndex + 1, nullptr, 0), true);
+			else
+				fleets.emplace_back(fleet, Condition<int>(0), false);
 		}
 		else if(key == "hazard")
 		{
@@ -431,7 +433,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Update cached info about whether there are conditions
 	hasConditions = false;
 	for(auto &fleet : fleets)
-		if(fleet.Period().WasLValue() || (fleet.Get() && fleet.Get()->HasConditions()))
+		if(fleet.Period().HasConditions() || (fleet.Get() && fleet.Get()->HasConditions()))
 		{
 			hasConditions = true;
 			break;

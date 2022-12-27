@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WEIGHTED_LIST_H_
 
 #include "Random.h"
-#include "Condition.h"
 
 #include <cstddef>
 #include <iterator>
@@ -41,11 +40,14 @@ static bool IsAValidWeight(const T &t) {
 // list is weighted with an integer. This list can be queried to randomly return
 // one object from the list where the probability of an object being returned is
 // the weight of the object over the sum of the weights of all objects in the list.
-template <class Type, class WeightType = unsigned>
+template <class Type, class Weight = unsigned>
 class WeightedList {
 	using iterator = typename std::vector<Type>::iterator;
 	using const_iterator = typename std::vector<Type>::const_iterator;
 public:
+	typedef Type ChoiceType;
+	typedef Weight WeightType;
+
 	template <class T, class W>
 	friend std::size_t erase(WeightedList<T, W> &list, const T &item);
 	template <class T, class W, class UnaryPredicate>
@@ -89,8 +91,8 @@ public:
 	Type &back() noexcept { return choices.back(); }
 	const Type &back() const noexcept { return choices.back(); }
 
-	template <class NewWeightType, class ...Args>
-	Type &emplace_back(const NewWeightType &weight, Args&&... args);
+	template <class NewWeight, class ...Args>
+	Type &emplace_back(const NewWeight &weight, Args&&... args);
 
 	iterator eraseAt(iterator position) noexcept;
 	iterator erase(iterator first, iterator last) noexcept;
@@ -102,26 +104,9 @@ private:
 
 private:
 	std::vector<Type> choices;
-	std::vector<WeightType> weights;
+	std::vector<Weight> weights;
 	std::size_t total = 0;
 };
-
-
-
-template <class T,class U>
-void AssignWeight(T &t, U u)
-{
-	static_assert(std::is_integral<T>::value, "AssignWeight takes only integral types or Conditions");
-	t = u;
-}
-
-
-
-template <class T,class U>
-void AssignWeight(Condition<T> &t,U u)
-{
-	t.Value() = u;
-}
 
 
 
@@ -164,8 +149,8 @@ std::size_t erase_if(WeightedList<T,W> &list, UnaryPredicate pred)
 
 
 
-template <class Type, class WeightType>
-const Type &WeightedList<Type,WeightType>::Get() const
+template <class Type, class Weight>
+const Type &WeightedList<Type,Weight>::Get() const
 {
 	if(empty())
 		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
@@ -192,12 +177,12 @@ const Type &WeightedList<Type,WeightType>::Get() const
 
 
 
-template <class Type, class WeightType>
+template <class Type, class Weight>
 template <class Callable>
 typename std::enable_if<
 	std::is_arithmetic<typename std::result_of<Callable&&(const Type&&)>::type>::value,
 	typename std::result_of<Callable&&(const Type&&)>::type
->::type WeightedList<Type,WeightType>::Average(Callable fn) const
+>::type WeightedList<Type,Weight>::Average(Callable fn) const
 {
 	std::size_t tw = TotalWeight();
 	if(tw == 0) return 0;
@@ -210,11 +195,11 @@ typename std::enable_if<
 
 
 
-template <class Type, class WeightType>
-template <class NewWeightType, class ...Args>
-Type &WeightedList<Type,WeightType>::emplace_back(const NewWeightType &newWeight, Args&&... args)
+template <class Type, class Weight>
+template <class NewWeight, class ...Args>
+Type &WeightedList<Type,Weight>::emplace_back(const NewWeight &newWeight, Args&&... args)
 {
-	WeightType weight = IsAValidWeight(newWeight) ? WeightType(newWeight) : WeightType(0);
+	Weight weight = IsAValidWeight(newWeight) ? Weight(newWeight) : Weight();
 	choices.emplace_back(std::forward<Args>(args)...);
 	weights.emplace_back(weight);
 	total += static_cast<std::size_t>(weights.back());
@@ -225,9 +210,9 @@ Type &WeightedList<Type,WeightType>::emplace_back(const NewWeightType &newWeight
 
 // Update weight values. This is to support the use of Condition weights.
 // The Getter must be a class with a HasGet method like ConditionsStore
-template <class Type, class WeightType>
+template <class Type, class Weight>
 template <class Getter>
-void WeightedList<Type, WeightType>::UpdateConditions(const Getter &getter)
+void WeightedList<Type, Weight>::UpdateConditions(const Getter &getter)
 {
 	for(unsigned index = 0; index < choices.size(); ++index)
 	{
@@ -243,9 +228,9 @@ void WeightedList<Type, WeightType>::UpdateConditions(const Getter &getter)
 
 
 // At least one has c(weight,choice) = true
-template <class Type, class WeightType>
+template <class Type, class Weight>
 template <class Callable>
-bool WeightedList<Type, WeightType>::Any(Callable c) const
+bool WeightedList<Type, Weight>::Any(Callable c) const
 {
 	for(unsigned index = 0; index < choices.size(); ++index)
 		if(c(weights[index], choices[index]))
@@ -255,9 +240,9 @@ bool WeightedList<Type, WeightType>::Any(Callable c) const
 
 
 // All choices have c(weight,choice) = true
-template <class Type, class WeightType>
+template <class Type, class Weight>
 template <class Callable>
-bool WeightedList<Type, WeightType>::All(Callable c) const
+bool WeightedList<Type, Weight>::All(Callable c) const
 {
 	for(unsigned index = 0; index < choices.size(); ++index)
 		if(!c(weights[index], choices[index]))
@@ -267,8 +252,8 @@ bool WeightedList<Type, WeightType>::All(Callable c) const
 
 
 
-template <class Type, class WeightType>
-typename std::vector<Type>::iterator WeightedList<Type,WeightType>::eraseAt(
+template <class Type, class Weight>
+typename std::vector<Type>::iterator WeightedList<Type,Weight>::eraseAt(
 	typename std::vector<Type>::iterator position) noexcept
 {
 	unsigned index = std::distance(choices.begin(), position);
@@ -279,8 +264,8 @@ typename std::vector<Type>::iterator WeightedList<Type,WeightType>::eraseAt(
 
 
 
-template <class Type, class WeightType>
-typename std::vector<Type>::iterator WeightedList<Type,WeightType>::erase(typename std::vector<Type>::iterator first,
+template <class Type, class Weight>
+typename std::vector<Type>::iterator WeightedList<Type,Weight>::erase(typename std::vector<Type>::iterator first,
 	typename std::vector<Type>::iterator last) noexcept
 {
 	auto firstWeight = std::next(weights.begin(), std::distance(choices.begin(), first));
@@ -292,8 +277,8 @@ typename std::vector<Type>::iterator WeightedList<Type,WeightType>::erase(typena
 
 
 
-template <class Type, class WeightType>
-void WeightedList<Type,WeightType>::RecalculateWeight()
+template <class Type, class Weight>
+void WeightedList<Type,Weight>::RecalculateWeight()
 {
 	total = 0;
 	for(auto &weight : weights)

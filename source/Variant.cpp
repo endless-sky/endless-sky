@@ -20,13 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
 
 
 Variant::Variant(const DataNode &node):
-	weight(1)
+	weight(1, string())
 {
 	Load(node);
 }

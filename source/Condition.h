@@ -29,10 +29,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr >
 bool NotNearZero(T whut)
 {
+	// Use about half the precision of the type when comparing it to zero.
 	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon*2);
 	// Inf and -Inf are NotNearZero but NaN isn't. This is because
-	// NaN compares as false to any floating-point value,
-	// including itself.
+	// it is not a number, so it can't be near a number. The
+	// consequence is that Condition(NaN) is false in a bool context.
 	return whut > epsilon || whut < -epsilon;
 }
 
@@ -43,14 +44,6 @@ bool NotNearZero(T whut)
 {
 	return static_cast<bool>(whut);
 }
-
-
-
-template<class T>
-struct DoNotValidate
-{
-	bool operator() (const T &t) { return true; }
-};
 
 
 
@@ -80,7 +73,7 @@ public:
 #endif
 
 	constexpr Condition();
-	constexpr Condition(const V &value);
+	explicit constexpr Condition(const V &value);
 	constexpr Condition(const V &value, const K &key);
 	~Condition();
 
@@ -112,8 +105,11 @@ public:
 	// You can think of this as an operator== that cares about the key.
 	bool SameOrigin(const Condition<V,K> &o);
 
-	// Does this originate from dereferencing something?
-	bool WasLValue() const { return !key.empty(); }
+	// Does this originate from a condition?
+	bool HasConditions() const { return !key.empty(); }
+
+	// Does this originate from a literal value (ie. 5.071)?
+	bool IsLiteral() const { return key.empty(); }
 
 	explicit operator bool() const { return NotNearZero(value); }
 
@@ -180,8 +176,7 @@ template <class V2, class K2>
 Condition<V,K> &Condition<V,K>::operator = (const Condition<V2,K2> &other)
 {
 	value = static_cast<ValueType>(other.Value());
-	if(Key().empty())
-		key = static_cast<KeyType>(other.Key());
+	key = static_cast<KeyType>(other.Key());
 	return *this;
 }
 
@@ -193,7 +188,7 @@ template <class Getter>
 const V &Condition<V,K>::UpdateConditions(const Getter &getter)
 {
 	// If this was a literal, do nothing.
-	if(!WasLValue())
+	if(IsLiteral())
 		return value;
 	auto got = getter.HasGet(key);
 	// Assumes: got.first = true iff getter has key
@@ -210,24 +205,24 @@ const V &Condition<V,K>::UpdateConditions(const Getter &getter)
 
 
 
-// Update the value from a scope that contains it
+// Update the value from a scope that contains it, if the new value passes a validator.
 template <class V, class K>
 template <class Getter, class Validator>
 const V &Condition<V,K>::UpdateConditions(const Getter &getter, Validator validator)
 {
-	// If this was a literal, do nothing.
-	if(!WasLValue())
-		return value;
-	auto got = getter.HasGet(key);
-	// Assumes: got.first = true iff getter has key
-	// got.second = value iff got.first
-	if(got.first and validator(got.second))
-		value = static_cast<ValueType>(got.second);
+	if(HasConditions())
+	{
+		auto got = getter.HasGet(key);
+		// Assumes: got.first = true iff getter has key
+		// got.second = value iff got.first
+		if(got.first and validator(got.second))
+			value = static_cast<ValueType>(got.second);
 #ifdef DEBUG_RVALUE_CONDITIONS
-	// If the value hasn't been initialized, use the default value
-	else if(value == BadValue)
-		value = ValueType();
+		// If the value hasn't been initialized, use the default value
+		else if(value == BadValue)
+			value = ValueType();
 #endif
+	}
 	return value;
 }
 
@@ -264,10 +259,10 @@ V &Condition<V,K>::Value()
 template <class V, class K>
 bool Condition<V,K>::SameOrigin(const Condition<V,K> &o)
 {
-	if(WasLValue())
+	if(HasConditions())
 		return key == o.Key();
 	else
-		return !o.WasLValue() && value == o.Value();
+		return value == o.Value();
 }
 
 

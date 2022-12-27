@@ -18,6 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Include only the tested class's header.
 #include "../../../source/WeightedList.h"
 
+// Include a helper for making conditions
+#include "condition-tools.h"
+
 // ... and any system includes needed for the test file.
 #include <algorithm>
 #include <cstdint>
@@ -38,6 +41,8 @@ public:
 	bool operator==(const Object &other) const { return this->value == other.value; }
 	int64_t GetConstant() const { return CONSTANT; }
 };
+
+typedef WeightedList<Condition<int64_t>,Condition<unsigned>> ConditionalList;
 // #endregion mock data
 
 
@@ -481,6 +486,63 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 					FAIL( "weight should be zero" );
 				else
 					SUCCEED( "weight was zero when item weight was negative" );
+			}
+		}
+	}
+}
+
+SCENARIO( "Creating a WeightedList with Conditions" , "[WeightedList][Condition]" ) {
+	GIVEN( "A weighted list and conditions" ) {
+		WHEN( "created from empty conditions" ) {
+			ConditionMaker empty;
+			ConditionalList list;
+		
+			list.emplace_back(empty.AsCondition("first_weight"),empty.AsCondition("first_choice"));
+			list.emplace_back(empty.AsCondition("second_weight"),empty.AsCondition("second_choice"));
+
+			THEN( "total weight should be zero" ) {
+				CHECK( list.size() == 2 );
+				CHECK( list.TotalWeight() == 0 );
+				CHECK( ! list.empty() );
+			}
+			THEN( "Get() should return the first choice" ) {
+				CHECK( list.Get().Key() == "first_choice" );
+				CHECK( list.Get().Value() == 0 );
+			}
+			AND_WHEN( "the list is updated with valid data through UpdateConditions" ) {
+				ConditionMaker valid(
+				{
+					{ "first_choice", 11 },
+					{ "first_weight", 1 },
+					{ "second_choice", 22 },
+					{ "second_weight", 2 }
+				});
+				list.UpdateConditions(valid.Store());
+				THEN( "total weight should be the sum of conditions" ) {
+					CHECK( list.TotalWeight() == 3 );
+				}
+				THEN( "choices and weights should match those values" ) {
+					CHECK( list.All([&](const ConditionalList::WeightType &w, const ConditionalList::ChoiceType &c)
+						{
+							return !w.IsLiteral() && !c.IsLiteral() &&
+								valid.Get(w.Key()) == w.Value() &&
+								valid.Get(c.Key()) == c.Value();
+						}) );
+				}
+				AND_WHEN( "a choice or weight is updated" ) {
+					valid.Set("first choice", 33);
+					valid.Set("second weight", 9);
+					THEN( "choices and weights should match the new values" ) {
+						CHECK( list.All([&](const ConditionalList::WeightType &w,
+								const ConditionalList::ChoiceType &c)
+							{
+								return !w.IsLiteral() && !c.IsLiteral() &&
+									valid.Get(w.Key()) == w.Value() &&
+									valid.Get(c.Key()) == c.Value();
+							}) );
+					}
+
+				}
 			}
 		}
 	}

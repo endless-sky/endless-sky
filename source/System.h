@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "Condition.h"
 #include "ConditionsStore.h"
 #include "Hazard.h"
 #include "Point.h"

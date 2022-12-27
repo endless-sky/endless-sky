@@ -16,22 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef RANDOMEVENT_H_
 #define RANDOMEVENT_H_
 
-
-#include "Condition.h"
-
+#include <type_traits>
 
 
-template <class T>
-struct PeriodTypeHasConditions
-{
-	static bool HasConditions(const T &t) { return false; }
-};
-
-template <class V, class K>
-struct PeriodTypeHasConditions<Condition<V, K>>
-{
-	static bool HasConditions(const Condition<V, K> &t) { return t.WasLValue(); }
-};
 
 
 // A class representing an event that triggers randomly
@@ -51,17 +38,56 @@ public:
 	template<typename Getter>
 	void UpdateConditions(const Getter &getter);
 
-	bool HasConditions() const { return PeriodTypeHasConditions<P>::HasConditions(period); }
+	static const P &MinimumPeriod() { return minimumPeriod; }
+	bool HasConditions() const;
 
 private:
+	static constexpr int minimumPeriod = 200;
 	const T *event;
+	bool overrideMinimum;
 	P period;
 };
 
+template <class T, typename std::enable_if<std::is_class<T>::value, T>::type* Check = nullptr >
+bool PeriodTypeHasConditions(const T &t)
+{
+	return t.HasConditions();
+}
+
+template <class T, typename std::enable_if<!std::is_class<T>::value, T>::type* Check = nullptr >
+bool PeriodTypeHasConditions(const T &t)
+{
+	return false;
+}
+
+template < class T, class U, typename std::enable_if<std::is_class<T>::value, T>::type* Check = nullptr >
+T InitialPeriod(const T &period, U minimumValue, bool overrideMinimum)
+{
+	T result(period);
+	if(result > 0)
+		return result;
+	else if(overrideMinimum)
+		result.Value() = 0;
+	else
+		result.Value() = minimumValue;
+	return result;
+}
+
+template < class T, class U, typename std::enable_if<!std::is_class<T>::value, T>::type* Check = nullptr >
+T InitialPeriod(T period, U minimumValue, bool overrideMinimum)
+{
+	if(period > 0)
+		return period;
+	else if(overrideMinimum)
+		return 0;
+	else
+		return minimumValue;
+}
 
 template <typename T, typename P>
 constexpr RandomEvent<T,P>::RandomEvent(const T *event, const PeriodType &period, bool overrideMinimum) noexcept
-	: event(event), period(overrideMinimum ? period : (period > 0 ? period : PeriodType(200)))
+	: event(event), overrideMinimum(overrideMinimum),
+	period(InitialPeriod(period, minimumPeriod, overrideMinimum))
 {}
 
 template <typename T, typename P>
@@ -82,8 +108,15 @@ template <typename Getter>
 void RandomEvent<T,P>::UpdateConditions(const Getter &getter)
 {
 	period.UpdateConditions(getter);
+	if(period <= 0)
+		period.Value() = overrideMinimum ? 0 : minimumPeriod;
 }
 
+template <typename T, typename P>
+bool RandomEvent<T,P>::HasConditions() const
+{
+	return PeriodTypeHasConditions<P>(period);
+}
 
 
 #endif

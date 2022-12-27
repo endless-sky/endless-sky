@@ -189,7 +189,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore &vars)
 					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))),
 						child.AsCondition(2, nullptr, 1));
 				else
-					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))), 1);
+					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))), Condition<int>(1));
 			}
 		}
 		else

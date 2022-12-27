@@ -22,6 +22,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "datanode-factory.h"
 #include "output-capture.hpp"
 
+// Include a helper for making conditions
+#include "condition-tools.h"
+
 // ... and any system includes needed for the test file.
 #include <string>
 #include <vector>
@@ -242,6 +245,56 @@ SCENARIO( "Determining if a token is numeric", "[IsNumber][Parsing][DataNode]" )
 			);
 			CAPTURE( strNum ); // Log the value if the assertion fails.
 			CHECK( DataNode::IsNumber(strNum) );
+		}
+	}
+}
+
+SCENARIO( "Creating a Condition from a DataNode", "[DataNode][Condition]") {
+	GIVEN( "Conditions within a DataNode" ) {
+		double value = 131, defaultValue = 5, literalValue = 3;
+		ConditionMaker maker({ { "notmissing", value } });
+		DataNode node = AsDataNode("missing 3 notmissing");
+		WHEN( "using AsCondition on a missing condition" ) {
+			THEN( "should return a Condition with the default value and requested key" ) {
+				CHECK( node.AsCondition(0, &maker.Store(), defaultValue) == defaultValue );
+				CHECK( node.AsCondition(0, &maker.Store(), defaultValue).Key() == "missing" );
+			}
+		}
+		WHEN( "using AsCondition with no ConditionsStore" ) {
+			THEN( "should return a Condition with the default value and requested key" ) {
+				CHECK( node.AsCondition(0, nullptr, defaultValue) == defaultValue );
+				CHECK( node.AsCondition(0, nullptr, defaultValue).Key() == "missing" );
+			}
+		}
+		WHEN( "using AsCondition with a literal and a ConditionsStore" ) {
+			THEN( "should return a Condition with the specified value and an empty key" ) {
+				CHECK( node.AsCondition(1, &maker.Store(), defaultValue) == literalValue);
+				CHECK( node.AsCondition(1, &maker.Store(), defaultValue).Key().empty() );
+			}
+		}
+		WHEN( "using AsCondition with a literal and no ConditionsStore" ) {
+			THEN( "should return a Condition with the specified value and an empty key" ) {
+				CHECK( node.AsCondition(1, nullptr, defaultValue) == literalValue);
+				CHECK( node.AsCondition(1, nullptr, defaultValue).Key().empty() );
+			}
+		}
+		WHEN( "using AsCondition with a non-missing condition in a ConditionsStore" ) {
+			THEN( "should return a Condition with the value from the ConditionStore and the requested key" ) {
+				CHECK( node.AsCondition(2, &maker.Store(), defaultValue) == value );
+				CHECK( node.AsCondition(2, &maker.Store(), defaultValue).Key() == "notmissing" );
+			}
+		}
+		WHEN( "using AsCondition on an index past the end of the list" ) {
+			THEN( "should return a Condition with the default value and an empty key" ) {
+				CHECK( node.AsCondition(12, &maker.Store(), defaultValue) == defaultValue );
+				CHECK( node.AsCondition(12, &maker.Store(), defaultValue).Key().empty() );
+			}
+		}
+		WHEN( "using AsCondition on a negative index" ) {
+			THEN( "should return a Condition with the default value and an empty key" ) {
+				CHECK( node.AsCondition(12, &maker.Store(), defaultValue) == defaultValue );
+				CHECK( node.AsCondition(12, &maker.Store(), defaultValue).Key().empty() );
+			}
 		}
 	}
 }
