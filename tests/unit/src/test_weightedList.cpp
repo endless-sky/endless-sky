@@ -496,9 +496,9 @@ SCENARIO( "Creating a WeightedList with Conditions" , "[WeightedList][Condition]
 		WHEN( "created from empty conditions" ) {
 			ConditionMaker empty;
 			ConditionalList list;
-		
-			list.emplace_back(empty.AsCondition("first_weight"),empty.AsCondition("first_choice"));
-			list.emplace_back(empty.AsCondition("second_weight"),empty.AsCondition("second_choice"));
+
+			list.emplace_back(empty.AsCondition("first_weight"), empty.AsCondition("first_choice"));
+			list.emplace_back(empty.AsCondition("second_weight"), empty.AsCondition("second_choice"));
 
 			THEN( "total weight should be zero" ) {
 				CHECK( list.size() == 2 );
@@ -527,7 +527,7 @@ SCENARIO( "Creating a WeightedList with Conditions" , "[WeightedList][Condition]
 							return !w.IsLiteral() && !c.IsLiteral() &&
 								valid.Get(w.Key()) == w.Value() &&
 								valid.Get(c.Key()) == c.Value();
-						}) );
+						}));
 				}
 				AND_WHEN( "a choice or weight is updated" ) {
 					valid.Set("first choice", 33);
@@ -539,7 +539,7 @@ SCENARIO( "Creating a WeightedList with Conditions" , "[WeightedList][Condition]
 								return !w.IsLiteral() && !c.IsLiteral() &&
 									valid.Get(w.Key()) == w.Value() &&
 									valid.Get(c.Key()) == c.Value();
-							}) );
+							}));
 					}
 
 				}

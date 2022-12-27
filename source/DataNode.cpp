@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 
 #include "ConditionsStore.h"
-#include "Logger.h"
 #include "Condition.h"
+#include "Logger.h"
 
 #include <algorithm>
 #include <cctype>

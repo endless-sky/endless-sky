@@ -1,4 +1,4 @@
-/* datanode-factory.cpp
+/* condition-tools.cpp
 Copyright (c) 2022 by an anonymous author
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -61,5 +61,5 @@ ConditionsStore::ValueType ConditionMaker::Get(const std::string &key)
 
 ConditionsStore::ValueType ConditionMaker::Set(const std::string &key, const ConditionsStore::ValueType &value)
 {
-	return store.Set(key,value);
+	return store.Set(key, value);
 }

@@ -26,27 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr >
-bool NotNearZero(T whut)
-{
-	// Use about half the precision of the type when comparing it to zero.
-	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon*2);
-	// Inf and -Inf are NotNearZero but NaN isn't. This is because
-	// it is not a number, so it can't be near a number. The
-	// consequence is that Condition(NaN) is false in a bool context.
-	return whut > epsilon || whut < -epsilon;
-}
-
-
-
-template < class T, typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr >
-bool NotNearZero(T whut)
-{
-	return static_cast<bool>(whut);
-}
-
-
-
 // This class stores an rvalue and remembers where the rvalue came
 // from.  Either this was a literal value, in which the key is empty()
 // Or, this was from dereferencing something (ie. Dictionary,
@@ -111,7 +90,7 @@ public:
 	// Does this originate from a literal value (ie. 5.071)?
 	bool IsLiteral() const { return key.empty(); }
 
-	explicit operator bool() const { return NotNearZero(value); }
+	explicit operator bool() const;
 
 	// Allow the Condition to be treated as its value in most contexts.
 	operator ValueType() const { return value; }
@@ -265,5 +244,26 @@ bool Condition<V,K>::SameOrigin(const Condition<V,K> &o)
 		return value == o.Value();
 }
 
+template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr >
+bool NotNearZero(T whut)
+{
+	// Use about half the precision of the type when comparing it to zero.
+	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon*2);
+	// Inf and -Inf are NotNearZero but NaN isn't. This is because
+	// it is not a number, so it can't be near a number. The
+	// consequence is that Condition(NaN) is false in a bool context.
+	return whut > epsilon || whut < -epsilon;
+}
+
+template < class T, typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr >
+bool NotNearZero(T whut)
+{
+	return static_cast<bool>(whut);
+}
+
+template <class V, class K>
+Condition<V,K>::operator bool() const {
+	return NotNearZero(value);
+}
 
 #endif

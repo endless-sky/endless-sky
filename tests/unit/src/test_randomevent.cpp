@@ -105,9 +105,9 @@ SCENARIO( "Creating a RandomEvent", "[RandomEvent]") {
 		}
 	}
 	GIVEN( "When created with higher than the minimum period" ) {
-		RandomEventType event(&eventString, minimumPeriod*2);
+		RandomEventType event(&eventString, minimumPeriod * 2);
 		THEN( "the period should be the specified value" ) {
-			CHECK( event.Period() == minimumPeriod*2 );
+			CHECK( event.Period() == minimumPeriod * 2 );
 			CHECK( event.Get() == &eventString );
 			CHECK_FALSE( event.HasConditions() );
 		}
@@ -126,10 +126,10 @@ SCENARIO( "Creating a RandomEvent with a Condition period", "[RandomEvent][Condi
 			CHECK( event.HasConditions() );
 		}
 		AND_WHEN( "setting to a valid period via UpdateConditions" ) {
-			vars.Set("period", minimumPeriod*2);
+			vars.Set("period", minimumPeriod * 2);
 			event.UpdateConditions(vars.Store());
 			THEN( "the period should be the specified value" ) {
-				CHECK( event.Period() == minimumPeriod*2 );
+				CHECK( event.Period() == minimumPeriod * 2 );
 				CHECK( event.Period().Key() == "period" );
 				CHECK( event.Get() == &eventString );
 				CHECK( event.HasConditions() );
@@ -159,7 +159,7 @@ SCENARIO( "Creating a RandomEvent with a Condition period", "[RandomEvent][Condi
 			vars.Set("period", minimumPeriod*2);
 			event.UpdateConditions(vars.Store());
 			THEN( "the period should be the specified value" ) {
-				CHECK( event.Period() == minimumPeriod*2 );
+				CHECK( event.Period() == minimumPeriod * 2 );
 				CHECK( event.Period().Key() == "period" );
 				CHECK( event.Get() == &eventString );
 				CHECK( event.HasConditions() );

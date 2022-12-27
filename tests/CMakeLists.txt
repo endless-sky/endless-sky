@@ -7,12 +7,14 @@ endif()
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyTests PRIVATE
 	unit/include/catch.hpp
+	unit/include/condition-tools.h
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
 	unit/include/output-capture.hpp
 	unit/src/comparators/test_byGivenOrder.cpp
 	unit/src/comparators/test_byName.cpp
 	unit/src/helpers/datanode-factory.cpp
+	unit/src/helpers/condition-tools.cpp
 	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
@@ -28,6 +30,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_main.cpp
 	unit/src/test_point.cpp
 	unit/src/test_random.cpp
+	unit/src/test_randomevent.cpp
 	unit/src/test_set.cpp
 	unit/src/test_ship.cpp
 	unit/src/test_template.txt

@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <vector>
 
-#include "ConditionsStore.h"
 #include "Condition.h"
+#include "ConditionsStore.h"
 
 class DataNode;
 class Ship;
