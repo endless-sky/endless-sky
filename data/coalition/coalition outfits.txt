@@ -48,7 +48,6 @@ outfit "Small Reactor Module"
 	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. For ships that must have a reliable energy source to power weapons, the Heliarchs use compact nuclear reactors."
 	description "	A beam of antiprotons triggers fusion in tiny injected fuel pellets, allowing for a complete burnup far more efficient than would otherwise be possible."
 
-
 outfit "Large Reactor Module"
 	category "Power"
 	licenses
@@ -61,7 +60,6 @@ outfit "Large Reactor Module"
 	"heat generation" 45
 	description "Though still unable to replicate Quarg power generation technology, Heliarch science teams are constantly looking to realize their most recent guess on how they work. For this larger module, a steady stream of injected antiprotons catalyzes reactions in carefully confined fusion plasma, extracting as much power as physically possible."
 	description "	This advanced fusion reactor was designed for the most powerful Heliarch warships. Its structure has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
-
 
 outfit "Small Cogeneration Module"
 	category "Power"
