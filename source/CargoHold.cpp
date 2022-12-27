@@ -220,7 +220,7 @@ int CargoHold::OutfitsSize() const
 
 
 
-double OutfitsSizePrecise() const
+double CargoHold::OutfitsSizePrecise() const
 {
 	double size = 0.;
 	for(const auto &it : outfits)
