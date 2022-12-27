@@ -1234,7 +1234,7 @@ interface "hail panel"
 		center 250 115
 		dimensions 80 30
 
-	visible if "can bribe"
+	visible if "!offered bribe"
 	active if "can bribe"
 	button b "Offer _Bribe"
 		center 130 115
