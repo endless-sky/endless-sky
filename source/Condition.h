@@ -40,6 +40,7 @@ public:
 
 	static_assert(std::is_arithmetic<ValueType>::value, "Condition value type must be arithmetic.");
 	static_assert(std::is_class<KeyType>::value, "Condition key type must be a class.");
+	static_assert(&KeyType::empty, "Condition key must have an empty function.");
 
 	constexpr Condition() : value(), key() {}
 	explicit constexpr Condition(const V &value) : value(value), key() {}
