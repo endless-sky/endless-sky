@@ -499,21 +499,20 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  sounds/pincer*
-Copyright: Nomadic Volcano (nomadicvolcano@gmail.com)
+Copyright: Michael Zahniser
 License: GPL-2
-Comment: Nomadic Volcano modified these from Battle for Wesnoth (https://www.wesnoth.org) sounds, which are copyright David White <dave@whitevine.net> under GPL 2 or later.
+Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
 
 Files:
  images/*/pincer*
 Copyright: None; CC0 (Public Domain)
 License: CC0
-Comment: Textures by https://texture.ninja, other art by NomadicVolcano (nomadicvolcano@gmail.com).
+Comment: Public domain textures by https://texture.ninja
 
 Files:
  images/planet/rogue-radiating*
 Copyright: None; CC0 (Public Domain)
 License: CC0
-Comment: Created by NomadicVolcano (nomadicvolcano@gmail.com)
 
 Files: images/outfit/railslug?rack*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
@@ -1100,23 +1099,23 @@ Files:
  images/planet/station?hai?eight?geocoris*
 Copyright: None (CC0: Public Domain)
 License: CC0
-Comment: Made by Nomadic Volcano with textures from texture.ninja.
+Comment: Public domain textures from texture.ninja.
 
 Files:
  images/planet/wormhole-syndicate-ad*
-Copyright: NomadicVolcano (NomadicVolcano@gmail.com)
+Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license)
+Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
 Files:
  images/planet/station?hai?geocoris*
-Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: rotate, flip, scale the "images/thumbnail/hai geocoris@2x.png" by Michael Zahniser (under the same license)
+Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
 Files:
  images/effect/firestorm?ring*
-Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
+Copyright: None (CC0: Public Domain)
 License: CC0
 
 Files:
@@ -1158,7 +1157,7 @@ Comment: Derived from work by Becca Tomaso (under the same licence).
 Files:
  images/outfit/liquid?sodium*
 Copyright: Lia Gerty (https://github.com/ravenshining)
-Comment: Derived from works by Saugia (under the same licence) and NomadicVolcano (public domain).
+Comment: Derived from works by Saugia (under the same licence) and public domain works previously submitted to Endless Sky.
 License: CC-BY-SA-4.0
 
 Files:
@@ -1176,7 +1175,7 @@ Files:
  images/projectile/digger*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
-Comment: Derived from work by NomadicVolcano (public domain).
+Comment: Derived from public domain work previously submitted to Endless Sky.
 
 Files:
  images/planet/browndwarf-t-rouge*
@@ -1231,21 +1230,21 @@ Files:
  images/thumbnail/kas-ik?tek?7*
 Copyright: None (CC0 Public Domain)
 License: CC0
-Comment: Work by Nomadic Volcano (NomadicVolcano@gmail.com) based on textures from texture.ninja
+Comment: Uses public domain textures from texture.ninja
 
 Files:
  images/hardpoint/digger?turret*
  images/outfit/korath?digger?turret*
  images/outfit/korath?digger*
-Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+Copyright: Becca Tommaso and Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+Comment: Created by a past contributor derived from works by Becca Tommaso and Michael Zahniser (under the same license). Rights relinquished to Becca Tommaso and Michael Zahniser.
 
 Files:
  images/*/korath*reverser*
-Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
 
 Files:
@@ -1792,7 +1791,7 @@ Files:
  images/thumbnail/rai-alorej*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
-Comment: Derived from works by NomadicVolcano (public domain).
+Comment: Derived from public domain works previously submitted to Endless Sky
 
 Files:
  images/outfit/microbot?defense?station*
@@ -1950,6 +1949,11 @@ Files:
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
+
+Files:
+ images/ui/red?alert*
+Copyright: Zitchas (zitchas.jma@gmail.com)
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

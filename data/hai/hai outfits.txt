@@ -786,4 +786,5 @@ outfit "Failed Control System"
 	thumbnail "outfit/control transceiver"
 	"mass" 1
 	"unplunderable" 1
-	description "This was meant to control some sort of experimental system, but it appears to have failed."
+	"integrated control systems" 1
+	description "This was meant to control some sort of experimental system, but it appears to have failed. Unfortunately it doesn't appear to be safely removable."
