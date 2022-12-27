@@ -7318,7 +7318,7 @@ system Clepsydra
 	asteroids "large metal" 1 1.287
 	minables aluminum 3 1.513
 	object
-		sprite star/neutron
+		sprite star/a-test
 		period 10
 	object
 		sprite planet/ganymede-b

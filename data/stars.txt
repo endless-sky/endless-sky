@@ -252,3 +252,7 @@ star "star/m4"
 star "star/giant"
 	power 1.4
 	wind 2
+
+star "star/a-test"
+	power 1.4
+	wind 2
