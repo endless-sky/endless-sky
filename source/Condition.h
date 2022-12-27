@@ -77,8 +77,9 @@ public:
 	// Does this originate from a literal value (ie. 5.071)?
 	bool IsLiteral() const { return key.empty(); }
 
-	// Floating-point values are false if they're within sqrt(epsilon*2) of 0 (very small numbers)
-	// while anything else is simply passed through static_cast<bool>
+	// Floating-point values are false if they're within half the
+	// type's precision of 0 while any other types are passed
+	// through static_cast<bool>
 	explicit operator bool() const;
 
 	// Allow the Condition to be treated as its value in most contexts.
