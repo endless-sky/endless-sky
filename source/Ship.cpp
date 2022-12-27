@@ -1589,8 +1589,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// Ammunition has a default 5% chance to survive as flotsam.
 				for(const auto &it : outfits)
 				{
-					if(it.first->Get("flotsam chance") > 0.)
-						Jettison(it.first, Random::Binomial(it.second, it.first->Get("flotsam chance")));
+					double flotsamChance = it.first->Get("flotsam chance");
+					if(flotsamChance)
+						Jettison(it.first, Random::Binomial(it.second, flotsamChance));
 					else if(it.first->Category() == "Ammunition")
 						Jettison(it.first, Random::Binomial(it.second, .05));
 				}
