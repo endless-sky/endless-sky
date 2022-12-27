@@ -4478,7 +4478,7 @@ mission "Dangerous Games 1"
 			choice
 				`	"Thanks."`
 					goto end
-				`	I can't accept his money. It's not right."`
+				`	"I can't accept his money. It's not right."`
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`

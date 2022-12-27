@@ -312,7 +312,7 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || planet->CanLand(*ship))
+			bool launchesWithPlayer = (ship->IsYours() || (planet && planet->CanLand(*ship)))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
@@ -679,6 +679,9 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
+		// Have an alarm label flash up when enemy ships are in the system
+		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
+			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
@@ -2317,9 +2320,9 @@ void Engine::FillRadar()
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)
 	{
-		if(Preferences::Has("Warning siren"))
+		if(Preferences::PlayAudioAlert())
 			Audio::Play(Audio::Get("alarm"));
-		alarmTime = 180;
+		alarmTime = 300;
 		hadHostiles = true;
 	}
 	else if(!hasHostiles)
