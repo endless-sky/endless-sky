@@ -32,7 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // (nearly?)  all Condition classes will use a std::string key (K). It
 // should be an arithmetic type, like double, int64_t, int, or
 // unsigned. A bool should work too, but that's untested.
-// 
+//
 // The KeyType (K in the template) is a template parameter so we can
 // allow storage of scope, wstring, etc. in the future without
 // rewriting this class.
