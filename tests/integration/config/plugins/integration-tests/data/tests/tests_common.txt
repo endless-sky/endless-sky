@@ -571,7 +571,7 @@ test "Create New Pilot"
 
 test "Buy First Ship"
 	status partial
-	description "Helper function to buy the first ship of the shipyard."
+	description "Helper function to buy the first ship of the shipyard, starting from the planet panel."
 	sequence
 		input
 			key s
@@ -644,11 +644,11 @@ test "Start Game"
 			"test: total ships" = "total ships"
 			"test: ship model: Shuttle" = "ship model: Shuttle"
 			"test: ship model: Sparrow" = "ship model: Sparrow"
-			"test: ship model: Star Barge" = "ship model: Starg Barge"
+			"test: ship model: Star Barge" = "ship model: Star Barge"
 		assert
 			"name: a b" == 1
 			"total ships" == 1
-			# not checking for the intro because it shouldnt fail if it isnt offered anymore or changes name
+			# Not checking for the intro mission conditions because the test shouldn't fail if the mission isn't offered or its name changes.
 
 
 test "Save To Default Snapshot"
