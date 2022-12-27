@@ -241,7 +241,7 @@ mission "Remnant: Lost in Ember Waste"
 				goto end
 			
 			label daughters
-			`	"Oh, I only told them about deciding to travel the galaxy. Never told them about returning home. I made trips to see them every so often, but they both passed many decades ago now. It seems like the Republic can not quite get anyone to live past 130 years.`
+			`	"Oh, I only told them about deciding to travel the galaxy. Never told them about returning home. I made trips to see them every so often, but they both passed many decades ago now. It seems like the Republic cannot quite get anyone to live past 130 years.`
 			
 			label end
 			`	"I really must get going, now," she says. The woman gets up to leave, but before walking away she turns to you and sings, "Safe travels, Captain," with a big grin on her face. You say goodbye to her in return and part ways.`
