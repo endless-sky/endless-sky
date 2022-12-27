@@ -260,7 +260,7 @@ outfit "Surveillance Pod"
 
 
 outfit "Cloaking Device"
-	category "Systems"
+	category "Unique"
 	cost 1200000
 	"mass" 10
 	"outfit space" -10

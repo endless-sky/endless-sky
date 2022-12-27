@@ -302,7 +302,7 @@ news "Wanderers and the Eye"
 
 news "Wanderers and Korath"
 	to show
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -328,7 +328,7 @@ news "Wanderers and Korath"
 
 news "Wanderer Linguistics"
 	to show
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
