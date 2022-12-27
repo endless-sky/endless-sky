@@ -843,7 +843,7 @@ mission "Hai Reveal [B09] Scanning Devil-Hide"
 			label planet
 			action
 				set "Hai Reveal [B09] Scanning Devil-Hide: label planet"
-			`	"Okay, the planet..." Her voice trails off. "Wow! That's odd. This scanner is definitely not designed to properly scan this thing; I can only get surface readings."`
+			`	"Okay, the planet..." Her voice trails off. "Wow! That's odd. This scanner is definitely not designed to properly scan this thing; I can only get surface readings.`
 			`	"Whatever it is, this planet is not normal by any stretch. It is completely inhospitable and appears to have a huge network of caves and caverns with crystalline structures that are radiating... something. Whatever it is, it's messing with the scanner's attempts to identify it. I'd have to know more about this scanner's functions to guess what the interference is. There's deuterium, though. Maybe the denizens of this system siphon the deuterium to make hyperspace fuel? Doesn't seem very efficient, but the solar wind is thin here. There's some kind of gravitational anomaly though, or maybe its just some kind of interference lensing. It looks like the planet has about a thousand times the mass it should, but with gravity around Earth normal. That... can't be right."`
 			`	She shakes it off and looks at you. "Whatever it is we're looking for, it's not down there."`
 				goto scan
