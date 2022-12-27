@@ -1292,7 +1292,7 @@ mission "Deep: Remnant 0"
 		has "Terminus exploration: done"
 		has "First Contact: Hai: offered"
 		has "main plot completed"
-
+	
 	on offer
 		conversation
 			`While wandering through the spaceport, you are approached by a man you instantly recognize as Ivan, the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He mentions that he heard how helpful you have been to others within the Deep.`
@@ -2433,7 +2433,7 @@ mission "Deep: Scientist Rescue 3B"
 			choice
 				`	"Thank you so much! I'll make sure that this gets put to good use."`
 				`	"Really? You shouldn't have."`
-
+			
 			`	"It's yours to keep. I hope you have good luck with your travels, and have fun using the Bactrian. It's a mighty fine ship to fly." Lieutenant Paris starts walking over to the Star Queen, leaving you alone to ponder the possibilities that await.`
 				decline
 

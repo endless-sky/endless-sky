@@ -648,10 +648,10 @@ mission "Sheragi Archaeology: The Box 2"
 	description "Take the mysterious box to a trusted scientist on <destination>."
 	source "Zug"
 	destination "Vinci"
-
+	
 	to offer
 		has "Sheragi Archaeology: The Box 1: done"
-
+	
 	on offer
 		conversation
 			`You land at the dig site and notice that Albert was already waiting for you, watching your descent. He greets you as soon as the ship doors open.`
@@ -877,14 +877,14 @@ mission "Sheragi Archaeology: The Box 4"
 			`	You politely decline.`
 			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is."`
 				goto exit
-
+			
 			label time
 			`	"Come back when you're ready, then. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is. It's all up to you."`
-
+			
 			label exit
 			`	They gesture, and the men promptly and diligently escort you back out to your ship.`
 				defer
-
+			
 			label haggle
 			action
 				set "haggled"
@@ -1417,7 +1417,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	"Is this..." Eyama says, trailing off as she approaches one of the writings on the wall.`
 			choice
 				`	"What is it?"`
-
+			
 			`	Eyama runs her hand against the writing and begins speaking. The sounds match the guttural tongue with which she first greeted you. She pauses after each sound, as if reading single words or characters. "This is the Sheragi alphabet," she says with awe in her voice. Her attention then shifts to writing elsewhere. She reads it, then translates for you. "It says, 'Rekla have mercy on us.'" Next to the writing is a Sheragi handprint on the wall, one of many scattered throughout the large room. Eyama presses her hand to it, nearly covering it. "This is a young hand."`
 			choice
 				`	"Why is all this here?"`
@@ -1431,13 +1431,13 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	"So they would have needed to reproduce on the way here?"`
 				`	"Does that mean this was a daycare of sorts?"`
 					goto daycare
-
+			
 			`	"Yes. At least one, maybe two generations of Sheragi could have been born in that time."`
 				goto walls
-
+			
 			label daycare
 			`	Eyama walks over to one of the objects on the ground and picks it up. "These are toys. So yes. This does seem to have been converted into a daycare."`
-
+			
 			label walls
 			`	Eyama stands up and looks toward the walls. "And these wall writings were used to teach them. These handprints are theirs. There are hundreds of them. And some of these words are their final prayers." Eyama seems to go into a trance as she walks around the room glancing at the many writings on the wall.`
 			`	As Eyama wanders the room, you begin looking at the objects on the ground. One of them catches your eye; a book of massive proportions, slightly over twice the length and width of your average human book, although you imagine it would be perfectly-sized for a young Sheragi. You try to open the book but find that the covers are locked together, and the lock won't budge.`

@@ -1375,10 +1375,10 @@ mission "Remnant: Deep Surveillance"
 				"retrieved information" == 2
 			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from the dingy complex it used to be at to here. I have you to thank for much of that work.`
 				goto reason
-
+			
 			label second
 			`	Ivan then takes a seat in his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? After gaining the attention of the Deep government with the discoveries we were making, they immediately had my office moved from that dingy complex to here. I have you to thank for much of that work.`
-
+			
 			label reason
 			`	"So. What brings you here, Captain?" he asks.`
 			branch remnant
