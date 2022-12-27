@@ -1078,7 +1078,7 @@ mission "Hai Leaks Response 6"
 				`	"Am I allowed to know more?"`
 			`	Alondo gives you a quizzical look. "Of course you are, <last>."`
 			label about
-			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones.`
+			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones."`
 			choice
 				`	"That sounds... interesting. Tell me more."`
 				`	"Never mind. It sounds like you have that under control. What's next?"`

@@ -301,7 +301,7 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"What is this guidance they pursue?"`
 					goto guidance
 			label ships
-			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration."`
+			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration.`
 			choice
 				`	"Do the Gegno upset you in some way?"`
 					goto sacrifice
@@ -446,7 +446,7 @@ mission "Gegno Genocide Defense"
 		"reputation: Gegno Scin" = -100
 		event "gegno: unified defense"
 		conversation
-			`As soon as you land your ship, you receive an incoming hail from a Quarg that sounds very displeased. "It was incredibly unwise to engage in the unnecessary destruction of noncombatants belonging to a species not of your own. A species that is still learning from themselves is vulnerable to outside influence, and your aggressive actions against civilians of the Gegno have resulted in needless events.`
+			`As soon as you land your ship, you receive an incoming hail from a Quarg that sounds very displeased. "It was incredibly unwise to engage in the unnecessary destruction of noncombatants belonging to a species not of your own. A species that is still learning from themselves is vulnerable to outside influence, and your aggressive actions against civilians of the Gegno have resulted in needless events."`
 			choice
 				`	"It was an accident!"`
 				`	"What are you talking about?"`
