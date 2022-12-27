@@ -166,19 +166,20 @@ template <class V, class K>
 template <class Getter>
 const V &Condition<V,K>::UpdateConditions(const Getter &getter)
 {
-	// If this was a literal, do nothing.
-	if(IsLiteral())
-		return value;
-	auto got = getter.HasGet(key);
-	// Assumes: got.first = true iff getter has key
-	// got.second = value iff got.first
-	if(got.first)
-		value = static_cast<ValueType>(got.second);
+	// If this was a literal, there is nothing to update.
+	if(HasConditions())
+	{
+		auto got = getter.HasGet(key);
+		// Assumes: got.first = true iff getter has key
+		// got.second = value iff got.first
+		if(got.first)
+			value = static_cast<ValueType>(got.second);
 #ifdef DEBUG_RVALUE_CONDITIONS
-	// If the value hasn't been initialized, use the default value
-	else if(value == BadValue)
-		value = ValueType();
+		// If the value hasn't been initialized, use the default value
+		else if(value == BadValue)
+			value = ValueType();
 #endif
+	}
 	return value;
 }
 
@@ -189,19 +190,28 @@ template <class V, class K>
 template <class Getter, class Validator>
 const V &Condition<V,K>::UpdateConditions(const Getter &getter, Validator validator)
 {
+	// If this was a literal, there is nothing to update.
 	if(HasConditions())
 	{
 		auto got = getter.HasGet(key);
 		// Assumes: got.first = true iff getter has key
 		// got.second = value iff got.first
-		if(got.first and validator(got.second))
+		if(got.first && validator(got.second))
+		{
 			value = static_cast<ValueType>(got.second);
+			return value;
+		}
 #ifdef DEBUG_RVALUE_CONDITIONS
 		// If the value hasn't been initialized, use the default value
 		else if(value == BadValue)
+		{
 			value = ValueType();
+			return value;
+		}
 #endif
 	}
+	if(!validator(value))
+		value = ValueType();
 	return value;
 }
 
@@ -240,6 +250,8 @@ bool Condition<V,K>::SameOrigin(const Condition<V,K> &o)
 {
 	if(HasConditions())
 		return key == o.Key();
+	else if(o.HasConditions())
+		return false;
 	else
 		return value == o.Value();
 }
@@ -248,7 +260,7 @@ template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>
 bool NotNearZero(T whut)
 {
 	// Use about half the precision of the type when comparing it to zero.
-	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon*2);
+	static const T epsilon = sqrtl(std::numeric_limits<T>::epsilon()*2);
 	// Inf and -Inf are NotNearZero but NaN isn't. This is because
 	// it is not a number, so it can't be near a number. The
 	// consequence is that Condition(NaN) is false in a bool context.

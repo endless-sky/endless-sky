@@ -32,11 +32,11 @@ namespace { // test namespace
 // Insert file-local data here, e.g. classes, structs, or fixtures that will be useful
 // to help test this class/method.
 
-// #endregion mock data
-
 typedef RandomEvent<std::string, int> RandomEventType;
 typedef RandomEvent<std::string, Condition<int>> ConditionalEventType;
 const int minimumPeriod = RandomEventType::MinimumPeriod();
+
+// #endregion mock data
 
 // #region unit tests
 TEST_CASE( "RandomEvent Basics", "[RandomEvent]" ) {
