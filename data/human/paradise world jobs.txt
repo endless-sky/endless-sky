@@ -91,8 +91,8 @@ mission "Paradise Job: Newlyweds"
 	cargo "wedding gifts" 2 4
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -163,8 +163,8 @@ mission "Transport partiers [1]"
 	stealth
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -186,8 +186,8 @@ mission "Transport partiers [2]"
 	cargo "snacks and school supplies" 2 4
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -377,8 +377,8 @@ mission "Transport high-class tourists"
 	passengers 8 22
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -434,8 +434,8 @@ mission "Paradise Job: Parolees"
 	to offer
 		random < 15
 		"passenger space" > 40
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	destination
@@ -458,8 +458,8 @@ mission "Paradise Job: Debtors"
 	to offer
 		random < 15
 		"passenger space" > 40
-	on offer
-		require "Brig"
+	to accept
+		"outfit: Brig"
 	source
 		attributes "paradise"
 	destination
@@ -484,8 +484,8 @@ mission "Paradise Job: Retirees"
 		random < 10
 		"passenger space" > 15
 		"cargo space" > 40
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
@@ -507,8 +507,8 @@ mission "Paradise Job: Wilderness Retreat"
 	to offer
 		random < 10
 		"passenger space" > 25
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		"outfit: Luxury Accommodations"
 	source
 		attributes "urban" "near earth" "core" "paradise"
 	destination
