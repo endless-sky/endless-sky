@@ -109,8 +109,8 @@ void OutfitterPanel::Step()
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::OUTFITTER);
 	if(GetUI()->IsTop(this) && !checkedHelp)
-		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
-			// All help messages have now been displayed.
+		if(DoHelp("outfitter")) || DoHelp("outfitter 2") || DoHelp("outfitter 3") || true)
+			// A help messages has now been displayed, or all of them.
 			checkedHelp = true;
 }
 
