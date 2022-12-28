@@ -170,6 +170,7 @@ mission "Transport partiers [1]"
 	destination
 		distance 4 12
 		attributes "tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
