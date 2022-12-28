@@ -76,7 +76,7 @@ public:
 
 	// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();
-	static Preferences::VSync VSyncState();
+	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
 	// Background parallax setting, either "fast", "fancy", or "off".
@@ -86,16 +86,16 @@ public:
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
-	static Preferences::BoardingPriority GetBoardingPriority();
+	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
 
 	// Red alert siren and symbol
 	static void ToggleAlert();
-	static Preferences::AlertIndicator GetAlertIndicator();
+	static AlertIndicator GetAlertIndicator();
 	static const std::string &AlertSetting();
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
-	static bool DoAlertHelper(Preferences::AlertIndicator toDo);
+	static bool DoAlertHelper(AlertIndicator toDo);
 };
 
 
