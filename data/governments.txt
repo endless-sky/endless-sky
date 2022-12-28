@@ -796,6 +796,7 @@ government "Elenctic Commune"
 		"Pirate (Devil-Run Gang)" -.2
 		"Smuggler (Hai Trafficker)" -.2
 	"bribe" .05
+color "governments: Pirate" .78 0 0
 
 government "Pirate"
 	swizzle 6
