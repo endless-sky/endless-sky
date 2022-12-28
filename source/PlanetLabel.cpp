@@ -90,8 +90,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	else if(planet.GetGovernment())
 	{
 		government = "(" + planet.GetGovernment()->GetName() + ")";
-		color = planet.GetGovernment()->GetColor();
-		color = Color(color.Get()[0] * .5f + .3f, color.Get()[1] * .5f + .3f, color.Get()[2] * .5f + .3f);
+		color = Color::Combine(.5f, planet.GetGovernment()->GetColor(), .3f, Color()).Opaque();
 		if(!planet.CanLand())
 			hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
 	}
