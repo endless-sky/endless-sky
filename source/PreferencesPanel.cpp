@@ -63,6 +63,7 @@ namespace {
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 1;
@@ -222,6 +223,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			else if(zone.Value() == ALERT_INDICATOR)
+				Preferences::ToggleAlert();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -509,7 +512,7 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"Warning siren"
+		ALERT_INDICATOR
 	};
 	bool isCategory = true;
 	int page = 0;
@@ -639,6 +642,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == ALERT_INDICATOR)
+		{
+			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
+			text = Preferences::AlertSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
