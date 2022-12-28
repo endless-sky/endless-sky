@@ -290,10 +290,12 @@ government "Gegno Scin"
 	"penalty for"
 		assist 0
 
+color "governments: Gegno Vi" .68 .4 .4
+
 government "Gegno Vi"
 	swizzle 0
 	language "Gegno"
-	color 0.68 0.4 0.4
+	color "governments: Gegno Vi"
 
 	"player reputation" 0
 	"crew attack" 1.3
@@ -324,7 +326,7 @@ government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
 	swizzle 0
 	language "Gegno"
-	color 0.68 0.4 0.4
+	color "governments: Gegno Vi"
 
 	"player reputation" 0
 	"crew attack" 1.3
@@ -340,7 +342,7 @@ government "Gegno Vi (Duelist A)"
 	swizzle 0
 	"display name" "Gegno Vi"
 	language "Gegno"
-	color 0.68 0.4 0.4
+	color "governments: Gegno Vi"
 
 	"player reputation" 0
 	"crew attack" 1.3
@@ -357,7 +359,7 @@ government "Gegno Vi (Duelist B)"
 	swizzle 0
 	"display name" "Gegno Vi"
 	language "Gegno"
-	color 0.68 0.4 0.4
+	color "governments: Gegno Vi"
 
 	"player reputation" 0
 	"crew attack" 1.3
