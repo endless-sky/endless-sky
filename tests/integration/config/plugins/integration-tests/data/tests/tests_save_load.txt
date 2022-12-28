@@ -129,11 +129,9 @@ test "Loading and Saving"
 			day == 21
 		call "Open Menu"
 		call "Load First Savegame"
-		apply
-			"test: 6 loaded first savegame" = 1
 		call "Depart"
 		apply
-			"test: 7 departed one more time" = 1
+			"test: 6 departed one more time" = 1
 		assert
 			year == 3013
 			month == 11
