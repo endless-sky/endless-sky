@@ -1890,7 +1890,6 @@ phrase "friendly civilian"
 		"I found out that "
 	word
 		"if you have "
-		"you need to have "
 	word
 		"8 free bunks, "
 		"eight free bunks, "
