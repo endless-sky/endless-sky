@@ -764,9 +764,11 @@ government "Navy (Oathkeeper)"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
+color "governments: Neutral" .84 .61 .37
+
 government "Neutral"
 	swizzle 0
-	color .84 .61 .37
+	color "governments: Neutral"
 	
 	"player reputation" 1
 	"attitude toward"
