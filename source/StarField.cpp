@@ -134,7 +134,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	// Check preferences for the parallax quality.
 	const auto parallaxSetting = Preferences::GetBackgroundParallax();
 	int layers = (parallaxSetting == Preferences::BackgroundParallax::FANCY) ? 3 : 1;
-	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY || parallaxSetting == Preferences::BackgroundParallax::FAST);
+	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY ||
+						parallaxSetting == Preferences::BackgroundParallax::FAST);
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
