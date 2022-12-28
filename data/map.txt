@@ -12,8 +12,8 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 galaxy "Milky Way"
-	pos 0 0
-	sprite ui/galaxy
+	pos 112 22
+	sprite "ui/milky way"
 
 galaxy "label arachi"
 	pos -750 615
