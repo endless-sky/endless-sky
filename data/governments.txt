@@ -370,9 +370,11 @@ government "Gegno Vi (Duelist B)"
 	"penalty for"
 		assist 0
 
+color "governments: Hai" .86 .48 .79
+
 government "Hai"
 	swizzle 0
-	color .86 .48 .79
+	color "governments: Hai"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -394,7 +396,7 @@ government "Hai"
 government "Hai (Wormhole Access)"
 	"display name" "Hai"
 	swizzle 0
-	color .86 .48 .79
+	color "governments: Hai"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -415,7 +417,7 @@ government "Hai (Wormhole Access)"
 government "Hai Merchant"
 	"display name" "Hai"
 	swizzle 0
-	color .86 .48 .79
+	color "governments: Hai"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -434,7 +436,7 @@ government "Hai Merchant"
 government "Hai Merchant (Sympathizers)"
 	"display name" "Hai"
 	swizzle 0
-	color .86 .48 .79
+	color "governments: Hai"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -453,7 +455,7 @@ government "Hai Merchant (Sympathizers)"
 government "Hai Merchant (Human)"
 	"display name" "Hai"
 	swizzle 0
-	color .86 .48 .79
+	color "governments: Hai"
 	
 	"player reputation" 0
 	"attitude toward"
