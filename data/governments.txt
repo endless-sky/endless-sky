@@ -862,9 +862,11 @@ government "Pirate (Rival)"
 	"hostile hail" "hostile pirate"
 	raid "pirate raid"
 
+color "governments: Pug" .99 .89 .70
+
 government "Pug"
 	swizzle 0
-	color .99 .89 .70
+	color "governments: Pug"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -879,7 +881,7 @@ government "Pug"
 government "Pug (Wanderer)"
 	"display name" "Pug"
 	swizzle 0
-	color .99 .89 .70
+	color "governments: Pug"
 	
 	"player reputation" 1
 	"attitude toward"
