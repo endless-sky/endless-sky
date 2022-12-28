@@ -76,6 +76,17 @@ namespace {
 		unsigned unavailable = 0;
 	};
 
+	// Struct for storing the ends of wormhole links and their colors.
+	struct WormholeArrow {
+		WormholeArrow() = default;
+		WormholeArrow(const System *from, const System *to, const Color *color)
+		: from(from), to(to), color(color) {}
+		const System *from = nullptr;
+		const System *to = nullptr;
+		const Color *color = nullptr;
+	};
+
+
 	// Log how many player ships are in a given system, tracking whether
 	// they are parked or in-flight.
 	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts,
@@ -1060,10 +1071,7 @@ void MapPanel::DrawWormholes()
 
 		for(auto &&link : it.second.Links())
 			if(p.IsInSystem(link.first) && player.HasVisited(*link.first) && player.HasVisited(*link.second))
-			{
-				WormholeArrow tmpArrow(link.first, link.second, it.second.GetLinkColor());
-				arrowsToDraw.emplace_back(tmpArrow);
-			}
+				arrowsToDraw.emplace_back(link.first, link.second, it.second.GetLinkColor());
 	}
 
 	static const double ARROW_LENGTH = 4.;
@@ -1088,11 +1096,9 @@ void MapPanel::DrawWormholes()
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
 		if(link.from < link.to || count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
-			[link](WormholeArrow cmp)
-			{
-			return cmp.from == link.to && cmp.to == link.from;
-			}))
-			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
+			[link](const WormholeArrow &cmp){
+			return cmp.from == link.to && cmp.to == link.from;}))
+				LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
 		Point arrowStem = zoom * ARROW_LENGTH * offset;

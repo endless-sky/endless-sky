@@ -17,9 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define PLANET_LABEL_H_
 
 #include "Color.h"
-#include "GameData.h"
 #include "Point.h"
-#include "Wormhole.h"
 
 #include <string>
 

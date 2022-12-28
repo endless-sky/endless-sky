@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "GameData.h"
 #include "Government.h"
 #include "LineShader.h"
 #include "pi.h"
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
