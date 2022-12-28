@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class LoadingHints {
 public:
-namespace {
 	// An array of loading hints.
 	const std::vector<std::string> loadingHintArray{
 		"If you fly far enough from the center of a system, ships chasing you will often give up.",
@@ -49,5 +48,4 @@ namespace {
 		"You can use ESLauncher2 to install and play Endless Sky more easily.",
 		"If you press space on the main menu, the credits stop scrolling."
 	};
-};
 };
