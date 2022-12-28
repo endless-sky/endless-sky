@@ -276,10 +276,12 @@ government "Gegno"
 		assist 0
 		provoke 10
 
+color "governments: Gegno Scin" .5 .55 .33
+
 government "Gegno Scin"
 	swizzle 18
 	language "Gegno"
-	color 0.5 0.55 0.33
+	color "governments: Gegno Scin"
 
 	"player reputation" 0
 	"crew attack" 1.2
@@ -312,7 +314,7 @@ government "Gegno Scin (Neutral)"
 	"display name" "Gegno Scin"
 	swizzle 18
 	language "Gegno"
-	color 0.5 0.55 0.33
+	color "governments: Gegno Scin"
 
 	"player reputation" 0
 	"crew attack" 1.2
