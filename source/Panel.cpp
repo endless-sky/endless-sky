@@ -257,7 +257,7 @@ bool Panel::DoHelp(const string &name) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(message));
+	ui->Push(new Dialog(preference + "\n\n" + message));
 
 	return true;
 }
