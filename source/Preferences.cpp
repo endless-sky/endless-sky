@@ -51,6 +51,9 @@ namespace {
 
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
+
+	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
+	int alertIndicatorIndex = 3;
 }
 
 
@@ -64,7 +67,6 @@ void Preferences::Load()
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
-	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
 	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
@@ -96,8 +98,20 @@ void Preferences::Load()
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "alert indicator")
+			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
+	}
+
+	// For people updating from a version before the visual red alert indicator,
+	// if they have already disabled the warning siren, don't turn the audible alert back on.
+	auto it = settings.find("Warning siren");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			alertIndicatorIndex = 2;
+		settings.erase(it);
 	}
 }
 
@@ -114,6 +128,7 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("alert indicator", alertIndicatorIndex);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -287,4 +302,52 @@ Preferences::BoardingPriority Preferences::GetBoardingPriority()
 const string &Preferences::BoardingSetting()
 {
 	return BOARDING_SETTINGS[boardingIndex];
+}
+
+
+
+void Preferences::ToggleAlert()
+{
+	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
+		alertIndicatorIndex = 0;
+}
+
+
+
+Preferences::AlertIndicator Preferences::GetAlertIndicator()
+{
+	return static_cast<AlertIndicator>(alertIndicatorIndex);
+}
+
+
+
+const std::string &Preferences::AlertSetting()
+{
+	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
+}
+
+
+
+bool Preferences::PlayAudioAlert()
+{
+	return DoAlertHelper(AlertIndicator::AUDIO);
+}
+
+
+
+bool Preferences::DisplayVisualAlert()
+{
+	return DoAlertHelper(AlertIndicator::VISUAL);
+}
+
+
+
+bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
+{
+	auto value = GetAlertIndicator();
+	if(value == AlertIndicator::BOTH)
+		return true;
+	else if(value == toDo)
+		return true;
+	return false;
 }
