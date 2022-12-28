@@ -57,9 +57,9 @@ news "merchant anywhere"
 			"No bread is better than half a loaf, because then the passengers won't fight over it."
 			"A painting is worth a thousand words, because the profit margin on transporting visual art is much higher than on dry literature."
 			"A journey of a thousand miles has too short of a distance to make any profit."
-			"The other day I happened across a rock band whose transport flaked out. Good thing I had eight free seats for them, because it got me into a free concert at their next stop."
-			"Always look for work that provides a lot of detail. The more interesting it sounds, the more likely it is to emd up giving you stories to tell your kids someday."
-			"For some reason, boring jobs almost never hang out in the spaceport. So, if you are looking for interesting or at least varried work..."
+			"The other day I happened across a rock band whose transport flaked out. Good thing I had seats for all eight of them, because it got me into a free concert at their next stop."
+			"Always look for work that provides a lot of detail. The more interesting it sounds, the more likely it is to end up giving you stories to tell your kids someday."
+			"For some reason, boring jobs almost never hang out in the spaceport. So, if you are looking for interesting or at least varied work..."
 		word
 			`"`
 
