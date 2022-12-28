@@ -488,8 +488,8 @@ mission "Hai Reveal [D10] Escort Free World Outfitters"
 			`	You look at your friend, and you can tell he's waiting for you to accept his premise first, holding something back...`
 			choice
 				`	"What's the catch?"`
-			`	He chuckles. "You're getting to know me too well."`
-			`	"The catch is that the Free Worlds will only sponsor the outfitters if you agree to escort their convoys directly from Solace and Rust the entire way here. They want to make a big show of it - or rather, a certain senator has goaded them into making a show of it.'`
+			`	He chuckles. "You're getting to know me too well.`
+			`	"The catch is that the Free Worlds will only sponsor the outfitters if you agree to escort their convoys directly from Solace and Rust the entire way here. They want to make a big show of it - or rather, a certain senator has goaded them into making a show of it."`
 			`	He sighs. "On the plus side though, if you're interested, you do get paid diplomatic escort rates."`
 			choice
 				`	"I'll do it, friend."`
