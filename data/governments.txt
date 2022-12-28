@@ -920,9 +920,11 @@ government "Quarg"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
 
+color "governments: Remnant" .89 .38 .62
+
 government "Remnant"
 	swizzle 0
-	color .89 .38 .62
+	color "governments: Remnant""
 	"crew defense" 2.2
 	
 	"player reputation" 1
@@ -948,7 +950,7 @@ government "Remnant"
 government "Remnant (Research)"
 	"display name" "Remnant"
 	swizzle 0
-	color .89 .38 .62
+	color "governments: Remnant"
 	"crew defense" 2.2
 	
 	"player reputation" 1
