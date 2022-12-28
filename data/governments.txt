@@ -1178,9 +1178,9 @@ government "Test Dummy"
 	"bribe" 0
 	"fine" 0
 
-# For space objects of unknown origin, to ensure the player can't land:
 color "governments: Ungoverned" .4 .4 .4
 
+# For space objects of unknown origin, to ensure the player can't land:
 government "Unknown"
 	swizzle 1
 	color "governments: Ungoverned"
