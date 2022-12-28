@@ -180,7 +180,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 			for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			{
-				float shove = pow(-5., pass);
+				float shove = pow(-6., pass);
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
 					Point off = Point(gx + shove, gy + shove) - pos;
