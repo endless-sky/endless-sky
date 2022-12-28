@@ -1883,6 +1883,23 @@ phrase "friendly civilian"
 		", a pretty insignificant company located on just one planet."
 		", but next time, I'll buy from the Syndicate again."
 
+phrase "friendly civilian"
+	word
+		"I heard that "
+		"I read a rumor that "
+		"I found out that "
+	word
+		"if you have "
+		"you need to have "
+	word
+		"8 free bunks, "
+		"eight free bunks, "
+		"space for at least eight passengers, "
+	word
+		"you can pick up some musical celebrities."
+		"you can give a lift to some bands."
+		"sometimes you'll be asked to help transport rock stars."
+
 phrase "friendly navy"
 	word
 		"The Navy"
