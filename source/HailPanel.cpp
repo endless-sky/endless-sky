@@ -167,7 +167,10 @@ void HailPanel::Draw()
 			if(ship->GetGovernment()->IsEnemy())
 			{
 				if(requestedToBribeShip)
+				{
 					info.SetCondition("offered bribe");
+					info.SetCondition("hide bribe offer");
+				}
 				else
 					info.SetCondition("can bribe");
 			}
