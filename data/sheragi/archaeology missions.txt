@@ -657,7 +657,7 @@ mission "Sheragi Archaeology: The Box 2"
 			`You land at the dig site and notice that Albert was already waiting for you, watching your descent. He greets you as soon as the ship doors open.`
 			`	"Hello, <first>! Would you like to go on a little tour of the museum?"`
 			choice
-				`	"Museum? What museum?`
+				`	"Museum? What museum?"`
 				`	"Sure, I'm eager to see what you discovered."`
 					goto eager
 				`	"Just tell me what's so important."`
@@ -875,7 +875,7 @@ mission "Sheragi Archaeology: The Box 4"
 			label nomoney
 			`	"I know you don't. I can arrange for the payment to be made in different ways. Organ donation, prostitution, volunteering as a test subject... We'll need an appraisal first, though."`
 			`	You politely decline.`
-			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is.`
+			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is."`
 				goto exit
 			
 			label time
@@ -991,7 +991,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			
 			`	You land and cautiously open the hatch to talk with them.`
 			`	"Who do you work for? Where is the cube you stole?" you ask.`
-			`	"So that old thing was yours?" One woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
+			`	"So that old thing was yours?" one woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
 			`	"If you want the cube, you can have it if you spare us. It's not worth our lives."`
 			choice
 				`	(Spare them.)`
@@ -1423,8 +1423,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	"Why is all this here?"`
 					goto young
 				`	"Who is Rekla?"`
-			
-			`	"From what we know, Rekla was a divine warrior among the Sheragi. Sheragi legends stated that she united the warring Sheragi tribes and lead them all to the stars.`
+
+			`	"From what we know, Rekla was a divine warrior among the Sheragi. Sheragi legends stated that she united the warring Sheragi tribes and led them all to the stars.`
 			label young
 			`	"This ship has to have traveled between the stars for many of your years in order to reach this system without a hyperdrive. The engines are powerful, so it perhaps took them 120 years to arrive here. Many of the Sheragi would have survived the trip, but would be very old when they arrived. This would have made it difficult for them to colonize the planet."`
 			choice
@@ -1434,7 +1434,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			
 			`	"Yes. At least one, maybe two generations of Sheragi could have been born in that time."`
 				goto walls
-				
+			
 			label daycare
 			`	Eyama walks over to one of the objects on the ground and picks it up. "These are toys. So yes. This does seem to have been converted into a daycare."`
 			
@@ -1616,8 +1616,8 @@ mission "Sheragi Archaeology: Epilogue"
 			`	"I don't think you will, as long as you don't fire it into a planet. It doesn't cause unnecessary suffering like nerve gas, and it isn't as indiscriminate as a nuclear bomb. This is a focused beam. It's going to poke holes straight through any ship subject to its wrath."`
 			label catch
 			`	"Then what's the catch?" you ask.`
-			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon.`
-			`	Desyo adds. "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried. No offense."`
+			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon."`
+			`	Desyo adds, "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried. No offense."`
 			`	"So what are you going to do now?" you ask them.`
 			`	Eyama responds. "We'll continue working with Albert. These two nerds like technology and ships, but I'm far more interested in the treasure trove of cultural artifacts the buried city holds. Not to mention the humans here are very interesting!"`
 			`	You all finish your ice creams and continue chatting for a while longer before you say goodbye and return to your ship. By tomorrow, it will be in full working condition, ready to take to the endless void.`
