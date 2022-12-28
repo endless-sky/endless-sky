@@ -457,11 +457,27 @@
       },
       "filter": {
         "include": {
-          "label": "integration"
+          "label": "integration$"
         }
       },
       "execution": {
         "timeout": 120
+      }
+    },
+    {
+      "name": "integration-debug",
+      "hidden": true,
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "integration-debug"
+        }
+      },
+      "execution": {
+        "timeout": 360
       }
     },
     {
@@ -507,7 +523,7 @@
       },
       "filter": {
         "exclude": {
-          "label": "benchmark"
+          "label": "(benchmark|integration-debug)"
         }
       },
       "condition": {
@@ -535,6 +551,12 @@
       "inherits": "integration"
     },
     {
+      "name": "linux-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "linux-gles-test",
       "displayName": "Tests",
       "configurePreset": "linux-gles",
@@ -553,6 +575,12 @@
       "inherits": "integration"
     },
     {
+      "name": "linux-gles-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux-gles",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "macos-test",
       "displayName": "Tests",
       "configurePreset": "macos",
@@ -563,6 +591,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "macos",
       "inherits": "benchmark"
+    },
+    {
+      "name": "macos-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "macos",
+      "inherits": "integration-debug"
     },
     {
       "name": "macos-arm-test",
@@ -577,6 +611,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "macos-arm-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "macos-arm",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "clang-cl-test",
       "displayName": "Tests",
       "configurePreset": "clang-cl",
@@ -587,6 +627,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "clang-cl",
       "inherits": "benchmark"
+    },
+    {
+      "name": "clang-cl-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "clang-cl",
+      "inherits": "integration-debug"
     },
     {
       "name": "mingw-test",
@@ -601,6 +647,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "mingw-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "mingw",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "mingw32-test",
       "displayName": "Tests",
       "configurePreset": "mingw32",
@@ -611,6 +663,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "mingw32",
       "inherits": "benchmark"
+    },
+    {
+      "name": "mingw32-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "mingw32",
+      "inherits": "integration-debug"
     },
     {
       "name": "linux-ci",
