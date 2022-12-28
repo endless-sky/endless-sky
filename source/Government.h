@@ -17,9 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GOVERNMENT_H_
 
 #include "Color.h"
+#include "ExclusiveItem.h"
 #include "LocationFilter.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -125,6 +127,7 @@ public:
 	double CrewDefense() const;
 
 	bool IsProvokedOnScan() const;
+	bool IsUsingForeignPenaltiesFor(const Government *government) const;
 
 
 private:
@@ -132,7 +135,7 @@ private:
 	std::string name;
 	std::string displayName;
 	int swizzle = 0;
-	Color color;
+	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
 	double initialPlayerReputation = 0.;
@@ -152,6 +155,10 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
+	// If a government appears in this set, and the reputation with this government is affected by actions,
+	// and events performed against that government, use the penalties that government applies for the
+	// action instead of this governments own penalties.
+	std::set<unsigned> useForeignPenaltiesFor;
 };
 
 

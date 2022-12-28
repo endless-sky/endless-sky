@@ -245,6 +245,116 @@ government "Free Worlds that won't enter wormhole"
 	"hostile hail" "hostile free worlds"
 	raid "pirate raid"
 
+government "Gegno"
+	swizzle 0
+	language "Gegno"
+	color 0.56 0.44 0.2
+
+	"player reputation" 0
+	"crew attack" 1.1
+	"crew defense" 1.2
+	"attitude toward"
+		"Gegno Scin" 0.01
+		"Gegno Vi" 0.01
+		"Quarg" 0.02
+	"penalty for"
+		assist 0
+		provoke 10
+
+government "Gegno Scin"
+	swizzle 18
+	language "Gegno"
+	color 0.5 0.55 0.33
+
+	"player reputation" 0
+	"crew attack" 1.2
+	"crew defense" 1.4
+	"attitude toward"
+		"Gegno" 1
+		"Gegno Vi" -0.01
+	"penalty for"
+		assist 0
+
+government "Gegno Vi"
+	swizzle 0
+	language "Gegno"
+	color 0.68 0.4 0.4
+
+	"player reputation" 0
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		"Gegno" 1
+		"Gegno Scin" -0.01
+	"penalty for"
+		assist 0
+
+
+# Gegno Scin and Vi governments that do not fight each other.
+government "Gegno Scin (Neutral)"
+	"display name" "Gegno Scin"
+	swizzle 18
+	language "Gegno"
+	color 0.5 0.55 0.33
+
+	"player reputation" 0
+	"crew attack" 1.2
+	"crew defense" 1.4
+	"attitude toward"
+		"Gegno" 1
+	"penalty for"
+		assist 0
+	
+government "Gegno Vi (Neutral)"
+	"display name" "Gegno Vi"
+	swizzle 0
+	language "Gegno"
+	color 0.68 0.4 0.4
+
+	"player reputation" 0
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		"Gegno" 1
+	"penalty for"
+		assist 0
+	
+	
+# Gegno Vi governments used for dueling.
+government "Gegno Vi (Duelist A)"
+	swizzle 0
+	"display name" "Gegno Vi"
+	language "Gegno"
+	color 0.68 0.4 0.4
+
+	"player reputation" 0
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		"Gegno" 1
+		"Gegno Scin" -0.01
+		"Gegno Vi" 1
+		"Gegno Vi (Duelist B)" -0.01
+	"penalty for"
+		assist 0
+
+government "Gegno Vi (Duelist B)"
+	swizzle 0
+	"display name" "Gegno Vi"
+	language "Gegno"
+	color 0.68 0.4 0.4
+
+	"player reputation" 0
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		"Gegno" 1
+		"Gegno Scin" -0.01
+		"Gegno Vi" 1
+		"Gegno Vi (Duelist A)" -0.01
+	"penalty for"
+		assist 0
+
 government "Hai"
 	swizzle 0
 	color .86 .48 .79
@@ -788,6 +898,9 @@ government "Quarg"
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
+		"Gegno" 0.1
+	"use foreign penalties for"
+		"Gegno"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
@@ -820,6 +933,8 @@ government "Remnant"
 		capture 10
 		destroy 10
 		scan 0.1
+	"use foreign penalties for"
+		"Remnant (Research)"
 	"provoked on scan"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
@@ -843,6 +958,8 @@ government "Remnant (Research)"
 		board 1
 		capture 10
 		destroy 10
+	"use foreign penalties for"
+		"Remnant"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
 
@@ -1047,6 +1164,10 @@ government "Uninhabited"
 	color .4 .4 .4
 	"bribe" 0
 	"fine" 0
+
+government "vyu-Rulei"
+	swizzle 0
+	color 1 1 1
 
 government "Ember Waste"
 	"display name" "???"
