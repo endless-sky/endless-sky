@@ -528,9 +528,11 @@ government "Heliarch"
 		"Quarg" -.01
 		"Coalition" 1
 
+color "governments: Independent" .78 .36 .36
+
 government "Independent"
 	swizzle 6
-	color .78 .36 .36
+	color "governments: Independent"
 	
 	"player reputation" 10
 	"bribe" .05
@@ -543,7 +545,7 @@ government "Independent"
 government "Independent (Killable)"
 	"display name" "Independent"
 	swizzle 6
-	color .78 .36 .36
+	color "governments: Independent"
 	
 	"player reputation" 10
 	"bribe" .05
