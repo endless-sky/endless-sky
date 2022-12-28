@@ -109,7 +109,7 @@ void OutfitterPanel::Step()
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::OUTFITTER);
 	if(GetUI()->IsTop(this) && !checkedHelp)
-		if(DoHelp("outfitter basics") || DoHelp("cargo management") || DoHelp("uninstalling and storage") || true)
+		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage") || true)
 			// A help messages has now been displayed, or all of them.
 			checkedHelp = true;
 }
