@@ -45,6 +45,9 @@ test "Loading and Saving"
 		apply
 			"test: Depart: 0 zoom_restore_counter" = "test: Depart: zoom_restore_counter"
 			"test: 0 departed 1" = 1
+			"test: year" = year
+			"test: month" = month
+			"test: day" = day
 		assert
 			year == 3013
 			month == 11
@@ -61,6 +64,9 @@ test "Loading and Saving"
 			not "flagship system: Alpha Centauri"
 		apply
 			"test: 1 entered A Cen 1" = 1
+			"test: year" = year
+			"test: month" = month
+			"test: day" = day
 		# Terminate jumping if it still is active.
 		input
 			command forward
@@ -75,6 +81,9 @@ test "Loading and Saving"
 			not "flagship planet: Earth"
 		apply
 			"test: 2 returned to Earth 1" = 1
+			"test: year" = year
+			"test: month" = month
+			"test: day" = day
 		assert
 			year == 3013
 			month == 11
