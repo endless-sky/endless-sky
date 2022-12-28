@@ -1,4 +1,4 @@
-/* GameLoadingPanel.h
+/* LoadingHints.h
 Copyright (c) 2022 by mOctave
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

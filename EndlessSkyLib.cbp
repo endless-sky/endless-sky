@@ -195,9 +195,9 @@
 		<Unit filename="source/JumpTypes.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
+		<Unit filename="source/LoadingHints.h" />
 		<Unit filename="source/LoadPanel.cpp" />
 		<Unit filename="source/LoadPanel.h" />
-		<Unit filename="source/LoadingHints.h" />
 		<Unit filename="source/LocationFilter.cpp" />
 		<Unit filename="source/LocationFilter.h" />
 		<Unit filename="source/Logger.cpp" />

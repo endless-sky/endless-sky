@@ -140,7 +140,11 @@ void MenuPanel::Draw()
 	if(!credits.empty())
 		DrawCredits();
 
-	FontSet::Get(14).Draw(GameLoadingPanel::GetHint(), Point(Screen::Width() * -.5 +20., Screen::Height() * .5 - 34.), Color({.8, .8, .8}));
+	FontSet::Get(14).Draw(
+		GameLoadingPanel::GetHint(),
+		Point(Screen::Width() * -.5 + 20., Screen::Height() * .5 - 34.),
+		Color({.8, .8, .8})
+	);
 }
 
 
