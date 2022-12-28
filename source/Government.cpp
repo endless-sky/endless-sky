@@ -355,7 +355,7 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 
 	if(other == this)
 		return PenaltyFor(eventType);
-	
+
 	const Government &gov = *other;
 	const int id = gov.id;
 	if(!customPenalties[id].size())
