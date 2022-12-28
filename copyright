@@ -759,6 +759,12 @@ Files:
 Copyright: Azure
 License: CC-BY-SA-4.0
 
+Files:
+  images/ui/milky?way*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA and Michael Zahniser.
+
 Files: sounds/*
 Copyright: Various
 License: public-domain
