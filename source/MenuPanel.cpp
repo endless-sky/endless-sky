@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameLoadingPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "LoadPanel.h"
@@ -32,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "PreferencesPanel.h"
 #include "Rectangle.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "StarField.h"
@@ -137,6 +139,8 @@ void MenuPanel::Draw()
 
 	if(!credits.empty())
 		DrawCredits();
+
+	FontSet::Get(14).Draw(GameLoadingPanel::GetHint(), Point(Screen::Width() * -.5 +20., Screen::Height() * .5 - 34.), Color({.8, .8, .8}));
 }
 
 

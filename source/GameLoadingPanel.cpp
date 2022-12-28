@@ -15,16 +15,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameLoadingPanel.h"
 
-#include "text/alignment.hpp"
 #include "Angle.h"
 #include "Audio.h"
+#include "Color.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
+#include "LoadingHints.h"
 #include "MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
@@ -32,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "PointerShader.h"
 #include "Random.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "SpriteSet.h"
 #include "StarField.h"
@@ -40,7 +44,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
-
+namespace {
+	std::vector<std::string> loadingHintArray = LoadingHints().loadingHintArray;
+	std::string hint = loadingHintArray[Random::Int(sizeof(loadingHintArray))];
+}
 
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation,
 	UI &gamePanels, bool &finishedLoading)
@@ -113,6 +120,11 @@ void GameLoadingPanel::Draw()
 	}
 	PointerShader::Unbind();
 
-	DisplayText::DisplayText(Random::Int(0, sizeof(loadingHintArray) - 1), 	Layout(100, CENTER) noexcept;
-)
+	//Draw the loading hint.
+	FontSet::Get(14).Draw(hint, Point(Screen::Width() * -.5 +20., Screen::Height() * .5 - 34.), Color({.8, .8, .8}));
+}
+
+std::string GameLoadingPanel::GetHint()
+{
+	return hint;
 }
