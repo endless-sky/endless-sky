@@ -372,7 +372,7 @@ mission "Hai Reveal: Pirate Troubles [1]"
 				`	"I'd be glad to help. What can I do?"`
 					goto explain
 				`	"What issue?"`
-			`	"I understand that you just defended this system from human pirates. That is the issue that needs resolved.`
+			`	"I understand that you just defended this system from human pirates. That is the issue that needs to be resolved.`
 			label explain
 			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. I'm told you recently assisted in dealing with a much more successful one on Allhome. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for some of the recent raids.`
 			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
@@ -987,13 +987,13 @@ mission "Hai Reveal [A07] Deliver the Relays"
 				`	"Don't mention it. I just did what I could to help."`
 					goto downplay
 				`	"Can I help you, sir?"`
-			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir.`
+			`	"I'm the one who should be using formal titles to address you, so please, Captain, don't call me sir."`
 				goto introduction
 			label boast
-			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days.`
+			`	"A personality as big as yourself should be receiving praise and recognition wherever you go! People must really have no respect these days."`
 				goto introduction
 			label downplay
-			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge.`
+			`	"No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge."`
 			label introduction
 			`	Terry looks between you. "Captain <last> is doing a lot to help us out, so please make yourselves acquainted. Don't be too long though, the Captain has a job to do." With that, she gives the both of you a parting nod and strides back into the chaos. Almost immediately a swarm of people with datapads materialize from nowhere and pursue her.`
 			`	The man grins and shakes his head as she departs. "Remarkable woman. Anyway, the name's David Joseph Turner, venture capitalist, entrepreneur, and famous Paradise Worlds businessman." Turner grabs a business card from his pocket and hands it to you. It contains his contact information, an address on Martini, and boasts in golden letters his net worth of more than three billion credits.`
@@ -1084,7 +1084,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 			`	"Oh excellent," she says, quickly pouring herself a coffee from the pot and practically skipping over to take her seat.`
 			label explain
 			`	"Well, you'll probably be disappointed with what I have so far," she begins, "but I'll start with what I have found and then you can show me any new pictures you have and we can see what I can do." She waits for you to indicate your understanding before she continues.`
-			`	"This cat symbol was used a century ago by a clandestine organization called 'Base Principles' that worked within the Syndicate.`
+			`	"This cat symbol was used a century ago by a clandestine organization called 'Base Principles' that worked within the Syndicate."`
 			choice
 				`	"Who were 'Base Principles?'"`
 				`	"Wait. What were they doing in the Syndicate?"`
@@ -1631,10 +1631,10 @@ mission "Hai Reveal [A13] A New Elder"
 			`	"They only started locking in the last few seats a couple of hours ago. Until then we could have been prisoners and at war by now for all we knew. Peace-oriented heads seem to have prevailed though, but there's no lack of passion even in them. Near as I can tell from what has been explained and what I'm seeing; a third of the Elders have been replaced, which is the fastest change they've had since they were invaded by Korath... which I also didn't know was a thing that had happened until yesterday."`
 			`	He manages to make that last line sound both bewildered and grumpy at the same time. "That Teeneep you've been running around with - and yes, don't look at me in shock, Sayari told me when we were concerned you might not get out. You've developed some friends in high places and I admire that... where was I?"`
 			`	"Teeneep!" says Alondo, perhaps a little too loudly, nearly poking Remington in the face.`
-			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
+			`	"Of course, that Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot, at least now that 'sir pitchforks and pulse rifles' down there has definitively lost. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
 				goto "walk or drink"
 			label "who won"
-			`	Remington answers your question. "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech.`
+			`	Remington answers your question. "That Teeneep of yours, she had her position settled yesterday. She's being..." He curls his lip and frowns while looking for the right word. "Inaugurated! She's being inaugurated in about an hour or so. It's why we're still here. She's the youngest 'elder' since before we developed fire, or some similarly ridiculous time-frame. She seems to have the most influence among the new lot. She's a firebrand, that one, but she seems principled and decent. We're waiting to hear what she has to say in her victory speech."`
 			label "walk or drink"
 			`	Alondo wobbles over to the bar and says, "I'll get you a drink, <last>. What'll you have?"`
 			choice
@@ -1797,7 +1797,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			label through
 			action
 				set "Hai Reveal [A14] A Time of Trouble: label through"
-			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people.`
+			`	Xilin replies, "That would undermine the legitimacy of the Republic, especially after the war we've just had, and it would be impossible to realistically assure people that an invasion is really not going to happen. True or not. In all likelihood the Republic would fracture and the Free Worlds would probably be on the receiving end of a migration crisis. Parliament has tried to say that they'll take care of it themselves, but the Hai say they've had enough of sitting around and want to be there to save their own people."`
 				goto questions
 			label concerns
 			action
