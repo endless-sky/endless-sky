@@ -1087,9 +1087,11 @@ government "Smuggler (Hai Trafficker)"
 		destroy 0
 		atrocity 0
 
+color "governments: Syndicate" 0 .41 .71
+
 government "Syndicate"
 	swizzle 4
-	color 0 .41 .71
+	color "governments: Syndicate"
 	
 	"player reputation" 2
 	"attitude toward"
@@ -1107,7 +1109,7 @@ government "Syndicate"
 government "Syndicate that won't enter wormhole"
 	"display name" "Syndicate"
 	swizzle 4
-	color 0 .41 .71
+	color "governments: Syndicate"
 	
 	"player reputation" 2
 	"attitude toward"
@@ -1124,7 +1126,7 @@ government "Syndicate that won't enter wormhole"
 
 government "Syndicate (Extremist)"
 	swizzle 1
-	color 0 .41 .71
+	color "governments: Syndicate"
 	
 	"player reputation" -1000
 	"attitude toward"
