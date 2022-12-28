@@ -128,7 +128,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system) const
 {
-	double density = (system == nullptr) ? 1. : system->StarfieldDensity();
+	double density = system ? system->StarfieldDensity() : 1.;
 
 	double baseZoom = zoom;
 
