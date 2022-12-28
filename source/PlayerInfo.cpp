@@ -2127,7 +2127,7 @@ void PlayerInfo::DiscoverOutfit(const Outfit& outfit)
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet &planet)
 {
-	visitedPlanets.insert(&planet);
+	visitedPlanets.insert(make_pair(&planet, false));
 }
 
 
@@ -3859,12 +3859,13 @@ void PlayerInfo::Save(const string &path) const
 		});
 
 	// Save a list of planets the player has visited.
+	using PlanetEntry = pair<const Planet *const, bool>;
 	WriteSorted(visitedPlanets,
-		[](const Planet *const *lhs, const Planet *const *rhs)
-			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
-		[&out](const Planet *planet)
+		[](const PlanetEntry *lhs, const PlanetEntry *rhs)
+			{ return lhs->first->TrueName() < rhs->first->TrueName(); },
+		[&out](const PlanetEntry &entry)
 		{
-			out.Write("visited planet", planet->TrueName());
+			out.Write("visited planet", entry.first->TrueName());
 		});
 
 	if(!harvested.empty())
@@ -3931,9 +3932,12 @@ void PlayerInfo::Save(const string &path) const
 	// Save a list of all visited outfitters
 	std::set< const Planet* > planetsWithVisitedOutfitters;
 	for(const auto outfitter : visitedOutfitters)
-		for(const auto planet : visitedPlanets)
+		for(const auto entry : visitedPlanets)
+		{
+			auto planet = entry.first;
 			if(&planet->Outfitter() == outfitter)
 				planetsWithVisitedOutfitters.insert(planet);
+		}
 
 	WriteSorted(planetsWithVisitedOutfitters,
 		[](const Planet *const *lhs, const Planet *const *rhs)

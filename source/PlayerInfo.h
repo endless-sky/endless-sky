@@ -379,7 +379,7 @@ private:
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
-	std::set<const Planet *> visitedPlanets;
+	std::map<const Planet *, bool> visitedPlanets;
 	std::set<const Sale<Outfit> *> visitedOutfitters;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
