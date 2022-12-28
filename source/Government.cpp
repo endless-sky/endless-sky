@@ -67,23 +67,6 @@ namespace {
 		return penalty;
 	}
 
-	map<int, double> DEFAULT_PENALTIES()
-	{
-		map<int, double> defaultPenalties;
-
-		defaultPenalties[ShipEvent::ASSIST] = -0.1;
-		defaultPenalties[ShipEvent::DISABLE] = 0.5;
-		defaultPenalties[ShipEvent::BOARD] = 0.3;
-		defaultPenalties[ShipEvent::CAPTURE] = 1.;
-		defaultPenalties[ShipEvent::DESTROY] = 1.;
-		defaultPenalties[ShipEvent::SCAN_OUTFITS] = 0.;
-		defaultPenalties[ShipEvent::SCAN_CARGO] = 0.;
-		defaultPenalties[ShipEvent::PROVOKE] = 0.;
-		defaultPenalties[ShipEvent::ATROCITY] = 10.;
-
-		return defaultPenalties;
-	}
-
 	unsigned nextID = 0;
 }
 
@@ -93,7 +76,15 @@ namespace {
 Government::Government()
 {
 	// Default penalties:
-	penaltyFor = DEFAULT_PENALTIES();
+	penaltyFor[ShipEvent::ASSIST] = -0.1;
+	penaltyFor[ShipEvent::DISABLE] = 0.5;
+	penaltyFor[ShipEvent::BOARD] = 0.3;
+	penaltyFor[ShipEvent::CAPTURE] = 1.;
+	penaltyFor[ShipEvent::DESTROY] = 1.;
+	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
+	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
+	penaltyFor[ShipEvent::PROVOKE] = 0.;
+	penaltyFor[ShipEvent::ATROCITY] = 10.;
 
 	id = nextID++;
 }
@@ -172,11 +163,8 @@ void Government::Load(const DataNode &node)
 			}
 		}
 		else if(key == "penalty for")
-		{
 			PenaltyHelper(child, penaltyFor);
-		}
 		else if(key == "custom penalties")
-		{
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "remove" && grand.Size() >= 2)
@@ -184,11 +172,9 @@ void Government::Load(const DataNode &node)
 				else
 				{
 					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(1))->id];
-					pens = DEFAULT_PENALTIES();
 					PenaltyHelper(grand, pens);
 				}
 			}
-		}
 		else if(key == "illegals")
 		{
 			if(!add)
