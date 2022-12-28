@@ -25,6 +25,7 @@ Release/
 scons-local*
 .sconsign.dblite
 /*.d
+/vcpkg/
 
 # Test Reports
 test-report.xml
@@ -65,6 +66,7 @@ ipch/
 .idea_modules/
 compile_commands.json
 CMakeUserPresets.json
+.gitmodules
 
 # static code analysis
 /.scannerwork

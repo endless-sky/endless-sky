@@ -75,7 +75,7 @@ namespace {
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
-	};
+	}
 }
 
 
