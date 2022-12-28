@@ -51,6 +51,9 @@ namespace {
 
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
+
+	const vector<string> PARALLAX_SETTINGS = {"off", "fast", "fancy"};
+	int parallaxIndex = 0;
 }
 
 
@@ -94,6 +97,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Parallax background")
+			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else
@@ -114,6 +119,7 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("parallax background", parallaxIndex);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -208,6 +214,31 @@ double Preferences::MinViewZoom()
 double Preferences::MaxViewZoom()
 {
 	return ZOOMS[ZOOMS.size() - 1];
+}
+
+
+
+// Starfield parallax.
+void Preferences::ToggleParallax()
+{
+	int targetIndex = parallaxIndex + 1;
+	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
+		targetIndex = 0;
+	parallaxIndex = targetIndex;
+}
+
+
+
+Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
+{
+	return static_cast<BackgroundParallax>(parallaxIndex);
+}
+
+
+
+const string &Preferences::ParallaxSetting()
+{
+	return PARALLAX_SETTINGS[parallaxIndex];
 }
 
 

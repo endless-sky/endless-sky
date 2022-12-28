@@ -34,6 +34,11 @@ public:
 		MIXED
 	};
 
+	enum class BackgroundParallax : int {
+		OFF = 0,
+		FAST,
+		FANCY
+	};
 
 public:
 	static void Load();
@@ -65,6 +70,11 @@ public:
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Background parallax setting, either "fast", "fancy", or "off".
+	static void ToggleParallax();
+	static Preferences::BackgroundParallax GetBackgroundParallax();
+	static const std::string &ParallaxSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
