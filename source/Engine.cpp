@@ -206,7 +206,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
-	secWeapons(player), shipCollisions(256u, 32u)
+	ammoDisplay(player), shipCollisions(256u, 32u)
 {
 	zoom = Preferences::ViewZoom();
 
@@ -569,7 +569,7 @@ void Engine::Step(bool isActive)
 
 	// Update the player's ammo amounts.
 	if(flagship)
-		secWeapons.Update(*flagship.get());
+		ammoDisplay.Update(*flagship.get());
 
 
 	// Display escort information for all ships of the "Escort" government,
@@ -842,9 +842,9 @@ void Engine::Step(bool isActive)
 	if(doClick && !isRightClick)
 	{
 		if(uiClickBox.Dimensions())
-			doClick = !secWeapons.Click(uiClickBox);
+			doClick = !ammoDisplay.Click(uiClickBox);
 		else
-			doClick = !secWeapons.Click(clickPoint, hasControl);
+			doClick = !ammoDisplay.Click(clickPoint, hasControl);
 		doClick = doClick && !player.SelectShips(clickBox, hasShift);
 		if(doClick)
 		{
@@ -1054,7 +1054,7 @@ void Engine::Draw() const
 	// Draw ammo status.
 	double ammoIconWidth = hud->GetValue("ammo icon width");
 	double ammoIconHeight = hud->GetValue("ammo icon height");
-	secWeapons.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
+	ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));

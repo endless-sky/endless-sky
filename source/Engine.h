@@ -197,7 +197,7 @@ private:
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
-	AmmoDisplay secWeapons;
+	AmmoDisplay ammoDisplay;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
