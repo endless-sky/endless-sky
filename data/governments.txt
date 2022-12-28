@@ -936,7 +936,7 @@ color "governments: Remnant" .89 .38 .62 1
 
 government "Remnant"
 	swizzle 0
-	color "governments: Remnant""
+	color "governments: Remnant"
 	"crew defense" 2.2
 	
 	"player reputation" 1
