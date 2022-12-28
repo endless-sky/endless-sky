@@ -131,8 +131,10 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 	double baseZoom = zoom;
 
+	// Check preferences for the parallax quality.
 	const auto parallaxSetting = Preferences::GetBackgroundParallax();
 	int layers = (parallaxSetting == Preferences::BackgroundParallax::FANCY) ? 3 : 1;
+	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY || parallaxSetting == Preferences::BackgroundParallax::FAST);
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield"))
@@ -143,8 +145,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		for(int pass = 1; pass <= layers; pass++)
 		{
 			// Modify zoom for the first parallax layer.
-			if(parallaxSetting == Preferences::BackgroundParallax::FAST ||
-				parallaxSetting == Preferences::BackgroundParallax::FANCY)
+			if(isParallax)
 				zoom = baseZoom * STAR_ZOOM * pow(pass, 0.2);
 
 			float length = vel.Length();
@@ -160,10 +161,10 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			GLfloat rotate[4] = {
 				static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
 				static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
-			glUniformMatrix2fv(rotateI, 1, false, rotate);
+			glUniformMatrix2fv(rotateI, pass, false, rotate);
 
 			glUniform1f(elongationI, length * zoom);
-			glUniform1f(brightnessI, min(1., pow(zoom, .5) * pass));
+			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 
 			// Stars this far beyond the border may still overlap the screen.
 			double borderX = fabs(vel.X()) + 1.;
@@ -179,7 +180,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 			for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			{
-				float shove = pow(-8., pass);
+				float shove = pow(-5., pass);
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
 					Point off = Point(gx + shove, gy + shove) - pos;
@@ -205,8 +206,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		return;
 
 	// Modify zoom for the second parallax layer.
-	if(parallaxSetting == Preferences::BackgroundParallax::FAST ||
-		parallaxSetting == Preferences::BackgroundParallax::FANCY)
+	if(isParallax)
 		zoom = baseZoom * HAZE_ZOOM;
 
 	DrawList drawList;

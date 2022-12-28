@@ -52,7 +52,7 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
-	const vector<string> PARALLAX_SETTINGS = {"off", "fast", "fancy"};
+	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 0;
 }
 

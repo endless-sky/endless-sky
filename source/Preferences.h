@@ -36,8 +36,8 @@ public:
 
 	enum class BackgroundParallax : int {
 		OFF = 0,
-		FAST,
-		FANCY
+		FANCY,
+		FAST
 	};
 
 public:
