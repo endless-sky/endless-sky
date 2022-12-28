@@ -213,7 +213,8 @@ void Government::Load(const DataNode &node)
 		else if(key == "color")
 		{
 			if(child.Size() >= 3 + valueIndex)
-				color = ExclusiveItem<Color>(Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
+				color = ExclusiveItem<Color>(Color(child.Value(valueIndex),
+						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
 			else if(child.Size() >= 1 + valueIndex)
 				color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
 		}

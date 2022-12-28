@@ -317,7 +317,6 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : formations)
 		if(it.second.Name().empty())
 			NameAndWarn("formation", it);
-	
 	// Any stock colors should have been loaded from game data files.
 	for(const auto &it : colors)
 		if(!it.second.IsLoaded())
