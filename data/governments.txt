@@ -220,9 +220,11 @@ government "Forest (Predator)"
 		destroy 0
 		atrocity 0
 
+color "governments: Free" .06 .68 0
+
 government "Free Worlds"
 	swizzle 2
-	color .06 .68 0
+	color "governments: Free"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -242,7 +244,7 @@ government "Free Worlds"
 government "Free Worlds that won't enter wormhole"
 	"display name" "Free Worlds"
 	swizzle 2
-	color .06 .68 0
+	color "governments: Free"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -734,7 +736,7 @@ government "Merchant"
 
 government "Militia"
 	swizzle 2
-	color .06 .68 0
+	color "governments: Free"
 	
 	"player reputation" 0
 	"attitude toward"
