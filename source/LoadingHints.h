@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class LoadingHints {
 public:
+namespace {
 	// An array of loading hints.
 	const std::vector<std::string> loadingHintArray{
 		"If you fly far enough from the center of a system, ships chasing you will often give up.",
@@ -46,6 +47,7 @@ public:
 		"The inhabited planet with the lowest human population is New Sahara, which is home to only 3000 people.",
 		"Every manufacturer's ships have their own strengths and weaknesses.",
 		"You can use ESLauncher2 to install and play Endless Sky more easily.",
-		""
+		"If you press space on the main menu, the credits stop scrolling."
 	};
+};
 };
