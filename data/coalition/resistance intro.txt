@@ -1147,7 +1147,7 @@ mission "Resistance: Propaganda 1"
 				`	"Sure, let me take you to my ship."`
 				`	"I'm not headed there right now, sorry."`
 					decline
-			`	He follows you to your ship, but doesn't enter right away, asking for you to wait while he grabs the 'merchandise.' He comes back a few minutes later, dragging along several large travel bags filled up with posters. You help him bring them on board, and show him to his bunk.`
+			`	You give him the berth for your ship, and he tells you he'll meet you there soon before running off. A few minutes after you've reached the <ship>, you see him approaching, pushing a small crate, "filled to the brim with the posters" he tells you as you help him load it into your cargo. When you're done, you show him to his bunk, and prepare for the trip.`
 				accept
 			label resistance
 			`The spaceport of <origin> looks different than the usual Saryd ports: several large posters with some form of badge or logo are scattered about, some fallen to the ground, others still sticking to the walls. Picking one up to get a better look, you recognize the symbol to be that of the Lunarium Redoubt, two moons swallowing a dimming sun. "Up to any unlawful behavior, Captain <last>?" You turn to see an Arach standing there, looking at you. You recognize him as Tummug, one of the Lunarium leaders you met on Remote Blue. "Talk in your ship, could we?" You bring him to the <ship>, and seal the hatch. "Spreading propaganda material against the Heliarchy, I am. The purpose of those posters you found, that is," he explains. "Not the best recruitment strategy, but what I can do without risking too many of our members, it is. Available, are you? In need of transport to <planet>, to continue the work, I am."`
@@ -1155,7 +1155,7 @@ mission "Resistance: Propaganda 1"
 				`	"Of course, we'll leave right away."`
 				`	"Sorry, I'm not going that way right now."`
 					decline
-			`	"First, get the merchandise, I must," he says as he leaves your ship. He comes back a few minutes later, dragging along several large travel bags filled up with posters. You help him bring them on board, and show him to his bunk.`
+			`	"First, get the merchandise, I must," he says as he leaves your ship. He comes back a few minutes later, pushing a small crate, "filled to the brim with the posters" he tells you as you help him load it into your cargo. When you're done, you show him to his bunk, and prepare for the mission.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug and the posters hasn't arrived in the system yet. Better depart and wait for it.`
@@ -1210,10 +1210,10 @@ mission "Resistance: Propaganda 2"
 			`	"Ah, thank you Captain. Yes, all <bunks> of us, this time you will be transporting," he answers. "Bring along some more help, I wished to, but canceled some of the others have. Some more work here, they must do."`
 			label where
 			`	He runs one leg over his mandibles in an almost contemplative gesture. "To my home, we will go. <destination>. Setting up one of the famous Arachi soirees, some of the locals are, and tasked with helping them gather attention, we were. Paid <payment> once on <planet> we are, you will be."`
-			`	You all leave the cafe, and Tummug and the 10 others follow you to your ship. They bring in <cargo>, and settle in their bunks.`
+			`	You all leave the cafe, and Tummug and the ten others follow you to your ship. They bring in <cargo>, and settle in their bunks.`
 				accept
 			label resistance
-			`	You find Tummug waiting for you in a cafe with some Saryds. He gets up once he sees you, and the Saryds follow him outside the establishment. "Talk in your ship, we should," he says once he's close. You all head to the hangars and get inside your ship, with some of the Saryds heading elsewhere to pick up the cargo you'll be carrying. "Run into some trouble, a few of ours have. Leaving for <planet>, we are. Born and raised there, I was, so more familiar with the city's layout, I am. Less likely for some of us to be caught, it should be."`
+			`	You find Tummug waiting for you in a cafe with some Saryds. He gets up once he sees you, and the Saryds follow him outside the establishment. "Talk in your ship, we should," he says once he's close. You all head to the hangars and get inside your ship, with some of the Saryds heading elsewhere to pick up the cargo you'll be carrying. "Run into some trouble, a few of ours have. Leaving for <planet>, we are. Born and raised there, I was, so more familiar with the city's layout, I am. Less likely for some of us to be caught, it should be. Provide them a place to lay low for some time, we will."`
 			choice
 				`	"Shouldn't we help the ones who got caught?"`
 				`	"Alright, we'll leave once the others come back."`
@@ -1243,7 +1243,7 @@ mission "Resistance: Propaganda 2"
 					goto end
 			`	"Read 'down with the Tyrant House!' it does." He says. Once he notices you have no idea what that means, he continues, "An Arach nickname for the Heliarchy, it is. First used thousands of years ago it was, when more restrictive, and much less lenient, the Heliarchs were becoming. Prohibited, the expression was, but still known, its meaning is."`
 			label end
-			`	He prepares to leave, and tells you to free up some ten tons of cargo space before meeting with him in the spaceport. He then heads down the hatch and disappears into the city.`
+			`	He prepares to leave, and tells you to free up some ten tons of cargo space, and keep some five bunks available, before meeting with him in the spaceport. He then heads down the hatch and disappears into the city.`
 
 mission "Resistance: Propaganda 3"
 	name "Promoting Culture"
@@ -1261,8 +1261,8 @@ mission "Resistance: Propaganda 3"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`The spaceport on <origin> shows fewer of the banners than you expected, with only a few scattered about the walls. Focusing on one Arach, you see them leave their work building and gasp at the first banner they see, taking it down and throwing it in a bin. Another Arach has a similar reaction to a different banner, but after pondering for a bit, leaves it alone and walks away.`
-			`	When you're done gauging the local reception to Tummug's banners, you go look for him. Eventually  you arrive at a workshop, where he's talking with four other Arachi as they work on some small robots not too different from those employed in Arach hull repair systems. The only difference appears to be "wings" that the Arachi are testing by controlling them remotely. "Captain <last>!" Tummug exclaims when he notices you. "Apologize, I must, for not waiting for you in the spaceport. Caught up in testing the prototypes, we were."`
+			`The spaceport on <origin> shows fewer of the banners than you expected, with only a few scattered about the walls. Focusing on one Arach, you see them leave their work building and gasp at the first banner they see, taking it down and throwing it in a bin. They seem stunned for a second, and look around in a hurry, right before scurrying off. Another Arach has a similar reaction to a different banner, but after pondering for a bit, leaves it alone and walks away.`
+			`	When you're done gauging the local reception to Tummug's banners, you go look for him. Eventually you arrive at a workshop, where he's talking with four other Arachi as they work on some small robots not too different from those employed in Arach hull repair systems. The only difference appears to be "wings" that the Arachi are testing by controlling them remotely. "Captain <last>!" Tummug exclaims when he notices you. "Apologize, I must, for not waiting for you in the spaceport. Caught up in testing the prototypes, we were."`
 			branch resistance
 				has "Resistance: Questions: done"
 			choice
@@ -1284,9 +1284,9 @@ mission "Resistance: Propaganda 3"
 			`	"This one means 'Lordless Suns,' and 'Our Laws for Our People' on this other one," he says, pointing with the tip of one leg to one boldened symbol as he says the first "our." He goes to explain their meaning. "The lords of all Coalition stars, the Heliarchs call themselves. When taken, the Ring of Friendship was, when formed, the Heliarchy was, still far more advanced and experienced in most fields the Saryds were. Turned 'their' ring into the seat of government, they had, and in the naive euphoria victory had granted them, tricked into adopting the Saryd law system, the Kimek and Arachi of the time were. Saryd sentences, Saryd punishments." He looks at you as he drags some legs across the floor, as if scratching the ground. "For only a quarter of a Saryd lifetime, the eldest of the Arachi lived. For all their population, managed to live past a century only a few dozen Kimek have. A third of a lifetime to them, even relatively minor Saryd sentences, the Heliarch sentences, are." He slowly crumples the flyer. "Ruled by laws of long-dead Saryd lords, we still are..."`
 				goto accept
 			label risky
-			`	"Spoken with Elirom, I have. Moving fleets around, the Heliarchs are, for distractions for them in other systems, some of our teams have prepared," he explains. "Fewer ships on the planet there are, and quick about it, we will be, so unlikely for them to find us, it is."`
+			`	"Spoken with Elirom, I have. Moving fleets around, the Heliarchs are, since distractions for them in other systems, some of our teams have prepared," he explains. "Fewer ships on the planet there are, and quick about it, we will be, so unlikely for them to find us, it is."`
 			label accept
-			`	Tummug tells the other Arachi to pack up the rest of the robots and flyers, and accompanies you to your ship. In a few minutes the Arachi come dragging carts with boxes filled with the drones, flyers, and canisters of the red smoke for the skywriting. The Saryds you brought here follow after them, bringing along more and more carts. Tummug says you'll get <payment> once they get to <planet>, and moves to his bunk.`
+			`	Tummug tells the other Arachi to pack up the rest of the robots and flyers, and accompanies you to your ship. In a few minutes the Arachi come dragging carts with crates filled with the drones, flyers, and canisters of the red smoke for the skywriting. The Saryds you brought here follow after them, bringing along more and more carts. Tummug says you'll get <payment> once they get to <planet>, and moves to his bunk, with the other Arachi following suit.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues and the skywriting material hasn't arrived in the system yet. Better depart and wait for it.`
@@ -1299,9 +1299,10 @@ mission "Resistance: Propaganda 3"
 			`	"Now Captain, fly the drones over the city we will. Only here to keep an eye on any issues they might have, and repair them, we are," he explains. "To better enjoy the show, head back to the main hangars closer to the city, you should. Once finished, we are, meet you in the spaceport I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
 				goto end
 			label resistance
-			`	"Now <last>, safe here we should be, but even with fewer Heliarch ships now, stay docked here you should not," he says. "Meet you in the spaceport later, I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
+			`	"Now <last>, safe here we should be, but even with fewer Heliarch ships now, stay docked here you should not. If traced to here, the signal controlling the drones is, ready to abandon the facility and flee, everyone is," he explains. "Meet you in the spaceport later, I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
 			label end
-			`	Almost half an hour goes by with you watching the skies of <planet> before the first signs of the drones show: they're too small for you to see from where you are, but you make out the piles of red smoke swiftly growing into Kimek letters in the sky, appearing in spiralling columns and arcs, with small, spread out dots separating the letters. When they're done, the messages Tummug had shown you on the flyer are fully formed, and the drones take a short break. When they return, they get to work on another set of messages as the first one begins dissipating. After a few repetitions, and another pause, flyers begin raining down the city streets, the local Kimek picking them up in curiosity and discussing among themselves. The "rain" goes on for several minutes, before the drones start heading to other portions of the city and you lose sight of them.`
+			`	Almost half an hour goes by with you watching the skies of <planet> before the first signs of the drones show: they're too small for you to see from where you are, but you make out the piles of red smoke swiftly growing into Kimek letters in the sky, appearing in spiralling columns and arcs, with small, spread out dots separating the letters. Crowds clog the streets, Kimek look out the windows and even gather atop apartment buildings to gaze at the messages. When the drones are done, the messages Tummug had shown you on the flyer are fully formed, and the drones take a short break. When they return, they get to work on another set of messages as the first one begins dissipating. After a few repetitions, and another pause, flyers begin raining down the city streets, the local Kimek picking them up in curiosity and discussing among themselves. The "rain" goes on for several minutes, before the drones start heading to other portions of the city and you lose sight of them.`
+			`	Focusing now on the crowds and their reception, you see the Kimek are split: nearly everywhere they are in heated discussion, with many on one side seemingly approving of the display, while others yell and gesture for the messages to be put out, throwing the flyers to the ground and stomping and ripping them. The Heliarch agents present on the ground do their best to separate the crowds and keep the order, but struggle against the sheer number of Kimek. Not long after the drones disappeared, however, Heliarch warships rain down the atmosphere in a fury, and speedily undo the skywriting, heading in the direction of the factory. Some ships leave more agents on the ground, and with increased personnel the Heliarchs now manage to stop the crowd infighting, and start clearing out the streets.`
 
 mission "Resistance: Propaganda 4"
 	name "Promoting Culture"
@@ -1319,13 +1320,13 @@ mission "Resistance: Propaganda 4"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`Tummug is quick to find you in the spaceport. He approaches you with the Arachi who helped him with the drones, as well as some Saryds and Kimek behind him. "Delay you long this time I will not, Captain <last>," he says. "Headed to <destination> we are. Already arranged for what we'll need to be brought to your ship, I have."`
+			`Tummug is quick to find you in the spaceport. He approaches you with the Arachi who helped him with the drones, as well as some Saryds and Kimek, all following behind him in a dash. "Delay you long this time I will not, Captain <last>," he says. "Headed to <destination> we are. Already arranged for what we'll need to be brought to your ship, I have."`
 			branch resistance
 				has "Resistance: Questions: done"
-			`	You head back with them to your ship, where they help some workers load boxes and crates of promotional posters into your cargo hold. Strangely enough, you don't see any of the flyers that the drones rained from above earlier, or any sort of video displaying the skywriting on screens around the spaceport. Once the cargo is all in your ship, Tummug comes to say you'll receive <payment> for the job, and rushes inside your ship with the others.`
+			`	You do your best to keep up as you run with them back to your ship, where they help some others load boxes and crates of promotional posters into your cargo hold. Strangely enough, you don't see any of the flyers that the drones rained from above earlier, or any sort of video displaying the skywriting on screens around the spaceport. Once the cargo is all in your ship, Tummug comes to say you'll receive <payment> for the job, and rushes inside your ship with the others.`
 				accept
 			label resistance
-			`	Heading back to your ship, you notice a lack of the flyers that rained down the city earlier, or any replay of the skywriting on any of the screens around the spaceport. Tummug and the Arachi who worked on the drones are all with the group, but their rush to get to your ship leaves you uneasy. You all help some workers get boxes and crates of posters into your ship, and head inside with Tummug and the others once you're done. "Leave now, we must. Too much attention, the drone show seems to have gained us," he tells you. "Pay you <payment> once on <planet> we are, I will." They all head to their bunks, and you move to the cockpit, firing up your engines.`
+			`	Running back to your ship, you notice a total lack of the flyers that rained down the city earlier, or any replay of the skywriting on any of the screens around the spaceport. Tummug and the Arachi who worked on the drones are all with the group, but their rush to get to your ship leaves you uneasy. You all help some more members get boxes and crates of posters into your ship, and head inside with Tummug and the others once you're done. "Leave now, we must. Too much attention, the drone show seems to have gained us," he tells you. "Pay you <payment> once on <planet> we are, I will. Go." They all head to their bunks, and you move to the cockpit, firing up your engines.`
 				launch
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues and the posters hasn't arrived in the system yet. Better depart and wait for it.`
@@ -1333,7 +1334,7 @@ mission "Resistance: Propaganda 4"
 		"assisted resistance" ++
 		payment 894000
 		conversation
-			`Tummug gives you the <payment> and starts working on opening up the crates and boxes with the others. By the time you open the hatch, they've only managed to open several of the crates, but it seems like they've called in several Saryds from the hanger to help unload the remaining boxes and move them elsewhere. You approach Tummug, who's still picking through the posters. The posters are emblazoned with images of Saryds, Kimek and Arachi jailed and imprisoned in cages made out of chains. Looking closely, you realize the "chains" are made out of circlets like those used by the Heliarchs. Your eyes go to Tummug, who's looking back at you.`
+			`Tummug gives you the <payment> and starts working on opening up the crates and boxes with the others. By the time you open the hatch, they've only managed to open some of the crates, but it seems like they've called in several Saryds from the hanger to help unload the remaining boxes and move them elsewhere. You approach Tummug, who's still picking through the posters. The posters are emblazoned with images of Saryds, Kimek and Arachi jailed and imprisoned in cages made out of chains. Looking closely, you realize the "chains" are made out of circlets like those used by the Heliarchs. Your eyes go to Tummug, who's looking back at you.`
 			branch resistance
 				has "Resistance: Questions: done"
 			choice
@@ -1359,10 +1360,10 @@ mission "Resistance: Propaganda 4"
 				`	"What information?"`
 					goto information
 				`	"Is that why you were in such a rush to leave before?"`
-			`	"Hoped we had, that suffice as a distraction the skywriting and rain of flyers would, so that safe for the others to break in and steal the data it was," he explains. "Mistaken, we were. Set their patrols off all around, our previous propaganda efforts apparently did. Go into hiding for a while, they'll need to."`
+			`	"Hoped we had, that suffice as a distraction the skywriting and rain of flyers would, so that safe for the others to break in and steal the data it was," he explains, sighing. "Mistaken, we were. Set their patrols off all around, our previous propaganda efforts apparently did. Go into hiding for a while, they'll need to."`
 				goto end
 			label information
-			`	"Documents, recorded data of the fates or whereabouts of many who 'disappeared,' we stole. A common thing it is, on Kimek factory worlds, for Heliarchs to write them off as work accidents. Investigate the data thoroughly we will, and maybe uncover the coordinates of their prison, we finally can."`
+			`	"Documents, recorded data of the fates or whereabouts of many who 'disappeared,' we stole. A common thing it is, on Kimek factory worlds, for Heliarchs to write them off as work accidents. Investigate the data thoroughly we will, and maybe uncover the coordinates of their prison - or morgue - we finally can."`
 			label end
 			`	He thanks you for helping, and leaves your ship with the remaining posters. You go to check the spaceport and portions of the city later, but find neither Tummug, his colleagues, or any of the posters.`
 
