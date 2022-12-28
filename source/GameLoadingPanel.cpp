@@ -45,8 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 namespace {
-	std::vector<std::string> loadingHintArray = LoadingHints().loadingHintArray;
-	std::string hint = loadingHintArray[Random::Int(sizeof(loadingHintArray))];
+	std::string hint;
 }
 
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation,
@@ -55,6 +54,10 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conve
 		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
+
+	// Choose the loading hint.
+	std::vector<std::string> loadingHintArray = LoadingHints().loadingHintArray;
+	hint = loadingHintArray[Random::Int(sizeof(loadingHintArray))];
 }
 
 
