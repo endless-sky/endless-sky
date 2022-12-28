@@ -22,16 +22,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Preferences {
 public:
-	enum class VSync : int {
+	enum class VSync : int_fast8_t {
 		off = 0,
 		on,
 		adaptive,
 	};
 
-	enum class BoardingPriority : int {
+	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
 		MIXED
+	};
+
+	enum class AlertIndicator : int_fast8_t {
+		NONE = 0,
+		AUDIO,
+		VISUAL,
+		BOTH
 	};
 
 
@@ -70,6 +77,14 @@ public:
 	static void ToggleBoarding();
 	static Preferences::BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
+
+	// Red alert siren and symbol
+	static void ToggleAlert();
+	static Preferences::AlertIndicator GetAlertIndicator();
+	static const std::string &AlertSetting();
+	static bool PlayAudioAlert();
+	static bool DisplayVisualAlert();
+	static bool DoAlertHelper(Preferences::AlertIndicator toDo);
 };
 
 

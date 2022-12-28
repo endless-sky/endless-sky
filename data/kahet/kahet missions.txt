@@ -683,10 +683,10 @@ mission "Ka'het: Patir Mystery 5"
 				`	(Open the exit door, even with the airlock full of air.)`
 					goto rush
 				`	(Wait for the airlock to empty.)`
-			`	After a few seconds of waiting, Dusk hurries towards the control station. "I have an idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
+			`	After a few seconds of waiting, Dusk hurries towards the control station. "I have an idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds."`
 				goto expel
 			label rush
-			`	You reach the control station as fast as you can and tell Dusk to hold on to something, but he stops you. "I have a better idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds.`
+			`	You reach the control station as fast as you can and tell Dusk to hold on to something, but he stops you. "I have a better idea," he says as he presses a few switches on the panel. "I can open a vent to expel the air out of here into the void, and get us out of here in a few seconds."`
 			label expel
 			`	Soon after, the frontal door recedes. You two run out of the airlock as fast as possible. Behind you, you hear the roar of metal melting as a rush of air passes you by. You start running back to your ship with Dusk, hoping that the Ka'sei will not get out of the building before you are safe.`
 			`	Running at full speed, it takes the two of you only a few minutes to reach the <ship>. Once safely in the cockpit, you sit down to catch your breath. After a moment, Dusk begins searching nervously for something on his suit. He takes out the atmospheric scanner he used earlier and turns it on. "Phew. I was afraid it had broken down when we had to run away, but maybe we can still get the data we need."`
