@@ -210,8 +210,14 @@ void Government::Load(const DataNode &node)
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
 			swizzle = child.Value(valueIndex);
-		else if(key == "color" && child.Size() >= 3 + valueIndex)
-			color = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		else if(key == "color")
+		{
+			if(child.Size() >= 3 + valueIndex)
+				color = ExclusiveItem<Color>(Color(child.Value(valueIndex),
+						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
+			else if(child.Size() >= 1 + valueIndex)
+				color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
+		}
 		else if(key == "death sentence")
 			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
 		else if(key == "friendly hail")
@@ -278,7 +284,7 @@ int Government::GetSwizzle() const
 // Get the color to use for displaying this government on the map.
 const Color &Government::GetColor() const
 {
-	return color;
+	return *color;
 }
 
 

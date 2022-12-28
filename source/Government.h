@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GOVERNMENT_H_
 
 #include "Color.h"
+#include "ExclusiveItem.h"
 #include "LocationFilter.h"
 
 #include <map>
@@ -134,7 +135,7 @@ private:
 	std::string name;
 	std::string displayName;
 	int swizzle = 0;
-	Color color;
+	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
 	double initialPlayerReputation = 0.;
