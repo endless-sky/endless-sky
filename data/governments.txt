@@ -156,6 +156,19 @@ government "Drak (Hostile)"
 	"attitude toward"
 		"Indigenous Lifeform" 1
 
+government "Elenctic Commune"
+	swizzle 0
+	color "governments: Neutral"
+	
+	"player reputation" 1000
+	"attitude toward"
+		"Hai" .1
+		"Hai (Friendly Unfettered)" .1
+		"Pirate" -.2
+		"Pirate (Devil-Run Gang)" -.2
+		"Smuggler (Hai Trafficker)" -.2
+	"bribe" .05
+
 government "Escort"
 	swizzle 5
 	"fine" 0
@@ -786,18 +799,6 @@ government "Parrot"
 	"player reputation" 1
 	"bribe" 0
 
-government "Elenctic Commune"
-	swizzle 0
-	color .84 .61 .37
-	
-	"player reputation" 1000
-	"attitude toward"
-		"Hai" .1
-		"Hai (Friendly Unfettered)" .1
-		"Pirate" -.2
-		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
-	"bribe" .05
 color "governments: Pirate" .78 0 0
 
 government "Pirate"
