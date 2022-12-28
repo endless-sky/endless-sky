@@ -604,8 +604,8 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
-			isOn = true;
 			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{

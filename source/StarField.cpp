@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
+#include "System.h"
 
 #include <algorithm>
 #include <cmath>

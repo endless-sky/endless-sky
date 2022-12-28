@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STAR_FIELD_H_
 
 #include "Shader.h"
-#include "System.h"
 
 #include "opengl.h"
 
@@ -26,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Body;
 class Point;
 class Sprite;
+class System;
 
 
 
