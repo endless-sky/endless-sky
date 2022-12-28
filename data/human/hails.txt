@@ -1134,20 +1134,29 @@ phrase "friendly civilian"
 	word
 		"Alfheim"
 		"Bourne"
-		"Hadar"
+		"Skymoot"
 		"Sinter"
+		"Featherweight"
+		"Canyon"
+		"Hermes"
+		"Hippocrates"
+		"Splashdown"
+		"Burthen"
 	word
 		"? "
 	word
 		"Do you know anybody who has ever been there?"
+		"Have you heard anything about what goes on there?"
+		"Have you ever heard anything about that planet?"
 	word
 		" "
 	word
 		"No? I believe that place just doesn't exist."
-		"Even the Republic government couldn't confirm that it exists."
+		"Even the Republic couldn't confirm that it exists."
 		"That place is not real; it is just an illusion."
 		"It's a conspiracy by aliens, who use the university there as a disguise for their spaceship."
 		"'They' want to make us believe the place actually exists."
+		"It's all just a cover for 'their' machinations."
 
 phrase "friendly civilian"
 	word
@@ -1888,8 +1897,19 @@ phrase "friendly navy"
 		"The Navy"
 	word
 		" is here to"
+		" is obligated to"
+		" is always ready to"
+		" is always here to"
+		" never hesitates to"
+		" will never hesitate to"
+		" will always be here to"
+		" will always"
+		" will always be ready to"
+		" exists to"
 		"'s mission is to"
 		"'s goal is to"
+		"'s duty is to"
+		"'s directive is to"
 	word
 		" "
 	word
