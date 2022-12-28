@@ -951,8 +951,7 @@ government "Sheragi"
 	"crew defense" 0
 
 government "Smuggler (Hai Trafficker)"
-	swizzle 0
-	color 1 .6 .7
+	swizzle 5
 	"display name" "Smuggler"
 	
 	"bribe" .1
