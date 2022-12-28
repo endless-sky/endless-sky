@@ -452,7 +452,7 @@ mission "Gegno Genocide Defense"
 	invisible
 	to offer
 		"reputation: Gegno" < -100
-		has: "Giaru Gegno: Quarg Contact: offered"
+		has "Giaru Gegno: Quarg Contact: offered"
 	to complete
 		never
 	on offer
