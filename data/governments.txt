@@ -633,9 +633,11 @@ government "Ka'sei"
 	"hostile hail" "hostile ka'het"
 	"hostile disabled hail" "hostile disabled ka'het"
 
+color "governments: Korath Exiles" .8 .5 .1
+
 government "Korath"
 	swizzle 0
-	color .8 .5 .1
+	color "governments: Korath Exiles"
 	"crew attack" 1.4
 	"crew defense" 2.6
 	language "Korath"
@@ -650,7 +652,7 @@ government "Korath"
 government "Korath (Civilian)"
 	"display name" "Korath"
 	swizzle 2
-	color .8 .5 .1
+	color "governments: Korath Exiles"
 	"crew attack" 1.1
 	"crew defense" 2.1
 	language "Korath"
