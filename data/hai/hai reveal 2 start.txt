@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Nomadic Volcano
+# Copyright (c) 2020 MasterOfGrey
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -145,7 +145,7 @@ mission "Hai Rescue: Yeertle Family"
 			`	"Thank you. My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label "ride offer"
-			`	"Yes! Thank you. Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the Syndicate. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>.`
+			`	"Yes! Thank you. Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the human authorities. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>.`
 			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label looking
@@ -470,7 +470,7 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"No, I was just walking by. Sorry to bother you."`
 					decline
 			label hiding
-			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again.`
+			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again."`
 				goto trustcheck
 
 			label help
