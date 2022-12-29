@@ -50,7 +50,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Approach the alien.)`
 				`	(Turn back to my ship.)`
-			`	Suddenly, the ground starts to vibrate intensely. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times the size of you, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the alien creature riding the beast as they impale it with their weapon.`
+			`	Suddenly, the ground starts to vibrate intensely. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times your size, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the alien creature riding the beast as they impale it with their weapon.`
 			choice
 				`	(Leave the planet immediately.)`
 					goto leave
