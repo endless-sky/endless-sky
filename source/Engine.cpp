@@ -1435,7 +1435,7 @@ void Engine::CalculateStep()
 		player.SetSystemEntry(wormholeEntry ? PlayerInfo::SystemEntry::WORMHOLE :
 			flagship->IsUsingJumpDrive() ? PlayerInfo::SystemEntry::JUMP :
 			PlayerInfo::SystemEntry::HYPERDRIVE);
-		player.Conditions().Set("previous system: " + playerSystem->Name());
+		player.Conditions().Set("previous system: " + playerSystem->Name(), 1);
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
