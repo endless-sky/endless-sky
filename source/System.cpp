@@ -915,7 +915,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 }
 
 
-
+// This looks relevant to setting if an object is a star, but it has no explanation.
 void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
 {
 	const string &key = node.Token(0);

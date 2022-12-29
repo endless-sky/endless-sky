@@ -33,6 +33,7 @@ const int Radar::SPECIAL = 5;
 const int Radar::ANOMALOUS = 6;
 const int Radar::BLINK = 7;
 const int Radar::VIEWPORT = 8;
+const int Radar::STAR = 9;
 
 
 
@@ -51,7 +52,9 @@ void Radar::SetCenter(const Point &center)
 }
 
 
-
+// Planets and stars both are circles, so they have "inner" as 0, but I can't
+// tell where it sets that. This may be clue to find where the identity of an object
+// is identified as a star.
 // Add an object. If "inner" is 0 it is a dot; otherwise, it is a ring. The
 // given position should be in world units (not shrunk to radar units).
 void Radar::Add(int type, Point position, double outer, double inner)
@@ -144,7 +147,8 @@ const Color &Radar::GetColor(int type)
 		*GameData::Colors().Get("radar special"),
 		*GameData::Colors().Get("radar anomalous"),
 		*GameData::Colors().Get("radar blink"),
-		*GameData::Colors().Get("radar viewport")
+		*GameData::Colors().Get("radar viewport"),
+		*GameData::Colors().Get("radar star")
 	};
 
 	if(static_cast<size_t>(type) >= color.size())
