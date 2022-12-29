@@ -3133,7 +3133,7 @@ phrase "friendly militia 4"
 		"work with us"
 		"be useful for once"
 	phrase 
-		"militia 4 variation"
+		"friendly militia 4 variation"
 	word
 		", "
 	word
