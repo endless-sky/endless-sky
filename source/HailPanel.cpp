@@ -164,15 +164,14 @@ void HailPanel::Draw()
 		info.SetCondition("show assist");
 		if(hasLanguage && !ship->IsDisabled())
 		{
+			if(requestedToBribeShip)
+				info.SetCondition("show pay bribe");
 			if(ship->GetGovernment()->IsEnemy())
 			{
 				if(requestedToBribeShip)
-				{
-					info.SetCondition("offered bribe");
-					info.SetCondition("hide bribe offer");
-				}
+					info.SetCondition("can pay bribe");
 				else
-					info.SetCondition("can bribe");
+					info.SetCondition("can offer bribe");
 			}
 			else if(!ship->CanBeCarried() && ship->GetShipToAssist() != player.FlagshipPtr())
 				info.SetCondition("can assist");
@@ -188,7 +187,7 @@ void HailPanel::Draw()
 		{
 			info.SetCondition("can dominate");
 			if(!planet->CanLand())
-				info.SetCondition("can bribe");
+				info.SetCondition("can offer bribe");
 		}
 	}
 
