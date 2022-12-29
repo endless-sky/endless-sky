@@ -272,7 +272,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
-	player->SetSystemEntry(PlayerInfo::SystemEntry::TAKE_OFF);
+	player.SetSystemEntry(PlayerInfo::SystemEntry::TAKE_OFF);
 	EnterSystem();
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
@@ -1432,10 +1432,10 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 				}
 
-		player->SetSystemEntry(wormholeEntry ? PlayerInfo::SystemEntry::WORMHOLE :
+		player.SetSystemEntry(wormholeEntry ? PlayerInfo::SystemEntry::WORMHOLE :
 			flagship->IsUsingJumpDrive() ? PlayerInfo::SystemEntry::JUMP :
 			PlayerInfo::SystemEntry::HYPERDRIVE);
-		player->Conditions().Set("previous system: " + playerSystem->Name());
+		player.Conditions().Set("previous system: " + playerSystem->Name());
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
