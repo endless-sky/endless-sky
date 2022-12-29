@@ -99,6 +99,8 @@ void Government::Load(const DataNode &node)
 				language.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
+			else if(key == "use foreign penalties for")
+				useForeignPenaltiesFor.clear();
 			else if(key == "illegals")
 				illegals.clear();
 			else if(key == "atrocities")
@@ -187,6 +189,9 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
+		else if(key == "use foreign penalties for")
+			for(const DataNode &grand : child)
+				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -205,8 +210,14 @@ void Government::Load(const DataNode &node)
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
 			swizzle = child.Value(valueIndex);
-		else if(key == "color" && child.Size() >= 3 + valueIndex)
-			color = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		else if(key == "color")
+		{
+			if(child.Size() >= 3 + valueIndex)
+				color = ExclusiveItem<Color>(Color(child.Value(valueIndex),
+						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
+			else if(child.Size() >= 1 + valueIndex)
+				color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
+		}
 		else if(key == "death sentence")
 			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
 		else if(key == "friendly hail")
@@ -273,7 +284,7 @@ int Government::GetSwizzle() const
 // Get the color to use for displaying this government on the map.
 const Color &Government::GetColor() const
 {
-	return color;
+	return *color;
 }
 
 
@@ -509,4 +520,11 @@ double Government::CrewDefense() const
 bool Government::IsProvokedOnScan() const
 {
 	return provokedOnScan;
+}
+
+
+
+bool Government::IsUsingForeignPenaltiesFor(const Government *government) const
+{
+	return useForeignPenaltiesFor.count(government->id);
 }

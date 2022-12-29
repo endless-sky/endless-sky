@@ -284,7 +284,6 @@ namespace {
 		ship.SetTargetStellar(nullptr);
 	}
 
-	const double MAX_DISTANCE_FROM_CENTER = 10000.;
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
@@ -514,11 +513,14 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			++it;
 	}
 	for(const auto &it : ships)
-		if(it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+	{
+		const System *system = it->GetActualSystem();
+		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
 		{
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
+	}
 
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -574,8 +576,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		// Paralyzed ships are effectively disabled, and cannot fire, cloak, etc.
-		if(it->IsParalyzed())
+		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
+		if(it->IsOverheated())
 			continue;
 
 		// Special case: if the player's flagship tries to board a ship to
@@ -1054,8 +1056,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			const System *system = ship.GetSystem();
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				// Disabled, paralyzed, or otherwise untargetable ships pose no threat.
-				bool harmless = helper->IsDisabled() || helper->IsParalyzed() || !helper->IsTargetable();
+				// Disabled, overheated, or otherwise untargetable ships pose no threat.
+				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1)
+						|| !helper->IsTargetable();
 				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
@@ -1105,7 +1108,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
-			|| helper.IsDisabled() || helper.IsParalyzed() || helper.IsHyperspacing())
+			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1252,8 +1255,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		range -= 1000 * Has(*foe, gov, ShipEvent::BOARD);
 		// Focus on nearly dead ships.
 		range += 500. * (foe->Shields() + foe->Hull());
-		// If a target is paralyzed, focus on ships that can attack back.
-		if(foe->IsParalyzed())
+		// If a target is extremely overheated, focus on ships that can attack back.
+		if(foe->IsOverheated())
 			range += 3000. * (foe->Heat() - .9);
 		if((isPotentialNemesis && !hasNemesis) || range < closest)
 		{
@@ -1402,6 +1405,8 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
+	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
+
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	// NPCs should not be beyond the "fence" unless their target is
 	// fairly close to it (or they are intended to be there).
@@ -1410,7 +1415,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		if(target)
 		{
 			Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
-			if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
+			if(extrapolated.Length() >= invisibleFenceRadius)
 			{
 				MoveTo(ship, command, Point(), Point(), 40., .8);
 				if(ship.Velocity().Dot(ship.Position()) > 0.)
@@ -1418,7 +1423,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				return;
 			}
 		}
-		else if(ship.Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+		else if(ship.Position().Length() >= invisibleFenceRadius)
 		{
 			// This ship should not be beyond the fence.
 			MoveTo(ship, command, Point(), Point(), 40, .8);
@@ -3654,7 +3659,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(activeCommands.Has(Command::JUMP | Command::FLEET_JUMP))
 	{
-		if(!ship.GetTargetSystem() && !isWormhole)
+		if(player.TravelPlan().empty() && !isWormhole)
 		{
 			double bestMatch = -2.;
 			const auto &links = (ship.JumpNavigation().HasJumpDrive() ?
