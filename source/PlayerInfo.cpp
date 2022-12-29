@@ -56,7 +56,6 @@ using namespace std;
 
 namespace {
 	const string KNOWN_OUTFIT_KEY = "known outfit";
-	const string VISITED_OUTFITTERS_KEY = "visited outfitter";
 
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
@@ -309,7 +308,18 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
 			Visit(*GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
+		{
 			Visit(*GameData::Planets().Get(child.Token(1)));
+
+			if(child.Size() > 2)
+			{
+				string vistedStr = child.Token(2);
+
+				if(vistedStr.size())
+					if(vistedStr == "outfitter")
+						VisitOutfitterAt(*GameData::Planets().Get(child.Token(1)));
+			}
+		}
 		else if(child.Token(0) == "harvested")
 		{
 			for(const DataNode &grand : child)
@@ -350,9 +360,6 @@ void PlayerInfo::Load(const string &path)
 			startData.Load(child);
 		else if(child.Token(0) == KNOWN_OUTFIT_KEY && child.Size() >= 2)
 			DiscoverOutfit(*GameData::Outfits().Get(child.Token(1)));
-		else if(child.Token(0) == VISITED_OUTFITTERS_KEY && child.Size() >= 2)
-			VisitOutfitter(GameData::Planets().Get(child.Token(1))->Outfitter());
-
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -1068,16 +1075,16 @@ void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
 
 
 
-void PlayerInfo::VisitOutfitter(const Sale<Outfit>& outfitter)
+void PlayerInfo::VisitOutfitterAt(const Planet &planet)
 {
-	visitedOutfitters.insert(&outfitter);
+	visitedPlanets[&planet] = true;
 }
 
 
 
-bool PlayerInfo::OutfitterVisited(const Sale<Outfit>& outfitter) const
+bool PlayerInfo::OutfitterVisitedAt(const Planet &planet)
 {
-	return visitedOutfitters.count(&outfitter);
+	return visitedPlanets[&planet];
 }
 
 
@@ -3865,7 +3872,15 @@ void PlayerInfo::Save(const string &path) const
 			{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 		[&out](const PlanetEntry &entry)
 		{
-			out.Write("visited planet", entry.first->TrueName());
+			string visitedStr = "";
+
+			if(entry.second)
+				visitedStr = "outfitter";
+
+			if(visitedStr.empty())
+				out.Write("visited planet", entry.first->TrueName());
+			else
+				out.Write("visited planet", entry.first->TrueName(), visitedStr);
 		});
 
 	if(!harvested.empty())
@@ -3927,24 +3942,6 @@ void PlayerInfo::Save(const string &path) const
 		[&out](const Outfit *outfit)
 		{
 			out.Write(KNOWN_OUTFIT_KEY, outfit->TrueName());
-		});
-
-	// Save a list of all visited outfitters
-	std::set< const Planet* > planetsWithVisitedOutfitters;
-	for(const auto outfitter : visitedOutfitters)
-		for(const auto entry : visitedPlanets)
-		{
-			auto planet = entry.first;
-			if(&planet->Outfitter() == outfitter)
-				planetsWithVisitedOutfitters.insert(planet);
-		}
-
-	WriteSorted(planetsWithVisitedOutfitters,
-		[](const Planet *const *lhs, const Planet *const *rhs)
-		{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
-		[&out](const Planet *planet)
-		{
-			out.Write(VISITED_OUTFITTERS_KEY, planet->TrueName());
 		});
 
 	out.Write();

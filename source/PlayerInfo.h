@@ -296,8 +296,8 @@ public:
 	bool OutfitIsKnown(const Outfit &outfit) const;
 	void DiscoverOutfit(const Outfit &outfit);
 	void DiscoverOutfits(const std::map<const Outfit *, int> &outfits);
-	void VisitOutfitter(const Sale<Outfit> &outfitter);
-	bool OutfitterVisited(const Sale<Outfit> &outfitter) const;
+	void VisitOutfitterAt(const Planet &planet);
+	bool OutfitterVisitedAt(const Planet &planet);
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -380,7 +380,6 @@ private:
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
 	std::map<const Planet *, bool> visitedPlanets;
-	std::set<const Sale<Outfit> *> visitedOutfitters;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
 
