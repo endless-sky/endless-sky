@@ -1114,13 +1114,14 @@ phrase "friendly civilian"
 		"roomers"
 		"VIP passengers"
 	word
-		" "
+		" " 4
+		" inexplicably "
+		" stupidly "
 	word
 		"decided to eat"
 		"went and ate"
 		"decided they would have"
 		"made the bad choice of having"
-		"inexplicably decided to eat"
 		"ate"
 		"had"
 	word
@@ -1135,7 +1136,7 @@ phrase "friendly civilian"
 		" "
 	word
 		"from my cargo hold."
-		"on the spaceport."
+		"in the spaceport."
 		"in my ship."
 	word
 		" "
