@@ -104,7 +104,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			++cit;
 		}
 		if(outfit && count)
-			plunder.emplace_back(player, outfit, count, player.OutfitIsKnown(*outfit));
+			plunder.emplace_back(outfit, count, player.OutfitIsKnown(*outfit));
 	}
 
 	// Some "ships" do not represent something the player could actually pilot.
@@ -544,8 +544,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 // Constructor (outfit installed in the victim ship or transported as cargo).
-BoardingPanel::Plunder::Plunder(const PlayerInfo &player,
-								const Outfit *outfit, int count, bool outfitIsKnown)
+BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, bool outfitIsKnown)
 	: name(outfitIsKnown ? outfit->DisplayName() : "Unknown Outfit"), outfit(outfit), count(count),
 	unitValue((outfitIsKnown ? outfit->Cost() :
 		outfit->Mass()) * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full())),
