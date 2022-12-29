@@ -3049,7 +3049,6 @@ phrase "friendly militia 1"
 		"We will not bend to your masters"
 		"We will fight to the last ship"
 		"We will never surrender"
-		"We will expel you from our systems"
 	word
 		"!"
 
@@ -3072,19 +3071,131 @@ phrase "friendly militia 2"
 
 phrase "friendly militia 3"
 	word
-		"It wouldn't hurt if "
+		"It wouldn't hurt"
+		"It would help a lot"
+		"It would improve many peoples' lives"
+		"This sector would be so much safer"
+		"Many lives would be saved"
+		"People would be happier"
+		"We would be grateful"
+		"The Southern Rim would be more prosperous"
+		"The Republic would be more prosperous"
+		"The galaxy would be more prosperous"
+		"The Southern Rim would be safer"
+		"The Republic would be safer"
+		"The galaxy would be safer"
+		"We would not have to sacrifice our lives for you"
+	word
+		" if "
 	word
 		"the Navy"
 		"the Republic"
-		"a Navy fleet"
 		"Parliament"
 	word
-		" would help us out with these "
+		" would "
+		" would come down here and "
+		" would stop hiding up in the Paradise Worlds and "
+		" would stop licking the boots of the Syndicate and "
 	word
-		"pirates."
-		"criminals."
-		"warlords."
-		"marauders."
+		"help us out with"
+		"assist us with"
+		"do anything about"
+		"do something about"
+	word
+		" "
+	word
+		"these pirates"
+		"these criminals"
+		"these warlords"
+		"these marauders"
+		"this rampant piracy"
+	word
+		"."
+		"..."
+		"!"
+
+phrase "friendly militia 4"
+	word
+		"If "
+	word
+		"Parliament"
+		"the Navy"
+		"the Republic"
+	word
+		" would "
+	word
+		"come down here"
+		"stop ignoring our cries for help"
+		"take notice of our cries for help"
+		"do what they say they do"
+		"stop acting deaf"
+		"listen to us"
+		"work with us"
+		"be useful for once"
+	phrase 
+		"militia 4 variation"
+	word
+		", "
+	word
+		"many peoples' lives would be improved"
+		"many lives would be saved"
+		"lives would be saved"
+		"people would be happier"
+		"we would be grateful"
+		"we would not have to sacrifice our lives for you"
+		"the Republic would be more prosperous"
+		"the galaxy would be more prosperous"
+		"the Republic would be safer"
+		"the galaxy would be safer"
+		`there would be "peace among the stars"`
+	word
+		"."
+
+phrase "friendly militia 4 variation"
+	word
+		" and "
+	word
+		"do something about "
+		"do anything about "
+		"help us with "
+		"assist us with "
+		"clear out"
+		"deal with"
+	word
+		"these pirates"
+		"these criminals"
+		"these warlords"
+		"these marauders"
+		"this rampant piracy"
+
+phrase "friendly militia 4 variation"
+	word
+		" and "
+	word
+		"see"
+		"look at"
+		"discuss"
+		"understand"
+		"recognize"
+		"acknowledge"
+		"see for themselves"
+	word
+		" what "
+	word
+		"pirates"
+		"criminals"
+		"warlords"
+		"marauders"
+		"rampant piracy"
+	word
+		" has done "
+	word
+		"to our system"
+		"to our planets"
+		"to the South"
+		"to the Rim"
+		"to the Southern Rim"
+		"to the Dirt Belt"
 
 # Militia hails shared with the Free Worlds. Some are Militia only. This should give each of these hail sets the same chance of appearing.
 phrase "friendly militia"
@@ -3094,6 +3205,7 @@ phrase "friendly militia"
 		"friendly militia 1"
 		"friendly militia 2"
 		"friendly militia 3"
+		"friendly militia 4"
 
 phrase "friendly syndicate"
 	word
@@ -3324,6 +3436,7 @@ phrase "friendly free worlds 3"
 		"the Republic's "
 		"the Syndicate's "
 		"the Paradise Worlds' "
+		"the Paradise Planets' "
 		""
 	word
 		"corrupt"
@@ -3657,7 +3770,7 @@ phrase "friendly free worlds 10"
 		"success"
 		"welfare"
 		"order"
-		"'peace among the stars'"
+		`"peace among the stars"`
 	word
 		" without "
 	word
