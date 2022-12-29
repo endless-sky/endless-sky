@@ -1590,9 +1590,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				for(const auto &it : outfits)
 				{
 					double flotsamChance = it.first->Get("flotsam chance");
-					if(flotsamChance)
+					if(flotsamChance > 0.)
 						Jettison(it.first, Random::Binomial(it.second, flotsamChance));
-					else if(it.first->Category() == "Ammunition")
+					// 0 valued 'flotsamChance' means default, which is 5% for ammunition.
+					// At this point, negative values are the only non-zero values possible.
+					// Negative values override the default chance for ammunition
+					// so the outfit cannot be dropped as flotsam.
+					else if(it.first->Category() == "Ammunition" && !flotsamChance)
 						Jettison(it.first, Random::Binomial(it.second, .05));
 				}
 				for(shared_ptr<Flotsam> &it : jettisoned)
