@@ -145,6 +145,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.clear();
 			else if(key == "haze")
 				haze = nullptr;
+			else if(key == "starfield density")
+				starfieldDensity = 1.;
 			else if(key == "trade")
 				trade.clear();
 			else if(key == "fleet")
@@ -336,6 +338,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
 			haze = SpriteSet::Get(value);
+		else if(key == "starfield density")
+			starfieldDensity = child.Value(valueIndex);
 		else if(key == "trade" && child.Size() >= 3)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "arrival")
@@ -727,6 +731,13 @@ double System::SolarPower() const
 double System::SolarWind() const
 {
 	return solarWind;
+}
+
+
+
+double System::StarfieldDensity() const
+{
+	return starfieldDensity;
 }
 
 
