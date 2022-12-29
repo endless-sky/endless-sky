@@ -60,6 +60,15 @@ public:
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
 	};
+
+	enum class SystemEntry {
+		TAKE_OFF,
+		HYPERDRIVE,
+		JUMP,
+		WORMHOLE
+	};
+
+
 public:
 	PlayerInfo() = default;
 	// Don't allow copying this class.
@@ -108,6 +117,8 @@ public:
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;
 
+	// Sets the means the player used to enter the system.
+	void SetSystemEntry(SystemEntry entryType);
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
 	// This also marks the given system as visited.

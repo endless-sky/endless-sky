@@ -272,6 +272,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
+	player->SetSystemEntry(PlayerInfo::SystemEntry::TAKE_OFF);
 	EnterSystem();
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
@@ -1420,13 +1421,21 @@ void Engine::CalculateStep()
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
 	{
+		bool wormholeEntry = false;
 		// Wormhole travel: mark the wormhole "planet" as visited.
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
 						&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
+				{
+					wormholeEntry = true;
 					player.Visit(*it.GetPlanet());
+				}
 
+		player->SetSystemEntry(wormholeEntry ? PlayerInfo::SystemEntry::WORMHOLE :
+			flagship->IsUsingJumpDrive() ? PlayerInfo::SystemEntry::JUMP :
+			PlayerInfo::SystemEntry::HYPERDRIVE);
+		player->Conditions().Set("previous system: " + playerSystem);
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);

@@ -22,7 +22,10 @@ test "Loading and Reloading"
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
+		apply
+			"test: entered system by: hyperdrive" = "entered system by: hyperdrive"
 		assert
+			"entered system by: hyperdrive" == 1
 			year == 3013
 			month == 11
 			day == 18

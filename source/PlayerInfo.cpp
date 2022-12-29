@@ -709,6 +709,17 @@ const CoreStartData &PlayerInfo::StartData() const noexcept
 
 
 
+void PlayerInfo::SetSystemEntry(const SystemEntry entryType)
+{
+	static const string entered = "entered system by: ";
+	player->Conditions().Set(entered + "takeoff", entryType == SystemEntry::TAKE_OFF);
+	player->Conditions().Set(entered + "hyperdrive", entryType == SystemEntry::HYPERDRIVE);
+	player->Conditions().Set(entered + "jump drive", entryType == SystemEntry::JUMP);
+	player->Conditions().Set(entered + "wormhole", entryType == SystemEntry::WORMHOLE);
+}
+
+
+
 // Set the player's current start system, and mark that system as visited.
 void PlayerInfo::SetSystem(const System &system)
 {
