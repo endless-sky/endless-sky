@@ -34669,7 +34669,7 @@ planet Mirrorlake
 	security 0.2
 
 planet Moonshake
-	attributes core factory urban forest
+	attributes core factory urban
 	landscape land/city7
 	description `Moonshake is a planet of overpopulated cities side by side with dense wilderness. A few centuries ago it became a local center of industrial production when the Syndicate began building factories here. Since then, immigrants looking for steady work have been pouring in, doubling the planet's population every few decades. It is now a regional center for the production of everything from textiles to molded plastic parts to reactor-grade plutonium.`
 	description `	It is characteristic of the Syndicate that the wilderness is entirely ignored, both scientifically and agriculturally, until it is plowed under to make way for expanding industry. Nowhere else in the galaxy is the local fauna so plentiful and yet so poorly characterized.`
