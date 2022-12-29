@@ -527,14 +527,14 @@ interface "hud"
 
 	# Targets.
 	anchor top left
-	visible if "red alert"
-	sprite "ui/red alert"
-		from 10 10
-		align top left
-	visible
 	sprite "ui/radar"
 		from 0 0
 		align top left
+	visible if "red alert"
+	sprite "ui/radaralert"
+		from 0 0
+		align top left
+	visible
 	point "radar"
 		center 128 128
 	value "radar radius" 110
