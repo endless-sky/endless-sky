@@ -431,7 +431,7 @@ mission "Paradise Job: Parolees"
 	name "Parolees to <planet>"
 	job
 	repeat
-	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences in return for serving their time on the Paradise World of <destination>. They will need to be transported in a secure ship. You will be paid <payment>.`
+	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences in return for serving their time on the Paradise World of <destination>. They will need to be transported in a secure ship. Payment is <payment>.`
 	passengers 20 4 .1
 	to offer
 		random < 15
@@ -455,7 +455,7 @@ mission "Paradise Job: Debtors"
 	name "Debtors to <planet>"
 	job
 	repeat
-	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. To pay off their debts, the local government will pay you <payment> to transport them securely to <destination> where they can make themselves useful.`
+	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. To pay off their debts, the local government will pay you <payment> to transport them securely to <destination> where they can "make themselves useful."`
 	passengers 20 4 .1
 	to offer
 		random < 15
