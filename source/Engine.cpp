@@ -2211,7 +2211,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 			commodity = outfit->DisplayName();
 			player.Harvest(outfit);
 		}
-		else {
+		else
+		{
 			string outfitDisplayName = outfit->DisplayName();
 			string outfitPluralName = outfit->PluralName();
 
