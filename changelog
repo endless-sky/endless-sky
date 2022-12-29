@@ -5,11 +5,12 @@ Version 0.9.17
     # Content
     * Hai Reveal! (@MasterOfGrey)
 	  * Various fixes to missions. (@bene-dictator, @Hurleveur, @McloughlinGuy, @RisingLeaf, @UnorderedSigh)
-	  * Various typo fixes. (@bene-dictator, @Hatrask, @McloughlinGuy, @UnorderedSigh)
+	  * Various typo fixes. (@bene-dictator, @Hatrask, @McloughlinGuy, @UnorderedSigh, @williaji)
 	  * Relocate the new "Deep Space" systems. (@Quantumshark)
 	  * Various fixes to other content. (@TomGoodIdea)
 	* A new alien faction: The Gegno. (@Saugia)
 	  * TODO: what is included here.
+	  * Improve some wording. (@Zitchas)
     # UI
 	* The job board supports sorting jobs! (@alextd, @samrocketman)
 	* Text and choices in conversations can be hidden with conditions! (@SolraBizna, @UnorderedSigh, @Hurleveur)
@@ -17,7 +18,7 @@ Version 0.9.17
 	* Conditions can be stored and accessed across save files using the "global: " prefix. (@RisingLeaf)
   * Bug fixes:
     * Content bugs:
-	  * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @nathan-b, @real-dam, @williaji, @zlonghofer)
+	  * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @nathan-b, @real-dam, @ThrawnCA, @williaji, @zlonghofer)
 	  * Gave Void Sprite Parts a proper plural name override. (@warp-core)
 	  * Moved the log entry in "Unfettered: Jump Drive Source" to the correct place. (@Hurleveur)
 	  * Added range and velocity overrides and hit effects to the Twin Blaster definitions. (@Hecter94)
@@ -47,6 +48,7 @@ Version 0.9.17
 	  * Ensured the Laborer mission cannot select the source as the destination. (@quyykk)
 	  * Prevent Remnant Celebration mission from occuring in non-sensical places. (@warp-core)
 	  * The Remnant Cognizance 32 blocked message now works as intended. (@warp-core)
+	  * The player now always has clearance for Pugglemug in the Free Worlds mission to visit the Pug. (@TomGoodIdea)
 	* Engine bugs:
 	  * Various style fixes. (@tibetiroka, @petervdmeer)
 	  * Fixed rendering of some compressed PNGs. (@quyykk)
@@ -93,6 +95,9 @@ Version 0.9.17
 	  * Six new pirate hails. (@bene-dictator)
 	  * Added descriptions to the tier 1 Pug ships. (@McloughlinGuy)
 	  * A Remnant job to disable (but not destroy or capture) a stranded Korath world-ship. (@rovermicrover)
+	  * It is now possible to demand tribute from Unfettered Hai worlds. (@Hurleveur)
+	  * A short mission chain about "Hound Racing," featuring the return of an old face. (@Anarchist2)
+	  * A mission about smuggling wool. (@Anarchist2)
 	* Mission changes:
 	  * Adjusted human bounty jobs to make them more active. (@Anarchist2)
 	    * The target ships will only spawn in a system one jump away from the source.
@@ -119,6 +124,7 @@ Version 0.9.17
 	  * Nanachi missions will no longer start during the Hai Reveal storyline. (@Zitchas)
 	  * Adjusted text in Remnant ground assault ship bounty job. (@McloughlinGuy)
 	  * Added advice on using multiple scanners to increase performance in FW Recon 1. (@williaji)
+	  * Remnant Shattered Light 3 now gives better information about the location of the ship. (@McloughlinGuy)
 	* Balance:
 	  * Adjusted the Sparrow and Flivver to better match their roles. (@Hecter94)
 	    * Flivver:
@@ -173,6 +179,8 @@ Version 0.9.17
 	  * Reduced the scaling of Hai stations from 0.5 to 0.4. (@Azure3141)
 	  * New landscape images for Earth, New China, Chiron, and Solace. (@bene-dictator)
 	  * Remodelled the Hai railgun, railgun slug, and railgun slug rack. (@1010todd)
+	  * Expanded and improved the Milky Way galaxy sprite. (@Azure3141)
+	  * Remodelled the Enforcer Riot Staff and Enforcer Confrontation Gear. (@1010todd)
     * Sounds:
 	  * Reduced the volumes of the Particle and Plasma Cannon sounds. (@Saugia)
 	  * A new sound for the Ion Hail Turret. (@Saugia)
@@ -190,6 +198,8 @@ Version 0.9.17
 	    * Also moved the Ikatila'ej, Korsmmanath A'awoj, Heron, and Emerald Sword to this category.
       * Danforth's ship now also have the "timid" personality in "Wanderers: Alpha Surveillance G". (@Quantumshark)
 	  * Add some diversity to the sale of Hai ships. (@MasterOfGrey)
+	  * The Cloaking Device is now in the "Unique" outfit category. (@czartrak)
+	  * The descriptions of the Heliarch reactors indicate that they used anti-matter catalyzed fusion technology. (@Arachi-Lover)
   * Game mechanics:
     * New mechanics:
       * New autoconditions:
@@ -214,6 +224,7 @@ Version 0.9.17
 	  * A system definition can now include a custom value for the invisible fence radius. (@a-random-lemurian)
 	  * TODO: find a concise way to describe the foreign penalty thing for governments. (@Hurleveur)
 	  * Missions can now define a "to accept" condition set. (@rovermicrover)
+	  * Governments can use named "stock" colors instead of always defining a color literal. (@warp-core)
     * Mechanic changes:
       * Frugal ships now consider their health percentage instead of the sum of their shield and hull percentages. (@Hurleveur)
       * Changed the scanning formula for detecting illegal cargo so more legal cargo can conceal illegal cargo in the hold, making it less likely to be detected. (@quyykk)
@@ -243,6 +254,7 @@ Version 0.9.17
 	  * Automatic target selection can prioritise either proximity or value, based on a user controlled setting.
 	  * Pressing the 'board' key multiple times in quick succession will now cycle through boarding targets.
     * An additional autosave at the most recent planet with a spaceport. (@Hurleveur)
+	* Added a visual warning icon alongside the audible warning siren. (@Zitchas, @warp-core)
   * Under the hood:
     * Cache attraction and deterrence values. (@Hurleveur)
     * Added a warning when no plural name is defined for ships and outfits with names ending in 's'. (@warp-core)
@@ -262,6 +274,7 @@ Version 0.9.17
 	* Added a method for checking if the Personality has been defined. (@RisingLeaf)
 	* Added a coarse check to Mask::Collide() to improve performance. (@mike-f1)
 	* Improved CollisionSet performance. (@mike-f1)
+	* Made use of existing Color methods instead of replicating their ffunctionality in MapPaenl. (@warp-core)
   * CI/CD and development environment:
     * A variety of new integration tests for new and existing features. (@Hurleveur, @warp-core)
 	* Various fixes to unit tests. (@quyykk)
@@ -306,6 +319,7 @@ Version 0.9.17
 	* Improved the test parse script. (@quyykk)
 	* Simplified data parsing CI jobs. (@quyykk)
 	* Use dedicated sccache GHA support + Linux support. (@quyykk)
+	* Disabled various invisible, landing missions that were causing an integration test to fail. (@warp-core)
 
 Version 0.9.16.1:
   * Breaking changes:
