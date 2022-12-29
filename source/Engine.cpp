@@ -932,7 +932,7 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity, zoom);
+	GameData::Background().Draw(center, centerVelocity, zoom, player.Flagship()->GetSystem());
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
