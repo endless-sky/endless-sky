@@ -109,6 +109,6 @@ test "Afterburner-flight - Simple depart land"
 			"test: steps to wait" > 0
 		call "Land"
 		apply
-			"test: entered system by: take off" = "entered system by: take off"
+			"test: entered system by: takeoff" = "entered system by: takeoff"
 		assert
-			"entered system by: take off" == 1
+			"entered system by: takeoff" == 1
