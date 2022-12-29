@@ -53,7 +53,7 @@ namespace {
 	int boardingIndex = 0;
 
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 0;
+	int parallaxIndex = 1;
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
@@ -77,7 +77,6 @@ void Preferences::Load()
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
-	settings["Parallax background"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
@@ -133,7 +132,7 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("parallax background", parallaxIndex);
+	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 
 	for(const auto &it : settings)
