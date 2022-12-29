@@ -105,7 +105,7 @@ color "radar special" 0.5 1. 0.5 0.
 color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
-color "radar star" 0.7 1. 1.
+color "radar star" 0.7 1. 1. 0.
 
 # Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
