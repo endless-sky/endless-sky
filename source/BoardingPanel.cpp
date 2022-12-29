@@ -654,10 +654,10 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 
-	if(!knownToPlayer)
-		value = "???";
-	else
+	if(knownToPlayer)
 		value = Format::Credits(unitValue * count);
+	else
+		value = "???";
 }
 
 
