@@ -171,7 +171,7 @@ void HailPanel::Draw()
 				if(requestedToBribeShip)
 					info.SetCondition("can pay bribe");
 				else
-					info.SetCondition("can offer bribe");
+					info.SetCondition("can bribe");
 			}
 			else if(!ship->CanBeCarried() && ship->GetShipToAssist() != player.FlagshipPtr())
 				info.SetCondition("can assist");
@@ -187,7 +187,7 @@ void HailPanel::Draw()
 		{
 			info.SetCondition("can dominate");
 			if(!planet->CanLand())
-				info.SetCondition("can offer bribe");
+				info.SetCondition("can bribe");
 		}
 	}
 
