@@ -103,6 +103,13 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 			player.VisitOutfitterAt(*player.GetPlanet());
 		outfitter = player.GetPlanet()->Outfitter();
 	}
+
+	for(const auto &outfit : outfitter)
+		if(!player.OutfitIsKnown(*outfit))
+			player.DiscoverOutfit(*outfit);
+
+	for(auto &&ship : player.Ships())
+		player.DiscoverOutfits(ship->Cargo().Outfits());
 }
 
 
@@ -116,13 +123,6 @@ void OutfitterPanel::Step()
 		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
 			checkedHelp = true;
-
-	for(const auto &outfit : outfitter)
-		if(!player.OutfitIsKnown(*outfit))
-			player.DiscoverOutfit(*outfit);
-
-	for(auto &&ship : player.Ships())
-		player.DiscoverOutfits(ship->Cargo().Outfits());
 }
 
 
