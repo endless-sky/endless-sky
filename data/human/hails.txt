@@ -2846,10 +2846,10 @@ phrase "navy illegal acts"
 		"harm"
 		"plunder"
 		"seize control of"
+		"seize"
 	word
 		" "
 	word
-		"merchants"
 		"merchant ships"
 		"Navy ships"
 		"corporate-affiliated ships"
@@ -3346,6 +3346,8 @@ phrase "friendly free worlds 4"
 		"defenders of"
 		"guardians of"
 		"protectors of"
+	word
+		" "
 	word
 		"the innocent"
 		"this system"
@@ -6427,6 +6429,8 @@ phrase "hostile free worlds"
 		"Justice"
 		"Freedom"
 		"Equality"
+		"Democracy"
+		"Liberty"
 	word
 		" shall be "
 		" must be "
@@ -6467,7 +6471,6 @@ phrase "hostile free worlds"
 		"the Southern Rim"
 	word
 		"!"
-
 
 phrase "hostile free worlds"
 	word
@@ -6544,6 +6547,33 @@ phrase "hostile free worlds"
 		" like you"
 	word
 		"."
+		"!"
+
+phrase "hostile free worlds"
+	word
+		"We fight for"
+		"We fight on the side of"
+		"We are advancing"
+		"The Free Worlds exist to advance"
+		"Our ships fight for"
+		"Our Free Worlds struggle for"
+		"We live in a struggle for"
+		"We struggle for"
+		"We fight for"
+		"We rally behind"
+		"Our fight is for"
+		"This is a struggle for"
+	word
+		" "
+	word
+		"freedom"
+		"equality"
+		"justice"
+		"peace"
+		"prosperity"
+		"liberty"
+		"unity"
+	word
 		"!"
 
 
