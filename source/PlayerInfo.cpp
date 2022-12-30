@@ -755,8 +755,8 @@ SystemEntry PlayerInfo::GetSystemEntry() const
 // Set the player's current start system, and mark that system as visited.
 void PlayerInfo::SetSystem(const System &system)
 {
+	this->previousSystem = this->system;
 	this->system = &system;
-	this->previousSystem = &system;
 	Visit(system);
 }
 
