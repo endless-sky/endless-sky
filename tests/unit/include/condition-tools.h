@@ -27,7 +27,7 @@ class ConditionMaker {
 public:
 	ConditionMaker();
 	ConditionMaker(const std::vector<std::pair<std::string,int64_t>> &from);
-	~ConditionMaker();
+
 	std::shared_ptr<ConditionsStore> Store();
 	Condition<ConditionsStore::ValueType> AsCondition(const std::string &key);
 	ConditionsStore::ValueType Get(const std::string &key);

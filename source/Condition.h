@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RVALUE_H_
-#define RVALUE_H_
+#ifndef CONDITION_H_
+#define CONDITION_H_
 
 
 #include <cmath>
@@ -42,11 +42,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // must have a HasGet method that receives the KeyType. An std::string
 // satisfies all of these requirements, and it is the default.
 
-template < class V, class K = std::string >
+template < class V >
 class Condition {
 public:
-	typedef V ValueType;
-	typedef K KeyType;
+	using ValueType = V;
+	using KeyType = std::string;
 
 	static_assert(std::is_arithmetic<ValueType>::value, "Condition value type must be arithmetic.");
 	static_assert(std::is_class<KeyType>::value, "Condition key type must be a class.");
@@ -54,17 +54,16 @@ public:
 
 	constexpr Condition() : value(), key() {}
 	explicit constexpr Condition(const V &value) : value(value), key() {}
-	constexpr Condition(const V &value, const K &key) : value(value), key(key) {}
-	~Condition() {}
+	constexpr Condition(const V &value, const KeyType &key) : value(value), key(key) {}
 
-	template <class V2, class K2>
-	Condition(const Condition<V2, K2> &other);
+	template <class V2>
+	Condition(const Condition<V2> &other);
 
-	template <class V2, class K2>
-	Condition<V, K> &operator = (const Condition<V2, K2> &other);
+	template <class V2>
+	Condition &operator=(const Condition<V2> &other);
 
 	template <class T, typename std::enable_if<std::is_arithmetic<T>::value, T>::type* Check = nullptr>
-	Condition<V, K> &operator = (const T &t) { value = static_cast<ValueType>(t); return *this; }
+	Condition &operator=(const T &t) { value = static_cast<ValueType>(t); return *this; }
 
 	// Update the value from a scope that contains it
 	template<class Getter>
@@ -86,7 +85,7 @@ public:
 	// If it was a condition, the key must be the same (value doesn't matter)
 	// If it was a literal (no key) then the value must be the same.
 	// If one is literal and the other is conditional, the result is false.
-	bool SameOrigin(const Condition<V, K> &o);
+	bool SameOrigin(const Condition &o);
 
 	// Does this originate from a condition?
 	bool HasConditions() const { return !key.empty(); }
@@ -112,9 +111,9 @@ private:
 
 // Allow construction and assignment between Condition types to
 // facilitate type conversion.
-template <class V, class K>
-template <class V2, class K2>
-Condition<V, K>::Condition(const Condition<V2, K2> &other):
+template <class V>
+template <class V2>
+Condition<V>::Condition(const Condition<V2> &other):
 	value(static_cast<ValueType>(other.Value())),
 	key(static_cast<KeyType>(other.Key()))
 {
@@ -123,20 +122,20 @@ Condition<V, K>::Condition(const Condition<V2, K2> &other):
 
 // Allow construction and assignment between Condition types to
 // facilitate type conversion.
-template <class V, class K>
-template <class V2, class K2>
-Condition<V, K> &Condition<V, K>::operator = (const Condition<V2, K2> &other)
+template <class V>
+template <class V2>
+Condition<V> &Condition<V>::operator=(const Condition<V2> &other)
 {
 	value = static_cast<ValueType>(other.Value());
-	key = static_cast<KeyType>(other.Key());
+	key = other.Key();
 	return *this;
 }
 
 
 // Update the value from a scope that contains it
-template <class V, class K>
+template <class V>
 template <class Getter>
-const V &Condition<V, K>::UpdateConditions(const Getter &getter)
+const V &Condition<V>::UpdateConditions(const Getter &getter)
 {
 	// If this was a literal, there is nothing to update.
 	if(HasConditions())
@@ -152,9 +151,9 @@ const V &Condition<V, K>::UpdateConditions(const Getter &getter)
 
 
 // Update the value from a scope that contains it, if the new value passes a validator.
-template <class V, class K>
+template <class V>
 template <class Getter, class Validator>
-const V &Condition<V, K>::UpdateConditions(const Getter &getter, Validator validator)
+const V &Condition<V>::UpdateConditions(const Getter &getter, Validator validator)
 {
 	// If this was a literal, there is nothing to update.
 	if(HasConditions())
@@ -174,8 +173,8 @@ const V &Condition<V, K>::UpdateConditions(const Getter &getter, Validator valid
 }
 
 
-template <class V, class K>
-bool Condition<V, K>::SameOrigin(const Condition<V, K> &o)
+template <class V>
+bool Condition<V>::SameOrigin(const Condition<V> &o)
 {
 	if(HasConditions())
 		return key == o.Key();
@@ -205,8 +204,8 @@ bool NotNearZero(T number)
 }
 
 
-template <class V, class K>
-Condition<V, K>::operator bool() const {
+template <class V>
+Condition<V>::operator bool() const {
 	return NotNearZero(value);
 }
 

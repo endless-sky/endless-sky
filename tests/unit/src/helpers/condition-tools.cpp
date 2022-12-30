@@ -33,12 +33,6 @@ ConditionMaker::ConditionMaker(const std::vector<std::pair<std::string,int64_t>>
 
 
 
-ConditionMaker::~ConditionMaker()
-{
-}
-
-
-
 std::shared_ptr<ConditionsStore> ConditionMaker::Store()
 {
 	return store;

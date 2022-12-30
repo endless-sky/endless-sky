@@ -74,7 +74,7 @@ TEST_CASE( "Condition Basics", "[Condition]" ) {
 		CHECK_FALSE( std::is_nothrow_copy_constructible<T>::value );
 		CHECK( std::is_move_constructible<T>::value );
 		CHECK_FALSE( std::is_trivially_move_constructible<T>::value );
-		CHECK_FALSE( std::is_nothrow_move_constructible<T>::value );
+		CHECK( std::is_nothrow_move_constructible<T>::value );
 	}
 	SECTION( "Copy Traits" ) {
 		CHECK( std::is_copy_assignable<T>::value );
@@ -85,7 +85,7 @@ TEST_CASE( "Condition Basics", "[Condition]" ) {
 	SECTION( "Move Traits" ) {
 		CHECK( std::is_move_assignable<T>::value );
 		CHECK_FALSE( std::is_trivially_move_assignable<T>::value );
-		CHECK_FALSE( std::is_nothrow_move_assignable<T>::value );
+		CHECK( std::is_nothrow_move_assignable<T>::value );
 	}
 }
 
