@@ -48,7 +48,7 @@ test-data "guarantied link"
 		changes
 			system "Terra Incognita"
 				remove link "Over the Rainbow"
-				link "World's End"
+				"random link" "World's End" 1
 			system "World's End"
 				"random link" "Terra Incognita" 0
 

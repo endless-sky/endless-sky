@@ -905,10 +905,7 @@ void System::UpdateRandomLinks(System &previousSystem)
 		return;
 	for(auto &link : randomLinks)
 		if(link.first == &previousSystem)
-		{
-			if(!links.count(link.first))
-				Link(&previousSystem);
-		}
+			Link(&previousSystem);
 		else if(link.second <= Random::Real())
 			Link(const_cast<System *>(link.first));
 		else
