@@ -119,11 +119,13 @@ public:
 
 	// Sets the means the player used to enter the system.
 	void SetSystemEntry(SystemEntry entryType);
+	SystemEntry GetSystemEntry() const;
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
 	// This also marks the given system as visited.
 	void SetSystem(const System &system);
 	const System *GetSystem() const;
+	const System *GetPreviousSystem() const;
 	// Set what planet the player is on (or nullptr, if taking off).
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;

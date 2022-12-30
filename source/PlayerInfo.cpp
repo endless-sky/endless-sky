@@ -78,27 +78,27 @@ namespace {
 	{
 		switch(entryType)
 		{
-			case SystemEntry::HYPERDRIVE:
+			case PlayerInfo::SystemEntry::HYPERDRIVE:
 				return "hyperdrive";
-			case SystemEntry::JUMP:
+			case PlayerInfo::SystemEntry::JUMP:
 				return "jump drive";
-			case SystemEntry::WORMHOLE:
+			case PlayerInfo::SystemEntry::WORMHOLE:
 				return "wormhole";
 			default:
-			case SystemEntry::TAKE_OFF:
+			case PlayerInfo::SystemEntry::TAKE_OFF:
 				return "takeoff";
 		}
 	}
 	PlayerInfo::SystemEntry StringToEntry(string entry)
 	{
 		if(entry == hyperdrive)
-			return SystemEntry::HYPERDRIVE;
+			return PlayerInfo::SystemEntry::HYPERDRIVE;
 		else if(entry == "jump drive")
-			return SystemEntry::JUMP;
+			return PlayerInfo::SystemEntry::JUMP;
 		else if(entry == "wormhole")
-			return SystemEntry::WORMHOLE;
+			return PlayerInfo::SystemEntry::WORMHOLE;
 		else
-			return SystemEntry::TAKE_OFF;
+			return PlayerInfo::SystemEntry::TAKE_OFF;
 	}
 }
 
@@ -746,6 +746,13 @@ void PlayerInfo::SetSystemEntry(const SystemEntry entryType)
 
 
 
+SystemEntry PlayerInfo::GetSystemEntry() const
+{
+	return entry;
+}
+
+
+
 // Set the player's current start system, and mark that system as visited.
 void PlayerInfo::SetSystem(const System &system)
 {
@@ -760,6 +767,13 @@ void PlayerInfo::SetSystem(const System &system)
 const System *PlayerInfo::GetSystem() const
 {
 	return system;
+}
+
+
+
+const System *PlayerInfo::GetPreviousSystem() const
+{
+	return previousSystem;
 }
 
 
