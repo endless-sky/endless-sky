@@ -448,9 +448,9 @@ void GameData::Change(const DataNode &node)
 
 // Update the neighbor lists and other information for all the systems.
 // This must be done any time that a change creates or moves a system.
-void GameData::UpdateSystems()
+void GameData::UpdateSystems(const System *previousSystem)
 {
-	objects.UpdateSystems();
+	objects.UpdateSystems(previousSystem);
 }
 
 

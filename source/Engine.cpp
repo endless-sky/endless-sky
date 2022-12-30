@@ -272,7 +272,9 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
-	EnterSystem(const_cast<System &>(*player.GetSystem()));
+	// TODO: Normally we'd give the previous system of the player,
+	// but that'll be changed after the other PR is merged.
+	EnterSystem(*player.GetSystem());
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
@@ -1202,7 +1204,7 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-void Engine::EnterSystem(System &previousSystem)
+void Engine::EnterSystem(const System &previousSystem)
 {
 	ai.Clean();
 
@@ -1240,7 +1242,7 @@ void Engine::EnterSystem(System &previousSystem)
 	GameData::StepEconomy();
 
 	// Refresh random systems that could be linked to this one.
-	const_cast<System *>(system)->UpdateRandomLinks(previousSystem);
+	GameData::UpdateSystems(&previousSystem);
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())

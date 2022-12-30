@@ -164,8 +164,6 @@ public:
 	// in per frame).
 	double Danger() const;
 
-	void UpdateRandomLinks(System &previousSystem);
-
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
@@ -173,7 +171,7 @@ private:
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
-	void UpdateNeighbors(const Set<System> &systems, double distance);
+	void UpdateNeighbors(const Set<System> &systems, double distance, const System previousSystem);
 
 
 private:
@@ -201,7 +199,7 @@ private:
 	// Hyperspace links to other systems.
 	std::set<const System *> links;
 	bool guaranteedLinkBack = true;
-	std::map<const System *, double> randomLinks;
+	std::map<System *, double> randomLinks;
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked.

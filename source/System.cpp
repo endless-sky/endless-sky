@@ -200,7 +200,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			if(remove)
 				randomLinks.erase(GameData::Systems().Get(value));
 			else if(child.Size() > valueIndex + 1)
-				randomLinks[GameData::Systems().Get(value)] = child.Value(valueIndex + 1);
+				randomLinks[const_cast<System *>(GameData::Systems().Get(value))] = child.Value(valueIndex + 1);
 			else
 				child.PrintTrace("Error: Expected random link to have a value:");
 		}
@@ -450,7 +450,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 // Update any information about the system that may have changed due to events,
 // or because the game was started, e.g. neighbors, solar wind and power, or
 // if the system is inhabited.
-void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances)
+void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances, System &previousSystem)
 {
 	neighbors.clear();
 	// Neighbors are cached for each system for the purpose of quicker
@@ -460,15 +460,15 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// jump range that can be encountered.
 	if(jumpRange)
 	{
-		UpdateNeighbors(systems, jumpRange);
+		UpdateNeighbors(systems, jumpRange, previousSystem);
 		// Systems with a static jump range must also create a set for
 		// the DEFAULT_NEIGHBOR_DISTANCE to be returned for those systems
 		// which are visible from it.
-		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE);
+		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE, previousSystem);
 	}
 	else
 		for(const double distance : neighborDistances)
-			UpdateNeighbors(systems, distance);
+			UpdateNeighbors(systems, distance, previousSystem);
 
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
@@ -901,23 +901,6 @@ double System::Danger() const
 
 
 
-void System::UpdateRandomLinks(System &previousSystem)
-{
-	if(randomLinks.empty())
-		return;
-	for(auto &link : randomLinks)
-		if(link.first == &previousSystem && guaranteedLinkBack)
-			Link(&previousSystem);
-		else if(!link.second)
-			continue;
-		else if(link.second >= Random::Real())
-			Link(const_cast<System *>(link.first));
-		else
-			Unlink(const_cast<System *>(link.first));
-}
-
-
-
 void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 {
 	int index = objects.size();
@@ -979,17 +962,19 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 // Once the star map is fully loaded or an event has changed systems
 // or links, figure out which stars are "neighbors" of this one, i.e.
 // close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems, double distance)
+void System::UpdateNeighbors(const Set<System> &systems, double distance, const System previousSystem)
 {
 	set<const System *> &neighborSet = neighbors[distance];
+
+	// Update random links.
+	for(auto &link : randomLinks)
+		if(link.first == &previousSystem && guaranteedLinkBack || link.second && link.second >= Random::Real())
+			Link(link.first);
 
 	// Every star system that is linked to this one is automatically a neighbor,
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
 		neighborSet.insert(system);
-
-	// Update random links.
-	UpdateRandomLinks(*this);
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.
