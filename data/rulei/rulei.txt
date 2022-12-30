@@ -64,8 +64,7 @@ mission "Rulei Planet"
 	invisible
 	landing
 	source
-		"Yniu Eiu"
-		"Yniu Ena"
+		attributes "rulei"
 	on offer
 		conversation
 			`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in strange formations on the surface. Unlike the the whispers from before, the voices here are unbearable, especially the closer you get to the surface.`
