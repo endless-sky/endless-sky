@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <initializer_list>
 #include <map>
+#include <memory>
 #include <string>
 
 class DataNode;
@@ -107,7 +108,7 @@ public:
 	// This can be used when saving primary conditions to savegames and/or
 	// for displaying some data based on primary conditions.
 	class PrimariesIterator {
-		using CondMapItType = std::map<std::string, ConditionEntry>::const_iterator;
+		using CondMapItType = std::map<std::string, std::shared_ptr<ConditionEntry>>::const_iterator;
 
 	public:
 		PrimariesIterator(CondMapItType it, CondMapItType endIt);
@@ -190,15 +191,16 @@ private:
 	// Retrieve a condition entry based on a condition name, the entry doesn't
 	// get created if it doesn't exist yet (the Set function will handle
 	// creation if required).
-	ConditionEntry *GetEntry(const std::string &name);
-	const ConditionEntry *GetEntry(const std::string &name) const;
+	std::shared_ptr<ConditionEntry> GetEntry(const std::string &name);
+	std::shared_ptr<const ConditionEntry> GetEntry(const std::string &name) const;
 	bool VerifyProviderLocation(const std::string &name, DerivedProvider *provider) const;
+	std::shared_ptr<ConditionEntry> FromStorage(const std::string &name);
 
 
 
 private:
 	// Storage for both the primary conditions as well as the providers.
-	std::map<std::string, ConditionEntry> storage;
+	std::map<std::string, std::shared_ptr<ConditionEntry>> storage;
 	std::map<std::string, DerivedProvider> providers;
 };
 

@@ -202,13 +202,13 @@ bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::Prima
 // to a primary (value) condition or to the end-iterator value.
 void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 {
-	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
+	while((condMapIt != condMapEnd) && (condMapIt->second)->provider)
 		condMapIt++;
 
 	// We have a valid value when we are not at the end, and callers should
 	// not try to dereference the value when we actually are at the end.
 	if(condMapIt != condMapEnd)
-		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
+		itVal = make_pair(condMapIt->first, (condMapIt->second)->value);
 }
 
 
@@ -274,7 +274,7 @@ void ConditionsStore::Save(DataWriter &out) const
 // derived from other data-structures (derived conditions).
 int64_t ConditionsStore::Get(const string &name) const
 {
-	const ConditionEntry *ce = GetEntry(name);
+	shared_ptr<const ConditionEntry> ce = GetEntry(name);
 	if(!ce)
 		return 0;
 
@@ -288,7 +288,7 @@ int64_t ConditionsStore::Get(const string &name) const
 
 bool ConditionsStore::Has(const string &name) const
 {
-	const ConditionEntry *ce = GetEntry(name);
+	shared_ptr<const ConditionEntry> ce = GetEntry(name);
 	if(!ce)
 		return false;
 
@@ -304,7 +304,7 @@ bool ConditionsStore::Has(const string &name) const
 // and an int64_t which contains the value if the condition was set.
 pair<bool, int64_t> ConditionsStore::HasGet(const string &name) const
 {
-	const ConditionEntry *ce = GetEntry(name);
+	shared_ptr<const ConditionEntry> ce = GetEntry(name);
 	if(!ce)
 		return make_pair(false, 0);
 
@@ -336,10 +336,10 @@ bool ConditionsStore::Add(const string &name, int64_t value)
 // a set on the provider.
 bool ConditionsStore::Set(const string &name, int64_t value)
 {
-	ConditionEntry *ce = GetEntry(name);
+	shared_ptr<ConditionEntry> ce = GetEntry(name);
 	if(!ce)
 	{
-		(storage[name]).value = value;
+		FromStorage(name)->value = value;
 		return true;
 	}
 	if(!ce->provider)
@@ -356,7 +356,7 @@ bool ConditionsStore::Set(const string &name, int64_t value)
 // an erase on the provider.
 bool ConditionsStore::Erase(const string &name)
 {
-	ConditionEntry *ce = GetEntry(name);
+	shared_ptr<ConditionEntry> ce = GetEntry(name);
 	if(!ce)
 		return true;
 
@@ -375,17 +375,17 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 	// Search for an exact match and return it if it exists.
 	auto it = storage.find(name);
 	if(it != storage.end())
-		return it->second;
+		return *it->second;
 
 	// Check for a prefix provider.
-	ConditionEntry *ceprov = GetEntry(name);
+	shared_ptr<ConditionEntry> ceprov = GetEntry(name);
 	// If no prefix provider is found, then just create a new value entry.
 	if(ceprov == nullptr)
-		return storage[name];
+		return *FromStorage(name);
 
 	// Found a matching prefixed entry provider, but no exact match for the entry itself,
 	// let's create the exact match based on the prefix provider.
-	ConditionEntry &ce = storage[name];
+	ConditionEntry &ce = *FromStorage(name);
 	ce.provider = ceprov->provider;
 	ce.fullKey = name;
 	return ce;
@@ -428,12 +428,12 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 	}
 	if(VerifyProviderLocation(prefix, provider))
 	{
-		storage[prefix].provider = provider;
+		FromStorage(prefix)->provider = provider;
 		// Check if any matching later entries within the prefixed range use the same provider.
 		auto checkIt = storage.find(prefix);
 		while(checkIt != storage.end() && (0 == checkIt->first.compare(0, prefix.length(), prefix)))
 		{
-			ConditionEntry &ce = checkIt->second;
+			ConditionEntry &ce = *checkIt->second;
 			if(ce.provider != provider)
 			{
 				ce.provider = provider;
@@ -459,7 +459,7 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 	if(provider->isPrefixProvider)
 		Logger::LogError("Error: Retrieving prefixed provider \"" + name + "\" as named provider.");
 	else if(VerifyProviderLocation(name, provider))
-		storage[name].provider = provider;
+		FromStorage(name)->provider = provider;
 	return *provider;
 }
 
@@ -474,15 +474,30 @@ void ConditionsStore::Clear()
 
 
 
-ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
+shared_ptr<ConditionsStore::ConditionEntry> ConditionsStore::FromStorage(const string &name)
 {
-	// Avoid code-duplication between const and non-const function.
-	return const_cast<ConditionsStore::ConditionEntry *>(const_cast<const ConditionsStore *>(this)->GetEntry(name));
+	auto it = storage.lower_bound(name);
+	if(it == storage.end() || it->first != name)
+		it = storage.insert(it, make_pair(name, make_shared<ConditionEntry>()));
+	if(!it->second)
+	{
+		// Logic error; should never get here.
+		it->second = make_shared<ConditionEntry>();
+	}
+	return it->second;
 }
 
 
 
-const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name) const
+shared_ptr<ConditionsStore::ConditionEntry> ConditionsStore::GetEntry(const string &name)
+{
+	// Avoid code-duplication between const and non-const function.
+	return const_pointer_cast<ConditionEntry>(const_cast<const ConditionsStore *>(this)->GetEntry(name));
+}
+
+
+
+shared_ptr<const ConditionsStore::ConditionEntry> ConditionsStore::GetEntry(const string &name) const
 {
 	if(storage.empty())
 		return nullptr;
@@ -495,12 +510,12 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 	--it;
 	// The entry is matching if we have an exact string match.
 	if(!name.compare(it->first))
-		return &(it->second);
+		return it->second;
 
 	// The entry is also matching when we have a prefix entry and the prefix part in the provider matches.
-	DerivedProvider *provider = it->second.provider;
+	DerivedProvider *provider = it->second->provider;
 	if(provider && provider->isPrefixProvider && !name.compare(0, provider->name.length(), provider->name))
-		return &(it->second);
+		return it->second;
 
 	// And otherwise we don't have a match.
 	return nullptr;
@@ -516,7 +531,7 @@ bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider
 		return true;
 
 	--it;
-	const ConditionEntry &ce = it->second;
+	const ConditionEntry &ce = *it->second;
 
 	// If we find the provider we are trying to add, then it apparently
 	// was safe to add the entry since it was already added before.
