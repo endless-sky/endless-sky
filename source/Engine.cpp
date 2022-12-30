@@ -1432,7 +1432,7 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
-		const System *previousSystem = *playerSystem;
+		const System *previousSystem = playerSystem;
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem(previousSystem);
