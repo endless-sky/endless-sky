@@ -272,8 +272,6 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
-	// TODO: Normally we'd give the previous system of the player,
-	// but that'll be changed after the other PR is merged.
 	EnterSystem();
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()

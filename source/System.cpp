@@ -181,6 +181,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
 			hidden = true;
+		else if(key == "guaranteed link back")
+			guaranteedLinkBack = true;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
