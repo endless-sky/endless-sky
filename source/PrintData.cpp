@@ -42,34 +42,35 @@ namespace {
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
 	template <class Type>
-	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales,
-		const string &name, const string &saleName)
+	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
+		const string &itemNoun, const string &saleNoun)
 	{
-		cout << name << ',' << saleName << '\n';
+		cout << itemNoun << ',' << saleNoun << '\n';
 		map<string, set<string>> itemSales;
-		for(auto &it : sales)
-			for(auto &it2 : it.second)
-				itemSales[ObjectName(*it2)].insert(it.first);
-		for(auto &it : objects)
+		for(auto &saleIt : sales)
+			for(auto &itemIt : saleIt.second)
+				itemSales[ObjectName(*itemIt)].insert(saleIt.first);
+		for(auto &itemIt : items)
 		{
-			if(it.first != ObjectName(it.second))
+			if(itemIt.first != ObjectName(itemIt.second))
 				continue;
-			cout << it.first;
-			for(auto &it2 : itemSales[it.first])
-				cout << ',' << it2;
+			cout << itemIt.first;
+			for(auto &saleName : itemSales[itemIt.first])
+				cout << ',' << saleName;
 			cout << '\n';
 		}
 	}
 
 	template <class Type>
-	void PrintSales(const Set<Sale<Type>> &sales, const string &saleName, const string &name)
+	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
-		cout << saleName << ',' << name << '\n';
-		for(auto &sale : sales)
+		cout << saleNoun << ',' << itemNoun << '\n';
+		for(auto &saleIt : sales)
 		{
-			cout it.first;
-			for(auto &item : sale)
-				cout << ',' << ObjectName(item);
+			cout << saleIt.first;
+			int index = 0;
+			for(auto &item : saleIt.second)
+				cout << (index++ ? ';' : ',') << ObjectName(*item);
 			cout << '\n';
 		}
 	}
@@ -233,7 +234,7 @@ void PrintData::Ships(const char *const *argv)
 	}
 
 	if(sales)
-		PrintObjectSales(GameData::Ships(), GameData::Shipyards(), "ship", "shipyards");
+		PrintItemSales(GameData::Ships(), GameData::Shipyards(), "ship", "shipyards");
 	else if(loaded)
 		PrintLoadedShipStats(variants);
 	else if(list)
@@ -586,7 +587,7 @@ void PrintData::Outfits(const char *const *argv)
 	}
 
 	if(sales)
-		PrintObjectSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
+		PrintItemSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
 	else if(all)
 		PrintOutfitsAllStats();
 	else
@@ -629,9 +630,9 @@ void PrintData::Sales(const char *const *argv)
 	for(const char *const *it = argv + 2; *it; ++it)
 	{
 		string arg = *it;
-		if(arg == "--ships")
+		if(arg == "-s" || arg == "--ships")
 			ships = true;
-		else if(arg == "--outfits")
+		else if(arg == "-o" || arg == "--outfits")
 			outfits = true;
 	}
 
