@@ -35,9 +35,9 @@ mission "Ira Contact"
 			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. The best way to describe it is an overwhelming sense of emptiness, but at the same time, the intensity of it makes it feels like something must be there. You barely have enough time to try and make sense of this oddity as only seconds later, you start to hear ominous whispering, as if something is behind you.`
 			choice
 				`	(Turn around.)`
-			`	You turn your head around to look, but every time, the source of the whispers remains at the back of your head, like an itch that can't be reached. You can't even remotely understand the language, and the whispers progressively increase in volume. The louder they get, the more there are.`
-			
-			`It sounds like thousands of varingly pitched voices are speaking at all at once now, and you senses all feel overloaded. Just before you think you can't take anymore, everything falls completely silent.`
+			`	You turn your head around to look, but every time, the source of the whispers remains at the back of your head, like an itch that can't be reached. You can't even remotely understand the language, and the whispers progressively increase in volume. The louder they get, the more there are. It sounds like thousands of varingly pitched voices are speaking at all at once now, and you senses all feel overloaded. Just before you think you can't take anymore, everything falls completely silent.`
+			choice
+				`	(Wait.)`
 			scene "scene/rulei flash"
 			`	"T e r r a n."`
 			`A bizarre image is suddenly flashed into your head, and it feels like millions of eyes are starting at you beyond the boundaries of space. Turning your head to look around again, you find the source - a strange-looking spacecraft in the vicinity of two of this system's planets. When it spoke, it sounded like thousands of voices speaking at once again, but only for a brief second this time. Still, the various whispers surround you everywhere else.`
@@ -63,13 +63,16 @@ mission "Ira Contact"
 mission "Rulei Planet"
 	invisible
 	landing
-	source "Yniu Eiu" "Yniu Ena"
-	conversation
-		`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in strange formations on the surface. Unlike the the whispers from before, the voices here are unbearable, especially the closer you get to the surface.`
-		`You can barely hear yourself think, and it's enough to drive any living thing mad. However, the most ominous sensation here is that feeling of your consciousness being pulled at from beneath you, like something is attempting to drag your mind down below.`
+	source
+		"Yniu Eiu"
+		"Yniu Ena"
+	on offer
+		conversation
+			`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in strange formations on the surface. Unlike the the whispers from before, the voices here are unbearable, especially the closer you get to the surface.`
+			`You can barely hear yourself think, and it's enough to drive any living thing mad. However, the most ominous sensation here is that feeling of your consciousness being pulled at from beneath you, like something is attempting to drag your mind down below.`
 		
-		`It's best you don't remain here for too long.`
-
+			`It's best you don't remain here for too long.`
+				decline
 
 phrase "rulei hostile"
 	word
