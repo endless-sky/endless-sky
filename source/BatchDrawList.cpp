@@ -125,7 +125,7 @@ bool BatchDrawList::Add(const Body &body, Point position, float clip)
 	DrawElement *element = &data[body.GetSprite()];
 	element->alpha = body.Alpha();
 	// Get the data vector for this particular sprite.
-	vector<float> &v = data[body.GetSprite()].vertices;
+	vector<float> &v = element->vertices;
 	// The sprite frame is the same for every vertex.
 	float frame = body.GetFrame(step);
 
