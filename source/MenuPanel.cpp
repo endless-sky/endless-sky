@@ -158,10 +158,6 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
-		std::vector<StartConditions> visibleStarts;
-		for(const auto &start : GameData::StartOptions())
-			if(start.Visible(GameData::GlobalConditions()))
-				visibleStarts.emplace_back(start);
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, visibleStarts, nullptr));
 	}
 	else if(key == 'q')
