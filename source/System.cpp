@@ -144,6 +144,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.clear();
 			else if(key == "haze")
 				haze = nullptr;
+			else if(key == "starfield density")
+				starfieldDensity = 1.;
 			else if(key == "trade")
 				trade.clear();
 			else if(key == "fleet")
@@ -333,6 +335,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
 			haze = SpriteSet::Get(value);
+		else if(key == "starfield density")
+			starfieldDensity = child.Value(valueIndex);
 		else if(key == "trade" && child.Size() >= 3)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "arrival")
@@ -371,6 +375,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
 			}
 		}
+		else if(key == "invisible fence" && child.Size() >= 2)
+			invisibleFenceRadius = max(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -686,6 +692,14 @@ const WeightedList<double> &System::AsteroidBelts() const
 
 
 
+// Get the system's invisible fence radius.
+double System::InvisibleFenceRadius() const
+{
+	return invisibleFenceRadius;
+}
+
+
+
 // Get how far ships can jump from this system.
 double System::JumpRange() const
 {
@@ -705,6 +719,13 @@ double System::SolarPower() const
 double System::SolarWind() const
 {
 	return solarWind;
+}
+
+
+
+double System::StarfieldDensity() const
+{
+	return starfieldDensity;
 }
 
 

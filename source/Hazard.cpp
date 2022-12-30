@@ -60,7 +60,10 @@ void Hazard::Load(const DataNode &node)
 		}
 		else if(key == "environmental effect")
 		{
-			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			// Fractional counts may be accepted, since the real count gets multiplied by the strength
+			// of the hazard. The resulting real count will then be rounded down to the nearest int
+			// to determine the number of effects that appear.
+			float count = (child.Size() >= 3) ? static_cast<float>(child.Value(2)) : 1.f;
 			environmentalEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else
@@ -142,7 +145,7 @@ double Hazard::MaxRange() const
 
 
 // Visuals to be created while this hazard is active.
-const map<const Effect *, int> &Hazard::EnvironmentalEffects() const
+const map<const Effect *, float> &Hazard::EnvironmentalEffects() const
 {
 	return environmentalEffects;
 }

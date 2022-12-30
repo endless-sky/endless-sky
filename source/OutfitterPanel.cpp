@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Hardpoint.h"
 #include "text/layout.hpp"
+#include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -74,7 +75,7 @@ namespace {
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
-	};
+	}
 }
 
 
@@ -106,6 +107,7 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
+	ShopPanel::CheckForMissions(Mission::OUTFITTER);
 	if(GetUI()->IsTop(this) && !checkedHelp)
 		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
@@ -368,7 +370,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 	if(!playerShip)
 	{
 		double mass = selectedOutfit->Mass();
-		return (!mass || player.Cargo().Free() >= mass);
+		return (!mass || player.Cargo().FreePrecise() >= mass);
 	}
 
 	for(const Ship *ship : playerShips)
