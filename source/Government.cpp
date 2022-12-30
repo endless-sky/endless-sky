@@ -59,7 +59,7 @@ namespace {
 			}
 	}
 
-	// Determine the penalty for hte given ShipEvent based on the values in the given map.
+	// Determine the penalty for the given ShipEvent based on the values in the given map.
 	double PenaltyHelper(int eventType, const map<int, double> &penalties)
 	{
 		double penalty = 0.;
