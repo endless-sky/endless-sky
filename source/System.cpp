@@ -971,7 +971,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance, const 
 
 	// Update random links.
 	for(auto &link : randomLinks)
-		if((guaranteedLinkBack &&link.first == previousSystem) || link.second && link.second >= Random::Real())
+		if((guaranteedLinkBack &&link.first == previousSystem) || (link.second && link.second >= Random::Real()))
 			Link(link.first);
 
 	// Every star system that is linked to this one is automatically a neighbor,
