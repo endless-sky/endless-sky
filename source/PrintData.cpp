@@ -64,7 +64,7 @@ namespace {
 	template <class Type>
 	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
-		cout << saleNoun << ',' << itemNoun << '\n';
+		cout << saleNoun << ';' << itemNoun << '\n';
 		for(auto &saleIt : sales)
 		{
 			cout << saleIt.first;
