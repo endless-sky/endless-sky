@@ -1240,7 +1240,7 @@ void Engine::EnterSystem(System &previousSystem)
 	GameData::StepEconomy();
 
 	// Refresh random systems that could be linked to this one.
-	system->UpdateRandomLinks();
+	system->UpdateRandomLinks(previousSystem);
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
