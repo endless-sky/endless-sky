@@ -34,6 +34,15 @@ namespace {
 	{
 		return (Random::Real() < base * pow(probability, .2));
 	}
+
+	// Returns if the missile is confused or not.
+	bool ConfusedTracking(double tracking, double weaponRange, double jamming, double distance)
+	{
+		if(!jamming)
+			return Random::Real() > tracking;
+		else
+			return Random::Real() > (tracking * distance) / (sqrt(jamming) * weaponRange);
+	}
 }
 
 
@@ -227,22 +236,16 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		{
 			double opticalTracking = weapon->OpticalTracking();
 			double opticalJamming = target->Attributes().Get("optical jamming");
-			if(!opticalJamming)
-				opticalConfused = Random::Real() > opticalTracking;
-			else
-				opticalConfused = Random::Real() > (opticalTracking * position.Distance(target->Position()))
-					/ (sqrt(opticalJamming) * weapon->Range());
+			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(), 
+				opticalJamming, position.Distance(target->Position()));
 		}
 
 		if(weapon->RadarTracking())
 		{
 			double radarTracking = weapon->RadarTracking();
 			double radarJamming = target->Attributes().Get("radar jamming");
-			if(!radarJamming)
-				radarConfused = Random::Real() > radarTracking;
-			else
-				radarConfused = Random::Real() > (radarTracking * position.Distance(target->Position()))
-					/ (sqrt(radarJamming) * weapon->Range());
+			radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
+				radarJamming, position.Distance(target->Position()));
 		}
 		if(infraredConfused && opticalConfused && radarConfused)
 			turn = Random::Real() - min(.5, turn);
