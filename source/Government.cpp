@@ -340,14 +340,9 @@ double Government::InitialPlayerReputation() const
 
 
 
-// Get the amount that your reputation changes for the given offense.
-double Government::PenaltyFor(int eventType) const
-{
-	return PenaltyHelper(eventType, penaltyFor);
-}
-
-
-
+// Get the amount that your reputation changes for the given offense against the given government.
+// The given value should be a combination of one or more ShipEvent values.
+// Returns 0 if the Government is null.
 double Government::PenaltyFor(int eventType, const Government *other) const
 {
 	if(!other)
