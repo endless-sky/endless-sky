@@ -62,7 +62,7 @@ public:
 	template <class V2>
 	Condition &operator=(const Condition<V2> &other);
 
-	template <class T, typename std::enable_if<std::is_arithmetic<T>::value, T>::type* Check = nullptr>
+	template <class T, typename std::enable_if<std::is_arithmetic<T>::value>::type* = nullptr>
 	Condition &operator=(const T &t) { value = static_cast<ValueType>(t); return *this; }
 
 	// Update the value from a scope that contains it
@@ -185,7 +185,7 @@ bool Condition<V>::SameOrigin(const Condition<V> &o)
 }
 
 
-template < class T, typename std::enable_if<std::is_floating_point<T>::value, T>::type* Check = nullptr >
+template < class T, typename std::enable_if<std::is_floating_point<T>::value>::type* = nullptr >
 bool NotNearZero(T number)
 {
 	// Use about half the precision of the type when comparing it to zero.
@@ -197,7 +197,7 @@ bool NotNearZero(T number)
 }
 
 
-template < class T, typename std::enable_if<!std::is_floating_point<T>::value, T>::type* Check = nullptr >
+template < class T, typename std::enable_if<!std::is_floating_point<T>::value>::type* = nullptr >
 bool NotNearZero(T number)
 {
 	return static_cast<bool>(number);
