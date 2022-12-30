@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WORMHOLE_H_
 
 #include "Color.h"
+#include "ExclusiveItem.h"
 
 #include <string>
 #include <unordered_map>
@@ -73,7 +74,7 @@ private:
 	std::string name = "???";
 	bool mappable = false;
 	bool colored = false;
-	Color linkColor;
+	ExclusiveItem<Color> linkColor;
 	std::unordered_map<const System *, const System *> links;
 };
 
