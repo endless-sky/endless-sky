@@ -394,10 +394,7 @@ test "Tests - Ember Wastes Navigation"
 		label notCardea1
 		branch notCardea1
 			not "flagship system: Cardea"
-		apply
-			"test: entered system by: wormhole" = "entered system by: wormhole"
 		assert
-			"entered system by: wormhole" == 1
 			year == 3013
 			month == 12
 			day == 21

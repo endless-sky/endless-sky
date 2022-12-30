@@ -108,7 +108,3 @@ test "Afterburner-flight - Simple depart land"
 		branch "floating"
 			"test: steps to wait" > 0
 		call "Land"
-		apply
-			"test: entered system by: takeoff" = "entered system by: takeoff"
-		assert
-			"entered system by: takeoff" == 1
