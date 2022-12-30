@@ -89,7 +89,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	name = planet.Name();
 	if(planet.IsWormhole())
 		color = planet.GetWormhole()->IsColored() ? *planet.GetWormhole()->GetLinkColor() :
-			*GameData::Colors().Get("map wormhole");
+			*GameData::Colors().Get("wormhole outline");
 	else if(planet.GetGovernment())
 	{
 		government = "(" + planet.GetGovernment()->GetName() + ")";

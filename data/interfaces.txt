@@ -124,6 +124,7 @@ color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
 color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
+color "wormhole outline" .8 .3 1. 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 
 
