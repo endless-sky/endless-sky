@@ -164,6 +164,8 @@ public:
 	// in per frame).
 	double Danger() const;
 
+	void UpdateRandomLinks(const System &previousSystem);
+
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
@@ -172,7 +174,6 @@ private:
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems, double distance);
-	void UpdateRandomLinks(const System &previousSystem);
 
 
 private:

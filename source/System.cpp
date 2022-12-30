@@ -899,6 +899,25 @@ double System::Danger() const
 
 
 
+
+void System::UpdateRandomLinks(const System &previousSystem)
+{
+	if(randomLinks.empty())
+		return;
+	for(auto &link : randomLinks)
+		if(link.first == previousSystem)
+		{
+			if(!links.count(link))
+				Link(previousSystem);
+		}
+		else if(link.second <= Random::Real())
+			Link(link.first);
+		else
+			Unlink(link.first);
+}
+
+
+
 void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 {
 	int index = objects.size();
@@ -984,24 +1003,6 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 		if(&it.second != this && it.second.Position().Distance(position) <= distance)
 			neighborSet.insert(&it.second);
 	}
-}
-
-
-
-void System::UpdateRandomLinks(const System &previousSystem)
-{
-	if(randomLinks.empty())
-		return;
-	for(auto &link : randomLinks)
-		if(link.first == previousSystem)
-		{
-			if(!links.count(link))
-				Link(previousSystem);
-		}
-		else if(link.second <= Random::Real())
-			Link(link.first);
-		else
-			Unlink(link.first);
 }
 
 
