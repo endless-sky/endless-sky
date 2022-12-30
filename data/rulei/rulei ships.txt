@@ -23,6 +23,7 @@ ship "vyu-Ira"
 		"cost" 77777777
 		"shields" 68000
 		"hull" 49000
+		"automaton" 1
 		"mass" 600
 		"drag" 20
 		"heat dissipation" 10
