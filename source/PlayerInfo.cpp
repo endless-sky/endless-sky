@@ -91,14 +91,13 @@ namespace {
 	}
 	PlayerInfo::SystemEntry StringToEntry(string entry)
 	{
-		if(entry == hyperdrive)
+		if(entry == "hyperdrive")
 			return PlayerInfo::SystemEntry::HYPERDRIVE;
 		else if(entry == "jump drive")
 			return PlayerInfo::SystemEntry::JUMP;
 		else if(entry == "wormhole")
 			return PlayerInfo::SystemEntry::WORMHOLE;
-		else
-			return PlayerInfo::SystemEntry::TAKE_OFF;
+		return PlayerInfo::SystemEntry::TAKE_OFF;
 	}
 }
 
@@ -746,7 +745,7 @@ void PlayerInfo::SetSystemEntry(const SystemEntry entryType)
 
 
 
-SystemEntry PlayerInfo::GetSystemEntry() const
+PlayerInfo::SystemEntry PlayerInfo::GetSystemEntry() const
 {
 	return entry;
 }
