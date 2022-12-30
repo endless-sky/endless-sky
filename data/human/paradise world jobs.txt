@@ -539,13 +539,13 @@ mission "Martini Bombings (Evacuation, Resident Family)"
 		planet "Martini"
 	destination
 		distance 2 5
-		attributes "paradise" "rich"
+		attributes "paradise" "rich" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 100000
+		payment 10000 120
 
 
 mission "Martini Bombings (Evacuation, Resident Group)"
@@ -564,13 +564,13 @@ mission "Martini Bombings (Evacuation, Resident Group)"
 		planet "Martini"
 	destination
 		distance 2 5
-		attributes "paradise" "rich"
+		attributes "paradise" "rich" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 100000
+		payment 20000 100
 
 
 mission "Martini Bombings (Evacuation, Resident)"
@@ -589,13 +589,13 @@ mission "Martini Bombings (Evacuation, Resident)"
 		planet "Martini"
 	destination
 		distance 2 5
-		attributes "paradise" "rich"
+		attributes "paradise" "rich" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 60000
+		payment 20000 150
 
 
 mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
@@ -616,13 +616,13 @@ mission "Martini Bombings (Evacuation, Family, Luxury Accommodations)"
 		planet "Martini"
 	destination
 		distance 2 5
-		attributes "paradise" "rich"
+		attributes "paradise" "rich" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 160000
+		payment 30000 200
 
 
 mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
@@ -643,13 +643,13 @@ mission "Martini Bombings (Evacuation, Singular, Luxury Accommodations)"
 		planet "Martini"
 	destination
 		distance 2 5
-		attributes "paradise" "rich"
+		attributes "paradise" "rich" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 90000
+		payment 30000 220
 
 
 mission "Martini Bombings (Evacuation, Tourist)"
@@ -672,7 +672,7 @@ mission "Martini Bombings (Evacuation, Tourist)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 30000
+		payment 5000 80
 
 
 mission "Martini Bombings (Evacuation, Tourist Couple)"
@@ -695,7 +695,7 @@ mission "Martini Bombings (Evacuation, Tourist Couple)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 30000
+		payment 5000 140
 
 
 mission "Martini Bombings (Evacuation, Tourist Family)"
@@ -717,8 +717,7 @@ mission "Martini Bombings (Evacuation, Tourist Family)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 60000
-
+		payment 5000 80
 
 mission "Martini Bombings (Evacuation, Tourist Group)"
 	name "Evacuate tourist group to <planet>"
@@ -740,7 +739,7 @@ mission "Martini Bombings (Evacuation, Tourist Group)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 60000
+		payment 5000 60
 
 
 mission "Martini Bombings (Evacuation, Businessman Group)"
@@ -763,7 +762,7 @@ mission "Martini Bombings (Evacuation, Businessman Group)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog plural"
-		payment 90000
+		payment 15000 150
 
 
 mission "Martini Bombings (Evacuation, Businessman)"
@@ -786,7 +785,7 @@ mission "Martini Bombings (Evacuation, Businessman)"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		dialog phrase "martini evac dialog singular"
-		payment 70000
+		payment 15000 160
 
 
 mission "Martini Bombings (Evacuation, Exhausted Doctors)"
@@ -809,7 +808,7 @@ mission "Martini Bombings (Evacuation, Exhausted Doctors)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 60000
+		payment 8000 80
 
 
 mission "Martini Bombings (Evacuation, Exhausted Search and Rescue Team)"
@@ -832,7 +831,7 @@ mission "Martini Bombings (Evacuation, Exhausted Search and Rescue Team)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
-		payment 55000
+		payment 8000 80
 
 
 
