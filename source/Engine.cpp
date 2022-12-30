@@ -1242,7 +1242,7 @@ void Engine::EnterSystem(const System &previousSystem)
 	// Refresh random systems in range for jump.
 	const std::set<const System *> neighbors = system->JumpNeighbors(flagship->JumpNavigation().JumpRange());
 	for(const System *nearbySystem : neighbors)
-		nearbySystem.UpdateRandomLinks(*previousSystem);
+		nearbySystem->UpdateRandomLinks(previousSystem);
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
@@ -1434,7 +1434,7 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
-		System &previousSystem = *playerSystem;
+		const System &previousSystem = *playerSystem;
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem(previousSystem);
