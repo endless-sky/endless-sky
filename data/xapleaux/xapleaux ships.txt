@@ -17,8 +17,6 @@ ship Ascomy
 	uncapturable
 	attributes
 		category "Heavy Warship"
-		licenses
-			Xapleaux
 		cost 42140000
 		mass 945
 		bunks 138
@@ -47,9 +45,10 @@ ship Ascomy
 		"Terpenoid Trajectile Template" 4
 		"Terpenoid Trajectile Launcher" 4
 		"Control Transceiver"
-		"Ka'het Ravager Beam" 4
-		"Ka'het Ravager Turret" 4
-		"Korath Warder" 2
+		"Quininoid Trajectile Template" 4
+		"Quininoid Trajectile Launcher" 4
+		"Repulsor Wave Turret" 4
+		"Xapleaux Anti-Missile" 2
 		"Large Heat Shunt" 4
 		"Plasma Core"
 		"Small Heat Shunt" 2
@@ -57,52 +56,50 @@ ship Ascomy
 		"Systems Core (Large)"
 		"Triple Plasma Core"
 		`Type X "Coleo" Engine`
-	engine -142.5 42.5
-	engine 142.5 42.5
-	"reverse engine" -142.5 -42.5
+	engine -157 46
+	engine 157 46
+	"reverse engine" -157 -56
 		angle -360
-	"reverse engine" 142.5 -42.5
+	"reverse engine" 157 -56
 		angle -360
-	"steering engine" 142.5 -42.5
+	"steering engine" 157 -56
 		angle -180
 		right
-	"steering engine" -142.5 -42.5
+	"steering engine" -157 -46
 		angle -180
 		left
-	"steering engine" -142.5 42.5
+	"steering engine" -157 56
 		right
-	"steering engine" 142.5 42.5
+	"steering engine" 157 46
 		left
-	turret -96.5 -31.5 "Ka'het Ravager Turret"
-	turret 96.5 -31.5 "Ka'het Ravager Turret"
-	turret -56 -31.5 "Ka'het Ravager Turret"
-	turret 56 -31.5 "Ka'het Ravager Turret"
-	turret -76 70.5 "Korath Warder"
-	turret 76 70.5 "Korath Warder"
-	gun -108.5 -33 "Ka'het Ravager Beam"
-	gun 108.5 -33 "Ka'het Ravager Beam"
-	gun -84 -33 "Ka'het Ravager Beam"
-	gun 84 -33 "Ka'het Ravager Beam"
-	gun -69 -33 "Terpenoid Trajectile Launcher"
-	gun 69 -33 "Terpenoid Trajectile Launcher"
-	gun -44 -33 "Terpenoid Trajectile Launcher"
-	gun 44 -33 "Terpenoid Trajectile Launcher"
+	turret -106 -44 "Repulsor Wave Turret"
+	turret 106 -44 "Repulsor Wave Turret"
+	turret -62 -44 "Repulsor Wave Turret"
+	turret 62 -44 "Repulsor Wave Turret"
+	turret 84 68 "Xapleaux Anti-Missile"
+	turret -84 68 "Xapleaux Anti-Missile"
+	gun -119.5 -46 "Quininoid Trajectile Launcher"
+	gun 119.5 -46 "Quininoid Trajectile Launcher"
+	gun -92.5 -46 "Quininoid Trajectile Launcher"
+	gun 92.5 -46 "Quininoid Trajectile Launcher"
+	gun -75.5 -46 "Terpenoid Trajectile Launcher"
+	gun 75.5 -46 "Terpenoid Trajectile Launcher"
+	gun -48.5 -46 "Terpenoid Trajectile Launcher"
+	gun 48.5 -46 "Terpenoid Trajectile Launcher"
 	explode "huge explosion" 15
 	explode "large explosion" 50
 	explode "medium explosion" 70
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description "The mainline security vessel of the Xapleaux, it was designed to hold sufficient people as to allow a sense of community among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with. All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of The Brilliance without having to waste time refuelling, as a lesson learned from their encounter with Korath raids."
+	description `The mainline security vessel of the Xapleaux, it was designed to hold sufficient people as to allow a sense of community among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with. All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of The Brilliance without having to waste time refuelling, as a lesson learned from their encounter with Korath raids.`
 
 ship Blastoc
 	sprite ship/blastoc
-	thumbnail "Heavy Freighter"
+	thumbnail "thumbnail/blastoc"
 	uncapturable
 	attributes
 		category "Heavy Freighter"
-		licenses
-			Xapleaux
 		cost 42140000
 		mass 945
 		bunks 138
@@ -128,7 +125,8 @@ ship Blastoc
 			"hit force" 9600
 	outfits
 		"Control Transceiver"
-		"Ka'het Ravager Turret" 3
+		"Repulsor Wave Turret" 2
+		"Xapleaux Anti-Missile"
 		"Large Heat Shunt" 4
 		"Plasma Core"
 		"Small Heat Shunt" 2
@@ -136,30 +134,30 @@ ship Blastoc
 		"Systems Core (Large)"
 		"Triple Plasma Core"
 		`Type I "Lepido" Engine`
-	engine -81 107
-	engine 81 107
-	"reverse engine" -81 -101
-	"reverse engine" 81 -101
-	"steering engine" 81 -101
+	engine -100.5 128.5
+	engine 100.5 128.5
+	"reverse engine" -100.5 -130.5
+	"reverse engine" 100.5 -130.5
+	"steering engine" 100.5 -130.5
 		angle -180
 		right
-	"steering engine" -81 -101
+	"steering engine" -100.5 -130.5
 		angle -180
 		left
-	"steering engine" -81 101
+	"steering engine" -100.5 128.5
 		right
-	"steering engine" 81 101
+	"steering engine" 100.5 128.5
 		left
-	turret -48.5 1 "Ka'het Ravager Turret"
-	turret 48.5 1 "Ka'het Ravager Turret"
-	turret 0 -86 "Ka'het Ravager Turret"
+	turret -60.5 -3 "Repulsor Wave Turret"
+	turret 60.5 -3 "Repulsor Wave Turret"
+	turret 0 -111.5 "Xapleaux Anti-Missile"
 	explode "huge explosion" 15
 	explode "large explosion" 50
 	explode "medium explosion" 70
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description Blastoc.dsc
+	description `Blastoc.dsc`
 
 ship Basidio
 	sprite ship/basidio
@@ -167,8 +165,6 @@ ship Basidio
 	uncapturable
 	attributes
 		category Transport
-		licenses
-			Xapleaux
 		cost 42140000
 		mass 945
 		bunks 138
@@ -194,7 +190,7 @@ ship Basidio
 			"hit force" 9600
 	outfits
 		"Control Transceiver"
-		"Ka'het Ravager Turret" 2
+		"Repulsor Wave Turret" 2
 		"Large Heat Shunt" 4
 		"Plasma Core"
 		"Small Heat Shunt" 2
@@ -202,27 +198,70 @@ ship Basidio
 		"Systems Core (Large)"
 		"Triple Plasma Core"
 		`Type I "Lepido" Engine`
-	engine -109.5 104
-	engine 109.5 104
-	"reverse engine" -109.5 -104
-	"reverse engine" 109.5 -104
-	"steering engine" 109.5 -104
+	engine -140.5 132
+	engine 140.5 132
+	"reverse engine" -140.5 -134.5
+	"reverse engine" 140.5 -134.5
+	"steering engine" 109.5 -134.5
 		angle -180
 		right
-	"steering engine" -109.5 -104
+	"steering engine" -140.5 -134.5
 		angle -180
 		left
-	"steering engine" -109.5 104
+	"steering engine" -140.5 132
 		right
-	"steering engine" 109.5 104
+	"steering engine" 140.5 132
 		left
-	turret -43.5 -5 "Ka'het Ravager Turret"
-	turret 43.5 -5 "Ka'het Ravager Turret"
+	turret -56 -7.5 "Repulsor Wave Turret"
+	turret 56 -7.5 "Repulsor Wave Turret"
 	explode "huge explosion" 15
 	explode "large explosion" 50
 	explode "medium explosion" 70
 	explode "small explosion" 60
 	explode "tiny explosion" 120
 	"final explode" "final explosion large"
-	description Basidio.dsc
+	description `Basidio.dsc`
 
+
+ship "Neocalli"
+	sprite "ship/neocalli"
+	thumbnail "thumbnail/neocalli"
+	attributes
+		category "Fighter"
+		"cost" 83000
+		"hull" 700
+		"bunks" 4
+		"required crew" 1
+		"mass" 2000
+		"drag" .59
+		"heat dissipation" .9
+		"outfit space" 58
+		"weapon capacity" 8
+		"engine capacity" 28
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
+	outfits
+		"Repulsor Wave Turret"
+		
+		"Generator (Candle Class)"
+		"Systems Core (Small)"
+		
+		`Type V "Strepsip" Engine`
+	engine -20.5 12
+		angle 29
+	engine 20.5 12
+		angle 331
+	"steering engine" -20.5 12
+		angle 29
+		right
+	"steering engine" 20.5 12
+		angle 331
+		left
+	gun 0 -14
+	turret 0 10
+	explode "tiny explosion" 15
+	description `Neocalli.`
+	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`

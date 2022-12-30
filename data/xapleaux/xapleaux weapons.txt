@@ -47,7 +47,7 @@ outfit "Terpenoid Trajectile Template"
 	"terpenoid assembly" 1
 	description "The Terpenoid Template is the plug-in assembly apparatus for a Xapleaux Trajectile Assembler to support the Terpenoid Launcher. It allows an assembler to build the Terpenoid Trajectile and contains enough parts to have functionally unlimited availability for the duration of any likely conflict. It is easily restocked with base materials at any port."
 
-#Stats, icons, & effects are all indicative placeholders - they're set up to work, not necessarily be balanced or polished.
+
 outfit "Terpenoid Trajectile Launcher"
 	category "Secondary Weapons"
 	cost 95000
@@ -58,18 +58,17 @@ outfit "Terpenoid Trajectile Launcher"
 	"gun ports" -1
 	"terpenoid assembly" -1
 	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 2
-			"no repeat"
-		sound "seeker"
+		sprite "projectile/terpenoid"
+			"frame rate" 4
+		sound "terpenoid"
 		ammo "Terpenoid Trajectile Template" 0
-#		icon "icon/terpenoid"
+		icon "icon/terpenoid"
 		"fire effect" "tracker fire"
 		"hit effect" "emp spark" 20
 		"hit effect" "tracker impact"
 		"hit effect" "tracker cloud"
 		"hit effect" "seeker impact"
-		"die effect" "piercer impact"
+		"die effect" "medium explosion"
 		"inaccuracy" 2
 		"velocity" 24
 		"lifetime" 600
@@ -99,7 +98,7 @@ outfit "Quininoid Trajectile Template"
 	"quininoid assembly" 1
 	description "The Quininoid Template is the plug-in assembly apparatus for a Xapleaux Trajectile Assembler to support the Quininoid Launcher. It allows an assembler to build the Quininoid Trajectile and contains enough parts to have functionally unlimited availability for the duration of any likely conflict. It is easily restocked with base materials at any port."
 
-#Stats, icons, & effects are all indicative placeholders - they're set up to work, not necessarily be balanced or polished.
+
 outfit "Quininoid Trajectile Launcher"
 	category "Secondary Weapons"
 	cost 73000
@@ -111,43 +110,42 @@ outfit "Quininoid Trajectile Launcher"
 	"quininoid assembly" -1
 	weapon
 		sprite "projectile/quininoid"
-		sound "seeker"
+		sound "quininoid"
 		ammo "Quininoid Trajectile Template" 0
 		"phasing"
 		"stream"
-#		icon "icon/quininoid"
+		icon "icon/quininoid"
 		"fire effect" "minelayer fire"
-		"hit effect" "firelight ring" 20
-		"velocity" 0.1
-		"lifetime" 20
+		"hit effect" "large explosion"
+		"velocity" 2
+		"lifetime" 30
 		"reload" 20
 		"firing energy" 2
 		"firing heat" 10
-		"acceleration" -0.1
-		"turn" 9
-		"drag" .1
+		"acceleration" 0.2
+		"turn" 8
 		"radar tracking" 1
 		"optical tracking" .9
+		"velocity override" 20
 		"homing" 5
 		"missile strength" 60
-		submunition "Quininoid Yeeting"
+		"submunition" "Quininoid Active"
 	description "Functionally the oldest weapon in the Xapleaux arsenal, this three stage weapon launches a Quininoid package - a missile casing with five warheads inside. In its first phase it is slow but incredibly mobile, able to safely position and orient on its target. In its second phase it engages the primary burner and loses most ability to home in on a target as it accelerates with enormous speed before bursting apart in its third phase to release the five carried warheads in a purely ballistic scattering effect."
 	description "	An individual warhead for this weapon is very low yield, but the rate of fire is the key feature. A ship carrying several of these can flood the space between it and the target with an impenetrable wall of projectiles that are particularly effective at keeping swarms of small craft (or wildlife) at bay."
 
-outfit "Quininoid Yeeting"
+outfit "Quininoid Active"
 	weapon
-		sprite "projectile/quininoid"
-			"frame rate" 12
+		sprite "projectile/quininoid active"
+			"frame rate" 30
 		"hit effect" "missile hit"
-		"die effect" "piercer fire"
-		"velocity" 0.1
-		"lifetime" 300
-		"acceleration" 5
-		"turn" 4.6
-		"homing" .5
+		"die effect" "missile death"
+		"velocity" 1
+		"lifetime" 100
+		"acceleration" 0.3
+		"turn" 5
+		"homing" 1
 		"radar tracking" 1
-#		"trigger radius" 80
-#or should this be "split range" ? Needs to break apart into its submunitions, but ideally needs to do this regardless of whether it has a target/whether that target still exists - when it gets in range of another enemy
+		"split range" 200
 		"piercing" .2
 		"shield damage" 100
 		"hull damage" 125
@@ -158,22 +156,20 @@ outfit "Quininoid Yeeting"
 outfit "Quin"
 	weapon
 		sprite "projectile/quin"
-			"frame rate" 12
-		"hit effect" "missile hit"
-		"die effect" "missile death"
+		"hit effect" "tiny explosion"
+		"die effect" "tiny explosion"
 		"velocity" 3
-		"lifetime" 140
+		"lifetime" 60
 		"shield damage" 20
 		"hull damage" 25
 		"leak damage" .1
 		"hit force" 80
+		"inaccuracy" 25
 		"missile strength" 12
 
 
 outfit "Repulsor Wave Turret"
 	category "Turrets"
-	licenses
-		Xapleaux
 	cost 1838000
 	thumbnail "outfit/repulsor wave turret"
 	"mass" 56
@@ -183,30 +179,72 @@ outfit "Repulsor Wave Turret"
 	"turret mounts" -1
 	weapon
 		sprite "projectile/repulsor wave"
-			"frame rate" 3.2
-			"random start frame"
+			"frame rate" 8
+			"no repeat"
 		"hardpoint sprite" "hardpoint/repulsor wave turret"
 		"hardpoint offset" 9.
-		sound "repulsor wave turret"
+		sound "repulsor wave"
 		"hit effect" "repulsor wave impact"
 		"inaccuracy" 4
 		"turret turn" 7
-		"velocity" 560
-		"lifetime" 90
+		"velocity" 10
+		"lifetime" 14
 		"reload" 15
 		"firing energy" 4
 		"firing heat" 1.4
-		"hit force" 60
+		"hit force" 10
+		"split range" 1
+		"submunition" "Repulsor Split" 10
 	description "This pulse wave turret imparts functionally no damage on a target but is very effective at keeping fauna native to The Brilliance from posing a hazard to civilian ships. As it does no damage it is not a military weapon at all, but does avoid angering swarms or otherwise breaking apart hazardous objects. As such it is frequently deployed by both military and civilians alike for general security purposes."
 
-#TBD
-effect "repulsor wave impact"
-	sprite "effect/repulsor wave impact"
-		"no repeat"
-		"frame rate" 10
-	"lifetime" 20
-	"random angle" 360
-	"random spin" 10
-	"random velocity" 4
-	"velocity scale" .01
+outfit "Repulsor Split"
+	weapon
+		sprite "projectile/repulsor split"
+			"frame rate" 3
+			"no repeat"
+			#"scale" 0.8
+		"lifetime" 34
+		"hit force" 10
+		"inaccuracy" 15
+		"split range" 1
+		"submunition" "Repulsor Fade" 10
+		
+outfit "Repulsor Fade"
+	weapon
+		sprite "projectile/repulsor fade"
+			"frame rate" 2
+			"no repeat"
+			"scale" 0.8
+		"lifetime" 40
+		"hit force" 10
+		"inaccuracy" 10
 
+
+outfit "Xapleaux Anti-Missile"
+	category "Turrets"
+	cost 845000
+	thumbnail "outfit/warder"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"energy capacity" 50
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/warder"
+		"hardpoint offset" 3.
+		"hit effect" "xapleaux am"
+		"anti-missile" 10
+		"velocity" 400
+		"lifetime" 1
+		"reload" 8
+		"firing energy" 24
+		"firing heat" 10
+	description "This anti-missile system helps defend Korath warships from long-range attacks."
+
+effect "xapleaux am"
+	sprite "effect/xapleaux am"
+		"no repeat"
+		"frame rate" 6
+	sound "xapleaux am"
+	"lifetime" 11
+	"velocity scale" 1
