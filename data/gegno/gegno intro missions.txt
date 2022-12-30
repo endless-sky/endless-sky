@@ -27,6 +27,8 @@ mission "First Contact: Gegno Vi"
 	destination "Dueyu Eitch"
 	clearance
 	passengers 1
+	to offer
+		not "Gegno Genocide Defense: offererd"
 	on offer
 		conversation		
 			branch "second encounter"
@@ -168,6 +170,17 @@ mission "First Contact: Gegno Vi"
 	on defer
 		set "First Contact: Gegno Vi: deferred"
 
+	to fail
+		"reputation: Gegno" < -100
+
+	on fail
+		conversation
+			`Despite knowing you are transporting one of them, you made the conscious decision to fire upon <alien> ships, and the rest of your trip to this world was extremely awkward. Rather than settle in a bunk, the <alien> passenger stood close behind you in your cockpit the entire time. You occasionally turned to observe their behavior and even made attempts to communicate, but they wouldn't so much as look in your direction.`
+			`	Strangely, they didn't seem to be upset at all, at least in a way you could tell. Regardless, the tension became extremely uncomfortable, but now that you've landed your ship, perhaps you could address it.`
+			choice
+				`	(Try to communicate with the <alien>.)`
+			`	Before you could turn to speak to them, you feel an immense force go straight through your torso, and your body slowly starts to lift up. You try to speak, but nothing comes out, and struggling your head, you turn to see that the <alien> has pierced you through your chest with their spear weapon. As your vision slowly fades, the last glimpse you could see of them wasn't a look of hatred, but one of disappointment.`
+				die
 
 mission "Visit Quarg in Gegno Space"
 	landing
@@ -184,12 +197,13 @@ mission "Visit Quarg in Gegno Space"
 		"<aliens>" "Gegno"
 			has "Giaru Gegno: Quarg Contact: offered"
 		"<designated system>" "designated system"
-		"<designated system>" "<destination>"
+		"<designated system>" "Giaru Gegno"
 			has "Giaru Gegno: Quarg Contact: offered"
 	source "Dueyu Eitch"
 	destination "Giaru Gegno"
 	to offer
 		has "First Contact: Gegno Vi: done"
+		not "First Contact: Gegno Vi: failed"
 	on offer
 		conversation
 			`Your trip here was full of tension and anything but pleasant. Rather than find a seat normally, the <alien> stood close behind you in your cockpit with their arms crossed during most of the ride, almost as if they were an immovable boulder. Occasionally, you made attempts to communicate with them again to break the pressure, but the most they would give you is a slight glance or low grunt.`
@@ -225,7 +239,7 @@ mission "Visit Quarg in Gegno Space"
 			names "gegno scin"
 			variant
 				"Coesite" 3
-				"Felsic" 2
+				"Felsic"
 				"Feldspar"
 				"Halite" 6
 	npc
@@ -253,6 +267,7 @@ mission "Giaru Gegno: Quarg Contact"
 	source "Giaru Gegno"
 	to offer
 		has "First Contact: Quarg: offered"
+		not "Gegno Genocide Defense: offered"
 	on offer
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them, a majority of the Gegno's population consists of complacent civilians.`
 		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
@@ -437,9 +452,12 @@ mission "Gegno Genocide Defense"
 	invisible
 	to offer
 		"reputation: Gegno" < -100
+		has "Giaru Gegno: Quarg Contact: offered"
 	to complete
 		never
 	on offer
+		fail "First Contact: Gegno Vi"
+		fail "Visit Quarg in Gegno Space"
 		fail "Stationed Augen"
 		"reputation: Gegno" = -100
 		"reputation: Gegno Vi" = -100
