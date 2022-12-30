@@ -200,7 +200,7 @@ private:
 
 	// Hyperspace links to other systems.
 	std::set<const System *> links;
-	std::map<const System *, double> randomLinks;
+	std::map<System *, double> randomLinks;
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked.
