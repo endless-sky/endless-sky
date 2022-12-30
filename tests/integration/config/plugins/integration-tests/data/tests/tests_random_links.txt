@@ -1,4 +1,4 @@
-test-data "guaranteed link"
+test-data "guarantied link"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -58,7 +58,7 @@ test "Random Linkk - Guaranteed Way Back"
 	status active
 	description "Test if we can go back trough the same link after going trough a random link."
 	sequence
-		inject "garanteed link"
+		inject "guarantied link"
 		call "Load First Savegame"
 		call "Depart"
 		input
