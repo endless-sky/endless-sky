@@ -118,19 +118,9 @@ test "Test-Framework - Load Depart Land"
 		assert
 			"ships: Light Freighter" == 3
 		watchdog 90000
-		input
-			command land
-		label landing
-		branch landing
-			and
-				"flagship planet: Earth" < 1
-				"flagship planet: Mars" < 1
-				"flagship planet: Luna" < 1
+		call "Land"
 		assert
-			or
-				"flagship planet: Earth" > 0
-				"flagship planet: Mars" > 0
-				"flagship planet: Luna" > 0
+			"flagship landed" > 0
 
 
 test "Test-Framework - Recursive Calling"
