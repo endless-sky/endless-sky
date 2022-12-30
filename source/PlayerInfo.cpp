@@ -74,6 +74,32 @@ namespace {
 			ships[0] = flagship;
 		}
 	}
+	string EntryToString(PlayerInfo::SystemEntry entryType)
+	{
+		switch(entryType)
+		{
+			case SystemEntry::HYPERDRIVE:
+				return "hyperdrive";
+			case SystemEntry::JUMP:
+				return "jump drive";
+			case SystemEntry::WORMHOLE:
+				return "wormhole";
+			default:
+			case SystemEntry::TAKE_OFF:
+				return "takeoff";
+		}
+	}
+	PlayerInfo::SystemEntry StringToEntry(string entry)
+	{
+		if(entry == hyperdrive)
+			return SystemEntry::HYPERDRIVE;
+		else if(entry == "jump drive")
+			return SystemEntry::JUMP;
+		else if(entry == "wormhole")
+			return SystemEntry::WORMHOLE;
+		else
+			return SystemEntry::TAKE_OFF;
+	}
 }
 
 
@@ -183,6 +209,10 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(child.Token(0) == "entry" && child.Size() >= 2)
+			entry = StringToEntry(child.Token(1));
+		else if(child.Token(0) == "previous system" && child.Size() >= 2)
+			previousSystem = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
@@ -711,11 +741,7 @@ const CoreStartData &PlayerInfo::StartData() const noexcept
 
 void PlayerInfo::SetSystemEntry(const SystemEntry entryType)
 {
-	static const string entered = "entered system by: ";
-	Conditions().Set(entered + "takeoff", entryType == SystemEntry::TAKE_OFF);
-	Conditions().Set(entered + "hyperdrive", entryType == SystemEntry::HYPERDRIVE);
-	Conditions().Set(entered + "jump drive", entryType == SystemEntry::JUMP);
-	Conditions().Set(entered + "wormhole", entryType == SystemEntry::WORMHOLE);
+	entry = entryType;
 }
 
 
@@ -724,6 +750,7 @@ void PlayerInfo::SetSystemEntry(const SystemEntry entryType)
 void PlayerInfo::SetSystem(const System &system)
 {
 	this->system = &system;
+	this->previousSystem = &system;
 	Visit(system);
 }
 
@@ -3144,6 +3171,26 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// This condition corresponds to the last system the flagship was in.
+	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
+	auto systemEntryFun = [this](const string &name) -> bool
+	{
+		return name == "entered system by: " + EntryToString(entry);
+	};
+	systemEntryProvider.SetHasFunction(systemEntryFun);
+	systemEntryProvider.SetGetFunction(systemEntryFun);
+
+	// This condition corresponds to the last system the flagship was in.
+	auto &&previousSystemProvider = conditions.GetProviderPrefixed("previous system: ");
+	auto previousSystemFun = [this](const string &name) -> bool
+	{
+		if(!previousSystem)
+			return false;
+		return name == "previous system: " + previousSystem->Name();
+	};
+	previousSystemProvider.SetHasFunction(previousSystemFun);
+	previousSystemProvider.SetGetFunction(previousSystemFun);
+
 	// Conditions to determine if flagship is in a system and on a planet.
 	auto &&flagshipSystemProvider = conditions.GetProviderPrefixed("flagship system: ");
 	auto flagshipSystemFun = [this](const string &name) -> bool
@@ -3606,6 +3653,9 @@ void PlayerInfo::Save(const string &path) const
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
+	out.Write("entry", EntryToString(entry));
+	if(previousSystem)
+		out.Write("previous system", previousSystem->Name());
 	if(system)
 		out.Write("system", system->Name());
 	if(planet)

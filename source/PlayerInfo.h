@@ -337,6 +337,8 @@ private:
 	std::string filePath;
 
 	Date date;
+	SystemEntry entry = SystemEntry::TAKE_OFF;
+	const System *previousSystem = nullptr;
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
