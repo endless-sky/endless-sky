@@ -45,8 +45,8 @@ public:
 	bool IsMappable() const;
 	// Whether this wormhole has a colored outline as a planet.
 	bool IsColored() const;
-	// Returns this wormhole's arrows color. The link color
-	// will be a dim version of this color.
+	// Returns this wormholes arrows color.
+	// The link color will be a dim version of this one.
 	const Color *GetLinkColor() const;
 	// Whether this wormhole was auto-generated. This is used to
 	// update this wormhole in game events that update the corresponding
