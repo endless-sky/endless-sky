@@ -899,21 +899,20 @@ double System::Danger() const
 
 
 
-
 void System::UpdateRandomLinks(const System &previousSystem)
 {
 	if(randomLinks.empty())
 		return;
 	for(auto &link : randomLinks)
-		if(link.first == previousSystem)
+		if(link->first == previousSystem)
 		{
-			if(!links.count(link))
-				Link(previousSystem);
+			if(!links.count(link->first))
+				Link(&previousSystem);
 		}
-		else if(link.second <= Random::Real())
-			Link(link.first);
+		else if(link->second <= Random::Real())
+			Link(link->first);
 		else
-			Unlink(link.first);
+			Unlink(link->first);
 }
 
 
