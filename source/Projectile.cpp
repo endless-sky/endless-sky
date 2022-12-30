@@ -219,14 +219,21 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		if(weapon->InfraredTracking())
 			infraredConfused = Random::Real() > weapon->InfraredTracking();
 
-		// Optical: proportional tracking quality.
-		if(weapon->OpticalTracking())
-			opticalConfused = Random::Real() > weapon->OpticalTracking();
-
-		// Radar: If the target has no jamming, then proportional to tracking
+		// Optical and Radar: If the target has no jamming, then proportional to tracking
 		// quality. If the target does have jamming, then it's proportional to
 		// tracking quality, the strength of target's jamming, and the distance
 		// to the target (jamming power attenuates with distance).
+		if(weapon->OpticalTracking())
+		{
+			double opticalTracking = weapon->OpticalTracking();
+			double opticalJamming = target->Attributes().Get("optical jamming");
+			if(!opticalJamming)
+				opticalConfused = Random::Real() > opticalTracking;
+			else
+				opticalConfused = Random::Real() > (opticalTracking * position.Distance(target->Position()))
+					/ (sqrt(opticalJamming) * weapon->Range());
+		}
+
 		if(weapon->RadarTracking())
 		{
 			double radarTracking = weapon->RadarTracking();
@@ -374,11 +381,20 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->Tracking())
 		hasLock |= Check(weapon->Tracking(), base);
 
-	// Optical tracking is about 15% for interceptors and 75% for medium warships.
+	// Optical tracking is about 15% for interceptors and 75% for medium warships,
+	// but can be affected by jamming.
 	if(weapon->OpticalTracking())
 	{
+		double opticalJamming = target.IsDisabled() ? 0. : target.Attributes().Get("optical jamming");
+		if(opticalJamming)
+		{
+			double distance = position.Distance(target.Position());
+			double jammingRange = 500. + sqrt(opticalJamming) * 500.;
+			double rangeFraction = min(1., distance / jammingRange);
+			opticalJamming = (1. - rangeFraction) * opticalJamming;
+		}
 		double weight = target.Mass() * target.Mass();
-		double probability = weapon->OpticalTracking() * weight / (150000. + weight);
+		double probability = weapon->OpticalTracking() * weight / (150000. + weight) / (1. + opticalJamming);
 		hasLock |= Check(probability, base);
 	}
 
