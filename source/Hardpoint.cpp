@@ -306,7 +306,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 		Angle maxArc = GetMaxArc();
 		minArc += facing;
 		maxArc += facing;
-		if(!aim.IsInRange(minArc,maxArc))
+		if(!aim.IsInRange(minArc, maxArc))
 			return false;
 	}
 
@@ -375,7 +375,7 @@ void Hardpoint::Install(const Outfit *outfit)
 			const Angle harmonized = baseAngle + HarmonizedAngle();
 			// The harmonized angle might be out of the arc of a turret.
 			// If so, this turret is forced "parallel."
-			if(!isTurret || isOmnidirectional || harmonized.IsInRange(GetMinArc(),GetMaxArc()))
+			if(!isTurret || isOmnidirectional || harmonized.IsInRange(GetMinArc(), GetMaxArc()))
 				baseAngle = harmonized;
 		}
 		angle = baseAngle;

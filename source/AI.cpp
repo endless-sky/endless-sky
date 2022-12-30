@@ -2990,7 +2990,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					const Angle facing = ship.Facing();
 					minArc += facing;
 					maxArc += facing;
-					if(!angleToPoint.IsInRange(minArc,maxArc))
+					if(!angleToPoint.IsInRange(minArc, maxArc))
 					{
 						// Decrease the priority of the target.
 						rendezvousTime += 2. * weapon->TotalLifetime();
