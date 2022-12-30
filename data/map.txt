@@ -12,8 +12,8 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 galaxy "Milky Way"
-	pos 0 0
-	sprite ui/galaxy
+	pos 112 22
+	sprite "ui/milky way"
 
 galaxy "label arachi"
 	pos -750 615
@@ -36743,6 +36743,10 @@ planet Darkcloak
 	spaceport `	It is likely that most of the goods available for trade here were stolen from one of the nearby Hai systems.`
 	shipyard "Mon Ki o'Uden Advanced"
 	outfitter "Unfettered Basics"
+	tribute 3500
+		threshold 10000
+		fleet "Large Unfettered" 25
+		fleet "Small Unfettered" 15
 
 planet Darkmetal
 	attributes hai "hai tourism" mining
@@ -37332,6 +37336,10 @@ planet Firelode
 	landscape land/mountain25-spfld
 	description `The Unfettered are operating several large strip mines here to collect uranium and plutonium to fuel the generators in their warships. Older, abandoned mining pits are scattered throughout the planet's surface. As a result of the mining activity, the groundwater here has become badly contaminated.`
 	spaceport `The spaceport is in the middle of a large city with typical Hai architecture: raw metal and chamfered corners. However, much of the city appears to have been ruined long ago, probably in a battle. The ruins have not been rebuilt, but instead it appears that most of the ruined buildings have been torn down for scrap metal. Several of the spaceport hangars are in bad repair, as well.`
+	tribute 2000
+		threshold 10000
+		fleet "Large Unfettered" 15
+		fleet "Small Unfettered" 5
 
 planet "Firka Tesk"
 	attributes korath
@@ -40375,6 +40383,10 @@ planet Warfeed
 	description `Warfeed is mostly covered in oceans, and much of its land area devoted to agriculture. Most of the fields are tilled and harvested by robots, but there are also many scattered homesteads of subsistence farmers, who survive with the aid of little or no technology.`
 	description `	In recent years, both the land and the seas of Warfeed have begun to show the toll of centuries of overharvesting. Large portions of the continents near the equator are now nothing but growing deserts, and even the best remaining farmland is sandy and nutrient-poor. All but the smallest marine organisms have been nearly fished to extinction.`
 	spaceport `This spaceport is a collection of ramshackle wooden buildings and packed dirt landing pads. The wagons piled high with produce and bags of grain would not look out of place in many human ports, but they are being drawn by giant lizards instead of horses or oxen. There are no human beings here, and most of the Hai eye you with suspicion and distaste.`
+	tribute 6000
+		threshold 10000
+		fleet "Large Unfettered" 10
+		fleet "Small Unfettered" 100
 
 planet "Warm Slope"
 	attributes saryd urban
