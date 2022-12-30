@@ -2083,7 +2083,7 @@ phrase "friendly navy"
 	word
 		"heroic"
 		"noble"
-		"honourable"
+		"honorable"
 		"respectable"
 		"admirable"
 		"commendable"
