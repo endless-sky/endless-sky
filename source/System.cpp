@@ -99,7 +99,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "link", "random link", "object", "hazard"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "hazard", "link", "object", "random link"};
 
 	for(const DataNode &child : node)
 	{
