@@ -323,6 +323,9 @@ government "Gegno Scin (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
+	"use foreign penalties for"
+		"Gegno"
+
 	
 government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
@@ -337,8 +340,10 @@ government "Gegno Vi (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
-	
-	
+	"use foreign penalties for"
+		"Gegno"
+
+
 # Gegno Vi governments used for dueling.
 government "Gegno Vi (Duelist A)"
 	swizzle 0
