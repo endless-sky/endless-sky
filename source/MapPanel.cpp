@@ -1070,7 +1070,8 @@ void MapPanel::DrawWormholes()
 			continue;
 
 		for(auto &&link : it.second.Links())
-			if(p.IsInSystem(link.first) && player.HasVisited(*link.first) && player.HasVisited(*link.second))
+			if(p.IsInSystem(link.first) && player.HasVisited(*link.first)
+					&& player.HasVisited(*link.second))
 				arrowsToDraw.emplace_back(link.first, link.second, it.second.GetLinkColor());
 	}
 
