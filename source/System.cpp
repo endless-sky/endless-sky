@@ -140,6 +140,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				attributes.clear();
 			else if(key == "random link")
 				randomLinks.clear();
+			else if(key == "garanteed link back")
+				guaranteedLinkBack = false;
 			else if(key == "link")
 				links.clear();
 			else if(key == "asteroids" || key == "minables")
@@ -904,7 +906,7 @@ void System::UpdateRandomLinks(System &previousSystem)
 	if(randomLinks.empty())
 		return;
 	for(auto &link : randomLinks)
-		if(link.first == &previousSystem)
+		if(link.first == &previousSystem && guaranteedLinkBack)
 			Link(&previousSystem);
 		else if(!link.second)
 			continue;
@@ -989,7 +991,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	// It will still be reachable by Jump Drive.
 	for(auto &link : randomLinks)
 		neighborSet.insert(link.first);
-	
+
 	// Update random links.
 	UpdateRandomLinks(*this);
 

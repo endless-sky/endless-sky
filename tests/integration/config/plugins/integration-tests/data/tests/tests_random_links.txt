@@ -26,7 +26,7 @@ test-data "guarantied link"
 				"turret mounts" 1
 				"weapon capacity" 20
 				"thrust" 50
-				"turn" 1000
+				"turn" 250
 				"energy generation" 10
 			outfits
 				Hyperdrive

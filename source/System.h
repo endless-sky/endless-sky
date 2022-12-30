@@ -200,6 +200,7 @@ private:
 
 	// Hyperspace links to other systems.
 	std::set<const System *> links;
+	bool guaranteedLinkBack = true;
 	std::map<const System *, double> randomLinks;
 	std::map<double, std::set<const System *>> neighbors;
 
