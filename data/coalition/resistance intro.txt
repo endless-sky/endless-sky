@@ -1403,7 +1403,7 @@ mission "Resistance: Combat Training 1"
 				`	"Sure, let me get the hatch."`
 				`	"You'll have to clear out, I'm not taking any passengers now."`
 					decline
-			`	You bring her aboard, and she continues when you close the hatch. "Thank you Captain. Now, assisted some of my colleagues, you already have, yes?" She waits for you to answer, but seeing your puzzled look, resumes her explanation. "The Lunarium Redoubt? Assisted us before, you have, even if aware of all the details beforehand you were not. Suppose I do that mostly hear of criminals or the like, you must. Petty in their propaganda, the Heliarchs are. Recommended you as trustworthy, some you've helped have, so that possible to get on with a special endeavor I've been planning, it is."`
+			`	You bring her aboard, and she continues when you close the hatch. "Thank you Captain. Now, assisted some of my colleagues, you already have, yes?" She waits for you to answer, but seeing your puzzled look, resumes her explanation. "The Lunarium Redoubt? Assisted us before, you have, even if aware of all the details beforehand you were not. Suppose I do that mostly hear of us as criminals or the like, you must. Petty in their propaganda, the Heliarchs are. Recommended you as trustworthy, some you've helped have, so that possible to get on with a special endeavor I've been planning, it is."`
 			choice
 				`	"What's this 'endeavor' you need help with?"`
 					goto help
@@ -1415,7 +1415,7 @@ mission "Resistance: Combat Training 1"
 				`	"Why do you want to take down the Heliarchs? Seems to me the Coalition is doing very well under them."`
 				`	"Whether you and your friends win or lose, I want no part in it. I'm not helping you."`
 					decline
-			`	"Of course, only shown what they want to be shown, you are. An achievement of the current Heliarchs, what prosperity we have is not, and furthering that prosperity, they most certainly are not!" She quickly slows down her breathing after the exclamation, calming down. "Grown paranoid, they have. Seen a Quarg in millennia, nobody in the Coalition has, but think they do, that to fight the Quarg their purpose is. Making enemies, taking prisoners of their own people, they have been." She backs away slightly, her mandibles clicking in some low murmur. "Leave I will, if interested you are not, but in need of help we are, Captain."`
+			`	"Of course, only shown what they want to be shown, you are. An achievement of the current Heliarchs, what prosperity we have is not, and furthering that prosperity, they most certainly are not!" She quickly slows down her breathing after the exclamation, calming down. "Grown paranoid, they have. Seen a Quarg in millennia, nobody in the Coalition has, but think they do, that to fight the Quarg their purpose is. Making enemies, taking prisoners of their own people, they have been. Public arrests with no warning or cause, disappearances in the night..." She backs away slightly, her mandibles clicking in some low murmur. "Leave I will, if interested you are not, but in need of help we are, Captain."`
 			choice
 				`	"Help with what, exactly?"`
 				`	"I'm sorry, but helping your group any further sounds too risky to me."`
@@ -1426,7 +1426,7 @@ mission "Resistance: Combat Training 1"
 				`	"Alright. I'll help you. How many people are you bringing along?"`
 				`	"I'm sorry, but helping your group any further sounds too risky to me."`
 					decline
-			`	She perks up with your answer. "<bunks> in total, we are. Wish to cause a commotion in human space, we do not, so bringing along <cargo> to sustain ourselves for a while, we are. Avoid leaving the ships at all, we will."`
+			`	She perks up with your answer. "<bunks> in total, our group is. Wish to cause a commotion in human space, we do not, so bringing along <cargo> to sustain ourselves for a while, we are. Avoid leaving the ships at all, we will."`
 				goto accept
 			label resistance
 			`	You recognize her as Pyakri, a Lunarium military leader who you met on Remote Blue, and bring her aboard your ship to talk. "Looking for you I have been, Captain <last>. Need your help I do, for a training endeavor of sorts."`
@@ -1436,7 +1436,7 @@ mission "Resistance: Combat Training 1"
 				`	"I'm not very good at training others, are you sure you need my help?"`
 			`	Her mandibles click together rapidly, sounding almost like a chime in its rhythm. "Doing the training you will not be. For the most part, at least," she explains. "Waiting just outside, many of our regional fleet leaders are. Your jump drive, and some of your knowledge, what we need is." She chirps again.`
 			label with
-			`	"Very... lacking most of our members are, in ship to ship combat. Wish to test some tactics, they do, so that better explain it to members under them they can. Of course, dangerous to challenge the Heliarchs for that, it is, so thought of training against human pirates, we did. Bring us to human space for that, you would. <bunks> in total we are, and bring along <cargo> to sustain ourselves without needing to leave the ships and cause a commotion, we will."`
+			`	"Very... lacking, most of our members are, in ship to ship combat expertise. Wish to test some tactics, the leaders do, so that better explain it to members under them they can. Of course, dangerous to challenge the Heliarchs for that, it is, so thought of training against human pirates, we did. Bring us to human space for that, you would. <bunks> in total we are, and bring along <cargo> to sustain ourselves without needing to leave the ships and cause a commotion, we will."`
 			label accept
 			`	She asks you to open the hatch, and she has a few more members from the crowd come in. They ask for your map, and then for the nearest hub of pirate activity. You point to Greenrock in Shaula, the biggest pirate world in southern human space, telling them it's one of the most dangerous ones. They then ask if there are any major shipyards in the South, and you point them to Southbound Shipyards, on <planet>, and the Tarazed Corporation, on Wayfarer. After some debate, they decide that <planet>'s proximity to the Coalition makes it a better pick in case they need to return quickly, and settle on that as the destination. "Bringing along enough credits to purchase a few warships, I hope we are," Pyakri comments. They have their <cargo> brought to your ship, and you show them to their bunks.`
 				accept
@@ -1574,12 +1574,12 @@ mission "Resistance: Combat Training 4"
 				`	"Did you manage to fight the pirates well enough?"`
 					goto pirates
 				`	"Honestly I'm surprised you didn't lose anyone. Some of the ships you bought aren't exactly made for fighting."`
-			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate hull matrixes, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
+			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate shield matrixes, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
 				goto accept
 			label pirates
 			`	"Lie I will not, difficult the first few months were. Very used to the Coalition, to our equipment, we were, so forget that the ships had no hull repair capabilities of their own, we many times did," she passes her two front legs over her head a few times, as if brushing it in some shame. "Lucky we were, that no casualties we had. At least, a good way to improvise mid-battle rescues, it all was." she finishes, perking up her head.`
 			label accept
-			`	She tells you that they're ready to head back to the Coalition, to <destination>, where they'll head back to their respective bases and share their newfound experience with Lunarium recruits. You help Pyakri and the rest to their bunks, and set a course for <planet>.`
+			`	She tells you that they're ready to head back to the Coalition, to <destination>, from where they'll head back to their respective bases and share their newfound experience with Lunarium recruits. You help Pyakri and the rest to their bunks, and set a course for <planet>.`
 				accept
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Pyakri and the other Lunarium members hasn't entered the system yet. Better depart and wait for them.`
