@@ -272,7 +272,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
-	EnterSystem(player.GetSystem());
+	EnterSystem(*player.GetSystem());
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
@@ -1240,7 +1240,8 @@ void Engine::EnterSystem(const System &previousSystem)
 	GameData::StepEconomy();
 
 	// Refresh random systems in range for jump.
-	for(const System &nearbySystem : system->JumpNeighbors(flagship->JumpNavigation().JumpRange()))
+	const std::set<const System *> neighbors = system->JumpNeighbors(flagship->JumpNavigation().JumpRange());
+	for(const System &nearbySystem : neighbors)
 		nearbySystem.UpdateRandomLinks(previousSystem);
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
@@ -1433,7 +1434,7 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
-		const System &previousSystem = playerSystem;
+		System &previousSystem = *playerSystem;
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem(previousSystem);
