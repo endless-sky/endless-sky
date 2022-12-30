@@ -47,11 +47,23 @@ test-data "guarantied link"
 		"visited planet" Ruin
 		changes
 			system "Terra Incognita"
-				# the way in is garanteed but not the way back
-				"random link" "World's End" 1
-			system "World's End"
-				"random link" "Terra Incognita" 0
+				"random link" "World's End" 0.00001
 				remove link "Over the Rainbow"
+				link "World's End"
+
+
+mission "%TEST%: Though Shall Not HyperJump!"
+	landing
+	source "Ruin"
+	to offer
+		has "%TEST%: RANDOM LINK"
+	on offer
+		event "%TEST%: way back cut"
+
+
+event "%TEST%: way back cut"
+	system "Terra Incognita"
+		remove link "World's End"
 
 
 test "Random Linkk - Guaranteed Way Back"
@@ -60,6 +72,8 @@ test "Random Linkk - Guaranteed Way Back"
 	sequence
 		inject "guarantied link"
 		call "Load First Savegame"
+		apply
+			"%TEST%: RANDOM LINK" == 1
 		call "Depart"
 		input
 			command jump
@@ -75,5 +89,3 @@ test "Random Linkk - Guaranteed Way Back"
 		label secondjump
 		branch secondjump
 			"flagship system: Terra Incognita" == 0
-		# land back with atrocity having been in effect (should nuke the reputation?)
-		call "Land"
