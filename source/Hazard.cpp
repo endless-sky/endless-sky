@@ -60,7 +60,7 @@ void Hazard::Load(const DataNode &node)
 		}
 		else if(key == "environmental effect")
 		{
-			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			float count = (child.Size() >= 3) ? child.Value(2) : .1;
 			environmentalEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else
@@ -142,7 +142,7 @@ double Hazard::MaxRange() const
 
 
 // Visuals to be created while this hazard is active.
-const map<const Effect *, int> &Hazard::EnvironmentalEffects() const
+const map<const Effect *, float> &Hazard::EnvironmentalEffects() const
 {
 	return environmentalEffects;
 }
