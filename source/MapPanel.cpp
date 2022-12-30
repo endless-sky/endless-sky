@@ -1097,7 +1097,7 @@ void MapPanel::DrawWormholes()
 		// the link only for the first instance of it in this set.
 		if(link.from < link.to || count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
 			[link](const WormholeArrow &cmp)
-			{return cmp.from == link.to && cmp.to == link.from;}))
+			{ return cmp.from == link.to && cmp.to == link.from; }))
 				LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
