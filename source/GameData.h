@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
-#include "ConditionsStore.h"
 #include "CategoryTypes.h"
+#include "ConditionsStore.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"

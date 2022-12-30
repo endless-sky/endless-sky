@@ -48,19 +48,19 @@ private:
 	P period;
 };
 
-template <class T, typename std::enable_if<std::is_class<T>::value, T>::type* Check = nullptr >
+template <class T, typename std::enable_if<std::is_class<T>::value>::type* = nullptr >
 bool PeriodTypeHasConditions(const T &t)
 {
 	return t.HasConditions();
 }
 
-template <class T, typename std::enable_if<!std::is_class<T>::value, T>::type* Check = nullptr >
+template <class T, typename std::enable_if<!std::is_class<T>::value>::type* = nullptr >
 bool PeriodTypeHasConditions(const T &t)
 {
 	return false;
 }
 
-template < class T, class U, typename std::enable_if<std::is_arithmetic<U>::value, U>::type* Check = nullptr >
+template < class T, class U, typename std::enable_if<std::is_arithmetic<U>::value>::type* = nullptr >
 T InitialPeriod(const T &period, U minimumValue, bool overrideMinimum)
 {
 	T result(period);

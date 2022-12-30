@@ -558,7 +558,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination, const ConditionsStore &vars) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
+	const ConditionsStore &vars) const
 {
 	NPC result;
 	result.government = government;

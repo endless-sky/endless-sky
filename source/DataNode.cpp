@@ -82,7 +82,7 @@ DataNode &DataNode::operator=(DataNode &&other) noexcept
 	children.swap(other.children);
 	tokens.swap(other.tokens);
 	lineNumber = std::move(other.lineNumber);
-	store=other.store;
+	store = other.store;
 	Reparent();
 	return *this;
 }

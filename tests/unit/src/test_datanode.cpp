@@ -258,6 +258,9 @@ SCENARIO( "Creating a Condition from a DataNode", "[DataNode][Condition]") {
 			THEN( "it should have a ConditionsStore" ) {
 				CHECK( node.Store() );
 			}
+			THEN( "its ConditionsStore should be the one provided" ) {
+				CHECK( node.Store() == maker.Store() );
+			}
 		}
 		WHEN( "using AsCondition on a missing condition" ) {
 			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
