@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
+#include "SystemEntry.h"
 
 #include <chrono>
 #include <list>
@@ -59,13 +60,6 @@ public:
 	struct FleetBalance {
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
-	};
-
-	enum class SystemEntry {
-		TAKE_OFF,
-		HYPERDRIVE,
-		JUMP,
-		WORMHOLE
 	};
 
 

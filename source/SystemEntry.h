@@ -1,5 +1,5 @@
-/* JumpTypes.h
-Copyright (c) 2022 by Amazinite
+/* SystemEntry.cpp
+Copyright (c) 2022 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,16 +13,17 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef JUMP_TYPES_H_
-#define JUMP_TYPES_H_
+#ifndef SYSTEM_ENTRY_H_
+#define SYSTEM_ENTRY_H_
 
 
 
-// All possible jump methods for a ship.
-enum class JumpType : int {
-	NONE,
+// All possible means of entering a system.
+enum class SystemEntry {
+	TAKE_OFF,
 	HYPERDRIVE,
-	JUMP_DRIVE,
+	JUMP,
+	WORMHOLE
 };
 
 

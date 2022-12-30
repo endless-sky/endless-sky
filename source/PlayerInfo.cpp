@@ -74,30 +74,30 @@ namespace {
 			ships[0] = flagship;
 		}
 	}
-	string EntryToString(PlayerInfo::SystemEntry entryType)
+	string EntryToString(SystemEntry entryType)
 	{
 		switch(entryType)
 		{
-			case PlayerInfo::SystemEntry::HYPERDRIVE:
+			case SystemEntry::HYPERDRIVE:
 				return "hyperdrive";
-			case PlayerInfo::SystemEntry::JUMP:
+			case SystemEntry::JUMP:
 				return "jump drive";
-			case PlayerInfo::SystemEntry::WORMHOLE:
+			case SystemEntry::WORMHOLE:
 				return "wormhole";
 			default:
-			case PlayerInfo::SystemEntry::TAKE_OFF:
+			case SystemEntry::TAKE_OFF:
 				return "takeoff";
 		}
 	}
-	PlayerInfo::SystemEntry StringToEntry(string entry)
+	SystemEntry StringToEntry(string entry)
 	{
 		if(entry == "hyperdrive")
-			return PlayerInfo::SystemEntry::HYPERDRIVE;
+			return SystemEntry::HYPERDRIVE;
 		else if(entry == "jump drive")
-			return PlayerInfo::SystemEntry::JUMP;
+			return SystemEntry::JUMP;
 		else if(entry == "wormhole")
-			return PlayerInfo::SystemEntry::WORMHOLE;
-		return PlayerInfo::SystemEntry::TAKE_OFF;
+			return SystemEntry::WORMHOLE;
+		return SystemEntry::TAKE_OFF;
 	}
 }
 
@@ -745,7 +745,7 @@ void PlayerInfo::SetSystemEntry(const SystemEntry entryType)
 
 
 
-PlayerInfo::SystemEntry PlayerInfo::GetSystemEntry() const
+SystemEntry PlayerInfo::GetSystemEntry() const
 {
 	return entry;
 }

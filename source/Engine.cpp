@@ -61,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "SystemEntry.h"
 #include "Test.h"
 #include "TestContext.h"
 #include "Visual.h"
@@ -272,7 +273,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
-	player.SetSystemEntry(PlayerInfo::SystemEntry::TAKE_OFF);
+	player.SetSystemEntry(SystemEntry::TAKE_OFF);
 	EnterSystem();
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
@@ -1432,9 +1433,9 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 				}
 
-		player.SetSystemEntry(wormholeEntry ? PlayerInfo::SystemEntry::WORMHOLE :
-			flagship->IsUsingJumpDrive() ? PlayerInfo::SystemEntry::JUMP :
-			PlayerInfo::SystemEntry::HYPERDRIVE);
+		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
+			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
+			SystemEntry::HYPERDRIVE);
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
