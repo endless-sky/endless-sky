@@ -259,20 +259,20 @@ const std::string &StartConditions::GetHint() const noexcept
 
 
 
-bool StartConditions::Visible(ConditionsStore conditionsStore) const
+bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
 {
 	return toDisplay.Test(conditionsStore);
 }
 
 
-bool StartConditions::Revealed(ConditionsStore conditionsStore) const
+bool StartConditions::Revealed(const ConditionsStore &conditionsStore) const
 {
 	return toReveal.Test(conditionsStore);
 }
 
 
 
-bool StartConditions::Unlocked(ConditionsStore conditionsStore) const
+bool StartConditions::Unlocked(const ConditionsStore &conditionsStore) const
 {
 	return toUnlock.Test(conditionsStore);
 }

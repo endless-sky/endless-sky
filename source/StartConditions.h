@@ -56,9 +56,9 @@ public:
 	const std::string &GetDescription() const noexcept;
 	const std::string &GetHint() const noexcept;
 
-	bool Visible(ConditionsStore conditionsStore) const;
-	bool Revealed(ConditionsStore conditionsStore) const;
-	bool Unlocked(ConditionsStore conditionsStore) const;
+	bool Visible(const ConditionsStore &conditionsStore) const;
+	bool Revealed(const ConditionsStore &conditionsStore) const;
+	bool Unlocked(const ConditionsStore &conditionsStore) const;
 
 
 private:
