@@ -16,17 +16,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEST_HELPER_DATANODE_FACTORY_H_
 #define ES_TEST_HELPER_DATANODE_FACTORY_H_
 
+#include "../../../source/ConditionsStore.h"
 #include "../../../source/DataNode.h"
 
+#include <memory>
 #include <string>
 #include <vector>
 
 
 
 // Method to convert text input into consumable DataNodes.
-std::vector<DataNode> AsDataNodes(std::string text);
+std::vector<DataNode> AsDataNodes(std::string text, std::shared_ptr<ConditionsStore> = nullptr);
 // Convert the text to a list of nodes, and return the first node.
-const DataNode AsDataNode(std::string text);
+const DataNode AsDataNode(std::string text, std::shared_ptr<ConditionsStore> = nullptr);
 
 
 

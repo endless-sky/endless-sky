@@ -99,7 +99,8 @@ namespace {
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
 
-	ConditionsStore globalConditions;
+	shared_ptr<ConditionsStore> globalConditions = make_shared<ConditionsStore>();
+	shared_ptr<ConditionsStore> varyingConditions = make_shared<ConditionsStore>(); // AKA: PlayerInfo.conditions
 }
 
 
@@ -136,9 +137,7 @@ future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 		Music::Init(sources);
 	}
 
-	ConditionsStore empty;
-
-	return objects.Load(sources, empty, debugMode);
+	return objects.Load(sources, varyingConditions, debugMode);
 }
 
 
@@ -441,10 +440,10 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node, const ConditionsStore &vars)
+void GameData::Change(const DataNode &node)
 {
-	objects.Change(node, vars);
-	objects.UpdateConditions(vars);
+	objects.Change(node, varyingConditions);
+	objects.UpdateConditions(varyingConditions);
 }
 
 
@@ -460,9 +459,9 @@ void GameData::UpdateSystems()
 
 // Tells all game data objects that may dynamically change
 // based on conditions to update their internal state:
-void GameData::UpdateConditions(const ConditionsStore &vars)
+void GameData::UpdateConditions()
 {
-	objects.UpdateConditions(vars);
+	objects.UpdateConditions(varyingConditions);
 }
 
 
@@ -642,7 +641,7 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
-ConditionsStore &GameData::GlobalConditions()
+shared_ptr<ConditionsStore> GameData::GlobalConditions()
 {
 	return globalConditions;
 }
@@ -912,4 +911,11 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 void GameData::DrawMenuBackground(Panel *panel)
 {
 	objects.DrawMenuBackground(panel);
+}
+
+
+
+std::shared_ptr<ConditionsStore> GameData::VaryingConditions()
+{
+	return varyingConditions;
 }

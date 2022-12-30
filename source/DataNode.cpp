@@ -29,7 +29,7 @@ using namespace std;
 
 // Construct a DataNode and remember what its parent is.
 DataNode::DataNode(const DataNode *parent) noexcept(false)
-	: parent(parent)
+	: parent(parent), store(parent ? parent->store : nullptr)
 {
 	// To avoid a lot of memory reallocation, have every node start out with
 	// capacity for four tokens. This makes file loading slightly faster, at the
@@ -41,7 +41,7 @@ DataNode::DataNode(const DataNode *parent) noexcept(false)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
+	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber), store(other.store)
 {
 	Reparent();
 }
@@ -54,6 +54,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 	children = other.children;
 	tokens = other.tokens;
 	lineNumber = other.lineNumber;
+	store = other.store;
 	Reparent();
 	return *this;
 }
@@ -61,9 +62,17 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 DataNode::DataNode(DataNode &&other) noexcept
-	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber)),
+	store(other.store)
 {
 	Reparent();
+}
+
+
+
+DataNode::DataNode(std::shared_ptr<ConditionsStore> store)
+	: store(store)
+{
 }
 
 
@@ -73,6 +82,7 @@ DataNode &DataNode::operator=(DataNode &&other) noexcept
 	children.swap(other.children);
 	tokens.swap(other.tokens);
 	lineNumber = std::move(other.lineNumber);
+	store=other.store;
 	Reparent();
 	return *this;
 }
@@ -289,15 +299,15 @@ int DataNode::PrintTrace(const string &message) const
 
 
 // Get the value, and if it was a variable, the variable name
-Condition<double> DataNode::AsCondition(int index, const ConditionsStore *vars, double ifMissing) const
+Condition<double> DataNode::AsCondition(int index, double ifMissing) const
 {
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return Condition<double>(ifMissing);
 	else if(IsNumber(tokens[index]))
 		return Condition<double>(Value(index));
-	else if(!vars)
+	else if(!store)
 		return Condition<double>(ifMissing, tokens[index]);
-	auto result = vars->HasGet(tokens[index]);
+	auto result = store->HasGet(tokens[index]);
 	if(result.first)
 		return Condition<double>(result.second, tokens[index]);
 	else
@@ -306,9 +316,27 @@ Condition<double> DataNode::AsCondition(int index, const ConditionsStore *vars, 
 
 
 
+shared_ptr<ConditionsStore> DataNode::Store()
+{
+	return store;
+}
+
+
+
+void DataNode::SetStore(std::shared_ptr<ConditionsStore> newStore)
+{
+	store = newStore;
+	for(DataNode &child : children)
+		child.SetStore(newStore);
+}
+
+
+
 // Adjust the parent pointers when a copy is made of a DataNode.
 void DataNode::Reparent() noexcept
 {
+	if(parent)
+		store = parent->store;
 	for(DataNode &child : children)
 	{
 		child.parent = this;

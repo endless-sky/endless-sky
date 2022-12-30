@@ -17,16 +17,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-ConditionMaker::ConditionMaker()
+ConditionMaker::ConditionMaker():
+	store(std::make_shared<ConditionsStore>())
 {
 }
 
 
 
-ConditionMaker::ConditionMaker(const std::vector<std::pair<std::string,int64_t>> &from)
+ConditionMaker::ConditionMaker(const std::vector<std::pair<std::string,int64_t>> &from):
+	store(std::make_shared<ConditionsStore>())
 {
 	for(auto &f : from)
-		store.Set(f.first, f.second);
+		store->Set(f.first, f.second);
 }
 
 
@@ -37,7 +39,7 @@ ConditionMaker::~ConditionMaker()
 
 
 
-const ConditionsStore &ConditionMaker::Store()
+std::shared_ptr<ConditionsStore> ConditionMaker::Store()
 {
 	return store;
 }
@@ -47,19 +49,19 @@ const ConditionsStore &ConditionMaker::Store()
 Condition<ConditionsStore::ValueType> ConditionMaker::AsCondition(const std::string &key)
 {
 	return Condition<ConditionsStore::ValueType>(
-		static_cast<ConditionsStore::ValueType>(store.Get(key)),key);
+		static_cast<ConditionsStore::ValueType>(store->Get(key)),key);
 }
 
 
 
 ConditionsStore::ValueType ConditionMaker::Get(const std::string &key)
 {
-	return store.Get(key);
+	return store->Get(key);
 }
 
 
 
 ConditionsStore::ValueType ConditionMaker::Set(const std::string &key, const ConditionsStore::ValueType &value)
 {
-	return store.Set(key, value);
+	return store->Set(key, value);
 }

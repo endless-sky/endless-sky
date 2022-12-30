@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DATA_FILE_H_
 #define DATA_FILE_H_
 
+#include "ConditionsStore.h"
 #include "DataNode.h"
 
 #include <istream>
@@ -34,8 +35,8 @@ class DataFile {
 public:
 	// A DataFile can be loaded either from a file path or an istream.
 	DataFile() = default;
-	explicit DataFile(const std::string &path);
-	explicit DataFile(std::istream &in);
+	explicit DataFile(const std::string &path, std::shared_ptr<ConditionsStore> store = nullptr);
+	explicit DataFile(std::istream &in, std::shared_ptr<ConditionsStore> store = nullptr);
 
 	void Load(const std::string &path);
 	void Load(std::istream &in);
@@ -43,6 +44,8 @@ public:
 	// Functions for iterating through all DataNodes in this file.
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
+
+	std::shared_ptr<ConditionsStore> Store();
 
 
 private:
@@ -52,6 +55,9 @@ private:
 private:
 	// This is the container for all DataNodes in this file.
 	DataNode root;
+
+	// Used to generate a Condition:
+	std::shared_ptr<ConditionsStore> store;
 };
 
 

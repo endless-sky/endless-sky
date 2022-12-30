@@ -138,7 +138,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called" ) {
 				ConditionMaker vars({ { otherKey, otherValue } });
-				condition.UpdateConditions(vars.Store());
+				condition.UpdateConditions(*vars.Store());
 				THEN( "the key and value should not change" ) {
 					CHECK( condition.Value() == double() );
 					CHECK( condition.IsLiteral() );
@@ -188,7 +188,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called" ) {
 				ConditionMaker vars({ { otherKey, otherValue } });
-				condition.UpdateConditions(vars.Store());
+				condition.UpdateConditions(*vars.Store());
 				THEN( "the key and value should not change" ) {
 					CHECK( condition.Value() == value );
 					CHECK( condition.IsLiteral() );
@@ -229,7 +229,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called without that key" ) {
 				ConditionMaker vars({ { otherKey, otherValue } });
-				condition.UpdateConditions(vars.Store());
+				condition.UpdateConditions(*vars.Store());
 				THEN( "the key and value should not change" ) {
 					CHECK( condition.Value() == value );
 					CHECK_FALSE( condition.IsLiteral() );
@@ -239,7 +239,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called with that key" ) {
 				ConditionMaker vars({ { key, otherValue } });
-				condition.UpdateConditions(vars.Store());
+				condition.UpdateConditions(*vars.Store());
 				THEN( "the key should not change" ) {
 					CHECK( condition.Key() == key );
 					CHECK_FALSE( condition.IsLiteral() );
@@ -273,7 +273,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called without that key" ) {
 				ConditionMaker vars({ { otherKey, otherValue } });
-				copy.UpdateConditions(vars.Store());
+				copy.UpdateConditions(*vars.Store());
 				THEN( "the key and value should not change" ) {
 					CHECK( copy.Value() == value );
 					CHECK_FALSE( copy.IsLiteral() );
@@ -283,7 +283,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called with that key" ) {
 				ConditionMaker vars({ { key, otherValue } });
-				copy.UpdateConditions(vars.Store());
+				copy.UpdateConditions(*vars.Store());
 				THEN( "the key should not change" ) {
 					CHECK( copy.Key() == key );
 					CHECK_FALSE( copy.IsLiteral() );
@@ -313,7 +313,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called without that key" ) {
 				ConditionMaker vars({ { otherKey, otherValue } });
-				copy.UpdateConditions(vars.Store());
+				copy.UpdateConditions(*vars.Store());
 				THEN( "the key and value should not change" ) {
 					CHECK( copy.Value() == value );
 					CHECK_FALSE( copy.IsLiteral() );
@@ -323,7 +323,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 			}
 			AND_WHEN( "UpdateConditions is called with that key" ) {
 				ConditionMaker vars({ { key, otherValue } });
-				copy.UpdateConditions(vars.Store());
+				copy.UpdateConditions(*vars.Store());
 				THEN( "the key should not change" ) {
 					CHECK( copy.Key() == key );
 					CHECK_FALSE( copy.IsLiteral() );
@@ -348,7 +348,7 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 		WHEN( "calling UpdateCondition without the key" ) {
 			Condition<double> condition(badValue);
 			ConditionMaker vars({ { otherKey, goodValue } });
-			condition.UpdateConditions(vars.Store(), Validate);
+			condition.UpdateConditions(*vars.Store(), Validate);
 			THEN( "it should not gain a key" ) {
 				CHECK( condition.Key().empty() );
 				CHECK( condition.IsLiteral() );
@@ -365,7 +365,7 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 		WHEN( "calling UpdateCondition without the key" ) {
 			Condition<double> condition(badValue, key);
 			ConditionMaker vars({ { otherKey, goodValue } });
-			condition.UpdateConditions(vars.Store(), Validate);
+			condition.UpdateConditions(*vars.Store(), Validate);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
@@ -380,7 +380,7 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 		WHEN( "calling UpdateCondition with the key and a bad value" ) {
 			Condition<double> condition(badValue, key);
 			ConditionMaker vars({ { key, badValue } });
-			condition.UpdateConditions(vars.Store(), Validate);
+			condition.UpdateConditions(*vars.Store(), Validate);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
@@ -395,7 +395,7 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 		WHEN( "calling UpdateCondition with the key and a good value" ) {
 			Condition<double> condition(badValue, key);
 			ConditionMaker vars({ { key, goodValue } });
-			condition.UpdateConditions(vars.Store(), Validate);
+			condition.UpdateConditions(*vars.Store(), Validate);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
@@ -412,7 +412,7 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 		WHEN( "calling UpdateCondition without the key" ) {
 			Condition<double> condition(goodValue, key);
 			ConditionMaker vars({ { otherKey, goodValue } });
-			condition.UpdateConditions(vars.Store(), Validate);
+			condition.UpdateConditions(*vars.Store(), Validate);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
@@ -427,7 +427,7 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 		WHEN( "calling UpdateCondition with the key and a bad value" ) {
 			Condition<double> condition(goodValue, key);
 			ConditionMaker vars({ { key, badValue } });
-			condition.UpdateConditions(vars.Store(), Validate);
+			condition.UpdateConditions(*vars.Store(), Validate);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
@@ -442,7 +442,7 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 		WHEN( "calling UpdateCondition with the key and another good value" ) {
 			Condition<double> condition(goodValue, key);
 			ConditionMaker vars({ { key, anotherGoodValue } });
-			condition.UpdateConditions(vars.Store(), Validate);
+			condition.UpdateConditions(*vars.Store(), Validate);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );

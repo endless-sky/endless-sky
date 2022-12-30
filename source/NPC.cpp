@@ -38,14 +38,14 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node, const ConditionsStore &vars)
+NPC::NPC(const DataNode &node)
 {
-	Load(node, vars);
+	Load(node);
 }
 
 
 
-void NPC::Load(const DataNode &node, const ConditionsStore &vars)
+void NPC::Load(const DataNode &node)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
@@ -181,13 +181,13 @@ void NPC::Load(const DataNode &node, const ConditionsStore &vars)
 		else if(child.Token(0) == "fleet")
 		{
 			if(child.HasChildren())
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child, vars)),
-					child.AsCondition(1, nullptr, 1));
+				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)),
+					child.AsCondition(1, 1));
 			else if(child.Size() >= 2)
 			{
 				if(child.Size() >= 3)
 					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))),
-						child.AsCondition(2, nullptr, 1));
+						child.AsCondition(2, 1));
 				else
 					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))), Condition<int>(1));
 			}
@@ -558,8 +558,7 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-		const ConditionsStore &vars) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination, const ConditionsStore &vars) const
 {
 	NPC result;
 	result.government = government;

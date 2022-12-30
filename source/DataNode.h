@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define DATA_NODE_H_
 
 #include <list>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -41,6 +42,7 @@ public:
 	// Copying or moving a DataNode requires updating the parent pointers.
 	DataNode(const DataNode &other);
 	DataNode &operator=(const DataNode &other);
+	DataNode(std::shared_ptr<ConditionsStore>);
 	DataNode(DataNode &&) noexcept;
 	DataNode &operator=(DataNode &&) noexcept;
 
@@ -70,8 +72,10 @@ public:
 	int PrintTrace(const std::string &message = "") const;
 
 	// Get the value, and if it was a variable, the variable name
-	Condition<double> AsCondition(int index, const ConditionsStore *vars = nullptr,
-		double ifMissing = 0) const;
+	Condition<double> AsCondition(int index, double ifMissing = 0) const;
+
+	std::shared_ptr<ConditionsStore> Store();
+	void SetStore(std::shared_ptr<ConditionsStore> store);
 
 private:
 	// Adjust the parent pointers when a copy is made of a DataNode.
@@ -87,6 +91,9 @@ private:
 	const DataNode *parent = nullptr;
 	// The line number in the given file that produced this node.
 	size_t lineNumber = 0;
+
+	// Used to generate a Condition:
+	std::shared_ptr<ConditionsStore> store;
 
 	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;

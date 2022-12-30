@@ -72,7 +72,7 @@ namespace {
 
 
 
-future<void> UniverseObjects::Load(const vector<string> &sources, const ConditionsStore &vars, bool debugMode)
+future<void> UniverseObjects::Load(const vector<string> &sources, shared_ptr<ConditionsStore> vars, bool debugMode)
 {
 	progress = 0.;
 
@@ -163,10 +163,10 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node, const ConditionsStore &vars)
+void UniverseObjects::Change(const DataNode &node, shared_ptr<ConditionsStore> vars)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
-		fleets.Get(node.Token(1))->Load(node, vars);
+		fleets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "galaxy" && node.Size() >= 2)
 		galaxies.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "government" && node.Size() >= 2)
@@ -325,13 +325,13 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const string &path, const ConditionsStore &vars, bool debugMode)
+void UniverseObjects::LoadFile(const string &path, shared_ptr<ConditionsStore> vars, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
 	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
 		return;
 
-	DataFile data(path);
+	DataFile data(path, vars);
 	if(debugMode)
 		Logger::LogError("Parsing: " + path);
 
@@ -348,7 +348,7 @@ void UniverseObjects::LoadFile(const string &path, const ConditionsStore &vars, 
 		else if(key == "event" && node.Size() >= 2)
 			events.Get(node.Token(1))->Load(node);
 		else if(key == "fleet" && node.Size() >= 2)
-			fleets.Get(node.Token(1))->Load(node, vars);
+			fleets.Get(node.Token(1))->Load(node);
 		else if(key == "formation" && node.Size() >= 2)
 			formations.Get(node.Token(1))->Load(node);
 		else if(key == "galaxy" && node.Size() >= 2)
@@ -372,7 +372,7 @@ void UniverseObjects::LoadFile(const string &path, const ConditionsStore &vars, 
 		else if(key == "minable" && node.Size() >= 2)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
-			missions.Get(node.Token(1))->Load(node, vars);
+			missions.Get(node.Token(1))->Load(node, *vars);
 		else if(key == "outfit" && node.Size() >= 2)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
@@ -518,10 +518,10 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 
 
 
-void UniverseObjects::UpdateConditions(const ConditionsStore &vars)
+void UniverseObjects::UpdateConditions(shared_ptr<ConditionsStore> vars)
 {
 	for(auto &fleet : fleets)
-		fleet.second.UpdateConditions(vars);
+		fleet.second.UpdateConditions(*vars);
 	for(auto &system : systems)
-		system.second.UpdateConditions(vars);
+		system.second.UpdateConditions(*vars);
 }

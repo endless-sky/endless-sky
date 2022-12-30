@@ -253,47 +253,59 @@ SCENARIO( "Creating a Condition from a DataNode", "[DataNode][Condition]") {
 	GIVEN( "Conditions within a DataNode" ) {
 		double value = 131, defaultValue = 5, literalValue = 3;
 		ConditionMaker maker({ { "notmissing", value } });
-		DataNode node = AsDataNode("missing 3 notmissing");
+		WHEN( "a DataNode is constructed with a ConditionsStore" ) {
+			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
+			THEN( "it should have a ConditionsStore" ) {
+				CHECK( node.Store() );
+			}
+		}
 		WHEN( "using AsCondition on a missing condition" ) {
+			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
 			THEN( "should return a Condition with the default value and requested key" ) {
-				CHECK( node.AsCondition(0, &maker.Store(), defaultValue) == defaultValue );
-				CHECK( node.AsCondition(0, &maker.Store(), defaultValue).Key() == "missing" );
+				CHECK( node.AsCondition(0, defaultValue) == defaultValue );
+				CHECK( node.AsCondition(0, defaultValue).Key() == "missing" );
 			}
 		}
 		WHEN( "using AsCondition with no ConditionsStore" ) {
+			DataNode node = AsDataNode("missing 3 notmissing");
 			THEN( "should return a Condition with the default value and requested key" ) {
-				CHECK( node.AsCondition(0, nullptr, defaultValue) == defaultValue );
-				CHECK( node.AsCondition(0, nullptr, defaultValue).Key() == "missing" );
+				CHECK( node.AsCondition(0, defaultValue) == defaultValue );
+				CHECK( node.AsCondition(0, defaultValue).Key() == "missing" );
 			}
 		}
 		WHEN( "using AsCondition with a literal and a ConditionsStore" ) {
+			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
 			THEN( "should return a Condition with the specified value and an empty key" ) {
-				CHECK( node.AsCondition(1, &maker.Store(), defaultValue) == literalValue);
-				CHECK( node.AsCondition(1, &maker.Store(), defaultValue).Key().empty() );
+				CHECK( node.AsCondition(1, defaultValue) == literalValue);
+				CHECK( node.AsCondition(1, defaultValue).Key().empty() );
 			}
 		}
 		WHEN( "using AsCondition with a literal and no ConditionsStore" ) {
+			DataNode node = AsDataNode("missing 3 notmissing", nullptr);
 			THEN( "should return a Condition with the specified value and an empty key" ) {
-				CHECK( node.AsCondition(1, nullptr, defaultValue) == literalValue);
-				CHECK( node.AsCondition(1, nullptr, defaultValue).Key().empty() );
+				CHECK( node.AsCondition(1, defaultValue) == literalValue);
+				CHECK( node.AsCondition(1, defaultValue).Key().empty() );
 			}
 		}
 		WHEN( "using AsCondition with a non-missing condition in a ConditionsStore" ) {
+			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
 			THEN( "should return a Condition with the value from the ConditionStore and the requested key" ) {
-				CHECK( node.AsCondition(2, &maker.Store(), defaultValue) == value );
-				CHECK( node.AsCondition(2, &maker.Store(), defaultValue).Key() == "notmissing" );
+				CHECK( node.AsCondition(2, defaultValue) == value );
+				CHECK( node.AsCondition(2, defaultValue).Key() == "notmissing" );
 			}
 		}
 		WHEN( "using AsCondition on an index past the end of the list" ) {
+			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
 			THEN( "should return a Condition with the default value and an empty key" ) {
-				CHECK( node.AsCondition(12, &maker.Store(), defaultValue) == defaultValue );
-				CHECK( node.AsCondition(12, &maker.Store(), defaultValue).Key().empty() );
+				CHECK( node.AsCondition(12, defaultValue) == defaultValue );
+				CHECK( node.AsCondition(12, defaultValue).Key().empty() );
 			}
 		}
 		WHEN( "using AsCondition on a negative index" ) {
+			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
 			THEN( "should return a Condition with the default value and an empty key" ) {
-				CHECK( node.AsCondition(12, &maker.Store(), defaultValue) == defaultValue );
-				CHECK( node.AsCondition(12, &maker.Store(), defaultValue).Key().empty() );
+				CHECK( node.AsCondition(12, defaultValue) == defaultValue );
+				CHECK( node.AsCondition(12, defaultValue).Key().empty() );
 			}
 		}
 	}

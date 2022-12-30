@@ -149,14 +149,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Fleet::Fleet(const DataNode &node, const ConditionsStore &vars)
+Fleet::Fleet(const DataNode &node)
 {
-	Load(node, vars);
+	Load(node);
 }
 
 
 
-void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
+void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		fleetName = node.Token(1);
@@ -188,7 +188,7 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
 		else if(key == "cargo" && hasValue)
-			cargo = child.AsCondition(1, &vars, 3);
+			cargo = child.AsCondition(1, 3);
 		else if(key == "commodities" && hasValue)
 		{
 			commodities.clear();
@@ -212,7 +212,7 @@ void Fleet::Load(const DataNode &node, const ConditionsStore &vars)
 			}
 			Condition<int> weight(1);
 			if(child.Size() >= add + 2)
-				weight = child.AsCondition(add + 1, &vars, 1);
+				weight = child.AsCondition(add + 1, 1);
 			variants.emplace_back(weight, child);
 		}
 		else if(key == "variant")

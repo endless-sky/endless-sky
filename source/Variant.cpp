@@ -37,9 +37,9 @@ Variant::Variant(const DataNode &node):
 void Variant::Load(const DataNode &node)
 {
 	if(node.Token(0) == "variant" && node.Size() >= 2)
-		weight = node.AsCondition(1, nullptr, 1);
+		weight = node.AsCondition(1, 1);
 	else if(node.Token(0) == "add" && node.Size() >= 3)
-		weight = node.AsCondition(2, nullptr, 1);
+		weight = node.AsCondition(2, 1);
 
 	for(const DataNode &child : node)
 	{

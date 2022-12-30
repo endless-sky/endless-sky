@@ -517,7 +517,7 @@ SCENARIO( "Creating a WeightedList with Conditions" , "[WeightedList][Condition]
 					{ "second_choice", 22 },
 					{ "second_weight", 2 }
 				});
-				list.UpdateConditions(valid.Store());
+				list.UpdateConditions(*valid.Store());
 				THEN( "total weight should be the sum of conditions" ) {
 					CHECK( list.TotalWeight() == 3 );
 				}

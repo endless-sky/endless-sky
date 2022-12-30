@@ -61,7 +61,7 @@ public:
 		int64_t assetsReturns = 0;
 	};
 public:
-	PlayerInfo() = default;
+	PlayerInfo();
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
 	PlayerInfo &operator=(const PlayerInfo &) = delete;
@@ -369,7 +369,7 @@ private:
 	bool sortSeparateDeadline = false;
 	bool sortSeparatePossible = false;
 
-	ConditionsStore conditions;
+	std::shared_ptr<ConditionsStore> conditions;
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

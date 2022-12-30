@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "ConditionsStore.h"
 #include "CategoryTypes.h"
 #include "Sale.h"
 #include "Set.h"
@@ -99,13 +100,13 @@ public:
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
-	static void Change(const DataNode &node, const ConditionsStore &vars);
+	static void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
 	// Tells all game data objects that may dynamically change
 	// based on conditions to update their internal state:
-	static void UpdateConditions(const ConditionsStore &vars);
+	static void UpdateConditions();
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are
@@ -139,7 +140,7 @@ public:
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
 
-	static ConditionsStore &GlobalConditions();
+	static std::shared_ptr<ConditionsStore> GlobalConditions();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
@@ -175,6 +176,11 @@ public:
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
+
+	// Conditions used by the game data, that can vary based on player actions.
+	// Presently, this is also the PlayerInfo.conditions, for convenience,
+	// since Endless Sky is single-player.
+	static std::shared_ptr<ConditionsStore> VaryingConditions();
 
 
 private:

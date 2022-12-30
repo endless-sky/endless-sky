@@ -23,7 +23,8 @@ using namespace std;
 
 
 // Constructor, taking a file path (in UTF-8).
-DataFile::DataFile(const string &path)
+DataFile::DataFile(const string &path, shared_ptr<ConditionsStore> store0):
+	store(store0)
 {
 	Load(path);
 }
@@ -31,7 +32,8 @@ DataFile::DataFile(const string &path)
 
 
 // Constructor, taking an istream. This can be cin or a file.
-DataFile::DataFile(istream &in)
+DataFile::DataFile(istream &in, shared_ptr<ConditionsStore> store0):
+	store(store0)
 {
 	Load(in);
 }
@@ -231,4 +233,13 @@ void DataFile::LoadData(const string &data)
 		if(mixedIndentation)
 			node.PrintTrace("Warning: Mixed whitespace usage at line");
 	}
+
+	root.SetStore(store);
+}
+
+
+
+std::shared_ptr<ConditionsStore> DataFile::Store()
+{
+	return store;
 }

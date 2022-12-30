@@ -15,9 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "datanode-factory.h"
 
+#include "../../../../source/ConditionsStore.h"
 #include "../../../../source/DataFile.h"
 #include "../../../../source/DataNode.h"
 
+#include <memory>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -25,17 +27,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Method to convert text input into consumable DataNodes.
-std::vector<DataNode> AsDataNodes(std::string text)
+std::vector<DataNode> AsDataNodes(std::string text, std::shared_ptr<ConditionsStore> vars)
 {
 	std::stringstream in;
 	in.str(text);
-	const auto file = DataFile{in};
+	const auto file = DataFile(in, vars);
 
 	return std::vector<DataNode>{std::begin(file), std::end(file)};
 }
 // Convert the text to a list of nodes, and return the first node.
-const DataNode AsDataNode(std::string text)
+const DataNode AsDataNode(std::string text, std::shared_ptr<ConditionsStore> vars)
 {
-	auto nodes = AsDataNodes(std::move(text));
-	return nodes.empty() ? DataNode{} : *nodes.begin();
+	auto nodes = AsDataNodes(std::move(text), vars);
+	return nodes.empty() ? DataNode(vars) : *nodes.begin();
 }

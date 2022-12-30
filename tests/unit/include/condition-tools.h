@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../source/Condition.h"
 #include "../../../source/ConditionsStore.h"
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -27,12 +28,12 @@ public:
 	ConditionMaker();
 	ConditionMaker(const std::vector<std::pair<std::string,int64_t>> &from);
 	~ConditionMaker();
-	const ConditionsStore &Store();
+	std::shared_ptr<ConditionsStore> Store();
 	Condition<ConditionsStore::ValueType> AsCondition(const std::string &key);
 	ConditionsStore::ValueType Get(const std::string &key);
 	ConditionsStore::ValueType Set(const std::string &key, const ConditionsStore::ValueType &value);
 private:
-	ConditionsStore store;
+	std::shared_ptr<ConditionsStore> store;
 };
 
 #endif
