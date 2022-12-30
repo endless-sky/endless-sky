@@ -52,9 +52,6 @@ void Radar::SetCenter(const Point &center)
 }
 
 
-// Planets and stars both are circles, so they have "inner" as 0, but I can't
-// tell where it sets that. This may be clue to find where the identity of an object
-// is identified as a star.
 // Add an object. If "inner" is 0 it is a dot; otherwise, it is a ring. The
 // given position should be in world units (not shrunk to radar units).
 void Radar::Add(int type, Point position, double outer, double inner)
