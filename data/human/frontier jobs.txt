@@ -235,6 +235,67 @@ mission "Instruct Novice Pilot"
 			variant
 				"Heavy Shuttle"
 
+mission "Frontier Food Supplies"
+	job
+	repeat
+	name "Food supplies to <planet>"
+	description "A remote colony on <destination> is running low on food supplies and is requesting aid. You will be paid <payment> if you deliver <cargo> by <date>."
+	cargo "food" 5 2 .1
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		not government "Pirate"
+		distance 2 8
+		attributes "frontier" "mining"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2000 150
+		dialog "On the far side of the planet from its spaceport, you drop off your cargo of <commodity> and collect your payment of <payment>. The colony's leaders personally thank you and bid you farewell."
+
+mission "Forest Fire Aid 1"
+	job
+	repeat
+	name "Fire retardant to <planet>"
+	description "A major forest fire has occurred on <destination> and many settlements have been affected or destroyed. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	cargo "fire retardant" 25 2 .05
+	deadline
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		not government "Pirate"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 8500 80
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell."
+
+mission "Forest Fire Aid 2"
+	job
+	repeat
+	name "Firefighters to <planet>"
+	description "A major forest fire has occurred on <destination> and many settlements have been affected or destroyed. Bring a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	passengers 5 10
+	deadline
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		not government "Pirate"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 8500 80
+		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell, while guiding the team away to a nearby tent."
 
 mission "Small Pirate gambling"
 	description "Survive the pirate attack!"
