@@ -1885,19 +1885,25 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"I heard that "
-		"I read a rumor that "
-		"I found out that "
+		"I heard"
+		"I read a rumor"
+		"I found out"
+		"I've learned"
 	word
-		"if you have "
+		" that if you have "
 	word
-		"8 free bunks, "
-		"eight free bunks, "
-		"space for at least eight passengers, "
+		"at least ten spare bunks"
+		"space for at least ten passengers"
+		"at least 50 spare tons of cargo space"
+		"enough space for 50 tons of cargo"
 	word
-		"you can pick up some musical celebrities."
-		"you can give a lift to some bands."
-		"sometimes you'll be asked to help transport rock stars."
+		" "
+	word
+		"then you'll be ready for anything life throws at you"
+		"then there isn't an odd job from the spaceport that you won't be able to do"
+		"then you might get lucky and have just enough room to help out some celebrities"
+	word
+		"."
 
 phrase "friendly navy"
 	word
