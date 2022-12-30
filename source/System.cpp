@@ -904,7 +904,7 @@ void System::UpdateRandomLinks(System &previousSystem)
 	if(randomLinks.empty())
 		return;
 	for(auto &link : randomLinks)
-		if(link.first == previousSystem)
+		if(link.first == &previousSystem)
 		{
 			if(!links.count(link.first))
 				Link(&previousSystem);
