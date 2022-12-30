@@ -198,7 +198,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			if(remove)
 				randomLinks.erase(GameData::Systems().Get(value));
 			else if(hasValue)
-				randomLinks.insert(GameData::Systems().Get(value), child.Value(valueIndex));
+				randomLinks[GameData::Systems().Get(value)] = child.Value(valueIndex);
 			else
 				child.PrintTrace("Error: Expected random link to have a value:");
 		}
@@ -904,15 +904,15 @@ void System::UpdateRandomLinks(System &previousSystem)
 	if(randomLinks.empty())
 		return;
 	for(auto &link : randomLinks)
-		if(link->first == previousSystem)
+		if(link.first == previousSystem)
 		{
-			if(!links.count(link->first))
+			if(!links.count(link.first))
 				Link(&previousSystem);
 		}
-		else if(link->second <= Random::Real())
-			Link(link->first);
+		else if(link.second <= Random::Real())
+			Link(link.first);
 		else
-			Unlink(link->first);
+			Unlink(link.first);
 }
 
 
@@ -989,7 +989,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	// Even if we are not permanently connected to that system via hyperdrive,
 	// It will still be reachable by Jump Drive.
 	for(auto &link : randomLinks)
-		neighborSet.insert(randomLinks.first);
+		neighborSet.insert(link.first);
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.
