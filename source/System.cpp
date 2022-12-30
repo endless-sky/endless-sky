@@ -906,7 +906,9 @@ void System::UpdateRandomLinks(System &previousSystem)
 	for(auto &link : randomLinks)
 		if(link.first == &previousSystem)
 			Link(&previousSystem);
-		else if(link.second <= Random::Real())
+		else if(!link.second)
+			continue;
+		else if(link.second >= Random::Real())
 			Link(const_cast<System *>(link.first));
 		else
 			Unlink(const_cast<System *>(link.first));

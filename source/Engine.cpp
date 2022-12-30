@@ -1239,10 +1239,8 @@ void Engine::EnterSystem(System &previousSystem)
 	GameData::SetDate(today);
 	GameData::StepEconomy();
 
-	// Refresh random systems in range for jump.
-	const std::set<const System *> neighbors = system->JumpNeighbors(flagship->JumpNavigation().JumpRange());
-	for(const System *nearbySystem : neighbors)
-		const_cast<System *>(nearbySystem)->UpdateRandomLinks(previousSystem);
+	// Refresh random systems that could be linked to this one.
+	system->UpdateRandomLinks();
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
