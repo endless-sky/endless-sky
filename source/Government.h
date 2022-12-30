@@ -128,7 +128,6 @@ public:
 	double CrewDefense() const;
 
 	bool IsProvokedOnScan() const;
-	bool IsUsingForeignPenaltiesFor(const Government *government) const;
 
 
 private:

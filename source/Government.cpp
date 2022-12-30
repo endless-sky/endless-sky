@@ -564,10 +564,3 @@ bool Government::IsProvokedOnScan() const
 {
 	return provokedOnScan;
 }
-
-
-
-bool Government::IsUsingForeignPenaltiesFor(const Government *government) const
-{
-	return useForeignPenaltiesFor.count(government->id);
-}
