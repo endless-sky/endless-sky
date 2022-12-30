@@ -200,7 +200,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "random link")
 		{
 			if(remove)
-				randomLinks.erase(GameData::Systems().Get(value));
+				randomLinks.erase(const_cast<System *>(GameData::Systems().Get(value)));
 			else if(child.Size() > valueIndex + 1)
 				randomLinks[const_cast<System *>(GameData::Systems().Get(value))] = child.Value(valueIndex + 1);
 			else
@@ -971,7 +971,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance, const 
 
 	// Update random links.
 	for(auto &link : randomLinks)
-		if(link.first == previousSystem && guaranteedLinkBack || link.second && link.second >= Random::Real())
+		if((guaranteedLinkBack &&link.first == previousSystem) || link.second && link.second >= Random::Real())
 			Link(link.first);
 
 	// Every star system that is linked to this one is automatically a neighbor,
