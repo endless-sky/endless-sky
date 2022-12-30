@@ -354,13 +354,13 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 		return 0.;
 
 	if(other == this)
-		return PenaltyFor(eventType);
+		return PenaltyHelper(eventType, penaltyFor);
 
-	const Government &gov = *other;
-	const int id = gov.id;
-	if(!customPenalties[id].size())
-		return useForeignPenaltiesFor.count(id) ? gov.PenaltyFor(eventType) : PenaltyFor(eventType);
-	map<int, double> tempPenalties = useForeignPenaltiesFor.count(id) ? gov.penaltyFor : penaltyFor;
+	const int id = other->id;
+	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
+	if(customPenalties[id].empty())
+		return PenaltyHelper(eventType, penalties);
+	map<int, double> tempPenalties = penalties;
 	for(const auto &it : customPenalties[id])
 		tempPenalties[it.first] = it.second;
 	return PenaltyHelper(eventType, tempPenalties);
