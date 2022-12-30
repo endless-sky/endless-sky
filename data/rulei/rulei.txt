@@ -1,0 +1,79 @@
+# Copyright (c) 2022 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Relic of the Past"
+	invisible
+	landing
+	to complete
+		never
+	npc save
+		government "Rulei"
+		personality heroic vindictive staying mute
+		system "Kanguwa"
+		ship "vyu-Ira" "Solemnity"
+
+mission "Ira Contact"
+	invisible
+	landing
+	to complete
+		never
+	on enter Kanguwa
+		fail
+		log "Factions" "Rulei" `The Rulei were likely an ancient technologically advanced civilization from long ago.`
+			`They communicate through some sort of invasive psychonic ability.`
+		conversation
+			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. The best way to describe it is an overwhelming sense of emptiness, but at the same time, the intensity of it makes it feels like something must be there. You barely have enough time to try and make sense of this oddity as only seconds later, you start to hear ominous whispering, as if something is behind you.`
+			choice
+				`	(Turn around.)`
+			`	You turn your head around to look, but every time, the source of the whispers remains at the back of your head, like an itch that can't be reached. You can't even remotely understand the language, and the whispers progressively increase in volume. The louder they get, the more there are.`
+			
+			`It sounds like thousands of varingly pitched voices are speaking at all at once now, and you senses all feel overloaded. Just before you think you can't take anymore, everything falls completely silent.`
+			scene "scene/rulei flash"
+			`	"T e r r a n."`
+			`A bizzare image is suddenly flashed into your head, and it feels like millions of eyes are starting at you beyond the boundaries of space. Turning your head to look around again, you find the source - a strange-looking spacecraft in the vicinity of two of this system's planets. When it spoke, it sounded like thousands of voices speaking at once again, but only for a brief second this time. Still, the various whispers surround you everywhere else.`
+			choice
+				`	"Who are you?"`
+				`	"Where am I?"`
+					goto where
+			`	The numerous whispers begin to pick up again, but rather than becoming louder, it sounds like they are going back and forth in your head, almost like a discussion. After a few more seconds of this, dead silence resumes, and then a single word.`
+			`	"P r e c u r s o r s. R u l e i."`
+			choice
+				`	"Where am I?"`
+			label where
+			`	Once again, the whispers start to pick up. The swirl of endless voices continues on in your head for several more seconds, each one after the last more unbearable. Finally, they cease, and you're left in another moment's worth of silence.`
+			`	"T h e  E n d."`
+			choice
+				`	"What do you mean by "The End"?"`
+			`	The voices resume in the background, but if there's anything you can tell, it's that they've taken a more dreary tone than before. You try once more to communicate with the ship, but despite the constant whispers, it no longer answers. "The End" might possibly be referring to some type of extinction.`
+			`Taking another look at the vessel, it seems to be of some sort of advanced origin. Eeirly star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating section of parts that hums in a strange tune. The Rulei were probably far more advanced than anything human, even possibly in line with something like the Quarg.`
+			`The planets below seem to have an abnormal appearance similar to that of the starship, but for some reason, even looking at them gives you a headache. Something bizzare must have happened here a long time ago.`
+				decline
+				
+				
+mission "Rulei Planet"
+	invisible
+	landing
+	source "Yniu Eiu" "Yniu Ena"
+	conversation
+		`	It feels as though there is a tremendous weight on your mind while you visit this world. The same sort of purple starlit hues of the alien ship from above can also be found in strange formations on the surface. Unlike the the whispers from before, the voices here are unbearable, especially the closer you get to the surface.`
+		`You can barely hear yourself think, and it's enough to drive any living thing mad. However, the most ominous sensation here is that feeling of your consciousness being pulled at from beneath you, like something is attempting to drag your mind down below.`
+		
+		`It's best you don't remain here for too long.`
+
+
+phrase "rulei hostile"
+	word
+		"C o n c e e d."
+		"E n d."
+		"J o i n."
+		"F a l l."

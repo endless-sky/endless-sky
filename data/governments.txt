@@ -1196,9 +1196,13 @@ government "Uninhabited"
 	"bribe" 0
 	"fine" 0
 
-government "vyu-Rulei"
+government "Rulei"
 	swizzle 0
 	color 1 1 1
+	"player reputation" 0
+	"bribe" 0
+	"fine" 0
+	"hostile hail" "rulei hostile"
 
 government "Ember Waste"
 	"display name" "???"
