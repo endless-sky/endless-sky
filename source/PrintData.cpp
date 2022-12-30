@@ -62,6 +62,19 @@ namespace {
 	}
 
 	template <class Type>
+	void PrintSales(const Set<Sale<Type>> &sales, const string &saleName, const string &name)
+	{
+		cout << saleName << ',' << name << '\n';
+		for(auto &sale : sales)
+		{
+			cout it.first;
+			for(auto &item : sale)
+				cout << ',' << ObjectName(item);
+			cout << '\n';
+		}
+	}
+
+	template <class Type>
 	void PrintObjectList(const Set<Type> &objects, bool withQuotes, const string &name)
 	{
 		cout << name << '\n';
@@ -121,8 +134,8 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 		string arg = *it;
 		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons"
 				|| arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines"
-				|| arg == "--power" || arg == "--planets" || arg == "--systems"
-				|| arg == "--matches")
+				|| arg == "--power" || arg == "--sales" || arg == "--planets"
+				|| arg == "--systems" || arg == "--matches")
 			return true;
 	}
 	return false;
@@ -136,7 +149,10 @@ void PrintData::Print(const char *const *argv)
 	{
 		string arg = *it;
 		if(arg == "-s" || arg == "--ships")
+		{
 			Ships(argv);
+			break;
+		}
 		else if(arg == "-w" || arg == "--weapons")
 			PrintWeaponStats();
 		else if(arg == "-e" || arg == "--engines")
@@ -144,7 +160,15 @@ void PrintData::Print(const char *const *argv)
 		else if(arg == "--power")
 			PrintPowerStats();
 		else if(arg == "-o" || arg == "--outfits")
+		{
 			Outfits(argv);
+			break;
+		}
+		else if(arg == "--sales")
+		{
+			Sales(argv);
+			break;
+		}
 		else if(arg == "--planets")
 			Planets(argv);
 		else if(arg == "--systems")
@@ -593,6 +617,33 @@ void PrintData::PrintOutfitsAllStats()
 			cout << ',' << outfit.Attributes().Get(attribute);
 		cout << '\n';
 	}
+}
+
+
+
+void PrintData::Sales(const char *const *argv)
+{
+	bool ships = false;
+	bool outfits = false;
+
+	for(const char *const *it = argv + 2; *it; ++it)
+	{
+		string arg = *it;
+		if(arg == "--ships")
+			ships = true;
+		else if(arg == "--outfits")
+			outfits = true;
+	}
+
+	if(!(ships || outfits))
+	{
+		ships = true;
+		outfits = true;
+	}
+	if(ships)
+		PrintSales(GameData::Shipyards(), "shipyards", "ships");
+	if(outfits)
+		PrintSales(GameData::Outfitters(), "outfitters", "outfits");
 }
 
 
