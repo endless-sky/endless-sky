@@ -987,10 +987,6 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
 		neighborSet.insert(system);
-	// Even if we are not permanently connected to that system via hyperdrive,
-	// It will still be reachable by Jump Drive.
-	for(auto &link : randomLinks)
-		neighborSet.insert(link.first);
 
 	// Update random links.
 	UpdateRandomLinks(*this);
