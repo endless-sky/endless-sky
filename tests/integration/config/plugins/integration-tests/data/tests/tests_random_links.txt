@@ -67,8 +67,11 @@ test "Random Linkk - Guaranteed Way Back"
 		label firstjump
 		branch firstjump
 			"flagship system: World's End" == 0
+		apply
+			"test: flagship system: World's End" = "flagship system: World's End"
 		input
 			command jump
+		watchdog 12000
 		label secondjump
 		branch secondjump
 			"flagship system: Terra Incognita" == 0
