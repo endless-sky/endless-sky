@@ -63,7 +63,7 @@ void Hazard::Load(const DataNode &node)
 			// Fractional counts may be accepted, since the real count gets multiplied by the strength
 			// of the hazard. The resulting real count will then be rounded down to the nearest int
 			// to determine the number of effects that appear.
-			float count = (child.Size() >= 3) ? child.Value(2) : 1.;
+			float count = (child.Size() >= 3) ? static_cast<float>(child.Value(2)) : 1.f;
 			environmentalEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else
