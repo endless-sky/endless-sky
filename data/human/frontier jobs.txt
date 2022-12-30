@@ -253,7 +253,7 @@ mission "Frontier Food Supplies"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 2000 150
-		dialog "On the far side of the planet from its spaceport, you drop off your cargo of <commodity> and collect your payment of <payment>. The colony's leaders personally thank you and bid you farewell."
+		dialog "On the far side of <planet> away from its spaceport, you drop off your cargo of <commodity> at the colony and collect your payment of <payment>. By the looks of it, it seems like the entire colony came out to your ship to thank you and bid you farewell."
 
 mission "Forest Fire Aid 1"
 	job
@@ -274,7 +274,7 @@ mission "Forest Fire Aid 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 8500 80
-		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you and bid you farewell."
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you for your help and bid you farewell."
 
 mission "Forest Fire Aid 2"
 	job
