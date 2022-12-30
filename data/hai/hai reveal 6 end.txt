@@ -189,6 +189,7 @@ system "Al Hurr"
 	pos -432 -491
 	government "Uninhabited"
 	belt 1312
+	haze _menu/haze-brown
 	trade "Clothing" 201
 	trade "Electronics" 658
 	trade "Equipment" 484

@@ -220,7 +220,7 @@ government "Forest (Predator)"
 		destroy 0
 		atrocity 0
 
-color "governments: Free" .06 .68 0. 1.
+color "governments: Free" .06 .68 0.
 
 government "Free Worlds"
 	swizzle 2
@@ -276,7 +276,7 @@ government "Gegno"
 		assist 0
 		provoke 10
 
-color "governments: Gegno Scin" .5 .55 .33 1.
+color "governments: Gegno Scin" .5 .55 .33
 
 government "Gegno Scin"
 	swizzle 18
@@ -292,7 +292,7 @@ government "Gegno Scin"
 	"penalty for"
 		assist 0
 
-color "governments: Gegno Vi" .68 .4 .4 1.
+color "governments: Gegno Vi" .68 .4 .4
 
 government "Gegno Vi"
 	swizzle 0
@@ -323,6 +323,9 @@ government "Gegno Scin (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
+	"use foreign penalties for"
+		"Gegno"
+
 	
 government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
@@ -337,8 +340,10 @@ government "Gegno Vi (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
-	
-	
+	"use foreign penalties for"
+		"Gegno"
+
+
 # Gegno Vi governments used for dueling.
 government "Gegno Vi (Duelist A)"
 	swizzle 0
@@ -374,7 +379,7 @@ government "Gegno Vi (Duelist B)"
 	"penalty for"
 		assist 0
 
-color "governments: Hai" .86 .48 .79 1.
+color "governments: Hai" .86 .48 .79
 
 government "Hai"
 	swizzle 0
@@ -534,7 +539,7 @@ government "Heliarch"
 		"Quarg" -.01
 		"Coalition" 1
 
-color "governments: Independent" .78 .36 .36 1.
+color "governments: Independent" .78 .36 .36
 
 government "Independent"
 	swizzle 6
@@ -641,7 +646,7 @@ government "Ka'sei"
 	"hostile hail" "hostile ka'het"
 	"hostile disabled hail" "hostile disabled ka'het"
 
-color "governments: Korath Exiles" .8 .5 .1 1.
+color "governments: Korath Exiles" .8 .5 .1
 
 government "Korath"
 	swizzle 0
@@ -789,7 +794,7 @@ government "Navy (Oathkeeper)"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
-color "governments: Neutral" .84 .61 .37 1.
+color "governments: Neutral" .84 .61 .37
 
 government "Neutral"
 	swizzle 0
@@ -811,7 +816,7 @@ government "Parrot"
 	"player reputation" 1
 	"bribe" 0
 
-color "governments: Pirate" .78 0. 0. 1.
+color "governments: Pirate" .78 0. 0.
 
 government "Pirate"
 	swizzle 6
@@ -872,7 +877,7 @@ government "Pirate (Rival)"
 	"hostile hail" "hostile pirate"
 	raid "pirate raid"
 
-color "governments: Pug" .99 .89 .70 1.
+color "governments: Pug" .99 .89 .70
 
 government "Pug"
 	swizzle 0
@@ -932,7 +937,7 @@ government "Quarg"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
 
-color "governments: Remnant" .89 .38 .62 1.
+color "governments: Remnant" .89 .38 .62
 
 government "Remnant"
 	swizzle 0
@@ -983,7 +988,7 @@ government "Remnant (Research)"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
 
-color "governments: Republic" .91 .42 .09 1.
+color "governments: Republic" .91 .42 .09
 
 government "Republic"
 	swizzle 0
@@ -1108,7 +1113,7 @@ government "Smuggler (Hai Trafficker)"
 		destroy 0
 		atrocity 0
 
-color "governments: Syndicate" 0. .41 .71 1.
+color "governments: Syndicate" 0. .41 .71
 
 government "Syndicate"
 	swizzle 4
@@ -1178,7 +1183,7 @@ government "Test Dummy"
 	"bribe" 0
 	"fine" 0
 
-color "governments: Ungoverned" .4 .4 .4 1.
+color "governments: Ungoverned" .4 .4 .4
 
 # For space objects of unknown origin, to ensure the player can't land:
 government "Unknown"
