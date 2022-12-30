@@ -53,7 +53,7 @@ mission "To Earth Day celebration [0]"
 				month == 4
 				day < 22
 		"days until year end" - "hyperjumps to system: Sol" - "hyperjumps to System: Sol" >= 253
-+	to fail
+	to fail
 		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
