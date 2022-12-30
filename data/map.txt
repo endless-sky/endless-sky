@@ -36672,7 +36672,7 @@ planet Yedikule
 	security 0
 
 planet "Yniu Eiu"
-	atributes "rulei planet"
+	attributes "rulei planet"
 	landscape land/canyon0
 	music "ambient/rulei planet"
 	description `Yniu Eiu is a rocky world with many canyons. A large portion of the surface is bright shades of gray and white, but the more striking visuals are the patches of purple-red webbed lakes and rivers flowing across the surface. It is unclear if this is a natural occurrence or if these were artificially created, but the way the areas around these sights are dug out and shaped imply that this planet used to be a home to some type of civilization, or one that found importance in this material.`
