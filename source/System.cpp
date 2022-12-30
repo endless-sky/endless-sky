@@ -987,6 +987,9 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	// It will still be reachable by Jump Drive.
 	for(auto &link : randomLinks)
 		neighborSet.insert(link.first);
+	
+	// Update random links.
+	UpdateRandomLinks(*this);
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.
