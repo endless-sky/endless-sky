@@ -1242,7 +1242,7 @@ void Engine::EnterSystem(const System &previousSystem)
 	// Refresh random systems in range for jump.
 	const std::set<const System *> neighbors = system->JumpNeighbors(flagship->JumpNavigation().JumpRange());
 	for(const System *nearbySystem : neighbors)
-		nearbySystem->UpdateRandomLinks(previousSystem);
+		const_cast<System *>(nearbySystem)->UpdateRandomLinks(previousSystem);
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
