@@ -137,8 +137,8 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
-		// Only global conditions are supported in this condition sets.
-		// Also the usual "global: " prefix is not needed and not allowed.
+		// Only global conditions are supported in these condition sets. The global conditions are accessed directly,
+		// and therefore do not need the "global: " prefix.
 		else if(key == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "display")
@@ -263,6 +263,7 @@ bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
 {
 	return toDisplay.Test(conditionsStore);
 }
+
 
 
 bool StartConditions::Revealed(const ConditionsStore &conditionsStore) const
