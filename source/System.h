@@ -70,7 +70,8 @@ public:
 	void Load(const DataNode &node, Set<Planet> &planets);
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
-	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
+	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances,
+		const System *previousSystem);
 
 	// Modify a system's links.
 	void Link(System *other);
@@ -171,7 +172,7 @@ private:
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
-	void UpdateNeighbors(const Set<System> &systems, double distance, const System previousSystem);
+	void UpdateNeighbors(const Set<System> &systems, double distance, const System *previousSystem);
 
 
 private:

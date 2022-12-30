@@ -274,7 +274,7 @@ void Engine::Place()
 
 	// TODO: Normally we'd give the previous system of the player,
 	// but that'll be changed after the other PR is merged.
-	EnterSystem(*player.GetSystem());
+	EnterSystem();
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
@@ -1204,7 +1204,7 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-void Engine::EnterSystem(const System &previousSystem)
+void Engine::EnterSystem(const System *previousSystem)
 {
 	ai.Clean();
 
@@ -1242,7 +1242,7 @@ void Engine::EnterSystem(const System &previousSystem)
 	GameData::StepEconomy();
 
 	// Refresh random systems that could be linked to this one.
-	GameData::UpdateSystems(&previousSystem);
+	GameData::UpdateSystems(previousSystem);
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
@@ -1434,7 +1434,7 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
-		System &previousSystem = const_cast<System &>(*playerSystem);
+		const System *previousSystem = *playerSystem;
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem(previousSystem);
