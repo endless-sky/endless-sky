@@ -197,8 +197,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			if(remove)
 				randomLinks.erase(GameData::Systems().Get(value));
-			else if(hasValue)
-				randomLinks[GameData::Systems().Get(value)] = child.Value(valueIndex);
+			else if(child.Size() > valueIndex + 1)
+				randomLinks[GameData::Systems().Get(value)] = child.Value(valueIndex + 1);
 			else
 				child.PrintTrace("Error: Expected random link to have a value:");
 		}
