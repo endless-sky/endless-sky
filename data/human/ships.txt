@@ -2052,9 +2052,9 @@ ship "Hawk"
 		"cost" 670000
 		"shields" 2500
 		"hull" 500
-		"required crew" 2
+		"required crew" 1
 		"bunks" 4
-		"mass" 150
+		"mass" 125
 		"drag" 2.1
 		"heat dissipation" .8
 		"fuel capacity" 300
