@@ -47,23 +47,11 @@ test-data "guarantied link"
 		"visited planet" Ruin
 		changes
 			system "Terra Incognita"
-				"random link" "World's End" 0.00001
 				remove link "Over the Rainbow"
 				link "World's End"
+			system "World's End"
+				"random link" "Terra Incognita" 0
 
-
-mission "%TEST%: Though Shall Not HyperJump!"
-	landing
-	source "Ruin"
-	to offer
-		has "%TEST%: RANDOM LINK"
-	on offer
-		event "%TEST%: way back cut"
-
-
-event "%TEST%: way back cut"
-	system "Terra Incognita"
-		remove link "World's End"
 
 
 test "Random Linkk - Guaranteed Way Back"
@@ -72,8 +60,6 @@ test "Random Linkk - Guaranteed Way Back"
 	sequence
 		inject "guarantied link"
 		call "Load First Savegame"
-		apply
-			"%TEST%: RANDOM LINK" == 1
 		call "Depart"
 		input
 			command jump
