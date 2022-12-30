@@ -272,7 +272,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
-	EnterSystem();
+	EnterSystem(player.GetSystem());
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
@@ -1202,7 +1202,7 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-void Engine::EnterSystem()
+void Engine::EnterSystem(const System &previousSystem)
 {
 	ai.Clean();
 
@@ -1238,6 +1238,11 @@ void Engine::EnterSystem()
 	// Remove expired bribes, clearance, and grace periods from past fines.
 	GameData::SetDate(today);
 	GameData::StepEconomy();
+
+	// Refresh random systems in range for jump.
+	for(const System &nearbySystem : system->JumpNeighbors(flagship->JumpNavigation().JumpRange()))
+		nearbySystem.UpdateRandomLinks(previousSystem);
+
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
@@ -1428,9 +1433,10 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
+		const System &previousSystem = playerSystem;
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
-		EnterSystem();
+		EnterSystem(previousSystem);
 	}
 	Prune(ships);
 

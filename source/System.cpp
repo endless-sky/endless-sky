@@ -99,7 +99,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "link", "object", "hazard"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "link", "random link", "object", "hazard"};
 
 	for(const DataNode &child : node)
 	{
@@ -138,6 +138,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				music.clear();
 			else if(key == "attributes")
 				attributes.clear();
+			else if(key == "random link")
+				randomLinks.clear();
 			else if(key == "link")
 				links.clear();
 			else if(key == "asteroids" || key == "minables")
@@ -190,6 +192,15 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				for(int i = valueIndex; i < child.Size(); ++i)
 					attributes.insert(child.Token(i));
+		}
+		else if(key == "random link")
+		{
+			if(remove)
+				randomLinks.erase(GameData::Systems().Get(value));
+			else if(hasValue)
+				randomLinks.insert(GameData::Systems().Get(value), child.Value(valueIndex));
+			else
+				child.PrintTrace("Error: Expected random link to have a value:");;
 		}
 		else if(key == "link")
 		{
@@ -957,6 +968,10 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
 		neighborSet.insert(system);
+	// Even if we are not permanently connected to that system via hyperdrive,
+	// It will still be reachable by Jump Drive.
+	for(auto &link : randomLinks)
+		neighborSet.insert(randomLinks.first);
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.
@@ -969,6 +984,24 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 		if(&it.second != this && it.second.Position().Distance(position) <= distance)
 			neighborSet.insert(&it.second);
 	}
+}
+
+
+
+void System::UpdateRandomLinks(const System &previousSystem)
+{
+	if(randomLinks.empty())
+		return;
+	for(auto &link : randomLinks)
+		if(link.first == previousSystem)
+		{
+			if(!links.count(link))
+				Link(previousSystem);
+		}
+		else if(link.second <= Random::Real())
+			Link(link.first);
+		else
+			Unlink(link.first);
 }
 
 

@@ -172,6 +172,7 @@ private:
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems, double distance);
+	void UpdateRandomLinks(const System &previousSystem);
 
 
 private:
@@ -198,6 +199,7 @@ private:
 
 	// Hyperspace links to other systems.
 	std::set<const System *> links;
+	std::set<const System *, double> randomLinks;
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked.

@@ -100,7 +100,7 @@ public:
 
 
 private:
-	void EnterSystem();
+	void EnterSystem(const System &previousSystem);
 
 	void ThreadEntryPoint();
 	void CalculateStep();

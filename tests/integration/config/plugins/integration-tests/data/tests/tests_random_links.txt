@@ -1,0 +1,76 @@
+test-data "guaranteed link"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+				"thrust" 50
+				"turn" 1000
+				"energy generation" 10
+			outfits
+				Hyperdrive
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		changes
+			system "Terra Incognita"
+				# the way in is garanteed but not the way back
+				"random link" "World's End" 1
+			system "World's End"
+				"random link" "Terra Incognita" 0
+				remove link "Over the Rainbow"
+
+
+test "Random Linkk - Guaranteed Way Back"
+	status active
+	description "Test if we can go back trough the same link after going trough a random link."
+	sequence
+		inject "garanteed link"
+		call "Load First Savegame"
+		call "Depart"
+		input
+			command jump
+		watchdog 12000
+		label firstjump
+		branch firstjump
+			"flagship system: World's End" == 0
+		input
+			command jump
+		label secondjump
+		branch secondjump
+			"flagship system: Terra Incognita" == 0
+		# land back with atrocity having been in effect (should nuke the reputation?)
+		call "Land"
