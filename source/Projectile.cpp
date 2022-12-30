@@ -236,7 +236,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		{
 			double opticalTracking = weapon->OpticalTracking();
 			double opticalJamming = target->Attributes().Get("optical jamming");
-			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(), 
+			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
 				opticalJamming, position.Distance(target->Position()));
 		}
 
