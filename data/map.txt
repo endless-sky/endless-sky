@@ -35253,6 +35253,7 @@ planet Prime
 		fleet "Large Republic" 17
 
 planet "Pug Wormhole"
+	wormhole "Pug Wormhole"
 
 wormhole "Pug Wormhole"
 	link "Over the Rainbow" Deneb

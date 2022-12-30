@@ -131,6 +131,8 @@ public:
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
+	// Get the starfield density for this system.
+	double StarfieldDensity() const;
 	// Check if this system is inhabited.
 	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
@@ -216,6 +218,7 @@ private:
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
+	double starfieldDensity = 1.;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
