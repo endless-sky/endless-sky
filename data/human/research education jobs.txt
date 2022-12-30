@@ -157,7 +157,7 @@ mission "Student transport [1]"
 		attributes "education"
 		distance 2 20
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -178,7 +178,7 @@ mission "Student transport (forest research)"
 		attributes "forest"
 		distance 2 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -199,7 +199,7 @@ mission "Student transport (agriculture research)"
 		attributes "farming"
 		distance 2 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -220,7 +220,7 @@ mission "Student transport (soil research)"
 		attributes "farming" "forest" "urban" "factory"
 		distance 2 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -241,7 +241,7 @@ mission "Student transport (urban research)"
 		attributes "urban"
 		distance 2 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -262,7 +262,7 @@ mission "Student transport (volcanic research)"
 		attributes "volcanic" "mining" "oil"
 		distance 2 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -283,7 +283,7 @@ mission "Student transport (ocean research)"
 		attributes "fishing"
 		distance 2 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -304,7 +304,7 @@ mission "Student transport (atmosphere research)"
 		attributes "volcanic" "urban" "factory"
 		distance 2 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
@@ -325,7 +325,7 @@ mission "Student transport (quality of life research)"
 		attributes "urban" "religious" "frontier" "factory" "farming" "textiles" "rich"
 		distance 5 10
 	on visit
-		dialog phrase "generic passengers on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog phrase "generic passenger dropoff payment"
 		payment
