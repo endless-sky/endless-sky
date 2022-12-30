@@ -164,7 +164,7 @@ public:
 	// in per frame).
 	double Danger() const;
 
-	void UpdateRandomLinks(const System &previousSystem);
+	void UpdateRandomLinks(System &previousSystem);
 
 
 private:
@@ -200,7 +200,7 @@ private:
 
 	// Hyperspace links to other systems.
 	std::set<const System *> links;
-	std::set<const System *, double> randomLinks;
+	std::map<const System *, double> randomLinks;
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked.

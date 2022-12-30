@@ -272,7 +272,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
-	EnterSystem(*player.GetSystem());
+	EnterSystem(const_cast<System &>(*player.GetSystem()));
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
 	// code already took care of loading up fighters and assigning parents.
@@ -1202,7 +1202,7 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-void Engine::EnterSystem(const System &previousSystem)
+void Engine::EnterSystem(System &previousSystem)
 {
 	ai.Clean();
 
@@ -1434,7 +1434,7 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
-		const System &previousSystem = *playerSystem;
+		System &previousSystem = const_cast<System &>(*playerSystem);
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem(previousSystem);

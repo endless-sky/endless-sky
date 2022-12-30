@@ -200,7 +200,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else if(hasValue)
 				randomLinks.insert(GameData::Systems().Get(value), child.Value(valueIndex));
 			else
-				child.PrintTrace("Error: Expected random link to have a value:");;
+				child.PrintTrace("Error: Expected random link to have a value:");
 		}
 		else if(key == "link")
 		{
@@ -899,7 +899,7 @@ double System::Danger() const
 
 
 
-void System::UpdateRandomLinks(const System &previousSystem)
+void System::UpdateRandomLinks(System &previousSystem)
 {
 	if(randomLinks.empty())
 		return;
