@@ -5609,3 +5609,4 @@ mission "A dead man's path II"
 			to display
 				has "A Dead Man's Path: did not accept old man's sword"
 				decline
+
