@@ -664,7 +664,9 @@ mission "Remnant: Cognizance 19"
 	landing
 	name "Deliver navigation data"
 	description "Deliver navigational data on the new systems to <destination>."
-	source "Aventine"
+	source
+	 	 government "Remnant"
+	 	 near "Arculus" 0 2
 	destination
 		government "Remnant"
 		distance 1 5
