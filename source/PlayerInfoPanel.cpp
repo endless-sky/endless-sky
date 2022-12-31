@@ -309,6 +309,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
+
 		int direction = (key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP);
 		Scroll((LINES_PER_PAGE - 2) * direction);
 	}
@@ -444,7 +445,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		// Toggle the parked status for all ships in system except the flagship.
 		bool allParked = true;
 		const Ship *flagship = player.Flagship();
-		const System *flagshipSystem = flagship->GetSystem();
+		const System *flagshipSystem = flagship ? flagship->GetSystem() : player.GetSystem();
 		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && it.get() != flagship && it->GetSystem() == flagshipSystem)
 				allParked &= it->IsParked();
