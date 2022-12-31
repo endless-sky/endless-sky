@@ -308,7 +308,8 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
 	info.SetString("name", startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDisplayName() : "???");
-	info.SetString("description", startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
+	info.SetString("description", startIt->Revealed(GameData::GlobalConditions())
+		? startIt->GetDescription() : startIt->GetHint());
 
 	if(startIt->Revealed(GameData::GlobalConditions()))
 	{
