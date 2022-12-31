@@ -52,6 +52,9 @@ test-data "link switch"
 				link "Over the Rainbow"
 					has "%TEST%: CONDITION YOU DONT HAVE"
 				link "World's End"
+					random <= 100
+			system "World's End"
+				link "Terra Incognita"
 					has "%TEST%: end"
 
 
@@ -69,3 +72,11 @@ test "Condition Links"
 		label firstjump
 		branch firstjump
 			"flagship system: World's End" == 0
+		watchdog 12000
+		apply
+			"test: flagship system: World's End" = "flagship system: World's End"
+		input
+			command jump
+		label secondjump
+		branch secondjump
+			"flagship system: Terra Incognita" == 0
