@@ -138,7 +138,7 @@ private:
 	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
-	std::vector<std::map<int, double>> customPenalties;
+	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
 	std::map<const Outfit*, int> illegals;
