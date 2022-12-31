@@ -66,6 +66,12 @@ test "Condition Links"
 		inject "link switch"
 		call "Load First Savegame"
 		call "Depart"
+		# empty inputs to make time pass
+		input
+		input
+		input
+		input
+		input
 		input
 			command jump
 		watchdog 12000
