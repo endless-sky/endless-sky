@@ -52,7 +52,7 @@ mission "To Earth Day celebration [0]"
 				random < 20
 				month == 4
 				day < 22
-		"days until year end" - "hyperjumps to system: Sol" - "hyperjumps to System: Sol" > 253
+		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
 	to fail
 		month * 100 + day >= 422
 	source
@@ -86,7 +86,7 @@ mission "To Earth Day celebration [1]"
 				random < 20
 				month == 4
 				day < 22
-		"days until year end" - "hyperjumps to system: Sol" - "hyperjumps to System: Sol" > 253
+		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
 	to fail
 		month * 100 + day >= 422
 	source
