@@ -141,7 +141,7 @@ void Government::Load(const DataNode &node)
 				enforcementZones.clear();
 			else if(key == "custom penalties for")
 				customPenalties.clear();
-			else if(key == "use foreign penalties for")
+			else if(key == "foreign penalties for")
 				useForeignPenaltiesFor.clear();
 			else if(key == "illegals")
 				illegals.clear();
@@ -216,7 +216,7 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
-		else if(key == "use foreign penalties for")
+		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
 		else if(!hasValue)
