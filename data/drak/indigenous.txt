@@ -251,7 +251,7 @@ ship "Embershade"
 
 ship "Embersylph"
 	noun "creature"
-	sprite "ship/embersylph/embersylph/embersylph"
+	sprite "ship/embersylph/embersylph/"
 		"frame rate" 6
 	"never disabled"
 	attributes
@@ -279,12 +279,25 @@ ship "Embersylph"
 		"atmospheric scan" 1000
 		"shield resistance" 1
 	outfits
-		"Mouthparts?" 1
-	gun 0 0
-	gun 0 0
+		"Absorption Organ" 1
+	turret 0 0 "Absorption Organ"
 	leak "blood" 30 50
 	explode "blood" 26
 	description "Ember Ray."
+
+
+
+outfit "Absorption Organ"
+	category "Turrets"
+	thumbnail "outfit/unknown"
+	"turrets" -1
+	weapon
+		"hit effect"
+		"velocity" 400
+		"turret turn" 4
+		"lifetime" 1
+		"reload" 2
+		"relative energy damage" 10
 
 
 
