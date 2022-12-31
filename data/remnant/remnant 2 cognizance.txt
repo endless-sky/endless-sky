@@ -712,7 +712,7 @@ mission "Remnant: Cognizance 20"
 			`	"Captain, was there anything unusual when you arrived there?"`
 			choice
 				`	"Yes, sensors reported life signs."`
-				`	"I do not remember. Did you notice something?"`
+				`	"I forget. Did you notice something?"`
 			`	One of the Remnant pulls up the relevant section and puts it up on the projector. "Right here, the logs show that there are ambient life-signs all over the system, but nothing of significance shows up on the physical scanners." He frowns at the projector. "All the equipment status signals in the records are nominal, and both the check digits and data hashes match."`
 			choice
 				`	"So there are no problems with the data?"`
