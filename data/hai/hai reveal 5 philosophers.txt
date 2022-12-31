@@ -486,7 +486,7 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 mission "Hai Reveal [B06-long] Tarazed Analysis"
 	landing
 	name "Hunting Smugglers"
-	description `Find and board a smuggler's ship. Your display will identify them as the "Smuggler" government, but they will still look like Merchants. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
+	description `Find and board a smuggler's ship. Your display will identify them as the "Smuggler" government, but they will still look like merchants. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
 	source Wayfarer
 	destination Earth
 	clearance
