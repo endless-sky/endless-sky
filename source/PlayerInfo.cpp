@@ -74,6 +74,7 @@ namespace {
 			ships[0] = flagship;
 		}
 	}
+
 	string EntryToString(SystemEntry entryType)
 	{
 		switch(entryType)
@@ -89,7 +90,8 @@ namespace {
 				return "takeoff";
 		}
 	}
-	SystemEntry StringToEntry(string entry)
+
+	SystemEntry StringToEntry(const string &entry)
 	{
 		if(entry == "hyperdrive")
 			return SystemEntry::HYPERDRIVE;
@@ -208,7 +210,7 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "entry" && child.Size() >= 2)
+		else if(child.Token(0) == "system entry method" && child.Size() >= 2)
 			entry = StringToEntry(child.Token(1));
 		else if(child.Token(0) == "previous system" && child.Size() >= 2)
 			previousSystem = GameData::Systems().Get(child.Token(1));
@@ -738,7 +740,7 @@ const CoreStartData &PlayerInfo::StartData() const noexcept
 
 
 
-void PlayerInfo::SetSystemEntry(const SystemEntry entryType)
+void PlayerInfo::SetSystemEntry(SystemEntry entryType)
 {
 	entry = entryType;
 }
@@ -3184,7 +3186,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// This condition corresponds to the last system the flagship was in.
+	// This condition corresponds to the method by which the flagship entered the current system.
 	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
 	auto systemEntryFun = [this](const string &name) -> bool
 	{
@@ -3666,7 +3668,7 @@ void PlayerInfo::Save(const string &path) const
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
-	out.Write("entry", EntryToString(entry));
+	out.Write("system entry method", EntryToString(entry));
 	if(previousSystem)
 		out.Write("previous system", previousSystem->Name());
 	if(system)
