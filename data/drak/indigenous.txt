@@ -295,6 +295,7 @@ ship "Embersylph" "Embersylph (Small)"
 		"frame rate" 36
 		"random start frame"
 		"scale" 0.5
+	"never disabled"
 	add attributes
 		"shields" -2800
 		"hull" -900
