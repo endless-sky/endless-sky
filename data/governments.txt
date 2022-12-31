@@ -323,7 +323,7 @@ government "Gegno Scin (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
-	"use foreign penalties for"
+	"foreign penalties for"
 		"Gegno"
 
 	
@@ -340,7 +340,7 @@ government "Gegno Vi (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
-	"use foreign penalties for"
+	"foreign penalties for"
 		"Gegno"
 
 
