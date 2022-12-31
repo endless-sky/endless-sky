@@ -899,7 +899,7 @@ government "Quarg"
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
 		"Gegno" 0.1
-	"use foreign penalties for"
+	"foreign penalties for"
 		"Gegno"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
@@ -933,7 +933,7 @@ government "Remnant"
 		capture 10
 		destroy 10
 		scan 0.1
-	"use foreign penalties for"
+	"foreign penalties for"
 		"Remnant (Research)"
 	"provoked on scan"
 	"friendly hail" "remnant uncontacted"
@@ -958,7 +958,7 @@ government "Remnant (Research)"
 		board 1
 		capture 10
 		destroy 10
-	"use foreign penalties for"
+	"foreign penalties for"
 		"Remnant"
 	"friendly hail" "remnant uncontacted"
 	"hostile hail" "remnant uncontacted hostile"
