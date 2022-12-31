@@ -1299,6 +1299,27 @@ mission "Unfettered: Materials Intercepted"
 			label cargo
 			`	"You well deserve these <payment> for it! I will post jobs in the job board if this event happens again."`
 
+conversation "cerberus reinforcements"
+	branch boardedship
+		has "unfettered: boarded bactrian"
+		has "unfettered: cleaned up cerberus"
+	"Now that you have taken care of all pirate reinforcements, it is time to board the flagship and take their loot."
+		to display
+			has "unfettered: cleaned up cerberus"
+	"You have taken care of part of the pirate reinforcements, but more remain."
+		to display
+			not "unfettered: cleaned up cerberus"
+	action
+		set "unfettered: cleaned up cerberus"
+	``
+		decline
+	label boardedship
+	branch noduel
+		not "mercenaries: accepted duel"
+	"All pirate reinforcements have been taken care of, and the Sea Dragons signal you they are ready to start the duel whenever you will take off again."
+	label noduel
+	"All pirate reinforcements have been taken care of, all that is left to do is to bring back the cargo."
+
 mission "Unfettered: Cavalry Arrives"
 	landing
 	invisible
@@ -1309,33 +1330,36 @@ mission "Unfettered: Cavalry Arrives"
 		conversation
 			`Realizing you have landed after them, the pirates fire up their engines and take off as fast as they can. It looks like they did not expect you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you... Whatever the case, you quickly order your crew to get back into space.`
 				launch
-	on enter "Arneb"
+	on enter
 		dialog "They have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
 	npc save
-		system "Misam"
 		government "Shadow"
 		personality entering heroic uninterested staying disables mute
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
+	# the Koraths see this opportunity to hunt some Alpha dogs.
+	npc
+		government "Korath"
+		personality timid surveillance
+		ship "Kas'ik Tek 7"
+	npc
+		system "Kor Men"
+		government "Korath (Civilian)"
+		personality waiting heroic vindictive
+		fleet "Korath Defense" 3
 	npc kill
-		system "Misam"
 		government "Cerberus"
 		personality plunders vindictive entering
 		fleet "Small Northern Pirates" 3
 		fleet "Large Northern Pirates"
-		conversation
-			branch boardedship
-				has "unfettered: boarded bactrian"
-			action
-				set "unfettered: cleaned up cerberus"
-			"Now that you have taken care of all pirate reinforcements, it is time to board the flagship and take their loot."
-				decline
-			label boardedship
-			branch noduel
-				not "mercenaries: accepted duel"
-			"All pirate reinforcements have been taken care of, and the Sea Dragons signal you they are ready to start the duel whenever you will take off again."
-			label noduel
-			"All pirate reinforcements have been taken care of, all that is left to do is to bring back the cargo."
+		conversation "cerberus reinforcements"
+	npc kill
+		system "Alcyone"
+		government "Cerberus"
+		personality plunders vindictive waiting
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 2
+		conversation "cerberus reinforcements"
 	to fail
 		not "Unfettered: Materials Intercepted: active"
 	on fail
