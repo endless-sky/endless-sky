@@ -431,7 +431,7 @@ phrase "remnant uncontacted hostile"
 phrase "remnant uncontacted hostile"
 	word
 		"(They sent you hail consisting of a sign language you do not understand, and it does not seem friendly.)"
-		"(They sign so quickly that your hail receiver can not process it all.)"
+		"(They sign so quickly that your hail receiver cannot process it all.)"
 		"(It seems you are not welcome here.)"
 
 phrase "remnant friendly"
