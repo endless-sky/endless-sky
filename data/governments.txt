@@ -603,6 +603,7 @@ government "Korath"
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
+		"Cerberus" -.01
 	
 	"player reputation" -10
 
@@ -714,7 +715,6 @@ government "Cerberus"
 	"player reputation" -1000
 	"attitude toward"
 		"Shadow" -.1
-		"Korath" -.01
 		"Mercenaries" -.1
 	"display name" "Pirate"
 	bribe 0
@@ -729,7 +729,6 @@ government "Shadow"
 	"attitude toward"
 		"Mercenaries" .01
 		"Cerberus" -.1
-		"Korath" -.01
 	bribe 0
 	fine 0
 	"penalty for"
