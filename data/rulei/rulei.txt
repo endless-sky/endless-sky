@@ -40,7 +40,7 @@ mission "Ira Contact"
 				`	(Wait.)`
 			scene "scene/rulei flash"
 			`	"T e r r a n."`
-			`A bizarre image is suddenly flashed into your head, and it feels like millions of eyes are starting at you beyond the boundaries of space. Turning your head to look around again, you find the source - a strange-looking spacecraft in the vicinity of two of this system's planets. When it spoke, it sounded like thousands of voices speaking at once again, but only for a brief second this time. Still, the various whispers surround you everywhere else.`
+			`A bizarre image is suddenly flashed into your head, and it feels like millions of eyes are staring at you beyond the boundaries of space. Turning your head to look around again, you find the source - a strange-looking spacecraft in the vicinity of two of this system's planets. When it spoke, it sounded like thousands of voices speaking at once again, but only for a brief second this time. Still, the various whispers surround you everywhere else.`
 			choice
 				`	"Who are you?"`
 				`	"Where am I?"`
