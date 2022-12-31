@@ -39,6 +39,8 @@ private:
 	static void Outfits(const char *const *argv);
 	static void PrintOutfitsAllStats();
 
+	static void Sales(const char *const *argv);
+
 	static void Planets(const char *const *argv);
 	static void PrintPlanetDescriptions();
 
