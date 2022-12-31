@@ -1,4 +1,4 @@
-# Copyright (c) 2020 NomadicVolcano
+# Copyright (c) 2020 MasterOfGrey
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -99,34 +99,42 @@ fleet "Devil-Run Warships"
 	names "pirate"
 	cargo 0
 	personality
-		heroic plunders harvests
-	variant 3
-		"Leviathan"
-	variant 3
-		"Leviathan (Laser)"
-	variant 3
-		"Leviathan (Heavy)"
-	variant 6
-		"Bactrian"
-		"Dagger" 3
-	variant 2
-		"Vanguard (Particle)"
-	variant 1
-		"Vanguard (Missile)"
-	variant 1
-		"Vanguard"
+		heroic plunders harvests vindictive
 	variant 1
 		"Firebird"
 	variant 1
-		"Protector (Laser)"
-	variant 2
-		"Protector (Proton)"
+		"Firebird (Hai Shields)"
 	variant 1
+		"Modified Argosy (Heavy)"
+	variant 2
+		"Marauder Firebird (Engines)"
+	variant 2
+		"Marauder Raven (Weapons)"
+	variant 2
+		"Splinter (Laser)"
+	variant 3
+		"Bastion (Heavy)"
+	variant 3
+		"Bastion (Laser)"
+	variant 3
+		"Mule (Hai Weapons)"
+		"Dagger"
+	variant 3
+		"Vanguard (Missile)"
+	variant 3
+		"Vanguard (Plasma Slow)"
+	variant 4
+		"Vanguard (Particle)"
+	variant 3
+		"Protector (Quad Blaster)"
+	variant 3
 		"Protector"
-	variant 3
-		"Falcon"
-	variant 3
-		"Falcon (Laser)"
+	variant 5
+		"Protector (Proton)"
+	variant 5
+		"Leviathan"
+	variant 6
+		"Marauder Leviathan (Weapons)"
 
 fleet "Elenctic Commune Miners"
 	government "Elenctic Commune"

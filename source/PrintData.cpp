@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "GameData.h"
+#include "GameEvent.h"
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -41,21 +42,35 @@ namespace {
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
 	template <class Type>
-	void PrintObjectSales(const Set<Type> &objects, const Set<Sale<Type>> &sales,
-		const string &name, const string &saleName)
+	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
+		const string &itemNoun, const string &saleNoun)
 	{
-		cout << name << ',' << saleName << '\n';
+		cout << itemNoun << ',' << saleNoun << '\n';
 		map<string, set<string>> itemSales;
-		for(auto &it : sales)
-			for(auto &it2 : it.second)
-				itemSales[ObjectName(*it2)].insert(it.first);
-		for(auto &it : objects)
+		for(auto &saleIt : sales)
+			for(auto &itemIt : saleIt.second)
+				itemSales[ObjectName(*itemIt)].insert(saleIt.first);
+		for(auto &itemIt : items)
 		{
-			if(it.first != ObjectName(it.second))
+			if(itemIt.first != ObjectName(itemIt.second))
 				continue;
-			cout << it.first;
-			for(auto &it2 : itemSales[it.first])
-				cout << ',' << it2;
+			cout << itemIt.first;
+			for(auto &saleName : itemSales[itemIt.first])
+				cout << ',' << saleName;
+			cout << '\n';
+		}
+	}
+
+	template <class Type>
+	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
+	{
+		cout << saleNoun << ';' << itemNoun << '\n';
+		for(auto &saleIt : sales)
+		{
+			cout << saleIt.first;
+			int index = 0;
+			for(auto &item : saleIt.second)
+				cout << (index++ ? ';' : ',') << ObjectName(*item);
 			cout << '\n';
 		}
 	}
@@ -109,7 +124,6 @@ namespace {
 			cout << '\n';
 		}
 	}
-
 }
 
 
@@ -121,8 +135,8 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 		string arg = *it;
 		if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons"
 				|| arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines"
-				|| arg == "--power" || arg == "--planets" || arg == "--systems"
-				|| arg == "--matches")
+				|| arg == "--power" || arg == "--sales" || arg == "--planets"
+				|| arg == "--systems" || arg == "--matches")
 			return true;
 	}
 	return false;
@@ -136,7 +150,10 @@ void PrintData::Print(const char *const *argv)
 	{
 		string arg = *it;
 		if(arg == "-s" || arg == "--ships")
+		{
 			Ships(argv);
+			break;
+		}
 		else if(arg == "-w" || arg == "--weapons")
 			PrintWeaponStats();
 		else if(arg == "-e" || arg == "--engines")
@@ -144,7 +161,15 @@ void PrintData::Print(const char *const *argv)
 		else if(arg == "--power")
 			PrintPowerStats();
 		else if(arg == "-o" || arg == "--outfits")
+		{
 			Outfits(argv);
+			break;
+		}
+		else if(arg == "--sales")
+		{
+			Sales(argv);
+			break;
+		}
 		else if(arg == "--planets")
 			Planets(argv);
 		else if(arg == "--systems")
@@ -209,7 +234,7 @@ void PrintData::Ships(const char *const *argv)
 	}
 
 	if(sales)
-		PrintObjectSales(GameData::Ships(), GameData::Shipyards(), "ship", "shipyards");
+		PrintItemSales(GameData::Ships(), GameData::Shipyards(), "ship", "shipyards");
 	else if(loaded)
 		PrintLoadedShipStats(variants);
 	else if(list)
@@ -562,7 +587,7 @@ void PrintData::Outfits(const char *const *argv)
 	}
 
 	if(sales)
-		PrintObjectSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
+		PrintItemSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
 	else if(all)
 		PrintOutfitsAllStats();
 	else
@@ -593,6 +618,33 @@ void PrintData::PrintOutfitsAllStats()
 			cout << ',' << outfit.Attributes().Get(attribute);
 		cout << '\n';
 	}
+}
+
+
+
+void PrintData::Sales(const char *const *argv)
+{
+	bool ships = false;
+	bool outfits = false;
+
+	for(const char *const *it = argv + 2; *it; ++it)
+	{
+		string arg = *it;
+		if(arg == "-s" || arg == "--ships")
+			ships = true;
+		else if(arg == "-o" || arg == "--outfits")
+			outfits = true;
+	}
+
+	if(!(ships || outfits))
+	{
+		ships = true;
+		outfits = true;
+	}
+	if(ships)
+		PrintSales(GameData::Shipyards(), "shipyards", "ships");
+	if(outfits)
+		PrintSales(GameData::Outfitters(), "outfitters", "outfits");
 }
 
 
@@ -667,11 +719,22 @@ void PrintData::LocationFilterMatches(const char *const *argv)
 	DataFile file(cin);
 	LocationFilter filter;
 	for(const DataNode &node : file)
-		if(node.Token(0) == "location")
+	{
+		if(node.Token(0) == "changes" || (node.Token(0) == "event" && node.Size() == 1))
+			for(const DataNode &child : node)
+				GameData::Change(child);
+		else if(node.Token(0) == "event")
+		{
+			const auto *event = GameData::Events().Get(node.Token(1));
+			for(const auto &change : event->Changes())
+				GameData::Change(change);
+		}
+		else if(node.Token(0) == "location")
 		{
 			filter.Load(node);
 			break;
 		}
+	}
 
 	cout << "Systems matching provided location filter:\n";
 	for(const auto &it : GameData::Systems())
