@@ -140,7 +140,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "link")
+			{
 				conditionLinks.clear();
+				links.clear();
+			}
 			else if(key == "asteroids" || key == "minables")
 				asteroids.clear();
 			else if(key == "haze")
@@ -386,6 +389,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	for(auto &link : conditionLinks)
 		if(link.second.IsEmpty())
 			links.insert(link.first);
+
 	for(const System *system : links)
 		conditionLinks.erase(system);
 
