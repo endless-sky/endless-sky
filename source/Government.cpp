@@ -139,7 +139,7 @@ void Government::Load(const DataNode &node)
 				language.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
-			else if(key == "custom penalties")
+			else if(key == "custom penalties for")
 				customPenalties.clear();
 			else if(key == "use foreign penalties for")
 				useForeignPenaltiesFor.clear();
@@ -166,7 +166,7 @@ void Government::Load(const DataNode &node)
 		}
 		else if(key == "penalty for")
 			PenaltyHelper(child, penaltyFor);
-		else if(key == "custom penalties")
+		else if(key == "custom penalties for")
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "remove" && grand.Size() >= 2)
