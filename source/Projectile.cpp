@@ -232,12 +232,13 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		// quality. If the target does have jamming, then it's proportional to
 		// tracking quality, the strength of target's jamming, and the distance
 		// to the target (jamming power attenuates with distance).
+		double distance = position.Distance(target->Position());
 		if(weapon->OpticalTracking())
 		{
 			double opticalTracking = weapon->OpticalTracking();
 			double opticalJamming = target->Attributes().Get("optical jamming");
 			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
-				opticalJamming, position.Distance(target->Position()));
+				opticalJamming, distance);
 		}
 
 		if(weapon->RadarTracking())
@@ -245,7 +246,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			double radarTracking = weapon->RadarTracking();
 			double radarJamming = target->Attributes().Get("radar jamming");
 			radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
-				radarJamming, position.Distance(target->Position()));
+				radarJamming, distance);
 		}
 		if(infraredConfused && opticalConfused && radarConfused)
 			turn = Random::Real() - min(.5, turn);
