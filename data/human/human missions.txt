@@ -5229,6 +5229,8 @@ mission "Riley"
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
 
+
+
 mission "Wool Smuggling 1"
 	minor
 	name "Pickup at <planet>"
