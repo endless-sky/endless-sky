@@ -256,26 +256,28 @@ ship "Embersylph"
 	"never disabled"
 	attributes
 		category "Light Warship"
-		"hull" 1000
+		"shields" 7200
+		"hull" 1800
 		"required crew" 1
 		"bunks" 1
-		"mass" 200
-		"drag" 4
-		"heat dissipation" .8
-		"cargo space" 20
-		"fuel capacity" 200
-		"thrust" 20
-		"reverse thrust" 8
-		"turn" 600
-		"energy capacity" 500
-		"energy generation" 6
-		"hull repair rate" 3
+		"mass" 140
+		"drag" 3.2
+		"heat dissipation" .7
+		"cargo space" 0
+		"fuel capacity" 100
+		"thrust" 12
+		"reverse thrust" 4
+		"turn" 500
+		"energy capacity" 800
+		"energy generation" 7
+		"hull repair rate" 2
 		"hyperdrive" 1
 		"jump speed" 1
-		"ramscoop" 0.5
+		"ramscoop" 0.7
 		"gaslining" 1
 		"inscrutable" 1
 		"atmospheric scan" 1000
+		"shield resistance" 1
 	outfits
 		"Mouthparts?" 1
 	gun 0 0
