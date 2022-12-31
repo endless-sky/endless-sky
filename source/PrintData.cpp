@@ -172,6 +172,10 @@ void PrintData::Help()
 	cerr << "    -o, --outfits: prints a list of outfits." << endl;
 	cerr << "        --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
 	cerr << "        -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
+	cerr << "    --sales: prints a list of all shipyards and outfitters, and the ships or outfits they each contain."
+			<< endl;
+	cerr << "        -s, --ships: prints a list of shipyards and the ships they each contain." << endl;
+	cerr << "        -o, --outfits: prints a list of outfitters and the outfits they each contain." << endl;
 	cerr << "    --planets: prints a list of all planets." << endl;
 	cerr << "        --descriptions: prints a table of all planets and their descriptions." << endl;
 	cerr << "        --attributes: prints a table of all planets and their attributes." << endl;
