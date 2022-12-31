@@ -200,8 +200,8 @@ private:
 	std::string music;
 
 	// Hyperspace links to other systems and their conditions to exist.
-	std::set<const System *, ConditionSet> links;
-	bool guaranteedLinkBack = true;
+	std::map<const System *, ConditionSet> conditionLinks;
+	std::set<const System *> links;
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked.

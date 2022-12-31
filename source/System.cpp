@@ -139,8 +139,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				music.clear();
 			else if(key == "attributes")
 				attributes.clear();
-			else if(key == "garanteed link back")
-				guaranteedLinkBack = false;
 			else if(key == "link")
 				links.clear();
 			else if(key == "asteroids" || key == "minables")
@@ -180,8 +178,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
 			hidden = true;
-		else if(key == "guaranteed link back")
-			guaranteedLinkBack = true;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
@@ -965,9 +961,12 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance, const 
 	// Every star system that is linked to this one is automatically a neighbor,
 	// even if it is farther away than the maximum distance.
 	// Add the neighbor systems if the links are active.
-	for(auto &link : links)
+	for(auto &link : conditionLinks)
 		if(link.second.IsEmpty() || (player && player->Conditions().Test(link.second)))
-			neighborSet.insert(link.first);
+			links.insert(link.first);
+
+	for(const System *system : links)
+		neighborSet.insert(system);
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.
