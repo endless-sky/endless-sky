@@ -189,6 +189,7 @@ private:
 	// creation if required).
 	ConditionEntry *GetEntry(const std::string &name);
 	const ConditionEntry *GetEntry(const std::string &name) const;
+	bool VerifyProviderLocation(const std::string &name, DerivedProvider *provider) const;
 
 
 

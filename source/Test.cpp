@@ -85,6 +85,8 @@ namespace {
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
+		if(event.key.keysym.sym == SDLK_UNKNOWN)
+			return false;
 		event.key.keysym.mod = modKeys;
 		return SDL_PushEvent(&event);
 	}
@@ -362,6 +364,12 @@ void Test::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "sequence")
 			LoadSequence(child);
+		else if(child.Token(0) == "description")
+		{
+			// Provides a human friendly description of the test, but it is not used internally.
+		}
+		else
+			child.PrintTrace("Error: Skipping unrecognized attribute:");
 	}
 }
 
@@ -370,6 +378,13 @@ void Test::Load(const DataNode &node)
 const string &Test::Name() const
 {
 	return name;
+}
+
+
+
+Test::Status Test::GetStatus() const
+{
+	return status;
 }
 
 
@@ -396,7 +411,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 
 		if(context.callstack.empty())
 		{
-			// Done, no failures, exit the game with exitcode success.
+			// If this test was supposed to fail diagnose this here.
+			if(status >= Status::KNOWN_FAILURE)
+				UnexpectedSuccessResult();
+
+			// Done, no failures, exit the game.
 			SendQuitEvent();
 			return;
 		}
@@ -477,7 +496,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					// TODO: combine keys with mouse-inputs
 					for(const string &key : stepToRun.inputKeys)
 						if(!KeyInputToEvent(key.c_str(), stepToRun.modKeys))
-							Fail(context, player, "key input towards SDL eventqueue failed");
+							Fail(context, player, "key \"" + key + + "\" input towards SDL eventqueue failed");
 				}
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
@@ -576,8 +595,21 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	else
 		Logger::LogError("No test conditions were set at the moment of failure.");
 
+	// If this test was expected to fail, then return a success exitcode from the program
+	// because the test did what it was expected to do.
+	if(status >= Status::KNOWN_FAILURE)
+		throw known_failure_tag{};
+
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
 	// a later version (which can set a non-zero exitcode and exit properly).
 	throw runtime_error(message);
+}
+
+
+
+void Test::UnexpectedSuccessResult() const
+{
+	throw runtime_error("Unexpected test result: Test marked with status '" + StatusText()
+		+ "' was not expected to finish succesfully.\n");
 }

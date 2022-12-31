@@ -42,7 +42,7 @@ ship "Arach Courier"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
-		"Small Reverse Module" 2		
+		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -102,9 +102,9 @@ ship "Arach Freighter"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
-		"Large Reverse Module"		
+		"Large Reverse Module"
 		"Small Thrust Module" 2
-		"Small Reverse Module" 2		
+		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1922,7 +1922,7 @@ ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	thumbnail "thumbnail/saryd traveler"
 	attributes
-		category "Transport"
+		category "Utility"
 		licenses
 			Coalition
 		"cost" 3385000
@@ -1939,6 +1939,7 @@ ship "Saryd Traveler"
 		"weapon capacity" 177
 		"engine capacity" 79
 		"asteroid scan power" 36
+		"atmosphere scan" 100
 		weapon
 			"blast radius" 72
 			"shield damage" 720

@@ -1,6 +1,6 @@
 # Tests
 
-Endless sky has different types of automated tests:
+Endless Sky has different types of automated tests:
 - Most "single script checkers" like coding-styles and the parse-test are located under [utils](../utils).
 - The unit-tests are located in the [unit](./unit) subdirectory.
 - The integration test runners are located in the [integration](./integration) subdirectory.

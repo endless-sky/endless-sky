@@ -49,9 +49,10 @@ namespace {
 	const int APPEASING = (1 << 22);
 	const int MUTE = (1 << 23);
 	const int OPPORTUNISTIC = (1 << 24);
-	const int TARGET = (1 << 25);
-	const int MARKED = (1 << 26);
-	const int LAUNCHING = (1 << 27);
+	const int MERCIFUL = (1 << 25);
+	const int TARGET = (1 << 26);
+	const int MARKED = (1 << 27);
+	const int LAUNCHING = (1 << 28);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -79,6 +80,7 @@ namespace {
 		{"appeasing", APPEASING},
 		{"mute", MUTE},
 		{"opportunistic", OPPORTUNISTIC},
+		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING}
@@ -123,6 +125,7 @@ void Personality::Load(const DataNode &node)
 				Parse(child, i, remove);
 		}
 	}
+	isDefined = true;
 }
 
 
@@ -138,6 +141,13 @@ void Personality::Save(DataWriter &out) const
 				out.Write(it.first);
 	}
 	out.EndChild();
+}
+
+
+
+bool Personality::IsDefined() const
+{
+	return isDefined;
 }
 
 
@@ -229,6 +239,13 @@ bool Personality::IsAppeasing() const
 bool Personality::IsOpportunistic() const
 {
 	return flags & OPPORTUNISTIC;
+}
+
+
+
+bool Personality::IsMerciful() const
+{
+	return flags & MERCIFUL;
 }
 
 

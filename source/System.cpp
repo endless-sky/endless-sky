@@ -144,6 +144,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.clear();
 			else if(key == "haze")
 				haze = nullptr;
+			else if(key == "starfield density")
+				starfieldDensity = 1.;
 			else if(key == "trade")
 				trade.clear();
 			else if(key == "fleet")
@@ -333,6 +335,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
 			haze = SpriteSet::Get(value);
+		else if(key == "starfield density")
+			starfieldDensity = child.Value(valueIndex);
 		else if(key == "trade" && child.Size() >= 3)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "arrival")
@@ -353,6 +357,26 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
 			}
 		}
+		else if(key == "departure")
+		{
+			if(child.Size() >= 2)
+			{
+				jumpDepartureDistance = child.Value(1);
+				hyperDepartureDistance = fabs(child.Value(1));
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
+					hyperDepartureDistance = grand.Value(1);
+				else if(type == "jump" && grand.Size() >= 2)
+					jumpDepartureDistance = fabs(grand.Value(1));
+				else
+					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
+			}
+		}
+		else if(key == "invisible fence" && child.Size() >= 2)
+			invisibleFenceRadius = max(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -571,6 +595,20 @@ double System::ExtraJumpArrivalDistance() const
 
 
 
+double System::JumpDepartureDistance() const
+{
+	return jumpDepartureDistance;
+}
+
+
+
+double System::HyperDepartureDistance() const
+{
+	return hyperDepartureDistance;
+}
+
+
+
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them.
 const set<const System *> &System::VisibleNeighbors() const
@@ -654,6 +692,14 @@ const WeightedList<double> &System::AsteroidBelts() const
 
 
 
+// Get the system's invisible fence radius.
+double System::InvisibleFenceRadius() const
+{
+	return invisibleFenceRadius;
+}
+
+
+
 // Get how far ships can jump from this system.
 double System::JumpRange() const
 {
@@ -673,6 +719,13 @@ double System::SolarPower() const
 double System::SolarWind() const
 {
 	return solarWind;
+}
+
+
+
+double System::StarfieldDensity() const
+{
+	return starfieldDensity;
 }
 
 
@@ -825,8 +878,11 @@ double System::Danger() const
 {
 	double danger = 0.;
 	for(const auto &fleet : fleets)
-		if(fleet.Get()->GetGovernment()->IsEnemy())
+	{
+		auto *gov = fleet.Get()->GetGovernment();
+		if(gov && gov->IsEnemy())
 			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
+	}
 	return danger;
 }
 
