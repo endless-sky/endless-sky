@@ -445,11 +445,11 @@ fleet "Embersylphs"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid mute surveillance unconstrained
+		timid mute swarm unconstrained
 	variant 11
 		"Embersylph (Small)" 3
 	variant 7
-		"Embersylph" (Small) 4
+		"Embersylph (Small)" 4
 	variant 5
 		"Embersylph (Small) 3
 		"Embersylph"
@@ -458,7 +458,7 @@ fleet "Embersylphs"
 	variant 2
 		"Embersylph (Small)" 7
 	variant 2
-		"Embersylph (Small" 4
+		"Embersylph (Small)" 4
 		"Embersylph"
 	variant 1
 		"Embersylph" 1
