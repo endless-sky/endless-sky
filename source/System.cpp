@@ -140,7 +140,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "link")
-				links.clear();
+				conditionLinks.clear();
 			else if(key == "asteroids" || key == "minables")
 				asteroids.clear();
 			else if(key == "haze")
@@ -195,12 +195,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "link")
 		{
 			if(remove)
-				links.erase(GameData::Systems().Get(value));
+				conditionLinks.erase(GameData::Systems().Get(value));
 			else
-			{
-				links.insert(GameData::Systems().Get(value));
-				links.second.Load(child);
-			}
+				conditionLinks[GameData::Systems().Get(value)].Load(child);
 		}
 		else if(key == "asteroids")
 		{
@@ -962,7 +959,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance, const 
 	// even if it is farther away than the maximum distance.
 	// Add the neighbor systems if the links are active.
 	for(auto &link : conditionLinks)
-		if(link.second.IsEmpty() || (player && player->Conditions().Test(link.second)))
+		if(link.second.IsEmpty() || (player && link.second.Test(player->Conditions())))
 			links.insert(link.first);
 
 	for(const System *system : links)
