@@ -32,7 +32,7 @@ mission "Ira Contact"
 		log "Factions" "Rulei" `The Rulei were likely an ancient technologically advanced civilization from long ago.`
 			`They communicate through some sort of invasive psychonic ability.`
 		conversation
-			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. The best way to describe it is an overwhelming sense of emptiness, but at the same time, the intensity of it makes it feels like something must be there. You barely have enough time to try and make sense of this oddity as only seconds later, you start to hear ominous whispering, as if something is behind you.`
+			`The second you jump into this system you begin to experience a strange, uncomfortable sensation. You feel an overwhelming sense of emptiness, but at the same time the intensity of this feeling suggests that something must be there. You barely have enough time to try and make sense of this oddity as only seconds later, you start to hear ominous whispering, as if something is behind you.`
 			choice
 				`	(Turn around.)`
 			`	You turn your head around to look, but every time, the source of the whispers remains at the back of your head, like an itch that can't be reached. You can't even remotely understand the language, and the whispers progressively increase in volume. The louder they get, the more there are. It sounds like thousands of varingly pitched voices are speaking at all at once now, and you senses all feel overloaded. Just before you think you can't take anymore, everything falls completely silent.`
@@ -55,7 +55,7 @@ mission "Ira Contact"
 			choice
 				`	"What do you mean by "The End"?"`
 			`	The voices resume in the background, but if there's anything you can tell, it's that they've taken a more dreary tone than before. You try once more to communicate with the ship, but despite the constant whispers, it no longer answers. "The End" might possibly be referring to some type of extinction.`
-			`Taking another look at the vessel, it seems to be of some sort of advanced origin. Eeirly star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating section of parts that hums in a strange tune. The Rulei were probably far more advanced than anything human, even possibly in line with something like the Quarg.`
+			`Taking another look at the vessel, it seems to be of some sort of advanced origin. Eerily star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating section of parts that hums in a strange tune. The Rulei were probably far more advanced than anything human, even possibly in line with something like the Quarg.`
 			`The planets below seem to have an abnormal appearance similar to that of the starship, but for some reason, even looking at them gives you a headache. Something intense must have happened here a long time ago.`
 				decline
 				
