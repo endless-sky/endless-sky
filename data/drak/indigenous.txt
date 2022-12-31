@@ -249,6 +249,43 @@ ship "Embershade"
 
 
 
+ship "Embersylph"
+	noun "creature"
+	sprite "ship/embersylph/embersylph/embersylph"
+		"frame rate" 6
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"hull" 1000
+		"required crew" 1
+		"bunks" 1
+		"mass" 200
+		"drag" 4
+		"heat dissipation" .8
+		"cargo space" 20
+		"fuel capacity" 200
+		"thrust" 20
+		"reverse thrust" 8
+		"turn" 600
+		"energy capacity" 500
+		"energy generation" 6
+		"hull repair rate" 3
+		"hyperdrive" 1
+		"jump speed" 1
+		"ramscoop" 0.5
+		"gaslining" 1
+		"inscrutable" 1
+		"atmospheric scan" 1000
+	outfits
+		"Mouthparts?" 1
+	gun 0 0
+	gun 0 0
+	leak "blood" 30 50
+	explode "blood" 26
+	description "Ember Ray."
+
+
+
 outfit Mouthparts?
 	category "Guns"
 	thumbnail "outfit/mouthparts"
@@ -375,6 +412,28 @@ fleet "Embershades"
 		"Embershade" 5
 	variant 1
 		"Embershade" 6
+
+
+
+fleet "Embersylphs"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute surveillance unconstrained
+	variant 11
+		"Embersylph" 3
+	variant 7
+		"Embersylph" 4
+	variant 5
+		"Embersylph" 5
+	variant 3
+		"Embersylph" 6
+	variant 2
+		"Embersylph" 7
+	variant 2
+		"Embersylph" 8
+	variant 1
+		"Embersylph" 9
 
 
 
