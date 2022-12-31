@@ -98,13 +98,14 @@ color "missile dangerous" 1. .1 .1 1.
 # Colors used in the radar map while in-flight.
 color "radar player" .2 1. 0. 0.
 color "radar friendly" .4 .6 1. 0.
-color "radar unfriendly" .8 .8 .4 0.
-color "radar hostile" 1. .6 .4 0.
+color "radar unfriendly" .8 .8 .3 0.
+color "radar hostile" .85 .3 .2 0.
 color "radar inactive" .4 .4 .4 0.
 color "radar special" 1. 1. 1. 0.
 color "radar anomalous" .7 0. 1. 0.
 color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
+color "radar star" .6 .6 .6 0.
 
 # Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
@@ -527,6 +528,11 @@ interface "hud"
 
 	# Targets.
 	anchor top left
+	visible if "red alert"
+	sprite "ui/red alert"
+		from 10 10
+		align top left
+	visible
 	sprite "ui/radar"
 		from 0 0
 		align top left
@@ -870,7 +876,7 @@ interface "hiring"
 		align right
 	
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	label "bunks"
@@ -952,7 +958,7 @@ interface "hiring"
 
 interface "trade"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can buy"
@@ -981,7 +987,7 @@ interface "trade"
 
 interface "bank"
 	line
-		from -60 95
+		center -60 95
 		dimensions 480 1
 
 	active if "can pay"
