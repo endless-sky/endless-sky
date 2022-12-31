@@ -309,7 +309,6 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
-
 		int direction = (key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP);
 		Scroll((LINES_PER_PAGE - 2) * direction);
 	}
