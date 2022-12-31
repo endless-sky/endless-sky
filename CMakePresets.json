@@ -151,42 +151,6 @@
       }
     },
     {
-      "name": "xcode",
-      "displayName": "Xcode",
-      "description": "Builds with Xcode on x64-based MacOS",
-      "inherits": "base",
-      "generator": "Xcode",
-      "cacheVariables": {
-        "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Darwin"
-      }
-    },
-    {
-      "name": "xcode-arm",
-      "displayName": "Xcode ARM",
-      "description": "Builds with Xcode on ARM-based MacOS",
-      "inherits": "base",
-      "generator": "Xcode",
-      "cacheVariables": {
-        "CMAKE_OSX_ARCHITECTURES": "arm64",
-        "VCPKG_TARGET_TRIPLET": "arm64-osx-dynamic"
-      },
-      "architecture": {
-        "value": "arm64",
-        "strategy": "external"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Darwin"
-      }
-    },
-    {
       "name": "linux-ci",
       "displayName": "Linux CI",
       "description": "Builds for Linux for CI purposes",
@@ -316,30 +280,6 @@
       "name": "macos-arm-release",
       "displayName": "Release",
       "configurePreset": "macos-arm",
-      "inherits": "release"
-    },
-    {
-      "name": "xcode-debug",
-      "displayName": "Debug",
-      "configurePreset": "xcode",
-      "inherits": "debug"
-    },
-    {
-      "name": "xcode-release",
-      "displayName": "Release",
-      "configurePreset": "xcode",
-      "inherits": "release"
-    },
-    {
-      "name": "xcode-arm-debug",
-      "displayName": "Debug",
-      "configurePreset": "xcode-arm",
-      "inherits": "debug"
-    },
-    {
-      "name": "xcode-arm-release",
-      "displayName": "Release",
-      "configurePreset": "xcode-arm",
       "inherits": "release"
     },
     {
@@ -610,42 +550,6 @@
       "name": "macos-arm-integration-debug",
       "displayName": "Integration Tests (Debug)",
       "configurePreset": "macos-arm",
-      "inherits": "integration-debug"
-    },
-    {
-      "name": "xcode-test",
-      "displayName": "Tests",
-      "configurePreset": "xcode",
-      "inherits": "test"
-    },
-    {
-      "name": "xcode-benchmark",
-      "displayName": "Benchmarks",
-      "configurePreset": "xcode",
-      "inherits": "benchmark"
-    },
-    {
-      "name": "xcode-integration-debug",
-      "displayName": "Integration Tests (Debug)",
-      "configurePreset": "xcode",
-      "inherits": "integration-debug"
-    },
-    {
-      "name": "xcode-arm-test",
-      "displayName": "Tests",
-      "configurePreset": "xcode-arm",
-      "inherits": "test"
-    },
-    {
-      "name": "xcode-arm-benchmark",
-      "displayName": "Benchmarks",
-      "configurePreset": "xcode-arm",
-      "inherits": "benchmark"
-    },
-    {
-      "name": "xcode-arm-integration-debug",
-      "displayName": "Integration Tests (Debug)",
-      "configurePreset": "xcode-arm",
       "inherits": "integration-debug"
     },
     {

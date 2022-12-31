@@ -1312,7 +1312,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				`	"It sounds like we've made some progress!"`
 			`	As you walk back to the diplomatic quarter, Sayari begins. "They didn't do anything, but at least they agreed to solve the problems when they become disasters."`
 			`	Teeneep objects, "We can't wait for a disaster before solving this!"`
-			`	Sayari agrees. "You're right, of course, in this matter. The Elders have ever struggled with change. They're not wise for this, but they were not elected to be so. They were elected to continue the long march of incremental development. Besides, you know far better than most exactly what challenges they contend with these past couple decades. More of them have died or retired than been unelected."`
+			`	Sayari agrees. "You're right, of course, in this matter. The Elders have ever struggled with change. They're not wise for this, but they were not elected to be so. They were elected to continue the long march of incremental development. Besides, you know far better than most exactly what challenges they've contended with these past couple of decades. More of them have died or retired than been unelected."`
 			choice
 				`	"What can we do to solve this, Sayari?"`
 				`	"Teeneep, I think we need quick action. You mentioned something back in the cave."`
