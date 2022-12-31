@@ -482,7 +482,6 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
-		// TODO: give the real previous system of the player
 		GameData::UpdateSystems(this);
 		seen.clear();
 		for(const System *system : visitedSystems)
