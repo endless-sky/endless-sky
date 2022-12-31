@@ -5576,37 +5576,34 @@ mission "A dead man's path II"
 			`			This room you are in now is the culmination of all my work. I hope you understand that it was for your sake that I kept these a secret. My journey was long and unforgiving, but it was my life. I hope you continue that journey, to understand the universe a little better.`
 			`			Your father."`
 			`	Understanding the personal nature of the message, you leave the two of them alone for a bit, walking around and looking at the artifacts on the left of the dome.`
-			`	After some time, the siblings call you back to them. Sophie starts, "Captain <last>, Liam and I have thought through about this, and we think it would be a shame if we just kept this sword as a memory to him. It needs to be used. It was our father's one and only weapon, and it has been many places. Take it to many more." She pulls the sword from the pedestal and hands it to you. "It is yours now."`
+			`	After some time, the siblings call you back to them. Sophie says, "Captain <last>, Liam and I have thought through about this, and we think that we would never be able to live up to our father's expectations if if we kept this sword. We can study all these artifacts and understand more about the universe through them, but we cannot study this one. To understand it, it needs to be used.`
+			`	"This sword was always at our father's side, and it has been many places. Take it to many more." She pulls the sword from the pedestal, and gives it one last look over before handing over it to you. "It is yours now."`
 			choice
 				`	"I would be more than grateful to accept it."`
 						goto accepted
 				`	"This is too much for me to take."`
-						goto declined
-			label declined
-			`	"Are you sure?" Liam asks. "This is a one time offer. It would be wasted on us."`
+						goto lastchance
+			label lastchance
+			`	"Are you sure?" Sophie asks. "This is a one time offer. It would be wasted on us."`
 			choice
 				`	"Yes, I'm sure."`
+					goto declined
 				`	"Well, if you frame it that way, I will take it."`
-					goto accepted
-			action
-				payment 50000
-			action
-				set "A Dead Man's Path: did not accept old man's sword"
-			`	"I see. Please, at least take this extra payment of <payment>," Liam says. "It is for you traveling so much with us."`
-				goto end
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
-			label end
-			action
 				payment 50000
-			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
-			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will, we never imagined that we would come so far and we would have never done it without you. It means so much to us. We fare you well among the stars!"`
-			`	After he hands you a credit chip of <payment>, you say goodbye to them and leave them in their father's mysterious dome.`
-			to display
-				not "A Dead Man's Path: did not accept old man's sword"
-			`	After he hands you two credit chips of <payment>, you say goodbye to them and leave them in their father's mysterious dome.`
-			to display
-				has "A Dead Man's Path: did not accept old man's sword"
+			`	"Well, we'll need some time to take it all in and arrange things, find a place to stay on Prime and all that," Sophie says, "but we won't keep you from your ship any longer. It was a pleasure to travel with you, Captain <last>."`
+			`	Liam adds, "We will always thank you for helping us with our father's will, we never imagined that we would come so far and we would have never done it without you. It means so much to us. We wish you well through the stars, Captain <last>."`
+			`	After Liam hands you a credit chip of <payment>, you say goodbye to the two siblings and leave them in their father's mysterious dome.`
 				decline
+			label declined
+			action
+				payment 100000
+			`	"I see... please, if you won't take our father's sword, take an extra payment for having to put up with us all the way up until now." She takes the sword away and inserts it back into the pedestal.`
+			`	"Well, we'll need some time to take it all in and arrange things, find a place to stay on Prime and all that," Sophie says, "but we won't keep you from your ship any longer. It was a pleasure to travel with you, Captain <last>."`
+			`	Liam adds, "We will always thank you for helping us with our father's will, we never imagined that we would come so far and we would have never done it without you. It means so much to us. We wish you well through the stars, Captain <last>."`
+			`	After Liam hands you a few credit chips for <payment>, you say goodbye to the two siblings and leave them in their father's mysterious dome.`
+				decline
+
 
