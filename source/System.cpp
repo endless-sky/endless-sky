@@ -382,6 +382,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	// For optimization put the links that have no conditions amongst the other links.
+	for(auto &link : conditionLinks)
+		if(link.second.IsEmpty())
+			links.insert(link.first);
+	for(const System *system : links)
+		conditionLinks.erase(system);
+
 	// Set planet messages based on what zone they are in.
 	for(StellarObject &object : objects)
 	{
@@ -959,7 +966,8 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance, const 
 	// even if it is farther away than the maximum distance.
 	// Add the neighbor systems if the links are active.
 	for(auto &link : conditionLinks)
-		if(link.second.IsEmpty() || (player && link.second.Test(player->Conditions())))
+		// If we are not provided a player assume the link is not valid.
+		if(player && link.second.Test(player->Conditions()))
 			links.insert(link.first);
 
 	for(const System *system : links)
