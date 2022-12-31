@@ -355,6 +355,7 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
 	if(customPenalties[id].empty())
 		return PenaltyHelper(eventType, penalties);
+
 	map<int, double> tempPenalties = penalties;
 	for(const auto &it : customPenalties[id])
 		tempPenalties[it.first] = it.second;
