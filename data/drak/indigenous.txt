@@ -251,8 +251,10 @@ ship "Embershade"
 
 ship "Embersylph"
 	noun "creature"
-	sprite "ship/embersylph/embersylph/"
-		"frame rate" 6
+	sprite "ship/embersylph/embersylph"
+		"frame rate" 36
+		"random start frame"
+		"scale" 0.5
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -265,15 +267,16 @@ ship "Embersylph"
 		"heat dissipation" .7
 		"cargo space" 0
 		"fuel capacity" 100
-		"thrust" 12
-		"reverse thrust" 4
-		"turn" 500
+		"thrust" 8
+		"reverse thrust" 3
+		"turn" 90
 		"energy capacity" 800
 		"energy generation" 7
 		"hull repair rate" 2
+		"scram drive" 0.4
+		"jump fuel" 100
 		"hyperdrive" 1
-		"jump speed" 1
-		"ramscoop" 0.7
+		"ramscoop" 1.5
 		"gaslining" 1
 		"inscrutable" 1
 		"atmospheric scan" 1000
@@ -281,23 +284,32 @@ ship "Embersylph"
 	outfits
 		"Absorption Organ" 1
 	turret 0 0 "Absorption Organ"
-	leak "blood" 30 50
-	explode "blood" 26
+	leak "blood" 2
+	explode "blood" 1
 	description "Ember Ray."
-
-
+	
+ship "Embersylph" "Embersylph (Small)"
+	sprite "ship/embersylph/embersylph"
+	add attributes
+		"shields" -2800
+		"hull" -900
+		"thrust" 2
+		"turn" 10
 
 outfit "Absorption Organ"
 	category "Turrets"
 	thumbnail "outfit/unknown"
-	"turrets" -1
+	"turret mounts" -1
 	weapon
-		"hit effect"
-		"velocity" 400
+		"hit effect" 
+		"velocity" 150
+		"inaccuracy" 20
 		"turret turn" 4
 		"lifetime" 1
-		"reload" 2
-		"relative energy damage" 10
+		"reload" 3
+		"energy damage" 80
+		"shield damage" 80
+		"ion damage" 2
 
 
 
@@ -436,19 +448,25 @@ fleet "Embersylphs"
 	personality
 		timid mute surveillance unconstrained
 	variant 11
-		"Embersylph" 3
+		"Embersylph (Small)" 3
 	variant 7
-		"Embersylph" 4
+		"Embersylph" (Small) 4
 	variant 5
-		"Embersylph" 5
+		"Embersylph (Small) 3
+		"Embersylph"
 	variant 3
-		"Embersylph" 6
+		"Embersylph (Small)" 6
 	variant 2
-		"Embersylph" 7
+		"Embersylph (Small)" 7
 	variant 2
-		"Embersylph" 8
+		"Embersylph (Small" 4
+		"Embersylph"
 	variant 1
-		"Embersylph" 9
+		"Embersylph" 1
+	variant 1
+		"Embersylph" 2
+	variant 1
+		"Embersylph" 3
 
 
 
