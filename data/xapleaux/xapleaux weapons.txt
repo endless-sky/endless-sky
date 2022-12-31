@@ -184,7 +184,6 @@ outfit "Repulsor Wave Turret"
 		"hardpoint sprite" "hardpoint/repulsor wave turret"
 		"hardpoint offset" 9.
 		sound "repulsor wave"
-		"hit effect" "repulsor wave impact"
 		"inaccuracy" 4
 		"turret turn" 7
 		"velocity" 10
