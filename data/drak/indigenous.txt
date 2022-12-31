@@ -301,7 +301,6 @@ outfit "Absorption Organ"
 	thumbnail "outfit/unknown"
 	"turret mounts" -1
 	weapon
-		"hit effect" 
 		"velocity" 150
 		"inaccuracy" 20
 		"turret turn" 4
