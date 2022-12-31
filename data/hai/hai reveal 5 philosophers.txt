@@ -485,8 +485,8 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 
 mission "Hai Reveal [B06-long] Tarazed Analysis"
 	landing
-	name "Seeking Aid"
-	description `Find and board a smugglers ship. Your display will identify them as the "Smuggler" government. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
+	name "Hunting Smugglers"
+	description `Find and board a smuggler's ship. Your display will identify them as the "Smuggler" government, but they will still look like merchants. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
 	source Wayfarer
 	destination Earth
 	clearance
@@ -602,12 +602,14 @@ event "devil-run smugglers visible"
 		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Alpheratz"
 		add fleet "Smuggler (Hai Traffickers)" 7000
-	system "Achernar"
-		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Al Dhanab"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Achernar"
 		add fleet "Smuggler (Hai Traffickers)" 7000
 	system "Mirach"
 		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Schedar"
+		add fleet "Smuggler (Hai Traffickers)" 3500
 	
 	# Staging areas for transfers
 	system "Alcyone"
