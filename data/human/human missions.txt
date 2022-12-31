@@ -5324,7 +5324,7 @@ mission "Deal Change 1"
 				`	"Alright, what do you want?"`
 					goto late
 				`	"Shut the hell up."`
-			`	Seemingly unfazed by your bluntness, the man coolly walks away while saying, "I'm sorry you feel that way, captain. Perhaps you can assist us at a later date. Farewell."`
+			`	Seemingly unfazed by your bluntness, the man coolly walks away while saying, "I'm sorry you feel that way, Captain. Perhaps you can assist us at a later date. Farewell."`
 				decline
 			label late
 			`	He smirks as he walks back towards you. "I'm glad that you've changed your mind."`
@@ -5353,7 +5353,7 @@ mission "Deal Change 1"
 		fail "Deal Change 2"
 		payment 100000
 		conversation
-			`You step off your ship and order the spaceport crew to unload your cargo. As you do, a large, fat-lipped woman walks up to you and says in the most exaggerated manner possible, "Oh, thank you so much, captain! You must have gone through so much trouble to help little old me!" She gasps. "Oh, silly old me! I forgot to tell you who I am! I'm the recipient of the inheritance from <origin>, of course! You have truly made a great contribution to the galaxy!" She chuckles.`
+			`You step off your ship and order the spaceport crew to unload your cargo. As you do, a large, fat-lipped woman walks up to you and says in the most exaggerated manner possible, "Oh, thank you so much, Captain! You must have gone through so much trouble to help little old me!" She gasps. "Oh, silly old me! I forgot to tell you who I am! I'm the recipient of the inheritance from <origin>, of course! You have truly made a great contribution to the galaxy!" She chuckles.`
 			choice
 				`	"Thank you?"`
 				`	"Could you tell me what the inheritance is?"`
@@ -5363,13 +5363,13 @@ mission "Deal Change 1"
 
 mission "Deal Change 2"
 	landing
-	clearance `You read out the code on the back of the paper you received and get a green light from Greenrock's authorities, along with a set of coordinates.`
 	name "Inheritance to <planet>"
 	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so."
 	source
 		attributes "dirt belt" "south" "rim"
 		not planet "Greenrock"
 	destination "Greenrock"
+	clearance `You read out the code on the back of the paper you received and get a green light from Greenrock's authorities, along with a set of coordinates.`
 	to offer
 		has "Deal Change 1: active"
 	on offer
@@ -5381,7 +5381,7 @@ mission "Deal Change 2"
 			`	You open your mouth as you lift yourself up, only to find that the other person is already gone. As you look around, you spot a piece of paper with writing lying on the ground beside you. You pick up the note and read it:`
 			``
 			`<first> <last>,`
-			`		You are currently carrying 5 tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100 thousand credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to pass through spaceport security.`
+			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to pass through spaceport security.`
 			``
 			`	You flip the paper over and see a string of letters and numbers. The note has no signature, nor anything else to identify the person who wrote it.`
 			choice
@@ -5411,7 +5411,7 @@ mission "Deal Change 2"
 			choice
 				`	"Okay, I'll stay quiet."`
 					goto skip
-				`	(Pull out your gun.)`
+				`	(Pull out my gun.)`
 			`	The moment your hand touches the handle of your gun, you are blinded by bright lights and searing pain. You die before your body falls to the ground.`
 				die
 			label skip
