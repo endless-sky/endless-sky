@@ -304,13 +304,11 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 
 	// Update the information summary.
 	info = Information();
-
 	info.SetCondition("chosen start");
-
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
-	info.SetString("name", startIt->GetDisplayName());
-	info.SetString("description", startIt->GetDescription());
+	info.SetString("name", startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDisplayName() : "???");
+	info.SetString("description", startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
 
 	if(startIt->Revealed(GameData::GlobalConditions()))
 	{
