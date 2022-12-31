@@ -3639,7 +3639,7 @@ system Almaaz
 	arrival 5000
 	habitable 5600
 	belt 2873
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Hatysa
 	link Mintaka
 	link Unagi
@@ -7550,7 +7550,7 @@ system Chirr'ay'akai
 	arrival 500
 	habitable 490
 	belt 1425
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Ap'arak
 	link Prakacha'a
 	asteroids "large rock" 1 3.762
@@ -10551,6 +10551,7 @@ system "Ehma Ti"
 	arrival 500
 	habitable 490
 	belt 1094
+	haze _menu/haze-brown
 	link "Wah Yoot"
 	asteroids "small rock" 1 3.276
 	asteroids "medium rock" 1 1.7472
@@ -17422,7 +17423,7 @@ system Kiru'kichi
 	arrival 2795
 	habitable 2795
 	belt 1465
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Iyech'yek
 	asteroids "small rock" 11 5.032
 	asteroids "medium rock" 107 4.454
@@ -19736,7 +19737,7 @@ system Mebsuta
 	arrival 5000
 	habitable 6110
 	belt 2340
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Mirzam
 	asteroids "small rock" 1 4.1412
 	asteroids "large rock" 2 3.7961
@@ -20897,7 +20898,7 @@ system Mirzam
 	arrival 1080
 	habitable 1080
 	belt 1025
-	haze _menu/haze-67
+	haze _menu/haze-brown
 	link Betelgeuse
 	link Canopus
 	link Mebsuta
@@ -29750,7 +29751,7 @@ system Unagi
 	arrival 500
 	habitable 320
 	belt 1960
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Almaaz
 	asteroids "large rock" 1 3.102
 	asteroids "small metal" 2 2.772
@@ -35252,6 +35253,7 @@ planet Prime
 		fleet "Large Republic" 17
 
 planet "Pug Wormhole"
+	wormhole "Pug Wormhole"
 
 wormhole "Pug Wormhole"
 	link "Over the Rainbow" Deneb
