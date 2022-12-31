@@ -252,9 +252,8 @@ ship "Embershade"
 ship "Embersylph"
 	noun "creature"
 	sprite "ship/embersylph/embersylph"
-		"frame rate" 36
+		"frame rate" 34
 		"random start frame"
-		"scale" 0.5
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -287,15 +286,21 @@ ship "Embersylph"
 	leak "blood" 2
 	explode "blood" 1
 	description "Ember Ray."
-	
+
+
+
 ship "Embersylph" "Embersylph (Small)"
 	sprite "ship/embersylph/embersylph"
+		"frame rate" 36
+		"random start frame"
 		"scale" 0.5
 	add attributes
 		"shields" -2800
 		"hull" -900
 		"thrust" 2
 		"turn" 10
+
+
 
 outfit "Absorption Organ"
 	category "Turrets"
