@@ -3030,6 +3030,13 @@ planet Prime
 		threshold 8000
 		fleet "Large Republic" 17
 
+planet "Pug Wormhole"
+	wormhole "Pug Wormhole"
+
+wormhole "Pug Wormhole"
+	link "Over the Rainbow" Deneb
+	link Deneb "Over the Rainbow"
+
 planet Pugglemug
 	landscape land/myrabella5
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
@@ -3198,6 +3205,14 @@ planet Ruelogakk
 	government Quarg
 	bribe 0
 	security 0.9
+
+planet Ruin
+	attributes uninhabited
+	landscape land/hills3
+	description `This is a stormy, cloud-covered planet, where fog banks flow through the valleys like dark, cold, slow-moving rivers, and the sun is seldom visible. Aside from some dull blue-gray moss and lichen, there are few living things here. The ground is warmer than the air above it, due to an abundance of radioactive elements in the planet's crust.`
+	description `	Most of the surface is ocean, but atop one of the higher mountains is an odd, abandoned spaceport.`
+	spaceport `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not concrete or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
+	spaceport `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
 
 planet Rust
 	attributes factory farming rim
