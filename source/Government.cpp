@@ -29,6 +29,46 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Load ShipEvent strings and corresponding numerical values into a map.
+	void PenaltyHelper(const DataNode &node, map<int, double> &penalties)
+	{
+		for(const DataNode &child : node)
+			if(node.Size() >= 2)
+			{
+				if(node.Token(0) == "assist")
+					penalties[ShipEvent::ASSIST] = child.Value(1);
+				else if(node.Token(0) == "disable")
+					penalties[ShipEvent::DISABLE] = child.Value(1);
+				else if(child.Token(0) == "board")
+					penalties[ShipEvent::BOARD] = child.Value(1);
+				else if(child.Token(0) == "capture")
+					penalties[ShipEvent::CAPTURE] = child.Value(1);
+				else if(child.Token(0) == "destroy")
+					penalties[ShipEvent::DESTROY] = child.Value(1);
+				else if(child.Token(0) == "scan")
+				{
+					penalties[ShipEvent::SCAN_OUTFITS] = child.Value(1);
+					penalties[ShipEvent::SCAN_CARGO] = child.Value(1);
+				}
+				else if(child.Token(0) == "provoke")
+					penalties[ShipEvent::PROVOKE] = child.Value(1);
+				else if(child.Token(0) == "atrocity")
+					penalties[ShipEvent::ATROCITY] = child.Value(1);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+	}
+
+	// Determine the penalty for the given ShipEvent based on the values in the given map.
+	double PenaltyHelper(int eventType, const map<int, double> &penalties)
+	{
+		double penalty = 0.;
+		for(const auto &it : penalties)
+			if(eventType & it.first)
+				penalty += it.second;
+		return penalty;
+	}
+
 	unsigned nextID = 0;
 }
 
@@ -99,7 +139,9 @@ void Government::Load(const DataNode &node)
 				language.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
-			else if(key == "use foreign penalties for")
+			else if(key == "custom penalties for")
+				customPenalties.clear();
+			else if(key == "foreign penalties for")
 				useForeignPenaltiesFor.clear();
 			else if(key == "illegals")
 				illegals.clear();
@@ -123,33 +165,18 @@ void Government::Load(const DataNode &node)
 			}
 		}
 		else if(key == "penalty for")
-		{
+			PenaltyHelper(child, penaltyFor);
+		else if(key == "custom penalties for")
 			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
+			{
+				if(grand.Token(0) == "remove" && grand.Size() >= 2)
+					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
+				else
 				{
-					if(grand.Token(0) == "assist")
-						penaltyFor[ShipEvent::ASSIST] = grand.Value(1);
-					else if(grand.Token(0) == "disable")
-						penaltyFor[ShipEvent::DISABLE] = grand.Value(1);
-					else if(grand.Token(0) == "board")
-						penaltyFor[ShipEvent::BOARD] = grand.Value(1);
-					else if(grand.Token(0) == "capture")
-						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
-					else if(grand.Token(0) == "destroy")
-						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
-					else if(grand.Token(0) == "scan")
-					{
-						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
-						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
-					}
-					else if(grand.Token(0) == "provoke")
-						penaltyFor[ShipEvent::PROVOKE] = grand.Value(1);
-					else if(grand.Token(0) == "atrocity")
-						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
-					else
-						grand.PrintTrace("Skipping unrecognized attribute:");
+					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(1))->id];
+					PenaltyHelper(grand, pens);
 				}
-		}
+			}
 		else if(key == "illegals")
 		{
 			if(!add)
@@ -189,7 +216,7 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
-		else if(key == "use foreign penalties for")
+		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
 		else if(!hasValue)
@@ -313,14 +340,26 @@ double Government::InitialPlayerReputation() const
 
 
 
-// Get the amount that your reputation changes for the given offense.
-double Government::PenaltyFor(int eventType) const
+// Get the amount that your reputation changes for the given offense against the given government.
+// The given value should be a combination of one or more ShipEvent values.
+// Returns 0 if the Government is null.
+double Government::PenaltyFor(int eventType, const Government *other) const
 {
-	double penalty = 0.;
-	for(const auto &it : penaltyFor)
-		if(eventType & it.first)
-			penalty += it.second;
-	return penalty;
+	if(!other)
+		return 0.;
+
+	if(other == this)
+		return PenaltyHelper(eventType, penaltyFor);
+
+	const int id = other->id;
+	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
+	if(customPenalties[id].empty())
+		return PenaltyHelper(eventType, penalties);
+
+	map<int, double> tempPenalties = penalties;
+	for(const auto &it : customPenalties[id])
+		tempPenalties[it.first] = it.second;
+	return PenaltyHelper(eventType, tempPenalties);
 }
 
 
@@ -520,11 +559,4 @@ double Government::CrewDefense() const
 bool Government::IsProvokedOnScan() const
 {
 	return provokedOnScan;
-}
-
-
-
-bool Government::IsUsingForeignPenaltiesFor(const Government *government) const
-{
-	return useForeignPenaltiesFor.count(government->id);
 }
