@@ -99,7 +99,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "hazard", "link", "object", "random link"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "hazard", "link", "object"};
 
 	for(const DataNode &child : node)
 	{
@@ -138,8 +138,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				music.clear();
 			else if(key == "attributes")
 				attributes.clear();
-			else if(key == "random link")
-				randomLinks.clear();
 			else if(key == "garanteed link back")
 				guaranteedLinkBack = false;
 			else if(key == "link")
@@ -197,21 +195,15 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				for(int i = valueIndex; i < child.Size(); ++i)
 					attributes.insert(child.Token(i));
 		}
-		else if(key == "random link")
-		{
-			if(remove)
-				randomLinks.erase(const_cast<System *>(GameData::Systems().Get(value)));
-			else if(child.Size() > valueIndex + 1)
-				randomLinks[const_cast<System *>(GameData::Systems().Get(value))] = child.Value(valueIndex + 1);
-			else
-				child.PrintTrace("Error: Expected random link to have a value:");
-		}
 		else if(key == "link")
 		{
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
 			else
+			{
 				links.insert(GameData::Systems().Get(value));
+				links.second.Load(child);
+			}
 		}
 		else if(key == "asteroids")
 		{
@@ -453,7 +445,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 // or because the game was started, e.g. neighbors, solar wind and power, or
 // if the system is inhabited.
 void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances,
-	const System *previousSystem)
+	const PlayerInfo *player)
 {
 	neighbors.clear();
 	// Neighbors are cached for each system for the purpose of quicker
@@ -463,15 +455,15 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// jump range that can be encountered.
 	if(jumpRange)
 	{
-		UpdateNeighbors(systems, jumpRange, previousSystem);
+		UpdateNeighbors(systems, jumpRange, player);
 		// Systems with a static jump range must also create a set for
 		// the DEFAULT_NEIGHBOR_DISTANCE to be returned for those systems
 		// which are visible from it.
-		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE, previousSystem);
+		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE, player);
 	}
 	else
 		for(const double distance : neighborDistances)
-			UpdateNeighbors(systems, distance, previousSystem);
+			UpdateNeighbors(systems, distance, player);
 
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
@@ -965,19 +957,18 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 // Once the star map is fully loaded or an event has changed systems
 // or links, figure out which stars are "neighbors" of this one, i.e.
 // close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems, double distance, const System *previousSystem)
+void System::UpdateNeighbors(const Set<System> &systems, double distance, const PlayerInfo *player)
 {
 	set<const System *> &neighborSet = neighbors[distance];
 
 	// Update random links.
 	for(auto &link : randomLinks)
-		if((guaranteedLinkBack &&link.first == previousSystem) || (link.second && link.second >= Random::Real()))
-			Link(link.first);
+		if(link.second.IsEmpty() || (player && player->Conditions().Test(link.second)))
+			neighborSet.insert(system);
 
 	// Every star system that is linked to this one is automatically a neighbor,
 	// even if it is farther away than the maximum distance.
 	for(const System *system : links)
-		neighborSet.insert(system);
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.

@@ -71,7 +71,7 @@ public:
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances,
-		const System *previousSystem);
+		const PlayerInfo *player);
 
 	// Modify a system's links.
 	void Link(System *other);
@@ -172,7 +172,7 @@ private:
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
-	void UpdateNeighbors(const Set<System> &systems, double distance, const System *previousSystem);
+	void UpdateNeighbors(const Set<System> &systems, double distance, const PlayerInfo *player);
 
 
 private:
@@ -197,10 +197,9 @@ private:
 	const Government *government = nullptr;
 	std::string music;
 
-	// Hyperspace links to other systems.
-	std::set<const System *> links;
+	// Hyperspace links to other systems and their conditions to exist.
+	std::set<const System *, ConditionSet> links;
 	bool guaranteedLinkBack = true;
-	std::map<System *, double> randomLinks;
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked.

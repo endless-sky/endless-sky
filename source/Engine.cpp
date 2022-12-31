@@ -1202,7 +1202,7 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-void Engine::EnterSystem(const System *previousSystem)
+void Engine::EnterSystem()
 {
 	ai.Clean();
 
@@ -1240,7 +1240,7 @@ void Engine::EnterSystem(const System *previousSystem)
 	GameData::StepEconomy();
 
 	// Refresh random systems that could be linked to this one.
-	GameData::UpdateSystems(previousSystem);
+	GameData::UpdateSystems(player);
 
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
@@ -1432,10 +1432,9 @@ void Engine::CalculateStep()
 					player.Visit(*it.GetPlanet());
 
 		doFlash = Preferences::Has("Show hyperspace flash");
-		const System *previousSystem = playerSystem;
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
-		EnterSystem(previousSystem);
+		EnterSystem();
 	}
 	Prune(ships);
 

@@ -1,4 +1,4 @@
-test-data "guarantied link"
+test-data "link switch"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -45,20 +45,22 @@ test-data "guarantied link"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
+		conditions
+			"%TEST%: end"
 		changes
 			system "Terra Incognita"
-				remove link "Over the Rainbow"
-				"random link" "World's End" 1
-			system "World's End"
-				"random link" "Terra Incognita" 0
+				link "Over the Rainbow"
+					has "%TEST%: CONDITION YOU DONT HAVE"
+				link "World's End"
+					has "%TEST%: end"
 
 
 
-test "Random Linkk - Guaranteed Way Back"
+test "Condition Links"
 	status active
-	description "Test if we can go back trough the same link after going trough a random link."
+	description "Test if one link is removed and the other one activated."
 	sequence
-		inject "guarantied link"
+		inject "link switch"
 		call "Load First Savegame"
 		call "Depart"
 		input
@@ -67,11 +69,3 @@ test "Random Linkk - Guaranteed Way Back"
 		label firstjump
 		branch firstjump
 			"flagship system: World's End" == 0
-		apply
-			"test: flagship system: World's End" = "flagship system: World's End"
-		input
-			command jump
-		watchdog 12000
-		label secondjump
-		branch secondjump
-			"flagship system: Terra Incognita" == 0
