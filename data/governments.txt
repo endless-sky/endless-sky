@@ -1065,6 +1065,14 @@ government "Republic (Friendly)"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
+government "Rulei"
+	swizzle 0
+	color 1 1 1
+	"player reputation" 0
+	"bribe" 0
+	"fine" 0
+	"hostile hail" "rulei hostile"
+
 government "Scar's Legion"
 	swizzle 6
 	color "governments: Pirate"
@@ -1195,14 +1203,6 @@ government "Uninhabited"
 	color "governments: Ungoverned"
 	"bribe" 0
 	"fine" 0
-
-government "Rulei"
-	swizzle 0
-	color 1 1 1
-	"player reputation" 0
-	"bribe" 0
-	"fine" 0
-	"hostile hail" "rulei hostile"
 
 government "Ember Waste"
 	"display name" "???"
