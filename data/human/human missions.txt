@@ -4968,8 +4968,9 @@ mission "Riley"
 
 mission "A dead man's path I"
 	name "Siblings to New China"
-	description "Bring these siblings to New China to hear their father's last will."
+	description "Bring these siblings to New China to hear their father's last will by <date>. They offer to pay you <payment>."
 	passengers 2
+	deadline 7
 	source
 		near "Merak" 3 6
 		not attributes "station"
@@ -5019,7 +5020,7 @@ mission "A dead man's path I"
 
 mission "A dead man's path II"
 	name "Following Footprints"
-	description "Bring Sophie and Liam through <waypoints>, before finally bringing them to <destination>."
+	description "Bring Sophie and Liam through <waypoints>, before finally bringing them to <destination>. They will pay you another 50,000 credits."
 	passengers 2
 	source
 		planet "New China"
@@ -5040,7 +5041,7 @@ mission "A dead man's path II"
 				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
 			`	Sophie looks at her brother amusedly. "Of course, my brother just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well, he came home only occasionally. Don't get me wrong, our parents weren't fighting, but his passion just did not allow him to stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
 			`	She pauses for a moment, lost in her memories. "Anyways," she continues, "in his testament he told us that he left something behind for us on Prime. He said that he would not make it easy, though; he was a great fan of fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. Instead, he told us of a few systems that before we should visit before we go to Prime.`
-			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now, "And that is why we need your help. Could you help us again and take us through all these systems?"`
+			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now. "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
 				`	"Yes, I'd be glad to."`
 						goto accepted
@@ -5058,6 +5059,8 @@ mission "A dead man's path II"
 		dialog `Sophie and Liam both go on about how much power a supernova must have, even an old one, if it leaves this much behind.`
 	on enter "Enif"
 		dialog `If there was ever a prime example of how much the human race still has to learn, it is the strange and impressive yet still unfinished Quarg ringworld in this system. Liam tells you, "Our father was a very curious man, and he always talked about the Quarg and their ringworlds and how it would be another thousand years before humanity could build anything similar. We never knew how big it was until now!"`
+	on visit
+		dialog phrase "generic missing waypoint or passengers"
 	on complete
 		log `Brought Sophie and Liam around the galaxy to various locations that their dead father asked them to visit, before finally bringing them to Prime where he left something for them.`
 		conversation
@@ -5136,7 +5139,10 @@ mission "A dead man's path II"
 					goto accepted
 			action
 				payment 50000
+			action
+				set "A Dead Man's Path: did not accept old man's sword"
 			`	"I see. Please, at least take this extra payment of <payment>," Liam says. "It is for you traveling so much with us."`
+				goto end
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
@@ -5145,5 +5151,10 @@ mission "A dead man's path II"
 				payment 50000
 			`	"Well, it seems like this is the end of our short journey together, Captain <last>," Sophie says.`
 			`	"It was a pleasure to travel with you," adds Liam. "We will always thank you for helping us with our father's will, we never imagined that we would come so far and we would have never done it without you. It means so much to us. We fare you well among the stars!"`
-			`	After he hands you a credit ship for <payment>, you say goodbye to them and leave them in their father's dome.`
+			`	After he hands you a credit chip of <payment>, you say goodbye to them and leave them in their father's mysterious dome.`
+			to display
+				not "A Dead Man's Path: did not accept old man's sword"
+			`	After he hands you two credit chips of <payment>, you say goodbye to them and leave them in their father's mysterious dome.`
+			to display
+				has "A Dead Man's Path: did not accept old man's sword"
 				decline
