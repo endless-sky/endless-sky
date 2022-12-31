@@ -75,7 +75,7 @@ mission "Rulei Planet"
 
 phrase "rulei hostile"
 	word
-		"C o n c e e d."
+		"C o n c e d e."
 		"E n d."
 		"J o i n."
 		"F a l l."
