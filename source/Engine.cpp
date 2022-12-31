@@ -61,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "SystemEntry.h"
 #include "Test.h"
 #include "TestContext.h"
 #include "Visual.h"
@@ -273,6 +274,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
+	player.SetSystemEntry(SystemEntry::TAKE_OFF);
 	EnterSystem();
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
@@ -313,7 +315,7 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || planet->CanLand(*ship))
+			bool launchesWithPlayer = (ship->IsYours() || (planet && planet->CanLand(*ship)))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
@@ -556,8 +558,6 @@ void Engine::Step(bool isActive)
 
 	const System *currentSystem = player.GetSystem();
 	// Update this here, for thread safety.
-	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-		player.TravelPlan().push_back(flagship->GetTargetSystem());
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
 	if(doFlash)
@@ -682,6 +682,9 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
+		// Have an alarm label flash up when enemy ships are in the system
+		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
+			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
@@ -932,7 +935,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity, zoom);
+	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
+		player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1420,13 +1424,20 @@ void Engine::CalculateStep()
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
 	{
+		bool wormholeEntry = false;
 		// Wormhole travel: mark the wormhole "planet" as visited.
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
 						&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
+				{
+					wormholeEntry = true;
 					player.Visit(*it.GetPlanet());
+				}
 
+		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
+			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
+			SystemEntry::HYPERDRIVE);
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
@@ -1795,7 +1806,7 @@ void Engine::SpawnPersons()
 					ship->SetName(it.first);
 				ship->SetGovernment(person.GetGovernment());
 				ship->SetPersonality(person.GetPersonality());
-				ship->SetHail(person.GetHail());
+				ship->SetHailPhrase(person.GetHail());
 				if(!parent)
 					parent = ship;
 				else
@@ -1877,48 +1888,53 @@ void Engine::HandleKeyboardInputs()
 	Command keyDown = keyHeld.AndNot(oldHeld);
 
 	// Certain commands are always sent when the corresponding key is depressed.
-	static const Command manueveringCommands = Command::AFTERBURNER | Command::BACK |
+	static const Command maneuveringCommands = Command::AFTERBURNER | Command::BACK |
 		Command::FORWARD | Command::LEFT | Command::RIGHT;
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		manueveringCommands | Command::SHIFT);
+		maneuveringCommands | Command::SHIFT);
 
-	// Issuing LAND again within the cooldown period signals a change of landing target.
-	constexpr int landCooldown = 60;
-	++landKeyInterval;
-	if(oldHeld.Has(Command::LAND))
-		landKeyInterval = 0;
+	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
+	// navigable destinations in the system.
+	static const Command debouncedCommands = Command::LAND | Command::BOARD;
+	constexpr int keyCooldown = 60;
+	++keyInterval;
+	if(oldHeld.Has(debouncedCommands))
+		keyInterval = 0;
 
 	// If all previously-held maneuvering keys have been released,
 	// restore any autopilot commands still being requested.
-	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
+	if(!keyHeld.Has(maneuveringCommands) && oldHeld.Has(maneuveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | debouncedCommands);
 
-		// Do not switch landing targets when restoring autopilot.
-		landKeyInterval = landCooldown;
+		// Do not switch debounced targets when restoring autopilot.
+		keyInterval = keyCooldown;
 	}
 
-	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
-	// starting (e.g. while escorts are aligning), or switches the landing target.
-	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
+	// If holding JUMP or toggling a debounced command, also send WAIT. This prevents the jump from
+	// starting (e.g. while escorts are aligning), or switches the associated debounced target.
+	if(keyHeld.Has(Command::JUMP) || (keyInterval < keyCooldown && keyHeld.Has(debouncedCommands)))
 		activeCommands |= Command::WAIT;
 
 	// Transfer all newly pressed, unhandled keys to active commands.
 	activeCommands |= keyDown;
 
-	// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
-	// Translation is done here to allow the autopilot (which will execute the STOP-command) to
-	// act on a single STOP command instead of the shift+BACK modifier).
-	if(keyHeld.Has(Command::BACK) && keyHeld.Has(Command::SHIFT))
+	// Some commands are activated by combining SHIFT with a different key.
+	if(keyHeld.Has(Command::SHIFT))
 	{
-		activeCommands |= Command::STOP;
-		activeCommands.Clear(Command::BACK);
+		// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
+		// Translation is done here to allow the autopilot (which will execute the STOP-command) to
+		// act on a single STOP command instead of the shift+BACK modifier).
+		if(keyHeld.Has(Command::BACK))
+		{
+			activeCommands |= Command::STOP;
+			activeCommands.Clear(Command::BACK);
+		}
+		else if(keyHeld.Has(Command::JUMP))
+			activeCommands |= Command::FLEET_JUMP;
 	}
-	// Translate shift+JUMP to FLEET_JUMP.
-	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
-		activeCommands |= Command::FLEET_JUMP;
 }
 
 
@@ -2339,9 +2355,9 @@ void Engine::FillRadar()
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)
 	{
-		if(Preferences::Has("Warning siren"))
+		if(Preferences::PlayAudioAlert())
 			Audio::Play(Audio::Get("alarm"));
-		alarmTime = 180;
+		alarmTime = 300;
 		hadHostiles = true;
 	}
 	else if(!hasHostiles)

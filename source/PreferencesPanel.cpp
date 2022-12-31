@@ -62,6 +62,9 @@ namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string CAMERA_ACCELERATION = "Camera Acceleration";
+	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 1;
@@ -185,6 +188,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			else if(zone.Value() == BOARDING_PRIORITY)
+				Preferences::ToggleBoarding();
+			else if(zone.Value() == BACKGROUND_PARALLAX)
+				Preferences::ToggleParallax();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -219,6 +226,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			else if(zone.Value() == ALERT_INDICATOR)
+				Preferences::ToggleAlert();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -452,12 +461,18 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
-	// An empty string indicates that a category has ended.
-	// A '\t' character indicates that the first column on this page has ended,
-	// and the next line should be drawn at the start of the next column.
-	// A '\n' character indicates that this page is complete, no further lines should be drawn on this page.
-	// In all three cases, the first non-special string will be considered the category heading
-	// and will be drawn differently to normal setting entries.
+	// About SETTINGS pagination
+	// * An empty string indicates that a category has ended.
+	// * A '\t' character indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' character indicates that this page is complete, no further lines
+	//   should be drawn on this page.
+	// * In all three cases, the first non-special string will be considered the
+	//   category heading and will be drawn differently to normal setting
+	//   entries.
+	// * The namespace variable SETTINGS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
@@ -476,6 +491,7 @@ void PreferencesPanel::DrawSettings()
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
+		BOARDING_PRIORITY,
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
@@ -486,7 +502,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
-		"Parallax background",
+		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
 		"",
@@ -500,7 +516,7 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"Warning siren"
+		ALERT_INDICATOR
 	};
 	bool isCategory = true;
 	int page = 0;
@@ -590,6 +606,16 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
 		}
+		else if(setting == BOARDING_PRIORITY)
+		{
+			isOn = true;
+			text = Preferences::BoardingSetting();
+		}
+		else if(setting == BACKGROUND_PARALLAX)
+		{
+			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
+		}
 		else if(setting == REACTIVATE_HELP)
 		{
 			// Check how many help messages have been displayed.
@@ -625,6 +651,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == ALERT_INDICATOR)
+		{
+			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
+			text = Preferences::AlertSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
