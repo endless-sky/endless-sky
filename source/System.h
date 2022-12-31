@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "ConditionSet.h"
 #include "Hazard.h"
 #include "Point.h"
 #include "RandomEvent.h"
