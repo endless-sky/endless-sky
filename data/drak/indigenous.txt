@@ -290,6 +290,7 @@ ship "Embersylph"
 	
 ship "Embersylph" "Embersylph (Small)"
 	sprite "ship/embersylph/embersylph"
+		"scale" 0.5
 	add attributes
 		"shields" -2800
 		"hull" -900
