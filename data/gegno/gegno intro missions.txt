@@ -48,7 +48,7 @@ mission "First Contact: Gegno Vi"
 			label search
 			`	As you fly onward, an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the location and exit to investigate, making sure to equip an environment suit and holster your sidearm.`
 			label skip
-			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. Your radar showed something much less defined than a humanoid, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding a spear-like weapon. The figure moves around attentively as if it is focused on its surroundings, but appears to take no interest in your presence. The encounter feels very odd in that there is no immediate interaction or acknowledgment of your existence .`
+			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. Your radar showed something much less defined than a humanoid, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding a spear-like weapon. The figure moves around attentively as if it is focused on its surroundings, but appears to take no interest in your presence. The encounter feels very odd in that there is no immediate interaction or acknowledgment of your existence.`
 			choice
 				`	(Approach the alien.)`
 				`	(Turn back to my ship.)`
