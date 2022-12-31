@@ -272,6 +272,7 @@ ship "Embersylph"
 		"energy capacity" 800
 		"energy generation" 7
 		"hull repair rate" 2
+		"shield generation" 2
 		"scram drive" 0.4
 		"jump fuel" 100
 		"hyperdrive" 1
@@ -312,6 +313,7 @@ outfit "Absorption Organ"
 		"turret turn" 4
 		"lifetime" 1
 		"reload" 3
+		"firing shields" -10
 		"energy damage" 80
 		"shield damage" 80
 		"ion damage" 2
