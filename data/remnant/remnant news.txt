@@ -259,7 +259,7 @@ news "remnant incomprehensible"
 			"other Remnant"
 			"a Remnant at the information desk"
 			"a dockworker"
-			"something or someone you can not see"
+			"something or someone you cannot see"
 		word
 			". "
 		word
@@ -357,7 +357,7 @@ news "remnant comprehensible"
 			"other Remnant"
 			"a Remnant at the information desk"
 			"a dockworker"
-			"something or someone you can not see"
+			"something or someone you cannot see"
 		word
 			". "
 		word
