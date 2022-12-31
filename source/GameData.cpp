@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
 #include "Random.h"

@@ -51,6 +51,7 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Politics;
 class Ship;
 class Sprite;

@@ -33,6 +33,7 @@ class Fleet;
 class Government;
 class Minable;
 class Planet;
+class PlayerInfo;
 class Ship;
 class Sprite;
 

@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "SpriteSet.h"
 
