@@ -322,6 +322,7 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	System.cpp
 	System.h
+	SystemEntry.h
 	Test.cpp
 	Test.h
 	TestContext.cpp
