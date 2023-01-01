@@ -281,6 +281,8 @@ mission "Giaru Gegno: Quarg Contact"
 				goto "walking"
 			
 			label "has met gegno"
+			action
+				set "gegno: met gegno before quarg"
 			`The visual of a complete Quarg Ringworld is drastically different than the Gegno homeworld you were on before. Such a pristine, advanced structure is quite the opposite of the disorderly industry of Gegno civilisation. The population of Quarg here must be at least around the trillions, many times more than the population of the Gegno homeworld. What's even more interesting is there are other aliens of the kind you met before here on the ring too. The Quarg must have some kind of relations with them, perhaps through trade, maintenance, or other services. Despite them being present, the Quarg seem to be very dismissive of them. However, a few of the aliens occasionally glance over at you with hints of interest.`
 			`	Soon enough, a few Quarg start to rush towards you much faster than the others and begin a conversation between themselves. You aren't sure what language they are speaking, but judging by the tones and pronunciations, it sounds similar to the one you've heard the aliens speaking before. After a moment or so, one of them motions you to follow them.`
 			
@@ -388,7 +390,7 @@ mission "Giaru Gegno: Revisit"
 	to offer
 		has "Giaru Gegno: Quarg Contact: offered"
 		has "Visit Quarg in Gegno Space: offered"
-		not "Visit Quarg in Gegno Space: done"
+		not "gegno: met gegno before quarg"
 	on offer
 		conversation
 			`You arrive once more at Giaru Gegno, hoping to find another Quarg that speaks your language. This time, however, you notice that a few of the Gegno on this ringworld occasionally give you a look of interest as they walk by. After about a minute of this a pair of Quarg approach you, motioning you to follow them. Led back to the familiar room from before, the Quarg you previously spoke with is already calmly sitting at the other end of the table.`
