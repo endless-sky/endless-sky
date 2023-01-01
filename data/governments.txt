@@ -622,6 +622,17 @@ government "Korath (Civilian)"
 
 	"player reputation" 1
 
+government "Korath (Military)"
+	"display name" "Korath"
+	swizzle 0
+	"crew attack" 1.4
+	"crew defense" 2.6
+	language "Korath"
+	
+	"attitude toward"
+		"Korath (Civilian)" 1
+		"Cerberus" -.01
+
 government "Korath Nanobots"
 	"player reputation" -1000
 	"bribe" 0
@@ -700,6 +711,7 @@ government "Mercenaries"
 		"Hai (Governor Escort)" -.01
 		"Shadow" .01
 		"Cerberus" -.1
+		"Korath (Military)" .5
 	bribe .25
 	fine 0
 	"friendly hail" "friendly mercenary"
@@ -729,6 +741,11 @@ government "Shadow"
 	"attitude toward"
 		"Mercenaries" .01
 		"Cerberus" -.1
+		"Korath (Military)" .05
+	"custom penalties for"
+		"Korath (Military)"
+			disable 0
+			board 0
 	bribe 0
 	fine 0
 	"penalty for"

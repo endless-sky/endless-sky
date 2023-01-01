@@ -167,8 +167,9 @@ ship "Tick"
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
-#ship of the twins, Thorn and Talon
+# ship of the twins, Thorn and Talon
 ship "Sea Dragon"
+	crew 36
 	sprite "ship/hai sea dragon"
 	thumbnail "thumbnail/hai sea dragon"
 	attributes
@@ -200,7 +201,7 @@ ship "Sea Dragon"
 		"Hai Williwaw Cooling" 3
 		"Jump Drive"
 		"Outfits Expansion" 2
-		"Pulse Rifle" 25
+		"Pulse Rifle" 35
 		"Dual Pulse Pistols"
 		"Tripulse Shredder" 4
 		"Wanderer Ramscoop"
