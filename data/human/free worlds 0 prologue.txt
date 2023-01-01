@@ -307,7 +307,7 @@ mission "FW Recon 1"
 				`	"Perhaps. What do you want me to do?"`
 				`	"Sorry, I want no part in your rebellion."`
 					decline
-			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? We will pay <payment>."`
+			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The oufitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
 			choice
 				`	"Sure, that sounds simple enough."`
 					accept
