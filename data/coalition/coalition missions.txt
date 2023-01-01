@@ -2385,7 +2385,7 @@ mission "Coalition: Expeditions Past 1"
 		conversation
 			`Sedlitaris gives you your payment of <payment> before you open your hatch for her to leave. "Take a few hours, this might, so wait for me in the spaceport, you can. Know the layout well, I do, so find you without issue, I will."`
 			`	As you open your hatch to see her leave, you're faced with a Kimek Heliarch waiting for the two of you, startling Sedlitaris as she sees him.`
-			`	"Made it clear, have I not, that to cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
+			`	"Made it clear, have I not, that cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
 			`	Sedlitaris brings a hand to her hair as she looks down. She opens her mouth, but cuts whatever she had to say at her throat. Instead, she goes down the ramp and leaves quickly for some section of the ringworld, ignoring the Kimek's protests. He sighs and approaches you. "Roped you into her exploration plan has she, Captain? An outsider with a jump drive, you are, so of course drawn to you, she would be, that girl..."`
 			choice
 				`	"Are you two colleagues?"`
