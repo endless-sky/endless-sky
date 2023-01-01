@@ -1024,8 +1024,8 @@ outfit "Microbot Grinder"
 	weapon
 		"hardpoint sprite" "hardpoint/factory/microbot factory"
 			"frame rate" 12
-		"hit effect" "shunt-strike hit" 
-		"die effect" "shunt-strike hit" 
+		"hit effect" "shunt-strike hit"
+		"die effect" "shunt-strike hit"
 		"inaccuracy" 10
 		"velocity" 10
 		"lifetime" 2
