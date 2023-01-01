@@ -1029,8 +1029,8 @@ ship "Shield Beetle"
 	gun 61 -14 "Hai Tracker Pod"
 	turret -39 48
 	turret 39 48
-	turret -57 75 "Chameleon Anti-Missile"
-	turret 57 75 "Chameleon Anti-Missile"
+	turret -57 75
+	turret 57 75
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 60 50
