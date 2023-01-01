@@ -1195,12 +1195,13 @@ mission "Coalition: To Games 1"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .2
 	to offer
 		has "known to the heliarchs"
 		random < 90
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
@@ -1217,12 +1218,13 @@ mission "Coalition: To Games 2"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
 		random < 70
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
@@ -1239,12 +1241,13 @@ mission "Coalition: To Games 3"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .05
 	to offer
 		has "known to the heliarchs"
 		random < 50
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"

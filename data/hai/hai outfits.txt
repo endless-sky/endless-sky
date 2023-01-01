@@ -306,7 +306,7 @@ outfit "Hai Tracker Pod"
 		"die effect" "tracker impact"
 		"inaccuracy" 20
 		"velocity" 14
-		"lifetime" 600
+		"lifetime" 475
 		"reload" 60
 		"firing energy" 45
 		"firing heat" 5
@@ -429,7 +429,7 @@ outfit "Hai Williwaw Cooling"
 	thumbnail "outfit/hai williwaw"
 	"mass" 8
 	"outfit space" -8
-	"cooling" 9.5
+	"cooling" 11
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Quantum Keystone"
