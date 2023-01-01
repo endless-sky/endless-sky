@@ -156,7 +156,8 @@ mission "Xapleaux: First Contact In Progress"
 		government "Xapleaux"
 		not attributes "uninhabited"
 	to offer
-		has "Xapleaux: First Contact: Declined"
+		has "Xapleaux: First Contact: declined"
+
 	on offer
 		conversation
 			`	Upon disembarking your ship you make sure you have your pink crystal token to hand, and your ship is immediately set upon by the various aliens doing refuelling and maintenance with the rapid-paced manner of communication that seems to be typical for them.`
