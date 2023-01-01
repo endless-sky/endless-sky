@@ -197,33 +197,33 @@ void Outfit::Load(const DataNode &node)
 
 	isDefined = true;
 
-	map<string, string &> strings;
-	map<string, vector<pair<Body, int>> &> sprites;
-	map<string, map<const Sound *, int> &> audios;
-	map<string, map<const Effect *, int> &> effects;
+	map<string, string *> strings;
+	map<string, vector<pair<Body, int>> *> sprites;
+	map<string, map<const Sound *, int> *> audios;
+	map<string, map<const Effect *, int> *> effects;
 	{
-		strings["display name"] = displayName;
-		strings["category"] = category;
-		strings["plural"] = pluralName;
-		strings["description"] = description;
+		strings["display name"] = &displayName;
+		strings["category"] = &category;
+		strings["plural"] = &pluralName;
+		strings["description"] = &description;
 
-		sprites["flare sprite"] = flareSprites;
-		sprites["reverse flare sprite"] = reverseFlareSprites;
-		sprites["steering flare sprite"] = steeringFlareSprites;
+		sprites["flare sprite"] = &flareSprites;
+		sprites["reverse flare sprite"] = &reverseFlareSprites;
+		sprites["steering flare sprite"] = &steeringFlareSprites;
 
-		audios["flare sound"] = flareSounds;
-		audios["reverse flare sound"] = reverseFlareSounds;
-		audios["steering flare sound"] = steeringFlareSounds;
-		audios["hyperdrive sound"] = hyperSounds;
-		audios["hyperdrive in sound"] = hyperInSounds;
-		audios["hyperdrive out sound"] = hyperOutSounds;
-		audios["jump sound"] = jumpSounds;
-		audios["jump in sound"] = jumpInSounds;
-		audios["jump out sound"] = jumpOutSounds;
+		audios["flare sound"] = &flareSounds;
+		audios["reverse flare sound"] = &reverseFlareSounds;
+		audios["steering flare sound"] = &steeringFlareSounds;
+		audios["hyperdrive sound"] = &hyperSounds;
+		audios["hyperdrive in sound"] = &hyperInSounds;
+		audios["hyperdrive out sound"] = &hyperOutSounds;
+		audios["jump sound"] = &jumpSounds;
+		audios["jump in sound"] = &jumpInSounds;
+		audios["jump out sound"] = &jumpOutSounds;
 
-		effects["afterburner effect"] = afterburnerEffects;
-		effects["jump effect"] = jumpEffects;
-	}	
+		effects["afterburner effect"] = &afterburnerEffects;
+		effects["jump effect"] = &jumpEffects;
+	}
 
 	for(const DataNode &child : node)
 	{
@@ -257,7 +257,7 @@ void Outfit::Load(const DataNode &node)
 		{
 			if(node.Size() > expectedIndex)
 				return node.Value(expectedIndex);
-			return 1.
+			return 1.;
 		};
 
 		bool remove = child.Token(0) == "remove";
@@ -277,25 +277,25 @@ void Outfit::Load(const DataNode &node)
 			auto stringIt = strings.find(key);
 			if(stringIt != strings.end())
 			{
-				stringIt->second.clear();
+				stringIt->second->clear();
 				continue;
 			}
 			auto spriteIt = sprites.find(key);
 			if(spriteIt != sprites.end())
 			{
-				spriteIt->second.clear();
+				spriteIt->second->clear();
 				continue;
 			}
 			auto effectIt = effects.find(key);
 			if(effectIt != effects.end())
 			{
-				effectIt->second.clear();
+				effectIt->second->clear();
 				continue;
 			}
 			auto audioIt = audios.find(key);
 			if(audioIt != audios.end())
 			{
-				audioIt->second.clear();
+				audioIt->second->clear();
 				continue;
 			}
 			if(key == "thumbnail")
@@ -321,13 +321,13 @@ void Outfit::Load(const DataNode &node)
 			auto effectIt = effects.find(key);
 			if(effectIt != effects.end())
 			{
-				effectIt->second[GameData::Effects().Get(valueStr)] = 0;
+				(*effectIt->second)[GameData::Effects().Get(valueStr)] = 0;
 				continue;
 			}
 			auto audioIt = audios.find(key);
 			if(audioIt != audios.end())
 			{
-				audioIt->second[Audio::Get(valueStr)] = 0;
+				(*audioIt->second)[Audio::Get(valueStr)] = 0;
 				continue;
 			}
 			else if(key == "licenses")
@@ -341,15 +341,15 @@ void Outfit::Load(const DataNode &node)
 			if(stringIt != strings.end())
 			{
 				if(add)
-					stringIt->second.append(valueStr + '\n');
+					stringIt->second->append(valueStr + '\n');
 				else
-					stringIt->second = valueStr + '\n';
+					*stringIt->second = valueStr + '\n';
 				continue;
 			}
 			auto spriteIt = sprites.find(key);
 			if(spriteIt != sprites.end())
 			{
-				auto &spriteArr = spriteIt->second;
+				auto &spriteArr = *spriteIt->second;
 				spriteArr.emplace_back(Body(), 1);
 				spriteArr.back().first.LoadSprite(child);
 			}
@@ -357,18 +357,18 @@ void Outfit::Load(const DataNode &node)
 			if(effectIt != effects.end())
 			{
 				if(add)
-					effectIt->second[GameData::Effects.Get(valueStr)] += GetOptionalValue(child, valueIndex + 1);
+					(*effectIt->second)[GameData::Effects().Get(valueStr)] += GetOptionalValue(child, valueIndex + 1);
 				else
-					++effectIt->second[GameData::Effects.Get(valueStr)];
+					++(*effectIt->second)[GameData::Effects().Get(valueStr)];
 				continue;
 			}
 			auto audioIt = audios.find(key);
 			if(audioIt != audios.end())
 			{
 				if(add)
-					audioIt->second[Audio::Get(valueStr)] += GetOptionalValue(child, vallueIndex + 1);
+					(*audioIt->second)[Audio::Get(valueStr)] += GetOptionalValue(child, valueIndex + 1);
 				else
-					++audioIt->second[Audio::Get(valueStr)];
+					++(*audioIt->second)[Audio::Get(valueStr)];
 				continue;
 			}
 			if(key == "cost")
