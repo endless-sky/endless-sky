@@ -1605,7 +1605,7 @@ fleet "Large Deep Security"
 
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
-	names "oathkeeper small"
+	names "republic small"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1625,7 +1625,7 @@ fleet "Small Oathkeeper"
 
 fleet "Large Oathkeeper"
 	government "Navy (Oathkeeper)"
-	names "oathkeeper capital"
+	names "republic capital"
 	fighters "republic fighter"
 	cargo 0
 	personality
