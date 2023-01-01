@@ -327,10 +327,6 @@ void Outfit::Load(const DataNode &node)
 				cost = 0;
 			else if(key == "mass")
 				mass = 0.;
-			else if(key == "licenses" && !child.HasChildren())
-				licenses.clear();
-			else if(key == "licenses")
-				RemoveLicenses(child, licenses);
 			else
 				attributes[key] = 0.;
 		}
@@ -348,8 +344,6 @@ void Outfit::Load(const DataNode &node)
 				(*audioIt->second)[Audio::Get(valueStr)] = 0;
 				continue;
 			}
-			else if(key == "licenses")
-				RemoveLicenses(child, licenses);
 			else
 				child.PrintTrace("Error: unexpected additional token used with remove.");
 		}
