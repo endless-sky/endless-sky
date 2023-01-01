@@ -43,11 +43,7 @@ class Condition {
 public:
 	using ValueType = V;
 	using KeyType = std::string;
-	using EntryShared = std::shared_ptr<ConditionsStore::ConditionEntry>;
-	using EntryWeak = std::weak_ptr<ConditionsStore::ConditionEntry>;
 	using StoreType = ConditionsStore;
-	using StorePtr = std::shared_ptr<ConditionsStore>;
-	using StoreConstPtr = std::shared_ptr<const ConditionsStore>;
 
 	static_assert(std::is_arithmetic<ValueType>::value, "Condition value type must be arithmetic.");
 	static_assert(std::is_class<KeyType>::value, "Condition key type must be a class.");
@@ -58,10 +54,10 @@ public:
 
 	// Initialize the condition with the specified value.
 	// Record what store and key to use, but do not query the store for a value.
-	constexpr Condition(const V &value, StorePtr store, const KeyType &key);
+	constexpr Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key);
 
 	// Get the initial value from the store. Use V() if the store returned nothing.
-	Condition(StorePtr store, const KeyType &key);
+	Condition(std::shared_ptr<ConditionsStore> store, const KeyType &key);
 
 	template <class V2>
 	constexpr Condition(const Condition<V2> &other);
@@ -103,8 +99,8 @@ public:
 	const KeyType &Key() const { return key; }
 	KeyType &Key() { return key; }
 
-	StoreConstPtr Store() const { return store; }
-	StorePtr Store() { return store; }
+	std::shared_ptr<const ConditionsStore> Store() const { return store; }
+	std::shared_ptr<ConditionsStore> Store() { return store; }
 
 	// Does this Condition come from the same place as the other one?
 	// If it was a condition, the key must be the same (value doesn't matter)
@@ -129,8 +125,8 @@ public:
 
 
 private:
-	EntryShared GetEntry();
-	EntryShared EnsureEntry();
+	std::shared_ptr<ConditionsStore::ConditionEntry> GetEntry();
+	std::shared_ptr<ConditionsStore::ConditionEntry> EnsureEntry();
 
 	// The value of the condition, as this object sees it
 	ValueType value;
@@ -139,22 +135,22 @@ private:
 	KeyType key;
 
 	// A shared_ptr to a ConditionsStore for this condition; empty if this is literal
-	StorePtr store;
+	std::shared_ptr<ConditionsStore> store;
 
 	// A weak_ptr to a ConditionEntry with the data. May be empty or expired.
-	EntryWeak entry;
+	std::weak_ptr<ConditionsStore::ConditionEntry> entry;
 };
 
 
 template <class V>
-constexpr Condition<V>::Condition(const V &value, StorePtr store, const KeyType &key) :
+constexpr Condition<V>::Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key) :
 	value(value), key(key), store(store)
 {
 }
 
 
 template <class V>
-Condition<V>::Condition(StorePtr store, const KeyType &key) :
+Condition<V>::Condition(std::shared_ptr<ConditionsStore> store, const KeyType &key) :
 	value(), key(key), store(store)
 {
 	UpdateConditions();
@@ -211,7 +207,7 @@ const V &Condition<V>::SendValue()
 	if(!HasConditions())
 		return value;
 
-	EntryShared ce = EnsureEntry();
+	std::shared_ptr<ConditionsStore::ConditionEntry> ce = EnsureEntry();
 
 	if(!ce)
 		return value;
@@ -240,7 +236,7 @@ const V &Condition<V>::UpdateConditions(Filterer filter)
 	if(!HasConditions())
 		return value;
 
-	EntryShared ce = GetEntry();
+	std::shared_ptr<ConditionsStore::ConditionEntry> ce = GetEntry();
 
 	if(!ce)
 		return value;
@@ -260,7 +256,7 @@ const V &Condition<V>::UpdateConditions()
 	if(!HasConditions())
 		return value;
 
-	EntryShared ce = GetEntry();
+	std::shared_ptr<ConditionsStore::ConditionEntry> ce = GetEntry();
 
 	if(ce)
 		value = ce->provider ? store->Get(key) : ce->value;
@@ -308,16 +304,14 @@ Condition<V>::operator bool() const
 
 
 template <class V>
-typename Condition<V>::EntryShared Condition<V>::GetEntry()
+typename std::shared_ptr<ConditionsStore::ConditionEntry> Condition<V>::GetEntry()
 {
 	// Note: assumes store and key are available
-	try
-	{
-		return EntryShared(entry);
+	try {
+		return std::shared_ptr<ConditionsStore::ConditionEntry>(entry);
 	}
-	catch(const std::bad_weak_ptr &bwp)
-	{
-		EntryShared got = store->GetEntry(key);
+	catch(const std::bad_weak_ptr &bwp) {
+		std::shared_ptr<ConditionsStore::ConditionEntry> got = store->GetEntry(key);
 		entry = got;
 		return got;
 	}
@@ -325,16 +319,14 @@ typename Condition<V>::EntryShared Condition<V>::GetEntry()
 
 
 template <class V>
-typename Condition<V>::EntryShared Condition<V>::EnsureEntry()
+typename std::shared_ptr<ConditionsStore::ConditionEntry> Condition<V>::EnsureEntry()
 {
 	// Note: assumes store and key are available
-	try
-	{
-		return EntryShared(entry);
+	try {
+		return std::shared_ptr<ConditionsStore::ConditionEntry>(entry);
 	}
-	catch(const std::bad_weak_ptr &bwp)
-	{
-		EntryShared got = store->EnsureEntry(key);
+	catch(const std::bad_weak_ptr &bwp) {
+		std::shared_ptr<ConditionsStore::ConditionEntry> got = store->EnsureEntry(key);
 		entry = got;
 		return got;
 	}

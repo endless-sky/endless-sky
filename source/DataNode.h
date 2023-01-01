@@ -62,7 +62,7 @@ public:
 	bool IsNumber(int index) const;
 	static bool IsNumber(const std::string &token);
 	// Check if the token at the given index is in the format accepted for a
-  	// condition name
+	// condition name
 	bool IsCondition(int index) const;
 	static bool IsCondition(const std::string &token);
 
@@ -77,7 +77,7 @@ public:
 
 	// Generates a condition with either the number at that index
 	// or the condition variable at that index. The initial value of
-  	// the condition will be whatever is in the Store()
+	// the condition will be whatever is in the Store()
 	Condition<double> AsCondition(int index) const;
 
 	std::shared_ptr<ConditionsStore> Store();

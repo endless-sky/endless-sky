@@ -260,7 +260,8 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				}
 			}
 		}
-		WHEN( "it is initialized with a key, value, and a store that has a DataProvider for that key, but a different value for it" ) {
+		WHEN( "it is initialized with a key, value, and a store that has a DataProvider "
+				"for that key, but a different value for it" ) {
 			ConditionMaker vars;
 			std::string prefix = "prefix ";
 			std::string fullKey = prefix + key;
@@ -293,7 +294,8 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 						CHECK( fromProvider.Value() == thirdValue );
 					}
 				}
-				AND_WHEN( "a condition connected to the provider, but with a different initial value, does not have its UpdateConditions() called" ) {
+				AND_WHEN( "a condition connected to the provider, but with a different initial"
+						" value, does not have its UpdateConditions() called" ) {
 					THEN( "the key should not change" ) {
 						CHECK( condition.Key() == fullKey );
 						CHECK_FALSE( condition.IsLiteral() );
@@ -375,7 +377,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				}
 			}
 			AND_WHEN( "the value in the store is updated and UpdateConditions is called" ) {
-				vars.Store()->Set(key,thirdValueInt);
+				vars.Store()->Set(key, thirdValueInt);
 				condition.UpdateConditions();
 				THEN( "the key should not change" ) {
 					CHECK( condition.Key() == key );
@@ -575,7 +577,8 @@ SCENARIO( "Filtering in UpdateCondition" , "[Condition][Filtering]" ) {
 				CHECK( static_cast<double>(condition) == badValue );
 			}
 		}
-		WHEN( "calling UpdateCondition with the a store that has the key and a bad value on a condition that has the key and another bad value" ) {
+		WHEN( "calling UpdateCondition with the a store that has the key and a bad value on a "
+				"condition that has the key and another bad value" ) {
 			ConditionMaker vars({ { key, badValue } });
 			Condition<double> condition(otherBadValue, vars.Store(), key);
 			condition.UpdateConditions(FilterCondition);
