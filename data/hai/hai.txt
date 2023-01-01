@@ -287,6 +287,7 @@ phrase "hai first names"
 		"Ey"
 		"Ra"
 		"Des"
+		"Ai"
 	word
 		"neep"
 		"ari"
@@ -305,6 +306,7 @@ phrase "hai first names"
 		"heep"
 		"kei"
 		"yo"
+		"met"
 	word
 		"" 9
 		"aru"
@@ -330,6 +332,7 @@ phrase "hai last names"
 		"Yoot"
 		"Imo'"
 		"Anl'"
+		"Tae"
 	word
 		"tle"
 		"uden"
@@ -343,6 +346,7 @@ phrase "hai last names"
 		"li"
 		"ri"
 		"ooh"
+		"pip"
 
 phrase "unfettered chosen names"
 	word
