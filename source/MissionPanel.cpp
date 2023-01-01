@@ -461,13 +461,13 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				acceptedIt = accepted.begin();
 		}
 
-		// When clicking a new system, Select the first available mission
+		// When clicking a new system, select the first available mission
 		// (instead of continuing from wherever the iterator happens to be)
 		if((availableIt != available.end() && !Involves(*availableIt, system)) ||
 			(acceptedIt != accepted.end() && !Involves(*acceptedIt, system)))
 		{
 			auto firstExistingIt = find_if(available.begin(), available.end(),
-				[&system](const Mission &m) { return Involves(m, system);});
+				[&system](const Mission &m) { return Involves(m, system); });
 
 			if(firstExistingIt != available.end())
 			{
@@ -477,7 +477,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else
 			{
 				firstExistingIt = find_if(accepted.begin(), accepted.end(),
-					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system);});
+					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system); });
 
 				if(firstExistingIt != accepted.end())
 				{
