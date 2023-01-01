@@ -3025,12 +3025,6 @@ phrase "republic capital"
 	phrase
 		"mountains"
 
-phrase "oathkeeper capital"
-	word
-		"R.N.O.S. "
-	phrase
-		"mountains"
-
 phrase "mountains"
 	word
 		"Aconcagua"
@@ -3513,12 +3507,6 @@ phrase "greek and roman figures"
 phrase "republic small"
 	word
 		"R.N.S. "
-	phrase
-		"rivers"
-
-phrase "oathkeeper small"
-	word
-		"R.N.O.S. "
 	phrase
 		"rivers"
 
