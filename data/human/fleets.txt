@@ -1171,7 +1171,7 @@ fleet "Large Free Worlds"
 
 fleet "Small Militia"
 	government "Militia"
-	names "militia"
+	names "militia small"
 	cargo 1
 	personality
 		heroic frugal
@@ -1226,7 +1226,7 @@ fleet "Small Militia"
 
 fleet "Large Militia"
 	government "Militia"
-	names "militia"
+	names "militia capital"
 	cargo 1
 	personality
 		heroic frugal
@@ -1605,7 +1605,7 @@ fleet "Large Deep Security"
 
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
-	names "republic small"
+	names "oathkeeper small"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1625,7 +1625,7 @@ fleet "Small Oathkeeper"
 
 fleet "Large Oathkeeper"
 	government "Navy (Oathkeeper)"
-	names "republic capital"
+	names "oathkeeper capital"
 	fighters "republic fighter"
 	cargo 0
 	personality
