@@ -604,7 +604,7 @@ test "Wait 55 steps"
 
 test "Wait 10 steps"
 	status partial
-	description "Wait 10 steps to give time for the game to get the newest conditions. 5 steps are just enough but may as well be sure."
+	description "Wait 10 steps, for instance to give time for the game to propagate conditions, or load something."
 	sequence
 		apply
 			"test: wait 10" = 10
