@@ -61,6 +61,10 @@ public:
 	// class is able to parse.
 	bool IsNumber(int index) const;
 	static bool IsNumber(const std::string &token);
+	// Check if the token at the given index is in the format accepted for a
+  	// condition name
+	bool IsCondition(int index) const;
+	static bool IsCondition(const std::string &token);
 
 	// Check if this node has any children. If so, the iterator functions below
 	// can be used to access them.
@@ -71,9 +75,10 @@ public:
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "") const;
 
-	// Get the value, and if it was a variable, the variable name
-	// The ifMissing is used if the index doesn't exist.
-	Condition<double> AsCondition(int index, double ifMissing = 0) const;
+	// Generates a condition with either the number at that index
+	// or the condition variable at that index. The initial value of
+  	// the condition will be whatever is in the Store()
+	Condition<double> AsCondition(int index) const;
 
 	std::shared_ptr<ConditionsStore> Store();
 	void SetStore(std::shared_ptr<ConditionsStore> store);

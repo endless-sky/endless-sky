@@ -181,13 +181,17 @@ void NPC::Load(const DataNode &node)
 		else if(child.Token(0) == "fleet")
 		{
 			if(child.HasChildren())
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)),
-					child.AsCondition(1, 1));
+			{
+				if(child.Size() >= 2)
+					fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)), child.AsCondition(1));
+				else
+					fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)), Condition<int>(1));
+			}
 			else if(child.Size() >= 2)
 			{
 				if(child.Size() >= 3)
 					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))),
-						child.AsCondition(2, 1));
+						child.AsCondition(2));
 				else
 					fleets.emplace_back(ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1))), Condition<int>(1));
 			}

@@ -241,7 +241,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else if(child.Size() > valueIndex + 1)
-				fleets.emplace_back(fleet, child.AsCondition(valueIndex + 1, 0), true);
+				fleets.emplace_back(fleet, child.AsCondition(valueIndex + 1), true);
 			else
 				fleets.emplace_back(fleet, Condition<int>(0), false);
 		}

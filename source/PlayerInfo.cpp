@@ -3202,7 +3202,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// This condition corresponds to the method by which the flagship entered the current system.
-	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
+	auto &&systemEntryProvider = conditions->GetProviderPrefixed("entered system by: ");
 	auto systemEntryFun = [this](const string &name) -> bool
 	{
 		return name == "entered system by: " + EntryToString(entry);
@@ -3211,7 +3211,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	systemEntryProvider.SetGetFunction(systemEntryFun);
 
 	// This condition corresponds to the last system the flagship was in.
-	auto &&previousSystemProvider = conditions.GetProviderPrefixed("previous system: ");
+	auto &&previousSystemProvider = conditions->GetProviderPrefixed("previous system: ");
 	auto previousSystemFun = [this](const string &name) -> bool
 	{
 		if(!previousSystem)

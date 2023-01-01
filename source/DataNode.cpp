@@ -233,6 +233,26 @@ bool DataNode::IsNumber(const string &token)
 
 
 
+// Check if this node has any children. If so, the iterator functions below
+// can be used to access them.
+bool DataNode::IsCondition(int index) const
+{
+	// Make sure this token exists and is not empty.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		return false;
+
+	return IsCondition(tokens[index]);
+}
+
+
+
+bool DataNode::IsCondition(const string &token)
+{
+	return token.size()>=2 && token[0] == '$';
+}
+
+
+
 // Check if this node has any children.
 bool DataNode::HasChildren() const noexcept
 {
@@ -299,20 +319,17 @@ int DataNode::PrintTrace(const string &message) const
 
 
 // Get the value, and if it was a variable, the variable name
-Condition<double> DataNode::AsCondition(int index, double ifMissing) const
+Condition<double> DataNode::AsCondition(int index) const
 {
+	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-		return Condition<double>(ifMissing);
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
 	else if(IsNumber(tokens[index]))
 		return Condition<double>(Value(index));
-	else if(!store)
-		// Must be 0 or saves don't work
-		return Condition<double>(0, nullptr, tokens[index]);
-	auto result = store->HasGet(tokens[index]);
-	if(result.first)
-		return Condition<double>(result.second, store, tokens[index]);
-	else
-		return Condition<double>(result.second, store, tokens[index]);
+	else if(IsCondition(tokens[index]))
+		return Condition<double>(store, tokens[index].substr(1));
+	PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number or condition name. Condition names must begin with a dollar sign (\"$\"). This token will be replaced with the number 0.");
+	return Condition<double>(0);
 }
 
 
