@@ -1323,14 +1323,15 @@ ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
 		"Hai Tracker Pod" 8
-		"Hai Tracker" 476
-		"Tracker Storage Pod"
+		"Hai Tracker" 560
+		"Tracker Storage Pod" 4
 		"Pulse Turret" 4
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
+		"Hai Cuttlefish Jammer" 3
 		"Quantum Keystone"
 		"Pulse Rifle" 32
 		`"Bondir" Atomic Thruster`
