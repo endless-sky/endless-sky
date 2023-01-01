@@ -37,7 +37,6 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const string DATEFMT = "Date format";
 	const vector<string> DATEFMT_OPTIONS = {"dmy", "mdy", "ymd"};
 	int dateFormatIndex = 0;
 
