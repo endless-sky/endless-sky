@@ -109,8 +109,10 @@ void OutfitterPanel::Step()
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::OUTFITTER);
 	if(GetUI()->IsTop(this) && !checkedHelp)
-		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
-			// All help messages have now been displayed.
+		// Use short-circuiting to only display one of them at a time.
+		// (The first valid condition encountered will make us skip the others.)
+		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage") || true)
+			// Either a help message was freshly displayed, or all of them have already been seen.
 			checkedHelp = true;
 }
 
