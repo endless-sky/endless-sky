@@ -157,7 +157,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		Select(startIt);
 	}
 	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
-		&& startIt->Unlocked(GameData::GlobalConditions()))
+		&& info.HasCondition("unlocked start"))
 	{
 		player.New(*startIt);
 
