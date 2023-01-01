@@ -190,26 +190,6 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 
 
 
-void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
-{
-	// Auto select the destination system for the current mission.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-
-	// Center on the selected system.
-	CenterOnSystem(selectedSystem, immediate);
-}
-
-
-
 void MissionPanel::Step()
 {
 	MapPanel::Step();
@@ -568,6 +548,26 @@ bool MissionPanel::Scroll(double dx, double dy)
 		return Drag(0., dy * Preferences::ScrollSpeed());
 
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
+{
+	// Auto select the destination system for the current mission.
+	if(availableIt != available.end())
+	{
+		selectedSystem = availableIt->Destination()->GetSystem();
+		DoScroll(available, availableIt, availableScroll, false);
+	}
+	else if(acceptedIt != accepted.end())
+	{
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+	}
+
+	// Center on the selected system.
+	CenterOnSystem(selectedSystem, immediate);
 }
 
 
