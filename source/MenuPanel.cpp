@@ -135,7 +135,7 @@ void MenuPanel::Draw()
 	}
 
 	// Load the loading hint.
-	info.SetString("hint",GameLoadingPanel::GetHint());
+	info.SetString("hint", GameLoadingPanel::GetHint());
 
 	// Draw everything.
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
