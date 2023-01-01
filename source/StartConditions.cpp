@@ -113,9 +113,7 @@ void StartConditions::Load(const DataNode &node)
 			description += value + "\n";
 		}
 		else if(key == "hint" && hasValue)
-		{
 			hint = value;
-		}
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(value);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
