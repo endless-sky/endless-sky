@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PointerShader.h"
@@ -107,7 +110,8 @@ void PointerShader::Init()
 
 
 
-void PointerShader::Draw(const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
+void PointerShader::Draw(const Point &center, const Point &angle,
+	float width, float height, float offset, const Color &color)
 {
 	Bind();
 
@@ -132,7 +136,8 @@ void PointerShader::Bind()
 
 
 
-void PointerShader::Add(const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
+void PointerShader::Add(const Point &center, const Point &angle,
+	float width, float height, float offset, const Color &color)
 {
 	GLfloat c[2] = {static_cast<float>(center.X()), static_cast<float>(center.Y())};
 	glUniform2fv(centerI, 1, c);

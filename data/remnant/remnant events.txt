@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 event "ember waste label"
 	galaxy "label waste"
@@ -16,8 +19,11 @@ event "ember waste label"
 
 event "remnant: change hail"
 	government "Remnant"
-		"friendly hail" "friendly remnant"
-		"hostile hail" "hostile remnant"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
+	government "Remnant (Research)"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
 
 
 
@@ -60,6 +66,14 @@ event "remnant: puffin"
 
 
 
+# Replaced by the "remnant: puffin" event but the listed here so older versions of the "Remnant: Void Sprites 3" mission in their save file when they update do not have issues with this event being undefined.
+# The actual content of the event is not strictly necessary, since a patch mission already exists that applies the new event if the condition for this event is present.
+# But the event still needs to be declared so it can be considered "defined" by the game, otherwise, it will disable the mission referring to it.
+# If we ever do something that makes save files from an older version of the game incompatible, this can be removed.
+event "remnant: gascraft"
+
+
+
 event "remnant: void sprite research"
 
 
@@ -86,7 +100,18 @@ event "remnant salvage available"
 
 
 
-event "remnant research update bjd1"
+event "remnant: scanning tolerance"
+	government "Remnant"
+		"penalty for"
+			scan 0
+		remove "provoked on scan"
+		"friendly hail" "remnant trusting"
+	government "Remnant (Research)"
+		"friendly hail" "remnant trusting"
+
+
+
+event "remnant: research update bjd1"
 
 
 
@@ -109,6 +134,34 @@ event "korath hunting"
 		"attitude toward"
 			"Indigenous Lifeform" -.01
 			"Ember Waste" -.01
+
+
+
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
 
 
 
@@ -240,9 +293,26 @@ event "remnant: ssil vida inhabited"
 
 
 
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: cognizance peregrine"
-	shipyard "Remnant"
-		"Peregrine"
+	outfitter "Remnant"
+		"Bellows-Class Afterburner"
+	fleet "Small Remnant"
+		add variant 1
+			"Peregrine"
+	fleet "Large Remnant"
+		add variant 5
+			"Peregrine"
+			"Merganser" 3
 
 
 
@@ -262,7 +332,7 @@ event "remnant: remove hidden"
 
 
 
-event "remnant: ssil vida area unvisted"
+event "remnant: ssil vida area unvisited"
 	unvisit "Diespiter"
 	unvisit "Egeria"
 	unvisit "Prosa"
@@ -308,12 +378,13 @@ event "remnant: ssil vida activation"
 		trade Metal 272
 		trade Plastic 289
 		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
-			sprite star/wr1
+			sprite star/wr
 			period 10
 		object
 			sprite planet/dust6-b
@@ -473,6 +544,7 @@ event "remnant: ssil vida activation"
 		trade Metal 407
 		trade Plastic 222
 		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
@@ -563,6 +635,7 @@ event "remnant: ssil vida activation"
 			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta
+				scale 0.5
 			distance 1408
 			period 554
 	system Prosa
@@ -736,6 +809,10 @@ event "remnant: ssil vida activation"
 
 
 
+# The default value of a system's "jump range" is 0. In this state, the global default will be used.
+# When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
+# the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
+# may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
 event "remnant: ssil vida deactivation"
 	clear "remnant: ssil vida active"
 	planet Fertriery
@@ -754,6 +831,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
+		"jump range" 0
 		link Statina
 		link Vaticanus
 		asteroids "small rock" 1 8
@@ -801,6 +879,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
+		"jump range" 0
 		link Statina
 		link Postverta
 		asteroids "small rock" 65 3
@@ -854,6 +933,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
+		"jump range" 0
 		link Diespiter
 		link Prosa
 		link Statina
@@ -887,6 +967,7 @@ event "remnant: ssil vida deactivation"
 			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta
+				scale 0.5
 			distance 1408
 			period 554
 	system Prosa
@@ -897,6 +978,7 @@ event "remnant: ssil vida deactivation"
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
+		"jump range" 0
 		link Vaticanus
 		link Postverta
 		asteroids "medium metal" 11 2
@@ -950,6 +1032,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
+		"jump range" 0
 		link Diespiter
 		link Egeria
 		link Postverta
@@ -1000,6 +1083,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
+		"jump range" 0
 		link Egeria
 		link Prosa
 		asteroids "small rock" 3 6
@@ -1060,10 +1144,10 @@ event "remnant: cognizance salvage expansion"
 		add "Systems Core (Medium)"
 		add "Large Heat Shunt"
 		add "Fuel Processor"
-		add "Korath Repeater Rifle"
-		add "Korath Grab-Strike"
-		add "Korath Banisher"
-		add "Korath Warder"
+		add "Thermal Repeater Rifle"
+		add "Grab-Strike Turret"
+		add "Banisher Grav-Turret"
+		add "Warder Anti-Missile"
 	planet "Viminal"
 		add shipyard "Remnant Salvage Ships"
 	planet "Aventine"
@@ -1074,3 +1158,88 @@ event "remnant: cognizance salvage expansion"
 
 
 event "remnant: cognizance calm"
+
+
+
+event "remnant: teciimach deployment"
+	outfitter "Remnant"
+		remove "EMP Torpedo Bay"
+		remove "EMP Torpedo"
+		remove "EMP Torpedo Storage Bay"
+		add "Teciimach Bay"
+		add "Teciimach Pod"
+		add "Teciimach Canister"
+		add "Teciimach Canister Rack"
+	fleet "Small Remnant"
+		add variant 5
+			"Merganser (II)" 2
+		add variant 3
+			"Merganser (II)" 4
+		add variant 1
+			"Starling"
+			"Merganser (II)" 2
+	fleet "Large Remnant"
+		add variant 5
+			"Albatross"
+			"Merganser (II)" 4
+		add variant 4
+			"Ibis"
+			"Petrel" 2
+			"Tern" 4
+			"Merganser (II)" 8
+	fleet "Remnant Transport"
+		add variant 3
+			"Gull"
+			"Merganser (II)" 2
+		add variant 1
+			"Pelican"
+			"Merganser (II)" 4
+		remove variant 4
+			"Gull (Support)"
+		add variant 4
+			"Gull (Support II)"
+	fleet "Remnant Home Guard"
+		add variant 5
+			"Merganser (II)"
+		add variant 3
+			"Merganser (II)"
+			"Petrel" 2
+			"Tern" 4
+		add variant 3
+			"Smew (Teciimach Ferry)"
+	fleet "Small Remnant"
+		remove variant 1
+			"Peregrine"
+		add variant 2
+			"Peregrine (II)"
+	fleet "Large Remnant"
+		remove variant 4
+			"Peregrine"
+			"Merganser" 3
+		add variant 5
+			"Peregrine (II)"
+			"Merganser (II)" 3
+
+
+
+event "remnant: shattered light"
+	shipyard "Remnant"
+		add "Modified Dromedary"
+
+
+
+event "remnant: shattered light research"
+
+event "remnant: tubfalet appearance"
+	fleet "Korath Raid"
+		add variant 1
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Ember Waste Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Large Raid"
+		add variant 3
+			"Tubfalet" 2
+			"'olofez" 6
