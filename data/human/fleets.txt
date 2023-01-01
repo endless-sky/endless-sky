@@ -73,6 +73,10 @@ fleet "Small Southern Merchants"
 		"Berserker"
 	variant 1
 		"Scout"
+	variant 1
+		"Scrapper"
+	variant 1
+		"Scrapper (Plasma Engine)"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -227,6 +231,8 @@ fleet "Small Core Merchants"
 		"Scout"
 	variant 1
 		"Scout (Speedy)"
+	variant 1
+		"Scrapper"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -529,6 +535,8 @@ fleet "Small Northern Merchants"
 		"Scout"
 	variant 5
 		"Scout (Speedy)"
+	variant 1
+		"Scrapper"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -2037,6 +2045,12 @@ fleet "Small Independent"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
+	variant 10
+		"Scrapper"
+	variant 8
+		"Scrapper (Minimal)"
+	variant 8
+		"Scrapper (Plasma Engine)"
 
 fleet "Large Independent"
 	government "Independent"
