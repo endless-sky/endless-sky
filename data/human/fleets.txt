@@ -1186,7 +1186,7 @@ fleet "Large Free Worlds"
 
 fleet "Small Militia"
 	government "Militia"
-	names "militia"
+	names "militia small"
 	cargo 1
 	personality
 		heroic frugal
@@ -1241,7 +1241,7 @@ fleet "Small Militia"
 
 fleet "Large Militia"
 	government "Militia"
-	names "militia"
+	names "militia capital"
 	cargo 1
 	personality
 		heroic frugal
