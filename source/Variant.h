@@ -42,7 +42,7 @@ public:
 	const Condition<int> &Weight() const;
 	const std::vector<const Ship *> &Ships() const;
 
-	void UpdateConditions(const ConditionsStore &vars);
+	void UpdateConditions();
 
 	// The strength of a variant is the sum of the cost of its ships.
 	int64_t Strength() const;

@@ -35,8 +35,7 @@ public:
 	constexpr const P &Period() const noexcept;
 
 	// Update the period from a ConditionSet if needed:
-	template<typename Getter>
-	void UpdateConditions(const Getter &getter);
+	void UpdateConditions();
 
 	static const P &MinimumPeriod() { return minimumPeriod; }
 	bool HasConditions() const;
@@ -60,16 +59,35 @@ bool PeriodTypeHasConditions(const T &t)
 	return false;
 }
 
-template < class T, class U, typename std::enable_if<std::is_arithmetic<U>::value>::type* = nullptr >
+template < class T, class U,
+	typename std::enable_if<!std::is_class<T>::value>::type* = nullptr,
+	typename std::enable_if<std::is_arithmetic<U>::value>::type* = nullptr
+>
 T InitialPeriod(const T &period, U minimumValue, bool overrideMinimum)
 {
 	T result(period);
 	if(result > 0)
 		return result;
 	else if(overrideMinimum)
-		result = 0;
+		result = T(0);
 	else
-		result = minimumValue;
+		result = T(minimumValue);
+	return result;
+}
+
+template < class T, class U,
+	typename std::enable_if<std::is_class<T>::value>::type* = nullptr,
+	typename std::enable_if<std::is_arithmetic<U>::value>::type* = nullptr
+>
+T InitialPeriod(const T &period, U minimumValue, bool overrideMinimum)
+{
+	T result(period);
+	if(result > 0)
+		return result;
+	else if(overrideMinimum)
+		result.Value() = 0;
+	else
+		result.Value() = minimumValue;
 	return result;
 }
 
@@ -93,10 +111,9 @@ constexpr const P &RandomEvent<T, P>::Period() const noexcept
 
 // Update the period from a ConditionSet if needed.
 template <typename T, typename P>
-template <typename Getter>
-void RandomEvent<T, P>::UpdateConditions(const Getter &getter)
+void RandomEvent<T, P>::UpdateConditions()
 {
-	period.UpdateConditions(getter);
+	period.UpdateConditions();
 	if(period <= 0)
 		period.Value() = overrideMinimum ? 0 : minimumPeriod;
 }

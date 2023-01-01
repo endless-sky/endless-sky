@@ -281,12 +281,12 @@ const Government *Fleet::GetGovernment() const
 
 
 // Updates any data that relies on conditions
-void Fleet::UpdateConditions(const ConditionsStore &vars)
+void Fleet::UpdateConditions()
 {
 	if(!hasConditions)
 		return;
-	variants.UpdateConditions(vars);
-	cargo.UpdateConditions(vars);
+	variants.UpdateConditions();
+	cargo.UpdateConditions();
 }
 
 

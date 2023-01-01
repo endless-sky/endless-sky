@@ -372,22 +372,29 @@ bool ConditionsStore::Erase(const string &name)
 
 ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 {
+	return *EnsureEntry(name);
+}
+
+
+
+shared_ptr<ConditionsStore::ConditionEntry> ConditionsStore::EnsureEntry(const string &name)
+{
 	// Search for an exact match and return it if it exists.
 	auto it = storage.find(name);
 	if(it != storage.end())
-		return *it->second;
+		return it->second;
 
 	// Check for a prefix provider.
 	shared_ptr<ConditionEntry> ceprov = GetEntry(name);
 	// If no prefix provider is found, then just create a new value entry.
 	if(ceprov == nullptr)
-		return *FromStorage(name);
+		return FromStorage(name);
 
 	// Found a matching prefixed entry provider, but no exact match for the entry itself,
 	// let's create the exact match based on the prefix provider.
-	ConditionEntry &ce = *FromStorage(name);
-	ce.provider = ceprov->provider;
-	ce.fullKey = name;
+	shared_ptr<ConditionEntry> ce = FromStorage(name);
+	ce->provider = ceprov->provider;
+	ce->fullKey = name;
 	return ce;
 }
 

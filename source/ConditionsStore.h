@@ -38,6 +38,8 @@ class DataWriter;
 // data types than int64_t (for example double, float or even complex
 // formulae).
 class ConditionsStore {
+	template<class V>
+	friend class Condition;
 public:
 	using ValueType = int64_t;
 	using KeyType = std::string;
@@ -83,6 +85,8 @@ public:
 	// to conditions in the ConditionsStore.
 	class ConditionEntry {
 		friend ConditionsStore;
+		template<class V>
+		friend class Condition;
 
 	public:
 		// int64_t proxy helper functions. Those functions allow access to the conditions
@@ -191,6 +195,7 @@ private:
 	// Retrieve a condition entry based on a condition name, the entry doesn't
 	// get created if it doesn't exist yet (the Set function will handle
 	// creation if required).
+	std::shared_ptr<ConditionEntry> EnsureEntry(const std::string &name);
 	std::shared_ptr<ConditionEntry> GetEntry(const std::string &name);
 	std::shared_ptr<const ConditionEntry> GetEntry(const std::string &name) const;
 	bool VerifyProviderLocation(const std::string &name, DerivedProvider *provider) const;

@@ -127,7 +127,7 @@ SCENARIO( "Creating a RandomEvent with a Condition period", "[RandomEvent][Condi
 		}
 		AND_WHEN( "setting to a valid period via UpdateConditions" ) {
 			vars.Set("period", minimumPeriod * 2);
-			event.UpdateConditions(*vars.Store());
+			event.UpdateConditions();
 			THEN( "the period should be the specified value" ) {
 				CHECK( event.Period() == minimumPeriod * 2 );
 				CHECK( event.Period().Key() == "period" );
@@ -136,7 +136,7 @@ SCENARIO( "Creating a RandomEvent with a Condition period", "[RandomEvent][Condi
 			}
 			AND_WHEN( "setting to a negative period via UpdateConditions" ) {
 				vars.Set("period", -999);
-				event.UpdateConditions(*vars.Store());
+				event.UpdateConditions();
 				THEN( "the period should be zero" ) {
 					CHECK( event.Period() == 0 );
 					CHECK( event.Period().Key() == "period" );
@@ -157,7 +157,7 @@ SCENARIO( "Creating a RandomEvent with a Condition period", "[RandomEvent][Condi
 		}
 		AND_WHEN( "setting to a valid period via UpdateConditions" ) {
 			vars.Set("period", minimumPeriod * 2);
-			event.UpdateConditions(*vars.Store());
+			event.UpdateConditions();
 			THEN( "the period should be the specified value" ) {
 				CHECK( event.Period() == minimumPeriod * 2 );
 				CHECK( event.Period().Key() == "period" );
@@ -166,7 +166,7 @@ SCENARIO( "Creating a RandomEvent with a Condition period", "[RandomEvent][Condi
 			}
 			AND_WHEN( "setting to a negative period via UpdateConditions" ) {
 				vars.Set("period", -999);
-				event.UpdateConditions(*vars.Store());
+				event.UpdateConditions();
 				THEN( "the period should be the minimum value" ) {
 					CHECK( event.Period() == minimumPeriod );
 					CHECK( event.Period().Key() == "period" );

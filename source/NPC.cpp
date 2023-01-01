@@ -558,8 +558,7 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-	const ConditionsStore &vars) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
 {
 	NPC result;
 	result.government = government;
@@ -603,13 +602,13 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	{
 		const auto &fleet = fleetCount.first;
 		Condition<int> count = fleetCount.second;
-		count.UpdateConditions(vars);
+		count.UpdateConditions();
 		if(count <= 0)
 			continue;
 		else if(fleet->HasConditions())
 		{
 			Fleet instantiated(*fleet);
-			instantiated.UpdateConditions(vars);
+			instantiated.UpdateConditions();
 			if(instantiated.HasActiveVariants())
 				for(int i = 0; i < count; ++i)
 					instantiated.Place(*result.system, result.ships, false);

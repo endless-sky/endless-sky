@@ -868,12 +868,12 @@ double System::Exports(const string &commodity) const
 
 
 
-void System::UpdateConditions(const ConditionsStore &vars)
+void System::UpdateConditions()
 {
 	if(!hasConditions)
 		return;
 	for(auto &fleet : fleets)
-		fleet.UpdateConditions(vars);
+		fleet.UpdateConditions();
 }
 
 

@@ -264,15 +264,15 @@ SCENARIO( "Creating a Condition from a DataNode", "[DataNode][Condition]") {
 		}
 		WHEN( "using AsCondition on a missing condition" ) {
 			DataNode node = AsDataNode("missing 3 notmissing", maker.Store());
-			THEN( "should return a Condition with the default value and requested key" ) {
-				CHECK( node.AsCondition(0, defaultValue) == defaultValue );
+			THEN( "should return a Condition with 0 and requested key" ) {
+				CHECK( node.AsCondition(0, defaultValue) == 0 );
 				CHECK( node.AsCondition(0, defaultValue).Key() == "missing" );
 			}
 		}
 		WHEN( "using AsCondition with no ConditionsStore" ) {
 			DataNode node = AsDataNode("missing 3 notmissing");
-			THEN( "should return a Condition with the default value and requested key" ) {
-				CHECK( node.AsCondition(0, defaultValue) == defaultValue );
+			THEN( "should return a Condition with 0 and requested key" ) {
+				CHECK( node.AsCondition(0, defaultValue) == 0 );
 				CHECK( node.AsCondition(0, defaultValue).Key() == "missing" );
 			}
 		}

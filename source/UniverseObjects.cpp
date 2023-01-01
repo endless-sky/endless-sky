@@ -518,10 +518,10 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 
 
 
-void UniverseObjects::UpdateConditions(shared_ptr<ConditionsStore> vars)
+void UniverseObjects::UpdateConditions()
 {
 	for(auto &fleet : fleets)
-		fleet.second.UpdateConditions(*vars);
+		fleet.second.UpdateConditions();
 	for(auto &system : systems)
-		system.second.UpdateConditions(*vars);
+		system.second.UpdateConditions();
 }

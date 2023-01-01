@@ -58,10 +58,7 @@ public:
 	>::type Average(Callable c) const;
 	// Supplying a callable that does not return an arithmetic value will fail to compile.
 
-	// Update weight values. This is to support the use of Condition weights.
-	// The Getter must be a class with a HasGet method like ConditionsStore
-	template <class Getter>
-	void UpdateConditions(const Getter &c);
+	void UpdateConditions();
 
 	// At least one choice has c(weight,choice) = true
 	template <class Callable>
@@ -204,19 +201,37 @@ Type &WeightedList<Type, Weight>::emplace_back(const NewWeight &newWeight, Args&
 
 
 
+template <class Weight, typename std::enable_if<!std::is_class<Weight>::value>::type* = nullptr>
+void UpdateWeightConditions(Weight &weight)
+{
+}
+
+
+
+template <class Weight, typename std::enable_if<std::is_class<Weight>::value>::type* = nullptr>
+void UpdateWeightConditions(Weight &weight)
+{
+	weight.UpdateConditions([](
+		typename Weight::StoreType::ValueType newValue,
+		typename Weight::ValueType oldValue
+	)
+	{
+		if(IsAValidWeight(newValue))
+			return static_cast<typename Weight::ValueType>(newValue);
+		return oldValue;
+	});
+}
+
+
+
 // Update weight values. This is to support the use of Condition weights.
-// The Getter must be a class with a HasGet method like ConditionsStore
 template <class Type, class Weight>
-template <class Getter>
-void WeightedList<Type, Weight>::UpdateConditions(const Getter &getter)
+void WeightedList<Type, Weight>::UpdateConditions()
 {
 	for(unsigned index = 0; index < choices.size(); ++index)
 	{
-		weights[index].UpdateConditions(getter, [&](typename Getter::ValueType w)
-		{
-			return IsAValidWeight(w);
-		});
-		choices[index].UpdateConditions(getter);
+		UpdateWeightConditions(weights[index]);
+		choices[index].UpdateConditions();
 	}
 	RecalculateWeight();
 }

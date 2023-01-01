@@ -75,7 +75,7 @@ public:
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
 
 	// Updates any data that relies on conditions
-	void UpdateConditions(const ConditionsStore &vars);
+	void UpdateConditions();
 
 	// Does this System use any conditions?
 	bool HasConditions() const;

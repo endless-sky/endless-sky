@@ -72,6 +72,7 @@ public:
 	int PrintTrace(const std::string &message = "") const;
 
 	// Get the value, and if it was a variable, the variable name
+	// The ifMissing is used if the index doesn't exist.
 	Condition<double> AsCondition(int index, double ifMissing = 0) const;
 
 	std::shared_ptr<ConditionsStore> Store();

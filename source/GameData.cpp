@@ -443,7 +443,7 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 void GameData::Change(const DataNode &node)
 {
 	objects.Change(node, varyingConditions);
-	objects.UpdateConditions(varyingConditions);
+	objects.UpdateConditions();
 }
 
 
@@ -461,7 +461,7 @@ void GameData::UpdateSystems()
 // based on conditions to update their internal state:
 void GameData::UpdateConditions()
 {
-	objects.UpdateConditions(varyingConditions);
+	objects.UpdateConditions();
 }
 
 

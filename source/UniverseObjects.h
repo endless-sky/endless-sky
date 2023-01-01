@@ -86,7 +86,7 @@ public:
 	void DrawMenuBackground(Panel *panel) const;
 
 	// Tells all objects that may dynamically change based on conditions to update their internal state:
-	void UpdateConditions(std::shared_ptr<ConditionsStore> vars);
+	void UpdateConditions();
 
 
 private:

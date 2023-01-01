@@ -19,34 +19,35 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <limits>
+#include <memory>
 #include <string>
 #include <type_traits>
+
+#include "ConditionsStore.h"
 
 
 
 // This class stores either:
-//   1. A condition's value and key
+//   1. A condition that is in a ConditionsStore
 //   2. A literal value (key is empty)
 //
 // The ValueType (V in the template) is first in the template since
 // (nearly?)  all Condition classes will use a std::string key (K). It
 // should be an arithmetic type, like double, int64_t, int, or
 // unsigned. A bool should work too, but that's untested.
-//
-// The KeyType (K in the template) is a template parameter so we can
-// allow storage of scope, wstring, etc. in the future without
-// rewriting this class.
-//
-// Condition assumes its KeyType has an empty() function, and that the
-// default constructor produces an empty() KeyType. Also, the Getter
-// must have a HasGet method that receives the KeyType. An std::string
-// satisfies all of these requirements, and it is the default.
 
 template < class V >
 class Condition {
+	template <class V2>
+	friend class Condition;
 public:
 	using ValueType = V;
 	using KeyType = std::string;
+	using EntryShared = std::shared_ptr<ConditionsStore::ConditionEntry>;
+	using EntryWeak = std::weak_ptr<ConditionsStore::ConditionEntry>;
+	using StoreType = ConditionsStore;
+	using StorePtr = std::shared_ptr<ConditionsStore>;
+	using StoreConstPtr = std::shared_ptr<const ConditionsStore>;
 
 	static_assert(std::is_arithmetic<ValueType>::value, "Condition value type must be arithmetic.");
 	static_assert(std::is_class<KeyType>::value, "Condition key type must be a class.");
@@ -54,25 +55,46 @@ public:
 
 	constexpr Condition() : value(), key() {}
 	explicit constexpr Condition(const V &value) : value(value), key() {}
-	constexpr Condition(const V &value, const KeyType &key) : value(value), key(key) {}
+
+	// Initialize the condition with the specified value.
+	// Record what store and key to use, but do not query the store for a value.
+	constexpr Condition(const V &value, StorePtr store, const KeyType &key);
+
+	// Get the initial value from the store. Use V() if the store returned nothing.
+	Condition(StorePtr store, const KeyType &key);
 
 	template <class V2>
-	Condition(const Condition<V2> &other);
+	constexpr Condition(const Condition<V2> &other);
 
 	template <class V2>
 	Condition &operator=(const Condition<V2> &other);
 
-	template <class T, typename std::enable_if<std::is_arithmetic<T>::value>::type* = nullptr>
-	Condition &operator=(const T &t) { value = static_cast<ValueType>(t); return *this; }
+	// This commented-out operator may look convenient, but it causes
+	// everything to break because any Condition=Condition assignment uses
+	// this operator instead of the Condition=Condition implementation,
+	// preventing explicit conversion of Conditions.
+	// template <class T, typename std::enable_if<std::is_arithmetic<T>::value>::type* = nullptr>
+	// Condition &operator=(const T &other);
 
-	// Update the value from a scope that contains it
-	template<class Getter>
-	const ValueType &UpdateConditions(const Getter &getter);
+	// Send the latest value to the ConditionsStore
+	const ValueType &SendValue();
 
-	// Update the value from a scope that contains it, but use
-	// ValueType() if Validator(weight) is false.
-	template<class Getter, class Validator>
-	const ValueType &UpdateConditions(const Getter &getter, Validator validator);
+	// Read the value from the ConditionsStore
+	const ValueType &UpdateConditions();
+
+	// Read the value from the ConditionsStore, pass it through a
+	// filter, and use the new result. The filter arguments are:
+	// 1. The ConditionsStore's value, as a ConditionsStore::ValueType
+	// 2. The current value in the Condition, as a Condition::ValueType
+	// The filter should return the new value as a Condition::ValueType
+	template <class Filterer>
+	const ValueType &UpdateConditions(Filterer validator);
+
+	// Pass the current value through a filter. The filter
+	// receives the current value as a ValueType and returns the
+	// new value as a ValueType
+	template <class Filterer>
+	const ValueType &Filter(Filterer filter);
 
 	// Accessors and mutators
 
@@ -81,6 +103,9 @@ public:
 	const KeyType &Key() const { return key; }
 	KeyType &Key() { return key; }
 
+	StoreConstPtr Store() const { return store; }
+	StorePtr Store() { return store; }
+
 	// Does this Condition come from the same place as the other one?
 	// If it was a condition, the key must be the same (value doesn't matter)
 	// If it was a literal (no key) then the value must be the same.
@@ -88,10 +113,10 @@ public:
 	bool SameOrigin(const Condition &o);
 
 	// Does this originate from a condition?
-	bool HasConditions() const { return !key.empty(); }
+	bool HasConditions() const { return store && !key.empty(); }
 
 	// Does this originate from a literal value (ie. 5.071)?
-	bool IsLiteral() const { return key.empty(); }
+	bool IsLiteral() const { return !store || key.empty(); }
 
 	// Floating-point values are false if they're within half the
 	// type's precision of 0 while any other types are passed
@@ -104,18 +129,47 @@ public:
 
 
 private:
+	EntryShared GetEntry();
+	EntryShared EnsureEntry();
+
+	// The value of the condition, as this object sees it
 	ValueType value;
+
+	// The key of the condition; empty if this is literal
 	KeyType key;
+
+	// A shared_ptr to a ConditionsStore for this condition; empty if this is literal
+	StorePtr store;
+
+	// A weak_ptr to a ConditionEntry with the data. May be empty or expired.
+	EntryWeak entry;
 };
+
+
+template <class V>
+constexpr Condition<V>::Condition(const V &value, StorePtr store, const KeyType &key) :
+	value(value), key(key), store(store)
+{
+}
+
+
+template <class V>
+Condition<V>::Condition(StorePtr store, const KeyType &key) :
+	value(), key(key), store(store)
+{
+	UpdateConditions();
+}
 
 
 // Allow construction and assignment between Condition types to
 // facilitate type conversion.
 template <class V>
 template <class V2>
-Condition<V>::Condition(const Condition<V2> &other):
+constexpr Condition<V>::Condition(const Condition<V2> &other):
 	value(static_cast<ValueType>(other.Value())),
-	key(static_cast<KeyType>(other.Key()))
+	key(other.Key()),
+	store(const_cast<Condition<V2>&>(other).Store()),
+	entry(const_cast<Condition<V2>&>(other).entry)
 {
 }
 
@@ -128,47 +182,89 @@ Condition<V> &Condition<V>::operator=(const Condition<V2> &other)
 {
 	value = static_cast<ValueType>(other.Value());
 	key = other.Key();
+	store = const_cast<Condition<V2>&>(other).Store();
+	entry = const_cast<Condition<V2>&>(other).entry;
 	return *this;
 }
 
 
+// This commented-out operator may look convenient, but it causes
+// everything to break because any Condition=Condition assignment uses
+// this operator instead of the Condition=Condition implementation,
+// preventing explicit conversion of Conditions.
+//
+// template <class V>
+// template <class T, typename std::enable_if<std::is_arithmetic<T>::value>::type*>
+// Condition<V> &Condition<V>::operator=(const T &other)
+// {
+// 	value = static_cast<ValueType>(other);
+// 	return *this;
+// }
+
+
+
 // Update the value from a scope that contains it
 template <class V>
-template <class Getter>
-const V &Condition<V>::UpdateConditions(const Getter &getter)
+const V &Condition<V>::SendValue()
 {
 	// If this was a literal, there is nothing to update.
-	if(HasConditions())
-	{
-		auto got = getter.HasGet(key);
-		// Assumes: got.first = true iff getter has key
-		// got.second = value iff got.first
-		if(got.first)
-			value = static_cast<ValueType>(got.second);
-	}
+	if(!HasConditions())
+		return value;
+
+	EntryShared ce = EnsureEntry();
+
+	if(!ce)
+		return value;
+	else if(ce->provider)
+		*ce = value;
+	else
+		ce->value = value;
 	return value;
 }
 
 
-// Update the value from a scope that contains it, if the new value passes a validator.
 template <class V>
-template <class Getter, class Validator>
-const V &Condition<V>::UpdateConditions(const Getter &getter, Validator validator)
+template <class Filterer>
+const V &Condition<V>::Filter(Filterer filter)
+{
+	return value = filter(value);
+}
+
+
+// Read the value from the ConditionsStore, pass it through a
+// filter, and use the new result
+template <class V>
+template <class Filterer>
+const V &Condition<V>::UpdateConditions(Filterer filter)
+{
+	if(!HasConditions())
+		return value;
+
+	EntryShared ce = GetEntry();
+
+	if(!ce)
+		return value;
+
+	V newValue = ce->provider ? store->Get(key) : ce->value;
+	value = filter(newValue, value);
+
+	return value;
+}
+
+
+// Read the value from the ConditionsStore
+template <class V>
+const V &Condition<V>::UpdateConditions()
 {
 	// If this was a literal, there is nothing to update.
-	if(HasConditions())
-	{
-		auto got = getter.HasGet(key);
-		// Assumes: got.first = true iff getter has key
-		// got.second = value iff got.first
-		if(got.first && validator(got.second))
-		{
-			value = static_cast<ValueType>(got.second);
-			return value;
-		}
-	}
-	if(!validator(value))
-		value = ValueType();
+	if(!HasConditions())
+		return value;
+
+	EntryShared ce = GetEntry();
+
+	if(ce)
+		value = ce->provider ? store->Get(key) : ce->value;
+
 	return value;
 }
 
@@ -177,7 +273,7 @@ template <class V>
 bool Condition<V>::SameOrigin(const Condition<V> &o)
 {
 	if(HasConditions())
-		return key == o.Key();
+		return key == o.Key() && store == o.Store();
 	else if(o.HasConditions())
 		return false;
 	else
@@ -205,8 +301,43 @@ bool NotNearZero(T number)
 
 
 template <class V>
-Condition<V>::operator bool() const {
+Condition<V>::operator bool() const
+{
 	return NotNearZero(value);
+}
+
+
+template <class V>
+typename Condition<V>::EntryShared Condition<V>::GetEntry()
+{
+	// Note: assumes store and key are available
+	try
+	{
+		return EntryShared(entry);
+	}
+	catch(const std::bad_weak_ptr &bwp)
+	{
+		EntryShared got = store->GetEntry(key);
+		entry = got;
+		return got;
+	}
+}
+
+
+template <class V>
+typename Condition<V>::EntryShared Condition<V>::EnsureEntry()
+{
+	// Note: assumes store and key are available
+	try
+	{
+		return EntryShared(entry);
+	}
+	catch(const std::bad_weak_ptr &bwp)
+	{
+		EntryShared got = store->EnsureEntry(key);
+		entry = got;
+		return got;
+	}
 }
 
 #endif

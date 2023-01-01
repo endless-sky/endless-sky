@@ -494,30 +494,26 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 SCENARIO( "Creating a WeightedList with Conditions" , "[WeightedList][Condition]" ) {
 	GIVEN( "A weighted list and conditions" ) {
 		WHEN( "created from empty conditions" ) {
-			ConditionMaker empty;
+			ConditionMaker vars;
 			ConditionalList list;
 
-			list.emplace_back(empty.AsCondition("first_weight"), empty.AsCondition("first_choice"));
-			list.emplace_back(empty.AsCondition("second_weight"), empty.AsCondition("second_choice"));
+			list.emplace_back(vars.AsCondition("first_weight"), vars.AsCondition("first_choice"));
+			list.emplace_back(vars.AsCondition("second_weight"), vars.AsCondition("second_choice"));
 
 			THEN( "total weight should be zero" ) {
 				CHECK( list.size() == 2 );
 				CHECK( list.TotalWeight() == 0 );
-				CHECK( ! list.empty() );
 			}
 			THEN( "Get() should return the first choice" ) {
 				CHECK( list.Get().Key() == "first_choice" );
 				CHECK( list.Get().Value() == 0 );
 			}
 			AND_WHEN( "the list is updated with valid data through UpdateConditions" ) {
-				ConditionMaker valid(
-				{
-					{ "first_choice", 11 },
-					{ "first_weight", 1 },
-					{ "second_choice", 22 },
-					{ "second_weight", 2 }
-				});
-				list.UpdateConditions(*valid.Store());
+				vars.Store()->Set("first_choice", 11);
+				vars.Store()->Set("first_weight", 1);
+				vars.Store()->Set("second_choice", 22);
+				vars.Store()->Set("second_weight", 2);
+				list.UpdateConditions();
 				THEN( "total weight should be the sum of conditions" ) {
 					CHECK( list.TotalWeight() == 3 );
 				}
@@ -525,20 +521,20 @@ SCENARIO( "Creating a WeightedList with Conditions" , "[WeightedList][Condition]
 					CHECK( list.All([&](const ConditionalList::WeightType &w, const ConditionalList::ChoiceType &c)
 						{
 							return !w.IsLiteral() && !c.IsLiteral() &&
-								valid.Get(w.Key()) == w.Value() &&
-								valid.Get(c.Key()) == c.Value();
+								vars.Get(w.Key()) == w.Value() &&
+								vars.Get(c.Key()) == c.Value();
 						}));
 				}
 				AND_WHEN( "a choice or weight is updated" ) {
-					valid.Set("first choice", 33);
-					valid.Set("second weight", 9);
+					vars.Set("first choice", 33);
+					vars.Set("second weight", 9);
 					THEN( "choices and weights should match the new values" ) {
 						CHECK( list.All([&](const ConditionalList::WeightType &w,
 								const ConditionalList::ChoiceType &c)
 							{
 								return !w.IsLiteral() && !c.IsLiteral() &&
-									valid.Get(w.Key()) == w.Value() &&
-									valid.Get(c.Key()) == c.Value();
+									vars.Get(w.Key()) == w.Value() &&
+									vars.Get(c.Key()) == c.Value();
 							}));
 					}
 

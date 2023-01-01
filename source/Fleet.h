@@ -76,7 +76,7 @@ public:
 	int64_t Strength() const;
 
 	// Updates any data that relies on conditions
-	void UpdateConditions(const ConditionsStore &vars);
+	void UpdateConditions();
 
 	// Determines if this Fleet uses conditions.
 	bool HasConditions() const;

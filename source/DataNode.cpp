@@ -306,12 +306,13 @@ Condition<double> DataNode::AsCondition(int index, double ifMissing) const
 	else if(IsNumber(tokens[index]))
 		return Condition<double>(Value(index));
 	else if(!store)
-		return Condition<double>(ifMissing, tokens[index]);
+		// Must be 0 or saves don't work
+		return Condition<double>(0, nullptr, tokens[index]);
 	auto result = store->HasGet(tokens[index]);
 	if(result.first)
-		return Condition<double>(result.second, tokens[index]);
+		return Condition<double>(result.second, store, tokens[index]);
 	else
-		return Condition<double>(ifMissing, tokens[index]);
+		return Condition<double>(result.second, store, tokens[index]);
 }
 
 

@@ -33,8 +33,11 @@ namespace { // test namespace
 // to help test this class/method.
 
 const int intValue = 1;
-const double value = intValue;
+const double value = static_cast<double>(intValue);
 const double otherValue = 2.0;
+const ConditionsStore::ValueType thirdValueInt = 99;
+const double thirdValue = static_cast<double>(thirdValueInt);
+const double fourthValue = 12345;
 const double tinyValue = 1e-30;
 const std::string key = "key";
 const std::string otherKey = "otherKey";
@@ -44,11 +47,19 @@ const char *anotherCString = "anotherCString";
 
 // For validation checks
 const double badValue = -1.0;
+const double otherBadValue = -2.0;
 const double goodValue = 1.0;
-const double anotherGoodValue = 2.0;
-bool Validate(double d)
+const double otherGoodValue = 2.0;
+double FilterCondition(ConditionsStore::ValueType newValue, double oldValue)
 {
-	return d >= 0;
+	if(newValue >= 0)
+		return static_cast<double>(newValue);
+	else
+		return oldValue;
+}
+double FilterValue(double oldValue)
+{
+	return oldValue >= 0 ? oldValue : 0;
 }
 
 // #endregion mock data
@@ -137,8 +148,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				CHECK( condition.SameOrigin(condition) );
 			}
 			AND_WHEN( "UpdateConditions is called" ) {
-				ConditionMaker vars({ { otherKey, otherValue } });
-				condition.UpdateConditions(*vars.Store());
+				condition.UpdateConditions();
 				THEN( "the key and value should not change" ) {
 					CHECK( condition.Value() == double() );
 					CHECK( condition.IsLiteral() );
@@ -159,7 +169,8 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				CHECK( static_cast<double>(condition) == condition.Value());
 			}
 			AND_WHEN( "SameOrigin() is called with a Condition that has a key" ) {
-				Condition<double> named(value, key);
+				ConditionMaker vars;
+				Condition<double> named(value, vars.Store(), key);
 				THEN( "the result should be false" ) {
 					CHECK( named.Value() == condition.Value() );
 					CHECK_FALSE( named.IsLiteral() );
@@ -170,7 +181,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 					CHECK( condition.SameOrigin(condition) );
 				}
 			}
-			AND_WHEN( "SameOrigin() is called with a Condition that has the same value and no key" ) {
+			AND_WHEN( "SameOrigin() is called with a literal Condition with the same value" ) {
 				Condition<double> same(value);
 				THEN( "the result should be true" ) {
 					CHECK( same.IsLiteral() );
@@ -178,7 +189,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 					CHECK( same.SameOrigin(condition) );
 				}
 			}
-			AND_WHEN( "SameOrigin() is called with a Condition that has a different value and no key" ) {
+			AND_WHEN( "SameOrigin() is called with a literal Condition with a different value" ) {
 				Condition<double> other(otherValue);
 				THEN( "the result should be false" ) {
 					CHECK( other.IsLiteral() );
@@ -187,8 +198,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				}
 			}
 			AND_WHEN( "UpdateConditions is called" ) {
-				ConditionMaker vars({ { otherKey, otherValue } });
-				condition.UpdateConditions(*vars.Store());
+				condition.UpdateConditions();
 				THEN( "the key and value should not change" ) {
 					CHECK( condition.Value() == value );
 					CHECK( condition.IsLiteral() );
@@ -197,8 +207,9 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				}
 			}
 		}
-		WHEN( "it is initialized with a key and value" ) {
-			Condition<double> condition(value, key);
+		WHEN( "it is initialized with a key, value, and empty store" ) {
+			ConditionMaker vars;
+			Condition<double> condition(value, vars.Store(), key);
 			THEN( "it should have that value but no key" ) {
 				CHECK( condition.Value() == value );
 				CHECK( condition.Key() == key );
@@ -212,7 +223,7 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				CHECK( condition.SameOrigin(condition) );
 			}
 			AND_WHEN( "SameOrigin() is called with a Condition that has the same name but a different value" ) {
-				Condition<double> other(otherValue, key);
+				Condition<double> other(otherValue, vars.Store(), key);
 				THEN( "the result should be true" ) {
 					CHECK( other.Value() == otherValue );
 					CHECK( condition.SameOrigin(other) );
@@ -220,16 +231,15 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				}
 			}
 			AND_WHEN( "SameOrigin() is called with a Condition that has a different name but the same value" ) {
-				Condition<double> other(condition.Value(), "notkey");
+				Condition<double> other(condition.Value(), vars.Store(), "notkey");
 				THEN( "the result should be true" ) {
 					CHECK( other.Key() == "notkey" );
 					CHECK_FALSE( condition.SameOrigin(other) );
 					CHECK_FALSE( other.SameOrigin(condition) );
 				}
 			}
-			AND_WHEN( "UpdateConditions is called without that key" ) {
-				ConditionMaker vars({ { otherKey, otherValue } });
-				condition.UpdateConditions(*vars.Store());
+			AND_WHEN( "UpdateConditions is called" ) {
+				condition.UpdateConditions();
 				THEN( "the key and value should not change" ) {
 					CHECK( condition.Value() == value );
 					CHECK_FALSE( condition.IsLiteral() );
@@ -237,9 +247,9 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 					CHECK( condition.Key() == key );
 				}
 			}
-			AND_WHEN( "UpdateConditions is called with that key" ) {
-				ConditionMaker vars({ { key, otherValue } });
-				condition.UpdateConditions(*vars.Store());
+			AND_WHEN( "the key is added to the store and UpdateConditions is called" ) {
+				(*vars.Store())[key] = otherValue;
+				condition.UpdateConditions();
 				THEN( "the key should not change" ) {
 					CHECK( condition.Key() == key );
 					CHECK_FALSE( condition.IsLiteral() );
@@ -250,14 +260,175 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				}
 			}
 		}
+		WHEN( "it is initialized with a key, value, and a store that has a DataProvider for that key, but a different value for it" ) {
+			ConditionMaker vars;
+			std::string prefix = "prefix ";
+			std::string fullKey = prefix + key;
+			double providerValue = otherValue;
+			vars.AddProviderNamed(fullKey, fullKey, providerValue);
+			Condition<double> condition(value, vars.Store(), fullKey);
+			Condition<double> fromProvider(vars.Store(), fullKey);
+			THEN( "the condition should have its initial value" ) {
+				CHECK( condition.Value() == value );
+				CHECK( condition.Key() == fullKey );
+				CHECK_FALSE( condition.IsLiteral() );
+				CHECK( condition.HasConditions() );
+				CHECK( static_cast<bool>(condition) );
+				CHECK( static_cast<double>(condition) == value);
+				CHECK( static_cast<double>(condition) == condition.Value());
+			}
+			THEN( "it should have the same origin as itself" ) {
+				CHECK( condition.SameOrigin(condition) );
+			}
+			AND_WHEN( "the DataProvider's value for that key is changed" ) {
+				vars.Store()->Set(fullKey, thirdValueInt);
+				fromProvider.UpdateConditions();
+				AND_WHEN( "a condition who had a key from that provider has its UpdateConditions() is called" ) {
+					THEN( "the key should not change" ) {
+						CHECK( fromProvider.Key() == fullKey );
+						CHECK_FALSE( fromProvider.IsLiteral() );
+						CHECK( fromProvider.HasConditions() );
+					}
+					THEN( "the value should change" ) {
+						CHECK( fromProvider.Value() == thirdValue );
+					}
+				}
+				AND_WHEN( "a condition connected to the provider, but with a different initial value, does not have its UpdateConditions() called" ) {
+					THEN( "the key should not change" ) {
+						CHECK( condition.Key() == fullKey );
+						CHECK_FALSE( condition.IsLiteral() );
+						CHECK( condition.HasConditions() );
+					}
+					THEN( "the value should not change" ) {
+						CHECK( condition.Value() == value );
+					}
+				}
+			}
+			WHEN( "SameOrigin() is called with a Condition that has the DataProvider's value" ) {
+				THEN( "the result should be true" ) {
+					CHECK( condition.SameOrigin(fromProvider) );
+					CHECK( fromProvider.SameOrigin(condition) );
+				}
+			}
+			AND_WHEN( "SameOrigin() is called with a Condition that has a different name but the same value" ) {
+				Condition<double> other(condition.Value(), vars.Store(), "notkey");
+				THEN( "the result should be false" ) {
+					CHECK( other.Key() == "notkey" );
+					CHECK_FALSE( condition.SameOrigin(other) );
+					CHECK_FALSE( other.SameOrigin(condition) );
+				}
+			}
+			AND_WHEN( "UpdateConditions is called" ) {
+				condition.UpdateConditions();
+				THEN( "the key should not change" ) {
+					CHECK( condition.Key() == fullKey );
+					CHECK_FALSE( condition.IsLiteral() );
+					CHECK( condition.HasConditions() );
+				}
+				THEN( "the value should match the DataProvider's value" ) {
+					CHECK_FALSE( condition.Value() == value );
+					CHECK( condition.Value() == providerValue );
+				}
+			}
+		}
+		WHEN( "it is initialized with a key and a store with that key" ) {
+			ConditionMaker vars({ {key, value} });
+			Condition<double> condition(vars.Store(), key);
+			THEN( "it should have that key and value" ) {
+				CHECK( condition.Value() == value );
+				CHECK( condition.Key() == key );
+				CHECK_FALSE( condition.IsLiteral() );
+				CHECK( condition.HasConditions() );
+				CHECK( static_cast<bool>(condition) );
+				CHECK( static_cast<double>(condition) == value);
+				CHECK( static_cast<double>(condition) == condition.Value());
+			}
+			THEN( "it should have the same origin as itself" ) {
+				CHECK( condition.SameOrigin(condition) );
+			}
+			AND_WHEN( "SameOrigin() is called with a Condition that has the same name but a different value" ) {
+				Condition<double> other(otherValue, vars.Store(), key);
+				THEN( "the result should be true" ) {
+					CHECK( other.Value() == otherValue );
+					CHECK( condition.SameOrigin(other) );
+					CHECK( other.SameOrigin(condition) );
+				}
+			}
+			AND_WHEN( "SameOrigin() is called with a Condition that has a different name but the same value" ) {
+				Condition<double> other(condition.Value(), vars.Store(), "notkey");
+				THEN( "the result should be true" ) {
+					CHECK( other.Key() == "notkey" );
+					CHECK_FALSE( condition.SameOrigin(other) );
+					CHECK_FALSE( other.SameOrigin(condition) );
+				}
+			}
+			AND_WHEN( "UpdateConditions is called" ) {
+				condition.UpdateConditions();
+				THEN( "the key should not change" ) {
+					CHECK( condition.Key() == key );
+					CHECK_FALSE( condition.IsLiteral() );
+					CHECK( condition.HasConditions() );
+				}
+				THEN( "the value should not change" ) {
+					CHECK( condition == value );
+					CHECK( condition.Value() == value );
+				}
+			}
+			AND_WHEN( "the value in the store is updated and UpdateConditions is called" ) {
+				vars.Store()->Set(key,thirdValueInt);
+				condition.UpdateConditions();
+				THEN( "the key should not change" ) {
+					CHECK( condition.Key() == key );
+					CHECK_FALSE( condition.IsLiteral() );
+					CHECK( condition.HasConditions() );
+				}
+				THEN( "the value should change to the new value" ) {
+					CHECK( condition == thirdValue );
+					CHECK( condition.Value() == thirdValue );
+				}
+			}
+			AND_WHEN( "a new value is assigned to the Condition" ) {
+				condition.Value() = fourthValue;
+				THEN( "the key should not change" ) {
+					CHECK( condition.Key() == key );
+					CHECK_FALSE( condition.IsLiteral() );
+					CHECK( condition.HasConditions() );
+				}
+				THEN( "the condition's value should change" ) {
+					CHECK( condition == fourthValue );
+					CHECK( condition.Value() == fourthValue );
+				}
+				AND_WHEN( "SendValue is called" ) {
+					condition.SendValue();
+					THEN( "the store's value should change" ) {
+						CHECK( vars.Store()->Get(key) ==
+							static_cast<ConditionsStore::ValueType>(fourthValue) );
+					}
+				}
+			}
+			AND_WHEN( "UpdateConditions is called again" ) {
+				condition.UpdateConditions();
+				THEN( "the key should not change" ) {
+					CHECK( condition.Key() == key );
+					CHECK_FALSE( condition.IsLiteral() );
+					CHECK( condition.HasConditions() );
+				}
+				THEN( "the value should not change" ) {
+					CHECK( condition == value );
+					CHECK( condition.Value() == value );
+				}
+			}
+		}
 		WHEN( "it is copy constructed from another Condition<double>" ) {
-			Condition<double> condition(value, key);
+			ConditionMaker vars({ {otherKey, otherValue} });
+			Condition<double> condition(value, vars.Store(), key);
 			Condition<double> copy(condition);
 			THEN( "it should have the same key and value" ) {
 				CHECK( copy.Value() == value );
 				CHECK( copy.Key() == key );
 				CHECK_FALSE( copy.IsLiteral() );
 				CHECK( copy.HasConditions() );
+				CHECK( !copy.IsLiteral() );
 				CHECK( static_cast<bool>(copy) );
 				CHECK( static_cast<double>(copy) == value);
 				CHECK( static_cast<double>(copy) == copy.Value());
@@ -271,31 +442,43 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				CHECK( condition.SameOrigin(copy) );
 				CHECK( copy.SameOrigin(condition) );
 			}
-			AND_WHEN( "UpdateConditions is called without that key" ) {
-				ConditionMaker vars({ { otherKey, otherValue } });
-				copy.UpdateConditions(*vars.Store());
+			AND_WHEN( "UpdateConditions is called on the copy without that key" ) {
+				copy.UpdateConditions();
 				THEN( "the key and value should not change" ) {
 					CHECK( copy.Value() == value );
 					CHECK_FALSE( copy.IsLiteral() );
 					CHECK( copy.HasConditions() );
 					CHECK( copy.Key() == key );
+					CHECK( condition.Value() == value );
+					CHECK_FALSE( condition.IsLiteral() );
+					CHECK( condition.HasConditions() );
+					CHECK( condition.Key() == key );
 				}
 			}
-			AND_WHEN( "UpdateConditions is called with that key" ) {
-				ConditionMaker vars({ { key, otherValue } });
-				copy.UpdateConditions(*vars.Store());
-				THEN( "the key should not change" ) {
+			AND_WHEN( "the key is added to the store, and UpdateConditions is called on the copy" ) {
+				vars.Store()->Set(key, thirdValueInt);
+				copy.UpdateConditions();
+				THEN( "the copy's key should not change" ) {
 					CHECK( copy.Key() == key );
 					CHECK_FALSE( copy.IsLiteral() );
 					CHECK( copy.HasConditions() );
 				}
-				THEN( "the value should change" ) {
-					CHECK( copy.Value() == otherValue );
+				THEN( "the copy's value should change" ) {
+					CHECK( copy.Value() == thirdValue );
+				}
+				THEN( "the original's key should not change" ) {
+					CHECK( condition.Key() == key );
+					CHECK_FALSE( condition.IsLiteral() );
+					CHECK( condition.HasConditions() );
+				}
+				THEN( "the original's value should not change" ) {
+					CHECK( condition.Value() == value );
 				}
 			}
 		}
 		WHEN( "it is copy constructed from a Condition<int>" ) {
-			Condition<int> condition(intValue, key);
+			ConditionMaker vars;
+			Condition<int> condition(intValue, vars.Store(), key);
 			Condition<double> copy(condition);
 			THEN( "it should have the double version of that int as its value" ) {
 				CHECK( copy.Value() == static_cast<double>(condition.Value()) );
@@ -312,18 +495,20 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 				CHECK( condition.Key() == copy.Key() );
 			}
 			AND_WHEN( "UpdateConditions is called without that key" ) {
-				ConditionMaker vars({ { otherKey, otherValue } });
-				copy.UpdateConditions(*vars.Store());
-				THEN( "the key and value should not change" ) {
-					CHECK( copy.Value() == value );
+				vars.Store()->Set(otherKey, otherValue);
+				copy.UpdateConditions();
+				THEN( "the key should not change" ) {
 					CHECK_FALSE( copy.IsLiteral() );
 					CHECK( copy.HasConditions() );
 					CHECK( copy.Key() == key );
 				}
+				THEN( "value should not change" ) {
+					CHECK( copy.Value() == static_cast<double>(intValue) );
+				}
 			}
 			AND_WHEN( "UpdateConditions is called with that key" ) {
-				ConditionMaker vars({ { key, otherValue } });
-				copy.UpdateConditions(*vars.Store());
+				vars.Store()->Set(key, otherValue);
+				copy.UpdateConditions();
 				THEN( "the key should not change" ) {
 					CHECK( copy.Key() == key );
 					CHECK_FALSE( copy.IsLiteral() );
@@ -343,65 +528,78 @@ SCENARIO( "Creating a Condition" , "[Condition][Creation]" ) {
 	}
 }
 
-SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
-	GIVEN( "A condition initialized without a key and with a value that fails validation" ) {
+SCENARIO( "Filtering in UpdateCondition" , "[Condition][Filtering]" ) {
+	GIVEN( "A condition initialized without a key and with a value that fails the filter" ) {
+		ConditionMaker vars({ { otherKey, goodValue } });
+		Condition<double> condition(badValue);
 		WHEN( "calling UpdateCondition without the key" ) {
-			Condition<double> condition(badValue);
-			ConditionMaker vars({ { otherKey, goodValue } });
-			condition.UpdateConditions(*vars.Store(), Validate);
+			condition.UpdateConditions(FilterCondition);
 			THEN( "it should not gain a key" ) {
 				CHECK( condition.Key().empty() );
 				CHECK( condition.IsLiteral() );
 				CHECK_FALSE( condition.HasConditions() );
 			}
-			THEN( "the value should be the type default (0.0)" ) {
-				CHECK( condition.Value() == double() );
+			THEN( "the value should not be changed" ) {
+				CHECK( condition.Value() == badValue );
+				CHECK( static_cast<bool>(condition) );
+				CHECK( static_cast<double>(condition) == badValue );
+			}
+		}
+		WHEN( "calling the filter" ) {
+			condition.Filter(FilterValue);
+			THEN( "it should not gain a key" ) {
+				CHECK( condition.Key().empty() );
+				CHECK( condition.IsLiteral() );
+				CHECK_FALSE( condition.HasConditions() );
+			}
+			THEN( "the value should be 0" ) {
+				CHECK( condition.Value() == 0 );
 				CHECK_FALSE( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == double() );
+				CHECK( static_cast<double>(condition) == 0 );
 			}
 		}
 	}
 	GIVEN( "A condition initialized with a value that fails validation and a key" ) {
 		WHEN( "calling UpdateCondition without the key" ) {
-			Condition<double> condition(badValue, key);
 			ConditionMaker vars({ { otherKey, goodValue } });
-			condition.UpdateConditions(*vars.Store(), Validate);
+			Condition<double> condition(badValue, vars.Store(), key);
+			condition.UpdateConditions(FilterCondition);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
 				CHECK( condition.HasConditions() );
 			}
-			THEN( "the value should be the type default (0.0)" ) {
-				CHECK( condition.Value() == double() );
-				CHECK_FALSE( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == double() );
+			THEN( "the value should not change" ) {
+				CHECK( condition.Value() == badValue );
+				CHECK( static_cast<bool>(condition) );
+				CHECK( static_cast<double>(condition) == badValue );
 			}
 		}
-		WHEN( "calling UpdateCondition with the key and a bad value" ) {
-			Condition<double> condition(badValue, key);
+		WHEN( "calling UpdateCondition with the a store that has the key and a bad value on a condition that has the key and another bad value" ) {
 			ConditionMaker vars({ { key, badValue } });
-			condition.UpdateConditions(*vars.Store(), Validate);
+			Condition<double> condition(otherBadValue, vars.Store(), key);
+			condition.UpdateConditions(FilterCondition);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
 				CHECK( condition.HasConditions() );
 			}
-			THEN( "the value should be the type default (0.0)" ) {
-				CHECK( condition.Value() == double() );
-				CHECK_FALSE( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == double() );
+			THEN( "the value should not change" ) {
+				CHECK( condition.Value() == otherBadValue );
+				CHECK( static_cast<bool>(condition) );
+				CHECK( static_cast<double>(condition) == otherBadValue );
 			}
 		}
-		WHEN( "calling UpdateCondition with the key and a good value" ) {
-			Condition<double> condition(badValue, key);
+		WHEN( "calling UpdateCondition with the key and a good value on a condition that has that key and a bad value" ) {
 			ConditionMaker vars({ { key, goodValue } });
-			condition.UpdateConditions(*vars.Store(), Validate);
+			Condition<double> condition(badValue, vars.Store(), key);
+			condition.UpdateConditions(FilterCondition);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
 				CHECK( condition.HasConditions() );
 			}
-			THEN( "it should have the new value" ) {
+			THEN( "the condition should have the new value" ) {
 				CHECK( condition.Value() == goodValue );
 				CHECK( static_cast<bool>(condition) );
 				CHECK( static_cast<double>(condition) == goodValue );
@@ -410,9 +608,9 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 	}
 	GIVEN( "A condition initialized with a value that passes validation and a key" ) {
 		WHEN( "calling UpdateCondition without the key" ) {
-			Condition<double> condition(goodValue, key);
-			ConditionMaker vars({ { otherKey, goodValue } });
-			condition.UpdateConditions(*vars.Store(), Validate);
+			ConditionMaker vars({ { otherKey, otherGoodValue } });
+			Condition<double> condition(goodValue, vars.Store(), key);
+			condition.UpdateConditions(FilterCondition);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
@@ -425,9 +623,9 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 			}
 		}
 		WHEN( "calling UpdateCondition with the key and a bad value" ) {
-			Condition<double> condition(goodValue, key);
 			ConditionMaker vars({ { key, badValue } });
-			condition.UpdateConditions(*vars.Store(), Validate);
+			Condition<double> condition(goodValue, vars.Store(), key);
+			condition.UpdateConditions(FilterCondition);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
@@ -440,18 +638,18 @@ SCENARIO( "Validating a Condition" , "[Condition][Validation]" ) {
 			}
 		}
 		WHEN( "calling UpdateCondition with the key and another good value" ) {
-			Condition<double> condition(goodValue, key);
-			ConditionMaker vars({ { key, anotherGoodValue } });
-			condition.UpdateConditions(*vars.Store(), Validate);
+			ConditionMaker vars({ { key, otherGoodValue } });
+			Condition<double> condition(goodValue, vars.Store(), key);
+			condition.UpdateConditions(FilterCondition);
 			THEN( "the key should not change" ) {
 				CHECK( condition.Key() == key );
 				CHECK_FALSE( condition.IsLiteral() );
 				CHECK( condition.HasConditions() );
 			}
 			THEN( "it should have the new value" ) {
-				CHECK( condition.Value() == anotherGoodValue );
+				CHECK( condition.Value() == otherGoodValue );
 				CHECK( static_cast<bool>(condition) );
-				CHECK( static_cast<double>(condition) == anotherGoodValue );
+				CHECK( static_cast<double>(condition) == otherGoodValue );
 			}
 		}
 	}

@@ -27,7 +27,7 @@ using namespace std;
 
 
 Variant::Variant(const DataNode &node):
-	weight(1, string())
+	weight(1)
 {
 	Load(node);
 }
@@ -79,9 +79,9 @@ const vector<const Ship *> &Variant::Ships() const
 
 
 
-void Variant::UpdateConditions(const ConditionsStore &vars)
+void Variant::UpdateConditions()
 {
-	weight.UpdateConditions(vars);
+	weight.UpdateConditions();
 }
 
 

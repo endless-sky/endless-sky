@@ -24,10 +24,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class ConditionMaker {
+	struct Provider
+	{
+		Provider(const std::string &name, const ConditionsStore::ValueType &value);
+		bool has(const std::string &name);
+		bool set(const std::string &name, const ConditionsStore::ValueType &value);
+		ConditionsStore::ValueType get(const std::string &name);
+
+		std::string name;
+		ConditionsStore::ValueType value;
+	};
 public:
 	ConditionMaker();
 	ConditionMaker(const std::vector<std::pair<std::string,int64_t>> &from);
 
+	void AddProviderNamed(const std::string &providerName, const std::string &givenName,
+		const ConditionsStore::ValueType &initialValue);
 	std::shared_ptr<ConditionsStore> Store();
 	Condition<ConditionsStore::ValueType> AsCondition(const std::string &key);
 	ConditionsStore::ValueType Get(const std::string &key);
