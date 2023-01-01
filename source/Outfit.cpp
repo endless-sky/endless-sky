@@ -250,6 +250,21 @@ void Outfit::Load(const DataNode &node)
 							+ license + "\"; this outfit does not have it.");
 			}
 		};
+		static auto AddLicenses = [](const DataNode &node, vector<string> &licenses, bool add) -> void
+		{
+			static auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
+				return find(c.begin(), c.end(), val) == c.end();
+			};
+			vector<string> toAdd = LicensesInNode(node, add + 1);
+			if(add)
+			{
+				for(string &license : toAdd)
+					if(isNewLicense(licenses, license))
+						licenses.push_back(license);
+			}
+			else
+				licenses = toAdd;
+		};
 
 		// Checks if the given node has a token at the given index and returns its value.
 		// If no such token exists, returns 1.
@@ -272,7 +287,14 @@ void Outfit::Load(const DataNode &node)
 		bool hasValue = child.Size() > valueIndex;
 		string valueStr = hasValue ? child.Token(valueIndex) : "";
 
-		if(remove && !hasValue)
+		if(key == "licenses")
+		{
+			if(remove)
+				RemoveLicenses(child, licenses);
+			else
+				AddLicenses(child, licenses, add);
+		}
+		else if(remove && !hasValue)
 		{
 			auto stringIt = strings.find(key);
 			if(stringIt != strings.end())
@@ -384,21 +406,6 @@ void Outfit::Load(const DataNode &node)
 					mass += child.Value(valueIndex);
 				else
 					mass = child.Value(valueIndex);
-			}
-			else if(key == "licenses")
-			{
-				static auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
-					return find(c.begin(), c.end(), val) == c.end();
-				};
-				vector<string> toAdd = LicensesInNode(node, add + 1);
-				if(add)
-				{
-					for(string &license : toAdd)
-						if(isNewLicense(licenses, license))
-							licenses.push_back(license);
-				}
-				else
-					licenses = toAdd;
 			}
 			else if(key == "jump range")
 			{
