@@ -50,6 +50,16 @@ start "hai"
 	description `	A lot has happened whilst you were on the planet. Upon entering the shipyard you finally feel that there is nothing to hold you back anymore.`
 	thumbnail "scene/hai start"
 	date 18 6 3020
+	to display
+		or
+			has "main plot completed"
+			has "Ask the Hai about the Unfettered"
+	to reveal
+		has "main plot completed"
+		has "Ask the Hai about the Unfettered"
+	to unlock
+		has "main plot completed"
+		has "event: hai-human resolution announced"
 	system "Fah Soom"
 	planet "Greenwater"
 	conversation "hai intro"

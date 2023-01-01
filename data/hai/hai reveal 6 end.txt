@@ -416,6 +416,15 @@ mission "Hai Reveal [C05] Cleanup"
 			`	At last, it really is over, and you can get back to your own life.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
 
+mission "hai-human resolution announced: global"
+	landing
+	invisible
+	to offer
+		has "event: hai-human resolution announced"
+	on offer
+		set "global: event: hai-human resolution announced"
+		fail
+
 event "Vara K'chrai is accessible"
 	# You can now begin the Wanderer campaign.
 	planet "Vara K'chrai"
