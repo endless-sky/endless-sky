@@ -254,7 +254,7 @@ SCENARIO( "Creating a Condition from a DataNode", "[DataNode][Condition]") {
 		double value = 131, literalValue = 3;
 		ConditionMaker maker({ { "notmissing", value } });
 		WHEN( "a DataNode is constructed with a ConditionsStore" ) {
-			DataNode node = AsDataNode("$missing 3 $notmissing", maker.Store());
+			DataNode node = AsDataNode("&missing 3 &notmissing", maker.Store());
 			THEN( "it should have a ConditionsStore" ) {
 				CHECK( node.Store() );
 			}
@@ -263,35 +263,35 @@ SCENARIO( "Creating a Condition from a DataNode", "[DataNode][Condition]") {
 			}
 		}
 		WHEN( "using AsCondition on a missing condition" ) {
-			DataNode node = AsDataNode("$missing 3 $notmissing", maker.Store());
+			DataNode node = AsDataNode("&missing 3 &notmissing", maker.Store());
 			THEN( "should return a Condition with 0 and requested key" ) {
 				CHECK( node.AsCondition(0) == 0 );
 				CHECK( node.AsCondition(0).Key() == "missing" );
 			}
 		}
 		WHEN( "using AsCondition with no ConditionsStore" ) {
-			DataNode node = AsDataNode("$missing 3 $notmissing");
+			DataNode node = AsDataNode("&missing 3 &notmissing");
 			THEN( "should return a Condition with 0 and requested key" ) {
 				CHECK( node.AsCondition(0) == 0 );
 				CHECK( node.AsCondition(0).Key() == "missing" );
 			}
 		}
 		WHEN( "using AsCondition with a literal and a ConditionsStore" ) {
-			DataNode node = AsDataNode("$missing 3 $notmissing", maker.Store());
+			DataNode node = AsDataNode("&missing 3 &notmissing", maker.Store());
 			THEN( "should return a Condition with the specified value and an empty key" ) {
 				CHECK( node.AsCondition(1) == literalValue);
 				CHECK( node.AsCondition(1).Key().empty() );
 			}
 		}
 		WHEN( "using AsCondition with a literal and no ConditionsStore" ) {
-			DataNode node = AsDataNode("$missing 3 $notmissing", nullptr);
+			DataNode node = AsDataNode("&missing 3 &notmissing", nullptr);
 			THEN( "should return a Condition with the specified value and an empty key" ) {
 				CHECK( node.AsCondition(1) == literalValue);
 				CHECK( node.AsCondition(1).Key().empty() );
 			}
 		}
 		WHEN( "using AsCondition with a non-missing condition in a ConditionsStore" ) {
-			DataNode node = AsDataNode("$missing 3 $notmissing", maker.Store());
+			DataNode node = AsDataNode("&missing 3 &notmissing", maker.Store());
 			THEN( "should return a Condition with the value from the ConditionStore and the requested key" ) {
 				CHECK( node.AsCondition(2) == value );
 				CHECK( node.AsCondition(2).Key() == "notmissing" );

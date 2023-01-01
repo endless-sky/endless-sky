@@ -247,7 +247,7 @@ bool DataNode::IsCondition(int index) const
 
 bool DataNode::IsCondition(const string &token)
 {
-	return token.size() >= 2 && token[0] == '$';
+	return token.size() >= 2 && token[0] == '&';
 }
 
 
@@ -328,7 +328,7 @@ Condition<double> DataNode::AsCondition(int index) const
 	else if(IsCondition(tokens[index]))
 		return Condition<double>(store, tokens[index].substr(1));
 	PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number or condition name. "
-		"Condition names must begin with a dollar sign (\"$\"). "
+		"Condition names must begin with a dollar sign (\"&\"). "
 		"This token will be replaced with the number 0.");
 	return Condition<double>(0);
 }
