@@ -249,7 +249,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				radarJamming, distance);
 		}
 		if(infraredConfused && opticalConfused && radarConfused)
-			turn = Random::Real() - min(.5, turn);
+			turn = 2. * (Random::Real() - min(.5, turn));
 	}
 	// If a weapon is homing but has no target, do not turn it.
 	else if(homing)
