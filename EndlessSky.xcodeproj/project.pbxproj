@@ -1184,7 +1184,7 @@
 				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
 				B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */,
 				A96863B91AE6FD0E004FE1FE /* Effect.cpp in Sources */,
--				A96863AE1AE6FD0E004FE1FE /* ConditionSet.cpp in Sources */,
+				A96863AE1AE6FD0E004FE1FE /* ConditionSet.cpp in Sources */,
 				A96863DC1AE6FD0E004FE1FE /* Outfit.cpp in Sources */,
 				A96863BB1AE6FD0E004FE1FE /* EscortDisplay.cpp in Sources */,
 				A96863EB1AE6FD0E004FE1FE /* Projectile.cpp in Sources */,
