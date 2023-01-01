@@ -5485,7 +5485,7 @@ mission "A dead man's path II"
 		has "A dead man's path I: done"
 	on offer
 		conversation
-			`	After about two hours they come back, although unexpectedly they both have broad smiles on their face. You flag them down from your table, and they eagerly take a seat.`
+			`After waiting two hours in the spaceport's bar, Liam and Sophie come back with unexpectedly broad smiles on their faces. You flag them down from your table, and they eagerly take a seat.`
 			`	Liam speaks as soon as he can. "Captain <last>, it turns out we will need a bit more than just a ride home! Have you decided to help us again?"`
 			choice
 				`	"But what do you want me to do?"`
