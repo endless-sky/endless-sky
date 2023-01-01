@@ -197,6 +197,13 @@ Preferences::DateFormat Preferences::GetDateFormat()
 
 
 
+const string &Preferences::DateFormatSetting()
+{
+	return DATEFMT_OPTIONS[dateFormatIndex];
+}
+
+
+
 // Scroll speed preference.
 int Preferences::ScrollSpeed()
 {

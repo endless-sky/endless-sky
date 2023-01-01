@@ -69,6 +69,7 @@ public:
 	// Date format preferences
 	static void ToggleDateFormat();
 	static DateFormat GetDateFormat();
+	static const std::string &DateFormatSetting();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();
