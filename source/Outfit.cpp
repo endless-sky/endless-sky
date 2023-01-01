@@ -349,6 +349,19 @@ void Outfit::Load(const DataNode &node)
 		}
 		else if(hasValue)
 		{
+			// Not all attributes support 'add'.
+			static const set<string> cannotAdd = {
+				"flotsam sprite",
+				"thumbnail",
+				"ammo"
+			};
+
+			if(add && (cannotAdd.count(key) || sprites.count(key)))
+			{
+				child.PrintTrace("Error: unsupported use of 'add'.");
+				continue;
+			}
+
 			auto stringIt = strings.find(key);
 			if(stringIt != strings.end())
 			{
