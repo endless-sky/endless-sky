@@ -172,10 +172,7 @@ void Government::Load(const DataNode &node)
 				if(grand.Token(0) == "remove" && grand.Size() >= 2)
 					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
 				else
-				{
-					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
-					PenaltyHelper(grand, pens);
-				}
+					PenaltyHelper(grand, customPenalties[GameData::Governments().Get(grand.Token(1))->id]);
 			}
 		else if(key == "illegals")
 		{
