@@ -4964,14 +4964,3 @@ mission "Riley"
 			label end
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
-
-
-
-mission "main plot completed: global"
-	landing
-	invisible
-	to offer
-		has "main plot completed"
-	on offer
-		set "global: main plot completed"
-		fail
