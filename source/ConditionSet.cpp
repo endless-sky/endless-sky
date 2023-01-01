@@ -288,6 +288,11 @@ void ConditionSet::Add(const DataNode &node)
 	// non-simple operator (e.g. <=) and any number of simple operators.
 	static const string UNRECOGNIZED = "Warning: Unrecognized condition expression:";
 	static const string UNREPRESENTABLE = "Error: Unrepresentable condition value encountered:";
+
+	for(const string &token : node.Tokens())
+		if(token.size() > 0 && token[0] == '$')
+				node.PrintTrace("Warning: Only condition references should begin with \"$\". Unexpected \"$\" in (" + token + ").");
+
 	if(node.Size() == 2)
 	{
 		if(IsUnrepresentable(node.Token(1)))
