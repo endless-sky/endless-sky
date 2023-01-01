@@ -186,6 +186,29 @@ namespace {
 				thisMap.erase(it.first);
 		}
 	}
+
+	// TODO: when we update to a C++ standard that supports templates on lambdas,
+	// convert these methods to lambdas scoped appropriately somewhere in Load().
+	template <class Type>
+	void ClearCollection(Type &toClear) = delete();
+
+	template <>
+	void ClearCollection<vector<pair<Body, int>>>(vector<pair<Body, int>> &toClear)
+	{
+		toClear.clear();
+	}
+
+	template<>
+	void ClearCollection<map<const Effect *, int>>(map<const Effect *, int> &toClear)
+	{
+		toClear.clear();
+	}
+
+	template<>
+	void ClearCollection<map<const Sound *, int>>(map<const Sound *, int> &toClear)
+	{
+		toClear.clear();
+	}
 }
 
 
@@ -197,11 +220,187 @@ void Outfit::Load(const DataNode &node)
 
 	isDefined = true;
 
+	map<string, string &> strings;
+	map<string, vector<pair<Body, int>> &> sprites;
+	map<string, map<const Sound *, int> &> audios;
+	map<string, map<const Effect *, int> &> effects;
+	{
+		strings["display name"] = displayName;
+		strings["category"] = category;
+		strings["plural"] = pluralName;
+		strings["description"] = description;
+
+		sprites["flare sprite"] = flareSprites;
+		sprites["reverse flare sprite"] = reverseFlareSprites;
+		sprites["steering flare sprite"] = steeringFlareSprites;
+
+		audios["flare sound"] = flareSounds;
+		audios["reverse flare sound"] = reverseFlareSounds;
+		audios["steering flare sound"] = steeringFlareSounds;
+		audios["hyperdrive sound"] = hyperSounds;
+		audios["hyperdrive in sound"] = hyperInSounds;
+		audios["hyperdrive out sound"] = hyperOutSounds;
+		audios["jump sound"] = jumpSounds;
+		audios["jump in sound"] = jumpInSounds;
+		audios["jump out sound"] = jumpOutSounds;
+
+		effects["afterburner effect"] = afterburnerEffects;
+		effects["jump effect"] = jumpEffects;
+	}	
+
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "remove" && child.Size() == 2)
+		static auto RemoveLicenses = [](const DataNode &node, vector<string> &licenses) -> void
 		{
-			string key = child.Token(1);
+			vector<string> toRemove;
+			if(node.Size() > 2)
+				toRemove.push_back(node.Token(2));
+			if(node.HasChildren())
+				for(const DataNode &child : node)
+					toRemove.push_back(child.Token(0));
+			for(string license : toRemove)
+			{
+				auto removeIt = find(licenses.begin(), licenses.end(), license);
+				if(removeIt != licenses.end())
+					licenses.erase(removeIt);
+				else
+					node.PrintTrace("Warning: cannot remove license \""
+							+ license + "\"; this outfit does not have it.");
+			}
+		};
+
+		// Checks if the given node has a token at the given index and returns its value.
+		// If no such token exists, returns 1.
+		static auto GetOptionalValue = [](const DataNode &node, int expectedIndex) -> double
+		{
+			if(node.Size() > expectedIndex)
+				return node.Value(expectedIndex);
+			return 1.
+		};
+
+		bool remove = child.Token(0) == "remove";
+		bool add = !remove && child.Token(0) == "add";
+		int valueIndex = (add || remove) + 1;
+		if(child.Size() < valueIndex)
+		{
+			child.PrintTrace("Error: expected additional tokens.");
+			continue;
+		}
+		string key = child.Token(valueIndex - 1);
+		bool hasValue = child.Size() > valueIndex;
+		string valueStr = hasValue ? child.Token(valueIndex) : "";
+
+		if(remove && !hasValue)
+		{
+			auto stringIt = strings.find(key);
+			if(stringIt != strings.end())
+			{
+				stringIt->second.clear();
+				continue;
+			}
+			auto spriteIt = sprites.find(key);
+			if(spriteIt != sprites.end())
+			{
+				spriteIt->second.clear();
+				continue;
+			}
+			auto effectIt = effects.find(key);
+			if(effectIt != effects.end())
+			{
+				effectIt->second.clear();
+				continue;
+			}
+			auto audioIt = audios.find(key);
+			if(audioIt != audios.end())
+			{
+				audioIt->second.clear();
+				continue;
+			}
+			if(key == "thumbnail")
+				thumbnail = nullptr;
+			else if(key == "ammo")
+			{
+				ammo.first = nullptr;
+				ammo.second = 0;
+			}
+			else if(key == "cost")
+				cost = 0;
+			else if(key == "mass")
+				mass = 0.;
+			else if(key == "licenses" && !child.HasChildren())
+				licenses.clear();
+			else if(key == "licenses")
+				RemoveLicenses(child, licenses);
+			else
+				attributes[key] = 0.;
+		}
+		else if(remove && hasValue)
+		{
+			auto effectIt = effects.find(key);
+			if(effectIt != effects.end())
+			{
+				effectIt->second[GameData::Effects().Get(valueStr)] = 0;
+				continue;
+			}
+			auto audioIt = audios.find(key);
+			if(audioIt != audios.end())
+			{
+				audioIt->second[Audio::Get(valueStr)] = 0;
+				continue;
+			}
+			else if(key == "licenses")
+				RemoveLicenses(child, licenses);
+			else
+				child.PrintTrace("Error: unexpected additional token used with remove.");
+		}
+		else if(hasValue)
+		{
+			auto stringIt = strings.find(key);
+			if(stringIt != strings.end())
+			{
+				if(add)
+					stringIt->second.append(valueStr + '\n');
+				else
+					stringIt->second = valueStr + '\n';
+				continue;
+			}
+			auto effectIt = effects.find(key);
+			if(effectIt != effects.end())
+			{
+				if(add)
+					effectIt->second[GameData::Effects.Get(valueStr)] += GetOptionalValue(child, valueIndex + 1);
+				else
+					++effectIt->second[GameData::Effects.Get(valueStr)];
+				continue;
+			}
+			auto audioIt = audios.find(key);
+			if(audioIt != audios.end())
+			{
+				if(add)
+					audioIt->second[Audio::Get(valueStr)] += GetOptionalValue(child, vallueIndex + 1);
+				else
+					++audioIt->second[Audio::Get(valueStr)];
+				continue;
+			}
+			
+		}
+
+		auto spriteIt = sprites.find(key);
+		if(spriteIt != sprites.end())
+		{
+			if(remove)
+			{
+				spriteIt->second[value].clear();
+				continue;
+			}
+			else if(add)
+			{
+
+			}
+		}
+
+		if(remove && !hasValue)
+		{
 			if(key == "flare sprite")
 				flareSprites.clear();
 			else if(key == "reverse flare sprite")
@@ -237,10 +436,9 @@ void Outfit::Load(const DataNode &node)
 			else
 				attributes[key] = 0.;
 		}
-		else if(child.Token(0) == "remove" && child.Size() >= 3)
+		else if(remove && hasValue)
 		{
-			string key = child.Token(1);
-			if(child.Token(0) == "flare sound" && child.Size() >= 2)
+			if(key == "flare sound" && child.Size() >= 2)
 				flareSounds.erase(Audio::Get(child.Token(1)));
 			else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
 				reverseFlareSounds.erase(Audio::Get(child.Token(1)));
