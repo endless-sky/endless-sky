@@ -63,6 +63,8 @@ namespace {
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string DATE_FORMAT = "Date format";
 	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 1;
@@ -188,6 +190,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == BOARDING_PRIORITY)
 				Preferences::ToggleBoarding();
+			else if(zone.Value() == BACKGROUND_PARALLAX)
+				Preferences::ToggleParallax();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -222,6 +226,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == DATE_FORMAT)
 				Preferences::ToggleDateFormat();
+			else if(zone.Value() == ALERT_INDICATOR)
+				Preferences::ToggleAlert();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -496,7 +502,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
-		"Parallax background",
+		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
 		"",
@@ -510,7 +516,7 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"Warning siren"
+		ALERT_INDICATOR
 	};
 	bool isCategory = true;
 	int page = 0;
@@ -611,6 +617,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::BoardingSetting();
 		}
+		else if(setting == BACKGROUND_PARALLAX)
+		{
+			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
+		}
 		else if(setting == REACTIVATE_HELP)
 		{
 			// Check how many help messages have been displayed.
@@ -646,6 +657,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == ALERT_INDICATOR)
+		{
+			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
+			text = Preferences::AlertSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
