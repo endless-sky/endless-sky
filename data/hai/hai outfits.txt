@@ -417,7 +417,7 @@ outfit "Hai Octopus Jammer"
 	"outfit space" 7
 	"optical jamming" 26
 	"energy consumption" 1.2
-	description "The Betrayer Jammer is a more agressive version of the Deceiver, intended for short raidings by the Unfettered. It is able to jam trackers more but at a much higher energy cost, meaning it makes them even more vulnerable to ion weaponry than usual Deceiver Jammers do."
+	description "The Betrayer Jammer is a more aggressive version of the Deceiver, intended for short raidings by the Unfettered. It is able to jam trackers more but at a much higher energy cost, meaning it makes them even more vulnerable to ion weaponry than usual Deceiver Jammers do."
 
 
 outfit "Hai Corundum Regenerator"
