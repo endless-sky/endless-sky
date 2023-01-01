@@ -407,7 +407,7 @@ outfit "Hai Cuttlefish Jammer"
 	"outfit space" -7
 	"optical jamming" 20
 	"energy consumption" .8
-	description "When the Hai first started fighting each others there quickly was a need for a counter to trackers. The Cuttlefish Jammer, as they call it, will notably disturb the tracker's lock to the ship by presenting it with a seemingly better target. This jammer is mostly needed for larger ships, that often cannot field enough anti-missiles to effectively counter trackers."
+	description "When the Hai first started fighting each others there quickly was a need for a counter to trackers. The Cuttlefish Jammer will notably disturb the tracker's lock to the ship, by presenting it with a seemingly better target. This jammer is mostly needed for larger ships, that often cannot field enough anti-missiles to effectively counter trackers."
 
 outfit "Hai Octopus Jammer"
 	category "Systems"
@@ -417,7 +417,7 @@ outfit "Hai Octopus Jammer"
 	"outfit space" -7
 	"optical jamming" 26
 	"energy consumption" 1.2
-	description "The Octopus Jammer is a more aggressive version of the Cuttlefish Jammer, intended for short raidings by the Unfettered. It is able to jam trackers more but at a much higher energy cost, meaning it makes them even more vulnerable to ion weaponry than usual Jammers do."
+	description "The Octopus Jammer is a more aggressive version of the Cuttlefish Jammer, intended for short raidings by the Unfettered. It is able to jam trackers more but at a much higher energy cost, meaning it makes them even more vulnerable to ion weaponry than usual jammers do."
 
 
 outfit "Hai Corundum Regenerator"
