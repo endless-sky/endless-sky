@@ -3118,6 +3118,7 @@ phrase "friendly militia 3"
 	word
 		" would "
 	word
+		""
 		"come down here and "
 		"stop hiding up in the Paradise Worlds and "
 		"stop licking the boots of the Syndicate and "
