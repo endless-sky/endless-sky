@@ -227,45 +227,6 @@ void Outfit::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		static auto LicensesInNode = [](const DataNode &node, int valueIndex) -> vector<string>
-		{
-			vector<string> result;
-			if(node.Size() > valueIndex)
-				result.push_back(node.Token(valueIndex));
-			if(node.HasChildren())
-				for(const DataNode &child : node)
-					result.push_back(child.Token(0));
-			return result;
-		};
-		static auto RemoveLicenses = [](const DataNode &node, vector<string> &licenses) -> void
-		{
-			vector<string> toRemove = LicensesInNode(node, 2);
-			for(string license : toRemove)
-			{
-				auto removeIt = find(licenses.begin(), licenses.end(), license);
-				if(removeIt != licenses.end())
-					licenses.erase(removeIt);
-				else
-					node.PrintTrace("Warning: cannot remove license \""
-							+ license + "\"; this outfit does not have it.");
-			}
-		};
-		static auto AddLicenses = [](const DataNode &node, vector<string> &licenses, bool add) -> void
-		{
-			static auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
-				return find(c.begin(), c.end(), val) == c.end();
-			};
-			vector<string> toAdd = LicensesInNode(node, add + 1);
-			if(add)
-			{
-				for(string &license : toAdd)
-					if(isNewLicense(licenses, license))
-						licenses.push_back(license);
-			}
-			else
-				licenses = toAdd;
-		};
-
 		// Checks if the given node has a token at the given index and returns its value.
 		// If no such token exists, returns 1.
 		static auto GetOptionalValue = [](const DataNode &node, int expectedIndex) -> double
@@ -289,10 +250,45 @@ void Outfit::Load(const DataNode &node)
 
 		if(key == "licenses")
 		{
+			static auto LicensesInNode = [](const DataNode &node, int valueIndex) -> vector<string>
+			{
+				vector<string> result;
+				if(node.Size() > valueIndex)
+					result.push_back(node.Token(valueIndex));
+				if(node.HasChildren())
+					for(const DataNode &child : node)
+						result.push_back(child.Token(0));
+				return result;
+			};
+
 			if(remove)
-				RemoveLicenses(child, licenses);
+			{
+				vector<string> toRemove = LicensesInNode(child, 2);
+				for(string license : toRemove)
+				{
+					auto removeIt = find(licenses.begin(), licenses.end(), license);
+					if(removeIt != licenses.end())
+						licenses.erase(removeIt);
+					else
+						child.PrintTrace("Warning: cannot remove license \""
+								+ license + "\"; this outfit does not have it.");
+				}
+			}
 			else
-				AddLicenses(child, licenses, add);
+			{
+				static auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
+					return find(c.begin(), c.end(), val) == c.end();
+				};
+				vector<string> toAdd = LicensesInNode(child, add + 1);
+				if(add)
+				{
+					for(string &license : toAdd)
+						if(isNewLicense(licenses, license))
+							licenses.push_back(license);
+				}
+				else
+					licenses = toAdd;
+			}
 		}
 		else if(remove && !hasValue)
 		{
