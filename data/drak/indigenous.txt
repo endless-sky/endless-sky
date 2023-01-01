@@ -456,25 +456,21 @@ fleet "Embersylphs"
 	personality
 		timid mute swarming unconstrained
 	variant 11
-		"Embersylph (Small)" 3
+		"Embersylph (Small)" 2
 	variant 7
-		"Embersylph (Small)" 4
-	variant 5
 		"Embersylph (Small)" 3
+	variant 5
+		"Embersylph (Small)" 2
 		"Embersylph"
 	variant 3
-		"Embersylph (Small)" 6
-	variant 2
-		"Embersylph (Small)" 7
-	variant 2
 		"Embersylph (Small)" 4
+	variant 2
+		"Embersylph (Small)" 5
+	variant 1
+		"Embersylph (Small)" 3
 		"Embersylph"
 	variant 1
 		"Embersylph" 1
-	variant 1
-		"Embersylph" 2
-	variant 1
-		"Embersylph" 3
 
 
 
