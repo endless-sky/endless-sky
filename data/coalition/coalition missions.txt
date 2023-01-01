@@ -1778,7 +1778,7 @@ mission "Coalition: Pilgrimage 3"
 	on offer
 		conversation
 			`Vellorae directs you to a part of the planet cut by a long, thin river, pays you 49,300 credits once you've landed at one of the available hangars in a larger village, and sets out for a marble rotunda by the river banks.`
-			`	Following her there, you see some Saryd mothers playing with their children. Others hold young infants or carefully bath them in the waters. As the two of you step into the rotunda, you notice the painting on the ceiling: a Saryd woman laying in a field, watching over several children playing around her.`
+			`	Following her there, you see some Saryd mothers playing with their children. Others hold young infants or carefully bathe them in the waters. As the two of you step into the rotunda, you notice the painting on the ceiling: a Saryd woman laying in a field, watching over several children playing around her.`
 			`	Vellorae turns to you, removing the bangle and holding it in both hands as she presents it to you. "Join me for a silent prayer, could you, Captain? Wish to disturb one of the young mothers here, I do not."`
 			choice
 				`	"If this place is a shrine, what's with all the kids playing around as if it was a park?"`
