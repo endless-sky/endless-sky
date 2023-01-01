@@ -2951,3 +2951,63 @@ mission "Geminus Rebuilt"
 	on offer
 		event "geminus rebuilt" 90
 		fail
+
+
+
+event "deep security uses electron weapons"
+	fleet "Small Deep Security"
+		add variant 2
+			"Headhunter (Electron)"
+		add variant 2
+			"Corvette (Electron)"
+		add variant 1
+			"Raven (Electron)"
+
+	fleet "Large Deep Security"
+	add variant 2
+		"Aerie"
+		"Dagger" 2
+		"Corvette (Electron)"
+	variant 1
+		"Aerie"
+		"Dagger" 2
+		"Raven (Electron)"
+	variant 2
+		"Raven (Electron)" 2
+	variant 2
+		"Headhunter (Electron)" 2
+	variant 2
+		"Headhunter (Particle)"
+		"Headhunter (Electron)"
+	variant 2
+		"Headhunter (Strike)"
+		"Headhunter (Electron)"
+	variant 4
+		"Corvette (Electron)"
+		"Raven (Afterburner)"
+	variant 4
+		"Corvette (Electron)"
+		"Raven (Heavy)"
+	variant 4
+		"Corvette (Speedy)"
+		"Raven (Electron)"
+	variant 4
+		"Corvette (Missile)"
+		"Raven (Electron)"
+	variant 2
+		"Corvette (Electron)" 2
+	variant 3
+		"Corvette (Electron)"
+		"Corvette (Missile)"
+	variant 3
+		"Corvette (Electron)"
+		"Corvette (Speedy)"
+
+mission "Deep Security Uses Electron Weapons"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		event "deep security uses electron weapons" 45
+		fail
