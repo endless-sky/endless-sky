@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef START_CONDITIONS_H_
@@ -17,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "ExclusiveItem.h"
 
 #include <string>
 #include <vector>
@@ -50,6 +54,11 @@ public:
 	const Sprite *GetThumbnail() const noexcept;
 	const std::string &GetDisplayName() const noexcept;
 	const std::string &GetDescription() const noexcept;
+	const std::string &GetHint() const noexcept;
+
+	bool Visible(const ConditionsStore &conditionsStore) const;
+	bool Revealed(const ConditionsStore &conditionsStore) const;
+	bool Unlocked(const ConditionsStore &conditionsStore) const;
 
 
 private:
@@ -59,13 +68,17 @@ private:
 	std::vector<Ship> ships;
 
 	// The conversation to display when a game begins with this scenario.
-	Conversation conversation;
-	const Conversation *stockConversation = nullptr;
+	ExclusiveItem<Conversation> conversation;
 
 	const Sprite *thumbnail = nullptr;
 	// The user-friendly display name for this starting scenario.
 	std::string name;
 	std::string description;
+	std::string hint;
+
+	ConditionSet toDisplay;
+	ConditionSet toReveal;
+	ConditionSet toUnlock;
 };
 
 

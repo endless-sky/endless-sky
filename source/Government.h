@@ -7,16 +7,21 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef GOVERNMENT_H_
 #define GOVERNMENT_H_
 
 #include "Color.h"
+#include "ExclusiveItem.h"
 #include "LocationFilter.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -26,6 +31,7 @@ class Fleet;
 class Phrase;
 class Planet;
 class PlayerInfo;
+class Outfit;
 class Ship;
 class System;
 
@@ -59,9 +65,10 @@ public:
 	// toward the player.
 	double AttitudeToward(const Government *other) const;
 	double InitialPlayerReputation() const;
-	// Get the amount that your reputation changes for the given offense. The
-	// given value should be a combination of one or more ShipEvent values.
-	double PenaltyFor(int eventType) const;
+	// Get the amount that your reputation changes for the given offense against the given government.
+	// The given value should be a combination of one or more ShipEvent values.
+	// Returns 0 if the Government is null.
+	double PenaltyFor(int eventType, const Government *other) const;
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
@@ -106,6 +113,10 @@ public:
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
 	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
+	// Check to see if the items are condemnable (atrocities) or warrant a fine.
+	bool Condemns(const Outfit *outfit) const;
+	// Returns the fine for given outfit for this government.
+	int Fines(const Outfit *outfit) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
@@ -124,11 +135,14 @@ private:
 	std::string name;
 	std::string displayName;
 	int swizzle = 0;
-	Color color;
+	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
+	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
+	std::map<const Outfit*, int> illegals;
+	std::map<const Outfit*, bool> atrocities;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
@@ -142,6 +156,10 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
+	// If a government appears in this set, and the reputation with this government is affected by actions,
+	// and events performed against that government, use the penalties that government applies for the
+	// action instead of this governments own penalties.
+	std::set<unsigned> useForeignPenaltiesFor;
 };
 
 
