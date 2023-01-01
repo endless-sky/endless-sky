@@ -1758,7 +1758,7 @@ mission "Coalition: Pilgrimage 2"
 			label skip
 			`	You wait for a few hours by the spaceport city until Vellorae returns about an hour after noon.`
 			label end
-			`	"<destination>, the next stop is. Wish to give Adfices Velaulra's Blessing, I wish," she says, heading into her bunk as you prepare for the next trip.`
+			`	"<destination>, the next stop is. To give Adfices Velaulra's Blessing, I wish," she says, heading into her bunk as you prepare for the next trip.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Vellorae hasn't entered the system yet. Better depart and wait for it.`
