@@ -369,8 +369,8 @@ ship "Grasshopper"
 		"heat dissipation" .85
 		"fuel capacity" 300
 		"cargo space" 29
-		"outfit space" 169
-		"weapon capacity" 38
+		"outfit space" 198
+		"weapon capacity" 47
 		"engine capacity" 61
 		weapon
 			"blast radius" 36
