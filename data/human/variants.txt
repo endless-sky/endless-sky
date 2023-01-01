@@ -2617,7 +2617,7 @@ ship "Scrapper" "Scrapper (Minimal)"
 	outfits
 		"Energy Blaster"
 		
-		"nGVF-AA Fuel Cell"
+		"KP-6 Photovoltaic Panel"
 		"LP036a Battery Pack"
 		
 		"X1700 Ion Thruster"
@@ -2659,10 +2659,11 @@ ship "Scrapper" "Scrapper (Boarding)"
 	outfits
 		"Twin Blaster"
 		
-		"nGVF-AA Fuel Cell"
+		"KP-6 Photovoltaic Panel" 6
 		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Laser Rifle" 4
+		"Bunk Room"
+		"Fragmentation Grenades" 8
+		"Laser Rifle"
 		
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"

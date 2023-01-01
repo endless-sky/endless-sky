@@ -2949,10 +2949,10 @@ ship "Scrapper"
 		"required crew" 1
 		"bunks" 4
 		"mass" 62
-		"drag" 1.1
+		"drag" 1.4
 		"heat dissipation" .8
 		"fuel capacity" 300
-		"cargo space" 20
+		"cargo space" 21
 		"outfit space" 125
 		"weapon capacity" 12
 		"engine capacity" 58
@@ -2964,9 +2964,8 @@ ship "Scrapper"
 	outfits
 		"Twin Blaster"
 		
-		"nGVF-AA Fuel Cell"
+		"KP-6 Photovoltaic Panel" 4
 		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -2978,7 +2977,7 @@ ship "Scrapper"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
-	description "Scrapper is less of a ship model but rather a type of old shuttle parts barely held together that some might call a ship."
+	description "The Scrapper is less a model of ship, and more a general reference to ships cobbled together from the remains of scrapped shuttles. While Republic authorities prefer to dismiss them as at best an urban legend, and at worst an almost-illegal fabrication of unlicensed shipyards, these ships are where many aspiring captains from poorer planets get their start."
 
 
 
