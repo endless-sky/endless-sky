@@ -37,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
-#include "StartConditions.h"
 #include "StartConditionsPanel.h"
 #include "text/truncate.hpp"
 #include "UI.h"

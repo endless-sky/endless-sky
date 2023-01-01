@@ -293,6 +293,9 @@ void StartConditionsPanel::ScrollToSelected()
 // Update the UI to reflect the given starting scenario.
 void StartConditionsPanel::Select(StartConditionsList::iterator it)
 {
+	// Clear the displayed information.
+	info = Information();
+
 	startIt = it;
 	if(startIt == scenarios.end())
 	{
@@ -303,11 +306,10 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	}
 
 	// Update the information summary.
-	info = Information();
-	info.SetCondition("chosen start");
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
-	info.SetString("name", startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDisplayName() : "???");
+	info.SetString("name", startIt->Revealed(GameData::GlobalConditions())
+		? startIt->GetDisplayName() : "???");
 	info.SetString("description", startIt->Revealed(GameData::GlobalConditions())
 		? startIt->GetDescription() : startIt->GetHint());
 
