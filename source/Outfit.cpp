@@ -186,29 +186,6 @@ namespace {
 				thisMap.erase(it.first);
 		}
 	}
-
-	// TODO: when we update to a C++ standard that supports templates on lambdas,
-	// convert these methods to lambdas scoped appropriately somewhere in Load().
-	template <class Type>
-	void ClearCollection(Type &toClear) = delete();
-
-	template <>
-	void ClearCollection<vector<pair<Body, int>>>(vector<pair<Body, int>> &toClear)
-	{
-		toClear.clear();
-	}
-
-	template<>
-	void ClearCollection<map<const Effect *, int>>(map<const Effect *, int> &toClear)
-	{
-		toClear.clear();
-	}
-
-	template<>
-	void ClearCollection<map<const Sound *, int>>(map<const Sound *, int> &toClear)
-	{
-		toClear.clear();
-	}
 }
 
 
@@ -250,14 +227,19 @@ void Outfit::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		static auto RemoveLicenses = [](const DataNode &node, vector<string> &licenses) -> void
+		static auto LicensesInNode = [](const DataNode &node, int valueIndex) -> vector<string>
 		{
-			vector<string> toRemove;
-			if(node.Size() > 2)
-				toRemove.push_back(node.Token(2));
+			vector<string> result;
+			if(node.Size() > valueIndex)
+				result.push_back(node.Token(valueIndex));
 			if(node.HasChildren())
 				for(const DataNode &child : node)
-					toRemove.push_back(child.Token(0));
+					result.push_back(child.Token(0));
+			return result;
+		};
+		static auto RemoveLicenses = [](const DataNode &node, vector<string> &licenses) -> void
+		{
+			vector<string> toRemove = LicensesInNode(node, 2);
 			for(string license : toRemove)
 			{
 				auto removeIt = find(licenses.begin(), licenses.end(), license);
@@ -364,6 +346,13 @@ void Outfit::Load(const DataNode &node)
 					stringIt->second = valueStr + '\n';
 				continue;
 			}
+			auto spriteIt = sprites.find(key);
+			if(spriteIt != sprites.end())
+			{
+				auto &spriteArr = spriteIt->second;
+				spriteArr.emplace_back(Body(), 1);
+				spriteArr.back().first.LoadSprite(child);
+			}
 			auto effectIt = effects.find(key);
 			if(effectIt != effects.end())
 			{
@@ -382,207 +371,52 @@ void Outfit::Load(const DataNode &node)
 					++audioIt->second[Audio::Get(valueStr)];
 				continue;
 			}
-			
-		}
-
-		auto spriteIt = sprites.find(key);
-		if(spriteIt != sprites.end())
-		{
-			if(remove)
-			{
-				spriteIt->second[value].clear();
-				continue;
-			}
-			else if(add)
-			{
-
-			}
-		}
-
-		if(remove && !hasValue)
-		{
-			if(key == "flare sprite")
-				flareSprites.clear();
-			else if(key == "reverse flare sprite")
-				reverseFlareSprites.clear();
-			else if(key == "steering flare sprite")
-				steeringFlareSprites.clear();
-			else if(key == "flare sound")
-				flareSounds.clear();
-			else if(key == "reverse flare sound")
-				reverseFlareSounds.clear();
-			else if(key == "steering flare sound")
-				steeringFlareSounds.clear();
-			else if(key == "afterburner effect")
-				afterburnerEffects.clear();
-			else if(key == "jump effect")
-				jumpEffects.clear();
-			else if(key == "hyperdrive sound")
-				hyperSounds.clear();
-			else if(key == "hyperdrive in sound")
-				hyperInSounds.clear();
-			else if(key == "hyperdrive out sound")
-				hyperOutSounds.clear();
-			else if(key == "jump sound")
-				jumpSounds.clear();
-			else if(key == "jump in sound")
-				jumpInSounds.clear();
-			else if(key == "jump out sound")
-				jumpOutSounds.clear();
-			else if(key == "description")
-				description.clear();
-			else if(key == "licenses")
-				licenses.clear();
-			else
-				attributes[key] = 0.;
-		}
-		else if(remove && hasValue)
-		{
-			if(key == "flare sound" && child.Size() >= 2)
-				flareSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
-				reverseFlareSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
-				steeringFlareSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
-				afterburnerEffects.erase(GameData::Effects().Get(child.Token(1)));
-			else if(child.Token(0) == "jump effect" && child.Size() >= 2)
-				jumpEffects.erase(GameData::Effects().Get(child.Token(1)));
-			else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
-				hyperSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
-				hyperInSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
-				hyperOutSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "jump sound" && child.Size() >= 2)
-				jumpSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
-				jumpInSounds.erase(Audio::Get(child.Token(1)));
-			else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
-				jumpOutSounds.erase(Audio::Get(child.Token(1)));
-			else if(key == "description")
-				description.clear();
-			else if(key == "licenses")
-			{
-				vector<string> toRemove;
-				// Remove any licenses that were specified "inline".
-				if(child.Size() >= 2)
-				{
-					for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
-						toRemove.push_back(*it);
-				}
-				// Add any new licenses that were specified as an indented list.
-				for(const DataNode &grand : child)
-					toRemove.push_back(grand.Token(0));
-				for(const string &license : toRemove)
-				{
-					const auto it = find(licenses.begin(), licenses.end(), license);
-					if(it != licenses.end())
-						licenses.erase(it);
-				}
-			}
-		}
-		else if(child.Token(0) == "add" && child.Size() >= 3)
-		{
-			string key = child.Token(1);
 			if(key == "cost")
-				cost += child.Value(2);
-			else if(key == "mass")
-				mass += child.Value(2);
-			else if(key == "jump range")
-				attributes[key] = max(0., attributes[key] + child.Value(2));
-			else
-				attributes[key] += child.Value(2);
-		}
-		else if(child.Token(0) == "display name" && child.Size() >= 2)
-			displayName = child.Token(1);
-		else if(child.Token(0) == "category" && child.Size() >= 2)
-			category = child.Token(1);
-		else if(child.Token(0) == "plural" && child.Size() >= 2)
-			pluralName = child.Token(1);
-		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
-		{
-			flareSprites.emplace_back(Body(), 1);
-			flareSprites.back().first.LoadSprite(child);
-		}
-		else if(child.Token(0) == "reverse flare sprite" && child.Size() >= 2)
-		{
-			reverseFlareSprites.emplace_back(Body(), 1);
-			reverseFlareSprites.back().first.LoadSprite(child);
-		}
-		else if(child.Token(0) == "steering flare sprite" && child.Size() >= 2)
-		{
-			steeringFlareSprites.emplace_back(Body(), 1);
-			steeringFlareSprites.back().first.LoadSprite(child);
-		}
-		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
-			++flareSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
-			++reverseFlareSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
-			++steeringFlareSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
-			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
-		else if(child.Token(0) == "jump effect" && child.Size() >= 2)
-			++jumpEffects[GameData::Effects().Get(child.Token(1))];
-		else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
-			++hyperSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
-			++hyperInSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
-			++hyperOutSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "jump sound" && child.Size() >= 2)
-			++jumpSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
-			++jumpInSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
-			++jumpOutSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
-			flotsamSprite = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "weapon")
-			LoadWeapon(child);
-		else if(child.Token(0) == "ammo" && child.Size() >= 2)
-		{
-			// Non-weapon outfits can have ammo so that storage outfits
-			// properly remove excess ammo when the storage is sold, instead
-			// of blocking the sale of the outfit until the ammo is sold first.
-			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
-		}
-		else if(child.Token(0) == "description" && child.Size() >= 2)
-		{
-			description += child.Token(1);
-			description += '\n';
-		}
-		else if(child.Token(0) == "cost" && child.Size() >= 2)
-			cost = child.Value(1);
-		else if(child.Token(0) == "mass" && child.Size() >= 2)
-			mass = child.Value(1);
-		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
-		{
-			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
-				return find(c.begin(), c.end(), val) == c.end();
-			};
-			// Add any new licenses that were specified "inline".
-			if(child.Size() >= 2)
 			{
-				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
-					if(isNewLicense(licenses, *it))
-						licenses.push_back(*it);
+				if(add)
+					cost += child.Value(valueIndex);
+				else
+					cost = child.Value(valueIndex);
 			}
-			// Add any new licenses that were specified as an indented list.
-			for(const DataNode &grand : child)
-				if(isNewLicense(licenses, grand.Token(0)))
-					licenses.push_back(grand.Token(0));
+			else if(key == "mass")
+			{
+				if(add)
+					mass += child.Value(valueIndex);
+				else
+					mass = child.Value(valueIndex);
+			}
+			else if(key == "licenses")
+			{
+				static auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
+					return find(c.begin(), c.end(), val) == c.end();
+				};
+				vector<string> toAdd = LicensesInNode(node, add + 1);
+				if(add)
+				{
+					for(string &license : toAdd)
+						if(isNewLicense(licenses, license))
+							licenses.push_back(license);
+				}
+				else
+					licenses = toAdd;
+			}
+			else if(key == "jump range")
+			{
+				double val = child.Value(valueIndex);
+				// Jump range must be positive.
+				attributes[key] = max(0., add ? attributes[key] + val : val);
+			}
+			else
+			{
+				double val = child.Value(valueIndex);
+				if(add)
+					attributes[key] += val;
+				else
+					attributes[key] = val;
+			}
 		}
-		else if(child.Token(0) == "jump range" && child.Size() >= 2)
-		{
-			// Jump range must be positive.
-			attributes[child.Token(0)] = max(0., child.Value(1));
-		}
-		else if(child.Size() >= 2)
-			attributes[child.Token(0)] = child.Value(1);
+		else if(key == "weapon")
+			LoadWeapon(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
