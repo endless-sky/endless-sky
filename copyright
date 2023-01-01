@@ -1060,6 +1060,8 @@ Files:
  images/outfit/outfit?expansion*
  images/outfit/cargo?expansion*
  images/outfit/control?transceiver*
+ images/outfit/hai?jammer*
+ images/outfit/hai?jammer?overclocked*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1971,6 +1973,11 @@ Files:
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 Comment: Derived from _menu/haze-133 (no copyright given).
+
+Files:
+ images/star/proto-planetary-disk*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
