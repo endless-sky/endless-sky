@@ -49,18 +49,18 @@ public:
 	static_assert(std::is_class<KeyType>::value, "Condition key type must be a class.");
 	static_assert(&KeyType::empty, "Condition key must have an empty function.");
 
-	constexpr Condition() : value(), key() {}
-	explicit constexpr Condition(const V &value) : value(value), key() {}
+	Condition() : value(), key() {}
+	explicit Condition(const V &value) : value(value), key() {}
 
 	// Initialize the condition with the specified value.
 	// Record what store and key to use, but do not query the store for a value.
-	constexpr Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key);
+	Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key);
 
 	// Get the initial value from the store. Use V() if the store returned nothing.
 	Condition(std::shared_ptr<ConditionsStore> store, const KeyType &key);
 
 	template <class V2>
-	constexpr Condition(const Condition<V2> &other);
+	Condition(const Condition<V2> &other);
 
 	template <class V2>
 	Condition &operator=(const Condition<V2> &other);
@@ -68,7 +68,9 @@ public:
 	// This commented-out operator may look convenient, but it causes
 	// everything to break because any Condition=Condition assignment uses
 	// this operator instead of the Condition=Condition implementation,
-	// preventing explicit conversion of Conditions.
+	// preventing explicit conversion of Conditions. A lot of code would
+	// be simpler if this was working.
+	//
 	// template <class T, typename std::enable_if<std::is_arithmetic<T>::value>::type* = nullptr>
 	// Condition &operator=(const T &other);
 
@@ -143,7 +145,7 @@ private:
 
 
 template <class V>
-constexpr Condition<V>::Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key) :
+Condition<V>::Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key) :
 	value(value), key(key), store(store)
 {
 }
@@ -161,7 +163,7 @@ Condition<V>::Condition(std::shared_ptr<ConditionsStore> store, const KeyType &k
 // facilitate type conversion.
 template <class V>
 template <class V2>
-constexpr Condition<V>::Condition(const Condition<V2> &other):
+Condition<V>::Condition(const Condition<V2> &other):
 	value(static_cast<ValueType>(other.Value())),
 	key(other.Key()),
 	store(const_cast<Condition<V2>&>(other).Store()),
@@ -187,7 +189,8 @@ Condition<V> &Condition<V>::operator=(const Condition<V2> &other)
 // This commented-out operator may look convenient, but it causes
 // everything to break because any Condition=Condition assignment uses
 // this operator instead of the Condition=Condition implementation,
-// preventing explicit conversion of Conditions.
+// preventing explicit conversion of Conditions. A lot of code would
+// be simpler if this was working.
 //
 // template <class V>
 // template <class T, typename std::enable_if<std::is_arithmetic<T>::value>::type*>
@@ -310,7 +313,8 @@ typename std::shared_ptr<ConditionsStore::ConditionEntry> Condition<V>::GetEntry
 	try {
 		return std::shared_ptr<ConditionsStore::ConditionEntry>(entry);
 	}
-	catch(const std::bad_weak_ptr &bwp) {
+	catch(const std::bad_weak_ptr &bwp)
+	{
 		std::shared_ptr<ConditionsStore::ConditionEntry> got = store->GetEntry(key);
 		entry = got;
 		return got;
@@ -325,7 +329,8 @@ typename std::shared_ptr<ConditionsStore::ConditionEntry> Condition<V>::EnsureEn
 	try {
 		return std::shared_ptr<ConditionsStore::ConditionEntry>(entry);
 	}
-	catch(const std::bad_weak_ptr &bwp) {
+	catch(const std::bad_weak_ptr &bwp)
+	{
 		std::shared_ptr<ConditionsStore::ConditionEntry> got = store->EnsureEntry(key);
 		entry = got;
 		return got;
