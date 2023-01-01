@@ -393,7 +393,18 @@ void Outfit::Load(const DataNode &node)
 					++(*audioIt->second)[Audio::Get(valueStr)];
 				continue;
 			}
-			if(key == "cost")
+			if(key == "flotsam sprite")
+				flotsamSprite = SpriteSet::Get(valueStr);
+			else if(key == "thumbnail")
+				thumbnail = SpriteSet::Get(valueStr);
+			else if(key == "ammo")
+			{
+				// Non-weapon outfits can have ammo so that storage outfits
+				// properly remove excess ammo when the storage is sold, instead
+				// of blocking the sale of the outfit until the ammo is sold first.
+				ammo = make_pair(GameData::Outfits().Get(valueStr), 0);
+			}
+			else if(key == "cost")
 			{
 				if(add)
 					cost += child.Value(valueIndex);
