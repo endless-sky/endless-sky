@@ -47,7 +47,6 @@ public:
 		"Every manufacturer's ships have their own strengths and weaknesses.",
 		"You can use ESLauncher2 to install and play Endless Sky more easily.",
 		"If you press space on the main menu, the credits stop scrolling.",
-		"Press ctrl and a number key when you have multiple ships selected to group them together. 
-		Select all these ships again by pressing the number key."
+		// "Press ctrl and a number key when you have multiple ships selected to group them together. Select all these ships again by pressing the number key."
 	};
 };
