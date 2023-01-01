@@ -2938,6 +2938,50 @@ ship "Scout"
 
 
 
+ship "Scrapper"
+	sprite "ship/scrapper"
+	thumbnail "thumbnail/scrapper"
+	attributes
+		category "Interceptor"
+		"cost" 60000
+		"shields" 450
+		"hull" 520
+		"required crew" 1
+		"bunks" 4
+		"mass" 62
+		"drag" 1.1
+		"heat dissipation" .8
+		"fuel capacity" 300
+		"cargo space" 20
+		"outfit space" 125
+		"weapon capacity" 12
+		"engine capacity" 58
+		weapon
+			"blast radius" 10
+			"shield damage" 80
+			"hull damage" 50
+			"hit force" 140
+	outfits
+		"Twin Blaster"
+		
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -6 30
+	engine 6 30
+	gun 0 -31
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 5
+	description "Scrapper is less of a ship model but rather a type of old shuttle parts barely held together that some might call a ship."
+
+
+
 ship "Shuttle"
 	sprite "ship/shuttle"
 		"frame time" 4

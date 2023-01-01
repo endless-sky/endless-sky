@@ -1837,6 +1837,39 @@ fleet "Small Southern Pirates"
 		"Clipper (Speedy)"
 	variant 1
 		"Modified Argosy"
+	add variant 10
+		"Scrapper"
+	add variant 12
+		"Scrapper (Minimal)"
+	add variant 10
+		"Scrapper (Plasma Engine)"
+	add variant 8
+		"Scrapper (Boarding)"
+	add variant 8
+		"Scrapper (Mod Blaster)"
+	add variant 6
+		"Scrapper (Missile)"
+	add variant 5
+		"Scrapper" 2
+	add variant 6
+		"Scrapper (Minimal)" 2
+	add variant 1
+		"Scrapper"
+		"Sparrow"
+	add variant 2
+		"Sparrow"
+		"Scrapper (Minimal)"
+	add variant 1
+		"Sparrow"
+		"Scrapper (Boarding)"
+	add variant 1
+		"Sparrow"
+		"Scrapper (Missile)"
+	add variant 1
+		"Sparrow"
+		"Scrapper (Plasma Engine)"
+	add variant 2
+		"Scrapper (Gatling)"
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -2106,6 +2139,39 @@ fleet "Small Core Pirates"
 		"Wasp (Plasma)"
 	variant 2
 		"Wasp (Proton)"
+	add variant 10
+		"Scrapper"
+	add variant 12
+		"Scrapper (Minimal)"
+	add variant 10
+		"Scrapper (Plasma Engine)"
+	add variant 8
+		"Scrapper (Boarding)"
+	add variant 8
+		"Scrapper (Mod Blaster)"
+	add variant 6
+		"Scrapper (Missile)"
+	add variant 5
+		"Scrapper" 2
+	add variant 6
+		"Scrapper (Minimal)" 2
+	add variant 1
+		"Scrapper"
+		"Sparrow"
+	add variant 2
+		"Sparrow"
+		"Scrapper (Minimal)"
+	add variant 1
+		"Wasp (Javelin)"
+		"Scrapper (Boarding)"
+	add variant 1
+		"Sparrow"
+		"Scrapper (Missile)"
+	add variant 1
+		"Wasp (Meteor)"
+		"Scrapper (Plasma Engine)"
+	add variant 2
+		"Scrapper (Gatling)"
 
 fleet "Large Core Pirates"
 	government "Pirate"
@@ -2241,6 +2307,39 @@ fleet "Small Northern Pirates"
 		"Scout"
 	variant 4
 		"Scout (Speedy)"
+	add variant 10
+		"Scrapper"
+	add variant 12
+		"Scrapper (Minimal)"
+	add variant 10
+		"Scrapper (Plasma Engine)"
+	add variant 8
+		"Scrapper (Boarding)"
+	add variant 8
+		"Scrapper (Mod Blaster)"
+	add variant 6
+		"Scrapper (Missile)"
+	add variant 5
+		"Scrapper" 2
+	add variant 6
+		"Scrapper (Minimal)" 2
+	add variant 1
+		"Scrapper"
+		"Sparrow"
+	add variant 2
+		"Sparrow"
+		"Scrapper (Minimal)"
+	add variant 1
+		"Berserker"
+		"Scrapper (Boarding)"
+	add variant 1
+		"Berserker"
+		"Scrapper (Missile)"
+	add variant 1
+		"Sparrow"
+		"Scrapper (Plasma Engine)"
+	add variant 2
+		"Scrapper (Gatling)"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
