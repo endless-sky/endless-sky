@@ -225,6 +225,10 @@ void Outfit::Load(const DataNode &node)
 		effects["jump effect"] = &jumpEffects;
 	}
 
+	// A single outfit definition may contain multiple 'description' nodes to create a line break within a description.
+	// In this case, subsequent 'description' nodes should not overwrite the previous value.
+	bool overwriteDescription = true;
+
 	for(const DataNode &child : node)
 	{
 		// Checks if the given node has a token at the given index and returns its value.
@@ -365,12 +369,16 @@ void Outfit::Load(const DataNode &node)
 			auto stringIt = strings.find(key);
 			if(stringIt != strings.end())
 			{
-				if(add)
+				bool isDescription = key == "description";
+				if(add || (isDescription && !overwriteDescription))
 					stringIt->second->append(valueStr);
 				else
 					*stringIt->second = valueStr;
-				if(key == "description")
+				if(isDescription)
+				{
 					description.append("\n");
+					overwriteDescription = false;
+				}
 				continue;
 			}
 			auto spriteIt = sprites.find(key);
