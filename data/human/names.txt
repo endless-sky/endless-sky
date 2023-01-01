@@ -3867,6 +3867,12 @@ phrase "free worlds fighter"
 		"Reynard"
 		"Vixen"
 		"Coyote"
+		"Dhole"
+		"Fennec"
+		"Vulpine"
+		"Culpeo"
+		"Jackal"
+		"Dingo"
 	word
 		" "
 	phrase
