@@ -363,9 +363,11 @@ void Outfit::Load(const DataNode &node)
 			if(stringIt != strings.end())
 			{
 				if(add)
-					stringIt->second->append(valueStr + '\n');
+					stringIt->second->append(valueStr);
 				else
-					*stringIt->second = valueStr + '\n';
+					*stringIt->second = valueStr;
+				if(key == "description")
+					description.append("\n");
 				continue;
 			}
 			auto spriteIt = sprites.find(key);
@@ -374,6 +376,7 @@ void Outfit::Load(const DataNode &node)
 				auto &spriteArr = *spriteIt->second;
 				spriteArr.emplace_back(Body(), 1);
 				spriteArr.back().first.LoadSprite(child);
+				continue;
 			}
 			auto effectIt = effects.find(key);
 			if(effectIt != effects.end())
