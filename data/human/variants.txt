@@ -1095,6 +1095,20 @@ ship "Corvette" "Corvette (Particle Chaser)"
 		"Outfits Expansion" 2
 		"Catalytic Ramscoop"
 
+ship Corvette "Corvette (Electron)"
+	outfits
+		"Electron Beam" 4
+		"Electron Turret"
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		"Laser Rifle" 3
+	turret "Electron Turret"
+	turret
 
 ship "Corvette" "Corvette (Hai Trafficker)"
 	add attributes
@@ -2100,17 +2114,15 @@ ship "Headhunter" "Headhunter (Strike)"
 
 
 # Only after the main campaign is completed.
-ship "Headhunter" "Headhunter (Electron)"
+ship Headhunter "Headhunter (Electron)"
 	outfits
 		"Electron Beam" 2
-		"Anti-Missile Turret"
-		"RT-I Radiothermal"
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
+		"D67-TM Shield Generator"
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
 		"Hyperdrive"
-
 
 
 ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
