@@ -132,7 +132,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 
 		damage.shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
-			* ScaleType(0., attributes.Get("shield protection"));
+			* ScaleType(0., 0., attributes.Get("shield protection"));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
 	}
@@ -144,7 +144,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.shieldDamage *= shieldFraction;
 	damage.hullDamage = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
-		* ScaleType(1., attributes.Get("hull protection"));
+		* ScaleType(1., 0., attributes.Get("hull protection"));
 	double hull = ship.HullUntilDisabled();
 	if(damage.hullDamage > hull)
 	{
@@ -152,18 +152,18 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		damage.hullDamage *= hullFraction;
 		damage.hullDamage += (weapon.DisabledDamage()
 			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
-			* ScaleType(1., attributes.Get("hull protection"))
+			* ScaleType(1., 0., attributes.Get("hull protection"))
 			* (1. - hullFraction);
 	}
 	damage.energyDamage = (weapon.EnergyDamage()
 		+ weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
-		* ScaleType(.5, attributes.Get("energy protection"));
+		* ScaleType(.5, 0., attributes.Get("energy protection"));
 	damage.heatDamage = (weapon.HeatDamage()
 		+ weapon.RelativeHeatDamage() * ship.MaximumHeat())
-		* ScaleType(.5, attributes.Get("heat protection"));
+		* ScaleType(.5, 0., attributes.Get("heat protection"));
 	damage.fuelDamage = (weapon.FuelDamage()
 		+ weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
-		* ScaleType(.5, attributes.Get("fuel protection"));
+		* ScaleType(.5, 0., attributes.Get("fuel protection"));
 
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.
