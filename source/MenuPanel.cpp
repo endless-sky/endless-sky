@@ -102,6 +102,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
+	// Load the player information.
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
@@ -133,18 +134,16 @@ void MenuPanel::Draw()
 		info.SetString("pilot", "No Pilot Loaded");
 	}
 
+	// Load the loading hint.
+	info.SetString("hint",GameLoadingPanel::GetHint());
+
+	// Draw everything.
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	mainMenuUi->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 
 	if(!credits.empty())
 		DrawCredits();
-
-	FontSet::Get(14).Draw(
-		GameLoadingPanel::GetHint(),
-		Point(Screen::Width() * -.5 + 20., Screen::Height() * .5 - 34.),
-		Color({.8, .8, .8})
-	);
 }
 
 

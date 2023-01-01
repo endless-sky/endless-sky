@@ -124,7 +124,9 @@ void GameLoadingPanel::Draw()
 	PointerShader::Unbind();
 
 	// Draw the loading hint.
-	FontSet::Get(14).Draw(hint, Point(Screen::Width() * -.5 + 20., Screen::Height() * .5 - 34.), Color({.8, .8, .8}));
+	Information info;
+	info.SetString("hint",GameLoadingPanel::GetHint());
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
 }
 
 std::string GameLoadingPanel::GetHint()
