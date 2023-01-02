@@ -98,3 +98,4 @@ hazard "Small Black Hole Gravity"
 		"hit force" -17
 		"damage dropoff" 120 1700
 		"dropoff modifier" 0
+
