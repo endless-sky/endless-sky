@@ -75,7 +75,8 @@ private:
 	// only if the filter wasn't looking for planet characteristics or if the
 	// didPlanet argument is set (meaning we already checked those).
 	bool Matches(const System *system, const System *origin, bool didPlanet) const;
-	std::vector<const Planet *> PickPlanetHelper(const System *origin, bool hasClearance = false, bool requireSpaceport = false) const;
+	std::vector<const Planet *> PickPlanetHelper(const System *origin,
+			bool hasClearance = false, bool requireSpaceport = false) const;
 
 
 private:

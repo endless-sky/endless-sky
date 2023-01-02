@@ -649,7 +649,8 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 
 
 
-vector<const Planet *> LocationFilter::PickPlanetHelper(const System *origin, bool hasClearance, bool requireSpaceport) const
+vector<const Planet *> LocationFilter::PickPlanetHelper(const System *origin,
+		bool hasClearance, bool requireSpaceport) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
