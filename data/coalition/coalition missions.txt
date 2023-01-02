@@ -3130,7 +3130,7 @@ mission "Sativa: Struggling Author 1"
 					goto "buy her book"
 				`	(Sit down and talk to her.)`
 			label "talk to her"
-			`	You sit down on the table, next to Ann. She greets you with a smile. "Hello! Would you like to buy one of my books?", she asks.`
+			`	You sit down on the table, next to Ann. She greets you with a smile. "Hello! Would you like to buy one of my books?" she asks.`
 			choice
 				`	"What are your books about?"`
 					goto "what are her books about"
@@ -3143,7 +3143,7 @@ mission "Sativa: Struggling Author 1"
 					goto "buy her book"
 				`	"Cool. How has life been lately as an author?"`
 			label "life as an author sucks"
-			`	"Bad.", says Ann. "I've never had a bestseller or even a book that surpasses 10,000 copies sold."`
+			`	"Bad," says Ann. "I've never had a bestseller or even a book that surpasses 10,000 copies sold."`
 			choice
 				`	(Tell her about the Coalition.)`
 					goto "tell her about the coalition"
@@ -3152,7 +3152,7 @@ mission "Sativa: Struggling Author 1"
 			label "buy her book"
 			action
 				payment -60
-			`	You enter the bookstore, ask the employee for one of Ann's books, and purchase it, for 60 credits.`
+			`	You enter the bookstore, ask the employee for one of Ann's books, and purchase it for 60 credits.`
 			choice
 				`	(Now go to Ann and get it signed.)`
 					goto "get it signed"
@@ -3168,8 +3168,8 @@ mission "Sativa: Struggling Author 1"
 			label "tell her about the coalition"
 			`	You check your surroundings, looking around to ensure you are not being listened to. Once you confirm that your conversation will be private, you begin speaking.`
 			`	"You know, I know of a place called the Coalition. They're an alien race. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
-			`	"Wait, really?", asks Ann.`
-			`	"Yes.", you say.`
+			`	"Wait, really?" asks Ann.`
+			`	"Yes", you say.`
 			`	"But, they don't speak English. How are they gonna read my books?"`
 			choice
 				`	"They have a translation device."`
@@ -3181,7 +3181,7 @@ mission "Sativa: Struggling Author 1"
 			`	"Do I have to pay anything? As a struggling author, I really can't pay you."`
 			choice
 				`	"It's okay. I'm willing to make an exception for you.", you explain.`
-			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is.", says Ann.`
+			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Ann.`
 			`	You reply. "Good luck. By the way, we're going to <destination> in Coalition space.`
 			choice
 				`	(Wait for Ann to finish her event.)`
