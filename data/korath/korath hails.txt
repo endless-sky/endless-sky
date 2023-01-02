@@ -82,6 +82,135 @@ phrase "efreti: loud angry rambling"
 		"efreti: the last person who attacked me had something bad happen to them"
 		"efreti: I do bad things to my enemies"
 
+phrase "exile: I do bad things to my enemies"
+	phrase
+		"exile: I perform harmful acts upon"
+	word
+		" "
+	phrase
+		"exile: people who offend, attack, or oppress me"
+	word
+		.
+		.
+		!
+
+phrase "efreti: I do bad things to my enemies"
+	phrase
+		"efreti: I perform harmful acts upon"
+	word
+		" "
+	phrase
+		"efreti: people who offend, attack, or oppress me"
+	word
+		.
+		.
+		!
+
+phrase "exile: the last person who attacked me had something bad happen to them"
+	phrase
+		"exile: The last person who attacked me"
+	word
+		" "
+	phrase
+		"exile: had something bad happen to them"
+	word
+		"!"
+		"."
+	phrase
+		"exile: You are the next person that will have something bad happen to them."
+
+phrase "efreti: the last person who attacked me had something bad happen to them"
+	phrase
+		"efreti: The last person who attacked me"
+	word
+		" "
+	phrase
+		"efreti: had something bad happen to them"
+	word
+		"!"
+		"."
+	phrase
+		"efreti: You are the next person that will have something bad happen to them."
+
+phrase "exile: The last person who attacked me"
+	word
+		"'asrireb liptalek aga'"          # My last oppressor
+		"Nralu pusuh nrag otnralegref"    # A fool that attacked me
+		"Rilafet, raikafet asramef"       # Yesterday, the dying struck
+		"Humanika nrag pafem nralegref"   # A weak human attacked
+		"Kagaf nrag latahlek ilukunref otkimot"  # Burning corpses soiled my skin
+		"Ramananet nrag ratlistakis"      # A doomed failure
+		"Rarataf liptalek aga'"           # My last meal
+		"Kosah nralegref agrfomehe'"      # Clowns attacked before
+		"Paohe' kickir inrakasref ifat"   # A [nitwit, idiot] came to us
+		"Paohe' rariaf ohlegref"          # A plaything invaded"
+
+phrase "efreti: The last person who attacked me"
+	word
+		"Matrirec pihsapek adam"          # My last oppressor
+		"Lrapu hutub lrad oslrapedref"    # A fool that attacked me
+		"Ripafes, raikafes atranef"       # Yesterday, the dying struck
+		"Atelef nrag rata porohfef"       # Those that would kill
+		"Kahawrec somob lrapedref adrfonebem"  # Foul criminals struck before
+		"Ranalales lrad raspitsakit"      # A doomed failure
+		"Kotab lrapedref adrfonebem"      # Clowns attacked before
+		"Hanam rasititrec obpedref"       # Miseducated people invaded
+		"Ralinuuh ofikpecem lrapedref"    # Hooligans like you assailed
+		"Paohe' kickir inrakasref ifat"   # A {nitwit | unwise person} came to us
+
+phrase "exile: had something bad happen to them"
+	word
+		"isavref rabakra' nrag laom a'aih"   # became an excellent meal
+		"odifef luktael aga'"                # fueled my reactor
+		"ralohonreb iba is laom a'atnra"     # [had a] fiery burial in space
+		"raca resre'ralk ohes nrakrih"       # [became a] transcendent cloud of stardust
+		"i'aip nrinas 'ikekri' Nu'agel aga"  # garnished my Nutrigel synthetic meat
+		"i'elbfutis isavref raimleh tokro 'otuj" # was compressed into diamond for an energy focus [device]
+		"talharef nriob-nriob is siulek'a"   # { crashed into | became } debris on asteroids
+		"ikaftiref rainlebet nrag iba-ibaleh" # enjoyed a fiery departure
+		"ikofime'is iba rapalafet"           # was enshrouded in wrathful flames
+		"ranres alihfen tikimennref otpalafa" # tickled my joyous rage
+
+phrase "efreti: had something bad happen to them"
+	word
+		"itawref rakahac lranok lrad hatri"  # became beautiful bone sculptures
+		"odifef luktael aga'"                # fueled my reactor
+		"rapobolrec ica it paon amaslra"     # [had a] fiery burial in space
+		"raga retremrapk obet lrakrib"       # [became a] transcendent cloud of stardust
+		"imepcfusit itawref rainpeb sokro mosuy ilpere" # was compressed into diamond for an energy focus [device]
+		"sapbaref lrioc-lrioc it tiupekma"   # {crashed into | became} debris on asteroids
+		"patung dari puing-puing"            # [became a] sculpture of debris
+		"ikocinit apkmespu ramapeses"        # was engulfed in an orchestra of violence
+		"satik ikafsiref bimar asepef"       # did not enjoy their fate
+		"ralret apibfel sikinellref oshapafa" # tickled my joyous rage
+
+
+phrase "exile: You are the next person that will have something bad happen to them."
+	word
+		"Sekarang kamu akan terbakar!"          # Now you will burn!
+		"Dewa Anda tidak dapat membantu Anda."  # Your gods can't help you [now].
+		"Ofkagaf rata i'aipnref otrakahfev."    # Your corpse will decorate my bridge.
+		"Nriob-nriob rata ronrahfef mabat."     # [Your] debris will [be used to] construct [our] ships!
+		"Tevenref rapalafet rekubfi asra!"      # I mock your impotent rage!
+		"Rasosanef raipak raikafes!"            # [You will] do the dance of death!
+		"Kulit anda akan dilupakan."            # Your skin will be forgotten.
+		"Luktael i'fo'rutnref nrinas asra!"     # [My] reactor [will] consume your flesh.
+		"I'toselef asra isavref af'amb!"        # [I will] reduce you to plasma.
+		"Af'amb rata ratto'afef asra."          # The plasma [from my guns] will subsume you.
+
+phrase "efreti: You are the next person that will have something bad happen to them."
+	word
+		"Nikmati tarian terakhirmu!"            # Enjoy your final dance!
+		"Rasakas osatac ofrarilries."           # Tell me your { will and testament | dying wish }.
+		"Hasaca ata kapihsa Humanika?"          # Is there a human afterlife?
+		"Dewa Anda tidak dapat membantu Anda!"  # Your gods can't help you [now]!
+		"Hasrasa akis idradrpeb afampeb it kapihsa?"  # Will we sing together in the afterlife?
+		"Tevenref rapalafet rekubfi asra!"      # I mock your impotent rage!
+		"Rasosanef raipak raikafes!"            # [You will] do the dance of death!
+		"Kulit anda akan dilupakan."            # Your skin will be forgotten.
+		"Osa rasa kahafef ofraikafes."          # I will make a sculpture of your demise.
+		"Sara-sara rasagakperef ranicfapekes atra"  # [Our] children laugh at your [terrible piloting] skills.
+
 phrase "exile: miscellaneous rambling"
 	phrase
 		"exile: I like to do things"
@@ -146,7 +275,7 @@ phrase "exile: I like to"
 		"Tomik 'aga feralit 'aga te"                # My skin draws me to
 		"Kerkorga 'aga asamap luki orkot ferduha"   # Surely I was bred to
 		"Hanaifara 'aga kisat ferduha"              # How can I not try
-		"'aga atar femeba'tar roklanem orkot"       # I'd give up Nutragel for
+		"'aga atar femeba'tar Nu'agel orkot"        # I'd give up Nutrigel for
 		"Helamip veri' temafir atar helr"           # Switching genders would be worth
 
 phrase "efreti: I like to"
@@ -383,14 +512,14 @@ phrase "exile: practical skill"
 		"ramibfaleket nrikumib nrag laom a'aih" # superb piloting skills
 		"ratnrahfenref kahu tikuihikra"         # developing antibiotic medicine
 		"pakar pergerakan armada humanika"      # human fleet movement expert
-		"i'irtek Nu'agel"                       # nutragel technician (Nu'agel = Nutragel)
+		"i'irtek Nu'agel"                       # nutrigel technician (Nu'agel = Nutrigel)
 		"i'iktalb kacaleb 'inumukafles"         # dermatological nurse practitioner
-		"racalave' Dra' ras 'imarauti'b"        # Drak historian and psychoanalyst
+		"racalave' Dra' ras 'imarauti'b"        # Drak historian and psychoanalyst (Dra' = Drak)
 		"impa ati'ijulk'a 'ikeluek"             # theoretical astrophysicist
 		"ikimereb nriflujallek 'ikeluek"        # theoretical terraforming researcher
 		"impa paseh afoalk"                     # trauma surgeon
 		"ratanereb i'rei'ije anarek avlet"      # labor efficiency enforcement
-		"rakaohfeb rarataf rakaoh Nu'agel"      # Nutragel artificial food creation (ie. fake meat & veggies)
+		"rakaohfeb rarataf rakaoh Nu'agel"      # Nutrigel artificial food creation (ie. fake meat & veggies)
 
 phrase "efreti: practical skill"
 	word
