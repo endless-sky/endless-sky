@@ -48,6 +48,8 @@ namespace {
 	std::string hint;
 }
 
+
+
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation,
 	UI &gamePanels, bool &finishedLoading)
 	: player(player), conversation(conversation), gamePanels(gamePanels),
@@ -55,9 +57,7 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conve
 {
 	SetIsFullScreen(true);
 
-	// Choose the loading hint.
-	std::vector<std::string> loadingHintArray = LoadingHints().loadingHintArray;
-	hint = loadingHintArray[Random::Int(sizeof(loadingHintArray))];
+	hint = LoadingHints().loadingHintArray[Random::Int(sizeof(LoadingHints().loadingHintArray))];
 }
 
 
@@ -125,7 +125,7 @@ void GameLoadingPanel::Draw()
 
 	// Draw the loading hint.
 	Information info;
-	info.SetString("hint", GameLoadingPanel::GetHint());
+	info.SetString("hint", GetHint());
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 }
 
@@ -133,3 +133,4 @@ std::string GameLoadingPanel::GetHint()
 {
 	return hint;
 }
+

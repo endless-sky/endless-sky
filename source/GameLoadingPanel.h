@@ -36,6 +36,7 @@ public:
 
 	static std::string GetHint();
 
+
 private:
 	PlayerInfo &player;
 	const Conversation &conversation;

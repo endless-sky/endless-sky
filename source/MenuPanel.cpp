@@ -102,7 +102,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	// Load the player information.
+	// Check if a player is loaded.
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{

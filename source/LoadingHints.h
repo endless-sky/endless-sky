@@ -16,8 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-class LoadingHints {
-public:
+namespace {
 	// An array of loading hints.
 	const std::vector<std::string> loadingHintArray{
 		"If you fly far enough from the center of a system, ships chasing you will often give up.",
