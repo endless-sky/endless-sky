@@ -2973,7 +2973,7 @@ event "deep security uses electron weapons"
 			"Dagger" 2
 			"Raven (Electron)"
 		add variant 2
-				"Raven (Electron)" 2
+			"Raven (Electron)" 2
 		add variant 2
 			"Headhunter (Electron)" 2
 		add variant 2
@@ -3003,11 +3003,55 @@ event "deep security uses electron weapons"
 			"Corvette (Electron)"
 			"Corvette (Speedy)"
 
-mission "Deep Security Uses Electron Weapons"
+event "pirates use electron weapons"
+	fleet "Small Northern Pirates"
+		add variant 1
+			"Corvette (Electron)"
+		add variant 1
+			"Corvette (Flamethrower Electron Anti-Missile)"
+		add variant 2
+			"Headhunter (Electron)"
+		add variant 1
+			"Raven (Electron)"
+
+	fleet "Large Northern Pirates"
+		add variant 6
+			"Firebird (Electron)"
+		add variants 
+
+mission "Humans Start Using Electron Weapons"
 	landing
 	invisible
 	to offer
 		has "main plot completed"
 	on offer
 		event "deep security uses electron weapons" 45
+		event "pirates use electron weapons" 90
 		fail
+
+event "merchants start using plasma repeaters"
+	fleet "Large Southern Merchant"
+		add variant 15
+			"Argosy (Plasma Repeater)"
+		add variant 10
+			"Bastion"
+			"Argosy (Plasma Repeater)"
+		add variant 5
+			"Bastion (Heavy)"
+			"Argosy (Plasma Repeater)"
+		add variant 5
+			"Bastion (Laser)"
+			"Argosy (Plasma Repeater)"
+		add variant 5
+			"Argosy (Plasma Repeater)"
+			"Argosy (Laser)"
+		add variant 5
+			"Argosy (Plasma Repeater)"
+			"Argosy (Turret)"
+
+event "pirates start using plasma repeaters"
+	fleet "Large Southern Pirate"
+		add variant 2
+			"Argosy (Plasma Repeater)"
+		add variant 1
+			"Modified Argosy (Plasma Repeater)"
