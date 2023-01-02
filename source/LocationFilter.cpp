@@ -157,11 +157,14 @@ void LocationFilter::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
+		// The "not source" token may not be used with any modifiers in front of it.
+		if(child.Token(0) == "not source")
+			excludeCenter = true;
 		// Handle filters that must not match, or must apply to a
 		// neighboring system. If the token is alone on a line, it
 		// introduces many lines of this type of filter. Otherwise, this
 		// child is a normal LocationFilter line.
-		if(child.Token(0) == "not" || child.Token(0) == "neighbor")
+		else if(child.Token(0) == "not" || child.Token(0) == "neighbor")
 		{
 			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
 			filters.emplace_back();
@@ -315,9 +318,12 @@ bool LocationFilter::IsValid() const
 
 
 // If the player is in the given system, does this filter match?
-bool LocationFilter::Matches(const Planet *planet, const System *origin) const
+bool LocationFilter::Matches(const Planet *planet, const System *origin, const Planet *originPlanet) const
 {
 	if(!planet || !planet->IsValid())
+		return false;
+	
+	if(excludeCenter && originPlanet && planet == originPlanet)
 		return false;
 
 	// If a ship class was given, do not match planets.
@@ -483,6 +489,23 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 
 
 
+const Planet *LocationFilter::PickPlanet(const Planet *origin, bool hasClearance, bool requireSpaceport) const
+{
+	// If the origin isn't valid, we should have been passed a nullptr, so bail out.
+	if(origin && !origin->IsValid())
+		return nullptr;
+	auto options = PickPlanetHelper(origin ? origin->GetSystem() : nullptr, hasClearance, requireSpaceport);
+	if(excludeCenter && origin)
+	{
+		auto it = find(options.begin(), options.end(), origin);
+		if(it != options.end())
+			options.erase(it);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
+}
+
+
+
 // Load one particular line of conditions.
 void LocationFilter::LoadChild(const DataNode &child)
 {
@@ -622,4 +645,26 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 
 	return true;
+}
+
+
+
+vector<const Planet *> LocationFilter::PickPlanetHelper(const System *origin, bool hasClearance, bool requireSpaceport) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const Planet *> options;
+	for(const auto &it : GameData::Planets())
+	{
+		const Planet &planet = it.second;
+		// Skip entries with incomplete data.
+		if(!planet.IsValid())
+			continue;
+		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
+		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
+			if(planets.empty() || !planets.count(&planet))
+				continue;
+		if(Matches(&planet, origin))
+			options.push_back(&planet);
+	}
+	return options;
 }

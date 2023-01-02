@@ -1196,10 +1196,28 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		else
 			it = result.stopovers.erase(it);
 	}
+	const Planet *const sourcePlanet = player.GetPlanet();
+	auto PickPlanetStrategy = [](const Planet *sourcePlanet) -> function<const Planet *(const LocationFilter &,
+			const System *const, const Planet *const, bool, bool)>
+	{
+		if(sourcePlanet)
+			return [](const LocationFilter &filter, const System *const sourceSystemm,
+					const Planet *const sourcePlanet, bool hasClearance, bool requireSpaceport) -> const Planet *
+			{
+				return filter.PickPlanet(sourcePlanet, hasClearance, requireSpaceport);
+			};
+		else
+			return [](const LocationFilter &filter, const System *const sourceSystem,
+					const Planet *const sourcePlanet, bool hasClearance, bool requireSpaceport) -> const Planet *
+			{
+				return filter.PickPlanet(sourceSystem, hasClearance, requireSpaceport);
+			};
+	};
+	auto PickPlanet = PickPlanetStrategy(sourcePlanet);
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(sourceSystem, !clearance.empty(), false);
+		const Planet *planet = PickPlanet(filter, sourceSystem, sourcePlanet, !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1212,7 +1230,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
+		result.destination = PickPlanet(destinationFilter, sourceSystem, sourcePlanet, !clearance.empty(), true);
 		if(!result.destination)
 			return result;
 	}
