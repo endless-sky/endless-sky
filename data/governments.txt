@@ -514,7 +514,7 @@ government "Hai (Unfettered)"
 		"Hai (Unfettered Challenger)" 1
 		"Hai (Unfettered Blue Challenger)" 1
 		"Hai (Unfettered Red Challenger)" 1
-	"use foreign penalties for"
+	"foreign penalties for"
 		"Hai (Unfettered Challenger)"
 	"bribe" .02
 	"fine" 0
