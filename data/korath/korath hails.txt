@@ -1,0 +1,213 @@
+# Copyright (c) 2022 by an anonymous author
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "hostile korath raiders"
+	phrase
+		"hostile korath" 200
+		"korath food demands" 50
+		"korath cargo demands" 50
+		"korath medical demands" 50
+		"korath oddly specific demands" 50
+
+phrase "hostile korath"
+	phrase
+		"korath miscellaneous rambling" 80
+		"korath loud angry rambling" 120
+		"korath bragging about weapons" 80
+
+phrase "hostile disabled korath"
+	phrase
+		"korath miscellaneous rambling" 80
+		"korath loud angry rambling" 200
+		"korath asking for mercy" 80
+
+phrase "friendly korath"
+	phrase
+		"korath miscellaneous rambling" 100
+		"korath bragging about tech" 50
+
+phrase "friendly disabled korath"
+	phrase
+		"korath miscellaneous rambling" 150
+		"korath asking for help" 75
+
+phrase "hostile kor efret"
+	phrase
+		"kor efret loud angry rambling" 100
+		"kor efret miscellaneous rambling" 50
+		"kor efret warning about being protected" 200
+
+phrase "hostile disabled kor efret"
+	phrase
+		"hostile kor efret"
+
+phrase "friendly kor efret"
+	phrase
+		"kor efret miscellaneous rambling" 100
+		"kor efret bragging about tech" 50
+		"kor efret warning about being protected" 50
+
+phrase "friendly disabled kor efret"
+	phrase
+		"kor efret miscellaneous rambling" 100
+
+
+phrase "exile: I like to do things"
+	phrase
+		"exile: I like to"
+	phrase
+		"exile: listen to (Band)"
+		"exile: eat good food"
+
+phrase "efreti: I like to do things"
+	phrase
+		"efreti: I like to"
+	phrase
+		"efreti: listen to (Band)"
+		"efreti: eat good food"
+
+phrase "exile: I like to"
+	word
+		"'aga tedarsoar"                            # I'm addicted to
+		"Tehapaniaar ahasi siahasitar samaf"        # Eternal bliss is enshrined in
+		"Teritfakar kelkirnni sabak sikefotar"      # Supreme enjoyment can be found in
+		"Kisat atar belrap asa dotob"               # There can never be enough
+		"Vicato 'emamo ferornno"                    # My soul always awaits
+		"Tomik 'aga feralit 'aga te"                # My skin draws me to
+		"Kerkorga 'aga asamap luki orkot ferduha"   # Surely I was bred to
+		"Hanaifara 'aga kisat ferduha"              # How can I not try
+		"'aga atar femeba'tar roklanem orkot"       # I'd give up Nutragel for
+		"Helamip veri' temafir atar helr"           # Switching genders would be worth
+
+phrase "efreti: I like to"
+	word
+		"Mada sevartoar"                            # I'm addicted to
+		"Sebahaliaar abati tiabatisar tanaf"        # Eternal bliss is enshrined in
+		"Serisfakar kepkirlli tacak tikefosar"      # Supreme enjoyment can be found in
+		"Kitas asar ceprah ata vosoc"               # There can never be enough
+		"Wigaso menano ferorllo"                    # My soul always awaits
+		"Sonik mada ferapis mada se"                # My skin draws me to
+		"Kerkorda mada atanah puki orkos fervuba"   # Surely I was bred to
+		"Balaifara mada kitas fervuba"              # How can I not try
+		"Mada asar fenocasar Kaurg hirlla"          # I'd forget the Quarg to
+		"Bepanih werim senafir asar bepr"           # Switching genders would be worth
+
+phrase "exile: listen to (Band)"
+	word
+		"sernal"                  # hear
+		"sernaltar"               # listen to
+		"tehapaniaar orkot"       # bliss out to
+		"tohol bitilarto samaf"   # bury my thoughts in
+		"ritfaki"                 # Enjoy
+		"femapab"                 # devour
+		"amilar"                  # stream
+	word
+		"Ritnrof Asa Rapo'olet"         # There Might Be Riots
+		"Rati I'arifam"                 # Laminated Fish
+		"Kafait Tikenumuba"	        # Apologetic Apocalypse
+		"Racat-racat is Ikul"           # Comrades on Toast
+		"Tolannref Abrak Riwi"          # Scratching Without Permission
+		"I'omi Ramafluret"              # Illusion of Normalcy
+		"Lafa' Ranres Alad Nrag Gkjir"  # Cryptic in a Nifty Way
+		"Ratimifebet Nrag Falap"        # Unlawful Possession
+		"Rarataf Toloh ras Rakavopnreb" # Bad Food and Blasphemy
+		"Raiakrahfeb Tdramb"            # Planck Massacre
+
+phrase "efreti: listen to (Band)"
+	word
+		"terlap"             # hear
+		"terlapsar"          # listen to
+		"sebahaliaar orkos"  # bliss out to
+		"ritfaki"            # enjoy
+		"fenahac"            # devour
+		"anipar"             # stream
+	word
+		"Rislrof Ata Rahomopes"        # There Might Be Riots
+		"Rasi Imarifan"                # Laminated Fish
+		"Rivriv Apakrek Binam Airot"   # Ringworld Crusaders
+		"Ragas-ragas it Ikup"          # Comrades on Toast
+		"Imoni Ranafpures"             # Illusion of Normalcy
+		"Apako Alpom"                  # North of Heaven (probably a sarcastic name)
+		"Pafam Ralret Apav Lrad Dkyir" # Cryptic in a Nifty Way
+		"Lrapu Lrad Hatof Pasabpek"    # Flammable People
+		"Ranabeses Iacfam Ikaf"        # Immunity to Death
+		"Raiakrabfec Svranc"           # Planck Massacre
+
+# This is probably not what Korath actually eat, but it's what I
+# imagine them eating if they were in our place in history on Earth.
+
+phrase "exile: eat good food"
+	word
+		"ila'ikri"                     # digest
+		"rameref"                      # ingest
+		"i'fo'rutnref"                 # consume
+		"bapamef"                      # devour
+		"ikaftir"                      # enjoy
+		"rataf"                        # dine on
+		"pagronref"                    # munch on
+		"raofavleb"                    # banquet
+		"pagronref"                    # masticate
+		"kininnref"                    # nibble
+
+	word
+		"asame' oavip aok lane'"       # fresh dark green lettuce
+		"nrahfot tasah pagrel"         # crunchy rhino beetles
+		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
+		"sud nrannrab ranres nracah pikob" # baked cod with garlic
+		"kemmij emu' nrannrab"         # baked sole fillet
+		"''aH koaM imipD"              # Chilean Sea Bass
+		"rati is 'aka 'aklet"          # fish en papillote
+		"rumef rohfe osaf"             # honeydew melons
+		"meba ak'eb nrag pagrel"       # crisp gala apples
+		"oham nrirot nradrid 'omap"    # finely chopped yellow squash
+		"ica' oavip kolab"             # shredded collard greens
+		"kamo bosip nrag kaimennref"   # live squirming mealworms
+		"totnrafe' aqlam nridad nramen" # a bowlful of hornworm larvae
+		"polome' irumut kofe'"         # an entire ant colony
+		"ratobfok la'eh nridad rimim"  # a big heaping pile of waxworms
+		"nrala' lomek nroloh akro"     # a nest of ostrich eggs
+		"igah 'otik rinris ranres ra'aip" # chilled baby mice with garnish
+		"ak'ab lamo midet ranres u'tah nradrid" # a pasta of small snakes with mice meatballs
+
+phrase "efreti: eat good food"
+	word
+		"ipamikri"                     # digest
+		"raneref"                      # ingest
+		"imfomruslref"                 # consume
+		"cahanef"                      # devour
+		"ikafsir"                      # enjoy
+		"rasaf"                        # dine on
+		"hadrolref"                    # munch on
+		"raofawpec"                    # banquet
+		"hadrolref"                    # masticate
+		"kilillref"                    # nibble
+
+	word
+		"atanem oawih aok palem"       # fresh dark green lettuce
+		"lrabfos satab hadrep"         # crunchy rhino beetles
+		"ipebupkm palem lrad lrakaf"   # ripe succulent strawberries
+		"tuv lrallrac ralret lragab hikoc"  # baked cod with garlic
+		"kenniy enum lrallrac"         # baked sole fillet
+		"mmaB koaN inihV"              # Chilean Sea Bass
+		"rasi it maka makpes"          # fish en papillote
+		"runef robfe otaf"             # honeydew melons
+		"neca akmec lrad hadrep"       # crisp gala apples
+		"oban lriros lravriv monah"    # finely chopped yellow squash
+		"igam oawih kopac"             # shredded collard greens
+		"kano cotih lrad kainellref"   # live squirming mealworms
+		"soslrafem arpan lrivav lranel" # a bowlful of hornworm larvae
+		"hoponem irunus kofem"         # an entire ant colony
+		"rasocfok pameb lrivav rinin"  # a big heaping pile of waxworms
+		"lrapam ponek lropob akro"     # a nest of ostrich eggs
+		"idab mosik rilrit ralret ramaih" # chilled baby mice with garnish
+		"akmac pano nives ralret umsab lravriv" # a pasta of small snakes with mice meatballs
