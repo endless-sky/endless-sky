@@ -3218,17 +3218,14 @@ mission "Sativa: Struggling Author 2"
 		conversation
 			`As you enter <system>, Ann walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
 			choice
-				`	"It's massive, isn't it? They actually stole it from the Quarg, who they rebelled against roughly six thousand years ago."`
+				`	"It's enormous. They actually stole it from the Quarg, who they rebelled against roughly six thousand years ago."`
 				`	"I'm used to it."`
-			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Ann, her voice still in an enthusiastic and excited tone.`
-			`	"This must be where I'm supposed to register, right?", asks Ann.`
-			`	"Yes, this is the <planet>. It's probably best if you go back to your bunk, I'm about to land and it might be a bit rough."`
+			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Ann, her voice still in an enthusiastic and excited tone. "This must be where I'm supposed to register, right?"`
+			`	"Yes, this is the <planet>. Prepare your identity documents."`
 	on complete
 		conversation
-			`	The rough landing you had predicted actually turned out to be smooth.`
-			`	Ann is still in awe as you touch down on the ringworld. As the two of you open the hatch, you see yet another Heliarch agent in front of you..`
+			`	Ann is still in awe as you touch down on the ringworld. As the two of you open the hatch, you see yet another Heliarch agent in front of you.`
 			`	"Greetings, humans.  For you, what can I do today?", asks the Heliarch.`
 			`	"This is my friend Ann. I'm getting her registered with the Heliarchs today.", you answer.`
-			`	"To reach the registration office, this way you must go.", replies the Heliarch, while pointing to a hallway.`
+			`	"To reach the registration office, this way you must go.", replies the Heliarch, pointing to a hallway.`
 			`	You and Ann walk down the hallway as directed, until you spot a registration office. Ann walks into the registration office while you sit down on a nearby bench. After 15 minutes, Ann walks out and approaches you. "They finally registered me.". I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move.`
-
