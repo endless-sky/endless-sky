@@ -3111,3 +3111,91 @@ mission "Coalition: Outskirts Gauger Ready"
 			`	While the Arachi work on the outfit, she explains that they used the probe's algorithms to have the scanners excel at finding basic energy signatures, such as heat or energy levels of other ships. "Made to check for complex machinery like outfits, or recognize specific cargo types, it was not, but still find uses for its current form, I'm sure you will."`
 			`	When everything's ready, you two head back inside your ship, and the elevator brings you back up. You fly back to the main landing area, and she pulls close to you just before you open your hatch. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Provide you with more copies, we cannot, so careful not to lose this one, you should be." She thanks you again for helping out, and leaves for her workplace.`
 				decline
+
+# TODO: Make Ann undergo the same registration process as
+# First Last entering Coalition space for the first time
+mission "Sativa: Struggling Author 1"
+	minor
+	source "Zug"
+	destination "Ki Patek Ka"
+	to offer
+		random < 30
+		credits > 140
+		has "Coalition: Contributor: done"
+	on offer
+		conversation
+			`	Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Ann Oryza Sativa'. Nobody pays attention to her. It appears as if she is a struggling author.`
+			choice
+				`	(Ignore her.)`
+					decline
+				`	(Buy one of her books.)`
+					goto "buy her book"
+				`	(Sit down and talk to her.)`
+			label "talk to her"
+			`	You sit down on the table, next to Ann. She greets you with a smile. "Hello! Would you like to buy one of my books?", she asks.`
+			choice
+				`	"What are your books about?"`
+					goto "what are her books about"
+				`	"No, I'm not interested. How has life been as an author though?"`
+					goto "life as an author sucks"
+			label "what are her books about"
+			`	I mostly write science fiction books.`
+			choice
+				`	"I'm interested. Wait here, I'll go buy myself a copy."`
+					goto "buy her book"
+				`	"Cool. How has life been lately as an author?"`
+			label "life as an author sucks"
+			`	"Bad.", says Ann. "I've never had a bestseller or even a book that surpasses 10,000 copies sold."`
+			choice
+				`	(Tell her about the Coalition.)`
+					goto "tell her about the coalition"
+				`	"Well, that's gotta hurt. I hope you find success in your life one day.`
+					decline
+			label "buy her book"
+			action
+				payment -60
+			`	You enter the bookstore, ask the employee for one of Ann's books, and purchase it, for 60 credits.`
+			choice
+				`	(Now go to Ann and get it signed.)`
+					goto "get it signed"
+				`	(Leave.)`
+					decline
+			label "get it signed"
+			`	You move to the table where Ann is sitting. She looks visibly happy as she grabs your book, takes out a pen, and signs it. "Thanks for buying one of my books. I don't get much sales and people like you mean the world to me."`
+			choice
+				`	"I appreciate it. How has life as an author been though?"`
+					goto "life as an author sucks"
+				`	"Thanks for signing my copy. I hope you find success in your life. Goodbye."`
+					decline
+			label "tell her about the coalition"
+			`	You check your surroundings, looking around to ensure you are not being listened to. Once you confirm that your conversation will be private, you begin speaking.`
+			`	"You know, I know of a place called the Coalition. They're an alien race. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
+			`	"Wait, really?", asks Ann.`
+			`	"Yes.", you say.`
+			`	"But, they don't speak English. How are they gonna read my books?"`
+			choice
+				`	"They have a translation device."`
+				`	"I'm sure they can learn the language."`
+			`	"That's reassuring."`
+			`	"So, how am I gonna get there?"`
+			choice
+				`	"I'll take you there."`
+			`	"Do I have to pay anything? As a struggling author, I really can't pay you."`
+			choice
+				`	"It's okay. I'm willing to make an exception for you.", you explain.`
+			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is.", says Anne.`
+			`	You reply. "Good luck. By the way, we're going to <destination> in Coalition space.`
+			choice
+				`	(Wait for Ann to finish her event.)`
+			`	After approximately an hour of waiting, Ann appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk. You prepare to leave the spaceport.`
+				accept
+	on complete
+		conversation
+			`	You leave the ship with Ann following you. The moment you are out of your ship, three Kimeks surround you and Ann. The Kimek in the middle speaks, and then brief silence. The silence is broken as the yellow box speaks.`
+			`	Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?` # heliarch
+			`	Ann clears her throat. "I don't know who you are, but my name is Ann Oryza Sativa."`
+			`	Once Ann finishes her introduction, you speak. "She is my friend. Back in my space, she hasn't been a successful author. I brought her here, hoping she would find success writing books for the Coalition.", you explain.`
+			`	"What kind of books does she write?", asks the Kimek.` # heliarch
+			`	"Science fiction books.", says Ann.`
+			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
+			`	"Visit Coalition space, we will allow Ann to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause."` 
