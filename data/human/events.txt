@@ -1030,6 +1030,9 @@ event "plasma turret available"
 	fleet "Large Free Worlds"
 		add variant 3
 			"Falcon (Plasma)"
+	fleet "Large Southern Pirates"
+		add variant 1
+			"Modified Argosy (Plasma Turret)"
 
 
 
