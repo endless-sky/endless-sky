@@ -7787,6 +7787,7 @@ system Clepsydra
 	pos 264 -874
 	habitable 150
 	belt 1134 9
+	haze _menu/haze-dark-nebula
 	link "Pedita Pri"
 	link "Pedita Sec"
 	link "Supra"
@@ -23254,6 +23255,7 @@ system "Pedita Pri"
 	pos 207.333 -936
 	habitable 10000.045
 	belt 1909 6
+	haze _menu/haze-dark-nebula
 	link Clepsydra
 	link "Pedita Sec"
 	asteroids "small rock" 1 2.58
@@ -23321,7 +23323,7 @@ system "Pedita Sec"
 	pos 185.333 -888
 	habitable 1080
 	belt 1554 9
-	belt 2215 10
+	haze _menu/haze-dark-nebula
 	link Clepsydra
 	link "Pedita Pri"
 	asteroids "large metal" 1 4.638
@@ -28971,7 +28973,7 @@ system "Supra"
 	pos 319 -820
 	habitable 11500.792
 	belt 1481 8
-	belt 2151 8
+	haze _menu/haze-dark-nebula
 	link Clepsydra
 	link "Cura Dic"
 	asteroids "small rock" 23 2.088
@@ -29030,6 +29032,7 @@ system "Cura Dic"
 	arrival 700
 	habitable 700
 	belt 1245
+	haze _menu/haze-dark-nebula
 	link Clepsydra
 	link "Supra"
 	trade Clothing 362
