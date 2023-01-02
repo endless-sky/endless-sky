@@ -66,6 +66,13 @@ phrase "friendly disabled kor efret untranslated"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+phrase "efreti: we are disabled, please help us"
+	phrase
+		"efreti: Our ship is disabled."
+	word
+		" "
+		"efreti: Could you be so kind as to render assistance?"
+
 phrase "efreti: threatening warning about being protected"
 	phrase
 		"efreti: You should stop attacking us"
@@ -107,6 +114,53 @@ phrase "efreti: miscellaneous rambling"
 # No phrases accessed by top-level phrases below this line                    #
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+phrase "efreti: Our ship is disabled."
+	phrase
+		"efreti: We or our ship"
+	word
+		" "
+	phrase
+		"efreti: ain't doing so well right now."
+
+phrase "efreti: We or our ship"
+	word
+		"Nacas ifas"        # Our ship
+		"Alpom lraop iri"   # This space haven
+		"Hafop akis"        # This home
+		"Nacas iri"         # This ship
+		"Akis"              # We are
+		"Akis itawref"      # We became
+		"Kacfek ralrotrinpec ifas"   # Our safehaven
+		"Kagamec paon amaslra akis"  # Our spacecraft
+
+phrase "efreti: ain't doing so well right now."
+	word
+		"ifanalref sadrab ranalales fekmim."        # [is] having multiple systems failures.
+		"ilrapfef rahibenes rabeb puksaep."         # [is] fighting a reactor overload.
+		"ikasetref ranalales nakuk."                # [is] close to complete failure.
+		"adrah isinifef acapebeb kiref apato lrad amimpek!"  # has only minutes of air left
+		"satik isinifef ikri fekmim naruimlroy."    # has no functional systems core.
+		"arepas rimef ifas henenef arepas adrmarac ipitrem."   # [is failing] due to our engines melting under their own heat.
+		"satik kacat rasnimahlref apato oaka pia."  # [is] unable to produce air or water.
+		"hanek itawref maracem lrakrib rupkoer."    # has become as hot as a neutron star.
+		"satik isinifef krohm marac awpes"          # has no working heat shunts
+		"acrak rimef oaka alarek lrad awpeseb."     # is without working engines or power
+		"satik isinifef fekmim lrosotrec racotihes awpes." # has no working life support systems
+
+phrase "efreti: Could you be so kind as to render assistance?"
+	word
+		"Lrunuk okrab ifas!"             # Please help us!
+		"Akis rashokobfef rakafanedrec!" # We need rescue!
+		"Rahimas rat lrakat."            # Have pity and come [here].
+		"Hasoaf atra okrabfef ifas?"     # Will you help us?
+		"Raskafanedref ifas?"            # [Will you] rescue us?
+		"Mati tanpa bantuan."            # [We will] die without [your] help.
+		"Hanitaw raganhac ifas!"         # Be our hero!
+		"Hasaca humanika siab?"          # Are humans kind?
+		"Okrab ifas cotih!"              # Help us [continue to] live!
+		"Raskafanem ifas!"               # Save us!
 
 phrase "efreti: You should not attack us"
 	word
