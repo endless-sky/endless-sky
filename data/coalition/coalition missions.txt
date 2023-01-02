@@ -3112,8 +3112,6 @@ mission "Coalition: Outskirts Gauger Ready"
 			`	When everything's ready, you two head back inside your ship, and the elevator brings you back up. You fly back to the main landing area, and she pulls close to you just before you open your hatch. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Provide you with more copies, we cannot, so careful not to lose this one, you should be." She thanks you again for helping out, and leaves for her workplace.`
 				decline
 
-# TODO: Make Ann undergo the same registration process as
-# First Last entering Coalition space for the first time
 mission "Sativa: Struggling Author 1"
 	minor
 	source "Zug"
@@ -3198,4 +3196,45 @@ mission "Sativa: Struggling Author 1"
 			`	"What kind of books does she write?", asks the Kimek.` # heliarch
 			`	"Science fiction books.", says Ann.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
-			`	"Visit Coalition space, we will allow Ann to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause."` 
+			`	"Visit Coalition space, we will allow Ann to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause. But first, register she must."`
+			`	"Register?", asks Ann.`
+			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, that's where you can complete the registration process."`
+			`	"Okay.", says Ann. "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and take me to the Ring of Friendship once you're ready. I'll meet you in the spaceport."`
+
+mission "Sativa: Struggling Author 2"
+	name "Help Ann Register"
+	description "Take Ann Oryza Sativa to the <destination> so she can register with the Heliarchs."
+	source "Ki Patek Ka"
+	destination "Ring of Friendship"
+	to offer
+		has "Sativa: Struggling Author 1: done"
+	on offer
+		conversation
+			`	You walk through the spaceport, looking for Ann. She is at a restaurant, but has ordered nothing with a disgusted look on her face. "These aliens! They vomit on their food and slurp all the soup! Disgusting!", she mutters.`
+			choice
+				`	"That's just how they eat."`
+				`	"My ship still has a decent amount of food you can eat."`
+				`	"There should be another restaurant."`
+			`	"<first>! It's you again!", says Ann in an excited tone. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs.`
+			choice
+				`	"It's all ready now. Come."`
+			`	Ann stands up from her chair and begins following you to the ship. She settles into her bunk as you prepare for a trip to the <destination>.`
+				accept
+	on enter "Quaru"
+		conversation
+			`	As you enter <system>, Ann walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
+			choice
+				`	"It's massive, isn't it? They actually stole it from the Quarg, who they rebelled against roughly six thousand years ago."`
+				`	"I'm used to it."`
+			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Ann, her voice still in an enthusiastic and excited tone.`
+			`	"This must be where I'm supposed to register, right?", asks Ann.`
+			`	"Yes, this is the <planet>. It's probably best if you go back to your bunk, I'm about to land and it might be a bit rough."`
+	on complete
+		conversation
+			`	The rough landing you had predicted actually turned out to be smooth.`
+			`	Ann is still in awe as you touch down on the ringworld. As the two of you open the hatch, you see yet another Heliarch agent in front of you..`
+			`	"Greetings, humans.  For you, what can I do today?", asks the Heliarch.`
+			`	"This is my friend Ann. I'm getting her registered with the Heliarchs today.", you answer.`
+			`	"To reach the registration office, this way you must go.", replies the Heliarch, while pointing to a hallway.`
+			`	You and Ann walk down the hallway as directed, until you spot a registration office. Ann walks into the registration office while you sit down on a nearby bench. After 15 minutes, Ann walks out and approaches you. "They finally registered me.". I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move.`
+
