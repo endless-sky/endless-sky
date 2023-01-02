@@ -3167,7 +3167,7 @@ mission "Sativa: Struggling Author 1"
 					decline
 			label "tell her about the coalition"
 			`	You check your surroundings, looking around to ensure you are not being listened to. Once you confirm that your conversation will be private, you begin speaking.`
-			`	"You know, I know of a place called the Coalition. They're an alien race. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
+			`	"You know, I know of a place called the Coalition. They're a group of alien races. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
 			`	"Wait, really?" asks Ann.`
 			`	"Yes", you say.`
 			`	"But, they don't speak English. How are they gonna read my books?"`
