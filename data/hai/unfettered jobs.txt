@@ -120,7 +120,7 @@ phrase "unfettered mining payment dialog"
 		`A group of Unfettered unload the materials you mined, without saying anything to you. When they are done, one gives you <payment>.`
 		`The leader of the Unfettered unloading the materials comes to you. "This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks." He then hands you <payment>.`
 		`The local Unfettered collect the minerals and happily hand you <payment>.`
-		`Once the minerals are unloaded, an Unfettered comes to you, looking humble and sincere. "Thank you, Captain. We need these materials - and any other kind of help - more than we would like to admit it." He then gives you <payment>.`
+		`Once the minerals are unloaded, an Unfettered comes to you, looking humble and sincere. "Thank you, Captain. We need these materials - and any other kind of help - more than we would like to admit." He then gives you <payment>.`
 
 mission "Unfettered Silicon Asteroid Mining"
 	job
