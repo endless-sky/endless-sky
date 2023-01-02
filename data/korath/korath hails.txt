@@ -11,60 +11,92 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-phrase "hostile korath raiders"
-	phrase
-		"hostile korath" 200
-		"korath food demands" 50
-		"korath cargo demands" 50
-		"korath medical demands" 50
-		"korath oddly specific demands" 50
+# The words in this file were "translated" to korath languages using
+# the cipher at the top of this PR:
+#
+#    https://github.com/endless-sky/endless-sky/pull/7101
+#
+# Guidance on food, culture, etc. comes from the Korath lore document.
 
-phrase "hostile korath"
+phrase "hostile korath raiders untranslated"
 	phrase
-		"korath miscellaneous rambling" 80
-		"korath loud angry rambling" 120
-		"korath bragging about weapons" 80
+		"hostile korath untranslated" 200
+		"raider: semi-translated cargo demands" 170
+		"raider: semi-translated oddly specific demands" 30
 
-phrase "hostile disabled korath"
+phrase "hostile korath untranslated"
 	phrase
-		"korath miscellaneous rambling" 80
-		"korath loud angry rambling" 200
-		"korath asking for mercy" 80
+		"exile: miscellaneous rambling" 80
+		"exile: loud angry rambling" 120
+		"exile: bragging about weapons" 80
 
-phrase "friendly korath"
+phrase "hostile disabled korath untranslated"
 	phrase
-		"korath miscellaneous rambling" 100
-		"korath bragging about tech" 50
+		"exile: miscellaneous rambling" 80
+		"exile: loud angry rambling" 200
+		"exile: semi-translated request for mercy" 80
 
-phrase "friendly disabled korath"
+phrase "friendly korath untranslated"
 	phrase
-		"korath miscellaneous rambling" 150
-		"korath asking for help" 75
+		"exile: miscellaneous rambling" 100
+		"exile: bragging about tech" 50
 
-phrase "hostile kor efret"
+phrase "friendly disabled korath untranslated"
 	phrase
-		"kor efret loud angry rambling" 100
-		"kor efret miscellaneous rambling" 50
-		"kor efret warning about being protected" 200
+		"exile: miscellaneous rambling" 150
+		"exile: semi-translated request for help" 75
 
-phrase "hostile disabled kor efret"
+phrase "hostile kor efret untranslated"
 	phrase
-		"hostile kor efret"
+		"efreti: loud angry rambling" 100
+		"efreti: miscellaneous rambling" 50
+		"efreti: warning about being protected" 200
 
-phrase "friendly kor efret"
+phrase "hostile disabled kor efret untranslated"
 	phrase
-		"kor efret miscellaneous rambling" 100
-		"kor efret bragging about tech" 50
-		"kor efret warning about being protected" 50
+		"hostile kor efret untranslated"
 
-phrase "friendly disabled kor efret"
+phrase "friendly kor efret untranslated"
 	phrase
-		"kor efret miscellaneous rambling" 100
+		"efreti: miscellaneous rambling" 100
+		"efreti: bragging about tech" 50
+		"efreti: warning about being protected" 50
 
+phrase "friendly disabled kor efret untranslated"
+	phrase
+		"efreti: miscellaneous rambling" 100
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# No top-level phrases below this line.                                       #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+phrase "exile: loud angry rambling"
+	phrase
+		"exile: the last person who attacked me had something bad happen to them"
+		"exile: I do bad things to my enemies"
+
+phrase "efreti: loud angry rambling"
+	phrase
+		"efreti: the last person who attacked me had something bad happen to them"
+		"efreti: I do bad things to my enemies"
+
+phrase "exile: miscellaneous rambling"
+	phrase
+		"exile: I like to do things"
+		"exile: I learned to do things"
+
+phrase "efreti: miscellaneous rambling"
+	phrase
+		"efreti: I like to do things"
+		"exile: I learned to do things"
 
 phrase "exile: I like to do things"
 	phrase
 		"exile: I like to"
+	word
+		" "
 	phrase
 		"exile: listen to (Band)"
 		"exile: eat good food"
@@ -72,9 +104,37 @@ phrase "exile: I like to do things"
 phrase "efreti: I like to do things"
 	phrase
 		"efreti: I like to"
+	word
+		" "
 	phrase
 		"efreti: listen to (Band)"
 		"efreti: eat good food"
+
+phrase "exile: I learned to do things"
+	phrase
+		"exile: Recently"
+	word
+		", "
+	phrase
+		"exile: i learned | practiced | taught"
+	word
+		" "
+	phrase
+		"exile: artistic or musical skill"
+		"exile: practical skill"
+
+phrase "efreti: I learned to do things"
+	phrase
+		"efreti: Recently"
+	word
+		", "
+	phrase
+		"efreti: i learned | practiced | taught"
+	word
+		" "
+	phrase
+		"efreti: artistic or musical skill"
+		"efreti: practical skill"
 
 phrase "exile: I like to"
 	word
@@ -99,7 +159,7 @@ phrase "efreti: I like to"
 		"Sonik mada ferapis mada se"                # My skin draws me to
 		"Kerkorda mada atanah puki orkos fervuba"   # Surely I was bred to
 		"Balaifara mada kitas fervuba"              # How can I not try
-		"Mada asar fenocasar Kaurg hirlla"          # I'd forget the Quarg to
+		"Mada asar fenocasar Karg hirlla"           # I'd forget the Quarg to (Karg = Quarg)
 		"Bepanih werim senafir asar bepr"           # Switching genders would be worth
 
 phrase "exile: listen to (Band)"
@@ -137,7 +197,7 @@ phrase "efreti: listen to (Band)"
 		"Rivriv Apakrek Binam Airot"   # Ringworld Crusaders
 		"Ragas-ragas it Ikup"          # Comrades on Toast
 		"Imoni Ranafpures"             # Illusion of Normalcy
-		"Apako Alpom"                  # North of Heaven (probably a sarcastic name)
+		"Apako Alpom"                  # North of Heaven (probably ironically)
 		"Pafam Ralret Apav Lrad Dkyir" # Cryptic in a Nifty Way
 		"Lrapu Lrad Hatof Pasabpek"    # Flammable People
 		"Ranabeses Iacfam Ikaf"        # Immunity to Death
@@ -211,3 +271,139 @@ phrase "efreti: eat good food"
 		"lrapam ponek lropob akro"     # a nest of ostrich eggs
 		"idab mosik rilrit ralret ramaih" # chilled baby mice with garnish
 		"akmac pano nives ralret umsab lravriv" # a pasta of small snakes with mice meatballs
+
+phrase "exile: Recently"
+	word
+		"Olah-olah iri"                # recently
+		"'Omti' iri"                   # this cycle
+		"Ilap iri"                     # today
+		"Rilafet"                      # yesterday
+		"Onnrif omam"                  # last week
+		"Pomobe' ilap kacem"           # ten days past
+		"Onnrife' nrag omam"           # a week ago
+		"Aos ilap nrag omam"           # two days ago
+		"Olah ava'"                    # just now
+		"Ilap nrag riam"               # the other day
+
+phrase "efreti: Recently"       # 
+	word
+		"Opab-opab iri"                # recently
+		"Monsim iri"                   # this cycle
+                "Ipah iri"                     # today
+                "Ripafes"                      # yesterday
+		"Ollrif onan"                  # last week
+		"Honocem ipah kagen"           # ten days past
+		"Ollrifem lrad onan"           # a week ago
+		"Aot ipah lrad onan"           # two days ago
+                "Opab awam"                    # just now
+                "Ipah lrad rian"               # the other day
+
+phrase "exile: i learned | practiced | taught"
+	word
+		"ota pamek lavameh"            # i learned
+		"aga' opak"                    # i figured out
+		"ilavamebis is"                # i studied in
+                "aga' pikamleh"                # i practiced
+		"aga' tisisis is"              # i educated in
+		"aga' lavanref"                # i taught
+		"aga' rataf ramibfaleket"      # i ate the skill
+		"aga' rataf raopakenreb ohi"   # i ate mother's knowledge
+		"kimot paga ilehfef aga'"      # father's skin gave me
+		"aga' rataf lek'af"            # i ate a master's
+
+phrase "efreti: i learned | practiced | taught"
+	word
+		"osa hanek pawaneb"            # i learned
+		"adam ohak"                    # i figured out
+		"ipawanecit it"                # i studied in
+		"adam hikanpeb"                # i practiced
+		"adam sititit it"              # i educated in
+		"adam pawalref"                # i taught
+		"adam rasaf ranicfapekes"      # i ate the skill
+		"adam rasaf raohakelrec obi"   # i ate mother's knowledge
+		"kinos hada ipebfef adam"      # father's skin gave me
+		"adam rasaf pekmaf"            # i ate a master's
+
+# Korath probably don't have these exact musical instruments, but I
+# chose ones that have a low pitch, so they'd be able to hear the
+# sound well.
+
+phrase "exile: artistic or musical skill"
+	word
+		"ramibfaleket riafleh ummed"         # cello playing skills
+		"katah ''ah fols"                    # bass drumming talent
+		"katah ahok nrag laom a'aih"         # terrific tuba talent
+		"i'i'ubfut ruu''ahalkrut nrag tilaref"  # catchy contrabassoon composition
+		"raigragr ratulunnrek aimunruf"      # Mongolian throat singing
+		"zavvakat nrag nrimab mibfalek"      # the most skilled katajjaq ( Intuit throat singing)
+		"Far Upugf Enrel Ugt"                # Nam Myoho Renge Kyo (Buddhist religious chant)
+		"Fu A Al Ab Ad Ar Pips"              # Om A Ra Pa Ca Na Dhih (Buddhist religious chant)
+		"i'i'ubfut onam dimesepdg'b-k'ub"    # post-psychedelic song composition
+		"abaleheh ukle'rut uhu"              # several oboe concertos
+		"nrokab 'islo'ha tikerit"            # kinetic absurdist sculpture
+		"ralito ivanlen lebip 'ik'imael"     # hyper-realistic chainsaw carving
+		"nrokab ranravrameket tiulep"        # heroic nudity sculpting
+		"nrokab tulah nrag 'ifaris"          # dynamic boroque sculpture
+		"nrokab ire' parak 'irlesuf-k'ub"    # post-modernist land art sculpture
+		"agan ra'itom ef'irui'elbfi talk'ha" # abstract impressionism painting style
+		"lekaek tikimub ti'amtuer rlesuf"    # modern neoclassical political theatre
+		"i'tolk'rutelef aiseffud ekla'mmes"  # reconstructed (as in recovered from loss) commedia dell'arte
+		"aile'ife' alebu pasrilek"           # the most beautiful opera semiseria
+		"railak jikakelblekri inumuluekef"   # meteorological interpretive dance
+
+phrase "efreti: artistic or musical skill"
+	word
+		"ranicfapekes riafpeb unnev"         # cello playing skills
+		"kasab mmab fopt"                    # bass drumming talent
+		"kasab abok lrad paon amaib"         # terrific tuba talent
+		"imimucfus ruummabapkrus lrad siparef"  # catchy contrabassoon composition
+		"raidradr rasupullrek ainulruf"      # Mongolian throat singing
+		"tawwakas lrad lrinac nicfapek"      # the most skilled katajjaq (Intuit throat singing)
+		"Far Uhudf Elrep Uds"                # Nam Myoho Renge Kyo (Buddhist religious chant)
+		"Fu A Ap Ac Av Ar Hiht"              # Om A Ra Pa Ca Na Dhih (Buddhist religious chant)
+		"imimucfus olan vinetehvdmc-kmuc"    # post-psychedelic song composition
+		"acapebeb ukpemrus ubu"              # several oboe concertos
+		"lrokac mitpomba sikeris"            # kinetic absurdist sculpture
+		"rapiso iwalpel pecih mikminaep"     # hyper-realistic chainsaw carving
+		"adal ramison efmiruimepcfi sapkmba" # abstract impressionism painting style
+		"lrokac ralrawranekes siupeh"        # heroic nudity sculpting
+		"lrokac supab lrad mifarit"          # dynamic boroque sculpture
+		"lrokac irem harak mirpetuf-kmuc"    # post-modernist land art sculpture
+		"pekaek sikinuc simansuer rpetuf"    # modern neoclassical political theatre
+		"imsopkmrusepef aiteffuv ekpa'nnet"  # reconstructed (as in recovered from loss) commedia dell'arte
+		"aipemifem apecu hatripek"  # the most beautiful opera semiseria
+		"raipak yikakepcpekri ilunupuekef"  # meteorological interpretive dance
+
+phrase "exile: practical skill"
+	word
+		"raalapimefeb lekaebel af'amb"          # plasma repeater maintenance
+		"i'tolk'rut alaref ataler"              # inferno turret construction
+		"ratiahleb ras rakacaleb ri'ef"         # engine repair and maintenance
+		"raa'aonreb ire' tahferef"              # mastery of the art of shooting
+		"ramibfaleket nrikumib nrag laom a'aih" # superb piloting skills
+		"ratnrahfenref kahu tikuihikra"         # developing antibiotic medicine
+		"pakar pergerakan armada humanika"      # human fleet movement expert
+		"i'irtek Nu'agel"                       # nutragel technician (Nu'agel = Nutragel)
+		"i'iktalb kacaleb 'inumukafles"         # dermatological nurse practitioner
+		"racalave' Dra' ras 'imarauti'b"        # Drak historian and psychoanalyst
+		"impa ati'ijulk'a 'ikeluek"             # theoretical astrophysicist
+		"ikimereb nriflujallek 'ikeluek"        # theoretical terraforming researcher
+		"impa paseh afoalk"                     # trauma surgeon
+		"ratanereb i'rei'ije anarek avlet"      # labor efficiency enforcement
+		"rakaohfeb rarataf rakaoh Nu'agel"      # Nutragel artificial food creation (ie. fake meat & veggies)
+
+phrase "efreti: practical skill"
+	word
+		"rasiabpec rat rakagapec rimef"         # engine repair and maintenance
+		"ranicfapekes lrikunic lrad paon amaib" # superb piloting skills
+		"raslrabfelref kabu sikuibikra"         # developing antibiotic medicine
+		"Karg i'afumbis ras rapafevlek"         # Quarg diplomacy and translation (Karg = Quarg)
+		"pesvah icuk oba-oba akafukoa"          # automata grey hat hacker
+		"inha kubup cotih"                      # sentient roboticist
+		"imiksapc kagapec milunukafpet"         # dermatological nurse practitioner
+		"ragapaweM Dras rat minarausimc"        # Drak historian and psychoanalyst (Dras = Drak)
+		"inha asimiyupkma mikepuek"             # theoretical astrophysicist
+		"lrasok robes sirucuptih ilunursekuib"  # bioengineering hydroponics gardener
+		"sekimpa pekaekiyfa paon amaslra"       # spaceborne amphitheater architect
+		"rasamaf kefpoul milunukafpet"          # dermatological gourmet cooking
+		"pukite rapucan mirsek"                 # technical report editor
