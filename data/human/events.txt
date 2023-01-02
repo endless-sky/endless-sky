@@ -3020,7 +3020,34 @@ event "pirates use electron weapons"
 	fleet "Large Northern Pirates"
 		add variant 6
 			"Firebird (Electron)"
-		add variants 
+		add variant 2
+			"Raven (Electron)" 2
+		add variant 2
+			"Headhunter (Particle)"
+			"Headhunter (Electron)"
+		add variant 2
+			"Aerie"
+			"Dagger" 2
+			"Corvette (Electron)"
+		add variant 2
+			"Aerie"
+			"Dagger" 2
+			"Raven (Electron)"
+		add variant 2
+			"Leviathan (Electron)"
+			"Firebird"
+		add variant 2
+			"Leviathan (Electron)"
+			"Firebird (Plasma)"
+		add variant 2
+			"Leviathan"
+			"Firebird (Electron)"
+
+	fleet "Large Southern Pirates"
+		add variant 1
+			"Modified Argosy (Electron)"
+		add variant 1
+			"Osprey (Electron)"
 
 mission "Humans Start Using Electron Weapons"
 	landing
