@@ -7798,7 +7798,6 @@ system Clepsydra
 	asteroids "medium metal" 3 1.261
 	asteroids "large metal" 1 1.287
 	minables aluminum 3 1.513
-	hazard "Dust Nebula" 100
 	object
 		sprite star/a-eater
 		period 10
@@ -23264,7 +23263,6 @@ system "Pedita Pri"
 	asteroids "medium metal" 4 2.55
 	asteroids "large metal" 6 2.67
 	minables iron 15 3.025
-	hazard "Dust Nebula" 100
 	object
 		sprite star/l-dwarf
 		distance 148.515
@@ -23327,7 +23325,6 @@ system "Pedita Sec"
 	link Clepsydra
 	link "Pedita Pri"
 	asteroids "large metal" 1 4.638
-	hazard "Dust Nebula" 100
 	object
 		sprite star/g0
 		period 10
@@ -28984,7 +28981,6 @@ system "Supra"
 	asteroids "medium metal" 174 2.352
 	asteroids "large metal" 8 1.296
 	minables lead 32 3.752
-	hazard "Dust Nebula" 100
 	object
 		sprite star/m8
 		distance 152.482
@@ -29047,7 +29043,6 @@ system "Cura Dic"
 	trade Metal 457
 	trade Plastic 503
 	fleet Quarg 600
-	hazard "Dust Nebula" 100
 	object
 		sprite star/g3
 		period 10

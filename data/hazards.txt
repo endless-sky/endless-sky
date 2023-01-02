@@ -98,19 +98,3 @@ hazard "Small Black Hole Gravity"
 		"hit force" -17
 		"damage dropoff" 120 1700
 		"dropoff modifier" 0
-
-
-
-hazard "Dust Nebula"
-	"duration" 100
-	"system-wide"
-	"environmental effect" "nebula fragment" 1
-
-effect "nebula fragment"
-	sprite "effect/nebula fragment"
-		"frame rate" 1
-		"no repeat"
-	"lifetime" 660
-	"absolute velocity" 1
-	"random angle" 360
-
