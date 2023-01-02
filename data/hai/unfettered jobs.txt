@@ -236,7 +236,7 @@ mission "Unfettered Small Medicals Rush"
 	job
 	repeat
 	name "Express medical supplies to <planet>"
-	description "The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> before <date> for <payment>."
+	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 4 2
 	cargo "medical supplies" 15 2 .05
 	source
@@ -261,7 +261,7 @@ mission "Unfettered Big Medicals Rush"
 	job
 	repeat
 	name "Medical supplies to <planet>"
-	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> before <date> for <payment>."
+	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 12 2
 	cargo "medicals" 35 2 .05
 	source
@@ -273,7 +273,8 @@ mission "Unfettered Big Medicals Rush"
 	destination
 		attributes "unfettered"
 	to offer
-		random < 20 + "Unfettered Jump Drive 1: offered" * 20
+		has "Unfettered Jump Drive 1: offered"
+		random < 40
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
