@@ -1031,7 +1031,7 @@ event "plasma turret available"
 		add variant 3
 			"Falcon (Plasma)"
 	fleet "Large Southern Pirates"
-		add variant 1
+		add variant 2
 			"Modified Argosy (Plasma Turret)"
 
 
@@ -3018,7 +3018,7 @@ event "pirates use electron weapons"
 			"Raven (Electron)"
 
 	fleet "Large Northern Pirates"
-		add variant 6
+		add variant 4
 			"Firebird (Electron)"
 		add variant 2
 			"Raven (Electron)" 2
@@ -3033,13 +3033,13 @@ event "pirates use electron weapons"
 			"Aerie"
 			"Dagger" 2
 			"Raven (Electron)"
-		add variant 2
+		add variant 1
 			"Leviathan (Electron)"
 			"Firebird"
-		add variant 2
+		add variant 1
 			"Leviathan (Electron)"
 			"Firebird (Plasma)"
-		add variant 2
+		add variant 1
 			"Leviathan"
 			"Firebird (Electron)"
 
