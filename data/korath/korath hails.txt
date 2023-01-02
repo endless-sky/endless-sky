@@ -78,6 +78,26 @@ phrase "friendly disabled kor efret untranslated"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+phrase "exile: bragging about tech"
+	phrase
+		"exile: Our ship's"
+	word
+		" "
+	phrase
+		"exile: semi-translated weapons"  12
+		"exile: semi-translated engines"  7
+		"exile: semi-translated systems"  7
+	word
+		" "
+	phrase
+		"exile: [system] is snazzy"  7
+		"exile: [system] is better than yours" 4
+	word
+		.
+		.
+		.
+		!
+
 phrase "exile: semi-translated request for mercy"
 	phrase
 		"exile: Our ship is disabled."
@@ -178,6 +198,27 @@ phrase "exile: Please don't do terrible things to us while we are disabled."
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+phrase "exile: [system] is snazzy"
+	word
+		"ioabfamef raarlobfe'et"             # transcends perfection
+		"pamasa aglat ire' tirtek"           # is a work of engineering art
+		"kapabis alade' ipami"               # is divinely sculpted
+		"pamasa aglatapaf"                   # is a masterpiece
+		"monnro famas agri'nroj"             # excels at its function
+		"itimifef raobfafet nrag laom a'aih" # has amazing capabilities
+		"pamasa nrag nrimab 'iraf is fama ak'efe'"  # is the most snazzy in the universe
+		"ralefab nrag lemotakteb'"           # spectacularly exhibits [its purpose]
+		"'oleref-'olek ipihemef avlerit"     # perennially exceeds performance [metrics]
+		"kaohis ranres kanra' tiah"          # is most excellently fashioned
+
+phrase "exile: [system] is better than yours"
+	word
+		"saha-sahaleh ikacemef inumurtek asra"     # is centuries past your technology
+		"kapimlek inah asra iklebe' refolk'ri ipami"  # looks to you like a divine instrument
+		"raavleteb kad nrag pihem tiah ilas mabat" # [has a] better paint job than your ship
+		"monnro is laom rafapafeb asra"          # excels beyond your understanding
+		"pamasa ire' nrag tasik parleb a'ih asra ianlap  # is art you could never appreciate
+
 phrase "exile: Our ship is disabled."
 	phrase
 		"exile: We or our ship"
@@ -196,17 +237,21 @@ phrase "exile: Our systems went haywire."
 		"exile: has destroyed our ship."
 
 phrase "exile: Our malfunctioning system"
-	word
-		"Akit"                # Our
-		"Mabat iri"           # This ship's
-		"Ot"                  # My
-		"Oki"                 # The
+	phrase
+		"exile: Our ship's"
 	word
 		" "
 	phrase
 		"exile: semi-translated weapons"  12
 		"exile: semi-translated engines"  7
 		"exile: semi-translated systems"  7
+
+phrase "exile: Our ship's"
+	word
+		"Akit"                # Our
+		"Mabat iri"           # This ship's
+		"Ot"                  # My
+		"Oki"                 # The
 
 phrase "exile: semi-translated weapons"
 	word
