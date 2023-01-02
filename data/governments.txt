@@ -682,7 +682,7 @@ government "Korath (Civilian)"
 	"player reputation" 1
 	"friendly hail" "friendly korath untranslated"
 	"friendly disabled hail" "friendly disabled korath untranslated"
-	"hostile hail" "hostile korath untranslated"
+	"hostile hail" "hostile korath civilian untranslated"
 	"hostile disabled hail" "hostile disabled korath untranslated"
 
 government "Korath Nanobots"

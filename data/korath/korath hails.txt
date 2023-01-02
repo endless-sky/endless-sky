@@ -11,33 +11,45 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+# This is a derived work from Lia Gerty's documents.
+#
 # The words in this file were "translated" to korath languages using
-# the cipher at the top of this PR:
+# the methodology described at the top of this PR:
 #
 #    https://github.com/endless-sky/endless-sky/pull/7101
 #
 # Guidance on food, culture, etc. comes from the Korath lore document.
 
+
 phrase "hostile korath untranslated"
 	phrase
-		"exile: loud angry rambling" 200
+		"exile: loud angry rambling" 140
+		"exile: bragging about tech" 70
 		"exile: semi-translated cargo demands" 170
 		"exile: semi-translated oddly specific demands" 30
 
+# Civilians don't demand your cargo since they never go on raids.
+phrase "hostile korath civilian untranslated"
+	phrase
+		"exile: loud angry rambling" 140
+		"exile: bragging about tech" 70
+
 phrase "hostile disabled korath untranslated"
 	phrase
-		"exile: loud angry rambling" 200
-		"exile: semi-translated request for mercy" 80
+		"exile: loud angry rambling" 150
+		"exile: semi-translated request for mercy" 100
+		"exile: Please don't do terrible things to us while we are disabled." 50
 
 phrase "friendly korath untranslated"
 	phrase
 		"exile: miscellaneous rambling" 100
-		"exile: semi-translated bragging about tech" 50
+		"exile: bragging about tech" 50
 
 phrase "friendly disabled korath untranslated"
 	phrase
 		"exile: miscellaneous rambling" 100
-		"exile: semi-translated request for help" 50
+		"exile: we are disabled, please help us" 50
 
 phrase "hostile kor efret untranslated"
 	phrase
@@ -65,6 +77,24 @@ phrase "friendly disabled kor efret untranslated"
 # No top-level phrases below this line.                                       #
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+phrase "exile: semi-translated request for mercy"
+	phrase
+		"exile: Our ship is disabled."
+		"exile: Our systems went haywire."
+	word
+		" "
+	phrase
+		"exile: Please don't do terrible things to us while we are disabled."
+
+
+phrase "exile: we are disabled, please help us"
+	phrase
+		"exile: Our ship is disabled."
+		"exile: Our systems went haywire."
+	word
+		" "
+		"exile: Could you be so kind as to render assistance?"
 
 phrase "efreti: we are disabled, please help us"
 	phrase
@@ -109,11 +139,199 @@ phrase "efreti: miscellaneous rambling"
 		"efreti: I like to do things"
 		"efreti: I learned to do things"
 
+# Here, the Korath do their best to speak human, using what few words
+# they know, hoping their pleas for mercy will be understood.
+
+phrase "exile: Please don't do terrible things to us while we are disabled."
+	word
+		"Pleace"                 # Please (mispronounced)
+		"'uu shud"               # You should (mispronounced)
+		"can hav"                # Can have (mispronounced)
+
+		"Ratami'"                # Please
+		"Asra 'olap"             # You should
+		"Bati'leh tiah ras"      # Be kind and
+		"Rattovroref ratiahet:"  # Show kindness:
+	word
+		" "
+	word
+		"mersy."              # mercy (mispronounced)
+		"has mersi."          # have mercy (mispronounced)
+		"sow merci."          # show mercy (mispronounced)
+
+		"'oo erve gas."       # no nerve gas (mispronounced)
+		"'o nerf gus."        # no nerve gas (mispronounced)
+		"no g'as us."         # no gas us (mispronounced)
+
+		"ranrav rataron 'an jala'."       # do not use nerve gas.
+		"ranrav 'an ifat."                # do not gas us.
+		"ikrepleh. Ifat rata irobfanref." # stop. We would spare you.
+		"ratotam map nrag lareh."         # do the right thing.
+		"ilaf akit bosip."                # let us live.
+		"ratkafame' ifat."                # spare us.
+		"ratlaih ifat 'aheh."             # let us free.
+		"nrahlek okineh ava'."            # just fly away.
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# No phrases accessed by top-level phrases below this line                    #
+# No phrases accessed directly by hails below this line                       #
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+phrase "exile: Our ship is disabled."
+	phrase
+		"exile: We or our ship"
+	word
+		" "
+	phrase
+		"exile: ain't doing so well right now."
+
+
+phrase "exile: Our systems went haywire."
+	phrase
+		"exile: Our malfunctioning system"
+	word
+		" "
+	phrase
+		"exile: has destroyed our ship."
+
+phrase "exile: Our malfunctioning system"
+	word
+		"Akit"                # Our
+		"Mabat iri"           # This ship's
+		"Ot"                  # My
+		"Oki"                 # The
+	word
+		" "
+	phrase
+		"exile: semi-translated weapons"  12
+		"exile: semi-translated engines"  7
+		"exile: semi-translated systems"  7
+
+phrase "exile: semi-translated weapons"
+	word
+		"mihfa etilk' kellok"           # grab-strike turret
+		"alaref ratunufeb krop'"        # shunt-strike turret
+		"oamapnref alaref i'akiqaln"    # banisher grav-turret
+		"ratlaomet akavre' i'akiqaln"   # expeler grav-ray
+		"alaref matnrareb masol"        # warder anti-missile
+		"akavre' tahfuk iba"            # fire-lance
+		"nraseb nrag latahlek"          # blaze-pike turret
+		"alaref ataler"                 # [korath] inferno turret
+		"le'am ranrahfakleb"            # digger mining beam
+		"alaref ranrahfakleb"           # digger mining turret
+		"mebaket enralnam"              # langrage hyper-heaver
+		"masol iba ranril"              # firelight missile
+		"masol iba rabuk"               # firestorm torpedo
+		"lodromeb rabuk iba"            # firestorm battery
+
+		"inf'no tur't"                  # inferno turret (mispronounced)
+		"gab sike tur't"                # grab-strike turret (mispronounced)
+		"manisher Gav-tur't"            # banisher grav-turret (mispronounced)
+		"arder tie-miss'l"              # warder anti-missile (mispronounced)
+		"firelit miss'l"                # firelight missile (mispronounced)
+		"blaz fike tur't"               # blaze-pike turret (mispronounced)
+
+
+phrase "exile: semi-translated engines"
+	word
+		"nrulusreb ovaf"                # forward thrusters
+		"nrulusreb timahlek"            # reverse thrusters
+		"latahfeb 'alet"                # afterburners
+		"kev isofet"                    # steering
+		"ri'ef"                         # engines
+		"talennreb lo'oh"               # bow drive
+
+		"tusters"                       # thrusters (mispronounced)
+		"injuns"                        # engines (mispronounced)
+		"tearing"                       # steering (mispronounced)
+
+phrase "exile: semi-translated systems"
+	word
+		"ikri fek'i'"                   # systems core[s]
+		"ikri af'amb"                   # plasma core[s]
+		"oalib 'arab"                   # heat shunt[s]
+		"rinrisreb foilkar liad"        # liquid sodium cooler
+		"pamunreb rapah latah"          # fuel processor
+		"roi'ak' rarapakleb"            # defense station
+
+		"sysim corr"                    # systems core (mispronounced)
+		"eat sunt"                      # heat shunt (mispronounced)
+		"gruel process'r"               # fuel processor (mispronounced)
+
+phrase "exile: has destroyed our ship."
+	word
+		"pamek liadref"               # has melted
+		"lareh-lareh ratpar'ofis"     # totally annihilated
+		"lareh-lareh sekamohuhfud'is" # thoroughly discombobulated
+		"fomeh ratibalis"             # unmade
+		"lareh-lareh baonref"         # completely vaporized
+		"rattimahfef 'akilamub"       # reversed the polarity of
+		"rataretis agaih"             # charged (in the electrical sense)
+		"agrporebe' 'ohferef"         # fully penetrated through
+		"lareh-lareh liad"            # absolutely liquified
+		"tasemef arlobfe'"            # {perfectly|without exception} imploded
+	word
+		" "
+	phrase
+		"exile: our entire ship."
+		"exile: part of our ship."
+
+phrase "exile: our entire ship."
+	word
+		"polome' mabat ifat."         # our entire ship.
+		"polome' rarivalet."          # the whole craft.
+		"agrap agramane'."            # just everything.
+		"rapohameb ras rarat."        # port and starboard.
+		"aofe' tes."                  # all decks.
+
+phrase "exile: part of our ship."
+	word
+		"ri'ef rarat."                # the starboard engines
+		"aofe' alaref rabes."         # all forward turrets
+		"nrulusreb lakobleh."         # the turning thrusters
+		"nravroreb bosip rapahfak."   # auxiliary life support
+		"ladrafeb ia'ileb."           # the shield emitters
+		"raiatnral iamel agas afako." # [the] primary power relay circuits
+
+phrase "exile: We or our ship"
+	word
+		"Mabat ifat"        # Our ship
+		"Anlo' nraol iri"   # This space haven
+		"Pafol akit"        # This home
+		"Mabat iri"         # This ship
+		"Akit"              # We are
+		"Akit isavref"      # We became
+		"Kabfek ranrosrimleb ifat"   # Our safehaven
+		"Kaca'eb laom a'atnra akit"  # Our spacecraft
+
+phrase "exile: ain't doing so well right now."
+	word
+		"ifamanref tagrah ramananet fek'i'."        # [is] having multiple systems failures.
+		"inralefef rapihemet raheh luktael."         # [is] fighting a reactor overload.
+		"ikatesref ramananet makuk."                # [is] close to complete failure.
+		"agrap itimifef abaleheh kiref alaso nrag a'i'lek!"  # has only minutes of air left
+		"tasik itimifef ikri fek'i' marui'nroj."    # has no functional systems core.
+		"arelat ri'ef ifat pememef arelat agr'arab ilisre'."   # [is failing] due to our engines melting under their own heat.
+		"tasik kabas ratmi'apnref alaso oaka lia."  # [is] unable to produce air or water.
+		"pamek isavref 'arabe' nrakrih rulkoer."    # has become as hot as a neutron star.
+		"tasik itimifef krop' 'arab avlet."          # has no working heat shunts
+		"abrak ri'ef oaka anarek nrag avleteh."     # is without working engines or power
+		"tasik itimifef fek'i' nrotosreb rabosipet avlet." # has no working life support systems
+
+phrase "exile: Could you be so kind as to render assistance?"
+	word
+		"Nrumuk okrah ifat!"             # Please help us!
+		"Akit ratpokohfef rakafamegreb!" # We need rescue!
+		"Rapi'at ras nrakas."            # Have pity and come [here].
+		"Patoaf asra okrahfef ?ifat?"    # Will you help us?
+		"Ratkafamegref ifat?"            # [Will you] rescue us?
+		"Mati tanpa bantuan."            # [We will] die without [your] help.
+		"Pamisav racampab ifat!"         # Be our hero!
+		"Pataba Humanika tiah?"          # Are humans kind?
+		"Okrah ifat bosip!"              # Help us [continue to] live!
+		"Ratkafame' ifat!"               # Save us!
+
 
 
 phrase "efreti: Our ship is disabled."
@@ -189,15 +407,15 @@ phrase "efreti: You should stop attacking us"
 		"Somoref atra mopah pihsapeb lrapasem" # Your {poking|ineffectual attack} should stop now
 
 # The powerful faction probably won't intervene, but it is a
-# reasonable threat that my scare away would-be attackers.
+# believable threat that my scare away would-be attackers.
 
 phrase "efreti: because we are protected by (Insert Powerful Faction Name Here)."
 	word
-		"fonebem Dras ofhorobfef."              # before the Dras kill you (Dras = Drak)
+		"fonebem Dras ofhorobfef."              # before the Drak kill you (Dras = Drak)
 		"oaka Karg rasa ipavref ofnawa."        # or the Quarg will seek your doom. (Karg = Quarg)
 		"oaka atra rasa ipebfef rasaf Arkon."   # or you will feed the Archon (Arkon = Archon)
 		"ralraw iacfam Arkon rasa lrakat."      # lest the Archon come.
-		"sokro ipatrihlref Sabfuk Kilran."      # to avoid the Sky Lances
+		"sokro ipatrihlref sabfuk kilran."      # to avoid the Sky Lances
 		"arepas Karg hanata apatoam akis."      # because the Quarg are our siblings (Karg = Quarg)
 		"oaka atra rasa itawref Arkon naim."    # or you will be Archon s**t
 		"arepas Dras ilrotrinef akis."          # because [the] Drak protect us
@@ -621,9 +839,8 @@ phrase "efreti: i learned | practiced | taught"
 		"kinos hada ipebfef adam"      # father's skin gave me
 		"adam rasaf pekmaf"            # i ate a master's
 
-# Korath probably don't have these exact musical instruments, but I
-# chose ones that have a low pitch, so they'd be able to hear the
-# sound well.
+# Korath probably don't have this exact music and art, but I chose
+# music with a low pitch, so they'd be able to hear it well.
 
 phrase "exile: artistic or musical skill"
 	word
@@ -668,8 +885,8 @@ phrase "efreti: artistic or musical skill"
 		"lrokac irem harak mirpetuf-kmuc"    # post-modernist land art sculpture
 		"pekaek sikinuc simansuer rpetuf"    # modern neoclassical political theatre
 		"imsopkmrusepef aiteffuv ekpa'nnet"  # reconstructed (as in recovered from loss) commedia dell'arte
-		"aipemifem apecu hatripek"  # the most beautiful opera semiseria
-		"raipak yikakepcpekri ilunupuekef"  # meteorological interpretive dance
+		"aipemifem apecu hatripek"           # the most beautiful opera semiseria
+		"raipak yikakepcpekri ilunupuekef"   # meteorological interpretive dance
 
 phrase "exile: practical skill"
 	word
