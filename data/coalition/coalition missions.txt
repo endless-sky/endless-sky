@@ -3164,10 +3164,15 @@ mission "Sativa: Struggling Author 1"
 					decline
 			label "tell her about the coalition"
 			`	You check your surroundings, looking around to ensure you are not being listened to. Once you confirm that your conversation will be private, you begin speaking.`
-			`	"You know, I know of a place called the Coalition. They're a group of alien races. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
+			`	"I know of a place called the Coalition. They're a group of alien races. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
 			`	"Wait, really?" asks Ann.`
-			`	"Yes", you say.`
-			`	"But they wouldn't speak English. How are they going to read my books?"`
+			`	You continue to explain the Coalition to Ann for a while, going in-depth about their history and their culture.`
+			choice
+				`	"By any chance, are you afraid of centaurs, beetles, and spiders?"`
+			`	"No, not at all. I'm not afraid of them. Why do you ask?"`
+			choice
+				`	"Because the Coalition are a race of three alien species, who look like spiders, beetles, and centaurs.`
+			`	"Interesting. Their stories might just inspire my next novel. But, they wouldn't speak English. How are they going to read my books?"`
 			choice
 				`	"They have a translation device."`
 				`	"I'm sure they can learn the language."`
