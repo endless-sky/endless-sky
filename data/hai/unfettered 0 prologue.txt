@@ -321,7 +321,7 @@ mission "Unfettered Jump Drive Trading"
 		"<as before (flee)>" "Just like last time, you"
 			has "unfettered: flee from the blade"
 		<leave> "She then leaves, to your surprise."
-		<leave> "She then leaves, her angered barely contained."
+		<leave> "She then leaves, her anger barely contained."
 			has "unfettered: blade rodeo"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
@@ -466,7 +466,7 @@ mission "Unfettered Jump Drive Trading"
 				to display
 					"unfettered: flee from the blade" == 1
 					"unfettered: dodged the blade" == 1
-			`	"I will not keep on teaching you the same lesson! You had your chance, we cannot accept one that does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons." She then leaves, visibly irritated.`
+			`	"I will not keep on teaching you the same lesson! You had your chance. We cannot accept one that does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons." She then leaves, visibly irritated.`
 				to display
 					or
 						"unfettered: dodged the blade" > 1
