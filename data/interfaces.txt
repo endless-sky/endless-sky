@@ -441,14 +441,14 @@ interface "plugins"
 		dimensions 90 30
 		color bright
 	button o "_Open Plugins"
-		center -195 210
+		center -195 230
 		dimensions 120 30
 
 
 
 interface "preferences"
 	button b "_Back to Menu..."
-		center 195 210
+		center 195 230
 		dimensions 120 30
 	bar "volume"
 		from 280.5 15
