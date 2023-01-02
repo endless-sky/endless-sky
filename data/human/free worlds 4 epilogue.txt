@@ -218,10 +218,12 @@ mission "FW Epilogue: Edward"
 	on decline
 		event "plasma repeater advanced" 95
 		event "plasma repeater basics" 155
+		event "pirates start using plasma repeaters" 185
 	on complete
 		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the plasma cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
 		event "plasma repeater advanced" 45
 		event "plasma repeater basics" 105
+		event "pirates start using plasma repeaters" 135
 		conversation "edward epilogue"
 
 
