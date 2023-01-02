@@ -33,10 +33,27 @@ class Sprite;
 
 class StartConditions : public CoreStartData {
 public:
+	enum class StartState : int {
+		HIDDEN,
+		VISIBLE,
+		REVEALED,
+		UNLOCKED
+	};
+
+	struct StartInfo {
+		const Sprite *thumbnail = nullptr;
+		std::string name;
+		std::string description;
+		std::string system;
+		std::string planet;
+	};
+
+public:
 	StartConditions() = default;
 	explicit StartConditions(const DataNode &node);
 
 	void Load(const DataNode &node);
+	void LoadState(const DataNode &node, StartState state);
 	// Finish loading the ship definitions.
 	void FinishLoading();
 
@@ -51,10 +68,14 @@ public:
 	const Conversation &GetConversation() const;
 
 	// Information needed for the scenario picker.
-	const Sprite *GetThumbnail() const noexcept;
-	const std::string &GetDisplayName() const noexcept;
-	const std::string &GetDescription() const noexcept;
-	const std::string &GetHint() const noexcept;
+	const Sprite *GetThumbnail();
+	const std::string &GetDisplayName();
+	const std::string &GetDescription();
+	const std::string &GetPlanetName();
+	const std::string &GetSystemName();
+
+	void SetState(const ConditionsStore &conditionsStore);
+	StartConditions::StartState GetState() const;
 
 	bool Visible(const ConditionsStore &conditionsStore) const;
 	bool Revealed(const ConditionsStore &conditionsStore) const;
@@ -70,11 +91,8 @@ private:
 	// The conversation to display when a game begins with this scenario.
 	ExclusiveItem<Conversation> conversation;
 
-	const Sprite *thumbnail = nullptr;
-	// The user-friendly display name for this starting scenario.
-	std::string name;
-	std::string description;
-	std::string hint;
+	std::map<StartState, StartInfo> infoByState;
+	StartState state = StartState::HIDDEN;
 
 	ConditionSet toDisplay;
 	ConditionSet toReveal;

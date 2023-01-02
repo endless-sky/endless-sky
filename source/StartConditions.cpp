@@ -44,7 +44,7 @@ void StartConditions::Load(const DataNode &node)
 	// When a plugin modifies an existing starting condition, default to
 	// clearing the previously-defined description text. The plugin may
 	// amend it by using "add description"
-	bool clearDescription = !description.empty();
+	bool clearDescription = !infoByState[StartState::UNLOCKED].description.empty();
 
 	for(const DataNode &child : node)
 	{
@@ -70,13 +70,11 @@ void StartConditions::Load(const DataNode &node)
 		if(remove)
 		{
 			if(key == "name")
-				name.clear();
+				infoByState[StartState::UNLOCKED].name.clear();
 			else if(key == "description")
-				description.clear();
-			else if(key == "hint")
-				hint.clear();
+				infoByState[StartState::UNLOCKED].description.clear();
 			else if(key == "thumbnail")
-				thumbnail = nullptr;
+				infoByState[StartState::UNLOCKED].thumbnail = nullptr;
 			else if(key == "ships")
 				ships.clear();
 			else if(key == "ship" && hasValue)
@@ -102,20 +100,18 @@ void StartConditions::Load(const DataNode &node)
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
 		else if(key == "name" && hasValue)
-			name = value;
+			infoByState[StartState::UNLOCKED].name = value;
 		else if(key == "description" && hasValue)
 		{
 			if(!add && clearDescription)
 			{
-				description.clear();
+				infoByState[StartState::UNLOCKED].description.clear();
 				clearDescription = false;
 			}
-			description += value + "\n";
+			infoByState[StartState::UNLOCKED].description += value + "\n";
 		}
-		else if(key == "hint" && hasValue)
-			hint = value;
 		else if(key == "thumbnail" && hasValue)
-			thumbnail = SpriteSet::Get(value);
+			infoByState[StartState::UNLOCKED].thumbnail = SpriteSet::Get(value);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{
 			// TODO: support named stock ships.
@@ -148,13 +144,49 @@ void StartConditions::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else if(key == "on")
+		{
+			if(child.Token(1) == "display")
+				LoadState(child, StartState::VISIBLE);
+			else if(child.Token(1) == "reveal")
+				LoadState(child, StartState::REVEALED);
+			else if(child.Token(1) == "unlock")
+				LoadState(child, StartState::UNLOCKED);
+		}
 		else
 			conditions.Add(child);
 	}
-	if(description.empty())
-		description = "(No description provided.)";
-	if(name.empty())
-		name = "(Unnamed start)";
+	if(infoByState[StartState::UNLOCKED].description.empty())
+		infoByState[StartState::UNLOCKED].description = "(No description provided.)";
+	if(infoByState[StartState::UNLOCKED].name.empty())
+		infoByState[StartState::UNLOCKED].name = "(Unnamed start)";
+
+	system = GameData::Systems().Get(infoByState[StartState::UNLOCKED].system);
+	planet = GameData::Planets().Get(infoByState[StartState::UNLOCKED].planet);
+
+	// Fill missing information in states:
+	if(!infoByState[StartState::REVEALED].thumbnail)
+		infoByState[StartState::REVEALED].thumbnail = infoByState[StartState::UNLOCKED].thumbnail;
+	if(infoByState[StartState::REVEALED].name.empty())
+		infoByState[StartState::REVEALED].name = infoByState[StartState::UNLOCKED].name;
+	if(infoByState[StartState::REVEALED].description.empty())
+		infoByState[StartState::REVEALED].description = infoByState[StartState::UNLOCKED].description;
+	if(infoByState[StartState::REVEALED].system.empty())
+		infoByState[StartState::REVEALED].system = infoByState[StartState::UNLOCKED].system;
+	if(infoByState[StartState::REVEALED].planet.empty())
+		infoByState[StartState::REVEALED].planet = infoByState[StartState::UNLOCKED].planet;
+
+	if(!infoByState[StartState::VISIBLE].thumbnail)
+		infoByState[StartState::VISIBLE].thumbnail = infoByState[StartState::REVEALED].thumbnail;
+	if(infoByState[StartState::VISIBLE].name.empty())
+		infoByState[StartState::VISIBLE].name = infoByState[StartState::REVEALED].name;
+	if(infoByState[StartState::VISIBLE].description.empty())
+		infoByState[StartState::VISIBLE].description = infoByState[StartState::REVEALED].description;
+	if(infoByState[StartState::VISIBLE].system.empty())
+		infoByState[StartState::VISIBLE].system = infoByState[StartState::REVEALED].system;
+	if(infoByState[StartState::VISIBLE].planet.empty())
+		infoByState[StartState::VISIBLE].planet = infoByState[StartState::REVEALED].planet;
+
 
 	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
 	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
@@ -163,8 +195,35 @@ void StartConditions::Load(const DataNode &node)
 	else if(identifier.empty())
 	{
 		stringstream addr;
-		addr << name << " " << this;
+		addr << infoByState[StartState::UNLOCKED].name << " " << this;
 		identifier = addr.str();
+	}
+}
+
+
+
+void StartConditions::LoadState(const DataNode &node, StartState state)
+{
+	bool clearDescription = !infoByState[state].description.empty();
+	for(const auto &child: node)
+	{
+		if(child.Token(0) == "name" && child.Size() >= 2)
+			infoByState[state].name = child.Token(1);
+		else if(child.Token(0) == "description" && child.Size() >= 2)
+		{
+			if(clearDescription)
+			{
+				infoByState[state].description.clear();
+				clearDescription = false;
+			}
+			infoByState[state].description += child.Token(1) + "\n";
+		}
+		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+			infoByState[state].thumbnail = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "system" && child.Size() >= 2)
+			infoByState[state].system = child.Token(1);
+		else if(child.Token(0) == "planet" && child.Size() >= 2)
+			infoByState[state].planet = child.Token(1);
 	}
 }
 
@@ -179,7 +238,7 @@ void StartConditions::FinishLoading()
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
 		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ GetDisplayName() + "\") has an invalid starting conversation."
+			+ infoByState[StartState::UNLOCKED].name + "\") has an invalid starting conversation."
 			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
 
@@ -229,30 +288,62 @@ const Conversation &StartConditions::GetConversation() const
 
 
 
-const Sprite *StartConditions::GetThumbnail() const noexcept
+const Sprite *StartConditions::GetThumbnail()
 {
-	return thumbnail;
+	return infoByState[state].thumbnail;
 }
 
 
 
-const std::string &StartConditions::GetDisplayName() const noexcept
+const std::string &StartConditions::GetDisplayName()
 {
-	return name;
+	return infoByState[state].name;
 }
 
 
 
-const std::string &StartConditions::GetDescription() const noexcept
+const std::string &StartConditions::GetDescription()
 {
-	return description;
+	return infoByState[state].description;
 }
 
 
 
-const std::string &StartConditions::GetHint() const noexcept
+const std::string &StartConditions::GetPlanetName()
 {
-	return hint;
+	return infoByState[state].planet;
+}
+
+
+
+const std::string &StartConditions::GetSystemName()
+{
+	return infoByState[state].system;
+}
+
+
+
+void StartConditions::SetState(const ConditionsStore &conditionsStore)
+{
+	if(Visible(conditionsStore))
+	{
+		if(Revealed(conditionsStore))
+		{
+			if(Unlocked(conditionsStore))
+				state = StartState::UNLOCKED;
+			else
+				state = StartState::REVEALED;
+		}
+		else
+			state = StartState::VISIBLE;
+	}
+}
+
+
+
+StartConditions::StartState StartConditions::GetState() const
+{
+	return state;
 }
 
 

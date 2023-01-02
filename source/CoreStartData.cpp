@@ -108,10 +108,6 @@ bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
 
 	if(child.Token(0) == "date" && child.Size() >= 4)
 		date = Date(child.Value(1), child.Value(2), child.Value(3));
-	else if(key == "system" && hasValue)
-		system = GameData::Systems().Get(value);
-	else if(key == "planet" && hasValue)
-		planet = GameData::Planets().Get(value);
 	else if(key == "account")
 		accounts.Load(child, !isAdd);
 	else
