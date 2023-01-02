@@ -1,4 +1,4 @@
-# Copyright (c) 2022 by an anonymous author
+# Copyright (c) 2023 by an anonymous author
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -28,49 +28,57 @@ phrase "hostile korath untranslated"
 	phrase
 		"exile: miscellaneous rambling" 80
 		"exile: loud angry rambling" 120
-		"exile: bragging about weapons" 80
+		"exile: semi-translated bragging about weapons" 80
 
 phrase "hostile disabled korath untranslated"
 	phrase
-		"exile: miscellaneous rambling" 80
 		"exile: loud angry rambling" 200
 		"exile: semi-translated request for mercy" 80
 
 phrase "friendly korath untranslated"
 	phrase
 		"exile: miscellaneous rambling" 100
-		"exile: bragging about tech" 50
+		"exile: semi-translated bragging about tech" 50
 
 phrase "friendly disabled korath untranslated"
 	phrase
-		"exile: miscellaneous rambling" 150
-		"exile: semi-translated request for help" 75
+		"exile: miscellaneous rambling" 100
+		"exile: semi-translated request for help" 50
 
 phrase "hostile kor efret untranslated"
 	phrase
-		"efreti: loud angry rambling" 100
-		"efreti: miscellaneous rambling" 50
-		"efreti: warning about being protected" 200
+		"efreti: loud angry rambling" 150
+		"efreti: warning about being protected" 50
 
 phrase "hostile disabled kor efret untranslated"
 	phrase
-		"hostile kor efret untranslated"
+		"hostile kor efret untranslated" 100
+		"efreti: we are disabled, please help us" 50
+		"efreti: warning about being protected" 50
 
 phrase "friendly kor efret untranslated"
 	phrase
-		"efreti: miscellaneous rambling" 100
-		"efreti: bragging about tech" 50
-		"efreti: warning about being protected" 50
+		"efreti: miscellaneous rambling" 200
+		"efreti: semi-translated advertisements for outfitters" 50
 
 phrase "friendly disabled kor efret untranslated"
 	phrase
-		"efreti: miscellaneous rambling" 100
+		"efreti: we are disabled, please help us" 200
+		"efreti: miscellaneous rambling" 50
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # No top-level phrases below this line.                                       #
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+phrase "efreti: warning about being protected"
+	phrase
+		"efreti: You should stop attacking us"
+	word
+		" "
+	phrase
+		"efreti: because we are protected by (Insert Powerful Faction Name Here)."
 
 phrase "exile: loud angry rambling"
 	phrase
@@ -81,6 +89,51 @@ phrase "efreti: loud angry rambling"
 	phrase
 		"efreti: the last person who attacked me had something bad happen to them"
 		"efreti: I do bad things to my enemies"
+
+phrase "exile: miscellaneous rambling"
+	phrase
+		"exile: I like to do things"
+		"exile: I learned to do things"
+
+phrase "efreti: miscellaneous rambling"
+	phrase
+		"efreti: I like to do things"
+		"efreti: I learned to do things"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# No phrases accessed by top-level phrases below this line                    #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+phrase "efreti: You should stop attacking us"
+	word
+		"Atra mopah ikrehpeb sabferef"      # You should stop shooting
+		"Apelem rasnallrik fekmim ifas"     # Depart our system immediately
+		"Ilpec, comodrec somob"             # Begone, foul interloper
+		"Rasikreh apelem rakaobfec hanamaf atra"   # Cease your trouble making immediately
+		"Hanikrehpeb itawref sara nasar"    # Stop being a brat
+		"Ipihsa ramupubfec iri"             # End this wastefulness
+		"Rasnallrik kacfek iri lrapasem"    # Leave this place now
+		"Ikrehpeb haslrikpeb ikpecem sara nives"   # Stop acting like a child
+		"Adam akrifef atra ikrehpeb sikinellref adam"   # I demand you stop {tickling|physically annoying} me
+		"Somoref atra mopah pihsapeb lrapasem" # Your {poking|ineffectual attack} should stop now
+
+# The powerful faction probably won't intervene, but it is a
+# reasonable threat that my scare away would-be attackers.
+
+phrase "efreti: because we are protected by (Insert Powerful Faction Name Here)."
+	word
+		"fonebem Dras ofhorobfef."              # before the Dras kill you (Dras = Drak)
+		"oaka Karg rasa ipavref ofnawa."        # or the Quarg will seek your doom. (Karg = Quarg)
+		"oaka atra rasa ipebfef rasaf Arkon."   # or you will feed the Archon (Arkon = Archon)
+		"ralraw iacfam Arkon rasa lrakat."      # lest the Archon come.
+		"sokro ipatrihlref Sabfuk Kilran."      # to avoid the Sky Lances
+		"arepas Karg hanata apatoam akis."      # because the Quarg are our siblings (Karg = Quarg)
+		"oaka atra rasa itawref Arkon naim."    # or you will be Archon s**t
+		"arepas Dras ilrotrinef akis."          # because [the] Drak protect us
+		"ralraw iacfam ipekafikra ipihsalref."  # lest antimatter [from an Archon] ends [you]
+		"sokro ipatrihlref ramanabfec Karg."    # to avoid a Quarg's vengeance (Karg = Quarg)
 
 phrase "exile: I do bad things to my enemies"
 	phrase
@@ -105,6 +158,60 @@ phrase "efreti: I do bad things to my enemies"
 		.
 		.
 		!
+
+phrase "exile: I perform harmful acts upon"
+	word
+		"Bapamef ranres alihfen"            # [I] joyfully devour
+		"Ratto'afis et famas ataler"        # [I] subsume into an inferno
+		"Raiakrahfeb abrak robfa"           # [I] mercilessly slaughter
+		"Ratotamef railak raikafet"         # [I] perform the dance of death {in relation to | with the subject being}
+		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
+		"Rarataf ranril asab kimot"         # [I] snack on the skin of
+		"Aga' ikaftiref 'kisap ilas"        # I enjoy the death of
+		"Tisisref imahfet ranres 'alet"     # [I] violently reeducate
+		"Ratilehfef akrid ralet atakebamaf" # [I] give love-taps of doom [to]
+		"Tikimennref alade' tikbimatuba"    # [I] apocalyptically tickle
+
+phrase "efreti: I perform harmful acts upon"
+	word
+		"Ratotamef railak raikafet"         # [I] perform the dance of death {in relation to | with the subject being}
+		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
+		"Rarataf ranril asab kimot"         # [I] snack on the skin of
+		"Osa rahimas atac bimar"            # I pity the fate of
+		"Adam ikafsiref mkitah ipat"        # I enjoy the death of
+		"Rassowrok raparebes pihsapek ataces" # [I] show [the] final truth to
+		"Sititref inabfes ralret mapes"     # [I] violently reeducate
+		"Rasipebfef akriv raps asakecanaf" # [I] give love-taps of doom [to]
+		"Kahafef lratro-lratro lranok ipat" # [I] sculpt bone statues out of
+		"Adam satik asotpeb"                # I do not mourn
+
+phrase "exile: people who offend, attack, or oppress me"
+	word
+		"rahlut rapalafet aga' nrag lareh"  # victims of my righteous rage
+		"atelef nrag ohlegref kinram"       # those who invade {our|the} {sky | star system}
+		"rimavlek ranres otraa'a'okobet"    # [people who are] entwined with my despair
+		"pavavreb asi'uren akit"            # our genocidal invaders
+		"atelef nrag rata pavavref akit"    # those who would colonize {us|our home}
+		"rafadra inah bosip aga'"           # [people who are] threats to my life
+		"aofe' nralu pusuh abrak kimot"     # all skinless fools [who threaten us]
+		"kapavreb ranres ikap 'e"           # villains with hearts of ice
+		"Humanika nrag tasik jikalebuut"    # uncooperative humans
+		"kagaf bosip is Nraol Alah"         # {walking corpses|helpless victims} in Ember Space
+		"rabfo failef famas otranrasrab"    # cannon fodder in my sights
+
+phrase "efreti: people who offend, attack, or oppress me"
+	word
+		"rabpus rahapafes adam lrad pareb"  # victims of my righteous rage
+		"asepef lrad obpedref kilran"       # those who invade {our|the} {sky|star system}
+		"rinawpek ralret osraamamokoces"    # [people who are] entwined with my despair
+		"hawawrec atimurel akis"            # our genocidal invaders
+		"asepef lrad rasa hawawref akis"    # those who would colonize {us|our home}
+		"rafavra ilab cotih adam"           # [people who are] threats to my life
+		"ipovrec racotihes lrad kahaw"      # evil thieves of lives
+		"aofem lrapu hutub acrak kinos"     # all skinless fools [who threaten us]
+		"rarahak ipat rahanames asepef ipitrem" # {prisoners of|those imprisoned by} their own misdeeds
+		"racfo faipef fanat osralratrac"    # cannon fodder in my sights
+
 
 phrase "exile: the last person who attacked me had something bad happen to them"
 	phrase
@@ -148,14 +255,14 @@ phrase "exile: The last person who attacked me"
 phrase "efreti: The last person who attacked me"
 	word
 		"Matrirec pihsapek adam"          # My last oppressor
-		"Lrapu hutub lrad oslrapedref"    # A fool that attacked me
+		"Lrapu hutub lrad oslrapdref"    # A fool that attacked me
 		"Ripafes, raikafes atranef"       # Yesterday, the dying struck
 		"Atelef nrag rata porohfef"       # Those that would kill
-		"Kahawrec somob lrapedref adrfonebem"  # Foul criminals struck before
+		"Kahawrec somob lrapdref adrfonebem"  # Foul criminals struck before
 		"Ranalales lrad raspitsakit"      # A doomed failure
-		"Kotab lrapedref adrfonebem"      # Clowns attacked before
+		"Kotab lrapdref adrfonebem"      # Clowns attacked before
 		"Hanam rasititrec obpedref"       # Miseducated people invaded
-		"Ralinuuh ofikpecem lrapedref"    # Hooligans like you assailed
+		"Ralinuuh ofikpecem lrapdref"    # Hooligans like you assailed
 		"Paohe' kickir inrakasref ifat"   # A {nitwit | unwise person} came to us
 
 phrase "exile: had something bad happen to them"
@@ -210,16 +317,6 @@ phrase "efreti: You are the next person that will have something bad happen to t
 		"Kulit anda akan dilupakan."            # Your skin will be forgotten.
 		"Osa rasa kahafef ofraikafes."          # I will make a sculpture of your demise.
 		"Sara-sara rasagakperef ranicfapekes atra"  # [Our] children laugh at your [terrible piloting] skills.
-
-phrase "exile: miscellaneous rambling"
-	phrase
-		"exile: I like to do things"
-		"exile: I learned to do things"
-
-phrase "efreti: miscellaneous rambling"
-	phrase
-		"efreti: I like to do things"
-		"exile: I learned to do things"
 
 phrase "exile: I like to do things"
 	phrase
@@ -290,6 +387,8 @@ phrase "efreti: I like to"
 		"Balaifara mada kitas fervuba"              # How can I not try
 		"Mada asar fenocasar Karg hirlla"           # I'd forget the Quarg to (Karg = Quarg)
 		"Bepanih werim senafir asar bepr"           # Switching genders would be worth
+
+# Band names come from the human band list.
 
 phrase "exile: listen to (Band)"
 	word
