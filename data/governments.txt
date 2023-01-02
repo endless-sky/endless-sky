@@ -1131,10 +1131,6 @@ government "Silent Ones"
 	"fine" 0
 	"crew attack" 0
 	"crew defense" 0
-	"attitude toward"
-		"Hicemus" 0.0
-		"Incipias" 0.0
-		"Quarg" 0.0
 	"penalty for"
 		assist 0
 		disable 0
