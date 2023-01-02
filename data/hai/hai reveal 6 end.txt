@@ -189,6 +189,7 @@ system "Al Hurr"
 	pos -432 -491
 	government "Uninhabited"
 	belt 1312
+	haze _menu/haze-brown
 	trade "Clothing" 201
 	trade "Electronics" 658
 	trade "Equipment" 484
@@ -405,7 +406,6 @@ mission "Hai Reveal [C05] Cleanup"
 				accept
 	on complete
 		event "hai-human resolution announced"
-		event "Vara K'chrai is accessible"
 		event "wandering nightmare map" 11
 		fail "Hai Reveal [A11-A] Permanent Fleets"
 		fail "Hai Reveal [B02-A] The Blockade Goes Up"
@@ -415,11 +415,6 @@ mission "Hai Reveal [C05] Cleanup"
 			`	The historic moment lays the groundwork for a future official treaty framework and governmental cooperation, as well as establishing <planet> as the principle diplomatic embassy for both peoples. Less publicly, extensive surveillance fleets are posted on both sides of the wormhole to detect any kidnappings or other illegal travel. Now, the only way for illicit transfers to happen is if a government employee is involved, but all three countries have quietly agreed to watch for that behavior and punish it severely.`
 			`	At last, it really is over, and you can get back to your own life.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
-
-event "Vara K'chrai is accessible"
-	# You can now begin the Wanderer campaign.
-	planet "Vara K'chrai"
-		"required reputation" 0
 
 event "wandering nightmare map"
 
@@ -637,11 +632,13 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Alpheratz"
 		remove fleet "Smuggler (Hai Traffickers)"
-	system "Achernar"
-		remove fleet "Smuggler (Hai Traffickers)"
 	system "Al Dhanab"
 		remove fleet "Smuggler (Hai Traffickers)"
+	system "Achernar"
+		remove fleet "Smuggler (Hai Traffickers)"
 	system "Mirach"
+		remove fleet "Smuggler (Hai Traffickers)"
+	system "Schedar"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Alcyone"
 		remove fleet "Smuggler (Hai Traffickers)"
