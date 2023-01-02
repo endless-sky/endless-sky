@@ -322,7 +322,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin, const P
 {
 	if(!planet || !planet->IsValid())
 		return false;
-	
+
 	if(excludeCenter && originPlanet && planet == originPlanet)
 		return false;
 
