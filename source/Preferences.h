@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
-
+#define DISCOVERY_MODE_LABEL "Outfitter Discovery"
 
 class Preferences {
 public:

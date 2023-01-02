@@ -56,6 +56,7 @@ using namespace std;
 
 namespace {
 	const string KNOWN_OUTFIT_KEY = "known outfit";
+	const string DISCOVERY_MODE = DISCOVERY_MODE_LABEL;
 
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
@@ -1388,6 +1389,16 @@ void PlayerInfo::Land(UI *ui)
 					? " extra crew member to fill your now-empty bunk."
 					: " extra crew members to fill your now-empty bunks."), Messages::Importance::High);
 		}
+	}
+
+	if(Preferences::Has(DISCOVERY_MODE))
+	{
+		if(!OutfitterVisitedAt(*planet))
+			VisitOutfitterAt(*planet);
+
+		for(const auto &outfit : planet->Outfitter())
+			if(!OutfitIsKnown(*outfit))
+				DiscoverOutfit(*outfit);
 	}
 
 	freshlyLoaded = false;

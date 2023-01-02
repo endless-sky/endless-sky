@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -45,6 +46,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const string DISCOVERY_MODE = DISCOVERY_MODE_LABEL;
+
 	string Tons(int tons)
 	{
 		return to_string(tons) + (tons == 1 ? " ton" : " tons");
@@ -98,15 +101,17 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 		}
 
 	if(player.GetPlanet())
+		outfitter = player.GetPlanet()->Outfitter();
+
+	if(!Preferences::Has(DISCOVERY_MODE))
 	{
 		if(!player.OutfitterVisitedAt(*player.GetPlanet()))
 			player.VisitOutfitterAt(*player.GetPlanet());
-		outfitter = player.GetPlanet()->Outfitter();
-	}
 
-	for(const auto &outfit : outfitter)
-		if(!player.OutfitIsKnown(*outfit))
-			player.DiscoverOutfit(*outfit);
+		for(const auto &outfit : outfitter)
+			if(!player.OutfitIsKnown(*outfit))
+				player.DiscoverOutfit(*outfit);
+	}
 
 	for(auto &&ship : player.Ships())
 		player.DiscoverOutfits(ship->Cargo().Outfits());

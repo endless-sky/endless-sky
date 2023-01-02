@@ -62,6 +62,7 @@ namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string DISCOVERY_MODE = DISCOVERY_MODE_LABEL;
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 1;
@@ -506,7 +507,8 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"Warning siren"
+		"Warning siren",
+		DISCOVERY_MODE
 	};
 	bool isCategory = true;
 	int page = 0;
@@ -631,6 +633,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == DISCOVERY_MODE)
+		{
+			isOn = true;
+			text = Preferences::Has(DISCOVERY_MODE) ? "On Land" : "On Enter";
 		}
 		else
 			text = isOn ? "on" : "off";
