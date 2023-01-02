@@ -3137,7 +3137,7 @@ mission "Sativa: Struggling Author 1"
 				`	"No, I'm not interested. How has life been as an author though?"`
 					goto "life as an author sucks"
 			label "what are her books about"
-			`	I mostly write science fiction books.`
+			`	"I mostly write science fiction books. Today, I'm here to promote 'Beyond the Hyperdrive' a story in which a group of humans steal a bunch of jump drives from the Quarg. If I continue past this point I'd be spoiling it. Read it for yourself, you'll like it!"`
 			choice
 				`	"I'm interested. Wait here, I'll go buy myself a copy."`
 					goto "buy her book"
