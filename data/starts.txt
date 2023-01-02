@@ -124,7 +124,7 @@ conversation "hai intro"
 ship "Grasshopper" "Grasshopper (Expensive)"
 	add attributes
 		"outfit space" 30
-		"weapon space" 9
+		"weapon capacity" 9
 	outfits
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
