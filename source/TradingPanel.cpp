@@ -169,23 +169,24 @@ void TradingPanel::Draw()
 			canBuy |= isSelected;
 			font.Draw(to_string(price), Point(PRICE_X, y), color);
 
-			int basis = player.GetBasis(commodity.name);
-			if(basis && basis != price && hold)
+			if(isSelected && hold)
 			{
-				string profit = "(profit: " + to_string(price - basis) + ")";
-				font.Draw(profit, Point(LEVEL_X, y), color);
+				int basis = player.GetBasis(commodity.name);
+				if(basis && basis != price)
+				{
+					font.Draw("profit:", Point(NAME_X, lastY), selected);
+					font.Draw(to_string(price - basis), Point(PRICE_X, lastY), selected);
+				}
 			}
+
+			int level = (price - commodity.low);
+			if(level < 0)
+				level = 0;
+			else if(level >= (commodity.high - commodity.low))
+				level = 4;
 			else
-			{
-				int level = (price - commodity.low);
-				if(level < 0)
-					level = 0;
-				else if(level >= (commodity.high - commodity.low))
-					level = 4;
-				else
-					level = (5 * level) / (commodity.high - commodity.low);
-				font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
-			}
+				level = (5 * level) / (commodity.high - commodity.low);
+			font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
 
 			font.Draw("[buy]", Point(BUY_X, y), color);
 			font.Draw("[sell]", Point(SELL_X, y), color);
