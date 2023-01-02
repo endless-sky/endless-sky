@@ -110,7 +110,7 @@ conversation "hai intro"
 			decline
 	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel'!" They say, taking you to the ship. It is not brand new, but it still looks in surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
-	`	"Because I like you I'll give you a friendly price. What do you say about... 1.4 millions, for this wonderful ship? That's about half of the price you would have to pay if you were to buy it in a shipyard."`
+	`	"Because I like you I'll give you a friendly price. What do you say about... 1 millions, for this wonderful ship? That's less than a third price you would have to pay if you were to buy this model in a shipyard, except you can't find a model like this in shipyards, trust me!"`
 	choice
 		`	"Sold!"`
 		`	"Sorry, not interested."`
@@ -118,8 +118,25 @@ conversation "hai intro"
 	`	They take the time to explain why this ship is so marvelous but you are not listening anymore, because of how excited you are to finally fly`
 	action
 		set "hai start: Grasshopper"
-		give ship "Grasshopper" "Pristine Jewel"
-		payment -1400000
+		give ship "Grasshopper (Expensive)" "Pristine Jewel"
+		payment -1000000
+
+ship "Grasshopper" "Grasshopper (Expensive)"
+	add attributes
+		"outfit space" 30
+		"weapon space" 9
+	outfits
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Fuel Pod"
+		"Hai Chasm Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		Hyperdrive
+		"Ion Cannon"
+		"Pebble Core"
+		"Pulse Rifle"
+		"Quantum Keystone" 2
 
 mission "Greenwater start"
 	landing

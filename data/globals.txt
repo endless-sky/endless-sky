@@ -29,7 +29,7 @@ mission "global: main plot completed"
 		set "global: main plot completed"
 		fail
 
-mission "global: hai-human resolution announced"
+mission "global: event: hai-human resolution announced"
 	landing
 	invisible
 	to offer
