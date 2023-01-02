@@ -89,7 +89,13 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
+			const System *landmarkedSystem = nullptr,
+			const Planet *landmarkedPlanet = nullptr) const;
+
+	// So the caller can check if they need to pass a landmmarked location on instantiation.
+	const std::string &LandmarkSystem() const;
+	const std::string &LandmarkPlanet() const;
 
 
 private:
@@ -102,9 +108,11 @@ private:
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
 	const System *system = nullptr;
+	std::string landmarkSystem;
 	bool isAtDestination = false;
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;
+	std::string landmarkPlanet;
 
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;

@@ -228,15 +228,21 @@ private:
 	ConditionSet toComplete;
 	ConditionSet toFail;
 
+	std::map<std::string, LocationFilter> genericLandmarks;
+	std::map<std::string, const System *> landmarkSystems;
+	std::map<std::string, const Planet *> landmarkPlanets;
 	const Planet *source = nullptr;
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
 	LocationFilter destinationFilter;
+	std::string destinationLandmark;
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
 	std::list<LocationFilter> waypointFilters;
+	std::set<std::string> waypointLandmarks;
 	std::set<const Planet *> stopovers;
 	std::list<LocationFilter> stopoverFilters;
+	std::set<std::string> stopoverLandmarks;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
 

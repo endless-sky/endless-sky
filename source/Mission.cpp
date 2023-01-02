@@ -248,23 +248,35 @@ void Mission::Load(const DataNode &node)
 			destination = GameData::Planets().Get(child.Token(1));
 			ParseMixedSpecificity(child, "planet", 2);
 		}
+		else if(child.Token(0) == "destination" && child.Size() == 3 && child.Token(1) == "landmark")
+			destinationLandmark = child.Token(2);
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 		{
-			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
-			set<const System *> &set = visited ? visitedWaypoints : waypoints;
-			set.insert(GameData::Systems().Get(child.Token(1)));
-			ParseMixedSpecificity(child, "system", 2 + visited);
+			if(child.Size() > 2 && child.Token(1) == "landmark")
+				waypointLandmarks.insert(child.Token(2));
+			else
+			{
+				bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+				set<const System *> &set = visited ? visitedWaypoints : waypoints;
+				set.insert(GameData::Systems().Get(child.Token(1)));
+				ParseMixedSpecificity(child, "system", 2 + visited);
+			}
 		}
 		else if(child.Token(0) == "waypoint" && child.HasChildren())
 			waypointFilters.emplace_back(child);
 		else if(child.Token(0) == "stopover" && child.Size() >= 2)
 		{
-			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
-			set<const Planet *> &set = visited ? visitedStopovers : stopovers;
-			set.insert(GameData::Planets().Get(child.Token(1)));
-			ParseMixedSpecificity(child, "planet", 2 + visited);
+			if(child.Size() > 2 && child.Token(1) == "landmark")
+				stopoverLandmarks.insert(child.Token(2));
+			else
+			{
+				bool visited = child.Size() >= 3 && child.Token(2) == "visited";
+				set<const Planet *> &set = visited ? visitedStopovers : stopovers;
+				set.insert(GameData::Planets().Get(child.Token(1)));
+				ParseMixedSpecificity(child, "planet", 2 + visited);
+			}
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
@@ -1172,12 +1184,28 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.location = location;
 	result.repeat = repeat;
 	result.name = name;
+
+	const System *const sourceSystem = player.GetSystem();
+	// Instantiate the landmarks.
+	for(const auto &it : genericLandmarks)
+	{
+		result.landmarkPlanets[it.first] = it.second.PickPlanet(sourceSystem);
+		result.landmarkSystems[it.first] = it.second.PickSystem(sourceSystem);
+	}
+
 	result.waypoints = waypoints;
 	// Handle waypoint systems that are chosen randomly.
-	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
 		const System *system = filter.PickSystem(sourceSystem);
+		if(!system)
+			return result;
+		result.waypoints.insert(system);
+	}
+	// Handle waypoint systems that point to one of the landmarks.
+	for(const string &landmark : waypointLandmarks)
+	{
+		const System *system = result.landmarkSystems[landmark];
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
@@ -1204,6 +1232,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			return result;
 		result.stopovers.insert(planet);
 	}
+	for(const string &landmark : stopoverLandmarks)
+	{
+		const Planet *planet = result.landmarkPlanets[landmark];
+		if(!planet)
+			return result;
+		result.stopovers.insert(planet);
+	}
 
 	// First, pick values for all the variables.
 
@@ -1215,6 +1250,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		result.destination = destinationFilter.PickPlanet(sourceSystem, !clearance.empty());
 		if(!result.destination)
 			return result;
+	}
+	if(!destinationLandmark.empty())
+	{
+		const Planet *planet = result.landmarkPlanets[destinationLandmark];
+		if(!planet)
+			return result;
+		result.destination = planet;
 	}
 	// If no destination is specified, it is the same as the source planet. Also
 	// use the source planet if the given destination is not a valid planet.
@@ -1354,7 +1396,16 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem()));
+	{
+		const System *systemLandmarkedByNPC = nullptr;
+		const Planet *planetLandmarkedByNPC = nullptr;
+		if(!npc.LandmarkSystem().empty())
+			systemLandmarkedByNPC = result.landmarkSystems[npc.LandmarkSystem()];
+		if(!npc.LandmarkPlanet().empty())
+			planetLandmarkedByNPC = result.landmarkPlanets[npc.LandmarkPlanet()];
+		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(),
+				systemLandmarkedByNPC, planetLandmarkedByNPC));
+	}
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.

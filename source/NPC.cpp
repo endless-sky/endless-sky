@@ -93,6 +93,8 @@ void NPC::Load(const DataNode &node)
 			{
 				if(child.Token(1) == "destination")
 					isAtDestination = true;
+				else if(child.Token(1) == "landmark" && child.Size() > 2)
+					landmarkSystem = child.Token(2);
 				else
 					system = GameData::Systems().Get(child.Token(1));
 			}
@@ -102,7 +104,12 @@ void NPC::Load(const DataNode &node)
 		else if(child.Token(0) == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = GameData::Planets().Get(child.Token(1));
+		{
+			if(child.Size() > 2 && child.Token(1) == "landmark")
+				landmarkPlanet = child.Token(2);
+			else
+				planet = GameData::Planets().Get(child.Token(1));
+		}
 		else if(child.Token(0) == "succeed" && child.Size() >= 2)
 			succeedIf = child.Value(1);
 		else if(child.Token(0) == "fail" && child.Size() >= 2)
@@ -566,7 +573,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
+		const System *landmarkedSystem, const Planet *landmarkedPlanet) const
 {
 	NPC result;
 	result.government = government;
@@ -588,9 +596,13 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.system = location.PickSystem(origin);
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
+	if(!landmarkSystem.empty() && landmarkedSystem)
+		result.system = landmarkedSystem;
 	// If a planet was specified in the template, it must be in this system.
 	if(planet && result.system->FindStellar(planet))
 		result.planet = planet;
+	if(!landmarkPlanet.empty() && landmarkedPlanet && result.system->FindStellar(landmarkedPlanet))
+		result.planet = landmarkedPlanet;
 
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -642,4 +654,19 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	return result;
+}
+
+
+
+// So the caller can check if they need to pass landmarked locations on instantiation.
+const string &NPC::LandmarkSystem() const
+{
+	return landmarkSystem;
+}
+
+
+
+const string &NPC::LandmarkPlanet() const
+{
+	return landmarkPlanet;
 }
