@@ -170,7 +170,7 @@ void TradingPanel::Draw()
 			font.Draw(to_string(price), Point(PRICE_X, y), color);
 
 			int basis = player.GetBasis(commodity.name);
-			if(basis && basis != price && hold)
+			if(basis && basis != price && hold && isSelected)
 			{
 				string profit = "(profit: " + to_string(price - basis) + ")";
 				font.Draw(profit, Point(LEVEL_X, y), color);
