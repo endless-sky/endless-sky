@@ -24,6 +24,21 @@ ship "Argosy" "Argosy (Blaster)"
 		"Hyperdrive"
 
 
+ship Argosy "Argosy (Modified Blaster)"
+	outfits
+		"Modified Blaster" 4
+		"Quad Blaster Turret" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion" 3
+		"Laser Rifle" 4
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
 ship "Argosy" "Argosy (Laser)"
 	outfits
 		"Beam Laser" 2
@@ -81,14 +96,13 @@ ship "Argosy" "Argosy (Turret)"
 		"Hyperdrive"
 
 
-ship "Argosy" "Argosy (Plasma Repeater)"
+ship "Argosy" "Argosy (Heavy Laser)"
 	outfits
-		"Plasma Repeater" 2
-		"Anti-Missile Turret"
-		"RT-I Radiothermal"
+		"Heavy Laser" 4
+		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		"Liquid Nitrogen Cooler"
+		"D67-TM Shield Generator"
+		"Fuel Pod"
 		"Outfits Expansion"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -107,13 +121,48 @@ ship "Argosy" "Argosy (Twin Blaster)"
 		"Hyperdrive"
 
 
-ship "Argosy" "Argosy (Heavy Laser)"
+ship Argosy "Argosy (Twin Modified Blaster)"
 	outfits
-		"Heavy Laser" 4
+		"Twin Modified Blaster" 4
+		"Modified Blaster Turret"
+		"Anti-Missile Turret"
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Panel" 4
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Outfits Expansion" 3
+		"Laser Rifle" 4
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Anti-Missile Turret"
+	turret "Modified Blaster Turret"
+
+
+ship Argosy "Argosy (Patrol)"
+	outfits
+		"Heavy Laser Turret" 2
 		"S3 Thermionic"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
-		"Fuel Pod"
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+# Only after the player helps test it.
+ship "Argosy" "Argosy (Plasma Repeater)"
+	outfits
+		"Plasma Repeater" 2
+		"Anti-Missile Turret"
+		"RT-I Radiothermal"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Liquid Nitrogen Cooler"
 		"Outfits Expansion"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -326,7 +375,7 @@ ship "Bastion" "Bastion (Heavy)"
 	turret "Quad Blaster Turret"
 
 
-ship "Bastion" "Bastion (Laser)"
+ship "Bastion" "Bastion (Laser Atomic Engines)"
 	outfits
 		"Heavy Laser" 4
 		"Heavy Anti-Missile Turret"
@@ -340,6 +389,25 @@ ship "Bastion" "Bastion (Laser)"
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
+		"Hyperdrive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+
+
+ship Bastion "Bastion (Laser)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Anti-Missile Turret"
+		"Heavy Laser Turret" 2
+		"Fusion Reactor"
+		Supercapacitor 4
+		"D67-TM Shield Generator"
+		"Liquid Helium Cooler"
+		"Laser Rifle" 12
+		"Outfits Expansion" 2
+		"Impala Plasma Thruster"
+		"X4200 Ion Steering"
 		"Hyperdrive"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
@@ -1589,7 +1657,39 @@ ship "Firebird" "Firebird (Plasma)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-		
+
+
+ship Firebird "Firebird (Particle)"
+	outfits
+		"Particle Cannon" 4
+		"Heavy Anti-Missile Turret"
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Laser Rifle" 3
+		"X3700 Ion Thruster"
+		"Impala Plasma Steering"
+		"Volcano Afterburner"
+		"Hyperdrive"
+	turret "Heavy Anti-Missile Turret"
+	turret
+
+
+ship Firebird "Firebird (Electron)"
+	outfits
+		"Electron Beam" 4
+		"Electron Turret"
+		"Anti-Missile Turret"
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 8
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	turret "Electron Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Flivver" "Flivver (Hai)"
@@ -1870,6 +1970,22 @@ ship "Fury" "Fury (Modified Blaster)"
 		"X2200 Ion Steering"
 		"X2700 Ion Thruster"
 		"Hyperdrive"
+
+
+ship Fury "Fury (Six Blasters)"
+	outfits
+		"Twin Blaster" 2
+		"Energy Blaster" 2
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	gun "Energy Blaster"
+	gun "Energy Blaster"
 
 
 
@@ -2253,24 +2369,43 @@ ship "Leviathan" "Leviathan (Plasma Repeater)"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
 
+
 ship "Leviathan" "Leviathan (Particle Chaser)"
 	outfits
-		"Scram Drive"
-		"Outfits Expansion" 3
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"D94-YV Shield Generator"
+		"Particle Cannon" 4
+		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
+		"Armageddon Core"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler"
 		"Catalytic Ramscoop"
 		"Fuel Pod" 4
-		"LP072a Battery Pack"
-		"Particle Cannon" 4
+		"Outfits Expansion" 3
 		"Laser Rifle" 32
-		"Quad Blaster Turret" 2
-		"Armageddon Core"
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Scram Drive"
 
+
+ship Leviathan "Leviathan (Electron)"
+	outfits
+		"Electron Beam" 4
+		"Electron Turret" 2
+		"Anti-Missile Turret" 2
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Laser Rifle" 15
+		"A520 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Manta" "Manta (Mark II)"
@@ -2486,10 +2621,10 @@ ship "Modified Argosy" "Modified Argosy (Particle Cannon)"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Water Coolant System"
+		"Laser Rifle" 2
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		"Laser Rifle" 2
 
 
 ship "Modified Argosy" "Modified Argosy (Plasma)"
@@ -2500,12 +2635,12 @@ ship "Modified Argosy" "Modified Argosy (Plasma)"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Water Coolant System"
-		"Outfits Expansion"
 		"Cooling Ducts"
+		"Outfits Expansion"
+		"Laser Rifle" 4
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		"Laser Rifle" 4
 
 
 ship "Modified Argosy" "Modified Argosy (Twin Modified Blaster)"
@@ -2516,10 +2651,27 @@ ship "Modified Argosy" "Modified Argosy (Twin Modified Blaster)"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 2
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		"Laser Rifle" 2
+
+
+ship "Modified Argosy" "Modified Argosy (Plasma Turret)"
+	outfits
+		"Plasma Turret" 2
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Fuel Pod"
+		"Outfits Expansion"
+		"Laser Rifle" 4
+		"Volcano Afterburner"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
 
 
 # Only after the main campaign is completed. 
@@ -2531,25 +2683,27 @@ ship "Modified Argosy" "Modified Argosy (Electron)"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Outfits Expansion"
+		"Laser Rifle" 2
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-		"Laser Rifle" 2
 
 
 # Only after the player helps test it.
 ship "Modified Argosy" "Modified Argosy (Plasma Repeater)"
 	outfits
-		"Plasma Repeater" 2
-		"Anti-Missile Turret" 2
+		"Plasma Repeater" 4
 		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel" 3
 		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		"Liquid Helium Cooler"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Small Radar Jammer"
+		"Outfits Expansion" 2
+		"Laser Rifle" 4
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-		"Laser Rifle" 2
 
 
 
@@ -2990,6 +3144,62 @@ ship "Sparrow" "Sparrow (Patrol)"
 		"Hyperdrive"
 
 
+ship Sparrow "Sparrow (Sidewinder Heavy Laser)"
+	outfits
+		"Heavy Laser"
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile" 4
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+	gun "Heavy Laser"
+	gun "Sidewinder Missile Pod"
+
+
+ship Sparrow "Sparrow (Heavy Laser Meteor)"
+	outfits
+		"Heavy Laser"
+		"Meteor Missile Pod"
+		"Meteor Missile" 22
+		"Meteor Missile Box"
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+	gun "Heavy Laser"
+	gun "Meteor Missile Pod"
+
+
+ship Sparrow "Sparrow (Heavy Laser)"
+	outfits
+		"Heavy Laser"
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+	gun "Heavy Laser"
+	gun
+
+
+ship Sparrow "Sparrow (Javelin)"
+	outfits
+		"Javelin Pod" 2
+		"Javelin" 400
+		"D14-RN Shield Generator"
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
 
 ship "Splinter" "Splinter (Laser)"
 	outfits
@@ -3233,3 +3443,56 @@ ship "Wasp" "Wasp (Twin Blaster)"
 		"X2200 Ion Steering"
 		"X2700 Ion Thruster"
 		"Hyperdrive"
+
+
+ship Wasp "Wasp (Heavy Laser Meteor)"
+	outfits
+		"Heavy Laser"
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 44
+		"Meteor Missile Box" 2
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun "Heavy Laser"
+	gun "Meteor Missile Pod"
+	gun "Meteor Missile Pod"
+
+
+ship Wasp "Wasp (Heavy Laser Sidewinder)"
+	outfits
+		"Heavy Laser"
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 31
+		"Sidewinder Missile Rack"
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun "Heavy Laser"
+	gun "Sidewinder Missile Pod"
+	gun "Sidewinder Missile Pod"
+
+
+ship Wasp "Wasp (Heavy Rocket)"
+	outfits
+		"Heavy Rocket Launcher"
+		"Heavy Rocket Rack"
+		"Heavy Rocket" 30
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun "Heavy Rocket Launcher"
+	gun
+	gun
