@@ -3155,7 +3155,6 @@ phrase "friendly militia 4"
 		"come down here"
 		"stop ignoring our cries for help"
 		"take notice of our cries for help"
-		"do what they say they do"
 		"stop acting deaf"
 		"listen to us"
 		"work with us"
@@ -4589,8 +4588,8 @@ phrase	"pirate big raid"
 		" in their history"
 		" in history"
 		" of all time"
-		". ${pirate boast}" 33
-		"! ${pirate boast}" 33
+		". ${pirate boast}" 11
+		"! ${pirate boast}" 11
 	word
 		"!"
 
