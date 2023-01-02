@@ -3183,7 +3183,7 @@ mission "Sativa: Struggling Author 1"
 			`	"Do I have to pay anything? As a struggling author, I really can't pay you."`
 			choice
 				`	"It's okay. I'm willing to make an exception for you.", you explain.`
-			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is.", says Anne.`
+			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is.", says Ann.`
 			`	You reply. "Good luck. By the way, we're going to <destination> in Coalition space.`
 			choice
 				`	(Wait for Ann to finish her event.)`
