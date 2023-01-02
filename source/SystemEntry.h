@@ -1,5 +1,5 @@
-/* PrintData.h
-Copyright (c) 2022 by warp-core
+/* SystemEntry.h
+Copyright (c) 2022 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,15 +13,19 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PRINT_DATA_H_
-#define PRINT_DATA_H_
+#ifndef SYSTEM_ENTRY_H_
+#define SYSTEM_ENTRY_H_
 
-// A class containing methods used to print ship and outfit stats to the console.
-class PrintData {
-public:
-	static bool IsPrintDataArgument(const char *const *argv);
-	static void Print(const char *const *argv);
-	static void Help();
+
+
+// All possible means of entering a system.
+enum class SystemEntry {
+	TAKE_OFF,
+	HYPERDRIVE,
+	JUMP,
+	WORMHOLE
 };
+
+
 
 #endif
