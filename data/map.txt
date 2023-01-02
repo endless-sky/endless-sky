@@ -44,7 +44,7 @@ galaxy "label hai"
 	pos -74 -497
 
 galaxy "label incipias"
-	pos 275 -825
+	pos 300 -870
 	sprite label/incipias
 
 galaxy "label kimek"
@@ -8177,6 +8177,56 @@ system Cshudlye
 			distance 248
 			period 147.6
 
+system Currus
+	pos 260.583 -987.75
+	habitable 10
+	belt 1198 4
+	belt 2284 3
+	link Rota
+	link Equus
+	link Sedes
+	link Ianua
+	asteroids "small rock" 22 0.968
+	asteroids "medium rock" 18 1.408
+	asteroids "large rock" 3 1.038
+	asteroids "large metal" 2 1.056
+	minables titanium 14 1.751
+	object
+		sprite planet/browndwarf-y-rouge
+		period 10
+	object
+		sprite planet/forest0
+		distance 468
+		period 1280.645
+	object
+		sprite planet/gas13-b
+		distance 999
+		period 3994.002
+	object
+		sprite planet/gas10-b
+		distance 1996
+		period 11279.784
+	object
+		sprite planet/luna-b
+		distance 2838
+		period 19123.993
+	object
+		sprite planet/gas11
+		distance 7091
+		period 75530.302
+		object
+			sprite planet/rock20
+			distance 273
+			period 170.508
+		object
+			sprite planet/dust1-b
+			distance 393
+			period 242.308
+		object
+			sprite planet/io-b
+			distance 543
+			period 478.3
+
 system "Porta Terra"
 	pos 202.6 -825.506
 	habitable 3650
@@ -11501,6 +11551,53 @@ system "Epsilon Leonis"
 			sprite planet/mercury
 			distance 515
 			period 37.9234
+
+system Equus
+	pos 313.25 -1051.083
+	habitable 1125
+	belt 1157 6
+	belt 2400 5
+	link Currus
+	link Rota
+	asteroids "small rock" 5 3.249
+	asteroids "medium rock" 64 2.804
+	asteroids "large rock" 12 2.668
+	asteroids "small metal" 9 2.291
+	asteroids "medium metal" 36 3.386
+	asteroids "large metal" 73 2.599
+	minables silicon 9 4.092
+	minables aluminum 28 3.354
+	object
+		sprite star/b-dwarf
+		period 10
+	object
+		sprite planet/ocean2-b
+		distance 261
+		period 50.286
+	object
+		sprite planet/desert5
+		distance 777
+		period 258.295
+	object
+		sprite planet/gas17
+		distance 1279
+		period 545.493
+		object
+			sprite planet/rock7
+			distance 219
+			period 153.313
+	object
+		sprite planet/europa-b
+		distance 1771
+		period 888.815
+	object
+		sprite planet/uranus
+		distance 3814
+		period 2809.02
+	object
+		sprite planet/gas9
+		distance 14533
+		period 20893.762
 
 system "Erba Yle"
 	pos 1001.69 -488.05
@@ -15656,6 +15753,40 @@ system Huud
 		sprite planet/gas9-b
 		distance 4967
 		period 2390.86
+
+system Ianua
+	pos 371.917 -995.75
+	habitable 35
+	belt 1472 5
+	link Currus
+	link Tectum
+	asteroids "small rock" 5 2.736
+	asteroids "medium rock" 20 2.124
+	asteroids "large rock" 2 1.836
+	asteroids "small metal" 2 3.528
+	asteroids "medium metal" 1 1.836
+	asteroids "large metal" 1 3.06
+	minables uranium 4 3.906
+	minables gold 6 2.471
+	object
+		sprite star/m-dwarf
+		period 10
+	object
+		sprite planet/rock13
+		distance 228
+		period 232.771
+	object
+		sprite planet/uranus
+		distance 802
+		period 1535.633
+	object
+		sprite planet/tethys
+		distance 1247
+		period 2977.321
+	object
+		sprite planet/rock17-b
+		distance 2451
+		period 8204.289
 
 system Iigen
 	pos 928.4 -615.7
@@ -25826,6 +25957,62 @@ system Ritilas
 			distance 365
 			period 26.1475
 
+system Rota
+	pos 193.25 -1029.75
+	habitable 5446.614
+	belt 1387 9
+	link Currus
+	link Equus
+	asteroids "small rock" 3 2.256
+	asteroids "medium rock" 4 2.16
+	asteroids "large rock" 4 1.992
+	asteroids "small metal" 1 2.112
+	asteroids "medium metal" 8 1.728
+	asteroids "large metal" 9 1.392
+	minables iron 1 3.541
+	minables lead 5 3.398
+	object
+		sprite star/b8
+		distance 118.4
+		period 50.325
+		offset 180
+	object
+		sprite star/g0-old
+		distance 66.6
+		period 50.325
+	object
+		sprite planet/desert10-b
+		distance 403
+		period 43.848
+	object
+		sprite planet/ocean8
+		distance 859
+		period 136.454
+		object
+			sprite planet/rock14
+			distance 172
+			period 59.035
+	object
+		sprite planet/gas7-b
+		distance 1978
+		period 476.8
+		object
+			sprite planet/oberon
+			distance 244
+			period 234.736
+		object
+			sprite planet/ice0-b
+			distance 374
+			period 273.406
+		object
+			sprite planet/callisto-b
+			distance 571
+			period 357.085
+	object
+		sprite planet/browndwarf-y
+		distance 3466
+		period 1105.96
+
 system Rouseu
 	pos 566.7 -404.133
 	government Uninhabited
@@ -26839,6 +27026,67 @@ system Scija
 			sprite planet/europa
 			distance 485.167
 			period 46
+
+system Sedes
+	pos 301.917 -948.417
+	habitable 100
+	belt 1651 4
+	link Currus
+	link Tectum
+	asteroids "medium rock" 4 3.595
+	asteroids "large rock" 5 3.72
+	asteroids "small metal" 1 3.511
+	asteroids "medium metal" 2 2.424
+	asteroids "large metal" 1 3.929
+	minables copper 2 5.579
+	minables titanium 3 3.611
+	object
+		sprite star/k-dwarf
+		period 10
+	object
+		sprite planet/rock11
+		distance 303
+		period 210.972
+	object
+		sprite planet/rock0
+		distance 691
+		period 726.569
+	object
+		sprite planet/gas16-b
+		distance 2250
+		period 4269.075
+		object
+			sprite planet/dust7
+			distance 231
+			period 132.715
+		object
+			sprite planet/rock7
+			distance 365
+			period 329.876
+		object
+			sprite planet/dust1
+			distance 478
+			period 325.028
+	object
+		sprite planet/gas16
+		distance 5041
+		period 14316.44
+		object
+			sprite planet/tethys-b
+			distance 209
+			period 186.086
+		object
+			sprite planet/desert4-b
+			distance 317
+			period 266.994
+	object
+		sprite planet/neptune
+		distance 5844
+		period 17870.031
+		object
+			sprite planet/desert4
+			distance 249
+			period 185.871
 
 system Segesta
 	pos 111.87 294.242
@@ -29487,6 +29735,58 @@ system Tebuteb
 		sprite planet/gas12
 		distance 2511.99
 		period 2147.36
+
+system Tectum
+	pos 399.25 -933.083
+	habitable 23372.847
+	belt 1350 7
+	belt 2133
+	link Sedes
+	link Ianua
+	asteroids "small rock" 20 2.036
+	asteroids "medium rock" 86 2.176
+	asteroids "large rock" 14 1.591
+	asteroids "large metal" 1 1.638
+	minables gold 2 2.485
+	minables aluminum 3 3.003
+	minables iron 6 2.125
+	object
+		sprite star/b0
+		distance 257.5
+		period 206.603
+	object
+		sprite star/o-giant
+		distance 257.5
+		period 206.603
+		offset 180
+	object
+		sprite planet/neptune
+		distance 907
+		period 71.469
+		object
+			sprite planet/dust0
+			distance 222
+			period 203.715
+	object
+		sprite planet/gas7-b
+		distance 1573
+		period 163.229
+	object
+		sprite planet/browndwarf-t
+		distance 2550
+		period 336.91
+		object
+			sprite planet/ice7-b
+			distance 300
+			period 135.988
+	object
+		sprite planet/gas10
+		distance 3622
+		period 570.331
+		object
+			sprite planet/miranda-b
+			distance 229
+			period 163.932
 
 system Tejat
 	pos -489 -107
