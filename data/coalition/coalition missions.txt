@@ -3190,7 +3190,7 @@ mission "Sativa: Struggling Author 1"
 	on complete
 		conversation
 			`	You leave the ship with Ann following you. The moment you are out of your ship, three Kimeks surround you and Ann. The Kimek in the middle speaks, and then brief silence. The silence is broken as the yellow box speaks.`
-			`	Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?` # heliarch
+			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"` # heliarch
 			`	Ann clears her throat. "I don't know who you are, but my name is Ann Oryza Sativa."`
 			`	Once Ann finishes her introduction, you speak. "She is my friend. Back in my space, she hasn't been a successful author. I brought her here, hoping she would find success writing books for the Coalition.", you explain.`
 			`	"What kind of books does she write?", asks the Kimek.` # heliarch
