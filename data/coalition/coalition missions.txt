@@ -3115,7 +3115,8 @@ mission "Coalition: Outskirts Gauger Ready"
 
 
 mission "Sativa: Struggling Author 1"
-	minor
+	name "Take Ann to Coalition Space"
+	description "Take Ann Oryza Sativa to <destination>, where she might find success as an author after having struggled on <origin> for so long."
 	source "Zug"
 	destination "Ki Patek Ka"
 	to offer
