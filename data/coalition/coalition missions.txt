@@ -3112,6 +3112,8 @@ mission "Coalition: Outskirts Gauger Ready"
 			`	When everything's ready, you two head back inside your ship, and the elevator brings you back up. You fly back to the main landing area, and she pulls close to you just before you open your hatch. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Provide you with more copies, we cannot, so careful not to lose this one, you should be." She thanks you again for helping out, and leaves for her workplace.`
 				decline
 
+
+
 mission "Sativa: Struggling Author 1"
 	minor
 	source "Zug"
@@ -3122,21 +3124,18 @@ mission "Sativa: Struggling Author 1"
 		has "Coalition: Contributor: done"
 	on offer
 		conversation
-			`	Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Ann Oryza Sativa'. Nobody pays attention to her. It appears as if she is a struggling author.`
+			`Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Ann Oryza Sativa'. Nobody pays attention to her. It appears as if she is a struggling author.`
 			choice
 				`	(Ignore her.)`
 					decline
 				`	(Buy one of her books.)`
 					goto "buy her book"
 				`	(Sit down and talk to her.)`
-			label "talk to her"
 			`	You sit down on the table, next to Ann. She greets you with a smile. "Hello! Would you like to buy one of my books?" she asks.`
 			choice
 				`	"What are your books about?"`
-					goto "what are her books about"
 				`	"No, I'm not interested. How has life been as an author though?"`
 					goto "life as an author sucks"
-			label "what are her books about"
 			`	"I mostly write science fiction books. Today, I'm here to promote 'Beyond the Hyperdrive' a story in which a group of humans steal a bunch of jump drives from the Quarg. If I continue past this point I'd be spoiling it. Read it for yourself, you'll like it!"`
 			choice
 				`	"I'm interested. Wait here, I'll go buy myself a copy."`
@@ -3155,10 +3154,8 @@ mission "Sativa: Struggling Author 1"
 			`	You enter the bookstore, ask the employee for one of Ann's books, and purchase it for 60 credits.`
 			choice
 				`	(Now go to Ann and get it signed.)`
-					goto "get it signed"
 				`	(Leave.)`
 					decline
-			label "get it signed"
 			`	You move to the table where Ann is sitting. She looks visibly happy as she grabs your book, takes out a pen, and signs it. "Thanks for buying one of my books. I don't get much sales and people like you mean the world to me."`
 			choice
 				`	"I appreciate it. How has life as an author been though?"`
@@ -3182,13 +3179,11 @@ mission "Sativa: Struggling Author 1"
 				`	"It's okay. I'm willing to make an exception for you."`
 			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Ann.`
 			`	You reply. "Good luck. By the way, we're going to <destination> in Coalition space.`
-			choice
-				`	(Wait for Ann to finish her event.)`
 			`	After approximately an hour of waiting, Ann appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk. You prepare to leave the spaceport.`
 				accept
 	on complete
 		conversation
-			`	You leave the ship with Ann following you. The moment you are out of your ship, three Kimeks surround you and Ann. The Kimek in the middle speaks, and then brief silence. The silence is broken as the yellow box speaks.`
+			`	You leave the ship with Ann following you. The moment you are out of your ship, three Kimek surround you and Ann. The Kimek in the middle speaks, and then brief silence. The silence is broken as the yellow box speaks.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"` # heliarch
 			`	Ann clears her throat. "I don't know who you are, but my name is Ann Oryza Sativa."`
 			`	Once Ann finishes her introduction, you speak. "She is my friend. Back in my space, she hasn't been a successful author. I brought her here, hoping she would find success writing books for the Coalition.", you explain.`
@@ -3198,7 +3193,7 @@ mission "Sativa: Struggling Author 1"
 			`	"Visit Coalition space, we will allow Ann to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause. But first, register she must."`
 			`	"Register?", asks Ann.`
 			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, that's where you can complete the registration process."`
-			`	"Okay.", says Ann. "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and take me to the Ring of Friendship once you're ready. I'll meet you in the spaceport."`
+			`	"Okay," says Ann, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and take me to the Ring of Friendship once you're ready. I'll meet you in the spaceport."`
 
 mission "Sativa: Struggling Author 2"
 	name "Help Ann Register"
@@ -3209,7 +3204,7 @@ mission "Sativa: Struggling Author 2"
 		has "Sativa: Struggling Author 1: done"
 	on offer
 		conversation
-			`	You walk through the spaceport, looking for Ann. She is at a restaurant, but has ordered nothing with a disgusted look on her face. "These aliens! They vomit on their food and slurp all the soup! Disgusting!", she mutters.`
+			`You walk through the spaceport, looking for Ann. She is at a restaurant, but has ordered nothing with a disgusted look on her face. "These aliens! They vomit on their food and slurp all the soup! Disgusting!", she mutters.`
 			choice
 				`	"That's just how they eat."`
 				`	"My ship still has a decent amount of food you can eat."`
@@ -3221,7 +3216,7 @@ mission "Sativa: Struggling Author 2"
 				accept
 	on enter "Quaru"
 		conversation
-			`	As you enter <system>, Ann walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
+			`As you enter <system>, Ann walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
 			choice
 				`	"It's massive, isn't it? They actually stole it from the Quarg, who they rebelled against roughly six thousand years ago."`
 				`	"I'm used to it."`
