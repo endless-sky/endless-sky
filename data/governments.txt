@@ -661,6 +661,10 @@ government "Korath"
 		"Hai (Friendly Unfettered)" -.01
 	
 	"player reputation" -10
+	"friendly hail" "friendly korath untranslated"
+	"friendly disabled hail" "friendly disabled korath untranslated"
+	"hostile hail" "hostile korath untranslated"
+	"hostile disabled hail" "hostile disabled korath untranslated"
 
 government "Korath (Civilian)"
 	"display name" "Korath"
@@ -676,6 +680,10 @@ government "Korath (Civilian)"
 		"Korath" .01
 
 	"player reputation" 1
+	"friendly hail" "friendly korath untranslated"
+	"friendly disabled hail" "friendly disabled korath untranslated"
+	"hostile hail" "hostile korath untranslated"
+	"hostile disabled hail" "hostile disabled korath untranslated"
 
 government "Korath Nanobots"
 	"player reputation" -1000
@@ -692,6 +700,10 @@ government "Kor Efret"
 		"Kor Sestor" -.01
 	
 	"player reputation" 1
+	"friendly hail" "friendly kor efret untranslated"
+	"friendly disabled hail" "friendly disabled kor efret untranslated"
+	"hostile hail" "hostile kor efret untranslated"
+	"hostile disabled hail" "hostile disabled kor efret untranslated"
 
 government "Kor Mereti"
 	swizzle 5

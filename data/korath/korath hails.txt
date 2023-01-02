@@ -18,17 +18,11 @@
 #
 # Guidance on food, culture, etc. comes from the Korath lore document.
 
-phrase "hostile korath raiders untranslated"
-	phrase
-		"hostile korath untranslated" 200
-		"raider: semi-translated cargo demands" 170
-		"raider: semi-translated oddly specific demands" 30
-
 phrase "hostile korath untranslated"
 	phrase
-		"exile: miscellaneous rambling" 80
-		"exile: loud angry rambling" 120
-		"exile: semi-translated bragging about weapons" 80
+		"exile: loud angry rambling" 200
+		"exile: semi-translated cargo demands" 170
+		"exile: semi-translated oddly specific demands" 30
 
 phrase "hostile disabled korath untranslated"
 	phrase
@@ -48,23 +42,23 @@ phrase "friendly disabled korath untranslated"
 phrase "hostile kor efret untranslated"
 	phrase
 		"efreti: loud angry rambling" 150
-		"efreti: warning about being protected" 50
+		"efreti: threatening warning about being protected" 50
 
 phrase "hostile disabled kor efret untranslated"
 	phrase
-		"hostile kor efret untranslated" 100
-		"efreti: we are disabled, please help us" 50
-		"efreti: warning about being protected" 50
+		"efreti: loud angry rambling" 100
+		"efreti: threatening warning about being protected" 100
 
 phrase "friendly kor efret untranslated"
 	phrase
-		"efreti: miscellaneous rambling" 200
-		"efreti: semi-translated advertisements for outfitters" 50
+		"efreti: miscellaneous rambling" 150
+		"efreti: friendly warning about being protected" 50
 
 phrase "friendly disabled kor efret untranslated"
 	phrase
 		"efreti: we are disabled, please help us" 200
 		"efreti: miscellaneous rambling" 50
+		"efreti: friendly warning about being protected" 50
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -72,9 +66,17 @@ phrase "friendly disabled kor efret untranslated"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-phrase "efreti: warning about being protected"
+phrase "efreti: threatening warning about being protected"
 	phrase
 		"efreti: You should stop attacking us"
+	word
+		" "
+	phrase
+		"efreti: because we are protected by (Insert Powerful Faction Name Here)."
+
+phrase "efreti: friendly warning about being protected"
+	phrase
+		"efreti: You should not attack us"
 	word
 		" "
 	phrase
@@ -106,6 +108,19 @@ phrase "efreti: miscellaneous rambling"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+phrase "efreti: You should not attack us"
+	word
+		"Osanipecpeb kaam atra atapeb it irim"   # Behave while you are here
+		"Hanikah-ikahpeb ralret ofakawrem"       # Use caution with your guns
+		"Ralraw lrapem nacas ifas"               # Do not attack our ships
+		"Casimpeb kobfen it kilran akis"         # Be gentle in our {sky|space|system}
+		"Ralraw hokrem nubfuk ica oki"           # Do not touch that fire button
+		"Riafpeb siab ralret sara-sara akis"     # Play {kindly|gently} with our {young|weak}
+		"Raspovrah ponek kaam atra it irim"      # Smash no eggs while you are here
+		"Ralraw rasosanef ramapeses"             # Do not be {violent|aggressive}
+		"Satik hawawref akis"                    # No {colonizing|conquering} us
+		"Alawref rasatrik atra alawit"           # Keep your actions guarded
+
 phrase "efreti: You should stop attacking us"
 	word
 		"Atra mopah ikrehpeb sabferef"      # You should stop shooting
@@ -132,7 +147,7 @@ phrase "efreti: because we are protected by (Insert Powerful Faction Name Here).
 		"arepas Karg hanata apatoam akis."      # because the Quarg are our siblings (Karg = Quarg)
 		"oaka atra rasa itawref Arkon naim."    # or you will be Archon s**t
 		"arepas Dras ilrotrinef akis."          # because [the] Drak protect us
-		"ralraw iacfam ipekafikra ipihsalref."  # lest antimatter [from an Archon] ends [you]
+		"ralraw iacfam ipekafikra ipihsalref."  # lest antimatter [from an Archon] end [you]
 		"sokro ipatrihlref ramanabfec Karg."    # to avoid a Quarg's vengeance (Karg = Quarg)
 
 phrase "exile: I do bad things to my enemies"
