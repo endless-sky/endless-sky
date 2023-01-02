@@ -310,11 +310,12 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	}
 
 
-
 	if(startIt->GetState() == StartConditions::StartState::UNLOCKED)
 		info.SetCondition("unlocked start");
 
 
+	// Update the information summary.
+	info.SetCondition("chosen start");
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
 	info.SetString("name", startIt->GetDisplayName());
