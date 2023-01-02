@@ -292,7 +292,7 @@ government "Gegno Scin"
 	"penalty for"
 		assist 0
 
-color "governments: Gegno Vi" .91 .53 .53
+color "governments: Gegno Vi" .68 .4 .4
 
 government "Gegno Vi"
 	swizzle 0
