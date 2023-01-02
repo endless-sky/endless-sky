@@ -3151,6 +3151,7 @@ mission "Sativa: Struggling Author 1"
 					decline
 			label "buy her book"
 			action
+				set "beyond the hyperdrive book"
 				payment -60
 			`	You enter the bookstore, ask the employee for one of Ann's books, and purchase it for 60 credits.`
 			choice
