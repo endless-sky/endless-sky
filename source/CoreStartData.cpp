@@ -102,8 +102,6 @@ const string &CoreStartData::Identifier() const noexcept
 bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
 {
 	const string &key = child.Token((isAdd || isRemove) ? 1 : 0);
-	int valueIndex = (isAdd || isRemove) ? 2 : 1;
-	bool hasValue = (child.Size() > valueIndex);
 
 	if(child.Token(0) == "date" && child.Size() >= 4)
 		date = Date(child.Value(1), child.Value(2), child.Value(3));

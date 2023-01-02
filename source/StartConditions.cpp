@@ -205,7 +205,7 @@ void StartConditions::Load(const DataNode &node)
 void StartConditions::LoadState(const DataNode &node, StartState state)
 {
 	bool clearDescription = !infoByState[state].description.empty();
-	for(const auto &child: node)
+	for(const auto &child : node)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
 			infoByState[state].name = child.Token(1);
