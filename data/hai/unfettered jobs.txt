@@ -270,8 +270,6 @@ mission "Unfettered Big Medicals Rush"
 		distance 5 7
 		government "Hai"
 		attributes "spaceport"
-	destination
-		attributes "unfettered"
 	to offer
 		random < 20 + "Unfettered Jump Drive 1: offered" * 20
 	on visit
