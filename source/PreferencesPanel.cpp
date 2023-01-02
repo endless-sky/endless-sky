@@ -548,7 +548,8 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR
+		ALERT_INDICATOR,
+		"Advanced shipyard stats"
 	};
 	bool isCategory = true;
 	int page = 0;
