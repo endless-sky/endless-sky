@@ -3170,17 +3170,16 @@ mission "Sativa: Struggling Author 1"
 			`	"You know, I know of a place called the Coalition. They're a group of alien races. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
 			`	"Wait, really?" asks Ann.`
 			`	"Yes", you say.`
-			`	"But, they don't speak English. How are they gonna read my books?"`
+			`	"But they wouldn't speak English. How are they going to read my books?"`
 			choice
 				`	"They have a translation device."`
 				`	"I'm sure they can learn the language."`
-			`	"That's reassuring."`
-			`	"So, how am I gonna get there?"`
+			`	"That's reassuring... but, how am I even going to get there?"`
 			choice
 				`	"I'll take you there."`
 			`	"Do I have to pay anything? As a struggling author, I really can't pay you."`
 			choice
-				`	"It's okay. I'm willing to make an exception for you.", you explain.`
+				`	"It's okay. I'm willing to make an exception for you."`
 			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Ann.`
 			`	You reply. "Good luck. By the way, we're going to <destination> in Coalition space.`
 			choice
@@ -3194,7 +3193,7 @@ mission "Sativa: Struggling Author 1"
 			`	Ann clears her throat. "I don't know who you are, but my name is Ann Oryza Sativa."`
 			`	Once Ann finishes her introduction, you speak. "She is my friend. Back in my space, she hasn't been a successful author. I brought her here, hoping she would find success writing books for the Coalition.", you explain.`
 			`	"What kind of books does she write?", asks the Kimek.` # heliarch
-			`	"Science fiction books.", says Ann.`
+			`	"Oh, I write science fiction books," says Ann.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
 			`	"Visit Coalition space, we will allow Ann to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause. But first, register she must."`
 			`	"Register?", asks Ann.`
