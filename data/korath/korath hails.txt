@@ -252,7 +252,7 @@ phrase "exile: good food"
 		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
 		"sud nrannrab ranres nracah pikob" # baked cod with garlic
 		"kemmij emu' nrannrab"         # baked sole fillet
-		"''aH koam imipd"              # Chilean Sea Bass
+		"''ah koam imipd"              # Chilean Sea Bass
 		"rati is 'aka 'aklet"          # fish en papillote
 		"rumef rohfe osaf"             # honeydew melons
 		"meba ak'eb nrag pagrel"       # crisp gala apples
@@ -971,7 +971,7 @@ phrase "efreti: eat good food"
 		"ipebupkm palem lrad lrakaf"   # ripe succulent strawberries
 		"tuv lrallrac ralret lragab hikoc"  # baked cod with garlic
 		"kenniy enum lrallrac"         # baked sole fillet
-		"mmaB koaN inihV"              # Chilean Sea Bass
+		"mmab koan inihv"              # Chilean Sea Bass
 		"rasi it maka makpes"          # fish en papillote
 		"runef robfe otaf"             # honeydew melons
 		"neca akmec lrad hadrep"       # crisp gala apples
@@ -1113,7 +1113,7 @@ phrase "efreti: practical skill"
 		"pesvah icuk oba-oba akafukoa"          # automata grey hat hacker
 		"inha kubup cotih"                      # sentient roboticist
 		"imiksapc kagapec milunukafpet"         # dermatological nurse practitioner
-		"ragapaweM Dras rat minarausimc"        # Drak historian and psychoanalyst (Dras = Drak)
+		"ragapawem Dras rat minarausimc"        # Drak historian and psychoanalyst (Dras = Drak)
 		"inha asimiyupkma mikepuek"             # theoretical astrophysicist
 		"lrasok robes sirucuptih ilunursekuib"  # bioengineering hydroponics gardener
 		"sekimpa pekaekiyfa paon amaslra"       # spaceborne amphitheater architect
