@@ -3241,3 +3241,51 @@ mission "Sativa: Struggling Author 2"
 			`	"This is my friend Ann. I'm getting her registered with the Heliarchs today.", you answer.`
 			`	"To reach the registration office, this way you must go.", replies the Heliarch, pointing to a hallway.`
 			`	You and Ann walk down the hallway as directed, until you spot a registration office. Ann walks into the registration office while you sit down on a nearby bench. After 15 minutes, Ann walks out and approaches you. "They finally registered me.". I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move.`
+
+mission "Sativa: Struggling Author 3"
+	name "Back to <planet>"
+	description "Now that Ann Oryza Sativa has completed the registration process, buy her a translation device."
+	source "Ring of Friendship"
+	destination "Ki Patek Ka"
+	to offer
+		has "Sativa: Struggling Author 2: done"
+	on offer
+		conversation
+			`Going through the spaceport looking for Ann, you finally find her at a Saryd restaurant, eating from a plate of vegetables. She sees you and motions for you to take a seat.`
+			`	You sit down next to Ann. "Finally, something I can eat that isn't a mix of vomit and soup!"`
+			choice
+				`	"How good is it?"`
+			`	"It's very good. Probably better than anything I've had back on Zug."`
+			choice
+				`	"So, what do you want to do now?"`
+			`	"I want to get my book published here."`
+			choice
+				`	"Have you found a publishing company yet?"`
+			`	"No." Ann then begins complaining about how it was extremely difficult for her to communicate with the employees, who did not have a translation box.`
+			choice
+				`	"I can buy you a translator."`
+			`	"But will I have to pay for it?"`
+			choice
+				`	"I'll foot the bill."`
+			`	"Great! Where will we buy the translator though?"`
+			`	You recall that when walking past the spaceport back on <destination>, you saw a Coalition electronics store selling translation boxes for 78,000 credits. Maybe you can go there and buy Ann a translation box.`
+			`	"We'll go to <destination> to buy the translation box", you tell Ann. "Finish your meal, then enter my ship. I'll be ready." You walk off to your ship.`
+			`	After 15 minutes, you see Ann walking towards you. You open the hatch as she enters. She settles in her bunk, as you prepare to depart.`
+	on visit
+		dialog
+			`You see an electronics store selling a yellow translator box. It costs 78,000 credits. However, you see that your balance is not high enough.`
+			`	Go earn some money, then return here.`
+	on complete
+		payment -78000
+		conversation
+			`You arrive at the spaceport. Ann leaves her bunk and waits for you to open the hatch. You quickly lead her to the electronics store where pick up a translation box, bring it to the counter, put down a credit chip, and pay.`
+			`	The cashier then attaches the box to a necklace. Ann picks it up and wears it. You instruct Ann on how to use the translation box, as she begins speaking to the cashier and running a few tests to ensure it is working.`
+			`	After roughly four minutes of Ann speaking with the cashier, she turns to you. "Thank you for the box. I had a friendly chat with them. It works great!"`
+			choice
+				`	"Great! So, what are we doing next?"`
+			`	"Getting my book published, of course. We need to find a publishing company!"`
+			`	"We should go for the Kimek", you say. "Their population is 300 billion. For comparison, the human population is only 100 billion."`
+			`	"But where can we find a Kimek publishing company? We haven't even translated our book into their language yet!"`
+			choice
+				`	"We'll find a company. There has to be one out there."`
+			`	"The faster we can get the book published, the better. I'm off to the spaceport now. I can't wait to see what fun conversations I can have with the people there. It could act as inspiration for my next novel, as always. Meet me in the spaceport once you've found a good company."`
