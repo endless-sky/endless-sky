@@ -3292,3 +3292,86 @@ mission "Sativa: Struggling Author 3"
 			choice
 				`	"We'll find a company. There has to be one out there."`
 			`	"The faster we can get the book published, the better. I'm off to the spaceport now. I can't wait to see what fun conversations I can have with the people there. It could act as inspiration for my next novel, as always. Meet me in the spaceport once you've found a good company."`
+
+mission "Sativa: Struggling Author 4"
+	name "Kimek Publishing Company"
+	description "You have found a Kimek publishing company who is willing to take in Ann Oryza Sativa to get her book published. Bring Ann Oryza Sativa to <destination>."
+	source "Ki Patek Ka"
+	destination
+		distance "Ki Patek Ka" 4 6
+		not attributes "station"
+		attributes "kimek"
+	to offer
+		"Sativa: Struggling Author 3: done"
+	on offer
+		conversation
+			`The spaceport of Ki Patek Ka is vast. You decide to search for Ann, who has chosen to settle in the cafeteria, with her laptop. She is typing away at the keyboard, presumably writing a new novel.`
+			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and have instructed me to visit their office on <destination>!", exclaims Ann, once again in an enthusiastic tone.`
+			choice
+				`	"What's the publishing company called?"`
+			`	"They're called House Torimek.`
+			choice
+				`	"Great!"`
+				`	"Let's go!"`
+			`	Ann closes her laptop, places her things in her bag, and begins walking to your ship. You and Ann enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of House Torimek are located.`
+	on complete
+		conversation
+			`Landing on <planet>, Ann is excitedly holding a copy of 'Beyond the Hyperdrive', her novel about humans stealing jump drives from the Quarg. She hastily opens the hatch as soon as it unlocks.`
+			choice
+				`	"Wait for me!"`
+			`	Ann hears your scream and stops. "We're here, Ann. Now, we need to find their offices.", you say.`
+			`	"That won't be necessary. In the message they sent me, they included precise instructions on how to reach their offices."`
+			`	You begin following Ann to the publisher's offices. You walk through endless rows of shops and streets, take a train to a large white building, and eventually find what looks like the Kimek equivalent of an elevator.`
+			`	You and Ann enter the elevator, as Ann presses a button that closes the door and takes you up. When the door opens, you see a Kimek in front of you, a necklace around it with ornate jewelry and a translation device.`
+			`	"Greetings, humans. Follow me, you must, so publish your book, we can.", says the Kimek through its translation box.`
+			`	At the direction of the Kimek, you and Ann begin walking until directed to a room with glass walls. Ann puts down the copy of her book on the table, and the three of you take a seat.`
+			choice
+				`	"Hello. My name is <first> <last>, and this is my friend Ann Oryza Sativa."`
+			`	"Greetings. At House Torimek, I work. A human, I have never encountered. But the book you sent, translate it we were able to."`
+			`	"Read it, we still haven't, and run it past the Heliarch censors, we must."`
+			choice
+				`	"How long will I have to wait?"`
+					goto "how long"
+				`	"Should I stay here to accompany Ann?`
+					goto "should I accompany ann"
+			label "how long"
+			`	"Wait a few hours, you must. But quick, this will be."`
+			choice
+				`	"Should I stay here to accompany Ann?"`
+			label "should I accompany ann"
+			`	"To accompany her in this room, we allow you to, but a lounge for you, we have. If too boring, the interview is, then leave you may."`
+			choice
+				`	(Wait in the lounge.)`
+					goto "lounge"
+				`	(Accompany Ann during the interview.)`
+			`	You choose to remain in the room. Once the Kimek asks the first question, Ann is all too happy to begin discussing the contents of her novel in great detail.`
+			choice
+				`	(Leave the room to avoid spoilers.)`
+					goto "lounge"
+				`	(Stay in the room.)`
+			`	Ann explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, the content of the book. She is still talking in fluent English, but sometimes is forced to repeat statements due to the translator having issues with deciphering her enthusiastic tone.`
+			`	As the hours pass, Ann's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet (or the Kimek equivalent) and thanks you and Ann.`
+				goto "interview over"
+			label "lounge"
+			`	You leave the room and walk to the lounge. Several Kimek are chatting in their native language, while a Saryd and Arach have chosen to rest.`
+			`	After a few hours, you see Ann emerge out of the room, and walk towards you.`
+			choice
+				`	"How did the interview go?"`
+			label "interview over"
+			`	"They told me that due to the censorship and review process, I would have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you'll leave human space, please add a reminder to come back and meet me."`
+			choice
+				`	"Why don't you just go back to human space?"`
+					goto "why not go to human space"
+				`	"I'll make sure to do that."`
+			label "ann thanks you"
+			`	"Thanks again, <first> <last>." I'll forever be grateful to you for helping me. I never thought I'd be successful as an author, but when I met you, you helped me turn my career into something I thought I'd never see.`
+			choice
+				`	"Just helping out."`
+				`	"It's okay."`
+			`	With that, you leave the room, and eventually the building. You board the train, walk past the same series of endless shops and streets in the spaceport city, before returning to your ship. As soon as you're in your ship, you add a reminder to return to Coalition space within six months.`
+				decline
+			label "why not go to human space"
+			`	"I need to be available at all times, so I can answer their questions. Do not worry about me."`
+			choice
+				`	"Got it. Good luck publishing your book."`
+					goto "ann thanks you"
