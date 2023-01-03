@@ -3309,11 +3309,11 @@ mission "Sativa: Struggling Author 4"
 			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and have instructed me to visit their office on <destination>!", exclaims Ann, once again in an enthusiastic tone.`
 			choice
 				`	"What's the publishing company called?"`
-			`	"They're called Torimek.`
+			`	"They're called 'Kimek Reader Publishing'.`
 			choice
 				`	"Great!"`
 				`	"Let's go!"`
-			`	Ann closes her laptop, places her things in her bag, and begins walking to your ship. You and Ann enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of Torimek are located.`
+			`	Ann closes her laptop, places her things in her bag, and begins walking to your ship. You and Ann enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of 'Kimek Reader Publishing' are located.`
 	on complete
 		conversation
 			`Landing on <planet>, Ann is excitedly holding a copy of 'Beyond the Hyperdrive', her novel about humans stealing jump drives from the Quarg. She hastily opens the hatch as soon as it unlocks.`
@@ -3327,7 +3327,7 @@ mission "Sativa: Struggling Author 4"
 			`	At the direction of the Kimek, you and Ann begin walking until directed to a room with glass walls. Ann puts down the copy of her book on the table, and the three of you take a seat.`
 			choice
 				`	"Hello. My name is <first> <last>, and this is my friend Ann Oryza Sativa."`
-			`	"Greetings. At Torimek, I work. A human, I have never encountered. But the book you sent, translate it we were able to."`
+			`	"Greetings. At Kimek Reader Publishing, I work. A human, I have never encountered. But the book you sent, translate it we were able to."`
 			`	"Read it, we still haven't, and run it past the Heliarch censors, we must."`
 			choice
 				`	"How long will I have to wait?"`
