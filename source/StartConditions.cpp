@@ -112,6 +112,10 @@ void StartConditions::Load(const DataNode &node)
 		}
 		else if(key == "thumbnail" && hasValue)
 			infoByState[StartState::UNLOCKED].thumbnail = SpriteSet::Get(value);
+		else if(key == "planet" && hasValue)
+			infoByState[StartState::UNLOCKED].planet = value;
+		else if(key == "system" && hasValue)
+			infoByState[StartState::UNLOCKED].system = value;
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{
 			// TODO: support named stock ships.
