@@ -119,11 +119,14 @@ vector<string> Phrase::GetAll() const
 					else
 					{
 						vector<string> subPhraseVector = element.second->GetAll();
-						for(auto it = choiceVector.begin(); it != choiceVector.end(); ++it)
+
+						vector<string> incompleteChoiceVector = choiceVector;
+						choiceVector.clear();
+
+						for(const auto &incompleteChoice : incompleteChoiceVector)
 						{
-							const string base = *it;
 							for(const auto &subPhraseString : subPhraseVector)
-								it = choiceVector.insert(++it, base + subPhraseString);
+								choiceVector.push_back(incompleteChoice + subPhraseString);
 						}
 					}
 				}
@@ -132,12 +135,12 @@ vector<string> Phrase::GetAll() const
 					partVector.push_back(choiceResult);
 			}
 
-			for(auto it = sentenceVector.begin(); it != sentenceVector.end(); ++it)
-			{
-				const string base = *it;
-				for(const auto &partString : partVector)
-					it = sentenceVector.insert(++it, base + partString);
-			}
+			vector<string> incompleteSentenceVector = sentenceVector;
+			sentenceVector.clear();
+
+			for(const auto &incompleteSentence : incompleteSentenceVector)
+				for(const auto &partToAdd : partVector)
+					sentenceVector.push_back(incompleteSentence + partToAdd);
 		}
 
 		for(auto &it : sentenceVector)
