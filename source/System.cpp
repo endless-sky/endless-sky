@@ -179,6 +179,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		// Handle the attributes which can be "removed."
 		if(key == "hidden")
 			hidden = true;
+		else if(key == "universal ramscoop")
+			universalRamscoop = true;
 		else if(!hasValue && key != "object")
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
@@ -339,8 +341,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			haze = SpriteSet::Get(value);
 		else if(key == "starfield density")
 			starfieldDensity = child.Value(valueIndex);
-		else if(key == "universal ramscoop")
-			universalRamscoop = true;
 		else if(key == "trade" && child.Size() >= 3)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "arrival")
@@ -579,6 +579,13 @@ const set<const System *> &System::JumpNeighbors(double neighborDistance) const
 bool System::Hidden() const
 {
 	return hidden;
+}
+
+
+
+bool System::UniversalRamscoop() const
+{
+	return universalRamscoop;
 }
 
 

@@ -98,6 +98,7 @@ public:
 	const std::set<const System *> &JumpNeighbors(double neighborDistance) const;
 	// Whether this system can be seen when not linked.
 	bool Hidden() const;
+	bool UniversalRamscoop() const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
 	// Additional travel distance to target for ships entering using a jumpdrive.
@@ -202,6 +203,8 @@ private:
 
 	// Defines whether this system can be seen when not linked.
 	bool hidden = false;
+	// Defines whether this system provides ramscoop even to ships that do not have any.
+	bool universalRamscoop = true;
 
 	// Stellar objects, listed in such an order that an object's parents are
 	// guaranteed to appear before it (so that if we traverse the vector in
@@ -219,7 +222,6 @@ private:
 	double solarPower = 0.;
 	double solarWind = 0.;
 	double starfieldDensity = 1.;
-	bool universalRamscoop = true;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
