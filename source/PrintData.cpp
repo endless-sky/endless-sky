@@ -667,29 +667,46 @@ namespace {
 	}
 
 
-	void Phrases(const char *const *argv)
+	void Phrases(int argc, char *argv[])
 	{
 		string phraseName;
 
-		for(const char *const *it = argv + 2; *it; ++it)
+		for(int i = 0; i < argc; i++)
+			cout << argv[i] << '\n';
+
+		for(const char *const *it = argv + 1; *it; ++it)
 		{
 			string arg = *it;
-			if(arg == "--phrase" && *(++it))
+			if(arg == "--phrase" && *++it)
 			{
 				phraseName = *it;
 				break;
 			}
 		}
+		
+		cout << "1" << phraseName << '\n';
 
-		const Phrase *phrase = GameData::Phrases().Get(phraseName);
+		const Phrase *phrase = nullptr;
+
+		for(const auto &it : GameData::Phrases())
+			if(it.first == phraseName)
+			{
+				phrase = &it.second;
+				break;
+			}
 
 		if(!phrase)
 		{
-			cout << "Error: phrase not found.";
+			cout << "Error: invalid phrase name: \"" + phraseName + "\".\n";
 			return;
 		}
 
-		vector<string> results = phrase->GetAll();
+		cout << "2" << phraseName << '\n';
+		cout << "3" << phrase->Name() << '\n';
+
+		vector<string> results = std::move(phrase->GetAll());
+
+		cout << "" << phrase->Name() << '\n';
 
 		for(const auto &it : results)
 			cout << it << '\n';
@@ -740,11 +757,12 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 
 
 
-void PrintData::Print(const char *const *argv)
+void PrintData::Print(int argc, char *argv[])
 {
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
+		cout << "arg: " << arg << '\n';
 		if(arg == "-s" || arg == "--ships")
 		{
 			Ships(argv);
@@ -767,7 +785,7 @@ void PrintData::Print(const char *const *argv)
 		else if(arg == "--matches")
 			LocationFilterMatches(argv);
 		else if(arg == "--phrase")
-			Phrases(argv);
+			Phrases(argc, argv);
 	}
 	cout.flush();
 }

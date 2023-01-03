@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class PrintData {
 public:
 	static bool IsPrintDataArgument(const char *const *argv);
-	static void Print(const char *const *argv);
+	static void Print(int argc, char *argv[]);
 	static void Help();
 };
 
