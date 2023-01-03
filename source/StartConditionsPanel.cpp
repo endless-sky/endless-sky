@@ -54,10 +54,8 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description(FontSet::Get(14))
 {
 	for(const auto &scenario : allScenarios)
-	{
 		if(scenario.Visible(GameData::GlobalConditions()))
 			scenarios.emplace_back(scenario);
-	}
 
 	for(auto &scenario : scenarios)
 		scenario.SetState(GameData::GlobalConditions());
