@@ -39,12 +39,13 @@
 # EFRETI:   fanaT ,raparebes adam adrah kahinef .ralruhubes
 #
 # Clearly, you'll need to manually correct a few things. The commas
-# are in the wrong place, the wrong letters are capitalized, and it's
-# probably best to avoid common names (adam), so you might end up with
-# something like this:
+# and periods are in the wrong place, the wrong letters are
+# capitalized, and it's probably best to avoid common names and
+# religious concepts. (Adam = the first man in some religions.) After
+# manual tweaking, you might end up with something like this:
 #
 # EXILE:  Famas ralarehet, aga' agrap kapimef ranrupuhet.
-# Efreti: Fanat raparebes, adas adrah kahinef ralruhubes.
+# EFRETI: Fanat raparebes, adas adrah kahinef ralruhubes.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -65,7 +66,7 @@
 #
 # A word of warning: sometimes the cipher will produce obscene or
 # objectionable words, or words that are sacred to some people. Use
-# discretion and manually correct them. Ember Space was one of them.
+# discretion and manually correct them. "Ember Space" had that problem.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -89,7 +90,7 @@ replace = [
     'ygd', 'zwk',
 ]
 
-# Translate the table to a pair of dictionaries:
+# Transfer the table into a pair of dictionaries:
 to_exile = {}
 to_efreti = {}
 
