@@ -21,30 +21,48 @@
 #
 # Guidance on food, culture, etc. comes from the Korath lore document.
 
+# Phrases begin with one of these:
+#
+# "efreti:"         = Kor Efret language phrase
+# "exile:"          = Korath Exile language phrase
+# "exile humanika:" = severely mispronounced human phrases spoken by Korath Exiles
+# "exile mixed:"    = contains a mix of Exile and mispronounced human words.
+#
+# The Exiles can speak a smattering of human words learned from raids,
+# though they lack any knowledge of grammar since their is vastly
+# different than ours. They can demand cargo or ask you not to gas
+# them, but they can't communicate complex concepts, so the language
+# barrier is still quite high. Don't expect treaty negotiations or
+# research collaborations anytime soon, unless you find a translator.
 
 phrase "hostile korath untranslated"
 	phrase
-		"exile: loud angry rambling" 175
-		"exile: bragging about tech" 50
-		"exile: semi-translated cargo demands" 150
-		"exile: semi-translated oddly specific demands" 25
+		"exile humanika: cargo demands" 250
+		"exile: loud angry rambling" 150
+		"exile mixed: cargo demands" 100
+		"exile humanika: general threats" 100
+		"exile humanika: insults" 80
+		"exile mixed: bragging about tech" 70
+		"exile: Exclamation!" 50
+		"exile humanika: oddly specific demands" 30
 
 # Civilians don't demand your cargo since they never go on raids.
 phrase "hostile korath civilian untranslated"
 	phrase
 		"exile: loud angry rambling" 140
-		"exile: bragging about tech" 70
+		"exile mixed: bragging about tech" 70
 
 phrase "hostile disabled korath untranslated"
 	phrase
 		"exile: loud angry rambling" 150
-		"exile: semi-translated request for mercy" 100
-		"exile: Please don't do terrible things to us while we are disabled." 50
+		"exile humanika: If you board us, we will win." 100
+		"exile mixed: request for mercy" 100
+		"exile mixed: Please don't do terrible things to us while we are disabled." 50
 
 phrase "friendly korath untranslated"
 	phrase
 		"exile: miscellaneous rambling" 100
-		"exile: bragging about tech" 50
+		"exile mixed: bragging about tech" 50
 
 phrase "friendly disabled korath untranslated"
 	phrase
@@ -78,40 +96,73 @@ phrase "friendly disabled kor efret untranslated"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-phrase "exile: semi-translated cargo demands"
+phrase "exile humanika: If you board us, we will win."
 	phrase
-		"exile: You will give us"
+		"exile humanika: If you board our ship, then"
 	word
 		" "
 	phrase
-		"exile: food"
-		"exile: raw materials"
-	word
-		" "
+		"exile humanika: we will win the boarding mission"
+		"exile humanika: you will lose the boarding mission"
 	phrase
-		"exile: and we will let you live."
+		"exile mixed: , you inferior [individual|species]"
+		"exile: empty phrase"
+	word
+		". "
 
-phrase "exile: semi-translated oddly specific demands"
+phrase "exile humanika: insults"
 	phrase
-		"exile: You will give us"
-	word
-		" "
-	phrase
-		"exile: oddly specific items"
-	word
-		" "
-	phrase
-		"exile: and we will let you live."
+		"exile humanika: Your ship sucks."
+		"exile humanika: We are better than you."
 
-phrase "exile: bragging about tech"
+phrase "exile humanika: cargo demands"
+	phrase
+		"exile humanika: You will give us [cargo] and we will let you live."
+		"exile humanika: All of your [cargo] is ours now."
+
+phrase "exile humanika: general threats"
+	phrase
+		"exile humanika: You will lose this fight."
+		"exile humanika: Nobody can defeat the Korath."
+
+phrase "exile mixed: cargo demands"
+	phrase
+		"exile mixed: You will give us"
+	word
+		" "
+	phrase
+		"exile mixed: food"
+		"exile mixed: raw materials"
+	word
+		" "
+	phrase
+		"exile mixed: and we will let you live."
+
+phrase "exile humanika: oddly specific demands"
+	phrase
+		"exile humanika: You will give us"
+	word
+		" "
+	phrase
+		"exile humanika: cultural items" 2
+		"exile humanika: strange items"
+		"exile humanika: open source games"
+	word
+		" "
+	phrase
+		"exile humanika: and we will let you live."
+
+phrase "exile mixed: bragging about tech"
 	phrase
 		"exile: Our ship's"
 	word
 		" "
 	phrase
-		"exile: semi-translated weapons"  12
-		"exile: semi-translated engines"  7
-		"exile: semi-translated systems"  7
+		"exile: weapons"  7
+		"exile: engines"  5
+		"exile: systems"  5
+		"exile humanika: systems"  12
+		"exile humanika: engines"  12
 	word
 		" "
 	phrase
@@ -123,15 +174,45 @@ phrase "exile: bragging about tech"
 		.
 		!
 
-phrase "exile: semi-translated request for mercy"
+phrase "exile mixed: request for mercy"
 	phrase
 		"exile: Our ship is disabled."
 		"exile: Our systems went haywire."
 	word
 		" "
 	phrase
-		"exile: Please don't do terrible things to us while we are disabled."
+		"exile mixed: Please don't do terrible things to us while we are disabled."
 
+
+phrase "exile humanika: You will lose this fight."
+	word
+		"Yu loose here."        # You [will] lose here. (mispronounced)
+		"Die yuu nuw."          # Die you now. (mispronounced)
+		"Wee wiiin yuu los."    # We [will] win [and] you [will] lose. (mispronounced)
+		"Yoo no gud fite."      # You are no good in a fight. (mispronounced)
+
+
+phrase "exile humanika: Nobody can defeat the Korath."
+	word
+		"We Korath gud!"        # We, the Korath, are good [at doing things]! (mispronounced)
+		"Korath do bes!"        # Korath do best! (mispronounced)
+		"Korath flame stong."   # [The] Korath flame is strong. (mispronounced)
+		"No better Korath."     # Nobody is better than the Korath. (mispronounced)
+		"Korath, see?"          # Just look at us! Can you really say Korath aren't amazing?
+		"Foeva Koath!"          # The Korath will live forever!
+
+phrase "exile: Exclamation!"
+	word
+		# Strange korath sounds?
+		"Hththththt!"           # Some strange Korath sound?
+		"Sssnn'k!"              # Some strange Korath sound?
+		"Kaaaaaaaaaiii't!"      # Some strange Korath sound?
+
+		# Korath exclamations
+		"Pusuh!"                # {Misinformed|misguided} individual!
+		"Abrakimot!"            # Person with no {skin|intelligence}!
+		"Ranrarefet!"           # {Towards|To|With the goal of} {victory|success}!
+		"Lomek'toh!"            # {Rotten|Not cared for|Genetically mutated in a negative way} egg!
 
 phrase "exile: we are disabled, please help us"
 	phrase
@@ -185,12 +266,16 @@ phrase "efreti: miscellaneous rambling"
 		"efreti: I learned to do things"
 
 # Here, the Korath do their best to speak human, using what few words
-# they know, hoping their pleas for mercy will be understood.
-
-phrase "exile: Please don't do terrible things to us while we are disabled."
+# they know, hoping their pleas for mercy will be understood.  This
+# has a mix of exile and human speech, since even Korath that can't
+# speak human at all will try to get the point across using a word or
+# two they heard before to say, "Don't gas us!"
+phrase "exile mixed: Please don't do terrible things to us while we are disabled."
 	word
-		"'uu shud"               # You should (mispronounced)
-		"can hav"                # Can have (mispronounced)
+		"'uu shud"          3    # You should (mispronounced)
+		"Can hav"           3    # Can have (mispronounced)
+		"'oo wil"           3    # You will (mispronounced)
+		"Most yuu"          3    # Must you (mispronounced)
 
 		"Ratami'"                # Please
 		"Asra 'olap"             # You should
@@ -199,9 +284,10 @@ phrase "exile: Please don't do terrible things to us while we are disabled."
 	word
 		" "
 	word
-		"'oo erve gas."       # no nerve gas (mispronounced)
-		"'o nerf gus."        # no nerve gas (mispronounced)
-		"no g'as us."         # no gas us (mispronounced)
+		"'oo merve gas."   4  # no nerve gas (mispronounced)
+		"'o nerf gus."     4  # no nerve gas (mispronounced)
+		"no g'as us."      4  # no gas us (mispronounced)
+		"nerf gas no."     4  # nerve gas no (mispronounced)
 
 		"ranrav rataron 'an jala'."       # do not use nerve gas.
 		"ranrav 'an ifat."                # do not gas us.
@@ -219,13 +305,196 @@ phrase "exile: Please don't do terrible things to us while we are disabled."
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
+phrase "exile humanika: If you board our ship, then"
+	word
+		"Yoo bored us"         # You board us (mispronounced)
+		"Board to"             # Board [us] to (mispronounced)
+		"Come'n onbod"         # Come in onboard (mispronounced)
+		"No you git unbod"     # No, you get onboard (mispronounced)
+		"Ova when boad"        # It will be over for you when you board us (mispronounced)
+
+phrase "exile humanika: we will win the boarding mission"
+	word
+		"kil ur marins"        # kill your marines (mispronounced)
+		"burn yuu up"          # burn you up (mispronounced)
+		"eat yoo skin"         # eat your skin (mispronounced)
+		"mak bon piles"        # make piles of your bones (mispronounced)
+		"to ape meet"          # turn you into ape meat (mispronounced)
+
+phrase "exile humanika: you will lose the boarding mission"
+	word
+		"yoo looose"           # you will lose (mispronounced)
+		"yoo ded mor"          # you dead more (mispronounced)
+		"die so die"           # die so die (What does this mean?)
+		"lose yoo crewe"       # lose your crew (mispronounced)
+		"no crew leff"         # no crew left (mispronounced)
+
+phrase "exile humanika: Your ship sucks."
+	phrase
+		"exile humanika: Your ship or its contents or attributes"
+	word
+		" "
+	phrase
+		"exile humanika: are inferior to what we possess"
+		"exile humanika: are sub-par by any reasonable standards"
+	phrase
+		"exile mixed: , you inferior [individual|species]"
+		"exile: empty phrase"
+	word
+		"."
+
+phrase "exile humanika: Your ship sucks."
+	phrase
+		"exile humanika: Your ship or its contents or attributes"
+	word
+		" "
+	phrase
+		"exile humanika: are inferior to what we possess"
+		"exile humanika: are sub-par by any reasonable standards"
+	phrase
+		"exile mixed: , you inferior [individual|species]"
+		"exile: empty phrase"
+	word
+		"."
+
+phrase "exile humanika: We are better than you."
+	phrase
+		"exile humanika: Our ship or its contents or attributes"
+	word
+		" "
+	phrase
+		"exile humanika: are superior to what you possess"
+		"exile humanika: are above par by any reasonable standards"
+	phrase
+		"exile mixed: , you inferior [individual|species]"
+		"exile: empty phrase"
+	word
+		"."
+
+phrase "exile humanika: Your ship or its contents or attributes"
+	word
+		"Yer ship"           # Your ship (mispronounced)
+		"Yoo"                # You (mispronounced)
+		"Yer injuns"         # Your engines (mispronounced)
+		"Yu wepuns"          # Your weapons (mispronounced)
+		"'oo gen'rator"      # Your [power] generator (mispronounced)
+		"Dem ship"           # Them ship (mispronounced)
+
+phrase "exile humanika: Our ship or its contents or attributes"
+	word
+		"Are ship"           # Our ship (mispronounced)
+		"Wee"                # We (mispronounced)
+		"Mi injuns"          # My engines (mispronounced)
+		"Oar wepuns"         # Our weapons (mispronounced)
+		"Ere pasa core"      # Our plasma core (mispronounced)
+		"Mi ship"            # My ship (mispronounced)
+
+phrase "exile humanika: are sub-par by any reasonable standards"
+	word
+		"'s no gud"          # is no good (mispronounced)
+		"baad"               # bad (mispronounced)
+		"be dren"            # is dren (mispronounced)
+		"dust'n wurk"        # doesn't work (mispronounced)
+		"ain' gud"           # ain't good (mispronounced)
+
+phrase "exile humanika: are above par by any reasonable standards"
+	word
+		"'s amazin"          # is amazing (mispronounced)
+		"do gud"             # {do|does} good (mispronounced)
+		"werks wall"         # works well (mispronounced)
+		"snassy"             # {snazzy|sassy} (mispronounced)
+		"hi tek"             # [is] high tech (mispronounced)
+
+phrase "exile humanika: are inferior to what we possess"
+	word
+		"les ours"           # [is] less [than] ours (mispronounced)
+		"smalrn oars"        # [is] smaller than ours (mispronounced)
+		"week thin me"       # [is] weaker than me (mispronounced)
+
+phrase "exile humanika: are superior to what you possess"
+	word
+		"be'ren yurs"        # [is] better than yours
+		"bigger yers"        # [is] bigger than yours
+		"ston thin you"      # [is] stronger than {you|yours}
+
+phrase "exile: empty phrase"
+	word
+		""
+
+phrase "exile mixed: , you inferior [individual|species]"
+	word
+		", "
+	phrase
+		"exile humanika: you inferior species"
+		"exile humanika: you inferior individual"
+
+phrase "exile humanika: you inferior species"
+	word
+		"yuu beeg apes"       # You big apes (mispronounced)
+		"humanika dren"       # human dren (mispronounced)
+		"ugli munkys"         # ugly monkeys (mispronounced)
+		"weeeeek speeeces"    # weak species (mispronounced)
+
+phrase "exile humanika: you inferior individual"
+	word
+		"yoo ugli foo"        # You ugly fool (mispronounced)
+		"skinlis munky"       # Skinless monkey (mispronounced)
+		"ugli halching"       # Ugly hatchling (mispronounced)
+		"frellin' copse"      # Frelling corpse (mispronounced)
+
+phrase "exile humanika: All of your [cargo] is ours now."
+	phrase
+		"exile humanika: All of your"
+	word
+		" "
+	phrase
+		"exile humanika: non-luxury foodstuffs" 3
+		"exile humanika: raw materials" 2
+		"exile humanika: tactical and strategic items"
+	word
+		" "
+	phrase
+		"exile humanika: is ours now."
+
+phrase "exile humanika: You will give us [cargo] and we will let you live."
+	phrase
+		"exile humanika: You will give us"
+	word
+		" "
+	phrase
+		"exile humanika: non-luxury foodstuffs" 3
+		"exile humanika: raw materials" 2
+		"exile humanika: tactical and strategic items"
+	word
+		" "
+	phrase
+		"exile humanika: and we will let you live."
+
+phrase "exile humanika: You will give us"
+	word
+		"Can haf"                # Can have (mispronounced)
+		"Will haf"               # Will have (mispronounced)
+		"Gif us"                 # Give us (mispronounced)
+		"Tribut'"                # Tribute (mispronounced, probably heard it from pirates)
+		"Wee taek yur"           # We take your (mispronounced)
+		"Is are"                 # Is our (mispronounced)
+
+phrase "exile humanika: All of your"
+	word
+		"All yer"                # All your (mispronounced)
+		"Yor"                    # Your (mispronounced)
+		"Te"                     # The (mispronounced)
+		"A' of our"              # All of your (mispronounced)
+
+phrase "exile humanika: is ours now."
+	word
+		"blong to 's."           # belong to us (mispronounced)
+		"giv mine."              # give mine (mispronounced)
+		"arrr ows now."          # are ours now (mispronounced)
+		"ar b'long to us."       # are belong to us (mispronounced)
+
 phrase "exile: You will give us"
 	word
-		"Can haf"     2          # Can have (mispronounced)
-		"Will haf"    2          # Will have (mispronounced)
-		"Gif us"      2          # Give us (mispronounced)
-		"Tribut'"     2          # Tribute (mispronounced, probably heard it from pirates)
-
 		"Asra rata ilehfef ifat"     # You will give us
 		"Ifat kokroref asra"         # We demand your
 		"Itimif aofe' oftimif"       # [We now] own all of your
@@ -234,10 +503,15 @@ phrase "exile: You will give us"
 		"Ratomlebis tokro mihfanref" # [It is] necessary to take [your]
 		"Pakrileb rapakleh bosip nrag akit mihfa" # [Our] survival dictates we take
 
-phrase "exile: food"
+phrase "exile mixed: You will give us"
 	phrase
-		"exile: good food"
-		"exile: mispronounced food" 2
+		"exile: You will give us" 2
+		"exile humanika: You will give us"
+
+phrase "exile mixed: food"
+	phrase
+		"exile: good food" 2
+		"exile humanika: non-luxury foodstuffs"
 
 # Wish list food, probably half joking
 phrase "exile: good food"
@@ -261,10 +535,10 @@ phrase "exile: good food"
 		"igah 'otik rinris ranres ra'aip" # chilled baby mice with garnish
 		"ak'ab lamo midet ranres u'tah nradrid" # a pasta of small snakes with mice meatballs
 
-phrase "exile: raw materials"
+phrase "exile mixed: raw materials"
 	phrase
-		"exile: good raw materials"
-		"exile: mispronounced raw materials" 2
+		"exile: good raw materials" 2
+		"exile humanika: raw materials"
 
 phrase "exile: good raw materials"
 	word
@@ -280,44 +554,69 @@ phrase "exile: good raw materials"
 		"ehokurar ruhlat ifama"          # naturally [formed] carbon nanotubes
 		"ralahfem karuhlatimub"          # polycarbonate sheets
 
+phrase "exile mixed: and we will let you live."
+	phrase
+		"exile: and we will let you live." 2
+		"exile humanika: and we will let you live."
+
+phrase "exile humanika: and we will let you live."
+	word
+		"lat 'oo liff."                   # let you live (mispronounced)
+		"oo go frie."                     # you go free (mispronounced)
+		"n't oo die."                     # not you die (mispronounced)
+		"oo stai ali'f."                  # you stay alive (mispronounced)
+		"wee go o o way."                 # we go {our own way|away} (mispronounced)
+		"wee go way."                     # we go away (mispronounced)
+		"uu keep ur skin"                 # you will keep your skin (mispronounced)
+		"u see morrow"                    # you [will] see tomorrow (mispronounced)
+
 phrase "exile: and we will let you live."
 	word
-		"lat 'oo liff."           2       # let you live (mispronounced)
-		"oo go frie."             2       # you go free (mispronounced)
-		"n't oo die."             2       # not you die (mispronounced)
-		"oo stai ali'f."          2       # you stay alive (mispronounced)
-		"wee go way."             2       # we go {our own way|away} (mispronounced)
-
 		"'amahfef asra ranres ranro'nramet bosip."   # [we will] reward you with survival.
 		"ofat rata kapim tu'eh."         # you will see tomorrow.
 		"rata anavref kimot asra."       # [you] will keep your skin.
 		"imahfet et ofanlaomet."         # [we will let you] return to your family.
-		"ratagalef ranro'nramet bosip asra"   # [you can] celebrate your survival
+		"ratagalef ranro'nramet bosip asra."   # [you can] celebrate your survival
 
 
 # Attempt at demanding what they need so you understand. Korath know
 # very few words and don't know our grammar at all, so it doesn't come
 # out right.
-phrase "exile: mispronounced food"
-	word
-		"fuud"                       # food
-		"fude"                       # food
-		"foo'de"                     # food
-		"sammon"                     # salmon
-		"cikken"                     # chicken
-		"beaf"                       # beef
-		"let'us"                     # lettuce
-		"verman"                     # vermin
-		"frute"                      # fruit
-		"fuit"                       # fruit
-		"vetaples"                   # vegetables
-		"buberris"                   # blueberries
-		"insets"                     # insects
-		"isekts"                     # insects
-		"b'eet lus"                  # beetles
-		"feesh"                      # fish
 
-phrase "exile: mispronounced raw materials"
+# Non-luxury foods
+phrase "exile humanika: non-luxury foodstuffs"
+	word
+		# General terms for food have a high probability
+		"fuud"         2             # food
+		"f'oood"       2             # food
+		"fude"         2             # food
+		"foo'de"       2             # food
+
+		# Terms for categories of food have a high probability
+		"frute"        2             # fruit
+		"vetaples"     2             # vegetables
+		"nots"         2             # nuts
+		"mete"         2             # meat
+
+		# Individual foods are less likely
+		"sammon"       1             # salmon
+		"cikken"       1             # chicken
+		"beaf"         1             # beef
+		"let'us"       1             # lettuce
+		"verman"       1             # vermin
+		"fuit"         1             # fruit
+		"buberris"     1             # blueberries
+		"insets"       1             # insects
+		"isekts"       1             # insects
+		"b'eet lus"    1             # beetles
+		"feesh"        1             # fish
+		"starburries"  1             # strawberries
+		"burds"        1             # birds
+		"burries"      1             # berries
+		"base"         1             # bass
+		"werms"        1             # worms
+
+phrase "exile humanika: raw materials"
 	word
 		"iren"         # iron
 		"copear"       # copper
@@ -330,29 +629,73 @@ phrase "exile: mispronounced raw materials"
 		"ste'l"        # steel
 		"pla'tk"       # plastic
 
-# These show the Korath Exiles do still try to have a culture. They're
-# also easter eggs. All of these are horribly mispronounced human words.
-phrase "exile: oddly specific items"
+phrase "exile humanika: tactical and strategic items"
+	word
+		"mapse of humanika spass"  # Maps of human space
+		"tar maps"                 # Star maps
+		"humanika flit moment dita" # Human fleet movement data
+		"r'd wermhol resurch"      # Red wormhole research
+		"rad holl resurch"         # Red [worm]hole research
+		"wermhol resurch"          # Wormhole research
+		"sampil o humanika tetch"  # {Examples|Samples} of human technology
+		"inernal govment docmants" # internal government documents
+		"humanika beakoff gupes"   # Information about human break-off groups (ie.: Remnant or Alphas)
+		"medital resorch humanika" # Medical research relating to humans. (Perhaps to keep captives alive, design bioweapons, or simple curiosity.)
+		"nerf gus"                 # Nerve gas, probably to develop counter-measures.
+		"all yer data"             # all [of] your data
+		"'avigatun lugs"           # navigation logs
+
+
+# These show the Korath Exiles do still try to have a culture. All of
+# these are horribly mispronounced human words.
+phrase "exile humanika: cultural items"
 	word
 		"sculping suplis"          # Sculpting supplies
 		"painbush n paint"         # Paintbrushes and paint
 		"musik'l instr'mats"       # Musical instruments
 		"dr'm set"                 # Drum set
-		"Bondl's Fontr'z: tee Korath Spantion" # Boundless Frontiers: the Korath Expansion
-		"kit'ns"                   # Kittens (are these for eating?) 
-		"Ter Mite Bee Riot's Abums" # There Might Be Riots Albums
-		"Hoy ac'rn cookees"        # Hai acorn cookies
-		"mapse of humanika spass"  # Maps of human space
-		"r'd wermhol resurch"      # Red wormhole research
-		"mosart musaic"            # Mozart music
-		"Dunduns un Dagons"        # I'll let you guess this one
-		"toilat pepper"            # Toilet paper
-		"geko"                     # Gecko (a pet?)
-		"Baffer Wesnort"           # open source game
-		"Komium Bee Essu"          # Another open source game
-		"Feedoid R Peegee"         # Yet another open source game
+		"Mosart musaic"            # Mozart music
 		"tess set's"               # chess sets
 		"fingre paint'n k't"       # finger-painting kit
+		"all yer operas"           # all of your operas
+		"sonettes n haukus"        # sonnets and haikus
+		"color'd pencals"          # colored pencils
+		"buulk fabr'c"             # bulk fabric
+		"strang instraments"       # string instruments
+		"rok gittar"               # rock guitar
+
+
+# These are items that make you wonder what strange things happen
+# among the Korath that make them ask for this.
+phrase "exile humanika: strange items"
+	word
+		"kit'ns"                   # Kittens (are these for eating?) 
+		"Hoy ac'rn cookees"        # The best cookies in the galaxy: Hai acorn cookies
+		"toilat pepper"            # Toilet paper (why don't they use a bidet?)
+		"geko"                     # Gecko (a pet?)
+		"Dunduns un Dagons"        # I'll let you guess this one
+		"Bondl's Fontr'z: tee Korath Spantion" # Boundless Frontiers: the Korath Expansion
+		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums
+		"How tu Serv Man buuk"     # The book, "How to Serve Man"
+		"ganfadder clok"           # grandfather clock
+		"bored games"              # board games
+
+
+# The Exiles like to play other open source games. These are horribly
+# mispronounced names of actual games.
+phrase "exile humanika: open source games"
+	word
+		"Nethick"
+		"Batfer Westnorth"
+		"Komium Bee Essu"
+		"Feedoid R Peegee"
+		"Fee Rion"
+		"Flea Civ"
+		"Ehm Ay Are Ess"
+		"Hedgeworts"
+		"Uppen Tee Tee Dee"
+		"Supper Tax Kert"
+		"Zero Add'ee"
 
 
 phrase "exile: [system] is snazzy"
@@ -399,9 +742,11 @@ phrase "exile: Our malfunctioning system"
 	word
 		" "
 	phrase
-		"exile: semi-translated weapons"  12
-		"exile: semi-translated engines"  7
-		"exile: semi-translated systems"  7
+		"exile humanika: engines"  9
+		"exile humanika: systems"  9
+		"exile: engines"  4
+		"exile: systems"  4
+		"exile: weapons"  4
 
 phrase "exile: Our ship's"
 	word
@@ -414,7 +759,7 @@ phrase "exile: Our ship's"
 # If we were to rename the outfits, the names should be finely
 # crafted after wide-spread review.
 
-phrase "exile: semi-translated weapons"
+phrase "exile: weapons"
 	word
 		"mihfa etilk' kellok"           # grab-strike turret
 		"alaref ratunufeb krop'"        # shunt-strike turret
@@ -432,7 +777,7 @@ phrase "exile: semi-translated weapons"
 		"lodromeb rabuk iba"            # firestorm battery
 
 
-phrase "exile: semi-translated engines"
+phrase "exile: engines"
 	word
 		"nrulusreb ovaf"                # forward thrusters
 		"nrulusreb timahlek"            # reverse thrusters
@@ -441,11 +786,16 @@ phrase "exile: semi-translated engines"
 		"ri'ef"                         # engines
 		"talennreb lo'oh"               # bow drive
 
+phrase "exile humanika: engines"
+	word
 		"tusters"                       # thrusters (mispronounced)
 		"injuns"                        # engines (mispronounced)
-		"tearing"                       # steering (mispronounced)
+		"s'earing"                       # steering (mispronounced)
+		"bow drif"                      # bow drive (mispronounced)
+		"fawid tusters"                 # forward thrusters (mispronounced)
+		"'eversers"                     # reversers (mispronounced)
 
-phrase "exile: semi-translated systems"
+phrase "exile: systems"
 	word
 		"ikri fek'i'"                   # systems core[s]
 		"ikri af'amb"                   # plasma core[s]
@@ -454,8 +804,12 @@ phrase "exile: semi-translated systems"
 		"pamunreb rapah latah"          # fuel processor
 		"roi'ak' rarapakleb"            # defense station
 
+phrase "exile humanika: systems"
+	word
 		"sysim corr"                    # systems core (mispronounced)
+		"lasma corr"                    # plasma core (mispronounced)
 		"eat sunt"                      # heat shunt (mispronounced)
+		"likid coolar"                  # liquid cooler (mispronounced)
 		"gruel process'r"               # fuel processor (mispronounced)
 
 phrase "exile: has destroyed our ship."
@@ -891,6 +1245,8 @@ phrase "exile: listen to (Band)"
 		"femapab"                 # devour
 		"amilar"                  # stream
 	word
+		" "
+	word
 		"Ter Mite Bee Riot"         # There Might Be Riots
 		"Rati I'arifam"                 # Laminated Fish
 		"Kafait Tikenumuba"	        # Apologetic Apocalypse
@@ -910,6 +1266,8 @@ phrase "efreti: listen to (Band)"
 		"ritfaki"            # enjoy
 		"fenahac"            # devour
 		"anipar"             # stream
+	word
+		" "
 	word
 		"Ter Mite Bee Riot"        # There Might Be Riots
 		"Rasi Imarifan"                # Laminated Fish
@@ -1037,8 +1395,9 @@ phrase "exile: artistic or musical skill"
 		"katah 'ah fols"                     # bass drumming talent
 		"katah ahok nrag laom a'aih"         # terrific tuba talent
 		"i'i'ubfut ruu'ahalkrut nrag tilaref"  # catchy contrabassoon composition
-		"raigragr ratulunnrek aimunruf"      # Mongolian throat singing
-		"zavvakat nrag nrimab mibfalek"      # the most skilled katajjaq ( Intuit throat singing)
+		"iefuupt nrag kanra' 'iruflap"       # perfectly harmonious khoomei (Tuva throat singing)
+		"zavvakat nrag nrimab mibfalek"      # the most skilled katajjaq (Intuit throat singing)
+		"lriyee lrad kalram hatri"           # divinely beautiful eefing (Xhosa throat singing)
 		"Far Upugf Enrel Ugt"                # Nam Myoho Renge Kyo (Buddhist religious chant)
 		"Fu A Al Ab Ad Ar Pips"              # Om A Ra Pa Ca Na Dhih (Buddhist religious chant)
 		"i'i'ubfut onam dimesepdg'b-k'ub"    # post-psychedelic song composition
@@ -1060,7 +1419,8 @@ phrase "efreti: artistic or musical skill"
 		"kasab mmab fopt"                    # bass drumming talent
 		"kasab abok lrad paon amaib"         # terrific tuba talent
 		"imimucfus ruummabapkrus lrad siparef"  # catchy contrabassoon composition
-		"raidradr rasupullrek ainulruf"      # Mongolian throat singing
+		"iefuuhs lrad kalram mirufpah"       # perfectly harmonious khoomei (Tuva throat singing)
+		"lriyee lrad kalram hatri"           # divinely beautiful eefing (Xhosa throat singing)
 		"tawwakas lrad lrinac nicfapek"      # the most skilled katajjaq (Intuit throat singing)
 		"Far Uhudf Elrep Uds"                # Nam Myoho Renge Kyo (Buddhist religious chant)
 		"Fu A Ap Ac Av Ar Hiht"              # Om A Ra Pa Ca Na Dhih (Buddhist religious chant)
