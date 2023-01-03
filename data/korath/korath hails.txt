@@ -252,7 +252,7 @@ phrase "exile: good food"
 		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
 		"sud nrannrab ranres nracah pikob" # baked cod with garlic
 		"kemmij emu' nrannrab"         # baked sole fillet
-		"''ah koam imipd"              # Chilean Sea Bass
+		"'ah koam imipd"               # Chilean Sea Bass
 		"rati is 'aka 'aklet"          # fish en papillote
 		"rumef rohfe osaf"             # honeydew melons
 		"meba ak'eb nrag pagrel"       # crisp gala apples
@@ -715,8 +715,8 @@ phrase "exile: the last person who attacked me had something bad happen to them"
 	phrase
 		"exile: had something bad happen to them"
 	word
-		"!"
-		"."
+		"! "
+		". "
 	phrase
 		"exile: You are the next person that will have something bad happen to them."
 
@@ -728,8 +728,8 @@ phrase "efreti: the last person who attacked me had something bad happen to them
 	phrase
 		"efreti: had something bad happen to them"
 	word
-		"!"
-		"."
+		"! "
+		". "
 	phrase
 		"efreti: You are the next person that will have something bad happen to them."
 
@@ -1043,9 +1043,9 @@ phrase "efreti: i learned | practiced | taught"
 phrase "exile: artistic or musical skill"
 	word
 		"ramibfaleket riafleh ummed"         # cello playing skills
-		"katah ''ah fols"                    # bass drumming talent
+		"katah 'ah fols"                     # bass drumming talent
 		"katah ahok nrag laom a'aih"         # terrific tuba talent
-		"i'i'ubfut ruu''ahalkrut nrag tilaref"  # catchy contrabassoon composition
+		"i'i'ubfut ruu'ahalkrut nrag tilaref"  # catchy contrabassoon composition
 		"raigragr ratulunnrek aimunruf"      # Mongolian throat singing
 		"zavvakat nrag nrimab mibfalek"      # the most skilled katajjaq ( Intuit throat singing)
 		"Far Upugf Enrel Ugt"                # Nam Myoho Renge Kyo (Buddhist religious chant)
