@@ -42,6 +42,8 @@ public:
 	const std::string &Name() const;
 	std::string Get() const;
 
+	std::vector<std::string> GetAll() const;
+
 
 private:
 	bool ReferencesPhrase(const Phrase *phrase) const;

@@ -93,6 +93,62 @@ string Phrase::Get() const
 
 
 
+vector<string> Phrase::GetAll() const
+{
+	vector<string> result;
+
+	for(const auto &sentence : sentences)
+	{
+		vector<string> sentenceVector;
+		sentenceVector.emplace_back();
+
+		for(const auto &part : sentence)
+		{
+			vector<string> partVector;
+
+			for(const auto &choice : part.choices)
+			{
+				vector<string> choiceVector;
+				choiceVector.emplace_back();
+
+				for(const auto &element : choice)
+				{
+					if(!element.first.empty())
+						for(auto &it : choiceVector)
+							it.append(element.first);
+					else
+					{
+						vector<string> subPhraseVector = element.second->GetAll();
+						for(auto it = choiceVector.begin(); it != choiceVector.end(); ++it)
+						{
+							const string base = *it;
+							for(const auto &subPhraseString : subPhraseVector)
+								it = choiceVector.insert(++it, base + subPhraseString);
+						}
+					}
+				}
+
+				for(auto &choiceResult : choiceVector)
+					partVector.push_back(choiceResult);
+			}
+
+			for(auto it = sentenceVector.begin(); it != sentenceVector.end(); ++it)
+			{
+				const string base = *it;
+				for(const auto &partString : partVector)
+					it = sentenceVector.insert(++it, base + partString);
+			}
+		}
+
+		for(auto &it : sentenceVector)
+			result.push_back(it);
+	}
+
+	return result;
+}
+
+
+
 // Inspect this phrase and all its subphrases to determine if a cyclic
 // reference exists between this phrase and the other.
 bool Phrase::ReferencesPhrase(const Phrase *other) const
