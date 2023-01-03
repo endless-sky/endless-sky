@@ -24,10 +24,10 @@
 
 phrase "hostile korath untranslated"
 	phrase
-		"exile: loud angry rambling" 150
+		"exile: loud angry rambling" 175
 		"exile: bragging about tech" 50
 		"exile: semi-translated cargo demands" 150
-		"exile: semi-translated oddly specific demands" 50
+		"exile: semi-translated oddly specific demands" 25
 
 # Civilians don't demand your cargo since they never go on raids.
 phrase "hostile korath civilian untranslated"
