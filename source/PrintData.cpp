@@ -488,7 +488,7 @@ namespace {
 			{
 				const Outfit &outfit = it.second;
 				for(const auto &attribute : outfit.Attributes())
-					attributes.insert(attribute.first);
+					attributes.insert(attribute.first.GetString());
 			}
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
 			for(const auto &attribute : attributes)
