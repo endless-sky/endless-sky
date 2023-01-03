@@ -11396,7 +11396,7 @@ system "Erba Yle"
 	trade "Luxury Goods" 1105
 	trade Medical 915
 	trade Metal 259
-	trade Plastic 4717
+	trade Plastic 417
 	fleet "Small Scin" 1300
 	fleet "Scin Cargo" 800
 	fleet "Scin Transport" 1100
