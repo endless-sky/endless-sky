@@ -1110,7 +1110,7 @@ phrase "efreti: practical skill"
 		"ranicfapekes lrikunic lrad paon amaib" # superb piloting skills
 		"raslrabfelref kabu sikuibikra"         # developing antibiotic medicine
 		"Quarg i'afumbis ras rapafevlek"        # Quarg diplomacy and translation
-		"pesvah icuk oba-oba akafukoa"          # automata grey hat hacker
+		"pesvah icuk oba-oba akafukoa"          # automata gray hat hacker
 		"inha kubup cotih"                      # sentient roboticist
 		"imiksapc kagapec milunukafpet"         # dermatological nurse practitioner
 		"ragapawem Drak rat minarausimc"        # Drak historian and psychoanalyst
