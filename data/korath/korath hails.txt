@@ -952,7 +952,8 @@ phrase "exile: eat good food"
 		"raofavleb"                    # banquet
 		"pagronref"                    # masticate
 		"kininnref"                    # nibble
-
+	word
+		" "
 	phrase
 		"exile: good food"
 
@@ -968,7 +969,8 @@ phrase "efreti: eat good food"
 		"raofawpec"                    # banquet
 		"hadrolref"                    # masticate
 		"kilillref"                    # nibble
-
+	word
+		" "
 	word
 		"atanem oawih aok palem"       # fresh dark green lettuce
 		"lrabfos satab hadrep"         # crunchy rhino beetles
