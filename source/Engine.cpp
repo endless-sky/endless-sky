@@ -156,7 +156,7 @@ namespace {
 			return false;
 
 		// Ships that don't share a language with the player shouldn't communicate normally.
-		// Only random event hails should work, and only if the side has explicitly added
+		// Only random event hails should work, and only if the government explicitly has
 		// untranslated hails. This is ensured by the allowUntranslated argument.
 		if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 			return false;
