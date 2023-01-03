@@ -3287,7 +3287,7 @@ mission "Sativa: Struggling Author 3"
 			choice
 				`	"Great! So, what are we doing next?"`
 			`	"Getting my book published, of course. We need to find a publishing company!"`
-			`	"We should go for the Kimek", you say. "Their population is 300 billion. For comparison, the human population is only 100 billion."`
+			`	"We should go for the Kimek", you say. "Their population is 200 billion. For comparison, the human population is only 100 billion."`
 			`	"But where can we find a Kimek publishing company? We haven't even translated our book into their language yet!"`
 			choice
 				`	"We'll find a company. There has to be one out there."`
