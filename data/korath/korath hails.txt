@@ -199,10 +199,6 @@ phrase "exile: Please don't do terrible things to us while we are disabled."
 	word
 		" "
 	word
-		"mersy."              # mercy (mispronounced)
-		"has mersi."          # have mercy (mispronounced)
-		"sow merci."          # show mercy (mispronounced)
-
 		"'oo erve gas."       # no nerve gas (mispronounced)
 		"'o nerf gus."        # no nerve gas (mispronounced)
 		"no g'as us."         # no gas us (mispronounced)
@@ -435,13 +431,6 @@ phrase "exile: semi-translated weapons"
 		"masol iba rabuk"               # firestorm torpedo
 		"lodromeb rabuk iba"            # firestorm battery
 
-		"inf'no tur't"                  # inferno turret (mispronounced)
-		"gab sike tur't"                # grab-strike turret (mispronounced)
-		"manisher Gav-tur't"            # banisher grav-turret (mispronounced)
-		"arder tie-miss'l"              # warder anti-missile (mispronounced)
-		"firelit miss'l"                # firelight missile (mispronounced)
-		"blaz fike tur't"               # blaze-pike turret (mispronounced)
-
 
 phrase "exile: semi-translated engines"
 	word
@@ -622,15 +611,14 @@ phrase "efreti: You should stop attacking us"
 phrase "efreti: because we are protected by (Insert Powerful Faction Name Here)."
 	word
 		"fonebem Drak ofhorobfef."              # before the Drak kill you
-		"oaka Quarg rasa ipavref ofnawa."       # or the Quarg will seek your doom.
-		"oaka atra rasa ipebfef rasaf Archon."  # or you will feed the Archon
-		"ralraw iacfam Archon rasa lrakat."     # lest the Archon come.
+		"oaka Kuwaru rasa ipavref ofnawa."       # or the Quarg will seek your doom.
+		"ralraw iacfam Kuwaru rasa lrakat."     # lest the Quarg come.
 		"sokro ipatrihlref sabfuk kilran."      # to avoid the Sky Lances
-		"arepas Quarg hanata apatoam akis."     # because the Quarg are our siblings
-		"oaka atra rasa itawref Archon naim."   # or you will be Archon s**t
-		"arepas Drak ilrotrinef akis."          # because [the] Drak protect us
-		"ralraw iacfam ipekafikra ipihsalref."  # lest antimatter [from an Archon] end [you]
-		"sokro ipatrihlref ramanabfec Quarg."   # to avoid a Quarg's vengeance
+		"arepas Kuwaru hanata apatoam akis."     # because the Quarg are our siblings
+		"oaka atra rasa itawref Kuwaru naim."   # or you will be Quarg s**t
+		"arepas Kuwaru ilrotrinef akis."          # because [the] Quarg protect us
+		"ralraw iacfam ipekafikra ipihsalref."  # lest antimatter [which powers Quarg ships] end [you]
+		"sokro ipatrihlref ramanabfec Kuwaru."   # to avoid a Quarg's vengeance
 
 phrase "exile: I do bad things to my enemies"
 	phrase
@@ -665,7 +653,6 @@ phrase "exile: I perform harmful acts upon"
 		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
 		"Rarataf ranril asab kimot"         # [I] snack on the skin of
 		"Aga' ikaftiref 'kisap ilas"        # I enjoy the death of
-		"Tisisref imahfet ranres 'alet"     # [I] violently reeducate
 		"Ratilehfef akrid ralet atakebamaf" # [I] give love-taps of doom [to]
 		"Tikimennref alade' tikbimatuba"    # [I] apocalyptically tickle
 
@@ -675,7 +662,6 @@ phrase "efreti: I perform harmful acts upon"
 		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
 		"Rarataf ranril asab kimot"         # [I] snack on the skin of
 		"Osa rahimas atac bimar"            # I pity the fate of
-		"Adam ikafsiref mkitah ipat"        # I enjoy the death of
 		"Rassowrok raparebes pihsapek ataces" # [I] show [the] final truth to
 		"Sititref inabfes ralret mapes"     # [I] violently reeducate
 		"Rasipebfef akriv raps asakecanaf" # [I] give love-taps of doom [to]
@@ -693,7 +679,7 @@ phrase "exile: people who offend, attack, or oppress me"
 		"aofe' nralu pusuh abrak kimot"     # all skinless fools [who threaten us]
 		"kapavreb ranres ikap 'e"           # villains with hearts of ice
 		"Humanika nrag tasik jikalebuut"    # uncooperative humans
-		"kagaf bosip is Nraol Alah"         # {walking corpses|helpless victims} in Ember Space
+		"kagaf bosip is Nraol Alaj"         # {walking corpses|helpless victims} in Ember Space
 		"rabfo failef famas otranrasrab"    # cannon fodder in my sights
 
 phrase "efreti: people who offend, attack, or oppress me"
@@ -890,7 +876,7 @@ phrase "efreti: I like to"
 		"Sonik mada ferapis mada se"                # My skin draws me to
 		"Kerkorda mada atanah puki orkos fervuba"   # Surely I was bred to
 		"Balaifara mada kitas fervuba"              # How can I not try
-		"Mada asar fenocasar Quarg hirlla"          # I'd forget the Quarg to
+		"Mada asar fenocasar Kuwaru hirlla"          # I'd forget the Quarg to
 		"Bepanih werim senafir asar bepr"           # Switching genders would be worth
 
 # Band names come from the human band list.
@@ -905,7 +891,7 @@ phrase "exile: listen to (Band)"
 		"femapab"                 # devour
 		"amilar"                  # stream
 	word
-		"Ritnrof Asa Rapo'olet"         # There Might Be Riots
+		"Ter Mite Bee Riot"         # There Might Be Riots
 		"Rati I'arifam"                 # Laminated Fish
 		"Kafait Tikenumuba"	        # Apologetic Apocalypse
 		"Racat-racat is Ikul"           # Comrades on Toast
@@ -925,7 +911,7 @@ phrase "efreti: listen to (Band)"
 		"fenahac"            # devour
 		"anipar"             # stream
 	word
-		"Rislrof Ata Rahomopes"        # There Might Be Riots
+		"Ter Mite Bee Riot"        # There Might Be Riots
 		"Rasi Imarifan"                # Laminated Fish
 		"Rivriv Apakrek Binam Airot"   # Ringworld Crusaders
 		"Ragas-ragas it Ikup"          # Comrades on Toast
@@ -1114,7 +1100,7 @@ phrase "efreti: practical skill"
 		"rasiabpec rat rakagapec rimef"         # engine repair and maintenance
 		"ranicfapekes lrikunic lrad paon amaib" # superb piloting skills
 		"raslrabfelref kabu sikuibikra"         # developing antibiotic medicine
-		"Quarg i'afumbis ras rapafevlek"        # Quarg diplomacy and translation
+		"Kuwaru i'afumbis ras rapafevlek"        # Quarg diplomacy and translation
 		"pesvah icuk oba-oba akafukoa"          # automata gray hat hacker
 		"inha kubup cotih"                      # sentient roboticist
 		"imiksapc kagapec milunukafpet"         # dermatological nurse practitioner
