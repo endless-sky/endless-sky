@@ -241,17 +241,18 @@ phrase "exile: You will give us"
 
 phrase "exile: food"
 	phrase
-		phrase "exile: good food"
-		phrase "exile: mispronounced food"
+		"exile: good food"
+		"exile: mispronounced food"
 
 # Wish list food, probably half joking
 phrase "exile: good food"
+	word
 		"asame' oavip aok lane'"       # fresh dark green lettuce
 		"nrahfot tasah pagrel"         # crunchy rhino beetles
 		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
 		"sud nrannrab ranres nracah pikob" # baked cod with garlic
 		"kemmij emu' nrannrab"         # baked sole fillet
-		"''aH koaM imipD"              # Chilean Sea Bass
+		"''aH koam imipd"              # Chilean Sea Bass
 		"rati is 'aka 'aklet"          # fish en papillote
 		"rumef rohfe osaf"             # honeydew melons
 		"meba ak'eb nrag pagrel"       # crisp gala apples
@@ -809,7 +810,7 @@ phrase "efreti: You are the next person that will have something bad happen to t
 		"Rasosanef raipak raikafes!"            # [You will] do the dance of death!
 		"Kulit anda akan dilupakan."            # Your skin will be forgotten.
 		"Osa rasa kahafef ofraikafes."          # I will make a sculpture of your demise.
-		"Sara-sara rasagakperef ranicfapekes atra"  # [Our] children laugh at your [terrible piloting] skills.
+		"Sara-sara rasagakperef ranicfapekes atra."  # [Our] children laugh at your [terrible piloting] skills.
 
 phrase "exile: I like to do things"
 	phrase
@@ -819,6 +820,8 @@ phrase "exile: I like to do things"
 	phrase
 		"exile: listen to (Band)"
 		"exile: eat good food"
+	word
+		.
 
 phrase "efreti: I like to do things"
 	phrase
@@ -828,6 +831,8 @@ phrase "efreti: I like to do things"
 	phrase
 		"efreti: listen to (Band)"
 		"efreti: eat good food"
+	word
+		.
 
 phrase "exile: I learned to do things"
 	phrase
@@ -841,6 +846,8 @@ phrase "exile: I learned to do things"
 	phrase
 		"exile: artistic or musical skill"
 		"exile: practical skill"
+	word
+		.
 
 phrase "efreti: I learned to do things"
 	phrase
@@ -854,6 +861,8 @@ phrase "efreti: I learned to do things"
 	phrase
 		"efreti: artistic or musical skill"
 		"efreti: practical skill"
+	word
+		.
 
 phrase "exile: I like to"
 	word
@@ -989,25 +998,25 @@ phrase "exile: Recently"
 		"Olah ava'"                    # just now
 		"Ilap nrag riam"               # the other day
 
-phrase "efreti: Recently"       # 
+phrase "efreti: Recently"
 	word
 		"Opab-opab iri"                # recently
 		"Monsim iri"                   # this cycle
-                "Ipah iri"                     # today
-                "Ripafes"                      # yesterday
+		"Ipah iri"                     # today
+		"Ripafes"                      # yesterday
 		"Ollrif onan"                  # last week
 		"Honocem ipah kagen"           # ten days past
 		"Ollrifem lrad onan"           # a week ago
 		"Aot ipah lrad onan"           # two days ago
-                "Opab awam"                    # just now
-                "Ipah lrad rian"               # the other day
+		"Opab awam"                    # just now
+		"Ipah lrad rian"               # the other day
 
 phrase "exile: i learned | practiced | taught"
 	word
 		"ota pamek lavameh"            # i learned
 		"aga' opak"                    # i figured out
 		"ilavamebis is"                # i studied in
-                "aga' pikamleh"                # i practiced
+		"aga' pikamleh"                # i practiced
 		"aga' tisisis is"              # i educated in
 		"aga' lavanref"                # i taught
 		"aga' rataf ramibfaleket"      # i ate the skill
