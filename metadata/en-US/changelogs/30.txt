@@ -1,0 +1,8 @@
+* Add plugin import/export buttons
+* Fix popup keyboard handling for input
+* Auto-save global preferences
+* Auto-save when landing on a planet
+* Add deploy/recall for fighters (thanks @AbrarSyed)
+* Widen compact dialogs so they don't run off the screen
+* Convert player/ship info dialogs to full-screen
+* Add single/long press controls to ship selection in shop dialogs
