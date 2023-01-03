@@ -3246,7 +3246,7 @@ mission "Sativa: Struggling Author 2"
 
 mission "Sativa: Struggling Author 3"
 	name "Back to <planet>"
-	description "Now that Ann Oryza Sativa has completed the registration process, buy her a translation device."
+	description "Now that Ann Oryza Sativa has completed the registration process, help her get a translation device on <destination>."
 	source "Ring of Friendship"
 	destination "Ki Patek Ka"
 	to offer
@@ -3265,32 +3265,35 @@ mission "Sativa: Struggling Author 3"
 				`	"Have you found a publishing company yet?"`
 			`	"No." Ann then begins complaining about how it was extremely difficult for her to communicate with the employees, who did not have a translation box.`
 			choice
-				`	"I can buy you a translator."`
+				`	"I can get you a translator."`
 			`	"But will I have to pay for it?"`
 			choice
-				`	"I'll foot the bill."`
-			`	"Great! Where will we buy the translator though?"`
-			`	You recall that when walking past the spaceport back on <destination>, you saw a Coalition electronics store selling translation boxes for 78,000 credits. Maybe you can go there and buy Ann a translation box.`
-			`	"We'll go to <destination> to buy the translation box", you tell Ann. "Finish your meal, then enter my ship. I'll be ready." You walk off to your ship.`
+				`	"I'll help you get one. You probably won't need to pay for one."`
+			`	"Great! So, where will we get the translator?"`
+			`	"We'll go to <destination> to ask the Heliarchs for a translation box", you tell Ann. "Finish your meal, then enter my ship. I'll be ready." You walk off to your ship.`
 			`	After 15 minutes, you see Ann walking towards you. You open the hatch as she enters. She settles in her bunk, as you prepare to depart.`
-	on visit
-		dialog
-			`You see an electronics store selling a yellow translator box. It costs 78,000 credits. However, you see that your balance is not high enough.`
-			`	Go earn some money, then return here.`
 	on complete
-		payment -78000
 		conversation
-			`You arrive at the spaceport. Ann leaves her bunk and waits for you to open the hatch. You quickly lead her to the electronics store where pick up a translation box, bring it to the counter, put down a credit chip, and pay.`
-			`	The cashier then attaches the box to a necklace. Ann picks it up and wears it. You instruct Ann on how to use the translation box, as she begins speaking to the cashier and running a few tests to ensure it is working.`
-			`	After roughly four minutes of Ann speaking with the cashier, she turns to you. "Thank you for the box. I had a friendly chat with them. It works great!"`
+			`You arrive at the spaceport. Ann leaves her bunk and waits for you to open the hatch. You quickly lead her to a Heliarch office. You walk to the counter, and begin conversing with the clerk.`
+			`	"Greetings, human. To be of assistance to you, how can I?", the clerk says.`
 			choice
-				`	"Great! So, what are we doing next?"`
+				`	"Hello. I am <first> <last>. This is my friend, Ann Oryza Sativa. She is an author who wants to publish a book in Coalition space and needs a translation box to converse with the publishing company.`
+			`	"A translator, you need?", asks the clerk.`
+			choice
+				`	"Yes."`
+			`	"Trust you with a translator, we still cannot. But help you, I cannot, so a Heliarch, I must call.", says the clerk, then proceeding to call for a Heliarch in its native language.`
+			`	After a few minutes, a Heliarch approaches you and directs you into a room.`
+			choice
+				`	"Hello."`
+			`	"Tell me about your intentions, the clerk already has, and understand it, I do. Accompany you to the publishers, me and my agents will."`
+			choice
+				`	"Great! So, Ann, what are we doing next?"`
 			`	"Getting my book published, of course. We need to find a publishing company!"`
 			`	"We should go for the Kimek", you say. "Their population is 200 billion. For comparison, the human population is only 100 billion."`
 			`	"But where can we find a Kimek publishing company? We haven't even translated our book into their language yet!"`
 			choice
 				`	"We'll find a company. There has to be one out there."`
-			`	"The faster we can get the book published, the better. I'm off to the spaceport now. I can't wait to see what fun conversations I can have with the people there. It could act as inspiration for my next novel, as always. Meet me in the spaceport once you've found a good company."`
+			`	"The faster we can get the book published, the better. I'm off to the spaceport now. Meet me in the spaceport once you've found a good company."`
 
 mission "Sativa: Struggling Author 4"
 	name "Kimek Publishing Company"
@@ -3304,7 +3307,7 @@ mission "Sativa: Struggling Author 4"
 		has "Sativa: Struggling Author 3: done"
 	on offer
 		conversation
-			`The spaceport of Ki Patek Ka is vast. You decide to search for Ann, who has chosen to settle in the cafeteria, with her laptop. She is typing away at the keyboard, presumably writing a new novel.`
+			`The spaceport of Ki Patek Ka is vast. You decide to search for Ann, who has chosen to settle in the cafeteria, with her laptop, She is typing away at the keyboard, presumably writing a new novel.`
 			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and have instructed me to visit their office on <destination>!", exclaims Ann, once again in an enthusiastic tone.`
 			choice
 				`	"What's the publishing company called?"`
@@ -3328,13 +3331,14 @@ mission "Sativa: Struggling Author 4"
 				`	"Hello. My name is <first> <last>, and this is my friend Ann Oryza Sativa."`
 			`	"Greetings. At Kimek Reader Publishing, I work. A human, I have never encountered. But the book you sent, translate it we were able to."`
 			`	"Read it, we still haven't, and run it past the Heliarch censors, we must."`
+			`	Two Heliarch agents enter the room. "Supervise the interview, we are obligated to."`
 			choice
 				`	"How long will I have to wait?"`
 					goto "how long"
 				`	"Should I stay here to accompany Ann?`
 					goto "should I accompany ann"
 			label "how long"
-			`	"Wait a few hours, you must. But quick, this will be."`
+			`	"Wait a few hours, you must. But quick, this will be.", says the Kimek, interviewing you.`
 			choice
 				`	"Should I stay here to accompany Ann?"`
 			label "should I accompany ann"
@@ -3348,7 +3352,7 @@ mission "Sativa: Struggling Author 4"
 				`	(Leave the room to avoid spoilers.)`
 					goto "lounge"
 				`	(Stay in the room.)`
-			`	Ann explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, the content of the book. She is still talking in fluent English, but sometimes is forced to repeat statements due to the translator having issues with deciphering her enthusiastic tone.`
+			`	Under the watchful eye of the two Heliarchs in the room, Ann explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, the content of the book. She is still talking in fluent English, but sometimes is forced to repeat statements due to the translator having issues with deciphering her enthusiastic tone.`
 			`	As the hours pass, Ann's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet (or the Kimek equivalent) and thanks you and Ann.`
 				goto "interview over"
 			label "lounge"
