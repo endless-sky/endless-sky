@@ -517,7 +517,7 @@ namespace {
 		bool sales = false;
 		bool all = false;
 
-		for(const char *const *it = argv + 2; *it; ++it)
+		for(const char *const *it = argv + 1; *it; ++it)
 		{
 			string arg = *it;
 			if(arg == "-w" || arg == "--weapons")
@@ -532,12 +532,15 @@ namespace {
 				all = true;
 		}
 
-		if(weapons)
-			PrintWeaponStats();
-		else if(engines)
-			PrintEngineStats();
-		else if(power)
-			PrintPowerStats();
+		if(weapons || engines || power)
+		{
+			if(weapons)
+				PrintWeaponStats();
+			if(engines)
+				PrintEngineStats();
+			if(power)
+				PrintPowerStats();
+		}
 		else if(sales)
 			PrintItemSales(GameData::Outfits(), GameData::Outfitters(), "outfit", "outfitters");
 		else if(all)
@@ -679,6 +682,12 @@ namespace {
 		}
 
 		const Phrase *phrase = GameData::Phrases().Get(phraseName);
+
+		if(!phrase)
+		{
+			cout << "Error: phrase not found.";
+			return;
+		}
 
 		vector<string> results = phrase->GetAll();
 
