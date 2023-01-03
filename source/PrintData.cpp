@@ -693,6 +693,8 @@ namespace {
 
 		for(const auto &it : results)
 			cout << it << '\n';
+
+		cout << "Done!\n";
 	}
 
 
