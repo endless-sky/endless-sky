@@ -135,7 +135,7 @@ namespace {
 		added.clear();
 	}
 
-	bool CanSendHail(const shared_ptr<const Ship> &ship, const PlayerInfo &player)
+	bool CanSendHail(const shared_ptr<const Ship> &ship, const PlayerInfo &player, bool allowUntranslated = false)
 	{
 		const System *playerSystem = player.GetSystem();
 		if(!ship || !playerSystem)
@@ -156,7 +156,7 @@ namespace {
 			return false;
 
 		// Ships that don't share a language with the player shouldn't send hails.
-		if(!gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+		if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 			return false;
 
 		return true;
@@ -1838,7 +1838,7 @@ void Engine::SendHails()
 			break;
 		}
 
-	if(!CanSendHail(source, player))
+	if(!CanSendHail(source, player, true))
 		return;
 
 	// Generate a random hail message.
