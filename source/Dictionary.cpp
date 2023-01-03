@@ -73,17 +73,27 @@ pair<size_t, bool> Search(Type key, const vector<pair<stringAndHash, double>> &v
 template <>
 pair<size_t, bool> Search(const HashWrapper key, const vector<pair<stringAndHash, double>> &v)
 {
-	for(size_t low = 0; low < v.size(); ++low)
+	// At each step of the search, we know the key is in [low, high).
+	size_t low = 0;
+	size_t high = v.size();
+
+	while(low != high)
 	{
-		if(key.Get() == v[low].first.GetHash().Get())
-			return make_pair(low, true);
+		size_t mid = (low + high) / 2;
+		if(key.Get() == v[mid].first.GetHash().Get())
+			return make_pair(mid, true);
+
+		if(key.Get() < v[mid].first.GetHash().Get())
+			high = mid;
+		else
+			low = mid + 1;
 	}
-	return make_pair(v.size(), false);
+	return make_pair(low, false);
 }
 
 // The dataset is sorted by its 'hash' key (which is indeed the only
 // allowed key used when adding a new element because it's unique), so
-// a bynary search is not possible: do a 'find'
+// a binary search is not possible: do a 'find'.
 template <>
 pair<size_t, bool> Search(const char *key, const vector<pair<stringAndHash, double>> &v)
 {
@@ -104,7 +114,11 @@ double &Dictionary::operator[](const char *key)
 	if(pos.second)
 		return data()[pos.first].second;
 
-	return insert(begin() + pos.first, make_pair(stringAndHash(Intern(key)), 0.))->second;
+	auto strHash = stringAndHash(Intern(key));
+
+	pos = Search(strHash.GetHash(), *this);
+
+	return insert(begin() + pos.first, make_pair(strHash, 0.))->second;
 }
 
 
@@ -179,7 +193,7 @@ void DictionaryCollisionChecker::AddKeysWhileChecking(const Dictionary &dict)
 		{
 			// The element can't be inserted into the set because the
 			// hashes are equal, verify strings are different or there's
-			// a collision
+			// a collision.
 			if((*it).GetString() != element.first.GetString())
 			{
 				// ...there's a collision:
