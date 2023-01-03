@@ -3314,6 +3314,7 @@ mission "Sativa: Struggling Author 4"
 				`	"Let's go!"`
 			`	Ann closes her laptop, places her things in her bag, and begins walking to your ship. You and Ann enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of 'Kimek Reader Publishing' are located.`
 	on complete
+		event "beyond the hyperdrive is published" 165 197
 		conversation
 			`Landing on <planet>, Ann is excitedly holding a copy of 'Beyond the Hyperdrive', her novel about humans stealing jump drives from the Quarg. She hastily opens the hatch as soon as it unlocks.`
 			choice
@@ -3375,3 +3376,57 @@ mission "Sativa: Struggling Author 4"
 			choice
 				`	"Got it. Good luck publishing your book."`
 					goto "ann thanks you"
+
+event "beyond the hyperdrive is published"
+
+mission "Sativa: Struggling Author 5A"
+	landing
+	source
+		not near "Quaru" 0 100
+	destination "Inmost Blue"
+	to offer
+		has "event: beyond the hyperdrive is published"
+		not "Sativa: Struggling Author 5B: offered"
+	on offer
+		conversation
+			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder from your computer.`
+			`	You read it, and recall that you had helped an author named Ann Oryza Sativa get her book, 'Beyond the Hyperdrive', published about half a year ago. You should return to <destination> and check on her.`
+	on complete
+		conversation "ann invites you to book signing"
+
+mission "Sativa: Struggling Author 5B"
+	landing
+	source
+		near "Quaru" 0 100
+	destination "Inmost Blue"
+	to offer
+		has "event: beyond the hyperdrive is published"
+		not "Sativa: Struggling Author 5A: offered"
+	on offer
+		conversation
+			`As you land on the spaceport, you check your messages. You see a message from Ann Oryza Sativa, the author who you helped about half a year ago. In the message, she explains that her novel, 'Beyond the Hyperdrive', has been approved. You should return to <destination> and meet her.`
+	on complete
+		conversation "ann invites you to book signing"
+
+conversation "ann invites you to book signing"
+	action
+		"salary: Ann Oryza Sativa" = 5000
+		payment 2000000
+		set "beyond the hyperdrive news can show now"
+	`The moment you land, Ann is all too happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
+	`	"Today, they will be publishing 'Beyond the Hyperdrive' and I will be signing copies! Thanks for everything you've done, <first>!"`
+	choice
+		`	"It got approved? That's awesome!"`
+	`	"I know, right? So do you want to join me during the book signing?"`
+	choice
+		`	"I've been with you through the whole process. Count me in!"`
+	`	"Great! Let's walk to the bookstore and prepare everything! I already have my pen ready, and the staff have already prepared seats for the both of us."`
+	`	You and Ann walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
+	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out the Kimek equivalent of a loudspeaker and begins announcing the release of 'Beyond the Hyperdrive'. Within ten minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Ann signs every copy brought to her by each individual Kimek.`
+	`	Occasionally, Ann alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You had kept a count of how many copies she had been signing, but when it reached six hundred you were beginning to lose count.`
+	choice
+		`	"Are you left or right handed?"`
+	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
+	`	The signing continues for what feels like four hours. Then, the same Kimek in the bookstore uniform announces that the store is to close within an hour.`
+	`	As the store closes and the queue shortens, Ann signs the last Kimek's copy. With that, the event is over. Ann then tells you to meet her at your ship. You and Ann walk into your ship, accompanied by Heliarchs and the occasional camera flash. You open the hatch to allow Ann inside, and you enter and lock it behind you before any obsessed fans or (Coalition equivalent of) paparazzi get the chance to break in.`
+	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!", she says, almost in a teary voice. She pulls out a credit chip. "Here, two million credits. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
