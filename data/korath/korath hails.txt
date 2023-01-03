@@ -207,10 +207,10 @@ phrase "exile: Exclamation!"
 		"Kaaaaaaaaaiii't!"      # Some strange Korath sound?
 
 		# Korath exclamations
-		"Pusuh!"                # {Misinformed|misguided} individual!
-		"Abrakimot!"            # Person with no {skin|intelligence}!
-		"Ranrarefet!"           # {Towards|To|With the goal of} {victory|success}!
-		"Lomek'toh!"            # {Rotten|Not cared for|Genetically mutated in a negative way} egg!
+		"Pusuh!"                # [Misinformed|misguided] individual!
+		"Abrakimot!"            # Person with no [skin|intelligence]!
+		"Ranrarefet!"           # [Towards|To|With the goal of] [victory|success]!
+		"Lomek'toh!"            # [Rotten|Not cared for|Genetically mutated in a negative way] egg!
 
 phrase "exile: we are disabled, please help us"
 	phrase
@@ -398,9 +398,9 @@ phrase "exile humanika: are sub-par by any reasonable standards"
 phrase "exile humanika: are above par by any reasonable standards"
 	word
 		"'s amazin"          # is amazing (mispronounced)
-		"do gud"             # {do|does} good (mispronounced)
+		"do gud"             # [do|does] good (mispronounced)
 		"werks wall"         # works well (mispronounced)
-		"snassy"             # {snazzy|sassy} (mispronounced)
+		"snassy"             # [snazzy|sassy] (mispronounced)
 		"hi tek"             # [is] high tech (mispronounced)
 
 phrase "exile humanika: are inferior to what we possess"
@@ -413,7 +413,7 @@ phrase "exile humanika: are superior to what you possess"
 	word
 		"be'ren yurs"        # [is] better than yours
 		"bigger yers"        # [is] bigger than yours
-		"ston thin you"      # [is] stronger than {you|yours}
+		"ston thin you"      # [is] stronger than [you|yours]
 
 phrase "exile: empty phrase"
 	word
@@ -563,7 +563,7 @@ phrase "exile humanika: and we will let you live."
 		"oo go frie."                     # you go free (mispronounced)
 		"n't oo die."                     # not you die (mispronounced)
 		"oo stai ali'f."                  # you stay alive (mispronounced)
-		"wee go o o way."                 # we go {our own way|away} (mispronounced)
+		"wee go o o way."                 # we go [our own way|away] (mispronounced)
 		"wee go way."                     # we go away (mispronounced)
 		"uu keep ur skin"                 # you will keep your skin (mispronounced)
 		"u see morrow"                    # you [will] see tomorrow (mispronounced)
@@ -635,7 +635,7 @@ phrase "exile humanika: tactical and strategic items"
 		"r'd wermhol resurch"      # Red wormhole research
 		"rad holl resurch"         # Red [worm]hole research
 		"wermhol resurch"          # Wormhole research
-		"sampil o humanika tetch"  # {Examples|Samples} of human technology
+		"sampil o humanika tetch"  # [Examples|Samples] of human technology
 		"inernal govment docmants" # internal government documents
 		"humanika beakoff gupes"   # Information about human break-off groups (ie.: Remnant or Alphas)
 		"medital resorch humanika" # Medical research relating to humans. (Perhaps to keep captives alive, design bioweapons, or simple curiosity.)
@@ -821,7 +821,7 @@ phrase "exile: has destroyed our ship."
 		"rataretis agaih"             # charged (in the electrical sense)
 		"agrporebe' 'ohferef"         # fully penetrated through
 		"lareh-lareh liad"            # absolutely liquified
-		"tasemef arlobfe'"            # {perfectly|without exception} imploded
+		"tasemef arlobfe'"            # [perfectly|without exception] imploded
 	word
 		" "
 	phrase
@@ -936,12 +936,12 @@ phrase "efreti: You should not attack us"
 		"Osanipecpeb kaam atra atapeb it irim"   # Behave while you are here
 		"Hanikah-ikahpeb ralret ofakawrem"       # Use caution with your guns
 		"Ralraw lrapem nacas ifas"               # Do not attack our ships
-		"Casimpeb kobfen it kilran akis"         # Be gentle in our {sky|space|system}
+		"Casimpeb kobfen it kilran akis"         # Be gentle in our [sky|space|system]
 		"Ralraw hokrem nubfuk ica oki"           # Do not touch that fire button
-		"Riafpeb siab ralret sara-sara akis"     # Play {kindly|gently} with our {young|weak}
+		"Riafpeb siab ralret sara-sara akis"     # Play [kindly|gently] with our [young|weak]
 		"Raspovrah ponek kaam atra it irim"      # Smash no eggs while you are here
-		"Ralraw rasosanef ramapeses"             # Do not be {violent|aggressive}
-		"Satik hawawref akis"                    # No {colonizing|conquering} us
+		"Ralraw rasosanef ramapeses"             # Do not be [violent|aggressive]
+		"Satik hawawref akis"                    # No [colonizing|conquering] us
 		"Alawref rasatrik atra alawit"           # Keep your actions guarded
 
 phrase "efreti: You should stop attacking us"
@@ -954,8 +954,8 @@ phrase "efreti: You should stop attacking us"
 		"Ipihsa ramupubfec iri"             # End this wastefulness
 		"Rasnallrik kacfek iri lrapasem"    # Leave this place now
 		"Ikrehpeb haslrikpeb ikpecem sara nives"   # Stop acting like a child
-		"Adam akrifef atra ikrehpeb sikinellref adam"   # I demand you stop {tickling|physically annoying} me
-		"Somoref atra mopah pihsapeb lrapasem" # Your {poking|ineffectual attack} should stop now
+		"Adam akrifef atra ikrehpeb sikinellref adam"   # I demand you stop [tickling|physically annoying] me
+		"Somoref atra mopah pihsapeb lrapasem" # Your [poking|ineffectual attack] should stop now
 
 # The powerful faction probably won't intervene, but it is a
 # believable threat that my scare away would-be attackers.
@@ -1001,7 +1001,7 @@ phrase "exile: I perform harmful acts upon"
 		"Bapamef ranres alihfen"            # [I] joyfully devour
 		"Ratto'afis et famas ataler"        # [I] subsume into an inferno
 		"Raiakrahfeb abrak robfa"           # [I] mercilessly slaughter
-		"Ratotamef railak raikafet"         # [I] perform the dance of death {in relation to | with the subject being}
+		"Ratotamef railak raikafet"         # [I] perform the dance of death [in relation to | with the subject being]
 		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
 		"Rarataf ranril asab kimot"         # [I] snack on the skin of
 		"Aga' ikaftiref 'kisap ilas"        # I enjoy the death of
@@ -1010,7 +1010,7 @@ phrase "exile: I perform harmful acts upon"
 
 phrase "efreti: I perform harmful acts upon"
 	word
-		"Ratotamef railak raikafet"         # [I] perform the dance of death {in relation to | with the subject being}
+		"Ratotamef railak raikafet"         # [I] perform the dance of death [in relation to | with the subject being]
 		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
 		"Rarataf ranril asab kimot"         # [I] snack on the skin of
 		"Osa rahimas atac bimar"            # I pity the fate of
@@ -1023,28 +1023,28 @@ phrase "efreti: I perform harmful acts upon"
 phrase "exile: people who offend, attack, or oppress me"
 	word
 		"rahlut rapalafet aga' nrag lareh"  # victims of my righteous rage
-		"atelef nrag ohlegref kinram"       # those who invade {our|the} {sky | star system}
+		"atelef nrag ohlegref kinram"       # those who invade [our|the] [sky | star system]
 		"rimavlek ranres otraa'a'okobet"    # [people who are] entwined with my despair
 		"pavavreb asi'uren akit"            # our genocidal invaders
-		"atelef nrag rata pavavref akit"    # those who would colonize {us|our home}
+		"atelef nrag rata pavavref akit"    # those who would colonize [us|our home]
 		"rafadra inah bosip aga'"           # [people who are] threats to my life
 		"aofe' nralu pusuh abrak kimot"     # all skinless fools [who threaten us]
 		"kapavreb ranres ikap 'e"           # villains with hearts of ice
 		"Humanika nrag tasik jikalebuut"    # uncooperative humans
-		"kagaf bosip is Nraol Alaj"         # {walking corpses|helpless victims} in Ember Space
+		"kagaf bosip is Nraol Alaj"         # [walking corpses|helpless victims] in Ember Space
 		"rabfo failef famas otranrasrab"    # cannon fodder in my sights
 
 phrase "efreti: people who offend, attack, or oppress me"
 	word
 		"rabpus rahapafes adam lrad pareb"  # victims of my righteous rage
-		"asepef lrad obpedref kilran"       # those who invade {our|the} {sky|star system}
+		"asepef lrad obpedref kilran"       # those who invade [our|the] [sky|star system]
 		"rinawpek ralret osraamamokoces"    # [people who are] entwined with my despair
 		"hawawrec atimurel akis"            # our genocidal invaders
-		"asepef lrad rasa hawawref akis"    # those who would colonize {us|our home}
+		"asepef lrad rasa hawawref akis"    # those who would colonize [us|our home]
 		"rafavra ilab cotih adam"           # [people who are] threats to my life
 		"ipovrec racotihes lrad kahaw"      # evil thieves of lives
 		"aofem lrapu hutub acrak kinos"     # all skinless fools [who threaten us]
-		"rarahak ipat rahanames asepef ipitrem" # {prisoners of|those imprisoned by} their own misdeeds
+		"rarahak ipat rahanames asepef ipitrem" # [prisoners of|those imprisoned by] their own misdeeds
 		"racfo faipef fanat osralratrac"    # cannon fodder in my sights
 
 
@@ -1084,7 +1084,7 @@ phrase "exile: The last person who attacked me"
 		"Ramananet nrag ratlistakis"      # A doomed failure
 		"Rarataf liptalek aga'"           # My last meal
 		"Kosah nralegref agrfomehe'"      # Clowns attacked before
-		"Paohe' kickir inrakasref ifat"   # A [nitwit, idiot] came to us
+		"Paohe' kickir inrakasref ifat"   # A [skinless|uneducated] person came to us
 		"Paohe' rariaf ohlegref"          # A plaything invaded"
 
 phrase "efreti: The last person who attacked me"
@@ -1098,7 +1098,7 @@ phrase "efreti: The last person who attacked me"
 		"Kotab lrapdref adrfonebem"      # Clowns attacked before
 		"Hanam rasititrec obpedref"       # Miseducated people invaded
 		"Ralinuuh ofikpecem lrapdref"    # Hooligans like you assailed
-		"Paohe' kickir inrakasref ifat"   # A {nitwit | unwise person} came to us
+		"Paohe' kickir inrakasref ifat"   # A [nitwit | unwise person] came to us
 
 phrase "exile: had something bad happen to them"
 	word
@@ -1108,7 +1108,7 @@ phrase "exile: had something bad happen to them"
 		"raca resre'ralk ohes nrakrih"       # [became a] transcendent cloud of stardust
 		"i'aip nrinas 'ikekri' Nu'agel aga"  # garnished my Nutrigel synthetic meat
 		"i'elbfutis isavref raimleh tokro 'otuj" # was compressed into diamond for an energy focus [device]
-		"talharef nriob-nriob is siulek'a"   # { crashed into | became } debris on asteroids
+		"talharef nriob-nriob is siulek'a"   # [ crashed into | became ] debris on asteroids
 		"ikaftiref rainlebet nrag iba-ibaleh" # enjoyed a fiery departure
 		"ikofime'is iba rapalafet"           # was enshrouded in wrathful flames
 		"ranres alihfen tikimennref otpalafa" # tickled my joyous rage
@@ -1120,7 +1120,7 @@ phrase "efreti: had something bad happen to them"
 		"rapobolrec ica it paon amaslra"     # [had a] fiery burial in space
 		"raga retremrapk obet lrakrib"       # [became a] transcendent cloud of stardust
 		"imepcfusit itawref rainpeb sokro mosuy ilpere" # was compressed into diamond for an energy focus [device]
-		"sapbaref lrioc-lrioc it tiupekma"   # {crashed into | became} debris on asteroids
+		"sapbaref lrioc-lrioc it tiupekma"   # [crashed into | became] debris on asteroids
 		"patung dari puing-puing"            # [became a] sculpture of debris
 		"ikocinit apkmespu ramapeses"        # was engulfed in an orchestra of violence
 		"satik ikafsiref bimar asepef"       # did not enjoy their fate
@@ -1143,7 +1143,7 @@ phrase "exile: You are the next person that will have something bad happen to th
 phrase "efreti: You are the next person that will have something bad happen to them."
 	word
 		"Nikmati tarian terakhirmu!"            # Enjoy your final dance!
-		"Rasakas osatac ofrarilries."           # Tell me your { will and testament | dying wish }.
+		"Rasakas osatac ofrarilries."           # Tell me your [ will and testament | dying wish ].
 		"Hasaca ata kapihsa Humanika?"          # Is there a human afterlife?
 		"Dewa Anda tidak dapat membantu Anda!"  # Your gods can't help you [now]!
 		"Hasrasa akis idradrpeb afampeb it kapihsa?"  # Will we sing together in the afterlife?
