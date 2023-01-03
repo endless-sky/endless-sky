@@ -415,6 +415,10 @@ phrase "exile: Our ship's"
 		"Ot"                  # My
 		"Oki"                 # The
 
+# These outfit names are just supposed to be good enough for hails.
+# If we were to rename the outfits, the names should be finely
+# crafted after wide-spread review.
+
 phrase "exile: semi-translated weapons"
 	word
 		"mihfa etilk' kellok"           # grab-strike turret
