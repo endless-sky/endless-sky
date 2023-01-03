@@ -3300,7 +3300,7 @@ mission "Sativa: Struggling Author 4"
 	description "You have found a Kimek publishing company who is willing to take in Ann Oryza Sativa to get her book published. Bring Ann Oryza Sativa to <destination>."
 	source "Ki Patek Ka"
 	destination
-		distance "Ki Patek Ka" 4 6
+		near "Ki Patek Ka" 4 6
 		not attributes "station"
 		attributes "kimek"
 	to offer
