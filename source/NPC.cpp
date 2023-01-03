@@ -566,7 +566,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
+		const map<string, const System *> &landmarkSystems, const map<string, const Planet *> &landmarkPlanets) const
 {
 	NPC result;
 	result.government = government;
@@ -585,7 +586,10 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	// Pick the system for this NPC to start out in.
 	result.system = system;
 	if(!result.system && !location.IsEmpty())
+	{
+		location.ConfigureLandmarks(landmarkSystems, landmarkPlanets);
 		result.system = location.PickSystem(origin);
+	}
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
 	// If a planet was specified in the template, it must be in this system.

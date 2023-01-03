@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define LOCATION_FILTER_H_
 
 #include <list>
+#include <map>
 #include <set>
 #include <string>
 
@@ -49,6 +50,10 @@ public:
 	// Check if this filter contains any specifications.
 	bool IsEmpty() const;
 	bool IsValid() const;
+
+	// Instantiate any named landmarks.
+	void ConfigureLandmarks(const std::map<std::string, const System *> &systemLandmarks,
+			const std::map<std::string, const Planet *> &planetLandmarks) const;
 
 	// If the player is in the given system, does this filter match?
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;
@@ -91,6 +96,12 @@ private:
 	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
+
+	// Names referring to 'landmarks', the corresponding locations are passed in via ConfigureLandmarks().
+	std::set<std::string> landmarks;
+	// Used to store the instantiated landmarks.
+	mutable std::set<const System *> landmarkSystems;
+	mutable std::set<const Planet *> landmarkPlanets;
 
 	// At least one of the outfits from each set must be available
 	// (to purchase or plunder):

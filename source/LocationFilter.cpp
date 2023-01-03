@@ -314,6 +314,30 @@ bool LocationFilter::IsValid() const
 
 
 
+void LocationFilter::ConfigureLandmarks(const map<string, const System *> &systemLandmarks,
+		const map<string, const Planet *> &planetLandmarks) const
+{
+	landmarkSystems.clear();
+	landmarkPlanets.clear();
+
+	for(const string &name : landmarks)
+	{
+		const auto systemIt = systemLandmarks.find(name);
+		if(systemIt != systemLandmarks.end())
+			landmarkSystems.insert(systemIt->second);
+		const auto planetIt = planetLandmarks.find(name);
+		if(planetIt != planetLandmarks.end())
+			landmarkPlanets.insert(planetIt->second);
+		
+		for(auto &notFilter : notFilters)
+			notFilter.ConfigureLandmarks(systemLandmarks, planetLandmarks);
+		for(auto &neighborFilter : neighborFilters)
+			neighborFilter.ConfigureLandmarks(systemLandmarks, planetLandmarks);
+	}
+}
+
+
+
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
@@ -327,7 +351,11 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	if(!governments.empty() && !governments.count(planet->GetGovernment()))
 		return false;
 
-	if(!planets.empty() && !planets.count(planet))
+	set<const Planet *> tempPlanets = planets;
+	for(const auto &it : landmarkPlanets)
+		tempPlanets.insert(it);
+
+	if(!tempPlanets.empty() && !tempPlanets.count(planet))
 		return false;
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
@@ -508,6 +536,14 @@ void LocationFilter::LoadChild(const DataNode &child)
 			for(int i = 0; i < grand.Size(); ++i)
 				systems.insert(GameData::Systems().Get(grand.Token(i)));
 	}
+	else if(key == "landmark")
+	{
+		for(int i = valueIndex; i < child.Size(); ++i)
+			landmarks.insert(child.Token(i));
+		for(const DataNode &grand : child)
+			for(int i = 0; i < grand.Size(); ++i)
+				landmarks.insert(grand.Token(i));
+	}
 	else if(key == "government")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
@@ -577,9 +613,13 @@ void LocationFilter::LoadChild(const DataNode &child)
 
 bool LocationFilter::Matches(const System *system, const System *origin, bool didPlanet) const
 {
+	set<const System *> tempSystems = systems;
+	for(const auto &it : landmarkSystems)
+		tempSystems.insert(it);
+
 	if(!system || !system->IsValid())
 		return false;
-	if(!systems.empty() && !systems.count(system))
+	if(!tempSystems.empty() && !tempSystems.count(system))
 		return false;
 
 	// Don't check these filters again if they were already checked as a part of

@@ -228,6 +228,12 @@ private:
 	ConditionSet toComplete;
 	ConditionSet toFail;
 
+	// Named locations filters that will be evaluated at instantiation to select planets and systems.
+	// The location filters within this mission can then refer to these by the names of the landmarks.
+	std::map<std::string, LocationFilter> landmarks;
+	std::map<std::string, const System *> landmarkSystems;
+	std::map<std::string, const Planet *> landmarkPlanets;
+
 	const Planet *source = nullptr;
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
