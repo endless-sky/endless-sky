@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "UI.h"
 
+#include <SDL2/SDL_log.h>
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -75,6 +76,8 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
+	try
+	{
 	// Handle command-line arguments
 #ifdef _WIN32
 	if(argc > 1)
@@ -204,6 +207,21 @@ int main(int argc, char *argv[])
 	// global variables that still retain old state.
 	exit(0);
 #endif
+	}
+	catch(const std::runtime_error& e)
+	{
+		SDL_Log("Caught a runtime_error: %s", e.what());
+		throw e;
+	}
+	catch(const std::exception& e)
+	{
+		SDL_Log("Caught an exception: %s", e.what());
+		throw e;
+	}
+	catch(...)
+	{
+		SDL_Log("Caught an unknown exception");
+	}
 
 	return 0;
 }

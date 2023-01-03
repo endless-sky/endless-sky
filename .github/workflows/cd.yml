@@ -1,0 +1,68 @@
+name: CD
+
+
+on:
+  push:
+    tags:
+      - '*'
+
+
+jobs:
+  build_android:
+    # TODO: only build if source changed. otherwise, d/l latest continuous
+    runs-on: ubuntu-latest
+    env:
+        ANDROID_SDK_ROOT: /path/to/sdk
+        ARTIFACT: endless-mobile
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install development dependencies
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev uuid-dev ccache libgles2-mesa
+        python3 -m pip install --user scons
+    - name: Set up our JDK environment
+      uses: actions/setup-java@v1.4.3
+      with:
+        java-version: 1.8
+    - name: Print toolchain versions
+      run: |
+        g++ -v
+        gcc-ar --version
+        ld -v
+        scons --version
+        python --version
+        java -version
+    - name: Unit Tests
+      run: |
+        scons -Qj $(nproc) opengl=gles mode=debug test;
+    - name: Compile Android
+      run: |
+        cd android/app && sh ./download_build_dependencies.sh
+        cd .. && ./gradlew --no-daemon assemble
+    - name: Upload apks
+      uses: actions/upload-artifact@v2
+      with:
+        name: debug-arm64-v8a
+        path: android/app/build/outputs/apk/debug/app-debug.apk
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: ${{ github.ref_name }}
+        prerelease: true
+        body: This is an auto-generated prerelease of the latest ci build. Dont expect it to work reliably.
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: android/app/build/outputs/apk/debug/app-debug.apk
+        asset_name: endless-mobile-debug-v${{ github.ref_name }}.apk
+        asset_content_type: application/vnd.android.package-archive

@@ -100,8 +100,9 @@ public:
 
 			// Cheat #1... if the path doesn't begin with /endless-sky-data, then
 			// its not an asset.
-			const char ESD[] = "/endless-sky-data";
-			if (dir_name.substr(0, sizeof(ESD)-1) != ESD)
+			const char ESD[] = "endless-sky-data";
+			if (dir_name.substr(0, sizeof(ESD)-1) != ESD &&
+			    dir_name.substr(1, sizeof(ESD)-1) != ESD)
 			{
 				return false;
 			}
@@ -112,7 +113,6 @@ public:
 			{
 				return false;
 			}
-
 			// At this point, assume it really exists. :(
 		}
 		return true;

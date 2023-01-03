@@ -16,8 +16,8 @@ android {
         }
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 28
-        versionName "0.9.16.1-28"
+        versionCode 30
+        versionName "0.9.16.1-30"
         externalNativeBuild {
             // ndkBuild {
             //     arguments "APP_PLATFORM=android-18"
@@ -28,7 +28,8 @@ android {
                 arguments "-DANDROID_APP_PLATFORM=android-18", "-DANDROID_STL=c++_static"
                 // Each abi we enable increases the apk size by 20 meg
                 // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-                abiFilters 'arm64-v8a', 'armeabi-v7a'
+                // abiFilters 'arm64-v8a', 'armeabi-v7a' // v7a needs more testing.
+                abiFilters 'arm64-v8a'
             }
         }
     }
@@ -50,12 +51,12 @@ android {
                 path 'jni/CMakeLists.txt'
             }
         }
-       
+
     }
     lintOptions {
         abortOnError false
     }
-    
+
     aaptOptions {
         ignoreAssetsPattern "!.svn:!.git:.*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
     }
