@@ -3168,8 +3168,7 @@ mission "Sativa: Struggling Author 1"
 				`	"Thanks for signing my copy. I hope you find success in your life. Goodbye."`
 					decline
 			label "do you hate the quarg"
-			`	"I have a lot of problems with them. You see, there are so many systems we can't reach and the Quarg have the secrets to reaching them. And yet they won't give humanity the secret. They are trying to restrict us. Keeping us all locked in cages!"`
-			`	"So, I wrote 'Beyond the Hyperdrive' to share my feelings about the Quarg. Humanity will one day succeed! We will surpass them and make humanity even greater beyond its wildest dreams!"`
+			`	"I have a lot of problems with them. You see, there are so many systems we can't reach and the Quarg have the secrets to reaching them. And yet they won't give humanity the secret. They are trying to restrict us. Keeping us all locked in cages! So, I wrote 'Beyond the Hyperdrive' to share my feelings about the Quarg. Humanity will one day succeed! We will surpass them and make humanity even greater beyond its wildest dreams!"`
 			choice
 				`	(Tell her about the Coalition.)`
 			label "tell her about the coalition"
