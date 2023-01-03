@@ -78,6 +78,31 @@ phrase "friendly disabled kor efret untranslated"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+phrase "exile: semi-translated cargo demands"
+	phrase
+		"exile: You will give us"
+	word
+		" "
+	phrase
+		"exile: food"
+		"exile: raw materials"
+	word
+		" "
+	phrase
+		"exile: and we will let you live."
+
+phrase "exile: semi-translated oddly specific demands"
+	phrase
+		"exile: You will give us"
+	word
+		" "
+	phrase
+		"exile: oddly specific items"
+	word
+		" "
+	phrase
+		"exile: and we will let you live."
+
 phrase "exile: bragging about tech"
 	phrase
 		"exile: Our ship's"
@@ -198,6 +223,142 @@ phrase "exile: Please don't do terrible things to us while we are disabled."
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+
+phrase "exile: You will give us"
+	word
+		"Can haf"               # Can have (mispronounced)
+		"Will haf"              # Will have (mispronounced)
+		"Gif us"                # Give us (mispronounced)
+		"Tribut'"               # Tribute (mispronounced, probably heard it from pirates)
+
+		"Asra rata ilehfef ifat"     # You will give us
+		"Ifat kokroref asra"         # We demand your
+		"Itimif aofe' oftimif"       # [We now] own all of your
+		"Kohelef ranraneb poreb"     # [We are] seizing a full [cargo] hold of
+		"Ratileh ifat aofe'"         # Give us all [of your]
+		"Ratomlebis tokro mihfanref" # [It is] necessary to take [your]
+		"Pakrileb rapakleh bosip nrag akit mihfa" # [Our] survival dictates we take
+
+phrase "exile: food"
+	phrase
+		phrase "exile: good food"
+		phrase "exile: mispronounced food"
+
+# Wish list food, probably half joking
+phrase "exile: good food"
+		"asame' oavip aok lane'"       # fresh dark green lettuce
+		"nrahfot tasah pagrel"         # crunchy rhino beetles
+		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
+		"sud nrannrab ranres nracah pikob" # baked cod with garlic
+		"kemmij emu' nrannrab"         # baked sole fillet
+		"''aH koaM imipD"              # Chilean Sea Bass
+		"rati is 'aka 'aklet"          # fish en papillote
+		"rumef rohfe osaf"             # honeydew melons
+		"meba ak'eb nrag pagrel"       # crisp gala apples
+		"oham nrirot nradrid 'omap"    # finely chopped yellow squash
+		"ica' oavip kolab"             # shredded collard greens
+		"kamo bosip nrag kaimennref"   # live squirming mealworms
+		"totnrafe' aqlam nridad nramen" # a bowlful of hornworm larvae
+		"polome' irumut kofe'"         # an entire ant colony
+		"ratobfok la'eh nridad rimim"  # a big heaping pile of waxworms
+		"nrala' lomek nroloh akro"     # a nest of ostrich eggs
+		"igah 'otik rinris ranres ra'aip" # chilled baby mice with garnish
+		"ak'ab lamo midet ranres u'tah nradrid" # a pasta of small snakes with mice meatballs
+
+phrase "exile: raw materials"
+	phrase
+		"exile: good raw materials"
+		"exile: mispronounced raw materials"
+
+phrase "exile: good raw materials"
+	word
+		"ranrakah 'afe irlof"            # pure gold ingots
+		"foirukomb nrag kanra' 'omap"    # highly refined plutonium
+		"ralahfem foirakik"              # titanium sheets
+		"kabfelebe' ruk nrakah rek'nrok" # quarter ton tungsten rods (Korath tons, obviously)
+		"raimleh arlobfe'"               # perfect diamonds
+		"afim pomob kemab anahfek"       # fifty palettes of copper
+		"rabab ogat 'alet"               # hardwood planks
+		"'okale' melah li'ab rakaoh"     # a hundred barrels of manufactured sand
+		"avah maloktolk' ma'af"          # bulk structural steel
+		"ehokurar ruhlat ifama"          # naturally [formed] carbon nanotubes
+		"ralahfem karuhlatimub"          # polycarbonate sheets
+
+phrase "exile: and we will let you live."
+	word
+		"lat 'oo liff."                  # let you live (mispronounced)
+		"oo go frie."                    # you go free (mispronounced)
+		"n't oo die."                    # not you die (mispronounced)
+		"oo stai ali'f."                 # you stay alive (mispronounced)
+		"wee go way."                    # we go {our own way|away} (mispronounced)
+
+		"'amahfef asra ranres ranro'nramet bosip."   # [we will] reward you with survival.
+		"ofat rata kapim tu'eh."         # you will see tomorrow.
+		"rata anavref kimot asra."       # [you] will keep your skin.
+		"imahfet et ofanlaomet."         # [we will let you] return to your family.
+		"ratagalef ranro'nramet bosip asra"   # [you can] celebrate your survival
+
+
+# Attempt at demanding what they need so you understand. Korath know
+# very few words and don't know our grammar at all, so it doesn't come
+# out right.
+phrase "exile: mispronounced food"
+	word
+		"fuud"                       # food
+		"fude"                       # food
+		"foo'de"                     # food
+		"sammon"                     # salmon
+		"cikken"                     # chicken
+		"beaf"                       # beef
+		"let'us"                     # lettuce
+		"verman"                     # vermin
+		"frute"                      # fruit
+		"fuit"                       # fruit
+		"vetaples"                   # vegetables
+		"buberris"                   # blueberries
+		"insets"                     # insects
+		"isekts"                     # insects
+		"b'eet lus"                  # beetles
+		"feesh"                      # fish
+
+phrase "exile: mispronounced raw materials"
+	word
+		"iren"         # iron
+		"copear"       # copper
+		"sapir'r"      # sapphire
+		"uranume"      # uranium
+		"herdwuud"     # hardwood
+		"tungst'n"     # tungsten
+		"sann'd"       # sand
+		"qurts"        # quartz
+		"ste'l"        # steel
+		"pla'tk"       # plastic
+
+# These show the Korath Exiles do still try to have a culture. They're
+# also easter eggs. All of these are horribly mispronounced human words.
+phrase "exile: oddly specific items"
+	word
+		"sculping suplis"          # Sculpting supplies
+		"painbush n paint"         # Paintbrushes and paint
+		"musik'l instr'mats"       # Musical instruments
+		"dr'm set"                 # Drum set
+		"Bondl's Fontr'z: tee Korath Spantion" # Boundless Frontiers: the Korath Expansion
+		"kit'ns"                   # Kittens (are these for eating?) 
+		"Ter Mite Bee Riot's Abums" # There Might Be Riots Albums
+		"Hoy ac'rn cookees"        # Hai acorn cookies
+		"mapse of humanika spass"  # Maps of human space
+		"r'd wermhol resurch"      # Red wormhole research
+		"mosart musaic"            # Mozart music
+		"Dunduns un Dagons"        # I'll let you guess this one
+		"toilat pepper"            # Toilet paper
+		"geko"                     # Gecko (a pet?)
+		"Baffer Wesnort"           # open source game
+		"Komium Bee Essu"          # Another open source game
+		"Feedoid R Peegee"         # Yet another open source game
+		"tess set's"               # chess sets
+		"fingre paint'n k't"       # finger-painting kit
+
+
 phrase "exile: [system] is snazzy"
 	word
 		"ioabfamef raarlobfe'et"             # transcends perfection
@@ -217,7 +378,7 @@ phrase "exile: [system] is better than yours"
 		"kapimlek inah asra iklebe' refolk'ri ipami"  # looks to you like a divine instrument
 		"raavleteb kad nrag pihem tiah ilas mabat" # [has a] better paint job than your ship
 		"monnro is laom rafapafeb asra"          # excels beyond your understanding
-		"pamasa ire' nrag tasik parleb a'ih asra ianlap  # is art you could never appreciate
+		"pamasa ire' nrag tasik parleb a'ih asra ianlap" # is art you could never appreciate
 
 phrase "exile: Our ship is disabled."
 	phrase
@@ -779,25 +940,8 @@ phrase "exile: eat good food"
 		"pagronref"                    # masticate
 		"kininnref"                    # nibble
 
-	word
-		"asame' oavip aok lane'"       # fresh dark green lettuce
-		"nrahfot tasah pagrel"         # crunchy rhino beetles
-		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
-		"sud nrannrab ranres nracah pikob" # baked cod with garlic
-		"kemmij emu' nrannrab"         # baked sole fillet
-		"''aH koaM imipD"              # Chilean Sea Bass
-		"rati is 'aka 'aklet"          # fish en papillote
-		"rumef rohfe osaf"             # honeydew melons
-		"meba ak'eb nrag pagrel"       # crisp gala apples
-		"oham nrirot nradrid 'omap"    # finely chopped yellow squash
-		"ica' oavip kolab"             # shredded collard greens
-		"kamo bosip nrag kaimennref"   # live squirming mealworms
-		"totnrafe' aqlam nridad nramen" # a bowlful of hornworm larvae
-		"polome' irumut kofe'"         # an entire ant colony
-		"ratobfok la'eh nridad rimim"  # a big heaping pile of waxworms
-		"nrala' lomek nroloh akro"     # a nest of ostrich eggs
-		"igah 'otik rinris ranres ra'aip" # chilled baby mice with garnish
-		"ak'ab lamo midet ranres u'tah nradrid" # a pasta of small snakes with mice meatballs
+	phrase
+		"exile: good food"
 
 phrase "efreti: eat good food"
 	word
