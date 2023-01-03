@@ -98,7 +98,8 @@ private:
 	int originMaxDistance = -1;
 
 	// Names referring to 'landmarks', the corresponding locations are passed in via ConfigureLandmarks().
-	std::set<std::string> landmarks;
+	std::set<std::string> landmarkPlanetNames;
+	std::set<std::string> landmarkSystemNames;
 	// Used to store the instantiated landmarks.
 	mutable std::set<const System *> landmarkSystems;
 	mutable std::set<const Planet *> landmarkPlanets;

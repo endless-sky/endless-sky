@@ -320,20 +320,25 @@ void LocationFilter::ConfigureLandmarks(const map<string, const System *> &syste
 	landmarkSystems.clear();
 	landmarkPlanets.clear();
 
-	for(const string &name : landmarks)
+	for(const string &name : landmarkPlanetNames)
+	{
+		const auto planetIt = planetLandmarks.find(name);
+		if(planetIt != planetLandmarks.end())
+			landmarkPlanets.insert(planetIt->second);
+	}
+
+	for(const string &name : landmarkSystemNames)
 	{
 		const auto systemIt = systemLandmarks.find(name);
 		if(systemIt != systemLandmarks.end())
 			landmarkSystems.insert(systemIt->second);
-		const auto planetIt = planetLandmarks.find(name);
-		if(planetIt != planetLandmarks.end())
-			landmarkPlanets.insert(planetIt->second);
 		
-		for(auto &notFilter : notFilters)
-			notFilter.ConfigureLandmarks(systemLandmarks, planetLandmarks);
-		for(auto &neighborFilter : neighborFilters)
-			neighborFilter.ConfigureLandmarks(systemLandmarks, planetLandmarks);
 	}
+
+	for(auto &notFilter : notFilters)
+		notFilter.ConfigureLandmarks(systemLandmarks, planetLandmarks);
+	for(auto &neighborFilter : neighborFilters)
+		neighborFilter.ConfigureLandmarks(systemLandmarks, planetLandmarks);
 }
 
 
@@ -536,13 +541,23 @@ void LocationFilter::LoadChild(const DataNode &child)
 			for(int i = 0; i < grand.Size(); ++i)
 				systems.insert(GameData::Systems().Get(grand.Token(i)));
 	}
-	else if(key == "landmark")
+	else if(key == "landmark" && child.Size() >= 3 + isNot)
 	{
-		for(int i = valueIndex; i < child.Size(); ++i)
-			landmarks.insert(child.Token(i));
+		for(int i = valueIndex; i < child.Size() - 1; ++i)
+		{
+			if(child.Token(i) == "planet")
+				landmarkPlanetNames.insert(child.Token(++i));
+			else if(child.Token(i) == "system")
+				landmarkSystemNames.insert(child.Token(++i));
+		}
 		for(const DataNode &grand : child)
-			for(int i = 0; i < grand.Size(); ++i)
-				landmarks.insert(grand.Token(i));
+			if(grand.Size() >= 2)
+			{
+				if(grand.Token(0) == "planet")
+					landmarkPlanetNames.insert(child.Token(1));
+				else if(child.Token(0) == "system")
+					landmarkSystemNames.insert(child.Token(1));
+			}
 	}
 	else if(key == "government")
 	{
