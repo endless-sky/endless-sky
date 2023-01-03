@@ -11,6 +11,131 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+fleet "Pact Supplies"
+	government "Merchant"
+	names "civilian"
+	outfitters "Basic Weapons" "Ammo South"
+	personality
+		confusion 30
+	variant 1
+		"Shuttle"
+		"Star Barge" 2
+		"Argosy"
+		"Sparrow" 2
+		"Hawk"
+
+# Landing mission so more new players are encouraged to go down south. Then, you report to the quartermaster's office by clicking the spaceport.
+mission "Pact Supplies 0 (Dirt Belt Landing)"
+	landing
+	invisible
+	minor
+	deadline 1
+	to offer
+		not "war begins" "chosen sides"
+		random < 65
+	source
+		attributes "dirt belt" factory
+		not "Bounty"
+	on offer
+		conversation
+			`<origin> is one of the few planets in the Dirt Belt with a developed industrial base. In addition to the horse-drawn carts of cereals, crops, and meat, there are also trucks and vans carrying locally manufactured goods from the cities nearby.`
+			`	To protect this industry from the ever-prevalent piracy threat, there is a substantially-sized militia base on this planet that, in place of the Navy's retreating patrols, have taken up the position of the police forces in this area.`
+			`	As you sign off your landing documents with the militia officer on duty, she asks you to report to <origin>'s spaceport quartermaster "If you are willing to help us on a supply job." She then thanks you for your cooperation and swiftly moves on to the next ship.`
+				accept
+
+mission "Pact Supplies 0 (Dirt Belt Supply)"
+	name "Transport weapons to Longjump"
+	description "The quartermaster of <origin> asked you to participate in a convoy supplying weapons to the southern Militia groups. Payment is <payment>."
+	cargo "weapons" 20
+	destination Longjump
+	source
+		attributes "dirt belt" factory
+		category "Transport" "Light Freighter" "Heavy Freighter"
+		not Bounty
+	to offer
+		has "Pact Supplies 0 (Dirt Belt Landing): offered"
+		not "Pact Supplies 0 (Dirt Belt Landing): failed"
+		not "war begins" "chosen sides"
+	on offer
+			`You enter the quartermaster's office, where you find a small group of captains already waiting, all of whom were sent by the militia officer that signed off your ship. Before long, the quartermaster himself arrives alongside the militia officer. There is a respectful pause as the quartermaster goes to sit at his desk.`
+			`	"Hello, captains. You may want to know why you are standing here in my office, and why my colleague has asked you to help us on a 'supply job.' There is a 'developing situation' in the Southern Rim that concerns our larger militia brothers, and we are obligated to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help deal with their 'situation'. It should not take too long and we will gladly pay each of you <payment> to convoy these goods. Do any of you have any questions?"`
+			choice
+				`	"Who are these weapons going to?"`
+					goto pact
+				`	"What's this 'developing situation'?"`
+			`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants, they've been raiding planets for ships and tribute in recent years and the Pact has requested more weaponry to deal with them." He turns and mutters to himself a bit too loudly, "We wouldn't have this problem if the Navy would come out of the Paradise Planets and start patrolling this area again."`
+				goto decision
+			label pact
+			`	"Our militia is part of the Southern Mutual Defense Pact, which is a collection of planetary militia organisations. They're centered in the Rim and the South, but recently we've had to become affiliated with them as the Navy has been hiding up in the Paradise Worlds more and more. Whatever is going on down south that affects the Pact will also affect us some way in another."`
+			label decision
+			`	There's a shuffle as a few captains raucously walk out of the quartermaster's office.`
+			`	As he leaves, one captain shouts "We won't support any of you begging southerners here!" while another adds, "This is all going to some rebellion, and you know it! Don't help those Southern Pact goons in their gun-running!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment so kindly.`
+			`	While those captains leave, both the militia officer and the quartermaster hold their faces grim and firm. "Any of you are free to join them if you wish. We will not penalise you, but do know that you may miss out on an opportunity to help our southern brothers. That may mean a lot in the future."`
+			choice
+				`	(Stay and accept the offer.)`
+					goto end
+				`	(Leave with the Paradise Worlds captains.)`
+					decline
+			label end
+			`	Your now smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where a store of energy blasters, beam lasers, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse to fill your ships with cargo. As they work, the militia officer adresses all of you. "Our brothers down South on <planet> expect this delivery by <date>. Please make your way as soon as possible, or this 'pirate' situation may spin out of hand further. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
+				accept
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet "Pact Supplies"
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you left part of the convoy behind, or not all of the cargo is in the system.`
+	on complete
+		payment 35000
+		"assisted free worlds" ++
+		dialog phrase "generic cargo delivery payment"
+
+mission "Pact Supplies 0 (Dirt Belt Escort)"
+	name "Escort weapons convoy to Longjump"
+	description "The quartermaster of <origin> asked you to escort a convoy supplying weapons to the southern Militia groups. Payment is <payment>."
+	destination Longjump
+	source
+		attributes "dirt belt" factory
+		category "Interceptor" "Light Warship" "Medium Warship" "Heavy Warship"
+		not Bounty
+	to offer
+		has "Pact Supplies 0 (Dirt Belt Landing): offered"
+		not "Pact Supplies 0 (Dirt Belt Landing): failed"
+		not "war begins" "chosen sides"
+	on offer
+			`You enter the quartermaster's office, where you find a small group of captains already waiting, all of whom were sent by the militia officer that signed off your ship. Before long, the quartermaster himself arrives alongside the militia officer. There is a respectful pause as the quartermaster goes to sit at his desk.`
+			`	"Hello, captains. You may want to know why you are standing here in my office, and why my colleague has asked you to help us on a 'supply job.' There is a 'developing situation' in the Southern Rim that concerns our larger militia brothers, and we are obligated to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help deal with their 'situation'. It should not take too long and we will gladly pay each of you <payment> to convoy these goods. Do any of you have any questions?"`
+			choice
+				`	"Who are these weapons going to?"`
+					goto pact
+				`	"What's this 'developing situation'?"`
+			`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants, they've been raiding planets for ships and tribute in recent years and the Pact has requested more weaponry to deal with them." He turns and mutters to himself a bit too loudly, "We wouldn't have this problem if the Navy would come out of the Paradise Planets and start patrolling this area again."`
+				goto decision
+			label pact
+			`	"Our militia is part of the Southern Mutual Defense Pact, which is a collection of planetary militia organisations. They're centered in the Rim and the South, but recently we've had to become affiliated with them as the Navy has been hiding up in the Paradise Worlds more and more. Whatever is going on down south that affects the Pact will also affect us some way in another."`
+			label decision
+			`	There's a shuffle as a few captains raucously walk out of the quartermaster's office.`
+			`	As he leaves, one captain shouts "We won't support any of you begging southerners here!" while another adds, "This is all going to some rebellion, and you know it! Don't help those Southern Pact goons in their gun-running!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment so kindly.`
+			`	While those captains leave, both the militia officer and the quartermaster hold their faces grim and firm. "Any of you are free to join them if you wish. We will not penalise you, but do know that you may miss out on an opportunity to help our southern brothers. That may mean a lot in the future."`
+			choice
+				`	(Stay and accept the offer.)`
+					goto end
+				`	(Leave with the Paradise Worlds captains.)`
+					decline
+			label end
+			`	Your now smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where a store of energy blasters, beam lasers, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse to fill your ships with cargo. As they work, the militia officer adresses all of you. "Our brothers down South on <planet> expect this delivery by <date>. Please make your way as soon as possible, or this 'pirate' situation may spin out of hand further. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
+				accept
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet "Pact Supplies"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
+	on complete
+		payment 35000
+		"assisted free worlds" ++
+		dialog phrase "generic cargo delivery payment"
+
 mission "Pact Recon 0"
 	minor
 	name "Pirate Reconnaissance"
