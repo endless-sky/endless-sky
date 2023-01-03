@@ -3302,7 +3302,7 @@ mission "Sativa: Struggling Author 4"
 		not attributes "station"
 		attributes "kimek"
 	to offer
-		"Sativa: Struggling Author 3: done"
+		has "Sativa: Struggling Author 3: done"
 	on offer
 		conversation
 			`The spaceport of Ki Patek Ka is vast. You decide to search for Ann, who has chosen to settle in the cafeteria, with her laptop. She is typing away at the keyboard, presumably writing a new novel.`
