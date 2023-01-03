@@ -24,10 +24,10 @@
 
 phrase "hostile korath untranslated"
 	phrase
-		"exile: loud angry rambling" 140
-		"exile: bragging about tech" 70
-		"exile: semi-translated cargo demands" 170
-		"exile: semi-translated oddly specific demands" 30
+		"exile: loud angry rambling" 150
+		"exile: bragging about tech" 50
+		"exile: semi-translated cargo demands" 150
+		"exile: semi-translated oddly specific demands" 50
 
 # Civilians don't demand your cargo since they never go on raids.
 phrase "hostile korath civilian untranslated"
@@ -226,10 +226,10 @@ phrase "exile: Please don't do terrible things to us while we are disabled."
 
 phrase "exile: You will give us"
 	word
-		"Can haf"               # Can have (mispronounced)
-		"Will haf"              # Will have (mispronounced)
-		"Gif us"                # Give us (mispronounced)
-		"Tribut'"               # Tribute (mispronounced, probably heard it from pirates)
+		"Can haf"     2          # Can have (mispronounced)
+		"Will haf"    2          # Will have (mispronounced)
+		"Gif us"      2          # Give us (mispronounced)
+		"Tribut'"     2          # Tribute (mispronounced, probably heard it from pirates)
 
 		"Asra rata ilehfef ifat"     # You will give us
 		"Ifat kokroref asra"         # We demand your
@@ -242,7 +242,7 @@ phrase "exile: You will give us"
 phrase "exile: food"
 	phrase
 		"exile: good food"
-		"exile: mispronounced food"
+		"exile: mispronounced food" 2
 
 # Wish list food, probably half joking
 phrase "exile: good food"
@@ -269,7 +269,7 @@ phrase "exile: good food"
 phrase "exile: raw materials"
 	phrase
 		"exile: good raw materials"
-		"exile: mispronounced raw materials"
+		"exile: mispronounced raw materials" 2
 
 phrase "exile: good raw materials"
 	word
@@ -287,11 +287,11 @@ phrase "exile: good raw materials"
 
 phrase "exile: and we will let you live."
 	word
-		"lat 'oo liff."                  # let you live (mispronounced)
-		"oo go frie."                    # you go free (mispronounced)
-		"n't oo die."                    # not you die (mispronounced)
-		"oo stai ali'f."                 # you stay alive (mispronounced)
-		"wee go way."                    # we go {our own way|away} (mispronounced)
+		"lat 'oo liff."           2       # let you live (mispronounced)
+		"oo go frie."             2       # you go free (mispronounced)
+		"n't oo die."             2       # not you die (mispronounced)
+		"oo stai ali'f."          2       # you stay alive (mispronounced)
+		"wee go way."             2       # we go {our own way|away} (mispronounced)
 
 		"'amahfef asra ranres ranro'nramet bosip."   # [we will] reward you with survival.
 		"ofat rata kapim tu'eh."         # you will see tomorrow.
@@ -618,16 +618,16 @@ phrase "efreti: You should stop attacking us"
 
 phrase "efreti: because we are protected by (Insert Powerful Faction Name Here)."
 	word
-		"fonebem Dras ofhorobfef."              # before the Drak kill you (Dras = Drak)
-		"oaka Karg rasa ipavref ofnawa."        # or the Quarg will seek your doom. (Karg = Quarg)
-		"oaka atra rasa ipebfef rasaf Arkon."   # or you will feed the Archon (Arkon = Archon)
-		"ralraw iacfam Arkon rasa lrakat."      # lest the Archon come.
+		"fonebem Drak ofhorobfef."              # before the Drak kill you
+		"oaka Quarg rasa ipavref ofnawa."       # or the Quarg will seek your doom.
+		"oaka atra rasa ipebfef rasaf Archon."  # or you will feed the Archon
+		"ralraw iacfam Archon rasa lrakat."     # lest the Archon come.
 		"sokro ipatrihlref sabfuk kilran."      # to avoid the Sky Lances
-		"arepas Karg hanata apatoam akis."      # because the Quarg are our siblings (Karg = Quarg)
-		"oaka atra rasa itawref Arkon naim."    # or you will be Archon s**t
-		"arepas Dras ilrotrinef akis."          # because [the] Drak protect us
+		"arepas Quarg hanata apatoam akis."     # because the Quarg are our siblings
+		"oaka atra rasa itawref Archon naim."   # or you will be Archon s**t
+		"arepas Drak ilrotrinef akis."          # because [the] Drak protect us
 		"ralraw iacfam ipekafikra ipihsalref."  # lest antimatter [from an Archon] end [you]
-		"sokro ipatrihlref ramanabfec Karg."    # to avoid a Quarg's vengeance (Karg = Quarg)
+		"sokro ipatrihlref ramanabfec Quarg."   # to avoid a Quarg's vengeance
 
 phrase "exile: I do bad things to my enemies"
 	phrase
@@ -887,7 +887,7 @@ phrase "efreti: I like to"
 		"Sonik mada ferapis mada se"                # My skin draws me to
 		"Kerkorda mada atanah puki orkos fervuba"   # Surely I was bred to
 		"Balaifara mada kitas fervuba"              # How can I not try
-		"Mada asar fenocasar Karg hirlla"           # I'd forget the Quarg to (Karg = Quarg)
+		"Mada asar fenocasar Quarg hirlla"          # I'd forget the Quarg to
 		"Bepanih werim senafir asar bepr"           # Switching genders would be worth
 
 # Band names come from the human band list.
@@ -1097,7 +1097,7 @@ phrase "exile: practical skill"
 		"pakar pergerakan armada humanika"      # human fleet movement expert
 		"i'irtek Nu'agel"                       # nutrigel technician (Nu'agel = Nutrigel)
 		"i'iktalb kacaleb 'inumukafles"         # dermatological nurse practitioner
-		"racalave' Dra' ras 'imarauti'b"        # Drak historian and psychoanalyst (Dra' = Drak)
+		"racalave' Drak ras 'imarauti'b"        # Drak historian and psychoanalyst
 		"impa ati'ijulk'a 'ikeluek"             # theoretical astrophysicist
 		"ikimereb nriflujallek 'ikeluek"        # theoretical terraforming researcher
 		"impa paseh afoalk"                     # trauma surgeon
@@ -1109,11 +1109,11 @@ phrase "efreti: practical skill"
 		"rasiabpec rat rakagapec rimef"         # engine repair and maintenance
 		"ranicfapekes lrikunic lrad paon amaib" # superb piloting skills
 		"raslrabfelref kabu sikuibikra"         # developing antibiotic medicine
-		"Karg i'afumbis ras rapafevlek"         # Quarg diplomacy and translation (Karg = Quarg)
+		"Quarg i'afumbis ras rapafevlek"        # Quarg diplomacy and translation
 		"pesvah icuk oba-oba akafukoa"          # automata grey hat hacker
 		"inha kubup cotih"                      # sentient roboticist
 		"imiksapc kagapec milunukafpet"         # dermatological nurse practitioner
-		"ragapawem Dras rat minarausimc"        # Drak historian and psychoanalyst (Dras = Drak)
+		"ragapawem Drak rat minarausimc"        # Drak historian and psychoanalyst
 		"inha asimiyupkma mikepuek"             # theoretical astrophysicist
 		"lrasok robes sirucuptih ilunursekuib"  # bioengineering hydroponics gardener
 		"sekimpa pekaekiyfa paon amaslra"       # spaceborne amphitheater architect
