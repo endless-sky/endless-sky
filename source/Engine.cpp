@@ -155,7 +155,9 @@ namespace {
 				|| ship->Cloaking() >= 1. || ship->GetPersonality().IsMute())
 			return false;
 
-		// Ships that don't share a language with the player shouldn't send hails.
+		// Ships that don't share a language with the player shouldn't communicate normally.
+		// Only random event hails should work, and only if the side has explicitly added
+		// untranslated hails. This is ensured by the allowUntranslated argument.
 		if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 			return false;
 
