@@ -189,7 +189,6 @@ phrase "efreti: miscellaneous rambling"
 
 phrase "exile: Please don't do terrible things to us while we are disabled."
 	word
-		"Pleace"                 # Please (mispronounced)
 		"'uu shud"               # You should (mispronounced)
 		"can hav"                # Can have (mispronounced)
 
