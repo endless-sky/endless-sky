@@ -37,14 +37,14 @@
 
 phrase "hostile korath untranslated"
 	phrase
-		"exile humanika: cargo demands" 250
-		"exile: loud angry rambling" 150
-		"exile mixed: cargo demands" 100
-		"exile humanika: general threats" 100
-		"exile humanika: insults" 80
-		"exile mixed: bragging about tech" 70
-		"exile: Exclamation!" 50
-		"exile humanika: oddly specific demands" 30
+		"exile: loud angry rambling" 400
+		"exile humanika: cargo demands" 200
+		"exile mixed: cargo demands" 150
+		"exile mixed: bragging about tech" 60
+		"exile humanika: insults" 40
+		"exile humanika: general threats" 40
+		"exile: Exclamation!" 40
+		"exile humanika: oddly specific demands" 20
 
 # Civilians don't demand your cargo since they never go on raids.
 phrase "hostile korath civilian untranslated"
@@ -186,20 +186,18 @@ phrase "exile mixed: request for mercy"
 
 phrase "exile humanika: You will lose this fight."
 	word
-		"Yu loose here."        # You [will] lose here. (mispronounced)
-		"Die yuu nuw."          # Die you now. (mispronounced)
-		"Wee wiiin yuu los."    # We [will] win [and] you [will] lose. (mispronounced)
-		"Yoo no gud fite."      # You are no good in a fight. (mispronounced)
+		"Yu loose lif here."              # You [will] lose your life here. (mispronounced)
+		"Die yuu nuw if no surendr."      # Die you now if no surendr. (mispronounced)
+		"Wee wiiin yuu los if no cahgo."  # We [will] win [and] you [will] lose if [you give us] no cargo. (mispronounced)
+		"Yoo no gud fite so gif up."      # You are no good in a fight so give up. (mispronounced)
 
 
 phrase "exile humanika: Nobody can defeat the Korath."
 	word
-		"We Korath gud!"        # We, the Korath, are good [at doing things]! (mispronounced)
-		"Korath do bes!"        # Korath do best! (mispronounced)
+		"We Korath imotal!"     # We, the Korath, are immortal! (mispronounced)
 		"Korath flame stong."   # [The] Korath flame is strong. (mispronounced)
-		"No better Korath."     # Nobody is better than the Korath. (mispronounced)
-		"Korath, see?"          # Just look at us! Can you really say Korath aren't amazing?
-		"Foeva Koath!"          # The Korath will live forever!
+		"Korath bove all."      # Korath [are] above all. (mispronounced)
+		"Foeva Koath!"          # The Korath will live forever! (mispronounced)
 
 phrase "exile: Exclamation!"
 	word
