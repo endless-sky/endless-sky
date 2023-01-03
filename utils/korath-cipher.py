@@ -21,6 +21,10 @@
 # Works with Python 2.7 or newer.
 
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# INSTRUCTIONS
+#
 # Before you run this script, first you need to translate your desired
 # phrase from English to Indonesian. Here's an example:
 #
@@ -40,7 +44,11 @@
 # something like this:
 #
 # EXILE:  Famas ralarehet, aga' agrap kapimef ranrupuhet.
-# Efreti: Fanat raparebes, adam adrah kahinef ralruhubes.
+# Efreti: Fanat raparebes, adas adrah kahinef ralruhubes.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# GENERAL TRANSLATION NOTES
 #
 # There are a few words with standard translations you'll need to apply manually:
 #
@@ -57,8 +65,8 @@
 #
 # A word of warning: sometimes the cipher will produce obscene or
 # objectionable words, or words that are sacred to some people. Use
-# discretion and manually correct them.
-
+# discretion and manually correct them. Ember Space was one of them.
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 import sys;
