@@ -219,6 +219,7 @@ private:
 	double solarPower = 0.;
 	double solarWind = 0.;
 	double starfieldDensity = 1.;
+	bool universalRamscoop = true;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.

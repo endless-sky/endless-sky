@@ -2366,7 +2366,10 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * sqrt(attributes.Get("ramscoop"));
+			// Even if a ship has no ramscoop, it can harvest a tiny bit of fuel by flying close to the star,
+			// provided the system allows it.
+			double universal = 0.05 * scale * currentSystem->UniversalRamscoop();
+			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + universal);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
