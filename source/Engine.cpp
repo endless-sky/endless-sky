@@ -1829,17 +1829,21 @@ void Engine::SendHails()
 	if(Random::Int(600) || player.IsDead() || ships.empty())
 		return;
 
-	shared_ptr<Ship> source;
-	unsigned i = Random::Int(ships.size());
-	for(const shared_ptr<Ship> &it : ships)
-		if(!i--)
-		{
-			source = it;
-			break;
-		}
+	vector<shared_ptr<const Ship>> canSend;
+	canSend.reserve(ships.size());
 
-	if(!CanSendHail(source, player, true))
+	// When deciding who will send a hail, only consider ships that can send hails.
+	for(auto &it : ships)
+		if(CanSendHail(it, player, true))
+			canSend.push_back(it);
+
+	if(!canSend.size())
+		// No ships can send hails.
 		return;
+
+	// Randomly choose a ship to send the hail.
+	unsigned i = Random::Int(canSend.size());
+	shared_ptr<const Ship> source = canSend[i];
 
 	// Generate a random hail message.
 	SendMessage(source, source->GetHail(player.GetSubstitutions()));
