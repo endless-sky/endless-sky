@@ -67,13 +67,13 @@ namespace {
 template <typename Type>
 pair<size_t, bool> Search(Type key, const vector<pair<stringAndHash, double>> &v);
 
-// The dataset is sorted by its 'char *' key (which is indeed the only
-// allowed key used when adding a new element because it's unique), so
-// a bynary search is not possible: do a 'find'
+// Perform a binary search on a sorted vector. Return the key's location (or
+// proper insertion spot) in the first element of the pair, and "true" in
+// the second element if the key is already in the vector.
 template <>
 pair<size_t, bool> Search(const HashWrapper key, const vector<pair<stringAndHash, double>> &v)
 {
-	for(size_t low = 0; low < v.size(); low++)
+	for(size_t low = 0; low < v.size(); ++low)
 	{
 		if(key.Get() == v[low].first.GetHash().Get())
 			return make_pair(low, true);
@@ -81,30 +81,21 @@ pair<size_t, bool> Search(const HashWrapper key, const vector<pair<stringAndHash
 	return make_pair(v.size(), false);
 }
 
-// Perform a binary search on a sorted vector. Return the key's location (or
-// proper insertion spot) in the first element of the pair, and "true" in
-// the second element if the key is already in the vector.
+// The dataset is sorted by its 'hash' key (which is indeed the only
+// allowed key used when adding a new element because it's unique), so
+// a bynary search is not possible: do a 'find'
 template <>
 pair<size_t, bool> Search(const char *key, const vector<pair<stringAndHash, double>> &v)
 {
-	// At each step of the search, we know the key is in [low, high).
-	size_t low = 0;
-	size_t high = v.size();
-
-	while(low != high)
+	for(size_t low = 0; low < v.size(); ++low)
 	{
-		size_t mid = (low + high) / 2;
-		int cmp = strcmp(key, v[mid].first.GetString());
+		int cmp = strcmp(key, v[low].first.GetString());
 		if(!cmp)
-			return make_pair(mid, true);
-
-		if(cmp < 0)
-			high = mid;
-		else
-			low = mid + 1;
+			return make_pair(low, true);
 	}
-	return make_pair(low, false);
+	return make_pair(v.size(), false);
 }
+
 
 
 double &Dictionary::operator[](const char *key)
