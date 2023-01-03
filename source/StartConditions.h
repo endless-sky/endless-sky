@@ -53,7 +53,9 @@ public:
 	explicit StartConditions(const DataNode &node);
 
 	void Load(const DataNode &node);
-	void LoadState(const DataNode &node, StartState state);
+	void LoadState(const DataNode &node, StartState state, bool coreData = true);
+	// A helper to fill up missing information of a state.
+	void FillState(StartState from, StartState to);
 	// Finish loading the ship definitions.
 	void FinishLoading();
 
