@@ -180,14 +180,14 @@ namespace {
 	// delaying their firing for another reload cycle. The less energy
 	// a ship has relative to its max and the more ionized the ship is,
 	// the higher the chance that a weapon will jam. The jam chance is
-	// capped at 50%. Very small amounts of weapon jamming are ignored.
+	// capped at 50%. Very small amounts of scrambling are ignored.
 	// The scale is such that a weapon with an ion damage of 5 and a reload
 	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
 	// of 5% when it is at 100% energy.
-	double CalculateJamChance(double maxEnergy, double weaponJamming)
+	double CalculateJamChance(double maxEnergy, double scrambling)
 	{
 		double scale = maxEnergy * 220.;
-		return weaponJamming > .1 ? min(0.5, scale ? weaponJamming / scale : 1.) : 0.;
+		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
 	}
 }
 
@@ -1268,7 +1268,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// Make sure various special status values are reset.
 	heat = IdleHeat();
 	ionization = 0.;
-	weaponJamming = 0.;
+	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
 	discharge = 0.;
@@ -1491,10 +1491,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoGeneration();
 
 	// Handle ionization effects, etc.
-	if(ionization || weaponJamming)
+	if(ionization || scrambling)
 		CreateSparks(visuals, "ion spark", ionization * .05);
-	if(weaponJamming)
-		CreateSparks(visuals, "ion spark", weaponJamming * .05);
+	if(scrambling)
+		CreateSparks(visuals, "ion spark", scrambling * .05);
 	if(disruption)
 		CreateSparks(visuals, "disruption spark", disruption * .1);
 	if(slowness)
@@ -1614,7 +1614,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			energy = 0.;
 			heat = 0.;
 			ionization = 0.;
-			weaponJamming = 0.;
+			scrambling = 0.;
 			fuel = 0.;
 			velocity = Point();
 			MarkForRemoval();
@@ -1929,7 +1929,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				discharge += scale * attributes.Get("turning discharge");
 				corrosion += scale * attributes.Get("turning corrosion");
 				ionization += scale * attributes.Get("turning ion");
-				weaponJamming += scale * attributes.Get("turning weapon jamming");
+				scrambling += scale * attributes.Get("turning scrambling");
 				leakage += scale * attributes.Get("turning leakage");
 				burning += scale * attributes.Get("turning burn");
 				slowness += scale * attributes.Get("turning slowing");
@@ -1987,8 +1987,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
 					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
 					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
-					weaponJamming += scale * attributes.Get(isThrusting ? "thrusting weapon jamming" :
-						"reverse thrusting weapon jamming");
+					scrambling += scale * attributes.Get(isThrusting ? "thrusting scrambling" :
+						"reverse thrusting scrambling");
 					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
 					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
@@ -2012,7 +2012,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double dischargeCost = attributes.Get("afterburner discharge");
 			double corrosionCost = attributes.Get("afterburner corrosion");
 			double ionCost = attributes.Get("afterburner ion");
-			double weaponJammingCost = attributes.Get("afterburner weapon jamming");
+			double scramblingCost = attributes.Get("afterburner scrambling");
 			double leakageCost = attributes.Get("afterburner leakage");
 			double burningCost = attributes.Get("afterburner burn");
 
@@ -2031,7 +2031,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				discharge += dischargeCost;
 				corrosion += corrosionCost;
 				ionization += ionCost;
-				weaponJamming += weaponJammingCost;
+				scrambling += scramblingCost;
 				leakage += leakageCost;
 				burning += burningCost;
 
@@ -2273,14 +2273,14 @@ void Ship::DoGeneration()
 			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 
-	if(weaponJamming)
+	if(scrambling)
 	{
-		double weaponJammingResistance = attributes.Get("weapon jamming resistance");
-		double weaponJammingEnergy = attributes.Get("weapon jamming resistance energy") / weaponJammingResistance;
-		double weaponJammingFuel = attributes.Get("weapon jamming resistance fuel") / weaponJammingResistance;
-		double weaponJammingHeat = attributes.Get("weapon jamming resistance heat") / weaponJammingResistance;
-		DoStatusEffect(isDisabled, weaponJamming, weaponJammingResistance,
-			energy, weaponJammingEnergy, fuel, weaponJammingFuel, heat, weaponJammingHeat);
+		double scramblingResistance = attributes.Get("scrambling resistance");
+		double scramblingEnergy = attributes.Get("scrambling resistance energy") / scramblingResistance;
+		double scramblingFuel = attributes.Get("scrambling resistance fuel") / scramblingResistance;
+		double scramblingHeat = attributes.Get("scrambling resistance heat") / scramblingResistance;
+		DoStatusEffect(isDisabled, scrambling, scramblingResistance,
+			energy, scramblingEnergy, fuel, scramblingFuel, heat, scramblingHeat);
 	}
 
 	if(disruption)
@@ -2726,7 +2726,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	antiMissileRange = 0.;
 
-	double jamChance = CalculateJamChance(Energy(), weaponJamming);
+	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2756,7 +2756,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 
-	double jamChance = CalculateJamChance(Energy(), weaponJamming);
+	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -3083,7 +3083,7 @@ void Ship::Recharge(bool atSpaceport)
 
 	heat = IdleHeat();
 	ionization = 0.;
-	weaponJamming = 0.;
+	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
 	discharge = 0.;
@@ -3524,7 +3524,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	discharge += damage.Discharge();
 	corrosion += damage.Corrosion();
 	ionization += damage.Ion();
-	weaponJamming += damage.WeaponJamming();
+	scrambling += damage.scrambling();
 	burning += damage.Burn();
 	leakage += damage.Leak();
 
@@ -3575,7 +3575,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.WeaponJamming() && CalculateJamChance(Energy(), weaponJamming) > 0.1)
+				|| (damage.scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
@@ -4008,7 +4008,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
 	hull -= weapon.FiringHull() + relativeHullChange;
 	ionization += weapon.FiringIon();
-	weaponJamming += weapon.FiringWeaponJamming();
+	scrambling += weapon.Firingscrambling();
 	disruption += weapon.FiringDisruption();
 	slowness += weapon.FiringSlowing();
 	discharge += weapon.FiringDischarge();

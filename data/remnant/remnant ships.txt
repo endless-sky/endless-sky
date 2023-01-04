@@ -368,7 +368,7 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 		"heat protection" 100
 		"hull protection" 100
 		"ion protection" 1
-		"weapon jamming protection" 1
+		"scrambling protection" 1
 		"leak protection" 100
 		"piercing protection" 100
 		"shield protection" 100
@@ -408,7 +408,7 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 		"fuel protection" 100
 		"hull protection" 100
 		"ion protection" 1
-		"weapon jamming protection" 1
+		"scrambling protection" 1
 		"leak protection" 100
 		"piercing protection" 100
 		"shield protection" 100
@@ -443,7 +443,7 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"energy protection" 1
 		"hull protection" 1
 		"ion protection" 1
-		"weapon jamming protection" 1
+		"scrambling protection" 1
 		"slowing protection" 1
 	outfits
 		"Laser Turret" 2
@@ -667,7 +667,7 @@ ship "Heron"
 		"force protection" 1
 		"heat protection" 1.5
 		"ion resistance" 0.3
-		"weapon jamming resistance" 0.3
+		"scrambling resistance" 0.3
 		"slowing resistance" 3
 		"remnant node" 11
 		"spinal mount" 1
@@ -873,8 +873,8 @@ ship "Merganser"
 		"tactical scan power" 26
 		"ion resistance" 0.1
 		"ion resistance energy" -0.05
-		"weapon jamming resistance" 0.1
-		"weapon jamming resistance energy" -0.05
+		"scrambling resistance" 0.1
+		"scrambling resistance energy" -0.05
 		"thrust" 5.0
 		"turn" 60.0
 		"reverse thrust" 5.0
@@ -1059,9 +1059,9 @@ ship "Penguin"
 		"tactical scan power" 50
 		"atmosphere scan" 100
 		"ion protection" 0.25
-		"weapon jamming protection" 0.25
+		"scrambling protection" 0.25
 		"ion resistance" 0.05
-		"weapon jamming resistance" 0.05
+		"scrambling resistance" 0.05
 		"thrust" 4.2
 		"turn" 80.0
 		"reverse thrust" 4.2
@@ -1163,7 +1163,7 @@ ship "Peregrine"
 		"outfit scan speed" 22
 		"tactical scan power" 50
 		"ion protection" 0.25
-		"weapon jamming protection" 0.25
+		"scrambling protection" 0.25
 		"slowing protection" 0.25
 		"remnant node" 5
 		weapon
@@ -1339,9 +1339,9 @@ ship "Puffin"
 		"tactical scan power" 52
 		"atmosphere scan" 100
 		"ion protection" 0.25
-		"weapon jamming protection" 0.25
+		"scrambling protection" 0.25
 		"ion resistance" 0.05
-		"weapon jamming resistance" 0.05
+		"scrambling resistance" 0.05
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
@@ -1380,7 +1380,7 @@ ship "Smew"
 		"engine capacity" 46
 		"energy capacity" 3000
 		"ion resistance" 0.002
-		"weapon jamming resistance" 0.002
+		"scrambling resistance" 0.002
 		"ramscoop" 0.8
 		"shield generation" 0.48
 		"shield energy" 0.32
