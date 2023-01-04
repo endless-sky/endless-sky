@@ -58,6 +58,8 @@ private:
 		// Create a choice from a grandchild DataNode.
 		Choice(const DataNode &node, bool isPhraseName = false);
 
+		//std::vector<std::string> GetAll() const;
+
 		// Enable empty checks and iteration:
 		using std::vector<std::pair<std::string, const Phrase *>>::empty;
 		using std::vector<std::pair<std::string, const Phrase *>>::begin;
@@ -68,6 +70,7 @@ private:
 	// A Part represents a the content contained by a "word", "phrase", or "replace" child node.
 	class Part {
 	public:
+		//std::vector<std::string> GetAll() const;
 		// Sources of text, either literal or via phrase invocation.
 		WeightedList<Choice> choices;
 		// Character sequences that should be replaced, e.g. "llo"->"y"
@@ -81,6 +84,8 @@ private:
 	public:
 		Sentence(const DataNode &node, const Phrase *parent);
 		void Load(const DataNode &node, const Phrase *parent);
+
+		//std::vector<std::string> GetAll() const;
 
 		// Enable empty checks and iteration:
 		using std::vector<Part>::empty;

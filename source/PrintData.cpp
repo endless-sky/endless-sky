@@ -671,9 +671,6 @@ namespace {
 	{
 		string phraseName;
 
-		for(int i = 0; i < argc; i++)
-			cout << argv[i] << '\n';
-
 		for(const char *const *it = argv + 1; *it; ++it)
 		{
 			string arg = *it;
@@ -684,8 +681,6 @@ namespace {
 			}
 		}
 		
-		cout << "1" << phraseName << '\n';
-
 		const Phrase *phrase = nullptr;
 
 		for(const auto &it : GameData::Phrases())
@@ -701,17 +696,16 @@ namespace {
 			return;
 		}
 
-		cout << "2" << phraseName << '\n';
-		cout << "3" << phrase->Name() << '\n';
+		cout << "Computing results for phrase: \"" << phrase->Name() << "\"." << endl;
 
-		vector<string> results = std::move(phrase->GetAll());
+		vector<string> results = phrase->GetAll();
 
-		cout << "" << phrase->Name() << '\n';
+		cout << "Printing results for phrase: \"" << phraseName << "\"." << endl;
 
 		for(const auto &it : results)
 			cout << it << '\n';
 
-		cout << "Done!\n";
+		cout << "Done!" << endl;
 	}
 
 
@@ -762,7 +756,6 @@ void PrintData::Print(int argc, char *argv[])
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		cout << "arg: " << arg << '\n';
 		if(arg == "-s" || arg == "--ships")
 		{
 			Ships(argv);

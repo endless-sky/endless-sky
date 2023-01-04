@@ -21,6 +21,31 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	void CombineVectors(vector<string> &base, const vector<string> &toAdd)
+	{
+		vector<string> result;
+		result.reserve(base.size() * toAdd.size());
+		for(const string &baseString : base)
+			for(const string &toAppend : toAdd)
+				result.push_back(baseString + toAppend);
+		std::swap(base, result);
+	}
+
+	void AppendToVector(vector<string> &base, const string &toAppend)
+	{
+		for(string &it : base)
+			it.append(toAppend);
+	}
+
+	void PushToVector(vector<string> &base, const vector<string> &toAdd)
+	{
+		base.reserve(base.size() + toAdd.size());
+		for(const string &toPush : toAdd)
+			base.push_back(toPush);
+	}
+}
+
 
 
 Phrase::Phrase(const DataNode &node)
@@ -97,54 +122,55 @@ vector<string> Phrase::GetAll() const
 {
 	vector<string> result;
 
+	// Iterate over each sentence in this phrase.
+	// Each sentence is its own set of possible results;
+	// sentences are not concatenated.
 	for(const auto &sentence : sentences)
 	{
 		vector<string> sentenceVector;
 		sentenceVector.emplace_back();
 
+		// Iterate over each part in this sentence.
+		// Sequential parts are concatenated to form a sentence.
 		for(const auto &part : sentence)
 		{
 			vector<string> partVector;
 
+			// Iterate over each choice in this part.
+			// Choices are added onto the previous parts in parallel, not concatenated with each other.
 			for(const auto &choice : part.choices)
 			{
 				vector<string> choiceVector;
 				choiceVector.emplace_back();
 
+				// Iterate over each element in this choice.
+				// The elements in a choice are concatenated.
+				// Each element is either empty, a string, or a pointer to another phrase.
 				for(const auto &element : choice)
 				{
+					// If this element is a string, append it to each of the partial results for this choice.
 					if(!element.first.empty())
-						for(auto &it : choiceVector)
-							it.append(element.first);
-					else
+						AppendToVector(choiceVector, element.first);
+					// If this element references another phrase, get all the possible results of that phrase,
+					// and append each of those to each of the existing partial results for this choice.
+					else if(element.second)
 					{
 						vector<string> subPhraseVector = element.second->GetAll();
-
-						vector<string> incompleteChoiceVector = choiceVector;
-						choiceVector.clear();
-
-						for(const auto &incompleteChoice : incompleteChoiceVector)
-						{
-							for(const auto &subPhraseString : subPhraseVector)
-								choiceVector.push_back(incompleteChoice + subPhraseString);
-						}
+						CombineVectors(choiceVector, subPhraseVector);
 					}
 				}
 
-				for(auto &choiceResult : choiceVector)
-					partVector.push_back(choiceResult);
+				// Add the new possible options for this part
+				// from this choice to the back of the part vector.
+				PushToVector(partVector, choiceVector);
 			}
 
-			vector<string> incompleteSentenceVector = sentenceVector;
-			sentenceVector.clear();
-
-			for(const auto &incompleteSentence : incompleteSentenceVector)
-				for(const auto &partToAdd : partVector)
-					sentenceVector.push_back(incompleteSentence + partToAdd);
+			// Append each possible result of this part to each patial sentence.
+			CombineVectors(sentenceVector, partVector);
 		}
 
-		for(auto &it : sentenceVector)
-			result.push_back(it);
+		// Append each possible result for this sentence to the final result vector.
+		PushToVector(result, sentenceVector);
 	}
 
 	return result;
@@ -217,6 +243,33 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 		emplace_back(string{entry, start, entry.length() - start}, nullptr);
 }
 
+
+
+/*vector<string> Phrase::Choice::GetAll() const
+{
+	vector<vector<string>> result;
+
+	for(const auto &it : *this)
+	{
+		if(!it.first.empty())
+		{
+			result.emplace_back();
+			result.back().push_back(it.first);
+		}
+		else if(it.second)
+			result.push_back(std::move(it.second->GetAll()));
+		else
+		{
+			result.emplace_back();
+			result.back().emplace_back();
+		}
+	}
+
+	for(const auto &it : result)
+	{
+
+	}
+}*/
 
 
 // Forwarding constructor, for use with emplace/emplace_back.
