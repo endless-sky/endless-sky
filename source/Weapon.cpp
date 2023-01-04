@@ -180,8 +180,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingShields = value;
 			else if(key == "firing ion")
 				firingIon = value;
-			else if(key == "firing weapon jamming")
-				firingWeaponJamming = value;
+			else if(key == "firing interference")
+				firinginterference = value;
 			else if(key == "firing slowing")
 				firingSlowing = value;
 			else if(key == "firing disruption")
@@ -232,7 +232,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
-			else if(key == "weapon jamming damage")
+			else if(key == "interference damage")
 				damage[WEAPON_JAMMING_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
