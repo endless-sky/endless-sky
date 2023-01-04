@@ -1491,7 +1491,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoGeneration();
 
 	// Handle ionization effects, etc.
-	if(ionization)
+	if(ionization || weaponJamming)
 		CreateSparks(visuals, "ion spark", ionization * .05);
 	if(weaponJamming)
 		CreateSparks(visuals, "ion spark", weaponJamming * .05);
@@ -2279,7 +2279,7 @@ void Ship::DoGeneration()
 		double weaponJammingEnergy = attributes.Get("weapon jamming resistance energy") / weaponJammingResistance;
 		double weaponJammingFuel = attributes.Get("weapon jamming resistance fuel") / weaponJammingResistance;
 		double weaponJammingHeat = attributes.Get("weapon jamming resistance heat") / weaponJammingResistance;
-		DoStatusEffect(isDisabled, weaponJammingizatweaponJamming, weaponJammingResistance,
+		DoStatusEffect(isDisabled, weaponJamming, weaponJammingResistance,
 			energy, weaponJammingEnergy, fuel, weaponJammingFuel, heat, weaponJammingHeat);
 	}
 
