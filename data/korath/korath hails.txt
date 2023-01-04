@@ -671,9 +671,9 @@ phrase "exile humanika: cultural items"
 # among the Korath that make them ask for this.
 phrase "exile humanika: strange items"
 	word
-		"kit'ns"                   # Kittens (are these for eating?)  (mispronounced)
-		"Hoy ac'rn cookees"        # The best cookies in the galaxy: Hai acorn cookies (mispronounced)
-		"toilat pepper"            # Toilet paper (why don't they use a bidet?) (mispronounced)
+		"kit'ns"                   # Kittens  (mispronounced)
+		"Hoy ac'rn cookees"        # Hai acorn cookies (mispronounced)
+		"toilat pepper"            # Toilet paper (mispronounced)
 		"geko"                     # Gecko (a pet?) (mispronounced)
 		"Dund'gns en Sheragi"      # Dungeons and Sheragi (mispronounced)
 		"Bondl's Fontr'z: tee Fire Lizards" # Boundless Frontiers: the Fire Lizards (mispronounced)
