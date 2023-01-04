@@ -671,8 +671,8 @@ phrase "exile humanika: strange items"
 		"Hoy ac'rn cookees"        # The best cookies in the galaxy: Hai acorn cookies (mispronounced)
 		"toilat pepper"            # Toilet paper (why don't they use a bidet?) (mispronounced)
 		"geko"                     # Gecko (a pet?) (mispronounced)
-		"Dunduns un Dagons"        # I'll let you guess this one (mispronounced)
-		"Bondl's Fontr'z: tee Korath Spantion" # Boundless Frontiers: the Korath Expansion (mispronounced)
+		"Dundons n Sheragi"        # Dungeons and Sheragi (mispronounced)
+		"Bondl's Fontr'z: tee Fire Lizards" # Boundless Frontiers: the Fire Lizards (mispronounced)
 		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums (mispronounced)
 		"How tu Serv Man buuk"     # The book, "How to Serve Man" (mispronounced)
 		"ganfadder clok"           # grandfather clock (mispronounced)
@@ -772,7 +772,6 @@ phrase "exile: weapons"
 		"mebaket enralnam"              # langrage hyper-heaver
 		"masol iba ranril"              # firelight missile
 		"masol iba rabuk"               # firestorm torpedo
-		"lodromeb rabuk iba"            # firestorm battery
 
 
 phrase "exile: engines"
@@ -1177,7 +1176,8 @@ phrase "efreti: I like to do things"
 
 phrase "exile: I learned to do things"
 	phrase
-		"exile: Recently"
+		"exile: To better myself"
+		"exile: For the community"
 	word
 		", "
 	phrase
@@ -1192,7 +1192,8 @@ phrase "exile: I learned to do things"
 
 phrase "efreti: I learned to do things"
 	phrase
-		"efreti: Recently"
+		"efreti: To better myself"
+		"efreti: For the community"
 	word
 		", "
 	phrase
@@ -1332,31 +1333,37 @@ phrase "efreti: eat good food"
 		"idab mosik rilrit ralret ramaih" # chilled baby mice with garnish
 		"akmac pano nives ralret umsab lravriv" # a pasta of small snakes with mice meatballs
 
-phrase "exile: Recently"
+phrase "exile: To better myself"
 	word
-		"Olah-olah iri"                # recently
-		"'Omti' iri"                   # this cycle
-		"Ilap iri"                     # today
-		"Rilafet"                      # yesterday
-		"Onnrif omam"                  # last week
-		"Pomobe' ilap kacem"           # ten days past
-		"Onnrife' nrag omam"           # a week ago
-		"Aos ilap nrag omam"           # two days ago
-		"Olah ava'"                    # just now
-		"Ilap nrag riam"               # the other day
+		"Tokro itiahlebfef ilis"      # to better myself
+		"Tokro 'akimaosiqisri aga'"   # for my individuality,
+		"Gkie'bi ektisref acpah"      # ipseity dictated that [I]
+		"Tokro ranrare'et"            # for [pleasure|freedom of thought]
+		"Kimot nralu aok aga'"        # for my parents' [dead skin|legacy]
 
-phrase "efreti: Recently"
+phrase "efreti: To better myself"
 	word
-		"Opab-opab iri"                # recently
-		"Monsim iri"                   # this cycle
-		"Ipah iri"                     # today
-		"Ripafes"                      # yesterday
-		"Ollrif onan"                  # last week
-		"Honocem ipah kagen"           # ten days past
-		"Ollrifem lrad onan"           # a week ago
-		"Aot ipah lrad onan"           # two days ago
-		"Opab awam"                    # just now
-		"Ipah lrad rian"               # the other day
+		"Sokro isiabpecfef ipit"      # to better myself
+		"Sokro makinaotiritri adam"   # for my individuality
+		"Dkiemci eksitref aghab"      # ipseity dictated that
+		"Sokro ralraremes"            # for [pleasure|freedom of thought]
+		"Kinos lrapu aok adam"        # for my parents' [dead skin|legacy]
+
+phrase "exile: For the community"
+	word
+		"Tokro katalag'af"            # For the community
+		"Rapohfokleb pafol"           # To [grow|improve] our [home|community|ship]
+		"Tokro lomek"                 # For [the eggs|our children|hope]
+		"Raporefeb"                   # For a feeling of [fulfillment|belonging]
+		"Tokro i'abi'rafe"            # To [achieve|envision] our [emancipation|escape]
+
+phrase "efreti: For the community"
+	word
+		"Sokro kasapadmaf"            # For the community
+		"Rahobfokpec hafop"           # To [grow|improve] our [home|community|ship]
+		"Sokro ponek"                 # For [the eggs|our children|hope]
+		"Rahorefec"                   # For a feeling of [fulfillment|belonging]
+		"Rasowafef rahobfokpec"       # To facilitate [societal progress|rebuilding]
 
 phrase "exile: i learned | practiced | taught"
 	word
