@@ -309,10 +309,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		// might not be linked via hyperspace.
 		Color color = Color(.5f * alpha, 0.f);
 		if(player.HasVisited(system) && system.IsInhabited(flagship) && gov)
-			color = Color(
-				alpha * gov->GetColor().Get()[0],
-				alpha * gov->GetColor().Get()[1],
-				alpha * gov->GetColor().Get()[2], 0.f);
+			color = gov->GetColor().Additive(alpha);
 		RingShader::Draw(from, OUTER, INNER, color);
 
 		for(const System *link : system.Links())
@@ -334,10 +331,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			gov = link->GetGovernment();
 			Color color = Color(.5f * alpha, 0.f);
 			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
-				color = Color(
-					alpha * gov->GetColor().Get()[0],
-					alpha * gov->GetColor().Get()[1],
-					alpha * gov->GetColor().Get()[2], 0.f);
+				color = gov->GetColor().Additive(alpha);
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 

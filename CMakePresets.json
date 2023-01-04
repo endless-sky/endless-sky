@@ -151,42 +151,6 @@
       }
     },
     {
-      "name": "xcode",
-      "displayName": "Xcode",
-      "description": "Builds with Xcode on x64-based MacOS",
-      "inherits": "base",
-      "generator": "Xcode",
-      "cacheVariables": {
-        "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Darwin"
-      }
-    },
-    {
-      "name": "xcode-arm",
-      "displayName": "Xcode ARM",
-      "description": "Builds with Xcode on ARM-based MacOS",
-      "inherits": "base",
-      "generator": "Xcode",
-      "cacheVariables": {
-        "CMAKE_OSX_ARCHITECTURES": "arm64",
-        "VCPKG_TARGET_TRIPLET": "arm64-osx-dynamic"
-      },
-      "architecture": {
-        "value": "arm64",
-        "strategy": "external"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Darwin"
-      }
-    },
-    {
       "name": "linux-ci",
       "displayName": "Linux CI",
       "description": "Builds for Linux for CI purposes",
@@ -319,30 +283,6 @@
       "inherits": "release"
     },
     {
-      "name": "xcode-debug",
-      "displayName": "Debug",
-      "configurePreset": "xcode",
-      "inherits": "debug"
-    },
-    {
-      "name": "xcode-release",
-      "displayName": "Release",
-      "configurePreset": "xcode",
-      "inherits": "release"
-    },
-    {
-      "name": "xcode-arm-debug",
-      "displayName": "Debug",
-      "configurePreset": "xcode-arm",
-      "inherits": "debug"
-    },
-    {
-      "name": "xcode-arm-release",
-      "displayName": "Release",
-      "configurePreset": "xcode-arm",
-      "inherits": "release"
-    },
-    {
       "name": "clang-cl-debug",
       "displayName": "Debug",
       "configurePreset": "clang-cl",
@@ -453,11 +393,27 @@
       },
       "filter": {
         "include": {
-          "label": "integration"
+          "label": "integration$"
         }
       },
       "execution": {
         "timeout": 120
+      }
+    },
+    {
+      "name": "integration-debug",
+      "hidden": true,
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "integration-debug"
+        }
+      },
+      "execution": {
+        "timeout": 360
       }
     },
     {
@@ -503,7 +459,7 @@
       },
       "filter": {
         "exclude": {
-          "label": "benchmark"
+          "label": "(benchmark|integration-debug)"
         }
       },
       "condition": {
@@ -531,6 +487,12 @@
       "inherits": "integration"
     },
     {
+      "name": "linux-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "linux-gles-test",
       "displayName": "Tests",
       "configurePreset": "linux-gles",
@@ -549,6 +511,12 @@
       "inherits": "integration"
     },
     {
+      "name": "linux-gles-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "linux-gles",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "macos-test",
       "displayName": "Tests",
       "configurePreset": "macos",
@@ -559,6 +527,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "macos",
       "inherits": "benchmark"
+    },
+    {
+      "name": "macos-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "macos",
+      "inherits": "integration-debug"
     },
     {
       "name": "macos-arm-test",
@@ -573,28 +547,10 @@
       "inherits": "benchmark"
     },
     {
-      "name": "xcode-test",
-      "displayName": "Tests",
-      "configurePreset": "xcode",
-      "inherits": "test"
-    },
-    {
-      "name": "xcode-benchmark",
-      "displayName": "Benchmarks",
-      "configurePreset": "xcode",
-      "inherits": "benchmark"
-    },
-    {
-      "name": "xcode-arm-test",
-      "displayName": "Tests",
-      "configurePreset": "xcode-arm",
-      "inherits": "test"
-    },
-    {
-      "name": "xcode-arm-benchmark",
-      "displayName": "Benchmarks",
-      "configurePreset": "xcode-arm",
-      "inherits": "benchmark"
+      "name": "macos-arm-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "macos-arm",
+      "inherits": "integration-debug"
     },
     {
       "name": "clang-cl-test",
@@ -609,6 +565,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "clang-cl-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "clang-cl",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "mingw-test",
       "displayName": "Tests",
       "configurePreset": "mingw",
@@ -621,6 +583,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "mingw-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "mingw",
+      "inherits": "integration-debug"
+    },
+    {
       "name": "mingw32-test",
       "displayName": "Tests",
       "configurePreset": "mingw32",
@@ -631,6 +599,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "mingw32",
       "inherits": "benchmark"
+    },
+    {
+      "name": "mingw32-integration-debug",
+      "displayName": "Integration Tests (Debug)",
+      "configurePreset": "mingw32",
+      "inherits": "integration-debug"
     },
     {
       "name": "linux-ci",

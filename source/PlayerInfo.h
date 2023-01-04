@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
+#include "SystemEntry.h"
 
 #include <chrono>
 #include <list>
@@ -60,6 +61,8 @@ public:
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
 	};
+
+
 public:
 	PlayerInfo() = default;
 	// Don't allow copying this class.
@@ -108,11 +111,15 @@ public:
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;
 
+	// Sets the means the player used to enter the system.
+	void SetSystemEntry(SystemEntry entryType);
+	SystemEntry GetSystemEntry() const;
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
 	// This also marks the given system as visited.
 	void SetSystem(const System &system);
 	const System *GetSystem() const;
+	const System *GetPreviousSystem() const;
 	// Set what planet the player is on (or nullptr, if taking off).
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
@@ -326,6 +333,8 @@ private:
 	std::string filePath;
 
 	Date date;
+	SystemEntry entry = SystemEntry::TAKE_OFF;
+	const System *previousSystem = nullptr;
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;

@@ -86,13 +86,13 @@ mission "Paradise Job: Newlyweds"
 	job
 	repeat
 	deadline
-	description "This pair of newlyweds seeks passage to reach their honeymoon on <destination> by <date>, along with <tons> of their wedding gifts. They will pay you <payment> to take them there."
+	description "This pair of newlyweds seeks passage on a luxurious ship to reach their honeymoon on <destination> by <date>, along with <tons> of their wedding gifts. They will pay you <payment> to take them there."
 	passengers 2
 	cargo "wedding gifts" 2 4
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -156,20 +156,21 @@ mission "Transport partiers [1]"
 	name "Party-goers to <planet>"
 	job
 	repeat
-	description "This group of <bunks> university students is willing to pay <payment> to have a huge party on <destination>, along with <tons> of their completely legal pharmaceuticals."
+	description "This group of <bunks> university students is willing to pay <payment> for a deluxe ride to a huge party on <destination>, along with <tons> of their completely legal pharmaceuticals."
 	passengers 7 12
 	cargo "pharmaceuticals" 2 4
 	illegal 1000 `It turns out that the "completely legal pharmaceuticals" in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested.`
 	stealth
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
 		distance 4 12
 		attributes "tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -181,18 +182,19 @@ mission "Transport partiers [2]"
 	name "Party-goers to <planet>"
 	job
 	repeat
-	description "This group of <bunks> university students is willing to pay <payment> to have a huge party on <destination>, along with <tons> of their snacks and school supplies."
+	description "This group of <bunks> university students is willing to pay <payment> for a deluxe ride to a huge party on <destination>, along with <tons> of their snacks and school supplies."
 	passengers 7 12
 	cargo "snacks and school supplies" 2 4
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
 		distance 4 12
 		attributes "tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -371,14 +373,14 @@ mission "Paradise Job: Waste Disposal"
 
 
 mission "Transport high-class tourists"
-	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. Payment is <payment>."
+	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. They'll only consider thinking about your ship if you have the 'appropriate facilities' for a comfortable journey. Payment is <payment>."
 	job
 	repeat
 	passengers 8 22
 	to offer
 		random < 10
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "paradise"
 	destination
@@ -429,13 +431,13 @@ mission "Paradise Job: Parolees"
 	name "Parolees to <planet>"
 	job
 	repeat
-	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on the Paradise World of <destination>. Transport them to their new home to carry out their service. The payment is <payment>.`
+	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences in return for serving their time on the Paradise World of <destination>. They will need to be transported in a secure ship. Payment is <payment>.`
 	passengers 20 4 .1
 	to offer
 		random < 15
 		"passenger space" > 40
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	destination
@@ -453,13 +455,13 @@ mission "Paradise Job: Debtors"
 	name "Debtors to <planet>"
 	job
 	repeat
-	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. Due to media scrutiny on the issue, the local government will pay you <payment> to transport them to <destination> where they can "make something useful of themselves."`
+	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. To pay off their debts, the local government will pay you <payment> to transport them securely to <destination> where they can "make themselves useful."`
 	passengers 20 4 .1
 	to offer
 		random < 15
 		"passenger space" > 40
-	on offer
-		require "Brig"
+	to accept
+		has "outfit: Brig"
 	source
 		attributes "paradise"
 	destination
@@ -484,8 +486,8 @@ mission "Paradise Job: Retirees"
 		random < 10
 		"passenger space" > 15
 		"cargo space" > 40
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
@@ -502,13 +504,13 @@ mission "Paradise Job: Wilderness Retreat"
 	name "Wilderness Retreat to <planet>"
 	job
 	repeat
-	description `Bring <bunks> pseudo-celebrities and wealthy tourists to the wild and untamed world of <destination> for a "Wilderness Retreat." Payment is <payment>.`
+	description `Bring <bunks> pseudo-celebrities and wealthy tourists to the wild and untamed world of <destination> for a "Wilderness Retreat." They'll only consider your ship if you can ensure that they can have a comfortable journey. Payment is <payment>.`
 	passengers 10 4 .1
 	to offer
 		random < 10
 		"passenger space" > 25
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		attributes "urban" "near earth" "core" "paradise"
 	destination
