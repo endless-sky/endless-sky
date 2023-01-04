@@ -251,12 +251,16 @@ event "unfettered: need for food"
 	system "Wah Ki"
 		add fleet "Emergency Sympathizer Food" 800
 	
+	# increase the price of food by 100
 	system "Wah Yoot"
 		add fleet "Emergency Symathizer Food" 1200
+		trade Food 698
 	system "Ehma Ti"
 		add fleet "Emergency Sympathizer Food" 2500
+		trade Food 670
 	system "Hi Yahr"
 		add fleet "Emergency Sympathizer Food" 2500
+		trade Food 640
 
 	system "Chy'chra"
 		add fleet "Unfettered Raid" 5000
@@ -296,10 +300,13 @@ event "unfettered: need for food stops"
 	
 	system "Wah Yoot"
 		remove fleet "Emergency Symathizer Food"
+		trade Food 598
 	system "Ehma Ti"
 		remove fleet "Emergency Sympathizer Food"
+		trade Food 570
 	system "Hi Yahr"
 		remove fleet "Emergency Sympathizer Food"
+		trade Food 540
 
 	system "Chy'chra"
 		remove fleet "Unfettered Raid"
