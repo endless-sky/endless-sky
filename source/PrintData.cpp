@@ -667,53 +667,52 @@ namespace {
 	}
 
 
-
 	void Phrases(int argc, char *argv[])
 	{
 		string phraseName;
-		for(int i = 0; i < argc; ++i)
+
+		for(int i = 0; i < argc; i++)
+			cout << argv[i] << '\n';
+
+		for(const char *const *it = argv + 1; *it; ++it)
 		{
-			string arg = argv[i];
-			if(arg == "--phrase" && argc > i + 1)
+			string arg = *it;
+			if(arg == "--phrase" && *++it)
 			{
-				phraseName = argv[i + 1];
+				phraseName = *it;
 				break;
 			}
 		}
-		cout << phraseName;
-		if(phraseName.empty())
+		
+		cout << "1" << phraseName << '\n';
+
+		const Phrase *phrase = nullptr;
+
+		for(const auto &it : GameData::Phrases())
+			if(it.first == phraseName)
+			{
+				phrase = &it.second;
+				break;
+			}
+
+		if(!phrase)
 		{
-			cout << "Error: invalid phrase name.\n";
+			cout << "Error: invalid phrase name: \"" + phraseName + "\".\n";
 			return;
 		}
-		const auto *phrase = GameData::Phrases().Get(phraseName);
-		//string test;
-		//cin >> test;
-		const vector<string> results = phrase->GetAll();
-		for(const string &result : results)
-			cout << result << '\n';
+
+		cout << "2" << phraseName << '\n';
+		cout << "3" << phrase->Name() << '\n';
+
+		vector<string> results = std::move(phrase->GetAll());
+
+		cout << "" << phrase->Name() << '\n';
+
+		for(const auto &it : results)
+			cout << it << '\n';
+
+		cout << "Done!\n";
 	}
-
-	/*void Phrases(int argc, char *argv[])
-	{
-		DataFile file(cin);
-
-		map<string, Phrase> phrases;
-
-		for(const DataNode &node : file)
-			if(node.Token(0) == "phrase" && node.Size() >= 2 && node.HasChildren())
-				phrases[node.Token(1)].Load(node);
-		
-		for(auto &it : phrases)
-		{
-			const Phrase &phrase = it.second;
-
-			const vector<string> results = phrase.GetAll();
-
-			for(const string &result : results)
-				cout << result << '\n';
-		}
-	}*/
 
 
 
@@ -750,7 +749,6 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		cout << "Check arg: " << arg << '\n';
 		if(VALID_ARGS().count(arg))
 			return true;
 	}

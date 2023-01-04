@@ -116,7 +116,7 @@ vector<string> Phrase::GetAll() const
 					if(!element.first.empty())
 						for(auto &it : choiceVector)
 							it.append(element.first);
-					else if(element.second)
+					else
 					{
 						vector<string> subPhraseVector = element.second->GetAll();
 
@@ -129,8 +129,6 @@ vector<string> Phrase::GetAll() const
 								choiceVector.push_back(incompleteChoice + subPhraseString);
 						}
 					}
-					else
-						choiceVector.emplace_back();
 				}
 
 				for(auto &choiceResult : choiceVector)
