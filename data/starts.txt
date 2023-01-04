@@ -115,16 +115,21 @@ conversation "hai intro"
 		`	"Sold!"`
 		`	"Sorry, not interested."`
 			decline
-	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. Because of how excited you are to finally fly, you miss everything other than repeated reference to the Ion Cannon.`
+	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. Because of how excited you are to finally fly, you miss everything other than repeated reference to the 'exceptional' reinforced armor.`
 	action
 		set "hai start: Grasshopper"
 		give ship "Grasshopper (Expensive)" "Pristine Jewel"
 		payment -1000000
 
+# this ship uses the most expensive loadout possible (3.5M)
+# so that you +- have the same amount of value back if you sell it (1.3mill)
+# the modifications are just to bring it at the same page as the grasshopper buff PR
+# except for the hull buff
 ship "Grasshopper" "Grasshopper (Expensive)"
 	add attributes
 		"outfit space" 30
 		"weapon capacity" 9
+		"hull" 400
 	outfits
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
