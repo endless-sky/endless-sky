@@ -574,7 +574,7 @@ phrase "exile humanika: and we will let you live."
 phrase "exile: and we will let you live."
 	word
 		"'amahfef asra ranres ranro'nramet bosip."   # [we will] reward you with survival.
-		"ofat rata kapim tu'eh."         # you will see tomorrow.
+		"iba rata amagref inam."         # [your] flame will burn anew
 		"rata anavref kimot asra."       # [you] will keep your skin.
 		"imahfet et ofanlaomet."         # [we will let you] return to your family.
 		"ratagalef ranro'nramet bosip asra."   # [you can] celebrate your survival
