@@ -16,9 +16,12 @@ Version 0.9.17
 	* Text and choices in conversations can be hidden with conditions! (@SolraBizna, @UnorderedSigh, @Hurleveur)
 	# Mechanics
 	* Conditions can be stored and accessed across save files using the "global: " prefix. (@RisingLeaf)
+	* Starts may be unlocked based on global conditions. (@RisingLeaf)
+	# Graphics
+	* More parallax! (@Azure3141, @quyykk)
   * Bug fixes:
     * Content bugs:
-	  * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @nathan-b, @real-dam, @ThrawnCA, @williaji, @zlonghofer)
+	  * Typo fixes. (@a-random-lemurian, @Anarchist2, @Aneutronic, @aradapilot, @Deltaspace0, @EjoThims, @Ember369, @Hecter94, @hmglasgow, @Kepler-69c, @nathan-b, @opusforlife2, @real-dam, @ThrawnCA, @williaji, @zlonghofer)
 	  * Gave Void Sprite Parts a proper plural name override. (@warp-core)
 	  * Moved the log entry in "Unfettered: Jump Drive Source" to the correct place. (@Hurleveur)
 	  * Added range and velocity overrides and hit effects to the Twin Blaster definitions. (@Hecter94)
@@ -49,6 +52,9 @@ Version 0.9.17
 	  * Prevent Remnant Celebration mission from occuring in non-sensical places. (@warp-core)
 	  * The Remnant Cognizance 32 blocked message now works as intended. (@warp-core)
 	  * The player now always has clearance for Pugglemug in the Free Worlds mission to visit the Pug. (@TomGoodIdea)
+	  * Earth Day jobs can no longer offer with deadlines after Earth Day itself. (@warp-core)
+	  * Improved some Graveyard planet descriptions. (@Improvise#7330 (Discord), @RisingLeaf)
+	  * Coalition Games jobs can no longer offer with deadlines after July (when the Games end). (@Arachi-Lover)
 	* Engine bugs:
 	  * Various style fixes. (@tibetiroka, @petervdmeer)
 	  * Fixed rendering of some compressed PNGs. (@quyykk)
@@ -71,6 +77,8 @@ Version 0.9.17
 	  * Do not allow disabled ships to dock with carriers. (@UnorderedSigh)
 	  * Lines in interfaces now use the centre of the defining rectangle instead of the top left corner. (@thewierdnut)
 	  * Fixed various issues reported by Cppchecks. (@mike-f1)
+	  * Less than 1 unit of free cargo space is no longer rounded down when attempting to buy an outfit into cargo. (@warp-core)
+	  * Fixed a crash due to a nullpointer dereference in the parallax code when the player has no flagship. (@warp-core)
   * Game content:
     * New content:
 	  * Two new human guns: Twin Blaster and Modified Twin Blaster. (@Daeridanii1)
@@ -98,6 +106,11 @@ Version 0.9.17
 	  * It is now possible to demand tribute from Unfettered Hai worlds. (@Hurleveur)
 	  * A short mission chain about "Hound Racing," featuring the return of an old face. (@Anarchist2)
 	  * A mission about smuggling wool. (@Anarchist2)
+	  * Hails and news items hinting to the player about the requirements for the Ther Might Be Riots mission chain. (@Zitchas)
+	  * Added a variety of new hails for Free Worlds and Republic ships. (@bene-dictator)
+	  * Added a short mission chain about delivering a large inheritance. (@Anarchist2)
+	  * Additional human ship names. @bene-dictator)
+	  * The Embersylph: a new form of spacefaring life form that can be found in parts of the Ember Waste under certain circumstances. (@Saugia)
 	* Mission changes:
 	  * Adjusted human bounty jobs to make them more active. (@Anarchist2)
 	    * The target ships will only spawn in a system one jump away from the source.
@@ -125,6 +138,8 @@ Version 0.9.17
 	  * Adjusted text in Remnant ground assault ship bounty job. (@McloughlinGuy)
 	  * Added advice on using multiple scanners to increase performance in FW Recon 1. (@williaji)
 	  * Remnant Shattered Light 3 now gives better information about the location of the ship. (@McloughlinGuy)
+	  * Human jobs requiring brigs or luxury accommodations will now appear in the job board but be blocked if the outfit is not present. (@bene-dictator)
+	  * Improved text in Remnant: Salvage 4 to better describe mission objective and failure condition. (@ThrawnCA)
 	* Balance:
 	  * Adjusted the Sparrow and Flivver to better match their roles. (@Hecter94)
 	    * Flivver:
@@ -171,6 +186,14 @@ Version 0.9.17
 	  * Increased the size of some Large Syndicate fleet variants. (@Quantumshark)
 	  * Added a small amount of inertia reduction and force protection to Quarg engines. (@Zitchas)
 	  * Made the Unfettered Hai attacking Wah Ki cowards and the Hai defending the system merciful, so fewer Unfettered die there. (@Hurleveur)
+	  * Slightly buffed the Berserker and Hawk. (@Zitchas)
+	    * Berserker:
+		  * Mass: 110 -> 90
+		* Hawk:
+		  * Mass: 150 -> 110
+		  * Required crew: 2 -> 1
+      * Reduced the lifetime of the Hai Tracker from 600 to 475 (range reduced from 8400 to 6650). (@Zitchas)
+	  * Buffed the Hai Wiliwaw Cooling. 570 -> 660 cooling. (@Zitchas)
 	* Graphics:
       * Added sprites for the Remnant Swan. (@Saugia)
       * Remodelled Korath Thermal Repeater sprites. (@Daeridanii1)
@@ -181,6 +204,9 @@ Version 0.9.17
 	  * Remodelled the Hai railgun, railgun slug, and railgun slug rack. (@1010todd)
 	  * Expanded and improved the Milky Way galaxy sprite. (@Azure3141)
 	  * Remodelled the Enforcer Riot Staff and Enforcer Confrontation Gear. (@1010todd)
+	  * Added a brown haze. (@RisingLeaf)
+	  * Sprites for Hai optical jamming outfits. (@beccabunny)
+	  * Added a sprite for a proto-planetary disk. (@RisingLeaf)
     * Sounds:
 	  * Reduced the volumes of the Particle and Plasma Cannon sounds. (@Saugia)
 	  * A new sound for the Ion Hail Turret. (@Saugia)
@@ -210,6 +236,7 @@ Version 0.9.17
 		* Conditions for the number of hyperspace jumps to another planet or system. (@warp-core)
 		* Flagship attribute. (@warp-core)
 		* Flagship landed. (@Hurleveur)
+		* Entered system by and previous system. (@Hurleveur, @Amazinite)
       * Illegal outfits and cargo:
         * "scan brightness" attribute, increases the chance an outfit is found on a scan. (@quyykk)
         * "scan concealment" attribute, reduces the chance an outfit is found on a scan. (@quyykk)
@@ -225,6 +252,9 @@ Version 0.9.17
 	  * TODO: find a concise way to describe the foreign penalty thing for governments. (@Hurleveur)
 	  * Missions can now define a "to accept" condition set. (@rovermicrover)
 	  * Governments can use named "stock" colors instead of always defining a color literal. (@warp-core)
+	  * A "flotsam chance" attribute for outfits which determines the chance the outfit will be dropped as flotsam when the ship carrying it explodes. (@Azure3141)
+	  * Governments can define custom values for various actions against foreign governments. (@warp-core)
+	  * An "optical jamming" attribute that workd similarly to radar jamming, but against optically guided missiles. (@Hurleveur)
     * Mechanic changes:
       * Frugal ships now consider their health percentage instead of the sum of their shield and hull percentages. (@Hurleveur)
       * Changed the scanning formula for detecting illegal cargo so more legal cargo can conceal illegal cargo in the hold, making it less likely to be detected. (@quyykk)
@@ -237,6 +267,7 @@ Version 0.9.17
       * Ships no longer always have a small amount of ramscoop when very close to the centre of a system. (@Zitchas)
 	  * Restored the old overheating behaviour where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
 	  * Initiating a hyperspace jump with no travel plan set does not set one. (@Zitchas)
+	  * Hazard environmental effects may now be given non-integer magnitudes. (@RisingLeaf)
   * User interface:
     * Added shortcut keys for parking and unparking ships. (@Terin)
     * Added a setting to always underline the shortcut hotkey on button labels. (@warp-core)
@@ -255,6 +286,11 @@ Version 0.9.17
 	  * Pressing the 'board' key multiple times in quick succession will now cycle through boarding targets.
     * An additional autosave at the most recent planet with a spaceport. (@Hurleveur)
 	* Added a visual warning icon alongside the audible warning siren. (@Zitchas, @warp-core)
+	* Star icons on the radar now have a unique colour. (@Zitchas)
+	* Hailing a hostile ship shows the hostile hail, offering a bribe shows the cost. (@Hurleveur)
+	* The outfitter only shows one tutorial each time it opens, and tutorials have titles. (@Hurleveur)
+	* Selecting a new system in the mission panel selects the first mission involving that system, instead of looking down from the previously selected mission. (@alextd)
+	* Switching the map to the mission view recentres on the system of the auto-selected mission. (@alextd)
   * Under the hood:
     * Cache attraction and deterrence values. (@Hurleveur)
     * Added a warning when no plural name is defined for ships and outfits with names ending in 's'. (@warp-core)
@@ -368,6 +404,7 @@ Version 0.9.16:
       * Recategorized the Hai Centipede as a space liner. (@1010todd)
       * Changed the landscape images of Mainsail and Inmost Blue to better fit their planet descriptions. (@Anarchist2)
       * Recategorized the Saryd Traveler as a utility ship. (@Arachi-Lover)
+	  * Governments that reuse colors now refer to named "stock" colors instead of providing their own color literals. (@warp-core)
   * User interface:
     * Clicking on a planet card on the left side of the map now selects that planet as a destination on your travel plan. (@Hurleveur)
   * Under the hood:
@@ -378,6 +415,7 @@ Version 0.9.16:
     * Added checks and warnings to overlapping derived condition provider ranges. (@petervdmeer)
     * Added the std:: prefix to two calls to std::move. (@thomasballinger)
 	* Use SDL for Windows high-DPI support. (@quyykk)
+	* The "color" root node allows defining only the RGB values, using 1. as the default alpha value. (@warp-core)
   * CI/CD and development environment:
     * Now using the new static runtime to build AppImages. (@quyykk)
 	* Update link to the assets repository. (@quyykk)
