@@ -1,4 +1,4 @@
-Version 0.9.17
+Version 0.10.0
   * Breaking changes:
     * The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live (without the bug this time). (@Amazinite, @RisingLeaf)
   * Big changes:
