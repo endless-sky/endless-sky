@@ -687,17 +687,17 @@ phrase "exile humanika: strange items"
 # mispronounced names of actual games.
 phrase "exile humanika: open source games"
 	word
-		"Nethick"
-		"Batfer Westnorth"
-		"Komium Bee Essu"
-		"Feedoid R Peegee"
-		"Fee Rion"
-		"Flea Civ"
-		"Ehm Ay Are Ess"
-		"Hedgeworts"
-		"Uppen Tee Tee Dee"
-		"Supper Tax Kert"
-		"Zero Add'ee"
+		"Nethick"                  # Nethack (mispronounced)
+		"Batfer Westnorth"         # Battle for Wesnoth (mispronounced)
+		"Komium Bee Essu"          # Chromium BSU (mispronounced)
+		"Feedoid R Peegee"         # Freedroid RPG (mispronounced)
+		"Fee Rion"                 # Free Orion (mispronounced)
+		"Flea Civ"                 # Freeciv (mispronounced)
+		"Ehmmay Are Ess"           # M.A.R.S. (mispronounced)
+		"Hedgeworts"               # Hedgewars (mispronounced)
+		"Uppen Tee Tee Dee"        # Open TTD (mispronounced)
+		"Supper Tax Kert"          # SuperTuxKart (mispronounced)
+		"Zero Add'ee"              # Zero AD (mispronounced)
 
 
 phrase "exile: [system] is snazzy"
