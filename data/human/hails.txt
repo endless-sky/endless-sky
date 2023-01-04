@@ -3211,13 +3211,14 @@ phrase "friendly militia 4 variation"
 	word
 		" what "
 	word
-		"pirates"
-		"criminals"
-		"warlords"
-		"marauders"
-		"rampant piracy"
+		"pirates have"
+		"criminals have"
+		"warlords haves"
+		"marauders have"
+		"rampant piracy has"
+		"rampant marauding has"
 	word
-		" has done "
+		" done "
 	word
 		"to our system"
 		"to our planets"
