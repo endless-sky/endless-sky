@@ -29,7 +29,9 @@ ship "Subsidurial"
 		"turn" 800
 		"hull repair rate" 3
 		"ion protection" 3
+		"weapon jamming protection" 3
 		"ion resistance" 1
+		"weapon jamming resistance" 1
 		"energy capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
@@ -78,7 +80,9 @@ ship "Void Sprite"
 		"turn" 900
 		"hull repair rate" 3
 		"ion protection" 3
+		"weapon jamming protection" 3
 		"ion resistance" 1
+		"weapon jamming resistance" 1
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
@@ -131,7 +135,9 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"turn" 450
 		"hull repair rate" 1
 		"ion protection" 3
+		"weapon jamming protection" 3
 		"ion resistance" 1
+		"weapon jamming resistance" 1
 		"energy capacity" 1
 		"fuel capacity" 1
 		"inscrutable" 1
@@ -176,7 +182,9 @@ ship "Ember Waste Node"
 		"turn" 3500
 		"hull repair rate" 3
 		"ion protection" 3
+		"weapon jamming protection" 3
 		"ion resistance" 1
+		"weapon jamming resistance" 1
 		"energy capacity" 100
 		"energy generation" 1
 		"fuel capacity" 200
