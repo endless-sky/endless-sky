@@ -116,7 +116,7 @@ public:
 	double FiringHull() const;
 	double FiringShields() const;
 	double FiringIon() const;
-	double Firinginterference() const;
+	double FiringWeaponJamming() const;
 	double FiringSlowing() const;
 	double FiringDisruption() const;
 	double FiringDischarge() const;
@@ -159,7 +159,7 @@ public:
 	double EnergyDamage() const;
 	// Status effects:
 	double IonDamage() const;
-	double interferenceDamage() const;
+	double WeaponJammingDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
 	double DischargeDamage() const;
@@ -266,7 +266,7 @@ private:
 	double firingHull = 0.;
 	double firingShields = 0.;
 	double firingIon = 0.;
-	double firinginterference = 0.;
+	double firingWeaponJamming = 0.;
 	double firingSlowing = 0.;
 	double firingDisruption = 0.;
 	double firingDischarge = 0.;
@@ -365,7 +365,7 @@ inline double Weapon::FiringHeat() const { return firingHeat; }
 inline double Weapon::FiringHull() const { return firingHull; }
 inline double Weapon::FiringShields() const { return firingShields; }
 inline double Weapon::FiringIon() const{ return firingIon; }
-inline double Weapon::Firinginterference() const { return firinginterference; }
+inline double Weapon::FiringWeaponJamming() const { return firingWeaponJamming; }
 inline double Weapon::FiringSlowing() const{ return firingSlowing; }
 inline double Weapon::FiringDisruption() const{ return firingDisruption; }
 inline double Weapon::FiringDischarge() const{ return firingDischarge; }
@@ -400,7 +400,7 @@ inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
 inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY_DAMAGE); }
 
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
-inline double Weapon::interferenceDamage() const { return TotalDamage(WEAPON_JAMMING_DAMAGE); }
+inline double Weapon::WeaponJammingDamage() const { return TotalDamage(WEAPON_JAMMING_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
 inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE_DAMAGE); }
