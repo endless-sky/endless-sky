@@ -21,31 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	void CombineVectors(vector<string> &base, const vector<string> &toAdd)
-	{
-		vector<string> result;
-		result.reserve(base.size() * toAdd.size());
-		for(const string &baseString : base)
-			for(const string &toAppend : toAdd)
-				result.push_back(baseString + toAppend);
-		std::swap(base, result);
-	}
-
-	void AppendToVector(vector<string> &base, const string &toAppend)
-	{
-		for(string &it : base)
-			it.append(toAppend);
-	}
-
-	void PushToVector(vector<string> &base, const vector<string> &toAdd)
-	{
-		base.reserve(base.size() + toAdd.size());
-		for(const string &toPush : toAdd)
-			base.push_back(toPush);
-	}
-}
-
 
 
 Phrase::Phrase(const DataNode &node)
@@ -120,6 +95,29 @@ string Phrase::Get() const
 
 vector<string> Phrase::GetAll() const
 {
+	static auto CombineVectors = [](vector<string> &base, const vector<string> &toAdd) -> void
+	{
+		vector<string> result;
+		result.reserve(base.size() * toAdd.size());
+		for(const string &baseString : base)
+			for(const string &toAppend : toAdd)
+				result.push_back(baseString + toAppend);
+		std::swap(base, result);
+	};
+
+	static auto AppendToVector = [](vector<string> &base, const string &toAppend) -> void
+	{
+		for(string &it : base)
+			it.append(toAppend);
+	};
+
+	static auto PushToVector = [](vector<string> &base, const vector<string> &toAdd) -> void
+	{
+		base.reserve(base.size() + toAdd.size());
+		for(const string &toPush : toAdd)
+			base.push_back(toPush);
+	};
+
 	vector<string> result;
 
 	// Iterate over each sentence in this phrase.
