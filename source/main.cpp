@@ -99,6 +99,7 @@ int main(int argc, char *argv[])
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
+		cout << "Main arg: " << arg << '\n';
 		if(arg == "-h" || arg == "--help")
 		{
 			PrintHelp();
@@ -120,29 +121,35 @@ int main(int argc, char *argv[])
 		else if(arg == "--tests")
 			printTests = true;
 	}
-	if(PrintData::IsPrintDataArgument(argv))
-		printData = true;
+	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
 	try {
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
+		cout << "Begin load\n";
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
+		cout << "Loaded\n";
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
 			dataLoading.wait();
 
+		cout << "Data loaded\n";
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
 			Logger::LogError("Test \"" + testToRunName + "\" not found.");
 			return 1;
 		}
 
+		cout << "Skipped tests\n";
+		cout << printData << '\n';
 		if(printData)
 		{
+			cout << "Calling PrintData::Print()\n";
 			PrintData::Print(argc, argv);
+			cout << "Finished PrintData::Print()\n";
 			return 0;
 		}
 		if(printTests)
@@ -199,6 +206,7 @@ int main(int argc, char *argv[])
 	}
 	catch(const runtime_error &error)
 	{
+		cout << error.what() << '\n';
 		Audio::Quit();
 		bool doPopUp = testToRunName.empty();
 		GameWindow::ExitWithError(error.what(), doPopUp);
