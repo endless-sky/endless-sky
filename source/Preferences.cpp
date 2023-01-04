@@ -79,6 +79,7 @@ void Preferences::Load()
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
+	settings["Show part of last planet"] = true;
 	settings["Ship outlines in shops"] = true;
 
 	DataFile prefs(Files::Config() + "preferences.txt");

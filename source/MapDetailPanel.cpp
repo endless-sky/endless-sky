@@ -662,7 +662,8 @@ void MapDetailPanel::DrawInfo()
 	planetPanelHeight = hasVisited ? min(min(minimumSize, maxPlanetPanelHeight),
 		(planetCards.size()) * planetHeight) : 0.;
 	// If not all planets fit on screen, make sure we're seeing half a planet to indicate there's more below.
-	if(hasVisited && planetPanelHeight < planetCards.size() * planetHeight)
+	if(hasVisited && Preferences::Has("Show part of last planet") &&
+			planetPanelHeight < planetCards.size() * planetHeight)
 		planetPanelHeight -= static_cast<int>(planetPanelHeight) % static_cast<int>(planetHeight) +
 			planetHeight * lastPlanetRelativeSize;
 	Point size(planetWidth, planetPanelHeight);
