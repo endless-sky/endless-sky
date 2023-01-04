@@ -772,6 +772,7 @@ government "Korath (Military)"
 	"attitude toward"
 		"Korath (Civilian)" 1
 		"Cerberus" -.01
+		"Kor Sestor" -.01
 
 government "Korath Nanobots"
 	"player reputation" -1000
@@ -882,6 +883,7 @@ government "Shadow"
 		"Mercenaries" .01
 		"Cerberus" -.1
 		"Korath (Military)" .05
+		"Alpha" -.1
 	"custom penalties for"
 		"Korath (Military)"
 			disable 0

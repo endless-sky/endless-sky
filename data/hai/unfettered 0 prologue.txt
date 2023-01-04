@@ -1087,7 +1087,7 @@ outfit "Materials"
 	"mass" 1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
-# this is a Marauder version with small buffs and disabled faster so it doesn't blow as often to Koraths<
+# A Marauder version with small buffs and disabled faster so it doesn't blow as often to the Korath.
 ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
 		"threshold percentage" .4
@@ -1159,7 +1159,9 @@ mission "Unfettered: Materials Intercepted"
 			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, without following it in an obvious way either, of course."`
 			choice
 				`	"What about this cargo, then?"`
-			`	"Well, this one happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
+			`	"Well, this one happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all."`
+			`	"The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
+			`	"We need at the very least 142 tons of this cargo back, that is the usual amount we transfer to our Shield Beetles."`
 			choice
 				`	"Do you have any idea where the stolen cargo could be?"`
 				`	"Why not just buy these materials again?"`
@@ -1224,7 +1226,7 @@ mission "Unfettered: Materials Intercepted"
 			`	They quickly land on the planet, probably in order to avoid a fight, or maybe just to win some time... It looks like you will have to land too in order to retrieve the cargo.`
 	npc board
 		system "Misam"
-		government "Cerberus"
+		government "Alpha"
 		to spawn
 			has "Unfettered: Cavalry Arrives: active"
 		personality target launching plunders vindictive uninterested
@@ -1347,8 +1349,8 @@ mission "Unfettered: Cavalry Arrives"
 	npc
 		system "Kor Men"
 		government "Korath (Military)"
-		personality waiting heroic vindictive
-		fleet "Korath Defense" 3
+		personality entering disables plunders waiting heroic vindictive
+		fleet "Korath Defense" 2
 	npc kill
 		government "Cerberus"
 		personality plunders vindictive entering
