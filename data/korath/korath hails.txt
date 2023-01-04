@@ -674,7 +674,7 @@ phrase "exile humanika: strange items"
 		"kit'ns"                   # Kittens  (mispronounced)
 		"Hoy ac'rn cookees"        # Hai acorn cookies (mispronounced)
 		"toilat pepper"            # Toilet paper (mispronounced)
-		"geko"                     # Gecko (a pet?) (mispronounced)
+		"geko"                     # Gecko (mispronounced)
 		"Dund'gns en Sheragi"      # Dungeons and Sheragi (mispronounced)
 		"Bondl's Fontr'z: tee Fire Lizards" # Boundless Frontiers: the Fire Lizards (mispronounced)
 		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums (mispronounced)
