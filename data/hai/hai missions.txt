@@ -214,7 +214,7 @@ mission "Returning Home"
 				`	"Oh, yes. I do come from outside."`
 					to display
 						not "hai start"
-				`	"Not really, I grew up here, and made these clothes for myself."`
+				`	"Not really, I grew up here and made these clothes for myself."`
 					to display
 						has "hai start"
 					goto outsider
@@ -224,7 +224,7 @@ mission "Returning Home"
 				to display
 					has "hai start"
 			label outsider
-			`	You explain to him that you grew up making clothes, meaning you grew tired of the usual clothing you kept making and tried to make some more original ones, including the one you're wearing right now. You add that whilst you may not have been born in human space, your family made sure you learned of the origins of your specie, meaning you know human space like your pocket.`
+			`	You explain to him that you grew up making clothes, meaning you eventually grew tired of the usual clothing you kept making. Eventually you tried to make some more original ones, including the one you're wearing right now. You add that whilst you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like your pocket.`
 				to display
 					has "hai start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
@@ -371,7 +371,7 @@ mission "Expanding Business [1]"
 			`	"Captain <last>, fantastic to see you again! I noticed you right away when I laid my eyes upon you and I must say, I'd like to thank you again for what you've done."`
 			`	The man is David Turner, who was involved in the movie production during the Hai crisis. Almost reflexively he goes to grab a business card from his pocket but then seems to remember and puts it back away. Seems to be exactly the same card as last time though.`
 			label "hai start"
-			`	"Hello, captain. I come to you with a business opportunity you would do well to listen to." He grabs his business card to show it to you, and presents himself. "My name is David Turner, you may know me for my involvement with the Hai cover movie? I come to you because you seem to have quite a bit of combat experience, which would be of great help for this business venture." He then adds something, in a low tone, "Also, you are not a pirate saying that they redeemed themselves..."`
+			`	"Hello, captain. I come to you with a business opportunity you would do well to listen to." He grabs his business card to show it to you and presents himself. "My name is David Turner, you may know me for my involvement with the Hai cover movie? I come to you because you seem to have quite a bit of combat experience, which would be of great help for this business venture." He then adds, in a low tone, "Also, you are not a pirate saying that they redeemed themselves...`
 				to display
 					has "hai start"
 			`	"Now Captain, if you have a moment, I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war ended, but most stayed, and I see a massive market opportunity in that."`

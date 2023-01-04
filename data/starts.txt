@@ -46,7 +46,7 @@ conversation "default intro"
 
 start "hai"
 	name "Later Start"
-	description `You grew up on Greenwater, a world with a very rich and diverse hai-human culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard in a texture farm, making human clothing that quite surprisingly sold very well.`
+	description `You grew up on Greenwater, a world with a very rich and diverse hai-human culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard in a texture farm making human clothing that, quite surprisingly, sold very well.`
 	description `	A lot has happened whilst you were on the planet. Upon entering the shipyard you finally feel that there is nothing to hold you back anymore.`
 	thumbnail "scene/hai start"
 	date 18 6 3020
@@ -82,11 +82,11 @@ start "hai"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`	You've never been to the shipyard before, and it feels like you're already traveling to another world. You wonder if you are ready to take the big leap... You've seen pictures of ships before, but seeing them for real is something else entirely. You are stunned by how new and shiny they look, even though you know a lot of those ships must have been in service for many years.`
-	`	This "Aphid" could suit your needs. It is Fast, and able to carry a respectable amount of cargo.`
+	`	You've never been to the shipyard before, and as you arrive, it already feels like you're traveling to another world. The pictures and video you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
+	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
-	`	That is, except if you want to get adventurous and try out the impetious Grasshopper. Surely the interceptor would be able to beat human small warships prodided a competent pilot is at the helm...`
-	`	You have heard tales of pirates and quick money... Indeed, up north you can find the 'Unfettered'. Maybe they could come to like you, if you were to show them strength...`
+	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
+	`	You have, after all, heard tales of pirates and quick money... And up north you can find the 'Unfettered'. Maybe they could come to like you, if you were to show them the strength and cunning they respect.`
 	choice
 		`	(Go to the bank.)`
 	scene "scene/hai bank"
@@ -95,27 +95,27 @@ conversation "hai intro"
 	`	You can probably sell the shield regenerator without any consequences, so long as you do not get too close to hostile territory. You may even downgrade the anti-missile turret.`
 	`	The bank employee sums it up to you, with a hesitant smile. "This will put you in a debt of 1 million 431 thousand credits, due in the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
-	`	You head out of the bank, on your way to buy the Aphid, but you see a notice. A retiring captain offers to sell some of his ships at an interesting price, including a Grasshopper... Maybe they could sell it to you.`
+	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is offering to sell some of his ships at an interesting price, including a Grasshopper... Maybe they could sell it to you.`
 	choice
 		`	(Go to the shipyard.)`
 			decline
 		`	(Go see what the captain has to offer first.)`
-	`	You head to the spaceport and easily find the captain that offers to sell the Grasshopper. Thankfully they did not yet sell it yet.`
-	`	The captain greets you in Hai. You somehow never really learned the language, probably due to the fact everyone speaks yours to some degree. Seeing you do not understand they switch to your language.`
+	`	You head to the spaceport and easily find the captain selling off his ships. Thankfully they did not yet sell the Grasshopper.`
+	`	The captain greets you in Hai, but you've somehow managed to never really learn the language. Most everyone speaks yours to at least some degree anyway, and once they realize you do not understand, they switch with little effort.`
 	`	"Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
 	choice
 		`	"Yes indeed."`
 		`	"How did you know?"`
 		`	"Sorry, not interested."`
 			decline
-	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel'!" They say, taking you to the ship. It is not brand new, but it still looks in surprisingly good condition.`
+	`	"I can see the will to explore in your eyes. I would be delighted to have you flying the 'Pristine Jewel'!" they say, taking you to the ship. It is clearly not brand new but still looks in surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
-	`	"Because I like you I'll give you a friendly price. What do you say about... 1 millions, for this wonderful ship? That's less than a third price you would have to pay if you were to buy this model in a shipyard, except you can't find a model like this in shipyards, trust me!"`
+	`	"Because I like you I'll give you a friendly price. What do you say about... one million flat, for this wonderful ship? That's less than a third the price you would have to pay if you were to buy this model from the shipyard. Except you can't find a model like this in shipyards, trust me!"`
 	choice
 		`	"Sold!"`
 		`	"Sorry, not interested."`
 			decline
-	`	They take the time to explain why this ship is so marvelous but you are not listening anymore, because of how excited you are to finally fly`
+	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. Because of how excited you are to finally fly, you miss everything other than repeated reference to the Ion Cannon.`
 	action
 		set "hai start: Grasshopper"
 		give ship "Grasshopper (Expensive)" "Pristine Jewel"
