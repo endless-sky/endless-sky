@@ -393,7 +393,7 @@ phrase "exile humanika: are sub-par by any reasonable standards"
 	word
 		"'s no gud"          # is no good (mispronounced)
 		"baad"               # bad (mispronounced)
-		"be dren"            # is dren (mispronounced)
+		"be sit"             # is [epithet for fecal matter] (mispronounced)
 		"dust'n wurk"        # doesn't work (mispronounced)
 		"ain' gud"           # ain't good (mispronounced)
 
