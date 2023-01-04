@@ -1123,24 +1123,25 @@ ship "Bactrian" "Bactrian (Cerberus)"
 
 mission "Unfettered: Materials Intercepted Job Board Notification"
 	minor
+	landing
 	source
 		attributes "unfettered"
 	to offer
 		has "event: unfettered: shipment lost"
 		not "Unfettered: Materials Intercepted: active"
 		not "Unfettered: Materials Intercepted: done"
-		random < 10
+		random < 25
 	on offer
 		conversation
-			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Sookootow, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`
+			`Upon landing you take a look at the job board, almost by habit, and to your surprise you notice that there is a very peculiar job on the board, left by none other than Sookootow, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`
 				decline
 
 # SPOILER: Hydras or the Mercenaries bring cargo to the Unfettered. Hydras were on the way, but the Mercenaries hired Scar's legion to sneakily take it and bring it to them.
 # only that Hydras were on their tail, and just took down the ship and it's cargo when you arrive. Time to steal it back back back
 mission "Unfettered: Materials Intercepted"
 	job
-	name `Looking for stolen cargo`
-	description `Sookootow wants an apt captain to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be located in the pirate worlds near Korath space, and not too far from the wormhole.`
+	name `Sookootow: Looking for stolen cargo`
+	description `Sookootow wants an apt captain to find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be located in the pirate worlds near Korath space.`
 	source
 		attributes "unfettered"
 	to offer
@@ -1281,7 +1282,6 @@ mission "Unfettered: Materials Intercepted"
 	on visit
 		dialog `You do not have the materials yet, or your escort carrying them has not arrived. The materials should be looked for in north-east pirate space.`
 	on complete
-		clear "unfettered: materials intercepted offered"
 		outfit "Materials" -142
 		payment 2000000
 		log `Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, and one may wonder how it is related to the Alphas, and Shadow.`
