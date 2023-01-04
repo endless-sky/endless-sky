@@ -187,7 +187,7 @@ phrase "exile mixed: request for mercy"
 phrase "exile humanika: You will lose this fight."
 	word
 		"Yu loose lif here."              # You [will] lose your life here. (mispronounced)
-		"Die yuu if no surendr."          # Die you now if no surendr. (mispronounced)
+		"Die yuu if no surendr."          # Die you now if no surrender. (mispronounced)
 		"Wee wiiin yuu los if no cahgo."  # We [will] win [and] you [will] lose if [you give us] no cargo. (mispronounced)
 		"Yoo no gud fite so gif up."      # You are no good in a fight, so give up. (mispronounced)
 
