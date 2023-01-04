@@ -332,7 +332,6 @@ void LocationFilter::ConfigureLandmarks(const map<string, const System *> &syste
 		const auto systemIt = systemLandmarks.find(name);
 		if(systemIt != systemLandmarks.end())
 			landmarkSystems.insert(systemIt->second);
-		
 	}
 
 	for(auto &notFilter : notFilters)
