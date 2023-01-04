@@ -396,6 +396,7 @@ ship "Kas'ik Tek 7"
 		"shields" 1400
 		"hull" 800
 		"automaton" 1
+		"crew equivalent" 1
 		"mass" 21
 		"drag" 0.6
 		"heat dissipation" 1
