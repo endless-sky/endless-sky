@@ -459,7 +459,7 @@ news "sativa beyond the hyperdrive news"
 			"Kimek"
 			"Arach"
 			"Visitor"
-			"Civillian"
+			"Civilian"
 	message
 		word
 			`"`
