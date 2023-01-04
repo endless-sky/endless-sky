@@ -245,33 +245,6 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 
 
 
-/*vector<string> Phrase::Choice::GetAll() const
-{
-	vector<vector<string>> result;
-
-	for(const auto &it : *this)
-	{
-		if(!it.first.empty())
-		{
-			result.emplace_back();
-			result.back().push_back(it.first);
-		}
-		else if(it.second)
-			result.push_back(std::move(it.second->GetAll()));
-		else
-		{
-			result.emplace_back();
-			result.back().emplace_back();
-		}
-	}
-
-	for(const auto &it : result)
-	{
-
-	}
-}*/
-
-
 // Forwarding constructor, for use with emplace/emplace_back.
 Phrase::Sentence::Sentence(const DataNode &node, const Phrase *parent)
 {
