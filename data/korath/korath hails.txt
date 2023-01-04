@@ -440,7 +440,7 @@ phrase "exile humanika: you inferior individual"
 		"yoo ugli foo"        # You ugly fool (mispronounced)
 		"skinlis munky"       # Skinless monkey (mispronounced)
 		"ugli halching"       # Ugly hatchling (mispronounced)
-		"humpd corp's"        # F***in corpse (mispronounced)
+		"yer've humpd corp's" # you have performed an [epithet for having performed an act of procreation] with a corpse (mispronounced)
 
 phrase "exile humanika: All of your [cargo] is ours now."
 	phrase
