@@ -29,9 +29,9 @@
 # "exile mixed:"    = contains a mix of Exile and mispronounced human words.
 #
 # The Exiles can speak a smattering of human words learned from raids,
-# though they lack any knowledge of grammar since their is vastly
+# though they lack any knowledge of grammar since theirs is vastly
 # different than ours. They can demand cargo or ask you not to gas
-# them, but they can't communicate complex concepts, so the language
+# them, but they can't communicate complex concepts; the language
 # barrier is still quite high. Don't expect treaty negotiations or
 # research collaborations anytime soon, unless you find a translator.
 
@@ -189,7 +189,7 @@ phrase "exile humanika: You will lose this fight."
 		"Yu loose lif here."              # You [will] lose your life here. (mispronounced)
 		"Die yuu nuw if no surendr."      # Die you now if no surendr. (mispronounced)
 		"Wee wiiin yuu los if no cahgo."  # We [will] win [and] you [will] lose if [you give us] no cargo. (mispronounced)
-		"Yoo no gud fite so gif up."      # You are no good in a fight so give up. (mispronounced)
+		"Yoo no gud fite so gif up."      # You are no good in a fight, so give up. (mispronounced)
 
 
 phrase "exile humanika: Nobody can defeat the Korath."
@@ -197,7 +197,7 @@ phrase "exile humanika: Nobody can defeat the Korath."
 		"We Korath imotal!"     # We, the Korath, are immortal! (mispronounced)
 		"Korath flame stong."   # [The] Korath flame is strong. (mispronounced)
 		"Korath bove all."      # Korath [are] above all. (mispronounced)
-		"Foeva Koath!"          # The Korath will live forever! (mispronounced)
+		"Foeva Korath!"         # The Korath will live forever! (mispronounced)
 
 phrase "exile: Exclamation!"
 	word
@@ -218,6 +218,7 @@ phrase "exile: we are disabled, please help us"
 		"exile: Our systems went haywire."
 	word
 		" "
+	phrase
 		"exile: Could you be so kind as to render assistance?"
 
 phrase "efreti: we are disabled, please help us"
@@ -225,6 +226,7 @@ phrase "efreti: we are disabled, please help us"
 		"efreti: Our ship is disabled."
 	word
 		" "
+	phrase
 		"efreti: Could you be so kind as to render assistance?"
 
 phrase "efreti: threatening warning about being protected"
@@ -514,6 +516,12 @@ phrase "exile mixed: food"
 # Wish list food, probably half joking
 phrase "exile: good food"
 	word
+		"ukku'il ifod"                 # squid risotto
+		"roafal ras iahad ifod"        # herb and chili calamari
+		"ak'ab akrik ifod-ifod"        # squid ink pasta
+		"ifod nrelun"                  # fried calamari
+		"ko'ibnraol ranres egralu"     # space slug with orange
+		"bipad ko'ibnraol nrilet"      # dried space slug chips
 		"asame' oavip aok lane'"       # fresh dark green lettuce
 		"nrahfot tasah pagrel"         # crunchy rhino beetles
 		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
@@ -522,14 +530,10 @@ phrase "exile: good food"
 		"'ah koam imipd"               # Chilean Sea Bass
 		"rati is 'aka 'aklet"          # fish en papillote
 		"rumef rohfe osaf"             # honeydew melons
-		"meba ak'eb nrag pagrel"       # crisp gala apples
 		"oham nrirot nradrid 'omap"    # finely chopped yellow squash
 		"ica' oavip kolab"             # shredded collard greens
-		"kamo bosip nrag kaimennref"   # live squirming mealworms
 		"totnrafe' aqlam nridad nramen" # a bowlful of hornworm larvae
 		"polome' irumut kofe'"         # an entire ant colony
-		"ratobfok la'eh nridad rimim"  # a big heaping pile of waxworms
-		"nrala' lomek nroloh akro"     # a nest of ostrich eggs
 		"igah 'otik rinris ranres ra'aip" # chilled baby mice with garnish
 		"ak'ab lamo midet ranres u'tah nradrid" # a pasta of small snakes with mice meatballs
 
@@ -566,7 +570,6 @@ phrase "exile humanika: and we will let you live."
 		"wee go o o way."                 # we go [our own way|away] (mispronounced)
 		"wee go way."                     # we go away (mispronounced)
 		"uu keep ur skin"                 # you will keep your skin (mispronounced)
-		"u see morrow"                    # you [will] see tomorrow (mispronounced)
 
 phrase "exile: and we will let you live."
 	word
@@ -591,6 +594,7 @@ phrase "exile humanika: non-luxury foodstuffs"
 		"foo'de"       2             # food (mispronounced)
 
 		# Terms for categories of food have a high probability
+		"feeshs"       2             # fish (mispronounced)
 		"frute"        2             # fruit (mispronounced)
 		"vetaples"     2             # vegetables (mispronounced)
 		"nots"         2             # nuts (mispronounced)
@@ -667,10 +671,10 @@ phrase "exile humanika: cultural items"
 # among the Korath that make them ask for this.
 phrase "exile humanika: strange items"
 	word
-		"kit'ns"                   # Kittens (are these for eating?)  (mispronounced)
-		"Hoy ac'rn cookees"        # The best cookies in the galaxy: Hai acorn cookies (mispronounced)
-		"toilat pepper"            # Toilet paper (why don't they use a bidet?) (mispronounced)
-		"geko"                     # Gecko (a pet?) (mispronounced)
+		"kit'ns"                   # Kittens (mispronounced)
+		"Hoy ac'rn cookees"        # Hai acorn cookies (mispronounced)
+		"toilat pepper"            # Toilet paper (mispronounced)
+		"geko"                     # Gecko (mispronounced)
 		"Dunduns un Dagons"        # I'll let you guess this one (mispronounced)
 		"Bondl's Fontr'z: tee Korath Spantion" # Boundless Frontiers: the Korath Expansion (mispronounced)
 		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums (mispronounced)
@@ -766,7 +770,7 @@ phrase "exile: weapons"
 		"alaref matnrareb masol"        # warder anti-missile
 		"akavre' tahfuk iba"            # fire-lance
 		"nraseb nrag latahlek"          # blaze-pike turret
-		"alaref ataler"                 # [korath] inferno turret
+		"korath alaref ataler"          # korath inferno turret
 		"le'am ranrahfakleb"            # digger mining beam
 		"alaref ranrahfakleb"           # digger mining turret
 		"mebaket enralnam"              # langrage hyper-heaver
@@ -788,7 +792,7 @@ phrase "exile humanika: engines"
 	word
 		"tusters"                       # thrusters (mispronounced)
 		"injuns"                        # engines (mispronounced)
-		"s'earing"                       # steering (mispronounced)
+		"s'earing"                      # steering (mispronounced)
 		"bow drif"                      # bow drive (mispronounced)
 		"fawid tusters"                 # forward thrusters (mispronounced)
 		"'eversers"                     # reversers (mispronounced)
@@ -838,7 +842,7 @@ phrase "exile: our entire ship."
 
 phrase "exile: part of our ship."
 	word
-		"ri'ef rarat."                # the starboard engines
+		"ri'ef rarat."                # the starboard engines.
 		"aofe' alaref rabes."         # all forward turrets
 		"nrulusreb lakobleh."         # the turning thrusters
 		"nravroreb bosip rapahfak."   # auxiliary life support
@@ -861,12 +865,12 @@ phrase "exile: ain't doing so well right now."
 		"ifamanref tagrah ramananet fek'i'."        # [is] having multiple systems failures.
 		"inralefef rapihemet raheh luktael."         # [is] fighting a reactor overload.
 		"ikatesref ramananet makuk."                # [is] close to complete failure.
-		"agrap itimifef abaleheh kiref alaso nrag a'i'lek!"  # has only minutes of air left
+		"agrap itimifef abaleheh kiref alaso nrag a'i'lek!"  # has only minutes of air left.
 		"tasik itimifef ikri fek'i' marui'nroj."    # has no functional systems core.
 		"arelat ri'ef ifat pememef arelat agr'arab ilisre'."   # [is failing] due to our engines melting under their own heat.
 		"tasik kabas ratmi'apnref alaso oaka lia."  # [is] unable to produce air or water.
 		"pamek isavref 'arabe' nrakrih rulkoer."    # has become as hot as a neutron star.
-		"tasik itimifef krop' 'arab avlet."          # has no working heat shunts
+		"tasik itimifef krop' 'arab avlet."          # has no working heat shunts.
 		"abrak ri'ef oaka anarek nrag avleteh."     # is without working engines or power
 		"tasik itimifef fek'i' nrotosreb rabosipet avlet." # has no working life support systems
 
@@ -909,12 +913,12 @@ phrase "efreti: ain't doing so well right now."
 		"ifanalref sadrab ranalales fekmim."        # [is] having multiple systems failures.
 		"ilrapfef rahibenes rabeb puksaep."         # [is] fighting a reactor overload.
 		"ikasetref ranalales nakuk."                # [is] close to complete failure.
-		"adrah isinifef acapebeb kiref apato lrad amimpek!"  # has only minutes of air left
+		"adrah isinifef acapebeb kiref apato lrad amimpek!"  # has only minutes of air left.
 		"satik isinifef ikri fekmim naruimlroy."    # has no functional systems core.
 		"arepas rimef ifas henenef arepas adrmarac ipitrem."   # [is failing] due to our engines melting under their own heat.
 		"satik kacat rasnimahlref apato oaka pia."  # [is] unable to produce air or water.
 		"hanek itawref maracem lrakrib rupkoer."    # has become as hot as a neutron star.
-		"satik isinifef krohm marac awpes"          # has no working heat shunts
+		"satik isinifef krohm marac awpes"          # has no working heat shunts.
 		"acrak rimef oaka alarek lrad awpeseb."     # is without working engines or power
 		"satik isinifef fekmim lrosotrec racotihes awpes." # has no working life support systems
 
@@ -958,16 +962,16 @@ phrase "efreti: You should stop attacking us"
 		"Somoref atra mopah pihsapeb lrapasem" # Your [poking|ineffectual attack] should stop now
 
 # The powerful faction probably won't intervene, but it is a
-# believable threat that my scare away would-be attackers.
+# believable threat that may scare away would-be attackers.
 
 phrase "efreti: because we are protected by (Insert Powerful Faction Name Here)."
 	word
-		"fonebem Drak ofhorobfef."              # before the Drak kill you
+		"fonebem Drak ofhorobfef."              # before the Drak kill you.
 		"oaka Kuwaru rasa ipavref ofnawa."       # or the Quarg will seek your doom.
 		"ralraw iacfam Kuwaru rasa lrakat."     # lest the Quarg come.
 		"sokro ipatrihlref sabfuk kilran."      # to avoid the Sky Lances
 		"arepas Kuwaru hanata apatoam akis."     # because the Quarg are our siblings
-		"oaka atra rasa itawref Kuwaru naim."   # or you will be Quarg s**t
+		"oaka atra rasa itawref Kuwaru naim."   # or you will be Quarg dung.
 		"arepas Kuwaru ilrotrinef akis."          # because [the] Quarg protect us
 		"ralraw iacfam ipekafikra ipihsalref."  # lest antimatter [which powers Quarg ships] end [you]
 		"sokro ipatrihlref ramanabfec Kuwaru."   # to avoid a Quarg's vengeance
@@ -1239,7 +1243,7 @@ phrase "exile: listen to (Band)"
 		"sernaltar"               # listen to
 		"tehapaniaar orkot"       # bliss out to
 		"tohol bitilarto samaf"   # bury my thoughts in
-		"ritfaki"                 # Enjoy
+		"ritfaki"                 # enjoy
 		"femapab"                 # devour
 		"amilar"                  # stream
 	word
@@ -1272,7 +1276,7 @@ phrase "efreti: listen to (Band)"
 		"Rivriv Apakrek Binam Airot"   # Ringworld Crusaders
 		"Ragas-ragas it Ikup"          # Comrades on Toast
 		"Imoni Ranafpures"             # Illusion of Normalcy
-		"Apako Alpom"                  # North of Heaven (probably ironically)
+		"Apako Alpom"                  # North of Heaven
 		"Pafam Ralret Apav Lrad Dkyir" # Cryptic in a Nifty Way
 		"Lrapu Lrad Hatof Pasabpek"    # Flammable People
 		"Ranabeses Iacfam Ikaf"        # Immunity to Death
@@ -1313,17 +1317,19 @@ phrase "efreti: eat good food"
 	word
 		" "
 	word
+		"ukkumip ifov"                 # squid risotto
+		"roafap rat iabav ifov"        # herb and chili calamari
+		"akmac akrik ifov-ifov"        # squid ink pasta
+		"ifov lrepul"                  # fried calamari
+		"kocislraop ralret edrapu"     # space slug with orange
+		"cihav kocislraop lripes"      # dried space slug chips
 		"atanem oawih aok palem"       # fresh dark green lettuce
 		"lrabfos satab hadrep"         # crunchy rhino beetles
 		"ipebupkm palem lrad lrakaf"   # ripe succulent strawberries
 		"tuv lrallrac ralret lragab hikoc"  # baked cod with garlic
-		"kenniy enum lrallrac"         # baked sole fillet
-		"mmab koan inihv"              # Chilean Sea Bass
 		"rasi it maka makpes"          # fish en papillote
-		"runef robfe otaf"             # honeydew melons
 		"neca akmec lrad hadrep"       # crisp gala apples
 		"oban lriros lravriv monah"    # finely chopped yellow squash
-		"igam oawih kopac"             # shredded collard greens
 		"kano cotih lrad kainellref"   # live squirming mealworms
 		"soslrafem arpan lrivav lranel" # a bowlful of hornworm larvae
 		"hoponem irunus kofem"         # an entire ant colony
