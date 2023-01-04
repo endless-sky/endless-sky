@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
 
 		if(printData)
 		{
-			PrintData::Print(argc, argv);
+			PrintData::Print(argv);
 			return 0;
 		}
 		if(printTests)

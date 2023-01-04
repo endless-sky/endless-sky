@@ -667,7 +667,7 @@ namespace {
 	}
 
 
-	void Phrases(int argc, char *argv[])
+	void Phrases(const char *const *argv)
 	{
 		string phraseName;
 
@@ -751,7 +751,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 
 
 
-void PrintData::Print(int argc, char *argv[])
+void PrintData::Print(const char *const *argv)
 {
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -778,7 +778,7 @@ void PrintData::Print(int argc, char *argv[])
 		else if(arg == "--matches")
 			LocationFilterMatches(argv);
 		else if(arg == "--phrase")
-			Phrases(argc, argv);
+			Phrases(argv);
 	}
 	cout.flush();
 }
