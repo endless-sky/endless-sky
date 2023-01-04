@@ -21,12 +21,12 @@ ship "Zooroid"
 	attributes
 		"category" "Fighter"
 		"cost" 0
-		"hull" 200
+		"hull" 400
 		"required crew" 1
 		"bunks" 1
 		"mass" 60
 		"drag" 10
-		"heat dissipation" 2
+		"heat dissipation" 1.4
 		"cargo space" 0
 		"outfit space" 0
 		"weapon capacity" 0
@@ -42,6 +42,42 @@ ship "Zooroid"
 	"leak" "blood" 1 2
 	"final explode" "blood"
 	description `These are tiny space creatures that feed on solar energy, storing it into two receptors found at the front of their bodies. They are extremely docile, and are found in large groups - almost never seen alone.`
+	
+
+
+ship "Zooroid" "Zooroid (B)"
+	noun creature
+	sprite "ship/zooroids/zooroid-b"
+		"frame rate" 24
+		"random start frame"
+	swizzle 0
+	"never disabled"
+	attributes
+		"category" "Fighter"
+		"cost" 0
+		"hull" 1420
+		"required crew" 1
+		"bunks" 1
+		"mass" 140
+		"drag" 10
+		"heat dissipation" 1
+		"cargo space" 0
+		"outfit space" 0
+		"weapon capacity" 0
+		"engine capacity" 0
+		"hull repair rate" 1
+		"inscrutable" 1
+		"energy capacity" 100
+		"energy generation" 1
+		"thrust" 12
+		"turn" 60
+		"energy protection" 1
+		"ion protection" 1
+	"leak" "blood" 2 3
+	"final explode" "blood"
+	description `Oddly shaped like a boomerang, these space creatures are in a constant rotary motion caused by a small internal organ. The motion provides a natural defense against small debris and projectiles that threaten to intercept the creature, which is harmless otherwise.`
+
+
 
 # Fleets:
 
@@ -60,3 +96,15 @@ fleet "Zooroid (Plankton)"
 		"Zooroid" 3
 	variant 
 		"Zooroid"
+
+fleet "Zooroid (Boomerang)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute
+	variant 20
+		"Zooroid (B)"
+	variant
+		"Zooroid (B)" 2
+	variant 
+		"Zooroid (B)" 3

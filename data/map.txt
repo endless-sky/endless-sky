@@ -36830,7 +36830,6 @@ system "Is Il V-263"
 	belt 2085 7
 	haze _menu/haze-67
 	link "Is Ce B-139"
-	link "Is Il Z-814"
 	asteroids "small rock" 11 3.162
 	asteroids "medium rock" 46 2.697
 	asteroids "large rock" 5 4.418
@@ -36839,6 +36838,7 @@ system "Is Il V-263"
 	minables iron 4 3.442
 	minables titanium 3 5.731
 	fleet "Zooroid (Plankton)" 500
+	fleet "Zooroid (Boomerang)" 700
 	object
 		sprite star/b-supergiant
 		period 10
@@ -36882,6 +36882,7 @@ system "Is Il X-626"
 	link "Is Il T-127"
 	asteroids "large metal" 1 3.402
 	fleet "Zooroid (Plankton)" 500
+	fleet "Zooroid (Boomerang)" 800
 	object
 		sprite star/m8
 		distance 153.479
@@ -37179,7 +37180,7 @@ system "Ae Il F-46"
 		distance 438.402
 		period 77
 	object
-		sprite star/neutron
+		sprite star/b-giant
 		distance 247.167
 		period 77
 		offset 170
@@ -37370,7 +37371,6 @@ system "Is Il Z-814"
 	government Uninhabited
 	belt 1862
 	haze _menu/haze-133
-	link "Is Il V-263"
 	asteroids "small rock" 23 2.05
 	asteroids "medium rock" 2 2.52
 	asteroids "large rock" 7 3.158
@@ -37380,6 +37380,7 @@ system "Is Il Z-814"
 	minables lead 28 4.115
 	minables iron 35 5.171
 	minables gold 47 3.479
+	fleet "Zooroid (Boomerang)" 200
 	object
 		sprite star/wr
 		period 40
@@ -37606,7 +37607,7 @@ system "Ae Il B-11"
 			distance 359
 			period 211.554
 
-system "Ae CE Q-761"
+system "Ae Ce Q-761"
 	pos 769.634 -760.648
 	government Uninhabited
 	habitable 0
@@ -37620,6 +37621,7 @@ system "Ae CE Q-761"
 	minables aluminum 8 3.506
 	minables copper 8 3.793
 	minables tungsten 17 2.26
+	fleet "Zooroid (Boomerang)" 900
 	object
 		sprite star/protostar-yellow
 		period 10
