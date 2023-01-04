@@ -675,7 +675,7 @@ phrase "exile humanika: strange items"
 		"Hoy ac'rn cookees"        # The best cookies in the galaxy: Hai acorn cookies (mispronounced)
 		"toilat pepper"            # Toilet paper (why don't they use a bidet?) (mispronounced)
 		"geko"                     # Gecko (a pet?) (mispronounced)
-		"Dundons n Sheragi"        # Dungeons and Sheragi (mispronounced)
+		"Dund'gns en Sheragi"      # Dungeons and Sheragi (mispronounced)
 		"Bondl's Fontr'z: tee Fire Lizards" # Boundless Frontiers: the Fire Lizards (mispronounced)
 		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums (mispronounced)
 		"How tu Serv Man buuk"     # The book, "How to Serve Man" (mispronounced)
