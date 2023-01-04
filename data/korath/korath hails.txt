@@ -411,9 +411,9 @@ phrase "exile humanika: are inferior to what we possess"
 
 phrase "exile humanika: are superior to what you possess"
 	word
-		"be'ren yurs"        # [is] better than yours
-		"bigger yers"        # [is] bigger than yours
-		"ston thin you"      # [is] stronger than [you|yours]
+		"be'ren yurs"        # [is] better than yours (mispronounced)
+		"bigger yers"        # [is] bigger than yours (mispronounced)
+		"ston thin you"      # [is] stronger than [you|yours] (mispronounced)
 
 phrase "exile: empty phrase"
 	word
@@ -585,98 +585,98 @@ phrase "exile: and we will let you live."
 phrase "exile humanika: non-luxury foodstuffs"
 	word
 		# General terms for food have a high probability
-		"fuud"         2             # food
-		"f'oood"       2             # food
-		"fude"         2             # food
-		"foo'de"       2             # food
+		"fuud"         2             # food (mispronounced)
+		"f'oood"       2             # food (mispronounced)
+		"fude"         2             # food (mispronounced)
+		"foo'de"       2             # food (mispronounced)
 
 		# Terms for categories of food have a high probability
-		"frute"        2             # fruit
-		"vetaples"     2             # vegetables
-		"nots"         2             # nuts
-		"mete"         2             # meat
+		"frute"        2             # fruit (mispronounced)
+		"vetaples"     2             # vegetables (mispronounced)
+		"nots"         2             # nuts (mispronounced)
+		"mete"         2             # meat (mispronounced)
 
 		# Individual foods are less likely
-		"sammon"       1             # salmon
-		"cikken"       1             # chicken
-		"beaf"         1             # beef
-		"let'us"       1             # lettuce
-		"verman"       1             # vermin
-		"fuit"         1             # fruit
-		"buberris"     1             # blueberries
-		"insets"       1             # insects
-		"isekts"       1             # insects
-		"b'eet lus"    1             # beetles
-		"feesh"        1             # fish
-		"starburries"  1             # strawberries
-		"burds"        1             # birds
-		"burries"      1             # berries
-		"base"         1             # bass
-		"werms"        1             # worms
+		"sammon"       1             # salmon (mispronounced)
+		"cikken"       1             # chicken (mispronounced)
+		"beaf"         1             # beef (mispronounced)
+		"let'us"       1             # lettuce (mispronounced)
+		"verman"       1             # vermin (mispronounced)
+		"fuit"         1             # fruit (mispronounced)
+		"buberris"     1             # blueberries (mispronounced)
+		"insets"       1             # insects (mispronounced)
+		"isekts"       1             # insects (mispronounced)
+		"b'eet lus"    1             # beetles (mispronounced)
+		"feesh"        1             # fish (mispronounced)
+		"starburries"  1             # strawberries (mispronounced)
+		"burds"        1             # birds (mispronounced)
+		"burries"      1             # berries (mispronounced)
+		"base"         1             # bass (mispronounced)
+		"werms"        1             # worms (mispronounced)
 
 phrase "exile humanika: raw materials"
 	word
-		"iren"         # iron
-		"copear"       # copper
-		"sapir'r"      # sapphire
-		"uranume"      # uranium
-		"herdwuud"     # hardwood
-		"tungst'n"     # tungsten
-		"sann'd"       # sand
-		"qurts"        # quartz
-		"ste'l"        # steel
-		"pla'tk"       # plastic
+		"iren"         # iron (mispronounced)
+		"copear"       # copper (mispronounced)
+		"sapir'r"      # sapphire (mispronounced)
+		"uranume"      # uranium (mispronounced)
+		"herdwuud"     # hardwood (mispronounced)
+		"tungst'n"     # tungsten (mispronounced)
+		"sann'd"       # sand (mispronounced)
+		"qurts"        # quartz (mispronounced)
+		"ste'l"        # steel (mispronounced)
+		"pla'tk"       # plastic (mispronounced)
 
 phrase "exile humanika: tactical and strategic items"
 	word
-		"mapse of humanika spass"  # Maps of human space
-		"tar maps"                 # Star maps
-		"humanika flit moment dita" # Human fleet movement data
-		"r'd wermhol resurch"      # Red wormhole research
-		"rad holl resurch"         # Red [worm]hole research
-		"wermhol resurch"          # Wormhole research
-		"sampil o humanika tetch"  # [Examples|Samples] of human technology
-		"inernal govment docmants" # internal government documents
-		"humanika beakoff gupes"   # Information about human break-off groups (ie.: Remnant or Alphas)
-		"medital resorch humanika" # Medical research relating to humans. (Perhaps to keep captives alive, design bioweapons, or simple curiosity.)
-		"nerf gus"                 # Nerve gas, probably to develop counter-measures.
-		"all yer data"             # all [of] your data
-		"'avigatun lugs"           # navigation logs
+		"mapse of humanika spass"  # Maps of human space (mispronounced)
+		"tar maps"                 # Star maps (mispronounced)
+		"humanika flit moment dita" # Human fleet movement data (mispronounced)
+		"r'd wermhol resurch"      # Red wormhole research (mispronounced)
+		"rad holl resurch"         # Red [worm]hole research (mispronounced)
+		"wermhol resurch"          # Wormhole research (mispronounced)
+		"sampil o humanika tetch"  # [Examples|Samples] of human technology (mispronounced)
+		"inernal govment docmants" # internal government documents (mispronounced)
+		"humanika beakoff gupes"   # Information about human break-off groups (ie.: Remnant or Alphas) (mispronounced)
+		"medital resorch humanika" # Medical research relating to humans. (Perhaps to keep captives alive, design bioweapons, or simple curiosity.) (mispronounced)
+		"nerf gus"                 # Nerve gas, probably to develop counter-measures. (mispronounced)
+		"all yer data"             # all [of] your data (mispronounced)
+		"'avigatun lugs"           # navigation logs (mispronounced)
 
 
 # These show the Korath Exiles do still try to have a culture. All of
 # these are horribly mispronounced human words.
 phrase "exile humanika: cultural items"
 	word
-		"sculping suplis"          # Sculpting supplies
-		"painbush n paint"         # Paintbrushes and paint
-		"musik'l instr'mats"       # Musical instruments
-		"dr'm set"                 # Drum set
-		"Mosart musaic"            # Mozart music
-		"tess set's"               # chess sets
-		"fingre paint'n k't"       # finger-painting kit
-		"all yer operas"           # all of your operas
-		"sonettes n haukus"        # sonnets and haikus
-		"color'd pencals"          # colored pencils
-		"buulk fabr'c"             # bulk fabric
-		"strang instraments"       # string instruments
-		"rok gittar"               # rock guitar
+		"sculping suplis"          # Sculpting supplies (mispronounced)
+		"painbush n paint"         # Paintbrushes and paint (mispronounced)
+		"musik'l instr'mats"       # Musical instruments (mispronounced)
+		"dr'm set"                 # Drum set (mispronounced)
+		"Mosart musaic"            # Mozart music (mispronounced)
+		"tess set's"               # chess sets (mispronounced)
+		"fingre paint'n k't"       # finger-painting kit (mispronounced)
+		"all yer operas"           # all of your operas (mispronounced)
+		"sonettes n haukus"        # sonnets and haikus (mispronounced)
+		"color'd pencals"          # colored pencils (mispronounced)
+		"buulk fabr'c"             # bulk fabric (mispronounced)
+		"strang instraments"       # string instruments (mispronounced)
+		"rok gittar"               # rock guitar (mispronounced)
 
 
 # These are items that make you wonder what strange things happen
 # among the Korath that make them ask for this.
 phrase "exile humanika: strange items"
 	word
-		"kit'ns"                   # Kittens (are these for eating?) 
-		"Hoy ac'rn cookees"        # The best cookies in the galaxy: Hai acorn cookies
-		"toilat pepper"            # Toilet paper (why don't they use a bidet?)
-		"geko"                     # Gecko (a pet?)
-		"Dunduns un Dagons"        # I'll let you guess this one
-		"Bondl's Fontr'z: tee Korath Spantion" # Boundless Frontiers: the Korath Expansion
-		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums
-		"How tu Serv Man buuk"     # The book, "How to Serve Man"
-		"ganfadder clok"           # grandfather clock
-		"bored games"              # board games
+		"kit'ns"                   # Kittens (are these for eating?)  (mispronounced)
+		"Hoy ac'rn cookees"        # The best cookies in the galaxy: Hai acorn cookies (mispronounced)
+		"toilat pepper"            # Toilet paper (why don't they use a bidet?) (mispronounced)
+		"geko"                     # Gecko (a pet?) (mispronounced)
+		"Dunduns un Dagons"        # I'll let you guess this one (mispronounced)
+		"Bondl's Fontr'z: tee Korath Spantion" # Boundless Frontiers: the Korath Expansion (mispronounced)
+		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums (mispronounced)
+		"How tu Serv Man buuk"     # The book, "How to Serve Man" (mispronounced)
+		"ganfadder clok"           # grandfather clock (mispronounced)
+		"bored games"              # board games (mispronounced)
 
 
 # The Exiles like to play other open source games. These are horribly
