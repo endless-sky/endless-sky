@@ -665,7 +665,7 @@ void MapDetailPanel::DrawInfo()
 	if(hasVisited && Preferences::Has("Show part of last planet") &&
 			planetPanelHeight < planetCards.size() * planetHeight)
 		planetPanelHeight -= static_cast<int>(planetPanelHeight) % static_cast<int>(planetHeight) +
-			planetHeight * lastPlanetRelativeSize;
+			planetHeight * (1. - lastPlanetRelativeSize);
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
