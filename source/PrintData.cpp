@@ -680,7 +680,7 @@ namespace {
 				break;
 			}
 		}
-		
+
 		const Phrase *phrase = nullptr;
 
 		for(const auto &it : GameData::Phrases())
