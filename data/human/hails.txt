@@ -3204,20 +3204,20 @@ phrase "friendly militia 4 variation"
 	word
 		" what "
 	word
-		"pirates"
-		"criminals"
-		"warlords"
-		"marauders"
-		"rampant piracy"
+		"pirates have"
+		"criminals have"
+		"warlords have"
+		"marauders have"
+		"rampant piracy has"
 	word
-		" has done "
+		" done to "
 	word
-		"to our system"
-		"to our planets"
-		"to the South"
-		"to the Rim"
-		"to the Southern Rim"
-		"to the Dirt Belt"
+		"our system"
+		"our planets"
+		"the South"
+		"the Rim"
+		"the Southern Rim"
+		"the Dirt Belt"
 
 # Militia hails shared with the Free Worlds. Some are Militia only. This should give each of these hail sets the same chance of appearing.
 phrase "friendly militia"
