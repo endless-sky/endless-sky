@@ -327,7 +327,7 @@ bool StartConditions::IsUnlocked() const
 
 void StartConditions::LoadState(const DataNode &node, StartState state)
 {
-	StartInfo info = infoByState[state];
+	StartInfo &info = infoByState[state];
 	bool clearDescription = !info.description.empty();
 	for(const auto &child : node)
 	{
@@ -355,8 +355,8 @@ void StartConditions::LoadState(const DataNode &node, StartState state)
 
 void StartConditions::FillState(StartState fromState, StartState toState)
 {
-	StartInfo from = infoByState[fromState];
-	StartInfo to = infoByState[toState];
+	StartInfo &from = infoByState[fromState];
+	StartInfo &to = infoByState[toState];
 	if(!to.thumbnail)
 		to.thumbnail = from.thumbnail;
 	if(to.name.empty())
