@@ -37126,6 +37126,7 @@ system "Is Il Z-59"
 	minables aluminum 9 5.165
 	minables iron 14 4.93
 	fleet "Zooroid (Plankton)" 500
+	fleet "Zooroid (Cephalopod)" 600
 	object
 		sprite star/g5
 		distance 71.062
@@ -37175,6 +37176,7 @@ system "Ae Il F-46"
 	asteroids "small metal" 12 3.452
 	asteroids "large metal" 10 2.972
 	minables lead 17 2.248
+	fleet "Zooroid (Cephalopod)" 500
 	object
 		sprite star/neutron
 		distance 438.402
@@ -37260,6 +37262,7 @@ system "Ae Il I-99"
 	minables titanium 1 4.724
 	minables copper 5 5.306
 	fleet "Zooroid (Plankton)" 900
+	fleet "Zooroid (Cephalopod)" 600
 	object
 		sprite star/g0-old
 		period 10
@@ -37516,6 +37519,7 @@ system "Ae Il A-3"
 	minables iron 11 4.735
 	minables silver 37 3.069
 	fleet "Zooroid (Plankton)" 1050
+	fleet "Zooroid (Cephalopod)" 400
 	object
 		sprite star/g-supergiant
 		distance 825.197
@@ -37563,6 +37567,7 @@ system "Ae Il B-11"
 	asteroids "small metal" 10 5.016
 	asteroids "medium metal" 3 3.363
 	asteroids "large metal" 1 5.472
+	fleet "Zooroid (Cephalopod)" 300
 	object
 		sprite star/m-giant
 		period 10

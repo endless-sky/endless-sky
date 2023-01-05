@@ -25,7 +25,7 @@ ship "Zooroid"
 		"required crew" 1
 		"bunks" 1
 		"mass" 60
-		"drag" 10
+		"drag" 8
 		"heat dissipation" 1.4
 		"cargo space" 0
 		"outfit space" 0
@@ -79,6 +79,56 @@ ship "Zooroid" "Zooroid (B)"
 
 
 
+ship "Zooroid" "Zooroid (C)"
+	noun creature
+	sprite "ship/zooroids/zooroid-c"
+		"frame rate" 16
+		"random start frame"
+	swizzle 0
+	"never disabled"
+	attributes
+		"category" "Fighter"
+		"cost" 1
+		"hull" 860
+		"required crew" 1
+		"bunks" 1
+		"mass" 200
+		"drag" 9
+		"heat dissipation" 1.8
+		"cargo space" 1
+		"outfit space" 1
+		"weapon capacity" 1
+		"engine capacity" 1
+		"inscrutable" 1
+		"energy capacity" 100
+		"energy generation" 10
+		"thrust" 6
+		"turn" 70
+		"energy protection" 1
+		"heat protection" 1
+		weapon
+			"blast radius" 2000
+			"shield damage" 6000
+			"hull damage" 12000
+			"hit force" 4000
+
+	engine 0 0
+	"final explode" "fission explosion" 
+	description `This species of space life is found around hotter stars and feeds on solar energy, storing it in four organs that give off the appearance of eyes. These creatures are however easily agitated, and explode violently when provoked, sometimes seen doing so aggressively.`
+
+effect "fission explosion"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "asteroid crunch large"
+	"lifetime" 15
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .4
+
+
+
 # Fleets:
 
 fleet "Zooroid (Plankton)"
@@ -108,3 +158,12 @@ fleet "Zooroid (Boomerang)"
 		"Zooroid (B)" 2
 	variant 
 		"Zooroid (B)" 3
+
+fleet "Zooroid (Cephalopod)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute
+	variant
+		"Zooroid (C)"
+
