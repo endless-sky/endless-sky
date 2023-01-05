@@ -36,6 +36,11 @@ class ConditionsStore;
 // quotation marks, it should be enclosed in backticks instead.
 class DataNode {
 public:
+	static const char CONDITION_CHAR = '&';
+	static constexpr const char *const CONDITION_CHAR_NAME = "an ampersand (\"&\")";
+
+
+public:
 	// Construct a DataNode. For the purpose of printing stack traces, each node
 	// must remember what its parent node is.
 	explicit DataNode(const DataNode *parent = nullptr) noexcept(false);

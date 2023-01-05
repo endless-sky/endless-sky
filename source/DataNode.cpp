@@ -247,7 +247,19 @@ bool DataNode::IsCondition(int index) const
 
 bool DataNode::IsCondition(const string &token)
 {
-	return token.size() >= 2 && token[0] == '&';
+	// A condition reference begins with a condition reference character,
+	// but it must not be only one or two condition reference characters.
+	// This is to avoid clashes with operators.
+	//
+	// Take CONDITION_CHAR = '&' as an example:
+	//    &&    = not a valid Condition string
+	//    &     = not a valid Condition string
+	//    &x    = a valid Condition string
+	//    &xyz  = a valid Condition string
+	//    &&xyz = a valid Condition string
+
+	return token.size() > 1 && token[0] == CONDITION_CHAR
+		&& ( token.size() > 2 || token[0] != CONDITION_CHAR);
 }
 
 
@@ -328,7 +340,7 @@ Condition<double> DataNode::AsCondition(int index) const
 	else if(IsCondition(tokens[index]))
 		return Condition<double>(store, tokens[index].substr(1));
 	PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number or condition name. "
-		"Condition names must begin with a dollar sign (\"&\"). "
+		"Condition names must begin with " + CONDITION_CHAR_NAME + ". "
 		"This token will be replaced with the number 0.");
 	return Condition<double>(0);
 }
