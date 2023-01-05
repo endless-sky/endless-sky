@@ -808,7 +808,7 @@ phrase "exile humanika: systems"
 	word
 		"sysim corr"                    # systems core (mispronounced)
 		"lasma corr"                    # plasma core (mispronounced)
-		"eat sunt"                      # heat shunt (mispronounced)
+		"haet sunt"                     # heat shunt (mispronounced)
 		"likid coolar"                  # liquid cooler (mispronounced)
 		"gruel process'r"               # fuel processor (mispronounced)
 
