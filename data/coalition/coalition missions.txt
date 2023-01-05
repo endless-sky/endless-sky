@@ -3223,7 +3223,7 @@ mission "Sativa: Struggling Author 2"
 				`	"That's just how they eat."`
 				`	"My ship still has a decent amount of food you can eat."`
 				`	"There should be another restaurant."`
-			`	"<first>! It's you again!", says Ann in an excited tone. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs.`
+			`	"<first>! It's you again!", says Ann in an excited tone. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs."`
 			choice
 				`	"It's all ready now. Come."`
 			`	Ann stands up from her chair and begins following you to the ship. She settles into her bunk as you prepare for a trip to the <destination>.`
