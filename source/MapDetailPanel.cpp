@@ -648,7 +648,7 @@ void MapDetailPanel::DrawInfo()
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double minPlanetPanelHeight = mapInterface->GetValue("min planet panel height")
+	double minPlanetPanelHeight = mapInterface->GetValue("min planet panel height");
 	double maxPlanetPanelHeight = mapInterface->GetValue("max planet panel height");
 
 	const double bottomGovY = mapInterface->GetValue("government Y");
