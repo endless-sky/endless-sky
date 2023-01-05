@@ -3272,6 +3272,7 @@ mission "Sativa: Struggling Author 3"
 			`	"Great! So, where will we get the translator?"`
 			`	"We'll go to <destination> to ask the Heliarchs for a translation box", you tell Ann. "Finish your meal, then enter my ship. I'll be ready." You walk off to your ship.`
 			`	After 15 minutes, you see Ann walking towards you. You open the hatch as she enters. She settles in her bunk, as you prepare to depart.`
+				accept
 	on complete
 		conversation
 			`You arrive at the spaceport. Ann leaves her bunk and waits for you to open the hatch. You quickly lead her to a Heliarch office. You walk to the counter, and begin conversing with the clerk.`
