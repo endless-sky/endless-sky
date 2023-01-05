@@ -77,44 +77,43 @@ ship "Zooroid" "Zooroid (B)"
 	"final explode" "blood"
 	description `Oddly shaped like a boomerang, these space creatures are in a constant rotary motion caused by a small internal organ. The motion provides a natural defense against small debris and projectiles that threaten to intercept the creature, which is harmless otherwise.`
 
-
-
-ship "Zooroid" "Zooroid (C)"
-	noun creature
+ship "Zooroid" "Zooroid C"
 	sprite "ship/zooroids/zooroid-c"
-		"frame rate" 16
+		"frame rate" 24
 		"random start frame"
 	swizzle 0
 	"never disabled"
 	attributes
-		"category" "Fighter"
-		"cost" 1
+		category "Fighter"
+		"cost" 0
 		"hull" 860
 		"required crew" 1
 		"bunks" 1
 		"mass" 200
 		"drag" 9
 		"heat dissipation" 1.8
-		"cargo space" 1
-		"outfit space" 1
-		"weapon capacity" 1
-		"engine capacity" 1
-		"inscrutable" 1
-		"energy capacity" 100
-		"energy generation" 10
+		"fuel capacity" 0
+		"cargo space" 0
+		"outfit space" 0
+		"weapon capacity" 0
+		"engine capacity" 0
+		"energy capacity" 1000
+		"energty generation" 100
 		"thrust" 6
 		"turn" 70
 		"energy protection" 1
 		"heat protection" 1
 		weapon
-			"blast radius" 2000
-			"shield damage" 6000
-			"hull damage" 12000
+			"blast radius" 1600
+			"shield damage" 3000
+			"hull damage" 8000
 			"hit force" 4000
-
+			"piercing" 0.1
 	engine 0 0
+	explode "flamethrower die" 1
 	"final explode" "fission explosion" 
 	description `This species of space life is found around hotter stars and feeds on solar energy, storing it in four organs that give off the appearance of eyes. These creatures are however easily agitated, and explode violently when provoked, sometimes seen doing so aggressively.`
+
 
 effect "fission explosion"
 	sprite "effect/explosion/nuke"
