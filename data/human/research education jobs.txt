@@ -258,7 +258,7 @@ mission "Student field research [3]"
 		"<student research>" "biosphere"
 		"<student research>" "medicinal industry"
 			has attributes medical
-			has random < 50
+			has random < 60
 		"<student research>" "oceans"
 			has attributes fishing
 			has random < 60
@@ -269,7 +269,7 @@ mission "Student field research [3]"
 			has attributes forest
 			has random < 60
 		"<student research>" "indigenous wildlife"
-			has attributes forest
+			has attributes forest medical
 			has random < 30
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
