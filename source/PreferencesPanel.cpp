@@ -483,7 +483,6 @@ void PreferencesPanel::DrawSettings()
 		"Show planet labels",
 		"Show mini-map",
 		"Always underline shortcuts",
-		"Show part of last planet",
 		"",
 		"AI",
 		"Automatic aiming",
