@@ -3114,7 +3114,7 @@ mission "Coalition: Outskirts Gauger Ready"
 
 
 
-mission "Sativa: Struggling Author 1"
+mission "Fangvin: Struggling Author 1"
 	name "Take Anna to Coalition Space"
 	description "Take Anna Fangvin to <destination>, where she might find success as an author after having struggled on <origin> for so long."
 	source "Zug"
@@ -3209,13 +3209,13 @@ mission "Sativa: Struggling Author 1"
 			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, that's where you can complete the registration process."`
 			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and take me to the Ring of Friendship once you're ready. I'll meet you in the spaceport."`
 
-mission "Sativa: Struggling Author 2"
+mission "Fangvin: Struggling Author 2"
 	name "Help Anna Register"
 	description "Take Anna Fangvin to the <destination> so she can register with the Heliarchs."
 	source "Ki Patek Ka"
 	destination "Ring of Friendship"
 	to offer
-		has "Sativa: Struggling Author 1: done"
+		has "Fangvin: Struggling Author 1: done"
 	on offer
 		conversation
 			`You walk through the spaceport, looking for Anna. She is at a restaurant, but has ordered nothing with a disgusted look on her face. "These aliens! They vomit on their food and slurp all the soup! Disgusting!", she mutters.`
@@ -3244,13 +3244,13 @@ mission "Sativa: Struggling Author 2"
 			`	"To reach the registration office, this way you must go.", replies the Heliarch, pointing to a hallway.`
 			`	You and Anna walk down the hallway as directed, until you spot a registration office. Anna walks into the registration office while you sit down on a nearby bench. After 15 minutes, Anna walks out and approaches you. "They finally registered me.". I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move.`
 
-mission "Sativa: Struggling Author 3"
+mission "Fangvin: Struggling Author 3"
 	name "Back to <planet>"
 	description "Now that Anna Fangvin has completed the registration process, help her get a translation device on <destination>."
 	source "Ring of Friendship"
 	destination "Ki Patek Ka"
 	to offer
-		has "Sativa: Struggling Author 2: done"
+		has "Fangvin: Struggling Author 2: done"
 	on offer
 		conversation
 			`Going through the spaceport looking for Anna, you finally find her at a Saryd restaurant, eating from a plate of vegetables. She sees you and motions for you to take a seat.`
@@ -3296,13 +3296,13 @@ mission "Sativa: Struggling Author 3"
 				`	"We'll find a company. There has to be one out there."`
 			`	"The faster we can get the book published, the better. I'm off to the spaceport now. Meet me in the spaceport once you've found a good company."`
 
-mission "Sativa: Struggling Author 4"
+mission "Fangvin: Struggling Author 4"
 	name "Kimek Publishing Company"
 	description "You have found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
 	source "Ki Patek Ka"
 	destination "Inmost Blue"
 	to offer
-		has "Sativa: Struggling Author 3: done"
+		has "Fangvin: Struggling Author 3: done"
 	on offer
 		conversation
 			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria, with her laptop, She is typing away at the keyboard, presumably writing a new novel.`
@@ -3381,14 +3381,14 @@ mission "Sativa: Struggling Author 4"
 
 event "beyond the hyperdrive is published"
 
-mission "Sativa: Struggling Author 5A"
+mission "Fangvin: Struggling Author 5A"
 	landing
 	source
 		not near "Quaru" 0 100
 	destination "Inmost Blue"
 	to offer
 		has "event: beyond the hyperdrive is published"
-		not "Sativa: Struggling Author 5B: offered"
+		not "Fangvin: Struggling Author 5B: offered"
 	on offer
 		conversation
 			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder from your computer.`
@@ -3397,14 +3397,14 @@ mission "Sativa: Struggling Author 5A"
 	on complete
 		conversation "anna invites you to book signing"
 
-mission "Sativa: Struggling Author 5B"
+mission "Fangvin: Struggling Author 5B"
 	landing
 	source
 		near "Quaru" 0 100
 	destination "Inmost Blue"
 	to offer
 		has "event: beyond the hyperdrive is published"
-		not "Sativa: Struggling Author 5A: offered"
+		not "Fangvin: Struggling Author 5A: offered"
 	on offer
 		conversation
 			`As you land on the spaceport, you check your messages. You see a message from Anna Fangvin, the author who you helped about half a year ago. In the message, she explains that her novel, 'Beyond the Hyperdrive', has been approved. You should return to <destination> and meet her.`
