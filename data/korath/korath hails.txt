@@ -38,8 +38,8 @@
 phrase "hostile korath untranslated"
 	phrase
 		# Pure Korath Exile:
-		"exile: loud angry rambling" 425
-		"exile: Exclamation!" 75
+		"exile: loud angry rambling" 450
+		"exile: Exclamation!" 50
 
 		# Mixed Exile & Exile Humanika:
 		"exile mixed: cargo demands" 300
