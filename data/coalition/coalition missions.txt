@@ -3314,6 +3314,7 @@ mission "Sativa: Struggling Author 4"
 				`	"Great!"`
 				`	"Let's go!"`
 			`	Ann closes her laptop, places her things in her bag, and begins walking to your ship. You and Ann enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of 'Kimek Reader Publishing' are located.`
+				accept
 	on complete
 		event "beyond the hyperdrive is published" 165 197
 		conversation
@@ -3392,6 +3393,7 @@ mission "Sativa: Struggling Author 5A"
 		conversation
 			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder from your computer.`
 			`	You read it, and recall that you had helped an author named Ann Oryza Sativa get her book, 'Beyond the Hyperdrive', published about half a year ago. You should return to <destination> and check on her.`
+				accept
 	on complete
 		conversation "ann invites you to book signing"
 
@@ -3406,6 +3408,7 @@ mission "Sativa: Struggling Author 5B"
 	on offer
 		conversation
 			`As you land on the spaceport, you check your messages. You see a message from Ann Oryza Sativa, the author who you helped about half a year ago. In the message, she explains that her novel, 'Beyond the Hyperdrive', has been approved. You should return to <destination> and meet her.`
+				accept
 	on complete
 		conversation "ann invites you to book signing"
 
