@@ -37,14 +37,14 @@
 
 phrase "hostile korath untranslated"
 	phrase
-		"exile: loud angry rambling" 400
-		"exile humanika: cargo demands" 200
-		"exile mixed: cargo demands" 150
-		"exile mixed: bragging about tech" 60
-		"exile humanika: insults" 40
-		"exile humanika: general threats" 40
-		"exile: Exclamation!" 40
-		"exile humanika: oddly specific demands" 20
+		"exile: loud angry rambling" 600
+		"exile mixed: cargo demands" 200
+		"exile mixed: bragging about tech" 100
+		"exile humanika: cargo demands" 100
+		"exile humanika: insults" 50
+		"exile humanika: general threats" 50
+		"exile: Exclamation!" 50
+		"exile humanika: oddly specific demands" 25
 
 # Civilians don't demand your cargo since they never go on raids.
 phrase "hostile korath civilian untranslated"
@@ -421,7 +421,7 @@ phrase "exile: empty phrase"
 	word
 		""
 
-phrase "exile mixed: , you inferior [individual|species]"
+phrase "exile mixed: , you inferior beings"
 	word
 		", "
 	phrase
