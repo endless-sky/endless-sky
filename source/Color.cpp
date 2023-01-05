@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Color.h"
@@ -30,6 +33,23 @@ Color::Color(float r, float g, float b, float a)
 
 
 
+bool Color::operator==(const Color &other) const
+{
+	for(int i = 0; i < 4; ++i)
+		if(color[i] != other.color[i])
+			return false;
+	return true;
+}
+
+
+
+bool Color::operator!=(const Color &other) const
+{
+	return !(*this == other);
+}
+
+
+
 // Set all four color components to the given values.
 void Color::Load(double r, double g, double b, double a)
 {
@@ -37,6 +57,16 @@ void Color::Load(double r, double g, double b, double a)
 	color[1] = static_cast<float>(g);
 	color[2] = static_cast<float>(b);
 	color[3] = static_cast<float>(a);
+
+	isLoaded = true;
+}
+
+
+
+// Check if Load() has been called for this color.
+bool Color::IsLoaded() const
+{
+	return isLoaded;
 }
 
 

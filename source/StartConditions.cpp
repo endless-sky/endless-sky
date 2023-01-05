@@ -7,15 +7,18 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "StartConditions.h"
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Files.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -70,6 +73,8 @@ void StartConditions::Load(const DataNode &node)
 				name.clear();
 			else if(key == "description")
 				description.clear();
+			else if(key == "hint")
+				hint.clear();
 			else if(key == "thumbnail")
 				thumbnail = nullptr;
 			else if(key == "ships")
@@ -80,6 +85,17 @@ void StartConditions::Load(const DataNode &node)
 					ships.end());
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();
+			else if(key == "to" && child.Size() >= 2)
+			{
+				if(child.Token(1) == "display")
+					toDisplay = ConditionSet();
+				else if(child.Token(1) == "reveal")
+					toReveal = ConditionSet();
+				else if(child.Token(1) == "unlock")
+					toUnlock = ConditionSet();
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
 			else if(key == "conditions")
 				conditions = ConditionSet();
 			else
@@ -96,6 +112,8 @@ void StartConditions::Load(const DataNode &node)
 			}
 			description += value + "\n";
 		}
+		else if(key == "hint" && hasValue)
+			hint = value;
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(value);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
@@ -117,6 +135,19 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
+		// Only global conditions are supported in these condition sets. The global conditions are accessed directly,
+		// and therefore do not need the "global: " prefix.
+		else if(key == "to" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "display")
+				toDisplay.Load(child);
+			else if(child.Token(1) == "reveal")
+				toReveal.Load(child);
+			else if(child.Token(1) == "unlock")
+				toUnlock.Load(child);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
 		else
 			conditions.Add(child);
 	}
@@ -147,7 +178,7 @@ void StartConditions::FinishLoading()
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
-		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
+		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
 			+ GetDisplayName() + "\") has an invalid starting conversation."
 			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
@@ -215,4 +246,32 @@ const std::string &StartConditions::GetDisplayName() const noexcept
 const std::string &StartConditions::GetDescription() const noexcept
 {
 	return description;
+}
+
+
+
+const std::string &StartConditions::GetHint() const noexcept
+{
+	return hint;
+}
+
+
+
+bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
+{
+	return toDisplay.Test(conditionsStore);
+}
+
+
+
+bool StartConditions::Revealed(const ConditionsStore &conditionsStore) const
+{
+	return toReveal.Test(conditionsStore);
+}
+
+
+
+bool StartConditions::Unlocked(const ConditionsStore &conditionsStore) const
+{
+	return toUnlock.Test(conditionsStore);
 }

@@ -1,5 +1,4 @@
-# Copyright (c) 2020 by Nomadic Volcano
-# Based on earlier text copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2017 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -7,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 news "food in Hai space"
 	location
@@ -294,7 +296,7 @@ news "human reaction to Greenwater outfitter"
 		word
 			`"`
 		word
-			"I've been stranded here for ages waiting for the right parts to fix my ship. Finally I don't have to stay at that dank and musty hotel."
+			"I've been stranded here for ages waiting for the right parts to fix my ship. Finally, I don't have to stay at that dank and musty hotel."
 			"I was weighing the need for Hai technology on my ship due to their high prices. Thankfully I've been able to outfit it with human tech so I don't have to pay such great amounts!"
 			"I had a good thing going before this outfitter showed up. I could transport human ship parts before there was any competition at all. Now my services are practically useless!"
 			"You mean to tell me the war back home is over? I can finally leave? Hopefully I'll be able to restock on ammo so my journey through the north isn't so rough this time."
