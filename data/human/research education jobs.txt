@@ -25,6 +25,7 @@ phrase "academic conference recording payment"
 mission "Record academic conference (Deep)"
 	job
 	repeat
+	name "Record academic conference on <planet>"
 	description "Record an academic conference on <destination> for professors who cannot attend. Credentials and recording equipment will be provided. Payment is <payment>."
 	source
 		attributes "deep"
@@ -43,6 +44,7 @@ mission "Record academic conference (Deep)"
 mission "Transport scientists (Deep)"
 	job
 	repeat
+	name "Transport scientists to <stopovers>"
 	description "A team of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
 	source
 		attributes "deep"
@@ -65,6 +67,7 @@ mission "Transport scientists (Deep)"
 mission "Escort science vessel (Deep)"
 	job
 	repeat
+	name "Escort science vessel to <stopovers>"
 	description "The crew of the science vessel <npc> requests an escort to <stopovers> where they plan to study some unusual phenomena. Escort them there and then return them to <planet> for <payment>."
 	source
 		attributes "deep"
@@ -105,6 +108,7 @@ mission "Escort science vessel (Deep)"
 mission "Escort science vessel (Republic)"
 	job
 	repeat
+	name "Escort science vessel to <stopovers>"
 	description "The crew of the science vessel <npc> requests an escort to <stopovers> where they plan to study some unusual phenomena. Escort them there and then return them to <planet> for <payment>."
 	source
 		attributes "research"
@@ -178,19 +182,19 @@ mission "Student field research [1]"
 	substitutions
 		"<student research>" "biosphere"
 		"<student research>" "oceans"
-			attributes fishing
+			has attributes fishing
 			has random < 60
 		"<student research>" "aquacultural industry"
-			attributes fishing
+			has attributes fishing
 			has random < 30
 		"<student research>" "soil quality"
-			attributes farming forest
+			has attributes farming forest
 			has random < 60
 		"<student research>" "forests"
-			attributes forest
+			has attributes forest
 			has random < 30
 		"<student research>" "agricultural industry"
-			attributes farming
+			has attributes farming
 			has random < 30
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
@@ -217,16 +221,16 @@ mission "Student field research [2]"
 	substitutions
 		"<student research>" "geology"
 		"<student research>" "tectonic activity"
-			attributes volcanic mining oil
+			has attributes volcanic mining oil
 			has random < 60
 		"<student research>" "mining industry"
-			attributes mining
+			has attributes mining
 			has random < 30
 		"<student research>" "petroleum industry"
-			attributes oil
+			has attributes oil
 			has random < 30
 		"<student research>" "volcanoes"
-			attributes volcanic
+			has attributes volcanic
 			has random < 30
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
@@ -253,19 +257,19 @@ mission "Student field research [3]"
 	substitutions
 		"<student research>" "biosphere"
 		"<student research>" "medicinal industry"
-			attributes medical
+			has attributes medical
 			has random < 50
 		"<student research>" "oceans"
-			attributes fishing
+			has attributes fishing
 			has random < 60
 		"<student research>" "indigenous fish"
-			attributes fishing
+			has attributes fishing
 			has random < 30
 		"<student research>" "forests"
-			attributes forest
+			has attributes forest
 			has random < 60
 		"<student research>" "indigenous wildlife"
-			attributes forest
+			has attributes forest
 			has random < 30
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
@@ -292,16 +296,16 @@ mission "Student field research [4]"
 	substitutions
 		"<student research>" "quality of life of the inhabitants"
 		"<student research>" "cities"
-			attributes urban
+			has attributes urban
 			has random < 75
 		"<student research>" "manufacturing industry"
-			attributes factory
+			has attributes factory
 			has random < 75
 		"<student research>" "air quality"
-			attributes urban factory
+			has attributes urban factory
 			has random < 50
 		"<student research>" "working conditions"
-			attributes urban factory
+			has attributes urban factory
 			has random < 25
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
