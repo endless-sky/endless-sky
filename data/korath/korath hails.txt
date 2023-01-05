@@ -319,7 +319,7 @@ phrase "exile humanika: we will win the boarding mission"
 		"burn yuu up"          # burn you up (mispronounced)
 		"eat yoo skin"         # eat your skin (mispronounced)
 		"mak bon piles"        # make piles of your bones (mispronounced)
-		"to ape meet"          # turn you into ape meat (mispronounced)
+		"to neks meet"         # turn you into my next meat (mispronounced)
 
 phrase "exile humanika: you will lose the boarding mission"
 	word
@@ -338,7 +338,7 @@ phrase "exile humanika: Your ship sucks."
 		"exile humanika: are inferior to what we possess"
 		"exile humanika: are sub-par by any reasonable standards"
 	phrase
-		"exile mixed: , you inferior [individual|species]"
+		"exile mixed: , you inferior beings"
 		"exile: empty phrase"
 	word
 		"."
@@ -352,7 +352,7 @@ phrase "exile humanika: Your ship sucks."
 		"exile humanika: are inferior to what we possess"
 		"exile humanika: are sub-par by any reasonable standards"
 	phrase
-		"exile mixed: , you inferior [individual|species]"
+		"exile mixed: , you inferior beings"
 		"exile: empty phrase"
 	word
 		"."
@@ -366,7 +366,7 @@ phrase "exile humanika: We are better than you."
 		"exile humanika: are superior to what you possess"
 		"exile humanika: are above par by any reasonable standards"
 	phrase
-		"exile mixed: , you inferior [individual|species]"
+		"exile mixed: , you inferior beings"
 		"exile: empty phrase"
 	word
 		"."
@@ -425,22 +425,16 @@ phrase "exile mixed: , you inferior [individual|species]"
 	word
 		", "
 	phrase
-		"exile humanika: you inferior species"
-		"exile humanika: you inferior individual"
+		"exile humanika: you inferior beings"
 
-phrase "exile humanika: you inferior species"
+phrase "exile humanika: you inferior beings"
 	word
-		"yuu beeg apes"       # You big apes (mispronounced)
 		"humanika dren"       # human dren (mispronounced)
-		"ugli munkys"         # ugly monkeys (mispronounced)
 		"weeeeek speeeces"    # weak species (mispronounced)
-
-phrase "exile humanika: you inferior individual"
-	word
 		"yoo ugli foo"        # You ugly fool (mispronounced)
-		"skinlis munky"       # Skinless monkey (mispronounced)
+		"skinlis beest"       # Skinless beast (mispronounced)
 		"ugli halching"       # Ugly hatchling (mispronounced)
-		"yer've humpd corp's" # you have performed an [epithet for having performed an act of procreation] with a corpse (mispronounced)
+		"yer've humpd corp's" # you have performed explicit actions with a corpse (mispronounced)
 
 phrase "exile humanika: All of your [cargo] is ours now."
 	phrase
