@@ -173,7 +173,7 @@ void Government::Load(const DataNode &node)
 					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
 				else
 				{
-					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(1))->id];
+					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))->id];
 					PenaltyHelper(grand, pens);
 				}
 			}
@@ -353,12 +353,14 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 
 	const int id = other->id;
 	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
-	if(customPenalties[id].empty())
+
+	const auto it = customPenalties.find(id);
+	if(it == customPenalties.end())
 		return PenaltyHelper(eventType, penalties);
 
 	map<int, double> tempPenalties = penalties;
-	for(const auto &it : customPenalties[id])
-		tempPenalties[it.first] = it.second;
+	for(const auto &penalty : it->second)
+		tempPenalties[penalty.first] = penalty.second;
 	return PenaltyHelper(eventType, tempPenalties);
 }
 
