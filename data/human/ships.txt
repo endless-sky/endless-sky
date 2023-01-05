@@ -2977,7 +2977,7 @@ ship "Scrapper"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 5
-	description "The Scrapper is less a model of ship, and more a general reference to ships cobbled together from the remains of scrapped shuttles. While Republic authorities prefer to dismiss them as at best an urban legend, and at worst an almost-illegal fabrication of unlicensed shipyards, these ships are where many aspiring captains from poorer planets get their start."
+	description "Rather than being a specific model of ship, the Scrappers are instead a family of vessels cobbled together from the remains of broken shuttles. On the rare occasion that Republic authorities bother to recognize their existence, Scrappers are treated as almost-illegal, patent-infringing death traps. Despite this, these ships are where many captains (and pirates) from poorer backgrounds get their start."
 
 
 
