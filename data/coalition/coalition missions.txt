@@ -3115,8 +3115,8 @@ mission "Coalition: Outskirts Gauger Ready"
 
 
 mission "Sativa: Struggling Author 1"
-	name "Take Ann to Coalition Space"
-	description "Take Ann Oryza Sativa to <destination>, where she might find success as an author after having struggled on <origin> for so long."
+	name "Take Anna to Coalition Space"
+	description "Take Anna Fangvin to <destination>, where she might find success as an author after having struggled on <origin> for so long."
 	source "Zug"
 	destination "Ki Patek Ka"
 	to offer
@@ -3125,14 +3125,14 @@ mission "Sativa: Struggling Author 1"
 		has "Coalition: Contributor: done"
 	on offer
 		conversation
-			`Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Ann Oryza Sativa'. Nobody pays attention to her. It appears as if she is a struggling author.`
+			`Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Anna Fangvin'. Nobody pays attention to her. It appears as if she is a struggling author.`
 			choice
 				`	(Ignore her.)`
 					decline
 				`	(Buy one of her books.)`
 					goto "buy her book"
 				`	(Sit down and talk to her.)`
-			`	You sit down on the table, next to Ann. She greets you with a smile. "Hello! Would you like to buy one of my books?" she asks.`
+			`	You sit down on the table, next to Anna. She greets you with a smile. "Hello! Would you like to buy one of my books?" she asks.`
 			choice
 				`	"What are your books about?"`
 				`	"No, I'm not interested. How has life been as an author though?"`
@@ -3146,7 +3146,7 @@ mission "Sativa: Struggling Author 1"
 					goto "do you hate the quarg"
 				`	"Cool. How has life been lately as an author?"`
 			label "life as an author sucks"
-			`	"Bad," says Ann. "I've never had a bestseller or even a book that surpasses 10,000 copies sold."`
+			`	"Bad," says Anna. "I've never had a bestseller or even a book that surpasses 10,000 copies sold."`
 			choice
 				`	"What are your books about?"`
 					goto "what are her books about"
@@ -3156,12 +3156,12 @@ mission "Sativa: Struggling Author 1"
 			action
 				set "beyond the hyperdrive book"
 				payment -60
-			`	You enter the bookstore, ask the employee for one of Ann's books, and purchase it for 60 credits.`
+			`	You enter the bookstore, ask the employee for one of Anna's books, and purchase it for 60 credits.`
 			choice
-				`	(Now go to Ann and get it signed.)`
+				`	(Now go to Anna and get it signed.)`
 				`	(Leave.)`
 					decline
-			`	You move to the table where Ann is sitting. She looks visibly happy as she grabs your book, takes out a pen, and signs it. "Thanks for buying one of my books. I don't get much sales and people like you mean the world to me."`
+			`	You move to the table where Anna is sitting. She looks visibly happy as she grabs your book, takes out a pen, and signs it. "Thanks for buying one of my books. I don't get much sales and people like you mean the world to me."`
 			choice
 				`	"I appreciate it. How has life as an author been though?"`
 					goto "life as an author sucks"
@@ -3174,8 +3174,8 @@ mission "Sativa: Struggling Author 1"
 			label "tell her about the coalition"
 			`	You check your surroundings, looking around to ensure you are not being listened to. Once you confirm that your conversation will be private, you begin speaking.`
 			`	"I know of a place called the Coalition. They're a group of alien races. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
-			`	"Wait, really?" asks Ann.`
-			`	You continue to explain the Coalition to Ann for a while, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Ann has less than positive opinions of them.`
+			`	"Wait, really?" asks Anna.`
+			`	You continue to explain the Coalition to Anna for a while, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them.`
 			choice
 				`	"By any chance, are you afraid of centaurs, beetles, and spiders?"`
 			`	"No, not at all. I'm not afraid of them. Why do you ask?"`
@@ -3191,70 +3191,70 @@ mission "Sativa: Struggling Author 1"
 			`	"Do I have to pay anything? As a struggling author, I really can't pay you."`
 			choice
 				`	"It's okay. I'm willing to make an exception for you."`
-			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Ann.`
+			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Anna.`
 			`	You reply. "Good luck. By the way, we're going to <destination> in Coalition space.`
-			`	After approximately an hour of waiting, Ann appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk. You prepare to leave the spaceport.`
+			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk. You prepare to leave the spaceport.`
 				accept
 	on complete
 		conversation
-			`	You leave the ship with Ann following you. The moment you are out of your ship, three Kimek surround you and Ann. The Kimek in the middle speaks, and then brief silence. The silence is broken as the yellow box speaks.`
+			`	You leave the ship with Anna following you. The moment you are out of your ship, three Kimek surround you and Anna. The Kimek in the middle speaks, and then brief silence. The silence is broken as the yellow box speaks.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"` # heliarch
-			`	Ann clears her throat. "I don't know who you are, but my name is Ann Oryza Sativa."`
-			`	Once Ann finishes her introduction, you speak. "She is my friend. Back in my space, she hasn't been a successful author. I brought her here, hoping she would find success writing books for the Coalition.", you explain.`
+			`	Anna clears her throat. "I don't know who you are, but my name is Anna Fangvin."`
+			`	Once Anna finishes her introduction, you speak. "She is my friend. Back in my space, she hasn't been a successful author. I brought her here, hoping she would find success writing books for the Coalition.", you explain.`
 			`	"What kind of books does she write?", asks the Kimek.` # heliarch
-			`	"Oh, I write science fiction books," says Ann.`
+			`	"Oh, I write science fiction books," says Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
-			`	"Visit Coalition space, we will allow Ann to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause. But first, register she must."`
-			`	"Register?", asks Ann.`
+			`	"Visit Coalition space, we will allow Anna to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause. But first, register she must."`
+			`	"Register?", asks Anna.`
 			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, that's where you can complete the registration process."`
-			`	"Okay," says Ann, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and take me to the Ring of Friendship once you're ready. I'll meet you in the spaceport."`
+			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and take me to the Ring of Friendship once you're ready. I'll meet you in the spaceport."`
 
 mission "Sativa: Struggling Author 2"
-	name "Help Ann Register"
-	description "Take Ann Oryza Sativa to the <destination> so she can register with the Heliarchs."
+	name "Help Anna Register"
+	description "Take Anna Fangvin to the <destination> so she can register with the Heliarchs."
 	source "Ki Patek Ka"
 	destination "Ring of Friendship"
 	to offer
 		has "Sativa: Struggling Author 1: done"
 	on offer
 		conversation
-			`You walk through the spaceport, looking for Ann. She is at a restaurant, but has ordered nothing with a disgusted look on her face. "These aliens! They vomit on their food and slurp all the soup! Disgusting!", she mutters.`
+			`You walk through the spaceport, looking for Anna. She is at a restaurant, but has ordered nothing with a disgusted look on her face. "These aliens! They vomit on their food and slurp all the soup! Disgusting!", she mutters.`
 			choice
 				`	"That's just how they eat."`
 				`	"My ship still has a decent amount of food you can eat."`
 				`	"There should be another restaurant."`
-			`	"<first>! It's you again!", says Ann in an excited tone. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs."`
+			`	"<first>! It's you again!", says Anna in an excited tone. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs."`
 			choice
 				`	"It's all ready now. Come."`
-			`	Ann stands up from her chair and begins following you to the ship. She settles into her bunk as you prepare for a trip to the <destination>.`
+			`	Anna stands up from her chair and begins following you to the ship. She settles into her bunk as you prepare for a trip to the <destination>.`
 				accept
 	on enter "Quaru"
 		conversation
-			`As you enter <system>, Ann walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
+			`As you enter <system>, Anna walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
 			choice
 				`	"It's enormous. They actually stole it from the Quarg, who they rebelled against roughly six thousand years ago."`
 				`	"I'm used to it."`
-			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Ann, her voice still in an enthusiastic and excited tone. "This must be where I'm supposed to register, right?"`
+			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Anna, her voice still in an enthusiastic and excited tone. "This must be where I'm supposed to register, right?"`
 			`	"Yes, this is the <planet>. Prepare your identity documents."`
 	on complete
 		conversation
-			`	Ann is still in awe as you touch down on the ringworld. As the two of you open the hatch, you see yet another Heliarch agent in front of you.`
+			`	Anna is still in awe as you touch down on the ringworld. As the two of you open the hatch, you see yet another Heliarch agent in front of you.`
 			`	"Greetings, humans.  For you, what can I do today?", asks the Heliarch.`
-			`	"This is my friend Ann. I'm getting her registered with the Heliarchs today.", you answer.`
+			`	"This is my friend Anna. I'm getting her registered with the Heliarchs today.", you answer.`
 			`	"To reach the registration office, this way you must go.", replies the Heliarch, pointing to a hallway.`
-			`	You and Ann walk down the hallway as directed, until you spot a registration office. Ann walks into the registration office while you sit down on a nearby bench. After 15 minutes, Ann walks out and approaches you. "They finally registered me.". I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move.`
+			`	You and Anna walk down the hallway as directed, until you spot a registration office. Anna walks into the registration office while you sit down on a nearby bench. After 15 minutes, Anna walks out and approaches you. "They finally registered me.". I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move.`
 
 mission "Sativa: Struggling Author 3"
 	name "Back to <planet>"
-	description "Now that Ann Oryza Sativa has completed the registration process, help her get a translation device on <destination>."
+	description "Now that Anna Fangvin has completed the registration process, help her get a translation device on <destination>."
 	source "Ring of Friendship"
 	destination "Ki Patek Ka"
 	to offer
 		has "Sativa: Struggling Author 2: done"
 	on offer
 		conversation
-			`Going through the spaceport looking for Ann, you finally find her at a Saryd restaurant, eating from a plate of vegetables. She sees you and motions for you to take a seat.`
-			`	You sit down next to Ann. "Finally, something I can eat that isn't a mix of vomit and soup!"`
+			`Going through the spaceport looking for Anna, you finally find her at a Saryd restaurant, eating from a plate of vegetables. She sees you and motions for you to take a seat.`
+			`	You sit down next to Anna. "Finally, something I can eat that isn't a mix of vomit and soup!"`
 			choice
 				`	"How good is it?"`
 			`	"It's very good. Probably better than anything I've had back on Zug."`
@@ -3263,22 +3263,22 @@ mission "Sativa: Struggling Author 3"
 			`	"I want to get my book published here."`
 			choice
 				`	"Have you found a publishing company yet?"`
-			`	"No." Ann then begins complaining about how it was extremely difficult for her to communicate with the employees, who did not have a translation box.`
+			`	"No." Anna then begins complaining about how it was extremely difficult for her to communicate with the employees, who did not have a translation box.`
 			choice
 				`	"I can get you a translator."`
 			`	"But will I have to pay for it?"`
 			choice
 				`	"I'll help you get one. You probably won't need to pay for one."`
 			`	"Great! So, where will we get the translator?"`
-			`	"We'll go to <destination> to ask the Heliarchs for a translation box", you tell Ann. "Finish your meal, then enter my ship. I'll be ready." You walk off to your ship.`
-			`	After 15 minutes, you see Ann walking towards you. You open the hatch as she enters. She settles in her bunk, as you prepare to depart.`
+			`	"We'll go to <destination> to ask the Heliarchs for a translation box", you tell Anna. "Finish your meal, then enter my ship. I'll be ready." You walk off to your ship.`
+			`	After 15 minutes, you see Anna walking towards you. You open the hatch as she enters. She settles in her bunk, as you prepare to depart.`
 				accept
 	on complete
 		conversation
-			`You arrive at the spaceport. Ann leaves her bunk and waits for you to open the hatch. You quickly lead her to a Heliarch office. You walk to the counter, and begin conversing with the clerk.`
+			`You arrive at the spaceport. Anna leaves her bunk and waits for you to open the hatch. You quickly lead her to a Heliarch office. You walk to the counter, and begin conversing with the clerk.`
 			`	"Greetings, human. To be of assistance to you, how can I?", the clerk says.`
 			choice
-				`	"Hello. I am <first> <last>. This is my friend, Ann Oryza Sativa. She is an author who wants to publish a book in Coalition space and needs a translation box to converse with the publishing company.`
+				`	"Hello. I am <first> <last>. This is my friend, Anna Fangvin. She is an author who wants to publish a book in Coalition space and needs a translation box to converse with the publishing company.`
 			`	"A translator, you need?", asks the clerk.`
 			choice
 				`	"Yes."`
@@ -3288,7 +3288,7 @@ mission "Sativa: Struggling Author 3"
 				`	"Hello."`
 			`	"Tell me about your intentions, the clerk already has, and understand it, I do. Accompany you to the publishers, me and my agents will."`
 			choice
-				`	"Great! So, Ann, what are we doing next?"`
+				`	"Great! So, Anna, what are we doing next?"`
 			`	"Getting my book published, of course. We need to find a publishing company!"`
 			`	"We should go for the Kimek", you say. "Their population is 200 billion. For comparison, the human population is only 100 billion."`
 			`	"But where can we find a Kimek publishing company? We haven't even translated our book into their language yet!"`
@@ -3298,66 +3298,66 @@ mission "Sativa: Struggling Author 3"
 
 mission "Sativa: Struggling Author 4"
 	name "Kimek Publishing Company"
-	description "You have found a Kimek publishing company who is willing to take in Ann Oryza Sativa to get her book published. Bring Ann Oryza Sativa to <destination>."
+	description "You have found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
 	source "Ki Patek Ka"
 	destination "Inmost Blue"
 	to offer
 		has "Sativa: Struggling Author 3: done"
 	on offer
 		conversation
-			`The spaceport of Ki Patek Ka is vast. You decide to search for Ann, who has chosen to settle in the cafeteria, with her laptop, She is typing away at the keyboard, presumably writing a new novel.`
-			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and have instructed me to visit their office on <destination>!", exclaims Ann, once again in an enthusiastic tone.`
+			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria, with her laptop, She is typing away at the keyboard, presumably writing a new novel.`
+			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and have instructed me to visit their office on <destination>!", exclaims Anna, once again in an enthusiastic tone.`
 			choice
 				`	"What's the publishing company called?"`
 			`	"They're called 'Kimek Reader Publishing'.`
 			choice
 				`	"Great!"`
 				`	"Let's go!"`
-			`	Ann closes her laptop, places her things in her bag, and begins walking to your ship. You and Ann enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of 'Kimek Reader Publishing' are located.`
+			`	Anna closes her laptop, places her things in her bag, and begins walking to your ship. You and Anna enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of 'Kimek Reader Publishing' are located.`
 				accept
 	on complete
 		event "beyond the hyperdrive is published" 165 197
 		conversation
-			`Landing on <planet>, Ann is excitedly holding a copy of 'Beyond the Hyperdrive', her novel about humans stealing jump drives from the Quarg. She hastily opens the hatch as soon as it unlocks.`
+			`Landing on <planet>, Anna is excitedly holding a copy of 'Beyond the Hyperdrive', her novel about humans stealing jump drives from the Quarg. She hastily opens the hatch as soon as it unlocks.`
 			choice
 				`	"Wait for me!"`
-			`	Ann hears your scream and stops. "We're here, Ann. Now, we need to find their offices.", you say.`
+			`	Anna hears your scream and stops. "We're here, Anna. Now, we need to find their offices.", you say.`
 			`	"That won't be necessary. In the message they sent me, they included precise instructions on how to reach their offices."`
-			`	You begin following Ann to the publisher's offices. You walk through endless rows of shops and streets, take a train to a large white building, and eventually find what looks like the Kimek equivalent of an elevator.`
-			`	You and Ann enter the elevator, as Ann presses a button that closes the door and takes you up. When the door opens, you see a Kimek in front of you, a necklace around it with ornate jewelry and a translation device.`
+			`	You begin following Anna to the publisher's offices. You walk through endless rows of shops and streets, take a train to a large white building, and eventually find what looks like the Kimek equivalent of an elevator.`
+			`	You and Anna enter the elevator, as Anna presses a button that closes the door and takes you up. When the door opens, you see a Kimek in front of you, a necklace around it with ornate jewelry and a translation device.`
 			`	"Greetings, humans. Follow me, you must, so publish your book, we can.", says the Kimek through its translation box.`
-			`	At the direction of the Kimek, you and Ann begin walking until directed to a room with glass walls. Ann puts down the copy of her book on the table, and the three of you take a seat.`
+			`	At the direction of the Kimek, you and Anna begin walking until directed to a room with glass walls. Anna puts down the copy of her book on the table, and the three of you take a seat.`
 			choice
-				`	"Hello. My name is <first> <last>, and this is my friend Ann Oryza Sativa."`
+				`	"Hello. My name is <first> <last>, and this is my friend Anna Fangvin."`
 			`	"Greetings. At Kimek Reader Publishing, I work. A human, I have never encountered. But the book you sent, translate it we were able to."`
 			`	"Read it, we still haven't, and run it past the Heliarch censors, we must."`
 			`	Two Heliarch agents enter the room. "Supervise the interview, we are obligated to."`
 			choice
 				`	"How long will I have to wait?"`
 					goto "how long"
-				`	"Should I stay here to accompany Ann?`
-					goto "should I accompany ann"
+				`	"Should I stay here to accompany Anna?`
+					goto "should I accompany anna"
 			label "how long"
 			`	"Wait a few hours, you must. But quick, this will be.", says the Kimek, interviewing you.`
 			choice
-				`	"Should I stay here to accompany Ann?"`
-			label "should I accompany ann"
+				`	"Should I stay here to accompany Anna?"`
+			label "should I accompany anna"
 			`	"To accompany her in this room, we allow you to, but a lounge for you, we have. If too boring, the interview is, then leave you may."`
 			choice
 				`	(Wait in the lounge.)`
 					goto "lounge"
-				`	(Accompany Ann during the interview.)`
-			`	You choose to remain in the room. Once the Kimek asks the first question, Ann is all too happy to begin discussing the contents of her novel in great detail.`
+				`	(Accompany Anna during the interview.)`
+			`	You choose to remain in the room. Once the Kimek asks the first question, Anna is all too happy to begin discussing the contents of her novel in great detail.`
 			choice
 				`	(Leave the room to avoid spoilers.)`
 					goto "lounge"
 				`	(Stay in the room.)`
-			`	Under the watchful eye of the two Heliarchs in the room, Ann explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, the content of the book. She is still talking in fluent English, but sometimes is forced to repeat statements due to the translator having issues with deciphering her enthusiastic tone.`
-			`	As the hours pass, Ann's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet (or the Kimek equivalent) and thanks you and Ann.`
+			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, the content of the book. She is still talking in fluent English, but sometimes is forced to repeat statements due to the translator having issues with deciphering her enthusiastic tone.`
+			`	As the hours pass, Anna's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet (or the Kimek equivalent) and thanks you and Anna.`
 				goto "interview over"
 			label "lounge"
 			`	You leave the room and walk to the lounge. Several Kimek are chatting in their native language, while a Saryd and Arach have chosen to rest.`
-			`	After a few hours, you see Ann emerge out of the room, and walk towards you.`
+			`	After a few hours, you see Anna emerge out of the room, and walk towards you.`
 			choice
 				`	"How did the interview go?"`
 			label "interview over"
@@ -3366,7 +3366,7 @@ mission "Sativa: Struggling Author 4"
 				`	"Why don't you just go back to human space?"`
 					goto "why not go to human space"
 				`	"I'll make sure to do that."`
-			label "ann thanks you"
+			label "anna thanks you"
 			`	"Thanks again, <first> <last>." I'll forever be grateful to you for helping me. I never thought I'd be successful as an author, but when I met you, you helped me turn my career into something I thought I'd never see.`
 			choice
 				`	"Just helping out."`
@@ -3377,7 +3377,7 @@ mission "Sativa: Struggling Author 4"
 			`	"I need to be available at all times, so I can answer their questions. Do not worry about me."`
 			choice
 				`	"Got it. Good luck publishing your book."`
-					goto "ann thanks you"
+					goto "anna thanks you"
 
 event "beyond the hyperdrive is published"
 
@@ -3392,10 +3392,10 @@ mission "Sativa: Struggling Author 5A"
 	on offer
 		conversation
 			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder from your computer.`
-			`	You read it, and recall that you had helped an author named Ann Oryza Sativa get her book, 'Beyond the Hyperdrive', published about half a year ago. You should return to <destination> and check on her.`
+			`	You read it, and recall that you had helped an author named Anna Fangvin get her book, 'Beyond the Hyperdrive', published about half a year ago. You should return to <destination> and check on her.`
 				accept
 	on complete
-		conversation "ann invites you to book signing"
+		conversation "anna invites you to book signing"
 
 mission "Sativa: Struggling Author 5B"
 	landing
@@ -3407,17 +3407,17 @@ mission "Sativa: Struggling Author 5B"
 		not "Sativa: Struggling Author 5A: offered"
 	on offer
 		conversation
-			`As you land on the spaceport, you check your messages. You see a message from Ann Oryza Sativa, the author who you helped about half a year ago. In the message, she explains that her novel, 'Beyond the Hyperdrive', has been approved. You should return to <destination> and meet her.`
+			`As you land on the spaceport, you check your messages. You see a message from Anna Fangvin, the author who you helped about half a year ago. In the message, she explains that her novel, 'Beyond the Hyperdrive', has been approved. You should return to <destination> and meet her.`
 				accept
 	on complete
-		conversation "ann invites you to book signing"
+		conversation "anna invites you to book signing"
 
-conversation "ann invites you to book signing"
+conversation "anna invites you to book signing"
 	action
-		"salary: Ann Oryza Sativa" = 5000
+		"salary: Anna Fangvin" = 5000
 		payment 2000000
 		set "beyond the hyperdrive news can show now"
-	`The moment you land, Ann is all too happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
+	`The moment you land, Anna is all too happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
 	`	"Today, they will be publishing 'Beyond the Hyperdrive' and I will be signing copies! Thanks for everything you've done, <first>!"`
 	choice
 		`	"It got approved? That's awesome!"`
@@ -3425,12 +3425,12 @@ conversation "ann invites you to book signing"
 	choice
 		`	"I've been with you through the whole process. Count me in!"`
 	`	"Great! Let's walk to the bookstore and prepare everything! I already have my pen ready, and the staff have already prepared seats for the both of us."`
-	`	You and Ann walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
-	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out the Kimek equivalent of a loudspeaker and begins announcing the release of 'Beyond the Hyperdrive'. Within ten minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Ann signs every copy brought to her by each individual Kimek.`
-	`	Occasionally, Ann alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You had kept a count of how many copies she had been signing, but when it reached six hundred you were beginning to lose count.`
+	`	You and Anna walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
+	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out the Kimek equivalent of a loudspeaker and begins announcing the release of 'Beyond the Hyperdrive'. Within ten minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Anna signs every copy brought to her by each individual Kimek.`
+	`	Occasionally, Anna alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You had kept a count of how many copies she had been signing, but when it reached six hundred you were beginning to lose count.`
 	choice
 		`	"Are you left or right handed?"`
 	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
 	`	The signing continues for what feels like four hours. Then, the same Kimek in the bookstore uniform announces that the store is to close within an hour.`
-	`	As the store closes and the queue shortens, Ann signs the last Kimek's copy. With that, the event is over. Ann then tells you to meet her at your ship. You and Ann walk into your ship, accompanied by Heliarchs and the occasional camera flash. You open the hatch to allow Ann inside, and you enter and lock it behind you before any obsessed fans or (Coalition equivalent of) paparazzi get the chance to break in.`
+	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna then tells you to meet her at your ship. You and Anna walk into your ship, accompanied by Heliarchs and the occasional camera flash. You open the hatch to allow Anna inside, and you enter and lock it behind you before any obsessed fans or (Coalition equivalent of) paparazzi get the chance to break in.`
 	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!", she says, almost in a teary voice. She pulls out a credit chip. "Here, two million credits. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
