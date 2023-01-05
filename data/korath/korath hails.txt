@@ -192,7 +192,7 @@ phrase "exile mixed: request for mercy"
 phrase "exile humanika: You will lose this fight."
 	word
 		"Yu loose lif here."              # You [will] lose your life here. (mispronounced)
-		"Die yuu if no surendr."          # Die you now if no surrender. (mispronounced)
+		"Die yuu if no surendr."          # Die you if no surrender. (mispronounced)
 		"Wee wiiin yuu los if no cahgo."  # We [will] win [and] you [will] lose if [you give us] no cargo. (mispronounced)
 		"Yoo no gud fite so gif up."      # You are no good in a fight, so give up. (mispronounced)
 
@@ -1350,7 +1350,7 @@ phrase "efreti: To better myself"
 	word
 		"Sokro isiabpecfef ipit"      # to better myself
 		"Sokro makinaotiritri adam"   # for my individuality
-		"Dkiemci eksitref aghab"      # ipseity dictated that
+		"Dkiemci eksitref aghab"      # ipseity dictated that [I]
 		"Sokro ralraremes"            # for [pleasure|freedom of thought]
 		"Kinos lrapu aok adam"        # for my parents' [dead skin|legacy]
 
