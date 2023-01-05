@@ -1068,6 +1068,31 @@ mission "FW Bounty 1"
 
 
 
+ship "Behemoth" "Behemoth (Moonless Night)"
+	sprite "ship/behemoth moonless"
+	thumbnail "thumbnail/behemoth moonless"
+	add attributes
+		"shields" -300
+		"hull" 200
+		"mass" 40
+		"drag" .2
+	outfits
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
+		"Heavy Laser Turret" 6
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 6
+		"A250 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A375 Atomic Steering"
+		"Scram Drive"
+
+
+
 mission "FW Bounty 2"
 	name "Free Worlds Bounty Hunting"
 	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a pirate ship last seen in the Delta Sagittarii system. The militia officer suggested trying to attack the ship from a distance.`
@@ -1106,7 +1131,7 @@ mission "FW Bounty 2"
 		personality heroic staying nemesis target
 		system
 			near "Delta Sagittarii" 1 1
-		ship "Behemoth (Speedy)" "Moonless Night"
+		ship "Behemoth (Moonless Night)" "Moonless Night"
 		dialog phrase "generic hunted bounty eliminated dialog"
 	
 	on visit
