@@ -57,22 +57,15 @@ void StartConditions::Load(const DataNode &node)
 			continue;
 		}
 
+		// Determine if the child is a "core" attribute.
+		if(CoreStartData::LoadChild(child, add, remove))
+			continue;
+
 		// Otherwise, we should try to parse it.
 		const string &key = child.Token((add || remove) ? 1 : 0);
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = (child.Size() > valueIndex);
 		const string &value = child.Token(hasValue ? valueIndex : 0);
-
-		// Determine if the child is a "core" attribute.
-		// Additionally load planet and system as string into the unlocked state.
-		if(CoreStartData::LoadChild(child, add, remove))
-		{
-			if(key == "system" && hasValue)
-				infoByState[StartState::UNLOCKED].system = value;
-			else if(key == "planet" && hasValue)
-				infoByState[StartState::UNLOCKED].planet = value;
-			continue;
-		}
 
 		if(remove)
 		{
@@ -138,7 +131,7 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
-		// Only global conditions are supported in these condition sets. The global conditions are accessed directly,
+		// Only global conditions are supported in these ConditionSets. The global conditions are accessed directly,
 		// and therefore do not need the "global: " prefix.
 		else if(key == "to" && child.Size() >= 2)
 		{
@@ -153,25 +146,26 @@ void StartConditions::Load(const DataNode &node)
 		}
 		else if(key == "on")
 		{
+			// The HIDDEN state contains no information. The UNLOCKED StateInfo is a child of the root node
+			// instead of an "on" node.
 			if(child.Token(1) == "display")
-				LoadState(child, StartState::VISIBLE);
+				LoadState(child, StartState::DISPLAYED);
 			else if(child.Token(1) == "reveal")
 				LoadState(child, StartState::REVEALED);
-			else if(child.Token(1) == "unlock")
-				LoadState(child, StartState::UNLOCKED, true);
 		}
 		else
 			conditions.Add(child);
 	}
+
+	// The unlocked state must have at least some information.
 	if(infoByState[StartState::UNLOCKED].description.empty())
 		infoByState[StartState::UNLOCKED].description = "(No description provided.)";
 	if(infoByState[StartState::UNLOCKED].name.empty())
 		infoByState[StartState::UNLOCKED].name = "(Unnamed start)";
 
-	// Fill missing information in states:
+	// If a "lower" state is missing information, copy from the state "above" it.
 	FillState(StartState::UNLOCKED, StartState::REVEALED);
-	FillState(StartState::REVEALED, StartState::VISIBLE);
-
+	FillState(StartState::REVEALED, StartState::DISPLAYED);
 
 	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
 	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
@@ -187,65 +181,18 @@ void StartConditions::Load(const DataNode &node)
 
 
 
-void StartConditions::LoadState(const DataNode &node, StartState state, bool coreData)
-{
-	bool clearDescription = !infoByState[state].description.empty();
-	for(const auto &child : node)
-	{
-		// If this is loading into unlocked state, account for ccoreStartData.
-		if(coreData)
-			if(CoreStartData::LoadChild(child, false, false))
-			{
-				if(child.Token(0) == "system" && child.Size() >= 2)
-					infoByState[StartState::UNLOCKED].system = child.Token(1);
-				else if(child.Token(0) == "planet" && child.Size() >= 2)
-					infoByState[StartState::UNLOCKED].planet = child.Token(1);
-				continue;
-			}
-
-		if(child.Token(0) == "name" && child.Size() >= 2)
-			infoByState[state].name = child.Token(1);
-		else if(child.Token(0) == "description" && child.Size() >= 2)
-		{
-			if(clearDescription)
-			{
-				infoByState[state].description.clear();
-				clearDescription = false;
-			}
-			infoByState[state].description += child.Token(1) + "\n";
-		}
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			infoByState[state].thumbnail = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "system" && child.Size() >= 2)
-			infoByState[state].system = child.Token(1);
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			infoByState[state].planet = child.Token(1);
-	}
-}
-
-
-
-void StartConditions::FillState(StartState from, StartState to)
-{
-	if(!infoByState[to].thumbnail)
-		infoByState[to].thumbnail = infoByState[from].thumbnail;
-	if(infoByState[to].name.empty())
-		infoByState[to].name = infoByState[from].name;
-	if(infoByState[to].description.empty())
-		infoByState[to].description = infoByState[from].description;
-	if(infoByState[to].system.empty())
-		infoByState[to].system = infoByState[from].system;
-	if(infoByState[to].planet.empty())
-		infoByState[to].planet = infoByState[from].planet;
-}
-
-
-
 // Finish loading the ship definitions.
 void StartConditions::FinishLoading()
 {
 	for(Ship &ship : ships)
 		ship.FinishLoading(true);
+
+	// The UNLOCKED StartInfo should always display the correct information. Therefore, we get the
+	// planet and system names now. If we had gotten these during Load, the planet and system provided
+	// may now be invalid, meaning the CoreStartData would actually send the start to New Boston instead
+	// of what was displayed.
+	infoByState[StartState::UNLOCKED].planet = GetPlanet().Name();
+	infoByState[StartState::UNLOCKED].system = GetSystem().Name();
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
@@ -300,62 +247,48 @@ const Conversation &StartConditions::GetConversation() const
 
 
 
-const Sprite *StartConditions::GetThumbnail()
+const Sprite *StartConditions::GetThumbnail() const noexcept
 {
-	return infoByState[state].thumbnail;
+	// The state we ask for should always be present in the map, but just in case it isn't,
+	// make sure we're not accessing out of bound information.
+	auto it = infoByState.find(state);
+	return it == infoByState.end() ? nullptr : it->second.thumbnail;
 }
 
 
 
-const std::string &StartConditions::GetDisplayName()
+const string &StartConditions::GetDisplayName() const noexcept
 {
-	return infoByState[state].name;
+	auto it = infoByState.find(state);
+	static const string ILLEGAL = "(ILLEGAL STATE)";
+	return it == infoByState.end() ? ILLEGAL : it->second.name;
 }
 
 
 
-const std::string &StartConditions::GetDescription()
+const string &StartConditions::GetDescription() const noexcept
 {
-	return infoByState[state].description;
+	auto it = infoByState.find(state);
+	static const string ILLEGAL = "(ILLEGAL STATE)";
+	return it == infoByState.end() ? ILLEGAL : it->second.description;
 }
 
 
 
-const std::string &StartConditions::GetPlanetName()
+const string &StartConditions::GetPlanetName() const noexcept
 {
-	return infoByState[state].planet;
+	auto it = infoByState.find(state);
+	static const string ILLEGAL = "(ILLEGAL STATE)";
+	return it == infoByState.end() ? ILLEGAL : it->second.planet;
 }
 
 
 
-const std::string &StartConditions::GetSystemName()
+const string &StartConditions::GetSystemName() const noexcept
 {
-	return infoByState[state].system;
-}
-
-
-
-void StartConditions::SetState(const ConditionsStore &conditionsStore)
-{
-	if(Visible(conditionsStore))
-	{
-		if(Revealed(conditionsStore))
-		{
-			if(Unlocked(conditionsStore))
-				state = StartState::UNLOCKED;
-			else
-				state = StartState::REVEALED;
-		}
-		else
-			state = StartState::VISIBLE;
-	}
-}
-
-
-
-StartConditions::StartState StartConditions::GetState() const
-{
-	return state;
+	auto it = infoByState.find(state);
+	static const string ILLEGAL = "(ILLEGAL STATE)";
+	return it == infoByState.end() ? ILLEGAL : it->second.system;
 }
 
 
@@ -367,14 +300,71 @@ bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
 
 
 
-bool StartConditions::Revealed(const ConditionsStore &conditionsStore) const
+void StartConditions::SetState(const ConditionsStore &conditionsStore)
 {
-	return toReveal.Test(conditionsStore);
+	if(toDisplay.Test(conditionsStore))
+	{
+		if(toReveal.Test(conditionsStore))
+		{
+			if(toUnlock.Test(conditionsStore))
+				state = StartState::UNLOCKED;
+			else
+				state = StartState::REVEALED;
+		}
+		else
+			state = StartState::DISPLAYED;
+	}
 }
 
 
 
-bool StartConditions::Unlocked(const ConditionsStore &conditionsStore) const
+bool StartConditions::IsUnlocked() const
 {
-	return toUnlock.Test(conditionsStore);
+	return state == StartState::UNLOCKED;
+}
+
+
+
+void StartConditions::LoadState(const DataNode &node, StartState state)
+{
+	StartInfo info = infoByState[state];
+	bool clearDescription = !info.description.empty();
+	for(const auto &child : node)
+	{
+		if(child.Token(0) == "name" && child.Size() >= 2)
+			info.name = child.Token(1);
+		else if(child.Token(0) == "description" && child.Size() >= 2)
+		{
+			if(clearDescription)
+			{
+				info.description.clear();
+				clearDescription = false;
+			}
+			info.description += child.Token(1) + "\n";
+		}
+		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+			info.thumbnail = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "system" && child.Size() >= 2)
+			info.system = child.Token(1);
+		else if(child.Token(0) == "planet" && child.Size() >= 2)
+			info.planet = child.Token(1);
+	}
+}
+
+
+
+void StartConditions::FillState(StartState fromState, StartState toState)
+{
+	StartInfo from = infoByState[fromState];
+	StartInfo to = infoByState[toState];
+	if(!to.thumbnail)
+		to.thumbnail = from.thumbnail;
+	if(to.name.empty())
+		to.name = from.name;
+	if(to.description.empty())
+		to.description = from.description;
+	if(to.system.empty())
+		to.system = from.system;
+	if(to.planet.empty())
+		to.planet = from.planet;
 }
