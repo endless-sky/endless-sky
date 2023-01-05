@@ -1,9 +1,9 @@
 Welcome to Endless Sky!
 version 0.9.17-alpha
 
-The player's manual is available at:
-https://github.com/endless-sky/
-endless-sky/wiki/PlayersManual
+The player's manual and other
+resources are available at:
+https://endless-sky.github.io
 
 This game is open source.
 To report bugs, give feedback,
