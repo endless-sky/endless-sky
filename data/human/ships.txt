@@ -618,7 +618,7 @@ ship "Behemoth" "Behemoth (Runner)"
 	explode "large explosion" 35
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "This is a rare, extensively modified Behemoth used by some pirate and smugglers to transport large amounts of goods. It is well armed enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
+	description "This is a rare, extensively modified Behemoth used by some pirates and smugglers to transport large amounts of goods. It is well armed enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
 
 
 
