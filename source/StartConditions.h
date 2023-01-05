@@ -33,29 +33,36 @@ class Sprite;
 
 class StartConditions : public CoreStartData {
 public:
+	// Various states that a StartConditions can be in depending on global conditions.
 	enum class StartState : int {
 		HIDDEN,
-		VISIBLE,
+		DISPLAYED,
 		REVEALED,
 		UNLOCKED
 	};
 
-	struct StartInfo {
+	// Information to be shown to the player depending on current StartState.
+	// Information which is a child of the root node gets loaded into the UNLOCKED StartState.
+	// Information under "on (display | reveal)" nodes gets loaded into their respective VISIBLE or REVEALED states.
+	// The HIDDEN state has no information to display.
+	class StartInfo {
+	public:
 		const Sprite *thumbnail = nullptr;
 		std::string name;
 		std::string description;
+		// StartInfo stores the name of the provided system and planet instead of a pointer to them
+		// so that the names don't need to be actual systems or planets in the game for the VISIBLE
+		// and REVEALED states. The UNLOCKED state must have valid information, though.
 		std::string system;
 		std::string planet;
 	};
+
 
 public:
 	StartConditions() = default;
 	explicit StartConditions(const DataNode &node);
 
 	void Load(const DataNode &node);
-	void LoadState(const DataNode &node, StartState state, bool coreData = true);
-	// A helper to fill up missing information of a state.
-	void FillState(StartState from, StartState to);
 	// Finish loading the ship definitions.
 	void FinishLoading();
 
@@ -70,18 +77,24 @@ public:
 	const Conversation &GetConversation() const;
 
 	// Information needed for the scenario picker.
-	const Sprite *GetThumbnail();
-	const std::string &GetDisplayName();
-	const std::string &GetDescription();
-	const std::string &GetPlanetName();
-	const std::string &GetSystemName();
+	const Sprite *GetThumbnail() const noexcept;
+	const std::string &GetDisplayName() const noexcept;
+	const std::string &GetDescription() const noexcept;
+	const std::string &GetPlanetName() const noexcept;
+	const std::string &GetSystemName() const noexcept;
 
-	void SetState(const ConditionsStore &conditionsStore);
-	StartConditions::StartState GetState() const;
-
+	// Determine whether this StartConditions should be displayed to the player.
 	bool Visible(const ConditionsStore &conditionsStore) const;
-	bool Revealed(const ConditionsStore &conditionsStore) const;
-	bool Unlocked(const ConditionsStore &conditionsStore) const;
+	// Set the current state of this StartConditions. This influences what
+	// information from the above getters is returned.
+	void SetState(const ConditionsStore &conditionsStore);
+	bool IsUnlocked() const;
+
+
+private:
+	// Helper functions for loading StartInfo.
+	void LoadState(const DataNode &node, StartState state);
+	void FillState(StartState fromState, StartState toState);
 
 
 private:
@@ -93,9 +106,11 @@ private:
 	// The conversation to display when a game begins with this scenario.
 	ExclusiveItem<Conversation> conversation;
 
-	std::map<StartState, StartInfo> infoByState;
+	// The current state of this StartConditions and the StartInfo to be used for each state.
 	StartState state = StartState::HIDDEN;
+	std::map<StartState, StartInfo> infoByState;
 
+	// ConditionSets which determine the StartState of this StartConditions.
 	ConditionSet toDisplay;
 	ConditionSet toReveal;
 	ConditionSet toUnlock;

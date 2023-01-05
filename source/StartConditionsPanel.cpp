@@ -53,6 +53,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
 {
+	// Extract from all start scenarios those that are visible to the player.
 	for(const auto &scenario : allScenarios)
 		if(scenario.Visible(GameData::GlobalConditions()))
 			scenarios.emplace_back(scenario);
@@ -308,17 +309,14 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	}
 
 
-	if(startIt->GetState() == StartConditions::StartState::UNLOCKED)
-		info.SetCondition("unlocked start");
-
-
 	// Update the information summary.
 	info.SetCondition("chosen start");
+	if(startIt->IsUnlocked())
+		info.SetCondition("unlocked start");
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
 	info.SetString("name", startIt->GetDisplayName());
 	info.SetString("description", startIt->GetDescription());
-
 	info.SetString("planet", startIt->GetPlanetName());
 	info.SetString("system", startIt->GetSystemName());
 	info.SetString("date", startIt->GetDate().ToString());
