@@ -30,6 +30,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	// A default string to return if somehow the current state does not exist in the state map.
+	static const string ILLEGAL = "(ILLEGAL STATE)";
+}
+
 
 
 StartConditions::StartConditions(const DataNode &node)
@@ -260,7 +265,6 @@ const Sprite *StartConditions::GetThumbnail() const noexcept
 const string &StartConditions::GetDisplayName() const noexcept
 {
 	auto it = infoByState.find(state);
-	static const string ILLEGAL = "(ILLEGAL STATE)";
 	return it == infoByState.end() ? ILLEGAL : it->second.name;
 }
 
@@ -269,7 +273,6 @@ const string &StartConditions::GetDisplayName() const noexcept
 const string &StartConditions::GetDescription() const noexcept
 {
 	auto it = infoByState.find(state);
-	static const string ILLEGAL = "(ILLEGAL STATE)";
 	return it == infoByState.end() ? ILLEGAL : it->second.description;
 }
 
@@ -278,7 +281,6 @@ const string &StartConditions::GetDescription() const noexcept
 const string &StartConditions::GetPlanetName() const noexcept
 {
 	auto it = infoByState.find(state);
-	static const string ILLEGAL = "(ILLEGAL STATE)";
 	return it == infoByState.end() ? ILLEGAL : it->second.planet;
 }
 
@@ -287,7 +289,6 @@ const string &StartConditions::GetPlanetName() const noexcept
 const string &StartConditions::GetSystemName() const noexcept
 {
 	auto it = infoByState.find(state);
-	static const string ILLEGAL = "(ILLEGAL STATE)";
 	return it == infoByState.end() ? ILLEGAL : it->second.system;
 }
 
