@@ -38,8 +38,8 @@
 phrase "hostile korath untranslated"
 	phrase
 		# Pure Korath Exile:
-		"exile: loud angry rambling" 450
-		"exile: Exclamation!" 50
+		"exile: loud angry rambling" 425
+		"exile: Exclamation!" 75
 
 		# Mixed Exile & Exile Humanika:
 		"exile mixed: cargo demands" 300
@@ -210,12 +210,21 @@ phrase "exile: Exclamation!"
 		"Hththththt!"           # Some strange Korath sound?
 		"Sssnn'k!"              # Some strange Korath sound?
 		"Kaaaaaaaaaiii't!"      # Some strange Korath sound?
+		"Kaaaayiiyiiyiiyiiyii!" # Some strange Korath sound?
+		"Hsssthththiiiiii!"     # Some strange Korath sound?
 
 		# Korath exclamations
 		"Pusuh!"                # [Misinformed|misguided] individual!
 		"Abrakimot!"            # Person with no [skin|intelligence]!
 		"Ranrarefet!"           # [Towards|To|With the goal of] [victory|success]!
 		"Lomek'toh!"            # [Rotten|Not cared for|Genetically mutated in a negative way] egg!
+		"Tokatalag'af!"         # To benefit [the] community!
+		"Alk'etukafet!"         # [An] orchestra of death!
+		"Irenraleb!"            # My warring is artistic!
+		"Ef'imairumut!"         # [You will] never [colonize|conquer] us!
+		"Ralabamet!"            # [I|We] are hungry!
+		"Tasikaob!"             # [No more] fasting!
+
 
 phrase "exile: we are disabled, please help us"
 	phrase
