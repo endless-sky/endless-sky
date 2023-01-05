@@ -2346,7 +2346,7 @@ fleet "Large Northern Pirates"
 		"Bactrian"
 		"Dagger" 3
 	variant 1
-		"Behemoth (Runner)"
+		"Mammoth"
 
 fleet "pirate raid"
 	government "Pirate"

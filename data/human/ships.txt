@@ -555,9 +555,9 @@ ship "Behemoth"
 
 
 
-ship "Behemoth" "Behemoth (Runner)"
-	sprite "ship/behemoth runner"
-	thumbnail "thumbnail/behemoth runner"
+ship "Mammoth"
+	sprite "ship/mammoth"
+	thumbnail "thumbnail/mammoth"
 	attributes
 		category "Utility"
 		"cost" 18800000
