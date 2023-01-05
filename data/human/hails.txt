@@ -3145,7 +3145,12 @@ phrase "friendly militia 3"
 
 phrase "friendly militia 4"
 	word
-		"If "
+		"If"
+	word
+		" "
+		" the people in "
+		" the leaders of "
+		" those in power in "
 	word
 		"Parliament"
 		"the Navy"
@@ -3215,7 +3220,7 @@ phrase "friendly militia 4 variation"
 	word
 		"pirates have"
 		"criminals have"
-		"warlords haves"
+		"warlords have"
 		"marauders have"
 		"rampant piracy has"
 		"rampant marauding has"
