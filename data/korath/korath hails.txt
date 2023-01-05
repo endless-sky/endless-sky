@@ -149,9 +149,9 @@ phrase "exile humanika: oddly specific demands"
 	word
 		" "
 	phrase
-		"exile humanika: cultural items" 2
-		"exile humanika: strange items"
-		"exile humanika: open source games"
+		"exile humanika: cultural items" 10
+		"exile humanika: strange items" 3
+		"exile humanika: open source games" 3
 	word
 		" "
 	phrase
@@ -673,6 +673,16 @@ phrase "exile humanika: cultural items"
 		"buulk fabr'c"             # bulk fabric (mispronounced)
 		"strang instraments"       # string instruments (mispronounced)
 		"rok gittar"               # rock guitar (mispronounced)
+		"bomance novals"           # [romance|bromance] novels (mispronounced)
+		"skech buks"               # sketch books (mispronounced)
+		"cley n kiln"              # clay and kiln (mispronounced)
+		"benjos"                   # banjos (mispronounced)
+		"bokets f painte"          # buckets of paint (mispronounced)
+		"easls ith trypods"        # easels with tripods (mispronounced)
+		"recerd playrs"            # record players (mispronounced)
+		"relegos tects"            # religious texts (mispronounced)
+		"blak muusic shee's"       # blank music sheets (mispronounced)
+		"sinin boowl sets"         # singing bowl set (mispronounced)
 
 
 # These are items that make you wonder what strange things happen
