@@ -105,7 +105,7 @@ phrase "exile humanika: If you board us, we will win."
 		"exile humanika: we will win the boarding mission"
 		"exile humanika: you will lose the boarding mission"
 	phrase
-		"exile mixed: , you inferior [individual|species]"
+		"exile mixed: , you inferior beings"
 		"exile: empty phrase"
 	word
 		". "
