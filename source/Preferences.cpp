@@ -52,6 +52,9 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
+	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
+	int parallaxIndex = 1;
+
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 }
@@ -74,7 +77,6 @@ void Preferences::Load()
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
-	settings["Parallax background"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
@@ -96,6 +98,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Parallax background")
+			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
@@ -128,6 +132,7 @@ void Preferences::Save()
 	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 
 	for(const auto &it : settings)
@@ -223,6 +228,31 @@ double Preferences::MinViewZoom()
 double Preferences::MaxViewZoom()
 {
 	return ZOOMS[ZOOMS.size() - 1];
+}
+
+
+
+// Starfield parallax.
+void Preferences::ToggleParallax()
+{
+	int targetIndex = parallaxIndex + 1;
+	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
+		targetIndex = 0;
+	parallaxIndex = targetIndex;
+}
+
+
+
+Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
+{
+	return static_cast<BackgroundParallax>(parallaxIndex);
+}
+
+
+
+const string &Preferences::ParallaxSetting()
+{
+	return PARALLAX_SETTINGS[parallaxIndex];
 }
 
 
