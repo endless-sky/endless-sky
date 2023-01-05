@@ -1072,8 +1072,7 @@ ship "Behemoth" "Behemoth (Moonless Night)"
 	sprite "ship/behemoth moonless"
 	thumbnail "thumbnail/behemoth moonless"
 	add attributes
-		"shields" -300
-		"hull" 200
+		"hull" 300
 		"mass" 40
 		"drag" .2
 	outfits
