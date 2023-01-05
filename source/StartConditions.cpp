@@ -163,10 +163,6 @@ void StartConditions::Load(const DataNode &node)
 	if(infoByState[StartState::UNLOCKED].name.empty())
 		infoByState[StartState::UNLOCKED].name = "(Unnamed start)";
 
-	// If a "lower" state is missing information, copy from the state "above" it.
-	FillState(StartState::UNLOCKED, StartState::REVEALED);
-	FillState(StartState::REVEALED, StartState::DISPLAYED);
-
 	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
 	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
 	if(identifier.empty() && node.Size() >= 2)
@@ -193,6 +189,10 @@ void StartConditions::FinishLoading()
 	// of what was displayed.
 	infoByState[StartState::UNLOCKED].planet = GetPlanet().Name();
 	infoByState[StartState::UNLOCKED].system = GetSystem().Name();
+
+	// If a "lower" state is missing information, copy from the state "above" it.
+	FillState(StartState::UNLOCKED, StartState::REVEALED);
+	FillState(StartState::REVEALED, StartState::DISPLAYED);
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
@@ -314,6 +314,8 @@ void StartConditions::SetState(const ConditionsStore &conditionsStore)
 		else
 			state = StartState::DISPLAYED;
 	}
+	else
+		state = StartState::HIDDEN;
 }
 
 
