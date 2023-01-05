@@ -77,7 +77,7 @@ ship "Zooroid" "Zooroid (B)"
 	"final explode" "blood"
 	description `Oddly shaped like a boomerang, these space creatures are in a constant rotary motion caused by a small internal organ. The motion provides a natural defense against small debris and projectiles that threaten to intercept the creature, which is harmless otherwise.`
 
-ship "Zooroid" "Zooroid C"
+ship "Zooroid" "Zooroid (C)"
 	sprite "ship/zooroids/zooroid-c"
 		"frame rate" 24
 		"random start frame"
