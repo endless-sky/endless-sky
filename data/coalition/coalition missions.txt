@@ -3125,24 +3125,31 @@ mission "Fangvin: Struggling Author 1"
 		has "Coalition: Contributor: done"
 	on offer
 		conversation
-			`Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Anna Fangvin'. Nobody pays attention to her. It appears as if she is a struggling author.`
+			`Upon entering the spaceport, you walk past a bookstore, currently holding a book signing event for an author known as 'Anna Fangvin'. People walk past her and into the bookstore, but mostly ignore her. You see a person sit at her table and have her book signed, but it appears as if she is a struggling author.`
 			choice
 				`	(Ignore her.)`
 					decline
 				`	(Buy one of her books.)`
 					goto "buy her book"
 				`	(Sit down and talk to her.)`
-			`	You sit down on the table, next to Anna. She greets you with a smile. "Hello! Would you like to buy one of my books?" she asks.`
+			`	You sit down at the table, next to Anna. She greets you with a smile. "Hello! Would you like to buy one of my books?" she asks.`
 			choice
 				`	"What are your books about?"`
 				`	"No, I'm not interested. How has life been as an author though?"`
 					goto "life as an author sucks"
-			label "what are her books about"
-			`	"I mostly write science fiction books. Today, I'm here to promote 'Beyond the Hyperdrive', a story in which a group of humans steal a bunch of jump drives from the Quarg. If I continue past this point I'd be spoiling it. Read it for yourself, you'll like it!"`
+			label "it's called a jump drive"
+			`	"They have a name? Wow, I never knew that. Thank you for correcting me, I suppose."`
 			choice
+				`	"Why is your story about the Quarg though? Do you have a problem with them?"`
+					goto "do you hate the quarg"
+			label "what are her books about"
+			`	"I mostly write science fiction books. Today, I'm here to promote 'Beyond the Hyperdrive', a story in which a group of humans steal Quarg technology to bypass the hyperlanes and reach new systems. If I continue past this point I'd be spoiling it. Read it for yourself, you'll like it!"`
+			choice
+				`	"I believe you're talking about a Jump Drive."`
+					goto "it's called a jump drive"
 				`	"I'm interested. Wait here, I'll go buy myself a copy."`
 					goto "buy her book"
-				`	"Why is it a story about the Quarg? Do you hate the Quarg or something?"`
+				`	"Why is it a story about stealing from the Quarg? Really? Do you hate the Quarg or something?"`
 					goto "do you hate the quarg"
 				`	"Cool. How has life been lately as an author?"`
 			label "life as an author sucks"
@@ -3150,8 +3157,13 @@ mission "Fangvin: Struggling Author 1"
 			choice
 				`	"What are your books about?"`
 					goto "what are her books about"
+				`	"Why don't your books sell that much?"`
+					goto "why don't your books sell that much"
 				`	"Well, that's gotta hurt. I hope you find success in your life one day.`
 					decline
+			label "why don't your books sell that much"
+			`	"It could be a lot of reasons. I suppose they're afraid of the Quarg getting angry?"`
+			`	Anna then begins explaining how her parents were opposed to her career choice, how for the past few years it had been hard to make ends meet`
 			label "buy her book"
 			action
 				set "beyond the hyperdrive book"
@@ -3170,44 +3182,48 @@ mission "Fangvin: Struggling Author 1"
 			label "do you hate the quarg"
 			`	"I have a lot of problems with them. You see, there are so many systems we can't reach and the Quarg have the secrets to reaching them. And yet they won't give humanity the secret. They are trying to restrict us. Keeping us all locked in cages! So, I wrote 'Beyond the Hyperdrive' to share my feelings about the Quarg. Humanity will one day succeed! We will surpass them and make humanity even greater beyond its wildest dreams!"`
 			choice
+				`	"Well that's all well and good. But I have my own business to attend to now. Good luck, and goodbye."`
+					decline
 				`	(Tell her about the Coalition.)`
-			label "tell her about the coalition"
-			`	You check your surroundings, looking around to ensure you are not being listened to. Once you confirm that your conversation will be private, you begin speaking.`
-			`	"I know of a place called the Coalition. They're a group of alien races. Maybe you could go there and find inspiration for your next novel, or sell your books there? I bet they'd love to see your writings!"`
-			`	"Wait, really?" asks Anna.`
-			`	You continue to explain the Coalition to Anna for a while, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them.`
+			`	You are about to reveal sensitive information that you might not want to spread. You are on a busy street with high foot traffic. You tell Anna you have something to tell her, and ask her to walk to a secluded corner of the store.`
+			`	Once confirming that you and Anna will not be heard, you begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them.`
+			`	"Will they really like my books?"`
 			choice
-				`	"By any chance, are you afraid of centaurs, beetles, and spiders?"`
+				`	"They will, hopefully."`
+				`	"Well, it's better to try than to just give up."`
+			`	"I hope they do. Is there anything more you'd like to tell me about the Coalition?"`
+			choice
+				`	"By any chance, are you afraid of large beetles and spiders?"`
 			`	"No, not at all. I'm not afraid of them. Why do you ask?"`
 			choice
-				`	"Because the Coalition are a race of three alien species, who look like spiders, beetles, and centaurs.`
-			`	"Interesting. Their stories might just inspire my next novel. But, they wouldn't speak English. How are they going to read my books?"`
+				`	"Because the Coalition are a union of three alien species, who look like spiders, beetles, and centaurs.`
+			`	"Interesting. Their stories might just inspire my next novel. But, they wouldn't speak our language. How are they going to read my books?"`
 			choice
 				`	"They have a translation device."`
 				`	"I'm sure they can learn the language."`
 			`	"That's reassuring... but, how am I even going to get there?"`
 			choice
 				`	"I'll take you there."`
-			`	"Do I have to pay anything? As a struggling author, I really can't pay you."`
+			`	"Do I have to pay anything? As a struggling author, I can't afford off-world transport at all. Let alone, to a completely different alien race!"`
 			choice
 				`	"It's okay. I'm willing to make an exception for you."`
 			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Anna.`
-			`	You reply. "Good luck. By the way, we're going to <destination> in Coalition space.`
-			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk. You prepare to leave the spaceport.`
+			`	You reply. "Good luck."`
+			`	As you wait for Anna, you look over your maps of Coalition space to determine the most suitable place for Anna. After much deliberation and thought, you decide on <destination>.`
+			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk and inform her of the destination. You prepare to leave the spaceport.`
 				accept
 	on complete
 		conversation
-			`	You leave the ship with Anna following you. The moment you are out of your ship, three Kimek surround you and Anna. The Kimek in the middle speaks, and then brief silence. The silence is broken as the yellow box speaks.`
-			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"` # heliarch
-			`	Anna clears her throat. "I don't know who you are, but my name is Anna Fangvin."`
-			`	Once Anna finishes her introduction, you speak. "She is my friend. Back in my space, she hasn't been a successful author. I brought her here, hoping she would find success writing books for the Coalition.", you explain.`
-			`	"What kind of books does she write?", asks the Kimek.` # heliarch
+			`	You leave the ship with Anna following you. The moment you are out of your ship, three Kimek surround you and Anna. The Kimek in the middle speaks, and then brief silence. The silence is broken as their translation box speaks.`
+			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
+			`	You and Anna introduce yourself. Anna's introduction is longer, while you only need to state your name, seeing as you are more familiar with the Coalition now.`
+			`	"About what, do you write?", asks the Kimek.`
 			`	"Oh, I write science fiction books," says Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
-			`	"Visit Coalition space, we will allow Anna to. Alongside you, <first>, welcome here, she is, for as long as no trouble, you cause. But first, register she must."`
+			`	Then, switching back to your language, the Kimek explains that Anna is welcome to be with you, but states that she will not be allowed to do much unless she registers.`
 			`	"Register?", asks Anna.`
 			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, that's where you can complete the registration process."`
-			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and take me to the Ring of Friendship once you're ready. I'll meet you in the spaceport."`
+			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and meet me there."`
 
 mission "Fangvin: Struggling Author 2"
 	name "Help Anna Register"
