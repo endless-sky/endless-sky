@@ -229,8 +229,8 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
-	shared_ptr<ConditionsStore> ConditionsPointer();
-	shared_ptr<const ConditionsStore> ConditionsPointer() const;
+	std::shared_ptr<ConditionsStore> ConditionsPointer();
+	std::shared_ptr<const ConditionsStore> ConditionsPointer() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
 
 	// Check what the player knows about the given system or planet.
