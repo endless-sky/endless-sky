@@ -140,7 +140,8 @@ public:
 	// player; these continue across multiple games.
 	//
 	// (These are global in the programming sense of the word.)
-	static std::shared_ptr<ConditionsStore> GlobalConditions();
+	static ConditionsStore &GlobalConditions();
+	static std::shared_ptr<ConditionsStore> GlobalConditionsPointer();
 
 	// Universe conditions are reset on a load or new player;
 	// these configure this instance of the Endless Sky universe.
@@ -155,7 +156,8 @@ public:
 	//
 	// (These are "universe conditions" in the astronomical sense
 	// of the word "universe.")
-	static std::shared_ptr<ConditionsStore> UniverseConditions();
+	static ConditionsStore &UniverseConditions();
+	static std::shared_ptr<ConditionsStore> UniverseConditionsPointer();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

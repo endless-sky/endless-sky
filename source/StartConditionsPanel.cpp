@@ -54,7 +54,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description(FontSet::Get(14))
 {
 	for(const auto &scenario : allScenarios)
-		if(scenario.Visible(*GameData::GlobalConditions()))
+		if(scenario.Visible(GameData::GlobalConditions()))
 			scenarios.emplace_back(scenario);
 
 	startIt = scenarios.begin();
@@ -120,7 +120,7 @@ void StartConditionsPanel::Draw()
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
 
 		const auto name = DisplayText(
-			it->Revealed(*GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
+			it->Revealed(GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
 	}
 
@@ -309,14 +309,14 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	info.SetCondition("chosen start");
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
-	info.SetString("name", startIt->Revealed(*GameData::GlobalConditions())
+	info.SetString("name", startIt->Revealed(GameData::GlobalConditions())
 		? startIt->GetDisplayName() : "???");
-	info.SetString("description", startIt->Revealed(*GameData::GlobalConditions())
+	info.SetString("description", startIt->Revealed(GameData::GlobalConditions())
 		? startIt->GetDescription() : startIt->GetHint());
 
-	if(startIt->Revealed(*GameData::GlobalConditions()))
+	if(startIt->Revealed(GameData::GlobalConditions()))
 	{
-		if(startIt->Unlocked(*GameData::GlobalConditions()))
+		if(startIt->Unlocked(GameData::GlobalConditions()))
 			info.SetCondition("unlocked start");
 		info.SetString("planet", startIt->GetPlanet().Name());
 		info.SetString("system", startIt->GetSystem().Name());
@@ -327,7 +327,7 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 
 	// Update the displayed description text.
 	descriptionScroll = 0;
-	description.Wrap(startIt->Revealed(*GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
+	description.Wrap(startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
 
 	// Scroll the selected scenario into view.
 	ScrollToSelected();

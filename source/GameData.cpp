@@ -631,14 +631,28 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
-shared_ptr<ConditionsStore> GameData::GlobalConditions()
+ConditionsStore &GameData::GlobalConditions()
+{
+	return *globalConditions;
+}
+
+
+
+shared_ptr<ConditionsStore> GameData::GlobalConditionsPointer()
 {
 	return globalConditions;
 }
 
 
 
-shared_ptr<ConditionsStore> GameData::UniverseConditions()
+ConditionsStore &GameData::UniverseConditions()
+{
+	return *universeConditions;
+}
+
+
+
+shared_ptr<ConditionsStore> GameData::UniverseConditionsPointer()
 {
 	return universeConditions;
 }

@@ -106,16 +106,16 @@ namespace {
 
 
 PlayerInfo::PlayerInfo():
-	conditions(GameData::UniverseConditions())
-	// A note on conditions vs. GameData::UniverseConditions()
+	conditions(GameData::UniverseConditionsPointer())
+	// A note on conditions vs. GameData::UniverseConditions
 	//
-	// GameData::UniverseConditions() are reset on a load or new
+	// GameData::UniverseConditions are reset on a load or new
 	// player; these configure this instance of the Endless Sky
 	// universe.  In a multiplayer game, this is where the
 	// conditions common to all players would be stored.
 	//
 	// Presently, Endless Sky is single player, so the
-	// UniverseConditions() are also the PlayerInfo.conditions. In
+	// UniverseConditions are also the PlayerInfo.conditions. In
 	// multiplayer, each player might have their own
 	// PlayerInfo.conditions, depending on how development
 	// proceeds.
