@@ -3180,7 +3180,8 @@ mission "Fangvin: Struggling Author 1"
 				`	"Thanks for signing my copy. I hope you find success in your life. Goodbye."`
 					decline
 			label "do you hate the quarg"
-			`	"I have a lot of problems with them. You see, there are so many systems we can't reach and the Quarg have the secrets to reaching them. And yet they won't give humanity the secret. They are trying to restrict us. Keeping us all locked in cages! So, I wrote 'Beyond the Hyperdrive' to share my feelings about the Quarg. Humanity will one day succeed! We will surpass them and make humanity even greater beyond its wildest dreams!"`
+			`	"I have a lot of problems with them. I just don't trust them. I remember when my parents took me to Humanika. Naturally, I wanted to explore, so I wandered off. I was lost. This creepy-looking Quarg found me, and when it tried to approach, I cried."`
+			`	"And then when I grew up, when I was a teenager, I decided to do a project on them for college. They responded with silence to my questions, as if they had something to hide. I worked as an assistant for a journalist for a few months. He kept asking me for help with the Quarg. They just would not budge."`
 			choice
 				`	"Well that's all well and good. But I have my own business to attend to now. Good luck, and goodbye."`
 					decline
