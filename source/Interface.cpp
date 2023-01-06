@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Interface.h"
 
+#include "Command.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
@@ -489,7 +490,17 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	isDynamic = (node.Token(0) == "string");
 	if(node.Token(0) == "button")
 	{
-		buttonKey = node.Token(1).front();
+		const std::string& token = node.Token(1);
+		if (token.size() == 1)
+		{
+			buttonKey = token.front();
+		}
+		else
+		{
+			command = Command::Get(token);
+			if (command == Command::NONE)
+				node.PrintTrace("\"" + token + "\" is not a valid command");
+		}
 		if(node.Size() >= 3)
 			str = node.Token(2);
 	}
@@ -501,7 +512,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 
 	// Fill in any undefined state colors. By default labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
-	if(!color[Element::ACTIVE] && !buttonKey)
+	if(!color[Element::ACTIVE] && !buttonKey && command == Command::NONE)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
 
 	if(!color[Element::ACTIVE])
@@ -585,8 +596,12 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 // called if the element is visible and active.
 void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 {
-	if(buttonKey && panel)
+	if(!panel)
+		return;
+	if(buttonKey)
 		panel->AddZone(bounds, buttonKey);
+	else if(!(command == Command::NONE))
+		panel->AddZone(bounds, command);
 }
 
 

@@ -73,7 +73,7 @@ bool UI::Handle(const SDL_Event &event)
 			{
 				if(event.button.button == 1)
 				{
-					handled = (*it)->ZoneClick(Point(x, y));
+					handled = (*it)->ZoneMouseDown(Point(x, y));
 					if (!handled && event.button.which == SDL_TOUCH_MOUSEID)
 					{
 						handled = (*it)->FingerDown(x, y);
@@ -90,15 +90,16 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			if (event.button.which == SDL_TOUCH_MOUSEID)
+			if (event.button.button == 1)
 			{
-				// don't pass through finger up events if they are on a button
-				handled = (*it)->ZoneCheck(Point(x, y));
-				if (!handled)
+				handled = (*it)->ZoneMouseUp(Point(x, y));
+				if (!handled && event.button.which == SDL_TOUCH_MOUSEID)
+				{
 					handled = (*it)->FingerUp(x, y);
+				}
+				if (!handled)
+					handled = (*it)->Release(x, y);
 			}
-			if (!handled)
-				handled = (*it)->Release(x, y);
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->Scroll(event.wheel.x, event.wheel.y);

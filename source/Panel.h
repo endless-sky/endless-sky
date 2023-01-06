@@ -61,12 +61,13 @@ public:
 	// Add a clickable zone to the panel.
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
+	void AddZone(const Rectangle &rect, Command command);
 	// Check if a click at the given coordinates triggers a clickable zone. If
-	// so, apply that zone's action and return true.
-	bool ZoneClick(const Point &point);
+	// so, forward the event and return true.
+	bool ZoneMouseDown(const Point &point);
 	// Check if a click at the given coordinates is within a clicakble zone. If
-	// so, return true, but do not apply any actions.
-	bool ZoneCheck(const Point &point);
+	// so, forward the event and return true.
+	bool ZoneMouseUp(const Point &point);
 
 	// Forward the given TestContext to the Engine under MainPanel.
 	virtual void SetTestContext(TestContext &testContext);
@@ -117,12 +118,18 @@ protected:
 private:
 	class Zone : public Rectangle {
 	public:
-		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
+		Zone(const Rectangle &rect, const std::function<void()> &fun_down, const std::function<void()> &fun_up = nullptr):
+			Rectangle(rect),
+			fun_down(fun_down),
+			fun_up(fun_up)
+		{}
 
-		void Click() const { fun(); }
+		void MouseDown() const { fun_down(); }
+		void MouseUp() const { if (fun_up) fun_up(); }
 
 	private:
-		std::function<void()> fun;
+		std::function<void()> fun_down;
+		std::function<void()> fun_up;
 	};
 
 

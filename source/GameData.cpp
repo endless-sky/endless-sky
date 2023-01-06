@@ -796,10 +796,8 @@ void GameData::LoadSources()
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
 	{
-		SDL_Log("plugin path %s", path.c_str());
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 		{
-			SDL_Log("... Loaded");
 			sources.push_back(path);
 		}
 	}
@@ -807,10 +805,8 @@ void GameData::LoadSources()
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
 	{
-		SDL_Log("plugin path %s", path.c_str());
 		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
 		{
-			SDL_Log("... Loaded");
 			sources.push_back(path);
 		}
 	}

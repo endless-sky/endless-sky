@@ -108,6 +108,9 @@ void PlanetPanel::Draw()
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
 
+	bool has_spaceport = false;
+	bool has_trade = false;
+
 	if(planet.CanUseServices())
 	{
 		if(planet.IsInhabited())
@@ -117,12 +120,12 @@ void PlanetPanel::Draw()
 			{
 				info.SetCondition("is inhabited");
 				if(system.HasTrade())
-					info.SetCondition("has trade");
+					has_trade = true;
 			}
 		}
 
 		if(flagship && planet.HasSpaceport())
-			info.SetCondition("has spaceport");
+			has_spaceport = true;
 
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
@@ -135,7 +138,8 @@ void PlanetPanel::Draw()
 					break;
 				}
 	}
-
+	info.SetCondition(has_spaceport ? "has spaceport" : "no spaceport");
+	info.SetCondition(has_trade ? "has trade" : "no trade");
 	ui.Draw(info, this);
 
 	if(!selectedPanel)

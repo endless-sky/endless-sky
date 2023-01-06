@@ -59,6 +59,16 @@ interface "planet"
 		align left
 		pad 10 0
 
+	visible if "no trade"
+	sprite "ui/planet dialog button"
+		center -400 -51
+	button "View star map" "Map"
+		center -400 -51
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
 	visible if "has bank"
 	sprite "ui/planet dialog button"
 		center -400 69
@@ -73,6 +83,16 @@ interface "planet"
 	sprite "ui/planet dialog button"
 		center -400 129
 	button p "Space_port"
+		center -400 129
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
+	visible if "no spaceport"
+	sprite "ui/planet dialog button"
+		center -400 129
+	button "View player info" "Info"
 		center -400 129
 		dimensions 140 40
 		size 18

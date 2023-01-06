@@ -88,9 +88,28 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 
 
 
+void Panel::AddZone(const Rectangle &rect, Command command)
+{
+	zones.emplace_front(
+		rect,
+		[command, this](){
+			// Handle a command click as both a keypress and a command, since that
+			// is what it would do if the user pressed the physical key. The
+			// UI logic will only do one or the other. This makes it so that
+			// commands that register each step of the game logic (jump, fire) can
+			// coexist with commands that toggle once (map, info)
+			Command::InjectSet(command);
+		   this->KeyDown(0, 0, command, true);
+		},
+		[command](){ Command::InjectUnset(command); }
+	);
+}
+
+
+
 // Check if a click at the given coordinates triggers a clickable zone. If
 // so, apply that zone's action and return true.
-bool Panel::ZoneClick(const Point &point)
+bool Panel::ZoneMouseDown(const Point &point)
 {
 	for(const Zone &zone : zones)
 		if(zone.Contains(point))
@@ -99,7 +118,7 @@ bool Panel::ZoneClick(const Point &point)
 			// click has broken it out of that mode, so it doesn't interpret a
 			// button press and a text character entered.
 			EndEditing();
-			zone.Click();
+			zone.MouseDown();
 			return true;
 		}
 	return false;
@@ -109,12 +128,13 @@ bool Panel::ZoneClick(const Point &point)
 
 // Check if a click at the given coordinates is in a clickable zone. If
 // so, return true
-bool Panel::ZoneCheck(const Point &point)
+bool Panel::ZoneMouseUp(const Point &point)
 {
 	for(const Zone &zone : zones)
 	{
 		if(zone.Contains(point))
 		{
+			zone.MouseUp();
 			return true;
 		}
 	}

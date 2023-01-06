@@ -685,6 +685,16 @@ interface "planet"
 		align left
 		pad 10 0
 
+	visible if "no trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button "View star map" "Map"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
 	visible if "has bank"
 	sprite "ui/planet dialog button"
 		center -400 210
@@ -699,6 +709,16 @@ interface "planet"
 	sprite "ui/planet dialog button"
 		center -400 270
 	button p "Space_port"
+		center -400 270
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
+	visible if "no spaceport"
+	sprite "ui/planet dialog button"
+		center -400 270
+	button "View player info" "Info"
 		center -400 270
 		dimensions 140 40
 		size 18
@@ -1261,59 +1281,59 @@ interface "main buttons" bottom right
 	active
 	sprite "ui/dialog cancel"
 		from -90 -50 to 0 0
-	button m "_Map"
+	button "View star map" "_Map"
 		from -80 -40 to -10 -10
 
 	active
 	sprite "ui/dialog cancel"
 		from -170 -50 to -80 0
-	button j "_Jump"
+	button "Initiate hyperspace jump" "_Jump"
 		from -160 -40 to -90 -10
 
 	visible if "can deploy"
 	sprite "ui/dialog cancel"
 		from -170 -80 to -80 -130
-	button d "_Deploy"
+	button "Deploy / recall fighters" "_Deploy"
 		from -160 -70 to -90 -140
 
 	visible if "can recall"
 	sprite "ui/dialog cancel"
 		from -170 -80 to -80 -130
-	button d "_Recall"
+	button "Deploy / recall fighters" "_Recall"
 		from -160 -70 to -90 -140
 
 	visible if "has secondary"
 	active if "secondary selected"
 	sprite "ui/ammo unselected"
 		from -145 -50 to -85 -80
-	button q "Fire"
+	button "Fire secondary weapon" "Fire"
 		from -145 -50 to -85 -80
 	active
 	box "ammo icon"
 		from -164 -50 to -134 -80
-	button w
+	button "Select secondary weapon"
 		from -164 -50 to -134 -80
 
 	visible if "can attack"
 	sprite "ui/dialog cancel"
 		from -250 -40 to -160 -90
-	button a "_Attack"
+	button "Fleet: Fight my target" "_Attack"
 		from -240 -40 to -170 -90
 
 	visible if "can hail"
 	sprite "ui/dialog cancel"
 		from -250 -50 to -160 0
-	button t "_Talk"
+	button "Talk to selected ship" "_Talk"
 		from -240 -40 to -170 -10
 
 	visible if "can cloak"
 	sprite "ui/dialog cancel"
 		from -330 -50 to -240 0
-	button c "_Cloak"
+	button "Toggle cloaking device" "_Cloak"
 		from -320 -40 to -250 -10
 
 	visible if "can scan"
 	sprite "ui/dialog cancel"
 		from -330 -50 to -240 0
-	button s "_Scan"
+	button "Scan selected ship" "_Scan"
 		from -320 -40 to -250 -10

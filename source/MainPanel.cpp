@@ -334,24 +334,6 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
-	else if(key == SDLK_m) // synthetic keypress via UI button, not keyboard
-		show.Set(Command::MAP);
-	else if(key == SDLK_s) // synthetic keypress via UI button, not keyboard
-		Command::Inject(Command::SCAN);
-	else if(key == SDLK_j) // synthetic keypress via UI button, not keyboard
-		Command::Inject(Command::JUMP);
-	else if(key == SDLK_t) // synthetic keypress via UI button, not keyboard
-		show.Set(Command::HAIL);
-	else if(key == SDLK_a) // synthetic keypress via UI button, not keyboard
-		Command::Inject(Command::FIGHT);
-	else if(key == SDLK_d) // synthetic keypress via UI button, not keyboard
-		Command::Inject(Command::DEPLOY);
-	else if(key == SDLK_c)
-		Command::Inject(Command::CLOAK);
-	else if(key == SDLK_w)
-		Command::Inject(Command::SELECT);
-	else if(key == SDLK_q)
-		Command::Inject(Command::SECONDARY);
 	else
 		return false;
 

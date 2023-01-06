@@ -133,9 +133,12 @@ public:
 	// Get the commands that are set in either of these commands.
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
+	bool operator==(const Command &command) const { return command.state == state && command.turn == turn; }
 
 	// Allow UI's to simulate keyboard input
-	static void Inject(const Command& command) { simulated_command.fetch_or(command.state, std::memory_order_relaxed); }
+	static void InjectSet(const Command& command) { simulated_command.fetch_or(command.state, std::memory_order_relaxed); }
+	static void InjectUnset(const Command& command)	{ simulated_command.fetch_and(~command.state, std::memory_order_relaxed); }
+	static Command Get(const std::string& description);
 
 private:
 	explicit Command(uint32_t state);

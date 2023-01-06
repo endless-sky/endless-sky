@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define INTERFACE_H_
 
 #include "Color.h"
+#include "Command.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "text/truncate.hpp"
@@ -172,6 +173,7 @@ private:
 		const Color *color[3] = {nullptr, nullptr, nullptr};
 		int fontSize = 14;
 		char buttonKey = '\0';
+		Command command = Command::NONE;
 		bool isDynamic = false;
 		Truncate truncate = Truncate::NONE;
 	};

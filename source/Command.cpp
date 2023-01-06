@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <atomic>
 #include <cmath>
 #include <map>
 
@@ -109,8 +110,8 @@ void Command::ReadKeyboard()
 {
 	Clear();
 
-	// inject simulated commands, clear out old ones.
-	state = simulated_command.exchange(0, std::memory_order_relaxed);
+	// inject simulated commands
+	state = simulated_command.load(std::memory_order_relaxed);
 
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 
@@ -408,4 +409,19 @@ Command::Command(uint32_t state, const string &text)
 {
 	if(!text.empty())
 		description[*this] = text;
+}
+
+
+
+// Retrieve a command based on its description.
+Command Command::Get(const std::string& command_description)
+{
+	for (auto& command: description)
+	{
+		if (command_description == command.second)
+		{
+			return command.first;
+		}
+	}
+	return Command::NONE;
 }
