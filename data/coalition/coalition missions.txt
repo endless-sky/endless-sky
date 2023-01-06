@@ -3414,6 +3414,8 @@ mission "Fangvin: Struggling Author 5B"
 
 conversation "anna invites you to book signing"
 	action
+		log "People" "Anna Fangvin" "Anna is an author of science fiction books. She never found success in human space, until she visited the Coalition and got her novel, 'Beyond the Hyperdrive', about a group of humans stealing jump drives from the Quarg, published. Upon publication, her book quickly became a bestseller in Kimek space."
+		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a best seller now. Book was 'Beyond the Hyperdrive', something about humans stealing jump drives from the Quarg. Also found out she was both-handed."
 		"salary: Anna Fangvin" = 5000
 		payment 2000000
 		set "beyond the hyperdrive news can show now"
