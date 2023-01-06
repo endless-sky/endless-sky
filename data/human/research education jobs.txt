@@ -290,7 +290,7 @@ mission "Student field research (urban / factory)"
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
 		attributes urban factory
-		not planet New Sahara
+		not planet "New Sahara"
 		distance 2 10
 	on visit
 		dialog phrase "generic passenger on visit"
