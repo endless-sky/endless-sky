@@ -180,14 +180,14 @@ mission "Student field research (farming)"
 		attributes "education"
 	passengers 1
 	substitutions		
-		"<student research>" "farms on"
+		"<student research>" "farms of"
 		"<student research>" "soil quality of"
 			has random < 80
 		"<student research>" "river water quality of"
 			has random < 60
 		"<student research>" "agricultural industry of"
 			has random < 40
-		"<student research>" "agricultural practices of the farms on"
+		"<student research>" "agricultural practices on"
 			has random < 20
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
@@ -270,7 +270,7 @@ mission "Student field research (urban / factory)"
 	job
 	repeat
 	name "Transport student to <planet>"
-	description "This student needs transport to <destination>, where they will perform field research on the <student research> of <planet>. They will pay you <payment>."
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
 	to offer
 		random < 5
 	source
