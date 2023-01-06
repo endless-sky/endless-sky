@@ -99,7 +99,8 @@ namespace {
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
 
-	ConditionsStore globalConditions;
+	shared_ptr<ConditionsStore> globalConditions = make_shared<ConditionsStore>();
+	shared_ptr<ConditionsStore> universeConditions = make_shared<ConditionsStore>();
 }
 
 
@@ -630,9 +631,16 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
-ConditionsStore &GameData::GlobalConditions()
+shared_ptr<ConditionsStore> GameData::GlobalConditions()
 {
 	return globalConditions;
+}
+
+
+
+shared_ptr<ConditionsStore> GameData::UniverseConditions()
+{
+	return universeConditions;
 }
 
 

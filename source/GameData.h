@@ -136,7 +136,26 @@ public:
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
 
-	static ConditionsStore &GlobalConditions();
+	// The "global" conditions do not change after load or a new
+	// player; these continue across multiple games.
+	//
+	// (These are global in the programming sense of the word.)
+	static std::shared_ptr<ConditionsStore> GlobalConditions();
+
+	// Universe conditions are reset on a load or new player;
+	// these configure this instance of the Endless Sky universe.
+	// In a multiplayer game, this is where the conditions common
+	// to all players would be stored.
+	//
+	// Presently, Endless Sky is single player, so the
+	// UniverseConditions() are also the PlayerInfo.conditions. In
+	// multiplayer, each player might have their own
+	// PlayerInfo.conditions, depending on how development
+	// proceeds.
+	//
+	// (These are "universe conditions" in the astronomical sense
+	// of the word "universe.")
+	static std::shared_ptr<ConditionsStore> UniverseConditions();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

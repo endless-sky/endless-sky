@@ -105,6 +105,25 @@ namespace {
 
 
 
+PlayerInfo::PlayerInfo():
+	conditions(GameData::UniverseConditions())
+	// A note on conditions vs. GameData::UniverseConditions()
+	//
+	// GameData::UniverseConditions() are reset on a load or new
+	// player; these configure this instance of the Endless Sky
+	// universe.  In a multiplayer game, this is where the
+	// conditions common to all players would be stored.
+	//
+	// Presently, Endless Sky is single player, so the
+	// UniverseConditions() are also the PlayerInfo.conditions. In
+	// multiplayer, each player might have their own
+	// PlayerInfo.conditions, depending on how development
+	// proceeds.
+{
+}
+
+
+
 // Completely clear all loaded information, to prepare for loading a file or
 // creating a new pilot.
 void PlayerInfo::Clear()
@@ -115,7 +134,7 @@ void PlayerInfo::Clear()
 	GameData::Revert();
 	Messages::Reset();
 
-	conditions.Clear();
+	conditions->Clear();
 }
 
 
@@ -158,7 +177,7 @@ void PlayerInfo::New(const StartConditions &start)
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
-	start.GetConditions().Apply(conditions);
+	start.GetConditions().Apply(*conditions);
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -320,7 +339,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
-			conditions.Load(child);
+			Conditions().Load(child);
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
@@ -483,7 +502,7 @@ void PlayerInfo::Save() const
 
 	// Save global conditions:
 	DataWriter globalConditions(Files::Config() + "global conditions.txt");
-	GameData::GlobalConditions().Save(globalConditions);
+	GameData::GlobalConditions()->Save(globalConditions);
 }
 
 
@@ -681,8 +700,8 @@ void PlayerInfo::IncrementDate()
 	auto GetIncome = [&](string prefix)
 	{
 		int64_t total = 0;
-		auto it = conditions.PrimariesLowerBound(prefix);
-		for( ; it != conditions.PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
+		auto it = Conditions().PrimariesLowerBound(prefix);
+		for( ; it != Conditions().PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
 			total += it->second;
 		return total;
 	};
@@ -2003,7 +2022,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target() && !event.Target()->IsYours())
 		{
-			auto &rating = conditions["combat rating"];
+			auto &rating = Conditions()["combat rating"];
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
 		}
@@ -2021,7 +2040,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 // Get mutable access to the player's list of conditions.
 ConditionsStore &PlayerInfo::Conditions()
 {
-	return conditions;
+	return *conditions;
 }
 
 
@@ -2029,7 +2048,7 @@ ConditionsStore &PlayerInfo::Conditions()
 // Access the player's list of conditions.
 const ConditionsStore &PlayerInfo::Conditions() const
 {
-	return conditions;
+	return *conditions;
 }
 
 
@@ -2727,7 +2746,7 @@ void PlayerInfo::ValidateLoad()
 			startData = GameData::StartOptions().front();
 			// When necessary, record in the pilot file that the starting data is just an assumption.
 			if(startCount >= 2)
-				conditions["unverified start scenario"] = true;
+				Conditions()["unverified start scenario"] = true;
 		}
 		else
 			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
@@ -2753,76 +2772,76 @@ void PlayerInfo::ValidateLoad()
 void PlayerInfo::RegisterDerivedConditions()
 {
 	// Read-only date functions.
-	auto &&dayProvider = conditions.GetProviderNamed("day");
+	auto &&dayProvider = Conditions().GetProviderNamed("day");
 	dayProvider.SetGetFunction([this](const string &name) { return date.Day(); });
 
-	auto &&monthProvider = conditions.GetProviderNamed("month");
+	auto &&monthProvider = Conditions().GetProviderNamed("month");
 	monthProvider.SetGetFunction([this](const string &name) { return date.Month(); });
 
-	auto &&yearProvider = conditions.GetProviderNamed("year");
+	auto &&yearProvider = Conditions().GetProviderNamed("year");
 	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
 
-	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
+	auto &&daysSinceYearStartProvider = Conditions().GetProviderNamed("days since year start");
 	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
 
-	auto &&daysUntilYearEndProvider = conditions.GetProviderNamed("days until year end");
+	auto &&daysUntilYearEndProvider = Conditions().GetProviderNamed("days until year end");
 	daysUntilYearEndProvider.SetGetFunction([this](const string &name) { return date.DaysUntilYearEnd(); });
 
-	auto &&daysSinceEpochProvider = conditions.GetProviderNamed("days since epoch");
+	auto &&daysSinceEpochProvider = Conditions().GetProviderNamed("days since epoch");
 	daysSinceEpochProvider.SetGetFunction([this](const string &name) { return date.DaysSinceEpoch(); });
 
-	auto &&daysSinceStartProvider = conditions.GetProviderNamed("days since start");
+	auto &&daysSinceStartProvider = Conditions().GetProviderNamed("days since start");
 	daysSinceStartProvider.SetGetFunction([this](const string &name)
 	{
 		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch();
 	});
 
-	// Read-only account conditions.
+	// Read-only account Conditions().
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
-	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
+	auto &&netWorthProvider = Conditions().GetProviderNamed("net worth");
 	netWorthProvider.SetGetFunction([this](const string &name)
 		{ return min(limit, max(-limit, accounts.NetWorth())); });
 
-	auto &&creditsProvider = conditions.GetProviderNamed("credits");
+	auto &&creditsProvider = Conditions().GetProviderNamed("credits");
 	creditsProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.Credits()); });
 
-	auto &&unpaidMortgagesProvider = conditions.GetProviderNamed("unpaid mortgages");
+	auto &&unpaidMortgagesProvider = Conditions().GetProviderNamed("unpaid mortgages");
 	unpaidMortgagesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
 
-	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
+	auto &&unpaidFinesProvider = Conditions().GetProviderNamed("unpaid fines");
 	unpaidFinesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Fine")); });
 
-	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
+	auto &&unpaidSalariesProvider = Conditions().GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.SalariesOwed()); });
 
-	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
+	auto &&unpaidMaintenanceProvider = Conditions().GetProviderNamed("unpaid maintenance");
 	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.MaintenanceDue()); });
 
-	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
+	auto &&creditScoreProvider = Conditions().GetProviderNamed("credit score");
 	creditScoreProvider.SetGetFunction([this](const string &name) {
 		return accounts.CreditScore(); });
 
-	// Read-only flagship conditions.
-	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
+	// Read-only flagship Conditions().
+	auto &&flagshipCrewProvider = Conditions().GetProviderNamed("flagship crew");
 	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? flagship->Crew() : 0; });
 
-	auto &&flagshipRequiredCrewProvider = conditions.GetProviderNamed("flagship required crew");
+	auto &&flagshipRequiredCrewProvider = Conditions().GetProviderNamed("flagship required crew");
 	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? flagship->RequiredCrew() : 0; });
 
-	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
+	auto &&flagshipBunksProvider = Conditions().GetProviderNamed("flagship bunks");
 	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? flagship->Attributes().Get("bunks") : 0; });
 
-	auto &&flagshipModelProvider = conditions.GetProviderPrefixed("flagship model: ");
+	auto &&flagshipModelProvider = Conditions().GetProviderPrefixed("flagship model: ");
 	auto flagshipModelFun = [this](const string &name) -> bool
 	{
 		if(!flagship)
@@ -2845,7 +2864,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return round(attributes.Get(attribute) * 1000.);
 	};
 
-	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
+	auto &&flagshipBaseAttributeProvider = Conditions().GetProviderPrefixed("flagship base attribute: ");
 	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
 	{
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
@@ -2853,7 +2872,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
 	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
 
-	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
+	auto &&flagshipAttributeProvider = Conditions().GetProviderPrefixed("flagship attribute: ");
 	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
 	{
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
@@ -2861,7 +2880,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
-	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
+	auto &&playerNameProvider = Conditions().GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
 		return name == "name: " + firstName + " " + lastName;
@@ -2869,7 +2888,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	playerNameProvider.SetHasFunction(playerNameFun);
 	playerNameProvider.SetGetFunction(playerNameFun);
 
-	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("first name: ");
+	auto &&playerNameFirstProvider = Conditions().GetProviderPrefixed("first name: ");
 	auto playerNameFirstFun = [this](const string &name) -> bool
 	{
 		return name == "first name: " + firstName;
@@ -2877,7 +2896,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	playerNameFirstProvider.SetHasFunction(playerNameFirstFun);
 	playerNameFirstProvider.SetGetFunction(playerNameFirstFun);
 
-	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("last name: ");
+	auto &&playerNameLastProvider = Conditions().GetProviderPrefixed("last name: ");
 	auto playerNameLastFun = [this](const string &name) -> bool
 	{
 		return name == "last name: " + lastName;
@@ -2887,15 +2906,15 @@ void PlayerInfo::RegisterDerivedConditions()
 
 
 	// Conditions for your fleet's attractiveness to pirates.
-	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
+	auto &&cargoAttractivenessProvider = Conditions().GetProviderNamed("cargo attractiveness");
 	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return RaidFleetFactors().first; });
 
-	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");
+	auto &&armamentDeterrence = Conditions().GetProviderNamed("armament deterrence");
 	armamentDeterrence.SetGetFunction([this](const string &name) -> int64_t {
 		return RaidFleetFactors().second; });
 
-	auto &&pirateAttractionProvider = conditions.GetProviderNamed("pirate attraction");
+	auto &&pirateAttractionProvider = Conditions().GetProviderNamed("pirate attraction");
 	pirateAttractionProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		auto rff = RaidFleetFactors();
@@ -2906,7 +2925,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
-	auto &&cargoSpaceProvider = conditions.GetProviderNamed("cargo space");
+	auto &&cargoSpaceProvider = Conditions().GetProviderNamed("cargo space");
 	cargoSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(flagship && !boardingMissions.empty())
@@ -2918,7 +2937,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	auto &&passengerSpaceProvider = conditions.GetProviderNamed("passenger space");
+	auto &&passengerSpaceProvider = Conditions().GetProviderNamed("passenger space");
 	passengerSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(flagship && !boardingMissions.empty())
@@ -2932,7 +2951,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The number of active, present ships the player has of the given category
 	// (e.g. Heavy Warships).
-	auto &&shipTypesProvider = conditions.GetProviderPrefixed("ships: ");
+	auto &&shipTypesProvider = Conditions().GetProviderPrefixed("ships: ");
 	shipTypesProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
@@ -2944,7 +2963,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The number of ships the player has of the given category anywhere in their fleet.
-	auto &&shipTypesAllProvider = conditions.GetProviderPrefixed("ships (all): ");
+	auto &&shipTypesAllProvider = Conditions().GetProviderPrefixed("ships (all): ");
 	shipTypesAllProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
@@ -2955,7 +2974,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The number of ships the player has of the given model active and present.
-	auto &&shipModelProvider = conditions.GetProviderPrefixed("ship model: ");
+	auto &&shipModelProvider = Conditions().GetProviderPrefixed("ship model: ");
 	shipModelProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
@@ -2967,7 +2986,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The number of ships that the player has of the given model anywhere in their fleet.
-	auto &&shipModelAllProvider = conditions.GetProviderPrefixed("ship model (all): ");
+	auto &&shipModelAllProvider = Conditions().GetProviderPrefixed("ship model (all): ");
 	shipModelAllProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
@@ -2978,7 +2997,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The total number of ships the player has active and present.
-	auto &&totalPresentShipsProvider = conditions.GetProviderNamed("total ships");
+	auto &&totalPresentShipsProvider = Conditions().GetProviderNamed("total ships");
 	totalPresentShipsProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
@@ -2989,7 +3008,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The total number of ships the player has anywhere.
-	auto &&totalAnywhereShipsProvider = conditions.GetProviderNamed("total ships (all)");
+	auto &&totalAnywhereShipsProvider = Conditions().GetProviderNamed("total ships (all)");
 	totalAnywhereShipsProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
@@ -3003,7 +3022,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
 	// If landed, this means checking all landed ships for installed outfits, the pooled cargo
 	// hold, and the planetary storage of the planet.
-	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit: ");
+	auto &&presentOutfitProvider = Conditions().GetProviderPrefixed("outfit: ");
 	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit: ")));
@@ -3032,7 +3051,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Conditions to determine what outfits the player owns, with various possible locations to check.
 	// The following condition checks all possible locations for outfits in the player's possession.
-	auto &&allOutfitProvider = conditions.GetProviderPrefixed("outfit (all): ");
+	auto &&allOutfitProvider = Conditions().GetProviderPrefixed("outfit (all): ");
 	allOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all): ")));
@@ -3053,7 +3072,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks the player's fleet for installed outfits on escorts
 	// local to the player.
-	auto &presentInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (installed): ");
+	auto &presentInstalledOutfitProvider = Conditions().GetProviderPrefixed("outfit (installed): ");
 	presentInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (installed): ")));
@@ -3073,7 +3092,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks the player's entire fleet for installed outfits.
-	auto &&allInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (all installed): ");
+	auto &&allInstalledOutfitProvider = Conditions().GetProviderPrefixed("outfit (all installed): ");
 	allInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all installed): ")));
@@ -3087,7 +3106,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks the flagship's installed outfits.
-	auto &&flagshipInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship installed): ");
+	auto &&flagshipInstalledOutfitProvider = Conditions().GetProviderPrefixed("outfit (flagship installed): ");
 	flagshipInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(!flagship)
@@ -3100,7 +3119,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks the player's fleet for outfits in the cargo of escorts
 	// local to the player.
-	auto &&presentCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (cargo): ");
+	auto &&presentCargoOutfitProvider = Conditions().GetProviderPrefixed("outfit (cargo): ");
 	presentCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (cargo): ")));
@@ -3122,7 +3141,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks all cargo locations in the player's fleet.
-	auto &&allCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (all cargo): ");
+	auto &&allCargoOutfitProvider = Conditions().GetProviderPrefixed("outfit (all cargo): ");
 	allCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all cargo): ")));
@@ -3138,7 +3157,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks the flagship's cargo or the pooled cargo if landed.
-	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
+	auto &&flagshipCargoOutfitProvider = Conditions().GetProviderPrefixed("outfit (flagship cargo): ");
 	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship cargo): ")));
@@ -3149,7 +3168,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks planetary storage on the current planet, or on
 	// planets in the current system if in orbit.
-	auto &&presentStorageOutfitProvider = conditions.GetProviderPrefixed("outfit (storage): ");
+	auto &&presentStorageOutfitProvider = Conditions().GetProviderPrefixed("outfit (storage): ");
 	presentStorageOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (storage): ")));
@@ -3174,7 +3193,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks all planetary storage.
-	auto &&allStorageOutfitProvider = conditions.GetProviderPrefixed("outfit (all storage): ");
+	auto &&allStorageOutfitProvider = Conditions().GetProviderPrefixed("outfit (all storage): ");
 	allStorageOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all storage): ")));
@@ -3187,7 +3206,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// This condition corresponds to the method by which the flagship entered the current system.
-	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
+	auto &&systemEntryProvider = Conditions().GetProviderPrefixed("entered system by: ");
 	auto systemEntryFun = [this](const string &name) -> bool
 	{
 		return name == "entered system by: " + EntryToString(entry);
@@ -3196,7 +3215,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	systemEntryProvider.SetGetFunction(systemEntryFun);
 
 	// This condition corresponds to the last system the flagship was in.
-	auto &&previousSystemProvider = conditions.GetProviderPrefixed("previous system: ");
+	auto &&previousSystemProvider = Conditions().GetProviderPrefixed("previous system: ");
 	auto previousSystemFun = [this](const string &name) -> bool
 	{
 		if(!previousSystem)
@@ -3207,7 +3226,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	previousSystemProvider.SetGetFunction(previousSystemFun);
 
 	// Conditions to determine if flagship is in a system and on a planet.
-	auto &&flagshipSystemProvider = conditions.GetProviderPrefixed("flagship system: ");
+	auto &&flagshipSystemProvider = Conditions().GetProviderPrefixed("flagship system: ");
 	auto flagshipSystemFun = [this](const string &name) -> bool
 	{
 		if(!flagship || !flagship->GetSystem())
@@ -3217,7 +3236,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipSystemProvider.SetHasFunction(flagshipSystemFun);
 	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
 
-	auto &&flagshipLandedProvider = conditions.GetProviderNamed("flagship landed");
+	auto &&flagshipLandedProvider = Conditions().GetProviderNamed("flagship landed");
 	auto flagshipLandedFun = [this](const string &name) -> bool
 	{
 		return (flagship && flagship->GetPlanet());
@@ -3225,7 +3244,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipLandedProvider.SetHasFunction(flagshipLandedFun);
 	flagshipLandedProvider.SetGetFunction(flagshipLandedFun);
 
-	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
+	auto &&flagshipPlanetProvider = Conditions().GetProviderPrefixed("flagship planet: ");
 	auto flagshipPlanetFun = [this](const string &name) -> bool
 	{
 		if(!flagship || !flagship->GetPlanet())
@@ -3235,7 +3254,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
 
-	auto &&flagshipPlanetAttributesProvider = conditions.GetProviderPrefixed("flagship planet attribute: ");
+	auto &&flagshipPlanetAttributesProvider = Conditions().GetProviderPrefixed("flagship planet attribute: ");
 	auto flagshipPlanetAttributesFun = [this](const string &name) -> bool
 	{
 		if(!flagship || !flagship->GetPlanet())
@@ -3246,8 +3265,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
 	flagshipPlanetAttributesProvider.SetHasFunction(flagshipPlanetAttributesFun);
 
-	// Read only exploration conditions.
-	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
+	// Read only exploration Conditions().
+	auto &&visitedPlanetProvider = Conditions().GetProviderPrefixed("visited planet: ");
 	auto visitedPlanetFun = [this](const string &name) -> bool
 	{
 		const Planet *planet = GameData::Planets().Find(name.substr(strlen("visited planet: ")));
@@ -3256,7 +3275,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedPlanetProvider.SetGetFunction(visitedPlanetFun);
 	visitedPlanetProvider.SetHasFunction(visitedPlanetFun);
 
-	auto &&visitedSystemProvider = conditions.GetProviderPrefixed("visited system: ");
+	auto &&visitedSystemProvider = Conditions().GetProviderPrefixed("visited system: ");
 	auto visitedSystemFun = [this](const string &name) -> bool
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("visited system: ")));
@@ -3265,7 +3284,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
-	// Read-only navigation conditions.
+	// Read-only navigation Conditions().
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
 	{
 		if(!origin)
@@ -3277,7 +3296,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return distanceMap.Days(destination);
 	};
 
-	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
+	auto &&hyperjumpsToSystemProvider = Conditions().GetProviderPrefixed("hyperjumps to system: ");
 	auto hyperjumpsToSystemFun = [this, HyperspaceTravelDays](const string &name) -> int
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
@@ -3292,7 +3311,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
 	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
 
-	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
+	auto &&hyperjumpsToPlanetProvider = Conditions().GetProviderPrefixed("hyperjumps to planet: ");
 	auto hyperjumpsToPlanetFun = [this, HyperspaceTravelDays](const string &name) -> int
 	{
 		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
@@ -3314,9 +3333,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
 	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
 
-	// Read/write government reputation conditions.
+	// Read/write government reputation Conditions().
 	// The erase function is still default (since we cannot erase government conditions).
-	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
+	auto &&reputationProvider = Conditions().GetProviderPrefixed("reputation: ");
 	reputationProvider.SetHasFunction([](const string &name) -> bool
 	{
 		string govName = name.substr(strlen("reputation: "));
@@ -3341,26 +3360,26 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// Global conditions setters and getters:
-	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
+	auto &&globalProvider = Conditions().GetProviderPrefixed("global: ");
 	globalProvider.SetHasFunction([](const string &name) -> bool
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Has(condition);
+		return GameData::GlobalConditions()->Has(condition);
 	});
 	globalProvider.SetGetFunction([](const string &name) -> int64_t
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Get(condition);
+		return GameData::GlobalConditions()->Get(condition);
 	});
 	globalProvider.SetSetFunction([](const string &name, int64_t value) -> bool
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Set(condition, value);
+		return GameData::GlobalConditions()->Set(condition, value);
 	});
 	globalProvider.SetEraseFunction([](const string &name) -> bool
 	{
 		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Erase(condition);
+		return GameData::GlobalConditions()->Erase(condition);
 	});
 }
 
@@ -3854,7 +3873,7 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("separate possible");
 
 	// Save any "primary condition" flags that are set.
-	conditions.Save(out);
+	Conditions().Save(out);
 
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
