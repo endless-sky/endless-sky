@@ -3064,10 +3064,21 @@ event "merchants start using plasma repeaters"
 		add variant 15
 			"Argosy (Plasma Repeater)"
 		add variant 10
+			"Bastion (Plasma Repater)"
+		add variant 10
 			"Bastion"
 			"Argosy (Plasma Repeater)"
 		add variant 5
 			"Bastion (Heavy)"
+			"Argosy (Plasma Repeater)"
+		add variant 5
+			"Bastion (Plasma Repeater)"
+			"Argosy (Laser)"
+		add variant 5
+			"Bastion (Plasma Repeater)"
+			"Argosy (Turret)"
+		add variant 2
+			"Bastion (Plasma Repeater)"
 			"Argosy (Plasma Repeater)"
 		add variant 5
 			"Bastion (Laser)"
@@ -3081,6 +3092,10 @@ event "merchants start using plasma repeaters"
 
 event "pirates start using plasma repeaters"
 	fleet "Large Southern Pirate"
+		add variant 2
+			"Bastion (Plasma Repeater)"
+		add variant 1
+			"Osprey (Plasma Repeater)"
 		add variant 2
 			"Argosy (Plasma Repeater)"
 		add variant 1
