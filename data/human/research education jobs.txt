@@ -168,37 +168,30 @@ mission "Student transport [1]"
 		payment 4000
 
 
-mission "Student field research [1]"
+mission "Student field research (farming)"
 	job
 	repeat
 	name "Transport student to <planet>"
-	description "This student needs transport to <destination>, where they will perform field research on the <student research> of <planet>. They will pay you <payment>."
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
 	to offer
 		random < 5
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
 		attributes "education"
 	passengers 1
-	substitutions
-		"<student research>" "biosphere"
-		"<student research>" "oceans"
-			has attributes fishing
+	substitutions		
+		"<student research>" "farms on"
+		"<student research>" "soil quality of"
+			has random < 80
+		"<student research>" "river water quality of"
 			has random < 60
-		"<student research>" "aquacultural industry"
-			has attributes fishing
-			has random < 30
-		"<student research>" "soil quality"
-			has attributes farming forest
-			has random < 60
-		"<student research>" "forests"
-			has attributes forest
-			has random < 30
-		"<student research>" "agricultural industry"
-			has attributes farming
-			has random < 30
+		"<student research>" "agricultural industry of"
+			has random < 40
+		"<student research>" "agricultural practices of the farms on"
+			has random < 20
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
-		attributes fishing forest farming
+		attributes farming
 		distance 2 10
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -207,11 +200,11 @@ mission "Student field research [1]"
 		payment
 		payment 4000
 
-mission "Student field research [2]"
+mission "Student field research (mining / oil)"
 	job
 	repeat
 	name "Transport student to <planet>"
-	description "This student needs transport to <destination>, where they will perform field research on the <student research> of <planet>. They will pay you <payment>."
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
 	to offer
 		random < 5
 	source
@@ -219,22 +212,18 @@ mission "Student field research [2]"
 		attributes "education"
 	passengers 1
 	substitutions
-		"<student research>" "geology"
-		"<student research>" "tectonic activity"
-			has attributes volcanic mining oil
+		"<student research>" "geology of"
+		"<student research>" "working conditions on"
+			has random < 80
+		"<student research>" "tectonic activity of"
 			has random < 60
-		"<student research>" "mining industry"
-			has attributes mining
-			has random < 30
-		"<student research>" "petroleum industry"
-			has attributes oil
-			has random < 30
-		"<student research>" "volcanoes"
-			has attributes volcanic
-			has random < 30
+		"<student research>" "mining industry of"
+			has random < 40
+		"<student research>" "petroleum industry of"
+			has random < 20
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
-		attributes mining volcanic oil
+		attributes mining oil
 		distance 2 10
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -243,11 +232,11 @@ mission "Student field research [2]"
 		payment
 		payment 4000
 
-mission "Student field research [3]"
+mission "Student field research (forest)"
 	job
 	repeat
 	name "Transport student to <planet>"
-	description "This student needs transport to <destination>, where they will perform field research on the <student research> of <planet>. They will pay you <payment>."
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
 	to offer
 		random < 5
 	source
@@ -255,61 +244,117 @@ mission "Student field research [3]"
 		attributes "education"
 	passengers 1
 	substitutions
-		"<student research>" "biosphere"
-		"<student research>" "medicinal industry"
-			has attributes medical
-			has random < 60
-		"<student research>" "oceans"
-			has attributes fishing
-			has random < 60
-		"<student research>" "indigenous fish"
-			has attributes fishing
-			has random < 30
-		"<student research>" "forests"
-			has attributes forest
-			has random < 60
-		"<student research>" "indigenous wildlife"
-			has attributes forest medical
-			has random < 30
-	destination
-		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
-		attributes fishing forest medical
-		distance 2 10
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		dialog phrase "generic passenger dropoff payment"
-		payment
-		payment 4000
-
-mission "Student field research [4]"
-	job
-	repeat
-	name "Transport student to <planet>"
-	description "This student needs transport to <destination>, where they will perform field research on the <student research> of <planet>. They will pay you <payment>."
-	to offer
-		random < 5
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
-		attributes "education"
-	passengers 1
-	substitutions
-		"<student research>" "quality of life of the inhabitants"
-		"<student research>" "cities"
-			has attributes urban
-			has random < 75
-		"<student research>" "manufacturing industry"
-			has attributes factory
-			has random < 75
-		"<student research>" "air quality"
-			has attributes urban factory
+		"<student research>" "biosphere of"
+		"<student research>" "soil quality of"
+			has random < 83
+		"<student research>" "tree species of"
+			has random < 67
+		"<student research>" "forests of"
 			has random < 50
-		"<student research>" "working conditions"
-			has attributes urban factory
-			has random < 25
+		"<student research>" "forestry industry of"
+			has random < 33
+		"<student research>" "indigenous wildlife of"
+			has random < 17
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes forest
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (urban / factory)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> of <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "quality of life of the inhabitants of"
+		"<student research>" "cities of"
+			has random < 80
+		"<student research>" "manufacturing industry of"
+			has random < 60
+		"<student research>" "air quality of"
+			has random < 40
+		"<student research>" "working conditions on"
+			has random < 20
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
 		attributes urban factory
+		not planet New Sahara
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (fishing)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "biosphere of"
+		"<student research>" "oceans of"
+			has random < 83
+		"<student research>" "indigenous fish of"
+			has random < 67
+		"<student research>" "water quality of"
+			has random < 50
+		"<student research>" "fishing industry of"
+			has random < 33
+		"<student research>" "aquacultural industry of"
+			has random < 17
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes fishing
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (volcanic)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "tectonic activity on"
+		"<student research>" "volcanic activity on"
+			has random < 75
+		"<student research>" "volcanoes of"
+			has random < 50
+		"<student research>" "atmosphere of"
+			has random < 25
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes volcanic
 		distance 2 10
 	on visit
 		dialog phrase "generic passenger on visit"
