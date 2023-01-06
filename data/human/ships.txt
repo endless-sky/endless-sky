@@ -2686,7 +2686,7 @@ ship "Quicksilver"
 	outfits
 		"Particle Cannon" 2
 		
-		"RT-I Radiothermal"
+		"nGVF-DD Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
 		"Cooling Ducts"
