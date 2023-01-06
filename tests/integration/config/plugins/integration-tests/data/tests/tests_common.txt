@@ -601,3 +601,48 @@ test "Sell first ship"
 		input
 			key "l"
 
+
+
+test "Land"
+	status partial
+	description "Helper for landing."
+	sequence
+		input
+			command land
+		label "landing"
+		# empty input to make time pass
+		input
+		branch "landing"
+			"flagship landed" == 0
+
+
+
+test "Trigger Ruin Spaceport Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions."
+	sequence
+		call "Depart"
+		call "Land"
+		input
+			key p
+
+
+test "Trigger Prime Spaceport Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions."
+	sequence
+		call "Depart"
+		call "Land"
+		input
+			key p
+
+
+test "Skip Spaceport Mission"
+	status partial
+	description "Just skip a mission by pressing return twice."
+	sequence
+		# press accept (or decline, depending on if it is shown) and then skip the dialog once
+		input
+			key "Return"
+		input
+			key "Return"
