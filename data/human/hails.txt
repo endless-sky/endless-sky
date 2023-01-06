@@ -2782,7 +2782,7 @@ phrase "navy warning adverb"
 phrase "friendly navy"
 	word 
 		"It is "
-		
+	word
 		"illegal"
 		"prohibited"
 		"an illegal act"

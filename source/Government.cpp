@@ -173,7 +173,7 @@ void Government::Load(const DataNode &node)
 					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
 				else
 				{
-					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(1))->id];
+					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))->id];
 					PenaltyHelper(grand, pens);
 				}
 			}
