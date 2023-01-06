@@ -435,6 +435,7 @@ ship "Bastion" "Bastion (Scanner)"
 
 
 ship Bastion "Bastion (Plasma Repeater)"
+	outfits
 		"Plasma Repeater" 4
 		"Quad Blaster Turret" 2
 		"S3 Thermionic"
