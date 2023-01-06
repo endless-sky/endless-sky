@@ -3163,7 +3163,7 @@ mission "Fangvin: Struggling Author 1"
 					decline
 			label "why don't your books sell that much"
 			`	"It could be a lot of reasons. I suppose they're afraid of the Quarg getting angry?"`
-			`	Anna then begins explaining how her parents were opposed to her career choice, how for the past few years it had been hard to make ends meet`
+			`	Anna then begins explaining how her parents were opposed to her career choice, how for the past few years it had been hard to make ends meet, and how writing was a way she could at least make enough to exist.`
 			label "buy her book"
 			action
 				set "beyond the hyperdrive book"
