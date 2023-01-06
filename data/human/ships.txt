@@ -2335,6 +2335,8 @@ ship "Mammoth"
 		"Caldera Afterburner"
 		"Scram Drive"
 		
+	engine 17 147 0.8
+	engine -17 147 0.8
 	engine -34 143 0.8
 	engine 34 143 0.8
 	engine -56 148.5 0.6
