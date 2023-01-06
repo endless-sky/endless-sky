@@ -2345,8 +2345,6 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Bactrian"
 		"Dagger" 3
-	variant 1
-		"Mammoth"
 
 fleet "pirate raid"
 	government "Pirate"
