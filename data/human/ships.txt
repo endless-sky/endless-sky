@@ -555,73 +555,6 @@ ship "Behemoth"
 
 
 
-ship "Mammoth"
-	sprite "ship/mammoth"
-	thumbnail "thumbnail/mammoth"
-	attributes
-		category "Utility"
-		"cost" 18800000
-		"shields" 7800
-		"hull" 7740
-		"required crew" 18
-		"bunks" 30
-		"mass" 688
-		"drag" 10.5
-		"heat dissipation" .3
-		"fuel capacity" 1000
-		"cargo space" 550
-		"outfit space" 572
-		"weapon capacity" 288
-		"engine capacity" 129
-		"scan interference" 2
-		weapon
-			"blast radius" 140
-			"shield damage" 1400
-			"hull damage" 700
-			"hit force" 2100
-	outfits
-		"Sidewinder Launcher" 2
-		"Sidewinder Missile" 90
-		"Proton Turret" 4
-		"Heavy Anti-Missile Turret" 4
-		
-		"Fission Reactor"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Large Radar Jammer"
-		"Laser Rifle" 12
-		
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Caldera Afterburner"
-		"Scram Drive"
-		
-	engine -34 143 0.8
-	engine 34 143 0.8
-	engine -56 148.5 0.6
-	engine 56 148.5 0.6
-	gun -47.5 -57.5
-	gun 47.5 -57.5
-	turret -31 -50 "Heavy Anti-Missile Turret"
-	turret 31 -50 "Heavy Anti-Missile Turret"
-	turret -47.5 33.5
-	turret 47.5 33.5
-	turret -22 66.5 "Heavy Anti-Missile Turret"
-	turret 22 66.5 "Heavy Anti-Missile Turret"
-	turret -14.5 0 
-	turret 14.5 0
-	leak "leak" 30 50
-	leak "flame" 30 80
-	leak "big leak" 50 30
-	explode "small explosion" 15
-	explode "medium explosion" 25
-	explode "large explosion" 35
-	explode "huge explosion" 20
-	"final explode" "final explosion large"
-	description "This is a rare, extensively modified Behemoth used by some pirates and smugglers to transport large amounts of goods. It is well armed enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
-
-
-
 ship "Berserker"
 	sprite "ship/berserker"
 	thumbnail "thumbnail/berserker"
@@ -2357,6 +2290,74 @@ ship "Leviathan"
 	explode "large explosion" 8
 	"final explode" "final explosion large"
 	description "The Betelgeuse Shipyards Leviathan has been in service since long before the Republic existed. Although considered today to be an outdated and clunky model, it is still a force to be reckoned with."
+
+
+
+ship "Mammoth"
+	sprite "ship/mammoth"
+	thumbnail "thumbnail/mammoth"
+	attributes
+		category "Utility"
+		"cost" 18800000
+		"shields" 7800
+		"hull" 7740
+		"required crew" 18
+		"bunks" 30
+		"mass" 688
+		"drag" 10.5
+		"heat dissipation" .32
+		"fuel capacity" 1000
+		"cargo space" 550
+		"outfit space" 572
+		"weapon capacity" 288
+		"engine capacity" 129
+		"scan interference" 2
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 780
+			"hit force" 2100
+	outfits
+		"Sidewinder Launcher" 2
+		"Sidewinder Missile" 90
+		"Proton Turret" 4
+		"Heavy Anti-Missile Turret" 4
+		
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Cooling Ducts"
+		"Laser Rifle" 12
+		
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Caldera Afterburner"
+		"Scram Drive"
+		
+	engine -34 143 0.8
+	engine 34 143 0.8
+	engine -56 148.5 0.6
+	engine 56 148.5 0.6
+	gun -47.5 -57.5
+	gun 47.5 -57.5
+	turret -31 -50 "Heavy Anti-Missile Turret"
+	turret 31 -50 "Heavy Anti-Missile Turret"
+	turret -47.5 33.5
+	turret 47.5 33.5
+	turret -22 66.5 "Heavy Anti-Missile Turret"
+	turret 22 66.5 "Heavy Anti-Missile Turret"
+	turret -14.5 0 
+	turret 14.5 0
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "This is a rare, extensively modified Behemoth used by some pirates and smugglers to transport large amounts of goods. It is well armed enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
 
 
 
