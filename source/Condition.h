@@ -27,14 +27,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// This class stores either:
+// A Condition stores either:
 //   1. A condition that is in a ConditionsStore
 //   2. A literal value (key is empty)
 //
-// The ValueType (V in the template) is first in the template since
-// (nearly?)  all Condition classes will use a std::string key (K). It
-// should be an arithmetic type, like double, int64_t, int, or
-// unsigned. A bool should work too, but that's untested.
+// The ValueType (template parameter V) should be an arithmetic type,
+// like double, int64_t, int, or unsigned. A bool should work too, but
+// that's untested.
+//
+// Internally, the Condition has its own local copy of the data,
+// stored as a ValueType. When a caller requests the data, they get
+// that local copy.
+//
+// To replace the local copy with the latest version from the store,
+// call UpdateConditions().
+//
+// To send the local copy to the store, call SendValue()
+//
+// If there is no store connected, those methods will do nothing.
+//
+// The connection to the store happens through three member variables:
+//
+//    store = a shared pointer to the ConditionsStore that has
+//    key = the std::string key, sent to the ConditionsStore to get a ConditionEntry
+//    entry = a weak pointer to the ConditionEntry with the value or its provider
 
 template < class V >
 class Condition {
@@ -58,6 +74,8 @@ public:
 
 	// Get the initial value from the store. Use V() if the store returned nothing.
 	Condition(std::shared_ptr<ConditionsStore> store, const KeyType &key);
+
+	// Automatic conversion between condition types via copying or assignment.
 
 	template <class V2>
 	Condition(const Condition<V2> &other);
