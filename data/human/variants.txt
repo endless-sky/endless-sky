@@ -400,14 +400,16 @@ ship Bastion "Bastion (Laser)"
 		"Heavy Laser" 4
 		"Heavy Anti-Missile Turret"
 		"Heavy Laser Turret" 2
-		"Fusion Reactor"
-		Supercapacitor 4
-		"D67-TM Shield Generator"
-		"Liquid Helium Cooler"
-		"Laser Rifle" 12
-		"Outfits Expansion" 2
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Laser Rifle" 7
+		"Outfits Expansion"
 		"Impala Plasma Thruster"
-		"X4200 Ion Steering"
+		"Impala Plasma Steering"
 		"Hyperdrive"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
@@ -430,6 +432,25 @@ ship "Bastion" "Bastion (Scanner)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+
+
+ship Bastion "Bastion (Plasma Repeater)"
+		"Plasma Repeater" 4
+		"Quad Blaster Turret" 2
+		"S3 Thermionic"
+		"nGVF-BB Fuel Cell"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Laser Rifle" 7
+		"Outfits Expansion" 2
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
+	turret
 
 
 
@@ -2178,6 +2199,19 @@ ship "Hawk" "Hawk (Twin Modified Blaster)"
 		"Hyperdrive"
 
 
+ship Hawk "Hawk (Electron)"
+	outfits
+		"Electron Beam" 2
+		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Panel"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
 
 ship "Headhunter" "Headhunter (Hai)"
 	outfits
@@ -2859,6 +2893,22 @@ ship "Osprey" "Osprey (Particle Anti-Missile)"
 		"Laser Rifle" 3
 		"Water Coolant System"
 		"Fusion Reactor"
+
+
+ship Osprey "Osprey (Plasma Repeater)"
+	outfits
+		"Plasma Repeater" 4
+		"Quad Blaster Turret" 2
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Liquid Helium Cooler"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		"Outfits Expansion" 2
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
 
 
 # Only after the main campaign is completed.
