@@ -217,9 +217,9 @@ phrase "exile: Exclamation!"
 		"Pusuh!"                # [Misinformed|misguided] individual!
 		"Abrakimot!"            # Person with no [skin|intelligence]!
 		"Ranrarefet!"           # [Towards|To|With the goal of] [victory|success]!
-		"Lomek'toh!"            # [Rotten|Not cared for|Genetically mutated in a negative way] egg!
-		"Tokatalag'af!"         # To benefit [the] community!
-		"Alk'etukafet!"         # [An] orchestra of death!
+		"Lome'atoh!"            # [Rotten|Not cared for|Genetically mutated in a negative way] egg!
+		"Tokatala'af!"         # To benefit [the] community!
+		"Alka'etukafet!"         # [An] orchestra of death!
 		"Irenraleb!"            # My warring is artistic!
 		"Ef'imairumut!"         # [You will] never [colonize|conquer] us!
 		"Ralabamet!"            # [I|We] are hungry!
@@ -300,7 +300,7 @@ phrase "exile mixed: Please don't do terrible things to us while we are disabled
 	word
 		"'oo merve gas."   4  # no nerve gas (mispronounced)
 		"'o nerf gus."     4  # no nerve gas (mispronounced)
-		"no g'as us."      4  # no gas us (mispronounced)
+		"no ga'as us."      4  # no gas us (mispronounced)
 		"nerf gas no."     4  # nerve gas no (mispronounced)
 
 		"ranrav rataron 'an jala'."       # do not use nerve gas.
@@ -405,15 +405,15 @@ phrase "exile humanika: Our ship or its contents or attributes"
 
 phrase "exile humanika: are sub-par by any reasonable standards"
 	word
-		"'s no gud"          # is no good (mispronounced)
+		"a's no gud"          # is no good (mispronounced)
 		"baad"               # bad (mispronounced)
 		"be sit"             # is [epithet for fecal matter] (mispronounced)
-		"dust'n wurk"        # doesn't work (mispronounced)
+		"dus'n wurk"        # doesn't work (mispronounced)
 		"ain' gud"           # ain't good (mispronounced)
 
 phrase "exile humanika: are above par by any reasonable standards"
 	word
-		"'s amazin"          # is amazing (mispronounced)
+		"i' amazin"          # is amazing (mispronounced)
 		"do gud"             # [do|does] good (mispronounced)
 		"werks wall"         # works well (mispronounced)
 		"snassy"             # [snazzy|sassy] (mispronounced)
@@ -483,7 +483,7 @@ phrase "exile humanika: You will give us"
 		"Can haf"                # Can have (mispronounced)
 		"Will haf"               # Will have (mispronounced)
 		"Gif us"                 # Give us (mispronounced)
-		"Tribut'"                # Tribute (mispronounced, probably heard it from pirates)
+		"Tribu'e"                # Tribute (mispronounced, probably heard it from pirates)
 		"Wee taek yur"           # We take your (mispronounced)
 		"Is are"                 # Is our (mispronounced)
 
@@ -496,10 +496,10 @@ phrase "exile humanika: All of your"
 
 phrase "exile humanika: is ours now."
 	word
-		"blong to 's."           # belong to us (mispronounced)
+		"blong to u'."           # belong to us (mispronounced)
 		"giv mine."              # give mine (mispronounced)
 		"arrr ows now."          # are ours now (mispronounced)
-		"ar b'long to us."       # are belong to us (mispronounced)
+		"ar ba'ong to us."       # are belong to us (mispronounced)
 
 phrase "exile: You will give us"
 	word
@@ -532,7 +532,7 @@ phrase "exile: good food"
 		"bipad ko'ibnraol nrilet"      # dried space slug chips
 		"asame' oavip aok lane'"       # fresh dark green lettuce
 		"nrahfot tasah pagrel"         # crunchy rhino beetles
-		"ilehulk' lane' nrag nrakaf"   # ripe succulent strawberries
+		"ilehul' lane' nrag nrakaf"   # ripe succulent strawberries
 		"sud nrannrab ranres nracah pikob" # baked cod with garlic
 		"kemmij emu' nrannrab"         # baked sole fillet
 		"'ah koam imipd"               # Chilean Sea Bass
@@ -555,12 +555,12 @@ phrase "exile: good raw materials"
 		"ranrakah 'afe irlof"            # pure gold ingots
 		"foirukomb nrag kanra' 'omap"    # highly refined plutonium
 		"ralahfem foirakik"              # titanium sheets
-		"kabfelebe' ruk nrakah rek'nrok" # quarter ton tungsten rods (Korath tons, obviously)
+		"kabfelebe' ruk nrakah reki'nrok" # quarter ton tungsten rods (Korath tons, obviously)
 		"raimleh arlobfe'"               # perfect diamonds
 		"afim pomob kemab anahfek"       # fifty palettes of copper
 		"rabab ogat 'alet"               # hardwood planks
 		"'okale' melah li'ab rakaoh"     # a hundred barrels of manufactured sand
-		"avah maloktolk' ma'af"          # bulk structural steel
+		"avah maloktol' ma'af"          # bulk structural steel
 		"ehokurar ruhlat ifama"          # naturally [formed] carbon nanotubes
 		"ralahfem karuhlatimub"          # polycarbonate sheets
 
@@ -573,8 +573,8 @@ phrase "exile humanika: and we will let you live."
 	word
 		"lat 'oo liff."                   # let you live (mispronounced)
 		"oo go frie."                     # you go free (mispronounced)
-		"n't oo die."                     # not you die (mispronounced)
-		"oo stai ali'f."                  # you stay alive (mispronounced)
+		"no' oo die."                     # not you die (mispronounced)
+		"oo stai ali'ef."                  # you stay alive (mispronounced)
 		"wee go o o way."                 # we go [our own way|away] (mispronounced)
 		"wee go way."                     # we go away (mispronounced)
 		"uu keep ur skin"                 # you will keep your skin (mispronounced)
@@ -618,7 +618,7 @@ phrase "exile humanika: non-luxury foodstuffs"
 		"buberris"     1             # blueberries (mispronounced)
 		"insets"       1             # insects (mispronounced)
 		"isekts"       1             # insects (mispronounced)
-		"b'eet lus"    1             # beetles (mispronounced)
+		"bee'lus"    1             # beetles (mispronounced)
 		"feesh"        1             # fish (mispronounced)
 		"starburries"  1             # strawberries (mispronounced)
 		"burds"        1             # birds (mispronounced)
@@ -630,21 +630,21 @@ phrase "exile humanika: raw materials"
 	word
 		"iren"         # iron (mispronounced)
 		"copear"       # copper (mispronounced)
-		"sapir'r"      # sapphire (mispronounced)
+		"sapi'r"      # sapphire (mispronounced)
 		"uranume"      # uranium (mispronounced)
 		"herdwuud"     # hardwood (mispronounced)
-		"tungst'n"     # tungsten (mispronounced)
-		"sann'd"       # sand (mispronounced)
+		"tungs'en"     # tungsten (mispronounced)
+		"sann'"       # sand (mispronounced)
 		"qurts"        # quartz (mispronounced)
 		"ste'l"        # steel (mispronounced)
-		"pla'tk"       # plastic (mispronounced)
+		"pla'ik"       # plastic (mispronounced)
 
 phrase "exile humanika: tactical and strategic items"
 	word
 		"mapse of humanika spass"  # Maps of human space (mispronounced)
 		"tar maps"                 # Star maps (mispronounced)
 		"humanika flit moment dita" # Human fleet movement data (mispronounced)
-		"r'd wermhol resurch"      # Red wormhole research (mispronounced)
+		"re' wermhol resurch"      # Red wormhole research (mispronounced)
 		"rad holl resurch"         # Red [worm]hole research (mispronounced)
 		"wermhol resurch"          # Wormhole research (mispronounced)
 		"sampil o humanika tetch"  # [Examples|Samples] of human technology (mispronounced)
@@ -662,15 +662,15 @@ phrase "exile humanika: cultural items"
 	word
 		"sculping suplis"          # Sculpting supplies (mispronounced)
 		"painbush n paint"         # Paintbrushes and paint (mispronounced)
-		"musik'l instr'mats"       # Musical instruments (mispronounced)
-		"dr'm set"                 # Drum set (mispronounced)
+		"musi'l instru'ats"       # Musical instruments (mispronounced)
+		"dru' set"                 # Drum set (mispronounced)
 		"Mosart musaic"            # Mozart music (mispronounced)
 		"tess set's"               # chess sets (mispronounced)
-		"fingre paint'n k't"       # finger-painting kit (mispronounced)
+		"fingre pain'in ki'"       # finger-painting kit (mispronounced)
 		"all yer operas"           # all of your operas (mispronounced)
 		"sonettes n haukus"        # sonnets and haikus (mispronounced)
-		"color'd pencals"          # colored pencils (mispronounced)
-		"buulk fabr'c"             # bulk fabric (mispronounced)
+		"colore' pencals"          # colored pencils (mispronounced)
+		"buulk fabri'"             # bulk fabric (mispronounced)
 		"strang instraments"       # string instruments (mispronounced)
 		"rok gittar"               # rock guitar (mispronounced)
 		"bomance novals"           # [romance|bromance] novels (mispronounced)
@@ -689,12 +689,12 @@ phrase "exile humanika: cultural items"
 # among the Korath that make them ask for this.
 phrase "exile humanika: strange items"
 	word
-		"kit'ns"                   # Kittens  (mispronounced)
-		"Hoy ac'rn cookees"        # Hai acorn cookies (mispronounced)
+		"kit'ens"                   # Kittens  (mispronounced)
+		"Hoy a'orn cookees"        # Hai acorn cookies (mispronounced)
 		"toilat pepper"            # Toilet paper (mispronounced)
 		"geko"                     # Gecko (mispronounced)
-		"Shak'ls n Sheragi"        # Shackles and Sheragi (mispronounced)
-		"Bondl's Fontr'z: tee Fire Lizards" # Boundless Frontiers: the Fire Lizards (mispronounced)
+		"Sha'ls n Sheragi"        # Shackles and Sheragi (mispronounced)
+		"Bondle' Fontre'z: tee Fire Lizards" # Boundless Frontiers: the Fire Lizards (mispronounced)
 		"Ter Mite Bee Riot Abums"  # There Might Be Riots Albums (mispronounced)
 		"How tu Serv Man buuk"     # The book, "How to Serve Man" (mispronounced)
 		"ganfadder clok"           # grandfather clock (mispronounced)
@@ -727,14 +727,14 @@ phrase "exile: [system] is snazzy"
 		"monnro famas agri'nroj"             # excels at its function
 		"itimifef raobfafet nrag laom a'aih" # has amazing capabilities
 		"pamasa nrag nrimab 'iraf is fama ak'efe'"  # is the most snazzy in the universe
-		"ralefab nrag lemotakteb'"           # spectacularly exhibits [its purpose]
+		"ralefab nrag lemotakte'"           # spectacularly exhibits [its purpose]
 		"'oleref-'olek ipihemef avlerit"     # perennially exceeds performance [metrics]
 		"kaohis ranres kanra' tiah"          # is most excellently fashioned
 
 phrase "exile: [system] is better than yours"
 	word
 		"saha-sahaleh ikacemef inumurtek asra"     # is centuries past your technology
-		"kapimlek inah asra iklebe' refolk'ri ipami"  # looks to you like a divine instrument
+		"kapimlek inah asra iklebe' refolka'ri ipami"  # looks to you like a divine instrument
 		"raavleteb kad nrag pihem tiah ilas mabat" # [has a] better paint job than your ship
 		"monnro is laom rafapafeb asra"          # excels beyond your understanding
 		"pamasa ire' nrag tasik parleb a'ih asra ianlap" # is art you could never appreciate
@@ -781,7 +781,7 @@ phrase "exile: Our ship's"
 
 phrase "exile: weapons"
 	word
-		"mihfa etilk' kellok"           # grab-strike turret
+		"mihfa etilka' kellok"           # grab-strike turret
 		"alaref ratunufeb krop'"        # shunt-strike turret
 		"oamapnref alaref i'akiqaln"    # banisher grav-turret
 		"ratlaomet akavre' i'akiqaln"   # expeler grav-ray
@@ -821,7 +821,7 @@ phrase "exile: systems"
 		"oalib 'arab"                   # heat shunt[s]
 		"rinrisreb foilkar liad"        # liquid sodium cooler
 		"pamunreb rapah latah"          # fuel processor
-		"roi'ak' rarapakleb"            # defense station
+		"roi'ak'a rarapakleb"            # defense station
 
 phrase "exile humanika: systems"
 	word
@@ -829,7 +829,7 @@ phrase "exile humanika: systems"
 		"lasma corr"                    # plasma core (mispronounced)
 		"haet sunt"                     # heat shunt (mispronounced)
 		"likid coolar"                  # liquid cooler (mispronounced)
-		"gruel process'r"               # fuel processor (mispronounced)
+		"gruel proce'or"               # fuel processor (mispronounced)
 
 phrase "exile: has destroyed our ship."
 	word
@@ -887,7 +887,7 @@ phrase "exile: ain't doing so well right now."
 		"arelat ri'ef ifat pememef arelat agr'arab ilisre'."   # [is failing] due to our engines melting under their own heat.
 		"tasik kabas ratmi'apnref alaso oaka lia."  # [is] unable to produce air or water.
 		"pamek isavref 'arabe' nrakrih rulkoer."    # has become as hot as a neutron star.
-		"tasik itimifef krop' 'arab avlet."          # has no working heat shunts.
+		"tasik itimifef kropi' 'arab avlet."          # has no working heat shunts.
 		"abrak ri'ef oaka anarek nrag avleteh."     # is without working engines or power
 		"tasik itimifef fek'i' nrotosreb rabosipet avlet." # has no working life support systems
 
@@ -1025,7 +1025,7 @@ phrase "exile: I perform harmful acts upon"
 		"Ratotamef railak raikafet"         # [I] perform the dance of death [in relation to | with the subject being]
 		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
 		"Rarataf ranril asab kimot"         # [I] snack on the skin of
-		"Aga' ikaftiref 'kisap ilas"        # I enjoy the death of
+		"Aga' ikaftiref 'akisap ilas"        # I enjoy the death of
 		"Ratilehfef akrid ralet atakebamaf" # [I] give love-taps of doom [to]
 		"Tikimennref alade' tikbimatuba"    # [I] apocalyptically tickle
 
@@ -1429,13 +1429,13 @@ phrase "exile: artistic or musical skill"
 		"lriyee lrad kalram hatri"           # divinely beautiful eefing (Xhosa throat singing)
 		"Far Upugf Enrel Ugt"                # Nam Myoho Renge Kyo (Buddhist religious chant)
 		"Fu A Al Ab Ad Ar Pips"              # Om A Ra Pa Ca Na Dhih (Buddhist religious chant)
-		"i'i'ubfut onam dimesepdg'b-k'ub"    # post-psychedelic song composition
+		"i'i'ubfut onam dimesepdgi'ib-ko'ub"    # post-psychedelic song composition
 		"abaleheh ukle'rut uhu"              # several oboe concertos
 		"nrokab 'islo'ha tikerit"            # kinetic absurdist sculpture
 		"ralito ivanlen lebip 'ik'imael"     # hyper-realistic chainsaw carving
 		"nrokab ranravrameket tiulep"        # heroic nudity sculpting
 		"nrokab tulah nrag 'ifaris"          # dynamic boroque sculpture
-		"nrokab ire' parak 'irlesuf-k'ub"    # post-modernist land art sculpture
+		"nrokab ire' parak 'irlesuf-ko'ub"    # post-modernist land art sculpture
 		"agan ra'itom ef'irui'elbfi talk'ha" # abstract impressionism painting style
 		"lekaek tikimub ti'amtuer rlesuf"    # modern neoclassical political theatre
 		"i'tolk'rutelef aiseffud ekla'mmes"  # reconstructed (as in recovered from loss) commedia dell'arte
