@@ -35123,7 +35123,7 @@ planet Parii'het
 	government Builder
 
 planet Pearl
-	attributes paradise tourism forest
+	attributes paradise tourism forest medical
 	landscape land/forest3
 	description `Pearl is an idyllic, forested world, mostly set aside as a wildlife sanctuary for imported exotic species. Each of the islands and continents houses animals and plants from a different planet's biosphere. Terraforming stations and satellites maintain the atmospheric gas levels in order to keep each island at the proper temperature and rainfall level.`
 	description `	Some of the islands are open for tourists and safari tours, and even for hunting. Others are owned by private companies and used for medical research. People with training in veterinary medicine are always in high demand here.`
