@@ -3010,8 +3010,6 @@ event "pirates use electron weapons"
 	fleet "Small Northern Pirates"
 		add variant 1
 			"Corvette (Electron)"
-		add variant 1
-			"Corvette (Flamethrower Electron Anti-Missile)"
 		add variant 2
 			"Headhunter (Electron)"
 		add variant 1
