@@ -229,6 +229,8 @@ target_sources(EndlessSkyLib PRIVATE
 	News.h
 	Outfit.cpp
 	Outfit.h
+	OutfitFilter.cpp
+	OutfitFilter.h
 	OutfitInfoDisplay.cpp
 	OutfitInfoDisplay.h
 	OutfitterPanel.cpp

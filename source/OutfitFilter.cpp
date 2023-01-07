@@ -40,6 +40,8 @@ void OutfitFilter::Load(const DataNode &node)
 			else if(child.Token(1) == "tag")
 				for(unsigned int it = 2; it < child.Tokens().size(); ++it)
 					notOutfitTags.emplace_back(child.Token(it));
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(1) == "attribute" && child.Size() >= 2)
 			for(unsigned int it = 1; it < child.Tokens().size(); ++it)
@@ -47,6 +49,8 @@ void OutfitFilter::Load(const DataNode &node)
 		else if(child.Token(1) == "tag" && child.Size() >= 2)
 			for(unsigned int it = 1; it < child.Tokens().size(); ++it)
 				outfitTags.emplace_back(child.Token(it));
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
 	isValid = true;
