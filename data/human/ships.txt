@@ -2302,14 +2302,14 @@ ship "Mammoth"
 		"shields" 7800
 		"hull" 7740
 		"required crew" 18
-		"bunks" 30
+		"bunks" 28
 		"mass" 688
 		"drag" 10.5
 		"heat dissipation" .32
 		"fuel capacity" 1000
-		"cargo space" 550
-		"outfit space" 572
-		"weapon capacity" 288
+		"cargo space" 541
+		"outfit space" 627
+		"weapon capacity" 297
 		"engine capacity" 129
 		"scan interference" 2
 		weapon
@@ -2328,6 +2328,7 @@ ship "Mammoth"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Cooling Ducts"
+		"Catalytic Ramscoop"
 		"Laser Rifle" 18
 		
 		"A370 Atomic Thruster"
