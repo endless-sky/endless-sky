@@ -44,7 +44,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 
 
 
-// Call this every time the ship changes. Sale is true for the shipyard panel only.
+// Call this every time the ship changes. Sale is true for the shipyard and outfitter panels only.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool sale)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
