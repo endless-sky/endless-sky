@@ -450,13 +450,15 @@ mission "Resistance: Smuggling: Reactors"
 
 mission "House Bebliss 1-A"
 	name "Eight Legged Hosts"
-	description "Head to <destination> where representatives from an Arach House that supports the Lunarium wish to discuss a job offer."
+	description "Head to <destination> where members of House Bebliss wish to discuss a job offer."
 	minor
 	to offer
 		random < 10
 		has "Coalition: Contributor: done"
 		not "Heliarch License: done"
 		not "Heliarch Investigation 2: active"
+		# This mission is to offer when the player has the Epilogue for whatever character of FW, Navy or Syndicate stays in Deneb.
+		# When the Navy and Syndicate campaigns get in, they'll need their own versions of missions 2 through 7 written.
 		or
 			has "FW Epilogue: Freya: offered"
 	source
@@ -505,7 +507,7 @@ mission "House Bebliss 1-B"
 			choice
 				`	"Alright, you have my interest. What's this job about?"`
 				`	"Well if you want me to work with you so much, why don't you just tell me what the job is?"`
-				`	"I'm sorry, but I'm not looking for any work now."`
+				`	"I'm sorry, I understand you've taken the effort to come meet me in person, but I've got pressing business outside of Coalition space."`
 					decline
 				`	"Second chance, tenth chance, I really don't care how many you give me. I'm not interested."`
 					decline
@@ -555,12 +557,18 @@ mission "House Bebliss 2-FW"
 				`	"I see. Well, yes, we were invaded by aliens known as the Pug."`
 					goto pug
 				`	"And how did the Heliarchy know?"`
+			branch "resistance 2"
+				has "Resistance: Questions: done"
 			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes, and her and the other two look to you, waiting for your answer.`
+			goto "pug reveal"
+			label "resistance 2"
+			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes. "Of course, register any such logs, your ship does not, when running tasks or simply coming to meet us like this, you are. Permit them find our bases that easily, we must not. But, digress I must. Please Captain, intrigued about these aliens, we very much are," she gestures toward you with one leg, as the other Bebliss members eye you eagerly.`
+			label "pug reveal"
 			choice
 				`	"Human space was invaded by a species known as the Pug."`
 			label pug
 			`	Thankfully, the ones that were downing drinks weren't that close when you said the word "Pug," or else you'd need a new set of clothes. One of them signals for a maid to clean up their simultaneous spit takes, and the Arach by the blueprints finally comes closer.`
-			`	"'Pug', were they called?" she asks as the maid behind her quickly scrubs the floor. You affirm her question, and she calls for a servant, asking them to ready a ship. She whispers something to the other two members of House Bebliss, which the translation devices don't pick up, and starts picking up her belongings. "Forgive me, Captain, but leave at once, I must."`
+			`	"'Pug', were they called?" she asks as the maid behind her quickly scrubs the floor. You affirm her question, and she calls for a servant, asking them to ready a ship. She whispers something to the other two members of House Bebliss, which the translation devices don't pick up, and starts gathering her belongings. "Forgive me, Captain, but leave at once, I must."`
 			`	Once she's left, one of the other two asks for more details, so you give them a brief rundown of the Pug invasion and how humanity managed to fight them off. They ask you to further detail the moments where you had to fight off waves of Pug as Freya worked the graviton transmitters and reflectors to link back to other human systems.`
 			`	"Promising, this Freya woman sounds. Know her location, do you, Captain?"`
 			`	You say that she is probably still on <destination>, and that when you saw her last, she was studying what artifacts the Pug left on the planet.`
@@ -585,7 +593,13 @@ mission "House Bebliss 2-FW"
 			`	You wave for the maid with the Arach drinks, and she looks to the other maid in surprise. She tries explaining to you that she isn't sure if these drinks are meant for human consumption. Regardless you insist, so she reluctantly walks over, handing you one of the cups. You bring it to your nose, and an overwhelming aroma hits your nostrils. The drink somehow smells oddly similar to the feeling you have in your mouth after waking up extremely parched after a long night of sleep. You carefully sip some of it, bringing the cup away from your mouth once the liquid hits your tongue. The sweetness has a sting to it, as if it's lightly biting your tongue as it travels through your mouth. Swallowing it, your throat feels a worrying numbing sensation for several seconds. You put the cup back on the platter, and the maids move away. After about a minute, you start struggling to keep your eyes open. Your surroundings suddenly appear much brighter than before, as if the lights in the ceiling have somehow intensified their output and the colors on everything around you have sharpened their image. You close your eyes for a few minutes to gain your bearings, and everything seems to go back to normal.`
 			label accept
 			`	When your hosts return, they hand you a small suitcase of sorts, "Translated our proposal into your language, we have," one of them says. "Bring that to Miss Freya, you must. Hopeful, we are, that willing to share the research material with us, she is."`
+			branch "resistance 3"
+				has "Resistance: Questions: done"
 			`	"Also inside, certain... research papers are. A gift, she may consider it," the other adds.`
+				goto end
+			label "resistance 3"
+			`	"Also inside, certain... research papers are. A gift, she may consider it," the other adds. "And, Captain, one last thing. Realize we do that in order to explain it all to her, inevitably tell Miss Freya of the Coalition, you will. Only, ask of you, I must, that reveal anything about the Lunarium, you do not. A bordering human world the Heliarchs periodically visit, and no means of culling what information they there gain, we have. Safer, it will be, if keep the Redoubt a secret, you do."`
+			label end
 			`	They say they will be waiting in the estate for her response, and have the servants escort you back to your ship.`
 				accept
 			label decline
@@ -603,14 +617,20 @@ mission "House Bebliss 3-FW"
 	on offer
 		conversation
 			`You look around for Freya, asking the local dock workers where the people researching the Pug tech left on the planet are. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts the Pug left behind. Some of them are running complicated looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the inside machinery.`
+			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs towards you. "<first>! It's nice to see you again. What brings you here?"  You tell her you have some important matters to discuss, and she has you follow her to an office-like room packed with tools and components.`
 			branch resistance
 				has "Resistance: Questions: done"
-			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs towards you. "<first>! It's nice to see you again. What brings you here?" You tell her you have some important matters to discuss, and she whistles to the teams, dismissing them for lunch. When you're alone, you give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, and about who House Bebliss is, handing her the suitcase when you're done.`
+			label "don't tell"
+			`	You give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, and about who House Bebliss is, handing her the suitcase when you're done.`
 				goto suitcase
 			label resistance
-			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs towards you. "<first>! It's nice to see you again. What brings you here?" You tell her you have some important matters to discuss, and she whistles to the teams, dismissing them for lunch. When you're alone, you give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, the Lunarium Redoubt and their intentions to overthrow the Heliarchy, and the part House Bebliss plays in that, handing her the suitcase when you're done.`
+			choice
+			`	(Tell her everything, including the Lunarium.)`
+			`	(Don't mention the Lunarium.)`
+				goto "don't tell"
+			`	You give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, the Lunarium Redoubt and their intentions to overthrow the Heliarchy, and the part House Bebliss plays in that, handing her the suitcase when you're done.`
 			label suitcase
-			`	"Well, at least these ones are asking if they can come invade us," she jokes as she lays the suitcase on a table, opening it. "Three alien species, right on the Free Worlds' backdoor, huh?" She begins to read the message House Bebliss prepared for her, frowning right at the start. "You didn't write this, did you?" You shake your head. "Thought so. The words are... jumbled?"`
+			`	"Well, at least these ones are asking if they can come invade us," she jokes as she lays the suitcase on a table, opening it. "Three alien species, huh? We were picking up some degraded radio signals from these systems, before the war even, so I figured there was someone out there." She begins to read the message House Bebliss prepared for her, frowning right at the start. "You didn't write this, did you?" You shake your head. "Thought so. The words are... jumbled?"`
 			choice
 				`	"Oh, that. You get used to it."`
 				`	"It's not so bad when you're talking with them in person."`
@@ -644,11 +664,16 @@ mission "House Bebliss 4-FW"
 			`	"How are you, <first>?" Katya gets up to greet you. "We came as soon as we got Freya's message, but I was still a bit surprised to get here before you, given the new toys you must have by now. You and Freya have gotten Ijs all worried and theorizing there," she says as she points to him.`
 			`	"Well, one minute I'm speaking on a panel, the other I get word we need to come to <origin> because <first> has something 'critical' to tell all of us. Of course I'll be worried," he stops, and comes to greet you. "Sorry. It's good to see you again <first>, I just... got a bit carried away thinking about Freya's message."`
 			`	Alondo also stands up and comes to greet you. "Maybe you worry too much, maybe we don't worry enough, let's decide after <first> tells us all about... what was it again?"`
+			branch resistance
+				has "Resistance: Questions: done"
 			choice
 				`	"Some more aliens."`
 				`	"I hope none of you are afraid of spiders."`
-			branch resistance
-				has "Resistance: Questions: done"
+			label resistance
+			choice
+				`	(Explain everything, including the Lunarium.)`
+				`	(Don't mention the Lunarium.)`
+					goto tell
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
 			`	When you're done, Alondo is the first to speak up, "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
 			`	"Do they have jump drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
@@ -660,7 +685,7 @@ mission "House Bebliss 4-FW"
 			`	"And we're right between this 'Coalition' and the Quarg near Tarazed," JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
 			`	They stay silent for a while, then Alondo picks up the talk again. "If the Quarg have waited six thousand years so far then they might wait a few thousand more. What matters now is that we know of these aliens, meaning we must start thinking about possible outcomes to all of this and what they mean for the Free Worlds. If we start preparations now, perhaps we'll get lucky and we won't get caught up in any other wars; especially wars involving the Quarg."`
 				goto accept
-			label resistance
+			label tell
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya. You also tell them about the Lunarium, explaining the group's actions and their wish to take down the Heliarch government, and what role House Bebliss has in helping them.`
 			`	When you're done, Alondo is the first to speak up, "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now." He pauses, then addresses you directly. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
 			`	"Whatever their government is, or whether it's overthrown or not, it doesn't change that they're right at our doorstep," Katya says. "Do they have jump drives?" she asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
@@ -713,7 +738,7 @@ mission "House Bebliss 5-FW"
 		outfit "Jump Drive" -1
 		payment 1500000
 		conversation
-			`Some coordinates are automatically selected when you approach the surface of <planet>. You follow them to reach another private area of sorts, though it looks much more like a factory or a warehouse than an estate. House Bebliss' Spindle is landed there, and the members who will be following you to Deneb come to your ship when you land beside it. Some workers remove the jump drive from your ship and begin installing it on the Spindle. The House Bebliss members crewing the ship hand you <payment> when the drive is ready.`
+			`Some coordinates are automatically selected when you approach the surface of <planet>. You follow them to reach another private area of sorts, though it looks much more like a factory or a warehouse than an estate. On the corners, several flags and banners of House Idriss are in full display. House Bebliss' Spindle is landed there, and the members who will be following you to Deneb come to your ship when you land beside it. Some workers remove the jump drive from your ship and begin installing it on the Spindle. The House Bebliss members crewing the ship hand you <payment> when the drive is ready.`
 			`	"Once ready to leave, you are, meet us in the main spaceport, you should," one of them says.`
 
 mission "House Bebliss 6-FW"
@@ -725,10 +750,10 @@ mission "House Bebliss 6-FW"
 	destination "Pugglemug"
 	on offer
 		conversation
-			`One of the employees of House Bebliss spots you immediately as you enter the spaceport and guides you to what they claim is one of the top restaurants here. The members of the House are waiting inside, having already ordered their meals when you arrive. They offer to buy you anything you want from the menu. Seeing the selection of "exotic dishes" on the other tables, though, you decide to decline their offer.`
+			`One of the employees of House Bebliss spots you immediately as you enter the spaceport and guides you to what they claim is one of the top restaurants here. The members of the House are waiting inside, having already ordered their meals when you arrive, and being the only patrons within the establishment. They offer to buy you anything you want from the menu. Seeing the selection of "exotic dishes" on the other tables, though, you decide to decline their offer.`
 			`	"Ready for takeoff, our ship is," one of them says, preparing some napkins as the waiters bring their orders to the table. "To the world where your friend is, bring us, you must."`
 			`	Another one bites into something that looks like a goat's leg, albeit much bonier, before saying, "Prepared for concealing our presence, we and the crew are. Worry about that, you need not."`
-			`	"Extra fuel, the ship has. Enough to reach the planet, it is," the last of them tells you. You stay at the restaurant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle has landed next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
+			`	"Extra fuel, the ship has. Enough to reach the planet, it is," the last of them tells you. You stay at the restaurant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle landing next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
 				accept
 	npc accompany save
 		personality escort timid
@@ -742,11 +767,10 @@ mission "House Bebliss 6-FW"
 		conversation
 			`As both your ships come in for a landing, you contact Freya and tell her the Arachi are with you this time. She tells you to land near the Free Worlds' warehouses, where you last met her, saying she'll be waiting there to greet them.`
 			`	When you arrive, you wait outside your ship while House Bebliss' ship keeps its hatch closed. It seems they intend to remain in there for the duration of their stay, most likely in fear that their appearance would cause a stir amongst other humans.`
-			`	Freya arrives and the hatch opens for both of you to go inside once no curious bystanders are nearby. Freya sees the members of House Bebliss and confidently walks up to them. "Hello, my name is Freya Winters. I've heard you're interested in the Pug artifacts we found on this world." For someone speaking with giant spiders for the first time, she handles the initial meeting surprisingly well.`
+			`	A few minutes later Freya arrives, and you two approach Spindle's hatch. Once House Bebliss is satisfied with making sure no curious bystanders are nearby, the hatch opens, and you two go into the ship. Though you've grown used to Arach ships by now, Freya's eyes dart around the interiors as you move within the ship. You imagine she's holding in the desire to ask you some technical questions about the model. When you arrive at the cockpit, you're greeted by the members of House Bebliss. Despite you having told her about them previously, Freya is understandably taken back for a second or two, upon first seeing the Arachi, but soon shakes it off, confidently walking up to greet them. "Hello, my name is Freya Winters. I've heard you're interested in the Pug artifacts we found on this world." Despite the initial shock in meeting them, for someone speaking with giant spiders for the first time she handles it surprisingly well.`
 			`	"Indeed. The trade of our great House Bebliss for thousands of years, the study of hyperlanes has been," one of the Arachi says. "When Captain <last> told us of your achievements, know that need to come look into your work ourselves, we did."`
 			`	She quickly gets used to the translation box's odd speech quirk, as she and the members of House Bebliss discuss how to go about helping each other in researching the artifacts here. One of the crewmembers approaches you as they talk, and hands you <payment>, "as thanks for safely escorting us here," they whisper.`
-			`	Freya's talk with them goes on for almost an hour; they eventually settle on having some of the artifacts moved to their ship's cargo hold, so that some research can happen there without the risk of being seen. "Hopefully people buy into this being a new niche ship design that Southbound Shipyards asked me to check out," Freya says. House Bebliss' representatives thank her for the reception, and you follow her back outside.`
-			`	They talk with Freya for almost an hour before settling on having the research be moved to their ship. Freya says she will go get her team and bring whatever pieces of equipment they found to the ship before you and her go back outside.`
+			`	Freya's talk with them goes on for almost an hour; they eventually settle on having some of the artifacts moved to their ship's cargo hold, so that some research can happen there without the risk of being seen. House Bebliss' representatives thank her for the reception, and you follow her back outside.`
 			`	Once the hatch is closed, she asks, "This is one of their freighter ships?"`
 			choice
 				`	"Yeah, though it's not their largest one."`
