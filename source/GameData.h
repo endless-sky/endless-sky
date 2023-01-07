@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Color;
+class ConditionsStore;
 class Conversation;
 class CustomSale;
 class DataNode;
@@ -136,6 +137,8 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+
+	static ConditionsStore &GlobalConditions();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

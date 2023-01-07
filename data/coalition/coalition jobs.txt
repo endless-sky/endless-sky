@@ -637,14 +637,14 @@ mission "Coalition: Tourists Out 1"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .5
 	to offer
 		has "known to the heliarchs"
 		random < 40
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -662,14 +662,14 @@ mission "Coalition: Tourists Out 2"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .4
 	to offer
 		has "known to the heliarchs"
 		random < 30
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -687,14 +687,14 @@ mission "Coalition: Tourists Out 3"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .3
 	to offer
 		has "known to the heliarchs"
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -717,14 +717,14 @@ mission "Coalition: Tourists Home 1"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them home to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .5
 	to offer
 		has "known to the heliarchs"
 		random < 40
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -742,14 +742,14 @@ mission "Coalition: Tourists Home 2"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them home to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .4
 	to offer
 		has "known to the heliarchs"
 		random < 30
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -767,14 +767,14 @@ mission "Coalition: Tourists Home 3"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them home to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .3
 	to offer
 		has "known to the heliarchs"
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit: Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -1195,12 +1195,13 @@ mission "Coalition: To Games 1"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .2
 	to offer
 		has "known to the heliarchs"
 		random < 90
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
@@ -1217,12 +1218,13 @@ mission "Coalition: To Games 2"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
 		random < 70
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
@@ -1239,12 +1241,13 @@ mission "Coalition: To Games 3"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .05
 	to offer
 		has "known to the heliarchs"
 		random < 50
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
