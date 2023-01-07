@@ -29,6 +29,15 @@ using namespace std;
 
 
 
+// Clean up any stale injected commands
+Panel::~Panel()
+{
+	if (cached_zone_commands)
+		Command::InjectUnset(cached_zone_commands);
+}
+
+
+
 // Move the state of this panel forward one game step.
 void Panel::Step()
 {
@@ -99,9 +108,13 @@ void Panel::AddZone(const Rectangle &rect, Command command)
 			// commands that register each step of the game logic (jump, fire) can
 			// coexist with commands that toggle once (map, info)
 			Command::InjectSet(command);
-		   this->KeyDown(0, 0, command, true);
+			cached_zone_commands.Set(command);
+		   KeyDown(0, 0, command, true);
 		},
-		[command](){ Command::InjectUnset(command); }
+		[command, this](){
+			Command::InjectUnset(command);
+			cached_zone_commands.Clear(command);
+		}
 	);
 }
 
@@ -138,6 +151,13 @@ bool Panel::ZoneMouseUp(const Point &point)
 			return true;
 		}
 	}
+	// It is possible that a zone could trigger a MouseDown, and then get
+	// Destroyed before the MouseUp event (i.e. holding down attack until
+	// the target gets destroyed, so the attack button goes away when the
+	// currently selected target gets cleared). If we got a mouse up, then
+	// clear all injected events triggered by our zones.
+	if (cached_zone_commands)
+		Command::InjectUnset(cached_zone_commands);
 	return false;
 }
 

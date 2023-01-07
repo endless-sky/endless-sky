@@ -238,6 +238,10 @@ void MainPanel::Draw()
 					info.SetCondition("can attack");
 				}
 			}
+			else if (player.Flagship()->GetTargetAsteroid())
+			{
+				info.SetCondition("targeting asteroid");
+			}
 			else if (player.Flagship()->Attributes().Get("cloak"))
 			{
 				info.SetCondition("can cloak");

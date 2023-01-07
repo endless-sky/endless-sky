@@ -1320,6 +1320,12 @@ interface "main buttons" bottom right
 	button "Fleet: Fight my target" "_Attack"
 		from -240 -40 to -170 -90
 
+	visible if "targeting asteroid"
+	sprite "ui/dialog cancel"
+		from -250 -40 to -160 -90
+	button "Fire primary weapon" "Mine"
+		from -240 -40 to -170 -90
+
 	visible if "can hail"
 	sprite "ui/dialog cancel"
 		from -250 -50 to -160 0

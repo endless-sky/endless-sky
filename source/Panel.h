@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define PANEL_H_
 
 #include "Rectangle.h"
+#include "Command.h"
 
 #include <functional>
 #include <list>
@@ -24,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL.h>
 
-class Command;
 class Point;
 class TestContext;
 class UI;
@@ -39,7 +39,7 @@ class UI;
 class Panel {
 public:
 	// Make the destructor virtual just in case any derived class needs it.
-	virtual ~Panel() = default;
+	virtual ~Panel();
 
 	// Move the state of this panel forward one game step.
 	virtual void Step();
@@ -145,6 +145,8 @@ private:
 	bool isInterruptible = true;
 
 	std::list<Zone> zones;
+
+	Command cached_zone_commands;
 
 	friend class UI;
 };
