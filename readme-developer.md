@@ -1,5 +1,7 @@
 # Build instructions
 
+**Notice**: We'll be slowly switching over to CMake, so treat these instructions as deprecated. The instructions using CMake can be read [here](readme-cmake.md).
+
 Most of the current development work is done on Ubuntu Linux. Building the code on any Linux variant should be relatively straightforward. Building it on Windows or Mac OS X is a bit more complicated.
 
 **You can get a copy of the code either using "git clone," or using the repo's download button to obtain a [.ZIP archive](https://github.com/endless-sky/endless-sky/archive/master.zip).** The game's root directory, where your unzipped/`git clone`d files reside, will be your starting point for compiling the game.
@@ -125,21 +127,3 @@ Once all the libraries in place, the game is ready to run! You have three option
 - If you built the game via Scons, open a terminal to the base Endless Sky directory, then run `bin\pkgd\release\endless-sky.exe`.
 - If you built the game via Code::Blocks, double click *EndlessSky* in the file panel on the left, then either click the green arrow on top, or hit Control+F10.
 - If you want to run the game manually, use one of the methods above to build the game, then copy an executable from under the `bin\` folder to your base directory, then open the game.
-
-
-
-## macOS:
-
-To build Endless Sky with native tools, you will first need to download Xcode from the App Store.
-
-Next, install [Homebrew](https://brew.sh). Once it is installed, use it to install the libraries you will need:
-
-```
-  $ brew install libmad libpng jpeg-turbo
-```
-
-Homebrew will install the latest version of the libraries, so if the versions of those libraries are different from the ones that the Xcode project is set up for, you will need to modify the file paths in the “Frameworks” section in Xcode. (Occasionally, the Xcode project will be updated to reflect these new versions.)
-It is possible that you will also need to modify the “Header Search Paths” and “Library Search Paths” in “Build Settings”, in case your Homebrew for Intel Mac installation does not use the standard `/usr/local` prefix.
-The first time you build the project, a library for the SDL framework will be downloaded.
-
-**Note: there is extremely limited development support for macOS, and no intent to support macOS's new ARM architecture.**

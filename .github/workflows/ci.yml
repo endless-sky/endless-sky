@@ -25,8 +25,6 @@ on:
     - 'source/**'
     - 'data/**'
     - 'tests/**'
-    - 'EndlessSky.xcodeproj/**'
-    - 'XCode/**'
     - '.github/workflows/**'
     - keys.txt
     - SConstruct
@@ -39,8 +37,6 @@ on:
     - 'source/**'
     - 'data/**'
     - 'tests/**'
-    - 'EndlessSky.xcodeproj/**'
-    - 'XCode/**'
     - '.github/workflows/**'
     - keys.txt
     - SConstruct
@@ -253,28 +249,30 @@ jobs:
   build_macos:
     name: MacOS
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.xcode_files == 'true' }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest]
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    runs-on: macos-12
     env:
-      ARTIFACT: Endless Sky
-      SDL2_FRAMEWORK: build/SDL2.framework
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v3
-    - name: Install dependencies
-      run: |
-        brew update
-        brew install libpng jpeg-turbo
-    - name: Restore cached SDL2 framework
-      uses: actions/cache@v3
+    - name: Setup sccache
+      uses: ./.github/sccache
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v10
       with:
-        path: ${{ env.SDL2_FRAMEWORK }}
-        key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
-    - name: Compile
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'macos-ci'
+        buildPreset: 'macos-ci'
+        testPreset: 'macos-ci'
+    - name: Run Benchmarks
+      run: ctest --preset macos-ci-benchmark
+    - name: Prevent saving cache on failure
+      run: |
+        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
+      if: ${{ failure() || cancelled() }}
+      shell: bash
 
 
   test_ubuntu-integration:
@@ -484,29 +482,6 @@ jobs:
       if: ${{ failure() || cancelled() }}
       shell: bash
 
-  build_macos_cmake:
-    name: MacOS (CMake)
-    needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: lukka/get-cmake@latest
-    - uses: lukka/run-vcpkg@v10
-      with:
-        vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'macos-ci'
-        buildPreset: 'macos-ci'
-        testPreset: 'macos-ci'
-    - name: Run Benchmarks
-      run: ctest --preset macos-ci-benchmark
-    - name: Prevent saving cache on failure
-      run: |
-        echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-      if: ${{ failure() || cancelled() }}
-      shell: bash
 
   build_windows_clang_cmake:
     name: Windows Clang (CMake)
