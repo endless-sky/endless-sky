@@ -235,7 +235,7 @@ conversation "edward epilogue"
 		`	(No.)`
 			defer
 	scene "scene/loc0"
-	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified plasma cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?`
+	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified plasma cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?"`
 	choice
 		`	"I'm not sure about this. What would you have me do?"`
 		`	"Being a target for experimental weapons? Just tell me what you need!"`
