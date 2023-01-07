@@ -1596,18 +1596,14 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].AddVisual(visual);
 
 	// Update fleets, remove fleets with no ships.
-	for(auto &fleet : fleets)
-	{
-		bool shouldBeRemoved = true;
-		for(shared_ptr<Ship> ship : fleet.ships)
-			if(ship.get())
-			{
-				shouldBeRemoved = false;
-				break;
-			}
-		if(shouldBeRemoved)
-			remove(fleets.begin(), fleets.end(), fleet);
-	}
+	remove_if(fleets.begin(), fleets.end(),
+		[](const Fleet::FleetHolder &fleet)
+		{
+			for(shared_ptr<Ship> ship : fleet.ships)
+				if(ship.get())
+					return false;
+			return true;
+		});
 
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
