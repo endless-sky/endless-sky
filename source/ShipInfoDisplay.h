@@ -38,7 +38,7 @@ public:
 	ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true);
 
 	// Call this every time the ship changes.
-	void Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true, bool sale);
+	void Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true, bool sale = false);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();

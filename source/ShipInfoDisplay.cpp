@@ -44,7 +44,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 
 
 
-// Call this every time the ship changes.
+// Call this every time the ship changes. Sale is true for the shipyard panel only.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool sale)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
@@ -318,7 +318,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	// Skip a spacer and the table header.
 	attributesHeight += 30;
 
-	// Add idle energy and heat to the table.
 	const double idleEnergyPerFrame = attributes.Get("energy generation")
 		+ attributes.Get("solar collection")
 		+ attributes.Get("fuel energy")
