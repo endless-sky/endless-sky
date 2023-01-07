@@ -3270,17 +3270,26 @@ mission "Fangvin: Struggling Author 3"
 		has "Fangvin: Struggling Author 2: done"
 	on offer
 		conversation
-			`Going through the spaceport looking for Anna, you finally find her at a Saryd restaurant, eating from a plate of vegetables. She sees you and motions for you to take a seat.`
+			`Going through the spaceport looking for Anna, you finally find her at a restaurant serving food made for Saryds, eating from a plate of vegetables, her laptop next to the plate of food. She sees you and motions for you to take a seat.`
 			`	You sit down next to Anna. "Finally, something I can eat that isn't a mix of vomit and soup!"`
 			choice
 				`	"How good is it?"`
+					goto "it's very good"
+				`	"What did you usually eat back in human space?"`
+			`	"A lot. As an author, all I had to eat were instant noodles and takeout food as I never could find time in my schedule to cook at home. I was working hard on Beyond the Hyperdrive at the time. This food is better than any instant noodle brand I could ever find on Zug."`
+			choice
+				`	"What's our plan now?"`
+				`	"What are we going to do next?"`
+					goto "i want to get my book published here"
+			label "it's very good"
 			`	"It's very good. Probably better than anything I've had back on Zug."`
 			choice
 				`	"So, what do you want to do now?"`
+			label "i want to get my book published here"
 			`	"I want to get my book published here."`
 			choice
 				`	"Have you found a publishing company yet?"`
-			`	"No." Anna then begins complaining about how it was extremely difficult for her to communicate with the employees, who did not have a translation box.`
+			`	"No." Anna then begins complaining about how it was extremely difficult for her to communicate with both the restaurant staff and the publishing companies, who did not have a translation box.`
 			choice
 				`	"I can get you a translator."`
 			`	"But will I have to pay for it?"`
@@ -3378,7 +3387,7 @@ mission "Fangvin: Struggling Author 4"
 			choice
 				`	"How did the interview go?"`
 			label "interview over"
-			`	"They told me that due to the censorship and review process, I would have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you'll leave human space, please add a reminder to come back and meet me."`
+			`	"They told me that due to the censorship and review process, I would have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please add a reminder to come back and meet me."`
 			choice
 				`	"Why don't you just go back to human space?"`
 					goto "why not go to human space"
@@ -3388,7 +3397,7 @@ mission "Fangvin: Struggling Author 4"
 			choice
 				`	"Just helping out."`
 				`	"It's okay."`
-			`	With that, you leave the room, and eventually the building. You board the train, walk past the same series of endless shops and streets in the spaceport city, before returning to your ship. As soon as you're in your ship, you add a reminder to return to Coalition space within six months.`
+			`	With that, you leave the room, and eventually the building. You board the train, walk past the same series of endless shops and streets in the spaceport city, before returning to your ship. As soon as you're in your ship, you add a reminder to visit Anna within six months.`
 				decline
 			label "why not go to human space"
 			`	"I need to be available at all times, so I can answer their questions. Do not worry about me."`
