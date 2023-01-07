@@ -2027,10 +2027,11 @@ mission "Pirate Use Mammoth"
 		has "event: end battle of alioth"
 	on offer
 		event "pirate use mammoth"
+		fail
 
 event "pirate use mammoth"
 	fleet "Large Northern Pirates"
-		add variant 1
+		add variant
 			"Mammoth"
 
 
