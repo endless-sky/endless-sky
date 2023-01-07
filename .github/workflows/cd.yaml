@@ -90,32 +90,30 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  cd_macos_x86_64:
+  cd_macos_x64:
     name: MacOS
-    runs-on: macos-latest
+    runs-on: macos-12
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
-      SDL2_FRAMEWORK: build/SDL2.framework
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
-      - name: Update Homebrew
-        run: brew update
-      - name: Install dependencies
-        run: brew install libpng jpeg-turbo
-      - name: Restore cached SDL2 framework
-        uses: actions/cache@v3
+      - name: Setup sccache
+        uses: ./.github/sccache
         with:
-          path: ${{ env.SDL2_FRAMEWORK }}
-          key: macos-latest-sdl2-${{ hashFiles('EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
-      - name: Adjust version strings
-        run: ./utils/cd_update_versions.sh
-        shell: bash
-      - name: Build Application
-        run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+          read-only: 'true'
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'macos-release'
+          buildPreset: 'macos-ci-release'
       - name: Package Application
         run: |
-          cd build/Release
-          7z a ${{ github.workspace }}/${{ env.OUTPUT }} Endless\ Sky.app
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -129,7 +127,7 @@ jobs:
     needs:
       - cd_appimage_x86_64
       - cd_windows_win64
-      - cd_macos_x86_64
+      - cd_macos_x64
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT_APPIMAGE: endless-sky-x86_64-continuous.AppImage
