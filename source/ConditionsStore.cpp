@@ -486,11 +486,9 @@ shared_ptr<ConditionsStore::ConditionEntry> ConditionsStore::FromStorage(const s
 	auto it = storage.lower_bound(name);
 	if(it == storage.end() || it->first != name)
 		it = storage.insert(it, make_pair(name, make_shared<ConditionEntry>()));
+	// If this is true, there is a logic error,  this should never be true.
 	if(!it->second)
-	{
-		// Logic error; should never get here.
 		it->second = make_shared<ConditionEntry>();
-	}
 	return it->second;
 }
 
