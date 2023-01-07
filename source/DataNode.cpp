@@ -259,7 +259,7 @@ bool DataNode::IsCondition(const string &token)
 	//    &&xyz = a valid Condition string
 
 	return token.size() > 1 && token[0] == CONDITION_CHAR
-		&& (token.size() > 2 || token[0] != CONDITION_CHAR);
+		&& (token.size() > 2 || token[1] != CONDITION_CHAR);
 }
 
 
