@@ -85,7 +85,7 @@ mission "FW Zug Expansion: Assisted"
 		payment 600000
 		event "fw zug expansion underway"
 		event "fw zug expansion complete" 120
-		conversation 
+		conversation
 			`The five freighters have all arrived intact, and you are told to land them beside a large area of land set aside for Zug's long-awaited New Port expansion. Not long after, you are sent <payment> by Zug's port authority.`
 			`	It seems that bringing so many freighters was justified, because the expansion also includes a considerable extension to Southbound's shipbuilding facilities to make them capable of building heavy warships like Tarazed Falcons. However, by the looks of it, all this equipment would be more than enough to build a Navy Cruiser.`
 
