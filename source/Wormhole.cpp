@@ -89,8 +89,6 @@ void Wormhole::Load(const DataNode &node)
 		}
 		else if(key == "mappable")
 			mappable = !remove;
-		else if(key == "colored")
-			colored = !remove;
 		else if(key == "display name")
 		{
 			if(remove)
@@ -161,13 +159,6 @@ const string &Wormhole::Name() const
 bool Wormhole::IsMappable() const
 {
 	return mappable;
-}
-
-
-
-bool Wormhole::IsColored() const
-{
-	return colored;
 }
 
 
