@@ -2318,7 +2318,7 @@ ship "Mammoth"
 			"hull damage" 780
 			"hit force" 2100
 	outfits
-		"Sidewinder Launcher" 2
+		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
 		"Proton Turret" 4
 		"Heavy Anti-Missile Turret" 4
@@ -2345,12 +2345,12 @@ ship "Mammoth"
 	gun 47.5 -57.5
 	turret -31 -50 "Heavy Anti-Missile Turret"
 	turret 31 -50 "Heavy Anti-Missile Turret"
-	turret -47.5 33.5
-	turret 47.5 33.5
+	turret -47.5 33.5 "Proton Turret"
+	turret 47.5 33.5 "Proton Turret"
 	turret -22 66.5 "Heavy Anti-Missile Turret"
 	turret 22 66.5 "Heavy Anti-Missile Turret"
-	turret -14.5 0 
-	turret 14.5 0
+	turret -14.5 0 "Proton Turret"
+	turret 14.5 0 "Proton Turret"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
