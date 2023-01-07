@@ -61,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "SystemEntry.h"
 #include "Test.h"
 #include "TestContext.h"
 #include "Visual.h"
@@ -272,6 +273,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
+	player.SetSystemEntry(SystemEntry::TAKE_OFF);
 	EnterSystem();
 
 	// Add the player's flagship and escorts to the list of ships. The TakeOff()
@@ -312,7 +314,7 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || planet->CanLand(*ship))
+			bool launchesWithPlayer = (ship->IsYours() || (planet && planet->CanLand(*ship)))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
@@ -555,8 +557,6 @@ void Engine::Step(bool isActive)
 
 	const System *currentSystem = player.GetSystem();
 	// Update this here, for thread safety.
-	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-		player.TravelPlan().push_back(flagship->GetTargetSystem());
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
 	if(doFlash)
@@ -681,6 +681,9 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
+		// Have an alarm label flash up when enemy ships are in the system
+		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
+			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
@@ -931,7 +934,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity, zoom);
+	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
+		player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1419,13 +1423,20 @@ void Engine::CalculateStep()
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
 	{
+		bool wormholeEntry = false;
 		// Wormhole travel: mark the wormhole "planet" as visited.
 		if(!wasHyperspacing)
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
 						&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
+				{
+					wormholeEntry = true;
 					player.Visit(*it.GetPlanet());
+				}
 
+		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
+			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
+			SystemEntry::HYPERDRIVE);
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
@@ -1770,7 +1781,7 @@ void Engine::SpawnPersons()
 					ship->SetName(it.first);
 				ship->SetGovernment(person.GetGovernment());
 				ship->SetPersonality(person.GetPersonality());
-				ship->SetHail(person.GetHail());
+				ship->SetHailPhrase(person.GetHail());
 				if(!parent)
 					parent = ship;
 				else
@@ -2319,9 +2330,9 @@ void Engine::FillRadar()
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)
 	{
-		if(Preferences::Has("Warning siren"))
+		if(Preferences::PlayAudioAlert())
 			Audio::Play(Audio::Get("alarm"));
-		alarmTime = 180;
+		alarmTime = 300;
 		hadHostiles = true;
 	}
 	else if(!hasHostiles)
