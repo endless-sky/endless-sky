@@ -257,3 +257,140 @@ mission "Small Scale Delivery"
 	on complete
 		payment 1000
 		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`
+
+mission "Korath Stormhold Artifacts [1] Coded Message"
+	name "Go to <planet>"
+	description `Head to <planet> to deal with a "security issue."`
+	minor
+	landing
+	to offer
+		or
+			has "event: stormhold korath issue (1)"
+			has "event: stormhold korath issue (2)"
+	source
+		government Republic Syndicate "Free Worlds" Pirate
+		not attributes uninhabited
+		near Stormhold 3 100
+	destination Stormhold
+	on offer
+		conversation
+			`As soon as you land, your communications console beeps urgently. It's a coded message from <planet> that simply reads, "Security issue. Return to <planet> at earliest convenience."`
+			`	The digital signature claims to be of diplomatic origin, and from the Republic and acorn insignia, it is likely from both Hai and human diplomats.`
+				accept
+
+mission "Korath Stormhold Artifacts [1] Drones"
+	name "Destroy Korath drones at <waypoints>."
+	description `Destroy Korath stealth drones at <waypoints> that are being guarded by a gigantic ship.`
+	landing
+	source Stormhold
+	destination Stormhold
+	waypoint Almach
+	to offer
+		has "Korath Stormhold Artifacts [1] Coded Message: done"
+	on offer
+		conversation
+			`Choot'k meets you in the landing zone accompanied by a human functionary. Due to the standard augmented reality headset and gloves, the human is likely a secretary assigned to (or perhaps hired by) Choot'k.`
+			`	"Welcome back, Captain <last>! We've found many spoils of war on this planet. Sadly, the humans and our fettered brethren haven't found any jump drives," he winks, "but the pirates had plenty of other gadgetry from the humans, Hai and Korath littering their bunkers. We're gathering it to secure areas for inventory and analysis before divvying it up."`
+				to display
+					"reputation: Hai (Unfettered)" >= 30
+			`	"Welcome back, Captain <last>! We've found many spoils of war on this planet. The pirates had all manner of gadgetry from the humans, Hai and Korath littering their bunkers. We're gathering it to secure areas for inventory and analysis before divvying it up."`
+				to display
+					not
+						"reputation: Hai (Unfettered)" >= 30
+			`	"There's less than we thought expected, and no live Korath. We expect this planet was a distribution center for sales and staging area for the main settlement nearby. We expect they're using New Tortuga to the south, and Stormhold was just its first line of defense. From our understanding, New Tortuga is an impenetrable fortress in a system crawling with Korath. That's well outside of our abilities to conquer without a major invasion, but even those pirates haven't the firepower to break the blockade. Your human authorities feel containment is the best option."`
+			# This seemingly abrupt question is to ensure the player notices the word "Korath."
+			choice
+				`	"Korath?"`
+			`	"The Korath are group of lizards that invaded the Hai a few centuries ago. They used to be obsessed with art, music, and other esoterics, until they got desperate for resources and invaded us. Their technology is far beyond ours, and they used it to nearly wipe themselves out in bloody infighting. We learned a lot from them: even the most aggressive Unfettered are wary of attacking our own kind, lest our species destroy itself like the Korath did."`
+			`	"The most advanced group of surviving Korath lives in systems near yours, according to pirate data. It seems the Korath have been raiding ships in pirate and Syndicate systems for food, while the pirates have been disabling and pillaging Korath ships for tech. I'm not sure why the Korath have limited themselves to piracy. They certainly have the firepower to dominate a few dozen of your planets."`
+			`	"From our race's records, it is quite unlike the Korath to be so close to a more primitive race without making demands. Their resources may be committed to another war, or they may be building up supplies for a shock and awe style attack. It's anyone's guess at this point."`
+			`	"Even I'm worried about this. A few dozen human planets paying tribute to Korath could make them a force to be reckoned with again. They could even be a threat to the Hai."`
+			choice
+				`	"Sounds foreboding."`
+					goto foreboding
+				`	"When do I get my cut of these spoils?"`
+			`	"Ha! You're more like a True Hai than I thought. Don't worry, captain, I'll make sure the others give you a suitable payment."`
+			`	At this, the human next to Choot'k nods and wiggles their hand, likely taking notes.`
+			`	"We've made an unpleasant discovery recently. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh," he looks at the human next to him.`
+				goto next
+			label foreboding
+			`	"Indeed it does, especially with our recent discovery. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh," he looks at the human next to him.`
+			label next
+			`	They wiggle their hands and look around, probably searching for the answer. They speak as if they're reading off of a document. "The drones are a phase array transceiver: multiple transceivers communicating slightly out of phase, moving around to emulate a relay as big as a moon. It's not unlike phase array radars used for meteorology. Each is not much stronger than a human hyperspace relay, but the fleet acts together as one powerful relay. We think it's able to communicate as far as 200 light-years, without the need for starlanes. What's most concerning is that relaying is only a secondary functionality; they're mostly observation systems."`
+			`	Choot'k nods. "They're hard to detect, since their transmissions are cleverly coded as ambient noise. However, we have sensor modifications that'll let you find them. We've destroyed the ones in this system, but we need you to fly to Almach and destroy the drones there."`
+			choice
+				`	"Just blow up drones? Why can't the Syndicate do it?"`
+				`       "Sounds like target practice to me. I'm in!"`
+					goto practice
+			`	"Ah, it'll take a skilled pilot to do it, and the Syndicate isn't up to the task. The drones are guarded now, by the largest ship we've seen since the Korath war. It doesn't seem interested in invading anything. We think it's just guarding the drones."`
+				goto end
+			label practice
+			`	"You may be target practice if you aren't prepared. The drones are guarded now, by the largest ship we've seen since the Korath war. You'll need to dodge it while shooting the drones. "`
+			label end
+			`	"I called you here urgently so you can the right of first refusal. When you return here, successful in your mission, we'll be sure to have some good Korath gear ready for you."`
+			choice
+				`	"Sound's like fun! I'm in."`
+					accept
+				`	"No, I'm in the middle of something right now."`
+					decline
+	on enter Almach
+		dialog "As Choot'k promised, there's an abundance of drones and a gigantic Korath warship."
+	on complete
+		payment 2000000
+		conversation
+			`Choot'k greet you again. "The Syndicate tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
+			`	"Pick among these. The Korath created a fiery turret they consider the pinnacle of their modern weapon design; you can have two of those. Or, we can give you another turret that disassembles enemy ships from the inside, ignoring their shields, plus a large systems core to keep you alive. I can also offer the most powerful afterburners I've ever heard of, plus a sizable amount of fuel storage and ramscoop to keep it working. We can give you a power generator bigger than a fighter, and a cooling system to support it. The last option is a large supply of torpedoes so powerful that even the Korath avoid using them, plus a launcher to go with."`
+			choice
+				`	"I'll take the pair of fiery turrets."`
+				`	"A shield-penetrating turret and some repair sounds great."`
+					goto shuntstrike
+				`	"Afterburners and fuel, of course."`
+					goto afterburners
+				`	"Power and cooling would be wonderful."`
+					goto power
+				`	"Doomsday torpedoes? Count me in!"`
+					goto torpedoes
+			action
+				outfit "Korath Inferno" 2
+			`	"Done! We're also giving you <payment>. You'll need some hefty cooling and a lot of weapon space to support these turrets."`
+				goto end
+			label shuntstrike
+			action
+				outfit "Shunt-Strike Turret"
+				outfit "Systems Core (Large)"
+			`	"Done! We're also giving you <payment>. Make sure you use the systems core with the turret, since the turret east your shields a little bit."`
+				goto end
+			label power
+				outfit "Triple Plasma Core"
+				outfit "Liquid Sodium Cooler"
+			`	"Done! We're also giving you <payment>. You'll need a Shield Beetle to go with these, as nothing else from humans or Hai has the space."`
+				goto end
+			label afterburners
+				outfit "Afterburner (Planetary Class)"
+				outfit "Fuel Processor" 4
+			`	"Done! We're also giving you <payment>. Make sure you have enough cooling and engine space to support it. A Shield Beetle is a great option."`
+				goto end
+			label torpedoes
+				# This is a secret for players to find. It is the only time
+				# in the game where you can get a Firestorm Torpedo Rack.
+				outfit "Firestorm Torpedo" 39
+				outfit "Firestorm Torpedo Rack" 2
+				outfit "Firestorm Battery"
+			`	"Done! We're also giving you <payment>. Be careful with these torpedoes. Even the Korath avoid using them due to the massive blast radius. They're likely to destroy the ship that fires them if they hit too close."`
+			label end
+			`	"It's always a pleasure to help another warrior get his due."`
+
+	npc destroy
+		government Korath
+		system Almach
+		personality staying timid
+		fleet "Korath Stealth Relay"
+		dialog "With all of the probes destroyed, you can now return to Stormhold for your payment."
+	npc
+		government Korath
+		system Almach
+		personality staying heroic
+		fleet
+			variant
+				"Ra'gru Ik 618 (uncapturable)"
+

@@ -805,6 +805,9 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 	turret "Grab-Strike Turret"
 
 
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (uncapturable)"
+	"uncapturable"
+
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 	outfits

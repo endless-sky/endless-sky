@@ -165,6 +165,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of <planet> have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
 	on complete
 		event "stormhold suppressed"
+		event "stormhold korath issue (1)" 140 180
 	on visit
 		dialog
 			`When the Hai and humans try to deploy troops, they're drawn off by orbital bombardment. You must defeat the entire pirate and marauder defense fleet before landing.`
@@ -498,6 +499,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 	on visit
 		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
 	on offer
+		event "stormhold korath issue (2)" 20 40
 		event "devil-run smugglers visible"
 		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago, and he hopes his research will lead to her rescue.`
 		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") are identifiable by an odd frequency variance in their relay signatures. They are probably involved in kidnapping human or Hai specialists.`
