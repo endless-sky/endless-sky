@@ -372,7 +372,7 @@ void UniverseObjects::LoadFile(const string &path, shared_ptr<ConditionsStore> v
 		else if(key == "minable" && node.Size() >= 2)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
-			missions.Get(node.Token(1))->Load(node, *vars);
+			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)

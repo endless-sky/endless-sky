@@ -298,7 +298,7 @@ void PlayerInfo::Load(const string &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(child.Token(0) == "mission")
 		{
-			missions.emplace_back(child, *conditions);
+			missions.emplace_back(child);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers") && child.HasChildren())
@@ -315,7 +315,7 @@ void PlayerInfo::Load(const string &path)
 					}
 		}
 		else if(child.Token(0) == "available job")
-			availableJobs.emplace_back(child, *conditions);
+			availableJobs.emplace_back(child);
 		else if(child.Token(0) == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(child.Token(0) == "sort descending")
@@ -325,7 +325,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "separate possible")
 			sortSeparatePossible = true;
 		else if(child.Token(0) == "available mission")
-			availableMissions.emplace_back(child, *conditions);
+			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 			conditions->Load(child);
 		else if(child.Token(0) == "event")

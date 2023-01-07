@@ -111,15 +111,15 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Mission::Mission(const DataNode &node, const ConditionsStore &vars)
+Mission::Mission(const DataNode &node)
 {
-	Load(node, vars);
+	Load(node);
 }
 
 
 
 // Load a mission, either from the game data or from a saved game.
-void Mission::Load(const DataNode &node, const ConditionsStore &vars)
+void Mission::Load(const DataNode &node)
 {
 	// All missions need a name.
 	if(node.Size() < 2)
