@@ -670,15 +670,28 @@ namespace {
 	void Phrases(const char *const *argv)
 	{
 		string phraseName;
+		bool randomSample = false;
+		int randomCount = 0;
+		bool count = false;
 
 		for(const char *const *it = argv + 1; *it; ++it)
 		{
 			string arg = *it;
 			if(arg == "--phrase" && *++it)
-			{
 				phraseName = *it;
-				break;
+			else if(arg == "--random" && *++it)
+			{
+				randomCount = atoi(*it);
+				randomSample = true;
 			}
+			else if(arg == "--count")
+				count = true;
+		}
+
+		if(randomSample && !randomCount)
+		{
+			cout << "Error: invalid number of random phrases to produce.\n";
+			return;
 		}
 
 		const Phrase *phrase = nullptr;
@@ -696,10 +709,21 @@ namespace {
 			return;
 		}
 
+		if(randomSample)
+		{
+			for(int i = 0; i < randomCount; i++)
+				cout << phrase->Get() << '\n';
+			return;
+		}
+
 		vector<string> results = phrase->GetAll();
 
-		for(const auto &it : results)
-			cout << it << '\n';
+		if(count)
+			cout << "Permutations of phrase: \"" << phrase->Name() << "\" = "
+					<< results.size() << '\n';
+		else
+			for(const auto &it : results)
+				cout << it << '\n';
 
 	}
 
