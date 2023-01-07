@@ -696,16 +696,11 @@ namespace {
 			return;
 		}
 
-		cout << "Computing results for phrase: \"" << phrase->Name() << "\"." << endl;
-
 		vector<string> results = phrase->GetAll();
-
-		cout << "Printing results for phrase: \"" << phraseName << "\"." << endl;
 
 		for(const auto &it : results)
 			cout << it << '\n';
 
-		cout << "Done!" << endl;
 	}
 
 
