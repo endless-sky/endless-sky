@@ -243,3 +243,10 @@ std::shared_ptr<ConditionsStore> DataFile::Store()
 {
 	return store;
 }
+
+
+
+std::shared_ptr<const ConditionsStore> DataFile::Store() const
+{
+	return store;
+}

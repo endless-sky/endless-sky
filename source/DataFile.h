@@ -46,6 +46,7 @@ public:
 	std::list<DataNode>::const_iterator end() const;
 
 	std::shared_ptr<ConditionsStore> Store();
+	std::shared_ptr<const ConditionsStore> Store() const;
 
 
 private:
