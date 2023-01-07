@@ -3205,11 +3205,11 @@ mission "Fangvin: Struggling Author 1"
 			`	"That's reassuring... but, how am I even going to get there?"`
 			choice
 				`	"I'll take you there."`
-			`	"Do I have to pay anything? As a struggling author, I can't afford off-world transport at all. Let alone, to a completely different alien race!"`
+			`	"Do I have to pay anything? As a struggling author, I can't afford off-world transport at all, let alone to a completely different alien race!"`
 			choice
 				`	"It's okay. I'm willing to make an exception for you."`
 			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Anna.`
-			`	You reply. "Good luck."`
+			`	You reply, "Good luck."`
 			`	As you wait for Anna, you look over your maps of Coalition space to determine the most suitable place for Anna. After much deliberation and thought, you decide on <destination>.`
 			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk and inform her of the destination. You prepare to leave the spaceport.`
 				accept
@@ -3259,7 +3259,7 @@ mission "Fangvin: Struggling Author 2"
 			`	"Greetings, humans.  For you, what can I do today?", asks the Heliarch.`
 			`	"This is my friend Anna. I'm getting her registered with the Heliarchs today.", you answer.`
 			`	"To reach the registration office, this way you must go.", replies the Heliarch, pointing to a hallway.`
-			`	You and Anna walk down the hallway as directed, until you spot a registration office. Anna walks into the registration office while you sit down on a nearby bench. After 15 minutes, Anna walks out and approaches you. "They finally registered me.". I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move.`
+			`	You and Anna walk down the hallway as directed, until you spot a registration office. Anna walks into the registration office while you sit down on a nearby bench. After 15 minutes, Anna walks out and approaches you. "They finally registered me. I'm off to the spaceport now to eat something. Meet me there so we can discuss our next move."`
 
 mission "Fangvin: Struggling Author 3"
 	name "Back to <planet>"
@@ -3287,8 +3287,8 @@ mission "Fangvin: Struggling Author 3"
 			choice
 				`	"I'll help you get one. You probably won't need to pay for one."`
 			`	"Great! So, where will we get the translator?"`
-			`	"We'll go to <destination> to ask the Heliarchs for a translation box", you tell Anna. "Finish your meal, then enter my ship. I'll be ready." You walk off to your ship.`
-			`	After 15 minutes, you see Anna walking towards you. You open the hatch as she enters. She settles in her bunk, as you prepare to depart.`
+			`	"We'll go to <destination> to ask the Heliarchs for a translation box", you tell Anna. "Finish your meal, then go back to my ship. I'll be ready." You walk off to your ship.`
+			`	After 15 minutes, you see Anna walking towards you. You open the hatch as she enters. She settles into her bunk, as you prepare to depart.`
 				accept
 	on complete
 		conversation
@@ -3323,7 +3323,7 @@ mission "Fangvin: Struggling Author 4"
 	on offer
 		conversation
 			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria, with her laptop, She is typing away at the keyboard, presumably writing a new novel.`
-			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and have instructed me to visit their office on <destination>!", exclaims Anna, once again in an enthusiastic tone.`
+			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and they have instructed me to visit their office on <destination>!", exclaims Anna, once again in an enthusiastic tone.`
 			choice
 				`	"What's the publishing company called?"`
 			`	"They're called 'Kimek Reader Publishing'.`
@@ -3432,7 +3432,7 @@ mission "Fangvin: Struggling Author 5B"
 conversation "anna invites you to book signing"
 	action
 		log "People" "Anna Fangvin" "Anna is an author of science fiction books. She never found success in human space, until she visited the Coalition and got her novel, 'Beyond the Hyperdrive', about a group of humans stealing jump drives from the Quarg, published. Upon publication, her book quickly became a bestseller in Kimek space."
-		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a best seller now. Book was 'Beyond the Hyperdrive', something about humans stealing jump drives from the Quarg. Also found out she was both-handed."
+		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive', something about humans stealing jump drives from the Quarg. Also found out she was ambidextrous."
 		"salary: Anna Fangvin" = 5000
 		payment 2000000
 		set "beyond the hyperdrive news can show now"
@@ -3446,7 +3446,7 @@ conversation "anna invites you to book signing"
 	`	"Great! Let's walk to the bookstore and prepare everything! I already have my pen ready, and the staff have already prepared seats for the both of us."`
 	`	You and Anna walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
 	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out the Kimek equivalent of a loudspeaker and begins announcing the release of 'Beyond the Hyperdrive'. Within ten minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Anna signs every copy brought to her by each individual Kimek.`
-	`	Occasionally, Anna alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You had kept a count of how many copies she had been signing, but when it reached six hundred you were beginning to lose count.`
+	`	Occasionally, Anna alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You tried to keep count of how many copies she signed, but gave up when it reached six hundred.`
 	choice
 		`	"Are you left or right handed?"`
 	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
