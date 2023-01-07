@@ -336,6 +336,7 @@
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />
 		<Unit filename="source/System.h" />
+		<Unit filename="source/SystemEntry.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
 		<Unit filename="source/TestContext.cpp" />
