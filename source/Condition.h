@@ -163,15 +163,15 @@ private:
 
 
 template <class V>
-Condition<V>::Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key) :
-	value(value), key(key), store(store)
+Condition<V>::Condition(const V &value, std::shared_ptr<ConditionsStore> store, const KeyType &key)
+	: value(value), key(key), store(store)
 {
 }
 
 
 template <class V>
-Condition<V>::Condition(std::shared_ptr<ConditionsStore> store, const KeyType &key) :
-	value(), key(key), store(store)
+Condition<V>::Condition(std::shared_ptr<ConditionsStore> store, const KeyType &key)
+	: value(), key(key), store(store)
 {
 	UpdateConditions();
 }
@@ -181,8 +181,8 @@ Condition<V>::Condition(std::shared_ptr<ConditionsStore> store, const KeyType &k
 // facilitate type conversion.
 template <class V>
 template <class V2>
-Condition<V>::Condition(const Condition<V2> &other):
-	value(static_cast<ValueType>(other.Value())),
+Condition<V>::Condition(const Condition<V2> &other)
+	: value(static_cast<ValueType>(other.Value())),
 	key(other.Key()),
 	store(const_cast<Condition<V2>&>(other).Store()),
 	entry(const_cast<Condition<V2>&>(other).entry)

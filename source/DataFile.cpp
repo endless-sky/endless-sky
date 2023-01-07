@@ -23,8 +23,8 @@ using namespace std;
 
 
 // Constructor, taking a file path (in UTF-8).
-DataFile::DataFile(const string &path, shared_ptr<ConditionsStore> store0):
-	store(store0)
+DataFile::DataFile(const string &path, shared_ptr<ConditionsStore> store0)
+	: store(store0)
 {
 	Load(path);
 }
@@ -32,8 +32,8 @@ DataFile::DataFile(const string &path, shared_ptr<ConditionsStore> store0):
 
 
 // Constructor, taking an istream. This can be cin or a file.
-DataFile::DataFile(istream &in, shared_ptr<ConditionsStore> store0):
-	store(store0)
+DataFile::DataFile(istream &in, shared_ptr<ConditionsStore> store0)
+	: store(store0)
 {
 	Load(in);
 }

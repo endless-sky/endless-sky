@@ -105,8 +105,8 @@ namespace {
 
 
 
-PlayerInfo::PlayerInfo():
-	conditions(GameData::VaryingConditions())
+PlayerInfo::PlayerInfo()
+	: conditions(GameData::VaryingConditions())
 {
 }
 

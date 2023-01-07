@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "condition-tools.h"
 
 
-ConditionMaker::Provider::Provider(const std::string &name, const ConditionsStore::ValueType &value):
-	name(name), value(value)
+ConditionMaker::Provider::Provider(const std::string &name, const ConditionsStore::ValueType &value)
+	: name(name), value(value)
 {
 }
 

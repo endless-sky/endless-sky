@@ -26,8 +26,8 @@ using namespace std;
 
 
 
-Variant::Variant(const DataNode &node):
-	weight(1)
+Variant::Variant(const DataNode &node)
+	: weight(1)
 {
 	Load(node);
 }
