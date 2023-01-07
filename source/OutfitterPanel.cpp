@@ -449,8 +449,8 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE
-					&& player.Stock(selectedOutfit) <= 0)
+				if(player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions())
+						!= CustomSale::SellType::VISIBLE && player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
