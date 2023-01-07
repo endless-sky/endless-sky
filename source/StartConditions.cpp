@@ -149,7 +149,7 @@ void StartConditions::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(key == "on")
+		else if(key == "on" && child.Size() >= 2)
 		{
 			// The HIDDEN state contains no information. The UNLOCKED StateInfo is a child of the root node
 			// instead of an "on" node.
@@ -163,10 +163,11 @@ void StartConditions::Load(const DataNode &node)
 	}
 
 	// The unlocked state must have at least some information.
-	if(infoByState[StartState::UNLOCKED].description.empty())
-		infoByState[StartState::UNLOCKED].description = "(No description provided.)";
-	if(infoByState[StartState::UNLOCKED].name.empty())
-		infoByState[StartState::UNLOCKED].name = "(Unnamed start)";
+	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
+	if(unlocked.description.empty())
+		unlocked.description = "(No description provided.)";
+	if(unlocked.name.empty())
+		unlocked.name = "(Unnamed start)";
 
 	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
 	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
@@ -192,8 +193,9 @@ void StartConditions::FinishLoading()
 	// planet and system names now. If we had gotten these during Load, the planet and system provided
 	// may now be invalid, meaning the CoreStartData would actually send the start to New Boston instead
 	// of what was displayed.
-	infoByState[StartState::UNLOCKED].planet = GetPlanet().Name();
-	infoByState[StartState::UNLOCKED].system = GetSystem().Name();
+	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
+	unlocked.planet = GetPlanet().Name();
+	unlocked.system = GetSystem().Name();
 
 	// If a "lower" state is missing information, copy from the state "above" it.
 	FillState(StartState::UNLOCKED, StartState::REVEALED);
@@ -202,7 +204,7 @@ void StartConditions::FinishLoading()
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
 		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ infoByState[StartState::UNLOCKED].name + "\") has an invalid starting conversation."
+			+ unlocked.name + "\") has an invalid starting conversation."
 			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
 
