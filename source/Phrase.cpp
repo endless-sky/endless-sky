@@ -105,12 +105,6 @@ vector<string> Phrase::GetAll() const
 		std::swap(base, result);
 	};
 
-	static auto AppendToVector = [](vector<string> &base, const string &toAppend) -> void
-	{
-		for(string &it : base)
-			it.append(toAppend);
-	};
-
 	static auto PushToVector = [](vector<string> &base, const vector<string> &toAdd) -> void
 	{
 		base.reserve(base.size() + toAdd.size());
@@ -148,7 +142,8 @@ vector<string> Phrase::GetAll() const
 				{
 					// If this element is a string, append it to each of the partial results for this choice.
 					if(!element.first.empty())
-						AppendToVector(choiceVector, element.first);
+						for(string &base : choiceVector)
+							base.append(element.first);
 					// If this element references another phrase, get all the possible results of that phrase,
 					// and append each of those to each of the existing partial results for this choice.
 					else if(element.second)
