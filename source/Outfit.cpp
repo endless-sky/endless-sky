@@ -52,6 +52,7 @@ namespace {
 		{"fuel energy", 0.},
 		{"fuel heat", 0.},
 		{"heat generation", 0.},
+		{"flotsam chance", 0.},
 
 		{"thrusting shields", 0.},
 		{"thrusting hull", 0.},
