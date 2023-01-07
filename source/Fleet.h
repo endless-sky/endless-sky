@@ -50,7 +50,7 @@ public:
 	struct FleetHolder {
 		std::string name;
 		std::shared_ptr<Ship> flagship;
-		std::vector<std::shared_ptr<Ship>> ships;
+		std::set<std::shared_ptr<Ship>> ships;
 	};
 
 public:

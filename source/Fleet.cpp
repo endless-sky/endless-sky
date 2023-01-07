@@ -277,7 +277,7 @@ const Government *Fleet::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
+void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets, const Planet *planet) const
 {
 	if(variants.empty() || personality.IsDerelict())
 		return;
@@ -408,6 +408,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		}
 	}
 
+	// Create an instance for the fleet that gets spawned.
+	fleets.emplace_back();
+	fleets.back().name = fleetName;
+
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
 	for(shared_ptr<Ship> &ship : placed)
@@ -436,7 +440,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(flagship)
 			ship->SetParent(flagship);
 		else
+		{
 			flagship = ship;
+			fleets.back().flagship = flagship;
+		}
+
+		fleets.back().ships.insert(ship);
 
 		SetCargo(&*ship);
 	}
@@ -446,7 +455,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
+void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<FleetHolder> &fleets, bool carried) const
 {
 	if(variants.empty())
 		return;
@@ -458,6 +467,10 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 
 	// Determine where the fleet is going to or coming from.
 	auto center = ChooseCenter(system);
+
+	// Create an instance for the fleet that gets spawned.
+	fleets.emplace_back();
+	fleets.back().name = fleetName;
 
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
@@ -483,9 +496,14 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		if(flagship)
 			ship->SetParent(flagship);
 		else
+		{
 			flagship = ship;
+			fleets.back().flagship = flagship;
+		}
 
 		SetCargo(&*ship);
+
+		fleets.back().ships.insert(ship);
 	}
 }
 
