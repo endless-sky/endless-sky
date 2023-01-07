@@ -269,8 +269,11 @@ string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
 	for(auto &&event : events)
-		if(!event.first->IsValid())
-			return "event \"" + event.first->Name() + "\"";
+	{
+		string reason = event.first->IsValid();
+		if(!reason.empty())
+			return "event \"" + event.first->Name() + "\" - Reason: " + reason;
+	}
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)

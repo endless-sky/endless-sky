@@ -57,6 +57,16 @@ void Color::Load(double r, double g, double b, double a)
 	color[1] = static_cast<float>(g);
 	color[2] = static_cast<float>(b);
 	color[3] = static_cast<float>(a);
+
+	isLoaded = true;
+}
+
+
+
+// Check if Load() has been called for this color.
+bool Color::IsLoaded() const
+{
+	return isLoaded;
 }
 
 
