@@ -23,8 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "UI.h"
 #include "text/Format.h"
+#include "UI.h"
 
 using namespace std;
 
