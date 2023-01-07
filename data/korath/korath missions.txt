@@ -380,7 +380,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				outfit "Triple Plasma Core"
 				outfit "Liquid Sodium Cooler"
 				outfit "Large Heat Shunt"
-			`	"Done! We're also giving you <payment>. You'll need a Shield Beetle to go with these, as nothing else from humans or Hai has enough space."`
+			`	"Done! We're also giving you <payment>. You'll need a Shield Beetle to go with these, as nothing else from humans or Hai has enough space and heat capacity."`
 				goto end
 
 			# I use planetary class instead of stellar class because you
