@@ -836,4 +836,6 @@ void PrintData::Help()
 			<< endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;
 	cerr << "    --phrase <phrase>: prints a list of all possible results of the named phrase." << endl;
+	cerr << "        --random <count>: prints <count> randomly produced sentences from the given phrase." << endl;
+	cerr << "        --count: calculates and prints the number of permutations of the given phrase." << endl;
 }
