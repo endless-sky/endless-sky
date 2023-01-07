@@ -40,6 +40,7 @@ class DataWriter;
 class ConditionsStore {
 	template<class V>
 	friend class Condition;
+
 public:
 	using ValueType = int64_t;
 	using KeyType = std::string;
