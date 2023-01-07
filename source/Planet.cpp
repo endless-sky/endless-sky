@@ -617,13 +617,13 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 
 // While being tributed, attempt to spawn the next specified defense fleet.
-void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
+void Planet::DeployDefense(list<shared_ptr<Ship>> &ships, vector<Fleet::FleetHolder> &fleets) const
 {
 	if(!isDefending || Random::Int(60) || defenseDeployed == defenseFleets.size())
 		return;
 
 	auto end = defenders.begin();
-	defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
+	defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, fleets, this);
 	ships.insert(ships.begin(), defenders.begin(), end);
 
 	// All defenders use a special personality.

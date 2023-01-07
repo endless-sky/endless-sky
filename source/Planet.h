@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLANET_H_
 #define PLANET_H_
 
+#include "Fleet.h"
 #include "Sale.h"
 
 #include <list>
@@ -25,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class DataNode;
-class Fleet;
 class Government;
 class Outfit;
 class PlayerInfo;
@@ -138,7 +138,7 @@ public:
 
 	// Demand tribute, and get the planet's response.
 	std::string DemandTribute(PlayerInfo &player) const;
-	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
+	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships, std::vector<Fleet::FleetHolder> &fleets) const;
 	void ResetDefense() const;
 
 

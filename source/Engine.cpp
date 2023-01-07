@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageProfile.h"
 #include "Effect.h"
 #include "FillShader.h"
-#include "Fleet.h"
 #include "Flotsam.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -1286,7 +1285,7 @@ void Engine::EnterSystem()
 	{
 		for(const auto &fleet : system->Fleets())
 			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, newShips);
+				fleet.Get()->Place(*system, newShips, fleets);
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -1316,7 +1315,7 @@ void Engine::EnterSystem()
 			for(int i = 0; i < 10; ++i)
 				if(Random::Real() < attraction)
 				{
-					raidFleet->Place(*system, newShips);
+					raidFleet->Place(*system, newShips, fleets);
 					Messages::Add("Your fleet has attracted the interest of a "
 							+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
 				}
@@ -1400,7 +1399,7 @@ void Engine::CalculateStep()
 	const System *playerSystem = player.GetSystem();
 	for(const StellarObject &object : playerSystem->Objects())
 		if(object.HasValidPlanet())
-			object.GetPlanet()->DeployDefense(newShips);
+			object.GetPlanet()->DeployDefense(newShips, fleets);
 
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
@@ -1596,6 +1595,20 @@ void Engine::CalculateStep()
 	for(const Visual &visual : visuals)
 		batchDraw[calcTickTock].AddVisual(visual);
 
+	// Update fleets, remove fleets with no ships.
+	for(auto &fleet : fleets)
+	{
+		bool shouldBeRemoved = true;
+		for(shared_ptr<Ship> ship : fleet.ships)
+			if(ship.get())
+			{
+				shouldBeRemoved = false;
+				break;
+			}
+		if(shouldBeRemoved)
+			remove(fleets.begin(), fleets.end(), fleet);
+	}
+
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
 	if(++loadCount == 60)
@@ -1740,7 +1753,7 @@ void Engine::SpawnFleets()
 			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
 				continue;
 
-			fleet.Get()->Enter(*player.GetSystem(), newShips);
+			fleet.Get()->Enter(*player.GetSystem(), newShips, fleets);
 		}
 }
 
