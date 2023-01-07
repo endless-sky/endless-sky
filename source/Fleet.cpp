@@ -509,6 +509,55 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, vector<Fl
 
 
 
+// Place one of the variants in the given system, already "in action." If the carried flag is set,
+// only uncarried ships will be added to the list (as any carriables will be stored in bays).
+void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
+{
+	if(variants.empty())
+		return;
+
+	// Pick a fleet variant to instantiate.
+	const vector<const Ship *> &variantShips = variants.Get().Ships();
+	if(variantShips.empty())
+		return;
+
+	// Determine where the fleet is going to or coming from.
+	auto center = ChooseCenter(system);
+
+	// Place all the ships in the chosen fleet variant.
+	shared_ptr<Ship> flagship;
+	vector<shared_ptr<Ship>> placed = Instantiate(variantShips);
+	for(shared_ptr<Ship> &ship : placed)
+	{
+		// If this is a fighter and someone can carry it, no need to position it.
+		if(carried && PlaceFighter(ship, placed))
+			continue;
+
+		Angle angle = Angle::Random();
+		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
+		double velocity = 0;
+		if(!ship->GetPersonality().IsDerelict())
+			velocity = Random::Real() * ship->MaxVelocity();
+		else
+			ship->Disable();
+
+		ships.push_front(ship);
+		ship->SetSystem(&system);
+		ship->Place(pos, velocity * angle.Unit(), angle);
+
+		if(flagship)
+			ship->SetParent(flagship);
+		else
+		{
+			flagship = ship;
+		}
+
+		SetCargo(&*ship);
+	}
+}
+
+
+
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {

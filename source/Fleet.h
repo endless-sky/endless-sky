@@ -75,6 +75,7 @@ public:
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, std::vector<FleetHolder> &fleets,
 			bool carried = true) const;
+	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
 
 	// Do the randomization to make a ship enter or be in the given system.
 	// Return the system that was chosen for the ship to enter from.
