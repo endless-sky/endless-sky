@@ -145,10 +145,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	const CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*outfit, player.Conditions());
-	// Do not show hidden items except if the player has them in stock.
-	if((showForSale && ((selling != CustomSale::SellType::NONE && selling != CustomSale::SellType::HIDDEN)
-			|| player.Stock(outfit) > 0)))
+	if(showForSale && (outfitter.Has(outfit) || player.Stock(outfit) > 0))
 		return true;
 
 	if(showCargo && player.Cargo().Get(outfit))
@@ -217,13 +214,10 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	// Don't show the "in stock" amount if the outfit has an unlimited stock or
 	// if it is not something that you can buy.
 	int stock = 0;
-	const CustomSale::SellType sellType = player.GetPlanet()->GetAvailability(*outfit, player.Conditions());
-	// Visible means it is sold normally.
-	if(sellType != CustomSale::SellType::VISIBLE && outfit->Get("installable") >= 0.)
+	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage() ? player.Storage()->Get(outfit) : 0;
-	const std::string &show = CustomSale::GetShown(sellType);
 
 	string message;
 	if(cargo && storage && stock)
@@ -240,11 +234,12 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
-	else if(!outfitter.count(selectedOutfit) && sellType == CustomSale::SellType::NONE)
+	else if(!outfitter.count(selectedOutfit))
 		message = "(not sold here)";
 
-	if(!show.empty())
-		message += " (" + show + ")";
+	// For now there is only default or import.
+	if(!customSales[CustomSale::SellType::IMPORT].Has(*outfit))
+		message += " (" + CustomSale::GetShown(CustomSale::SellType::IMPORT) + ")";
 
 	if(!message.empty())
 	{
@@ -359,7 +354,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
 	if(!(isAlreadyOwned || player.Stock(selectedOutfit) > 0 ||
-		player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
+			!customSales[CustomSale::SellType::IMPORT].Has(*selectedOutfit)))
 		return false;
 
 	int mapSize = selectedOutfit->Get("map");
@@ -449,8 +444,9 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions())
-						!= CustomSale::SellType::VISIBLE && player.Stock(selectedOutfit) <= 0)
+				if(!planet.Outfitter().Has(selectedOutfit) ||
+						customSales[CustomSale::SellType::IMPORT].Has(*selectedOutfit) ||
+						player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
@@ -472,8 +468,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 				player.Cargo().Remove(selectedOutfit);
 			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
 				player.Storage()->Remove(selectedOutfit);
-			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 ||
-				player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) == CustomSale::SellType::VISIBLE))
+			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{
@@ -524,9 +519,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions());
-	if(!((selling != CustomSale::SellType::NONE || outfitter.count(selectedOutfit))
-			|| player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
+	if(!(outfitter.count(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
@@ -534,7 +527,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(selling == CustomSale::SellType::IMPORT || selling == CustomSale::SellType::HIDDEN)
+	if(customSales[CustomSale::SellType::IMPORT].Has(*selectedOutfit))
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, legally or not, generally for a good price."));

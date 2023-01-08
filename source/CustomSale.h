@@ -35,16 +35,13 @@ class Planet;
 // linked by outfit or by group of outfits (aka outfitters).
 class CustomSale {
 public:
-	// Sell types: none is meant to be default, signifying this is empty,
-	// visible is the default one in the game,
-	// import means you can only sell it but not buy it (and it is shown still)
-	// hidden means it will not be shown except if you have the outfit (and it will have a custom price still).
+	// Sell types: none is meant to be default, meaning the visibility depends on the outfitter,
+	// import means it is shown whilst still not being buyable
+	//
 	// The numbers correspond to the priority, hidden will override import which will override visible.
 	enum class SellType {
-		NONE = 0,
-		VISIBLE = 1,
-		IMPORT = 2,
-		HIDDEN = 3
+		DEFAULT = 0,
+		IMPORT = 1
 	};
 
 
@@ -52,8 +49,8 @@ public:
 	void Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 		const Set<Outfit> &outfits, const std::string &mode);
 
-	// Adds another CustomSale of the same sellType to this one, or to any type if this one is empty.
-	bool Add(const CustomSale &other);
+	// Adds another CustomSale to this one if the conditions allow it.
+	bool Add(const CustomSale &other, const Planet &planet, const ConditionsStore store);
 
 	// Get the price of the item. One should check if the conditions match first.
 	double GetRelativeCost(const Outfit &item) const;
@@ -64,18 +61,18 @@ public:
 	static const std::string &GetShown(SellType sellType);
 
 	// Return all outfits that are affected by this CustomSale.
-	const Sale<Outfit> GetOutfits() const;
+	Sale<Outfit> GetOutfits();
 
 	bool Has(const Outfit &item) const;
 
 	// Check if this planet with the given conditions of the player match the conditions of the CustomSale.
 	bool Matches(const Planet &planet, const ConditionsStore &playerConditions) const;
 
-	void Clear();
-
-	void CheckIfEmpty();
-
 	bool IsEmpty();
+
+
+private:
+	void Clear();
 
 
 private:
@@ -89,7 +86,11 @@ private:
 	std::map<const Outfit *, double> relativeOutfitPrices;
 	std::map<const Outfit *, double> relativeOutfitOffsets;
 
-	SellType sellType = SellType::NONE;
+	// All outfits this customSale has, kept in cache.
+	Sale<Outfit> seen;
+	bool cacheValid = false;
+
+	SellType sellType = SellType::DEFAULT;
 };
 
 #endif

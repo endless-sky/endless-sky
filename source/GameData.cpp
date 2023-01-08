@@ -506,6 +506,27 @@ const Set<CustomSale> &GameData::CustomSales()
 
 
 
+map<CustomSale::SellType, CustomSale> GameData::CustomSale(const Planet &planet, const ConditionsStore &conditions)
+{
+	map<CustomSale::SellType, CustomSale> matchingSales;
+	for(const auto &sale : GameData::CustomSales())
+		matchingSales[sale.GetSellType()].Add(sale.second, planet, conditions);
+	return matchingSales;
+}
+
+
+
+double GameData::OutfitCost(const map<CustomSale::SellType, CustomSale> &sale, const Outfit &outfit)
+{
+	// Iterate in the opposite order, since any higher customSale has priority.
+	for(const auto &selling = sale.end(); selling != sale.begin(); --selling)
+		if(selling.Has(outfit))
+			return selling.GetRelativeCost(outfit);
+	return 1.;
+}
+
+
+
 const Set<Effect> &GameData::Effects()
 {
 	return objects.effects;

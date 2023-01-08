@@ -28,10 +28,8 @@ using namespace std;
 namespace
 {
 	const auto show = map<CustomSale::SellType, const string> {
-		{CustomSale::SellType::NONE, ""},
-		{CustomSale::SellType::VISIBLE, ""},
-		{CustomSale::SellType::IMPORT, "import"},
-		{CustomSale::SellType::HIDDEN, "hidden"},
+		{CustomSale::SellType::DEFAULT, ""},
+		{CustomSale::SellType::IMPORT, "import"}
 	};
 	// Default value, that should not conflict with actual values.
 	const double DEFAULT = numeric_limits<double>::infinity();
@@ -64,9 +62,11 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 	for(const DataNode &child : node)
 	{
 		const string &token = child.Token(0);
-		bool isValue = (child.Token(0) == "value");
-		bool isOffset = (child.Token(0) == "offset");
-		if(token == "remove")
+		bool isValue = token == "value";
+		bool isOffset = token == "offset";
+		bool remove = token == "remove";
+		bool add = token == "add";
+		if(remove)
 		{
 			if(child.Size() == 1)
 				Clear();
@@ -107,7 +107,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 			else
 				child.PrintTrace("Skipping unrecognized clearing/deleting:");
 		}
-		else if(token == "add")
+		else if(add)
 		{
 			if(child.Token(1) == "location" && child.Size() == 1)
 				locationFilter.Load(child);
@@ -116,12 +116,10 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 			else
 				child.PrintTrace("Skipping unrecognized add:");
 		}
-		else if(token == "hidden")
-			sellType = SellType::HIDDEN;
+		else if(token == "default")
+			sellType = SellType::DEFAULT;
 		else if(token == "import")
 			sellType = SellType::IMPORT;
-		else if(token == "visible")
-			sellType = SellType::VISIBLE;
 		else if(token == "location")
 		{
 			// Either just a planet or a whole filter.
@@ -197,19 +195,24 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	CheckIfEmpty();
 }
 
 
 
-bool CustomSale::Add(const CustomSale &other)
+bool CustomSale::Add(const CustomSale &other, const Planet &planet, const ConditionsStore &store)
 {
-	// sellType::NONE means an empty CustomSale.
-	if(this->sellType == SellType::NONE)
-		this->sellType = other.sellType;
-	// Adding custom sales of different selling types is not supported (or needed).
-	else if(other.sellType != this->sellType)
+	cacheValid = false;
+	if(!Matches(planet, store))
+		Clear();
+	if(!other.Matches(planet, store))
 		return false;
+
+	// Selltypes are ordered by priority, a higher priority overrides lower ones.
+	if(sellType < other.sellType)
+	{
+		*this = other;
+		return true;
+	}
 
 	// The same logic applies for the relative prices or offsets, be they for  whole outfitters or outfits.
 
@@ -301,9 +304,12 @@ const string &CustomSale::GetShown(CustomSale::SellType sellType)
 
 
 
-const Sale<Outfit> CustomSale::GetOutfits() const
+Sale<Outfit> CustomSale::GetOutfits()
 {
-	Sale<Outfit> seen;
+	if(!seen.empty() && cacheValid)
+		return seen;
+	else
+		seen.clear();
 	for(auto it : relativeOutfitPrices)
 		seen.insert(it.first);
 	for(auto it : relativeOutfitOffsets)
@@ -312,6 +318,7 @@ const Sale<Outfit> CustomSale::GetOutfits() const
 		seen.Add(*sale.first);
 	for(auto &&sale : relativeOffsets)
 		seen.Add(*sale.first);
+	cacheValid = true;
 	return seen;
 }
 
@@ -344,25 +351,14 @@ bool CustomSale::Matches(const Planet &planet, const ConditionsStore &playerCond
 
 
 
+bool CustomSale::IsEmpty()
+{
+	return GetOutfits().empty();
+}
+
+
+
 void CustomSale::Clear()
 {
 	*this = CustomSale{};
-}
-
-
-
-void CustomSale::CheckIfEmpty()
-{
-	if(relativeOffsets.empty() && relativePrices.empty() &&
-			relativeOutfitOffsets.empty() && relativeOutfitPrices.empty())
-		sellType = SellType::NONE;
-	else if(sellType == SellType::NONE)
-		sellType = SellType::VISIBLE;
-}
-
-
-
-bool CustomSale::IsEmpty()
-{
-	return sellType != SellType::NONE;
 }

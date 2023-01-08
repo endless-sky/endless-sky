@@ -409,48 +409,6 @@ const Sale<Outfit> &Planet::Outfitter() const
 
 
 
-// Get the local price of this outfit.
-double Planet::GetLocalRelativePrice(const Outfit &outfit, const ConditionsStore &conditions) const
-{
-	int days = conditions.Get("year") + conditions.Get("month") + conditions.Get("day");
-	if(cachedDays != days)
-	{
-		cachedDays = days;
-		customSale.Clear();
-		visibleCustomSale.Clear();
-	}
-	// Only consider CustomSales of the same availability, since they are incompatible with each others.
-	CustomSale::SellType sellType = GetAvailability(outfit, conditions);
-	if(sellType == CustomSale::SellType::VISIBLE && !visibleCustomSale.IsEmpty())
-		return visibleCustomSale.GetRelativeCost(outfit);
-	else if(customSale.GetSellType() != sellType)
-	{
-		customSale.Clear();
-		for(const auto &sale : GameData::CustomSales())
-			if(sale.second.Matches(*this, conditions) && sale.second.GetSellType() == sellType)
-				customSale.Add(sale.second);
-		if(sellType == CustomSale::SellType::VISIBLE)
-			visibleCustomSale = customSale;
-	}
-	return customSale.GetRelativeCost(outfit);
-}
-
-
-
-// Get the availability of this outfit.
-CustomSale::SellType Planet::GetAvailability(const Outfit &outfit, const ConditionsStore &conditions) const
-{
-	CustomSale::SellType sellType = Outfitter().Has(&outfit) ?
-		CustomSale::SellType::VISIBLE : CustomSale::SellType::NONE;
-	// There are different sell type priorities, with only the highest one being kept.
-	for(const auto &sale : GameData::CustomSales())
-		if(sale.second.GetSellType() > sellType && sale.second.Has(outfit) && sale.second.Matches(*this, conditions))
-			sellType = sale.second.GetSellType();
-	return sellType;
-}
-
-
-
 // Get this planet's government. Most planets follow the government of the system they are in.
 const Government *Planet::GetGovernment() const
 {

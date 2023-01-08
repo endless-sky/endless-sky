@@ -77,7 +77,7 @@ test-data "Custom Sale Price"
 				add outfitter "Nuke"
 
 
-test "CustomSale: Price 0: Sell Outfit With Custom Price and % offset"
+test "CustomSale: Price a: Sell Outfit With Custom Price and relative offset"
 	status "active"
 	description "Test selling a 1000 credits outfit."
 	sequence
@@ -170,7 +170,7 @@ test-data "Custom Sale Outfitter Price"
 				add outfitter "Nuke"
 
 
-test "CustomSale 1: Price 1: Outfitter Double Relative Price"
+test "CustomSale b: Price b: Outfitter Double Relative Price"
 	status "active"
 	description "Test trying to buy the first outfit, which had its price modified, as it was part of the specified outfitter."
 	sequence
@@ -264,7 +264,7 @@ test-data "Custom Sale Import"
 				add outfitter "Nuke"
 
 
-test "CustomSale: Import 0: Cannot Buy New"
+test "CustomSale: Import a: Cannot Buy New"
 	status "active"
 	description "Test trying to buy the first outfit."
 	sequence
@@ -280,7 +280,7 @@ test "CustomSale: Import 0: Cannot Buy New"
 			"credits" == 1000000
 
 
-test "CustomSale: Import 1: Can Buy Back"
+test "CustomSale: Import b: Can Buy Back"
 	status "active"
 	description "Make sure you can buy back an import item you just sold."
 	sequence
@@ -376,7 +376,7 @@ test-data "Custom Sale Hidden"
 				add outfitter "Nuke"
 
 
-test "CustomSale: Hidden 0: behavior"
+test "CustomSale: Hidden a: behavior"
 	status "active"
 	description "Test buying the first seen hidden outfit."
 	sequence
@@ -473,7 +473,7 @@ test-data "Custom Sale Conditions"
 				add outfitter "Nuke"
 
 
-test "CustomSale: Conditions 0: Apply Correctly"
+test "CustomSale: Conditions a: Apply Correctly"
 	status "active"
 	description "Test that conditions are checked for the pricing outfit, when having the right condition."
 	sequence
@@ -489,7 +489,7 @@ test "CustomSale: Conditions 0: Apply Correctly"
 			"credits" == 0
 
 
-test "CustomSale: Conditions 1: Not Always On"
+test "CustomSale: Conditions b: Not Always On"
 	status "active"
 	description "Test that conditions are checked for the pricing outfit, without the right condition."
 	sequence
@@ -589,7 +589,7 @@ test-data "Custom Sale Price Priorities 0"
 
 
 # NOTE: If one wants the two to combine with each others, they would use offsets, not plain prices!
-test "CustomSale: Priorities 0: Outfit over Outfitter"
+test "CustomSale: Priorities a: Outfit over Outfitter"
 	status "active"
 	description "Test trying to buy the first outfit, when there is a conflict between outfit and outfitter prices."
 	sequence
@@ -788,7 +788,7 @@ test-data "Custom Sale Price Priorities 2"
 				add outfitter "Nuke"
 
 
-test "CustomSale: Priorities 2: Highest Price"
+test "CustomSale: Priorities c: Highest Price"
 	status "active"
 	description "Test trying to buy the first outfit, which had its price modified in two different ways, of which the highest price should have priority."
 	sequence

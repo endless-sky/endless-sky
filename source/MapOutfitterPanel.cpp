@@ -146,19 +146,12 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const Planet *planet = object.GetPlanet();
-			double cost = planet->GetLocalRelativePrice(*selected, player.Conditions());
-			CustomSale::SellType sellType = planet->GetAvailability(*selected, player.Conditions());
 
 			if(planet->HasOutfitter())
 			{
-				if(sellType != CustomSale::SellType::NONE)
-				{
-					const auto &storage = player.PlanetaryStorage();
-					bool storedInSystem = (storage.find(planet) != storage.cend());
-
-					if(sellType != CustomSale::SellType::HIDDEN || storedInSystem)
-						return cost;
-				}
+				if(planet->Outfitter().Has(selected))
+					return (GameData::OutfitCost(GameData::CustomSale(*player.GetPlanet(), player.Conditions()),
+						*selected));
 				else
 					value = -.1;
 			}
@@ -241,19 +234,12 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
-					CustomSale::SellType sold = planet.GetAvailability(*outfit, player.Conditions());
 					const auto pit = storage.find(&planet);
 					if(pit != storage.end())
 						storedInSystem += pit->second.Get(outfit);
-
-					isForSale = (sold != CustomSale::SellType::NONE && (sold != CustomSale::SellType::HIDDEN || storedInSystem)
-						&& planet.HasOutfitter());
-
-					if(isForSale)
+					if(planet.Outfitter().Has(outfit))
 					{
-						price = Format::Credits(planet.GetLocalRelativePrice(*outfit, player.Conditions()) * outfit->Cost()) + " credits";
-						if(sold != CustomSale::SellType::VISIBLE)
-							price += " (" + (CustomSale::GetShown(sold)) + ")";
+						isForSale = true;
 						break;
 					}
 				}
@@ -294,15 +280,6 @@ void MapOutfitterPanel::Init()
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
-			for(auto &&sales : GameData::CustomSales())
-				if(sales.second.GetSellType() != CustomSale::SellType::HIDDEN &&
-					it.second.HasOutfitter() && sales.second.Matches(it.second, player.Conditions()))
-					for(const auto &outfit : sales.second.GetOutfits())
-						if(!seen.count(outfit))
-						{
-							catalog[outfit->Category()].push_back(outfit);
-							seen.insert(outfit);
-						}
 		}
 
 	// Add outfits in storage

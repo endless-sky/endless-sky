@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
+#include "CustomSale.h"
 #include "CategoryTypes.h"
 #include "Sale.h"
 #include "Set.h"
@@ -30,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Color;
 class ConditionsStore;
 class Conversation;
-class CustomSale;
 class DataNode;
 class DataWriter;
 class Date;
@@ -115,6 +115,9 @@ public:
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<CustomSale> &CustomSales();
+	static std::map<CustomSale::SellType, CustomSale> CustomSale(const Planet &planet,
+		const ConditionsStore &conditions);
+	static double OutfitCost(const std::map<CustomSale::SellType, CustomSale> &sales, const Outfit &outfit);
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();
