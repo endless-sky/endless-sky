@@ -997,7 +997,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 
 // Get the in-system strength of each government's allies and enemies.
-int64_t AI::AllyStrength(const Government *government)
+int64_t AI::AllyStrength(const Government *government) const
 {
 	auto it = allyStrength.find(government);
 	return (it == allyStrength.end() ? 0 : it->second);
@@ -1005,7 +1005,7 @@ int64_t AI::AllyStrength(const Government *government)
 
 
 
-int64_t AI::EnemyStrength(const Government *government)
+int64_t AI::EnemyStrength(const Government *government) const
 {
 	auto it = enemyStrength.find(government);
 	return (it == enemyStrength.end() ? 0 : it->second);
@@ -1586,9 +1586,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// then move at more civilized speeds when going to a planet.
 		// A negative cruising speed indicates the ship should move as quickly as possible.
 		double cruiseSpeed = -1.;
-		auto ait = allyStrength.find(ship.GetGovernment());
-		auto eit = enemyStrength.find(ship.GetGovernment());
-		if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second > eit->second * 2)
+		if(AllyStrength(ship.GetGovernment()) > EnemyStrength(ship.GetGovernment()) * 2)
 			cruiseSpeed = ship.CruiseVelocity();
 
 		MoveToPlanet(ship, command, cruiseSpeed);

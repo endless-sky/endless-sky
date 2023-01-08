@@ -4191,7 +4191,7 @@ void Ship::TuneForEscorts()
 	escorts.cruiseVelocity = -1.;
 	escorts.slowest.reset();
 
-	for(const auto &it: escorts.list)
+	for(const auto &it : escorts.list)
 	{
 		auto escort = it.lock();
 		if(escort)
