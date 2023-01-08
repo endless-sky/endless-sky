@@ -94,8 +94,8 @@ public:
 private:
 	// Helper functions for loading StartInfo.
 	void LoadState(const DataNode &node, StartState state);
-	void FillState(StartState fromState, StartState toState);
 	void LoadStateChild(const DataNode &child, StartInfo &info, bool &clearDescription, bool isAdd);
+	void FillState(StartState fillState, const Sprite *thumbnail);
 
 
 private:

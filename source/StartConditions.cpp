@@ -158,6 +158,11 @@ void StartConditions::Load(const DataNode &node)
 	if(unlocked.name.empty())
 		unlocked.name = "(Unnamed start)";
 
+	// If the REVEALED or DISPLAYED states are missing information, fill them in with "???".
+	// Also use the UNLOCKED state thumbnail if the other states are missing one.
+	FillState(StartState::REVEALED, unlocked.thumbnail);
+	FillState(StartState::DISPLAYED, unlocked.thumbnail);
+
 	// If no identifier is supplied, the creator would like this starting scenario to be isolated from
 	// other plugins. Thus, use an unguessable, non-reproducible identifier, this item's memory address.
 	if(identifier.empty() && node.Size() >= 2)
@@ -185,10 +190,6 @@ void StartConditions::FinishLoading()
 	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
 	unlocked.planet = GetPlanet().Name();
 	unlocked.system = GetSystem().Name();
-
-	// If a "lower" state is missing information, copy from the state "above" it.
-	FillState(StartState::UNLOCKED, StartState::REVEALED);
-	FillState(StartState::REVEALED, StartState::DISPLAYED);
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
@@ -360,18 +361,17 @@ void StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 
 
 
-void StartConditions::FillState(StartState fromState, StartState toState)
+void StartConditions::FillState(StartState fillState, const Sprite *thumbnail)
 {
-	StartInfo &from = infoByState[fromState];
-	StartInfo &to = infoByState[toState];
-	if(!to.thumbnail)
-		to.thumbnail = from.thumbnail;
-	if(to.name.empty())
-		to.name = from.name;
-	if(to.description.empty())
-		to.description = from.description;
-	if(to.system.empty())
-		to.system = from.system;
-	if(to.planet.empty())
-		to.planet = from.planet;
+	StartInfo &fill = infoByState[fillState];
+	if(!fill.thumbnail)
+		fill.thumbnail = thumbnail
+	if(fill.name.empty())
+		fill.name = "???";
+	if(fill.description.empty())
+		fill.description = "???";
+	if(fill.system.empty())
+		fill.system = "???";
+	if(fill.planet.empty())
+		fill.planet = "???";
 }
