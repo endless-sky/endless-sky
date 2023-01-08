@@ -386,7 +386,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node, wormholes);
 		else if(key == "pricing" && node.Size() >= 3)
-			customSales.Get(node.Token(2))->Load(node, outfitSales, outfits, node.Token(1));
+			customSales.Get(node.Token(2))->Load(node, outfitSales, outfits);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.
