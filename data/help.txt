@@ -130,11 +130,5 @@ help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
 
 help "tributing"
-	`You fire a warning shot, and the fourth wall shudders and cracks.`
-	`An automated message appears on your computer. "Captain!`
-	`Demanding tribute from planets is not integrated with the storyline!`
-	`You will receive a daily income and gain unrestricted landing access`
-	`to this location, at the cost of being considered an outlaw by their`
-	`government, but any campaign missions will not take this into`
-	`account, which may result in story events that don't make sense.`
-	`Are you sure you want to proceed?"`
+	`You fire a warning shot, and the fourth wall shudders and cracks. An automated message appears on your computer.`
+	`"Captain! Demanding tribute from planets is not integrated with the storyline! You will receive a daily income and gain unrestricted landing access to this location, at the cost of being considered an outlaw by their government, but any campaign missions will not take this into account, which may result in story events that don't make sense. Are you sure you want to proceed?"`
