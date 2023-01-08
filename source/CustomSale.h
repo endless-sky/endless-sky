@@ -49,7 +49,7 @@ public:
 	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits);
 
 	// Adds another CustomSale to this one if the conditions allow it.
-	bool Add(const CustomSale &other, const Planet &planet, const ConditionsStore store);
+	bool Add(const CustomSale &other, const Planet &planet, const ConditionsStore &store);
 
 	// Get the price of the item. One should check if the conditions match first.
 	double GetRelativeCost(const Outfit &item) const;
