@@ -305,9 +305,7 @@ CustomSale::SellType CustomSale::GetSellType() const
 
 const string &CustomSale::GetShown(CustomSale::SellType sellType)
 {
-	static const string empty;
-	auto it = show.find(sellType)->second;
-	return (it == show.end() ? empty : it->second);
+	return show.find(sellType)->second;
 }
 
 
