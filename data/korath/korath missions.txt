@@ -286,24 +286,26 @@ mission "Korath Stormhold Artifacts [2] Drones"
 	to offer
 		has "Korath Stormhold Artifacts [1] Coded Message: done"
 	on offer
-		log "Factions" "Korath" `According to the Unfettered, the Korath were intelligent and well-cultured reptiles, until their civilization fell apart a few centuries ago. They peacefully coexisted with the Hai until they got desperate for resources and invaded. The Hai valiantly defended themselves against the Korath, but eventually the Korath nearly wiped themselves out through infighting. The few survivors live north and east of Syndicate space and frequently raid nearby human settlements.`
-		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and first line of defense for New Tortuga. That planet is an impenetrable fortress in a system crawling with Korath capital ships, and is believed to be involved in shadowy and illicit activities. The Navy's plan is containment through a blockade in the choke point of Alcyone.`
+		log "Factions" "Korath" `According to the Unfettered, the Korath were intelligent and well-cultured reptiles, until their civilization fell apart a few centuries ago. They peacefully coexisted with the Hai until they got desperate for resources and invaded. The Hai valiantly defended themselves against the Korath, but eventually the Korath nearly wiped themselves out through infighting. The few survivors live east of Syndicate space and frequently raid nearby human settlements.`
+		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and first line of defense for New Tortuga. That planet is an impenetrable fortress in a system crawling with Korath capital ships, and is believed to be involved in shadowy and illicit activities. The Navy's plan is containment through a blockade at the choke point of Alcyone until the pirate activity in the area dies down.`
 		conversation
-			`Choot'k greets you, with Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. Sadly, there weren't any jump drives," he says, winking. "Fortunately, the pirates had plenty of other gadgetry littering their bunkers, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
+			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. Sadly, there weren't any jump drives," he says, winking. "Fortunately, the pirates had plenty of other gadgetry littering their bunkers, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
 					"reputation: Hai (Unfettered)" >= 30
-			`Choot'k greets you, with Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. The pirates' bunkers have had all manner of gadgetry, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
+			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. The pirates' bunkers have had all manner of gadgetry, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
 					"reputation: Hai (Unfettered)" < 30
 			`	Batu looks less satisfied. "Given the proximity to Korath space, this is less than we expected. Our investigators suspect this planet was a distribution center for sales and staging area for transfers of Korath artifacts. The main facility is on New Tortuga.`
 			`	"From our understanding, New Tortuga is an impenetrable fortress in a system crawling with Korath capital ships. There's rumors of Korath-friendly pirates, large marauder bases, and industrial-scale shipbuilding. We'd need an invasion force ten times this size to conquer that planet. Fortunately, most of their firepower is planet-side because of the ships they lost here. It'll be a long time before they have the resources to break through a naval blockade.`
-			`	"We're sticking with a containment policy for the foreseeable future. A few fast smugglers will get through Alcyone, but as long as New Tortuga doesn't have jump drives to bypass us entirely, this should work."`
+			`	"We're sticking with a containment policy for the foreseeable future. A few fast smugglers will get through Alcyone, but that isn't concerning. As long as New Tortuga doesn't have jump drives, and the Korath don't help them break the blockade, this should work. With no way to do business, eventually the pirate activity will die down and the Navy can return to its regular patrols."`
 
 			# This seemingly abrupt question is to ensure the player notices the word "Korath."
 			choice
 				`	"Korath? Who are the Korath?"`
 				`	"Why are there so many Korath artifacts?"`
+					goto somany
 			`	Choot'k responds. "The Korath are group of lizards that lived south of Hai space until few centuries ago. They used to be obsessed with art, music, and other esoterics, until they got desperate for resources and invaded us. Their technology is far beyond ours, and they used it to nearly wipe themselves out in bloody infighting. We learned a lot from them: even the most aggressive Unfettered are wary of attacking Hai planets, lest our species destroy itself like the Korath did. In all our raids in the Wah Ki system, never once have the Unfettered targeted civilian areas on Cloudfire." Batu appears shocked by this.`
+			label somany
 			`	Choot'k continues. "The most advanced group of surviving Korath lives in systems near yours, according to pirate data. It seems the Korath have been raiding ships in pirate and Syndicate systems for food, while the pirates have been disabling and pillaging Korath ships for tech. I'm not sure why the Korath have limited themselves to piracy. They certainly have the firepower to dominate a few dozen of your planets.`
 			`	"From our race's records, it is quite unlike the Korath to be so close to a more primitive race without making demands. Their resources may be committed to another war, or they may be building up supplies for a shock and awe style attack. It's anyone's guess at this point.`
 			`	"Even the Unfettered are concerned about this. A few dozen human planets under the dominion of the Korath could make them a force to be reckoned with again. They could even be a threat to the Hai."`
@@ -311,15 +313,14 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				`	"Sounds foreboding."`
 					goto foreboding
 				`	"When do I get my cut of these spoils?"`
-			`	"Ha! You're more like a True Hai than I thought. Don't worry, captain, I'll make sure the others give you a suitable payment."`
-			`	At this, the human next to Choot'k nods and wiggles their hand, likely taking notes.`
-			`	"We've made an unpleasant discovery recently. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh, Batu?"`
+			`	"Ha! I'd think you were a True Hai if it weren't for the missing fur. Don't worry, captain, I'll make sure the others give you a suitable payment."`
+			`	Batu sighs as Choot'k continues. "We've made an unpleasant discovery recently. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh, Batu?"`
 				goto next
 			label foreboding
 			`	"Indeed it does, especially with our recent discovery. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh, Batu?"`
 			label next
-			`	Batu nods and pulls up something on his datapad. He reads mechanically to you. "The drones are a transceiver and hyperwave sounder in a phase array configuration. The phase array uses multiple signals communicating slightly out of phase, moving around to emulate a relay as big as a moon. It's not unlike phase array radars used for meteorology, or phase array telescopes for astronomy. Each is not much stronger than a human hyperspace relay, but the fleet acts together as one powerful relay. We think it's able to communicate as far as 120 light-years, without the need for starlanes. What's most concerning is that relaying is only a secondary functionality; they're mostly observation systems.`
-			`	He slides his finger across the pad and continues. "They're hard to detect. They use a coating that tricks human sensors, so seeing them is tough. Their transmissions are cleverly coded as ambient noise, so you can't listen for them either. However, we've developed computer algorithms that'll let you find them. Essentially, your computer finds where they aren't, instead. We've destroyed the ones in this system, but we need you to fly to Almach and destroy the drones there."`
+			`	Batu nods and pulls up something on his datapad. He reads mechanically to you. "The drones fleet acts as a phase array transceiver and hyperwave sounder. A phase array uses signals from multiple sources (the drones) transmitting (or receiving) slightly out of phase, to emulate a much larger antenna. It's not unlike phase array radars used for meteorology, or phase array telescopes for astronomy. Each drone's communication system is not much stronger than a human hyperspace relay, but the fleet acts together as one powerful relay. We think it's able to relay signals as far as 120 light-years, without the need for starlanes. What's most concerning is that relaying is only a secondary functionality; they're mostly observation systems.`
+			`	He slides his finger across the pad and continues. "They were hard to detect, and have probably been hiding for years, perhaps decades. The drones use a coating that tricks human sensors, so seeing them is tough. Their transmissions are cleverly disguised as ambient noise, so you can't listen for them either. However, we've developed computer algorithms that'll let you find them. Essentially, your computer finds where they aren't, and works inward from there. We've destroyed the ones in this system, but we need you to fly to Almach and destroy the drones there."`
 			choice
 				`	"Just blow up drones? Why do you need me for this?"`
 					goto whyme
@@ -331,23 +332,25 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				goto navy
 			label navy
 			`	Batu appears annoyed briefly before returning to his usual calm. "The Navy has prepared an elite strike force that is ready to take on the task. Teeneep has generously loaned us some Hai outfits to ensure our success. However, General Choot'k-"`
-			`	Choot'k interrupts. "The urgency of my call was for the right of first refusal. When you return here, successful in your mission, we'll be sure to have some good Korath gear ready for you."`
-			`	Batu reassures you that, "If you aren't up to the task, cancel the mission and the Navy will take care of it-" Choot'k cuts in, "-but don't expect to gain any respect for failure."`
+			`	Choot'k interrupts. "The urgency of my call was for you to have the right of first refusal. When you return here, successful in your mission, we'll be sure to have some good Korath gear ready for you."`
+			`	Batu sighs. "The other leaders have agreed to this. However, if you would rather not do it, cancel the mission and the Navy will take care of it-" Choot'k cuts in, "-but don't expect to gain any respect for failure."`
 			choice
 				`	"Sound's like fun! I'm in."`
 					accept
 				`	"I'm not afraid, but I am busy right now."`
 					decline
+				`	"No thanks. I don't want to steal the Navy's glory."`
+					decline
 	on enter Almach
-		dialog "As Choot'k promised, there's an abundance of drones and a gigantic Korath warship."
+		dialog "The Navy's sensor algorithms are working: your ship is picking up an abundance of drones."
 	on complete
 		payment 2500000
 		conversation
-			`Choot'k greet you, beside some Navy inventory officers. "The Syndicate tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
+			`Choot'k greet you, beside some Navy crewman in inventory management uniforms. "The Navy tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
 			`	"Pick among these:`
-			`	"There are some systems that repair your hull and shields, while also storing energy. They come with two Korath anti-missile turrets and some other odds and ends.`
+			`	"Some wonderful Korath systems that repair your hull and shields, while also storing energy. They come with two Korath anti-missile turrets and some other odds and ends.`
 			`	"I can also offer the most strongest afterburners I've ever heard of, plus a sizable amount of fuel storage and ramscoop to keep it working.`
-			`	"We can give you a power generator bigger than a fighter, and a lot of cooling outfits to support it.`
+			`	"We can give you a power generator that's as big as two fighters, and a lot of cooling outfits to support it.`
 			`	"The Korath created a gigantic fiery turret they consider the pinnacle of their modern weapon design; you can have two of those.`
 			`	"The last option is some torpedoes so devastating that even the Korath are afraid to use them. They're almost doomsday devices."`
 			choice
@@ -374,7 +377,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				outfit "Small Heat Shunt"
 				outfit "Large Heat Shunt"
 				outfit "Fuel Processor"
-			`	"Done! We're also giving you <payment>. These should keep you alive through tough fights."`
+			`	"Done! We're also giving you <payment>. These outfits keep you alive through tough fights."`
 				goto end
 
 			# You need serious power and cooling to support two Infernos,
@@ -392,7 +395,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				outfit "Triple Plasma Core"
 				outfit "Liquid Sodium Cooler"
 				outfit "Large Heat Shunt"
-			`	"Done! We're also giving you <payment>. You'll need a Shield Beetle to go with these, as nothing else from humans or Hai has enough space and heat capacity."`
+			`	"Done! We're also giving you <payment>. You'll need a Shield Beetle to go with this generator, as nothing else from humans or Hai has enough space to make effective use of it."`
 				goto end
 
 			# Do you want a capital ship that can outrun drones?
@@ -400,7 +403,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			action
 				outfit "Afterburner (Planetary Class)"
 				outfit "Fuel Processor" 3
-			`	"Done! We're also giving you <payment>. Make sure you have enough cooling and engine space to support it."`
+			`	"Done! We're also giving you <payment>. Make sure you have enough cooling and engine space to support this afterburner."`
 				goto end
 
 			# This is a secret for players to find. It is the only time
@@ -412,7 +415,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				outfit "Firestorm Torpedo Rack" 2
 				outfit "Firestorm Torpedo" 39
 				outfit "Firestorm Battery"
-			`	"Done! We're also giving you <payment>. Be careful with these torpedoes. They have a wide blast radius. They'll cripple your ship or its escorts if you're not careful."`
+			`	"Done! We're also giving you <payment>. Be careful with these torpedoes. They have a wide blast radius. They'll cripple your ship and escorts if they detonate too close."`
 				goto end
 
 			label end
