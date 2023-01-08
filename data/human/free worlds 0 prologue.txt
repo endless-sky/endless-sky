@@ -1085,14 +1085,6 @@ ship "Mammoth" "Mammoth (Moonless)"
 		"A375 Atomic Steering"
 		"Scram Drive"
 
-	engine 
-	engine 
-	engine 
-	engine 
-	engine 
-	engine 
-	gun 
-	gun 
 	turret "Modified Blaster Turret"
 	turret "Modified Blaster Turret"
 	turret "Heavy Laser Turret"
