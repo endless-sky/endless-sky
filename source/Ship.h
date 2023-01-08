@@ -631,7 +631,7 @@ private:
 	public:
 		// The actual list of escorts.
 		std::vector<std::weak_ptr<Ship>> list;
-		// Cached data from escorts to determine the cruisespeed for landing.
+		// Cached data from escorts to determine the cruise speed for landing.
 		std::weak_ptr<const Ship> slowest;
 		double cruiseVelocity = -1.;
 	} escorts;
