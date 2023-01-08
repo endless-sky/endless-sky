@@ -278,7 +278,7 @@ mission "Korath Stormhold Artifacts [1] Coded Message"
 mission "Korath Stormhold Artifacts [2] Drones"
 	landing
 	name "Destroy Korath drones at <waypoints>."
-	description `Destroy Korath stealth drones at <waypoints>. This is an optional mission; the Syndicate will do it if you don't.`
+	description `Destroy Korath stealth drones at <waypoints>. This is an optional mission; an elite Navy group will do it if you don't.`
 	source Stormhold
 	destination Stormhold
 	waypoint Almach
