@@ -155,7 +155,7 @@ public:
 	const Ship *BuyShip(const Ship *model, const std::string &name, bool isGift = false);
 	void SellShip(const Ship *selected);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
-	// instead of allowing the player to buy them back, by putting them in the stock.
+	// instead of allowing the player to buy them back by putting them in the stock.
 	void TakeShip(const Ship *shipToTake, const Ship *outfitsToDestroy = nullptr);
 	std::vector<std::shared_ptr<Ship>>::iterator DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
@@ -234,7 +234,7 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
-	// Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
+	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
 
