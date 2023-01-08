@@ -609,15 +609,9 @@ test "Sell first outfit"
 		# Goto outfitter
 		input
 			key "o"
-		# Give it time to load
-		input
-		input
-		input
-		input
 		# Select the first item
 		input
 			key "Down"
-		input
 		# Sell the first item
 		input
 			key "s"
@@ -639,9 +633,7 @@ test "FailBuy first outfit"
 		# Buy the first item
 		input
 			key "b"
-		# Skip the error Messages
-		input
-			key "return"
+		# Skip the error Message, if any
 		input
 			key "return"
 		# Go back to the planet menu.
