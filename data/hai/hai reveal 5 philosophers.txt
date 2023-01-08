@@ -557,8 +557,6 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			`	It may be risky, but you should disable one and board it.`
 				accept
 
-event "stormhold korath issue (2)"
-
 event "devil-run smugglers visible"
 	# Uninhabited systems near Hai space
 #	system "Ultima Thule"
