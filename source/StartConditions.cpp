@@ -49,7 +49,8 @@ void StartConditions::Load(const DataNode &node)
 	// When a plugin modifies an existing starting condition, default to
 	// clearing the previously-defined description text. The plugin may
 	// amend it by using "add description"
-	bool clearDescription = !infoByState[StartState::UNLOCKED].description.empty();
+	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
+	bool clearDescription = !unlocked.description.empty();
 
 	for(const DataNode &child : node)
 	{
@@ -62,8 +63,10 @@ void StartConditions::Load(const DataNode &node)
 			continue;
 		}
 
-		// Determine if the child is a "core" attribute.
-		if(CoreStartData::LoadChild(child, add, remove))
+		// Determine if the child is a "core" or "UNLOCKED state" attribute. Removal of such attributes
+		// is handled below.
+		if(!remove && (CoreStartData::LoadChild(child, add)
+				|| LoadStateChild(child, unlocked, clearDescription, add)))
 			continue;
 
 		// Otherwise, we should try to parse it.
@@ -75,11 +78,11 @@ void StartConditions::Load(const DataNode &node)
 		if(remove)
 		{
 			if(key == "name")
-				infoByState[StartState::UNLOCKED].name.clear();
+				unlocked.name.clear();
 			else if(key == "description")
-				infoByState[StartState::UNLOCKED].description.clear();
+				unlocked.description.clear();
 			else if(key == "thumbnail")
-				infoByState[StartState::UNLOCKED].thumbnail = nullptr;
+				unlocked.thumbnail = nullptr;
 			else if(key == "ships")
 				ships.clear();
 			else if(key == "ship" && hasValue)
@@ -88,13 +91,13 @@ void StartConditions::Load(const DataNode &node)
 					ships.end());
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();
-			else if(key == "to" && child.Size() >= 2)
+			else if(key == "to" && hasValue)
 			{
-				if(child.Token(1) == "display")
+				if(value == "display")
 					toDisplay = ConditionSet();
-				else if(child.Token(1) == "reveal")
+				else if(value == "reveal")
 					toReveal = ConditionSet();
-				else if(child.Token(1) == "unlock")
+				else if(value == "unlock")
 					toUnlock = ConditionSet();
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
@@ -104,27 +107,14 @@ void StartConditions::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
-		else if(key == "name" && hasValue)
-			infoByState[StartState::UNLOCKED].name = value;
-		else if(key == "description" && hasValue)
-		{
-			if(!add && clearDescription)
-			{
-				infoByState[StartState::UNLOCKED].description.clear();
-				clearDescription = false;
-			}
-			infoByState[StartState::UNLOCKED].description += value + "\n";
-		}
-		else if(key == "thumbnail" && hasValue)
-			infoByState[StartState::UNLOCKED].thumbnail = SpriteSet::Get(value);
-		else if(child.Token(0) == "ship" && child.Size() >= 2)
+		else if(key == "ship" && hasValue)
 		{
 			// TODO: support named stock ships.
 			// Assume that child nodes introduce a full ship definition. Even without child nodes,
 			// Ship::Load + Ship::FinishLoading will create the expected ship instance if there is
 			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
 			// without making the variant available to the rest of GameData).
-			if(child.HasChildren() || child.Size() >= 3)
+			if(child.HasChildren() || child.Size() >= add + 3)
 				ships.emplace_back(child);
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
@@ -138,24 +128,24 @@ void StartConditions::Load(const DataNode &node)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
 		// Only global conditions are supported in these ConditionSets. The global conditions are accessed directly,
 		// and therefore do not need the "global: " prefix.
-		else if(key == "to" && child.Size() >= 2)
+		else if(key == "to" && hasValue)
 		{
-			if(child.Token(1) == "display")
+			if(value == "display")
 				toDisplay.Load(child);
-			else if(child.Token(1) == "reveal")
+			else if(value == "reveal")
 				toReveal.Load(child);
-			else if(child.Token(1) == "unlock")
+			else if(value == "unlock")
 				toUnlock.Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(key == "on" && child.Size() >= 2)
+		else if(key == "on" && hasValue)
 		{
 			// The HIDDEN state contains no information. The UNLOCKED StateInfo is a child of the root node
 			// instead of an "on" node.
-			if(child.Token(1) == "display")
+			if(value == "display")
 				LoadState(child, StartState::DISPLAYED);
-			else if(child.Token(1) == "reveal")
+			else if(value == "reveal")
 				LoadState(child, StartState::REVEALED);
 		}
 		else
@@ -163,7 +153,6 @@ void StartConditions::Load(const DataNode &node)
 	}
 
 	// The unlocked state must have at least some information.
-	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
 	if(unlocked.description.empty())
 		unlocked.description = "(No description provided.)";
 	if(unlocked.name.empty())
@@ -176,7 +165,7 @@ void StartConditions::Load(const DataNode &node)
 	else if(identifier.empty())
 	{
 		stringstream addr;
-		addr << infoByState[StartState::UNLOCKED].name << " " << this;
+		addr << unlocked.name << " " << this;
 		identifier = addr.str();
 	}
 }
@@ -335,25 +324,38 @@ void StartConditions::LoadState(const DataNode &node, StartState state)
 	StartInfo &info = infoByState[state];
 	bool clearDescription = !info.description.empty();
 	for(const auto &child : node)
+		LoadStateChild(child, info, clearDescription, false);
+}
+
+
+
+void StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, bool &clearDescription, bool isAdd)
+{
+	const string &key = child.Token(isAdd ? 1 : 0);
+	int valueIndex = (isAdd) ? 2 : 1;
+	bool hasValue = (child.Size() > valueIndex);
+	const string &value = child.Token(hasValue ? valueIndex : 0);
+	
+	if(key == "name" && hasValue)
+		info.name = value;
+	else if(key == "description" && hasValue)
 	{
-		if(child.Token(0) == "name" && child.Size() >= 2)
-			info.name = child.Token(1);
-		else if(child.Token(0) == "description" && child.Size() >= 2)
+		if(clearDescription)
 		{
-			if(clearDescription)
-			{
-				info.description.clear();
-				clearDescription = false;
-			}
-			info.description += child.Token(1) + "\n";
+			info.description.clear();
+			clearDescription = false;
 		}
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			info.thumbnail = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "system" && child.Size() >= 2)
-			info.system = child.Token(1);
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			info.planet = child.Token(1);
+		info.description += value + "\n";
 	}
+	else if(key == "thumbnail" && hasValue)
+		info.thumbnail = SpriteSet::Get(value);
+	else if(key == "system" && hasValue)
+		info.system = value;
+	else if(key == "planet" && hasValue)
+		info.planet = value;
+	else
+		return false;
+	return true;
 }
 
 
