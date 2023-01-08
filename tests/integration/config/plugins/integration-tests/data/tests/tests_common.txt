@@ -580,7 +580,6 @@ test "Depart"
 		label zoom_restore_loop
 		apply
 			"test: Depart: zoom_restore_counter" -= 1
-		# Launching is instant in tests.
 		input
 		branch zoom_restore_loop
 			"test: Depart: zoom_restore_counter" > 0
