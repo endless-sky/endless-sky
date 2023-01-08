@@ -13,10 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "GameData.h"
 #include "ShipManager.h"
 
+#include "DataNode.h"
+#include "GameData.h"
 #include "PlayerInfo.h"
+#include "Ship.h"
 
 #include <cstdlib>
 
@@ -24,14 +26,7 @@ using namespace std;
 
 
 
-ShipManager::ShipManager(string name, int count, bool unconstrained, bool withOutfits)
-	: name(name), count(count), unconstrained(unconstrained), withOutfits(withOutfits)
-{
-}
-
-
-
-void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> shipsList)
+void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &shipsList)
 {
 	bool taking = child.Token(0) == "take";
 	bool owns = child.Token(0) == "owns";
@@ -46,10 +41,17 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> shi
 
 	if(count <= 0)
 		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(count));
-	else if(taking && !name.empty() && count > 1)
+	else if(taking && !name.empty())
 		child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
 	else
 		shipsList.emplace(ship, ShipManager(name, count * (taking ? -1 : 1), unconstrained, withOutfits));
+}
+
+
+
+ShipManager::ShipManager(string name, int count, bool unconstrained, bool withOutfits)
+	: name(name), count(count), unconstrained(unconstrained), withOutfits(withOutfits)
+{
 }
 
 

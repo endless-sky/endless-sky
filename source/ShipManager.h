@@ -16,12 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SHIP_MANAGER_H_
 #define SHIP_MANAGER_H_
 
-#include "DataNode.h"
-#include "Ship.h"
-
 #include <string>
 
+class Datanode;
 class PlayerInfo;
+class Ship;
 
 
 
@@ -29,7 +28,7 @@ class PlayerInfo;
 class ShipManager {
 public:
 	// Will try to add the a shipManager matching the DataNode to the given shipList.
-	static void Load(const DataNode &child, std::map<const Ship *, ShipManager> shipsList);
+	static void Load(const DataNode &child, std::map<const Ship *, ShipManager> &shipsList);
 
 
 public:

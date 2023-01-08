@@ -1072,7 +1072,7 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 // Adds a ship of the given model with the given name to the player's fleet.
 // If this ship is being gifted, it costs nothing and starts fully depreciated.
-Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
+const Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 {
 	if(!model)
 		return nullptr;
