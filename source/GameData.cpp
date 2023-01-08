@@ -509,7 +509,7 @@ const Set<CustomSale> &GameData::CustomSales()
 map<CustomSale::SellType, CustomSale> GameData::GetCustomSales(const Planet &planet, const ConditionsStore &conditions)
 {
 	map<CustomSale::SellType, CustomSale> matchingSales;
-	for(const auto &sale : GameData::CustomSales())
+	for(const auto &CustomSale : GameData::CustomSales())
 		matchingSales[sale.GetSellType()].Add(sale.second, planet, conditions);
 	return matchingSales;
 }
@@ -519,9 +519,9 @@ map<CustomSale::SellType, CustomSale> GameData::GetCustomSales(const Planet &pla
 double GameData::OutfitCost(const map<CustomSale::SellType, CustomSale> &sale, const Outfit &outfit)
 {
 	// Iterate in the opposite order, since any higher customSale has priority.
-	for(const auto &selling = sale.end(); selling != sale.begin(); --selling)
-		if(selling.Has(outfit))
-			return selling.GetRelativeCost(outfit);
+	for(auto &&selling = sale.end(); selling != sale.begin(); --selling)
+		if(selling.second.Has(outfit))
+			return selling.second.GetRelativeCost(outfit);
 	return 1.;
 }
 
