@@ -609,14 +609,18 @@ test "Sell first outfit"
 		# Goto outfitter
 		input
 			key "o"
+		# Give it time to load
+		input
+		input
+		input
+		input
 		# Select the first item
 		input
 			key "Down"
+		input
 		# Sell the first item
 		input
 			key "s"
-		input
-			key "Return"
 		# Go back to the planet menu.
 		input
 			key "l"
