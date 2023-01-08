@@ -250,7 +250,8 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = "Thank you for granting us our freedom!";
 		}
 		else
-			message = planet->DemandTribute(player);
+			if(!DoHelp("tributing"))
+				message = planet->DemandTribute(player);
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship)
