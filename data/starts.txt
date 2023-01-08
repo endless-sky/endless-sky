@@ -123,12 +123,9 @@ conversation "hai intro"
 
 # this ship uses the most expensive loadout possible (3.5M)
 # so that you +- have the same amount of value back if you sell it (1.3mill)
-# the modifications are just to bring it at the same page as the grasshopper buff PR
-# except for the hull buff
+# It has a small hull buff to help the player survive.
 ship "Grasshopper" "Grasshopper (Expensive)"
 	add attributes
-		"outfit space" 30
-		"weapon capacity" 9
 		"hull" 400
 	outfits
 		`"Benga" Atomic Thruster`
