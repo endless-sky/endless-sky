@@ -265,6 +265,7 @@ test-data "Custom Sale Import"
 
 
 outfitter "%TEST%: PULSE CANNON"
+	"Pulse Cannon"
 
 
 test "CustomSale Import Cannot Buy New"
