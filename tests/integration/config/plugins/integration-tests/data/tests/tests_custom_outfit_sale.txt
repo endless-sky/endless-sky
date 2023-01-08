@@ -74,7 +74,7 @@ test-data "Custom Sale Price"
 
 			# We need to add an outfitter for the outfitter panel to be available
 			planet Mars
-				add outfitter "Hai Basics"
+				add outfitter "Nuke"
 
 
 test "CustomSale Price Sell Outfit With Custom Price and relative offset"
@@ -167,7 +167,7 @@ test-data "Custom Sale Outfitter Price"
 				"Hai Basics" 2
 
 			planet Mars
-				add outfitter "Hai Basics"
+				add outfitter "Nuke"
 
 
 test "CustomSale Price Outfitter Double Relative Price"
@@ -261,7 +261,10 @@ test-data "Custom Sale Import"
 				"Pulse Cannon"
 
 			planet Mars
-				add outfitter "Hai Basics"
+				add outfitter "%TEST%: PULSE CANNON"
+
+
+outfitter "%TEST%: PULSE CANNON"
 
 
 test "CustomSale Import Cannot Buy New"
@@ -470,7 +473,7 @@ test-data "Custom Sale Conditions"
 				"Pulse Cannon" 1
 
 			planet Mars
-				add outfitter "Hai Basics"
+				add outfitter "Nuke"
 
 
 test "CustomSale Conditions Apply Correctly"
@@ -585,7 +588,7 @@ test-data "Custom Sale Price Priorities 0"
 				"Pulse Cannon" 1000
 
 			planet Mars
-				add outfitter "Hai Basics"
+				add outfitter "%TEST%: PULSE CANNON"
 
 
 # NOTE: If one wants the two to combine with each others, they would use offsets, not plain prices!
@@ -684,7 +687,7 @@ test-data "Custom Sale Price Priorities 1"
 				"Pulse Cannon"
 
 			planet Mars
-				add outfitter "Hai Basics"
+				add outfitter "%TEST%: PULSE CANNON"
 
 
 
@@ -785,7 +788,7 @@ test-data "Custom Sale Price Priorities 2"
 				"Pulse Cannon" 2000
 
 			planet Mars
-				add outfitter "Hai Basics"
+				add outfitter "%TEST%: PULSE CANNON"
 
 
 test "CustomSale Priorities Highest Price"
