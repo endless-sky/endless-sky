@@ -2325,7 +2325,7 @@ ship "Mammoth"
 		"Anti-Missile Turret" 4
 		
 		"Fission Reactor"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Cooling Ducts"
@@ -2333,6 +2333,7 @@ ship "Mammoth"
 		"Laser Rifle" 18
 		
 		"Volcano Afterburner" 2
+		"AR120 Reverse Thruster"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
