@@ -25955,7 +25955,6 @@ system "Sagittarius A*"
 	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
-	link "Is Ce B-139"
 	object
 		sprite star/black-hole-core
 		period 1
