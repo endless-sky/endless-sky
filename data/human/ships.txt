@@ -2300,17 +2300,17 @@ ship "Mammoth"
 		category "Utility"
 		"cost" 18800000
 		"shields" 7800
-		"hull" 7740
+		"hull" 7400
 		"required crew" 18
-		"bunks" 28
+		"bunks" 30
 		"mass" 688
 		"drag" 10.5
 		"heat dissipation" .32
 		"fuel capacity" 1000
-		"cargo space" 541
-		"outfit space" 627
-		"weapon capacity" 297
-		"engine capacity" 129
+		"cargo space" 420
+		"outfit space" 536
+		"weapon capacity" 294
+		"engine capacity" 114
 		"scan interference" 2
 		weapon
 			"blast radius" 140
@@ -2320,8 +2320,9 @@ ship "Mammoth"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
-		"Proton Turret" 4
-		"Heavy Anti-Missile Turret" 4
+		"Proton Turret" 2
+		"Quad Blaster Turret" 2
+		"Anti-Missile Turret" 4
 		
 		"Fission Reactor"
 		"LP144a Battery Pack"
@@ -2331,9 +2332,9 @@ ship "Mammoth"
 		"Catalytic Ramscoop"
 		"Laser Rifle" 18
 		
+		"Volcano Afterburner" 2
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Caldera Afterburner"
 		"Scram Drive"
 		
 	engine 17 147 0.8
@@ -2344,14 +2345,14 @@ ship "Mammoth"
 	engine 56 148.5 0.6
 	gun -47.5 -57.5
 	gun 47.5 -57.5
-	turret -31 -50 "Heavy Anti-Missile Turret"
-	turret 31 -50 "Heavy Anti-Missile Turret"
+	turret -31 -50 "Anti-Missile Turret"
+	turret 31 -50 "Anti-Missile Turret"
 	turret -47.5 33.5 "Proton Turret"
 	turret 47.5 33.5 "Proton Turret"
-	turret -22 66.5 "Heavy Anti-Missile Turret"
-	turret 22 66.5 "Heavy Anti-Missile Turret"
-	turret -14.5 0 "Proton Turret"
-	turret 14.5 0 "Proton Turret"
+	turret -22 66.5 "Anti-Missile Turret"
+	turret 22 66.5 "Anti-Missile Turret"
+	turret -14.5 0 "Quad Blaster Turret"
+	turret 14.5 0 "Quad Blaster Turret"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
