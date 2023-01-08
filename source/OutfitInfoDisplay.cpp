@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -246,7 +247,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
 	requirementsHeight = 20;
 
 	int day = player->GetDate().DaysSinceEpoch();
-	double scale = player->GetPlanet() ? player->GetPlanet()->GetLocalRelativePrice(outfit, player->Conditions()) : 1.0;
+	double scale = player->GetPlanet() ? GameData::OutfitCost(GameData::GetCustomSales(player->GetPlanet(),
+		player->Conditions()), outfit) : 1.0;
 	int64_t cost = outfit.Cost() * scale;
 	int64_t buyValue = player->StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player->FleetDepreciation().Value(&outfit, day);
