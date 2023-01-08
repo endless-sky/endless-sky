@@ -1154,9 +1154,9 @@ int64_t Ship::ChassisCost() const
 int64_t Ship::LocalCost(const Planet *planet, const ConditionsStore &conditions) const
 {
 	int64_t localCost = ChassisCost();
-	const auto &sales = planet ? GameData::GetCustomSales(*planet, conditions) : {};
+	const auto *sales = planet ? &GameData::GetCustomSales(*planet, conditions) : nullptr;
 	for(auto &&it : Outfits())
-		localCost += ((planet ? GameData::OutfitCost(sales, *it.first) : 1.)) * it.first->Cost() * it.second;
+		localCost += ((planet ? GameData::OutfitCost(*sales, *it.first) : 1.)) * it.first->Cost() * it.second;
 	return localCost;
 }
 
