@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 #include "CategoryTypes.h"
 #include "ConditionsStore.h"
+#include "CustomSale.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -1154,9 +1155,11 @@ int64_t Ship::ChassisCost() const
 int64_t Ship::LocalCost(const Planet *planet, const ConditionsStore &conditions) const
 {
 	int64_t localCost = ChassisCost();
-	const auto *sales = planet ? &GameData::GetCustomSales(*planet, conditions) : nullptr;
+	const map<CustomSale::SellType, CustomSale> sales;
+	if(planet)
+		sales = GameData::GetCustomSales(*planet, conditions);
 	for(auto &&it : Outfits())
-		localCost += ((planet ? GameData::OutfitCost(*sales, *it.first) : 1.)) * it.first->Cost() * it.second;
+		localCost += ((planet ? GameData::OutfitCost(sales, *it.first) : 1.)) * it.first->Cost() * it.second;
 	return localCost;
 }
 
