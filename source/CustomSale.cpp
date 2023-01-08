@@ -76,7 +76,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		const string &key = child.Token(keyIndex);
 		if(remove && !hasKey)
 			Clear();
-		else if(hasKey)
+		else if(remove)
 			if(key == "outfit")
 			{
 				// If an outfit is specified remove only that one. Otherwise clear all of them.
