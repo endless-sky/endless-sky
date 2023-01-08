@@ -127,7 +127,7 @@ protected:
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
-	const std::map<CustomSale::SellType, const CustomSale> customSales;
+	std::map<CustomSale::SellType, CustomSale> customSales;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
