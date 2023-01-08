@@ -417,7 +417,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				goto end
 
 			label end
-			`	"It's always a pleasure to help another warrior get his due."`
+			`	"It's always a pleasure to help another warrior get their due."`
 
 	npc kill
 		government Korath
