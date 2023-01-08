@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Planet.h"
-#include "Set.h"
 
 #include <string>
 
