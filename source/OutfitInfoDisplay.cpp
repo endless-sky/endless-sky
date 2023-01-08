@@ -247,7 +247,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
 	requirementsHeight = 20;
 
 	int day = player->GetDate().DaysSinceEpoch();
-	double scale = player->GetPlanet() ? GameData::OutfitCost(GameData::GetCustomSales(player->GetPlanet(),
+	double scale = player->GetPlanet() ? GameData::OutfitCost(GameData::GetCustomSales(*player->GetPlanet(),
 		player->Conditions()), outfit) : 1.0;
 	int64_t cost = outfit.Cost() * scale;
 	int64_t buyValue = player->StockDepreciation().Value(&outfit, day);
