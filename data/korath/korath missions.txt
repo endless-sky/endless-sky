@@ -323,11 +323,16 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			choice
 				`	"Just blow up drones? Why do you need me for this?"`
 					goto whyme
+				`	"I'm surprised you don't want the fight."`
 				`	"Sounds like target practice to me."`
+					goto practice
+			`	"My troops need me here to command the pacification of Stormhold. I wish I could come with; it will be a glorious fight." He almost looks sad as he says that. "The largest ship we have seen since the Korath war now guards the drones."`
+				goto navy
+			label practice
 			`	Choot'k looks worried. "You may be target practice if you aren't prepared. The drones are guarded now, by the largest ship we've seen since the Korath war. You'll need to dodge it while shooting the drones."`
 				goto navy
 			label whyme
-			`	Choot'k says, "Ah, it'll take a skilled pilot to do it. The drones are guarded now, by the largest ship we've seen since the Korath war. It doesn't seem interested in attacking anything. We think it's just guarding the drones."`
+			`	Choot'k says, "Ah, it'll take a skilled pilot to do it. The drones are guarded now, by the largest ship we have seen since the Korath war. It is not attacking anything; we think it is just guarding the drones."`
 				goto navy
 			label navy
 			`	Batu appears annoyed briefly before returning to his usual calm. "The Navy has prepared an elite strike force that is ready to take on the task. Teeneep has generously loaned us some Hai outfits to ensure our success. However, General Choot'k-"`
