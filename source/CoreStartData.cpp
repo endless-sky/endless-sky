@@ -37,7 +37,8 @@ void CoreStartData::Load(const DataNode &node)
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
-		LoadChild(child, add);
+		if(!LoadChild(child, add))
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
