@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define SHIP_MANAGER_H_
 
 #include <string>
+#include <memory>
 
 class Datanode;
 class PlayerInfo;
