@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Interface.h"
 
 #include "DataNode.h"
 #include "text/DisplayText.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -51,7 +55,7 @@ namespace {
 			else if(node.Token(i) == "bottom")
 				alignment.Y() = 1.;
 			else if(node.Token(i) != "center")
-				node.PrintTrace("Unrecognized interface element alignment:");
+				node.PrintTrace("Skipping unrecognized alignment:");
 		}
 		return alignment;
 	}
@@ -79,10 +83,10 @@ void Interface::Load(const DataNode &node)
 	elements.clear();
 	points.clear();
 	values.clear();
-	
+
 	// First, figure out the anchor point of this interface.
 	Point anchor = ParseAlignment(node, 2);
-	
+
 	// Now, parse the elements in it.
 	string visibleIf;
 	string activeIf;
@@ -115,12 +119,14 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new TextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
+			else if(child.Token(0) == "line")
+				elements.push_back(new LineElement(child, anchor));
 			else
 			{
-				child.PrintTrace("Unrecognized interface element:");
+				child.PrintTrace("Skipping unrecognized element:");
 				continue;
 			}
-			
+
 			// If we get here, a new element was just added.
 			elements.back()->SetConditions(visibleIf, activeIf);
 		}
@@ -152,7 +158,7 @@ Point Interface::GetPoint(const string &name) const
 	auto it = points.find(name);
 	if(it == points.end())
 		return Point();
-	
+
 	return it->second.Bounds().Center();
 }
 
@@ -163,7 +169,7 @@ Rectangle Interface::GetBox(const string &name) const
 	auto it = points.find(name);
 	if(it == points.end())
 		return Rectangle();
-	
+
 	return it->second.Bounds();
 }
 
@@ -206,16 +212,16 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 	// center (+ dimensions):
 	bool hasCenter = false;
 	Point dimensions;
-	
+
 	// from (+ dimensions):
 	Point fromPoint;
 	Point fromAnchor = globalAnchor;
-	
+
 	// from + to:
 	bool hasTo = false;
 	Point toPoint;
 	Point toAnchor = globalAnchor;
-	
+
 	// Assume that the subclass constructor already parsed this line of data.
 	for(const DataNode &child : node)
 	{
@@ -232,7 +238,7 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 		{
 			if(child.Size() > 3)
 				fromAnchor = toAnchor = ParseAlignment(child, 3);
-			
+
 			// The "center" key implies "align center."
 			alignment = Point();
 			fromPoint = toPoint = Point(child.Value(1), child.Value(2));
@@ -243,7 +249,7 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			// Anything after the coordinates is an anchor point override.
 			if(child.Size() > 6)
 				fromAnchor = toAnchor = ParseAlignment(child, 6);
-			
+
 			fromPoint = Point(child.Value(1), child.Value(2));
 			toPoint = Point(child.Value(4), child.Value(5));
 			hasTo = true;
@@ -253,7 +259,7 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			// Anything after the coordinates is an anchor point override.
 			if(child.Size() > 3)
 				fromAnchor = ParseAlignment(child, 3);
-			
+
 			fromPoint = Point(child.Value(1), child.Value(2));
 		}
 		else if(key == "to" && child.Size() >= 3)
@@ -261,7 +267,7 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			// Anything after the coordinates is an anchor point override.
 			if(child.Size() > 3)
 				toAnchor = ParseAlignment(child, 3);
-			
+
 			toPoint = Point(child.Value(1), child.Value(2));
 			hasTo = true;
 		}
@@ -271,9 +277,9 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			padding = Point(child.Value(1), child.Value(2));
 		}
 		else if(!ParseLine(child))
-			child.PrintTrace("Unrecognized interface element attribute:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	// The "standard" way to specify a region is from + to. If it was specified
 	// in a different way, convert it to that format:
 	if(hasCenter)
@@ -300,7 +306,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 {
 	if(!info.HasCondition(visibleIf))
 		return;
-	
+
 	// Get the bounding box of this element, relative to the anchor point.
 	Rectangle box = Bounds();
 	// Check if this element is active.
@@ -311,12 +317,12 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 	// message explaining why the button is inactive.
 	if(panel)
 		Place(box, panel);
-	
+
 	// Figure out how the element should be aligned within its bounding box.
 	Point nativeDimensions = NativeDimensions(info, state);
 	Point slack = .5 * (box.Dimensions() - nativeDimensions) - padding;
 	Rectangle rect(box.Center() + alignment * slack, nativeDimensions);
-	
+
 	Draw(rect, info, state);
 }
 
@@ -379,7 +385,7 @@ Interface::ImageElement::ImageElement(const DataNode &node, const Point &globalA
 {
 	if(node.Size() < 2)
 		return;
-	
+
 	// Remember whether this is an outline element.
 	isOutline = (node.Token(0) == "outline");
 	// If this is a "sprite," look up the sprite with the given name. Otherwise,
@@ -388,10 +394,10 @@ Interface::ImageElement::ImageElement(const DataNode &node, const Point &globalA
 		sprite[Element::ACTIVE] = SpriteSet::Get(node.Token(1));
 	else
 		name = node.Token(1);
-	
+
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
-	
+
 	// Fill in any undefined state sprites.
 	if(sprite[Element::ACTIVE])
 	{
@@ -418,7 +424,7 @@ bool Interface::ImageElement::ParseLine(const DataNode &node)
 		isColored = true;
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -430,12 +436,12 @@ Point Interface::ImageElement::NativeDimensions(const Information &info, int sta
 	const Sprite *sprite = GetSprite(info, state);
 	if(!sprite || !sprite->Width() || !sprite->Height())
 		return Point();
-	
+
 	Point size(sprite->Width(), sprite->Height());
 	Rectangle bounds = Bounds();
 	if(!bounds.Dimensions())
 		return size;
-	
+
 	// If one of the dimensions is zero, it means the sprite's size is not
 	// constrained in that dimension.
 	double xScale = !bounds.Width() ? 1000. : bounds.Width() / size.X();
@@ -451,7 +457,7 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 	const Sprite *sprite = GetSprite(info, state);
 	if(!sprite || !sprite->Width() || !sprite->Height())
 		return;
-	
+
 	float frame = info.GetSpriteFrame(name);
 	if(isOutline)
 	{
@@ -479,7 +485,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 {
 	if(node.Size() < 2)
 		return;
-	
+
 	isDynamic = (node.Token(0) == "string");
 	if(node.Token(0) == "button")
 	{
@@ -489,15 +495,15 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	}
 	else
 		str = node.Token(1);
-	
+
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
-	
+
 	// Fill in any undefined state colors. By default labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
 	if(!color[Element::ACTIVE] && !buttonKey)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
-	
+
 	if(!color[Element::ACTIVE])
 	{
 		// If no color is specified and this is a button, use the default colors.
@@ -546,7 +552,7 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 	}
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -568,7 +574,7 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 	// Avoid crashes for malformed interface elements that are not fully loaded.
 	if(!color[state])
 		return;
-	
+
 	const auto layout = Layout(static_cast<int>(rect.Width()), truncate);
 	FontSet::Get(fontSize).Draw({GetString(info), layout}, rect.TopLeft(), *color[state]);
 }
@@ -599,14 +605,14 @@ Interface::BarElement::BarElement(const DataNode &node, const Point &globalAncho
 {
 	if(node.Size() < 2)
 		return;
-	
+
 	// Get the name of the element and find out what type it is (bar or ring).
 	name = node.Token(1);
 	isRing = (node.Token(0) == "ring");
-	
+
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
-	
+
 	// Fill in a default color if none is specified.
 	if(!color)
 		color = GameData::Colors().Get("active");
@@ -624,7 +630,7 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		width = node.Value(1);
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -638,16 +644,16 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 	double segments = info.BarSegments(name);
 	if(segments <= 1.)
 		segments = 0.;
-	
+
 	// Avoid crashes for malformed interface elements that are not fully loaded.
 	if(!color || !width || !value)
 		return;
-	
+
 	if(isRing)
 	{
 		if(!rect.Width() || !rect.Height())
 			return;
-		
+
 		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, value, *color, segments > 1. ? segments : 0.);
 	}
 	else
@@ -657,11 +663,11 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		Point start = rect.BottomRight();
 		Point dimensions = -rect.Dimensions();
 		double length = dimensions.Length();
-		
+
 		// We will have (segments - 1) gaps between the segments.
 		double empty = segments ? (width / length) : 0.;
 		double filled = segments ? (1. - empty * (segments - 1.)) / segments : 1.;
-		
+
 		// Draw segments until we've drawn the desired length.
 		double v = 0.;
 		while(v < value)
@@ -670,8 +676,48 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			v += filled;
 			Point to = start + min(v, value) * dimensions;
 			v += empty;
-			
+
 			LineShader::Draw(from, to, width, *color);
 		}
 	}
+}
+
+
+
+// Members of the LineElement class:
+
+// Constructor.
+Interface::LineElement::LineElement(const DataNode &node, const Point &globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	// Fill in a default color if none is specified.
+	if(!color)
+		color = GameData::Colors().Get("medium");
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::LineElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "color" && node.Size() >= 2)
+		color = GameData::Colors().Get(node.Token(1));
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::LineElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// Avoid crashes for malformed interface elements that are not fully loaded.
+	if(!from.Get() && !to.Get())
+		return;
+	FillShader::Fill(rect.Center(), rect.Dimensions(), *color);
 }

@@ -8,7 +8,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "StartConditionsPanel.h"
@@ -25,10 +28,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "PlayerInfo.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "StarField.h"
 #include "StartConditions.h"
@@ -42,12 +46,19 @@ using namespace std;
 
 
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.begin()),
+StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
+	const StartConditionsList &allScenarios, const Panel *parent)
+	: player(player), gamePanels(gamePanels), parent(parent),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
 {
+	for(const auto &scenario : allScenarios)
+		if(scenario.Visible(GameData::GlobalConditions()))
+			scenarios.emplace_back(scenario);
+
+	startIt = scenarios.begin();
+
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
 	{
@@ -60,15 +71,15 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 		entryBox = startConditionsMenu->GetBox("start entry item bounds");
 		entryTextPadding = startConditionsMenu->GetBox("start entry text padding").Dimensions();
 	}
-	
+
 	const Rectangle firstRectangle = Rectangle::FromCorner(entriesContainer.TopLeft(), entryBox.Dimensions());
 	const auto startCount = scenarios.size();
 	startConditionsClickZones.reserve(startCount);
 	for(size_t i = 0; i < startCount; ++i)
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
-	
+
 	description.SetWrapWidth(descriptionBox.Width());
-	
+
 	Select(startIt);
 }
 
@@ -78,19 +89,19 @@ void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
-	
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu start info")->Draw(info, this);
-	
+
 	// Rather than blink list items in & out of existence, fade them in/out over half the entry height.
 	const double fadeDistance = .5 * entryBox.Height();
 	const double fadeInY = entriesContainer.Top() - fadeDistance + entryTextPadding.Y();
 	const double fadeOutY = fadeInY + entriesContainer.Height();
-	
+
 	// Start at the top left of the list and offset by the text margins and scroll.
 	auto pos = entriesContainer.TopLeft() - Point(0., entriesScroll);
-	
+
 	const Font &font = FontSet::Get(14);
 	for(auto it = scenarios.begin(); it != scenarios.end();
 			++it, pos += Point(0., entryBox.Height()))
@@ -99,19 +110,20 @@ void StartConditionsPanel::Draw()
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
 		if(!(entriesContainer.Contains(zone.TopLeft()) || entriesContainer.Contains(zone.BottomRight())))
 			continue;
-		
+
 		// Partially visible entries should fade in or out.
 		double opacity = entriesContainer.Contains(zone) ? 1.
 			: min(1., max(0., min(pos.Y() - fadeInY, fadeOutY - pos.Y()) / fadeDistance));
-		
+
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
 			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
-		
-		const auto name = DisplayText(it->GetDisplayName(), Truncate::BACK);
+
+		const auto name = DisplayText(
+			it->Revealed(GameData::GlobalConditions()) ? it->GetDisplayName() : "???", Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
 	}
-	
+
 	// TODO: Prevent lengthy descriptions from overflowing.
 	description.Draw(descriptionBox.TopLeft(), bright);
 }
@@ -141,13 +153,14 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 			else
 				startIt += min(magnitude, distance(startIt, scenarios.end() - 1));
 		}
-		
+
 		Select(startIt);
 	}
-	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN))
+	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
+		&& info.HasCondition("unlocked start"))
 	{
 		player.New(*startIt);
-		
+
 		ConversationPanel *panel = new ConversationPanel(
 			player, startIt->GetConversation());
 		GetUI()->Push(panel);
@@ -155,7 +168,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	}
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -165,11 +178,11 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 {
 	// When the user clicks, clear the hovered state.
 	hasHover = false;
-	
+
 	// Only clicks within the list of scenarios should have an effect.
 	if(!entriesContainer.Contains(Point(x, y)))
 		return false;
-	
+
 	for(const auto &it : startConditionsClickZones)
 		if(it.Contains(Point(x, y + entriesScroll)))
 		{
@@ -177,7 +190,7 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 				Select(it.Value());
 			return true;
 		}
-	
+
 	return false;
 }
 
@@ -207,7 +220,7 @@ bool StartConditionsPanel::Drag(double /* dx */, double dy)
 	}
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -236,7 +249,7 @@ void StartConditionsPanel::OnConversationEnd(int)
 	}
 	if(parent)
 		GetUI()->Pop(parent);
-	
+
 	GetUI()->Pop(GetUI()->Root().get());
 	GetUI()->Pop(this);
 }
@@ -258,7 +271,7 @@ void StartConditionsPanel::ScrollToSelected()
 	// Otherwise, scroll the minimum of the desired amount and the amount that
 	// brings the scrolled-to edge within view.
 	const auto countBefore = static_cast<size_t>(distance(scenarios.begin(), startIt));
-	
+
 	const double maxScroll = (startCount - maxDisplayedRows) * entryHeight;
 	const double pageScroll = maxDisplayedRows * entryHeight;
 	const double desiredScroll = countBefore * entryHeight;
@@ -278,35 +291,44 @@ void StartConditionsPanel::ScrollToSelected()
 
 
 // Update the UI to reflect the given starting scenario.
-void StartConditionsPanel::Select(StartConditionsList::const_iterator it)
+void StartConditionsPanel::Select(StartConditionsList::iterator it)
 {
+	// Clear the displayed information.
+	info = Information();
+
 	startIt = it;
 	if(startIt == scenarios.end())
 	{
 		// The only time we should be here is if there are no scenarios at all.
-		// Just in case that's not true, clear out the displayed information.
-		info = Information();
 		description.Wrap("No valid starting scenarios were defined!\n\n"
 			"Make sure you installed Endless Sky (and any plugins) properly.");
 		return;
 	}
-	
+
 	// Update the information summary.
 	info.SetCondition("chosen start");
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
-	info.SetString("name", startIt->GetDisplayName());
-	info.SetString("description", startIt->GetDescription());
-	info.SetString("planet", startIt->GetPlanet().Name());
-	info.SetString("system", startIt->GetSystem().Name());
-	info.SetString("date", startIt->GetDate().ToString());
-	info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
-	info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
-	
+	info.SetString("name", startIt->Revealed(GameData::GlobalConditions())
+		? startIt->GetDisplayName() : "???");
+	info.SetString("description", startIt->Revealed(GameData::GlobalConditions())
+		? startIt->GetDescription() : startIt->GetHint());
+
+	if(startIt->Revealed(GameData::GlobalConditions()))
+	{
+		if(startIt->Unlocked(GameData::GlobalConditions()))
+			info.SetCondition("unlocked start");
+		info.SetString("planet", startIt->GetPlanet().Name());
+		info.SetString("system", startIt->GetSystem().Name());
+		info.SetString("date", startIt->GetDate().ToString());
+		info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
+		info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
+	}
+
 	// Update the displayed description text.
 	descriptionScroll = 0;
-	description.Wrap(startIt->GetDescription());
-	
+	description.Wrap(startIt->Revealed(GameData::GlobalConditions()) ? startIt->GetDescription() : startIt->GetHint());
+
 	// Scroll the selected scenario into view.
 	ScrollToSelected();
 }

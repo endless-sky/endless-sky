@@ -7,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Deep Archaeology 1"
 	name "Deep Archaeology"
@@ -654,7 +657,7 @@ mission "Sheragi Archaeology: The Box 2"
 			`You land at the dig site and notice that Albert was already waiting for you, watching your descent. He greets you as soon as the ship doors open.`
 			`	"Hello, <first>! Would you like to go on a little tour of the museum?"`
 			choice
-				`	"Museum? What museum?`
+				`	"Museum? What museum?"`
 				`	"Sure, I'm eager to see what you discovered."`
 					goto eager
 				`	"Just tell me what's so important."`
@@ -872,7 +875,7 @@ mission "Sheragi Archaeology: The Box 4"
 			label nomoney
 			`	"I know you don't. I can arrange for the payment to be made in different ways. Organ donation, prostitution, volunteering as a test subject... We'll need an appraisal first, though."`
 			`	You politely decline.`
-			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is.`
+			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is."`
 				goto exit
 			
 			label time
@@ -883,7 +886,7 @@ mission "Sheragi Archaeology: The Box 4"
 				defer
 			
 			label haggle
-			apply
+			action
 				set "haggled"
 			`	Mammon doesn't look pleased.`
 			`	"What part of non-negotiable did you not understand? You're pushing your luck, Captain <last>. I didn't expect you to be such a petty money pincher."`
@@ -988,7 +991,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			
 			`	You land and cautiously open the hatch to talk with them.`
 			`	"Who do you work for? Where is the cube you stole?" you ask.`
-			`	"So that old thing was yours?" One woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
+			`	"So that old thing was yours?" one woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
 			`	"If you want the cube, you can have it if you spare us. It's not worth our lives."`
 			choice
 				`	(Spare them.)`
@@ -1000,7 +1003,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			`	Feeling distrustful, you immediately close the hatch and get back into your ship while they scatter.`
 			
 			label shoot
-			apply
+			action
 				set "burned white flag"
 			`	Disregarding their surrender, you turn your ship towards them and open fire on the small army. Using your ship-mounted guns against ground personnel is honestly excessive, and they didn't stand a chance. There is now a smoldering clearing around the place where they once stood, and a forest fire is beginning to spread.`
 			`	You enter the camp, shooting any mercenaries that remained hidden, and pillage their tents. You find hundreds of thousands of credits, in chips and valuables, and eventually, you find the cube as well. With that in hand, you go back to your ship, ready to take it back to John.`
@@ -1139,6 +1142,10 @@ mission "Sheragi Archaeology: The Box 7b"
 
 	on complete
 		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10
 		conversation
 			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
 			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table. You describe the discovery of the Sheragi ruins to them and they begin inquiring more about it, curious about the state of preservation of the ruins and what artifacts were found. They seem very excited.`
@@ -1364,10 +1371,10 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto rakei
 				`	(Look for Desyo to see what she's doing.)`
 					goto desyo
-				`	(Return to your ship and wait until the Emerald Sword is operational.)`
+				`	(Return to my ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
-			apply
+			action
 				set "spoke with foster"
 			`	You find Foster in a room that appears to have been expanded beyond its original size and converted into a farming facility of some sort. There are rows of dried out soil, its nutrients long gone, with sunlamps suspended above. While most of the crew with Foster is busy studying the farm itself, his attention seems to be on a mummified Sheragi corpse slumped over against one of the walls. You notice that the corpse has a prosthetic wing attached to it, which has survived far better than its host.`
 			`	"What have you found so far?" you ask Foster.`
@@ -1401,7 +1408,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label eyama
-			apply
+			action
 				set "spoke with eyama"
 			`	You find Eyama investigating the living quarters of the ship, which consists of long halls lined on either side by bunk rooms. Many of the doors are already opened, suggesting that Eyama has already been through many of them. She comes out of one of the bunk rooms after looking through it and notices you. "Captain <last>! What brings you here?" she asks.`
 			`	"I'm wondering if you've found anything interesting yet," you respond.`
@@ -1416,8 +1423,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	"Why is all this here?"`
 					goto young
 				`	"Who is Rekla?"`
-			
-			`	"From what we know, Rekla was a divine warrior among the Sheragi. Sheragi legends stated that she united the warring Sheragi tribes and lead them all to the stars.`
+
+			`	"From what we know, Rekla was a divine warrior among the Sheragi. Sheragi legends stated that she united the warring Sheragi tribes and led them all to the stars.`
 			label young
 			`	"This ship has to have traveled between the stars for many of your years in order to reach this system without a hyperdrive. The engines are powerful, so it perhaps took them 120 years to arrive here. Many of the Sheragi would have survived the trip, but would be very old when they arrived. This would have made it difficult for them to colonize the planet."`
 			choice
@@ -1427,7 +1434,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			
 			`	"Yes. At least one, maybe two generations of Sheragi could have been born in that time."`
 				goto walls
-				
+			
 			label daycare
 			`	Eyama walks over to one of the objects on the ground and picks it up. "These are toys. So yes. This does seem to have been converted into a daycare."`
 			
@@ -1451,7 +1458,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label rakei
-			apply
+			action
 				set "spoke with rakei"
 			`	As you are looking for Rakei, you hear a low hum begin emanating through the ship, followed by the dim glow of the emergency lights being replaced by the bright main lights. You eventually find Rakei with her crew walking through the halls of the underbelly of the ship. "Greetings, Captain," she says. "Is there something you need?"`
 			`	"Have you found anything interesting down here?" you ask.`
@@ -1487,7 +1494,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				goto end
 			
 			label desyo
-			apply
+			action
 				set "spoke with desyo"
 			`	You find Desyo in the cockpit of the ship, overseeing a crew attempting to take control of the ship's computer systems. Makeshift scaffolding has been put in place just so that the crew can reach the controls. "Hello there, Captain," Desyo greets you as you walk in through the massive doorway. "Is there anything I can help you with?"`
 			`	"I'm just curious as to what you've found," you respond.`
@@ -1519,7 +1526,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			`	Desyo looks at you like you're some kind of alien. "No, nothing like the sort. Don't you think I would have expected that if it had?"`
 			
 			label desyoend
-			`	 Everyone comes out from behind their cover to look at the aftermath. Luckily, no one seems to have been hurt. Desyo walks over to the large scorch mark on the floor left behind by the explosion. "I have no idea what could have caused such an explosion to occur," she exclaims.`
+			`	Everyone comes out from behind their cover to look at the aftermath. Luckily, no one seems to have been hurt. Desyo walks over to the large scorch mark on the floor left behind by the explosion. "I have no idea what could have caused such an explosion to occur," she exclaims.`
 			`	"How's your computer doing?" you ask.`
 			`	Desyo finds the computer on the other side of the room with a severely cracked screen, but somehow still functional. "Sturdy piece of hardware, isn't it?" she jokes. She begins tapping away at the keys as she squints at the screen. "I can still make out some of what I was able to pull from the cube. It looks like... that cube had some information on a weapon. Some sort of... chemical weapon? It seems to include... mention of coordinates. But that's all I was able to get. Whatever coordinates they were are lost to time."`
 			`	The crew are still standing around in shock as Desyo fiddles with her damaged computer. She looks up to see everyone staring at her. "Well, let's get back to work. We're not going to make any progress just standing around."`
@@ -1609,8 +1616,8 @@ mission "Sheragi Archaeology: Epilogue"
 			`	"I don't think you will, as long as you don't fire it into a planet. It doesn't cause unnecessary suffering like nerve gas, and it isn't as indiscriminate as a nuclear bomb. This is a focused beam. It's going to poke holes straight through any ship subject to its wrath."`
 			label catch
 			`	"Then what's the catch?" you ask.`
-			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon.`
-			`	Desyo adds. "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried. No offense."`
+			`	"It eats a lot of power. I mean a lot. And it does that every shot. No single reactor will be capable of making it shoot as fast as it possibly could. Expect to invest a lot in batteries and reactors if you want to reoutfit that warship and still use the cannon."`
+			`	Desyo adds, "Also, don't go thinking you're invincible now. The shield matrix in that ship is incredibly primitive. Almost nonexistent. The hull is strong, but don't rely on it too much. Human technology could probably do better if they tried. No offense."`
 			`	"So what are you going to do now?" you ask them.`
 			`	Eyama responds. "We'll continue working with Albert. These two nerds like technology and ships, but I'm far more interested in the treasure trove of cultural artifacts the buried city holds. Not to mention the humans here are very interesting!"`
 			`	You all finish your ice creams and continue chatting for a while longer before you say goodbye and return to your ship. By tomorrow, it will be in full working condition, ready to take to the endless void.`

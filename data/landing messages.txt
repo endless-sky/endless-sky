@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 "landing message" "You cannot land on a gas giant."
 	"planet/gas0"
@@ -85,7 +88,7 @@
 	"planet/wormhole"
 	"planet/wormhole-red"
 
-"landing message" "You cannot land on a black hole."
+"landing message" "You cannot land on a black hole!"
 	"star/black-hole"
 	"star/black-hole-core"
 

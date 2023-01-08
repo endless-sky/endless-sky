@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "CoreStartData.h"
@@ -76,7 +79,7 @@ const System &CoreStartData::GetSystem() const
 	if(system)
 		return *system;
 	const System *planetSystem = GetPlanet().GetSystem();
-	
+
 	return planetSystem ? *planetSystem : *GameData::Systems().Get("Rutilicus");
 }
 
@@ -102,7 +105,7 @@ bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
 	int valueIndex = (isAdd || isRemove) ? 2 : 1;
 	bool hasValue = (child.Size() > valueIndex);
 	const string &value = child.Token(hasValue ? valueIndex : 0);
-	
+
 	if(child.Token(0) == "date" && child.Size() >= 4)
 		date = Date(child.Value(1), child.Value(2), child.Value(3));
 	else if(key == "system" && hasValue)
@@ -113,6 +116,6 @@ bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
 		accounts.Load(child, !isAdd);
 	else
 		return false;
-	
+
 	return true;
 }

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DistanceMap.h"
@@ -15,8 +18,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Wormhole.h"
 
 using namespace std;
 
@@ -41,7 +46,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 {
 	if(!player.Flagship())
 		return;
-	
+
 	if(!center)
 	{
 		if(player.Flagship()->IsEnteringHyperspace())
@@ -53,7 +58,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 		return;
 	else
 		this->center = center;
-	
+
 	Init(player.Flagship());
 }
 
@@ -67,7 +72,7 @@ DistanceMap::DistanceMap(const Ship &ship, const System *destination)
 {
 	if(!source || !destination)
 		return;
-	
+
 	Init(&ship);
 }
 
@@ -96,9 +101,9 @@ const System *DistanceMap::Route(const System *system) const
 	auto it = route.find(system);
 	return (it == route.end() ? nullptr : it->second.next);
 }
-	
-	
-	
+
+
+
 // Get a set containing all the systems.
 set<const System *> DistanceMap::Systems() const
 {
@@ -143,10 +148,10 @@ bool DistanceMap::Edge::operator<(const Edge &other) const
 {
 	if(fuel != other.fuel)
 		return (fuel > other.fuel);
-	
+
 	if(days != other.days)
 		return (days > other.days);
-	
+
 	return (danger > other.danger);
 }
 
@@ -159,23 +164,23 @@ void DistanceMap::Init(const Ship *ship)
 {
 	if(!center)
 		return;
-	
+
 	route[center] = Edge();
 	if(!maxDistance)
 		return;
-	
+
 	// Check what travel capabilities this ship has. If no ship is given, assume
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
-		hyperspaceFuel = ship->HyperdriveFuel();
-		jumpFuel = ship->JumpDriveFuel();
-		jumpRange = ship->JumpRange();
-		// If hyperjumps and non-hyper jumps cost the same amount, there is no
-		// need to check hyperjump paths at all.
-		if(hyperspaceFuel == jumpFuel)
+		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
+		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
+		jumpRange = ship->JumpNavigation().JumpRange();
+		// If hyperjumps and non-hyper jumps cost the same amount, or non-hyper jumps are always cheaper,
+		// there is no need to check hyperjump paths at all.
+		if(jumpFuel && hyperspaceFuel >= jumpFuel)
 			hyperspaceFuel = 0.;
-		
+
 		// If this ship has no mode of hyperspace travel, and no local
 		// wormhole to use, bail out.
 		if(!jumpFuel && !hyperspaceFuel)
@@ -187,12 +192,12 @@ void DistanceMap::Init(const Ship *ship)
 					hasWormhole = true;
 					break;
 				}
-			
+
 			if(!hasWormhole)
 				return;
 		}
 	}
-	
+
 	// Find the route with lowest fuel use. If multiple routes use the same fuel,
 	// choose the one with the fewest jumps (i.e. using jump drive rather than
 	// hyperdrive). If multiple routes have the same fuel and the same number of
@@ -202,7 +207,7 @@ void DistanceMap::Init(const Ship *ship)
 	{
 		Edge top = edges.top();
 		edges.pop();
-		
+
 		// Source is only defined when given a ship and a destination system.
 		// Once we have a route between them, stop searching for more routes.
 		if(top.next == source)
@@ -212,7 +217,7 @@ void DistanceMap::Init(const Ship *ship)
 		// of travel is being done.
 		top.danger += top.next->Danger();
 		++top.days;
-		
+
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
 		if(useWormholes)
@@ -222,11 +227,11 @@ void DistanceMap::Init(const Ship *ship)
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
 					const System &link = source ?
-						*object.GetPlanet()->WormholeSource(top.next) :
-						*object.GetPlanet()->WormholeDestination(top.next);
+						object.GetPlanet()->GetWormhole()->WormholeSource(*top.next) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*top.next);
 					if(HasBetter(link, top))
 						continue;
-					
+
 					// In order to plan travel through a wormhole, it must be
 					// "accessible" to your flagship, and you must have visited
 					// the wormhole and both endpoint systems. (If this is a
@@ -238,10 +243,10 @@ void DistanceMap::Init(const Ship *ship)
 						continue;
 					if(player && !(player->HasVisited(*top.next) && player->HasVisited(link)))
 						continue;
-					
+
 					Add(link, top);
 				}
-		
+
 		// Bail out if the maximum number of systems is reached.
 		if(hyperspaceFuel && !Propagate(top, false))
 			break;
@@ -263,7 +268,7 @@ bool DistanceMap::Propagate(Edge edge, bool useJump)
 		// selected by the player, they are constrained to known routes.
 		if(HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
 			continue;
-		
+
 		Add(*link, edge);
 		if(!--maxCount)
 			return false;
@@ -302,10 +307,10 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 {
 	if(!player)
 		return true;
-	
+
 	if(!player->HasSeen(to))
 		return false;
-	
+
 	// If you are using a jump drive and you can see just from the positions of
 	// the two systems that you can jump between them, you can plot a course
 	// between them even if neither system is explored. Otherwise, you need to
@@ -314,6 +319,6 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 	double distance = from.JumpRange() ? from.JumpRange() : jumpRange;
 	if(useJump && from.Position().Distance(to.Position()) <= distance)
 		return true;
-	
+
 	return (player->HasVisited(from) || player->HasVisited(to));
 }

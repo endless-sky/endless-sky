@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Angle.h"
@@ -19,8 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <cstdlib>
 #include <vector>
-
-using namespace std;
 
 namespace {
 	// Suppose you want to be able to turn 360 degrees in one second. Then you are
@@ -121,7 +122,7 @@ Angle Angle::operator-() const
 Point Angle::Unit() const
 {
 	// The very first time this is called, create a lookup table of unit vectors.
-	static vector<Point> cache;
+	static std::vector<Point> cache;
 	if(cache.empty())
 	{
 		cache.reserve(STEPS);
@@ -150,7 +151,7 @@ double Angle::Degrees() const
 }
 
 
-	
+
 // Return a point rotated by this angle around (0, 0).
 Point Angle::Rotate(const Point &point) const
 {

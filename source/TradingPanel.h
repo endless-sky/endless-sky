@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef TRADING_PANEL_H_
@@ -28,30 +31,30 @@ class TradingPanel : public Panel {
 public:
 	explicit TradingPanel(PlayerInfo &player);
 	~TradingPanel();
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
-	
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
-	
-	
+
+
 private:
 	void Buy(int64_t amount);
-	
-	
+
+
 private:
 	PlayerInfo &player;
 	const System &system;
 	const int COMMODITY_COUNT;
-	
+
 	// Remember whether the "sell all" button will sell all outfits, or sell
 	// everything except outfits.
 	bool sellOutfits = false;
-	
+
 	// Keep track of how much we sold and how much profit was made.
 	int tonsSold = 0;
 	int64_t profit = 0;

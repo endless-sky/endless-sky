@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef POLITICS_H_
@@ -64,9 +67,9 @@ public:
 public:
 	// Reset to the initial political state defined in the game data.
 	void Reset();
-	
+
 	bool IsEnemy(const Government *first, const Government *second) const;
-	
+
 	// Commit the given "offense" against the given government (which may not
 	// actually consider it to be an offense). This may result in temporary
 	// hostilities (if the event type is PROVOKE), or a permanent change to your
@@ -74,7 +77,7 @@ public:
 	void Offend(const Government *gov, int eventType, int count = 1);
 	// Bribe the given government to be friendly to you for one day.
 	void Bribe(const Government *gov);
-	
+
 	// Check if the given ship can land on the given planet.
 	bool CanLand(const Ship &ship, const Planet *planet) const;
 	// Check if the player can land on the given planet.
@@ -84,22 +87,22 @@ public:
 	void BribePlanet(const Planet *planet, bool fullAccess);
 	void DominatePlanet(const Planet *planet, bool dominate = true);
 	bool HasDominated(const Planet *planet) const;
-	
+
 	// Check to see if the player has done anything they should be fined for on a planet.
 	// Each government can only fine you once per day.
 	std::string Fine(PlayerInfo &player, const Government *gov, double security);
 	// Fine the player when in space. This can result in multiple fines per day, but only once per ship.
 	Punishment Fine(PlayerInfo &player, const Ship &ship, int scan, const Ship &target);
-	
+
 	// Get or set your reputation with the given government.
 	double Reputation(const Government *gov) const;
 	void AddReputation(const Government *gov, double value);
 	void SetReputation(const Government *gov, double value);
-	
+
 	// Reset any temporary effects (typically because a day has passed).
 	void ResetDaily();
-	
-	
+
+
 private:
 	Punishment CalculateFine(PlayerInfo &player, const Government *gov, int scan, const Ship *target);
 

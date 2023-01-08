@@ -7,19 +7,20 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "TestContext.h"
 
 class Test;
 
-using namespace std;
-
 
 
 // Constructor to be used when running an actual test.
-TestContext::TestContext(const Test *toRun) : testToRun(1, toRun)
+TestContext::TestContext(const Test *toRun) : callstack({{toRun, 0}})
 {
 }
 
@@ -27,5 +28,19 @@ TestContext::TestContext(const Test *toRun) : testToRun(1, toRun)
 
 const Test *TestContext::CurrentTest() const noexcept
 {
-	return testToRun.empty() ? nullptr : testToRun.back();
+	return callstack.empty() ? nullptr : callstack.back().test;
+}
+
+
+
+bool TestContext::ActiveTestStep::operator==(const ActiveTestStep &rhs) const
+{
+	return test == rhs.test && step == rhs.step;
+}
+
+
+
+bool TestContext::ActiveTestStep::operator<(const ActiveTestStep &rhs) const
+{
+	return test < rhs.test || (test == rhs.test && step < rhs.step);
 }
