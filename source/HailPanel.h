@@ -31,14 +31,14 @@ class Sprite;
 class HailPanel : public Panel {
 public:
 	HailPanel();
-	
-	
+
+
 protected:
 	void DrawHail();
 	void DrawIcon(const Ship &ship);
 	void DrawIcon(const Sprite &sprite, Angle facing);
-	
-	
+
+
 protected:
 	std::string header;
 	std::string message;
