@@ -165,7 +165,6 @@ mission "Hai Reveal [B02] Join the Fleet"
 		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of <planet> have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
 	on complete
 		event "stormhold suppressed"
-		event "stormhold korath issue (1)" 140 180
 	on visit
 		dialog
 			`When the Hai and humans try to deploy troops, they're drawn off by orbital bombardment. You must defeat the entire pirate and marauder defense fleet before landing.`
@@ -415,6 +414,7 @@ mission "Hai Reveal [B05-short] The Road Not Taken"
 		has "Hai Reveal [B04] The Road Not Taken: done"
 		has "event: knows about keystones and wormholes"
 	on offer
+		event "stormhold korath issue" 10 30
 		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
 		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
 		log "Minor People" "Agent Kopkow" `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
@@ -501,7 +501,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 	on visit
 		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
 	on offer
-		event "stormhold korath issue (2)" 20 40
+		event "stormhold korath issue" 20 40
 		event "devil-run smugglers visible"
 		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago, and he hopes his research will lead to her rescue.`
 		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") are identifiable by an odd frequency variance in their relay signatures. They are probably involved in kidnapping human or Hai specialists.`
@@ -903,6 +903,8 @@ mission "Hai Reveal [B11] Moving Together"
 	to offer
 		has "Hai Reveal [B10] Report to Teeneep: done"
 	on offer
+		fail "Korath Stormhold Artifacts [1] Coded Message"
+		fail "Korath Stormhold Artifacts [2] Drones"
 		conversation
 			`When you return to <origin> to tell Teeneep what you have found, she seems to already know much of what you have to say. "We've been waiting for you. Thanks to your visit to the Syndicate, we've found a lot of information in very short order. You'll have to lead another international task force through the wormhole at Devil-Eye. This time, they'll have Jump Drives from the Unfettered, which the Hai are renting for quite a hefty price. We expect all Jump Drives to be returned intact. Everyone is gathering to brief you on the status so you can prepare for the mission. A high-ranking Marshal Kaine is here with more information."`
 			`	Sayari seems anxious when she joins you on the way, and the two of them draw you along towards one of the meeting areas in the secured spaceport. There you are led past a selection of Navy personnel on guard into a meeting room with several people. Some appear to have just arrived, but others must have been here for a while, and to your surprise Alondo and Remington are also present. The place looks to have been acting as a war room of sorts. As soon you've walked through the door, someone says, "We're all here," and Choot'k and Remington stand up from where they'd been looking at something intently.`

@@ -264,8 +264,8 @@ mission "Korath Stormhold Artifacts [1] Coded Message"
 	landing
 	to offer
 		or
-			has "event: stormhold korath issue (1)"
-			has "event: stormhold korath issue (2)"
+			has "event: stormhold korath issue"
+			not "Hai Reveal [B12] Devil-Hide Battle: accepted"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet Stormhold
@@ -285,6 +285,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 	waypoint Almach
 	to offer
 		has "Korath Stormhold Artifacts [1] Coded Message: done"
+		not "Hai Reveal [B12] Devil-Hide Battle: accepted"
 	on offer
 		log "Factions" "Korath" `According to the Unfettered, the Korath were intelligent and well-cultured reptiles, until their civilization fell apart a few centuries ago. They peacefully coexisted with the Hai until they got desperate for resources and invaded. The Hai valiantly defended themselves against the Korath, but eventually the Korath nearly wiped themselves out through infighting. The few survivors live east of Syndicate space and frequently raid nearby human settlements.`
 		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and first line of defense for New Tortuga. That planet is an impenetrable fortress in a system crawling with Korath capital ships, and is believed to be involved in shadowy and illicit activities. The Navy's plan is containment through a blockade at the choke point of Alcyone until the pirate activity in the area dies down.`
