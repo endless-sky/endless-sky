@@ -678,6 +678,48 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 	turret "Banisher Grav-Turret"
 
 
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ground Assault)"
+	"crew" 794
+	outfits
+		"Firelight Missile" 80
+		"Firelight Missile Bank" 2
+		"Firelight Storage Rack" 4
+		"Banisher Grav-Turret" 2
+		"Fire-Lance" 3
+		"Grab-Strike Turret" 6
+		"Warder Anti-Missile" 2
+
+		"Triple Plasma Core"
+		"Systems Core (Large)" 2
+		"Fuel Processor"
+		"Small Heat Shunt" 2
+		"Liquid Sodium Cooler"
+		"Brig"
+		"Thermal Repeater Rifle" 794
+		"Microbot Defense Station" 11
+
+		"Afterburner (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+
+
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 	outfits
 		"Blaze-Pike Turret" 2

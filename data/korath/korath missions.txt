@@ -431,5 +431,5 @@ mission "Korath Stormhold Artifacts [2] Drones"
 		personality staying heroic marked opportunistic unconstrained
 		fleet
 			variant
-				"Ra'gru Ik 618"
+				"Ra'gru Ik 618 (Ground Assault)"
 
