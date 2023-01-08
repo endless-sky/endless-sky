@@ -509,8 +509,8 @@ const Set<CustomSale> &GameData::CustomSales()
 map<CustomSale::SellType, CustomSale> GameData::GetCustomSales(const Planet &planet, const ConditionsStore &conditions)
 {
 	map<CustomSale::SellType, CustomSale> matchingSales;
-	for(const CustomSale &sale : GameData::CustomSales())
-		matchingSales[sale.GetSellType()].Add(sale, planet, conditions);
+	for(const auto &sale : GameData::CustomSales())
+		matchingSales[sale.second.GetSellType()].Add(sale.second, planet, conditions);
 	return matchingSales;
 }
 
