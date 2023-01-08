@@ -244,7 +244,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "(not sold here)";
 
 	// For now there is only default or import.
-	if(Imports(customSale, outfit))
+	if(Imports(customSales, outfit))
 		message += " (" + CustomSale::GetShown(CustomSale::SellType::IMPORT) + ")";
 
 	if(!message.empty())
