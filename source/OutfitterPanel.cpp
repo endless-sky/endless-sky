@@ -240,7 +240,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
-	else if(!outfitter.count(selectedOutfit))
+	else if(!outfitter.count(outfit))
 		message = "(not sold here)";
 
 	// For now there is only default or import.
@@ -359,7 +359,8 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!(isAlreadyOwned || player.Stock(selectedOutfit) > 0 || !Imports(customSales, selectedOutfit)))
+	if(!((outfitter.Has(selectedOutfit) && !Imports(customSales, selectedOutfit))
+			|| player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return false;
 
 	int mapSize = selectedOutfit->Get("map");
