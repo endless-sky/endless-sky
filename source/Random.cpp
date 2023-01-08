@@ -82,6 +82,40 @@ double Random::Real()
 
 
 
+void Random::Base64(string &result)
+{
+	if(result.empty())
+		return;
+
+	uint32_t noise;
+
+	for(size_t i = 0; i < result.size() ; i++)
+	{
+		// Every five blocks of 6 bits, generate 32 bits of noise:
+		if(!(i % 5))
+			noise = uniform(gen);
+
+		// On other loop iterations, discard the 6 bits we used before:
+		else
+			noise = noise >> 6;
+
+		// Encode the lowest 6 bits in Base64:
+		result[i] = RFC4648_BASE64_ENCODING[noise & 63];
+	}
+}
+
+
+
+string Random::Base64(size_t length)
+{
+	if(!length)
+		return string();
+
+	return Base64(string(length, '0'));
+}
+
+
+
 // Return the expected number of failures before k successes, when the
 // probability of success is p. The mean value will be k / (1 - p).
 uint32_t Random::Polya(uint32_t k, double p)

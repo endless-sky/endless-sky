@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define RANDOM_H_
 
 #include <cstdint>
+#include <string>
 
 
 
@@ -25,6 +26,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // random number generation is not thread-safe.)
 class Random {
 public:
+	// The encoding used for Base64 string generation:
+	static const char RFC4648_BASE64_ENCODING[65] =
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+
+
 	// Seed the generator (e.g. to make it produce exactly the same random
 	// numbers it produced previously).
 	static void Seed(uint64_t seed);
@@ -33,6 +40,14 @@ public:
 	static uint32_t Int(uint32_t modulus);
 
 	static double Real();
+
+	// Generate a random Base64 string with the given length.
+	static std::string Base64(size_t stringLength);
+
+	// Fill a preallocated string with random Base64 numbers.
+	// Will NOT change the string length; make sure it has the
+	// intended length before the call.
+	static void Base64(std::string &buffer);
 
 	// Slower functions for getting random numbers from a given distribution.
 	// Do not use these functions in time-critical code.
