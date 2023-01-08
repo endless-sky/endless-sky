@@ -125,6 +125,10 @@
       "displayName": "clang-cl",
       "description": "Builds with clang-cl on Windows",
       "inherits": "base",
+      "toolset": {
+        "value": "host=x64",
+        "strategy": "external"
+      },
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "x64-windows",
         "CMAKE_CXX_COMPILER": "clang-cl.exe"
