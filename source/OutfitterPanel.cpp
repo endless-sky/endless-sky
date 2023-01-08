@@ -354,7 +354,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
 	if(!(isAlreadyOwned || player.Stock(selectedOutfit) > 0 ||
-			!customSales[CustomSale::SellType::IMPORT].Has(*selectedOutfit)))
+			!customSales.at(CustomSale::SellType::IMPORT).Has(*selectedOutfit)))
 		return false;
 
 	int mapSize = selectedOutfit->Get("map");
@@ -445,7 +445,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
 				if(!planet->Outfitter().Has(selectedOutfit) ||
-						customSales[CustomSale::SellType::IMPORT].Has(*selectedOutfit) ||
+						customSales.at(CustomSale::SellType::IMPORT).Has(*selectedOutfit) ||
 						player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
@@ -527,7 +527,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(customSales[CustomSale::SellType::IMPORT].Has(*selectedOutfit))
+	if(customSales.at(CustomSale::SellType::IMPORT).Has(*selectedOutfit))
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, legally or not, generally for a good price."));
