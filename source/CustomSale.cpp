@@ -266,7 +266,7 @@ double CustomSale::GetRelativeCost(const Outfit &item) const
 {
 	// Outfit prices have priority over outfitter prices, so consider them first,
 	// and only consider the outfitter prices if the outfits have no set price.
-	const auto &baseRelative = relativeOutfitPrices.find(&item);
+	auto baseRelative = relativeOutfitPrices.find(&item);
 	double baseRelativePrice = (baseRelative != relativeOutfitPrices.cend() ? baseRelative->second : DEFAULT);
 	if(baseRelativePrice == DEFAULT)
 		for(const auto &it : relativePrices)
@@ -275,7 +275,7 @@ double CustomSale::GetRelativeCost(const Outfit &item) const
 				baseRelativePrice = it.second;
 				break;
 			}
-	const auto &baseOffset = relativeOutfitOffsets.find(&item);
+	auto baseOffset = relativeOutfitOffsets.find(&item);
 	double baseOffsetPrice = (baseOffset != relativeOutfitOffsets.cend() ? baseOffset->second : DEFAULT);
 	for(const auto &it : relativeOffsets)
 		if(it.first->Has(&item))
@@ -305,7 +305,9 @@ CustomSale::SellType CustomSale::GetSellType() const
 
 const string &CustomSale::GetShown(CustomSale::SellType sellType)
 {
-	return show.find(sellType)->second;
+	static const string empty;
+	auto it = show.find(sellType)->second;
+	return (it == show.end() ? empty : it->second);
 }
 
 
