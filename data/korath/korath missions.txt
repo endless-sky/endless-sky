@@ -267,7 +267,7 @@ mission "Korath Stormhold Artifacts [1] Coded Message"
 			has "event: stormhold korath issue"
 			not "Hai Reveal [B12] Devil-Hide Battle: accepted"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Hai (Unfettered)" "Pirate"
 		not planet Stormhold
 	destination Stormhold
 	on offer
