@@ -76,6 +76,12 @@ namespace {
 		}
 		return toRefill;
 	}
+
+	bool Imports(const map<CustomSale::SellType, CustomSale> &customSales, const Outfit *outfit)
+	{
+		return customSales.containsKey(CustomSale::SellType::IMPORT) &&
+			customSales.at(CustomSale::SellType::IMPORT).Has(*outfit);
+	}
 }
 
 
@@ -238,7 +244,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "(not sold here)";
 
 	// For now there is only default or import.
-	if(!customSales.at(CustomSale::SellType::IMPORT).Has(*outfit))
+	if(Imports(customSale, outfit))
 		message += " (" + CustomSale::GetShown(CustomSale::SellType::IMPORT) + ")";
 
 	if(!message.empty())
@@ -353,8 +359,7 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		return false;
 
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!(isAlreadyOwned || player.Stock(selectedOutfit) > 0 ||
-			!customSales.at(CustomSale::SellType::IMPORT).Has(*selectedOutfit)))
+	if(!(isAlreadyOwned || player.Stock(selectedOutfit) > 0 || !Imports(customSales, selectedOutfit)))
 		return false;
 
 	int mapSize = selectedOutfit->Get("map");
@@ -444,8 +449,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(!planet->Outfitter().Has(selectedOutfit) ||
-						customSales.at(CustomSale::SellType::IMPORT).Has(*selectedOutfit) ||
+				if(!planet->Outfitter().Has(selectedOutfit) || Imports(customSales, selectedOutfit) ||
 						player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
@@ -527,7 +531,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(customSales.at(CustomSale::SellType::IMPORT).Has(*selectedOutfit))
+	if(Imports(customSales, selectedOutfit))
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
 			"it is meant to be imported, generally for a good price."));
