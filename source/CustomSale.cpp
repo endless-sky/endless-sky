@@ -37,11 +37,12 @@ namespace
 
 
 
-void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
-	const Set<Outfit> &outfits, const string &mode)
+void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits)
 {
 	bool isAdd = false;
 	const Outfit *outfit = nullptr;
+	// Outfitters or outfits mode.
+	const string mode = node.Token(1);
 	auto parseValueOrOffset = [&isAdd, &outfit, &mode](double &amount, const DataNode &line) {
 		int size = line.Size();
 		// Default is 1, because we can just have an outfit defined here just to have a custom sellType.
@@ -62,15 +63,21 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 	for(const DataNode &child : node)
 	{
 		const string &token = child.Token(0);
+	
 		bool isValue = token == "value";
 		bool isOffset = token == "offset";
+	
 		bool remove = token == "remove";
 		bool add = token == "add";
-		if(remove)
-		{
-			if(child.Size() == 1)
-				Clear();
-			else if(child.Token(1) == "outfit")
+	
+		int keyIndex = (add || remove);
+		bool hasKey = child.Size() > 1;
+
+		const string &key = child.Token(keyIndex);
+		if(remove && !hasKey)
+			Clear();
+		else if(hasKey)
+			if(key == "outfit")
 			{
 				// If an outfit is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
@@ -85,7 +92,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 					relativeOutfitPrices.clear();
 				}
 			}
-			else if(child.Token(1) == "outfitter")
+			else if(key == "outfitter")
 			{
 				// If an outfitter is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
@@ -100,27 +107,26 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 					relativePrices.clear();
 				}
 			}
-			else if(child.Token(1) == "location")
+			else if(key == "location")
 				locationFilter = LocationFilter{};
-			else if(child.Token(1) == "conditions")
+			else if(key == "conditions")
 				conditions = ConditionSet{};
 			else
 				child.PrintTrace("Skipping unrecognized clearing/deleting:");
-		}
 		else if(add)
 		{
-			if(child.Token(1) == "location" && child.Size() == 1)
+			if(key == "location" && child.Size() == 1)
 				locationFilter.Load(child);
-			else if(child.Token(1) == "conditions")
+			else if(key == "conditions")
 				conditions.Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized add:");
 		}
-		else if(token == "default")
+		else if(key == "default")
 			sellType = SellType::DEFAULT;
-		else if(token == "import")
+		else if(key == "import")
 			sellType = SellType::IMPORT;
-		else if(token == "location")
+		else if(key == "location")
 		{
 			// Either just a planet or a whole filter.
 			if(child.Size() == 1)
@@ -139,7 +145,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items,
 			else
 				child.PrintTrace("Warning: use a location filter to choose from multiple planets:");
 		}
-		else if(token == "conditions")
+		else if(key == "conditions")
 		{
 			// Override existing conditions and replace them.
 			conditions = ConditionSet{};
@@ -304,7 +310,7 @@ const string &CustomSale::GetShown(CustomSale::SellType sellType)
 
 
 
-Sale<Outfit> CustomSale::GetOutfits()
+const Sale<Outfit> &CustomSale::GetOutfits()
 {
 	if(!seen.empty() && cacheValid)
 		return seen;

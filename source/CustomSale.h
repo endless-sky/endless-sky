@@ -61,7 +61,7 @@ public:
 	static const std::string &GetShown(SellType sellType);
 
 	// Return all outfits that are affected by this CustomSale.
-	Sale<Outfit> GetOutfits();
+	const Sale<Outfit> &GetOutfits();
 
 	bool Has(const Outfit &item) const;
 

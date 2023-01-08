@@ -281,7 +281,7 @@ int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 	// Check this was initiated properly.
 	assert(player);
 	int64_t cost = outfit->Cost() *
-		(GameData::OutfitCost(GameData::CustomSale(*player->GetPlanet(), player->Conditions()), *outfit));
+		(GameData::OutfitCost(GameData::GetCustomSales(*player->GetPlanet(), player->Conditions()), *outfit));
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 

@@ -73,7 +73,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
-	customSales = GameData::CustomSale(planet, player.Conditions());
+	customSales = GameData::GetCustomSales(planet, player.Conditions());
 	shipInfo.SetPlayerInfo(player);
 	outfitInfo.SetPlayerInfo(player);
 }
