@@ -349,7 +349,7 @@ Politics::Punishment Politics::CalculateFine(PlayerInfo &player, const Governmen
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
 
-		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesOutfitScan(*ship))
+		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 			if(auto fine = ship->Cargo().IllegalCargoFine(gov))
 			{
 				punishment.cost += fine;
