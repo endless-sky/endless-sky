@@ -295,7 +295,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We found many spoils of war on this planet. The pirates' bunkers have had all manner of gadgetry, including Hai and Korath outfits. We are gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
 					"reputation: Hai (Unfettered)" < 30
-			`	Batu looks less satisfied. "We've found far less than we expected, and there aren't any live Korath - or even Korath bodies. Our investigators suspect we've found a small part of a larger operation to pillage and sell Korath outfits. The operation's Stormhold facilities were just distribution centers for sales and staging areas for transfers of Korath. I hope shutting down this part of the operation will end it for good, but that seems overly optimistic."`
+			`	Batu looks less satisfied. "We've found only a few dozen items, and there aren't any live Korath - or even Korath bodies. With all the fighters being disabled, we'd expect to find a bit more. This is likely part of an operation to pillage and sell Korath outfits. Worse, they may even be trading with the Korath. The operation's Stormhold facilities were for showcasing and auctioning Korath goods. By taking their sales center, we may have shut down the operation."`
 
 			# This seemingly abrupt question is to ensure the player notices the word "Korath."
 			choice
