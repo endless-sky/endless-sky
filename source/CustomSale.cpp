@@ -364,5 +364,5 @@ void CustomSale::CheckIfEmpty()
 
 bool CustomSale::IsEmpty()
 {
-	return sellType != SellType::NONE;
+	return sellType == SellType::NONE;
 }
