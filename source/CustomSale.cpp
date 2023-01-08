@@ -63,13 +63,13 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 	for(const DataNode &child : node)
 	{
 		const string &token = child.Token(0);
-	
+
 		bool isValue = token == "value";
 		bool isOffset = token == "offset";
-	
+
 		bool remove = token == "remove";
 		bool add = token == "add";
-	
+
 		int keyIndex = (add || remove);
 		bool hasKey = child.Size() > 1;
 

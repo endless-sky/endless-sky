@@ -46,8 +46,7 @@ public:
 
 
 public:
-	void Load(const DataNode &node, const Set<Sale<Outfit>> &items,
-		const Set<Outfit> &outfits, const std::string &mode);
+	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits);
 
 	// Adds another CustomSale to this one if the conditions allow it.
 	bool Add(const CustomSale &other, const Planet &planet, const ConditionsStore store);
