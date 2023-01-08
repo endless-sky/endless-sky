@@ -51,7 +51,6 @@ test-data "Wormhole Navigation"
 				"ion resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
-				"landing speed" 100
 				weapon
 					"blast radius" 140
 					"shield damage" 1400
@@ -168,7 +167,6 @@ test-data "Ember Wastes Navigation"
 				"ion resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
-				"landing speed" 100
 				weapon
 					"blast radius" 140
 					"shield damage" 1400
