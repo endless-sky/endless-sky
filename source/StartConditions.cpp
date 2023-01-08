@@ -336,7 +336,7 @@ void StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	int valueIndex = (isAdd) ? 2 : 1;
 	bool hasValue = (child.Size() > valueIndex);
 	const string &value = child.Token(hasValue ? valueIndex : 0);
-	
+
 	if(key == "name" && hasValue)
 		info.name = value;
 	else if(key == "description" && hasValue)
