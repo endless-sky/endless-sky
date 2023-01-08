@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define PLANET_H_
 
 #include "ConditionsStore.h"
-#include "CustomSale.h"
 #include "Sale.h"
 
 #include <list>
@@ -157,9 +156,6 @@ private:
 	std::set<const Sale<Ship> *> shipSales;
 	std::set<const Sale<Outfit> *> outfitSales;
 
-	mutable CustomSale customSale;
-	mutable CustomSale visibleCustomSale;
-	mutable int cachedDays = -1;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;
