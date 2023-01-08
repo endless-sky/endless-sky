@@ -444,6 +444,10 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	std::shared_ptr<std::string> GetLimitedFleetId();
+	std::shared_ptr<const std::string> GetLimitedFleetId() const;
+	void SetLimitedFleetId(std::shared_ptr<std::string> id);
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -486,6 +490,9 @@ private:
 	EsUuid uuid;
 	std::string name;
 	bool canBeCarried = false;
+
+	// For tracking the number of fleets active, for fleets with limits
+	shared_ptr<std::string> limitedFleetId;
 
 	int forget = 0;
 	bool isInSystem = true;

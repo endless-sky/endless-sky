@@ -1205,6 +1205,60 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
+int Engine::FleetPlacementLimit(const LimitedEvent<Fleet> &fleet, int frames, bool requireGovernment)
+{
+	if(requireGovernment && !fleet.Get()->GetGovernment())
+		// Fleet has no government, but caller required one.
+		return 0;
+	else if(frames && Random::Int(fleet.Period()) >= frames)
+		// It is not yet time to place this fleet.
+		return 0;
+	else if(frames && !fleet.HasLimit())
+		// This is not an initalCount spawn, and the fleet is unlimited.
+		return numeric_limits<int>::max();
+	else if(!frames && !fleet.InitialCount())
+		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
+		return false;
+
+	int count = CountFleetsWithId(fleet.Id());
+	int maximum = frames ? fleet.Limit() : fleet.InitialCount();
+	return max<int>(0, maximum - count);
+}
+
+
+
+int CountFleetsWithId(const string &id)
+{
+	if(id.empty())
+		return 0;
+	auto range = limitedFleets.find(id);
+	int count = 0;
+	for(auto it = range.first; it != range.second(); )
+		if(it->expired())
+			it = limitedFleets.erase(it);
+		else
+		{
+			++count;
+			++it;
+		}
+	return count;
+}
+
+
+
+shared_ptr<string> Engine::UpdateLimitedFleets(const LimitedEvents<Fleet> &fleet)
+{
+	shared_ptr<string> id;
+	if((fleet.Limit() || fleet.InitialCount()) && !fleet.Id().empty())
+	{
+		id = make_shared<string>(fleet.Id());
+		limitedFleets.emplace(fleet.Id(), id);
+	}
+	return id;
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
@@ -1279,14 +1333,20 @@ void Engine::EnterSystem()
 
 	// Clear any active weather events
 	activeWeather.clear();
+
+	// If any fleets have an initial spawn count, spawn them.
+	for(const auto &fleet : system->Fleets())
+		for(int i = 0; i < FleetPlacementLimit(fleet, 0, true) ; ++i)
+			fleet.Get()->Place(*system, newShips, true, UpdateLimitedFleets(fleet));
+
 	// Place five seconds worth of fleets and weather events. Check for
 	// undefined fleets by not trying to create anything with no
 	// government set.
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, newShips);
+			if(FleetPlacementLimit(fleet, 60, true))
+				fleet.Get()->Place(*system, newShips, true, UpdateLimitedFleets(fleet));
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -1727,7 +1787,7 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()))
+		if(FleetPlacementLimit(fleet, 1, true) > 0)
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -1740,7 +1800,7 @@ void Engine::SpawnFleets()
 			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
 				continue;
 
-			fleet.Get()->Enter(*player.GetSystem(), newShips);
+			fleet.Get()->Enter(*player.GetSystem(), newShips, UpdateLimitedFleets(fleet));
 		}
 }
 

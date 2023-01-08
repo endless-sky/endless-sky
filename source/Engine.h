@@ -127,6 +127,9 @@ private:
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
+	int FleetPlacementLimit(const LimitedEvent<Fleet> &fleet, int frames, bool requireGovernment);
+	int CountFleetsWithId(const std::string &id);
+	std::shared_ptr<std::string> UpdateLimitedFleets(const LimitedEvents<Fleet> &fleet);
 
 private:
 	class Target {
@@ -162,6 +165,7 @@ private:
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
+	std::unordered_multimap<std::string,weak_ptr<std::string>> limitedFleets;
 
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;

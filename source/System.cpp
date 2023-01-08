@@ -89,6 +89,42 @@ double System::Asteroid::Energy() const
 
 
 
+void System::ReadInt(const DataNode &node, const string &name, int &value, int index)
+{
+	if(node.size() < index+1)
+		node.PrintTrace("Missing " + name + ".");
+	else if(!node.IsNumber(index))
+		node.PrintTrace("Expected number for " + name + ".");
+	else
+		value = node.Value(index);
+}
+
+
+
+void System::LoadLimitedEvents(const DataNode &node, int &period, int &limit, int &initialCount, string &id)
+{
+	for(const DataNode &child : node)
+		if(child.size()<1)
+			continue
+		else if(child.Token(0) == "id")
+		{
+			if(child.size() == 1)
+				id = string();
+			else if(node.size() >= 2)
+				id = node.Token(1);
+		}
+		else if(child.Token(0) == "period")
+			ReadInt(child, "period", period, 1);
+		else if(child.Token(0) == "limit")
+			ReadInt(child, "limit", limit, 1);
+		else if(child.size() >= 2 && child.Token(0) == "initial" && child.Token(1) == "count")
+			ReadInt(child, "limit", limit, 2);
+		else
+			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
+}
+
+
+
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -230,6 +266,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "fleet")
 		{
 			const Fleet *fleet = GameData::Fleets().Get(value);
+
 			if(remove)
 			{
 				for(auto it = fleets.begin(); it != fleets.end(); ++it)
@@ -240,7 +277,21 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+			{
+				int period = 200;
+				int limit = LimitedEvents::NO_FLEET_LIMIT;
+				int initialCount = 0;
+				string id;
+				
+				if(child.size() > valueIndex + 1)
+					period = child.Value(valueIndex + 1);
+				if(child.hasChildren())
+					LoadLimitedEvents(child, period, limit, initialCount, id);
+				if((limit || initialCount) && id.empty())
+					id = name + " (((random interval fleet))) " + value;
+
+				fleets.emplace_back(fleet, period, limit, initialCount, id);
+			}
 		}
 		else if(key == "hazard")
 		{

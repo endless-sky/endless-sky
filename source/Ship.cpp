@@ -4128,6 +4128,27 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 
 
 
+std::shared_ptr<std::string> GetLimitedFleetId()
+{
+	return limitedFleetId;
+}
+
+
+
+std::shared_ptr<const std::string> GetLimitedFleetId() const
+{
+	return limitedFleetId;
+}
+
+
+
+void SetLimitedFleetId(std::shared_ptr<std::string> id)
+{
+	limitedFleetId = id;
+}
+
+
+
 // Add escorts to this ship. Escorts look to the parent ship for movement
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)

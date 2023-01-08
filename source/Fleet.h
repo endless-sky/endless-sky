@@ -64,7 +64,8 @@ public:
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
-	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
+	// Give it an id if it is part of a limited count random event fleet.
+	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true, std::shared_ptr<std::string> limitedFleetId = nullptr) const;
 
 	// Do the randomization to make a ship enter or be in the given system.
 	// Return the system that was chosen for the ship to enter from.

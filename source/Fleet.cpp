@@ -446,7 +446,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
+void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried, shared_ptr<std::string> limitedFleetId) const
 {
 	if(variants.empty())
 		return;
@@ -464,6 +464,9 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	vector<shared_ptr<Ship>> placed = Instantiate(variantShips);
 	for(shared_ptr<Ship> &ship : placed)
 	{
+		if(limitedFleetId)
+			ship->SetLimitedFleetId(limitedFleetId);
+
 		// If this is a fighter and someone can carry it, no need to position it.
 		if(carried && PlaceFighter(ship, placed))
 			continue;
