@@ -264,35 +264,35 @@ mission "Korath Stormhold Artifacts [1] Coded Message"
 	landing
 	to offer
 		has "event: stormhold korath issue"
-		not "Hai Reveal [B12] Devil-Hide Battle: accepted"
+		not "Hai Reveal [B12] Devil-Hide Battle: offered"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Hai (Unfettered)" "Pirate"
 		not planet Stormhold
 	destination Stormhold
 	on offer
 		conversation
-			`As soon as you land, your communications console beeps urgently. It's a coded message from <planet> that simply reads, "Security issue. Return to <planet> at earliest convenience."`
+			`As soon as you land, your communications console beeps urgently. It's a coded message from <planet> that simply reads, "Security issue. Return to <planet> as soon as possible."`
 			`	The digital signature claims to be of diplomatic origin, and from the burning acorn insignia, it is most likely from the Unfettered.`
 				accept
 
 mission "Korath Stormhold Artifacts [2] Drones"
+	landing
 	name "Destroy Korath drones at <waypoints>."
 	description `Destroy Korath stealth drones at <waypoints>. This is an optional mission; the Syndicate will do it if you don't.`
-	landing
 	source Stormhold
 	destination Stormhold
 	waypoint Almach
 	to offer
 		has "Korath Stormhold Artifacts [1] Coded Message: done"
-		not "Hai Reveal [B12] Devil-Hide Battle: accepted"
+		not "Hai Reveal [B12] Devil-Hide Battle: offered"
 	on offer
 		log "Factions" "Korath" `According to the Unfettered, the Korath were intelligent and well-cultured reptiles, until their civilization fell apart a few centuries ago. They peacefully coexisted with the Hai until they got desperate for resources and invaded. The Hai valiantly defended themselves against the Korath, but eventually the Korath nearly wiped themselves out through infighting. The few survivors live east of Syndicate space and frequently raid nearby human settlements.`
 		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and sales distribution site. He expects this is part of a larger Korath outfit sales operation that is based on a nearby planet.`
 		conversation
-			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. Sadly, there weren't any jump drives," he says, winking. "Fortunately, the pirates had plenty of other gadgetry littering their bunkers, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
+			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We found many spoils of war on this planet. Sadly, there weren't any jump drives," he says, winking. "Fortunately, the pirates had plenty of other gadgetry littering their bunkers, including Hai and Korath outfits. We are gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
 					"reputation: Hai (Unfettered)" >= 30
-			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. The pirates' bunkers have had all manner of gadgetry, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
+			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We found many spoils of war on this planet. The pirates' bunkers have had all manner of gadgetry, including Hai and Korath outfits. We are gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
 					"reputation: Hai (Unfettered)" < 30
 			`	Batu looks less satisfied. "We've found far less than we expected, and there aren't any live Korath - or even Korath bodies. Our investigators suspect we've found a small part of a larger operation to pillage and sell Korath outfits. The operation's Stormhold facilities were just distribution centers for sales and staging areas for transfers of Korath. I hope shutting down this part of the operation will end it for good, but that seems overly optimistic."`
@@ -422,14 +422,14 @@ mission "Korath Stormhold Artifacts [2] Drones"
 	npc kill
 		government Korath
 		system Almach
-		personality staying timid target marked mute
+		personality staying timid target marked
 		fleet "Korath Stealth Relay"
 		dialog "With all of the probes destroyed, you can now return to Stormhold for your payment."
 	npc
 		government Korath
 		system Almach
-		personality staying heroic marked mute opportunistic unconstrained
+		personality staying heroic marked opportunistic unconstrained
 		fleet
 			variant
-				"Ra'gru Ik 618 (uncapturable)"
+				"Ra'gru Ik 618"
 
