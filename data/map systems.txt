@@ -32273,10 +32273,6 @@ system "Tau Ceti"
 			sprite planet/miranda-b
 			distance 230
 			period 165.00746
-	object
-		sprite planet/sheragi_postverta
-		distance 2823
-		period 4571.3734
 
 system Tebuteb
 	pos -615.587 710.051
