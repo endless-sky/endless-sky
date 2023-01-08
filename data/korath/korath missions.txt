@@ -263,9 +263,8 @@ mission "Korath Stormhold Artifacts [1] Coded Message"
 	description `Head to <planet> to deal with a "security issue."`
 	landing
 	to offer
-		or
-			has "event: stormhold korath issue"
-			not "Hai Reveal [B12] Devil-Hide Battle: accepted"
+		has "event: stormhold korath issue"
+		not "Hai Reveal [B12] Devil-Hide Battle: accepted"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Hai (Unfettered)" "Pirate"
 		not planet Stormhold
@@ -288,7 +287,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 		not "Hai Reveal [B12] Devil-Hide Battle: accepted"
 	on offer
 		log "Factions" "Korath" `According to the Unfettered, the Korath were intelligent and well-cultured reptiles, until their civilization fell apart a few centuries ago. They peacefully coexisted with the Hai until they got desperate for resources and invaded. The Hai valiantly defended themselves against the Korath, but eventually the Korath nearly wiped themselves out through infighting. The few survivors live east of Syndicate space and frequently raid nearby human settlements.`
-		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and first line of defense for New Tortuga. That planet is an impenetrable fortress in a system crawling with Korath capital ships, and is believed to be involved in shadowy and illicit activities. The Navy's plan is containment through a blockade at the choke point of Alcyone until the pirate activity in the area dies down.`
+		log `There was an abundance of Korath artifacts at Stormhold, but Batu fears Stormhold was merely a staging area and sales distribution site. He expects this is part of a larger Korath outfit sales operation that is based on a nearby planet.`
 		conversation
 			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. Sadly, there weren't any jump drives," he says, winking. "Fortunately, the pirates had plenty of other gadgetry littering their bunkers, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
@@ -296,9 +295,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			`Choot'k greets you, with a worried-looking Batu at his side. "Welcome back, Captain <last>! We've found many spoils of war on this planet. The pirates' bunkers have had all manner of gadgetry, including Hai and Korath outfits. We're gathering it to secure areas for inventory and analysis before divvying it up."`
 				to display
 					"reputation: Hai (Unfettered)" < 30
-			`	Batu looks less satisfied. "Given the proximity to Korath space, this is less than we expected. Our investigators suspect this planet was a distribution center for sales and staging area for transfers of Korath artifacts. The main facility is on New Tortuga.`
-			`	"From our understanding, New Tortuga is an impenetrable fortress in a system crawling with Korath capital ships. There's rumors of Korath-friendly pirates, large marauder bases, and industrial-scale shipbuilding. We'd need an invasion force ten times this size to conquer that planet. Fortunately, most of their firepower is planet-side because of the ships they lost here. It'll be a long time before they have the resources to break through a naval blockade.`
-			`	"We're sticking with a containment policy for the foreseeable future. A few fast smugglers will get through Alcyone, but that isn't concerning. As long as New Tortuga doesn't have jump drives, and the Korath don't help them break the blockade, this should work. With no way to do business, eventually the pirate activity will die down and the Navy can return to its regular patrols."`
+			`	Batu looks less satisfied. "We've found far less than we expected, and there aren't any live Korath - or even Korath bodies. Our investigators suspect we've found a small part of a larger operation to pillage and sell Korath outfits. The operation's Stormhold facilities were just distribution centers for sales and staging areas for transfers of Korath. I hope shutting down this part of the operation will end it for good, but that seems overly optimistic."`
 
 			# This seemingly abrupt question is to ensure the player notices the word "Korath."
 			choice

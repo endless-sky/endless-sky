@@ -169,8 +169,6 @@ mission "Hai Reveal [B02] Join the Fleet"
 		dialog
 			`When the Hai and humans try to deploy troops, they're drawn off by orbital bombardment. You must defeat the entire pirate and marauder defense fleet before landing.`
 
-event "stormhold korath issue (1)"
-
 event "stormhold suppressed"
 	# Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
 	system "Alcyone"
@@ -483,6 +481,10 @@ mission "Hai Reveal [B05-long] The Red Mystery"
 			`	"His theory is... well, it's a bit crackpot for the local authorities. I wouldn't have believed it either, were it not for the vastly superior swathe of information we now have at our disposal, but it might be what you need. I think you should go seek him out on <planet>."`
 			`	She rummages around and then presents you with a data stick. "This has the information he gave me to follow him up. I convinced him to trust me, so hopefully he's receptive to you. It also has all the data that explicitly identifies all the ship IDs that are associated with our suspicious cases. That's the best I've got for you, though. If this doesn't pan out we'll need to go a different way."`
 				accept
+
+
+
+event "stormhold korath issue"
 
 
 
