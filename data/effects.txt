@@ -396,7 +396,7 @@ effect "hai launch"
 	sound "hai launch"
 	
 effect "remnant external"
-	sound "remnant launch"
+	sound "remnant launch external"
 	
 effect "remnant internal"
 	sprite "effect/smoke"
