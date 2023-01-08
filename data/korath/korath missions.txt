@@ -344,7 +344,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 	on complete
 		payment 2500000
 		conversation
-			`Choot'k greet you, beside some Navy crewman in inventory management uniforms. "The Navy tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
+			`Choot'k greets you, beside some Navy crewman in inventory management uniforms. "The Navy tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
 			`	"Pick among these:`
 			`	"Some wonderful Korath systems that repair your hull and shields, while also storing energy. They come with two Korath anti-missile turrets and some other odds and ends.`
 			`	"I can also offer the strongest afterburners I've ever heard of, plus a sizable amount of fuel storage and ramscoop to keep it working.`
