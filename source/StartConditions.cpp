@@ -330,7 +330,7 @@ void StartConditions::LoadState(const DataNode &node, StartState state)
 
 
 
-void StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, bool &clearDescription, bool isAdd)
+bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, bool &clearDescription, bool isAdd)
 {
 	const string &key = child.Token(isAdd ? 1 : 0);
 	int valueIndex = (isAdd) ? 2 : 1;
@@ -365,7 +365,7 @@ void StartConditions::FillState(StartState fillState, const Sprite *thumbnail)
 {
 	StartInfo &fill = infoByState[fillState];
 	if(!fill.thumbnail)
-		fill.thumbnail = thumbnail
+		fill.thumbnail = thumbnail;
 	if(fill.name.empty())
 		fill.name = "???";
 	if(fill.description.empty())
