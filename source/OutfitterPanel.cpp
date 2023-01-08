@@ -238,7 +238,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "(not sold here)";
 
 	// For now there is only default or import.
-	if(!customSales[CustomSale::SellType::IMPORT].Has(*outfit))
+	if(!customSales.at(CustomSale::SellType::IMPORT).Has(*outfit))
 		message += " (" + CustomSale::GetShown(CustomSale::SellType::IMPORT) + ")";
 
 	if(!message.empty())
@@ -530,7 +530,7 @@ void OutfitterPanel::FailBuy() const
 	if(customSales.at(CustomSale::SellType::IMPORT).Has(*selectedOutfit))
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "
-			"it is meant to be imported, legally or not, generally for a good price."));
+			"it is meant to be imported, generally for a good price."));
 		return;
 	}
 
