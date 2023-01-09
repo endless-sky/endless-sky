@@ -349,8 +349,8 @@ mission "FW Southern Battle 1B"
 	on offer
 		event "flamethrower available" 10
 		conversation
-			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews. He says, "The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far." You can't help but be impressed at the size of the Dreadnought: as bulky as a Cruiser, it looks like a cross between a Bastion and an Argosy freighter.`
-			`	He then leads you out to a section of the spaceport where three Dreadnoughts are parked. Next to them, and looking tiny by comparison, are five Furies. You ask, "Are those Furies part of the battle fleet, too?"`
+			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews.`
+			`	"The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far." The size of the Dreadnought is impressive: as bulky as a Cruiser, it looks like a cross between a Bastion and an Argosy freighter. After giving you a moment to take in the view, he leads you out to a section of the spaceport where three Dreadnoughts are parked. Next to them, and looking tiny by comparison, are five Furies. You ask, "Are those Furies part of the battle fleet, too?"`
 			branch untested
 				not "FW Flamethrower 2: done"
 			`	"Yes," he says, "equipped with some fancy new weapons from Barmy Edward up at Kraz Cybernetics that he said you helped test. I haven't seen them in action yet, but he's convinced they'll be useful against the Navy."`
