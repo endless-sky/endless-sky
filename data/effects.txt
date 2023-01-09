@@ -445,3 +445,5 @@ effect "sheragi launch"
 	"random velocity" 3
 	sound "sheragi launch"
 
+effect "scin launch"
+	sound "scin launch"
