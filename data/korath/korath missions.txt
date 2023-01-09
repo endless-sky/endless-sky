@@ -300,6 +300,11 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			# This seemingly abrupt question is to ensure the player notices the word "Korath."
 			choice
 				`	"Who are the Korath?"`
+					to display
+						not "event: label korath space"
+				`	"What do you know about the Korath?"`
+					to display
+						has "event: label korath space"
 				`	"Why are there so many Korath artifacts?"`
 					goto somany
 			`	Choot'k responds. "The Korath are a group of lizards that lived south of Hai space until a few centuries ago. They used to be obsessed with art, music, and other esoterics, until they got desperate for resources and invaded us. Their technology is far beyond ours, and they used it to nearly wipe themselves out in bloody infighting. We learned a lot from them: even the most aggressive Unfettered are wary of attacking Hai planets, lest our species destroy itself like the Korath did. In all our raids in the Wah Ki system, never once have the Unfettered targeted civilian areas on Cloudfire." Batu appears shocked by this.`
