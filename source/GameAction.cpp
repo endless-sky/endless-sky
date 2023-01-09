@@ -54,8 +54,8 @@ namespace {
 			for(const auto &ship : toTake)
 				player.TakeShip(ship.get(), giftShip.WithOutfits() ? model : nullptr);
 		}
-		Messages::Add((abs(count) == 1 ? "The " + model->VariantName() + " \"" + shipName + "\" was " :
-			to_string(abs(count)) + " ships corresponding to the model " + model->VariantName() + " were ") +
+		Messages::Add((abs(count) == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
+			to_string(abs(count)) + " " + model->PluralModelName() + " were ") +
 			(count > 0 ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 	}
 

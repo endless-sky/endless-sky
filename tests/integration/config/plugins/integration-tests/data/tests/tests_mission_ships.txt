@@ -54,10 +54,12 @@ test-data "One Earthly Barge"
 			on offer
 				take ship "Star Barge"
 				give ship "Sparrow" "The Sparrow"
+					id "ship: sparrow"
 		mission "Check sparrow"
 			invisible
 			on offer
 				owns "Sparrow" "The sparrow"
+					id "ship: sparrow"
 				payment 10
 
 

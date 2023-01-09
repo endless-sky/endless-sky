@@ -28,9 +28,12 @@ using namespace std;
 
 void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &shipsList)
 {
-	if(child.Size() < 3)
-		return;
 	const string token = child.Token(0);
+	if(child.Size() < 3 || child.Token(1) != "ship")
+	{
+		child.PrintTrace("Error: Skipping unsupported \"" + token + "\" syntax:");
+		return;
+	}
 	bool taking = token == "take";
 	bool owns = token == "owns";
 	const Ship *ship = GameData::Ships().Get(child.Token(2));
@@ -73,7 +76,8 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 	for(const auto &ship : player.Ships())
 		if((ship->ModelName() == model->ModelName())
 			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
-			&& (id.empty() || (foundShip && ship->UUID() == ship->second)))
+			&& (id.empty() || (foundShip && ship->UUID() == ship->second))
+			&& (name.empty() || name == ship->Name()))
 		{
 			// If a variant has been specified, or the keyword "with outfits" is specified,
 			// this ship must have each outfit specified in that variant definition.
