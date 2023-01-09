@@ -332,9 +332,9 @@ const Sale<Outfit> &CustomSale::GetOutfits()
 
 bool CustomSale::Has(const Outfit &item) const
 {
-	if(relativeOutfitPrices.find(item) != relativeOutfitPrices.end());
+	if(relativeOutfitPrices.find(item) != relativeOutfitPrices.end())
 		return true;
-	if(relativeOutfitOffsets.find(item) != relativeOutfitOffsets.end());
+	if(relativeOutfitOffsets.find(item) != relativeOutfitOffsets.end())
 		return true;
 	for(auto &&sale : relativePrices)
 		if(sale.first->Has(&item))
