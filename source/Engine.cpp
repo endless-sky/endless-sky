@@ -1596,13 +1596,15 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].AddVisual(visual);
 
 	// Update fleets, remove fleets with no ships.
-	auto it = fleets.begin();
-	while(it != fleets.end())
+	for(auto it = fleets.begin(); it != fleets.end(); )
 	{
 		bool shouldBeRemoved = true;
-		for(shared_ptr<Ship> ship : fleet.ships)
+		for(shared_ptr<Ship> ship : it->ships)
 			if(ship.get())
+			{
 				shouldBeRemoved = false;
+				break;
+			}
 		if(shouldBeRemoved)
 			it = fleets.erase(it);
 		else
