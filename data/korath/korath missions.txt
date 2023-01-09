@@ -392,13 +392,14 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			`	"Done! We're also giving you <payment>. You'll need some hefty cooling and a lot of weapon space to support these turrets."`
 				goto end
 
-			# This much power and cooling opens up a lot of designs if you
-			# have a Shield Beetle, but it isn't so useful on human ships.
+			# This much power and cooling opens up a lot of designs, but
+			# primarily on larger ships. If you don't want outfits, this
+			# is the best option since it sells for 3 million credits.
 			label coolpower
 			action
-				outfit "Triple Plasma Core"
-				outfit "Liquid Sodium Cooler"
-				outfit "Large Heat Shunt"
+				outfit "Double Plasma Core"
+				outfit "Large Heat Shunt" 3
+				outfit "Small Heat Shunt"
 			`	"Done! We're also giving you <payment>. You'll need a Shield Beetle to go with this generator, as nothing else from humans or Hai has enough space to make effective use of it."`
 				goto end
 
@@ -434,7 +435,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 	npc
 		government Korath
 		system Almach
-		personality staying heroic marked opportunistic unconstrained
+		personality staying heroic marked opportunistic
 		fleet
 			variant
 				"Ra'gru Ik 618 (Ground Assault)"
