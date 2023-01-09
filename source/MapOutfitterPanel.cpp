@@ -107,7 +107,7 @@ void MapOutfitterPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected);
+		selectedInfo.Update(*selected, player);
 	}
 	UpdateCache();
 }
@@ -121,7 +121,7 @@ void MapOutfitterPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare);
+		compareInfo.Update(*compare, player);
 	}
 }
 
@@ -265,8 +265,6 @@ void MapOutfitterPanel::DrawItems()
 
 void MapOutfitterPanel::Init()
 {
-	selectedInfo.SetPlayerInfo(player);
-	compareInfo.SetPlayerInfo(player);
 	catalog.clear();
 	set<const Outfit *> seen;
 

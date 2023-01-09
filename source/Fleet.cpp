@@ -84,7 +84,7 @@ namespace {
 
 			if(!choices.empty())
 			{
-				for(const auto &outfit : choices)
+				for(const auto outfit : choices)
 				{
 					double mass = outfit->Mass();
 					// Avoid free outfits, massless outfits, and those too large to fit.

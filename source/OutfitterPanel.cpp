@@ -240,7 +240,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
-	else if(!outfitter.count(outfit))
+	else if(!outfitter.Has(outfit))
 		message = "(not sold here)";
 
 	// For now there is only default or import.
@@ -284,7 +284,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, CanSell());
+		outfitInfo.Update(*selectedOutfit, player, CanSell());
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -524,7 +524,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(!(outfitter.count(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
+	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "

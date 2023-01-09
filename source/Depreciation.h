@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
-class PlayerInfo;
 class Outfit;
 class Ship;
 
@@ -48,8 +47,9 @@ public:
 	void Save(DataWriter &out, int day) const;
 	// Check if any records have been loaded.
 	bool IsLoaded() const;
-	// If no records have been loaded, initialize with an entire fleet, and the player.
+	// If no records have been loaded, initialize with an entire fleet.
 	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day);
+	// Refresh the custom sale prices.
 	void Refresh(const std::map<CustomSale::SellType, CustomSale> *sales);
 
 	// Add a ship, and all its outfits, to the depreciation record.

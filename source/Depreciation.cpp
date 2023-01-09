@@ -20,8 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "Planet.h"
-#include "PlayerInfo.h"
 #include "Ship.h"
 
 #include <algorithm>

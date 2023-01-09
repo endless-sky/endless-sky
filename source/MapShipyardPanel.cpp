@@ -236,8 +236,6 @@ void MapShipyardPanel::DrawItems()
 
 void MapShipyardPanel::Init()
 {
-	selectedInfo.SetPlayerInfo(player);
-	compareInfo.SetPlayerInfo(player);
 	catalog.clear();
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
