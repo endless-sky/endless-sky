@@ -762,7 +762,7 @@ government "Merchant"
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	"show reputation"
+	"show title"
 
 government "Militia"
 	swizzle 2
@@ -777,7 +777,7 @@ government "Militia"
 	"bribe" .1
 	"friendly hail" "friendly militia"
 	"hostile hail" "hostile militia"
-	"show reputation"
+	"show title"
 
 government "Navy Intelligence"
 	swizzle 0
@@ -851,7 +851,7 @@ government "Pirate"
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
 	raid "pirate raid"
-	"show reputation"
+	"show title"
 
 government "Pirate (Devil-Run Gang)"
 	swizzle 6
@@ -943,7 +943,7 @@ government "Quarg"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
-	"show reputation"
+	"show title"
 	atrocities
 		"Nanotech Battery"
 		"Antimatter Core"
@@ -1061,7 +1061,7 @@ government "Republic that won't enter wormhole"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
-	"show reputation"
+	"show title"
 
 government "Republic (Friendly)"
 	"display name" "Republic"
@@ -1165,7 +1165,7 @@ government "Syndicate that won't enter wormhole"
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
 	raid "pirate raid"
-	"show reputation"
+	"show title"
 
 government "Syndicate (Extremist)"
 	swizzle 1
