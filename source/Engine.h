@@ -23,7 +23,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
+#include "Fleet.h"
 #include "Information.h"
+#include "LimitedEvents.h"
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
@@ -33,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <memory>
 #include <thread>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -127,8 +130,8 @@ private:
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
-	int FleetPlacementLimit(const LimitedEvent<Fleet> &fleet, int frames, bool requireGovernment);
-	int CountFleetsWithId(const std::string &id);
+	unsigned FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment);
+	unsigned CountFleetsWithId(const std::string &id);
 	std::shared_ptr<std::string> UpdateLimitedFleets(const LimitedEvents<Fleet> &fleet);
 
 private:
@@ -165,7 +168,7 @@ private:
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
-	std::unordered_multimap<std::string,weak_ptr<std::string>> limitedFleets;
+	std::unordered_multimap<std::string,std::weak_ptr<std::string>> limitedFleets;
 
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;

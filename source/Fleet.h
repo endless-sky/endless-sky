@@ -61,7 +61,7 @@ public:
 	const Government *GetGovernment() const;
 
 	// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
+	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr, std::shared_ptr<std::string> limitedFleetId = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
 	// Give it an id if it is part of a limited count random event fleet.
@@ -69,7 +69,7 @@ public:
 
 	// Do the randomization to make a ship enter or be in the given system.
 	// Return the system that was chosen for the ship to enter from.
-	static const System *Enter(const System &system, Ship &ship, const System *source = nullptr);
+	static const System *Enter(const System &system, Ship &ship, const System *source = nullptr, std::shared_ptr<std::string> limitedFleetId = nullptr);
 	static void Place(const System &system, Ship &ship);
 
 	int64_t Strength() const;

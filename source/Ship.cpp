@@ -4128,21 +4128,21 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 
 
 
-std::shared_ptr<std::string> GetLimitedFleetId()
+std::shared_ptr<std::string> Ship::GetLimitedFleetId()
 {
 	return limitedFleetId;
 }
 
 
 
-std::shared_ptr<const std::string> GetLimitedFleetId() const
+std::shared_ptr<const std::string> Ship::GetLimitedFleetId() const
 {
 	return limitedFleetId;
 }
 
 
 
-void SetLimitedFleetId(std::shared_ptr<std::string> id)
+void Ship::SetLimitedFleetId(std::shared_ptr<std::string> id)
 {
 	limitedFleetId = id;
 }

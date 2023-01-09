@@ -1205,7 +1205,7 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-int Engine::FleetPlacementLimit(const LimitedEvent<Fleet> &fleet, int frames, bool requireGovernment)
+unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment)
 {
 	if(requireGovernment && !fleet.Get()->GetGovernment())
 		// Fleet has no government, but caller required one.
@@ -1222,19 +1222,21 @@ int Engine::FleetPlacementLimit(const LimitedEvent<Fleet> &fleet, int frames, bo
 
 	int count = CountFleetsWithId(fleet.Id());
 	int maximum = frames ? fleet.Limit() : fleet.InitialCount();
-	return max<int>(0, maximum - count);
+	return static_cast<unsigned>(max<int>(0, maximum - count));
 }
 
 
 
-int CountFleetsWithId(const string &id)
+unsigned Engine::CountFleetsWithId(const string &id)
 {
 	if(id.empty())
 		return 0;
-	auto range = limitedFleets.find(id);
-	int count = 0;
-	for(auto it = range.first; it != range.second(); )
-		if(it->expired())
+	auto range = limitedFleets.equal_range(id);
+	unsigned count = 0;
+//	using iter = std::unordered_multimap<std::string,std::weak_ptr<std::string>>::const_iterator;
+	for(auto it = range.first; it != range.second; )
+//	for(iter it = range.first; it != range.second; )
+		if(it->second.expired())
 			it = limitedFleets.erase(it);
 		else
 		{
@@ -1336,7 +1338,7 @@ void Engine::EnterSystem()
 
 	// If any fleets have an initial spawn count, spawn them.
 	for(const auto &fleet : system->Fleets())
-		for(int i = 0; i < FleetPlacementLimit(fleet, 0, true) ; ++i)
+		for(unsigned i = 0; i < FleetPlacementLimit(fleet, 0, true) ; ++i)
 			fleet.Get()->Place(*system, newShips, true, UpdateLimitedFleets(fleet));
 
 	// Place five seconds worth of fleets and weather events. Check for
@@ -1800,7 +1802,7 @@ void Engine::SpawnFleets()
 			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
 				continue;
 
-			fleet.Get()->Enter(*player.GetSystem(), newShips, UpdateLimitedFleets(fleet));
+			fleet.Get()->Enter(*player.GetSystem(), newShips, nullptr, UpdateLimitedFleets(fleet));
 		}
 }
 

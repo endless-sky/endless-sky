@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "RandomEvent.h"
 
+#include <string>
+
 
 // A class that represents an event that triggers randomly, but only a
 // limited number of these events can be active at once. This is
@@ -29,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <typename T>
 class LimitedEvents: public RandomEvent<T> {
 public:
-	static const int NO_FLEET_LIMIT = -1;
+	static const int NO_LIMIT = -1;
 
 
 	LimitedEvents(const T *event, int period);
@@ -52,37 +54,37 @@ private:
 
 template <typename T>
 LimitedEvents<T>::LimitedEvents(const T *event, int period)
-	: RandomEvent(event, period), limit(NO_FLEET_LIMIT), initial(0), id()
+	: RandomEvent<T>(event, period), limit(NO_LIMIT), initialCount(0), id()
 {
 }
 
 template <typename T>
 LimitedEvents<T>::LimitedEvents(const T *event, int period, int limit, int initial,
-			const std:;string &id)
-	: RandomEvent(event, period), limit(limit), initial(initial), id(id)
+			const std::string &id)
+	: RandomEvent<T>(event, period), limit(limit), initialCount(initial), id(id)
 {
 }
 
 template <typename T>
-constexpr int LimitedEvents<T>::HasLimit() const
+constexpr bool LimitedEvents<T>::HasLimit() const noexcept
 {
 	return limit >= 0;
 }
 
 template <typename T>
-constexpr int LimitedEvents<T>::Limit() const
+constexpr int LimitedEvents<T>::Limit() const noexcept
 {
 	return limit;
 }
 
 template <typename T>
-constexpr int LimitedEvents<T>::InitialCount() const
+constexpr int LimitedEvents<T>::InitialCount() const noexcept
 {
 	return initialCount;
 }
 
 template <typename T>
-constexpr const std::string &LimitedEvents<T>::Id() const
+constexpr const std::string &LimitedEvents<T>::Id() const noexcept
 {
 	return id;
 }

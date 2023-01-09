@@ -492,7 +492,7 @@ private:
 	bool canBeCarried = false;
 
 	// For tracking the number of fleets active, for fleets with limits
-	shared_ptr<std::string> limitedFleetId;
+	std::shared_ptr<std::string> limitedFleetId;
 
 	int forget = 0;
 	bool isInSystem = true;

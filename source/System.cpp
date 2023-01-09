@@ -91,7 +91,7 @@ double System::Asteroid::Energy() const
 
 void System::ReadInt(const DataNode &node, const string &name, int &value, int index)
 {
-	if(node.size() < index+1)
+	if(node.Size() < index+1)
 		node.PrintTrace("Missing " + name + ".");
 	else if(!node.IsNumber(index))
 		node.PrintTrace("Expected number for " + name + ".");
@@ -104,20 +104,20 @@ void System::ReadInt(const DataNode &node, const string &name, int &value, int i
 void System::LoadLimitedEvents(const DataNode &node, int &period, int &limit, int &initialCount, string &id)
 {
 	for(const DataNode &child : node)
-		if(child.size()<1)
-			continue
+		if(child.Size()<1)
+			continue;
 		else if(child.Token(0) == "id")
 		{
-			if(child.size() == 1)
+			if(child.Size() == 1)
 				id = string();
-			else if(node.size() >= 2)
+			else if(node.Size() >= 2)
 				id = node.Token(1);
 		}
 		else if(child.Token(0) == "period")
 			ReadInt(child, "period", period, 1);
 		else if(child.Token(0) == "limit")
 			ReadInt(child, "limit", limit, 1);
-		else if(child.size() >= 2 && child.Token(0) == "initial" && child.Token(1) == "count")
+		else if(child.Size() >= 2 && child.Token(0) == "initial" && child.Token(1) == "count")
 			ReadInt(child, "limit", limit, 2);
 		else
 			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
@@ -279,13 +279,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 			{
 				int period = 200;
-				int limit = LimitedEvents::NO_FLEET_LIMIT;
+				int limit = LimitedEvents<Fleet>::NO_LIMIT;
 				int initialCount = 0;
 				string id;
 				
-				if(child.size() > valueIndex + 1)
+				if(child.Size() > valueIndex + 1)
 					period = child.Value(valueIndex + 1);
-				if(child.hasChildren())
+				if(child.HasChildren())
 					LoadLimitedEvents(child, period, limit, initialCount, id);
 				if((limit || initialCount) && id.empty())
 					id = name + " (((random interval fleet))) " + value;
@@ -908,7 +908,7 @@ double System::Exports(const string &commodity) const
 
 
 // Get the probabilities of various fleets entering this system.
-const vector<RandomEvent<Fleet>> &System::Fleets() const
+const vector<LimitedEvents<Fleet>> &System::Fleets() const
 {
 	return fleets;
 }

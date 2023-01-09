@@ -277,7 +277,7 @@ const Government *Fleet::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
+void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet, shared_ptr<string> limitedFleetId) const
 {
 	if(variants.empty() || personality.IsDerelict())
 		return;
@@ -373,6 +373,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	}
 
 	auto placed = Instantiate(variantShips);
+
+	// If this is part of a fleet with limits, set the id:
+	if(limitedFleetId)
+		for(auto &ship : placed)
+			ship->SetLimitedFleetId(limitedFleetId);
+
 	// Carry all ships that can be carried, as they don't need to be positioned
 	// or checked to see if they can access a particular planet.
 	for(auto &ship : placed)
@@ -495,7 +501,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 
 
 // Do the randomization to make a ship enter or be in the given system.
-const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
+const System *Fleet::Enter(const System &system, Ship &ship, const System *source, shared_ptr<string> limitedFleetId)
 {
 	if(system.Links().empty() || (source && !system.Links().count(source)))
 	{
@@ -517,6 +523,8 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	ship.Place(pos, angle.Unit(), angle);
 	ship.SetSystem(source);
 	ship.SetTargetSystem(&system);
+	if(limitedFleetId)
+		ship.SetLimitedFleetId(limitedFleetId);
 
 	return source;
 }

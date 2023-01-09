@@ -173,7 +173,7 @@ private:
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems, double distance);
-	void ReadInt(const DataNode &node, const string &name, int &value, int index);
+	void ReadInt(const DataNode &node, const std::string &name, int &value, int index);
 	void LoadLimitedEvents(const DataNode &node, int &period, int &limit, int &initialCount, std::string &id);
 
 
