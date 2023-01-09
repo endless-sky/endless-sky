@@ -463,10 +463,8 @@ test-data "Custom Sale Conditions"
 			credits 1
 			score 400
 			history
-		conditions
-			"been a good boy"
 		changes
-			pricing outfits "Hidden pulse and blaster"
+			pricing outfits "cheap pulse"
 				conditions
 					has "been a good boy"
 				location "Mars"
@@ -474,7 +472,7 @@ test-data "Custom Sale Conditions"
 				"Pulse Cannon" 1
 
 			planet Mars
-				add outfitter "Nuke"
+				add outfitter "%TEST%: PULSE CANNON"
 
 
 test "CustomSale Conditions Apply Correctly"
@@ -484,6 +482,8 @@ test "CustomSale Conditions Apply Correctly"
 		# Create/inject the savegame and load it.
 		inject "Custom Sale Conditions"
 		call "Load First Savegame"
+		apply
+			"been a good boy" = 1
 		call "FailBuy first outfit"
 		call "Depart"
 		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
@@ -498,10 +498,7 @@ test "CustomSale Conditions Not Always On"
 	description "Test that conditions are checked for the pricing outfit, without the right condition."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Custom Sale Conditions not applied"
-		# naughty!
-		apply
-			"been a good boy" = 0
+		inject "Custom Sale Conditions"
 		call "Load First Savegame"
 		call "FailBuy first outfit"
 		call "Depart"
