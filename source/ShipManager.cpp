@@ -35,7 +35,6 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 		return;
 	}
 	bool taking = token == "take";
-	bool owns = token == "owns";
 	const Ship *ship = GameData::Ships().Get(child.Token(2));
 	ShipManager newManager;
 	if(child.Size() >= 4)
@@ -44,16 +43,23 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 	for(const DataNode &grand : child))
 	{
 		const string key = grand.Token(0);
-		if(key == unconstrained)
-			newManager.unconstrained = true;
-		else if(key == "with outfits")
-			newManager.withOutfits = true;
+		if(take)
+		{
+			if(key == unconstrained)
+				newManager.unconstrained = true;
+			else if(key == "with outfits")
+				newManager.withOutfits = true;
+			else
+				child.PrintTrace("Error: Skipping unrecognized take ship node argument:");
+		}
 		else if(grand.Size() < 2)
-			grand.PrintTrace("Error: expected a value argument:");
+			grand.PrintTrace("Error: Expected a value argument:");
 		else if(key == "id")
 			newManager.id = grand.Token(1);
 		else if(key == "amount")
 			newManager.count = grand.Value(1) * (taking ? -1 : 1);
+		else
+			child.PrintTrace("Error: Skipping unrecognized ship " + token + " node argument:");
 	}
 
 	if(count <= 0)

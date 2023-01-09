@@ -102,8 +102,6 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation = ExclusiveItem<Conversation>(Conversation(child, missionName));
 		else if(key == "conversation" && hasValue)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
-		else if(key == "owns" && child.Size() >= 3 && child.Token(2) == "ship")
-			ShipManager::Load(child, requiredShips);
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
@@ -163,9 +161,6 @@ void MissionAction::Save(DataWriter &out) const
 			conversation->Save(out);
 		for(const auto &it : requiredOutfits)
 			out.Write("require", it.first->TrueName(), it.second);
-		for(const auto &it : requiredShips)
-			out.Write("owns", it.first->VariantName(), it.second.Name(), it.second.Count(),
-					it.second.Unconstrained() ? "unconstrained" : "constrained");
 
 		action.Save(out);
 	}
@@ -199,9 +194,6 @@ string MissionAction::Validate() const
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
 			return "required outfit \"" + outfit.first->TrueName() + "\"";
-	for(auto &&ship : requiredShips)
-		if(!ship.first->IsValid())
-			return "ship \"" + ship.first->VariantName() + "\"" + " \"" + ship.second.Name() + "\"";
 
 	return action.Validate();
 }
@@ -291,10 +283,6 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		}
 	}
 
-	for(auto &&it : requiredShips)
-		if(!it.second.Satisfies(player, it.first))
-			return false;
-
 	// An `on enter` MissionAction may have defined a LocationFilter that
 	// specifies the systems in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
@@ -360,7 +348,6 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.systemFilter = systemFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
-	result.requiredShips = requiredShips;
 
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];

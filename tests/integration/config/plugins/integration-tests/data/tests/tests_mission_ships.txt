@@ -58,7 +58,7 @@ test-data "One Earthly Barge"
 		mission "Check sparrow"
 			invisible
 			on offer
-				owns "Sparrow" "The sparrow"
+				take "Sparrow" "The sparrow"
 					id "ship: sparrow"
 				payment 10
 
@@ -70,8 +70,7 @@ test "Checking for a gifted ship"
 		inject "One Earthly Barge"
 		call "Load First Savegame"
 		call "Depart"
-		input
-			key l
+		call "Land"
 		# Reload this to make sure the UUID is well stored into the savefile.
 		call "Open Menu"
 		call "Load First Savegame"
@@ -82,8 +81,8 @@ test "Checking for a gifted ship"
 			"test: ships: Interceptor" = "ships: Interceptor"
 		assert
 			"credits" == 10
-			"ships: Light Freighter" == 1
-			"ships: Interceptor" == 1
+			"ships: Light Freighter" == 0
+			"ships: Interceptor" == 0
 
 
 test-data "One Specific Barge"
