@@ -369,8 +369,8 @@ ship "Grasshopper"
 		"heat dissipation" .85
 		"fuel capacity" 300
 		"cargo space" 29
-		"outfit space" 169
-		"weapon capacity" 38
+		"outfit space" 198
+		"weapon capacity" 47
 		"engine capacity" 61
 		weapon
 			"blast radius" 36
@@ -379,10 +379,10 @@ ship "Grasshopper"
 			"hit force" 540
 	outfits
 		"Pulse Cannon" 2
-		"Pebble Core"
-		"Hai Chasm Batteries" 2
+		"Sand Cell" 2
+		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling" 2
+		"Hai Williwaw Cooling"
 		"Quantum Keystone"
 		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
@@ -429,6 +429,18 @@ ship "Grasshopper" "Grasshopper (Surveillance)"
 		`"Benga" Atomic Steering`
 		Hyperdrive
 
+ship "Grasshopper" "Grasshopper (Ion)"
+	outfits
+		"Ion Cannon"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Williwaw Cooling"
+		"Hai Corundum Regenerator"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Steering`
+		`"Benga" Atomic Thruster`
+		Hyperdrive
 
 
 ship "Lightning Bug"
