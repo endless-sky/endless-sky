@@ -1596,7 +1596,7 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].AddVisual(visual);
 
 	// Update fleets, remove fleets with no ships.
-	auto it = fleets.begin()
+	auto it = fleets.begin();
 	while(it != fleets.end())
 	{
 		bool shouldBeRemoved = true;
