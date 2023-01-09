@@ -50,6 +50,8 @@ target_sources(EndlessSkyLib PRIVATE
 	AI.h
 	Account.cpp
 	Account.h
+	AfterburnerUsage.cpp
+	AfterburnerUsage.h
 	AlertLabel.cpp
 	AlertLabel.h
 	Angle.cpp
