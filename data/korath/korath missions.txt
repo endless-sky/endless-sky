@@ -360,8 +360,8 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			choice
 				`	"Improved defenses sounds best."`
 					goto defenses
-				`	"Afterburners and fuel, of course."`
-					goto afterburners
+				`	"An afterburner and fuel, of course."`
+					goto afterburner
 				`	"Power and cooling would be wonderful."`
 					goto coolpower
 				`	"I'll take the pair of fiery turrets."`
@@ -404,7 +404,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				goto end
 
 			# Do you want a capital ship that can outrun drones?
-			label afterburners
+			label afterburner
 			action
 				outfit "Afterburner (Planetary Class)"
 				outfit "Fuel Processor" 3
