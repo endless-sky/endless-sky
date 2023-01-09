@@ -150,8 +150,8 @@ void PlayerInfo::New(const StartConditions &start)
 	// such item exists, StartConditions defines default values.
 	date = start.GetDate();
 	GameData::SetDate(date);
-	// Make sure the fleet depreciation object knows it is tracking the player's	
-	// fleet, not the planet's stock.	
+	// Make sure the fleet depreciation object knows it is tracking the player's
+	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
 
 	SetSystem(start.GetSystem());
@@ -420,9 +420,9 @@ void PlayerInfo::Load(const string &path)
 	DistributeMissionCargo(missionCargoToDistribute, missions, ships, cargo, false);
 	DistributeMissionCargo(missionPassengersToDistribute, missions, ships, cargo, true);
 
-	// If no depreciation record was loaded, every item in the player's fleet	
-	// will count as non-depreciated.	
-	if(!depreciation.IsLoaded())	
+	// If no depreciation record was loaded, every item in the player's fleet
+	// will count as non-depreciated.
+	if(!depreciation.IsLoaded())
 		depreciation.Init(ships, date.DaysSinceEpoch());
 }
 
