@@ -19,9 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 
 enum class WormholeStrategy : int_fast8_t {
-		ALL,
-		ONLY_UNRESTRICTED,
 		NONE,
+		ONLY_UNRESTRICTED,
+		ALL,
 };
 
 #endif
