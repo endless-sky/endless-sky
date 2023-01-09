@@ -311,7 +311,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				`	"Sounds foreboding."`
 					goto foreboding
 				`	"When do I get my cut of the spoils?"`
-			`	"Ha! I'd think you were a True Hai if it weren't for the missing fur. Don't worry, captain, I'll make sure the others give you a suitable payment."`
+			`	"Ha! I'd think you were a True Hai if it weren't for the missing fur. Don't worry, Captain, I'll make sure the others give you a suitable payment."`
 			`	Batu sighs as Choot'k continues. "We've made an unpleasant discovery recently. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh, Batu?"`
 				goto next
 			label foreboding
@@ -350,11 +350,11 @@ mission "Korath Stormhold Artifacts [2] Drones"
 	on complete
 		payment 2500000
 		conversation
-			`Choot'k greets you, beside some Navy crewman in inventory management uniforms. "The Navy tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
+			`Choot'k greets you, beside some Navy crewmen in inventory management uniforms. "The Navy tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
 			`	"Pick among these:`
 			`	"Some wonderful Korath systems that repair your hull and shields, while also storing energy. They come with two Korath anti-missile turrets and some other odds and ends.`
 			`	"I can also offer the strongest afterburner I've ever heard of, plus a sizable amount of fuel storage and ramscoop to keep it working.`
-			`	"We can give you a power generator that's as big as two fighters, and a lot of cooling outfits to support it.`
+			`	"We can give you a power generator that's as big a fighter, and a lot of cooling outfits to support it.`
 			`	"The Korath created a gigantic fiery turret they consider the pinnacle of their modern weapon design; you can have two of those.`
 			`	"The last option is some torpedoes so devastating that even the Korath are afraid to use them. They're almost doomsday devices."`
 			choice
