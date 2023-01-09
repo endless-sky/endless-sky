@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Fleet.h"
 #include "GameData.h"
+#include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
 #include "ShipEvent.h"
@@ -29,6 +30,46 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Load ShipEvent strings and corresponding numerical values into a map.
+	void PenaltyHelper(const DataNode &node, map<int, double> &penalties)
+	{
+		for(const DataNode &child : node)
+			if(node.Size() >= 2)
+			{
+				if(node.Token(0) == "assist")
+					penalties[ShipEvent::ASSIST] = child.Value(1);
+				else if(node.Token(0) == "disable")
+					penalties[ShipEvent::DISABLE] = child.Value(1);
+				else if(child.Token(0) == "board")
+					penalties[ShipEvent::BOARD] = child.Value(1);
+				else if(child.Token(0) == "capture")
+					penalties[ShipEvent::CAPTURE] = child.Value(1);
+				else if(child.Token(0) == "destroy")
+					penalties[ShipEvent::DESTROY] = child.Value(1);
+				else if(child.Token(0) == "scan")
+				{
+					penalties[ShipEvent::SCAN_OUTFITS] = child.Value(1);
+					penalties[ShipEvent::SCAN_CARGO] = child.Value(1);
+				}
+				else if(child.Token(0) == "provoke")
+					penalties[ShipEvent::PROVOKE] = child.Value(1);
+				else if(child.Token(0) == "atrocity")
+					penalties[ShipEvent::ATROCITY] = child.Value(1);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+	}
+
+	// Determine the penalty for the given ShipEvent based on the values in the given map.
+	double PenaltyHelper(int eventType, const map<int, double> &penalties)
+	{
+		double penalty = 0.;
+		for(const auto &it : penalties)
+			if(eventType & it.first)
+				penalty += it.second;
+		return penalty;
+	}
+
 	unsigned nextID = 0;
 }
 
@@ -99,6 +140,14 @@ void Government::Load(const DataNode &node)
 				language.clear();
 			else if(key == "enforces")
 				enforcementZones.clear();
+			else if(key == "custom penalties for")
+				customPenalties.clear();
+			else if(key == "foreign penalties for")
+				useForeignPenaltiesFor.clear();
+			else if(key == "illegals")
+				illegals.clear();
+			else if(key == "atrocities")
+				atrocities.clear();
 			else
 				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		}
@@ -117,32 +166,52 @@ void Government::Load(const DataNode &node)
 			}
 		}
 		else if(key == "penalty for")
+			PenaltyHelper(child, penaltyFor);
+		else if(key == "custom penalties for")
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "remove" && grand.Size() >= 2)
+					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
+				else
+				{
+					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))->id];
+					PenaltyHelper(grand, pens);
+				}
+			}
+		else if(key == "illegals")
 		{
+			if(!add)
+				illegals.clear();
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "assist")
-						penaltyFor[ShipEvent::ASSIST] = grand.Value(1);
-					else if(grand.Token(0) == "disable")
-						penaltyFor[ShipEvent::DISABLE] = grand.Value(1);
-					else if(grand.Token(0) == "board")
-						penaltyFor[ShipEvent::BOARD] = grand.Value(1);
-					else if(grand.Token(0) == "capture")
-						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
-					else if(grand.Token(0) == "destroy")
-						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
-					else if(grand.Token(0) == "scan")
-					{
-						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
-						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
-					}
-					else if(grand.Token(0) == "provoke")
-						penaltyFor[ShipEvent::PROVOKE] = grand.Value(1);
-					else if(grand.Token(0) == "atrocity")
-						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
+					if(grand.Token(0) == "ignore")
+						illegals[GameData::Outfits().Get(grand.Token(1))] = 0;
 					else
-						grand.PrintTrace("Skipping unrecognized attribute:");
+						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
 				}
+				else if(grand.Size() >= 3 && grand.Token(0) == "remove")
+				{
+					if(!illegals.erase(GameData::Outfits().Get(grand.Token(1))))
+						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+		}
+		else if(key == "atrocities")
+		{
+			if(!add)
+				atrocities.clear();
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+				{
+					if(grand.Token(0) == "remove" && !atrocities.erase(GameData::Outfits().Get(grand.Token(1))))
+						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
+					else if(grand.Token(0) == "ignore")
+						atrocities[GameData::Outfits().Get(grand.Token(1))] = false;
+				}
+				else
+					atrocities[GameData::Outfits().Get(grand.Token(0))] = true;
 		}
 		else if(key == "enforces" && child.HasChildren())
 			enforcementZones.emplace_back(child);
@@ -156,6 +225,9 @@ void Government::Load(const DataNode &node)
 			titleVisibility = TitleVisibility::SHOWN_ON_LOG;
 		else if(child.Token(0) == "reputation titles")
 			titles = LoadReputationTitles(child);
+		else if(key == "foreign penalties for")
+			for(const DataNode &grand : child)
+				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -174,8 +246,14 @@ void Government::Load(const DataNode &node)
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
 			swizzle = child.Value(valueIndex);
-		else if(key == "color" && child.Size() >= 3 + valueIndex)
-			color = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		else if(key == "color")
+		{
+			if(child.Size() >= 3 + valueIndex)
+				color = ExclusiveItem<Color>(Color(child.Value(valueIndex),
+						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
+			else if(child.Size() >= 1 + valueIndex)
+				color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
+		}
 		else if(key == "death sentence")
 			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
 		else if(key == "friendly hail")
@@ -262,7 +340,7 @@ int Government::GetSwizzle() const
 // Get the color to use for displaying this government on the map.
 const Color &Government::GetColor() const
 {
-	return color;
+	return *color;
 }
 
 
@@ -291,14 +369,28 @@ double Government::InitialPlayerReputation() const
 
 
 
-// Get the amount that your reputation changes for the given offense.
-double Government::PenaltyFor(int eventType) const
+// Get the amount that your reputation changes for the given offense against the given government.
+// The given value should be a combination of one or more ShipEvent values.
+// Returns 0 if the Government is null.
+double Government::PenaltyFor(int eventType, const Government *other) const
 {
-	double penalty = 0.;
-	for(const auto &it : penaltyFor)
-		if(eventType & it.first)
-			penalty += it.second;
-	return penalty;
+	if(!other)
+		return 0.;
+
+	if(other == this)
+		return PenaltyHelper(eventType, penaltyFor);
+
+	const int id = other->id;
+	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
+
+	const auto it = customPenalties.find(id);
+	if(it == customPenalties.end())
+		return PenaltyHelper(eventType, penalties);
+
+	map<int, double> tempPenalties = penalties;
+	for(const auto &penalty : it->second)
+		tempPenalties[penalty.first] = penalty.second;
+	return PenaltyHelper(eventType, tempPenalties);
 }
 
 
@@ -432,6 +524,29 @@ void Government::Bribe() const
 string Government::Fine(PlayerInfo &player, int scan, const Ship *target, double security) const
 {
 	return GameData::GetPolitics().Fine(player, this, scan, target, security);
+}
+
+
+
+bool Government::Condemns(const Outfit *outfit) const
+{
+	const auto isAtrocity = atrocities.find(outfit);
+	bool found = isAtrocity != atrocities.cend();
+	return (found && isAtrocity->second) || (!found && outfit->Get("atrocity") > 0.);
+}
+
+
+
+int Government::Fines(const Outfit *outfit) const
+{
+	// If this government doesn't fine anything it won't fine this outfit.
+	if(!fine)
+		return 0;
+
+	for(const auto &it : illegals)
+		if(it.first == outfit)
+			return it.second;
+	return outfit->Get("illegal");
 }
 
 

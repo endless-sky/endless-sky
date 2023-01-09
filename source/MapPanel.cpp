@@ -43,12 +43,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+#include "Wormhole.h"
 
 #include "opengl.h"
 
@@ -183,7 +185,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Find out how far the player is able to jump. The range of the system
 	// takes priority over the range of the player's flagship.
 	double systemRange = playerSystem.JumpRange();
-	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
+	double playerRange = player.Flagship() ? player.Flagship()->JumpNavigation().JumpRange() : 0.;
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
@@ -307,10 +309,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		// might not be linked via hyperspace.
 		Color color = Color(.5f * alpha, 0.f);
 		if(player.HasVisited(system) && system.IsInhabited(flagship) && gov)
-			color = Color(
-				alpha * gov->GetColor().Get()[0],
-				alpha * gov->GetColor().Get()[1],
-				alpha * gov->GetColor().Get()[2], 0.f);
+			color = gov->GetColor().Additive(alpha);
 		RingShader::Draw(from, OUTER, INNER, color);
 
 		for(const System *link : system.Links())
@@ -332,10 +331,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			gov = link->GetGovernment();
 			Color color = Color(.5f * alpha, 0.f);
 			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
-				color = Color(
-					alpha * gov->GetColor().Get()[0],
-					alpha * gov->GetColor().Get()[1],
-					alpha * gov->GetColor().Get()[2], 0.f);
+				color = gov->GetColor().Additive(alpha);
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 
@@ -950,7 +946,7 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 
 	const System *previous = &playerSystem;
-	double jumpRange = flagship->JumpRange();
+	double jumpRange = flagship->JumpNavigation().JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
@@ -959,10 +955,11 @@ void MapPanel::DrawTravelPlan()
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
-				&& !object.GetPlanet()->Description().empty()
+				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& object.GetPlanet()->WormholeDestination(previous) == next);
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
 
 		if(!isHyper && !isJump && !isWormhole)
 			break;
@@ -973,7 +970,7 @@ void MapPanel::DrawTravelPlan()
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = it.first->GetCheapestJumpType(previous, next).second;
+					double cost = it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;
@@ -1044,24 +1041,21 @@ void MapPanel::DrawWormholes()
 	// Keep track of what arrows and links need to be drawn.
 	set<pair<const System *, const System *>> arrowsToDraw;
 
-	// Avoid iterating each StellarObject in every system by iterating over planets instead. A
-	// system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
-	// share a link vector. If a wormhole's planet has no description, no link will be drawn.
-	for(auto &&it : GameData::Planets())
+	// A system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
+	// share a link vector.
+	for(auto &&it : GameData::Wormholes())
 	{
-		const Planet &p = it.second;
-		if(!p.IsValid() || !p.IsWormhole() || !player.HasVisited(p) || p.Description().empty())
+		if(!it.second.IsValid())
 			continue;
 
-		const vector<const System *> &waypoints = p.WormholeSystems();
-		const System *from = waypoints.back();
-		for(const System *to : waypoints)
-		{
-			if(from->FindStellar(&p)->HasSprite() && player.HasVisited(*from) && player.HasVisited(*to))
-				arrowsToDraw.emplace(from, to);
+		const Planet &p = *it.second.GetPlanet();
+		if(!p.IsValid() || !player.HasVisited(p) || !it.second.IsMappable())
+			continue;
 
-			from = to;
-		}
+		for(auto &&link : it.second.Links())
+			if(p.IsInSystem(link.first)
+					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
+				arrowsToDraw.emplace(link.first, link.second);
 	}
 
 	const Color &wormholeDim = *GameData::Colors().Get("map unused wormhole");
@@ -1195,6 +1189,8 @@ void MapPanel::DrawMissions()
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
+		if(!system)
+			continue;
 		auto &it = missionCount[system];
 		if(mission.CanAccept(player))
 			++it.available;
@@ -1207,6 +1203,8 @@ void MapPanel::DrawMissions()
 			continue;
 
 		const System *system = mission.Destination()->GetSystem();
+		if(!system)
+			continue;
 
 		// Reserve a maximum of half of the slots for available missions.
 		auto &&it = missionCount[system];

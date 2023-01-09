@@ -78,6 +78,53 @@ phrase "deep mystery cube dropoff station payment"
 	word
 		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 
+mission "Mystery Cube Delivery Job Safe [0]"
+	job
+	repeat
+	name "Mystery delivery to <planet>"
+	description "Deliver a package to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+	destination
+		distance 7 16
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 30
+	on accept
+		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
+
+
+mission "Mystery Cube Delivery Job Safe [1]"
+	job
+	repeat
+	name "Mystery delivery to <planet>"
+	description "Deliver a package to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+	destination
+		distance 9 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 15
+	on accept
+		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
+
 mission "Mystery Cube Delivery Job [0]"
 	job
 	repeat
@@ -91,7 +138,7 @@ mission "Mystery Cube Delivery Job [0]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 25
+		random < 45
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -123,7 +170,7 @@ mission "Mystery Cube Delivery Job [1]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -155,7 +202,7 @@ mission "Mystery Cube Delivery Job [2]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -187,7 +234,7 @@ mission "Mystery Cube Delivery Job [3]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -219,7 +266,7 @@ mission "Mystery Cube Delivery Job Station"
 		attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 7
+		random < 10
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -252,7 +299,7 @@ mission "Mystery Cube Retrieval Job"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	npc
 		government "Bounty Hunter"
@@ -630,7 +677,7 @@ mission "Deep Security Package Reveal"
 					decline
 			label agree
 			`	"Excellent," he says, standing up and stretching as if concluding a friendly conversation. He turns back to you with a smile, "I'll add you to the list as soon as I get back to the office then. Your ID will also let you see which packages are ours specifically too. Oh, and again, thank you!"`
-			apply
+			action
 				set "deep security reveal"
 			`	Agent Wayde appears to flick a subtle salute your direction, or perhaps merely tips an imaginary cap. "Good day, captain. I look forward to working with you in the future."`
 			`	With a quick motion he flicks his hair back out his eyes and jogs away, sending one last wave your direction just before he turns a corner and disappears.`
@@ -802,13 +849,13 @@ mission "Deep Consultants"
 				`	"Who are you?"`
 			`	Julie holds out her hand in greeting. "Apologies, let's do this properly. My name is Julie Gillar. My assistant and I were held back with our duties and missed our booked transport. We're in dire need of passage to Valhalla for several important business meetings, but unfortunately everything is booked up for the next five days straight, and that's just not acceptable to my employer."`
 			choice
-				`	"Sure, I'd be glad to help.`
+				`	"Sure, I'd be glad to help."`
 					goto sure
 				`	"Who's your employer?"`
 			`	Julie furtively glances at the people nearby. "Well, I have a few employers actually, but at the moment, indirectly, Deep Security."`
 			`	She leans in slightly closer and lowers her voice. "We have access to their list of trustworthy pilots for emergencies. You'll be paid quite well."`
 			choice
-				`	"Sure, I'd be glad to help.`
+				`	"Sure, I'd be glad to help."`
 					goto sure
 				`	"I'm sorry, but I really can't help you right now."`
 					decline

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchShader.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -79,6 +80,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
@@ -98,6 +100,7 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 
 	map<double, string> reputationTitles;
+	ConditionsStore globalConditions;
 }
 
 
@@ -150,6 +153,7 @@ void GameData::FinishLoading()
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
+	defaultWormholes = objects.wormholes;
 	playerGovernment = objects.governments.Get("Escort");
 	reputationTitles = objects.reputationTitles;
 
@@ -292,6 +296,7 @@ void GameData::Revert()
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
+	objects.wormholes.Revert(defaultWormholes);
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -627,6 +632,13 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
+ConditionsStore &GameData::GlobalConditions()
+{
+	return globalConditions;
+}
+
+
+
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
@@ -644,6 +656,13 @@ const Set<System> &GameData::Systems()
 const map<double, string> &GameData::ReputationTitles()
 {
 	return reputationTitles;
+}
+
+
+
+const Set<Wormhole> &GameData::Wormholes()
+{
+	return objects.wormholes;
 }
 
 
@@ -849,8 +868,11 @@ void GameData::LoadSources()
 		else if(Files::Exists(*it + "icon@2x.jpg"))
 			icon->Add(*it + "icon@2x.jpg");
 
-		icon->ValidateFrames();
-		spriteQueue.Add(icon);
+		if(!icon->IsEmpty())
+		{
+			icon->ValidateFrames();
+			spriteQueue.Add(icon);
+		}
 	}
 }
 
