@@ -118,7 +118,7 @@ void System::LoadLimitedEvents(const DataNode &node, int &period, int &limit, in
 		else if(child.Token(0) == "limit")
 			ReadInt(child, "limit", limit, 1);
 		else if(child.Size() >= 2 && child.Token(0) == "initial" && child.Token(1) == "count")
-			ReadInt(child, "limit", limit, 2);
+			ReadInt(child, "initial count", initialCount, 2);
 		else
 			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
 }
@@ -287,9 +287,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					period = child.Value(valueIndex + 1);
 				if(child.HasChildren())
 					LoadLimitedEvents(child, period, limit, initialCount, id);
-				if((limit || initialCount) && id.empty())
-					id = name + " (((random interval fleet))) " + value;
-
+				if((limit >= 0 || initialCount > 0) && id.empty())
+					id = value + "@" + name;
+				if(limit >= 0 || initialCount > 0)
+					printf("System \"%s\" Fleet \"%s\" period=%d limit=%d initial=%d id \"%s\"\n",
+						name.c_str(), value.c_str(), period, limit, initialCount, id.c_str());
 				fleets.emplace_back(fleet, period, limit, initialCount, id);
 			}
 		}
