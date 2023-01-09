@@ -45,7 +45,7 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 		const string key = grand.Token(0);
 		if(taking)
 		{
-			if(key == unconstrained)
+			if(key == "unconstrained")
 				newManager.unconstrained = true;
 			else if(key == "with outfits")
 				newManager.withOutfits = true;
@@ -63,7 +63,7 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 	}
 
 	if(newManager.count <= 0)
-		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(count));
+		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(newManager.count));
 	else if(taking && !newManager.id.empty() && newManager.count != 1)
 		child.PrintTrace("Error: Skipping invalid ship quantity with a specified unique id:");
 	else
