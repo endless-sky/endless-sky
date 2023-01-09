@@ -1461,16 +1461,27 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		DistanceMap distance(sourceSystem, distanceCalcOptions.wormholeStrategy, distanceCalcOptions.requiresJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
+		int bestDays = distance.Days(*bestIt);
+		if(bestDays < 0)
+			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
+		{
+			int days = distance.Days(*it);
+			if(days >= 0 && days < bestDays)
+			{
 				bestIt = it;
+				bestDays = days;
+			}
+		}
 
 		sourceSystem = *bestIt;
-		expectedJumps += distance.Days(*bestIt);
+		// If currently unreachable, this system does not add to the deadline.
+		expectedJumps += bestDays == numeric_limits<int>::max() ? 0 : bestDays;
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(sourceSystem, distanceCalcOptions.wormholeStrategy, distanceCalcOptions.requiresJumpDrive);
-	expectedJumps += distance.Days(destination->GetSystem());
+	// If currently unreachable, this system does not add to the deadline.
+	expectedJumps += max(0, distance.Days(destination->GetSystem()));
 
 	return expectedJumps;
 }
