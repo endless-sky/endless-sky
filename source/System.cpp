@@ -101,7 +101,8 @@ void System::ReadInt(const DataNode &node, const string &name, int &value, int i
 
 
 
-void System::LoadLimitedEvents(const DataNode &node, int &period, int &limit, int &initialCount, string &id)
+void System::LoadFleet(const DataNode &node, int &period, int &limit, int &initialCount, string &id,
+		bool &ignoreEnemyStrength)
 {
 	for(const DataNode &child : node)
 		if(child.Size() < 1)
@@ -119,6 +120,9 @@ void System::LoadLimitedEvents(const DataNode &node, int &period, int &limit, in
 			ReadInt(child, "limit", limit, 1);
 		else if(child.Size() >= 2 && child.Token(0) == "initial" && child.Token(1) == "count")
 			ReadInt(child, "initial count", initialCount, 2);
+		else if(child.Size() == 3 && child.Token(0) == "ignore" && child.Token(1) == "enemy"
+				&& child.Token(2) == "strength")
+			ignoreEnemyStrength = true;
 		else
 			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
 }
@@ -282,14 +286,24 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				int limit = LimitedEvents<Fleet>::NO_LIMIT;
 				int initialCount = 0;
 				string id;
+				bool ignoreEnemyStrength = false;
 
 				if(child.Size() > valueIndex + 1)
 					period = child.Value(valueIndex + 1);
 				if(child.HasChildren())
-					LoadLimitedEvents(child, period, limit, initialCount, id);
-				if((limit >= 0 || initialCount > 0) && id.empty())
+					LoadFleet(child, period, limit, initialCount, id, ignoreEnemyStrength);
+
+				bool defaultFleetId = (limit >= 0 || initialCount > 0) && id.empty();
+				if(defaultFleetId)
 					id = value + "@" + name;
-				fleets.emplace_back(fleet, period, limit, initialCount, id);
+
+				unsigned flags = 0;
+				if(defaultFleetId)
+					flags |= Fleet::DEFAULT_FLEET_ID;
+				if(ignoreEnemyStrength)
+					flags |= Fleet::IGNORE_ENEMY_STRENGTH;
+
+				fleets.emplace_back(fleet, period, limit, initialCount, id, flags);
 			}
 		}
 		else if(key == "hazard")

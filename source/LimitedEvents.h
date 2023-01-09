@@ -35,7 +35,7 @@ public:
 
 
 	LimitedEvents(const T *event, int period);
-	LimitedEvents(const T *event, int period, int limit, int initial, const std::string &id);
+	LimitedEvents(const T *event, int period, int limit, int initial, const std::string &id, unsigned flags);
 
 	constexpr bool HasLimit() const noexcept;
 	constexpr int Limit() const noexcept;
@@ -44,24 +44,28 @@ public:
 
 	static std::string RandomId();
 
+	constexpr unsigned GetFlags(unsigned mask) const noexcept;
+	constexpr unsigned GetFlags() const noexcept;
+
 private:
-	int limit;
-	int initialCount;
+	int limit = NO_LIMIT;
+	int initialCount = 0;
 	std::string id;
+	unsigned flags = 0;
 };
 
 
 
 template <typename T>
 LimitedEvents<T>::LimitedEvents(const T *event, int period)
-	: RandomEvent<T>(event, period), limit(NO_LIMIT), initialCount(0), id()
+	: RandomEvent<T>(event, period)
 {
 }
 
 template <typename T>
 LimitedEvents<T>::LimitedEvents(const T *event, int period, int limit, int initial,
-			const std::string &id)
-	: RandomEvent<T>(event, period), limit(limit), initialCount(initial), id(id)
+			const std::string &id, unsigned flags)
+	: RandomEvent<T>(event, period), limit(limit), initialCount(initial), id(id), flags(flags)
 {
 }
 
@@ -87,6 +91,20 @@ template <typename T>
 constexpr const std::string &LimitedEvents<T>::Id() const noexcept
 {
 	return id;
+}
+
+
+template <typename T>
+constexpr unsigned LimitedEvents<T>::GetFlags(unsigned mask) const noexcept
+{
+	return flags & mask;
+}
+
+
+template <typename T>
+constexpr unsigned LimitedEvents<T>::GetFlags() const noexcept
+{
+	return flags;
 }
 
 #endif

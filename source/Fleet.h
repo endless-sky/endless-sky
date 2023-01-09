@@ -46,6 +46,12 @@ class System;
 // names are chosen based on a given random "phrase" generator.
 class Fleet {
 public:
+	// Flags for LimitedEvents<Fleet>
+	static const unsigned DEFAULT_FLEET_ID = 1;
+	static const unsigned IGNORE_ENEMY_STRENGTH = 2;
+
+
+
 	Fleet() = default;
 	// Construct and Load() at the same time.
 	Fleet(const DataNode &node);
