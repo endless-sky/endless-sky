@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ENGINE_H_
 
 #include "AI.h"
+#include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
@@ -27,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
-#include "AmmoDisplay.h"
 
 #include <condition_variable>
 #include <list>
