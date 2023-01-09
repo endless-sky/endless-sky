@@ -40,10 +40,10 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 	if(child.Size() >= 4)
 		newManager.name = child.Token(3);
 
-	for(const DataNode &grand : child))
+	for(const DataNode &grand : child)
 	{
 		const string key = grand.Token(0);
-		if(take)
+		if(taking)
 		{
 			if(key == unconstrained)
 				newManager.unconstrained = true;
@@ -62,10 +62,10 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 			child.PrintTrace("Error: Skipping unrecognized ship " + token + " node argument:");
 	}
 
-	if(count <= 0)
+	if(newManager.count <= 0)
 		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(count));
-	else if(taking && !name.empty())
-		child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
+	else if(taking && !newManager.id.empty() && newManager.count != 1)
+		child.PrintTrace("Error: Skipping invalid ship quantity with a specified unique id:");
 	else
 		shipsList.emplace(ship, newManager);
 }
@@ -75,14 +75,14 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, const Ship *model) const
 {
 	const System *here = player.GetSystem();
-	const auto &ship = player.GiftedShips().find(id);
-	bool foundShip = ship != player.GiftedShips().end();
+	const auto &shipID = player.GiftedShips().find(id);
+	bool foundShip = shipID != player.GiftedShips().end();
 	vector<shared_ptr<Ship>> toSell;
 
 	for(const auto &ship : player.Ships())
 		if((ship->ModelName() == model->ModelName())
 			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
-			&& (id.empty() || (foundShip && ship->UUID() == ship->second))
+			&& (id.empty() || (foundShip && ship->UUID() == shipID->second))
 			&& (name.empty() || name == ship->Name()))
 		{
 			// If a variant has been specified, or the keyword "with outfits" is specified,
