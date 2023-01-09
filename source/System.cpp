@@ -91,7 +91,7 @@ double System::Asteroid::Energy() const
 
 void System::ReadInt(const DataNode &node, const string &name, int &value, int index)
 {
-	if(node.Size() < index+1)
+	if(node.Size() < index + 1)
 		node.PrintTrace("Missing " + name + ".");
 	else if(!node.IsNumber(index))
 		node.PrintTrace("Expected number for " + name + ".");
@@ -104,7 +104,7 @@ void System::ReadInt(const DataNode &node, const string &name, int &value, int i
 void System::LoadLimitedEvents(const DataNode &node, int &period, int &limit, int &initialCount, string &id)
 {
 	for(const DataNode &child : node)
-		if(child.Size()<1)
+		if(child.Size() < 1)
 			continue;
 		else if(child.Token(0) == "id")
 		{
@@ -282,7 +282,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				int limit = LimitedEvents<Fleet>::NO_LIMIT;
 				int initialCount = 0;
 				string id;
-				
+
 				if(child.Size() > valueIndex + 1)
 					period = child.Value(valueIndex + 1);
 				if(child.HasChildren())

@@ -277,7 +277,8 @@ const Government *Fleet::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet, shared_ptr<string> limitedFleetId) const
+void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet,
+		shared_ptr<string> limitedFleetId) const
 {
 	if(variants.empty() || personality.IsDerelict())
 		return;
@@ -452,7 +453,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried, shared_ptr<std::string> limitedFleetId) const
+void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried,
+		shared_ptr<std::string> limitedFleetId) const
 {
 	if(variants.empty())
 		return;

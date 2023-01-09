@@ -193,6 +193,7 @@
 		<Unit filename="source/ItemInfoDisplay.cpp" />
 		<Unit filename="source/ItemInfoDisplay.h" />
 		<Unit filename="source/JumpTypes.h" />
+		<Unit filename="source/LimitedEvents.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
 		<Unit filename="source/LoadPanel.cpp" />
