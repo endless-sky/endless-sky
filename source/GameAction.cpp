@@ -44,7 +44,7 @@ namespace {
 		if(count > 0)
 		{
 			for(int number = 0; number < count; ++number)
-				shipName = player.BuyShip(model, giftShip.Name(), true, giftShip.Id())->Name();
+				shipName = player.BuyShip(model, giftShip.Name(), giftShip.Id(), true)->Name();
 		}
 		else
 		{
