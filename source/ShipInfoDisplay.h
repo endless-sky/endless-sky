@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Depreciation;
-class PlayerInfo;
 class Point;
 class Ship;
 
@@ -35,7 +34,7 @@ class Ship;
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
 	ShipInfoDisplay() = default;
-	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo &player);
+	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day);
 
 	// Call this every time the ship changes.
 	void Update(const Ship &ship, const Depreciation &depreciation, int day);

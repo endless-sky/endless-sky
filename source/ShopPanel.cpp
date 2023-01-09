@@ -74,8 +74,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	customSales = GameData::GetCustomSales(*planet, player.Conditions());
-	shipInfo.SetPlayerInfo(player);
-	outfitInfo.SetPlayerInfo(player);
+	player.RefreshDepreciations(customSales);
 }
 
 

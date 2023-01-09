@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include <algorithm>
-#include <cassert>
 #include <cmath>
 
 using namespace std;
@@ -133,7 +132,7 @@ bool Depreciation::IsLoaded() const
 
 
 // If no records have been loaded, initialize with an entire fleet.
-void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day, PlayerInfo &player)
+void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 {
 	// If this is called, this is a player's fleet, not a planet's stock.
 	isStock = false;
@@ -146,14 +145,13 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day, PlayerIn
 		for(const auto &it : ship->Outfits())
 			outfits[it.first][day] += it.second;
 	}
-	Init(player);
 }
 
 
 
-void Depreciation::Init(PlayerInfo &player)
+void Depreciation::Refresh(const std::map<CustomSale::SellType, CustomSale> *sales)
 {
-	this->player = &player;
+	this->sales = sales;
 }
 
 
@@ -278,10 +276,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
-	// Check this was initiated properly.
-	assert(player);
-	int64_t cost = outfit->Cost() *
-		(GameData::OutfitCost(GameData::GetCustomSales(*player->GetPlanet(), player->Conditions()), *outfit));
+	int64_t cost = outfit->Cost() * sales ? (GameData::OutfitCost(*sales, *outfit)) : 1.;
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
 

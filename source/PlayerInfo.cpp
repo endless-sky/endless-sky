@@ -150,9 +150,6 @@ void PlayerInfo::New(const StartConditions &start)
 	// such item exists, StartConditions defines default values.
 	date = start.GetDate();
 	GameData::SetDate(date);
-	// Make sure the fleet depreciation object knows it is tracking the player's
-	// fleet, not the planet's stock.
-	depreciation.Init(ships, date.DaysSinceEpoch(), *this);
 
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
@@ -419,14 +416,6 @@ void PlayerInfo::Load(const string &path)
 
 	DistributeMissionCargo(missionCargoToDistribute, missions, ships, cargo, false);
 	DistributeMissionCargo(missionPassengersToDistribute, missions, ships, cargo, true);
-
-	// If no depreciation record was loaded, every item in the player's fleet
-	// will count as non-depreciated.
-	if(!depreciation.IsLoaded())
-		depreciation.Init(ships, date.DaysSinceEpoch(), *this);
-	else
-		depreciation.Init(*this);
-	stockDepreciation.Init(*this);
 }
 
 
@@ -1614,7 +1603,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 	accounts.AddCredits(income);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
-	stockDepreciation.Init(*this);
 	if(sold)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
@@ -2509,6 +2497,14 @@ const Depreciation &PlayerInfo::FleetDepreciation() const
 const Depreciation &PlayerInfo::StockDepreciation() const
 {
 	return stockDepreciation;
+}
+
+
+
+void PlayerInfo::RefreshDepreciations(const std::map<CustomSale::SellType, CustomSale> &sales)
+{
+	depreciation.Refresh(&sales);
+	stockDepreciation.Refresh(&sales);
 }
 
 

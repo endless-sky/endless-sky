@@ -24,12 +24,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "text/layout.hpp"
 #include "Outfit.h"
-#include "PlayerInfo.h"
 #include "Ship.h"
 #include "text/Table.h"
 
 #include <algorithm>
-#include <cassert>
 #include <map>
 #include <sstream>
 
@@ -37,8 +35,7 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo &player)
-	: ItemInfoDisplay(player)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	Update(ship, depreciation, day);
 }
@@ -134,9 +131,6 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
-	const PlayerInfo *player = GetPlayer();
-	assert(player);
-
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
 	attributeHeaderLabels.clear();
@@ -152,7 +146,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 
 	const Outfit &attributes = ship.Attributes();
 
-	int64_t fullCost = ship.LocalCost(player->GetPlanet(), player->Conditions());
+	int64_t fullCost = ship.Cost();
 	int64_t depreciated = depreciation.Value(ship, day);
 	if(depreciated == fullCost)
 		attributeLabels.push_back("cost:");

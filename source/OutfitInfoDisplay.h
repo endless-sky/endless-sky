@@ -36,7 +36,7 @@ public:
 	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
 
 	// Call this every time the ship changes.
-	void Update(const Outfit &outfit, bool canSell = false);
+	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -52,7 +52,7 @@ public:
 
 
 private:
-	void UpdateRequirements(const Outfit &outfit, bool canSell);
+	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell);
 	void UpdateAttributes(const Outfit &outfit);
 
 

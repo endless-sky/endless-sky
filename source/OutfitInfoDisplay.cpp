@@ -17,13 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 #include "text/Format.h"
-#include "GameData.h"
 #include "Outfit.h"
-#include "Planet.h"
 #include "PlayerInfo.h"
 
 #include <algorithm>
-#include <cassert>
 #include <cmath>
 #include <map>
 #include <set>
@@ -205,18 +202,17 @@ namespace {
 
 
 OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
-	: ItemInfoDisplay(player)
 {
-	Update(outfit, canSell);
+	Update(outfit, player, canSell);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, bool canSell)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, canSell);
+	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -238,20 +234,16 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
-	const PlayerInfo *player = GetPlayer();
-	assert(player);
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
 
-	int day = player->GetDate().DaysSinceEpoch();
-	double scale = player->GetPlanet() ? GameData::OutfitCost(GameData::GetCustomSales(*player->GetPlanet(),
-		player->Conditions()), outfit) : 1.0;
-	int64_t cost = outfit.Cost() * scale;
-	int64_t buyValue = player->StockDepreciation().Value(&outfit, day);
-	int64_t sellValue = player->FleetDepreciation().Value(&outfit, day);
+	int day = player.GetDate().DaysSinceEpoch();
+	int64_t cost = outfit.Cost();
+	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
+	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
 
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
