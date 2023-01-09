@@ -381,7 +381,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				outfit "Small Heat Shunt"
 				outfit "Large Heat Shunt"
 				outfit "Fuel Processor"
-			`	"Done! We're also giving you <payment>. These outfits keep you alive through tough fights."`
+			`	"Done! We're also giving you <payment>. These outfits will keep you alive through tough fights."`
 				goto end
 
 			# You need serious power and cooling to support two Infernos,
