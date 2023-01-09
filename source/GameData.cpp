@@ -518,6 +518,8 @@ map<CustomSale::SellType, CustomSale> GameData::GetCustomSales(const Planet &pla
 
 double GameData::OutfitCost(const map<CustomSale::SellType, CustomSale> &sale, const Outfit &outfit)
 {
+	if(sale.empty())
+		return 1.;
 	// Iterate in the opposite order, since any higher customSale has priority.
 	for(auto &&selling = sale.rbegin(); selling != sale.rend(); ++selling)
 		if(selling->second.Has(outfit))
