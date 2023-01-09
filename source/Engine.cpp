@@ -1602,8 +1602,8 @@ void Engine::CalculateStep()
 		bool shouldBeRemoved = true;
 		for(shared_ptr<Ship> ship : fleet.ships)
 			if(ship.get())
-				shouldBeRemobed = false;
-		if(shouldBeRemove)
+				shouldBeRemoved = false;
+		if(shouldBeRemoved)
 			it = fleets.erase(it);
 		else
 			++it;
