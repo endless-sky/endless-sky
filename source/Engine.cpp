@@ -1596,7 +1596,7 @@ void Engine::CalculateStep()
 		batchDraw[calcTickTock].AddVisual(visual);
 
 	// Update fleets, remove fleets with no ships.
-	remove_if(fleets.begin(), fleets.end(),
+	erase_if(fleets.begin(), fleets.end(),
 		[](const Fleet::FleetHolder &fleet)
 		{
 			for(shared_ptr<Ship> ship : fleet.ships)
