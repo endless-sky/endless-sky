@@ -289,9 +289,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					LoadLimitedEvents(child, period, limit, initialCount, id);
 				if((limit >= 0 || initialCount > 0) && id.empty())
 					id = value + "@" + name;
-				if(limit >= 0 || initialCount > 0)
-					printf("System \"%s\" Fleet \"%s\" period=%d limit=%d initial=%d id \"%s\"\n",
-						name.c_str(), value.c_str(), period, limit, initialCount, id.c_str());
 				fleets.emplace_back(fleet, period, limit, initialCount, id);
 			}
 		}

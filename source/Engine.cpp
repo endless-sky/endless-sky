@@ -1207,43 +1207,22 @@ void Engine::BreakTargeting(const Government *gov)
 
 unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment)
 {
-	bool noisy = frames && fleet.HasLimit() && fleet.InitialCount() && !fleet.Id().empty();
-
 	if(requireGovernment && !fleet.Get()->GetGovernment())
-	{
 		// Fleet has no government, but caller required one.
-		if(noisy)
-			printf("Rejecting fleet \"%s\" because of no government\n",
-				fleet.Id().c_str());
 		return 0;
-	}
 	else if(frames && Random::Int(fleet.Period()) >= frames)
 		// It is not yet time to place this fleet.
 		return 0;
 	else if(frames && !fleet.HasLimit())
-	{
-		if(noisy)
-			printf("Rejecting fleet \"%s\" because it is an initial count spawn and the fleet is unlimited\n",
-				fleet.Id().c_str());
 		// This is not an initalCount spawn, and the fleet is unlimited.
 		return numeric_limits<int>::max();
-	}
 	else if(!frames && fleet.InitialCount() <= 0)
-	{
-		if(noisy)
-			printf("Rejecting fleet \"%s\" because it is an initial time and the initial count is 0\n",
-				fleet.Id().c_str());
 		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
 		return false;
-	}
 
 	int count = CountFleetsWithId(fleet.Id());
 	int maximum = frames ? fleet.Limit() : fleet.InitialCount();
-	unsigned allowed = static_cast<unsigned>(max<int>(0, maximum - count));
-	if(noisy)
-		printf("Fleet \"%s\" allowed %u because count=%d and maximum=%d\n",
-			fleet.Id().c_str(), allowed, count, maximum);
-	return allowed;
+	return static_cast<unsigned>(max<int>(0, maximum - count));
 }
 
 
@@ -1362,14 +1341,8 @@ void Engine::EnterSystem()
 		if(fleet.InitialCount() > 0 && !fleet.Id().empty())
 		{
 			unsigned toPlace = FleetPlacementLimit(fleet, 0, true);
-			printf("Should place %u fleets named \"%s\" with initial count %d current is %d\n",
-				toPlace, fleet.Id().c_str(), fleet.InitialCount(), CountFleetsWithId(fleet.Id()));
 			for(unsigned i = 0; i < toPlace ; ++i)
-			{
-				printf("Placing fleet.\n");
 				fleet.Get()->Place(*system, newShips, true, UpdateLimitedFleets(fleet));
-				printf("Current is now %d\n",CountFleetsWithId(fleet.Id()));
-			}
 		}
 
 	// Place five seconds worth of fleets and weather events. Check for

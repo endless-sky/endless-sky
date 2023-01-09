@@ -471,11 +471,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	for(shared_ptr<Ship> &ship : placed)
 	{
 		if(limitedFleetId)
-		{
-			printf("Generating a ship with limitedFleetId=\"%s\"\n",
-				limitedFleetId->c_str());
 			ship->SetLimitedFleetId(limitedFleetId);
-		}
 
 		// If this is a fighter and someone can carry it, no need to position it.
 		if(carried && PlaceFighter(ship, placed))
