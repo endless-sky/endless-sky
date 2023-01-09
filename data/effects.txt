@@ -371,7 +371,7 @@ effect "basic launch"
 	"random velocity" 3
 
 effect "human external"
-	sound "human launch"
+	sound "human launch external"
 
 effect "human internal"
 	sprite "effect/smoke"
@@ -410,7 +410,7 @@ effect "remnant internal"
 	sound "remnant launch"
 
 effect "korath external"
-	sound "korath launch"
+	sound "korath launch external"
 
 effect "korath internal"
 	sprite "effect/smoke"
