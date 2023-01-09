@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <memory>
 
-class Datanode;
+class DataNode;
 class PlayerInfo;
 class Ship;
 
@@ -33,9 +33,6 @@ public:
 
 
 public:
-	ShipManager() = default;
-	ShipManager(std::string name, int count = 1, bool unconstrained = false, bool withOutfits = false);
-
 	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
 	bool Satisfies(const PlayerInfo &player, const Ship *model) const;
 

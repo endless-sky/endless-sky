@@ -28,30 +28,37 @@ using namespace std;
 
 void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &shipsList)
 {
-	bool taking = child.Token(0) == "take";
-	bool owns = child.Token(0) == "owns";
+	if(child.Size() < 3)
+		return;
+	const string token = child.Token(0);
+	bool taking = token == "take";
+	bool owns = token == "owns";
 	const Ship *ship = GameData::Ships().Get(child.Token(2));
-	string name = (child.Size() >= 4 ? child.Token(3) : "");
-	int count = (child.Size() >= 5 ? static_cast<int>(child.Value(4)) : 1);
+	ShipManager newManager;
+	if(child.Size() >= 4)
+		newManager.name = child.Token(3);
 
-	bool unconstrained = ((child.Size() >= 6 && child.Token(5) == "unconstrained") ||
-			(child.Size() >= 7 && child.Token(6) == "unconstrained"));
-	bool withOutfits = owns ? ((child.Size() >= 6 && child.Token(5) == "with outfits") ||
-			(child.Size() >= 7 && child.Token(6) == "with outfits")) : false;
+	for(const DataNode &grand : child))
+	{
+		const string key = grand.Token(0);
+		if(key == unconstrained)
+			newManager.unconstrained = true;
+		else if(key == "with outfits")
+			newManager.withOutfits = true;
+		else if(grand.Size() < 2)
+			grand.PrintTrace("Error: expected a value argument:");
+		else if(key == "id")
+			newManager.id = grand.Token(1);
+		else if(key == "amount")
+			newManager.count = grand.Value(1) * (taking ? -1 : 1);
+	}
 
 	if(count <= 0)
 		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(count));
 	else if(taking && !name.empty())
 		child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
 	else
-		shipsList.emplace(ship, ShipManager(name, count * (taking ? -1 : 1), unconstrained, withOutfits));
-}
-
-
-
-ShipManager::ShipManager(string name, int count, bool unconstrained, bool withOutfits)
-	: name(name), count(count), unconstrained(unconstrained), withOutfits(withOutfits)
-{
+		shipsList.emplace(ship, newManager);
 }
 
 
