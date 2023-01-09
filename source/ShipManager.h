@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 #include <memory>
+#include <vector>
+#include <map>
 
 class DataNode;
 class PlayerInfo;
@@ -28,7 +30,7 @@ class Ship;
 // Used to contain and manage gift/take ship, and owns commands.
 class ShipManager {
 public:
-	// Will try to add the a shipManager matching the DataNode to the given shipList.
+	// Parse the node and add a shipManager to the given shipList if the node is correct.
 	static void Load(const DataNode &child, std::map<const Ship *, ShipManager> &shipsList);
 
 
@@ -37,6 +39,7 @@ public:
 	bool Satisfies(const PlayerInfo &player, const Ship *model) const;
 
 	const std::string &Name() const;
+	const std::string &Id() const;
 	int Count() const;
 	bool Unconstrained() const;
 	bool WithOutfits() const;
@@ -44,6 +47,7 @@ public:
 
 private:
 	std::string name;
+	std::string id;
 	int count = 1;
 	bool unconstrained = false;
 	bool withOutfits = false;

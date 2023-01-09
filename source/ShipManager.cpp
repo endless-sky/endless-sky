@@ -66,18 +66,17 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> &sh
 vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, const Ship *model) const
 {
 	const System *here = player.GetSystem();
-	const auto &id = player.GiftedShips().find(model->VariantName() + " " + name);
-	bool hasName = !name.empty();
-	bool foundShip = id != player.GiftedShips().end();
+	const auto &ship = player.GiftedShips().find(id);
+	bool foundShip = ship != player.GiftedShips().end();
 	vector<shared_ptr<Ship>> toSell;
 
 	for(const auto &ship : player.Ships())
 		if((ship->ModelName() == model->ModelName())
 			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
-			&& (!hasName || (foundShip && ship->UUID() == id->second)))
+			&& (id.empty() || (foundShip && ship->UUID() == ship->second)))
 		{
-			// If a variant has been specified this ship most have each outfit specified in that variant definition.
-			// The same applies if the outfits are required.
+			// If a variant has been specified, or the keyword "with outfits" is specified,
+			// this ship must have each outfit specified in that variant definition.
 			if(model->VariantName() != model->ModelName() || withOutfits)
 				for(const auto &it : model->Outfits())
 				{
@@ -90,7 +89,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 			toSell.emplace_back(ship);
 
 			// We do not want any more ships than is specified.
-			if(static_cast<int>(toSell.size()) == abs(count))
+			if(static_cast<int>(toSell.size()) >= abs(count))
 				break;
 		}
 
@@ -111,6 +110,12 @@ const string &ShipManager::Name() const
 	return name;
 }
 
+
+
+const string &ShipManager::Id() const
+{
+	return id;
+}
 
 
 int ShipManager::Count() const

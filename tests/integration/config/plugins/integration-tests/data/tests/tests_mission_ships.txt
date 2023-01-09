@@ -178,20 +178,26 @@ test-data "One Specific Barge"
 			landing
 			invisible
 			on offer
-				take ship "Star Barge (Armed)" 1 unconstrained
-				give ship "Sparrow (Gatling)" 2
+				take ship "Star Barge (Armed)"
+					amount 1
+					unconstrained
+				give ship "Sparrow (Gatling)"
+					amount 2
 		mission "Switch 2"
 			landing
 			invisible
 			on offer
 				take ship "Star Barge (Armed)"
-				give ship "Sparrow (Gatling)" 5
+				give ship "Sparrow (Gatling)"
+					amount 5
 		mission "Switch 3"
 			landing
 			invisible
 			on offer
-				take ship "Star Barge (Armed)" "Well defended" unconstrained
-				give ship "Sparrow (Gatling)" 4
+				take ship "Star Barge (Armed)" "Well defended"
+					unconstrained
+				give ship "Sparrow (Gatling)"
+					amount 4
 
 
 test "Taking right ship variant and unconstrained"

@@ -1072,7 +1072,7 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 // Adds a ship of the given model with the given name to the player's fleet.
 // If this ship is being gifted, it costs nothing and starts fully depreciated.
-const Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
+const Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift, const string id)
 {
 	if(!model)
 		return nullptr;
@@ -1094,8 +1094,8 @@ const Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGi
 		flagship.reset();
 
 		// Store named ships with their model so they can be checked later.
-		if(isGift && !name.empty())
-			giftedShips[ships.back()->VariantName() + " " + name].clone(ships.back()->UUID());
+		if(isGift && !id.empty())
+			giftedShips[id].clone(ships.back()->UUID());
 		// Record the transfer of this ship in the depreciation and stock info.
 		else if(!isGift)
 		{
@@ -1124,7 +1124,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 				stock[it.first] += it.second;
 
 			accounts.AddCredits(cost);
-			ForgetShip(*it->get());
+			ForgetGiftedShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
 			break;
@@ -1156,7 +1156,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *outfitsToDestroy)
 				else
 					stock[it.first] += it.second;
 			}
-			ForgetShip(*it->get());
+			ForgetGiftedShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
 			break;
@@ -1171,7 +1171,7 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			flagship.reset();
-			ForgetShip(*it->get());
+			ForgetGiftedShip(*it->get());
 			it = ships.erase(it);
 			return (it == ships.begin()) ? it : --it;
 		}
@@ -4109,11 +4109,11 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 
 
 // When we remove a ship, forget its stored ID.
-void PlayerInfo::ForgetShip(const Ship &oldShip)
+void PlayerInfo::ForgetGiftedShip(const Ship &oldShip)
 {
 	const EsUuid &id = oldShip.UUID();
 	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
-						[&id](const std::pair<const string, EsUuid> &shipId) { return id == shipId.second; });
+		[&id](const std::pair<const string, EsUuid> &shipId) { return id == shipId.second; });
 	if(shipToForget != giftedShips.end())
 		giftedShips.erase(shipToForget);
 }

@@ -152,7 +152,7 @@ public:
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
 	// In the case of buying, return a pointer to it.
-	const Ship *BuyShip(const Ship *model, const std::string &name, bool isGift = false);
+	const Ship *BuyShip(const Ship *model, const std::string &name, bool isGift = false, const string id = "");
 	void SellShip(const Ship *selected);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
 	// instead of allowing the player to buy them back by putting them in the stock.
@@ -331,7 +331,7 @@ private:
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
 	// When we remove a ship, forget it's stored Uuid.
-	void ForgetShip(const Ship &oldShip);
+	void ForgetGiftedShip(const Ship &oldShip);
 
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
