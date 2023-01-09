@@ -302,7 +302,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				`	"Who are the Korath?"`
 					to display
 						not "event: label korath space"
-				`	"What do you know about the Korath?"`
+				`	"What can you tell me about the Korath?"`
 					to display
 						has "event: label korath space"
 				`	"Why are there so many Korath artifacts?"`
