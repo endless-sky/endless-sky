@@ -281,7 +281,7 @@ public:
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
 	// To be called whenever the player enters a shop.
-	void RefreshDepreciations(const std::map<CustomSale::SellType, CustomSale> &sales);
+	void RefreshDepreciations(const std::map<CustomSale::SellType, CustomSale> *sales);
 
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);

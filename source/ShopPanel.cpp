@@ -79,6 +79,14 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 
 
+ShopPanel::~ShopPanel()
+{
+	// Remove the pointer to this customSale.
+	player.RefreshDepreciations(nullptr);
+}
+
+
+
 void ShopPanel::Step()
 {
 	// If the player has acquired a second ship for the first time, explain to

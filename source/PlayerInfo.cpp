@@ -2510,10 +2510,10 @@ const Depreciation &PlayerInfo::StockDepreciation() const
 
 
 
-void PlayerInfo::RefreshDepreciations(const std::map<CustomSale::SellType, CustomSale> &sales)
+void PlayerInfo::RefreshDepreciations(const std::map<CustomSale::SellType, CustomSale> *sales)
 {
-	depreciation.Refresh(&sales);
-	stockDepreciation.Refresh(&sales);
+	depreciation.Refresh(sales);
+	stockDepreciation.Refresh(sales);
 }
 
 
