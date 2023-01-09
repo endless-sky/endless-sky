@@ -302,7 +302,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				`	"Who are the Korath?"`
 				`	"Why are there so many Korath artifacts?"`
 					goto somany
-			`	Choot'k responds. "The Korath are group of lizards that lived south of Hai space until few centuries ago. They used to be obsessed with art, music, and other esoterics, until they got desperate for resources and invaded us. Their technology is far beyond ours, and they used it to nearly wipe themselves out in bloody infighting. We learned a lot from them: even the most aggressive Unfettered are wary of attacking Hai planets, lest our species destroy itself like the Korath did. In all our raids in the Wah Ki system, never once have the Unfettered targeted civilian areas on Cloudfire." Batu appears shocked by this.`
+			`	Choot'k responds. "The Korath are a group of lizards that lived south of Hai space until a few centuries ago. They used to be obsessed with art, music, and other esoterics, until they got desperate for resources and invaded us. Their technology is far beyond ours, and they used it to nearly wipe themselves out in bloody infighting. We learned a lot from them: even the most aggressive Unfettered are wary of attacking Hai planets, lest our species destroy itself like the Korath did. In all our raids in the Wah Ki system, never once have the Unfettered targeted civilian areas on Cloudfire." Batu appears shocked by this.`
 			label somany
 			`	Choot'k continues. "The most advanced group of surviving Korath lives in systems near yours, according to pirate data. It seems the Korath have been raiding ships in pirate and Syndicate systems for food, while the pirates have been pillaging Korath ships for tech. I'm not sure why the Korath have limited themselves to piracy. They certainly have the firepower to dominate a few dozen of your planets.`
 			`	"From our race's records, it is quite unlike the Korath to be so close to a more primitive race without making demands. Their resources may be committed to another war, or they may be building up supplies for a shock and awe style attack. It's anyone's guess at this point.`
@@ -310,7 +310,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			choice
 				`	"Sounds foreboding."`
 					goto foreboding
-				`	"When do I get my cut of these spoils?"`
+				`	"When do I get my cut of the spoils?"`
 			`	"Ha! I'd think you were a True Hai if it weren't for the missing fur. Don't worry, captain, I'll make sure the others give you a suitable payment."`
 			`	Batu sighs as Choot'k continues. "We've made an unpleasant discovery recently. The Korath have stealth drones hiding in two pirate systems: Alcyone and Almach. They've been using these to spy on nearby traffic, including us. It's also... eh, Batu?"`
 				goto next
@@ -423,14 +423,14 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				goto end
 
 			label end
-			`	"It's always a pleasure to help another warrior get their due."`
+			`	"It is always a pleasure to help another warrior get their due."`
 
 	npc kill
 		government Korath
 		system Almach
 		personality staying timid target marked
 		fleet "Korath Stealth Relay"
-		dialog "With all of the probes destroyed, you can now return to Stormhold for your payment."
+		dialog "With the probes destroyed, you can now return to Stormhold for your payment."
 	npc
 		government Korath
 		system Almach
