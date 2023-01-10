@@ -803,6 +803,7 @@ void Engine::Step(bool isActive)
 				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
+				GetShipTargetPointerColor(targetType),
 				4});
 
 			targetVector = target->Position() - center;
