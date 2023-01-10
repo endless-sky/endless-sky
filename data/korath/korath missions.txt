@@ -359,7 +359,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			`	"Pick among these:`
 			`	"Some wonderful Korath systems that repair your hull and shields, while also storing energy. They come with two Korath anti-missile turrets and some other odds and ends.`
 			`	"I can also offer the strongest afterburner I've ever heard of, plus a sizable amount of fuel storage and ramscoop to keep it working.`
-			`	"We can give you a power generator that's as big a fighter, and a lot of cooling outfits to support it.`
+			`	"We can give you a power generator that's as big as a fighter and a lot of cooling outfits to support it.`
 			`	"The Korath created a gigantic fiery turret they consider the pinnacle of their modern weapon design; you can have two of those.`
 			`	"The last option is some torpedoes so devastating that even the Korath are afraid to use them. They're almost doomsday devices."`
 			choice
