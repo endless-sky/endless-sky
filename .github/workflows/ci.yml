@@ -278,7 +278,7 @@ jobs:
 
 
   test_parse:
-    needs: [build, changed]
+    needs: [changed, build_windows]
     name: Data Files
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.parse_script == 'true' }}
     runs-on: windows-2022
