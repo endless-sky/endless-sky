@@ -31,7 +31,7 @@ namespace
 		{CustomSale::SellType::DEFAULT, ""},
 		{CustomSale::SellType::IMPORT, "import"}
 	};
-	// Default value, that should not conflict with actual values.
+	// Default value for finding prices and offsets, that should not conflict with actual values.
 	const double DEFAULT = numeric_limits<double>::infinity();
 }
 
@@ -46,16 +46,14 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 	auto parseValueOrOffset = [&isAdd, &outfit, &mode](double &amount, const DataNode &line)
 	{
 		int size = line.Size();
-		// Default is 1, because we can just have an outfit defined here just to have a custom sellType.
+		// Default is 1, because outfits can be added only to have a custom sellType.
 		if(isAdd)
 			amount += size > 2 ? line.Value(2) : 1.;
 		else
 			amount = size > 1 ? line.Value(1) : 1.;
-		// % means it already is a relative price.
-		// Otherwise it is a normal price that we must divide since they are stored as relative.
-		// NOTE: this means that the offset is handled as relative to the existing modified price,
-		// and not the default price (which is intended)!
-		// Outfitter changes always are to be defined as relative in the data.
+		// All values are converted into pourcentages if that is not how they are given (which would be indicated by %)
+		// This means that the offset is handled as relative to the modified price instead of the default one.
+		// Outfitter changes always are pourcentages.
 		if((mode != "outfitters"
 				&& (size == (2 + isAdd)
 				|| (size > 2 && line.Token(2 + isAdd) != "%"))))
@@ -64,22 +62,22 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 
 	for(const DataNode &child : node)
 	{
-		const string &token = child.Token(0);
+		bool isValue = child.Token(0) == "value";
+		bool isOffset = child.Token(0) == "offset";
 
-		bool isValue = token == "value";
-		bool isOffset = token == "offset";
-
-		bool remove = token == "remove";
-		bool add = token == "add";
+		bool remove = child.Token(0) == "remove";
+		bool add = child.Token(0) == "add";
 
 		int keyIndex = (add || remove);
 		bool hasKey = child.Size() > 1;
 
 		const string &key = child.Token(keyIndex);
-		if(remove && !hasKey)
-			Clear();
-		else if(remove)
-			if(key == "outfit")
+		
+		if(remove)
+		{
+			if(!hasKey)
+				Clear();
+			else if(key == "outfit")
 			{
 				// If an outfit is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
@@ -115,14 +113,6 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 				conditions = ConditionSet{};
 			else
 				child.PrintTrace("Skipping unrecognized clearing/deleting:");
-		else if(add)
-		{
-			if(key == "location" && child.Size() == 1)
-				locationFilter.Load(child);
-			else if(key == "conditions")
-				conditions.Load(child);
-			else
-				child.PrintTrace("Skipping unrecognized add:");
 		}
 		else if(key == "default")
 			sellType = SellType::DEFAULT;
@@ -130,33 +120,43 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			sellType = SellType::IMPORT;
 		else if(key == "location")
 		{
-			// Either just a planet or a whole filter.
-			if(child.Size() == 1)
+			if(!add)
 			{
 				location = nullptr;
-				locationFilter = LocationFilter{};
-				locationFilter.Load(child);
+				locationFilter = locationFilter{};
 			}
-			else if(child.Size() == 2)
+			
+			// Add either a whole filter or just a planet.
+			if(child.Size() >= 2)
 			{
 				location = GameData::Planets().Get(child.Token(1));
-				locationFilter = LocationFilter{};
-				if(child.HasChildren())
-					child.PrintTrace("Warning: location filter ignored due to use of explicit planet:");
 			}
+			else if(child.Size() == 1)
+				locationFilter.Load(child);
 			else
 				child.PrintTrace("Warning: use a location filter to choose from multiple planets:");
+
+			if(location && !locationFilter.IsEmpty())
+				child.PrintTrace("Warning: location filter ignored due to use of explicit planet:");
 		}
 		else if(key == "conditions")
 		{
-			// Override existing conditions and replace them.
-			conditions = ConditionSet{};
+			if(!add)
+				conditions = ConditionSet{};
 			conditions.Load(child);
 		}
 		// CustomSales are separated between outfits and outfitters in the data files.
 		// mode could apply to other things like shipyards and ships, later on.
 		else if(mode == "outfits")
 		{
+			if(!add)
+			{
+				if(isValue)
+					relativeOutfitPrices.clear();
+				else if(isOffset)
+					relativeOutfitOffsets.clear();
+			}
+
 			if(isValue || isOffset)
 				for(const DataNode &grandChild : child)
 				{
@@ -180,6 +180,14 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		}
 		else if(mode == "outfitters")
 		{
+			if(!add)
+			{
+				if(isValue)
+					relativePrices.clear();
+				else if(isOffset)
+					relativeOffsets.clear();
+			}
+
 			if(isValue || isOffset)
 				for(const DataNode &grandChild : child)
 				{
@@ -216,13 +224,11 @@ bool CustomSale::Add(const CustomSale &other, const Planet &planet, const Condit
 		return false;
 
 	// Selltypes are ordered by priority, a higher priority overrides lower ones.
-	if(sellType < other.sellType)
+	if(other.sellType > sellType)
 	{
 		*this = other;
 		return true;
 	}
-
-	// The same logic applies for the relative prices or offsets, be they for  whole outfitters or outfits.
 
 	// For prices, take the highest one.
 	for(const auto &it : other.relativePrices)
@@ -242,7 +248,7 @@ bool CustomSale::Add(const CustomSale &other, const Planet &planet, const Condit
 		else
 			ours->second += it.second;
 	}
-	// Same thing for the outfits.
+	// Same thing for outfitters.
 	for(const auto &it : other.relativeOutfitPrices)
 	{
 		auto ours = relativeOutfitPrices.find(it.first);
@@ -259,6 +265,7 @@ bool CustomSale::Add(const CustomSale &other, const Planet &planet, const Condit
 		else
 			ours->second += it.second;
 	}
+
 	return true;
 }
 
