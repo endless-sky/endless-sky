@@ -94,7 +94,7 @@ int &LimitedEvents<T>::Limit() noexcept
 template <typename T>
 void LimitedEvents<T>::RemoveLimit() noexcept
 {
-	return limit = NO_LIMIT;
+	limit = NO_LIMIT;
 }
 
 template <typename T>

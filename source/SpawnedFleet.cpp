@@ -1,4 +1,4 @@
-/* SpawnedFleet.h
+/* SpawnedFleet.cpp
 Copyright (c) 2023 by an anonymous author
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,8 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Ship.h"
 #include "SpawnedFleet.h"
+
+#include "Ship.h"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ SpawnedFleet::SpawnedFleet(const string &id, list<shared_ptr<Ship>> &ships)
 
 void SpawnedFleet::ConnectToShips()
 {
-	for(auto it = ships.begin(); it!=ships.end();)
+	for(auto it = ships.begin(); it != ships.end();)
 		try {
 			shared_ptr<Ship> ship(*it);
 			ship->SetSpawnedFleet(shared_from_this());
