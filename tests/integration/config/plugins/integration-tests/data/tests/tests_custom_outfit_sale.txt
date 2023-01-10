@@ -471,7 +471,7 @@ test-data "Custom Sale Conditions"
 				conditions
 					has "been a good boy"
 				location "Mars"
-				
+
 				value
 					"Pulse Cannon" 1
 

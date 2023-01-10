@@ -72,7 +72,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		bool hasKey = child.Size() > 1;
 
 		const string &key = child.Token(keyIndex);
-		
+
 		if(remove)
 		{
 			if(!hasKey)
@@ -125,7 +125,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 				location = nullptr;
 				locationFilter = LocationFilter{};
 			}
-			
+
 			// Add either a whole filter or just a planet.
 			if(child.Size() >= 2)
 			{
