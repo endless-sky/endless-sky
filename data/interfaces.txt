@@ -107,7 +107,16 @@ color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
 color "radar star" .6 .6 .6 0.
 
-# Colors used for target pointers.
+# Colors used for ship target pointers.
+color "ship target pointer player" .2 1. 0. 0.
+color "ship target pointer friendly" .4 .6 1. 0.
+color "sihp target pointer unfriendly" .8 .8 .3 0.
+color "ship target pointer hostile" .85 .3 .2 0.
+color "ship target pointer inactive" .4 .4 .4 0.
+color "ship target pointer special" 1. 1. 1. 0.
+color "ship target pointer blink" 1. 1. 1. 0.
+
+# Colors used for planet target pointers.
 color "planet target pointer friendly" .4 .6 1. 0.
 color "planet target pointer restricted" .8 .8 .3 0.
 color "planet target pointer hostile" .85 .3 .2 0.

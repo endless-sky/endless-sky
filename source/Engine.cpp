@@ -199,6 +199,23 @@ namespace {
 		}
 	}
 
+	const Color &GetShipTargetPointerColor(int type)
+	{
+		const vector<Color> color = {
+			*GameData::Colors().Get("ship target pointer player"),
+			*GameData::Colors().Get("ship target pointer friendly"),
+			*GameData::Colors().Get("ship target pointer unfriendly"),
+			*GameData::Colors().Get("ship target pointer hostile"),
+			*GameData::Colors().Get("ship target pointer inactive"),
+			*GameData::Colors().Get("ship target pointer special"),
+			*GameData::Colors().Get("ship target pointer blink"),
+		};
+
+		if(static_cast<size_t>(type) >= color.size())
+			type = Radar::INACTIVE;
+
+		return color[type];
+	}
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
 }
@@ -786,7 +803,6 @@ void Engine::Step(bool isActive)
 				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
-				targetType,
 				4});
 
 			targetVector = target->Position() - center;
