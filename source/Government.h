@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 
+#include <functional>
 #include <map>
 #include <set>
 #include <string>
@@ -88,9 +89,10 @@ public:
 	std::string GetHail(bool isDisabled) const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
-	// Pirate raids in this government's systems use this fleet definition. If
-	// it is null, there are no pirate raids.
-	const Fleet *RaidFleet() const;
+	// Pirate raids in this government's systems use these fleet definitions. If
+	// it is empty, there are no pirate raids.
+	// The second attribute denotes the minimal attraction required to make the fleet come.
+	const std::vector<std::pair<const Fleet *, double>> &RaidFleets() const;
 
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -152,7 +154,7 @@ private:
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
-	const Fleet *raidFleet = nullptr;
+	const std::vector<std::pair<const Fleet *, double>> raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;

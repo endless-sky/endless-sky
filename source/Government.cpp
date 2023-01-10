@@ -122,7 +122,7 @@ void Government::Load(const DataNode &node)
 			if(key == "provoked on scan")
 				provokedOnScan = false;
 			else if(key == "raid")
-				raidFleet = nullptr;
+				raidFleets.clear();
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -258,7 +258,17 @@ void Government::Load(const DataNode &node)
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "raid")
-			raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
+		{
+			if(!add)
+				raidFleets.clear();
+			if(child.Size() >= 2)
+				raidFleets.emplace_back(make_pair(GameData::Fleets().Get(child.Token(1)),
+					child.Size() >= 3 ? child.Token(2) : 2.));
+			else
+				for(const DataNode &grand: child)
+					raidFleets.emplace_back(make_pair(GameData::Fleets().Get(grand.Token(0)),
+						child.Size() >= 2 ? child.Token(1) : 2.));
+		}
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
@@ -439,9 +449,9 @@ const string &Government::Language() const
 
 // Pirate raids in this government's systems use this fleet definition. If
 // it is null, there are no pirate raids.
-const Fleet *Government::RaidFleet() const
+const std::vector<std::pair<const Fleet *, double>> &Government::RaidFleets() const
 {
-	return raidFleet;
+	return raidFleets;
 }
 
 
