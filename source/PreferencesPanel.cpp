@@ -65,7 +65,7 @@ namespace {
 	const string DISCOVERY_MODE = DISCOVERY_MODE_LABEL;
 
 	// How many pages of settings there are.
-	const int SETTINGS_PAGE_COUNT = 1;
+	const int SETTINGS_PAGE_COUNT = 2;
 }
 
 
@@ -508,6 +508,8 @@ void PreferencesPanel::DrawSettings()
 		"Show stored outfits on map",
 		"System map sends move orders",
 		"Warning siren",
+		"\n",
+		"Other",
 		DISCOVERY_MODE
 	};
 	bool isCategory = true;
