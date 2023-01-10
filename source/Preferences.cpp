@@ -39,9 +39,9 @@ namespace {
 
 	// This controls the range of zoom scales the player can switch to.
 	// larger values are close-up and small values are farther away
-	const vector<double> ZOOMS = {.108, .132, .161, .198, .242, .296, 0.363, 0.444, 0.544, 0.667, 0.816,
-		1.000, 1.225, 1.500, 1.837, 2.250, 2.756, 3.375, 4.134};
-	int zoomIndex = 9;
+	const vector<double> ZOOMS = {.105, .125, .149, .177, .210, .250, 0.297, 0.354, 0.420, 0.500, 0.595, 0.707, 0.841,
+		1.000, 1.189, 1.414, 1.682, 2.000, 2.378, 2.828, 3.364, 4.000};
+	int zoomIndex = 11;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
