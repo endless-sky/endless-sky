@@ -6,36 +6,33 @@ on:
       - published
 
 jobs:
-  appimage_amd64:
-    name: Linux
+  release_appimage_x64:
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
-      OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Endless_Sky-${{ github.event.release.tag_name }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev
-          python3 -m pip install --user scons
-      - name: Build AppImage
-        run: ./utils/build_appimage.sh
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+          sudo apt update
+          sudo apt install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
-      - name: Upload AppImage
-        uses: actions/upload-release-asset@v1.0.2
+          vcpkgJsonGlob: 'vcpkg.json'
+      - uses: lukka/run-cmake@v10
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ env.OUTPUT }}
-          asset_name: ${{ env.OUTPUT }}
-          asset_content_type: application/octet-stream
+          configurePreset: 'linux-release'
+          buildPreset: 'linux-ci-release'
+      - name: Package Application
+        run: ./utils/build_appimage.sh build/release
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ env.OUTPUT }}
 
 
   release_macos_universal:
