@@ -514,9 +514,9 @@ void PreferencesPanel::DrawSettings()
 		"Show stored outfits on map",
 		"System map sends move orders",
 		"Warning siren",
-		ALERT_INDICATOR,
 		"\n",
 		"Other",
+		ALERT_INDICATOR,
 		DISCOVERY_MODE
 	};
 	bool isCategory = true;
