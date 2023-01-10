@@ -44,10 +44,23 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
 
-	reputationLabel = !hasSpaceport ? "No Spaceport" :
-		GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
-		planet->GetGovernment()->IsEnemy() ? "Hostile" :
-		planet->CanLand() ? "Friendly" : "Restricted";
+	if(!hasSpaceport)
+		reputationLabel = "No Spaceport";
+	else
+	{
+		Planet::Friendliness friendliness = planet->GetFriendliness();
+		switch(friendliness)
+		{
+			case Planet::Friendliness::FRIENDLY:
+				reputationLabel = "Friendly";
+			case Planet::Friendliness::RESTRICTED:
+				reputationLabel = "Restricted";
+			case Planet::Friendliness::HOSTILE:
+				reputationLabel = "Hostile";
+			case Planet::Friendliness::DOMINATED:
+				reputationLabel = "Dominated";
+		}
+	}
 
 	sprite = object.GetSprite();
 
