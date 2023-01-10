@@ -1011,7 +1011,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			
 			label spare
 			`	"Deal. Bring it to me," you say.`
-			`	While one of them goes fetch it, you wait in an uncomfortable silence, watching their every move while they watch yours. Eventually the young man who left to get the cube comes back and gives it to you. You examine it, confirming it is the artifact you were looking for.`
+			`	While one of them goes to fetch it, you wait in an uncomfortable silence, watching their every move while they watch yours. Eventually the young man who left to get the cube comes back and gives it to you. You examine it, confirming it is the artifact you were looking for.`
 			`	"You have it, now go away. We won't get in your way again," the woman who spoke before says, and the other mercenaries begin to disband, going back to their tents.`
 			`	With the cube in your arms, you have no more reason to stay here. You go back to your ship, ready to take it back to John.`
 				accept
