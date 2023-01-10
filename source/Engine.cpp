@@ -1286,7 +1286,11 @@ void Engine::EnterSystem()
 		{
 			unsigned toPlace = FleetPlacementLimit(fleet, 0, true);
 			for(unsigned i = 0; i < toPlace ; ++i)
-				fleet.Get()->Place(*system, newShips, true, UpdateLimitedFleets(fleet));
+			{
+				fleetShips.clear();
+				fleet.Get()->Place(*system, fleetShips, true);
+				AddSpawnedFleet(fleet.Id());
+			}
 		}
 
 	// Place five seconds worth of fleets and weather events. Check for
@@ -1296,7 +1300,11 @@ void Engine::EnterSystem()
 	{
 		for(const auto &fleet : system->Fleets())
 			if(FleetPlacementLimit(fleet, 60, true))
-				fleet.Get()->Place(*system, newShips, true, UpdateLimitedFleets(fleet));
+			{
+				fleetShips.clear();
+				fleet.Get()->Place(*system, fleetShips, true);
+				AddSpawnedFleet(fleet.Id());
+			}
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -1478,6 +1486,9 @@ void Engine::CalculateStep()
 	for(Visual &visual : visuals)
 		visual.Move();
 	Prune(visuals);
+
+	// Remove destroyed ships and fleets from the spawnedFleets list.
+	PruneSpawnedFleets();
 
 	// Perform various minor actions.
 	SpawnFleets();
@@ -1753,7 +1764,9 @@ void Engine::SpawnFleets()
 					continue;
 			}
 
-			fleet.Get()->Enter(*player.GetSystem(), newShips, nullptr, UpdateLimitedFleets(fleet));
+			fleetShips.clear();
+			fleet.Get()->Enter(*player.GetSystem(), fleetShips, nullptr);
+			AddSpawnedFleet(fleet.Id());
 		}
 }
 
@@ -2553,35 +2566,35 @@ unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned
 
 unsigned Engine::CountFleetsWithId(const string &id)
 {
-	if(id.empty())
-		return 0;
-	auto range = limitedFleets.equal_range(id);
-	unsigned count = 0;
+	return id.empty() ? 0 : spawnedFleets.count(id);
+}
 
-	// Remove any fleets that have lost all of their ships.
-	// Count the ones that still have ships.
-	for(auto it = range.first; it != range.second; )
-		if(it->second.expired())
-			it = limitedFleets.erase(it);
-		else
-		{
-			++count;
-			++it;
+void Engine::PruneSpawnedFleets()
+{
+	for(auto it = spawnedFleets.begin(); it != spawnedFleets.end();)
+		try {
+			shared_ptr<SpawnedFleet> fleet(it->second);
+			fleet->PruneShips();
+			if(fleet->CountShips())
+				// some ships remain
+				++it;
+			else
+				it = spawnedFleets.erase(it);
 		}
-	return count;
+		catch(const bad_weak_ptr &bwp)
+		{
+			it = spawnedFleets.erase(it);
+		}
 }
 
 
 
-shared_ptr<string> Engine::UpdateLimitedFleets(const LimitedEvents<Fleet> &fleet)
+void Engine::AddSpawnedFleet(const string &id)
 {
-	shared_ptr<string> id;
-	if((fleet.Limit() || fleet.InitialCount()) && !fleet.Id().empty())
-	{
-		id = make_shared<string>(fleet.Id());
-		limitedFleets.emplace(fleet.Id(), id);
-	}
-	return id;
+	shared_ptr<SpawnedFleet> fleet = make_shared<SpawnedFleet>(id, fleetShips);
+	fleet->ConnectToShips();
+	spawnedFleets.emplace(id, fleet);
+	newShips.splice(newShips.end(), fleetShips);
 }
 
 

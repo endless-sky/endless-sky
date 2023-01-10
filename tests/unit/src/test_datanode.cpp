@@ -247,6 +247,7 @@ SCENARIO( "Determining if a token is numeric", "[IsNumber][Parsing][DataNode]" )
 }
 
 SCENARIO( "Checking for keywords", "[CheckForKeywords][Parsing][DataNode]" ) {
+	OutputSink traces(std::cerr);
 	GIVEN( "a DataNode" ) {
 		//                            0     1     2       3     4     5       6     7     8
 		DataNode parent = AsDataNode("alpha bravo charlie alpha bravo charlie alpha bravo charlie");
@@ -292,6 +293,7 @@ SCENARIO( "Checking for keywords", "[CheckForKeywords][Parsing][DataNode]" ) {
 }
 
 SCENARIO( "Using ExpectNumber<int>", "[ExpectNumber<int>][Parsing][DataNode]" ) {
+	OutputSink traces(std::cerr);
 	GIVEN( "a DataNode" ) {
 		//                          0     1  2       3       4
 		DataNode node = AsDataNode("0     1  charlie 0.25    44");

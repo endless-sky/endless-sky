@@ -303,6 +303,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Sound.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
+	SpawnedFleet.cpp
+	SpawnedFleet.h
 	Sprite.cpp
 	Sprite.h
 	SpriteQueue.cpp

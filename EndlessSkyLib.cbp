@@ -319,6 +319,8 @@
 		<Unit filename="source/Sound.h" />
 		<Unit filename="source/SpaceportPanel.cpp" />
 		<Unit filename="source/SpaceportPanel.h" />
+		<Unit filename="source/SpawnedFleet.cpp" />
+		<Unit filename="source/SpawnedFleet.h" />
 		<Unit filename="source/Sprite.cpp" />
 		<Unit filename="source/Sprite.h" />
 		<Unit filename="source/SpriteQueue.cpp" />

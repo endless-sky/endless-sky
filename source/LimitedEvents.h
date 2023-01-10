@@ -35,7 +35,8 @@ public:
 
 
 	LimitedEvents(const T *event, int period = RandomEvent<T>::DEFAULT_PERIOD);
-	LimitedEvents(const T *event, int period, const std::string &id, int limit = NO_LIMIT, int initial = 0, unsigned flags = 0);
+	LimitedEvents(const T *event, int period, const std::string &id, int limit = NO_LIMIT,
+		int initial = 0, unsigned flags = 0);
 
 	constexpr bool HasLimit() const noexcept;
 	constexpr int Limit() const noexcept;

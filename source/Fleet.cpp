@@ -277,8 +277,7 @@ const Government *Fleet::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet,
-		shared_ptr<string> limitedFleetId) const
+void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
 	if(variants.empty() || personality.IsDerelict())
 		return;
@@ -375,11 +374,6 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 	auto placed = Instantiate(variantShips);
 
-	// If this is part of a fleet with limits, set the id:
-	if(limitedFleetId)
-		for(auto &ship : placed)
-			ship->SetLimitedFleetId(limitedFleetId);
-
 	// Carry all ships that can be carried, as they don't need to be positioned
 	// or checked to see if they can access a particular planet.
 	for(auto &ship : placed)
@@ -453,8 +447,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried,
-		shared_ptr<std::string> limitedFleetId) const
+void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
 	if(variants.empty())
 		return;
@@ -472,9 +465,6 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	vector<shared_ptr<Ship>> placed = Instantiate(variantShips);
 	for(shared_ptr<Ship> &ship : placed)
 	{
-		if(limitedFleetId)
-			ship->SetLimitedFleetId(limitedFleetId);
-
 		// If this is a fighter and someone can carry it, no need to position it.
 		if(carried && PlaceFighter(ship, placed))
 			continue;
@@ -503,7 +493,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 
 
 // Do the randomization to make a ship enter or be in the given system.
-const System *Fleet::Enter(const System &system, Ship &ship, const System *source, shared_ptr<string> limitedFleetId)
+const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
 	if(system.Links().empty() || (source && !system.Links().count(source)))
 	{
@@ -525,8 +515,6 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	ship.Place(pos, angle.Unit(), angle);
 	ship.SetSystem(source);
 	ship.SetTargetSystem(&system);
-	if(limitedFleetId)
-		ship.SetLimitedFleetId(limitedFleetId);
 
 	return source;
 }

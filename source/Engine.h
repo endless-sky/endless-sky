@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "SpawnedFleet.h"
 
 #include <condition_variable>
 #include <list>
@@ -132,7 +133,8 @@ private:
 
 	unsigned FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment);
 	unsigned CountFleetsWithId(const std::string &id);
-	std::shared_ptr<std::string> UpdateLimitedFleets(const LimitedEvents<Fleet> &fleet);
+	void PruneSpawnedFleets();
+	void AddSpawnedFleet(const std::string &id);
 
 private:
 	class Target {
@@ -168,7 +170,10 @@ private:
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
-	std::unordered_multimap<std::string, std::weak_ptr<std::string>> limitedFleets;
+	std::unordered_multimap<std::string, std::weak_ptr<SpawnedFleet>> spawnedFleets;
+
+	// Temporary usage while adding a fleet:
+	std::list<std::shared_ptr<Ship>> fleetShips;
 
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
