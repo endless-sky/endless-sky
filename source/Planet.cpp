@@ -554,6 +554,20 @@ bool Planet::CanLand() const
 
 
 
+Planet::Friendliness Planet::GetFriendliness() const
+{
+	if(GameData::GetPolitics().HasDominated(this))
+		return Friendliness::DOMINATED;
+	else if(CanLand())
+		return Friendliness::FRIENDLY;
+	else if(GetGovernment()->IsEnemy())
+		return Friendliness::HOSTILE;
+	else
+		return Friendliness::RESTRICTED;
+}
+
+
+
 bool Planet::CanUseServices() const
 {
 	return GameData::GetPolitics().CanUseServices(this);
@@ -564,6 +578,28 @@ bool Planet::CanUseServices() const
 void Planet::Bribe(bool fullAccess) const
 {
 	GameData::GetPolitics().BribePlanet(this, fullAccess);
+}
+
+
+
+const Color &Planet::GetTargetColor() const
+{
+	static const Color &friendly = *GameData::Colors().Get("planet target pointer friendly");
+	static const Color &restricted = *GameData::Colors().Get("planet target pointer restricted");
+	static const Color &hostile = *GameData::Colors().Get("planet target pointer hostile");
+	static const Color &dominated = *GameData::Colors().Get("planet target pointer dominated");
+
+	switch(GetFriendliness())
+	{
+		case Friendliness::FRIENDLY:
+			return friendly;
+		case Friendliness::RESTRICTED:
+			return restricted;
+		case Friendliness::HOSTILE:
+			return hostile;
+		case Friendliness::DOMINATED:
+			return dominated;
+	}
 }
 
 
