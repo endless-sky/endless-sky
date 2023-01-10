@@ -51,7 +51,8 @@ public:
 	// Adds another CustomSale to this one if the conditions allow it.
 	bool Add(const CustomSale &other, const Planet &planet, const ConditionsStore &store);
 
-	// Get the price of the item. One should check if the conditions match first.
+	// Get the price of the item.
+	// Does not check conditions are met or the location is matched.
 	double GetRelativeCost(const Outfit &item) const;
 
 	SellType GetSellType() const;
