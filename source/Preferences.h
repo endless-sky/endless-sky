@@ -22,16 +22,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Preferences {
 public:
-	enum class VSync : int {
+	enum class VSync : int_fast8_t {
 		off = 0,
 		on,
 		adaptive,
 	};
 
-	enum class BoardingPriority : int {
+	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
 		MIXED
+	};
+
+	enum class BackgroundParallax : int {
+		OFF = 0,
+		FANCY,
+		FAST
+	};
+
+	enum class AlertIndicator : int_fast8_t {
+		NONE = 0,
+		AUDIO,
+		VISUAL,
+		BOTH
 	};
 
 
@@ -63,13 +76,26 @@ public:
 
 	// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();
-	static Preferences::VSync VSyncState();
+	static VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Background parallax setting, either "fast", "fancy", or "off".
+	static void ToggleParallax();
+	static BackgroundParallax GetBackgroundParallax();
+	static const std::string &ParallaxSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
-	static Preferences::BoardingPriority GetBoardingPriority();
+	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
+
+	// Red alert siren and symbol
+	static void ToggleAlert();
+	static AlertIndicator GetAlertIndicator();
+	static const std::string &AlertSetting();
+	static bool PlayAudioAlert();
+	static bool DisplayVisualAlert();
+	static bool DoAlertHelper(AlertIndicator toDo);
 };
 
 

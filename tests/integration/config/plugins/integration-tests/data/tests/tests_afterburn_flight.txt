@@ -95,8 +95,6 @@ test "Afterburner-flight - Simple depart land"
 	sequence
 		inject "burning flyers"
 		call "Load First Savegame"
-		assert
-			"flagship planet: Ruin" == 1
 		watchdog 12000
 		call "Depart"
 		# Wait for 10 seconds to drift away from the planet.
@@ -109,10 +107,4 @@ test "Afterburner-flight - Simple depart land"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Ruin" == 0
+		call "Land"
