@@ -43,7 +43,8 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 	const Outfit *outfit = nullptr;
 	// Outfitters or outfits mode.
 	const string mode = node.Token(1);
-	auto parseValueOrOffset = [&isAdd, &outfit, &mode](double &amount, const DataNode &line) {
+	auto parseValueOrOffset = [&isAdd, &outfit, &mode](double &amount, const DataNode &line)
+	{
 		int size = line.Size();
 		// Default is 1, because we can just have an outfit defined here just to have a custom sellType.
 		if(isAdd)
