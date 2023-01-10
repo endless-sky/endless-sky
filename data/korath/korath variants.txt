@@ -496,6 +496,10 @@ ship "'olofez" "'olofez (World-Ship)"
 		"Hyperdrive"
 
 
+ship "Kas'ik Tek 7" "Kas'ik Tek 7 (Self-Destruct)"
+	add attributes
+		"self destruct" 1
+
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
 	outfits

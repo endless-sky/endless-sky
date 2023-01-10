@@ -364,7 +364,7 @@ fleet "Korath Stealth Relay"
 	personality
 		timid
 	variant
-		"Kas'ik Tek 7" 12
+		"Kas'ik Tek 7 (Self-Destruct)" 12
 
 fleet "Korath Large Raid"
 	government "Korath"
