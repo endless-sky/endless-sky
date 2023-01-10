@@ -90,6 +90,38 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
+  cd_windows_x64:
+    name: Windows
+    runs-on: windows-2022
+    env:
+      OUTPUT: EndlessSky-win64-continuous.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup sccache
+        uses: ./.github/sccache
+        with:
+          read-only: 'true'
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v10
+        with:
+          vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'mingw-release'
+          buildPreset: 'mingw-ci-release'
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
   cd_macos_x64:
     name: MacOS
     runs-on: macos-12
