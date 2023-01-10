@@ -405,7 +405,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				outfit "Double Plasma Core"
 				outfit "Large Heat Shunt" 3
 				outfit "Small Heat Shunt"
-			`	"Done! We're also giving you <payment>. You'll need a Shield Beetle to go with this generator, as nothing else from humans or Hai has enough space to make effective use of it."`
+			`	"Done! We're also giving you <payment>. Only the largest human and Hai vessels can make use of this generator."`
 				goto end
 
 			# Do you want a capital ship that can outrun drones?
