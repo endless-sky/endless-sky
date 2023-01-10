@@ -168,7 +168,7 @@ private:
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
-	std::unordered_multimap<std::string,std::weak_ptr<std::string>> limitedFleets;
+	std::unordered_multimap<std::string, std::weak_ptr<std::string>> limitedFleets;
 
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
