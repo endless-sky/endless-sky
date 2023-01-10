@@ -11,6 +11,18 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# This mission sets the "know who the korath are" variable in old saves.
+mission "000 Do I know the Korath?"
+	landing
+	source
+	to offer
+		or
+			has "event: label korath space"
+			has "FW Pug 2B: offered"
+	on offer
+		set "know who the korath are"
+		fail
+
 mission "First Contact: Korati Efreti"
 	landing
 	source "Korati Efreti"
@@ -62,6 +74,7 @@ mission "Discovered Korath Space"
 		fail
 
 event "label korath space"
+	set "know who the korath are"
 	galaxy "label korath"
 		sprite "label/korath"
 		
@@ -297,19 +310,35 @@ mission "Korath Stormhold Artifacts [2] Drones"
 					"reputation: Hai (Unfettered)" < 30
 			`	Batu looks less satisfied. "We've found only a few dozen items, and there aren't any live Korath - or even Korath bodies. With all the fighters being disabled, we'd expect to find a bit more. This is likely part of an operation to pillage and sell Korath outfits. Worse, they may even be trading with the Korath. The operation's Stormhold facilities were for showcasing and auctioning Korath goods. By taking their sales center, we may have shut down the operation."`
 
-			# This seemingly abrupt question is to ensure the player notices the word "Korath."
+			label questions
 			choice
 				`	"Who are the Korath?"`
 					to display
-						not "event: label korath space"
+						not "know who the korath are"
+						"reputation: Korath" > -100
+						not "asked choot'k about the korath"
+				`	"I've fought the Korath for a long time, but I don't really know who they are."`
+					to display
+						not "know who the korath are"
+						"reputation: Korath" <= -100
+						not "asked choot'k about the korath"
 				`	"What can you tell me about the Korath?"`
 					to display
-						has "event: label korath space"
+						not "asked choot'k about the korath"
+						or
+							has "know who the korath are"
+							"reputation: Korath" <= -100
 				`	"Why are there so many Korath artifacts?"`
 					goto somany
-			`	Choot'k responds. "The Korath are a group of lizards that lived south of Hai space until a few centuries ago. They used to be obsessed with art, music, and other esoterics, until they got desperate for resources and invaded us. Their technology is far beyond ours, and they used it to nearly wipe themselves out in bloody infighting. We learned a lot from them: even the most aggressive Unfettered are wary of attacking Hai planets, lest our species destroy itself like the Korath did. In all our raids in the Wah Ki system, never once have the Unfettered targeted civilian areas on Cloudfire." Batu appears shocked by this.`
+			action
+				set "know who the korath are"
+				set "asked choot'k about the korath"
+			`	Choot'k responds. "The Korath are a group of lizards that lived south of Hai space until a few centuries ago. They used to be obsessed with art, music, and other esoterics. I care more for practical matters, but I must admit that I enjoy our old recordings of their music. Haunting guttural hums accented by angelic vocals with lyrics in their intricate language. The mood goes from eerie and hopeful to enlivening to frightening from verse to verse and draws the listener with them. Accompanied by mesmerizing visuals, the experience absorbs you in alluring totality."`
+			`	He looks slightly embarrassed and switches to practical matters. "The Hai and Korath were were on good terms - trading goods and culture - until the lizards got desperate for resources and invaded us. Their technology is far beyond ours, but we defended valiantly. I'm not sure we would have won on our own, but they nearly wipe themselves out in bloody infighting. Ultimately, it was stronger and older races that ended a self-destructive spiral towards extinction. As an Unfettered, I have grievances with the Drak, but I am glad those space cockroaches saved the Korath from themselves.`
+			`	"We learned a lot from the Korath: even the most aggressive Unfettered are wary of attacking Hai planets, lest our species destroy itself like the Korath did. In all our raids in the Wah Ki system, never once have the Unfettered targeted civilian areas on Cloudfire." Batu appears shocked by this.`
+				goto questions
 			label somany
-			`	Choot'k continues. "The most advanced group of surviving Korath lives in systems near yours, according to pirate data. It seems the Korath have been raiding ships in pirate and Syndicate systems for food, while the pirates have been pillaging Korath ships for tech. I'm not sure why the Korath have limited themselves to piracy. They certainly have the firepower to dominate a few dozen of your planets.`
+			`	"The most advanced group of surviving Korath lives in systems near yours, according to pirate data. It seems the Korath have been raiding ships in pirate and Syndicate systems for food, while the pirates have been pillaging Korath ships for tech. I'm not sure why the Korath have limited themselves to piracy. They certainly have the firepower to dominate a few dozen of your planets.`
 			`	"From our race's records, it is quite unlike the Korath to be so close to a more primitive race without making demands. Their resources may be committed to another war, or they may be building up supplies for a shock and awe style attack. It's anyone's guess at this point.`
 			`	"Even the Unfettered are concerned about this. A few dozen human planets under the dominion of the Korath could make them a force to be reckoned with again. They could even be a threat to the Hai."`
 			choice
