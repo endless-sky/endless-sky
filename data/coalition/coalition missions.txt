@@ -3114,6 +3114,102 @@ mission "Coalition: Outskirts Gauger Ready"
 
 
 
+conversation "cultural data for coalition group"
+	branch "return"
+		has "Fangvin: Struggling Author - Human Media 1"
+	`Walking through the spaceport, a group of Coalition citizens are on a table speaking in their native languages. They see you. The group then rise from their seats and begin approaching you.`
+	choice
+		`	(Walk at a slightly faster pace.)`
+			goto "walk faster"
+		`	"Excuse me, what do you all want?"`
+			goto "mission intro"
+	label "walk faster"
+	`	You slightly increase your pace, but the group does too. They eventually catch up to you. You turn to face them, as they begin speaking to you.`
+	label "mission intro"
+	`	"Greetings, fellow human. A peaceful group, we are. Curious about your race, we are, so for you, a mission we have.", says one of the Coalition citizens, using a translation box.`
+	choice
+		`	"What is the mission about?`
+	`	"A small mission, it is. Bring us human books, we want you to. Pay you <payment> and be very grateful, we would, if accept this mission, you will.", explains the citizen.`
+	branch "you already have everything"
+		has "human cultural data"
+	choice
+		`	"Sorry, I can't help you."`
+			decline
+		`	"What should I be worried about?"`
+		`	"Is this going to get me in trouble?"`
+			goto "consequences"
+		`	"How much will you pay me?"`
+			goto "ask about pay"
+	label "consequences"
+	`	"The Heliarchs, review everything they must. Heavy-handed, the censorship is. Some books from your space, to read them we want to. Because to break free from Heliarch censorship, we wish. And if forbidden knowledge, on your ship they find, heavy-handed the punishment will be, so avoid scans, you must."`
+	choice
+		`	"I'm not willing to risk it. Sorry."`
+			decline
+		`	"I'm in. What do you want me to collect?"`
+			label "what do they want"
+	label "what do they want"
+	`	"Anything. A translation device we have, so the language it is in, of no importance it is. As for the topic, a book about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
+	choice
+		`	"I'm not interested. Sorry."`
+			decline
+		`	"How much will I be paid for this?"`
+			goto "ask about pay"
+	label "ask about pay"
+	`	"Generous we are, so for you, <payment> we will give."`
+	choice
+		`	"Okay, will this get me in trouble?"`
+			goto "consequences"
+		`	"What do you want me to collect?"`
+			goto "what do they want"
+		`	"I'm in."`
+	`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you a piece of paper detailing instructions on where they can be found.`
+		accept
+	label "return"
+	`	You return to the group of Coalition citizens and hand them the datachip. "For this chip, thankful to you we are."`
+	choice
+		`	"You're welcome. I hope you enjoy whatever my race has to offer for you."`
+			accept
+	label "you already have everything"
+	action
+		set "gave group of coalition human cultural data"
+	`	You recall that on Alexandria, the gift shop sold a copy of the entire archives for forty credits. You still have the datachip on your ship.`
+	choice
+		`	"I have a copy of my race's entire cultural archives. Please wait, I will bring you the datachip."`
+	`	You run to your ship, look through the storage room, and find the datachip. You quickly make a copy of it, run back to the group and hand it to them.`
+	`	"Thank you. Enlighten us and the rest of the Coalition, this datachip will."`
+		accept
+
+mission "Fangvin: Struggling Author - Human Media 1"
+	minor
+	name "Collect Human Media"
+	description "A group of Coalition citizens have asked you for some books from human space. Go to <destination> and buy as many books as possible."
+	source "Ki Patek Ka"
+	destination "Alexandria"
+	to offer
+		has "Wanderers: Translation Machine: done"
+		not "human cultural data"
+	on visit
+		dialog
+			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
+			`	Go earn some money, then return here.`
+	on offer
+		conversation "cultural data for coalition group"
+	on complete
+		set "human cultural data"
+		payment -40
+
+mission "Fangvin: Struggling Author - Data"
+	name "Cultural Data to Sol Kimek"
+	description "Bring back the datachip to <destination>, for the group of Coalition citizens who asked for it."
+	source "Alexandria"
+	destination "Ki Patek Ka"
+	on offer
+		conversation
+			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Eruk.`
+				accept
+
+
+
 mission "Fangvin: Struggling Author 1"
 	name "Take Anna to Coalition Space"
 	description "Take Anna Fangvin to <destination>, where she might find success as an author after having struggled on <origin> for so long."
