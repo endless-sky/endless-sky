@@ -216,6 +216,16 @@ namespace {
 
 		return color[type];
 	}
+
+	const Color &GetMinablePointerColor(bool selected)
+	{
+		const Color &targeted = *GameData::Colors().Get("minable target pointer selected");
+		const Color &untargeted = *GameData::Colors().Get("minable target pointer unselected");
+		if(selected)
+			return targeted;
+		return untargeted;
+	}
+
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
 }
@@ -907,7 +917,7 @@ void Engine::Step(bool isActive)
 				offset,
 				minable->Facing(),
 				.8 * minable->Radius(),
-				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
+				GetMinablePointerColor(minable == flagship->GetTargetAsteroid()),
 				3});
 		}
 }

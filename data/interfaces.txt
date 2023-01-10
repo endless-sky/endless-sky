@@ -116,6 +116,10 @@ color "ship target pointer inactive" .4 .4 .4 0.
 color "ship target pointer special" 1. 1. 1. 0.
 color "ship target pointer blink" 1. 1. 1. 0.
 
+# Colors used for minable target pointers.
+color "minable target pointer selected" 1. 1. 1. 0.
+color "minable target pointer unselected" .4 .4 .4 0.
+
 # Colors used for planet target pointers.
 color "planet target pointer friendly" .4 .6 1. 0.
 color "planet target pointer restricted" .8 .8 .3 0.
