@@ -219,22 +219,30 @@ namespace {
 		}
 	}
 
-	const Color GetShipTargetPointerColor(int type)
+	const Color &GetShipTargetPointerColor(int type)
 	{
-		const vector<Color> color = {
-			*GameData::Colors().Get("ship target pointer player"),
-			*GameData::Colors().Get("ship target pointer friendly"),
-			*GameData::Colors().Get("ship target pointer unfriendly"),
-			*GameData::Colors().Get("ship target pointer hostile"),
-			*GameData::Colors().Get("ship target pointer inactive"),
-			*GameData::Colors().Get("ship target pointer special"),
-			*GameData::Colors().Get("ship target pointer blink"),
-		};
+		const Color &player = *GameData::Colors().Get("ship target pointer player");
+		const Color &friendly = *GameData::Colors().Get("ship target pointer friendly");
+		const Color &unfriendly = *GameData::Colors().Get("ship target pointer unfriendly");
+		const Color &hostile = *GameData::Colors().Get("ship target pointer hostile");
+		const Color &inactive = *GameData::Colors().Get("ship target pointer inactive");
+		const Color &special = *GameData::Colors().Get("ship target pointer special");
+		const Color &blink = *GameData::Colors().Get("ship target pointer blink");
 
-		if(static_cast<size_t>(type) >= color.size())
-			type = Radar::INACTIVE;
-
-		return color[type];
+		if(type == Radar::PLAYER)
+			return player;
+		else if(type == Radar::FRIENDLY)
+			return friendly;
+		else if(type == Radar::UNFRIENDLY)
+			return unfriendly;
+		else if(type == Radar::HOSTILE)
+			return hostile;
+		else if(type == Radar::SPECIAL)
+			return special;
+		else if(type == Radar::BLINK)
+			return blink;
+		else
+			return inactive;
 	}
 
 	const Color &GetMinablePointerColor(bool selected)
