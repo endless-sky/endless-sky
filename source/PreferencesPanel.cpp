@@ -514,7 +514,7 @@ void PreferencesPanel::DrawSettings()
 		"Show stored outfits on map",
 		"System map sends move orders",
 		"Warning siren",
-		ALERT_INDICATOR
+		ALERT_INDICATOR,
 		"\n",
 		"Other",
 		DISCOVERY_MODE
