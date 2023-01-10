@@ -63,6 +63,8 @@ jobs:
       matrix:
         os: [20.04, 22.04]
         opengl: [desktop, gles]
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v3
     - name: Install development dependencies
