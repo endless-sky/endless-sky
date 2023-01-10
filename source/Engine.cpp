@@ -199,6 +199,32 @@ namespace {
 		}
 	}
 
+	const Color &GetTargetOutlineColor(int type)
+	{
+		const Color &player = *GameData::Colors().Get("ship target outline player");
+		const Color &friendly = *GameData::Colors().Get("ship target outline friendly");
+		const Color &unfriendly = *GameData::Colors().Get("ship target outline unfriendly");
+		const Color &hostile = *GameData::Colors().Get("ship target outline hostile");
+		const Color &inactive = *GameData::Colors().Get("ship target outline inactive");
+		const Color &special = *GameData::Colors().Get("ship target outline special");
+		const Color &blink = *GameData::Colors().Get("ship target outline blink");
+
+		if(type == Radar::PLAYER)
+			return player;
+		else if(type == Radar::FRIENDLY)
+			return friendly;
+		else if(type == Radar::UNFRIENDLY)
+			return unfriendly;
+		else if(type == Radar::HOSTILE)
+			return hostile;
+		else if(type == Radar::SPECIAL)
+			return special;
+		else if(type == Radar::BLINK)
+			return blink;
+		else
+			return inactive;
+	}
+
 	const Color &GetPlanetTargetPointerColor(const Planet &planet)
 	{
 		const Color &friendly = *GameData::Colors().Get("planet target pointer friendly");
@@ -827,7 +853,7 @@ void Engine::Step(bool isActive)
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		int targetType = RadarType(*target, step);
-		info.SetOutlineColor(Radar::GetColor(targetType));
+		info.SetOutlineColor(GetTargetOutlineColor(targetType));
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
 			info.SetBar("target shields", target->Shields());
