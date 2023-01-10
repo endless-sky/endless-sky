@@ -164,7 +164,8 @@ test-data "Custom Sale Outfitter Price"
 			pricing outfitters "import hai double price"
 				location "Mars"
 
-				"Hai Basics" 2
+				value
+					"Hai Basics" 2
 
 			planet Mars
 				add outfitter "Nuke"
@@ -258,7 +259,8 @@ test-data "Custom Sale Import"
 				import
 				location "Mars"
 
-				"Pulse Cannon"
+				value
+					"Pulse Cannon"
 
 			planet Mars
 				add outfitter "%TEST%: PULSE CANNON"
@@ -372,8 +374,9 @@ test-data "Custom Sale Hidden"
 			pricing outfits "Hidden pulse and blaster"
 				location "Mars"
 
-				"Pulse Cannon" 1000
-				"Energy Blaster" 5000
+				value
+					"Pulse Cannon" 1000
+					"Energy Blaster" 5000
 
 			# dont add the right outfitter on purpose meaning these outfits will not be buyable
 			planet Mars
@@ -468,8 +471,9 @@ test-data "Custom Sale Conditions"
 				conditions
 					has "been a good boy"
 				location "Mars"
-
-				"Pulse Cannon" 1
+				
+				value
+					"Pulse Cannon" 1
 
 			planet Mars
 				add outfitter "%TEST%: PULSE CANNON"
@@ -578,12 +582,14 @@ test-data "Custom Sale Price Priorities 0"
 			pricing outfitters "import hai double price"
 				location "Mars"
 
-				"Hai Basics" 2
+				value
+					"Hai Basics" 2
 
 			pricing outfits "1000 pulse cannon"
 				location "Mars"
 
-				"Pulse Cannon" 1000
+				value
+					"Pulse Cannon" 1000
 
 			planet Mars
 				add outfitter "%TEST%: PULSE CANNON"
@@ -676,13 +682,15 @@ test-data "Custom Sale Price Priorities 1"
 			pricing outfits "1000 pulse cannon"
 				location "Mars"
 
-				"Pulse Cannon" 1000
+				value
+					"Pulse Cannon" 1000
 
 			pricing outfits "importing pulses"
 				import
 				location "Mars"
 
-				"Pulse Cannon"
+				value
+					"Pulse Cannon"
 
 			planet Mars
 				add outfitter "%TEST%: PULSE CANNON"
@@ -778,12 +786,14 @@ test-data "Custom Sale Price Priorities 2"
 			pricing outfits "1000 pulse cannon"
 				location "Mars"
 
-				"Pulse Cannon" 1000
+				value
+					"Pulse Cannon" 1000
 
 			pricing outfits "importing pulses"
 				location "Mars"
 
-				"Pulse Cannon" 2000
+				value
+					"Pulse Cannon" 2000
 
 			planet Mars
 				add outfitter "%TEST%: PULSE CANNON"

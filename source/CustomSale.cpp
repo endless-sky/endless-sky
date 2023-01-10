@@ -168,13 +168,6 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 					else if(isOffset)
 						parseValueOrOffset(relativeOutfitOffsets[outfit], grandChild);
 				}
-			// Default behavior assumes value.
-			else if(child.Size() >= 1)
-			{
-				isAdd = (child.Token(0) == "add");
-				outfit = outfits.Get(child.Token(isAdd));
-				parseValueOrOffset(relativeOutfitPrices[outfit], child);
-			}
 			else
 				child.PrintTrace("Skipping unrecognized (outfit assumed) attribute:");
 		}
@@ -199,12 +192,6 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 					else if(isOffset)
 						parseValueOrOffset(relativeOffsets[outfitter], grandChild);
 				}
-			// Default behavior assumes value.
-			else if(child.Size() >= 2)
-			{
-				const Sale<Outfit> *outfitter = items.Get(child.Token(0));
-				relativePrices[outfitter] = child.Value(1);
-			}
 			else
 				child.PrintTrace("Skipping unrecognized (outfitter assumed) attribute:");
 		}
