@@ -45,51 +45,6 @@ jobs:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  cd_windows_win64:
-    name: Windows
-    runs-on: windows-2022
-    env:
-      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
-      DIR_ESLIB: .\dev64
-      OUTPUT: EndlessSky-win64-continuous.zip
-      AR: gcc-ar
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CXX: sccache g++
-    steps:
-      - uses: actions/checkout@v3
-      - name: Fetch development libraries
-        run: |
-          Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
-          Expand-Archive win64-dev.zip -DestinationPath . -Force
-          Remove-Item win64-dev.zip
-      - name: Cache scons
-        uses: actions/cache@v3
-        with:
-          path: 'scons-local'
-          key: scons-${{ hashFiles('.winmake') }}
-      - name: Adjust version strings
-        run: ./utils/cd_update_versions.sh
-        shell: bash
-      - name: Setup sccache
-        uses: ./.github/sccache
-        with:
-          read-only: 'true'
-      - name: Build Application
-        run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
-      - name: Package Application
-        run: |
-          COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
-          COPY ".\dev64\bin\*.dll" .
-          COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
-          COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
-          COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
-          7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
-
   cd_windows_x64:
     name: Windows
     runs-on: windows-2022
