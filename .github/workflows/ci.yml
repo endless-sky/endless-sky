@@ -184,6 +184,8 @@ jobs:
     runs-on: windows-2022
     steps:
     - uses: actions/checkout@v3
+    - name: Setup sccache
+      uses: ./.github/sccache
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v10
       with:
