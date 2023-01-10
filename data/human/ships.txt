@@ -2665,7 +2665,7 @@ ship "Quicksilver"
 	thumbnail "thumbnail/quicksilver"
 	attributes
 		category "Light Warship"
-		"cost" 1090000
+		"cost" 836000
 		"shields" 3000
 		"hull" 800
 		"required crew" 3
@@ -2674,7 +2674,7 @@ ship "Quicksilver"
 		"drag" 2.7
 		"heat dissipation" .8
 		"fuel capacity" 400
-		"cargo space" 10
+		"cargo space" 15
 		"outfit space" 240
 		"weapon capacity" 60
 		"engine capacity" 70
@@ -2686,10 +2686,9 @@ ship "Quicksilver"
 	outfits
 		"Particle Cannon" 2
 		
-		"RT-I Radiothermal"
+		"nGVF-DD Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
-		"Cooling Ducts"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
