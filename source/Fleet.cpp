@@ -373,7 +373,6 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	}
 
 	auto placed = Instantiate(variantShips);
-
 	// Carry all ships that can be carried, as they don't need to be positioned
 	// or checked to see if they can access a particular planet.
 	for(auto &ship : placed)

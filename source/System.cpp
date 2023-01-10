@@ -230,7 +230,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "fleet")
 		{
 			const Fleet *fleet = GameData::Fleets().Get(value);
-
 			if(remove)
 			{
 				for(auto it = fleets.begin(); it != fleets.end(); ++it)
