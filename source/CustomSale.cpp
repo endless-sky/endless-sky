@@ -123,7 +123,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			if(!add)
 			{
 				location = nullptr;
-				locationFilter = locationFilter{};
+				locationFilter = LocationFilter{};
 			}
 			
 			// Add either a whole filter or just a planet.
