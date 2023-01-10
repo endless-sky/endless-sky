@@ -263,11 +263,11 @@ void Government::Load(const DataNode &node)
 				raidFleets.clear();
 			if(child.Size() >= 2)
 				raidFleets.emplace_back(make_pair(GameData::Fleets().Get(child.Token(1)),
-					child.Size() >= 3 ? child.Token(2) : 2.));
+					child.Size() >= 3 ? child.Value(2) : 2.));
 			else
 				for(const DataNode &grand : child)
 					raidFleets.emplace_back(make_pair(GameData::Fleets().Get(grand.Token(0)),
-						child.Size() >= 2 ? child.Token(1) : 2.));
+						child.Size() >= 2 ? child.Value(1) : 2.));
 		}
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
