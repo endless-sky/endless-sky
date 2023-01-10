@@ -3146,7 +3146,6 @@ conversation "cultural data for coalition group"
 		`	"I'm not willing to risk it. Sorry."`
 			decline
 		`	"I'm in. What do you want me to collect?"`
-			label "what do they want"
 	label "what do they want"
 	`	"Anything. A translation device we have, so the language it is in, of no importance it is. As for the topic, a book about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
 	choice
