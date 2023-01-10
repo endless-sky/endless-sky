@@ -146,9 +146,6 @@ public:
 	bool CanUseServices() const;
 	void Bribe(bool fullAccess = true) const;
 
-	// Get the color to use for the target pointers around this planet.
-	const Color &GetTargetColor() const;
-
 	// Demand tribute, and get the planet's response.
 	std::string DemandTribute(PlayerInfo &player) const;
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;

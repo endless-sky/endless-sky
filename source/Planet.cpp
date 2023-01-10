@@ -582,28 +582,6 @@ void Planet::Bribe(bool fullAccess) const
 
 
 
-const Color &Planet::GetTargetColor() const
-{
-	static const Color &friendly = *GameData::Colors().Get("planet target pointer friendly");
-	static const Color &restricted = *GameData::Colors().Get("planet target pointer restricted");
-	static const Color &hostile = *GameData::Colors().Get("planet target pointer hostile");
-	static const Color &dominated = *GameData::Colors().Get("planet target pointer dominated");
-
-	switch(GetFriendliness())
-	{
-		case Friendliness::FRIENDLY:
-			return friendly;
-		case Friendliness::RESTRICTED:
-			return restricted;
-		case Friendliness::HOSTILE:
-			return hostile;
-		case Friendliness::DOMINATED:
-			return dominated;
-	}
-}
-
-
-
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {

@@ -199,6 +199,26 @@ namespace {
 		}
 	}
 
+	const Color &GetPlanetTargetPointerColor(const Planet &planet)
+	{
+		const Color &friendly = *GameData::Colors().Get("planet target pointer friendly");
+		const Color &restricted = *GameData::Colors().Get("planet target pointer restricted");
+		const Color &hostile = *GameData::Colors().Get("planet target pointer hostile");
+		const Color &dominated = *GameData::Colors().Get("planet target pointer dominated");
+
+		switch(planet.GetFriendliness())
+		{
+			case Planet::Friendliness::FRIENDLY:
+				return friendly;
+			case Planet::Friendliness::RESTRICTED:
+				return restricted;
+			case Planet::Friendliness::HOSTILE:
+				return hostile;
+			case Planet::Friendliness::DOMINATED:
+				return dominated;
+		}
+	}
+
 	const Color &GetShipTargetPointerColor(int type)
 	{
 		const vector<Color> color = {
@@ -733,7 +753,7 @@ void Engine::Step(bool isActive)
 			object->Position() - center,
 			object->Facing(),
 			object->Radius(),
-			object->GetPlanet()->GetTargetColor()),
+			GetPlanetTargetPointerColor(*object->GetPlanet()),
 			5});
 	}
 	else if(flagship && flagship->GetTargetSystem())
