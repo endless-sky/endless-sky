@@ -1015,8 +1015,7 @@ void Engine::Draw() const
 		PointerShader::Bind();
 		for(int i = 0; i < target.count; ++i)
 		{
-			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom,
-				Radar::GetColor(target.type));
+			PointerShader::Add(target.center * zoom, a.Unit(), 12.f, 14.f, -target.radius * zoom, target.color);
 			a += da;
 		}
 		PointerShader::Unbind();
