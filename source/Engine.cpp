@@ -219,7 +219,7 @@ namespace {
 		}
 	}
 
-	const Color &GetShipTargetPointerColor(int type)
+	const Color GetShipTargetPointerColor(int type)
 	{
 		const vector<Color> color = {
 			*GameData::Colors().Get("ship target pointer player"),
