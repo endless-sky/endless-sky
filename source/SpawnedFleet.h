@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <list>
 #include <memory>
+#include <string>
 #include <vector>
 
 class Ship;
