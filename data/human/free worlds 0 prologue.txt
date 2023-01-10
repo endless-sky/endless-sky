@@ -1070,8 +1070,8 @@ mission "FW Bounty 1"
 
 ship "Mammoth" "Mammoth (Moonless)"
 	outfits
-		"Modified Blaster Turret" 4
-		"Heavy Laser Turret" 4
+		"Modified Blaster Turret" 2
+		"Heavy Laser Turret" 6
 		
 		"Fission Reactor"
 		"LP144a Battery Pack"
@@ -1080,13 +1080,12 @@ ship "Mammoth" "Mammoth (Moonless)"
 		"Cooling Ducts"
 		"Laser Rifle" 18
 		
-		"AR120 Reverse Thruster"
-		"A370 Atomic Thruster"
+		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
 
-	turret "Modified Blaster Turret"
-	turret "Modified Blaster Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Modified Blaster Turret"
