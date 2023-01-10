@@ -704,7 +704,7 @@ void Engine::Step(bool isActive)
 			object->Position() - center,
 			object->Facing(),
 			object->Radius(),
-			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE,
+			object->GetPlanet()->GetTargetColor()),
 			5});
 	}
 	else if(flagship && flagship->GetTargetSystem())
