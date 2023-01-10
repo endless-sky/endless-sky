@@ -55,8 +55,9 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		// NOTE: this means that the offset is handled as relative to the existing modified price,
 		// and not the default price (which is intended)!
 		// Outfitter changes always are to be defined as relative in the data.
-		if((mode != "outfitters" && (size == (2 + isAdd) ||
-				(size > 2 && line.Token(2 + isAdd) != "%"))))
+		if((mode != "outfitters"
+				&& (size == (2 + isAdd)
+				|| (size > 2 && line.Token(2 + isAdd) != "%"))))
 			amount /= outfit->Cost();
 	};
 
