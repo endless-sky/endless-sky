@@ -13,7 +13,6 @@ game_code: &build
   - 'source/**'
 
 windows:
-  - '**/*.cbp'
   - EndlessSky.workspace
   - SConstruct
   - .winmake
@@ -36,10 +35,6 @@ integration_tests:
 
 codespell:
   - .codespell.exclude
-
-codeblocks_files:
-  - '*.cbp'
-  - 'utils/check_codeblocks.sh'
 
 cmake_files:
   - CMakeLists.txt
