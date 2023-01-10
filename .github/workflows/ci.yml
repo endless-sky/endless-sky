@@ -158,6 +158,7 @@ jobs:
         vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
     - uses: lukka/run-cmake@v10
       with:
+        useShell: 'bash'
         configurePreset: 'mingw-ci'
         buildPreset: 'mingw-ci'
         testPreset: 'mingw-ci'
@@ -195,6 +196,7 @@ jobs:
         prependedCacheKey: vs-x64
     - uses: lukka/run-cmake@v10
       with:
+        useShell: 'bash'
         configurePreset: 'clang-cl-ci'
         buildPreset: 'clang-cl-ci'
         testPreset: 'clang-cl-ci'

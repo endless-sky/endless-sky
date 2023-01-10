@@ -65,6 +65,7 @@ jobs:
           vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
       - uses: lukka/run-cmake@v10
         with:
+          useShell: 'bash'
           configurePreset: 'mingw-release'
           buildPreset: 'mingw-ci-release'
       - name: Package Application
