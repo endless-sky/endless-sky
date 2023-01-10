@@ -1264,7 +1264,7 @@ void Engine::EnterSystem()
 	const vector<pair<const Fleet *, double>> raidFleets = system->GetGovernment()->RaidFleets();
 	for(const auto &raidFleet : raidFleets)
 	{
-		const Government *raidGovernment = raidFleet.first->GetGovernment() : nullptr;
+		const Government *raidGovernment = raidFleet.first->GetGovernment();
 		if(raidGovernment && raidGovernment->IsEnemy())
 		{
 			pair<double, double> factors = player.RaidFleetFactors();
