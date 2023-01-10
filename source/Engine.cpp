@@ -1205,62 +1205,6 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment)
-{
-	if(requireGovernment && !fleet.Get()->GetGovernment())
-		// Fleet has no government, but caller required one.
-		return 0;
-	else if(frames && Random::Int(fleet.Period()) >= frames)
-		// It is not yet time to place this fleet.
-		return 0;
-	else if(frames && !fleet.HasLimit())
-		// This is not an initalCount spawn, and the fleet is unlimited.
-		return numeric_limits<int>::max();
-	else if(!frames && fleet.InitialCount() <= 0)
-		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
-		return false;
-
-	int count = CountFleetsWithId(fleet.Id());
-	int maximum = frames ? fleet.Limit() : fleet.InitialCount();
-	return static_cast<unsigned>(max<int>(0, maximum - count));
-}
-
-
-
-unsigned Engine::CountFleetsWithId(const string &id)
-{
-	if(id.empty())
-		return 0;
-	auto range = limitedFleets.equal_range(id);
-	unsigned count = 0;
-//	using iter = std::unordered_multimap<std::string,std::weak_ptr<std::string>>::const_iterator;
-	for(auto it = range.first; it != range.second; )
-//	for(iter it = range.first; it != range.second; )
-		if(it->second.expired())
-			it = limitedFleets.erase(it);
-		else
-		{
-			++count;
-			++it;
-		}
-	return count;
-}
-
-
-
-shared_ptr<string> Engine::UpdateLimitedFleets(const LimitedEvents<Fleet> &fleet)
-{
-	shared_ptr<string> id;
-	if((fleet.Limit() || fleet.InitialCount()) && !fleet.Id().empty())
-	{
-		id = make_shared<string>(fleet.Id());
-		limitedFleets.emplace(fleet.Id(), id);
-	}
-	return id;
-}
-
-
-
 void Engine::EnterSystem()
 {
 	ai.Clean();
@@ -2574,6 +2518,70 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message += ". Please assist us!";
 	}
 	SendMessage(target, message);
+}
+
+
+
+unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment)
+{
+	// frames = how many frames worth of ships to place:
+	//    0 = used to indicate the fleet.InitialCount() number of fleets should
+	//        be spawned if they aren't already present
+	//   60 = used immediately after that, five times when entering the system to
+	//        spawn five seconds of ships
+	//    1 = the normal value, used when spawning random event ships
+
+	if(requireGovernment && !fleet.Get()->GetGovernment())
+		// Fleet has no government, but caller required one.
+		return 0;
+	else if(frames && Random::Int(fleet.Period()) >= frames)
+		// It is not yet time to place this fleet.
+		return 0;
+	else if(frames && !fleet.HasLimit())
+		// This is not an initalCount spawn, and the fleet is unlimited.
+		return numeric_limits<int>::max();
+	else if(!frames && fleet.InitialCount() <= 0)
+		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
+		return false;
+
+	int count = CountFleetsWithId(fleet.Id());
+	int maximum = frames ? fleet.Limit() : fleet.InitialCount();
+	return static_cast<unsigned>(max<int>(0, maximum - count));
+}
+
+
+
+unsigned Engine::CountFleetsWithId(const string &id)
+{
+	if(id.empty())
+		return 0;
+	auto range = limitedFleets.equal_range(id);
+	unsigned count = 0;
+
+	// Remove any fleets that have lost all of their ships.
+	// Count the ones that still have ships.
+	for(auto it = range.first; it != range.second; )
+		if(it->second.expired())
+			it = limitedFleets.erase(it);
+		else
+		{
+			++count;
+			++it;
+		}
+	return count;
+}
+
+
+
+shared_ptr<string> Engine::UpdateLimitedFleets(const LimitedEvents<Fleet> &fleet)
+{
+	shared_ptr<string> id;
+	if((fleet.Limit() || fleet.InitialCount()) && !fleet.Id().empty())
+	{
+		id = make_shared<string>(fleet.Id());
+		limitedFleets.emplace(fleet.Id(), id);
+	}
+	return id;
 }
 
 

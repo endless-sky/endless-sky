@@ -173,9 +173,10 @@ private:
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems, double distance);
+
+	// Utility function for Load()
 	void ReadInt(const DataNode &node, const std::string &name, int &value, int index);
-	void LoadFleet(const DataNode &node, int &period, int &limit, int &initialCount, std::string &id,
-		bool &ignoreEnemyStrength);
+	void LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events);
 
 
 private:
