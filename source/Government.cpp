@@ -265,7 +265,7 @@ void Government::Load(const DataNode &node)
 				raidFleets.emplace_back(make_pair(GameData::Fleets().Get(child.Token(1)),
 					child.Size() >= 3 ? child.Token(2) : 2.));
 			else
-				for(const DataNode &grand: child)
+				for(const DataNode &grand : child)
 					raidFleets.emplace_back(make_pair(GameData::Fleets().Get(grand.Token(0)),
 						child.Size() >= 2 ? child.Token(1) : 2.));
 		}

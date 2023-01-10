@@ -1264,21 +1264,21 @@ void Engine::EnterSystem()
 	const vector<pair<const Fleet *, double>> raidFleets = system->GetGovernment()->RaidFleets();
 	for(const auto &raidFleet : raidFleets)
 	{
-		const Government *raidGovernment = raidFleet->first->GetGovernment() : nullptr;
+		const Government *raidGovernment = raidFleet.first->GetGovernment() : nullptr;
 		if(raidGovernment && raidGovernment->IsEnemy())
 		{
 			pair<double, double> factors = player.RaidFleetFactors();
-			double attraction = .005 * (factors.first - factors.second - raidFleet->second);
+			double attraction = .005 * (factors.first - factors.second - raidFleet.second);
 			// Consider the other fleets in the local system.
-			//Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
-			for(auto fleet: system->Fleets())
+			// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
+			for(const auto &fleet : system->Fleets())
 				attraction -= sqrt(fleet.Get()->Strength() / 10000.) / fleet.Period()
 					* (fleet.Get()->GetGovernment()->IsEnemy(raidGovernment) ? 1. : -1.);
 			if(attraction > 0.)
 				for(int i = 0; i < 10; ++i)
 					if(Random::Real() < attraction)
 					{
-						raidFleet->first->Place(*system, newShips);
+						raidFleet.first->Place(*system, newShips);
 						Messages::Add("Your fleet has attracted the interest of a "
 								+ raidGovernment->GetName() + " raiding party.", Messages::Importance::Highest);
 					}
