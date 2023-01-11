@@ -23,8 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Set.h"
 
-#include <string>
-
 using namespace std;
 
 namespace

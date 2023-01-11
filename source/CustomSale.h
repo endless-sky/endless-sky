@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <map>
 #include <set>
+#include <string>
 
 class ConditionsStore;
 class DataNode;
@@ -47,7 +48,7 @@ public:
 
 
 public:
-	void Load(const DataNode &node,);
+	void Load(const DataNode &node);
 	void FinishLoading();
 
 	// Adds another CustomSale to this one if the conditions allow it.
