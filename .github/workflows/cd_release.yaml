@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install x86 MinGW
-        run: choco install mingw --forcex86
+        run: choco install mingw --forcex86 --force
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
