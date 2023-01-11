@@ -279,7 +279,6 @@
       "inherits": "release",
       "cacheVariables": {
         "ES_CREATE_BUNDLE": "ON",
-        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
         "VCPKG_TARGET_TRIPLET": "win32-release"
