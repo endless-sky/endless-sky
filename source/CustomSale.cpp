@@ -62,9 +62,6 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 
 	for(const DataNode &child : node)
 	{
-		bool isValue = child.Token(0) == "value";
-		bool isOffset = child.Token(0) == "offset";
-
 		bool remove = child.Token(0) == "remove";
 		bool add = child.Token(0) == "add";
 
@@ -72,6 +69,9 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		bool hasKey = child.Size() > 1;
 
 		const string &key = child.Token(keyIndex);
+		
+		bool isValue = key == "value";
+		bool isOffset = key == "offset";
 
 		if(remove)
 		{
