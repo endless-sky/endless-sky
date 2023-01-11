@@ -30,8 +30,8 @@ const int Radar::UNFRIENDLY = 2;
 const int Radar::HOSTILE = 3;
 const int Radar::INACTIVE = 4;
 const int Radar::SPECIAL = 5;
-const int Radar::BLINK = 6;
-const int Radar::ANOMALOUS = 7;
+const int Radar::ANOMALOUS = 6;
+const int Radar::BLINK = 7;
 const int Radar::VIEWPORT = 8;
 const int Radar::STAR = 9;
 
