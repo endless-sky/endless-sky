@@ -173,7 +173,7 @@ void CustomSale::Load(const DataNode &node)
 						parseValueOrOffset(relativeOutfitOffsets[outfit], grandChild);
 				}
 			else
-				child.PrintTrace("Skipping unrecognized (outfit assumed) attribute:");
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(mode == "outfitters")
 		{
@@ -197,7 +197,7 @@ void CustomSale::Load(const DataNode &node)
 						parseValueOrOffset(relativeOffsets[outfitter], grandChild);
 				}
 			else
-				child.PrintTrace("Skipping unrecognized (outfitter assumed) attribute:");
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");

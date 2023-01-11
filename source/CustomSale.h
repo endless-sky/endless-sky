@@ -79,7 +79,7 @@ private:
 
 
 private:
-	string name;
+	std::string name;
 	LocationFilter locationFilter;
 	ConditionSet conditions;
 	const Planet *location = nullptr;
