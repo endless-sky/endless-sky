@@ -1120,28 +1120,6 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 
 
 
-void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
-{
-	for(const auto &it : outfits)
-		DiscoverOutfit(*it.first);
-}
-
-
-
-void PlayerInfo::VisitOutfitterAt(const Planet &planet)
-{
-	visitedPlanets[&planet] = true;
-}
-
-
-
-bool PlayerInfo::OutfitterVisitedAt(const Planet &planet)
-{
-	return visitedPlanets[&planet];
-}
-
-
-
 // Sell the given ship (if it belongs to the player).
 void PlayerInfo::SellShip(const Ship *selected)
 {
@@ -2179,21 +2157,6 @@ void PlayerInfo::Visit(const System &system)
 
 
 
-bool PlayerInfo::OutfitIsKnown(const Outfit& outfit) const
-{
-	return knownOutfits.count(&outfit);
-}
-
-
-
-// Mark outfit as known
-void PlayerInfo::DiscoverOutfit(const Outfit& outfit)
-{
-	knownOutfits.insert(&outfit);
-}
-
-
-
 // Mark the given planet as visited.
 void PlayerInfo::Visit(const Planet &planet)
 {
@@ -2670,6 +2633,47 @@ void PlayerInfo::SetMapZoom(int level)
 set<string> &PlayerInfo::Collapsed(const string &name)
 {
 	return collapsed[name];
+}
+
+
+
+// Check if an given outfit is known to the player
+bool PlayerInfo::OutfitIsKnown(const Outfit& outfit) const
+{
+	return knownOutfits.count(&outfit);
+}
+
+
+
+// Mark outfit as known
+void PlayerInfo::DiscoverOutfit(const Outfit& outfit)
+{
+	knownOutfits.insert(&outfit);
+}
+
+
+
+// Mark multiple outfits as known
+void PlayerInfo::DiscoverOutfits(const std::map<const Outfit *, int> &outfits)
+{
+	for(const auto &it : outfits)
+		DiscoverOutfit(*it.first);
+}
+
+
+
+// Mark outfitter at planet as visited
+void PlayerInfo::VisitOutfitterAt(const Planet &planet)
+{
+	visitedPlanets[&planet] = true;
+}
+
+
+
+// Check if the outfitter at planet was visited
+bool PlayerInfo::OutfitterVisitedAt(const Planet &planet)
+{
+	return visitedPlanets[&planet];
 }
 
 
