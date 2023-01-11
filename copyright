@@ -908,6 +908,15 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/ship/mammoth*
+ images/ship/scrapper*
+ images/thumbnail/mammoth*
+ images/thumbnail/scrapper*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
+
+Files:
  images/ship/mfirebird*
  images/ship/mleviathan*
  images/ship/marrow*
@@ -1710,6 +1719,8 @@ Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/effect/void?sprite?parts*
+ images/outfit/void?sprite?parts*
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
