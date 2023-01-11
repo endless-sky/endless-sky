@@ -139,7 +139,7 @@ void UniverseObjects::FinishLoading()
 		it.FinishLoading();
 
 	for(auto &&it : startConditions)
-		it.FinishLoading();
+		it.second.FinishLoading();
 	// Remove any invalid starting conditions, so the game does not use incomplete data.
 	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
