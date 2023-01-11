@@ -61,11 +61,10 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
+          files: ${{ env.OUTPUT }}
 
 
   release_windows_x64:
@@ -92,11 +91,10 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
+          files: ${{ env.OUTPUT }}
 
 
   release_macos_universal:
