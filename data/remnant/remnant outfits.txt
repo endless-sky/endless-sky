@@ -454,7 +454,7 @@ outfit "Ember Tear"
 	weapon
 		sprite "projectile/ember tear/ember tear"
 			"frame rate" 30
-		sound "ion"
+		sound "ember tear"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
 		"hit effect" "ember tear vortex"
@@ -515,6 +515,7 @@ effect "ember tear vortex"
 		"start frame" 0
 		"no repeat"
 		"frame rate" 10
+	"sound" "ember tear hit"
 	"lifetime" 100
 	"velocity scale" 0
 	"random angle" 360
@@ -669,8 +670,8 @@ outfit "Bellows-Class Afterburner"
 	"outfit space" -7
 	"engine capacity" -7
 	"slowing resistance" 0.01
-	"afterburner thrust" 153.0
-	"afterburner fuel" 0.5
+	"afterburner thrust" 125.0
+	"afterburner fuel" 0.65
 	"afterburner energy" 6.0
 	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
@@ -878,9 +879,11 @@ outfit "Void Sprite Parts"
 	plural "Void Sprite Parts"
 	category "Unique"
 	cost 500
-	thumbnail "outfit/mouthparts"
+	thumbnail "outfit/void sprite parts"
+	"flotsam sprite" "effect/void sprite parts/void sprite parts"
 	"mass" 1
 	"outfit space" -1
+	"flotsam chance" .5
 	description "This is nothing more and nothing less than a cubic meter of void sprite parts. To the Remnant, this represents both a terrible occurrence and a dreadful opportunity."
 	description "	This could have been very valuable to someone who knew what they were doing, if it had been handled properly. Instead, it is worth little more than the value of the compounds contained within."
 

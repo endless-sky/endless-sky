@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -184,7 +185,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Find out how far the player is able to jump. The range of the system
 	// takes priority over the range of the player's flagship.
 	double systemRange = playerSystem.JumpRange();
-	double playerRange = player.Flagship() ? player.Flagship()->JumpRange() : 0.;
+	double playerRange = player.Flagship() ? player.Flagship()->JumpNavigation().JumpRange() : 0.;
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
@@ -308,10 +309,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		// might not be linked via hyperspace.
 		Color color = Color(.5f * alpha, 0.f);
 		if(player.HasVisited(system) && system.IsInhabited(flagship) && gov)
-			color = Color(
-				alpha * gov->GetColor().Get()[0],
-				alpha * gov->GetColor().Get()[1],
-				alpha * gov->GetColor().Get()[2], 0.f);
+			color = gov->GetColor().Additive(alpha);
 		RingShader::Draw(from, OUTER, INNER, color);
 
 		for(const System *link : system.Links())
@@ -333,10 +331,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			gov = link->GetGovernment();
 			Color color = Color(.5f * alpha, 0.f);
 			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
-				color = Color(
-					alpha * gov->GetColor().Get()[0],
-					alpha * gov->GetColor().Get()[1],
-					alpha * gov->GetColor().Get()[2], 0.f);
+				color = gov->GetColor().Additive(alpha);
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 
@@ -951,7 +946,7 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 
 	const System *previous = &playerSystem;
-	double jumpRange = flagship->JumpRange();
+	double jumpRange = flagship->JumpNavigation().JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
@@ -975,7 +970,7 @@ void MapPanel::DrawTravelPlan()
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = it.first->GetCheapestJumpType(previous, next).second;
+					double cost = it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;
