@@ -32,7 +32,7 @@ runs:
     - name: Add to PATH (Windows)
       if: ${{ runner.os == 'Windows' }}
       run: (Get-Item .).FullName >> $env:GITHUB_PATH
-      shell: powershell
+      shell: pwsh
     - name: Write to the cache
       if: ${{ inputs.read-only == 'false' && github.event_name == 'push' }}
       run: echo "SCCACHE_GHA_CACHE_TO=sccache-${{ github.sha }}" >> $GITHUB_ENV
