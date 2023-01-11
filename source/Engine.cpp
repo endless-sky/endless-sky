@@ -253,11 +253,9 @@ namespace {
 
 	const Color &GetMinablePointerColor(bool selected)
 	{
-		const Color &targeted = *GameData::Colors().Get("minable target pointer selected");
-		const Color &untargeted = *GameData::Colors().Get("minable target pointer unselected");
 		if(selected)
-			return targeted;
-		return untargeted;
+			return *GameData::Colors().Get("minable target pointer selected");;
+		return *GameData::Colors().Get("minable target pointer unselected");
 	}
 
 	const double RADAR_SCALE = .025;
