@@ -1261,8 +1261,7 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	const vector<pair<const Fleet *, double>> raidFleets = system->GetGovernment()->RaidFleets();
-	for(const auto &raidFleet : raidFleets)
+	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
 	{
 		const Government *raidGovernment = raidFleet.first->GetGovernment();
 		if(raidGovernment && raidGovernment->IsEnemy())
@@ -1272,7 +1271,7 @@ void Engine::EnterSystem()
 			// Consider the other fleets in the local system.
 			// Do not take into account the raid fleet, that would just mess with the minimum attraction of it.
 			for(const auto &fleet : system->Fleets())
-				attraction -= sqrt(fleet.Get()->Strength() / 10000.) / fleet.Period()
+				attraction += sqrt(fleet.Get()->Strength() / 10000.) / fleet.Period()
 					* (fleet.Get()->GetGovernment()->IsEnemy(raidGovernment) ? 1. : -1.);
 			if(attraction > 0.)
 				for(int i = 0; i < 10; ++i)
