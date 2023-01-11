@@ -159,7 +159,7 @@ public:
 	double EnergyDamage() const;
 	// Status effects:
 	double IonDamage() const;
-	double scramblingDamage() const;
+	double ScramblingDamage() const;
 	double DisruptionDamage() const;
 	double SlowingDamage() const;
 	double DischargeDamage() const;
@@ -400,7 +400,7 @@ inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
 inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY_DAMAGE); }
 
 inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
-inline double Weapon::scramblingDamage() const { return TotalDamage(WEAPON_JAMMING_DAMAGE); }
+inline double Weapon::ScramblingDamage() const { return TotalDamage(WEAPON_JAMMING_DAMAGE); }
 inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
 inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
 inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE_DAMAGE); }
