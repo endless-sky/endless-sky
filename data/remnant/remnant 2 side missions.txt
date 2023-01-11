@@ -244,7 +244,6 @@ mission "Remnant: Celebration 1"
 				`	(Stand still and absorb the moment.)`
 				`	(Look around to see what is happening next.)`
 			`	Around you, everyone has gone still. Most look exhausted, and some are sitting on the floor or leaning against the walls. A few people look like they have been crying, and those nearby are hugging them or simply touching their shoulder. Most of the people you can see have reverent and joyful expressions. After the silence lingers for what feels like several minutes, the doors open and people start to leave. In short order the cave is nearly empty.`
-			label celebrationend
 			`	"I always find these Celebrations of Remembrance to be invigorating," Taely says. "What did you think of it, <first>?"`
 			choice
 				`	"I think I will have to get back to you on that later."`
