@@ -375,6 +375,24 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
 			}
 		}
+		else if(key == "departure angle")
+		{
+			if(child.Size() >= 2)
+			{
+				jumpDepartureAngle = child.Value(1);
+				hyperDepartureAngle = fabs(child.Value(1));
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &type = grand.Token(0);
+				if(type == "link" && grand.Size() >= 2)
+					hyperDepartureAngle = grand.Value(1);
+				else if(type == "jump" && grand.Size() >= 2)
+					jumpDepartureAngle = fabs(grand.Value(1));
+				else
+					grand.PrintTrace("Warning: Skipping unsupported departure angle limitation:");
+			}
+		}
 		else if(key == "invisible fence" && child.Size() >= 2)
 			invisibleFenceRadius = max(0., child.Value(1));
 		else
@@ -605,6 +623,20 @@ double System::JumpDepartureDistance() const
 double System::HyperDepartureDistance() const
 {
 	return hyperDepartureDistance;
+}
+
+
+
+double System::JumpDepartureAngle() const
+{
+	return jumpDepartureAngle;
+}
+
+
+
+double System::HyperDepartureAngle() const
+{
+	return hyperDepartureAngle;
 }
 
 

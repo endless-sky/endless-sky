@@ -108,6 +108,11 @@ public:
 	double JumpDepartureDistance() const;
 	double HyperDepartureDistance() const;
 
+	// The maximum angle offset from the system center to the desitination system
+	// to jump out of the system. Separated by jump drives and hyperdrives.
+	double JumpDepartureAngle() const;
+	double HyperDepartureAngle() const;
+
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
 	const std::set<const System *> &VisibleNeighbors() const;
@@ -234,6 +239,10 @@ private:
 	// The minimum distances from the system center to jump out of the system.
 	double jumpDepartureDistance = 0.;
 	double hyperDepartureDistance = 0.;
+
+	// The maximum angle offset the ship may have while departing, 0 means no limit.
+	double jumpDepartureAngle = 0.;
+	double hyperDepartureAngle = 0.;
 
 	// Commodity prices.
 	std::map<std::string, Price> trade;

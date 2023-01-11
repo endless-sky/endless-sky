@@ -291,6 +291,9 @@ namespace {
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
 
+	// A conversion value from radians to degree:
+	const double conversionValue = (180.0 / PI);
+
 	// An offset to prevent the ship from being not quite over the point to departure.
 	const double SAFETY_OFFSET = 1.;
 }
@@ -1990,14 +1993,26 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		return;
 
 	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetTargetSystem()).first == JumpType::JUMP_DRIVE);
-
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
+
+	// Departure angle calculations:
+	double shipAngleToCenter = asin(ship.Position().Y() * ship.Position().Y()
+								/ ship.Position().LengthSquared()) * conversionValue;
+	double destinationAngleToCenter = asin(direction.Y() * direction.Y()
+								/ direction.LengthSquared()) * conversionValue;
+	double departureAngle = isJump ?
+		ship.GetSystem()->JumpDepartureAngle() :
+		ship.GetSystem()->HyperDepartureAngle();
+
+	// Departure distance calculations:
 	double departure = isJump ?
 		ship.GetSystem()->JumpDepartureDistance() :
 		ship.GetSystem()->HyperDepartureDistance();
 	double squaredDeparture = departure * departure + SAFETY_OFFSET;
+
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
+		//if(abs(shipAngleToCenter - destinationAngleToCenter) > departureAngle)
 		Point closestDeparturePoint = ship.Position().Unit() * (departure + SAFETY_OFFSET);
 		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
 	}
