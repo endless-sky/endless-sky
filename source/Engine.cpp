@@ -243,6 +243,7 @@ namespace {
 			case Planet::Friendliness::DOMINATED:
 				return dominated;
 		}
+		return restricted;
 	}
 
 	const Color &GetShipTargetPointerColor(int type)
