@@ -254,7 +254,7 @@ namespace {
 	const Color &GetMinablePointerColor(bool selected)
 	{
 		if(selected)
-			return *GameData::Colors().Get("minable target pointer selected");;
+			return *GameData::Colors().Get("minable target pointer selected");
 		return *GameData::Colors().Get("minable target pointer unselected");
 	}
 
