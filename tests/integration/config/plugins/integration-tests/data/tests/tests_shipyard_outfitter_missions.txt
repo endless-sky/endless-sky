@@ -50,9 +50,6 @@ test-data "shipyard outfitter missions"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		conditions
-			# to skip the landing on ruin conversation
-			"Ruin: Landing: offered"
 		changes
 			planet Ruin
 				add shipyard "Remnant"

@@ -263,7 +263,7 @@ government "Free Worlds that won't enter wormhole"
 government "Gegno"
 	swizzle 0
 	language "Gegno"
-	color 0.56 0.44 0.2
+	color .75 .59 .27
 
 	"player reputation" 0
 	"crew attack" 1.1
@@ -276,7 +276,7 @@ government "Gegno"
 		assist 0
 		provoke 10
 
-color "governments: Gegno Scin" .5 .55 .33
+color "governments: Gegno Scin" .67 .73 .44
 
 government "Gegno Scin"
 	swizzle 18
@@ -695,7 +695,7 @@ government "Kor Efret"
 
 government "Kor Mereti"
 	swizzle 5
-	color .32 .36 .65
+	color .43 .48 .87
 	language "Korath"
 	
 	"attitude toward"
@@ -716,7 +716,7 @@ government "Kor Mereti (Hostile)"
 
 government "Kor Sestor"
 	swizzle 0
-	color .75 .27 .37
+	color 1 .36 .49
 	language "Korath"
 	
 	"attitude toward"
