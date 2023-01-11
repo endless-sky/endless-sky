@@ -269,12 +269,12 @@ mission "Remnant: Celebration 1"
 					to display
 						has "celebrationaskedleader"
 						not "celebrationaskedomitted"
-					goto celebraionomitted
+					goto ceremonyomitted
 				`	"What constitutes your most serious crimes?"`
 					to display
 						has "celebrationaskedomitted"
 					goto celebrationcrime
-			label celebrationrehearsed``
+			label celebrationrehearsed
 			action
 				set "celebrationaskedrehearsed"
 				clear "celebrationaskedleader"
