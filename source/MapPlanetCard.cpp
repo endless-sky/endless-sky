@@ -48,8 +48,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 		reputationLabel = "No Spaceport";
 	else
 	{
-		Planet::Friendliness friendliness = planet->GetFriendliness();
-		switch(friendliness)
+		switch(planet->GetFriendliness())
 		{
 			case Planet::Friendliness::FRIENDLY:
 				reputationLabel = "Friendly";
