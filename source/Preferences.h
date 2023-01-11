@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
+
+
 class Preferences {
 public:
 	enum class VSync : int_fast8_t {
