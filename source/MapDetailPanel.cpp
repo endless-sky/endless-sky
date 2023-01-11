@@ -648,6 +648,7 @@ void MapDetailPanel::DrawInfo()
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	double minPlanetPanelHeight = mapInterface->GetValue("min planet panel height");
 	double maxPlanetPanelHeight = mapInterface->GetValue("max planet panel height");
 
 	const double bottomGovY = mapInterface->GetValue("government Y");
@@ -656,12 +657,9 @@ void MapDetailPanel::DrawInfo()
 	bool hasVisited = player.HasVisited(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	const double maximumSize = max(planetHeight * 1.5, Screen::Height() - bottomGovY - systemSprite->Height());
-	planetPanelHeight = hasVisited ? min(min(maximumSize, maxPlanetPanelHeight),
+	const double minimumSize = max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
+	planetPanelHeight = hasVisited ? min(min(minimumSize, maxPlanetPanelHeight),
 		(planetCards.size()) * planetHeight) : 0.;
-	// If not all planets fit on screen, make sure we're seeing half a planet to indicate there's more below.
-	if(hasVisited && planetPanelHeight < planetCards.size() * planetHeight)
-		planetPanelHeight -= static_cast<int>(planetPanelHeight) % static_cast<int>(planetHeight) + planetHeight / 2.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
