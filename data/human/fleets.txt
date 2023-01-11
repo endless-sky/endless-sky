@@ -2028,9 +2028,9 @@ fleet "Small Independent"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
-	variant 6
-		"Scrapper"
 	variant 4
+		"Scrapper"
+	variant 3
 		"Scrapper (Minimal)"
 
 fleet "Large Independent"
@@ -2279,19 +2279,13 @@ fleet "Small Northern Pirates"
 		"Scout (Speedy)"
 	variant 2
 		"Scrapper"
-	variant 2
-		"Scrapper (Minimal)"
 	variant 1
 		"Scrapper (Mod Blaster)"
 	variant 1
 		"Scrapper" 2
 	variant 1
-		"Scrapper (Minimal)" 2
-	variant 1
 		"Scrapper"
 		"Sparrow"
-	variant 1
-		"Scrapper (Gatling)"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
