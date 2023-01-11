@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "DataNode.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "Set.h"
@@ -38,13 +39,17 @@ namespace
 
 
 
-void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits)
+void CustomSale::Load(const DataNode &node)
 {
+	const Set<Sale<Outfit>> &items = GameData::Outfitters();
+	const Set<Outfit> &outfits = GameData::Outfits();
+
 	bool isAdd = false;
 	const Outfit *outfit = nullptr;
 	// Outfitters or outfits mode.
 	const string mode = node.Token(1);
-	auto parseValueOrOffset = [&isAdd, &outfit, &mode](double &amount, const DataNode &line)
+	name = node.Token(2);
+	auto parseValueOrOffset = [&isAdd, &outfit, &mode, &toConvert](double &amount, const DataNode &line)
 	{
 		int size = line.Size();
 		// Default is 1, because outfits can be added only to have a custom sellType.
@@ -58,7 +63,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		if((mode != "outfitters"
 				&& (size == (2 + isAdd)
 				|| (size > 2 && line.Token(2 + isAdd) != "%"))))
-			amount /= outfit->Cost();
+			toConvert.emplace(make_pair(outfit, amount));
 	};
 
 	for(const DataNode &child : node)
@@ -198,6 +203,41 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+void CustomSale::FinishLoading()
+{
+	for(const auto &it : toConvert)
+		if(it.first->Cost() != 0)
+			it.second /= it.first;
+		else
+		{
+			Logger::LogError(it.first->TrueName() + " has no base price and thus cannot have its price modified by pricing.");
+			relativeOutfitPrices.erase(it.first);
+			relativeOutfitOffsets.erase(it.first);
+		}
+	toConvert.clear();
+
+	vector<string> undefinedOutfits;
+	for(const auto &it : relativeOutfitPrices)
+		if(!it.first->IsDefined())
+			undefinedOutfits.emplace_back("\"" + it.first->TrueName() + "\"");
+	for(const auto &it : relativeOutfitOffsets)
+		if(!it.first->IsDefined())
+			undefinedOutfits.emplace_back("\"" + it.first->TrueName() + "\"");
+
+	if(!undefinedOutfits.empty())
+	{
+		bool plural = undefinedOutfits.size() > 1;
+		string message = "pricing \"" + name + "\":";
+		string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
+		for(auto &&outfit : undefinedOutfits)
+			message += PREFIX + outfit;
+
+		Logger::LogError(message);
 	}
 }
 

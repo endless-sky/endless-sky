@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sale.h"
 #include "Set.h"
 
+#include <functional>
 #include <map>
 #include <set>
 
@@ -46,7 +47,8 @@ public:
 
 
 public:
-	void Load(const DataNode &node, const Set<Sale<Outfit>> &items, const Set<Outfit> &outfits);
+	void Load(const DataNode &node,);
+	void FinishLoading();
 
 	// Adds another CustomSale to this one if the conditions allow it.
 	bool Add(const CustomSale &other, const Planet &planet, const ConditionsStore &store);
@@ -76,6 +78,7 @@ private:
 
 
 private:
+	string name;
 	LocationFilter locationFilter;
 	ConditionSet conditions;
 	const Planet *location = nullptr;
@@ -91,6 +94,9 @@ private:
 	bool cacheValid = false;
 
 	SellType sellType = SellType::DEFAULT;
+
+	// When loading we cannot be sure all outfits are loaded, so store those we need to convert into relative values.
+	std::vector<std::pair<const Outfit *, double &>> toConvert;
 };
 
 #endif
