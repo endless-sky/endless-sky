@@ -47,7 +47,7 @@ void CustomSale::Load(const DataNode &node)
 	// Outfitters or outfits mode.
 	const string mode = node.Token(1);
 	name = node.Token(2);
-	auto parseValueOrOffset = [&isAdd, &outfit, &mode, &toConvert](double &amount, const DataNode &line)
+	auto parseValueOrOffset = [&isAdd, &outfit, &mode, this](double &amount, const DataNode &line)
 	{
 		int size = line.Size();
 		// Default is 1, because outfits can be added only to have a custom sellType.
@@ -210,7 +210,7 @@ void CustomSale::FinishLoading()
 {
 	for(const auto &it : toConvert)
 		if(it.first->Cost() != 0)
-			it.second /= it.first;
+			it.second /= it.first->Cost();
 		else
 		{
 			Logger::LogError(it.first->TrueName() + " has no base price and thus cannot have its price modified by pricing.");
