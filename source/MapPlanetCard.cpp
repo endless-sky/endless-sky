@@ -53,10 +53,13 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 		{
 			case Planet::Friendliness::FRIENDLY:
 				reputationLabel = "Friendly";
+				break;
 			case Planet::Friendliness::RESTRICTED:
 				reputationLabel = "Restricted";
+				break;
 			case Planet::Friendliness::HOSTILE:
 				reputationLabel = "Hostile";
+				break;
 			case Planet::Friendliness::DOMINATED:
 				reputationLabel = "Dominated";
 		}
