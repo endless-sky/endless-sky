@@ -689,20 +689,24 @@ outfit "Loot"
 	"mass" 1
 	description "You're not sure what this is, but you feel your hair go up when you're near the cargo... Probably best not to touch it."
 
-ship "Behemoth" "Behemoth (Mammoth)"
+ship "Mammoth" "Mammoth (Hai)"
+	add attributes
+		"outfit space" 1
 	outfits
 		"Boulder Reactor"
-		"Chameleon Anti-Missile"
-		"Fuel Pod"
+		"Chameleon Anti-Missile" 2
+		"Bullfrog Anti-Missile" 2
 		"Hai Diamond Regenerator"
-		"Hai Fissure Batteries"
+		"Hai Gorge Batteries"
 		"Hai Tracker" 112
 		"Hai Tracker Pod" 2
-		"Pulse Turret" 5
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion"
+		"Pulse Turret" 4
+		"Pulse Rifle" 30
 		"Scram Drive"
-		"Small Radar Jammer"
-		"X3200 Ion Steering"
-		"X3700 Ion Thruster"
+		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
 	cargo
 		outfits
 			"Loot" 400
@@ -806,7 +810,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		government "Cerberus"
 		system "Sumar"
 		personality derelict staying target
-		ship "Behemoth (Mammoth)" "Mammoth"
+		ship "Mammoth (Hai)" "Blood and Thunder"
 	npc evade
 		government "Mercenaries"
 		personality disables staying
