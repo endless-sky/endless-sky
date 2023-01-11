@@ -2624,18 +2624,6 @@ ship "Scrapper" "Scrapper (Minimal)"
 
 
 
-ship "Scrapper" "Scrapper (Plasma Engine)"
-	outfits
-		"Twin Blaster"
-		"nGVF-AA Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
-		"Hyperdrive"
-
-
-
 ship "Scrapper" "Scrapper (Gatling)"
 	outfits
 		"Gatling Gun"
@@ -2643,20 +2631,6 @@ ship "Scrapper" "Scrapper (Gatling)"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Scrapper" "Scrapper (Boarding)"
-	outfits
-		"Twin Blaster"
-		"KP-6 Photovoltaic Panel" 6
-		"LP036a Battery Pack"
-		"Bunk Room"
-		"Fragmentation Grenades" 8
-		"Laser Rifle"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
@@ -2671,19 +2645,6 @@ ship "Scrapper" "Scrapper (Mod Blaster)"
 		"D14-RN Shield Generator"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
-
-ship "Scrapper" "Scrapper (Missile)"
-	outfits
-		"Meteor Missile Pod"
-		"Meteor Missile Box"
-		"Meteor Missile" 22
-		"nGVF-AA Fuel Cell"
-		"LP036a Battery Pack"
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
 		"Hyperdrive"
 
 

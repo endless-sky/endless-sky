@@ -75,8 +75,6 @@ fleet "Small Southern Merchants"
 		"Scout"
 	variant 1
 		"Scrapper"
-	variant 1
-		"Scrapper (Plasma Engine)"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -1845,38 +1843,23 @@ fleet "Small Southern Pirates"
 		"Clipper (Speedy)"
 	variant 1
 		"Modified Argosy"
-	variant 10
+	variant 2
 		"Scrapper"
-	variant 12
+	variant 2
 		"Scrapper (Minimal)"
-	variant 10
-		"Scrapper (Plasma Engine)"
-	variant 8
-		"Scrapper (Boarding)"
-	variant 8
+	variant 1
 		"Scrapper (Mod Blaster)"
-	variant 6
-		"Scrapper (Missile)"
-	variant 5
+	variant 1
 		"Scrapper" 2
-	variant 6
+	variant 1
 		"Scrapper (Minimal)" 2
 	variant 1
 		"Scrapper"
 		"Sparrow"
-	variant 2
+	variant 1
 		"Sparrow"
 		"Scrapper (Minimal)"
 	variant 1
-		"Sparrow"
-		"Scrapper (Boarding)"
-	variant 1
-		"Sparrow"
-		"Scrapper (Missile)"
-	variant 1
-		"Sparrow"
-		"Scrapper (Plasma Engine)"
-	variant 2
 		"Scrapper (Gatling)"
 
 fleet "Large Southern Pirates"
@@ -2045,12 +2028,10 @@ fleet "Small Independent"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
-	variant 10
+	variant 6
 		"Scrapper"
-	variant 8
+	variant 4
 		"Scrapper (Minimal)"
-	variant 8
-		"Scrapper (Plasma Engine)"
 
 fleet "Large Independent"
 	government "Independent"
@@ -2153,38 +2134,13 @@ fleet "Small Core Pirates"
 		"Wasp (Plasma)"
 	variant 2
 		"Wasp (Proton)"
-	variant 10
+	variant 1
 		"Scrapper"
-	variant 12
+	variant 2
 		"Scrapper (Minimal)"
-	variant 10
-		"Scrapper (Plasma Engine)"
-	variant 8
-		"Scrapper (Boarding)"
-	variant 8
+	variant 1
 		"Scrapper (Mod Blaster)"
-	variant 6
-		"Scrapper (Missile)"
-	variant 5
-		"Scrapper" 2
-	variant 6
-		"Scrapper (Minimal)" 2
 	variant 1
-		"Scrapper"
-		"Sparrow"
-	variant 2
-		"Sparrow"
-		"Scrapper (Minimal)"
-	variant 1
-		"Wasp (Javelin)"
-		"Scrapper (Boarding)"
-	variant 1
-		"Sparrow"
-		"Scrapper (Missile)"
-	variant 1
-		"Wasp (Meteor)"
-		"Scrapper (Plasma Engine)"
-	variant 2
 		"Scrapper (Gatling)"
 
 fleet "Large Core Pirates"
@@ -2321,38 +2277,20 @@ fleet "Small Northern Pirates"
 		"Scout"
 	variant 4
 		"Scout (Speedy)"
-	variant 10
+	variant 2
 		"Scrapper"
-	variant 12
+	variant 2
 		"Scrapper (Minimal)"
-	variant 10
-		"Scrapper (Plasma Engine)"
-	variant 8
-		"Scrapper (Boarding)"
-	variant 8
+	variant 1
 		"Scrapper (Mod Blaster)"
-	variant 6
-		"Scrapper (Missile)"
-	variant 5
+	variant 1
 		"Scrapper" 2
-	variant 6
+	variant 1
 		"Scrapper (Minimal)" 2
 	variant 1
 		"Scrapper"
 		"Sparrow"
-	variant 2
-		"Sparrow"
-		"Scrapper (Minimal)"
 	variant 1
-		"Berserker"
-		"Scrapper (Boarding)"
-	variant 1
-		"Berserker"
-		"Scrapper (Missile)"
-	variant 1
-		"Sparrow"
-		"Scrapper (Plasma Engine)"
-	variant 2
 		"Scrapper (Gatling)"
 
 fleet "Large Northern Pirates"
