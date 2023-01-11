@@ -61,7 +61,7 @@ void CustomSale::Load(const DataNode &node)
 		if((mode != "outfitters"
 				&& (size == (2 + isAdd)
 				|| (size > 2 && line.Token(2 + isAdd) != "%"))))
-			toConvert.push_back(make_pair(outfit, amount));
+			toConvert.push_back(make_pair(outfit, &amount));
 	};
 
 	for(const DataNode &child : node)

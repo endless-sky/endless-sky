@@ -97,7 +97,7 @@ private:
 	SellType sellType = SellType::DEFAULT;
 
 	// When loading we cannot be sure all outfits are loaded, so store those we need to convert into relative values.
-	std::vector<std::pair<const Outfit *, double &>> toConvert;
+	std::vector<std::pair<const Outfit *, double *>> toConvert;
 };
 
 #endif
