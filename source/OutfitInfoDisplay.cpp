@@ -121,7 +121,7 @@ namespace {
 		{"afterburner burn", 2},
 		{"afterburner slowing", 2},
 		{"afterburner disruption", 2},
-		{"afterburner duration", 5},
+		{"afterburner endurance", 5},
 		{"afterburner cooldown", 5},
 
 
