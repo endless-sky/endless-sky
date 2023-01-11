@@ -648,15 +648,15 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
 		}
-		else if(setting == DISCOVERY_MODE)
-		{
-			isOn = true;
-			text = Preferences::Has(DISCOVERY_MODE) ? "On Land" : "On Enter";
-		}
 		else if(setting == ALERT_INDICATOR)
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == DISCOVERY_MODE)
+		{
+			isOn = true;
+			text = Preferences::Has(DISCOVERY_MODE) ? "On Land" : "On Enter";
 		}
 		else
 			text = isOn ? "on" : "off";
