@@ -59,6 +59,7 @@ jobs:
           read-only: 'true'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
+        shell: bash
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v10
         with:
