@@ -288,22 +288,19 @@ jobs:
     runs-on: windows-2022
     env:
       CONTINUOUS: EndlessSky-win64-continuous.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v3
     # If no code changes occurred then we can download the latest continuous.
     - name: Download latest continuous
       if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake != 'true' }}
-      uses: robinraju/release-downloader@v1
-      with:
-        tag: continuous
-        file: ${{ env.CONTINUOUS }}
+      run: gh release download -R ${{ github.repository }} continuous -p ${{ env.CONTINUOUS }}
     - name: Extract and prepare continuous
       if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake != 'true' }}
       run: |
         Expand-Archive ${{ env.CONTINUOUS }} -DestinationPath continuous -Force
         COPY '.\continuous\EndlessSky.exe' .
         COPY '.\continuous\*.dll' .
-        COPY '.\continuous\credits.txt' .
     # Otherwise download the binary from CI.
     - name: Download game binary from CI
       if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake == 'true' }}
