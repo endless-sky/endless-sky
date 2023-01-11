@@ -47,7 +47,7 @@ void CustomSale::Load(const DataNode &node)
 	// Outfitters or outfits mode.
 	const string mode = node.Token(1);
 	name = node.Token(2);
-	auto parseValueOrOffset = [&isAdd, &mode, this](double &amount, const DataNode &line, const Outfit *outfit)
+	auto parseValueOrOffset = [&isAdd, &outfit, &mode, this](double &amount, const DataNode &line)
 	{
 		int size = line.Size();
 		// Default is 1, because outfits can be added only to have a custom sellType.
@@ -168,9 +168,9 @@ void CustomSale::Load(const DataNode &node)
 					outfit = outfits.Get(grandChild.Token(isAdd));
 
 					if(isValue)
-						parseValueOrOffset(relativeOutfitPrices[outfit], grandChild, outfit);
+						parseValueOrOffset(relativeOutfitPrices[outfit], grandChild);
 					else if(isOffset)
-						parseValueOrOffset(relativeOutfitOffsets[outfit], grandChild, outfit);
+						parseValueOrOffset(relativeOutfitOffsets[outfit], grandChild);
 				}
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
@@ -192,9 +192,9 @@ void CustomSale::Load(const DataNode &node)
 					const Sale<Outfit> *outfitter = items.Get(grandChild.Token(isAdd));
 
 					if(isValue)
-						parseValueOrOffset(relativePrices[outfitter], grandChild, outfit);
+						parseValueOrOffset(relativePrices[outfitter], grandChild);
 					else if(isOffset)
-						parseValueOrOffset(relativeOffsets[outfitter], grandChild, outfit);
+						parseValueOrOffset(relativeOffsets[outfitter], grandChild);
 				}
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
