@@ -647,7 +647,6 @@ void BoardingPanel::Plunder::Take(int count)
 // Update the text to reflect a change in the item count.
 void BoardingPanel::Plunder::UpdateStrings()
 {
-
 	double mass = UnitMass();
 	if(count == 1)
 		size = Format::Number(mass);
