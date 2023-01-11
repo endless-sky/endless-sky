@@ -345,10 +345,10 @@ void PlayerInfo::Load(const string &path)
 
 			if(child.Size() > 2)
 			{
-				string vistedStr = child.Token(2);
+				string visitedStr = child.Token(2);
 
-				if(!vistedStr.empty())
-					if(vistedStr == "outfitter")
+				if(!visitedStr.empty())
+					if(visitedStr == "outfitter")
 						VisitOutfitterAt(*GameData::Planets().Get(child.Token(1)));
 			}
 		}
