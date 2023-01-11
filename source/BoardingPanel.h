@@ -62,6 +62,7 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+
 private:
 	// This class represents one item in the list of outfits you can plunder.
 	class Plunder {
