@@ -132,9 +132,9 @@ private:
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
 	unsigned FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment);
-	unsigned CountFleetsWithId(const std::string &id);
+	unsigned CountFleetsWithCategory(const std::string &category);
 	void PruneSpawnedFleets();
-	void AddSpawnedFleet(const std::string &id);
+	void AddSpawnedFleet(const std::string &category);
 
 private:
 	class Target {

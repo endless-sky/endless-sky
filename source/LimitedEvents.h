@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // A class that represents an event that triggers randomly, but only a
 // limited number of these events can be active at once. This is
-// identified by the id, which is randomly generated if one is not
+// identified by the category, which is randomly generated if one is not
 // provided.  When the event first becomes possible (like entering a
 // system) then the event should immediately trigger initialCount
 // number of times.
@@ -35,7 +35,7 @@ public:
 
 
 	LimitedEvents(const T *event, int period = RandomEvent<T>::DEFAULT_PERIOD);
-	LimitedEvents(const T *event, int period, const std::string &id, int limit = NO_LIMIT,
+	LimitedEvents(const T *event, int period, const std::string &category, int limit = NO_LIMIT,
 		int initial = 0, unsigned flags = 0);
 
 	constexpr bool HasLimit() const noexcept;
@@ -44,15 +44,15 @@ public:
 	void RemoveLimit() noexcept;
 	constexpr int InitialCount() const noexcept;
 	int &InitialCount() noexcept;
-	constexpr const std::string &Id() const noexcept;
-	std::string &Id() noexcept;
+	constexpr const std::string &Category() const noexcept;
+	std::string &Category() noexcept;
 
 	constexpr unsigned GetFlags(unsigned mask) const noexcept;
 	constexpr unsigned GetFlags() const noexcept;
 	unsigned &GetFlags() noexcept;
 
 private:
-	std::string id;
+	std::string category;
 	int limit = NO_LIMIT;
 	int initialCount = 0;
 	unsigned flags = 0;
@@ -67,9 +67,9 @@ LimitedEvents<T>::LimitedEvents(const T *event, int period)
 }
 
 template <typename T>
-LimitedEvents<T>::LimitedEvents(const T *event, int period, const std::string &id,
+LimitedEvents<T>::LimitedEvents(const T *event, int period, const std::string &category,
 			int limit, int initial, unsigned flags)
-	: RandomEvent<T>(event, period), id(id), limit(limit), initialCount(initial), flags(flags)
+	: RandomEvent<T>(event, period), category(category), limit(limit), initialCount(initial), flags(flags)
 {
 }
 
@@ -110,15 +110,15 @@ int &LimitedEvents<T>::InitialCount() noexcept
 }
 
 template <typename T>
-constexpr const std::string &LimitedEvents<T>::Id() const noexcept
+constexpr const std::string &LimitedEvents<T>::Category() const noexcept
 {
-	return id;
+	return category;
 }
 
 template <typename T>
-std::string &LimitedEvents<T>::Id() noexcept
+std::string &LimitedEvents<T>::Category() noexcept
 {
-	return id;
+	return category;
 }
 
 

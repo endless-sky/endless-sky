@@ -19,15 +19,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-SpawnedFleet::SpawnedFleet(const string &id)
-	: id(id)
+SpawnedFleet::SpawnedFleet(const string &category)
+	: category(category)
 {
 }
 
 
 
-SpawnedFleet::SpawnedFleet(const string &id, list<shared_ptr<Ship>> &ships)
-	: id(id), ships(ships.begin(), ships.end())
+SpawnedFleet::SpawnedFleet(const string &category, list<shared_ptr<Ship>> &ships)
+	: category(category), ships(ships.begin(), ships.end())
 {
 }
 
@@ -49,16 +49,16 @@ void SpawnedFleet::ConnectToShips()
 
 
 
-string &SpawnedFleet::Id()
+string &SpawnedFleet::Category()
 {
-	return id;
+	return category;
 }
 
 
 
-const string &SpawnedFleet::Id() const
+const string &SpawnedFleet::Category() const
 {
-	return id;
+	return category;
 }
 
 
@@ -100,7 +100,7 @@ void SpawnedFleet::PruneShips()
 		}
 		catch(const bad_weak_ptr &bwp)
 		{
-			printf("%s: pruned a ship with no references\n", id.c_str());
+			printf("%s: pruned a ship with no references\n", category.c_str());
 			it = ships.erase(it);
 		}
 }

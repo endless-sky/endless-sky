@@ -1282,14 +1282,14 @@ void Engine::EnterSystem()
 
 	// If any fleets have an initial spawn count, spawn them.
 	for(const auto &fleet : system->Fleets())
-		if(fleet.InitialCount() > 0 && !fleet.Id().empty())
+		if(fleet.InitialCount() > 0 && !fleet.Category().empty())
 		{
 			unsigned toPlace = FleetPlacementLimit(fleet, 0, true);
 			for(unsigned i = 0; i < toPlace ; ++i)
 			{
 				fleetShips.clear();
 				fleet.Get()->Place(*system, fleetShips, true);
-				AddSpawnedFleet(fleet.Id());
+				AddSpawnedFleet(fleet.Category());
 			}
 		}
 
@@ -1303,7 +1303,7 @@ void Engine::EnterSystem()
 			{
 				fleetShips.clear();
 				fleet.Get()->Place(*system, fleetShips, true);
-				AddSpawnedFleet(fleet.Id());
+				AddSpawnedFleet(fleet.Category());
 			}
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
@@ -1766,7 +1766,7 @@ void Engine::SpawnFleets()
 
 			fleetShips.clear();
 			fleet.Get()->Enter(*player.GetSystem(), fleetShips, nullptr);
-			AddSpawnedFleet(fleet.Id());
+			AddSpawnedFleet(fleet.Category());
 		}
 }
 
@@ -2557,16 +2557,16 @@ unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned
 		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
 		return false;
 
-	int count = CountFleetsWithId(fleet.Id());
+	int count = CountFleetsWithCategory(fleet.Category());
 	int maximum = frames ? fleet.Limit() : fleet.InitialCount();
 	return static_cast<unsigned>(max<int>(0, maximum - count));
 }
 
 
 
-unsigned Engine::CountFleetsWithId(const string &id)
+unsigned Engine::CountFleetsWithCategory(const string &category)
 {
-	return id.empty() ? 0 : spawnedFleets.count(id);
+	return category.empty() ? 0 : spawnedFleets.count(category);
 }
 
 void Engine::PruneSpawnedFleets()
@@ -2589,11 +2589,11 @@ void Engine::PruneSpawnedFleets()
 
 
 
-void Engine::AddSpawnedFleet(const string &id)
+void Engine::AddSpawnedFleet(const string &category)
 {
-	shared_ptr<SpawnedFleet> fleet = make_shared<SpawnedFleet>(id, fleetShips);
+	shared_ptr<SpawnedFleet> fleet = make_shared<SpawnedFleet>(category, fleetShips);
 	fleet->ConnectToShips();
-	spawnedFleets.emplace(id, fleet);
+	spawnedFleets.emplace(category, fleet);
 	newShips.splice(newShips.end(), fleetShips);
 }
 

@@ -29,14 +29,14 @@ class SpawnedFleet: public std::enable_shared_from_this<SpawnedFleet>
 {
 public:
 	SpawnedFleet() = default;
-	SpawnedFleet(const std::string &id);
-	SpawnedFleet(const std::string &id, std::list<std::shared_ptr<Ship>> &ships);
+	SpawnedFleet(const std::string &category);
+	SpawnedFleet(const std::string &category, std::list<std::shared_ptr<Ship>> &ships);
 
 	// Set each ship's spawned fleet to this fleet.
 	void ConnectToShips();
 
-	std::string &Id();
-	const std::string &Id() const;
+	std::string &Category();
+	const std::string &Category() const;
 
 	std::vector<std::weak_ptr<Ship>> &Ships();
 	const std::vector<std::weak_ptr<Ship>> &Ships() const;
@@ -46,7 +46,7 @@ public:
 	void PruneShips();
 
 private:
-	std::string id;
+	std::string category;
 	std::vector<std::weak_ptr<Ship>> ships;
 };
 

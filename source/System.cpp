@@ -250,8 +250,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				if(child.HasChildren())
 					LoadFleet(child, fleets.back());
 
-				if(fleet.Id().empty())
-					fleet.Id() = value + "@" + name;
+				if(fleet.Category().empty())
+					fleet.Category() = value + "@" + name;
 			}
 		}
 		else if(key == "hazard")
@@ -987,21 +987,21 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 
 void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
 {
-	bool defaultFleetId = true;
+	bool defaultFleetCategory = true;
 	for(const DataNode &child : node)
 		if(child.Size() < 1)
 			continue;
-		else if(child.Token(0) == "id")
+		else if(child.Token(0) == "category")
 		{
 			if(child.Size() == 1)
 			{
-				events.Id() = string();
-				defaultFleetId = false;
+				events.Category() = string();
+				defaultFleetCategory = false;
 			}
 			else if(node.Size() >= 2)
 			{
-				events.Id() = node.Token(1);
-				defaultFleetId = false;
+				events.Category() = node.Token(1);
+				defaultFleetCategory = false;
 			}
 		}
 		else if(child.Token(0) == "period")
@@ -1014,8 +1014,8 @@ void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
 			events.GetFlags() |= Fleet::IGNORE_ENEMY_STRENGTH;
 		else
 			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
-	if(defaultFleetId)
-			events.GetFlags() |= Fleet::DEFAULT_FLEET_ID;
+	if(defaultFleetCategory)
+			events.GetFlags() |= Fleet::DEFAULT_FLEET_CATEGORY;
 }
 
 
