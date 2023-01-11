@@ -946,7 +946,7 @@ government "Quarg"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
-	"show title"
+	"show on log"
 	atrocities
 		"Nanotech Battery"
 		"Antimatter Core"
