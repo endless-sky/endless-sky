@@ -390,6 +390,10 @@ private:
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
+
+	// this map links plaent to a var that states if the outfitter in the
+	// planet was visited. if the planet doesn't have an outfitter, this
+	// value will always be false
 	std::map<const Planet *, bool> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
