@@ -2569,6 +2569,8 @@ unsigned Engine::CountFleetsWithCategory(const string &category)
 	return category.empty() ? 0 : spawnedFleets.count(category);
 }
 
+
+
 void Engine::PruneSpawnedFleets()
 {
 	for(auto it = spawnedFleets.begin(); it != spawnedFleets.end();)
