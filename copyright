@@ -908,8 +908,8 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
- images/ship/mammoth
- images/thumbnail/mammoth
+ images/ship/mammoth*
+ images/thumbnail/mammoth*
 Copyright: 1010todd
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Becca Tommaso. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
