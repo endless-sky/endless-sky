@@ -210,10 +210,11 @@ void CustomSale::FinishLoading()
 {
 	for(const auto &it : toConvert)
 		if(it.first->Cost() != 0)
-			it.second /= it.first->Cost();
+			*it.second /= it.first->Cost();
 		else
 		{
-			Logger::LogError(it.first->TrueName() + " has no base price and thus cannot have its price modified by pricing.");
+			Logger::LogError(it.first->TrueName() +
+				" has no base price and thus cannot have its price modified by pricing.");
 			relativeOutfitPrices.erase(it.first);
 			relativeOutfitOffsets.erase(it.first);
 		}
