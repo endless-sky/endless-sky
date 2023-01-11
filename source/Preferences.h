@@ -18,8 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
-#define DISCOVERY_MODE_LABEL "Outfitter Discovery"
-
 class Preferences {
 public:
 	enum class VSync : int_fast8_t {

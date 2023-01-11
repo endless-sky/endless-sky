@@ -46,7 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const string DISCOVERY_MODE = DISCOVERY_MODE_LABEL;
+	const string DISCOVERY_MODE = "Outfitter Discovery";
 
 	string Tons(int tons)
 	{

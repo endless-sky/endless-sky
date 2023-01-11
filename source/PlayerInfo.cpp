@@ -56,7 +56,7 @@ using namespace std;
 
 namespace {
 	const string KNOWN_OUTFIT_KEY = "known outfit";
-	const string DISCOVERY_MODE = DISCOVERY_MODE_LABEL;
+	const string DISCOVERY_MODE = "Outfitter Discovery";
 
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that

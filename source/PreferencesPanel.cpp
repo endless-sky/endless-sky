@@ -64,7 +64,7 @@ namespace {
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
-	const string DISCOVERY_MODE = DISCOVERY_MODE_LABEL;
+	const string DISCOVERY_MODE = "Outfitter Discovery";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
