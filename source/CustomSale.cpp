@@ -77,7 +77,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		{
 			if(!hasKey)
 				Clear();
-			else if(key == "outfit")
+			else if(key == "outfit" && mode == "outfits")
 			{
 				// If an outfit is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
@@ -92,7 +92,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 					relativeOutfitPrices.clear();
 				}
 			}
-			else if(key == "outfitter")
+			else if(key == "outfitter" && mode == "outfitters")
 			{
 				// If an outfitter is specified remove only that one. Otherwise clear all of them.
 				if(child.Size() >= 3)
