@@ -37,7 +37,7 @@ namespace
 
 
 
-void CustomSale::Load(const DataNode &node)
+void CustomSale::Load(const DataNode &node, bool eventChange)
 {
 	const Set<Sale<Outfit>> &items = GameData::Outfitters();
 	const Set<Outfit> &outfits = GameData::Outfits();
@@ -202,6 +202,9 @@ void CustomSale::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	if(eventChange)
+		FinishLoading();
 }
 
 

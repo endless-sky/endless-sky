@@ -48,7 +48,9 @@ public:
 
 
 public:
-	void Load(const DataNode &node);
+	// If the changes are events that means the outfits have already been loaded
+	// and we can call FinishLoading() straight away.
+	void Load(const DataNode &node, bool eventChange = false);
 	void FinishLoading();
 
 	// Adds another CustomSale to this one if the conditions allow it.
