@@ -1555,6 +1555,7 @@ ship "Kimek Briar"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
 		
@@ -1580,6 +1581,7 @@ ship "Kimek Briar" "Kimek Briar (Miner)"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
 

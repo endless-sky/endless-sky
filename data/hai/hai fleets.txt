@@ -531,7 +531,8 @@ fleet "Large Hai Merchant (Human)"
 		"Firebird (Hai Shields)"
 	variant 6
 		"Freighter (Hai)" 2
-		"Grasshopper" 2
+		"Grasshopper"
+		"Grasshopper (Ion)"
 	variant 3
 		"Freighter (Hai)" 2
 		"Grasshopper (Tracker)" 2
@@ -584,7 +585,8 @@ fleet "Large Hai Merchant (Human)"
 		"Headhunter (Hai)" 2
 	variant 1
 		"Bulk Freighter (Hai)"
-		"Grasshopper" 2
+		"Grasshopper"
+		"Grasshopper (Ion)"
 	variant 1
 		"Bulk Freighter (Hai)"
 		"Grasshopper (Tracker)" 2
@@ -597,10 +599,12 @@ fleet "Large Hai Merchant (Human)"
 		"Lightning Bug" 1
 	variant 2
 		"Bactrian (Hai Weapons)"
-		"Grasshopper" 3
+		"Grasshopper" 2
+		"Grasshopper (Ion)"
 	variant 2
 		"Bactrian (Hai Engines)"
-		"Grasshopper" 3
+		"Grasshopper"
+		"Grasshopper (Ion)" 2
 	variant 2
 		"Arrow (Hai)"
 	variant 1

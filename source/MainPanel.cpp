@@ -263,8 +263,9 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 	SDL_Keymod mod = SDL_GetModState();
 	hasShift = (mod & KMOD_SHIFT);
+	hasControl = (mod & KMOD_CTRL);
 
-	engine.Click(dragSource, dragSource, hasShift);
+	engine.Click(dragSource, dragSource, hasShift, hasControl);
 
 	return true;
 }
@@ -298,7 +299,7 @@ bool MainPanel::Release(int x, int y)
 	{
 		dragPoint = Point(x, y);
 		if(dragPoint.Distance(dragSource) > 5.)
-			engine.Click(dragSource, dragPoint, hasShift);
+			engine.Click(dragSource, dragPoint, hasShift, hasControl);
 
 		isDragging = false;
 	}
