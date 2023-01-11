@@ -531,8 +531,6 @@ void Engine::Wait()
 // Begin the next step of calculations.
 void Engine::Step(bool isActive)
 {
-	static const Color &playerShipSelectedPointerColor = *GameData::Colors().Get("ship target pointer player");
-
 	events.swap(eventQueue);
 	eventQueue.clear();
 
@@ -954,7 +952,7 @@ void Engine::Step(bool isActive)
 				ship->Position() - center,
 				Angle(45.) + ship->Facing(),
 				size,
-				playerShipSelectedPointerColor,
+				*GameData::Colors().Get("ship target pointer player"),
 				4});
 		}
 	}
