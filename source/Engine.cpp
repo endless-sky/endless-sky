@@ -201,75 +201,54 @@ namespace {
 
 	const Color &GetTargetOutlineColor(int type)
 	{
-		const Color &player = *GameData::Colors().Get("ship target outline player");
-		const Color &friendly = *GameData::Colors().Get("ship target outline friendly");
-		const Color &unfriendly = *GameData::Colors().Get("ship target outline unfriendly");
-		const Color &hostile = *GameData::Colors().Get("ship target outline hostile");
-		const Color &inactive = *GameData::Colors().Get("ship target outline inactive");
-		const Color &special = *GameData::Colors().Get("ship target outline special");
-		const Color &blink = *GameData::Colors().Get("ship target outline blink");
-
 		if(type == Radar::PLAYER)
-			return player;
+			return *GameData::Colors().Get("ship target outline player");
 		else if(type == Radar::FRIENDLY)
-			return friendly;
+			return *GameData::Colors().Get("ship target outline friendly");
 		else if(type == Radar::UNFRIENDLY)
-			return unfriendly;
+			return *GameData::Colors().Get("ship target outline unfriendly");
 		else if(type == Radar::HOSTILE)
-			return hostile;
+			return *GameData::Colors().Get("ship target outline hostile");
 		else if(type == Radar::SPECIAL)
-			return special;
+			return *GameData::Colors().Get("ship target outline special");
 		else if(type == Radar::BLINK)
-			return blink;
+			return *GameData::Colors().Get("ship target outline blink");
 		else
-			return inactive;
+			return *GameData::Colors().Get("ship target outline inactive");
 	}
 
 	const Color &GetPlanetTargetPointerColor(const Planet &planet)
 	{
-		const Color &friendly = *GameData::Colors().Get("planet target pointer friendly");
-		const Color &restricted = *GameData::Colors().Get("planet target pointer restricted");
-		const Color &hostile = *GameData::Colors().Get("planet target pointer hostile");
-		const Color &dominated = *GameData::Colors().Get("planet target pointer dominated");
-
 		switch(planet.GetFriendliness())
 		{
 			case Planet::Friendliness::FRIENDLY:
-				return friendly;
+				return *GameData::Colors().Get("planet target pointer friendly");
 			case Planet::Friendliness::RESTRICTED:
-				return restricted;
+				return *GameData::Colors().Get("planet target pointer restricted");
 			case Planet::Friendliness::HOSTILE:
-				return hostile;
+				return *GameData::Colors().Get("planet target pointer hostile");
 			case Planet::Friendliness::DOMINATED:
-				return dominated;
+				return *GameData::Colors().Get("planet target pointer dominated");
 		}
-		return restricted;
+		return *GameData::Colors().Get("planet target pointer unfriendly");
 	}
 
 	const Color &GetShipTargetPointerColor(int type)
 	{
-		const Color &player = *GameData::Colors().Get("ship target pointer player");
-		const Color &friendly = *GameData::Colors().Get("ship target pointer friendly");
-		const Color &unfriendly = *GameData::Colors().Get("ship target pointer unfriendly");
-		const Color &hostile = *GameData::Colors().Get("ship target pointer hostile");
-		const Color &inactive = *GameData::Colors().Get("ship target pointer inactive");
-		const Color &special = *GameData::Colors().Get("ship target pointer special");
-		const Color &blink = *GameData::Colors().Get("ship target pointer blink");
-
 		if(type == Radar::PLAYER)
-			return player;
+			return *GameData::Colors().Get("ship target pointer player");
 		else if(type == Radar::FRIENDLY)
-			return friendly;
+			return *GameData::Colors().Get("ship target pointer friendly");
 		else if(type == Radar::UNFRIENDLY)
-			return unfriendly;
+			return *GameData::Colors().Get("ship target pointer unfriendly");
 		else if(type == Radar::HOSTILE)
-			return hostile;
+			return *GameData::Colors().Get("ship target pointer hostile");
 		else if(type == Radar::SPECIAL)
-			return special;
+			return *GameData::Colors().Get("ship target pointer special");
 		else if(type == Radar::BLINK)
-			return blink;
+			return *GameData::Colors().Get("ship target pointer blink");
 		else
-			return inactive;
+			return *GameData::Colors().Get("ship target pointer inactive");
 	}
 
 	const Color &GetMinablePointerColor(bool selected)
