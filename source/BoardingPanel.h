@@ -108,7 +108,7 @@ private:
 		int64_t unitValue;
 		std::string size;
 		std::string value;
-		bool knownToPlayer;
+		bool knownToPlayer = false;
 	};
 
 private:
