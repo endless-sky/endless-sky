@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "DataNode.h"
 #include "GameData.h"
+#include "Outfit.h"
 #include "Planet.h"
 #include "Set.h"
 
@@ -69,7 +70,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 		bool hasKey = child.Size() > 1;
 
 		const string &key = child.Token(keyIndex);
-		
+
 		bool isValue = key == "value";
 		bool isOffset = key == "offset";
 
