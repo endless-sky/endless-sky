@@ -1843,15 +1843,15 @@ fleet "Small Southern Pirates"
 		"Clipper (Speedy)"
 	variant 1
 		"Modified Argosy"
-	variant 2
+	variant 3
 		"Scrapper"
 	variant 2
 		"Scrapper (Minimal)"
 	variant 1
 		"Scrapper (Mod Blaster)"
-	variant 1
+	variant 2
 		"Scrapper" 2
-	variant 1
+	variant 2
 		"Scrapper (Minimal)" 2
 	variant 1
 		"Scrapper"
