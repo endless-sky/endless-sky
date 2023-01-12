@@ -2390,6 +2390,9 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Bactrian"
 		"Dagger" 3
+	variant 1
+		"Cutlass"
+		"Headhunter (Strike)"
 
 fleet "pirate raid"
 	government "Pirate"

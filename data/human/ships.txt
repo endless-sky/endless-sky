@@ -1260,6 +1260,60 @@ ship "Cruiser"
 
 
 
+ship "Cutlass"
+	sprite "ship/pirate cutlass"
+	thumbnail "thumbnail/pirate cutlass"
+	attributes
+		category "Light Warship"
+		"cost" 3200000
+		"shields" 5800
+		"hull" 1800
+		"required crew" 8
+		"bunks" 12
+		"mass" 173
+		"drag" 3.
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 50
+		"outfit space" 297
+		"weapon capacity" 141
+		"engine capacity" 90
+		weapon
+			"blast radius" 72
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret"
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Tactical Scanner"
+		
+		"X3700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -12 57.5 0.7
+	engine 12 57.5 0.7
+	gun -16 -38 
+	gun 16 -38 
+	gun -28.5 -27.5
+	gun 28.5 -27.5
+	turret 0 -1 "Heavy Laser Turret"
+	leak "leak" 50 50
+	leak "flame" 80 80
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description `Modified from captured Navy Gunboats, thought little some pirates could do to improve the already advanced shielding they can still weld on a few extra reinforcements and an extra pair of guns giving them a tough and reasonably fast gun platform to quickly attack, plunder, and escape.`
+
+
+
 ship "Dagger"
 	sprite "ship/dagger"
 	thumbnail "thumbnail/dagger"
