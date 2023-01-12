@@ -1993,6 +1993,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		return;
 
 	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetTargetSystem()).first == JumpType::JUMP_DRIVE);
+
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 
 	// Departure angle calculations: Math.Atan2(b.Y - a.Y, b.X - a.X)
