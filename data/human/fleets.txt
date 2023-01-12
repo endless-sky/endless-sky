@@ -1863,6 +1863,9 @@ fleet "Small Southern Pirates"
 		"Scrapper (Gatling)"
 	variant 1
 		"Nighthawk"
+	variant 1
+		"Nighthawk"
+		"Sparrow" 2
 
 fleet "Large Southern Pirates"
 	government "Pirate"
