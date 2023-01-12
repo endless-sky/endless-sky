@@ -242,12 +242,15 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 	Point point(x, y);
+
+	double yDimension = GameData::Interfaces().Get("hardpoint buttons")->GetValue("y dimension");
 	if(point.X() <= nextHardpoint.X() + 145. && point.X() >= nextHardpoint.X() + 105.
-		&& point.Y() <= nextHardpoint.Y() + 12.5 && point.Y() >= nextHardpoint.Y() - 12.5)
+		&& point.Y() <= nextHardpoint.Y() + yDimension && point.Y() >= nextHardpoint.Y() - yDimension)
 		return DoKey('r');
 	if(point.X() <= previousHardpoint.X() + 60. && point.X() >= previousHardpoint.X()
-		&& point.Y() <= previousHardpoint.Y() + 12.5 && point.Y() >= previousHardpoint.Y() - 12.5)
+		&& point.Y() <= previousHardpoint.Y() + yDimension && point.Y() >= previousHardpoint.Y() - yDimension)
 		return DoKey('z');
+
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
 			selectedCommodity = zone.Value();
@@ -588,8 +591,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 	if(pages > 1)
 	{
+		const Interface *hardpointButtonValues = GameData::Interfaces().Get("hardpoint buttons");
 		layout.align = Alignment::RIGHT;
-		nextHardpoint = Point(centerX + LABEL_DX, 260.);
+		nextHardpoint = Point(centerX + LABEL_DX, hardpointButtonValues->GetValue("y position"));
 		font.Draw({"next>", layout}, nextHardpoint , Color(.5, .0));
 		layout.align = Alignment::LEFT;
 		previousHardpoint = Point(centerX - LABEL_DX - LABEL_WIDTH, 260.);

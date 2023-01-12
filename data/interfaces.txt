@@ -1226,6 +1226,12 @@ interface "info panel"
 
 
 
+interface "hardpoint buttons"
+	value "y position" 260.
+	value "y dimensions" 12.5
+
+
+
 interface "hail panel"
 	sprite "ui/hail panel"
 	string "header"
