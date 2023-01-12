@@ -46,7 +46,7 @@ public:
 
 	// For events that involve a T that can be disabled (like ships or fleets),
 	// this limit excludes events with disabled T
-  	constexpr bool HasNonDisabledLimit() const noexcept;
+	constexpr bool HasNonDisabledLimit() const noexcept;
 	constexpr int NonDisabledLimit() const noexcept;
 	int &NonDisabledLimit() noexcept;
 	void RemoveNonDisabledLimit() noexcept;
