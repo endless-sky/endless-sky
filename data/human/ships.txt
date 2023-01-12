@@ -1261,6 +1261,7 @@ ship "Cruiser"
 
 
 ship "Cutlass"
+	plural "Cutlasses"
 	sprite "ship/pirate cutlass"
 	thumbnail "thumbnail/pirate cutlass"
 	attributes
