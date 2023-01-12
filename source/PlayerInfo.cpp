@@ -74,6 +74,33 @@ namespace {
 			ships[0] = flagship;
 		}
 	}
+
+	string EntryToString(SystemEntry entryType)
+	{
+		switch(entryType)
+		{
+			case SystemEntry::HYPERDRIVE:
+				return "hyperdrive";
+			case SystemEntry::JUMP:
+				return "jump drive";
+			case SystemEntry::WORMHOLE:
+				return "wormhole";
+			default:
+			case SystemEntry::TAKE_OFF:
+				return "takeoff";
+		}
+	}
+
+	SystemEntry StringToEntry(const string &entry)
+	{
+		if(entry == "hyperdrive")
+			return SystemEntry::HYPERDRIVE;
+		else if(entry == "jump drive")
+			return SystemEntry::JUMP;
+		else if(entry == "wormhole")
+			return SystemEntry::WORMHOLE;
+		return SystemEntry::TAKE_OFF;
+	}
 }
 
 
@@ -183,6 +210,10 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(child.Token(0) == "system entry method" && child.Size() >= 2)
+			entry = StringToEntry(child.Token(1));
+		else if(child.Token(0) == "previous system" && child.Size() >= 2)
+			previousSystem = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
@@ -444,11 +475,15 @@ void PlayerInfo::Save() const
 				if(Files::Exists(files[i + 1]))
 					Files::Move(files[i + 1], files[i]);
 			if(planet->HasSpaceport())
-				Save(root + "~~last-spaceport.txt");
+				Save(root + "~~previous-spaceport.txt");
 		}
 	}
 
 	Save(filePath);
+
+	// Save global conditions:
+	DataWriter globalConditions(Files::Config() + "global conditions.txt");
+	GameData::GlobalConditions().Save(globalConditions);
 }
 
 
@@ -705,9 +740,24 @@ const CoreStartData &PlayerInfo::StartData() const noexcept
 
 
 
+void PlayerInfo::SetSystemEntry(SystemEntry entryType)
+{
+	entry = entryType;
+}
+
+
+
+SystemEntry PlayerInfo::GetSystemEntry() const
+{
+	return entry;
+}
+
+
+
 // Set the player's current start system, and mark that system as visited.
 void PlayerInfo::SetSystem(const System &system)
 {
+	this->previousSystem = this->system;
 	this->system = &system;
 	Visit(system);
 }
@@ -718,6 +768,13 @@ void PlayerInfo::SetSystem(const System &system)
 const System *PlayerInfo::GetSystem() const
 {
 	return system;
+}
+
+
+
+const System *PlayerInfo::GetPreviousSystem() const
+{
+	return previousSystem;
 }
 
 
@@ -1766,7 +1823,7 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 	// If a mission can be offered right now, move it to the start of the list
 	// so we know what mission the callback is referring to, and return it.
 	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && it->HasSpace(*this))
+		if(it->IsAtLocation(location) && it->CanOffer(*this) && it->CanAccept(*this))
 		{
 			availableMissions.splice(availableMissions.begin(), availableMissions, it);
 			return &availableMissions.front();
@@ -1826,7 +1883,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 		return;
 
 	for(auto it = missionList.begin(); it != missionList.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
+		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->CanAccept(*this))
 		{
 			string message = it->BlockedMessage(*this);
 			if(!message.empty())
@@ -2174,7 +2231,7 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 // Check which secondary weapons the player has selected.
-const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
+const set<const Outfit *> &PlayerInfo::SelectedSecondaryWeapons() const
 {
 	return selectedWeapons;
 }
@@ -2182,7 +2239,7 @@ const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
 
 
 // Cycle through all available secondary weapons.
-void PlayerInfo::SelectNext()
+void PlayerInfo::SelectNextSecondary()
 {
 	if(!flagship || flagship->Outfits().empty())
 		return;
@@ -2233,6 +2290,25 @@ void PlayerInfo::SelectNext()
 	// was selected when we entered this function.
 	if(selectedWeapons.size() == 1)
 		selectedWeapons.clear();
+}
+
+
+
+void PlayerInfo::DeselectAllSecondaries()
+{
+	selectedWeapons.clear();
+}
+
+
+
+void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
+{
+	if(!flagship)
+		return;
+
+	const auto it = selectedWeapons.insert(outfit);
+	if(!it.second)
+		selectedWeapons.erase(it.first);
 }
 
 
@@ -2705,6 +2781,21 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&yearProvider = conditions.GetProviderNamed("year");
 	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
 
+	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
+	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
+
+	auto &&daysUntilYearEndProvider = conditions.GetProviderNamed("days until year end");
+	daysUntilYearEndProvider.SetGetFunction([this](const string &name) { return date.DaysUntilYearEnd(); });
+
+	auto &&daysSinceEpochProvider = conditions.GetProviderNamed("days since epoch");
+	daysSinceEpochProvider.SetGetFunction([this](const string &name) { return date.DaysSinceEpoch(); });
+
+	auto &&daysSinceStartProvider = conditions.GetProviderNamed("days since start");
+	daysSinceStartProvider.SetGetFunction([this](const string &name)
+	{
+		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch();
+	});
+
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
@@ -2759,6 +2850,35 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
+
+	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		const Outfit &attributes = base ? flagship->BaseAttributes() : flagship->Attributes();
+		if(attribute == "cost")
+			return attributes.Cost();
+		if(attribute == "mass")
+			return round(attributes.Mass() * 1000.);
+		return round(attributes.Get(attribute) * 1000.);
+	};
+
+	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
+	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	{
+		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
+	};
+	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
+	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
+
+	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
+	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	{
+		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
+	};
+	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
+	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
@@ -3085,6 +3205,26 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// This condition corresponds to the method by which the flagship entered the current system.
+	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
+	auto systemEntryFun = [this](const string &name) -> bool
+	{
+		return name == "entered system by: " + EntryToString(entry);
+	};
+	systemEntryProvider.SetHasFunction(systemEntryFun);
+	systemEntryProvider.SetGetFunction(systemEntryFun);
+
+	// This condition corresponds to the last system the flagship was in.
+	auto &&previousSystemProvider = conditions.GetProviderPrefixed("previous system: ");
+	auto previousSystemFun = [this](const string &name) -> bool
+	{
+		if(!previousSystem)
+			return false;
+		return name == "previous system: " + previousSystem->Name();
+	};
+	previousSystemProvider.SetHasFunction(previousSystemFun);
+	previousSystemProvider.SetGetFunction(previousSystemFun);
+
 	// Conditions to determine if flagship is in a system and on a planet.
 	auto &&flagshipSystemProvider = conditions.GetProviderPrefixed("flagship system: ");
 	auto flagshipSystemFun = [this](const string &name) -> bool
@@ -3096,6 +3236,14 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipSystemProvider.SetHasFunction(flagshipSystemFun);
 	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
 
+	auto &&flagshipLandedProvider = conditions.GetProviderNamed("flagship landed");
+	auto flagshipLandedFun = [this](const string &name) -> bool
+	{
+		return (flagship && flagship->GetPlanet());
+	};
+	flagshipLandedProvider.SetHasFunction(flagshipLandedFun);
+	flagshipLandedProvider.SetGetFunction(flagshipLandedFun);
+
 	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
 	auto flagshipPlanetFun = [this](const string &name) -> bool
 	{
@@ -3105,6 +3253,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
+
+	auto &&flagshipPlanetAttributesProvider = conditions.GetProviderPrefixed("flagship planet attribute: ");
+	auto flagshipPlanetAttributesFun = [this](const string &name) -> bool
+	{
+		if(!flagship || !flagship->GetPlanet())
+			return false;
+		string attribute = name.substr(strlen("flagship planet attribute: "));
+		return flagship->GetPlanet()->Attributes().count(attribute);
+	};
+	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
+	flagshipPlanetAttributesProvider.SetHasFunction(flagshipPlanetAttributesFun);
 
 	// Read only exploration conditions.
 	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
@@ -3124,6 +3283,55 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
+
+	// Read-only navigation conditions.
+	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
+	{
+		if(!origin)
+			return -1;
+
+		auto distanceMap = DistanceMap(origin);
+		if(!distanceMap.HasRoute(destination))
+			return -1;
+		return distanceMap.Days(destination);
+	};
+
+	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
+	auto hyperjumpsToSystemFun = [this, HyperspaceTravelDays](const string &name) -> int
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
+		if(!system)
+		{
+			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: "))
+					+ "\" referred to in condition is not valid.");
+			return -1;
+		}
+		return HyperspaceTravelDays(this->GetSystem(), system);
+	};
+	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
+	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
+
+	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
+	auto hyperjumpsToPlanetFun = [this, HyperspaceTravelDays](const string &name) -> int
+	{
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
+		if(!planet)
+		{
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not valid.");
+			return -1;
+		}
+		const System *system = planet->GetSystem();
+		if(!system)
+		{
+			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+					+ "\" referred to in condition is not in any system.");
+			return -1;
+		}
+		return HyperspaceTravelDays(this->GetSystem(), system);
+	};
+	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
+	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
 
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
@@ -3149,6 +3357,29 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		gov->SetReputation(value);
 		return true;
+	});
+
+	// Global conditions setters and getters:
+	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
+	globalProvider.SetHasFunction([](const string &name) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Has(condition);
+	});
+	globalProvider.SetGetFunction([](const string &name) -> int64_t
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Get(condition);
+	});
+	globalProvider.SetSetFunction([](const string &name, int64_t value) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Set(condition, value);
+	});
+	globalProvider.SetEraseFunction([](const string &name) -> bool
+	{
+		string condition = name.substr(strlen("global: "));
+		return GameData::GlobalConditions().Erase(condition);
 	});
 }
 
@@ -3189,7 +3420,10 @@ void PlayerInfo::CreateMissions()
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
-			if(it->IsAtLocation(Mission::SPACEPORT) && !it->HasPriority())
+			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
+				|| it->IsAtLocation(Mission::SHIPYARD)
+				|| it->IsAtLocation(Mission::OUTFITTER);
+			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
 				++it;
@@ -3453,6 +3687,9 @@ void PlayerInfo::Save(const string &path) const
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
+	out.Write("system entry method", EntryToString(entry));
+	if(previousSystem)
+		out.Write("previous system", previousSystem->Name());
 	if(system)
 		out.Write("system", system->Name());
 	if(planet)

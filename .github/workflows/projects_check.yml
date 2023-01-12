@@ -1,4 +1,4 @@
-name: Validate Project files
+name: Check
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
     paths:
       - '.github/workflows/projects_check.yml'
       - 'copyright'
-      - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
       - 'tests/unit/**'
@@ -18,7 +17,6 @@ on:
     paths:
       - '.github/workflows/projects_check.yml'
       - 'copyright'
-      - 'EndlessSky.xcodeproj/**'
       - '*.cbp'
       - 'source/**'
       - 'tests/unit/**'
@@ -32,44 +30,39 @@ jobs:
   changed:
     uses: ./.github/workflows/compute-changes.yml
 
-  check-xcode:
-    needs: changed
-    if: ${{ needs.changed.outputs.xcode_files || needs.changed.outputs.game_code }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Install dependencies
-      run: python3 -m pip install --user docopt openstep_parser pbxproj
-    - name: Validate XCode .pbxproj file
-      run: ./utils/check_xcode.sh
-    - name: Upload XCode patch
-      if: failure()
-      uses: actions/upload-artifact@v2
-      with:
-        name: xcode-project.patch
-        path: xcode-project.patch
 
   check-codeblocks:
+    name: CodeBlocks
     needs: changed
     if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Validate Code::Blocks project files
       run: ./utils/check_codeblocks.sh
 
 
+  check-cmake:
+    name: CMake
+    needs: changed
+    if: ${{ needs.changed.outputs.cmake || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Validate CMake project files
+      run: ./utils/check_cmake.sh
+
+
 
   validate-copyright:
+    name: Copyright
     needs: changed
     if: ${{ needs.changed.outputs.copyright == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - name: Install dependencies
