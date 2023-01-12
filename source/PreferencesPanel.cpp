@@ -134,87 +134,13 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		// Import plugin
 		AndroidFile af;
-		std::string zipcontents = af.GetFile("Select plugin zipfile", "application/zip");
-		if (!zipcontents.empty())
-		{
-			// huh... I feel like something like this should exist in the stl already
-			class static_buf: public std::streambuf
-			{
-			public:
-				static_buf(const std::string& s) { setg((char*)s.data(), (char*)s.data(), (char*)s.data() + s.size()); }
-				virtual pos_type seekoff(off_type off, std::ios_base::seekdir dir, std::ios_base::openmode) override
-				{
-					switch (dir)
-					{
-					case std::ios::beg:
-						setg(eback(), eback() + off, egptr()); return off;
-					case std::ios::end:
-						setg(eback(), egptr() + off, egptr()); return egptr() - eback() + off;
-					case std::ios::cur:
-						setg(eback(), gptr() + off, egptr());
-						return gptr() - eback() + off;
-					default: return -1;
-					}
-				}
-				virtual pos_type seekpos(pos_type off, std::ios_base::openmode m) override { return seekoff(off, std::ios::beg, m); }
-			} sb(zipcontents);
-			std::istream in(&sb);
-			ZipParser archive(in);
-			if (archive.Valid())
-			{
-				const std::string plugin_path = Files::Config() + "/plugins/";
+		bool success = af.GetAndUnzipFile("Select plugin zipfile", Files::Config() + "/plugins/");
 
-				bool success = true;
-				for (auto& f: archive)
-				{
-					if (f.Valid() && !f.Name().empty())
-					{
-						if (f.Name().back() == '/')
-						{
-							// explicit directory entry
-							Files::MakeDir(plugin_path + f.Name());
-						}
-						else
-						{
-							// I don't know if we can rely on the zip file containing
-							// an explicit entry for each subdirectory
-							size_t slash_pos = f.Name().find_last_of("/\\");
-							if (slash_pos != std::string::npos)
-							{
-								std::string path = f.Name().substr(0, slash_pos);
-								Files::MakeDir(plugin_path + path);
-							}
-							std::vector<uint8_t> contents = f.Contents();
-							if (f.Valid())
-							{
-								Files::Write(plugin_path + f.Name(),
-									std::string(contents.data(), contents.data() + contents.size()));
-							}
-							else
-							{
-								GetUI()->Push(new Dialog("Error decompressing " + f.Name() + " from zipfile: " + f.Error()));
-								success = false;
-								break;
-							}
-						}
-					}
-					else
-					{
-						GetUI()->Push(new Dialog("Error parsing zip file: " + f.Error()));
-						success = false;
-						break;
-					}
-				}
-				if (success)
-				{
-					GetUI()->Push(new Dialog(GetUI(), &UI::Quit, "Plugin installed. Endless Sky needs to be restarted."));
-				}
-			}
-			else
-			{
-				GetUI()->Push(new Dialog("Error loading zip file: " + archive.Error()));
-			}
+		if (success)
+		{
+			GetUI()->Push(new Dialog(GetUI(), &UI::Quit, "Plugin installed. Endless Sky needs to be restarted."));
 		}
+		// else error has already been reported
 	}
 	else if (page == 'p' && key == 'r')
 	{
