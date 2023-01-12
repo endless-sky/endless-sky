@@ -1284,8 +1284,8 @@ void Engine::EnterSystem()
 	for(const auto &fleet : system->Fleets())
 		if(fleet.InitialCount() > 0 && !fleet.Category().empty())
 		{
-			unsigned toPlace = FleetPlacementLimit(fleet, 0, true);
-			for(unsigned i = 0; i < toPlace ; ++i)
+			size_t toPlace = FleetPlacementLimit(fleet, 0, true);
+			for(size_t i = 0; i < toPlace ; ++i)
 			{
 				fleetShips.clear();
 				fleet.Get()->Place(*system, fleetShips, true);
@@ -1752,7 +1752,14 @@ void Engine::SpawnFleets()
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
+			{
+				// if(!fleet.Category().empty())
+				// 	printf("Category \"%s\" not spawning due to !gov.\n", fleet.Category().c_str());
 				continue;
+			}
+
+			// if(!fleet.Category().empty() && fleet.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
+			// 	printf("Category \"%s\" has ignore enemy strength.\n", fleet.Category().c_str());
 
 			if(!fleet.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
 			{
@@ -1761,8 +1768,15 @@ void Engine::SpawnFleets()
 				// massive numbers of "reinforcements" during a battle.
 				int64_t enemyStrength = ai.EnemyStrength(gov);
 				if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
+				{
+					// if(!fleet.Category().empty())
+					// 	printf("Category \"%s\" cannot spawn due to enemy strength flags are %u.\n", fleet.Category().c_str(), fleet.GetFlags());
 					continue;
+				}
 			}
+
+			// if(!fleet.Category().empty())
+			// 	printf("Category \"%s\" spawning.\n", fleet.Category().c_str());
 
 			fleetShips.clear();
 			fleet.Get()->Enter(*player.GetSystem(), fleetShips, nullptr);
@@ -2535,7 +2549,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 
-unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment)
+size_t Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment)
 {
 	// frames = how many frames worth of ships to place:
 	//    0 = used to indicate the fleet.InitialCount() number of fleets should
@@ -2545,28 +2559,79 @@ unsigned Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned
 	//    1 = the normal value, used when spawning random event ships
 
 	if(requireGovernment && !fleet.Get()->GetGovernment())
+	{
 		// Fleet has no government, but caller required one.
+		// if(!fleet.Category().empty())
+		// 	printf("Category \"%s\" cannot spawn due to lack of government.\n", fleet.Category().c_str());
 		return 0;
+	}
 	else if(frames && Random::Int(fleet.Period()) >= frames)
 		// It is not yet time to place this fleet.
 		return 0;
-	else if(frames && !fleet.HasLimit())
+	else if(frames && !fleet.HasLimit() && !fleet.HasNonDisabledLimit())
 		// This is not an initalCount spawn, and the fleet is unlimited.
 		return numeric_limits<int>::max();
 	else if(!frames && fleet.InitialCount() <= 0)
 		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
-		return false;
+		return 0;
 
-	int count = CountFleetsWithCategory(fleet.Category());
-	int maximum = frames ? fleet.Limit() : fleet.InitialCount();
-	return static_cast<unsigned>(max<int>(0, maximum - count));
+	if(!frames)
+		return static_cast<size_t>(max<int>(0, fleet.InitialCount() -
+			CountFleetsWithCategory(fleet.Category())));
+
+	int available = numeric_limits<int>::max();
+
+	// Count the disabled & non-disabled ships together first since that is a cheap calculation.
+	if(fleet.HasLimit())
+	{
+		available = max<int>(0, fleet.Limit() - CountFleetsWithCategory(fleet.Category()));
+		// if(!available)
+		// 	printf("Fleet \"%s\" not available %d = %d - %lu due to limit\n", fleet.Category().c_str(),
+		// 		available, fleet.Limit(), CountFleetsWithCategory(fleet.Category()));
+	}
+
+	// More expensive non-disabled count is last, if requested:
+	if(available && fleet.HasNonDisabledLimit())
+	{
+		available = min<int>(available, max<int>(0, fleet.NonDisabledLimit() -
+			CountNonDisabledFleetsWithCategory(fleet.Category())));
+		// if(!available)
+		// 	printf("Category \"%s\" not available %d = %d - %lu due to non-disabled limit\n", fleet.Category().c_str(),
+		// 		available, fleet.NonDisabledLimit(), CountNonDisabledFleetsWithCategory(fleet.Category()));
+	}
+
+	// if(!fleet.Category().empty() && available)
+	// 	printf("Category \"%s\" available %d\n", fleet.Category().c_str(), available);
+
+	return static_cast<size_t>(available);
 }
 
 
 
-unsigned Engine::CountFleetsWithCategory(const string &category)
+size_t Engine::CountFleetsWithCategory(const string &category)
 {
 	return category.empty() ? 0 : spawnedFleets.count(category);
+}
+
+
+
+size_t Engine::CountNonDisabledFleetsWithCategory(const string &category)
+{
+	if(category.empty())
+		return 0;
+	auto range = spawnedFleets.equal_range(category);
+	size_t count = 0;
+	for(auto it = range.first; it != range.second; it++)
+		try {
+			shared_ptr<SpawnedFleet> fleet(it->second);
+			if(fleet->CountNonDisabledShips())
+				// Some ships are not yet disabled or destroyed
+				count++;
+		}
+		catch(const bad_weak_ptr &bwp)
+		{
+		}
+	return count;
 }
 
 

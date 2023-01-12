@@ -88,6 +88,23 @@ size_t SpawnedFleet::CountShips() const
 
 
 
+size_t SpawnedFleet::CountNonDisabledShips() const
+{
+	size_t count = 0;
+	for(auto &weakShip : ships)
+		try {
+			shared_ptr<Ship> ship(weakShip);
+			if(!ship->IsDestroyed() && !ship->IsDisabled())
+				count++;
+		}
+		catch(const bad_weak_ptr &bwp)
+		{
+		}
+	return count;
+}
+
+
+
 void SpawnedFleet::PruneShips()
 {
 	for(auto it = ships.begin(); it != ships.end();)
@@ -100,7 +117,6 @@ void SpawnedFleet::PruneShips()
 		}
 		catch(const bad_weak_ptr &bwp)
 		{
-			printf("%s: pruned a ship with no references\n", category.c_str());
 			it = ships.erase(it);
 		}
 }

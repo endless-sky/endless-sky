@@ -36,14 +36,25 @@ public:
 
 	LimitedEvents(const T *event, int period = RandomEvent<T>::DEFAULT_PERIOD);
 	LimitedEvents(const T *event, int period, const std::string &category, int limit = NO_LIMIT,
-		int initial = 0, unsigned flags = 0);
+		int initial = 0, unsigned flags = 0, int nonDisabledLimit = NO_LIMIT);
 
+	// Maximum number of events that can be active at once
 	constexpr bool HasLimit() const noexcept;
 	constexpr int Limit() const noexcept;
 	int &Limit() noexcept;
 	void RemoveLimit() noexcept;
+
+	// For events that involve a T that can be disabled (like ships or fleets),
+	// this limit excludes events with disabled T
+  	constexpr bool HasNonDisabledLimit() const noexcept;
+	constexpr int NonDisabledLimit() const noexcept;
+	int &NonDisabledLimit() noexcept;
+	void RemoveNonDisabledLimit() noexcept;
+
+	// The number of events to spawn initially, such as when entering a system.
 	constexpr int InitialCount() const noexcept;
 	int &InitialCount() noexcept;
+
 	constexpr const std::string &Category() const noexcept;
 	std::string &Category() noexcept;
 
@@ -56,6 +67,7 @@ private:
 	int limit = NO_LIMIT;
 	int initialCount = 0;
 	unsigned flags = 0;
+	int nonDisabledLimit = NO_LIMIT;
 };
 
 
@@ -68,8 +80,9 @@ LimitedEvents<T>::LimitedEvents(const T *event, int period)
 
 template <typename T>
 LimitedEvents<T>::LimitedEvents(const T *event, int period, const std::string &category,
-			int limit, int initial, unsigned flags)
-	: RandomEvent<T>(event, period), category(category), limit(limit), initialCount(initial), flags(flags)
+			int limit, int initial, unsigned flags, int nonDisabledLimit)
+	: RandomEvent<T>(event, period), category(category), limit(limit),
+		initialCount(initial), flags(flags), nonDisabledLimit(nonDisabledLimit)
 {
 }
 
@@ -95,6 +108,30 @@ template <typename T>
 void LimitedEvents<T>::RemoveLimit() noexcept
 {
 	limit = NO_LIMIT;
+}
+
+template <typename T>
+constexpr bool LimitedEvents<T>::HasNonDisabledLimit() const noexcept
+{
+	return nonDisabledLimit >= 0;
+}
+
+template <typename T>
+constexpr int LimitedEvents<T>::NonDisabledLimit() const noexcept
+{
+	return nonDisabledLimit;
+}
+
+template <typename T>
+int &LimitedEvents<T>::NonDisabledLimit() noexcept
+{
+	return nonDisabledLimit;
+}
+
+template <typename T>
+void LimitedEvents<T>::RemoveNonDisabledLimit() noexcept
+{
+	nonDisabledLimit = NO_LIMIT;
 }
 
 template <typename T>

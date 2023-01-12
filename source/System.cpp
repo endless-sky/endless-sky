@@ -248,10 +248,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					fleet.Period() = child.Value(valueIndex + 1);
 
 				if(child.HasChildren())
-					LoadFleet(child, fleets.back());
+					LoadFleet(child, fleet);
 
 				if(fleet.Category().empty())
 					fleet.Category() = value + "@" + name;
+
+				if(fleet.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
+					printf("FLEET %s HAS IGNORE ENEMY STRENGTH\n", fleet.Category().c_str());
 			}
 		}
 		else if(key == "hazard")
@@ -991,27 +994,26 @@ void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
 	for(const DataNode &child : node)
 		if(child.Size() < 1)
 			continue;
-		else if(child.Token(0) == "category")
+		else if(child.CheckForKeywords(0, { "ignore", "enemy", "strength" }))
 		{
-			if(child.Size() == 1)
-			{
-				events.Category() = string();
-				defaultFleetCategory = false;
-			}
-			else if(node.Size() >= 2)
-			{
-				events.Category() = node.Token(1);
-				defaultFleetCategory = false;
-			}
+			events.GetFlags() |= Fleet::IGNORE_ENEMY_STRENGTH;
+			printf("\"%s\" IGNORE ENEMY STRENGTH\n",events.Category().c_str());
+			if(!events.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
+				printf("ERROR: DID NOT SET IGNORE ENEMY STRENGTH\n");
+		}
+		else if(child.Token(0) == "category" && child.Size() >= 2)
+		{
+			events.Category() = child.Token(1);
+			defaultFleetCategory = false;
 		}
 		else if(child.Token(0) == "period")
 			child.ExpectNumber(1, "period", events.Period());
+		else if(child.CheckForKeywords(0, {"non-disabled", "limit"}))
+			child.ExpectNumber(2, "non-disabled limit", events.NonDisabledLimit());
 		else if(child.Token(0) == "limit")
 			child.ExpectNumber(1, "limit", events.Limit());
-		else if(child.Size() >= 2 && child.CheckForKeywords(0, { "initial", "count" }))
+		else if(child.CheckForKeywords(0, { "initial", "count" }))
 			child.ExpectNumber(2, "initial count", events.InitialCount());
-		else if(child.CheckForKeywords(0, { "ignore", "enemy", "strength" }))
-			events.GetFlags() |= Fleet::IGNORE_ENEMY_STRENGTH;
 		else
 			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
 	if(defaultFleetCategory)

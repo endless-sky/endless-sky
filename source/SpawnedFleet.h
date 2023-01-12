@@ -42,6 +42,7 @@ public:
 	const std::vector<std::weak_ptr<Ship>> &Ships() const;
 
 	size_t CountShips() const;
+	size_t CountNonDisabledShips() const;
 
 	void PruneShips();
 

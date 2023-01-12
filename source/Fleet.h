@@ -51,7 +51,6 @@ public:
 	static const unsigned IGNORE_ENEMY_STRENGTH = 2;
 
 
-
 	Fleet() = default;
 	// Construct and Load() at the same time.
 	Fleet(const DataNode &node);
