@@ -1310,7 +1310,7 @@ ship "Cutlass"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description `Modified from captured Navy Gunboats, thought little some pirates could do to improve the already advanced shielding they can still weld on a few extra reinforcements and an extra pair of guns giving them a tough and reasonably fast gun platform to quickly attack, plunder, and escape.`
+	description `This ship is  a modified version of a captured Navy Gunboat. Although there is little most pirates can do to improve the already advanced shielding they can still weld on a few extra hull reinforcements and an extra pair of guns giving them a tough and reasonably fast gun platform to quickly attack, plunder, and escape.`
 
 
 
