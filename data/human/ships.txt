@@ -2662,7 +2662,7 @@ ship "Nighthawk"
 	explode "medium explosion" 18
 	explode "large explosion" 2
 	"final explode" "final explosion small"
-	description "A modified Blackbird for ground raids and slave trading. Comes with extra turret mount for suppressive fire on ground operations and additional hull reinforcement to resist returning fire."
+	description "This is a modified Blackbird for ground raids and slave trading. It comes with an extra turret mount for suppressive fire on ground operations and additional hull reinforcement to resist returning fire."
 
 
 
