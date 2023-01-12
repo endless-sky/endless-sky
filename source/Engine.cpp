@@ -1752,14 +1752,7 @@ void Engine::SpawnFleets()
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
-			{
-				// if(!fleet.Category().empty())
-				// 	printf("Category \"%s\" not spawning due to !gov.\n", fleet.Category().c_str());
 				continue;
-			}
-
-			// if(!fleet.Category().empty() && fleet.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
-			// 	printf("Category \"%s\" has ignore enemy strength.\n", fleet.Category().c_str());
 
 			if(!fleet.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
 			{
@@ -1768,15 +1761,8 @@ void Engine::SpawnFleets()
 				// massive numbers of "reinforcements" during a battle.
 				int64_t enemyStrength = ai.EnemyStrength(gov);
 				if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
-				{
-					// if(!fleet.Category().empty())
-					// 	printf("Category \"%s\" cannot spawn due to enemy strength flags are %u.\n", fleet.Category().c_str(), fleet.GetFlags());
 					continue;
-				}
 			}
-
-			// if(!fleet.Category().empty())
-			// 	printf("Category \"%s\" spawning.\n", fleet.Category().c_str());
 
 			fleetShips.clear();
 			fleet.Get()->Enter(*player.GetSystem(), fleetShips, nullptr);
@@ -2561,8 +2547,6 @@ size_t Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned f
 	if(requireGovernment && !fleet.Get()->GetGovernment())
 	{
 		// Fleet has no government, but caller required one.
-		// if(!fleet.Category().empty())
-		// 	printf("Category \"%s\" cannot spawn due to lack of government.\n", fleet.Category().c_str());
 		return 0;
 	}
 	else if(frames && Random::Int(fleet.Period()) >= frames)
@@ -2583,25 +2567,12 @@ size_t Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned f
 
 	// Count the disabled & non-disabled ships together first since that is a cheap calculation.
 	if(fleet.HasLimit())
-	{
 		available = max<int>(0, fleet.Limit() - CountFleetsWithCategory(fleet.Category()));
-		// if(!available)
-		// 	printf("Fleet \"%s\" not available %d = %d - %lu due to limit\n", fleet.Category().c_str(),
-		// 		available, fleet.Limit(), CountFleetsWithCategory(fleet.Category()));
-	}
 
 	// More expensive non-disabled count is last, if requested:
 	if(available && fleet.HasNonDisabledLimit())
-	{
 		available = min<int>(available, max<int>(0, fleet.NonDisabledLimit() -
 			CountNonDisabledFleetsWithCategory(fleet.Category())));
-		// if(!available)
-		// 	printf("Category \"%s\" not available %d = %d - %lu due to non-disabled limit\n", fleet.Category().c_str(),
-		// 		available, fleet.NonDisabledLimit(), CountNonDisabledFleetsWithCategory(fleet.Category()));
-	}
-
-	// if(!fleet.Category().empty() && available)
-	// 	printf("Category \"%s\" available %d\n", fleet.Category().c_str(), available);
 
 	return static_cast<size_t>(available);
 }

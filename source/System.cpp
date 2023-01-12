@@ -252,9 +252,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 				if(fleet.Category().empty())
 					fleet.Category() = value + "@" + name;
-
-				if(fleet.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
-					printf("FLEET %s HAS IGNORE ENEMY STRENGTH\n", fleet.Category().c_str());
 			}
 		}
 		else if(key == "hazard")
@@ -995,12 +992,7 @@ void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
 		if(child.Size() < 1)
 			continue;
 		else if(child.CheckForKeywords(0, { "ignore", "enemy", "strength" }))
-		{
 			events.GetFlags() |= Fleet::IGNORE_ENEMY_STRENGTH;
-			printf("\"%s\" IGNORE ENEMY STRENGTH\n",events.Category().c_str());
-			if(!events.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
-				printf("ERROR: DID NOT SET IGNORE ENEMY STRENGTH\n");
-		}
 		else if(child.Token(0) == "category" && child.Size() >= 2)
 		{
 			events.Category() = child.Token(1);
