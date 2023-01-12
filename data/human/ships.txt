@@ -1265,7 +1265,7 @@ ship "Cutlass"
 	thumbnail "thumbnail/pirate cutlass"
 	attributes
 		category "Light Warship"
-		"cost" 3200000
+		"cost" 3500000
 		"shields" 5800
 		"hull" 1800
 		"required crew" 8
@@ -1274,7 +1274,7 @@ ship "Cutlass"
 		"drag" 3.
 		"heat dissipation" .75
 		"fuel capacity" 600
-		"cargo space" 50
+		"cargo space" 56
 		"outfit space" 297
 		"weapon capacity" 141
 		"engine capacity" 90
@@ -1287,14 +1287,14 @@ ship "Cutlass"
 		"Heavy Laser" 4
 		"Heavy Laser Turret"
 		
-		"RT-I Radiothermal"
+		"Dwarf Core"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		"Tactical Scanner"
 		
-		"X3700 Ion Thruster"
-		"X2200 Ion Steering"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
 		"Hyperdrive"
 		
 	engine -12 57.5 0.7
