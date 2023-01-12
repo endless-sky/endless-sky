@@ -711,11 +711,6 @@ ship "Mammoth" "Mammoth (Hai)"
 		outfits
 			"Loot" 400
 
-ship "Marauder Firebird" "Marauder Firebird (Bars)"
-	cargo
-		outfits
-			"Gold Bars" 15
-
 # SPOILER: he payed some mercenaries to do it as well, best one gets the loot. You can also decline this and they go uncontested.
 # ionic materials (probably stolen from Hai tech in part) used to make the prototype weaponry for your Modified Beetle.
 mission "Unfettered: Loot: Ion Cannon Materials"
@@ -791,7 +786,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		dialog `You can't find the ship here, but you find a bit of abandoned cargo. There may have been a fight... Maybe the ship has ran away to a nearby system.`
 	on enter "Sumar"
 		conversation
-			`Multiple pirate ships have already disabled the ship and taken control of it. They seem to be engaged in repairs, and hail you once they notice your presence.`
+			`Multiple pirate ships have already disabled the ship, and are about to take control of it. They hail you once they notice your presence.`
 			`	"This is our loot, maggot! We've already done most of the work, you won't be stealing the bounty now, especially since the boss asked for this fat ship to be taken down, and no other. Get out of here right now, and we'll pretend we didn't see your ugly ship!" They aren't in the mood for negotiations.`
 			choice
 				`	"I'll be taking that cargo, like it or not."`
@@ -813,9 +808,22 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		ship "Mammoth (Hai)" "Blood and Thunder"
 	npc evade
 		government "Mercenaries"
-		personality disables staying
+		personality disables plunders harvests staying coward
 		system "Sumar"
-		fleet "Small Northern Pirates" 6
+		# this is a quick fleet of captured ships
+		fleet
+			names pirate
+				"Raven"
+				"Headhunter"
+				"Berserker"
+				"Hawk"
+				"Fury"
+				"Wasp" 2
+				"Quicksilver"
+				"Splinter"
+				"Hauler"
+				"Scrapper (Gatling)"
+				"Scrapper"
 		ship "Marauder Firebird (Bars)" "Valkiry"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"

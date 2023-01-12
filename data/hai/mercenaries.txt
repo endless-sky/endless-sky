@@ -40,6 +40,28 @@ ship "Sea Scorpion" "Sari'Sea Scorpion (Pulse)"
 		outfits
 			"Gold Bars" 15
 
+ship "Marauder Firebird" "Marauder Firebird (Bars)"
+	crew 37
+	outfits
+		"Plasma Cannon" 4
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		
+		"Boulder Reactor"
+		"Supercapacitor"
+		"S-970 Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Bunk Room" 3
+		"Quantum Keystone"
+		"Outfits Expansion"
+		"Nerve Gas" 40
+		
+		"Ionic Afterburner"
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+	cargo
+		outfits
+			"Gold Bars" 15
 
 # Ship of She of the Void, Shadow of Mintaka, leader of the Marauders.
 ship Antlion
