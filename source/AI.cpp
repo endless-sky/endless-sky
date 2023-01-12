@@ -1995,11 +1995,12 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetTargetSystem()).first == JumpType::JUMP_DRIVE);
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 
-	// Departure angle calculations:
-	double shipAngleToCenter = asin(ship.Position().Y() * ship.Position().Y()
-								/ ship.Position().LengthSquared()) * conversionValue;
-	double destinationAngleToCenter = asin(direction.Y() * direction.Y()
-								/ direction.LengthSquared()) * conversionValue;
+	// Departure angle calculations: Math.Atan2(b.Y - a.Y, b.X - a.X)
+	Point normVector(0.0, 1.0);
+	double shipAngleToCenter = atan2(ship.Position().Y() - normVector.Y(),
+								ship.Position().X() - normVector.X()) * conversionValue;
+	double destinationAngleToCenter = atan2(direction.Y() - normVector.Y(),
+								direction.X() - normVector.X()) * conversionValue;
 	double departureAngle = isJump ?
 		ship.GetSystem()->JumpDepartureAngle() :
 		ship.GetSystem()->HyperDepartureAngle();
@@ -2010,10 +2011,23 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		ship.GetSystem()->HyperDepartureDistance();
 	double squaredDeparture = departure * departure + SAFETY_OFFSET;
 
+	// NOTE: The AI for finding departure points is very simple right now, we might want
+	// to improve this in the future. For Example find the closest point to the triangle
+	// you can generate with angle and distance.
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
-		//if(abs(shipAngleToCenter - destinationAngleToCenter) > departureAngle)
-		Point closestDeparturePoint = ship.Position().Unit() * (departure + SAFETY_OFFSET);
+		Point closestDeparturePoint;
+		if(abs(shipAngleToCenter - destinationAngleToCenter) > departureAngle && departureAngle)
+			closestDeparturePoint = direction.Unit() * (departure + SAFETY_OFFSET);
+		else
+			closestDeparturePoint = ship.Position().Unit() * (departure + SAFETY_OFFSET);
+		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
+	}
+	else if(abs(shipAngleToCenter - destinationAngleToCenter) > departureAngle && departureAngle)
+	{
+		// To avoid loops, if departure is lower 100 add a strong safety offset.
+		Point closestDeparturePoint = direction.Unit() *
+			(departure > 100 ? departure + SAFETY_OFFSET : SAFETY_OFFSET * 200.);
 		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
 	}
 	else if(!isJump && scramThreshold)
