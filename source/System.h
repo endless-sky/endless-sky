@@ -175,7 +175,6 @@ private:
 	void UpdateNeighbors(const Set<System> &systems, double distance);
 
 	// Utility function for Load()
-	void ReadInt(const DataNode &node, const std::string &name, int &value, int index);
 	void LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events);
 
 

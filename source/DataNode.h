@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DATA_NODE_H_
 #define DATA_NODE_H_
 
-#include <initializer_list>
 #include <list>
 #include <string>
 #include <vector>
@@ -65,22 +64,6 @@ public:
 	// Print a message followed by a "trace" of this node and its parents.
 	int PrintTrace(const std::string &message = "") const;
 
-	// High-level parsing API.
-
-	// These have built-in safeguards to handle type mismatches
-	// and out-of-bounds indices.
-
-	// Check for a number and assign the number to the result, or
-	// print a trace (with a context string) if it is not
-	// there. Does not change the result if the number is missing,
-	// so the current value can serve as the default.
-	template<class T>
-	bool ExpectNumber(int index, const std::string &context, T &result) const;
-
-	// Return true if the specified list of keywords begins at this index.
-	bool CheckForKeywords(int index, std::initializer_list<const char *>) const;
-
-
 
 private:
 	// Adjust the parent pointers when a copy is made of a DataNode.
@@ -102,19 +85,5 @@ private:
 };
 
 
-template<class T>
-bool DataNode::ExpectNumber(int index, const std::string &context, T &result) const
-{
-	if(static_cast<int>(tokens.size()) < index + 1)
-		PrintTrace("Missing " + context);
-	else if(!IsNumber(index))
-		PrintTrace("Expected number for " + context);
-	else
-	{
-		result = static_cast<T>(Value(index));
-		return true;
-	}
-	return false;
-}
 
 #endif
