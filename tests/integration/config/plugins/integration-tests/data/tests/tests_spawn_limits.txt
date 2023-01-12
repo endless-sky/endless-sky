@@ -188,7 +188,7 @@ fleet "Disabled 2 Test Fleet"
 
 test "Spawn Limit Tests"
 	status active
-	description "Tests if the AI can use the afterburner as regular thruster for departure and landing."
+	description "Tests if random interval and system entry fleet spawn limits work."
 	sequence
 		inject "Spawn Limits Test"
 		call "Load First Savegame"
