@@ -291,9 +291,6 @@ namespace {
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
 
-	// A conversion value from radians to degree:
-	const double conversionValue = (180.0 / PI);
-
 	// An offset to prevent the ship from being not quite over the point to departure.
 	const double SAFETY_OFFSET = 1.;
 }
@@ -1998,9 +1995,9 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	// Departure angle calculations: Math.Atan2(b.Y - a.Y, b.X - a.X)
 	Point normVector(0.0, 1.0);
 	double shipAngleToCenter = atan2(ship.Position().Y() - normVector.Y(),
-								ship.Position().X() - normVector.X()) * conversionValue;
+		ship.Position().X() - normVector.X()) * TO_DEG;
 	double destinationAngleToCenter = atan2(direction.Y() - normVector.Y(),
-								direction.X() - normVector.X()) * conversionValue;
+		direction.X() - normVector.X()) * TO_DEG;
 	double departureAngle = isJump ?
 		ship.GetSystem()->JumpDepartureAngle() :
 		ship.GetSystem()->HyperDepartureAngle();
