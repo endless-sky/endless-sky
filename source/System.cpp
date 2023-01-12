@@ -1012,7 +1012,7 @@ void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
 		else if(child.Size() > 1 && child.Token(0) == "limit")
 			events.Limit() = child.Value(1);
 
-		else if(child.Size() > 2 && child.Token(0) == "initial" && child.Token(1) == "count" )
+		else if(child.Size() > 2 && child.Token(0) == "initial" && child.Token(1) == "count")
 			events.InitialCount() = child.Value(2);
 
 		else
