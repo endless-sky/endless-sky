@@ -42,29 +42,6 @@ namespace {
 	const double VOLUME = 2000.;
 	// Above this supply amount, price differences taper off:
 	const double LIMIT = 20000.;
-
-	void ReadInt(const DataNode &node, int index, const std::string &context, int &result)
-	{
-		if(static_cast<int>(node.Size()) < index + 1)
-			node.PrintTrace("Missing numeric argument for " + context);
-		else if(!node.IsNumber(index))
-			node.PrintTrace("Expecting a number for " + context + " but got \"" + node.Token(index) + "\"");
-		else
-			result = static_cast<int>(node.Value(index));
-	}
-
-	bool CheckForKeywords(const DataNode &node, int index, std::initializer_list<const char *> list)
-	{
-		int tokenIndex = index;
-		int size = node.Size();
-		for(auto keyword : list)
-		{
-			if(tokenIndex < 0 || tokenIndex >= size || keyword != node.Token(tokenIndex))
-				return false;
-			tokenIndex++;
-		}
-		return true;
-	}
 }
 
 const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
@@ -1016,26 +993,27 @@ void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
 		if(child.Size() < 1)
 			continue;
 
-		else if(CheckForKeywords(child, 0, { "ignore", "enemy", "strength" }))
+		else if(child.Size() >= 3 && child.Token(0) == "ignore" && child.Token(1) == "enemy"
+				&& child.Token(2) == "strength")
 			events.GetFlags() |= Fleet::IGNORE_ENEMY_STRENGTH;
 
-		else if(child.Token(0) == "category" && child.Size() >= 2)
+		else if(child.Size() > 1 && child.Token(0) == "category")
 		{
 			events.Category() = child.Token(1);
-			defaultFleetCategory = false;
+			defaultFleetCategory = events.Category().empty();
 		}
 
-		else if(child.Token(0) == "period")
-			ReadInt(child, 1, "period", events.Period());
+		else if(child.Size() > 1 && child.Token(0) == "period")
+			events.Period() = child.Value(1);
 
-		else if(CheckForKeywords(child, 0, {"non-disabled", "limit"}))
-			ReadInt(child, 2, "non-disabled limit", events.NonDisabledLimit());
+		else if(child.Size() > 2 && child.Token(0) == "non-disabled" && child.Token(1) == "limit")
+			events.NonDisabledLimit() = child.Value(2);
 
-		else if(child.Token(0) == "limit")
-			ReadInt(child, 1, "limit", events.Limit());
+		else if(child.Size() > 1 && child.Token(0) == "limit")
+			events.Limit() = child.Value(1);
 
-		else if(CheckForKeywords(child, 0, { "initial", "count" }))
-			ReadInt(child, 2, "initial count", events.InitialCount());
+		else if(child.Size() > 2 && child.Token(0) == "initial" && child.Token(1) == "count" )
+			events.InitialCount() = child.Value(2);
 
 		else
 			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
