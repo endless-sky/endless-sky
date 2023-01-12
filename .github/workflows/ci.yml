@@ -299,7 +299,7 @@ jobs:
       if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake != 'true' }}
       run: |
         Expand-Archive ${{ env.CONTINUOUS }} -DestinationPath continuous -Force
-        COPY '.\continuous\EndlessSky.exe' .
+        COPY '.\continuous\Endless Sky.exe' .
         COPY '.\continuous\*.dll' .
     # Otherwise download the binary from CI.
     - name: Download game binary from CI
