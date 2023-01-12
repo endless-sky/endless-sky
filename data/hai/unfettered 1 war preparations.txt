@@ -813,6 +813,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		# this is a quick fleet of captured ships
 		fleet
 			names pirate
+			variant
 				"Raven"
 				"Headhunter"
 				"Berserker"
