@@ -362,7 +362,7 @@ fleet "Korath Stealth Relay"
 	fighters "korath probes"
 	cargo 0
 	personality
-		timid
+		timid uninterested
 	variant
 		"Kas'ik Tek 7 (Self-Destruct)" 12
 

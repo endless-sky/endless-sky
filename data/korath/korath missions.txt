@@ -370,7 +370,7 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				goto navy
 			label navy
 			`	Batu appears annoyed briefly before returning to his usual calm. "The Navy has prepared an elite strike force that is ready to take on the task. Teeneep has generously loaned us some Hai outfits to ensure our success. However, General Choot'k-"`
-			`	Choot'k interrupts. "The urgency of my call was for you to have the right of first refusal. When you return here, successful in your mission, we'll be sure to have some good Korath gear ready for you."`
+			`	Choot'k interrupts. "The urgency of my call was for you to have the 'right of first refusal.' When you return here, successful in your mission, we'll be sure to have some good Korath gear ready for you."`
 			`	Batu sighs. "The other leaders have agreed to this. However, if you would rather not do it, cancel the mission and the Navy will take care of it-" Choot'k cuts in, "-but don't expect to gain any respect for failure."`
 			choice
 				`	"Sound's like fun! I'm in."`
