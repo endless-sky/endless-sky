@@ -124,11 +124,15 @@ public:
 	double AsteroidBeltRadius() const;
 	// Get the list of asteroid belts.
 	const WeightedList<double> &AsteroidBelts() const;
+	// Get the system's invisible fence radius.
+	double InvisibleFenceRadius() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
+	// Get the starfield density for this system.
+	double StarfieldDensity() const;
 	// Check if this system is inhabited.
 	bool IsInhabited(const Ship *ship) const;
 	// Check if ships of the given government can refuel in this system.
@@ -210,9 +214,11 @@ private:
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;
+	double invisibleFenceRadius = 10000.;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
+	double starfieldDensity = 1.;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.

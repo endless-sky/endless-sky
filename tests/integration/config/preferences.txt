@@ -23,8 +23,8 @@
 "help: multiple ships" 1
 "help: navigation" 1
 "help: outfitter" 1
-"help: outfitter 2" 1
-"help: outfitter 3" 1
+"help: cargo management" 1
+"help: uninstalling and storage" 1
 "help: ship info" 1
 "help: stranded" 1
 "help: trading" 1
