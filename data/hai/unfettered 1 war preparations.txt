@@ -806,6 +806,17 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		system "Sumar"
 		personality derelict staying target
 		ship "Mammoth (Hai)" "Blood and Thunder"
+	npc
+		government "Mercenaries"
+		personality derelict
+		system "Rajak"
+		fleet
+			names pirate
+			variant
+				"Scrapper (Gatling)"
+				"Wasp"
+				"Hawk"
+				"Fury"
 	npc evade
 		government "Mercenaries"
 		personality disables plunders harvests staying coward
@@ -817,13 +828,9 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				"Raven"
 				"Headhunter"
 				"Berserker"
-				"Hawk"
-				"Fury"
-				"Wasp" 2
 				"Quicksilver"
 				"Splinter"
 				"Hauler"
-				"Scrapper (Gatling)"
 				"Scrapper"
 		ship "Marauder Firebird (Bars)" "Valkiry"
 	on fail
