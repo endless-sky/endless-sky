@@ -78,8 +78,7 @@ public:
 	bool ExpectNumber(int index, const std::string &context, T &result) const;
 
 	// Return true if the specified list of keywords begins at this index.
-	template<class T>
-	bool CheckForKeywords(int index, std::initializer_list<T>) const;
+	bool CheckForKeywords(int index, std::initializer_list<const char *>) const;
 
 
 
@@ -116,21 +115,6 @@ bool DataNode::ExpectNumber(int index, const std::string &context, T &result) co
 		return true;
 	}
 	return false;
-}
-
-
-template<class T>
-bool DataNode::CheckForKeywords(int index, std::initializer_list<T> list) const
-{
-	int tokenIndex = index;
-	int size = tokens.size();
-	for(auto keyword : list)
-	{
-		if(tokenIndex < 0 || tokenIndex >= size || keyword != tokens[tokenIndex])
-			return false;
-		tokenIndex++;
-	}
-	return true;
 }
 
 #endif

@@ -295,3 +295,17 @@ void DataNode::Reparent() noexcept
 		child.Reparent();
 	}
 }
+
+
+bool DataNode::CheckForKeywords(int index, std::initializer_list<const char *> list) const
+{
+	int tokenIndex = index;
+	int size = tokens.size();
+	for(auto keyword : list)
+	{
+		if(tokenIndex < 0 || tokenIndex >= size || keyword != tokens[tokenIndex])
+			return false;
+		tokenIndex++;
+	}
+	return true;
+}
