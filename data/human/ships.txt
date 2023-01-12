@@ -2653,8 +2653,8 @@ ship "Nighthawk"
 	engine -24 68 .6
 	engine 24 68 .6
 	turret 0 -6 "Heavy Anti-Missile Turret"
-	turret -26 15 "Heavy Laser Turret"
-	turret 26 15 "Heavy Laser Turret"
+	turret -26 15 "Quad Blaster Turret"
+	turret 26 15 "Quad Blaster Turret"
 	leak "leak" 50 50
 	leak "flame" 70 80
 	explode "tiny explosion" 15
