@@ -3400,7 +3400,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		string fleetName = name.substr(strlen("fleet count by name: "));
 		fleetCounters.erase(fleetName);
-                return true;
+		return true;
 	});
 
 	// Global conditions setters and getters:
