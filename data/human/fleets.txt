@@ -1864,7 +1864,7 @@ fleet "Small Southern Pirates"
 	variant 1
 		"Nighthawk"
 	variant 1
-		"Nighthawk"
+		"Nighthawk (Slaver)"
 		"Sparrow" 2
 
 fleet "Large Southern Pirates"
@@ -1978,7 +1978,7 @@ fleet "Large Southern Pirates"
 		"Falcon (Laser)"
 	variant 1
 		"Falcon"
-		"Nighthawk"
+		"Nighthawk (Raider)"
 
 fleet "Small Independent"
 	government "Independent"
