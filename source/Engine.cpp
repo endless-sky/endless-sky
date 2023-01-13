@@ -1168,6 +1168,8 @@ void Engine::EnterSystem()
 	if(!flagship)
 		return;
 
+	updateFleetCounters = player.Conditions().Get(PlayerInfo::UPDATE_FLEET_COUNTERS_CONDITION_NAME);
+
 	doEnter = true;
 	player.IncrementDate();
 	const Date &today = player.GetDate();
@@ -1244,7 +1246,7 @@ void Engine::EnterSystem()
 			{
 				fleetShips.clear();
 				fleet.Get()->Place(*system, fleetShips, true);
-				AddSpawnedFleet(fleet.Category());
+				AddSpawnedFleet(fleet);
 			}
 		}
 
@@ -1261,7 +1263,7 @@ void Engine::EnterSystem()
 			{
 				fleetShips.clear();
 				fleet.Get()->Place(*system, fleetShips, true);
-				AddSpawnedFleet(fleet.Category());
+				AddSpawnedFleet(fleet);
 			}
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
@@ -1724,7 +1726,7 @@ void Engine::SpawnFleets()
 
 			fleetShips.clear();
 			fleet.Get()->Enter(*player.GetSystem(), fleetShips, nullptr);
-			AddSpawnedFleet(fleet.Category());
+			AddSpawnedFleet(fleet);
 		}
 }
 
@@ -2583,12 +2585,19 @@ void Engine::PruneSpawnedFleets()
 
 
 
-void Engine::AddSpawnedFleet(const string &category)
+void Engine::AddSpawnedFleet(const LimitedEvents<Fleet> &fleetEvent)
 {
+	const std::string &category = fleetEvent.Category();
 	shared_ptr<SpawnedFleet> fleet = make_shared<SpawnedFleet>(category, fleetShips);
 	fleet->ConnectToShips();
 	spawnedFleets.emplace(category, fleet);
 	newShips.splice(newShips.end(), fleetShips);
+	if(updateFleetCounters)
+	{
+		const std::string &name = fleetEvent.Get()->Name();
+		if(!name.empty())
+			player.FleetCounters()[name]++;
+	}
 }
 
 

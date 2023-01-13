@@ -79,6 +79,7 @@ public:
 	static void Place(const System &system, Ship &ship);
 
 	int64_t Strength() const;
+	const std::string &Name() const;
 
 
 private:

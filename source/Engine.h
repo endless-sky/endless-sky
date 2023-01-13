@@ -136,7 +136,7 @@ private:
 	size_t CountFleetsWithCategory(const std::string &category);
 	size_t CountNonDisabledFleetsWithCategory(const std::string &category);
 	void PruneSpawnedFleets();
-	void AddSpawnedFleet(const std::string &category);
+	void AddSpawnedFleet(const LimitedEvents<Fleet> &category);
 
 private:
 	class Target {
@@ -173,6 +173,7 @@ private:
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
 	std::unordered_multimap<std::string, std::weak_ptr<SpawnedFleet>> spawnedFleets;
+	bool updateFleetCounters = false;
 
 	// Temporary usage while adding a fleet:
 	std::list<std::shared_ptr<Ship>> fleetShips;
