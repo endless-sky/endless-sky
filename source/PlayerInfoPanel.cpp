@@ -693,11 +693,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		return;
 
 	// Colors to draw with.
-	Color back = *GameData::Colors().Get("faint");
-	Color dim = *GameData::Colors().Get("medium");
-	Color bright = *GameData::Colors().Get("bright");
-	Color elsewhere = *GameData::Colors().Get("dim");
-
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &selectedBack = *GameData::Colors().Get("dimmer");
 	const Color &dim = *GameData::Colors().Get("medium");
