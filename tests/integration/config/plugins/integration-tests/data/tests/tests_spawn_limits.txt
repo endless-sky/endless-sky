@@ -72,7 +72,7 @@ test-data "Spawn Limits Test"
 					initial count 1
 				fleet "Expensive Ship"
 					period 1
-					limit 5
+					limit 10
 					ignore enemy strength
 					skip system entry
 
@@ -166,7 +166,7 @@ test "Spawn Limit Tests"
 			"Test fleet count by name: Expensive Ship" == "test: fleet count by name Expensive Ship"
 		assert
 			"test: fleet count by name Disabled Shuttle" == 0
-			"test: fleet count by name Expensive Ship" > 3
+			"test: fleet count by name Expensive Ship" > 5
 			"test: fleet count by name Staying Scarab" ==  1
 			"test: fleet count by name Disabled Aphid" == 0
 			"test: fleet count by name Disabled Star Barge" == 1
