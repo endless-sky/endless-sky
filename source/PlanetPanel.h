@@ -71,10 +71,10 @@ private:
 
 	WrappedText text;
 
-	// Ships that cannot fly for some reason.
-	std::vector<std::shared_ptr<Ship>> cannotFly;
+	// Out of system (absent) ships that cannot fly for some reason.
+	std::vector<std::shared_ptr<Ship>> absentCannotFly;
 
-	// Cache flightchecks to not calculate them twice before each takeoff.
+	// Cache flight checks to not calculate them twice before each takeoff.
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> flightChecks;
 };
 
