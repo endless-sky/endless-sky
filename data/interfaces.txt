@@ -27,6 +27,8 @@ color "faint" .1 .1 .1 0.
 color "flagship" .5 .5 .1 0.
 color "disabled" .5 .3 .1 0.
 color "dead" .4 0. 0. 0.
+color "cannot fly" .5 .1 .1 0.
+color "flight issues" .5 .4 0. 0.
 
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).

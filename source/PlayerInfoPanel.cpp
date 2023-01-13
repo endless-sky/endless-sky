@@ -701,8 +701,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	const Color &dead = *GameData::Colors().Get("dead");
 	const Color &flagship = *GameData::Colors().Get("flagship");
 	const Color &disabled = *GameData::Colors().Get("disabled");
-	Color cannotFly(.5f, .1f, .1f, 0.f);
-	Color flightIssues(.5f, .4f, 0.f, 0.f);
+	const Color &cannotFly = *GameData::Colors().Get("cannot fly");
+	const Color &flightIssues = *GameData::Colors().Get("flight issues");
 
 	// Table attributes.
 	Table table;
