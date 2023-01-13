@@ -2614,7 +2614,7 @@ ship "Nighthawk"
 	attributes
 		category "Utility"
 		"cost" 2530000
-		"shields" 4400
+		"shields" 4000
 		"hull" 1100
 		"required crew" 4
 		"bunks" 28
@@ -2622,7 +2622,7 @@ ship "Nighthawk"
 		"drag" 5.2
 		"heat dissipation" .65
 		"fuel capacity" 700
-		"cargo space" 40
+		"cargo space" 15
 		"outfit space" 362
 		"weapon capacity" 102
 		"engine capacity" 123
