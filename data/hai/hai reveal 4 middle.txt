@@ -818,7 +818,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 				goto conclusion
 			
 			label conclusion
-			`	"You must take me to <planet> immediately. This is something I should investigate this personally if I hope to find the truth of things, but I cannot land my own ship there right now because of... bureaucratic reasons. My people here can analyze any sensor logs or other data you have on Scar's Legion. You've found solid proof of the Elders arming pirates, though I doubt this is a lead on the kidnappings. At <planet>, I will catch up with our mutual friend from the secure spaceport. I have sufficient privileges to be there, even if I have no clearance for landing my ship."`
+			`	"You must take me to <planet> immediately. This is something I should investigate personally if I hope to find the truth of things, but I cannot land my own ship there right now because of... bureaucratic reasons. My people here can analyze any sensor logs or other data you have on Scar's Legion. You've found solid proof of the Elders arming pirates, though I doubt this is a lead on the kidnappings. At <planet>, I will catch up with our mutual friend from the secure spaceport. I have sufficient privileges to be there, even if I have no clearance for landing my ship."`
 			`	She waves over Wayou towards you. "Please, give Wayou any relevant data files while I pack for departure. I suspect that I have kept you away from <planet> far too long as it is. According to my sources, people there await your return."`
 			`	You've barely had time to load your logs onto a data stick and hand them to Wayou before Teeneep is packed and waiting to depart. It would seem your course is set.`
 				accept
@@ -907,7 +907,7 @@ mission "Hai Reveal [A06a] The Calm"
 			label relays
 			`	Remington nods. "Yes, well, this end of space has never had relays since nobody needed them. For a long time the marauders here have been using the communications darkness out this way to do their business with impunity. The sole advantage of these relays is that ships out this way can call for help when they couldn't before. So the relays the Syndicate have been putting up have been getting destroyed, along with several of our security ships.`
 			`	"This one that you see in front of you is different, though." He makes eye contact with Alondo and very deliberately emphases the word as he continues, "WE have been working with the Hai to make relays that look human-made, but utilize advanced Hai technology to baffle scanners attempting to find them. They'll form communication links the marauders can't destroy."`
-			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered a trustworthy human who's not likely to get blown up by a marauder."`
+			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered by a trustworthy human who's not likely to get blown up by a marauder."`
 			choice
 				`	"I can deploy the relays for you."`
 					goto accepted
