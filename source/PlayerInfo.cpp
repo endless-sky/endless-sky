@@ -1000,7 +1000,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			auto checks = ship->FlightCheck();
 			if(!checks.empty())
 				flightChecks.emplace(ship, checks);
-			
+
 			// Only check bays for in-system ships.
 			if(ship->GetSystem() != system)
 				continue;
