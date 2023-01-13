@@ -157,7 +157,6 @@ public:
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
-
 	int64_t Strength() const;
 	// Get the attraction and deterrance of this ship, for pirate raids.
 	// This is only useful for the player's ships.
