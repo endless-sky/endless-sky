@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "text/Format.h"
 #include "UI.h"
 
 using namespace std;
@@ -257,7 +258,7 @@ bool Panel::DoHelp(const string &name) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(message));
+	ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }
