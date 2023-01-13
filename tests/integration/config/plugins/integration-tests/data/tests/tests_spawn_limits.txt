@@ -244,11 +244,14 @@ test "Spawn Limit Tests"
 		branch wait4
 			"test: steps to wait" > 0
 
+		# store the conditions in test variables so we know which one fails
+		apply
+			"Test Government 1 A boarded" == "test: Test Government 1 A boarded"
+			"Test Government 1 B boarded" == "test: Test Government 1 B boarded"
+			"Test Government 1 C boarded" == "test: Test Government 1 C boarded"
+			"Test Government 2 boarded" == "test: Test Government 2 boarded"
 		assert
-			not "test: Test Government 1 A boarded"
-		assert
+			"test: Test Government 1 A boarded" == 0
 			"test: Test Government 1 B boarded" == 1
-		assert
 			"test: Test Government 1 C boarded" == 1
-		assert
 			"test: Test Government 2 boarded" == 1
