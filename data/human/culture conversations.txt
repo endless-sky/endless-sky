@@ -349,6 +349,16 @@ mission "Local Politics"
 		not attributes "station"
 	to offer
 		random < 1
+		or
+			and
+				not planet Albatross
+				not planet Bloodsea
+			and
+				not "event: albatross joins free worlds"
+				planet Albatross
+			and
+				not "event: bloodsea joins free worlds"
+				planet Bloodsea
 	on offer
 		conversation
 			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
