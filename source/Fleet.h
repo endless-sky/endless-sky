@@ -49,6 +49,7 @@ public:
 	// Flags for LimitedEvents<Fleet>
 	static const unsigned DEFAULT_FLEET_CATEGORY = 1;
 	static const unsigned IGNORE_ENEMY_STRENGTH = 2;
+	static const unsigned SKIP_SYSTEM_ENTRY = 4;
 
 
 	Fleet() = default;
