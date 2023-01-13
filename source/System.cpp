@@ -997,6 +997,10 @@ void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
 				&& child.Token(2) == "strength")
 			events.GetFlags() |= Fleet::IGNORE_ENEMY_STRENGTH;
 
+		else if(child.Size() >= 3 && child.Token(0) == "skip" && child.Token(1) == "system"
+				&& child.Token(2) == "entry")
+			events.GetFlags() |= Fleet::SKIP_SYSTEM_ENTRY;
+
 		else if(child.Size() > 1 && child.Token(0) == "category")
 		{
 			events.Category() = child.Token(1);

@@ -1254,7 +1254,10 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(FleetPlacementLimit(fleet, 60, true))
+			// Skip fleets that don't want to spawn on system entry,
+			// or fleets whose limits have already been reached.
+			if(!fleet.GetFlags(Fleet::SKIP_SYSTEM_ENTRY) &&
+				FleetPlacementLimit(fleet, 60, true))
 			{
 				fleetShips.clear();
 				fleet.Get()->Place(*system, fleetShips, true);
@@ -2500,10 +2503,8 @@ size_t Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned f
 	//    1 = the normal value, used when spawning random event ships
 
 	if(requireGovernment && !fleet.Get()->GetGovernment())
-	{
 		// Fleet has no government, but caller required one.
 		return 0;
-	}
 	else if(frames && Random::Int(fleet.Period()) >= frames)
 		// It is not yet time to place this fleet.
 		return 0;
