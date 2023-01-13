@@ -84,7 +84,7 @@ jobs:
         buildPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
         testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
-      run: ctest --preset linux-ci-benchmark
+      run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
     - name: Prevent saving cache on failure
       run: |
         echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
