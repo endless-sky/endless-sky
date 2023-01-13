@@ -62,7 +62,7 @@ jobs:
     strategy:
       matrix:
         os: [20.04, 22.04]
-        opengl: [desktop, gles]
+        opengl: [GL, GLES]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -80,9 +80,9 @@ jobs:
         vcpkgGitCommitId: '163fe7bd3d67c41200617caaa245b5ba2ba854e6'
     - uses: lukka/run-cmake@v10
       with:
-        configurePreset: 'linux-ci'
-        buildPreset: 'linux-ci'
-        testPreset: 'linux-ci'
+        configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        buildPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
       run: ctest --preset linux-ci-benchmark
     - name: Prevent saving cache on failure
