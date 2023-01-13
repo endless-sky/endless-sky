@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MAP_PANEL_H_
@@ -47,26 +50,37 @@ public:
 	static const int SHOW_SPECIAL = -4;
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
-	
+
 	static const float OUTER;
 	static const float INNER;
 	static const float LINK_WIDTH;
 	static const float LINK_OFFSET;
-	
-	
+
+	class SystemTooltipData {
+	public:
+		// Number of ships that are in flight
+		unsigned activeShips = 0;
+		// Number of ships that are parked
+		unsigned parkedShips = 0;
+		// Maps planet to number of outfits on that planet
+		std::map<const Planet *, unsigned> outfits;
+	};
+
+
+
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
+
 	void DrawButtons(const std::string &condition);
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
-	
+
 	// Map panels allow fast-forward to stay active.
-	virtual bool AllowFastForward() const override;
-	
-	
+	bool AllowsFastForward() const noexcept final;
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -74,35 +88,35 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
-	
+
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
 	static Color UninhabitedColor();
 	static Color UnexploredColor();
-	
+
 	virtual double SystemValue(const System *system) const;
-	
+
 	void Select(const System *system);
 	void Find(const std::string &name);
-	
+
 	double Zoom() const;
-	
+
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.
 	bool IsSatisfied(const Mission &mission) const;
 	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
-	
+
 	// Function for the "find" dialogs:
 	static int Search(const std::string &str, const std::string &sub);
-	
-	
+
+
 protected:
 	PlayerInfo &player;
-	
+
 	DistanceMap distance;
-	
+
 	// The system in which the player is located.
 	const System &playerSystem;
 	// The (non-null) system which is currently selected.
@@ -111,36 +125,36 @@ protected:
 	const Planet *selectedPlanet = nullptr;
 	// A system associated with a dialog or conversation.
 	const System *specialSystem;
-	
+
 	double playerJumpDistance;
-	
+
 	Point center;
 	Point recenterVector;
 	int recentering = 0;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
-	
+
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your (active and parked) escorts and stored outfits are located.
-	std::map<const System *, std::pair<std::pair<int, int>, int>> escortSystems;
+	std::map<const System *, SystemTooltipData> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
 	void CenterOnSystem(const System *system, bool immediate = false);
-	
+
 	// Cache the map layout, so it doesn't have to be re-calculated every frame.
 	// The cache must be updated when the coloring mode changes.
 	void UpdateCache();
-	
+
 	// For tooltips:
 	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
 	std::string tooltip;
 	WrappedText hoverText;
-	
-	
+
+
 private:
 	void DrawTravelPlan();
 	// Indicate which other systems have player escorts.
@@ -152,19 +166,21 @@ private:
 	void DrawNames();
 	void DrawMissions();
 	void DrawTooltips();
-	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
-	
-	
+	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
+
+
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
-	
+
 	class Node {
 	public:
-		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government)
+		Node(const Point &position, const Color &color, const std::string &name,
+			const Color &nameColor, const Government *government)
 			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
-		
+
 		Point position;
 		Color color;
 		std::string name;
@@ -172,12 +188,12 @@ private:
 		const Government *government;
 	};
 	std::vector<Node> nodes;
-	
+
 	class Link {
 	public:
 		Link(const Point &start, const Point &end, const Color &color)
 			: start(start), end(end), color(color) {}
-		
+
 		Point start;
 		Point end;
 		Color color;

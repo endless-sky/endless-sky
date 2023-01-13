@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "WrappedText.h"
@@ -64,7 +67,7 @@ void WrappedText::SetWrapWidth(int width)
 void WrappedText::SetFont(const Font &font)
 {
 	this->font = &font;
-	
+
 	space = font.Space();
 	SetTabWidth(4 * space);
 	SetLineHeight(font.Height() * 120 / 100);
@@ -123,7 +126,7 @@ void WrappedText::SetParagraphBreak(int height)
 void WrappedText::Wrap(const string &str)
 {
 	SetText(str.data(), str.length());
-	
+
 	Wrap();
 }
 
@@ -132,7 +135,7 @@ void WrappedText::Wrap(const string &str)
 void WrappedText::Wrap(const char *str)
 {
 	SetText(str, strlen(str));
-	
+
 	Wrap();
 }
 
@@ -151,7 +154,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	if(words.empty())
 		return;
-	
+
 	if(truncate == Truncate::NONE)
 		for(const Word &w : words)
 			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
@@ -162,7 +165,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 		for(size_t i = 0; i < words.size(); ++i)
 		{
 			const Word &w = words[i];
-			if(h == w.y && (i != words.size() - 1 && w.y == words[i+1].y))
+			if(h == w.y && (i != words.size() - 1 && w.y == words[i + 1].y))
 				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 			else
 				font->Draw({text.c_str() + w.Index(), {wrapWidth, truncate}}, w.Pos() + topLeft, color);
@@ -192,7 +195,7 @@ void WrappedText::SetText(const char *it, size_t length)
 	// Clear any previous word-wrapping data. It becomes invalid as soon as the
 	// underlying text buffer changes.
 	words.clear();
-	
+
 	// Reallocate that buffer.
 	text.assign(it, length);
 }
@@ -204,27 +207,27 @@ void WrappedText::Wrap()
 	height = 0;
 	if(text.empty() || !font)
 		return;
-	
+
 	// Do this as a finite state machine.
 	Word word;
 	bool hasWord = false;
-	
+
 	// Keep track of how wide the current line is. This is just so we know how
 	// much extra space must be allotted by the alignment code.
 	int lineWidth = 0;
 	// This is the index in the "words" vector of the first word on this line.
 	size_t lineBegin = 0;
-	
+
 	// TODO: handle single words that are longer than the wrap width. Right now
 	// they are simply drawn un-broken, and thus extend beyond the margin.
 	// TODO: break words at hyphens, or even do automatic hyphenation. This
 	// would require a different format for the buffer, though, because it means
 	// inserting '\0' characters even where there is no whitespace.
-	
+
 	for(string::iterator it = text.begin(); it != text.end(); ++it)
 	{
 		char c = *it;
-		
+
 		// Whenever we encounter whitespace, the current word needs wrapping.
 		if(c <= ' ' && hasWord)
 		{
@@ -237,7 +240,7 @@ void WrappedText::Wrap()
 				// word will be the first on the next line.
 				word.y += lineHeight;
 				word.x = 0;
-				
+
 				// Adjust the spacing of words in the now-complete line.
 				AdjustLine(lineBegin, lineWidth, false);
 			}
@@ -249,14 +252,14 @@ void WrappedText::Wrap()
 			// We currently are not inside a word.
 			hasWord = false;
 		}
-		
+
 		// If that whitespace was a newline, we must handle that, too.
 		if(c == '\n')
 		{
 			// The next word will begin on a new line.
 			word.y += lineHeight + paragraphBreak;
 			word.x = 0;
-			
+
 			// Adjust the word spacings on the now-completed line.
 			AdjustLine(lineBegin, lineWidth, true);
 		}
@@ -280,7 +283,7 @@ void WrappedText::Wrap()
 			// final word will be the first (and only) on the next line.
 			word.y += lineHeight;
 			word.x = 0;
-			
+
 			// Adjust the spacing of words in the now-complete line.
 			AdjustLine(lineBegin, lineWidth, false);
 		}
@@ -293,7 +296,7 @@ void WrappedText::Wrap()
 	}
 	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
-	
+
 	height = word.y;
 }
 
@@ -303,7 +306,7 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 {
 	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
-	
+
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the
 	// space in between the words. Exception: the last line of a "justified"
@@ -319,7 +322,7 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += shift;
 	}
-	
+
 	lineBegin = words.size();
 	lineWidth = 0;
 }

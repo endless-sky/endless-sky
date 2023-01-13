@@ -1,0 +1,56 @@
+data:
+  - 'changelog*'
+  - 'copyright*'
+  - credits.txt
+  - icon.png
+  - keys.txt
+  - license.txt
+  - 'data/**/*'
+  - 'images/**/*'
+  - 'sounds/**/*'
+
+game_code: &build
+  - 'source/**'
+
+windows:
+  - '**/*.cbp'
+  - EndlessSky.workspace
+  - SConstruct
+  - .winmake
+  - *build
+
+linux:
+  - SConstruct
+  - *build
+
+unit_tests:
+  - 'tests/unit/**/*.h'
+  - 'tests/unit/**/*.hpp'
+  - 'tests/unit/**/*.cpp'
+
+integration_tests:
+  - 'utils/test_parse.*'
+  - 'tests/integration/run_tests*'
+  - 'data/tests/**'
+  - 'tests/integration/config/plugins/integration-tests/**'
+
+codespell:
+  - .codespell.exclude
+
+codeblocks_files:
+  - '*.cbp'
+  - 'utils/check_codeblocks.sh'
+
+cmake_files:
+  - CMakeLists.txt
+  - source/CMakeLists.txt
+  - tests/CMakeLists.txt
+  - tests/integration/IntegrationTests.cmake
+  - utils/vcpkg_bootstrap.cmake
+  - CMakePresets.json
+  - 'vcpkg/**'
+  - vcpkg.json
+  - vcpkg-configuration.json
+
+copyright:
+  - 'copyright'

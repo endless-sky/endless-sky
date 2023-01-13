@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SET_H_
@@ -31,20 +34,22 @@ public:
 	// If an item already exists in this set, get it. Otherwise, return a null
 	// pointer rather than creating the item.
 	const Type *Find(const std::string &name) const;
-	
+
 	bool Has(const std::string &name) const { return data.count(name); }
-	
+
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }
+	typename std::map<std::string, Type>::const_iterator find(const std::string &key) const { return data.find(key); }
 	typename std::map<std::string, Type>::iterator end() { return data.end(); }
 	typename std::map<std::string, Type>::const_iterator end() const { return data.end(); }
-	
+
 	int size() const { return data.size(); }
+	bool empty() const { return data.empty(); }
 	// Remove any objects in this set that are not in the given set, and for
 	// those that are in the given set, revert to their contents.
 	void Revert(const Set<Type> &other);
-	
-	
+
+
 private:
 	mutable std::map<std::string, Type> data;
 };
@@ -65,7 +70,7 @@ void Set<Type>::Revert(const Set<Type> &other)
 {
 	auto it = data.begin();
 	auto oit = other.data.begin();
-	
+
 	while(it != data.end())
 	{
 		if(oit == other.data.end() || it->first < oit->first)
@@ -78,7 +83,7 @@ void Set<Type>::Revert(const Set<Type> &other)
 			++it;
 			++oit;
 		}
-		
+
 		// There should never be a case when an entry in the set we are
 		// reverting to has a name that is not also in this set.
 	}
