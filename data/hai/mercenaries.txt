@@ -532,8 +532,8 @@ mission "Feed Them To The Wolves"
 		# still gets lost because they're busy shipping all of these supplies to Unfettered space.
 		event "unfettered: shipment lost" 30
 		set "unfettered: hunger"
-		# make the hunger last a bit longer
-		"unfettered: hunger stops" = -100
+		# make the hunger last a bit longer (just 10 days or so)
+		"unfettered: hunger stops" = -500
 		payment 4000000
 		dialog `As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the elder will not bother you. Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place."`
 

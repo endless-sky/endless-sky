@@ -1017,7 +1017,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on complete
 		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
-		event "unfettered: shipment lost" 30
+		event "unfettered: shipment lost" 20 30
 		set "unfettered: hunger"
 		# if there already was a hunger situation make it last longer
 		clear "unfettered: hunger stops"
@@ -1131,7 +1131,6 @@ mission "Unfettered: Materials Intercepted Job Board Notification"
 		has "event: unfettered: shipment lost"
 		not "Unfettered: Materials Intercepted: active"
 		not "Unfettered: Materials Intercepted: done"
-		random < 25
 	on offer
 		conversation
 			`Upon landing you take a look at the job board, almost by habit, and to your surprise you notice that there is a very peculiar job on the board, left by none other than Sookootow, titled "looking for stolen cargo". Probably worth checking out in the job board when you have the time.`

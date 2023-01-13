@@ -182,7 +182,6 @@ mission "Unfettered: Hunger!"
 	landing
 	invisible
 	repeat
-	minor
 	to offer
 		not "event: wanderers: unfettered invasion starts"
 		# to not make it restart if it's already going and is triggered by the Hai Escort mission and only make it last longer
@@ -190,19 +189,23 @@ mission "Unfettered: Hunger!"
 		or
 			has "unfettered: hunger"
 			and
-				not "unfettered: hunger"
 				has "Unfettered: Jump Drive 2: offered"
-				# 1 chance in 250
+				# 1 chance in 500
 				random < 1
-				random < 40
+				random < 20
 	on offer
 		event "unfettered: need for food"
-		clear "unfettered: hunger stops"
 	on enter
+		system
+			government "Hai"
+		dialog `The local Hai autorities hail you. "Captain, We need your help! Our brethren up north are dying from hunger! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
+	on enter
+		system
+			attributes "unfettered"
 		conversation
 			branch "not first time"
 				has "Unfettered: Hunger!: offered"
-			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be hailing all ships in range, both in human and hai... Their situation must be desperate.`
+			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be relaying a message to all ships in range, both in human and hai... Their situation must be desperate.`
 				goto message
 			label "not first time"
 			`The local Unfettered authorities hail you. They are hailing all ships, in human and hai. This is not the first time they do this, and you suppose another starvation is happening. If that is the case, they did not manage their food issue in a permanent manner.`
@@ -218,8 +221,11 @@ mission "Unfettered: Hunger!"
 	on fail
 		event "unfettered: need for food stops"
 		dialog "It seems that with the increased food brought the famine amongst the Unfettered has recessed, hopefully permanently."
+	to complete
+		never
 
 event "unfettered: need for food"
+	clear "unfettered: hunger stops"
 	clear "event: unfettered: need for food stops"
 	set "unfettered: hunger"
 	system "Wah Oh"
@@ -273,6 +279,7 @@ event "unfettered: need for food"
 
 
 event "unfettered: need for food stops"
+	clear "unfettered: hunger stops"
 	clear "event: unfettered: need for food"
 	clear "unfettered: hunger"
 	system "Wah Ki"
