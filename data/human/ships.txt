@@ -2642,7 +2642,7 @@ ship "Nighthawk"
 		"Large Radar Jammer"
 		"Tactical Scanner"
 		"Laser Rifle" 24
-		"Fragmentation Grenades" 4
+		"Nerve Gas" 10
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
