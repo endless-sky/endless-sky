@@ -359,6 +359,9 @@ mission "Local Politics"
 			and
 				not "event: bloodsea joins free worlds"
 				planet Bloodsea
+			and
+				has "FW Bloodsea 1.2A: done"
+				planet Bloodsea
 	on offer
 		conversation
 			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`
