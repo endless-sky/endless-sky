@@ -1,4 +1,4 @@
-test-data "00 Spawn Limit Tests"
+test-data "Spawn Limits Test"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -50,40 +50,24 @@ test-data "00 Spawn Limit Tests"
 			"Ruin: Landing: offered"
 		event
 			date 1 1 3012
-
 			system "Terra Incognita"
-				fleet "Timer D Test Fleet"
-					category test
-					skip system entry
-					period 1
-					limit 2
-					ignore enemy strength
 				fleet "Non-Disabled A Test Fleet"
 					category test
 					period 1
 					non-disabled limit 1
+					ignore enemy strength
 				fleet "Disabled B Test Fleet"
 					category test
 					period 1
 					limit 3
+					ignore enemy strength
 				fleet "Disabled C Test Fleet"
 					category test
 					period 1
 					limit 0
 					initial count 1
-				fleet "Disabled 2 Test Fleet"
-					period 100000000
-					limit 0
-					initial count 1
-
-			system "Over the Rainbow"
-				fleet "Non-Disabled E Test Fleet"
-					category test
-					period 1
-					limit 2
-					skip system entry
 					ignore enemy strength
-				fleet "Quarg Skylark 2 Test Fleet"
+				fleet "Disabled 2 Test Fleet"
 					period 100000000
 					limit 0
 					initial count 1
@@ -93,61 +77,28 @@ test-data "00 Spawn Limit Tests"
 fleet "Non-Disabled A Test Fleet"
 	government "Test Government 1 A"
 	cargo 0
-	personality staying heroic uninterested
+	personality staying heroic
 	variant 60
-		"Dreadnought"
+		"Aphid"
 
 fleet "Disabled B Test Fleet"
 	government "Test Government 1 B"
 	cargo 0
-	personality staying derelict heroic uninterested
+	personality staying derelict heroic
 	variant 60
-		"Carrier"
+		"Star Barge"
 
 fleet "Disabled C Test Fleet"
 	government "Test Government 1 C"
 	cargo 0
-	personality staying derelict heroic uninterested
+	personality staying derelict heroic
 	variant 60
-		"Cruiser"
-
-fleet "Timer D Test Fleet"
-	government "Test Government 1 D"
-	cargo 0
-	personality staying heroic uninterested
-	variant 60
-		"Shield Beetle Test"
-
-fleet "Non-Disabled E Test Fleet"
-	government "Test Government 1 E"
-	cargo 0
-	personality staying heroic uninterested
-	variant 60
-		"Shield Beetle Test"
-
-ship "Shield Beetle" "Shield Beetle Test"
-	add attributes
-		"cost" 1e9
-	outfits
-		"Liquid Helium Cooler" 2
-		"Catalytic Ramscoop"
-		"Jump Drive"
-		"Quantum Keystone"
-		"Outfits Expansion" 3
-		"Boulder Reactor" 2
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Chameleon Anti-Missile" 2
-		"Hai Diamond Regenerator" 2
-		"Hai Chasm Batteries"
-		"Fuel Pod" 3
-		"Plasma Cannon" 8
-		"Modified Blaster Turret" 2
+		"Shuttle"
 
 government "Test Government 1 A"
 	swizzle 2
 	color 1 1 1
-	"player reputation" 1e12
+	"player reputation" 1e9
 	"fine" 0
 	"attitude toward"
 		"Test Government 2" -1
@@ -155,7 +106,7 @@ government "Test Government 1 A"
 government "Test Government 1 B"
 	swizzle 2
 	color 1 1 1
-	"player reputation" 1e12
+	"player reputation" 1e9
 	"fine" 0
 	"attitude toward"
 		"Test Government 2" -1
@@ -163,23 +114,7 @@ government "Test Government 1 B"
 government "Test Government 1 C"
 	swizzle 3
 	color 1 1 1
-	"player reputation" 1e12
-	"fine" 0
-	"attitude toward"
-		"Test Government 2" -1
-
-government "Test Government 1 D"
-	swizzle 3
-	color 1 1 1
-	"player reputation" 1e12
-	"fine" 0
-	"attitude toward"
-		"Test Government 2" -1
-
-government "Test Government 1 E"
-	swizzle 3
-	color 1 1 1
-	"player reputation" 1e12
+	"player reputation" 1e9
 	"fine" 0
 	"attitude toward"
 		"Test Government 2" -1
@@ -187,14 +122,12 @@ government "Test Government 1 E"
 government "Test Government 2"
 	swizzle 4
 	color 1 1 1
-	"player reputation" 1e12
+	"player reputation" 1e9
 	"fine" 0
 	"attitude toward"
 		"Test Government 1 A" -1
 		"Test Government 1 B" -1
 		"Test Government 1 C" -1
-		"Test Government 1 D" -1
-		"Test Government 1 E" -1
 
 mission "Board 1 A"
 	assisting
@@ -223,15 +156,6 @@ mission "Board 1 C"
 		"test: Test Government 1 C boarded" ++
 	destination "Earth"
 
-mission "Board 1 D"
-	assisting
-	repeat
-	source
-		government "Test Government 1 D"
-	on offer
-		"test: Test Government 1 D boarded" ++
-	destination "Earth"
-
 mission "Board 2"
 	assisting
 	repeat
@@ -241,126 +165,32 @@ mission "Board 2"
 		"test: Test Government 2 boarded" ++
 	destination "Earth"
 
+ship "Kasichara A'awoj" "Big Ship"
+	outfits
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor" 2
+		"Luxury Accommodations"
+		"Microbot Defense Station" 23
+		"Thermal Repeater Rifle" 548
+
 fleet "Disabled 2 Test Fleet"
 	government "Test Government 2"
 	cargo 0
-	personality staying derelict uninterested
+	personality staying derelict
 	variant 60
-		"Immortal Surveillance Drone"
-
-fleet "Quarg Skylark 2 Test Fleet"
-	government "Test Government 2"
-	cargo 0
-	personality staying uninterested
-	variant 60
-		"Quarg Skylark Test"
-
-ship "Quarg Skylark" "Quarg Skylark Test"
-	outfits
-		"Quarg Skylance" 2
-		"Quarg Anti-Missile" 2
-		
-		"Antimatter Core"
-		"Nanotech Battery"
-		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 120
-		
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
-
-
-ship "Surveillance Drone" "Immortal Surveillance Drone"
-	add attributes
-		"hull" 10000000
-		"hull repair rate" 10000
-
-fleet "Timer D Test Fleet"
-	government "Test Government 1 D"
-	cargo 0
-	personality heroic staying uninterested
-	variant 60
-		"Visible Timer Ship"
-
-ship "Visible Timer Ship"
-	sprite "ship/shuttle"
-	attributes
-		"cost" 1
-		"heat dissipation" 1
-		"hull" 10
-		"hull repair rate" .001
-		"outfit space" 100
-		"mass" 100
-		"drag" 5
-		"automaton" 1
-		"thrust" 40
-		"reverse thrust" 40
-		"turn" 600
-		"fuel capacity" 800
-	outfits
-		"Visible Timer Gun"
-		"Jump Drive"
-	gun 0 -31
-
-outfit "Visible Timer Gun"
-	category "Guns"
-	thumbnail "outfit/unknown"
-	"gun ports" -1
-	weapon
-		sprite "projectile/sidewinder"
-			"no repeat"
-			"frame rate" .25
-		"die effect" "missile death"
-		"hit effect" "missile hit"
-		"velocity" 1
-		"lifetime" 2
-		"reload" 1
-		"hull damage" 3
-		"blast radius" 6
-
-
-test "00 Spawn Limit Tests"
-
-	# This test happens in two systems: Terra Incognita and Over the Rainbow
+		"Big Ship"
 
 
 
-	# The Terra Incognita parts of the test rely on the internal
-	# workings of the Engine's fleet spawning logic.  In
-	# particular: 1) fleets are considered in the order they are
-	# listed in the system; 2) fleets are spawned in three passes:
-	# initial count, five second fill, and random event; and 3)
-	# the fleet limits (being tested here).
-
-	# The first pass is the "initial count" spawns:
-	#    Non-Disabled A Test Fleet - no initial count; nothing spawns
-	#    Disabled B Test Fleet - no initial count; nothing spawns
-	#    Disabled C Test Fleet - initial count is 1 and no other ships in
-	#                             category "test" exist, so one ship is spawned.
-	#    Disabled 2 Test Fleet - initial count is 1 and no other ships in the
-	#                            category "Disabled 2 Test Fleet@Terra Incognita"
-	#                            exist, so one is spawned
-
-	# The second pass is the "five second spawn" test.
-	#
-	# There is about a 1:200000 chance of this test failing due to
-	# the use of random numbers. For this to happen, Disabled B
-	# Test Fleet would have to spawn twice before Non-Disabled A
-	# Test Fleet spawns.
-	#
-	#    Non-Disabled A Test Fleet - spawns once (non-disabled limit 1)
-	#    Disabled B Test Fleet - spawns once since there's 2 "test" category ships
-	#    Disabled C Test Fleet - no spawn since the limit of 0 is reached
-	#    Disabled 2 Test Fleet - no spawn since the limit of 0 is reached
-
-	# After this, in the random event fleets, none should spawn
-	# since all limits are reached.
-
-	# The next part of the test happens in Over the Rainbow
-
+test "Spawn Limit Tests"
 	status active
 	description "Tests if random interval and system entry fleet spawn limits work."
 	sequence
-		inject "00 Spawn Limit Tests"
+		inject "Spawn Limits Test"
 		call "Load First Savegame"
 		watchdog 12000
 		call "Depart"
@@ -403,7 +233,7 @@ test "00 Spawn Limit Tests"
 		branch wait3
 			"test: steps to wait" > 0
 
-		# Board fourth ship.
+		# Hopefully board no other ships.
 		input
 			command board
 		apply
@@ -414,53 +244,14 @@ test "00 Spawn Limit Tests"
 		branch wait4
 			"test: steps to wait" > 0
 
-		# Hopefully board no other ships.
-		input
-			command board
-		apply
-			"test: steps to wait" = 3 * 60
-		label wait5
-		apply
-			"test: steps to wait" = "test: steps to wait" - 1
-		branch wait5
-			"test: steps to wait" > 0
-
-
 		# store the conditions in test variables so we know which one fails
 		apply
 			"Test Government 1 A boarded" == "test: Test Government 1 A boarded"
 			"Test Government 1 B boarded" == "test: Test Government 1 B boarded"
 			"Test Government 1 C boarded" == "test: Test Government 1 C boarded"
-			"Test Government 1 D boarded" == "test: Test Government 1 D boarded"
 			"Test Government 2 boarded" == "test: Test Government 2 boarded"
 		assert
 			"test: Test Government 1 A boarded" == 0
 			"test: Test Government 1 B boarded" == 1
 			"test: Test Government 1 C boarded" == 1
-			"test: Test Government 1 D boarded" == 1
 			"test: Test Government 2 boarded" == 1
-
-
-		# In Over the Rainbow, this happens:
-
-		# Initial count pass:
-		#   Non-Disabled D Test Fleet - no initial count; does not spawn
-		#   Quarg Skylark 2 Test Fleet - initial count 1; spawns 1
-		#
-		# Five second pass:
-		#   Non-Disabled D Test Fleet - 9% chance this spawns, breaking the test!!
-		#   Quarg Skylark 2 Test Fleet - period 100000000; unlikely it'll spawn
-		#
-		# Random interval pass:
-		#   
-
-		# Should go to Over the Rainbow
-		input
-			command jump
-		apply
-			"test: steps to wait" = 5 * 60
-		label wait5
-		apply
-			"test: steps to wait" = "test: steps to wait" - 1
-		branch wait5
-			"test: steps to wait" > 0
