@@ -710,7 +710,7 @@
       "name": "linux-gles-ci",
       "displayName": "Linux GLES CI Tests",
       "configurePreset": "linux-gles-ci",
-      "inherits": "ci-integration"
+      "inherits": "ci"
     },
     {
       "name": "linux-gles-ci-benchmark",
