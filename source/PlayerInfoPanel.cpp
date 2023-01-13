@@ -751,7 +751,11 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		if(!bounds.Contains(table.GetRowBounds()))
 			break;
 
-		bool isHovered = (index == hoverIndex);
+		// Find out if the mouse is hovering over the ship
+		Rectangle shipZone = Rectangle(table.GetCenterPoint(), table.GetRowSize());
+		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint);
+		if(isHovered)
+			hoverIndex = index;
 
 		// Check if this ship will be able to fly.
 		if(!flightChecks.empty())
@@ -773,7 +777,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 						error = err;
 						warning = warn;
 					}
-	
+
 					break;
 				}
 		}
@@ -783,12 +787,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			table.DrawHighlight(selectedBack);
 		else if(panelState.AllSelected().count(index))
 			table.DrawHighlight(back);
-
-		// Find out if the mouse is hovering over the ship
-		Rectangle shipZone = Rectangle(table.GetCenterPoint(), table.GetRowSize());
-		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint);
-		if(isHovered)
-			hoverIndex = index;
 
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
@@ -856,9 +854,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		WrappedText wrap(FontSet::Get(14));
 		wrap.SetWrapWidth(WIDTH - 2 * PAD);
 		wrap.Wrap(text);
-		
+
 		const Color &backColor = *GameData::Colors().Get(error ? "error back" : "warning back");
-		
+
 		Point size(WIDTH, wrap.Height() + 2 * PAD);
 		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + size.Y(), Screen::Bottom()));
 		FillShader::Fill(anchor - .5 * size, size, backColor);
