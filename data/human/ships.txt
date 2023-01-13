@@ -2304,7 +2304,7 @@ ship "Mammoth"
 		"required crew" 18
 		"bunks" 30
 		"mass" 688
-		"drag" 10.5
+		"drag" 11.9
 		"heat dissipation" .32
 		"fuel capacity" 1000
 		"cargo space" 400
