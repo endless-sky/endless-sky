@@ -344,7 +344,7 @@ mission "Forest Fire"
 mission "Local Politics"
 	minor
 	source
-		government "Free Worlds"
+		government "Pirate" "Republic"
 		attributes "frontier"
 		not attributes "station"
 	to offer
