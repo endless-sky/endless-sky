@@ -405,7 +405,7 @@ ship "Alpha Auxiliary"
 		"Large Heat Shunt" 2
 		"Wanderer Ramscoop"
 		"Fuel Processor" 2
-		"Brig" 2
+		"Brig"
 		"Fragmentation Grenades" 20
 		"Laser Rifle" 30
 

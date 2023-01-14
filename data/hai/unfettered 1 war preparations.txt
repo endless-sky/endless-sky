@@ -696,11 +696,10 @@ ship "Mammoth" "Mammoth (Hai)"
 		"Chameleon Anti-Missile" 2
 		"Bullfrog Anti-Missile" 2
 		"Hai Diamond Regenerator"
-		"Hai Gorge Batteries"
+		"Hai Fissure Batteries"
 		"Hai Tracker" 112
 		"Hai Tracker Pod" 2
 		"Liquid Nitrogen Cooler"
-		"Outfits Expansion"
 		"Pulse Turret" 4
 		"Pulse Rifle" 30
 		"Scram Drive"
