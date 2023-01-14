@@ -1074,7 +1074,7 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(!model)
-		return nullptr;
+		return;
 
 	int day = date.DaysSinceEpoch();
 	int64_t cost = stockDepreciation.Value(*model, day);
@@ -1104,7 +1104,7 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 	flagship.reset();
 
 	// Store named ships with their model so they can be checked later.
-	if(isGift && !id.empty())
+	if(!id.empty())
 		giftedShips[id].clone(ships.back()->UUID());
 
 	return ships.back().get();
@@ -4112,7 +4112,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 
 
 // Add a new ship corresponding to this model and name to the ships list.
-void AddShipModel(const Ship *model, const std::string &name)
+void PlayerInfo::AddShipModel(const Ship *model, const std::string &name)
 {
 	ships.push_back(make_shared<Ship>(*model));
 	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
