@@ -20,10 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 
-#include <functional>
 #include <map>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 class Conversation;
