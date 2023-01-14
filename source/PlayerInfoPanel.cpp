@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Command.h"
-#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -31,7 +30,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "Screen.h"
 #include "Ship.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
@@ -701,8 +699,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	const Color &dead = *GameData::Colors().Get("dead");
 	const Color &flagship = *GameData::Colors().Get("flagship");
 	const Color &disabled = *GameData::Colors().Get("disabled");
-	const Color &cannotFly = *GameData::Colors().Get("cannot fly");
-	const Color &flightIssues = *GameData::Colors().Get("flight issues");
 
 	// Table attributes.
 	Table table;
@@ -735,15 +731,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	table.DrawGap(5);
 
-	// Get ships that are unable to depart.
-	const auto &flightChecks = player.FlightCheck();
-
 	// Loop through all the player's ships.
 	int index = panelState.Scroll();
-	// Keep track of whether we need to show tooltip.
-	string tooltip;
-	bool warning = false;
-	bool error = false;
 	hoverIndex = -1;
 	for(auto sit = panelState.Ships().begin() + panelState.Scroll(); sit < panelState.Ships().end(); ++sit)
 	{
@@ -751,42 +740,17 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		if(!bounds.Contains(table.GetRowBounds()))
 			break;
 
-		// Find out if the mouse is hovering over the ship
-		Rectangle shipZone = Rectangle(table.GetCenterPoint(), table.GetRowSize());
-		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint);
-		if(isHovered)
-			hoverIndex = index;
-
-		// Check if this ship will be able to fly.
-		if(!flightChecks.empty())
-		{
-			const auto &shipPtr = *sit;
-			for(const auto &result : flightChecks)
-				if(result.first == shipPtr)
-				{
-					const auto &check = result.second.front();
-					bool warn = (check.back() == '?');
-					bool err = (check.back() == '!');
-					if(err)
-						table.DrawHighlight(cannotFly);
-					else if(warn)
-						table.DrawHighlight(flightIssues);
-					if(isHovered)
-					{
-						tooltip = check;
-						error = err;
-						warning = warn;
-					}
-
-					break;
-				}
-		}
-
 		// Check if this row is selected.
 		if(panelState.SelectedIndex() == index)
 			table.DrawHighlight(selectedBack);
 		else if(panelState.AllSelected().count(index))
 			table.DrawHighlight(back);
+
+		// Find out if the mouse is hovering over the ship
+		Rectangle shipZone = Rectangle(table.GetCenterPoint(), table.GetRowSize());
+		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint);
+		if(isHovered)
+			hoverIndex = index;
 
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
@@ -844,23 +808,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			font.Draw(name, pos, bright);
 			pos.Y() += 20.;
 		}
-	}
-	// Show tooltip that tells what is wrong with the ship under the mouse.
-	else if(error || warning)
-	{
-		constexpr int WIDTH = 250;
-		constexpr int PAD = 10;
-		const string &text = GameData::Tooltip(tooltip);
-		WrappedText wrap(FontSet::Get(14));
-		wrap.SetWrapWidth(WIDTH - 2 * PAD);
-		wrap.Wrap(text);
-
-		const Color &backColor = *GameData::Colors().Get(error ? "error back" : "warning back");
-
-		Point size(WIDTH, wrap.Height() + 2 * PAD);
-		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + size.Y(), Screen::Bottom()));
-		FillShader::Fill(anchor - .5 * size, size, backColor);
-		wrap.Draw(anchor - size + Point(PAD, PAD), dim);
 	}
 }
 
