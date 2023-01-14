@@ -264,18 +264,19 @@ void Government::Load(const DataNode &node)
 			language = child.Token(valueIndex);
 		else if(key == "raid")
 		{
+			const Fleet *raidingFleet = GameData::Fleets().Get(child.Token(valueIndex));
 			if(remove)
 			{
 				for(auto it = raidFleets.begin(); it != raidFleets.end(); ++it)
-					if(it->Name() == child.Token(valueIndex))
+					if(it.first == raidingFleet)
 					{
 						raidFleets.erase(it);
 						break;
 					}
 			}
-			else if(child.Size() >= 2)
-				raidFleets.emplace_back(make_pair(GameData::Fleets().Get(child.Token(1)),
-					child.Size() >= 3 ? child.Value(2) : 2.));
+			else
+				raidFleets.emplace_back(make_pair(raidingFleet,
+					child.Size() > valueIndex ? child.Value(valueIndex + 1.) : 2.));
 		}
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
