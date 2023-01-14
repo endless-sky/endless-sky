@@ -314,9 +314,8 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 		for(const System *link : system.Links())
 		{
-			// Only draw visible systems known to be attached to the jump systems.
-			if((!player.HasVisited(system) && !player.HasVisited(*link))
-					|| system.Inaccessible() || link->Inaccessible())
+			// Only draw systems known to be attached to the jump systems.
+			if(!player.HasVisited(system) && !player.HasVisited(*link))
 				continue;
 
 			// Draw the system link. This will double-draw the jump

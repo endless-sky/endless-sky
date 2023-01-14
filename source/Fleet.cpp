@@ -76,8 +76,7 @@ namespace {
 			{
 				choices = GetOutfitsForSale(hub);
 				for(const System *other : hub->Links())
-					if(!other->Inaccessible())
-						choices.Add(GetOutfitsForSale(other));
+					choices.Add(GetOutfitsForSale(other));
 			}
 			else
 				for(const auto outfitter : outfitters)
@@ -326,8 +325,6 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
-				if(neighbor->Inaccessible())
-					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
 				// so attack fleets don't come from what ought to be a safe direction.)
@@ -497,13 +494,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	// Don't enter from inaccessible systems.
-	set<const System *> validLinks;
-	for(const System *link : system.Links())
-		if(!link->Inaccessible())
-			validLinks.insert(link);
-
-	if(validLinks.empty() || (source && !validLinks.count(source)))
+	if(system.Links().empty() || (source && !system.Links().count(source)))
 	{
 		Place(system, ship);
 		return &system;
@@ -512,8 +503,8 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		auto it = validLinks.cbegin();
-		advance(it, Random::Int(validLinks.size()));
+		auto it = system.Links().cbegin();
+		advance(it, Random::Int(system.Links().size()));
 		source = *it;
 	}
 

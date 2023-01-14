@@ -199,8 +199,11 @@ private:
 	const Government *government = nullptr;
 	std::string music;
 
-	// Hyperspace links to other systems.
+	// All possible hyperspace links to other systems.
 	std::set<const System *> links;
+	// Only those hyperspace links to other systems that are accessible.
+	std::set<const System *> accessibleLinks;
+	// Other systems that can be accessed from this system via a jump drive at various jump ranges.
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked. A hidden system will
